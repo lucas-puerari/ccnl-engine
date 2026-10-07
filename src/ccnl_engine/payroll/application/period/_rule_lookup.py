@@ -148,10 +148,6 @@ def tax_rules(ctx: RunContext) -> dict[str, tuple[Rule, ...]]:
                 f"{name}:work_deduction.minimum",
                 rules.work_deduction.minimum.provenance,
             ),
-            (
-                f"{name}:sterilizzazione_detrazioni",
-                _provenance(rules.sterilizzazione_detrazioni),
-            ),
         ),
         "tfr": tfr_rules(name, rules.tfr),
         "tfr_revaluation": revaluation_rules(

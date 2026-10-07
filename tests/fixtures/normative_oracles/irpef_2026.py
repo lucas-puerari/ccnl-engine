@@ -14,8 +14,10 @@ Scope (anything outside raises :class:`ValueError`):
 - employment income is the only income (reddito complessivo equals the
   employment income, no deduzioni from the art. 10 TUIR base);
 - no family deductions and no other art. 15 TUIR deductions;
-- reddito complessivo not above 200,000 EUR (the reduction of deductions
-  above that threshold is not modelled).
+- reddito complessivo not above 200,000 EUR.  Above it art. 16-ter c. 5-bis
+  TUIR (L. 199/2025 art. 1 c. 4) lowers only the 19% oneri (medical
+  expenses excluded), party donations and catastrophe premiums, which are
+  outside this scope; the limit is kept to stay within the cases checked.
 
 Credits paid on top of IRPEF (trattamento integrativo, somma esente
 L. 207/2024 art. 1 c. 4) are separate cash items and are not part of the
@@ -25,7 +27,7 @@ Sources (formulas transcribed on 26 September 2026; not yet cross-checked
 against an official worked example):
 
 - Brackets: art. 11 c. 1 TUIR as replaced by D.Lgs. 216/2023 art. 1 and
-  amended by L. 199/2025 art. 1 c. 2 (second rate from 35% to 33%).
+  amended by L. 199/2025 art. 1 c. 3 (second rate from 35% to 33%).
 - Employment deduction: art. 13 c. 1 and c. 1.1 TUIR, as amended by
   D.Lgs. 216/2023 art. 1 c. 2 (1,955 EUR up to 15,000 EUR).
 - Minimum of the employment deduction: art. 13 c. 1 lett. a) TUIR, text in

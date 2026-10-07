@@ -113,9 +113,9 @@ def _derived(document: dict[str, Any], section: str, **kwargs: str) -> dict[str,
     return _record("derived", document, section, **kwargs)
 
 
-_IRPEF = _derived(L_199_2025, "art. 1 c. 2")
+_IRPEF = _derived(L_199_2025, "art. 1 c. 3")
 _WORK_DEDUCTION = _derived(TUIR, "art. 13 c. 1")
-_STERILIZZAZIONE = _derived(L_199_2025, "art. 1 cc. 3-4")
+_STERILIZZAZIONE = _derived(L_199_2025, "art. 1 c. 4")
 _FIXED_TERM = _derived(L_92_2012, "art. 2 c. 28")
 _TFR = _derived(CODICE_CIVILE, "art. 2120", transformation=_FROM_MODEL)
 _TRATTAMENTO = _derived(
@@ -170,7 +170,7 @@ FISCAL_RECORDS: Final[dict[str, dict[str, dict[str, Any]]]] = {
     "tax/data/2026-edilizia.json": _tax(),
     "tax/data/2026-industria.json": _tax(),
     "tax/data/2026-lavoro-domestico.json": _tax(
-        irpef_brackets=_derived(L_199_2025, "art. 1 c. 2", transformation=_SHARED),
+        irpef_brackets=_derived(L_199_2025, "art. 1 c. 3", transformation=_SHARED),
         work_deduction=_derived(TUIR, "art. 13 c. 1", transformation=_SHARED),
     ),
     "tax/data/2026-pubblica-amministrazione.json": _tax(

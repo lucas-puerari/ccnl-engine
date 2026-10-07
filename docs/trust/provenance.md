@@ -23,7 +23,7 @@ posted amount.
 | Sickness rule | `ccnl/data/*.json`: `work_rules.sickness_rules` | Per rule |
 | INPS sick-pay indemnity bands | `inps/data/sick-pay-rates.json`: `bands` | Sibling `bands_provenance` |
 | IRPEF brackets | `tax/data/<year>-<sector>.json`: `irpef_brackets` | Sibling `irpef_brackets_provenance` |
-| Art. 13 work deduction, its minimum, sterilizzazione | `tax/data/<year>-<sector>.json`: `work_deduction`, `work_deduction.minimum`, `sterilizzazione_detrazioni` | Per block |
+| Art. 13 work deduction, its minimum | `tax/data/<year>-<sector>.json`: `work_deduction`, `work_deduction.minimum` | Per block |
 | Trattamento integrativo, ulteriore detrazione, somma esente | `tax/data/<year>-<sector>.json` | Per block |
 | TFR divisor, additional IVS deduction | `tax/data/<year>-<sector>.json`: `tfr`, `tfr.additional_ivs` | Per block |
 | Fixed-term addizionale NASpI | `tax/data/<year>-<sector>.json`: `fixed_term_additional_rate` | Sibling `fixed_term_additional_rate_provenance` |
@@ -52,7 +52,12 @@ table, while a run reports the record of the row it read.
 
 Bundled values the run does not read are not payable: the other CCNL work
 rules (overtime bands beyond an hour threshold, conditional or paid per hour
-or per shift, leave), apprenticeship tracks and the Art. 15 deductions.
+or per shift, leave), apprenticeship tracks, the Art. 15 deductions and the
+`sterilizzazione_detrazioni` block. That block holds the 440 EUR reduction of
+art. 16-ter c. 5-bis TUIR (L. 199/2025 art. 1 c. 4), which lowers only the
+19% oneri, party donations and catastrophe premiums: the payroll computes
+none of them, so the reduction never touches the Art. 12 and Art. 13
+deductions or the ulteriore detrazione.
 
 ## The provenance record
 
@@ -159,7 +164,7 @@ when they drift.
 |---|---:|---:|---:|
 | `verified` | 0 | 0 | 0 |
 | `derived` | 5 624 | 12 | 5 636 |
-| `assumed` | 749 | 108 | 857 |
+| `assumed` | 749 | 100 | 849 |
 | `missing` | 85 | 0 | 85 |
 
 <!-- /trust:provenance-table -->

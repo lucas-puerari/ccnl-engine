@@ -89,10 +89,13 @@ def compute_tax(
     2. ``work_deduction``: Art. 13 co. 1 TUIR (work-income deduction).
     3. ``family_deductions``: Art. 12 TUIR (passed in; computed separately).
     4. ``ulteriore_detrazione``: Art. 1 c. 6 L. 207/2024 (if configured).
-    5. ``sterilizzazione``: Art. 1 c. 3-4 L. 199/2025 (if configured).
-    6. ``foreign_tax_credit``: Art. 165 TUIR, from the imposta netta.
-    7. ``trattamento_integrativo``: Art. 1 D.L. 3/2020 / L. 207/2024.
-    8. ``somma_esente``: L. 207/2024 low-income bonus (if configured).
+    5. ``foreign_tax_credit``: Art. 165 TUIR, from the imposta netta.
+    6. ``trattamento_integrativo``: Art. 1 D.L. 3/2020 / L. 207/2024.
+    7. ``somma_esente``: L. 207/2024 low-income bonus (if configured).
+
+    The art. 16-ter c. 5-bis TUIR reduction is not among them: it lowers
+    only deductions the payroll does not compute (see
+    :mod:`~ccnl_engine.payroll.service.irpef_net`).
 
     The period withholding (``ordinary_tax``) is
     :func:`~ccnl_engine.payroll.service.irpef_net.run_withholding`: the tax

@@ -51,7 +51,6 @@ def _annual(family: Decimal, ulteriore: Decimal) -> NetIrpef:
         work_deduction=_ART13,
         family_deductions=family,
         ulteriore=CreditOutcome(ulteriore, "full_amount"),
-        effective_deductions=_ART13 + family + ulteriore,
     )
 
 
