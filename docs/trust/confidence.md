@@ -71,6 +71,7 @@ one:
 | `rule_source_weak` | capability | `assumed` or `missing` | An executed capability read a rule weaker than the evidence its registry entry accepts (`derived` for every capability today), or no rule of the run carries a record |
 | `caller_supplied_rule` | capability | field names | The caller supplied a rate or multiplier in place of a bundled rule |
 | `open_limitation` | capability | limitation id | An open [model limitation](#model-limitations) with monetary impact `yes` or `unknown` applies to the run |
+| `run_not_computed` | rule name (`base_salary`) | run id | Competence or tax year only: a run was left out because the bundle holds no base salary of its level on its competence date; see `ContractSummary.validity` |
 | `ruleset_not_production` | `None` | ruleset id | `operational` mode only: a ruleset that tracks readiness (today, the CCNL) is not `production` with a `verified` confidence; `no_ruleset_tracks_readiness` when the CCNL has no ruleset identity |
 
 A `derived` rule (taken from a cited document location, with no recorded

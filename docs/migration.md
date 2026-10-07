@@ -4,6 +4,14 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Validity windows and partial years
+
+| Before | After |
+|---|---|
+| `ContractSummary` told nothing about the dates the bundle covers | `ContractSummary.validity`, a `ValidityWindow` (exported by `ccnl_engine.catalog`): the dates on which every rule of the CCNL has a value |
+| `calculate_competence_year` and `calculate_tax_year` raised `MissingRuleError` when a run of the year had no base salary (ANAS, Igiene ambientale Utilitalia, Lavanderie industriali Assosistema and Metalmeccanico Confimi from January 2026) | The run is left out and listed in `uncovered_runs` (`UncoveredRun`, exported by `ccnl_engine.results`) with a `run_not_computed` blocker; the other runs are computed and the year is not payable. A year with no run in force still raises `MissingRuleError` |
+| `BlockerCode` without a member for a run left out | `BlockerCode.RUN_NOT_COMPUTED` (`"run_not_computed"`) |
+
 ## Additional 1% IVS charged month by month and settled in December
 
 The additional 1% IVS of D.L. 384/1992 art. 3-ter was charged only once the

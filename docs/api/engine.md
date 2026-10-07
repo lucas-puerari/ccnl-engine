@@ -31,7 +31,7 @@ operational gate is the CCNL tier; tax, INPS and surtax rulesets report
 identity fails closed with the detail `no_ruleset_tracks_readiness`.
 
 Before any run, `engine.list_contracts()` returns one `ContractSummary`
-(`ccnl_id`, `name`, `cnel_code`, `readiness`) per bundled CCNL and
+(`ccnl_id`, `name`, `cnel_code`, `readiness`, `validity`) per bundled CCNL and
 `engine.inspect_ruleset(ccnl_id)` returns the `RulesetAssurance` of one CCNL,
 by slug or CNEL code: the same value the run reports in `result.rulesets`.
 
@@ -62,10 +62,31 @@ if not ruleset.is_production:
         - RulesetAssurance
         - RulesetKind
 
+`ContractSummary.validity` is the `ValidityWindow` (`first_day`,
+`last_day`, both included, `last_day` `None` when open-ended) on which every
+rule of the CCNL has a value in the bundle: pay tables, parameters and work
+rules. A run whose month it covers never raises `MissingRuleError`; a run
+outside it raises that error when it reads a rule not in force on its date.
+Four CCNLs have 2026 pay tables that start after January (`anas` on 1 March,
+`igiene-ambientale-utilitalia` on 1 February,
+`lavanderie-industriali-assosistema` on 1 May, `metalmeccanico-confimi-pmi`
+on 1 June): a competence or tax year of theirs from January is partial (see
+[Results](#results-and-calculation-status)).
+
+```python
+(anas,) = (c for c in engine.list_contracts() if c.ccnl_id == "anas")
+anas.validity.first_day  # → datetime.date(2026, 3, 1)
+```
+
 ::: ccnl_engine.contract.service.discovery
     options:
       members:
         - ContractSummary
+
+::: ccnl_engine.contract.domain.validity_window
+    options:
+      members:
+        - ValidityWindow
 
 ## Inputs
 
@@ -323,10 +344,24 @@ unresolved requirement, otherwise `partial` when every gap is partial and
         - CompetenceYearResult
         - TaxYearResult
 
+A competence or tax year does not compute a run whose competence date has
+no base salary of the CCNL level in the bundle. The run is listed in
+`uncovered_runs` as an `UncoveredRun` (its `payment` and the
+`MissingRuleError` it would raise) and adds a `run_not_computed` blocker
+whose `detail` is the run id; the other runs are computed on a withholding
+schedule without it, so the year is partial and not payable. A year in
+which no run has a base salary raises the `MissingRuleError` of its first
+run.
+
 ::: ccnl_engine.payroll.domain.requirements
     options:
       members:
         - UnresolvedRequirement
+
+::: ccnl_engine.payroll.domain.uncovered_run
+    options:
+      members:
+        - UncoveredRun
 
 ::: ccnl_engine.payroll.domain.assurance
     options:

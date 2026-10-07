@@ -117,6 +117,7 @@ Readiness is part of the public contract, before and after a run:
 | Question | Field |
 |---|---|
 | Which contracts exist, and how far is each cleared? | `engine.list_contracts()`: `ContractSummary.readiness` |
+| From which date does the bundle hold every rule of a CCNL? | `ContractSummary.validity` (`first_day`, `last_day`) |
 | What exactly is the ruleset of one CCNL? | `engine.inspect_ruleset(ccnl_id)`: `RulesetAssurance` (identity, `source_hash`, `readiness`, `confidence`) |
 | Which rulesets did this result read? | `result.rulesets`, one `RulesetAssurance` each |
 | Can the amounts of this computation be paid as computed? | `result.is_payable` and `result.blockers` |

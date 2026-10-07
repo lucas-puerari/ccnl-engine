@@ -5,6 +5,7 @@ Answers what the engine covers before any run.
 
 from __future__ import annotations
 
+from ccnl_engine.contract.domain.validity_window import ValidityWindow
 from ccnl_engine.contract.service.discovery import (
     CcnlId,
     ContractSummary,
@@ -36,6 +37,7 @@ __all__ = [
     "RulesetIdentity",
     "RulesetKind",
     "RulesetReadiness",
+    "ValidityWindow",
     "VerificationStatus",
     "get_ccnl",
     "search_ccnls",

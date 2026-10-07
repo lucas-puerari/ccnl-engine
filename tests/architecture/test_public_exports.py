@@ -126,6 +126,7 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
         "RemittanceLine",
         "ResultAssurance",
         "ResultBlocker",
+        "UncoveredRun",
         "UnresolvedRequirement",
     }),
     "ccnl_engine.catalog": frozenset({
@@ -138,6 +139,7 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
         "RulesetIdentity",
         "RulesetKind",
         "RulesetReadiness",
+        "ValidityWindow",
         "VerificationStatus",
         "get_ccnl",
         "search_ccnls",

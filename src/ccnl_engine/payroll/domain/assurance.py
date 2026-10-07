@@ -21,7 +21,7 @@ in :mod:`~ccnl_engine.payroll.domain.assessment`.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from enum import StrEnum
 from typing import TYPE_CHECKING
 
@@ -139,6 +139,9 @@ class BlockerCode(StrEnum):
             a readiness tier.
         OPEN_LIMITATION: An open model limitation whose monetary impact is
             ``yes`` or ``unknown`` concerns the run.
+        RUN_NOT_COMPUTED: In a competence or tax year only: a run of the
+            plan was skipped because the bundle holds no base salary of its
+            CCNL level on its competence date; the year is partial.
     """
 
     CALCULATION_ISSUE = "calculation_issue"
@@ -149,6 +152,7 @@ class BlockerCode(StrEnum):
     CALLER_SUPPLIED_RULE = "caller_supplied_rule"
     RULESET_NOT_PRODUCTION = "ruleset_not_production"
     OPEN_LIMITATION = "open_limitation"
+    RUN_NOT_COMPUTED = "run_not_computed"
 
 
 @dataclass(frozen=True, slots=True)
@@ -163,8 +167,8 @@ class ResultBlocker:
             source allows: the issue code, the decision reason, the missing
             fact, the fact left to its default, the gap kind, the
             provenance status, the caller fields,
-            the id of the ruleset short of ``production``, or the id of the
-            open limitation.
+            the id of the ruleset short of ``production``, the id of the
+            open limitation, or the id of the run not computed.
         remediation: What removes the blocker, for a human reader.
     """
 
@@ -208,6 +212,15 @@ class ResultAssurance:
     def is_payable(self) -> bool:
         """Whether nothing blocks the amounts."""
         return self.payability is Payability.PAYABLE
+
+    def with_blockers(self, blockers: Iterable[ResultBlocker]) -> ResultAssurance:
+        """Return the assurance with ``blockers`` added after its own.
+
+        Returns:
+            The assurance, its payability decided again on every blocker.
+        """
+        merged = tuple(dict.fromkeys((*self.blockers, *blockers)))
+        return replace(self, blockers=merged, payability=decide_payability(merged))
 
     @classmethod
     def combine(cls, assurances: Iterable[ResultAssurance]) -> ResultAssurance:

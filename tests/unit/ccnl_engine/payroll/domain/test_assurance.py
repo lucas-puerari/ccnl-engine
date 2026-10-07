@@ -101,6 +101,27 @@ class TestCombine:
             ResultAssurance.combine(())
 
 
+class TestWithBlockers:
+    """Blockers added after the runs, e.g. the runs a year left out."""
+
+    def test_an_added_blocker_makes_a_payable_result_not_payable(self) -> None:
+        """The payability is decided again on every blocker."""
+        result = _assurance().with_blockers((_FACT,))
+
+        assert result.blockers == (_FACT,)
+        assert result.payability is Payability.NOT_PAYABLE
+
+    def test_added_blockers_follow_the_own_and_are_listed_once(self) -> None:
+        """A blocker already listed is not repeated."""
+        result = _assurance(_GAP).with_blockers((_FACT, _GAP))
+
+        assert result.blockers == (_GAP, _FACT)
+
+    def test_no_added_blocker_keeps_a_payable_result(self) -> None:
+        """Nothing added, nothing blocks."""
+        assert _assurance().with_blockers(()).is_payable
+
+
 def test_payability_is_blocked_by_any_blocker() -> None:
     """The default policy: every blocker blocks."""
     assert decide_payability(()) is Payability.PAYABLE

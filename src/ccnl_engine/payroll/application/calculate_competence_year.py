@@ -61,6 +61,15 @@ def calculate_competence_year(
     and the ratei of an extra month not paid before the termination are
     paid on the last regular run.
 
+    A run whose competence date has no base salary of the level in the
+    bundle (the pay tables start later in the year, or a declared gap) is
+    not computed: it is listed in ``uncovered_runs`` with its
+    :class:`~ccnl_engine.shared.domain.errors.MissingRuleError`, adds a
+    ``run_not_computed`` blocker, and the other runs are computed on a
+    withholding schedule without it.  The extra months still accrue over
+    the employed months the year left out, since the worker was employed
+    in them.  ``ContractSummary.validity`` tells the dates in advance.
+
     Each run is paid on its date in the plan, which sets its tax year.  The
     runs paid in the competence year are computed on the schedule of the
     payments of that tax year (those closed in the opening state, then
@@ -91,7 +100,8 @@ def calculate_competence_year(
     when the calendar override, the employment period or the payment dates
     are rejected, or the opening state is of another tax year, holds totals
     of unidentified payments or closed a run of the year with another
-    payment.
+    payment; :class:`~ccnl_engine.shared.domain.errors.MissingRuleError`
+    when no run of the year has a base salary.
     """
     effective_repo = repo if repo is not None else BundledKnowledgeRepository()
     prepared = prepare_year(plan, effective_repo)
@@ -121,6 +131,7 @@ def calculate_competence_year(
         year=plan.year,
         calendar=prepared.calendar,
         calendar_override=plan.calendar_override,
+        uncovered_runs=prepared.uncovered,
     )
 
 

@@ -22,6 +22,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.period import PeriodResult
     from ccnl_engine.payroll.domain.period_state import PeriodState
     from ccnl_engine.payroll.domain.remittance import RemittanceLine
+    from ccnl_engine.payroll.domain.uncovered_run import UncoveredRun
     from ccnl_engine.provenance.domain.ruleset_assurance import RulesetAssurance
 
 __all__ = ["CompetenceYearResult", "PaymentsResult", "TaxYearResult"]
@@ -39,11 +40,17 @@ class PaymentsResult:
             not computed again and have no result here.
         opening_state: State the first payment opened with.
         bundle_version: Knowledge-bundle version of the calculation.
+        uncovered_runs: Runs of the plans not computed because the bundle
+            holds no base salary of their level on their competence date,
+            in run order.  Each adds a ``run_not_computed`` blocker: a
+            partial year is not payable, and its withholding and
+            conguaglio leave those runs out.
     """
 
     period_results: tuple[PeriodResult, ...]
     opening_state: PeriodState
     bundle_version: str | None = field(default=None, kw_only=True)
+    uncovered_runs: tuple[UncoveredRun, ...] = field(default=(), kw_only=True)
 
     @property
     def annual_gross(self) -> Decimal:
@@ -65,9 +72,12 @@ class PaymentsResult:
         """Assurance of every payment, combined.
 
         Each axis is the worst of the runs; rulesets and blockers are
-        listed once each.  The result is payable only when every run is.
+        listed once each, followed by one ``run_not_computed`` blocker per
+        run of :attr:`uncovered_runs`.  The result is payable only when
+        every run is and none was left out.
         """
-        return ResultAssurance.combine(r.assurance for r in self.period_results)
+        combined = ResultAssurance.combine(r.assurance for r in self.period_results)
+        return combined.with_blockers(u.blocker for u in self.uncovered_runs)
 
     @property
     def is_payable(self) -> bool:

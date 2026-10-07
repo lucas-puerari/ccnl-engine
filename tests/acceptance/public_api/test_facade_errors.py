@@ -205,14 +205,55 @@ class TestSeniorityOnTheInput:
 
 
 class TestYearOfContractStartingDuringTheYear:
-    """The first missing rule of the year is the pay of its first run."""
+    """A year computes the runs the pay tables cover and lists the others.
 
-    def test_a_year_from_january_reports_the_missing_base_salary(self) -> None:
-        """ANAS pay tables start on 1 March 2026: January has no base salary."""
+    The ANAS pay tables of the CCNL 2025-2027 (signed 18 December 2025,
+    https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/\
+CCNL-2025-2027.pdf, "Tabella retributiva") start with the tranche of
+    1 March 2026; the bundle holds no earlier table.
+    """
+
+    def test_the_summary_tells_when_the_tables_start(self) -> None:
+        """The catalog predicts the first covered day before any run."""
+        (anas,) = (c for c in _ENGINE.list_contracts() if c.ccnl_id == "anas")
+        assert anas.validity is not None
+        assert anas.validity.first_day == date(_YEAR, 3, 1)
+        assert not anas.validity.covers(date(_YEAR, 2, 1))
+
+    def test_a_year_from_january_is_partial_and_not_payable(self) -> None:
+        """January and February are left out with a typed blocker each."""
         request = CompetenceYearPlan(
             year=_YEAR,
             employment=Employment(ccnl_slug="anas.json", level_code="C1"),
             employer=_EMPLOYER,
+        )
+        result = _ENGINE.calculate_competence_year(request)
+
+        left_out = [str(u.payment.run_id) for u in result.uncovered_runs]
+        assert left_out == ["2026-01-regular", "2026-02-regular"]
+        errors = [u.error for u in result.uncovered_runs]
+        assert all(isinstance(e, MissingRuleError) for e in errors)
+        assert [e.as_of for e in errors] == [date(_YEAR, 1, 1), date(_YEAR, 2, 1)]
+        assert {e.feature for e in errors} == {"base_salary"}
+        assert result.period_results[0].period_id.month == 3
+        assert not result.is_payable
+        not_computed = [
+            b.detail for b in result.blockers if b.code == "run_not_computed"
+        ]
+        assert not_computed == left_out
+        assert [str(c) for c in result.conguagli] == ["2026-12-thirteenth@2026-12-28"]
+
+    def test_a_year_with_no_run_in_force_raises(self) -> None:
+        """Employed only in January and February: nothing to compute."""
+        employment = Employment(
+            ccnl_slug="anas.json",
+            level_code="C1",
+            employment_period=EmploymentPeriod(
+                started_on=date(_YEAR, 1, 1), ended_on=date(_YEAR, 2, 28)
+            ),
+        )
+        request = CompetenceYearPlan(
+            year=_YEAR, employment=employment, employer=_EMPLOYER
         )
         with pytest.raises(MissingRuleError) as raised:
             _ENGINE.calculate_competence_year(request)
