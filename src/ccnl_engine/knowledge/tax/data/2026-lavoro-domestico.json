@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "6f9a0724ee5b5ba3874b248608ca3724a98cd82229beac282a96b1b05d4138e1",
+    "source_hash": "37adb3cbeb263af255ba5d2ce115258587b67ca7d976e97d3dc67d083eeb2f5a",
     "source_type": "estimated"
   },
   "irpef_brackets": [
@@ -92,9 +92,11 @@
           "kind": "legge",
           "url": "https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.codiceRedazionale=26A00149&art.dataPubblicazioneGazzetta=2026-01-21&art.flagTipoArticolo=0&art.idArticolo=1&art.idGruppo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.progressivo=1&art.versione=1"
         },
-        "section": "art. 1 cc. 3-4"
+        "section": "art. 1 c. 4",
+        "quote": "All'articolo 16-ter del testo unico delle imposte sui redditi, di cui al decreto del Presidente della Repubblica 22 dicembre 1986, n. 917, dopo il comma 5 e' inserito il seguente: «5-bis. Per i contribuenti titolari di un reddito complessivo superiore a 200.000 euro e' diminuito di un importo pari a 440 euro l'ammontare della detrazione dall'imposta lorda, determinato tenendo conto di quanto previsto dai commi da 1 a 5 del presente articolo e dall'articolo 15, comma 3-bis, spettante in relazione ai seguenti oneri: a) gli oneri la cui detraibilita' e' fissata nella misura del 19 per cento dal presente testo unico o da qualsiasi altra disposizione fiscale, fatta eccezione per le spese sanitarie di cui all'articolo 15, comma 1, lettera c); b) le erogazioni liberali in favore dei partiti politici, di cui all'articolo 11 del decreto-legge 28 dicembre 2013, n. 149, convertito, con modificazioni, dalla legge 21 febbraio 2014, n. 13; c) i premi di assicurazione per rischio eventi calamitosi, di cui all'articolo 119, comma 4, quinto periodo, del decreto-legge 19 maggio 2020, n. 34, convertito, con modificazioni, dalla legge 17 luglio 2020, n. 77»."
       },
-      "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+      "transformation": "threshold 200,000 EUR and reduction 440 EUR as written in art. 16-ter c. 5-bis TUIR. The reduction lowers only the deduction for the oneri of lett. a)-c): the 19% oneri except the spese sanitarie, the donations to political parties and the catastrophe insurance premiums. The payroll computes none of them, so it does not apply the block: the art. 12 and art. 13 TUIR deductions and the ulteriore detrazione (L. 207/2024 art. 1 c. 6) are not reduced.",
+      "note": "Quote checked on 2026-10-07 against the Gazzetta Ufficiale text of L. 199/2025 art. 1 at the url of the record, whitespace normalised; the Gazzetta text writes accented vowels as vowel and apostrophe (e' for è). Not checked by a named reviewer. Assumed, not derived: its ruleset declares source_type 'estimated'."
     }
   },
   "work_deduction": {
@@ -148,7 +150,7 @@
     "INFO: fixed_term_additional_rate retained for informational purposes; the addizionale NASpI is pre-baked into employer_per_hour_fixed_term in domestic_contributions.",
     "SIMPLIFICATION: CUAF variant (senza CUAF) not modelled; 'con CUAF' amounts used throughout.",
     "INFO: household employers are not sostituti d'imposta (art. 23 c. 1 D.P.R. 600/1973; art. 33 c. 1 D.Lgs. 33/2025 from 2027): the engine withholds no IRPEF or surtax for this sector and ignores the IRPEF rules below.",
-    "Sterilizzazione detrazioni: Art. 1 c. 3-4 L. 199/2025 — for reddito complessivo > EUR 200 000, total detrazioni (Art. 12 + Art. 13 TUIR) reduced by EUR 440 (clawback of the 35% -> 33% bracket benefit on the 28 000-50 000 slice).",
+    "Art. 16-ter c. 5-bis TUIR (inserted by L. 199/2025 art. 1 c. 4): for a reddito complessivo > EUR 200 000 the deduction for the 19% oneri (spese sanitarie excluded), the donations to political parties and the catastrophe insurance premiums is reduced by EUR 440. The art. 12 and art. 13 TUIR deductions and the ulteriore detrazione are outside its scope; the payroll computes none of the oneri in scope and does not apply the reduction.",
     "Somma esente (L. 207/2024): band cut points 8 500 EUR and 15 000 EUR are reconstructions from worked examples — not verified against primary source. Rates 7.1%/5.3%/4.8% and ceiling 20 000 EUR are from AdE guidance."
   ],
   "somma_esente": {
@@ -188,10 +190,11 @@
         "kind": "legge",
         "url": "https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.codiceRedazionale=26A00149&art.dataPubblicazioneGazzetta=2026-01-21&art.flagTipoArticolo=0&art.idArticolo=1&art.idGruppo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.progressivo=1&art.versione=1"
       },
-      "section": "art. 1 c. 2"
+      "section": "art. 1 c. 3",
+      "quote": "All'articolo 11, comma 1, lettera b), del testo unico delle imposte sui redditi, di cui al decreto del Presidente della Repubblica 22 dicembre 1986, n. 917, le parole: «35 per cento» sono sostituite dalle seguenti: «33 per cento»."
     },
-    "transformation": "Citation taken from the other 2026 sector files: the values are statutory and identical across sectors.",
-    "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+    "transformation": "C. 3 sets the rate of the second bracket (art. 11 c. 1 lett. b) TUIR, 28,000-50,000 EUR) to 33%. The bracket bounds and the 23% and 43% rates are those of art. 11 c. 1 TUIR in force, not quoted here.",
+    "note": "Quote checked on 2026-10-07 against the Gazzetta Ufficiale text of L. 199/2025 art. 1 at the url of the record, whitespace normalised; the Gazzetta text writes accented vowels as vowel and apostrophe (e' for è). Not checked by a named reviewer. Assumed, not derived: its ruleset declares source_type 'estimated'."
   },
   "fixed_term_additional_rate_provenance": {
     "status": "assumed",

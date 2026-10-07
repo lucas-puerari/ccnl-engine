@@ -74,15 +74,17 @@ class WorkDeductionRules(BaseModel):
 
 
 class SterilizzazioneDetrazioniRules(BaseModel):
-    """Sterilizzazione detrazioni for high-income earners.
+    """Reduction of art. 16-ter c. 5-bis TUIR for high-income earners.
 
-    Per Art. 1 c. 3-4 L. 199/2025 (Legge di Bilancio 2026): for
-    reddito complessivo exceeding ``threshold``, the Art. 15 TUIR
-    oneri detraibili al 19 % (lett. a, b, d, e; not lett. c spese
-    sanitarie) is reduced by ``reduction`` EUR. The reduction is the
-    exact clawback of the tax benefit from the 35% to 33% IRPEF
-    bracket change on the EUR 28 000-50 000 slice:
-    2% x EUR 22 000 = EUR 440.
+    Inserted by L. 199/2025 art. 1 c. 4: for a reddito complessivo above
+    ``threshold``, the deduction for these oneri is lowered by
+    ``reduction`` EUR: the oneri detraibili al 19% under any tax provision
+    except the spese sanitarie of art. 15 c. 1 lett. c) TUIR, the
+    donations to political parties (D.L. 149/2013 art. 11) and the
+    catastrophe insurance premiums (D.L. 34/2020 art. 119 c. 4).  The art.
+    12 and art. 13 deductions and the ulteriore detrazione are outside its
+    scope.  The payroll computes none of those oneri, so it does not apply
+    the reduction; the block records the statutory parameters only.
     """
 
     model_config = ConfigDict(extra="forbid")

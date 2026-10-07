@@ -124,8 +124,11 @@ def amounts_input(
     family_rules: FamilyDeductionRules | None,
     *,
     ivs_ceiling_applies: bool,
+    inps_minimum: Decimal | None = None,
 ) -> _AmountsInput:
     """Gather what the amounts of the run are computed from.
+
+    ``inps_minimum`` is the minimum INPS base, ``None`` when not determined.
 
     Returns:
         The input of the amounts computation.
@@ -152,15 +155,11 @@ def amounts_input(
         family_deduction_rules=family_rules,
         current_year=request.current_year,
         ivs_ceiling_applies=ivs_ceiling_applies,
+        inps_minimum=inps_minimum,
         pdr_rules=ctx.var_pay_rules.pdr,
         weekly_hours=_int_value(request.weekly_hours),
         contributable_hours=_contributable_hours(request),
-        domestic_hourly_rate=_domestic_hourly_rate(
-            contract.ccnl,
-            contract.year_rules,
-            ctx.regular_gross,
-            contract.tctx.competence,
-        ),
+        domestic_hourly_rate=_domestic_rate(ctx),
         eligible_work_days=spell_days(ctx.employment_spells),
         fixed_term_in_year=any(s.fixed_term for s in ctx.employment_spells),
         recovery_plan=ctx.opening.cash.obligations.recovery_of(
@@ -180,6 +179,18 @@ def amounts_input(
         deferred_irpef=_deferred_irpef(ctx),
         additional_ivs=additional_ivs_position(ctx),
         tfr_treasury_fund=tfr_treasury_fund(ctx),
+    )
+
+
+def _domestic_rate(ctx: RunContext) -> Decimal | None:
+    """Return the hourly rate a domestic CCNL bands its contributions on.
+
+    Returns:
+        The rate of the regular monthly pay, ``None`` outside domestic work.
+    """
+    contract = ctx.contract
+    return _domestic_hourly_rate(
+        contract.ccnl, contract.year_rules, ctx.regular_gross, contract.tctx.competence
     )
 
 

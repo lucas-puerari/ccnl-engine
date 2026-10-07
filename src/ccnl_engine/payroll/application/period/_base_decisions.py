@@ -13,13 +13,13 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.payroll.application.period._inps_decisions import inps_decisions
 from ccnl_engine.payroll.application.period._rule_lookup import (
     contract_rules,
     tax_rules,
 )
 from ccnl_engine.payroll.application.period._run_decisions import _ccnl_rule
 from ccnl_engine.payroll.domain.decisions import CalculationDecision, CalculationStatus
-from ccnl_engine.payroll.service._contributions_rates import resolve_rates
 from ccnl_engine.provenance.domain.chain import RuleProvenance
 
 if TYPE_CHECKING:
@@ -27,7 +27,6 @@ if TYPE_CHECKING:
 
     from ccnl_engine.payroll.application.handlers._totals import _EventTotals
     from ccnl_engine.payroll.application.period._context import RunContext
-    from ccnl_engine.payroll.application.period._ivs_ceiling import IvsCeiling
     from ccnl_engine.payroll.application.period._pipeline import RunAmounts
     from ccnl_engine.payroll.application.period._rule_lookup import Rule
     from ccnl_engine.tax.domain.ruleset import YearRules
@@ -117,92 +116,6 @@ def _base_salary(ctx: RunContext) -> CalculationDecision:
     )
 
 
-def _inps_version(rules: YearRules) -> str:
-    return str(rules.year) if rules.inps_ruleset is None else rules.inps_ruleset.version
-
-
-def _inps(
-    ctx: RunContext, totals: _EventTotals, amounts: RunAmounts
-) -> tuple[CalculationDecision, CalculationDecision]:
-    """Return the INPS decisions of the worker and of the employer.
-
-    Returns:
-        The ``inps_employee`` and ``inps_employer`` decisions, with reason
-        ``rates_applied`` for the ordinary rates of the contract, or
-        ``domestic_hourly_rates`` for the flat hourly contributions of a
-        domestic CCNL.
-    """
-    year_rules = ctx.contract.year_rules
-    rules = contract_rules(ctx)["inps_employee"]
-    version = _inps_version(year_rules)
-    base = ctx.monthly_gross + totals.inps_base
-    breakdown = amounts.contribution_breakdown
-    if year_rules.inps is None:
-        common: dict[str, Decimal | str] = {"base": base}
-        return (
-            _decision(
-                "inps_employee",
-                "domestic_hourly_rates",
-                rules[1],
-                version,
-                common,
-                breakdown.employee,
-            ),
-            _decision(
-                "inps_employer",
-                "domestic_hourly_rates",
-                rules[1],
-                version,
-                common,
-                breakdown.employer,
-            ),
-        )
-    rates = resolve_rates(year_rules, ctx.request.contract_type, ctx.worker_category)
-    ivs = amounts.ivs_ceiling
-    undetermined = ivs is not None and ivs.undetermined
-    common = {
-        "base": base,
-        "ytd_base": ctx.ytd_inps_base,
-        "ivs_ceiling": _ivs_ceiling_state(ivs),
-    }
-    status = CalculationStatus.INCOMPLETE if undetermined else CalculationStatus.FINAL
-    return (
-        _decision(
-            "inps_employee",
-            "rates_applied",
-            rules[0],
-            version,
-            {**common, "rate": rates.employee_rate},
-            None if undetermined else breakdown.employee,
-            status,
-        ),
-        _decision(
-            "inps_employer",
-            "rates_applied",
-            rules[0],
-            version,
-            {**common, "rate": rates.employer_rate},
-            None if undetermined else breakdown.employer,
-            status,
-        ),
-    )
-
-
-def _ivs_ceiling_state(ivs: IvsCeiling | None) -> str:
-    """Return how the IVS massimale entered the contributions of the run.
-
-    Returns:
-        ``applied``, ``not_applied``, or ``undetermined`` when it depends
-        on a missing contribution history; the ``ivs_ceiling_eligibility``
-        decision says why.
-    """
-    if ivs is None:
-        return "not_applied"
-    if ivs.undetermined:
-        return "undetermined"
-    return "applied" if ivs.applies else "not_applied"
-
-
 def _tfr(
     ctx: RunContext, totals: _EventTotals, amounts: RunAmounts
 ) -> CalculationDecision:
@@ -286,7 +199,7 @@ def base_stage_decisions(
     """
     decisions = (
         _base_salary(ctx),
-        *_inps(ctx, totals, amounts),
+        *inps_decisions(ctx, totals, amounts),
         _tfr(ctx, totals, amounts),
     )
     if not ctx.withholding_agent:

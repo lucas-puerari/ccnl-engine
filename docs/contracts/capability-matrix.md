@@ -61,8 +61,8 @@ formulas or caller-declared amounts.
 | `base_salary` | Paga base contrattuale | gross | native | always | pipeline | — | — | simplified | 0 / 5033 / 715 / 85 |
 | `seniority` | Scatti di anzianità | gross | native | decided | decision | `employment.seniority` | — | simplified | 0 / 111 / 14 / 0 |
 | `worker_category` | Categoria lavoratore (dichiarata o fissata dal livello) | gross | native | decided | decision | `employment.category` | — | implemented | none bundled |
-| `inps_employee` | Contributi INPS a carico dipendente | net | native | always | pipeline | — | — | simplified | 0 / 0 / 21 / 0 |
-| `inps_employer` | Contributi INPS a carico azienda | net | native | always | pipeline | — | — | simplified | 0 / 0 / 29 / 0 |
+| `inps_employee` | Contributi INPS a carico dipendente | net | native | always | pipeline | — | — | simplified | 0 / 0 / 28 / 0 |
+| `inps_employer` | Contributi INPS a carico azienda | net | native | always | pipeline | — | — | simplified | 0 / 0 / 36 / 0 |
 | `inail` | Premio INAIL a carico azienda | net | unsupported | outside_input | — | `employer.inail_tariff_rate` | — | unavailable | none bundled |
 | `contribution_exemption` | Esonero contributivo | net | unsupported | outside_input | — | `employer.contribution_exemption` | — | unavailable | none bundled |
 | `fiscal_adjustment` | Conguaglio IRPEF da assistenza fiscale o periodo precedente | net | unsupported | outside_input | — | `facts.fiscal_adjustment` | — | unavailable | none bundled |
@@ -80,7 +80,7 @@ formulas or caller-declared amounts.
 | `company_supplement` | Integrazione da contratto aziendale | gross | unsupported | outside_input | — | `employment.company_agreement` | — | unavailable | none bundled |
 | `tfr` | Trattamento di Fine Rapporto | net | native | always | pipeline | `employment.tfr_treasury_fund` | — | simplified | 0 / 0 / 13 / 0 |
 | `tfr_revaluation` | Rivalutazione del fondo TFR al 31 dicembre e imposta sostitutiva (art. 2120 c. 4 c.c.) | net | native | decided | decision | `employment.tfr_fund` | — | implemented | 0 / 3 / 0 / 0 |
-| `irpef` | IRPEF (sostituto d'imposta) | net | native | always | pipeline | — | — | simplified | 0 / 0 / 32 / 0 |
+| `irpef` | IRPEF (sostituto d'imposta) | net | native | always | pipeline | — | — | simplified | 0 / 0 / 24 / 0 |
 | `trattamento_integrativo` | Trattamento integrativo (ex bonus 80€) | net | native | decided | decision | — | — | simplified | 0 / 0 / 8 / 0 |
 | `ulteriore_detrazione_lavoro` | Ulteriore detrazione lavoro dipendente | net | native | decided | decision | — | — | simplified | 0 / 0 / 8 / 0 |
 | `somma_esente` | Somma esente L. 207/2024 art. 1 c. 4 | net | native | decided | decision | — | — | simplified | 0 / 0 / 8 / 0 |

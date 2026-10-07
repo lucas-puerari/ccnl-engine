@@ -66,7 +66,9 @@ class _AmountsInput:
     again.  ``additional_ivs`` is the position of the run toward the
     additional 1% IVS of its competence year.  ``tfr_treasury_fund`` says
     whether the TFR not paid to a pension fund goes to the Fondo Tesoreria,
-    ``None`` when not known.
+    ``None`` when not known.  ``inps_minimum`` is the minimum INPS base of
+    the run (:mod:`~ccnl_engine.payroll.service.minimum_base`), ``None``
+    when none is determined.
     """
 
     monthly_gross: Decimal
@@ -83,6 +85,7 @@ class _AmountsInput:
     category: WorkerCategory | None
     pdr_rules: PdRRules
     ivs_ceiling_applies: bool
+    inps_minimum: Decimal | None = None
     surtax_rules: SurtaxRules | None = None
     regione: str | None = None
     comune_belfiore: str | None = None

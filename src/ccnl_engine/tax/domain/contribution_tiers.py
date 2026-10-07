@@ -19,6 +19,7 @@ from ccnl_engine.shared.domain.primitives import (
     assert_ivs_le_total,
 )
 from ccnl_engine.tax.domain.additional_ivs import AdditionalIvsRule
+from ccnl_engine.tax.domain.minimum_base import MinimumBaseRule
 
 
 class InpsEmployerTier(BaseModel):
@@ -77,7 +78,8 @@ class InpsRawRates(BaseModel):
     """Raw INPS block from the tax JSON file, before tier resolution.
 
     ``employee_additional`` is optional: when absent, the additional 1% IVS
-    is not modelled for this sector.
+    is not modelled for this sector.  ``minimum_base`` is the minimale of
+    the year; when absent, the INPS base is never raised to a minimum.
 
     ``employee_tiers`` and ``employer_tiers`` must be non-empty; an empty
     list would cause ``_resolve_tier`` to raise with no tier available for
@@ -90,6 +92,7 @@ class InpsRawRates(BaseModel):
     employer_tiers: list[InpsEmployerTier] = Field(min_length=1)
     ceiling: PositiveCeiling | None
     employee_additional: AdditionalIvsRule | None = None
+    minimum_base: MinimumBaseRule | None = None
     provenance: RuleProvenance | None = None
 
 

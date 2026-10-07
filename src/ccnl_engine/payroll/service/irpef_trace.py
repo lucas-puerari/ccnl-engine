@@ -74,16 +74,6 @@ def annual_items(
         )
         decisions.append(decision)
         components.extend(component)
-    # Sterilizzazione: Art. 1 c. 3-4 L. 199/2025 (high earners, > EUR 200k)
-    if annual.effective_deductions < annual.total_deductions:
-        components.append(
-            TaxLineItem(
-                name="sterilizzazione_detrazioni",
-                amount=annual.effective_deductions - annual.total_deductions,
-                rule_id="l199-2025-art1-c3-c4",
-                fonte="Art. 1 c. 3-4 L. 199/2025",
-            )
-        )
     if annual.foreign_credit > _ZERO:
         law = withholding_rule(WithholdingTopic.CONGUAGLIO, rules.year)
         components.append(

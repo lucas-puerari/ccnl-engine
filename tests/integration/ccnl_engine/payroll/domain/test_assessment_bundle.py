@@ -31,6 +31,8 @@ from ccnl_engine.results import BlockerCode
 from tests.fixtures.seniority import new_hire
 
 _WEAK = frozenset({"assumed", "missing"})
+_MINIMUM_UNDETERMINED = "inps_minimum_base_undetermined"
+_INPS = frozenset({"inps_employee", "inps_employer"})
 _FACTS = PeriodFacts(
     regione="IT-25", comune_belfiore="F205", family_composition=FamilyComposition()
 )
@@ -109,28 +111,61 @@ def test_coverage_axis_is_the_report_status(
         assert blocked == gaps
 
 
+def _minimum_open(result: PeriodResult) -> bool:
+    """Whether the run leaves its minimum INPS base undetermined.
+
+    Returns:
+        True when the run reports the undetermined minimum base issue.
+    """
+    return any(i.code == _MINIMUM_UNDETERMINED for i in result.issues)
+
+
 def test_ordinary_runs_have_no_coverage_gap(
     results: dict[str, PeriodResult],
 ) -> None:
-    """No unsupported capability applies to an ordinary month of any CCNL."""
+    """No unsupported capability applies to an ordinary month of any CCNL.
+
+    The INPS amounts of a run whose minimum base is undetermined are
+    unresolved, and blocked: an agricultural level that leaves the category
+    open (art. 7 c. 5 D.L. 463/1983 excludes the operai agricoli only),
+    a public level without a sourced day count.
+    """
     gapped = {
-        ccnl_id: [gap.feature for gap in result.capability_report.gaps]
+        ccnl_id: [
+            gap.feature
+            for gap in result.capability_report.gaps
+            if not (_minimum_open(result) and gap.feature in _INPS)
+        ]
         for ccnl_id, result in results.items()
-        if result.capability_report.gaps
     }
-    assert gapped == {}
-    assert all(r.assurance.coverage == "complete" for r in results.values())
+    open_minimum = [r for r in results.values() if _minimum_open(r)]
+    assert {k: v for k, v in gapped.items() if v} == {}
+    assert all(
+        r.assurance.coverage == "complete"
+        for r in results.values()
+        if not _minimum_open(r)
+    )
+    issue = BlockerCode.CALCULATION_ISSUE
+    assert all(
+        {b.feature for b in r.blockers if b.code is issue} >= _INPS
+        for r in open_minimum
+    )
 
 
 def test_every_result_names_its_rulesets(results: dict[str, PeriodResult]) -> None:
-    """The CCNL, tax and INPS rulesets of the year are always read."""
+    """The CCNL, tax and INPS rulesets of the year are always read.
+
+    A run whose INPS amounts are unresolved (an undetermined minimum base)
+    reports them as a gap; it names the INPS ruleset only when another
+    executed capability, such as the IVS massimale, read it.
+    """
     repo = BundledKnowledgeRepository()
     for ccnl_id, result in results.items():
         ids = {ruleset.id for ruleset in result.rulesets}
         identities = [ruleset.identity for ruleset in result.rulesets]
         assert repo.load_ccnl(f"{ccnl_id}.json").ruleset in identities
         assert any(i.startswith("tax/2026/") for i in ids)
-        assert any(i.startswith("inps/2026/") for i in ids)
+        assert _minimum_open(result) or any(i.startswith("inps/2026/") for i in ids)
 
 
 def test_no_bundled_result_is_payable_today(

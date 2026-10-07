@@ -456,6 +456,53 @@ deduct it: it reports the issue `other_employers_additional_ivs_unknown`
 (`incomplete`, `fact="other_employers_additional_ivs"`), so the result has a
 `missing_fact` blocker and is not payable.
 
+## Minimum INPS base
+
+The base INPS contributions are computed on has two floors (INPS circ.
+6/2026 par. 1):
+
+- the pay of the collective agreement (D.L. 338/1989 art. 1 c. 1), read in
+  the comparatively most representative CCNL of the category (L. 549/1995
+  art. 2 c. 25). The engine computes the pay of the CCNL of the request
+  from its tables, so this floor is the pay chain itself. Whether that
+  CCNL is the most representative of the category is not a fact the engine
+  holds: a run on a CCNL that is not has to be checked outside the engine;
+- the minimum daily pay of D.L. 463/1983 art. 7 c. 1, 9.5% of the minimum
+  FPLD pension: EUR 58.13 a day for 2026. A fully paid month of a
+  full-time, monthly-paid worker counts 26 days (six days of the normal
+  week over 52 weeks and 12 months; the 26 days INPS counts in a full
+  month in the Uniemens technical document), EUR 1,511.38. A part-time
+  worker has the hourly minimum of D.Lgs. 81/2015 art. 11 c. 1, EUR 8.72
+  for a 40-hour week (circ. 6/2026 par. 4, "58,13 euro x 6/40"), times the
+  contracted weekly hours over the same 26 days.
+
+The run that posts the monthly pay of a fully employed month without an
+unpaid absence or a sick leave raises its INPS base to that minimum
+(`minimum_base_reason` `raised_to_minimum`); the pay itself, the gross and
+the TFR quota are unchanged, while the contributions, the 0.50% IVS taken
+from the TFR, the IRPEF taxable and the year-to-date base follow the raised
+base. Art. 7 c. 5 excludes apprentices and the operai agricoli
+(`apprentice_excluded`, `category_excluded`); domestic work has its own
+hourly contributions.
+
+The bundle cannot fix the minimum of a partly employed month, of a month
+with an absence or a sick leave (whose reduced pay circ. 6/2026 par. 1 and
+the Uniemens element `RispettoMinimale` exempt), of a run that adds pay to
+a month another run posted (an extra month, an adjustment, a termination
+after the regular run) or settles the extra-month ratei at termination, of a part-time week whose hourly minimum is not
+published (only 40 and, for the Gestione pubblica, 36 hours are), of the
+Gestione pubblica (no sourced day count of a month), or of an agricultural
+level whose category is open. When the base of such a run is below the
+highest minimum its month can have (26 days, or 27 where the day count is
+not sourced, fewer days of a six-day week in a partly employed span,
+scaled to the part-time hours), its `inps_employee` and
+`inps_employer` decisions are `incomplete` with reason
+`minimum_base_undetermined` and no amount, an issue
+`inps_minimum_base_undetermined` explains it (with `fact="category"` for
+the open category), and the result is not payable. A base above that bound
+needs no day count and is final. The rule is the `minimum_base` block of
+the INPS rules of the year.
+
 **API reference:** [`CalculationDecision`](../api/engine.md#results-and-calculation-status),
 [`REGION_CODES`](../api/models.md#fiscal),
 [`FamilyComposition`](../api/engine.md), [`Art15Deductions`](../api/engine.md)

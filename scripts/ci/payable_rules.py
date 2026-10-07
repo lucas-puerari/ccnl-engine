@@ -36,7 +36,8 @@ tables, whose record is the file-level ``provenance``, and the substitute
 tax regimes, whose record is their ``source`` with its ``source_status``.
 A sub-block with its own record inside a fiscal block (the Art. 13
 minimum ``work_deduction.minimum``, the TFR additional IVS
-``tfr.additional_ivs``, the 1% employee IVS ``inps.employee_additional``) is
+``tfr.additional_ivs``, the 1% employee IVS ``inps.employee_additional``,
+the INPS minimum base ``inps.minimum_base``) is
 a rule of its own, with the capabilities of its block.
 
 The module reads raw JSON with the standard library only, so the CI check
@@ -72,7 +73,6 @@ type _Blocks = tuple[tuple[str, tuple[str, ...], bool], ...]
 _TAX_BLOCKS: Final[_Blocks] = (
     ("irpef_brackets", ("irpef",), True),
     ("work_deduction", ("irpef",), False),
-    ("sterilizzazione_detrazioni", ("irpef",), False),
     ("fixed_term_additional_rate", ("inps_employer",), True),
     ("tfr", ("tfr",), False),
     ("trattamento_integrativo", ("trattamento_integrativo",), False),

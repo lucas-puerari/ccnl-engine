@@ -24,7 +24,6 @@ _ANNUAL = NetIrpef(
     work_deduction=Decimal(3000),
     family_deductions=Decimal(0),
     ulteriore=None,
-    effective_deductions=Decimal(3000),
 )
 
 
@@ -78,7 +77,7 @@ def test_states_are_limited_separately_then_on_the_netta() -> None:
 
 def test_no_taxable_income_no_quota() -> None:
     """Without taxable income there is no Italian tax to credit against."""
-    zero = NetIrpef(Decimal(0), Decimal(0), Decimal(0), None, Decimal(0))
+    zero = NetIrpef(Decimal(0), Decimal(0), Decimal(0), None)
     result = foreign_tax_credit((_paid("FR", 100, 10),), Decimal(0), zero, _RULES)
     assert result is not None
     assert result.amount == Decimal(0)
@@ -92,7 +91,6 @@ def test_credit_lowers_the_net_irpef() -> None:
         _ANNUAL.work_deduction,
         _ANNUAL.family_deductions,
         None,
-        _ANNUAL.effective_deductions,
         foreign_credit=Decimal(2500),
     )
     assert annual.net_before_credit == Decimal(7000)

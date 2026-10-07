@@ -4,6 +4,24 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## INPS base raised to the minimum
+
+The INPS base was the pay of the run even below the minimum daily pay of
+D.L. 463/1983 art. 7 c. 1 (EUR 58.13 a day for 2026, INPS circ. 6/2026). A
+full month of a full-time worker is now contributed on at least 26 x 58.13
+= EUR 1,511.38, a part-time one on the hourly minimum (EUR 8.72 for a
+40-hour week) times its hours; apprentices and operai agricoli are
+excluded (art. 7 c. 5). Where the bundle cannot fix the minimum and the
+base is below it, the INPS decisions are `incomplete`
+(`minimum_base_undetermined`) and the result is not payable.
+
+| Before | After |
+|---|---|
+| `inputs["base"]` of the INPS decisions was the pay chain plus the events | It is that amount raised to the minimum; the amount before is `actual_base`, with `minimum_base`, `minimum_base_bound`, `minimum_base_reason` |
+| Contributions, the TFR 0.50% IVS, the IRPEF taxable and the year-to-date INPS base read the pay | They read the raised base; the gross and the TFR quota do not change |
+| No issue for a base below the minimum | Issue `inps_minimum_base_undetermined` when the minimum cannot be fixed; with `fact="category"` for an agricultural level whose category is open, so state `Employment.category` |
+| `InpsRates` had no minimum | `InpsRates.minimum_base`, a `MinimumBaseRule` (`daily`, `week_days`, `monthly_days`, `hourly`, `exempt_categories`, `provenance`), from the `minimum_base` block of the INPS data files |
+
 ## Extra months at the termination on chained runs, adjustment sequence
 
 | Before | After |

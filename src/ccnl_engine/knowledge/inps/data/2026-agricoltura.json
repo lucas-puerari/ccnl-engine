@@ -37,6 +37,35 @@
         "note": "Mensilizzazione as INPS applies it: each month the 1% is charged on the pay of the month above the monthly threshold, without regard to the annual threshold, and settled on the annual pay at year end or in the month the employment ends. Circ. INPS 7/2010 par. 3 (https://servizi2.inps.it/CircolariZIP/Circolare%20numero%207%20del%2015-01-2010.pdf, sha256 33134c1e8cb884b6341c87d81dabe31a97938e84b99bbd0d262c5eb75a77d900): 'le aziende aventi alle proprie dipendenze lavoratori che, nel mese in cui si riferisce la denuncia, abbiano superato la retribuzione imponibile di € 3.506,00, hanno già versato sulla parte eccedente detto importo il contributo dell'1%'. Msg. INPS 5327/2015 par. 2.1 and 2.3 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%205327%20del%2014-08-2015.pdf, sha256 76fd73b0bb4b1eea71b38b706aae7faa4055c1b54d5b3cdb7e1eb714e4c9c5c3): 'l'applicazione dell'1% avviene senza tenere conto del superamento del tetto minimo su base annua, ma al superamento del medesimo tetto minimo rapportato su base mensile'; the conguaglio is made with the denuncia of December (or January) and, on an earlier termination, 'con la denuncia relativa al mese nel corso del quale è cessato il rapporto di lavoro'. Circ. 6/2026 par. 6: 'Il massimale opera anche ai fini dell'aliquota aggiuntiva dell'1%'. Circ. 6/2026 read on 2026-10-07 in the copy attached to circolare 23/26 of Ascom Bologna (https://ascom.bo.it/wp-content/uploads/2026/02/Allegato-1-CIRCO-23-26_Circolare-INPS-n.-6-del-30-01-2026.pdf, sha256 ec8fce75b98095d5b7de3d7ba725a403e1c487e1c75512567066650b88118992): the INPS page loads its text by script. Circ. INPS 156/2025 par. 5, read in a third-party copy (https://www.fiscoetasse.com/files/21068/circolare-numero-156-del-30-12-2025.pdf), repeats the mensilizzazione and the conguaglio 'a fine anno (o nel mese in cui si risolve il rapporto di lavoro)'. Not checked by a named reviewer. Assumed, not derived: its ruleset declares source_type 'estimated'."
       }
     },
+    "minimum_base": {
+      "daily": "58.13",
+      "week_days": 6,
+      "monthly_days": 26,
+      "hourly": [
+        {
+          "full_time_weekly_hours": "40",
+          "amount": "8.72"
+        }
+      ],
+      "exempt_categories": [
+        "operaio"
+      ],
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "inps-circolare-6-2026",
+            "title": "INPS Circolare n. 6 del 30 gennaio 2026",
+            "kind": "inps_circolare",
+            "url": "https://www.inps.it/it/it/inps-comunica/atti/circolari-messaggi-e-normativa/dettaglio.circolari-e-messaggi.2026.01.circolare-numero-6-del-30-01-2026_15151.html"
+          },
+          "section": "par. 1, Minimali di retribuzione giornaliera; par. 4, Minimale ai fini contributivi per i rapporti di lavoro subordinato a tempo parziale",
+          "quote": "Tali limiti, secondo quanto innanzi precisato, devono essere ragguagliati a 58,13 euro(9,5% dell'importo del trattamento minimo mensile di pensione a carico del Fondo pensioni lavoratori dipendenti in vigore al 1° gennaio 2026, pari a 611,85 euromensili) se di importo inferiore. [...] In linea generale, nell'ipotesi di orario di 40 ore settimanali (ipotesi che ricorre, di norma, per i lavoratori iscritti alle gestioni private), il procedimento del calcolo per determinare la retribuzione minima oraria è il seguente: 58,13 euro x 6/40 = 8,72 euro."
+        },
+        "transformation": "daily: the 'Minimale di retribuzione giornaliera (9,5%)' of the par. 1 table; week_days and hourly: the par. 4 formula of a 40-hour week, 8.72 as published; monthly_days: derived, see the note.",
+        "note": "exempt_categories: art. 7 c. 5 D.L. 463/1983 excludes the operai agricoli; the impiegati of the sector keep the minimum. monthly_days 26: six days of the normal week (par. 4) over 52 weeks and 12 months; INPS counts 26 paid days in a full month of a monthly-paid worker: Uniemens technical document, attachment 1 to circ. INPS 13/2011 (https://servizi2.inps.it/CircolariZIP/circolare%20numero%2013%20del%2028-01-2011_Allegato%20n%201.pdf, sha256 fa2b2894f3006eb388d72ee54c0291b9cf4ad5c4b418e943c239e77ccee25853), element <NumMensilita>: 'due mensilità aggiuntive determinate nella misura di 30 giorni a fronte di 26 normalmente retribuiti', and its example of a full month, '<GiorniRetribuiti>26</GiorniRetribuiti>'. The monthly comparison is not written in the circular; secondary reading: R. Camera, 'Lavoro part-time: il minimale ai fini contributivi', Guida alle Paghe 10/2014 p. 588 (https://www.dottrinalavoro.it/wp-content/uploads/2014/09/Lavoro-part-time-il-minimale-contributivo-Ipsoa.pdf, sha256 6167b070d7cfcff6dbf2e85eeeae7a092addbcd9c1c43fb28964faacd0b4866a): 'occorre moltiplicare il valore di minimale giornaliero per il coefficiente fisso 26' and the part-time hourly minimum times the hours of the month; the six days hold 'anche nei casi in cui l'orario di lavoro sia distribuito in 5 giorni settimanali'. D.L. 463/1983 art. 7 c. 1, second period, read on Normattiva on 2026-10-07 (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legge:1983-09-12;463~art7): 'il limite minimo di retribuzione giornaliera [...] per tutte le contribuzioni dovute in materia di previdenza e assistenza sociale non può essere inferiore al 7,50% dell'importo del trattamento minimo mensile di pensione', raised to 9,50 by D.L. 338/1989 art. 1 c. 2; c. 5: 'Le disposizioni di cui ai commi 1, 2, 3 e 4 del presente articolo non si applicano ai lavoratori addetti ai servizi domestici e familiari, agli operai agricoli, agli apprendisti'. D.Lgs. 81/2015 art. 11 c. 1 (Normattiva, same day): 'La retribuzione minima oraria, da assumere quale base per il calcolo dei contributi previdenziali dovuti per i lavoratori a tempo parziale, si determina rapportando alle giornate di lavoro settimanale ad orario normale il minimale giornaliero'. Circ. 6/2026 read on 2026-10-07 in the copy attached to circolare 23/26 of Ascom Bologna (https://ascom.bo.it/wp-content/uploads/2026/02/Allegato-1-CIRCO-23-26_Circolare-INPS-n.-6-del-30-01-2026.pdf, sha256 ec8fce75b98095d5b7de3d7ba725a403e1c487e1c75512567066650b88118992): the INPS page loads its text by script. Not checked by a named reviewer. Assumed, not derived: its ruleset declares source_type 'estimated'."
+      }
+    },
     "provenance": {
       "status": "assumed",
       "location": {
@@ -83,7 +112,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "12d686802b9b4eaf1b0cdbc142039a029ef51ffc0cbb8064de5a7c01c082501d",
+    "source_hash": "48429b3a76e579a238e61d91ea480adb65cdafab28e73ae900ec13f6fc76f50c",
     "source_type": "estimated"
   }
 }
