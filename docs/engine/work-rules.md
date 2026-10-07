@@ -127,10 +127,11 @@ rate.
 The payable days of each class are counted with the CCNL daily quota of an
 unpaid absence (`work_rules.absence_rules.daily_divisor_method`), the same
 count as a hire or termination month, and never exceed one monthly pay,
-however many episodes the month holds: the days an episode counts past the
-pay left by the earlier episodes of the run are dropped. Their pay is
-rounded once on the days counted so far, not day band by day band, so a
-whole month of sickness deducts exactly the monthly pay. The run deducts the daily pay of the sick days (`absence_deduction`) and pays
+however many episodes the month holds: the episodes of a run are taken by
+first day, whatever their order in the facts, and the days past the pay
+left by the earlier ones are dropped. Their pay is rounded once on the days
+counted so far, not band by band, so the sick days of a month never deduct
+more than the monthly pay. The run deducts the daily pay of the sick days (`absence_deduction`) and pays
 back the INPS share as `sickness_inps_item` (outside the contribution base,
 the days are covered by figurative contributions) and the employer share
 and carenza pay as `sickness_item`. TFR keeps the full monthly pay (art.

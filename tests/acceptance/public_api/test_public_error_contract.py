@@ -241,7 +241,8 @@ def test_sickness_for_a_whole_month_is_computed() -> None:
     """Metalmeccanico C3 operaio, sick from 1 to 31 July 2026.
 
     The episode is lawful input (art. 2110 c.c.): it suspends the pay of the
-    whole month, so the run deducts that pay, rounded once, and no more.
+    whole month, 27 working days by 26, so the run deducts that pay, rounded
+    once, and no more.
     """
     episode = sickness_episode("2026-07-01", date(2026, 7, 1), date(2026, 7, 31))
     result = _regular(

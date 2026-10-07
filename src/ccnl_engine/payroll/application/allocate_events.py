@@ -122,6 +122,30 @@ def _handler_of(event: WorkEvent) -> _EventHandlerFn:
     return handler
 
 
+def _processing_order(
+    events: tuple[WorkEvent, ...],
+) -> list[tuple[int, WorkEvent]]:
+    """Return the events with their index, sickness episodes by first day.
+
+    The sickness episodes fill the places the episodes hold in ``events``,
+    in the order of their first day, so the sick days a month counts past
+    its pay are always its last ones, whatever order the caller gave; every
+    other event keeps its place.
+
+    Returns:
+        ``(index in events, event)`` pairs in the order they are processed.
+    """
+    order: list[tuple[int, WorkEvent]] = list(enumerate(events))
+    places = [k for k, event in order if isinstance(event, SicknessEpisode)]
+    episodes = sorted(
+        ((k, e) for k, e in order if isinstance(e, SicknessEpisode)),
+        key=lambda pair: pair[1].started_on,
+    )
+    for place, episode in zip(places, episodes, strict=True):
+        order[place] = episode
+    return order
+
+
 def _process_events(
     events: tuple[WorkEvent, ...],
     cp: CompetencePeriod,
@@ -177,7 +201,7 @@ def _process_events(
         overtime_bands=overtime_bands or CCNLOvertimeBands(),
         sickness=terms,
     )
-    for i, event in enumerate(events):
+    for i, event in _processing_order(events):
         _check_event_date(event, date_ctx, i)
         handler = _handler_of(event)
         ctx = replace(
