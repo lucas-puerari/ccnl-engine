@@ -133,6 +133,21 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "unknown sector: the renewal regime of the private sector is "
         "undetermined, with a blocker",
     ),
+    "Employment.tfr_fund": requires_fact(
+        "tfr_revaluation",
+        "employment.tfr_fund",
+        _REPORTED,
+        "unknown TFR fund at 31 December of the year before: the December run "
+        "of an employment that did not start in the year has a missing_fact "
+        "tfr_fund blocker",
+    ),
+    "Employment.tfr_treasury_fund": requires_fact(
+        "tfr",
+        "employment.tfr_treasury_fund",
+        _REPORTED,
+        "unknown Fondo Tesoreria destination: a run that accrues TFR outside "
+        "a pension fund has a missing_fact tfr_treasury_fund blocker",
+    ),
     "Employment.pension_fund": requires_fact(
         "pension_fund_contribution",
         "employment.pension_fund",

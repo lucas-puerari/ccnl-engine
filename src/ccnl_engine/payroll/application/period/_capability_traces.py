@@ -16,6 +16,7 @@ from ccnl_engine.payroll.application.handlers._totals import EVENT_FEATURES
 from ccnl_engine.payroll.application.period._caller_rules import (
     CALLER_DECLARED_AMOUNT,
 )
+from ccnl_engine.payroll.application.period._tfr_revaluation import NO_OPENING_FUND
 from ccnl_engine.payroll.domain.capability_catalog import CapabilityHandler
 from ccnl_engine.payroll.domain.decisions import CalculationStatus, DecisionOrigin
 from ccnl_engine.payroll.domain.trace import DecisionTrace, TraceState
@@ -49,6 +50,7 @@ _DECISION_FEATURES: dict[str, TraceState] = {
     "rinnovo_substitute_tax": TraceState.NOT_APPLICABLE,
     "notte_festivi_turni_substitute_tax": TraceState.NOT_APPLICABLE,
     "pension_fund_contribution": TraceState.NOT_APPLICABLE,
+    "tfr_revaluation": TraceState.NOT_APPLICABLE,
 }
 
 #: Capabilities a handler of the engine decides and traces: the registry
@@ -64,6 +66,7 @@ _NOT_APPLICABLE_REASONS = frozenset({
     NOT_WITHHOLDING_AGENT,
     NOT_ENROLLED,
     NOT_APPLICABLE_BY_CONTRACT,
+    NO_OPENING_FUND,
 })
 
 _STATE_OF_STATUS: dict[CalculationStatus, TraceState] = {
@@ -83,7 +86,8 @@ def _worst_state_by_capability(
     applicable: the employer does not compute it
     (:data:`NOT_WITHHOLDING_AGENT`) or the worker is not enrolled in a
     pension fund (:data:`NOT_ENROLLED`), or the level pays no seniority
-    increment (:data:`NOT_APPLICABLE_BY_CONTRACT`).  Otherwise the worst status of its
+    increment (:data:`NOT_APPLICABLE_BY_CONTRACT`), or there is no TFR fund
+    to revalue (:data:`NO_OPENING_FUND`).  Otherwise the worst status of its
     decisions gives the state.  Caller-supplied decisions are left out.
 
     Returns:

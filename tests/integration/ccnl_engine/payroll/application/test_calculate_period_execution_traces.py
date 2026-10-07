@@ -281,5 +281,6 @@ class TestYearDecisions:
         # Five base stages (pay chain, INPS worker and employer, TFR, IRPEF)
         # and three credits (ulteriore detrazione, trattamento, somma esente),
         # the IVS massimale eligibility, the seniority, plus the ratei counted
-        # by the tredicesima run.
-        assert len(year.decisions) == 10 * len(runs) + 1
+        # by the tredicesima run and the TFR revaluation of the December run
+        # (zero: a worker hired in the year has no fund to revalue).
+        assert len(year.decisions) == 10 * len(runs) + 2

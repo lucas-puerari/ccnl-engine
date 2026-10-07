@@ -39,6 +39,7 @@ _C3 = Employment(
     ccnl_slug="metalmeccanico-federmeccanica.json",
     level_code="C3",
     seniority=new_hire(),
+    tfr_treasury_fund=False,
 )
 
 

@@ -24,6 +24,9 @@ from ccnl_engine.payroll.application.period._additional_ivs import (
 )
 from ccnl_engine.payroll.application.period._pension_decision import pension_terms
 from ccnl_engine.payroll.application.period._sickness import sickness_terms
+from ccnl_engine.payroll.application.period._tfr_destination import (
+    tfr_treasury_fund,
+)
 from ccnl_engine.payroll.domain.obligations import (
     TRATTAMENTO_RECOVERY,
     ULTERIORE_RECOVERY,
@@ -141,6 +144,7 @@ def amounts_input(
         foreign_taxes=request.prior_year.foreign_taxes,
         deferred_irpef=_deferred_irpef(ctx),
         additional_ivs=additional_ivs_position(ctx),
+        tfr_treasury_fund=tfr_treasury_fund(ctx),
     )
 
 

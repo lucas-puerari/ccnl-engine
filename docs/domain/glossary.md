@@ -373,7 +373,7 @@ The code is stable and is the `invariant_id` of the violation.
 | `pay_item_posted` | every pay item has at least one ledger entry |
 | `earning_contribution_exclusive` | no pay item posts to both `CASH_EARNINGS` and `EMPLOYEE_CONTRIBUTIONS` |
 | `net_identity` | `CASH_EARNINGS + CREDITS + TAX_REFUNDS + SURTAX_REFUNDS + CREDIT_RECOVERY_SHORTFALL + TFR_SETTLEMENT - CREDIT_RECOVERIES - EMPLOYEE_CONTRIBUTIONS - BILATERAL_FUND_EMPLOYEE - PENSION_FUND_EMPLOYEE - EMPLOYEE_DEDUCTIONS - SUBSTITUTE_TAX - ORDINARY_TAX - SURTAX - SEPARATE_TAX = period_net` |
-| `employer_cost_identity` | `CASH_EARNINGS - EMPLOYEE_DEDUCTIONS + NON_CASH_BENEFITS + EMPLOYER_CONTRIBUTIONS + BILATERAL_FUND_EMPLOYER + TFR_ACCRUAL + PENSION_FUND_EMPLOYER + PENSION_FUND_TFR = period_employer_cost` |
+| `employer_cost_identity` | `CASH_EARNINGS - EMPLOYEE_DEDUCTIONS + NON_CASH_BENEFITS + EMPLOYER_CONTRIBUTIONS + BILATERAL_FUND_EMPLOYER + TFR_ACCRUAL + PENSION_FUND_EMPLOYER + PENSION_FUND_TFR + TFR_TREASURY_FUND = period_employer_cost` |
 | `gross_identity` | `CASH_EARNINGS = period_gross` |
 | `ledger_entry_unique` | ledger entry ids of a run are unique |
 | `irpef_withheld_continuity` | closing IRPEF withheld YTD = opening + `ORDINARY_TAX` - `TAX_REFUNDS` |

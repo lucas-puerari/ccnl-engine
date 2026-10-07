@@ -112,6 +112,8 @@ PUBLIC_FACTS: Mapping[str, str] = MappingProxyType({
     "other_employers_additional_ivs": "InpsBaseYtd.other_employers_additional_ivs",
     "sector": "Employment.sector",
     "seniority": "Employment.seniority",
+    "tfr_fund": "Employment.tfr_fund",
+    "tfr_treasury_fund": "Employment.tfr_treasury_fund",
 })
 
 

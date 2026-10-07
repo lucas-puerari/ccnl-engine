@@ -103,6 +103,7 @@ ACCOUNT_CAPABILITIES: dict[AccountKind, frozenset[str]] = {
     | {"ulteriore_detrazione_lavoro", "withholding_shortfall"},
     AccountKind.TFR_ACCRUAL: frozenset({"tfr"}),
     AccountKind.PENSION_FUND_TFR: frozenset({"tfr"}),
+    AccountKind.TFR_TREASURY_FUND: frozenset({"tfr"}),
     AccountKind.TFR_SETTLEMENT: frozenset({"termination_tfr"}),
     AccountKind.PENSION_FUND_EMPLOYEE: frozenset({"pension_fund_contribution"}),
     AccountKind.PENSION_FUND_EMPLOYER: frozenset({"pension_fund_contribution"}),

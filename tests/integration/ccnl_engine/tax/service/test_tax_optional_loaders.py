@@ -16,6 +16,7 @@ from ccnl_engine.tax.service.tax_annual_assembler import (
 )
 from ccnl_engine.tax.service.tax_optional_loaders import (
     load_family_deduction_rules,
+    load_tfr_revaluation_rules,
     load_variable_pay_rules,
 )
 from ccnl_engine.tax.service.tax_resource_reader import _try_ruleset
@@ -41,6 +42,62 @@ class TestLoadVariablePayRules:
         """Requesting a year that does not match the file raises ValueError."""
         with pytest.raises(DataIntegrityError, match="does not match requested year"):
             load_variable_pay_rules(2099)
+
+
+class TestLoadTfrRevaluationRules:
+    """load_tfr_revaluation_rules: the bundled 2026 file and its checks."""
+
+    def test_2026_rules_carry_the_istat_indexes_and_the_tax(self) -> None:
+        """The values of art. 2120 c. 4 c.c., ISTAT and D.Lgs. 47/2000.
+
+        1,5 and 75 per cento (art. 2120 c. 4 c.c.); FOI without tobacco of
+        December 2025, 121,5 base 2015=100, and link coefficient 1,214 to
+        base 2025 (ISTAT serie08_2026.xlsx, Tabella 10); December 2026 not
+        published on 7 October 2026; 17 per cento (D.Lgs. 47/2000 art. 11
+        c. 3, text in force until 31-12-2026).
+        """
+        rules = load_tfr_revaluation_rules(2026)
+        assert rules is not None
+        assert (rules.rate.fixed, rules.rate.index_share) == (
+            Decimal("0.015"),
+            Decimal("0.75"),
+        )
+        index = rules.price_index
+        assert index.previous_december == Decimal("121.5")
+        assert index.link_coefficient == Decimal("1.214")
+        assert index.december is None
+        assert rules.substitute_tax.rate == Decimal("0.17")
+        assert rules.ruleset is not None
+        assert rules.ruleset.id == "tax/2026/tfr-revaluation"
+
+    def test_unbundled_year_has_no_rules(self) -> None:
+        """No file for 2027: the revaluation of that year has no rules."""
+        assert load_tfr_revaluation_rules(2027) is None
+
+    def test_invalid_table_raises(self) -> None:
+        """A table that does not validate is a data integrity error."""
+        with (
+            patch(
+                "ccnl_engine.tax.service.tax_optional_loaders.read_year_json",
+                return_value={"year": 2026, "rate": {}},
+            ),
+            pytest.raises(DataIntegrityError, match="not a valid TFR revaluation"),
+        ):
+            load_tfr_revaluation_rules(2026)
+
+    def test_year_mismatch_raises(self) -> None:
+        """A file of another year under the 2026 name is rejected."""
+        rules = load_tfr_revaluation_rules(2026)
+        assert rules is not None
+        raw = rules.model_dump(mode="json", exclude={"ruleset"}) | {"year": 2025}
+        with (
+            patch(
+                "ccnl_engine.tax.service.tax_optional_loaders.read_year_json",
+                return_value=raw,
+            ),
+            pytest.raises(DataIntegrityError, match="does not match requested year"),
+        ):
+            load_tfr_revaluation_rules(2026)
 
 
 class TestLoadFamilyDeductionRules:

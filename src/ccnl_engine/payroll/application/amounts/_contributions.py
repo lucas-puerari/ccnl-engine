@@ -11,6 +11,7 @@ from ccnl_engine.payroll.application.amounts._domestic import (
 )
 from ccnl_engine.payroll.domain.decisions import CalculationIssue, CalculationStatus
 from ccnl_engine.payroll.domain.employment import Apprentice
+from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.service._contributions_rates import resolve_rates
 from ccnl_engine.payroll.service.contributions import resolve_contributions
@@ -85,8 +86,8 @@ def recurring_employee_inps(inp: _AmountsInput, inps_employee: Decimal) -> Decim
     )
 
 
-#: Code of the issue of an apprentice TFR whose deduction is undetermined.
-TFR_APPRENTICE_IVS_CODE = "tfr_apprentice_additional_ivs_undetermined"
+#: Code of the issue of a TFR whose Fondo Tesoreria destination is unknown.
+TFR_TREASURY_FUND_CODE = "tfr_treasury_fund_unknown"
 
 
 @dataclass(frozen=True)
@@ -101,48 +102,59 @@ class TfrAccrual:
             when no deduction applies.
         deduction: Additional IVS deducted from the quota under c. 16,
             never above the quota.
-        undetermined: The sector deducts the additional IVS but the worker
-            is an apprentice, whose overall contribution rate (L. 296/2006
-            art. 1 c. 773) no bundled source splits: the quota accrues
-            whole and the TFR is provisional.
+        to_pension_fund: The TFR is paid to the complementary pension fund
+            the worker is enrolled in.
+        treasury_fund: The TFR not paid to a pension fund is paid to the
+            Fondo Tesoreria INPS (L. 296/2006 art. 1 c. 756); ``None`` when
+            the request does not say.
     """
 
     quota: Decimal
     ivs_base: Decimal = _ZERO
     ivs_rate: Decimal = _ZERO
     deduction: Decimal = _ZERO
-    undetermined: bool = False
+    to_pension_fund: bool = False
+    treasury_fund: bool | None = False
 
     @property
     def amount(self) -> Decimal:
-        """TFR accrued on the run, to the company or to the pension fund."""
+        """TFR accrued on the run, in the company or paid to a fund."""
         return self.quota - self.deduction
 
     @property
-    def status(self) -> CalculationStatus:
-        """Provisional when the deduction of an apprentice is undetermined."""
-        if self.undetermined:
-            return CalculationStatus.PROVISIONAL
-        return CalculationStatus.FINAL
+    def account(self) -> AccountKind:
+        """Account the TFR of the run is posted to.
+
+        The pension fund when the worker pays the TFR to it, else the
+        Fondo Tesoreria when the employer pays it there, else the company
+        accrual (also while the Fondo Tesoreria destination is unknown).
+        """
+        if self.to_pension_fund:
+            return AccountKind.PENSION_FUND_TFR
+        if self.treasury_fund:
+            return AccountKind.TFR_TREASURY_FUND
+        return AccountKind.TFR_ACCRUAL
 
     def issues(self) -> tuple[CalculationIssue, ...]:
-        """Return the issue of an undetermined apprentice deduction.
+        """Return the issue of a TFR whose destination is unknown.
 
         Returns:
-            One provisional issue, or nothing when the TFR is final.
+            One ``missing_fact`` issue for ``tfr_treasury_fund`` when a
+            non-zero TFR stays out of a pension fund and the request does
+            not say whether it goes to the Fondo Tesoreria; nothing else.
         """
-        if not self.undetermined:
+        if self.to_pension_fund or self.treasury_fund is not None or not self.amount:
             return ()
         return (
             CalculationIssue(
-                code=TFR_APPRENTICE_IVS_CODE,
+                code=TFR_TREASURY_FUND_CODE,
                 message=(
-                    "tfr: whether the 0.50% additional IVS of L. 297/1982 "
-                    "art. 3 cc. 15-16 is due on an apprentice, whose overall "
-                    "rate is set by L. 296/2006 art. 1 c. 773, is not sourced; "
-                    "the TFR quota accrues whole, without the deduction"
+                    "tfr: whether the TFR goes to the Fondo Tesoreria INPS "
+                    "(L. 296/2006 art. 1 c. 756) is not known; it is posted to "
+                    "tfr_accrual: set Employment.tfr_treasury_fund"
                 ),
                 status=CalculationStatus.PROVISIONAL,
+                fact="tfr_treasury_fund",
             ),
         )
 
@@ -167,20 +179,25 @@ def tfr_accrual(inp: _AmountsInput, breakdown: ContributionBreakdown) -> TfrAccr
     the IVS base of the same period; when the TFR goes to a pension fund
     the deduction reduces the TFR paid to it.  A quota smaller than the
     contribution is deducted down to zero.  Sectors with no additional
-    IVS rule accrue the whole quota; so do apprentices, provisionally.
+    IVS rule accrue the whole quota; so do apprentices, for whom the
+    contribution is not due (INPS circ. 70/2007, note 5).  The Fondo
+    Tesoreria takes the quota net of the deduction (L. 296/2006 art. 1
+    c. 756).
 
     Returns:
-        The quota over the accrual divisor and the deduction taken from it.
+        The quota over the accrual divisor, the deduction taken from it and
+        its destination.
     """
     tfr = inp.rules.tfr
     quota = money((inp.monthly_gross + inp.event_tfr_base) / tfr.accrual_divisor)
+    accrual = TfrAccrual(
+        quota=quota,
+        to_pension_fund=inp.pension is not None and inp.pension.tfr_to_fund,
+        treasury_fund=inp.tfr_treasury_fund,
+    )
     extra = tfr.additional_ivs
-    if extra is None:
-        return TfrAccrual(quota=quota)
-    if isinstance(inp.contract_type, Apprentice):
-        return TfrAccrual(quota=quota, undetermined=True)
+    if extra is None or isinstance(inp.contract_type, Apprentice):
+        return accrual
     base = _ivs_employer_base(breakdown)
     deduction = min(quota, money(base * extra.rate))
-    return TfrAccrual(
-        quota=quota, ivs_base=base, ivs_rate=extra.rate, deduction=deduction
-    )
+    return replace(accrual, ivs_base=base, ivs_rate=extra.rate, deduction=deduction)

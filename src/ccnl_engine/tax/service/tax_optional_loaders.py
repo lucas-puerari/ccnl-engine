@@ -1,4 +1,4 @@
-"""Optional tax rule loaders: sick pay, variable pay, family."""
+"""Optional tax rule loaders: sick pay, variable pay, family, TFR revaluation."""
 
 from __future__ import annotations
 
@@ -9,7 +9,10 @@ from typing import Any
 from pydantic import ValidationError
 
 from ccnl_engine.provenance.domain.chain import RuleProvenance
-from ccnl_engine.shared.domain.errors import DataIntegrityError
+from ccnl_engine.shared.domain.errors import (
+    DataIntegrityError,
+    UnsupportedTaxYearError,
+)
 from ccnl_engine.tax.domain.family import FamilyDeductionRules
 from ccnl_engine.tax.domain.preferential_regime import PreferentialTaxRegime
 from ccnl_engine.tax.domain.sick_pay import (
@@ -17,6 +20,7 @@ from ccnl_engine.tax.domain.sick_pay import (
     SickPayBand,
     SickPayCoverage,
 )
+from ccnl_engine.tax.domain.tfr_revaluation import TfrRevaluationRules
 from ccnl_engine.tax.domain.variable_pay import (
     FringeBenefitRules,
     PdRRules,
@@ -161,3 +165,42 @@ def load_family_deduction_rules(year: int) -> FamilyDeductionRules:
     except ValidationError as exc:
         msg = f"{filename} is not a valid family deduction table: {exc}"
         raise DataIntegrityError(msg) from exc
+
+
+def load_tfr_revaluation_rules(year: int) -> TfrRevaluationRules | None:
+    """Load the TFR revaluation rules at 31 December of *year*.
+
+    The file ``knowledge/tax/data/tfr-revaluation-{year}.json`` carries the
+    rate of art. 2120 c. 4 c.c., the ISTAT FOI indexes it is computed from
+    and the substitute tax of D.Lgs. 47/2000 art. 11.  These are pure law
+    and statistics, not sector-specific.
+
+    Args:
+        year: Year of the revaluation (e.g. ``2026``).
+
+    Returns:
+        The validated rules, or ``None`` when the bundle has no file for
+        *year*.
+
+    Raises:
+        DataIntegrityError: If the file's ``year`` does not match *year* or
+            the file is not a valid revaluation table.
+    """
+    pkg = importlib.resources.files("ccnl_engine.knowledge.tax.data")
+    filename = f"tfr-revaluation-{year}.json"
+    try:
+        raw = read_year_json(pkg, filename, year)
+    except UnsupportedTaxYearError:
+        return None
+    try:
+        rules = TfrRevaluationRules.model_validate({
+            **{k: v for k, v in raw.items() if k != "description"},
+            "ruleset": _try_ruleset(raw),
+        })
+    except ValidationError as exc:
+        msg = f"{filename} is not a valid TFR revaluation table: {exc}"
+        raise DataIntegrityError(msg) from exc
+    if rules.year != year:
+        msg = f"{filename} year={rules.year!r} does not match requested year={year!r}"
+        raise DataIntegrityError(msg)
+    return rules

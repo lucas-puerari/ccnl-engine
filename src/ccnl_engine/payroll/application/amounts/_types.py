@@ -61,7 +61,9 @@ class _AmountsInput:
     ``deferred_irpef`` is the IRPEF a conguaglio of this tax year deferred
     on written request: it counts as withheld when the balance is settled
     again.  ``additional_ivs`` is the position of the run toward the
-    additional 1% IVS of its competence year.
+    additional 1% IVS of its competence year.  ``tfr_treasury_fund`` says
+    whether the TFR not paid to a pension fund goes to the Fondo Tesoreria,
+    ``None`` when not known.
     """
 
     monthly_gross: Decimal
@@ -100,6 +102,7 @@ class _AmountsInput:
     foreign_taxes: tuple[ForeignTaxPaid, ...] = ()
     deferred_irpef: Decimal = Decimal(0)
     additional_ivs: AdditionalIvsPosition = field(default_factory=AdditionalIvsPosition)
+    tfr_treasury_fund: bool | None = None
 
 
 @dataclass(frozen=True)

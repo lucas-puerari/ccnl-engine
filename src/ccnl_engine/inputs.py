@@ -1,8 +1,8 @@
 """Facts a caller passes to :class:`~ccnl_engine.PayrollEngine`.
 
 Everything a request or a plan carries beyond the common path: contract
-types, hours, seniority, family, prior and current year tax facts, the
-calendar, the opening state and the balances imported from another provider.
+types, hours, seniority, the TFR fund, family, prior and current year tax
+facts, the calendar, the opening state and the balances imported from another provider.
 """
 
 from __future__ import annotations
@@ -51,6 +51,7 @@ from ccnl_engine.payroll.domain.surtax_obligations import (
     SurtaxComponent,
     SurtaxObligation,
 )
+from ccnl_engine.payroll.domain.tfr_fund import TfrFundBalance
 from ccnl_engine.tax.domain.preferential_regime import EmploymentSector
 
 __all__ = [
@@ -87,6 +88,7 @@ __all__ = [
     "SubstituteTaxRegime",
     "SurtaxComponent",
     "SurtaxObligation",
+    "TfrFundBalance",
     "WeeklyHours",
     "WorkCalendar",
     "WorkerCategory",

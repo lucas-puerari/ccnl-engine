@@ -179,23 +179,25 @@ def test_apprentice_reads_the_apprentice_rates() -> None:
     assert _decision(result, "apprenticeship_scaling").amount is None
 
 
-def test_apprentice_tfr_accrues_whole_and_is_provisional() -> None:
-    """No source splits the 0.50% out of the apprentice rate: no deduction.
+def test_apprentice_tfr_accrues_whole_and_is_final() -> None:
+    """The 0.50% is not due on an apprentice: the quota accrues whole.
 
-    The industria sector deducts the L. 297/1982 additional IVS, but the
-    apprentice rate of L. 296/2006 art. 1 c. 773 is an overall rate: the
-    quota accrues whole and the TFR is provisional, with an issue.
+    INPS circ. 70/2007 (3 April 2007), note 5: "Per i lavoratori con
+    qualifica di apprendista il contributo dello 0,50% ex lege n. 297/1982,
+    non è previsto"
+    (https://servizi2.inps.it/circolariZip/Circolare%20numero%2070%20del%203-4-2007.pdf).
+    With no contribution there is nothing to deduct under L. 297/1982 art.
+    3 c. 16, even in industria, which deducts it from other workers.
     """
     result = _run(
         contract_type=Apprentice(months_elapsed=6, track="professionalizzante_36")
     )
     decision = _decision(result, "tfr")
-    assert decision.status is CalculationStatus.PROVISIONAL
+    assert decision.status is CalculationStatus.FINAL
+    assert decision.inputs["additional_ivs_rate"] == Decimal(0)
     assert decision.inputs["additional_ivs_deduction"] == Decimal(0)
     assert decision.amount == decision.inputs["quota"]
     assert decision.amount == _posted(result, AccountKind.TFR_ACCRUAL)
-    codes = {issue.code for issue in result.issues}
-    assert "tfr_apprentice_additional_ivs_undetermined" in codes
 
 
 def test_tfr_deduction_never_exceeds_the_quota() -> None:

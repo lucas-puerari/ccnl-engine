@@ -10,7 +10,7 @@ import copy
 import importlib
 import importlib.resources
 import json
-from typing import Any, cast
+from typing import TYPE_CHECKING, Any, cast
 
 import pytest
 
@@ -22,6 +22,7 @@ from ccnl_engine.contract.service.loaders import (
 from ccnl_engine.contract.service.loaders import (
     load_ccnl as load_ccnl_from_bundle,
 )
+from ccnl_engine.knowledge.service.bundled import read_bundled
 from ccnl_engine.shared.domain.errors import DataIntegrityError
 from ccnl_engine.tax.service import surtax_loaders
 from ccnl_engine.tax.service import (
@@ -33,6 +34,9 @@ from ccnl_engine.tax.service.tax_annual_assembler import (
     load_year_rules,
 )
 from tests.helpers import make_ccnl_dict
+
+if TYPE_CHECKING:
+    from importlib.abc import Traversable
 
 LOADER_PATHS = (
     "ccnl_engine.contract.service.loaders",
@@ -192,7 +196,11 @@ class TestTaxLoaderIntegrity:
         inps_raw = self._raw("inps", "terziario")
         inps_raw.pop("ruleset", None)
 
-        def fake_read(pkg: object, f: str) -> str:
+        bundled = read_bundled
+
+        def fake_read(pkg: "Traversable", f: str) -> str:
+            if f.startswith("tfr-revaluation-"):
+                return bundled(pkg, f)
             if "tax" in str(pkg):
                 return json.dumps(raw)
             return json.dumps(inps_raw)

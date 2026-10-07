@@ -19,7 +19,6 @@ from ccnl_engine.payroll.application.period._rule_lookup import (
 )
 from ccnl_engine.payroll.application.period._run_decisions import _ccnl_rule
 from ccnl_engine.payroll.domain.decisions import CalculationDecision, CalculationStatus
-from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.service._contributions_rates import resolve_rates
 from ccnl_engine.provenance.domain.chain import RuleProvenance
 
@@ -211,15 +210,13 @@ def _tfr(
 
     Returns:
         A decision with reason ``accrued``, the account the TFR goes to
-        (the company accrual or the pension fund) and the art. 2120 c.c.
-        quota with the additional IVS of L. 297/1982 deducted from it;
-        provisional when the deduction of an apprentice is undetermined.
+        (the company accrual, the Fondo Tesoreria or the pension fund) and
+        the art. 2120 c.c. quota with the additional IVS of L. 297/1982
+        deducted from it.
     """
     year_rules = ctx.contract.year_rules
     tfr = amounts.amounts.tfr
-    pension = amounts.amounts.pension
-    to_fund = pension is not None and pension.terms.tfr_to_fund
-    account = AccountKind.PENSION_FUND_TFR if to_fund else AccountKind.TFR_ACCRUAL
+    treasury = tfr.treasury_fund
     return _decision(
         "tfr",
         "accrued",
@@ -232,10 +229,10 @@ def _tfr(
             "additional_ivs_base": tfr.ivs_base,
             "additional_ivs_rate": tfr.ivs_rate,
             "additional_ivs_deduction": tfr.deduction,
-            "account": account.value,
+            "treasury_fund": "unknown" if treasury is None else str(treasury).lower(),
+            "account": tfr.account.value,
         },
         tfr.amount,
-        tfr.status,
     )
 
 

@@ -100,6 +100,7 @@ def _period(
         level_code=worker.level_code,
         seniority=new_hire(),
         sector=worker.sector,
+        tfr_treasury_fund=False,
     )
     employer = EmployerProfile(headcount=Headcount(50), activity=worker.activity)
     prior_year = PriorYearTaxFacts(

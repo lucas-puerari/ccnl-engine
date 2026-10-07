@@ -29,6 +29,7 @@ from ccnl_engine.inputs import (
     ContributableHours,
     EmploymentPeriod,
     FamilyComposition,
+    TfrFundBalance,
     WeeklyHours,
     WorkerCategory,
 )
@@ -72,10 +73,13 @@ def test_incomplete_coverage_is_not_payable() -> None:
 
     The final payslip must settle the residual leave, a capability the
     engine does not compute: it applies to this run, so the report has an
-    ``unsupported`` gap and the result is not payable.  ``base_salary`` and
-    ``somma_esente`` come from ``assumed`` rules: each is a blocker too.
-    January is the only payment of the employment, so the year's income is
-    one month of pay and the somma esente is due on an assumed income.
+    ``unsupported`` gap and the result is not payable.  So must it revalue
+    the TFR fund at 31 December 2025 for January (art. 2120 c. 5 c.c.),
+    which the engine reports as not computed: an ``unresolved`` gap.
+    ``base_salary`` and ``somma_esente`` come from ``assumed`` rules: each
+    is a blocker too.  January is the only payment of the employment, so
+    the year's income is one month of pay and the somma esente is due on an
+    assumed income.
     """
     period = EmploymentPeriod(started_on=date(2020, 1, 1), ended_on=date(2026, 1, 30))
     result = _january(
@@ -84,6 +88,8 @@ def test_incomplete_coverage_is_not_payable() -> None:
             level_code="C3",
             employment_period=period,
             seniority=new_hire(),
+            tfr_fund=TfrFundBalance(2025, Decimal("8000.00")),
+            tfr_treasury_fund=False,
         )
     )
 
@@ -95,7 +101,10 @@ def test_incomplete_coverage_is_not_payable() -> None:
     }
     assert [i.code for i in result.issues] == ["somma_esente_income_assumed"]
     assert result.is_payable is False
-    assert gaps == {"termination_residual_leave": "unsupported"}
+    assert gaps == {
+        "termination_residual_leave": "unsupported",
+        "tfr_revaluation": "unresolved",
+    }
     assert blocked == set(gaps)
     assert {
         (BlockerCode.RULE_SOURCE_WEAK, "base_salary", "assumed"),

@@ -4,7 +4,8 @@ The scenario of :mod:`tests.fixtures.normative_oracles.payslips.concia_d2_2026`
 (an industrial tannery with 50 employees, level D2 hired on 1 January 2026,
 resident in Alghero, 2025 income of 40,000 EUR), with each field a caller
 could leave to its default given its value: hours, contribution history,
-sector, employer activity, residence, an empty family and the current-year
+sector, the TFR kept in the company (not paid to the Fondo Tesoreria),
+employer activity, residence, an empty family and the current-year
 income, which states no other employment.  Its June run, opened with the
 state May closed, has one blocker, ``rule_source_weak somma_esente``, so a
 test that drops or changes one fact sees exactly the blockers that fact adds
@@ -61,6 +62,7 @@ CONCIA_D2 = Employment(
     full_time_weekly_hours=WeeklyHours(40),
     contribution_history=ContributionHistory(date(2005, 3, 1)),
     sector=EmploymentSector.PRIVATE,
+    tfr_treasury_fund=False,
 )
 EMPLOYER = EmployerProfile(headcount=Headcount(50), activity=EmployerActivity.OTHER)
 #: Resident in Alghero (Sardegna), no dependant.

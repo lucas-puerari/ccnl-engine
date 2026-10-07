@@ -14,6 +14,10 @@ from ccnl_engine.payroll.application.handlers._overtime_rate import (
 )
 from ccnl_engine.payroll.application.period._accrual_decisions import accrual_rules
 from ccnl_engine.payroll.application.period._sickness import sickness_rules
+from ccnl_engine.payroll.application.period._tfr_rules import (
+    revaluation_rules,
+    tfr_rules,
+)
 from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm
 from ccnl_engine.payroll.domain.events import OvertimeEvent
 from ccnl_engine.payroll.domain.jurisdiction import region_table_name
@@ -25,7 +29,6 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.application.period._context import RunContext
     from ccnl_engine.provenance.domain.chain import ProvenanceStatus, RuleProvenance
     from ccnl_engine.provenance.domain.ruleset_identity import RulesetIdentity
-    from ccnl_engine.tax.domain.tfr_rules import TfrRules
 
 #: A rule the run read: its identifier and its provenance, if recorded.
 type Rule = tuple[str, RuleProvenance | ProvenanceStatus | None]
@@ -126,23 +129,12 @@ def contract_rules(ctx: RunContext) -> dict[str, tuple[Rule, ...]]:
     }
 
 
-def _tfr_rules(name: str, tfr: TfrRules) -> tuple[Rule, ...]:
-    """Return the accrual rule and the additional IVS deduction, when set.
-
-    Returns:
-        The accrual rule, then the L. 297/1982 deduction of the sector.
-    """
-    accrual: Rule = (f"{name}:tfr", tfr.provenance)
-    if tfr.additional_ivs is None:
-        return (accrual,)
-    return accrual, (f"{name}:tfr.additional_ivs", tfr.additional_ivs.provenance)
-
-
 def tax_rules(ctx: RunContext) -> dict[str, tuple[Rule, ...]]:
     """Return the tax-file and variable-pay rules of the run by capability.
 
     Returns:
-        Rules of the IRPEF, TFR, credit and variable-pay capabilities.
+        Rules of the IRPEF, TFR, TFR revaluation, credit and variable-pay
+        capabilities.
     """
     rules, var = ctx.contract.year_rules, ctx.var_pay_rules
     name = _name(rules.ruleset, f"tax/{rules.year}")
@@ -160,7 +152,10 @@ def tax_rules(ctx: RunContext) -> dict[str, tuple[Rule, ...]]:
                 _provenance(rules.sterilizzazione_detrazioni),
             ),
         ),
-        "tfr": _tfr_rules(name, rules.tfr),
+        "tfr": tfr_rules(name, rules.tfr),
+        "tfr_revaluation": revaluation_rules(
+            rules.tfr_revaluation, ctx.contract.tctx.competence.year
+        ),
         "trattamento_integrativo": (
             (
                 f"{name}:trattamento_integrativo",

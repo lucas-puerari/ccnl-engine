@@ -19,6 +19,7 @@ from ccnl_engine import (
 from ccnl_engine.inputs import ContributableHours, PeriodState, PriorYearTaxFacts
 from tests.fixtures.opening_state import fresh_tax_year
 from tests.fixtures.seniority import new_hire
+from tests.fixtures.tfr import no_tfr_fund
 
 if TYPE_CHECKING:
     from ccnl_engine import PeriodResult
@@ -58,7 +59,9 @@ def regular_period(
     """Compute one regular payroll run through the public facade.
 
     ``employment``, when given, replaces ``ccnl_slug`` and ``level_code``;
-    otherwise the worker is a :func:`~tests.fixtures.seniority.new_hire`.
+    otherwise the worker is a :func:`~tests.fixtures.seniority.new_hire`
+    with no TFR fund (:func:`~tests.fixtures.tfr.no_tfr_fund`) whose TFR
+    accrues in the company.
 
     Returns:
         The engine result for the requested run.
@@ -69,7 +72,11 @@ def regular_period(
             payment_date=payment_date or date(year, month, 27),
             employment=employment
             or Employment(
-                ccnl_slug=ccnl_slug, level_code=level_code, seniority=new_hire(year)
+                ccnl_slug=ccnl_slug,
+                level_code=level_code,
+                seniority=new_hire(year),
+                tfr_fund=no_tfr_fund(year),
+                tfr_treasury_fund=False,
             ),
             employer=employer,
             facts=PeriodFacts(

@@ -19,7 +19,8 @@ Implemented invariants:
     employee_contribution_non_negative and
     employer_contribution_non_negative: every EMPLOYEE_CONTRIBUTIONS and
         EMPLOYER_CONTRIBUTIONS entry is ``>= 0``, and so is every entry of
-        the three PENSION_FUND accounts; a correction of past
+        the three PENSION_FUND accounts and of TFR_TREASURY_FUND; a
+        correction of past
         contributions is a distinct movement, not a negative contribution.
         The one exception is the conguaglio of the additional 1% IVS
         (INPS msg. 5327/2015 par. 2.3): a credit to the worker can exceed
@@ -72,6 +73,7 @@ _NON_NEGATIVE_ACCOUNTS: tuple[tuple[AccountKind, InvariantCode], ...] = (
         InvariantCode.EMPLOYER_CONTRIBUTION_NON_NEGATIVE,
     ),
     (AccountKind.PENSION_FUND_TFR, InvariantCode.EMPLOYER_CONTRIBUTION_NON_NEGATIVE),
+    (AccountKind.TFR_TREASURY_FUND, InvariantCode.EMPLOYER_CONTRIBUTION_NON_NEGATIVE),
     (AccountKind.CREDITS, InvariantCode.CREDIT_NON_NEGATIVE),
     (AccountKind.CREDIT_RECOVERIES, InvariantCode.CREDIT_NON_NEGATIVE),
     (AccountKind.CREDIT_RECOVERY_SHORTFALL, InvariantCode.CREDIT_NON_NEGATIVE),

@@ -324,7 +324,9 @@ The engine applies rules in a fixed sequence:
 4. Compute INPS contributions (employee + employer, NASpI addizionale if fixed-term)
    ↓
 5. Compute TFR accrual (Art. 2120 c.c.), less the 0.50% additional IVS
-   (L. 297/1982 art. 3 c. 16)
+   (L. 297/1982 art. 3 c. 16), to the company, the Fondo Tesoreria or
+   the pension fund; on the December run, decide the revaluation of the
+   fund at 31 December (art. 2120 c. 4 c.c.)
    ↓
 6. Compute employer contractual funds
    ↓
