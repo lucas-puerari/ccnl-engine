@@ -124,12 +124,9 @@ class PeriodCalculationRequest:
             supplies it.  ``None`` on an extra-month run counts it from
             ``employment_period`` over the 12 months ending in the run month,
             without absences.  Ignored on a regular run.
-        extra_month_settlements: Ratei liquidated on this run because the
-            employment ends before their payment month.  Each is paid as an
-            extra-month earning next to the regular pay.  A year plan
-            passes them for every run.  ``None`` derives them from the CCNL
-            standard calendar: the run that pays the termination month
-            liquidates them, and an extra-month run they cover is refused.
+        extra_month_settlements: Ratei the run liquidates at the end of the
+            employment, as extra-month earnings; ``None`` derives them
+            (:mod:`~ccnl_engine.payroll.application.period._termination_ratei`).
         sector: Private or public sector of the employment, ``None`` when
             not known.  Read by the regimes restricted to one sector.
         prior_year: Prior-year income and written waivers, read by every
