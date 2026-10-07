@@ -2,7 +2,8 @@
 
 Implements the Art. 13 co. 1 TUIR work-income deduction (piecewise-linear
 schedule of D.Lgs. 216/2023 and L. 207/2024), its proportion to the days of
-work and the minimum of lett. a) for a fixed-term or open-ended employment.
+work and the minimum of lett. a) for a fixed-term or open-ended employment,
+proportioned to the days as the withholding agent applies it.
 
 The detrazioni per carichi di famiglia (Art. 12 TUIR) are in
 :mod:`~ccnl_engine.payroll.service.family_deductions`.  The art. 16-ter
@@ -73,6 +74,42 @@ def _minimum(constants: WorkDeductionRules, *, fixed_term: bool) -> Decimal:
     return money(floor.fixed_term if fixed_term else floor.open_ended)
 
 
+def minimum_left_to_tax_return(
+    gross_income: Decimal,
+    eligible_work_days: int,
+    constants: WorkDeductionRules | None = None,
+    *,
+    fixed_term: bool = False,
+) -> Decimal:
+    """Return the part of the lett. a) minimum the withholding leaves out.
+
+    The withholding agent proportions the minimum to the days of work
+    (:func:`work_income_deduction`); the tax return grants it whole, the
+    deduction due being the larger of the amount for the days and the
+    minimum (Allegato C to the 730/2026 instructions, par. 19.9.1).  The
+    worker recovers the difference in the tax return, as code AN of the
+    Certificazione Unica tells.
+
+    Args:
+        gross_income: Reddito complessivo of the withholding.
+        eligible_work_days: Days of work in the tax year.
+        constants: Versioned Art. 13 constants; the 2026 schedule when
+            ``None``.
+        fixed_term: Whether an employment of the year is fixed-term.
+
+    Returns:
+        The whole minimum less the deduction of the withholding when the
+        income is in lett. a) and the minimum is larger, otherwise zero.
+    """
+    c = constants if constants is not None else DEFAULT_WORK_DEDUCTION
+    if not _ZERO < gross_income <= c.detr_lo or eligible_work_days <= 0:
+        return _ZERO
+    withheld = work_income_deduction(
+        gross_income, eligible_work_days, c, fixed_term=fixed_term
+    )
+    return max(_ZERO, _minimum(c, fixed_term=fixed_term) - withheld)
+
+
 def work_income_deduction(
     gross_income: Decimal,
     eligible_work_days: int = DAYS_IN_YEAR,
@@ -97,12 +134,16 @@ def work_income_deduction(
     :func:`for_days`, without truncating ``eligible_work_days / 365``.
     Pass ``eligible_work_days=365`` (the default) for a full year.
 
-    Up to 15 000 the deduction due is at least the minimum of lett. a), 690
-    EUR or 1 380 EUR for a fixed-term employment, not proportioned to the
-    days: the larger of the two amounts (Allegato C to the 730/2026
-    instructions, par. 19.9.1, "non deve essere rapportata ai giorni di
-    lavoro dipendente").  Without days of work no deduction is due (same
-    paragraph: the days of rigo C5 must be filled).
+    Up to 15 000 the deduction is at least the minimum of lett. a), 690 EUR
+    or 1 380 EUR for a fixed-term employment, proportioned to the days as
+    the withholding agent applies it: for an employment shorter than the
+    year "il sostituto deve ragguagliare anche la detrazione minima al
+    periodo di lavoro" (Agenzia delle Entrate, istruzioni CU 2026, punto
+    367, p. 33).  The larger of the two amounts for the days is due.  The
+    tax return grants the minimum whole (Allegato C to the 730/2026
+    instructions, par. 19.9.1): :func:`minimum_left_to_tax_return`.
+    Without days of work no deduction is due (same paragraph: the days of
+    rigo C5 must be filled).
 
     Args:
         gross_income: Reddito complessivo di riferimento (taxable income,
@@ -112,8 +153,8 @@ def work_income_deduction(
             the full-year deduction amount.
         constants: Versioned Art. 13 statutory constants. Defaults to the
             2026 schedule when ``None``.
-        fixed_term: Whether an employment of the year is fixed-term, which selects the
-            minimum of lett. a).
+        fixed_term: Whether an employment of the year is fixed-term, which
+            selects the minimum of lett. a).
 
     Returns:
         The applicable deduction, rounded to two decimal places.
@@ -124,7 +165,7 @@ def work_income_deduction(
     if gross_income <= c.detr_lo:
         return max(
             for_days(c.detr_flat, eligible_work_days),
-            _minimum(c, fixed_term=fixed_term),
+            for_days(_minimum(c, fixed_term=fixed_term), eligible_work_days),
         )
     increment = (
         c.detr_increment if c.increment_lo < gross_income <= c.increment_hi else _ZERO

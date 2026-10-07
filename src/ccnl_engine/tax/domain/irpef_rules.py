@@ -18,9 +18,10 @@ class WorkDeductionMinimum(BaseModel):
 
     Lett. a): "L'ammontare della detrazione effettivamente spettante non può
     essere inferiore a 690 euro. Per i rapporti di lavoro a tempo
-    determinato, [...] non può essere inferiore a 1.380 euro".  The minimum
-    is not proportioned to the days of work (Allegato C to the 730/2026
-    instructions, par. 19.9.1).  Defaults encode the 2026 values.
+    determinato, [...] non può essere inferiore a 1.380 euro".  The
+    withholding agent proportions it to the days of work (istruzioni CU
+    2026, punto 367); the tax return grants it whole (Allegato C to the
+    730/2026 instructions, par. 19.9.1).  Defaults encode the 2026 values.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -68,7 +69,7 @@ class WorkDeductionRules(BaseModel):
     seventy_five: Decimal = Decimal(75)
     """Trattamento integrativo corrective (Art. 1 co. 3 L. 207/2024, EUR)."""
     minimum: WorkDeductionMinimum = Field(default_factory=WorkDeductionMinimum)
-    """Minimum of the deduction up to detr_lo, not proportioned to the days."""
+    """Minimum of the deduction up to detr_lo, proportioned in the withholding."""
     provenance: RuleProvenance | None = None
     """Source and status of the constants."""
 

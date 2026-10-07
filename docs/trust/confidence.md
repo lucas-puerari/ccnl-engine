@@ -157,7 +157,7 @@ The `pending` fields:
 
 | Field | What the default does today |
 |---|---|
-| `Employment.contract_type` | A permanent contract: no NASpI surcharge of a fixed-term contract, and the 690 EUR minimum of the art. 13 TUIR deduction up to 15,000 EUR instead of 1,380 EUR |
+| `Employment.contract_type` | A permanent contract: no NASpI surcharge of a fixed-term contract, and the 690 EUR minimum of the art. 13 TUIR deduction up to 15,000 EUR instead of 1,380 EUR in the decision on the part left to the tax return |
 | `Employment.employment_period` | A full month and full ratei, even for a hire or a termination within the month |
 | `Employment.weekly_hours`, `Employment.full_time_weekly_hours` | Full time |
 | `Employment.roles` | No role: no allowance a role unlocks |

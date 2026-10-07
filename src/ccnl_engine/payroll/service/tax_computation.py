@@ -15,6 +15,7 @@ from ccnl_engine.payroll.domain.recovery_plan import InstallmentRun
 from ccnl_engine.payroll.domain.tax import TaxComputation
 from ccnl_engine.payroll.service.foreign_tax_credit import foreign_tax_credit
 from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
+from ccnl_engine.payroll.service.irpef_minimum import minimum_decision
 from ccnl_engine.payroll.service.irpef_net import net_irpef
 from ccnl_engine.payroll.service.irpef_trace import annual_items, somma_esente_items
 from ccnl_engine.payroll.service.trattamento_credit import resolve_trattamento
@@ -144,9 +145,10 @@ def compute_tax(
         foreign_taxes: Foreign taxes paid, credited on the annual IRPEF
             (:mod:`~ccnl_engine.payroll.service.foreign_tax_credit`).  The
             caller passes them on the conguaglio only.
-        fixed_term: Whether an employment of the year is fixed-term: the minimum of the
-            art. 13 deduction is then 1,380 EUR instead of 690 (c. 1 lett.
-            a) TUIR), on the projection and on the conguaglio alike.
+        fixed_term: Whether an employment of the year is fixed-term: the
+            minimum of the art. 13 deduction is then 1,380 EUR instead of
+            690 (c. 1 lett. a) TUIR), proportioned to the days on the
+            projection and on the conguaglio alike.
 
     Returns:
         The IRPEF computation with all components, the updated recovery plan
@@ -209,7 +211,8 @@ def _annual(
 
     Returns:
         The net IRPEF, its components and the decisions of the ulteriore
-        detrazione and of the foreign tax credit, each when it applies.
+        detrazione, of the art. 13 minimum left to the tax return and of
+        the foreign tax credit, each when it applies.
     """
     annual = net_irpef(
         taxable,
@@ -224,6 +227,9 @@ def _annual(
     components, decisions = annual_items(
         annual, rules, taxable, family_deductions, days
     )
+    minimum = minimum_decision(rules, taxable, days, fixed_term=fixed_term)
+    if minimum is not None:
+        decisions.append(minimum)
     if credit is not None:
         decisions.append(credit.decision)
     return annual, components, decisions

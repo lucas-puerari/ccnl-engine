@@ -25,7 +25,8 @@ trattamento integrativo in [Tax credits](tax-credits.md).
 3. **Work income deduction** (Art. 13 TUIR) reduces IRPEF gross. Its income
    ratios are truncated to four decimals (art. 13 c. 6 TUIR). Up to €15,000
    it is at least €690, or €1,380 for a fixed-term employment (c. 1
-   lett. a); apprenticeship is open-ended (D.Lgs. 81/2015 art. 41 c. 1).
+   lett. a), proportioned to the days in the withholding; apprenticeship
+   is open-ended (D.Lgs. 81/2015 art. 41 c. 1).
 4. **Ulteriore detrazione lavoro** (Art. 1 c. 6 L. 207/2024): additional credit
    of up to €1,000/year for taxable income between €20,000 and €40,000.
    Flat €1,000 from €20,001 to €32,000; linear taper to zero from €32,001 to €40,000.
@@ -58,18 +59,42 @@ day ratio is not
 truncated to four decimals, since it is not one of the ratios art. 13 c. 6
 TUIR lists: 200 days of the €1,955 deduction give €1,071.23, not €1,071.14.
 
-The minimum of art. 13 c. 1 lett. a) is not proportioned: the deduction due
-is the larger of the amount for the days and the minimum (Allegato C to the
-730/2026 instructions, par. 19.9.1: the minimum "non deve essere rapportata
-ai giorni di lavoro dipendente"). 92 days give €492.77, so €690 is due, or
-€1,380 for a fixed term. It applies to every withholding of the year, the
-conguaglio of a termination included, and the trattamento integrativo test
-up to €15,000 compares the gross tax with that deduction less the €75
-corrective for the days: a fixed-term worker whose gross tax does not exceed
-€1,380 less the corrective gets no trattamento and owes no IRPEF. The
-minimum is €1,380 when any employment the withholding counts in the year is
-fixed-term, as the 730 takes it when "in almeno un rigo" of C1 to C3 holds
-code 2 (same paragraph).
+The minimum of art. 13 c. 1 lett. a) is proportioned to the days in the
+withholding. The Certificazione Unica 2026 instructions of the Agenzia delle
+Entrate (updated 24 February 2026, punto 367, p. 33,
+[PDF](https://www.agenziaentrate.gov.it/portale/documents/20143/9602395/CU_istr_2026_agg+24+02.pdf/4184818b-05a3-acce-5956-70811c7d2233),
+sha256 `a6ccf7cf53edcbd0d084c2266868649f8d17c348644401b540efd5e3fc95e841`)
+read: "Nel caso di rapporti di lavoro a tempo determinato o a tempo
+indeterminato di durata inferiore all'anno (inizio o cessazione del rapporto
+di lavoro nel corso dell'anno), limitatamente ai redditi di cui ai punti 1 e
+2, il sostituto deve ragguagliare anche la detrazione minima al periodo di
+lavoro". The worker is told, with code AN (Tabella F, p. 93), that the tax
+return grants the deduction for the whole year: there the minimum "non deve
+essere rapportata ai giorni di lavoro dipendente" (Allegato C to the
+730/2026 instructions, par. 19.9.1). The deduction of the withholding is the
+larger of the two amounts for the days. With the 2026 amounts the minimum
+for the days never exceeds €1,955 for the days, so up to €15,000 the
+withholding deducts €1,955 × days / 365: 92 days give €492.77, against
+€173.92 (690 × 92 / 365) or €347.84 (1,380 × 92 / 365). This applies to
+every withholding of the year, the conguaglio of a termination included,
+and the trattamento integrativo test up to €15,000 compares the gross tax
+with that deduction less the €75 corrective for the days. Those
+instructions certify 2025 income; the engine reads the rule as unchanged
+for 2026.
+
+When the whole minimum exceeds the deduction of the withholding, the run
+records an `irpef` decision with reason `minimum_proportioned_to_days`, no
+amount, and the inputs `minimum` and `tax_return_balance`, the part the tax
+return grants: Metalmeccanico C3 from 10 July to 20 September 2026 (73
+days) deducts €391.00 and leaves €299.00 (€690 − €391.00) or, fixed-term,
+€989.00 to the tax return. The minimum is €1,380 when any employment the
+withholding counts in the year is fixed-term, as the 730 takes it when "in
+almeno un rigo" of C1 to C3 holds code 2 (Allegato C, par. 19.9.1).
+
+The withholding agent may grant the whole minimum when the worker asks for
+it (punto 367: "sempreché non sia già stata attribuita, su richiesta del
+percipiente, dallo stesso sostituto"; punto 473 code B, p. 40). The engine
+has no input for that request and always proportions the minimum.
 
 The days are those of every employment whose income the withholding
 projects. A rehire by the same employer in the same tax year, whose first
