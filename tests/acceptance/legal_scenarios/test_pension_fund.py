@@ -10,7 +10,10 @@ Sources:
   2026 (TUIR art. 10 c. 1 lett. e-bis, art. 51 c. 2 lett. h); the TFR paid
   to the fund does not count;
 - art. 16 c. 1 and art. 9-bis D.L. 103/1991 (conv. L. 166/1991): 10% INPS
-  solidarity contribution on the employer contributions, TFR excluded.
+  solidarity contribution on the employer contributions, TFR excluded;
+- L. 297/1982 art. 3 cc. 15-16 (Normattiva): the 0.50% additional IVS on
+  the INPS taxable pay is deducted from the TFR quota of the period, and
+  from the TFR paid to the fund when the TFR goes to a pension fund.
 
 CCNL rates from the bundle, each run on its INPS base (the rate times the
 base, rounded half up to the cent):
@@ -18,7 +21,12 @@ base, rounded half up to the cent):
 - Tabacco (APTI), level 4A in 2026: 1244.90 minimum + 508.45 contingenza +
   10.33 EDR = 1763.68 a month, 14 runs.  ALIFOND (art. 47 of the accord
   of 02/07/2025): employer 1.50% = 26.4552 -> 26.46, employee minimum 1%
-  = 17.6368 -> 17.64; solidarity 10% of 26.46 = 2.646 -> 2.65.
+  = 17.6368 -> 17.64; solidarity 10% of 26.46 = 2.646 -> 2.65.  TFR:
+  1763.68 / 13.5 = 130.643 -> 130.64, less 0.50% of 1763.68 = 8.8184 ->
+  8.82: 121.82.
+- Tabacco (APTI), level 3A in 2026: 1524.95 minimum + 515.76 contingenza
+  + 10.33 EDR = 2051.04.  TFR: 2051.04 / 13.5 = 151.929 -> 151.93, less
+  0.50% of 2051.04 = 10.2552 -> 10.26: 141.67.
 - Vetro meccanizzato (Assovetro), level C in 2026: 2354.05 + 10.33 TER =
   2364.38 a month, 13 runs.  FONCHIM employer 1.5% until the +0.5% of
   1 January 2027: 35.4657 -> 35.47; employee 1.2% chosen = 28.37256 ->
@@ -148,10 +156,18 @@ class TestTfrToFund:
     """The TFR paid to the fund moves between accounts, not the cost."""
 
     def test_tfr_moves_to_the_fund_account(self) -> None:
-        """1763.68 / 13.5 = 130.64 is posted to the fund, not accrued."""
+        """130.64 less the 0.50% additional IVS 8.82 goes to the fund."""
         result = regular_period(employment=_tabacco())
-        assert _entry(result, "pension_fund_tfr") == Decimal("130.64")
+        assert _entry(result, "pension_fund_tfr") == Decimal("121.82")
         assert _entry(result, "tfr_accrual") == 0
+
+    def test_tfr_to_the_fund_is_net_of_the_additional_ivs(self) -> None:
+        """Level 3A: 151.93 less 10.26 = 141.67 is paid to the fund."""
+        employment = Employment(
+            ccnl_slug=_TABACCO, level_code="3A", pension_fund=_ALIFOND
+        )
+        result = regular_period(employment=employment)
+        assert _entry(result, "pension_fund_tfr") == Decimal("141.67")
 
     def test_employer_cost_does_not_depend_on_tfr_choice(self) -> None:
         """With or without the TFR to the fund the cost is the same."""
@@ -159,7 +175,7 @@ class TestTfrToFund:
         to_fund = regular_period(employment=_tabacco())
         in_company = regular_period(employment=_tabacco(kept))
         assert to_fund.period_employer_cost == in_company.period_employer_cost
-        assert _entry(in_company, "tfr_accrual") == Decimal("130.64")
+        assert _entry(in_company, "tfr_accrual") == Decimal("121.82")
         assert _entry(in_company, "pension_fund_tfr") == 0
 
 

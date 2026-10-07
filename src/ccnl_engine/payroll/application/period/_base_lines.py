@@ -147,7 +147,7 @@ def _contribution_lines(amounts: _PeriodAmounts) -> list[_BaseLine]:
             "tfr",
             "tfr_accrual_item",
             _tfr_account(amounts),
-            amounts.tfr,
+            amounts.tfr.amount,
             TfrAccrualItem,
         ),
         *_pension_lines(amounts),

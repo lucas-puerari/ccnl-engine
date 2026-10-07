@@ -84,7 +84,14 @@ def test_irpef_ordinary_tax_metalmeccanico_c3() -> None:
 
 
 def test_tfr_accrual_metalmeccanico_c3() -> None:
-    """TFR accrual = gross / 13.5 per Art. 2120 c.c."""
+    """TFR accrual: art. 2120 c.c. quota less the L. 297/1982 additional IVS.
+
+    Art. 2120 c. 1 c.c.: quota = 2,158.26 / 13.5 = 159.8711 -> 159.87.
+    L. 297/1982 art. 3 cc. 15-16 (Normattiva): the employer deducts the
+    0.50% additional IVS on the INPS taxable pay of the period from the
+    quota: 2,158.26 x 0.50% = 10.7913 -> 10.79.  Accrued: 159.87 - 10.79
+    = 149.08.
+    """
     result = engine.calculate_period(
         PeriodInput(
             run=PayrollRun.regular(year=2026, month=1),
@@ -94,7 +101,37 @@ def test_tfr_accrual_metalmeccanico_c3() -> None:
         )
     )
     tfr = next(i for i in result.pay_items if i.kind == "tfr_accrual_item")
-    assert tfr.amount == Decimal("159.87")
+    assert tfr.amount == Decimal("149.08")
+
+
+def test_employer_cost_counts_the_additional_ivs_once() -> None:
+    """The 0.50% sits in the employer INPS; the TFR is net of it.
+
+    Employer INPS stays 658.27 (the 0.50% is inside the 23.81% IVS rate)
+    and the TFR posted is 149.08, so the cost is the gross plus both, plus
+    any other employer account the ledger holds.
+    """
+    result = engine.calculate_period(
+        PeriodInput(
+            run=PayrollRun.regular(year=2026, month=1),
+            payment_date=date(2026, 1, 28),
+            employment=_C3,
+            employer=EmployerProfile(headcount=Headcount(100)),
+        )
+    )
+    others = sum(
+        (
+            e.amount
+            for e in result.ledger_entries
+            if e.account
+            in {"non_cash_benefits", "bilateral_fund_employer", "pension_fund_employer"}
+        ),
+        Decimal(0),
+    )
+    assert result.contribution_breakdown.employer == Decimal("658.27")
+    assert result.period_employer_cost == (
+        Decimal("2158.26") + Decimal("658.27") + Decimal("149.08") + others
+    )
 
 
 # ---------------------------------------------------------------------------

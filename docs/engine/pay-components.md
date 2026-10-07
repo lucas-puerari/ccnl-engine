@@ -174,7 +174,7 @@ When enrolled, each run posts:
 | Employer contribution | `pension_fund_employer` | CCNL rate x INPS base of the run | employer cost |
 | Solidarity contribution | `employer_contributions` | 10% of the employer contribution | employer cost |
 | Employee contribution | `pension_fund_employee` | chosen rate x INPS base | withheld from net |
-| TFR to the fund | `pension_fund_tfr` instead of `tfr_accrual` | TFR of the run | none: the cost does not change |
+| TFR to the fund | `pension_fund_tfr` instead of `tfr_accrual` | TFR of the run, net of the 0.50% additional IVS (L. 297/1982 art. 3 c. 16) | none: the cost does not change |
 
 The rules behind it:
 

@@ -15,6 +15,7 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine.contract.domain.identity import TaxSector
+from ccnl_engine.payroll.application.amounts._contributions import TfrAccrual
 from ccnl_engine.payroll.application.amounts._types import _PeriodAmounts
 from ccnl_engine.payroll.application.withholding._cap import (
     cap_withholding,
@@ -36,7 +37,7 @@ def _amounts() -> _PeriodAmounts:
         monthly_gross=Decimal(1000),
         inps_employee=Decimal(100),
         inps_employer=_ZERO,
-        tfr=_ZERO,
+        tfr=TfrAccrual(quota=_ZERO),
         period_irpef=_IRPEF,
         period_tratt=_ZERO,
         period_surtax=_ZERO,

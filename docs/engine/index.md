@@ -318,7 +318,8 @@ The engine applies rules in a fixed sequence:
    ↓
 4. Compute INPS contributions (employee + employer, NASpI addizionale if fixed-term)
    ↓
-5. Compute TFR accrual (Art. 2120 c.c.)
+5. Compute TFR accrual (Art. 2120 c.c.), less the 0.50% additional IVS
+   (L. 297/1982 art. 3 c. 16)
    ↓
 6. Compute employer contractual funds
    ↓

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from decimal import Decimal
 
+from ccnl_engine.payroll.application.amounts._contributions import TfrAccrual
 from ccnl_engine.payroll.application.amounts._surtax import RunSurtax
 from ccnl_engine.payroll.application.amounts._types import _PeriodAmounts
 from ccnl_engine.payroll.application.period._tax_lines import tax_lines
@@ -25,7 +26,7 @@ def _amounts(
         monthly_gross=Decimal(2000),
         inps_employee=_ZERO,
         inps_employer=_ZERO,
-        tfr=_ZERO,
+        tfr=TfrAccrual(quota=_ZERO),
         period_irpef=irpef,
         period_tratt=tratt,
         period_surtax=run.due if surtax is None else surtax,

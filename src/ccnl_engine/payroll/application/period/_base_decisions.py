@@ -210,10 +210,13 @@ def _tfr(
     """Return the decision of the TFR accrued on the run.
 
     Returns:
-        A decision with reason ``accrued`` and the account the TFR goes
-        to: the company accrual or the pension fund.
+        A decision with reason ``accrued``, the account the TFR goes to
+        (the company accrual or the pension fund) and the art. 2120 c.c.
+        quota with the additional IVS of L. 297/1982 deducted from it;
+        provisional when the deduction of an apprentice is undetermined.
     """
     year_rules = ctx.contract.year_rules
+    tfr = amounts.amounts.tfr
     pension = amounts.amounts.pension
     to_fund = pension is not None and pension.terms.tfr_to_fund
     account = AccountKind.PENSION_FUND_TFR if to_fund else AccountKind.TFR_ACCRUAL
@@ -225,9 +228,14 @@ def _tfr(
         {
             "base": ctx.monthly_gross + totals.tfr_base,
             "accrual_divisor": year_rules.tfr.accrual_divisor,
+            "quota": tfr.quota,
+            "additional_ivs_base": tfr.ivs_base,
+            "additional_ivs_rate": tfr.ivs_rate,
+            "additional_ivs_deduction": tfr.deduction,
             "account": account.value,
         },
-        amounts.amounts.tfr,
+        tfr.amount,
+        tfr.status,
     )
 
 

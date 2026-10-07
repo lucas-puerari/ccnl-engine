@@ -252,6 +252,22 @@ The severance fund accrues annually at 1/13.5 of the TFR-relevant remuneration
 (Art. 2120 c.c.). The TFR base is gross pay minus elements flagged
 `tfr_relevant = false` in the contract data.
 
+L. 297/1982 art. 3 cc. 15-16 raised the employer IVS rate by 0.50% of the
+INPS taxable pay and has the employer deduct that contribution from the TFR
+quota of the same period, or from the TFR paid to a pension fund. The 0.50%
+is already inside the employer IVS rate (23.81% in industria), so
+the employer cost counts it once: the INPS contributions include it and the
+TFR accrued is net of it. The deduction is charged on the IVS base of the
+run, events outside the TFR base included, and never exceeds the quota.
+The bundle applies the deduction in industria, terziario, artigianato,
+credito and edilizia. It does not apply it, and the quota accrues whole, in
+public administration (not insured with the FPLD), in domestic work (named
+by c. 15, but paid by flat hourly contributions with no percentage IVS base)
+and in agricoltura (the composition of its employer rate is not sourced).
+For apprentices no bundled source splits the 0.50% out of the overall rate
+(L. 296/2006 art. 1 c. 773): the quota accrues whole and the TFR is
+provisional.
+
 For employers with more than 50 employees, the TFR accrual is channelled to INPS
 (or a pension fund if the worker elects one) rather than held by the company.
 

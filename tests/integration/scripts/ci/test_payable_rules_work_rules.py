@@ -96,3 +96,24 @@ def test_sick_pay_bands_read_their_sibling_record() -> None:
         ("sickness",),
         "derived",
     )
+
+
+def test_nested_tfr_deduction_is_a_payable_rule() -> None:
+    """The additional IVS block inside ``tfr`` is a rule of its own."""
+    data = {
+        "tfr": {
+            "accrual_divisor": "13.5",
+            "provenance": _RECORD,
+            "additional_ivs": {"rate": "0.0050", "provenance": _RECORD},
+        }
+    }
+    rules = fiscal_rules("tax/data/2026-industria.json", data)
+    assert [(r.path, r.capabilities, r.status) for r in rules] == [
+        ("tfr", ("tfr",), "derived"),
+        ("tfr.additional_ivs", ("tfr",), "derived"),
+    ]
+
+
+def test_tax_file_without_tfr_has_no_nested_rule() -> None:
+    """A missing parent block yields neither the block nor its child."""
+    assert list(fiscal_rules("tax/data/2026-industria.json", {})) == []

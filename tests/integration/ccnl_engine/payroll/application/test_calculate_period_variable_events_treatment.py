@@ -26,6 +26,7 @@ from ccnl_engine.payroll.domain.period import PeriodResult
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
+from ccnl_engine.payroll.domain.rounding import money
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
@@ -33,6 +34,8 @@ _YEAR = 2026
 _MONTH = 3
 _PID = PeriodId(year=_YEAR, month=_MONTH)
 _PAYMENT = date(_YEAR, _MONTH, 28)
+#: L. 297/1982 art. 3 c. 15: 0.30% from July 1982 plus 0.20% from 1983.
+_ADDITIONAL_IVS = Decimal("0.0050")
 
 
 def _req(*events: object) -> PeriodCalculationRequest:
@@ -99,6 +102,31 @@ def _tfr(result: object) -> Decimal:
     )
 
 
+def _quota(result: PeriodResult) -> Decimal:
+    """Return the art. 2120 c.c. quota of the run.
+
+    Returns:
+        The quota the TFR decision records, before the deduction.
+    """
+    (decision,) = (d for d in result.decisions if d.capability == "tfr")
+    quota = decision.inputs["quota"]
+    assert isinstance(quota, Decimal)
+    return quota
+
+
+def _assert_event_out_of_tfr(result: PeriodResult, base: PeriodResult) -> None:
+    """Assert the event leaves the quota unchanged but bears the extra IVS.
+
+    L. 297/1982 art. 3 cc. 15-16: the 0.50% additional IVS is charged on
+    the whole INPS taxable pay, the event included, and deducted from the
+    TFR quota of the period.
+    """
+    assert _quota(result) == _quota(base)
+    deduction = money(result.period_gross * _ADDITIONAL_IVS)
+    assert _tfr(result) == _quota(result) - deduction
+    assert _tfr(result) < _tfr(base)
+
+
 class TestEventTreatmentPolicy:
     """Treatment table governs TFR axis: absence=True, overtime/night/bonus=False."""
 
@@ -115,7 +143,7 @@ class TestEventTreatmentPolicy:
                 )
             )
         )
-        assert _tfr(result) == _tfr(base)
+        _assert_event_out_of_tfr(result, base)
 
     def test_night_shift_does_not_increase_tfr(self) -> None:
         """NightShiftEvent supplement does not enter the TFR accrual base."""
@@ -128,7 +156,7 @@ class TestEventTreatmentPolicy:
                 )
             )
         )
-        assert _tfr(result) == _tfr(base)
+        _assert_event_out_of_tfr(result, base)
 
     def test_bonus_does_not_increase_tfr(self) -> None:
         """BonusEvent amount does not enter the TFR accrual base."""
@@ -140,7 +168,7 @@ class TestEventTreatmentPolicy:
                 )
             )
         )
-        assert _tfr(result) == _tfr(base)
+        _assert_event_out_of_tfr(result, base)
 
     def test_absence_decreases_tfr(self) -> None:
         """AbsenceEvent deduction reduces the TFR accrual base."""

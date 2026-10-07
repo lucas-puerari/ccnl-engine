@@ -228,7 +228,7 @@ def test_unpaid_absence_cannot_exceed_the_prorated_pay() -> None:
             date(2026, 3, 15),
             Decimal("1162.14"),
             Decimal("1842.86"),
-            Decimal("86.08"),
+            Decimal("80.27"),
             id="fifteenth",
         ),
         # 14 days do not; 12 payable days pay 2,158.26 x 12 / 26.
@@ -236,7 +236,7 @@ def test_unpaid_absence_cannot_exceed_the_prorated_pay() -> None:
             date(2026, 3, 18),
             Decimal("996.12"),
             Decimal("1658.57"),
-            Decimal("73.79"),
+            Decimal("68.81"),
             id="eighteenth",
         ),
     ],
@@ -247,7 +247,9 @@ def test_accruals_follow_the_employed_days(
     """The tredicesima counts March by its days, the TFR the prorated pay.
 
     The rateo threshold is 15 calendar days; the TFR of March is its gross
-    divided by 13.5: 1,162.14 / 13.5 = 86.08, 996.12 / 13.5 = 73.79.
+    divided by 13.5: 1,162.14 / 13.5 = 86.08, 996.12 / 13.5 = 73.79, less
+    the 0.50% additional IVS of the same gross (L. 297/1982 art. 3 c. 16):
+    1,162.14 x 0.50% = 5.81 and 996.12 x 0.50% = 4.98, so 80.27 and 68.81.
     """
     year = _ENGINE.calculate_competence_year(
         CompetenceYearPlan(
