@@ -141,7 +141,7 @@ def compute_tax(
         foreign_taxes: Foreign taxes paid, credited on the annual IRPEF
             (:mod:`~ccnl_engine.payroll.service.foreign_tax_credit`).  The
             caller passes them on the conguaglio only.
-        fixed_term: Whether the employment is fixed-term: the minimum of the
+        fixed_term: Whether an employment of the year is fixed-term: the minimum of the
             art. 13 deduction is then 1,380 EUR instead of 690 (c. 1 lett.
             a) TUIR), on the projection and on the conguaglio alike.
 

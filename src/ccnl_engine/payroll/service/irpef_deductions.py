@@ -116,7 +116,7 @@ def work_income_deduction(
             the full-year deduction amount.
         constants: Versioned Art. 13 statutory constants. Defaults to the
             2026 schedule when ``None``.
-        fixed_term: Whether the employment is fixed-term, which selects the
+        fixed_term: Whether an employment of the year is fixed-term, which selects the
             minimum of lett. a).
 
     Returns:

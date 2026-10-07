@@ -20,6 +20,7 @@ from ccnl_engine.payroll.domain.credit_accounts import (
     TrattamentoAccount,
     UlterioreDetrazioneAccount,
 )
+from ccnl_engine.payroll.domain.employment_spells import EmploymentSpell, spells_of
 from ccnl_engine.payroll.domain.obligations import EmploymentObligations
 from ccnl_engine.payroll.domain.payment import PaymentId
 from ccnl_engine.payroll.domain.ytd_accounts import (
@@ -88,13 +89,17 @@ class TaxCashState:
             running, such as an installment recovery, the surtax a
             conguaglio determined or the IRPEF of a conguaglio deferred on
             written request.  None is opened after :attr:`tax_year`.
+        employment_spells: Days in :attr:`tax_year` of each employment the
+            payments paid, in order of first day: the art. 13 TUIR
+            deduction counts their union
+            (:mod:`~ccnl_engine.payroll.domain.employment_spells`).
 
     Raises:
         InvalidInputError: When a field is not of its type, a payment
             belongs to another tax year, is repeated or is dated before the
             payment closed before it, :attr:`conguaglio` is not the last
             payment that takes a slot, or an obligation is opened after
-            :attr:`tax_year`.
+            :attr:`tax_year`, or a spell is of another year.
     """
 
     tax_year: int | None = None
@@ -111,6 +116,7 @@ class TaxCashState:
     work_time_regime: RegimeCapAccount = field(default_factory=RegimeCapAccount)
     shortfall: WithholdingShortfall = field(default_factory=WithholdingShortfall)
     obligations: EmploymentObligations = field(default_factory=EmploymentObligations)
+    employment_spells: tuple[EmploymentSpell, ...] = ()
 
     def __post_init__(self) -> None:  # noqa: D105
         require_int(
@@ -129,6 +135,10 @@ class TaxCashState:
             feature=_FEATURE,
         )
         object.__setattr__(self, "payments", payments)
+        spells = spells_of(
+            self.employment_spells, f"{_OWNER}.employment_spells", self.tax_year
+        )
+        object.__setattr__(self, "employment_spells", spells)
         self._check_payments()
         self._check_obligations()
 

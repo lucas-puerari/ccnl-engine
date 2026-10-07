@@ -116,6 +116,7 @@ def _closing(
                 _ZERO,
             ),
             history_known=ctx.opening_issue is None,
+            employment_spells=ctx.employment_spells,
         ),
     )
 

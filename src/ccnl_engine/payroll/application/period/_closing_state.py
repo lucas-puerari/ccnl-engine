@@ -31,6 +31,7 @@ if TYPE_CHECKING:
         SommaEsenteOutcome,
     )
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
+    from ccnl_engine.payroll.domain.employment_spells import EmploymentSpell
     from ccnl_engine.payroll.domain.ledger import LedgerEntry
     from ccnl_engine.payroll.domain.payment import PaymentId
     from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
@@ -76,6 +77,8 @@ class RunOutcome:
         history_known: Whether the run opened with the history of the
             employment; ``False`` marks the closing state, so every run
             that descends from it blocks.
+        employment_spells: Employment spells of the tax year after the
+            run, the run's included.
     """
 
     tax_year: int
@@ -92,6 +95,7 @@ class RunOutcome:
     deferred: tuple[DeferredShortfall, ...] = ()
     additional_ivs: Decimal = _ZERO
     history_known: bool = True
+    employment_spells: tuple[EmploymentSpell, ...] = ()
 
 
 def closing_state(opening: PeriodState, outcome: RunOutcome) -> PeriodState:
@@ -234,4 +238,5 @@ def _closing_cash(
         ),
         shortfall=outcome.shortfall,
         obligations=obligations,
+        employment_spells=outcome.employment_spells,
     )

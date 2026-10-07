@@ -43,7 +43,10 @@ class _AmountsInput:
 
     ``upcoming_gross`` is the recurring gross of the withholding slots still
     to come, zero on the last slot.  ``eligible_work_days`` are the days of
-    employment in the tax year the deductions are proportioned to.
+    employment in the tax year the deductions are proportioned to: the union
+    of the employments the tax cash state paid in it, the run's included.
+    ``fixed_term_in_year`` tells whether one of them is fixed-term, which
+    sets the art. 13 c. 1 lett. a) TUIR minimum at 1,380 EUR.
     ``recovery_plan`` is the installment recovery opened in this tax year,
     if one is running, ``ulteriore_plan`` the ulteriore detrazione plan
     opened by a conguaglio of this tax year.  ``installment_run`` tells
@@ -90,6 +93,7 @@ class _AmountsInput:
     contributable_hours: Decimal | None = None
     domestic_hourly_rate: Decimal | None = None
     eligible_work_days: int = DAYS_IN_YEAR
+    fixed_term_in_year: bool = False
     recovery_plan: RecoveryPlan | None = None
     ulteriore_plan: RecoveryPlan | None = None
     installment_run: InstallmentRun = field(default_factory=InstallmentRun)

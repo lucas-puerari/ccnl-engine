@@ -273,6 +273,7 @@ class TestStateExportAndImport:
             ulteriore_reason=cash.ulteriore_detrazione.reason,
             recoveries=(),
             surtax_obligations=(),
+            employment_spells=cash.employment_spells,
         )
 
     def test_import_gives_back_the_exported_state(self) -> None:

@@ -99,6 +99,13 @@ above the surtax withheld, and IRPEF deferred on written request
 (`deferred_shortfall`) by the conguaglio of `tax_year - 1` only. A violation raises
 `InvalidInputError` with feature `opening_balances`.
 
+When the totals hold an earlier employment of the year with the same
+employer (a rehire), state its days in `employment_spells`, one
+`EmploymentSpell(first_day, last_day, fixed_term)` per employment: the
+art. 13 deduction of the next runs counts the days of the income they
+project (see [Fiscal rules](fiscal.md)). `()` states none, and the next run
+adds the spell of its own employment.
+
 ```python
 from decimal import Decimal
 

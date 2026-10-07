@@ -4,6 +4,20 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Days of a same-year rehire
+
+The art. 13 deduction, the ulteriore detrazione and the trattamento
+integrativo count the days of every employment whose income the
+withholding projects (see [Fiscal rules](engine/fiscal.md)).
+
+| Before | After |
+|---|---|
+| Metalmeccanico C3 from 1 January to 31 March 2026, rehired on 1 June with the state March closed: 214 days | 90 + 214 = 304 days; a run's lett. a) minimum is €1,380 when any employment of the year is `FixedTerm`, not only the run's |
+| `TaxCashState(...)` | New field `employment_spells`, a tuple of `EmploymentSpell` (`first_day`, `last_day`, `fixed_term`, exported by `ccnl_engine.inputs`) of its tax year; `PeriodState.SCHEMA_VERSION` 10 |
+| `OpeningBalances(...)` | New field `employment_spells`, `()` by default: the spells of an earlier employment of the year the imported totals hold |
+| `EmploymentPeriod.days_in_year(year)` | Removed: `spell_days()` counts the union of the spells of the year |
+| A regular run after a termination run of its competence year: `InvalidInputError` "run ... is out of order" | `InvalidInputError` naming the termination run that ended the employment; open a rehire with `PeriodState.zero()` |
+
 ## Conditions of a dependant are facts
 
 A dependant whose art. 12 TUIR conditions are not stated no longer takes a

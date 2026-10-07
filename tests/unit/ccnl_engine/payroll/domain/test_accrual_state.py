@@ -82,12 +82,27 @@ class TestEmploymentAccrualState:
 
     @pytest.mark.parametrize("run", ["2026-05-regular", "2026-12-thirteenth"])
     def test_nothing_closes_after_the_termination_run(self, run: str) -> None:
-        """The termination run closes the competence year of the employment."""
+        """The termination run ended the employment: a rehire opens anew.
+
+        The error names the termination run and the remedy, not an order of
+        months the caller did not break.
+        """
         state = _state("2026-04-regular", "2026-04-termination")
 
-        with pytest.raises(InvalidInputError, match="out of order"):
+        with pytest.raises(InvalidInputError) as info:
             state.check_next_run(PayrollRunId.parse(run))
+        message = str(info.value)
+        assert "termination run '2026-04-termination' ended the employment" in message
+        assert "PeriodState.zero()" in message
+        assert "out of order" not in message
+        assert info.value.field == _FIELD
         state.check_next_run(PayrollRunId.parse("2026-04-adjustment"))
+
+    def test_a_termination_closes_its_competence_year_only(self) -> None:
+        """A run of the next competence year is not ordered against it."""
+        state = _state("2026-12-regular", "2026-12-termination")
+
+        state.check_next_run(PayrollRunId.parse("2027-01-regular"))
 
     def test_adjustment_runs_are_not_ordered(self) -> None:
         """A correction of March closes after May."""

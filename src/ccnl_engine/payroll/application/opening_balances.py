@@ -21,6 +21,7 @@ from ccnl_engine.payroll.application.opening_balance_fields import (
     items,
 )
 from ccnl_engine.payroll.application.opening_state import opening_state
+from ccnl_engine.payroll.domain.employment_spells import EmploymentSpell
 from ccnl_engine.payroll.domain.inps_base import InpsBaseYtd
 from ccnl_engine.payroll.domain.obligations import (
     RecoveryObligation,
@@ -134,6 +135,11 @@ class OpeningBalances:
         deferred_shortfall: IRPEF the conguaglio of ``tax_year - 1``
             deferred on the worker's written request (art. 23 c. 3 DPR
             600/1973) and not yet withheld, ``None`` without one.
+        employment_spells: Days in ``tax_year`` of the employments whose
+            income the totals hold, when they hold an earlier employment
+            with this employer (a rehire): the art. 13 TUIR deduction counts
+            their union.  ``()`` states none: the next run adds the days of
+            its own employment.
     """
 
     tax_year: int
@@ -172,6 +178,7 @@ class OpeningBalances:
     recoveries: tuple[RecoveryObligation, ...] = field(kw_only=True)
     surtax_obligations: tuple[SurtaxObligation, ...] = field(kw_only=True)
     deferred_shortfall: DeferredShortfall | None = None
+    employment_spells: tuple[EmploymentSpell, ...] = ()
 
     def __post_init__(self) -> None:
         """Validate every amount and the consistency of the totals.
@@ -192,6 +199,7 @@ class OpeningBalances:
             ("competence_runs", PayrollRunId),
             ("inps_bases", InpsBaseYtd),
             ("sickness_episodes", SicknessEpisode),
+            ("employment_spells", EmploymentSpell),
         ):
             object.__setattr__(self, name, items(getattr(self, name), name, item))
         object.__setattr__(

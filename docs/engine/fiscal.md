@@ -66,10 +66,34 @@ ai giorni di lavoro dipendente"). 92 days give €492.77, so €690 is due, or
 conguaglio of a termination included, and the trattamento integrativo test
 up to €15,000 compares the gross tax with that deduction less the €75
 corrective for the days: a fixed-term worker whose gross tax does not exceed
-€1,380 less the corrective gets no trattamento and owes no IRPEF. A worker
-with a fixed-term and an open-ended employment in the same year takes the
-minimum of the contract of each run; the 730 takes €1,380 when any of the
-year's employments is fixed-term.
+€1,380 less the corrective gets no trattamento and owes no IRPEF. The
+minimum is €1,380 when any employment the withholding counts in the year is
+fixed-term, as the 730 takes it when "in almeno un rigo" of C1 to C3 holds
+code 2 (same paragraph).
+
+The days are those of every employment whose income the withholding
+projects. A rehire by the same employer in the same tax year, whose first
+run opens with the state the earlier employment closed, projects the income
+of both, so it counts the days of both: one Certificazione Unica holds
+"più rapporti di lavoro ... per il medesimo periodo d'imposta" (punto 11
+code 1 for an employment "interrotto e successivamente ripreso"), and
+punto 721 counts the days of "tutti i rapporti di lavoro conguagliati",
+"i giorni compresi in periodi contemporanei" once (istruzioni CU 2026,
+updated 24 February 2026). The tax cash state records each employment as an
+`EmploymentSpell` of the tax year (`TaxCashState.employment_spells`): its
+first day, its last day (31 December while the end is not stated) and
+whether it is fixed-term; a later run of the same employment, keyed by its
+first day, replaces it. Metalmeccanico C3 from 1 January to 31 March 2026,
+rehired on 1 June, counts 90 + 214 = 304 days from June.
+
+A termination run closes the employment: no run but an adjustment closes
+after it in its competence year, and a rehire after it is refused with an
+`InvalidInputError` that names the termination run. Open the rehire with
+`PeriodState.zero()`: its withholding then counts its own income and days
+only. Art. 23 c. 4 DPR 600/1973 (text in force in 2026) lets the worker ask
+the year-end conguaglio to count the income "percepiti nel corso di
+precedenti rapporti intrattenuti"; the engine does not take that income as
+an input.
 
 ### Withholding of a run
 
