@@ -59,18 +59,19 @@ that never instituted the surtax.
    from that directory.
 
    ```bash
+   dl=$(mktemp -d)
    base=https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/nuova_addcomirpef/download/download.php
-   for y in 2026 2025 2024; do curl -sSL -o "$y.csv" "$base?anno=$y"; done
-   shasum -a 256 *.csv
+   for y in 2026 2025 2024; do curl -sSL -o "$dl/$y.csv" "$base?anno=$y"; done
+   shasum -a 256 "$dl"/*.csv
    ```
 
-2. Build the table, newest list first, with the download date and the next
-   ruleset version (`YYYY.N`, one more than the bundled one, so a run
-   records which table it used):
+2. From the repository root, build the table, newest list first, with the
+   download date and the next ruleset version (`YYYY.N`, one more than the
+   bundled one, so a run records which table it used):
 
    ```bash
    uv run python scripts/data/build_comunale_surtax.py --year 2026 \
-       --current 2026.csv --previous 2025.csv 2024.csv \
+       --current "$dl/2026.csv" --previous "$dl/2025.csv" "$dl/2024.csv" \
        --retrieved YYYY-MM-DD --version 2026.N
    ```
 

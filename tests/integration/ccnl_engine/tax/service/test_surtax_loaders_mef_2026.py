@@ -280,6 +280,16 @@ class TestMunicipalRows:
         assert len(rules.comunale) == 7896
         assert "M439" not in rules.comunale
 
+    def test_merged_municipality_is_not_computed(self, rules: SurtaxRules) -> None:
+        """M439 Castegnero Nanto: no amount and an incomplete issue, never 0."""
+        outcome = compute_surtax(
+            _D(30000), rules, regione=None, comune_belfiore="M439", irpef_due=_D(1)
+        )
+        (decision,) = outcome.decisions
+        assert decision.amount is None
+        assert decision.status is CalculationStatus.INCOMPLETE
+        assert [issue.code for issue in outcome.issues] == ["municipal_surtax_unknown"]
+
     def test_brackets_of_a_2026_delibera(self, rules: SurtaxRules) -> None:
         """F430 Montasola, delibera n. 5 del 28-02-2026 (published 30-09-2026).
 
