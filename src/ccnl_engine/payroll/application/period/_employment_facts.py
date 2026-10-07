@@ -5,10 +5,10 @@
   della ridotta entità della prestazione lavorativa").  Contracted hours
   without the full time of the contract give no fraction: the run computes
   the full-time pay and names the missing full time, never takes the
-  contracted hours as full time.  On a domestic CCNL the weekly hours
-  select the INPS bracket of the flat hourly contributions and the pay
-  tables are per kind of employment (convivente, non convivente), so the
-  full time is not required there.
+  contracted hours as full time.  The same holds on a domestic CCNL,
+  whose weekly hours also select the INPS bracket: its monthly minimum is
+  the pay of a full-time week (the bundle derives the non-convivente one
+  from 40 hours, the convivente one from 54).
 - An allowance the CCNL restricts to a role is paid only to a worker who
   holds it.  ``Employment.roles`` left ``None`` does not state that the
   worker holds none: when the level has a role-restricted allowance in
@@ -35,13 +35,11 @@ def full_time_issue(ctx: RunContext) -> CalculationIssue | None:
 
     Returns:
         An incomplete issue naming ``full_time_weekly_hours`` when the
-        weekly hours of a non-domestic CCNL are stated and the full time is
-        not, else ``None``.
+        weekly hours are stated and the full time is not, else ``None``.
     """
     request = ctx.request
     hours = request.weekly_hours
-    domestic = ctx.contract.year_rules.domestic_contributions is not None
-    if domestic or hours is None or request.full_time_weekly_hours is not None:
+    if hours is None or request.full_time_weekly_hours is not None:
         return None
     return CalculationIssue(
         code="full_time_hours_unknown",

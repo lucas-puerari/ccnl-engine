@@ -4,6 +4,22 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Stating a fact never adds a blocker its default lacks
+
+Several defaults selected a branch without a blocker, so the true fact was the
+only path that blocked. Each default now means "not known" and blocks where
+the fact decides an amount (see
+[Defaults of the public inputs](trust/confidence.md)).
+
+| Before | After |
+|---|---|
+| `Employment.pension_fund=None` meant not enrolled | `None` means not known: on a CCNL with a fund (Tabacco, Tessile PMI, Vetro meccanizzato) the `pension_fund_contribution` decision is `incomplete` (`required_fact_missing`) and the run has a `missing_fact pension_fund` blocker. State `NoPensionFund()` (from `ccnl_engine.inputs`) for a worker who is not enrolled |
+| `Employment.roles` defaulted to `frozenset()` | Defaults to `None`, not known: on a level with an allowance restricted to a role the allowance is left out and the run has a `missing_fact roles` blocker. Pass `frozenset()` for a worker who holds no role |
+| `AbsenceEvent.suspends_accrual` defaulted to `False` | Defaults to `None`, not known: its days count as accruing, and a tredicesima or quattordicesima whose months they could change is `provisional` with a `missing_fact suspends_accrual` blocker. Pass `False` for an ordinary unpaid absence |
+| `weekly_hours` without `full_time_weekly_hours` paid full time silently | Still paid full time, with a `missing_fact full_time_weekly_hours` blocker, domestic CCNLs included. Pass the full time of the contract |
+| A somma esente due carried the `provisional` issue `somma_esente_income_assumed` | The 20,000 EUR limit reads the income beyond this employment from `current_year`: stated, no issue; not stated, the `incomplete` issue `somma_esente_income_unknown` and a `missing_fact current_year` blocker; with employment income of other employers, the `provisional` issue `somma_esente_band_assumed` |
+| `PUBLIC_FACTS` without these facts | `"full_time_weekly_hours"`, `"pension_fund"`, `"roles"`, `"suspends_accrual"` |
+
 ## Federmeccanica sickness counted over several episodes
 
 Metalmeccanici Federmeccanica no longer pays every sick day in full for 180

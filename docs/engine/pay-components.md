@@ -13,8 +13,8 @@ Pass the contracted `weekly_hours` together with the CCNL
 part-time fraction from the two and scales the contractual pay by it.
 `weekly_hours` must not exceed `full_time_weekly_hours`. The contracted hours
 alone never count as full time: without `full_time_weekly_hours` the run
-computes the full-time pay and carries a `missing_fact` blocker for it,
-except on a domestic CCNL, where `weekly_hours` selects the INPS bracket.
+computes the full-time pay and carries a `missing_fact` blocker for it, on
+a domestic CCNL too, where `weekly_hours` also selects the INPS bracket.
 
 ```python
 from datetime import date

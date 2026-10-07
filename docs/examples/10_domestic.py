@@ -16,7 +16,8 @@ from ccnl_engine.inputs import ContributableHours, WeeklyHours
 
 engine = PayrollEngine.bundled()
 
-# Non-convivente domestic worker, level B, 25 h/week, 108 hours in January
+# Non-convivente domestic worker, level B, 25 h of a 40-hour week (the
+# week of the non-convivente minimum), 108 hours in January
 result = engine.calculate_period(
     PeriodInput(
         run=PayrollRun.regular(year=2026, month=1),
@@ -25,6 +26,7 @@ result = engine.calculate_period(
             ccnl_slug="lavoro-domestico-non-convivente.json",
             level_code="B",
             weekly_hours=WeeklyHours(25),
+            full_time_weekly_hours=WeeklyHours(40),
         ),
         employer=EmployerProfile(headcount=Headcount(1)),
         facts=PeriodFacts(contributable_hours=ContributableHours(Decimal(108))),

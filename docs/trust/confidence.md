@@ -152,10 +152,10 @@ without a classification, or on a classification without its field:
     of the TFR, the first day of the imported sickness history and the
     exemption of a short absence when a CCNL counting several sickness
     episodes needs them, the income beyond the employment when a somma
-    esente is due, the full time of a non-domestic employment whose weekly
-    hours are stated, the roles of a worker on a level with an allowance
-    restricted to a role, the enrolment in a pension fund of a CCNL that has
-    one, the suspension of accrual of an absence that could change a rateo);
+    esente is due, the full time of an employment whose weekly hours are
+    stated, the roles of a worker on a level with an allowance restricted
+    to a role, the enrolment in a pension fund of a CCNL that has one, the
+    suspension of accrual of an absence that could change a rateo);
   - `pending`: not honoured yet. The default still selects a branch without
     a blocker. Treat these fields as required and state them.
 

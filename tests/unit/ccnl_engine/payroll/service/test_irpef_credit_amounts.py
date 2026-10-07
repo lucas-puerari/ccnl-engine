@@ -363,9 +363,9 @@ class TestTrattamentoIntegrativoProrata:
         """18,000 of employment and 2,500 of rent: reddito complessivo 20,500.
 
         Eligibility is on the reddito complessivo (L. 207/2024 art. 1 c. 4:
-        "il cui reddito complessivo non è superiore a 20.000 euro"), above
-        the limit here, so nothing is due although the employment income
-        alone (18,000) is within it.
+        "che hanno un reddito complessivo non superiore a 20.000 euro"),
+        above the limit here, so nothing is due although the employment
+        income alone (18,000) is within it.
         """
         amount = somma_esente(Decimal(18000), _SE_RULES, external_income=Decimal(2500))
         assert amount == Decimal(0)
@@ -373,8 +373,9 @@ class TestTrattamentoIntegrativoProrata:
     def test_income_beyond_the_employment_does_not_move_the_rate(self) -> None:
         """18,000 of employment and 1,000 of rent: 19,000, within 20,000.
 
-        The percentage and its base are the employment income (c. 4): 4.8%
-        of 18,000 = 864.00, as without the rent.
+        The amount applies the percentage "al reddito di lavoro dipendente
+        del contribuente" (c. 4): 4.8% of 18,000 = 864.00, as without the
+        rent.
         """
         amount = somma_esente(Decimal(18000), _SE_RULES, external_income=Decimal(1000))
         assert amount == Decimal("864.00")

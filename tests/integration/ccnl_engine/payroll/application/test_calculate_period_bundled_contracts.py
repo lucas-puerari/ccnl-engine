@@ -46,11 +46,13 @@ from tests.fixtures.seniority import new_hire, pricing_category
 
 _ENGINE = PayrollEngine.bundled()
 _SLUGS = [f"{info.ccnl_id}.json" for info in PayrollEngine.list_contracts()]
-#: Domestic contracts need declared weekly and contributable hours for INPS.
-_DOMESTIC = frozenset({
-    "lavoro-domestico-convivente.json",
-    "lavoro-domestico-non-convivente.json",
-})
+#: Domestic contracts need declared weekly and contributable hours for INPS:
+#: a full-time week, 54 hours for conviventi and 40 for non conviventi (the
+#: weeks the bundle derives the monthly minimum from).
+_DOMESTIC = {
+    "lavoro-domestico-convivente.json": WeeklyHours(54),
+    "lavoro-domestico-non-convivente.json": WeeklyHours(40),
+}
 _DOMESTIC_FACTS = PeriodFacts(contributable_hours=ContributableHours(Decimal(173)))
 _COMPUTED = frozenset({CalculationStatus.FINAL, CalculationStatus.PROVISIONAL})
 #: Hired on 1 September with no other employment in 2026: the September run
@@ -120,7 +122,8 @@ def test_every_level_computes_sane_totals(slug: str) -> None:
                 employment=Employment(
                     ccnl_slug=slug,
                     level_code=level.code,
-                    weekly_hours=WeeklyHours(40) if slug in _DOMESTIC else None,
+                    weekly_hours=_DOMESTIC.get(slug),
+                    full_time_weekly_hours=_DOMESTIC.get(slug),
                     seniority=new_hire(),
                     category=pricing_category(increments, level.code),
                     employment_period=_HIRED,
