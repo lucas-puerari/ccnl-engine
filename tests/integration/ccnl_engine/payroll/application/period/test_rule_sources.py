@@ -21,7 +21,6 @@ from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
 from ccnl_engine.payroll.domain.family import (
-    Dependent,
     DependentRelationship,
     FamilyComposition,
 )
@@ -33,6 +32,7 @@ from ccnl_engine.payroll.service.bundled_knowledge_repository import (
 )
 from ccnl_engine.provenance.domain.chain import ProvenanceStatus, RuleProvenance
 from tests.fixtures.current_year import employment_only
+from tests.fixtures.dependents import declared_dependent
 from tests.fixtures.residence import COMUNE_BELFIORE, REGIONE
 from tests.fixtures.seniority import new_hire
 
@@ -118,7 +118,7 @@ class TestBundledRun:
         with its own ``assumed`` record.
         """
         family = FamilyComposition(
-            dependents=(Dependent(relationship=DependentRelationship.SPOUSE),)
+            dependents=(declared_dependent(relationship=DependentRelationship.SPOUSE),)
         )
         result = _run(
             regione="IT-45",

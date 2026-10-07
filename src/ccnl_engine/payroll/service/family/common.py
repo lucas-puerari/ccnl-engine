@@ -41,13 +41,17 @@ class DependentDeduction:
         annual: Deduction for a full year at the reddito complessivo, before
             the months and the allocation; not rounded.
         amount: ``annual * months / 12 * allocation_pct / 100``, rounded to
-            the cent.
+            the cent; zero while :attr:`missing_facts` is not empty.
+        missing_facts: Conditions the dependant leaves unknown while it may
+            give right to the deduction in some month: until they are
+            stated, the deduction is not determined and none is granted.
     """
 
     dependent: Dependent
     months: int
     annual: Decimal
     amount: Decimal
+    missing_facts: tuple[str, ...] = ()
 
 
 def truncated(ratio: Decimal, decimals: int) -> Decimal:
@@ -83,14 +87,17 @@ def phase_out(
 def prorate(dependent: Dependent, months: int, annual: Decimal) -> DependentDeduction:
     """Return the deduction of ``dependent`` for ``months`` of the year.
 
+    ``months`` are those in which no stated condition excludes the
+    deduction; a dependant that may qualify in some month with a condition
+    left unknown gets no deduction and names the missing facts.
+
     Returns:
         The deduction, rounded to the cent after the months and allocation.
     """
+    missing = dependent.missing_facts if months else ()
+    if missing:
+        return DependentDeduction(dependent, months, annual, _ZERO, missing)
     amount = money(
-        annual
-        * Decimal(months)
-        / Decimal(MONTHS_IN_YEAR)
-        * dependent.allocation_pct
-        / _HUNDRED
+        annual * Decimal(months) / Decimal(MONTHS_IN_YEAR) * dependent.share / _HUNDRED
     )
     return DependentDeduction(dependent, months, annual, amount)

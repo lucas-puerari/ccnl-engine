@@ -29,7 +29,7 @@ if TYPE_CHECKING:
         FamilyDeductionRules,
     )
 
-__all__ = ["child_months", "children_deductions"]
+__all__ = ["child_months", "children_deductions", "children_within_income_limit"]
 
 _NO_BIRTH_DATE = date.min
 
@@ -68,18 +68,44 @@ def child_months(child: Dependent, rules: ChildrenDeductionRules, year: int) -> 
     """Return the months of ``year`` in which ``child`` gives right to lett. c.
 
     Returns:
-        Zero when the child is not resident under c. 2-bis or its own
-        income exceeds its limit.
+        Zero when the child is stated not resident under c. 2-bis or its
+        stated own income exceeds its limit; an unknown condition does not
+        exclude a month.
     """
-    if not child.residency_eligibility:
-        return 0
-    if child.own_income > _income_limit(child, rules, year):
+    if not child.may_qualify(_income_limit(child, rules, year)):
         return 0
     return sum(
         1
         for month in child.dependency_months(year)
         if _in_age_band(child, rules, year, month)
     )
+
+
+def children_within_income_limit(
+    children: Sequence[Dependent], rules: ChildrenDeductionRules, year: int
+) -> bool | None:
+    """Return whether a child is in the condition of art. 12 c. 2 in ``year``.
+
+    The condition is the own-income limit alone: neither the age band of
+    lett. c nor c. 2-bis applies.  It selects the higher fringe-benefit
+    threshold (L. 207/2024 art. 1 c. 390: "figli [...] che si trovano nelle
+    condizioni previste dall'articolo 12, comma 2").  Only a child whose
+    dependency interval touches ``year`` counts.
+
+    Returns:
+        ``True`` when a child's stated own income is within its limit,
+        ``None`` when none is and a child's own income is unknown,
+        ``False`` otherwise.
+    """
+    found: bool | None = False
+    for child in children:
+        if not child.dependency_months(year):
+            continue
+        if child.own_income is None:
+            found = None
+        elif child.own_income <= _income_limit(child, rules, year):
+            return True
+    return found
 
 
 def children_deductions(

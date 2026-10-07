@@ -8,9 +8,11 @@ its phase-out, the deductions are zero whatever the other income and the
 facts are not needed.  Otherwise, without facts of the tax year, the run
 computes the deductions on its own income as a simulation, the provisional
 decision carries no amount and an incomplete issue names the missing fact,
-so the result is incomplete and not payable.  An estimated income on the
-conguaglio leaves the decision provisional: the conguaglio settles the year
-on final figures.
+so the result is incomplete and not payable.  A dependant that may qualify
+with a condition of art. 12 left unknown is handled the same way: it takes
+no deduction in the simulation and an issue names each unknown condition.
+An estimated income on the conguaglio leaves the decision provisional: the
+conguaglio settles the year on final figures.
 """
 
 from __future__ import annotations
@@ -104,8 +106,13 @@ class RunFamily:
         deduction, the other income cannot change them.
         """
         deductions = self.deductions
-        exhausted = self.own_income > 0 and not deductions.total
+        exhausted = self.own_income > 0 and deductions.exhausted
         return self.usable_facts is None and deductions.entitled and not exhausted
+
+    @property
+    def missing_facts(self) -> tuple[str, ...]:
+        """Conditions of art. 12 a dependant that may qualify leaves unknown."""
+        return self.deductions.missing_facts
 
     @property
     def estimated_at_conguaglio(self) -> bool:
@@ -118,12 +125,18 @@ class RunFamily:
             and facts.quality is IncomeEstimateQuality.ESTIMATED
         )
 
-    def issue(self) -> CalculationIssue | None:
-        """Return the missing-fact issue of undetermined deductions.
+    def issues(self) -> tuple[CalculationIssue, ...]:
+        """Return the missing-fact issues of undetermined deductions.
 
         Returns:
-            An incomplete issue naming ``current_year``, or ``None``.
+            An incomplete issue naming ``current_year`` when the income is
+            unknown, and one per unknown condition of a dependant.
         """
+        income = self._income_issue()
+        facts = tuple(_fact_issue(fact) for fact in self.missing_facts)
+        return facts if income is None else (income, *facts)
+
+    def _income_issue(self) -> CalculationIssue | None:
         if not self.undetermined:
             return None
         facts = self.facts
@@ -149,12 +162,13 @@ class RunFamily:
 
         Returns:
             A decision whose reason is ``deductions_applied``,
-            ``no_deduction_due``, ``required_fact_missing`` or
+            ``no_deduction_due``, ``required_fact_missing`` (the income or
+            a condition of a dependant unknown) or
             ``estimated_income_at_conguaglio``.
         """
         deductions = self.deductions
         total = deductions.total
-        if self.undetermined:
+        if self.undetermined or self.missing_facts:
             # Provisional, not incomplete, like the IVS and seniority
             # decisions: the run read the rules for its simulation, so they
             # stay in its rulesets; the incomplete issue blocks payment.
@@ -203,9 +217,24 @@ class RunFamily:
         }
         for kind in DependentRelationship:
             inputs[kind.value] = deductions.of(kind)
+        if self.missing_facts:
+            inputs["missing_facts"] = ",".join(self.missing_facts)
         if self.undetermined:
             inputs["simulated_amount"] = deductions.total
         return inputs
+
+
+def _fact_issue(fact: str) -> CalculationIssue:
+    return CalculationIssue(
+        code="dependent_condition_unknown",
+        message=(
+            f"a dependant may give right to an art. 12 TUIR deduction and "
+            f"leaves Dependent.{fact} unknown: state it; until then the "
+            "dependant takes no deduction"
+        ),
+        status=CalculationStatus.INCOMPLETE,
+        fact=fact,
+    )
 
 
 def resolve_family(

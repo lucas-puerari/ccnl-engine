@@ -102,7 +102,8 @@ recognised seniority and none is given, see
 [Pay components](pay-components.md)), `apprenticeship_scaling` (`percentage_applied`
 with the percentage and the scaled and unscaled components, only for a
 percentage apprenticeship track), `family_deductions` (`deductions_applied`,
-`no_deduction_due`, `required_fact_missing` or
+`no_deduction_due`, `required_fact_missing` when the reddito complessivo or
+a condition of a dependant is unknown, or
 `estimated_income_at_conguaglio`, only with a family composition, see
 [Family deductions](fiscal.md#family-deductions-art-12-tuir)), `bonus_pdr`
 (`substitute_tax_applied` or `annual_limit_reached`, only for a bonus routed

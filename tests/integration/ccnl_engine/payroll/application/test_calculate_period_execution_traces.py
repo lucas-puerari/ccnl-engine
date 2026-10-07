@@ -28,7 +28,6 @@ from ccnl_engine.payroll.domain.events import (
     WorkEvent,
 )
 from ccnl_engine.payroll.domain.family import (
-    Dependent,
     DependentRelationship,
     FamilyComposition,
 )
@@ -44,6 +43,7 @@ from ccnl_engine.payroll.domain.ytd_accounts import FringeYtd
 from ccnl_engine.payroll.service.policy_loader import load_policy_resolver
 from ccnl_engine.tax.service.tax_optional_loaders import load_variable_pay_rules
 from tests.fixtures.current_year import employment_only
+from tests.fixtures.dependents import declared_dependent
 from tests.fixtures.seniority import new_hire
 from tests.helpers import year_plan
 
@@ -194,7 +194,7 @@ class TestFamilyDeductionDecision:
     def test_deductions_applied(self) -> None:
         """A dependent spouse yields a positive annual deduction."""
         family = FamilyComposition(
-            dependents=(Dependent(relationship=DependentRelationship.SPOUSE),)
+            dependents=(declared_dependent(relationship=DependentRelationship.SPOUSE),)
         )
         (decision,) = _decisions(
             _run(family_composition=family, current_year=employment_only()),

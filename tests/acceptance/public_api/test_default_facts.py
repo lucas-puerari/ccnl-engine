@@ -19,6 +19,7 @@ from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 from functools import cache
+from typing import Any
 
 import pytest
 
@@ -41,6 +42,7 @@ from ccnl_engine.inputs import (
     WeeklyHours,
 )
 from ccnl_engine.results import BlockerCode
+from tests.fixtures.dependents import declared_dependent
 from tests.fixtures.explicit_facts import (
     CONCIA_D2,
     FACTS,
@@ -89,6 +91,27 @@ def _june_with(
     return _ENGINE.calculate_period(request)
 
 
+def _family_blockers(member: Dependent) -> set[tuple[BlockerCode, str | None]]:
+    """Return the blockers of the June run with one dependant.
+
+    Returns:
+        The code and detail of every blocker of the run.
+    """
+    composition = FamilyComposition(dependents=(member,))
+    result = _june_with(facts=replace(FACTS, family_composition=composition))
+    return {(b.code, b.detail) for b in result.blockers}
+
+
+def _unknown(dependent: Dependent, fact: str) -> Dependent:
+    """Return ``dependent`` with the condition ``fact`` left unknown.
+
+    Returns:
+        A copy with ``fact`` set to ``None``.
+    """
+    fields: dict[str, Any] = {fact: None}
+    return replace(dependent, **fields)
+
+
 def _thirteenth(suspends_accrual: bool) -> PeriodResult:
     """Return the tredicesima of a Concia D2 on unpaid leave all March.
 
@@ -109,8 +132,12 @@ def _thirteenth(suspends_accrual: bool) -> PeriodResult:
 
 
 _THIRTEENTH = PayrollRun.thirteenth(2026, 12)
-_ASCENDANT = Dependent(DependentRelationship.ASCENDANT)
-_SPOUSE = Dependent(DependentRelationship.SPOUSE)
+_ASCENDANT = declared_dependent(DependentRelationship.ASCENDANT)
+_SPOUSE = declared_dependent(DependentRelationship.SPOUSE)
+_CHILD = declared_dependent(DependentRelationship.CHILD, birth_date=date(2004, 3, 1))
+_YOUNG_CHILD = declared_dependent(
+    DependentRelationship.CHILD, birth_date=date(2015, 3, 1)
+)
 _TABACCO_3A = replace(CONCIA_D2, ccnl_slug="tabacco-apti.json", level_code="3A")
 _INVERSION = (
     "declaring the true fact adds a blocker the default does not have: part "
@@ -164,42 +191,65 @@ class TestDefaultIsNotAFact:
 
         assert details(unknown) - details(stated) == {"other_employers"}
 
-    @pytest.mark.xfail(
-        strict=True,
-        raises=AssertionError,
-        reason=(
-            "Dependent defaults cohabiting and residency_eligibility to True "
-            "and own_income to 0, so an undeclared condition grants the "
-            "art. 12 TUIR deduction (c. 1 lett. d, c. 2, c. 2-bis) without a "
-            "blocker"
-        ),
-    )
     @pytest.mark.parametrize(
-        ("dependent", "explicit"),
+        ("declared", "fact"),
         [
-            pytest.param(
-                _ASCENDANT, replace(_ASCENDANT, cohabiting=True), id="cohabiting"
-            ),
-            pytest.param(
-                _SPOUSE,
-                replace(_SPOUSE, residency_eligibility=True),
-                id="residency_eligibility",
-            ),
-            pytest.param(
-                _SPOUSE, replace(_SPOUSE, own_income=Decimal(0)), id="own_income"
-            ),
+            pytest.param(_ASCENDANT, "cohabiting", id="cohabiting"),
+            pytest.param(_SPOUSE, "residency_eligibility", id="residency_eligibility"),
+            pytest.param(_SPOUSE, "own_income", id="own_income"),
+            pytest.param(_CHILD, "allocation_pct", id="allocation_pct_child"),
+            pytest.param(_ASCENDANT, "allocation_pct", id="allocation_pct_ascendant"),
         ],
     )
     def test_undeclared_dependent_condition_is_not_met(
-        self, dependent: Dependent, explicit: Dependent
+        self, declared: Dependent, fact: str
     ) -> None:
-        """A dependant whose condition is not declared adds a blocker."""
+        """A condition of art. 12 TUIR left unknown adds a missing fact.
 
-        def family(member: Dependent) -> PeriodResult:
-            composition = FamilyComposition(dependents=(member,))
-            return _june_with(facts=replace(FACTS, family_composition=composition))
+        Own income (c. 2) and residency (c. 2-bis) condition every deduction
+        of c. 1; cohabitation conditions the ascendant one (lett. d); the
+        child (lett. c) and ascendant (lett. d) deductions are shared, the
+        spouse one (lett. a) is not.
+        """
+        unknown = _family_blockers(_unknown(declared, fact))
+        added = unknown - _family_blockers(declared)
 
-        assert _blocker_set(family(dependent)) - _blocker_set(family(explicit))
+        assert {d for code, d in added if code is BlockerCode.MISSING_FACT} == {fact}
+
+    @pytest.mark.parametrize(
+        ("dependent", "fact"),
+        [
+            pytest.param(_SPOUSE, "cohabiting", id="spouse_cohabiting"),
+            pytest.param(_SPOUSE, "allocation_pct", id="spouse_allocation_pct"),
+            pytest.param(_CHILD, "cohabiting", id="child_cohabiting"),
+            pytest.param(_YOUNG_CHILD, "own_income", id="young_child_own_income"),
+            pytest.param(
+                replace(_ASCENDANT, cohabiting=False),
+                "own_income",
+                id="ascendant_not_cohabiting",
+            ),
+        ],
+    )
+    def test_condition_that_cannot_grant_a_deduction_adds_nothing(
+        self, dependent: Dependent, fact: str
+    ) -> None:
+        """An unknown condition art. 12 TUIR does not read adds no blocker.
+
+        Cohabitation is read only for an ascendant and the share only for a
+        child or an ascendant; a child under 21 all year (lett. c) or an
+        ascendant stated not cohabiting (lett. d) gives right to no
+        deduction whatever its other conditions.
+        """
+        unknown = _family_blockers(_unknown(dependent, fact))
+        assert unknown == _family_blockers(dependent)
+
+    def test_dependency_interval_has_no_default(self) -> None:
+        """The months of art. 12 c. 3 TUIR are never the whole year by default.
+
+        ``None`` states an open end; leaving the interval out is an error.
+        """
+        with pytest.raises(TypeError, match="dependent_from"):
+            Dependent(DependentRelationship.SPOUSE)  # type: ignore[call-arg]
 
     @pytest.mark.xfail(
         strict=True,

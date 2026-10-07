@@ -35,9 +35,16 @@ class FringeThreshold:
     """Annual fringe-benefit threshold applied in a run, with its rule.
 
     Attributes:
-        amount: Annual exemption threshold in EUR.
-        with_children: Whether the worker declared a fiscally dependent
-            child, which selects the higher threshold.
+        amount: Annual exemption threshold in EUR: the standard one unless
+            a child is known to be in the condition of art. 12 c. 2 TUIR.
+        with_children: Whether a child of the family composition is in the
+            condition of art. 12 c. 2 TUIR, which selects the higher
+            threshold; ``None`` when unknown.
+        higher: The threshold with such a child, which an unknown
+            ``with_children`` may select.
+        missing_fact: The fact that leaves ``with_children`` unknown:
+            ``"own_income"`` of a child, or ``None`` without a family
+            composition.
         tax_year: Tax year the threshold belongs to.
         rule: Identifier of the rule the threshold comes from.
         rule_version: Version of that rule.
@@ -45,11 +52,13 @@ class FringeThreshold:
     """
 
     amount: Decimal
-    with_children: bool
+    with_children: bool | None
+    higher: Decimal
     tax_year: int
     rule: str
     rule_version: str
     source: SourceLocation | None = None
+    missing_fact: str | None = None
 
 
 @dataclass(frozen=True)

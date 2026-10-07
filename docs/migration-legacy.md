@@ -27,7 +27,7 @@ name in the left column is removed.
 | `prior_income=` on `BonusEvent`, `NightShiftEvent`, `HolidayWorkEvent`, `ShiftWorkEvent` | `PriorYearTaxFacts(employment_income=...)` on the input, once |
 | `substitute_tax_waived=True` on an event | `PriorYearTaxFacts(waived_regimes=frozenset({SubstituteTaxRegime.RINNOVO}))` |
 | renewal signing date not received | `BonusEvent(kind="contract_renewal", agreement_signed_on=...)` |
-| `regione`, `comune_belfiore`, `family_composition`, `has_dependent_children` on the request | `PeriodFacts` of the run |
+| `regione`, `comune_belfiore`, `family_composition`, `has_dependent_children` on the request | `PeriodFacts` of the run (`has_dependent_children` was removed later: the fringe threshold follows `family_composition`) |
 | `events=` on `PayrollRequest` | `PeriodFacts(events=...)` |
 | `period_events={3: (...)}` | `YearInput.periods={3: PeriodFacts(events=...)}` |
 | `per_run_events={"2026-12-thirteenth": (...)}` | `YearInput.periods={"2026-12-thirteenth": PeriodFacts(events=...)}` |

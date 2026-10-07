@@ -182,10 +182,4 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "unknown family: the art. 12 TUIR deductions are not ruled out; an "
         "empty FamilyComposition states that there is no dependant",
     ),
-    "PeriodFacts.has_dependent_children": requires_fact(
-        "fringe_benefit",
-        "facts.has_dependent_children",
-        _PENDING,
-        "the lower fringe-benefit threshold, not checked against the family",
-    ),
 }

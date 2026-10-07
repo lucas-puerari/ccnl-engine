@@ -140,6 +140,8 @@ without a classification, or on a classification without its field:
     category, contribution history, sector, employer activity, prior-year
     income, current-year income with a dependant, signing date of a
     renewal, contributable hours of a domestic CCNL, a child's birth date,
+    the own income, residency, cohabitation and share of a dependant that
+    may qualify for an art. 12 TUIR deduction,
     the apprenticeship track among several, the additional 1% IVS other
     employers withheld when their base is imported and a run settles the
     1%, the opening state of a run that is not the first of an employment
@@ -159,15 +161,14 @@ The `pending` fields:
 | `Employment.weekly_hours`, `Employment.full_time_weekly_hours` | Full time |
 | `Employment.roles` | No role: no allowance a role unlocks |
 | `Employment.pension_fund` | Not enrolled, with no way to state the non-enrolment |
-| `PeriodFacts.has_dependent_children` | The lower fringe-benefit threshold |
-| `Dependent.own_income`, `dependent_from`, `dependent_until`, `allocation_pct`, `cohabiting`, `residency_eligibility` | The condition that grants the art. 12 TUIR deduction is met, for the whole year, in full to this worker |
 | `AbsenceEvent.suspends_accrual` | The absence does not suspend the accrual |
 | `ArrearsEvent.reference_period` | Not read: arrears of an earlier year are taxed with the run, not separately (art. 17 c. 1 lett. b TUIR) |
 
 A `pending` field becomes `requirement` or `reported` when its default can
 be told apart from a stated value (a field that defaults to `True` or `0`
 cannot) and the run blocks on it, or leaves the registry when its default
-is removed. `OpeningBalances.inps_bases`, `surtax_obligations` and
+is removed. `Dependent.dependent_from` and `dependent_until` have no
+default: `None` states an open end. `OpeningBalances.inps_bases`, `surtax_obligations` and
 `recoveries` have no default: an import states what the previous provider
 determined, `()` when there is nothing, and a closed run of a competence
 year without its INPS base is an input error. The opening state is judged

@@ -12,7 +12,11 @@ from ccnl_engine.payroll.application.handlers._context import (
     FringeThreshold,
     _EventHandlerCtx,
 )
-from ccnl_engine.payroll.domain.decisions import CalculationDecision, CalculationStatus
+from ccnl_engine.payroll.domain.decisions import (
+    CalculationDecision,
+    CalculationIssue,
+    CalculationStatus,
+)
 from ccnl_engine.payroll.domain.events import FringeEvent, WelfareEvent
 from ccnl_engine.payroll.domain.ledger import AccountKind, PostingIntent
 from ccnl_engine.payroll.domain.pay_items import FringeBenefitItem, WelfareItem
@@ -54,7 +58,11 @@ def _handle_welfare(event: WelfareEvent, ctx: _EventHandlerCtx) -> EventEffect:
 
 
 def fringe_threshold_of(
-    rules: FringeBenefitRules, tax_year: int, *, with_children: bool
+    rules: FringeBenefitRules,
+    tax_year: int,
+    *,
+    with_children: bool | None,
+    missing_fact: str | None = None,
 ) -> FringeThreshold:
     """Return the fringe-benefit threshold of a run and the rule behind it.
 
@@ -62,20 +70,24 @@ def fringe_threshold_of(
         rules: Fringe-benefit rules of the tax year.
         tax_year: Tax year of the run, the rule version when the rules
             carry no ruleset.
-        with_children: Whether the worker declared a fiscally dependent
-            child (L. 207/2024 art. 1 c. 391).
+        with_children: Whether a child of the family composition is in the
+            condition of art. 12 c. 2 TUIR (L. 207/2024 art. 1 c. 390);
+            ``None`` when unknown.
+        missing_fact: The fact that leaves ``with_children`` unknown.
 
     Returns:
-        The higher threshold when ``with_children`` is set, the standard one
-        otherwise, with the ruleset identity and source of the rules.
+        The higher threshold when ``with_children`` is ``True``, the
+        standard one otherwise, with the ruleset identity and source of the
+        rules.
     """
     ruleset = rules.ruleset
     provenance = rules.provenance
+    higher = rules.threshold_with_children
     return FringeThreshold(
-        amount=(
-            rules.threshold_with_children if with_children else rules.threshold_standard
-        ),
+        amount=higher if with_children else rules.threshold_standard,
         with_children=with_children,
+        higher=higher,
+        missing_fact=missing_fact,
         tax_year=tax_year,
         rule=_FRINGE if ruleset is None else ruleset.id,
         rule_version=str(tax_year) if ruleset is None else ruleset.version,
@@ -116,9 +128,46 @@ class FringeAssessment:
         Zero within the threshold; above it, every amount of the year not
         yet taxed, so it can exceed :attr:`amount`.
         """
-        if self.ytd_total > self.threshold.amount:
+        return self._taxable_at(self.threshold.amount)
+
+    def _taxable_at(self, threshold: Decimal) -> Decimal:
+        if self.ytd_total > threshold:
             return self.ytd_total - self.taxed_before
         return _ZERO
+
+    @property
+    def undetermined(self) -> bool:
+        """Whether the unknown children condition changes the taxable amount.
+
+        With ``with_children`` unknown the standard threshold is applied;
+        the result is undetermined when the higher one would tax another
+        amount.
+        """
+        threshold = self.threshold
+        return threshold.with_children is None and self.taxable != self._taxable_at(
+            threshold.higher
+        )
+
+    def issue(self) -> CalculationIssue | None:
+        """Return the issue of an undetermined threshold.
+
+        Returns:
+            An incomplete issue naming the missing fact, or ``None``.
+        """
+        if not self.undetermined:
+            return None
+        return CalculationIssue(
+            code="fringe_threshold_undetermined",
+            message=(
+                "the fringe-benefit threshold depends on whether a child is "
+                "within the own-income limit of art. 12 c. 2 TUIR (L. "
+                "207/2024 art. 1 c. 390): state the family composition and "
+                "the own income of each child; the standard threshold is "
+                "applied meanwhile"
+            ),
+            status=CalculationStatus.INCOMPLETE,
+            fact=self.threshold.missing_fact,
+        )
 
     @property
     def retroactive(self) -> Decimal:
@@ -141,19 +190,28 @@ class FringeAssessment:
         """Return the ``fringe_benefit`` decision of this benefit.
 
         Returns:
-            A final decision whose amount is :attr:`taxable`.
+            A decision whose amount is :attr:`taxable`, provisional when
+            :attr:`undetermined`.
         """
         threshold = self.threshold
         return CalculationDecision(
             capability=_FRINGE,
-            status=CalculationStatus.FINAL,
+            status=(
+                CalculationStatus.PROVISIONAL
+                if self.undetermined
+                else CalculationStatus.FINAL
+            ),
             reason_code=self.reason_code,
             rule=threshold.rule,
             rule_version=threshold.rule_version,
             inputs={
                 "tax_year": str(threshold.tax_year),
                 "threshold_annual": threshold.amount,
-                "dependent_children": str(threshold.with_children).lower(),
+                "dependent_children": (
+                    "unknown"
+                    if threshold.with_children is None
+                    else str(threshold.with_children).lower()
+                ),
                 "amount": self.amount,
                 "ytd_before": self.ytd_before,
                 "ytd_total": self.ytd_total,
@@ -214,4 +272,5 @@ def _handle_fringe(event: FringeEvent, ctx: _EventHandlerCtx) -> EventEffect:
         new_cumulative_fringe=assessment.ytd_total,
         new_cumulative_taxed=ctx.cumulative_taxed + taxable,
         decisions=[assessment.decision()],
+        issues=[issue] if (issue := assessment.issue()) is not None else [],
     )

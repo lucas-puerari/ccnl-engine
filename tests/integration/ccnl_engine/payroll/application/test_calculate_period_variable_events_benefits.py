@@ -9,6 +9,7 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 
+from ccnl_engine.inputs import DependentRelationship, FamilyComposition
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.reconcile import reconcile
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
@@ -20,6 +21,7 @@ from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.domain.ytd_accounts import FringeYtd
+from tests.fixtures.dependents import declared_dependent
 from tests.fixtures.period_requests import account_total, period_request
 
 _CCNL = "metalmeccanico-federmeccanica.json"
@@ -251,7 +253,7 @@ class TestFringeYtdAccumulation:
 
 
 class TestHasDependentChildrenThreshold:
-    """has_dependent_children selects the higher fringe threshold."""
+    """A child of the family composition selects the higher fringe threshold."""
 
     def test_children_threshold_higher(self) -> None:
         """Worker with dependent children: 1500 EUR fringe is exempt."""
@@ -264,7 +266,7 @@ class TestHasDependentChildrenThreshold:
             ccnl_slug=_CCNL,
             level_code=_LEVEL,
             events=(evt,),
-            has_dependent_children=False,
+            family_composition=FamilyComposition(),
         )
         req_with_children = PeriodCalculationRequest(
             employer=EmployerProfile(headcount=Headcount(50)),
@@ -273,7 +275,13 @@ class TestHasDependentChildrenThreshold:
             ccnl_slug=_CCNL,
             level_code=_LEVEL,
             events=(evt,),
-            has_dependent_children=True,
+            family_composition=FamilyComposition(
+                dependents=(
+                    declared_dependent(
+                        DependentRelationship.CHILD, birth_date=date(2015, 1, 1)
+                    ),
+                )
+            ),
         )
         result_no_children = calculate_period(req_no_children)
         result_with_children = calculate_period(req_with_children)

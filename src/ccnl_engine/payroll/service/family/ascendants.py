@@ -27,10 +27,12 @@ def ascendant_deductions(
 
     Only ascendants living with the worker qualify (post L. 207/2024), when
     resident under c. 2-bis and with own income within the limit of c. 2.
-    The share among those entitled is the declared ``allocation_pct``.
+    The share among those entitled is the declared ``allocation_pct``
+    ("da ripartire pro quota tra coloro che hanno diritto alla detrazione").
 
     Returns:
-        One deduction per ascendant, zero months when it does not qualify.
+        One deduction per ascendant, zero months when a stated condition
+        excludes it.
     """
     other = rules.other_dependents
     annual = phase_out(
@@ -44,9 +46,7 @@ def ascendant_deductions(
         prorate(
             ascendant,
             len(ascendant.dependency_months(rules.year))
-            if ascendant.cohabiting
-            and ascendant.residency_eligibility
-            and ascendant.own_income <= other.dependent_income_threshold
+            if ascendant.may_qualify(other.dependent_income_threshold)
             else 0,
             annual,
         )

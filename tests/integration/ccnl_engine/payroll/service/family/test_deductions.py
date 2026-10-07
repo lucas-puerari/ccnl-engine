@@ -6,12 +6,12 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine.payroll.domain.family import (
-    Dependent,
     DependentRelationship,
     FamilyComposition,
 )
 from ccnl_engine.payroll.service.family.deductions import compute_family_deductions
 from ccnl_engine.tax.service.tax_optional_loaders import load_family_deduction_rules
+from tests.fixtures.dependents import declared_dependent
 
 _D = Decimal
 _RULES = load_family_deduction_rules(2026)
@@ -28,9 +28,9 @@ def test_family_sums_each_dependent() -> None:
     """
     family = FamilyComposition(
         dependents=(
-            Dependent(relationship=_ASCENDANT),
-            Dependent(relationship=_CHILD, birth_date=date(2001, 3, 1)),
-            Dependent(relationship=_SPOUSE),
+            declared_dependent(relationship=_ASCENDANT),
+            declared_dependent(relationship=_CHILD, birth_date=date(2001, 3, 1)),
+            declared_dependent(relationship=_SPOUSE),
         )
     )
     deductions = compute_family_deductions(family, _D(30000), _RULES)
@@ -48,16 +48,18 @@ def test_family_sums_each_dependent() -> None:
 
 def test_negative_income_counts_as_zero() -> None:
     """No income: the spouse ratio of number 1) is zero, not due (c. 4)."""
-    family = FamilyComposition(dependents=(Dependent(relationship=_SPOUSE),))
+    family = FamilyComposition(dependents=(declared_dependent(relationship=_SPOUSE),))
     assert compute_family_deductions(family, _D(-100), _RULES).total == _D(0)
 
 
 def test_entitled_is_about_months_not_amounts() -> None:
     """Above every ceiling the amount is zero but the spouse is entitled."""
-    spouse = FamilyComposition(dependents=(Dependent(relationship=_SPOUSE),))
+    spouse = FamilyComposition(dependents=(declared_dependent(relationship=_SPOUSE),))
     assert compute_family_deductions(spouse, _D(200000), _RULES).entitled
     child = FamilyComposition(
-        dependents=(Dependent(relationship=_CHILD, birth_date=date(2015, 1, 1)),)
+        dependents=(
+            declared_dependent(relationship=_CHILD, birth_date=date(2015, 1, 1)),
+        )
     )
     deductions = compute_family_deductions(child, _D(20000), _RULES)
     assert not deductions.entitled

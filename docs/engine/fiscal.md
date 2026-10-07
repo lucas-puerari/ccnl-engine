@@ -320,6 +320,27 @@ main dwelling (c. 4-bis). Amounts and limits are data of
   instructions read "non superiore a ventiquattro anni").
 - **Sole parent (lett. c, last period).** With `FamilyComposition.sole_parent`
   the eldest entitled child takes the spouse deduction when it is higher.
+- **Conditions are stated, never assumed.** The engine cannot verify the
+  conditions of a dependant; the caller states them on `Dependent`, and a
+  condition left `None` is unknown, not met:
+
+  | Field | Read for | Rule |
+  |---|---|---|
+  | `own_income` | every dependant | c. 2: "Le detrazioni di cui al comma 1 spettano a condizione che le persone alle quali si riferiscono possiedano un reddito complessivo [...] non superiore a 2.840,51 euro" (4,000 for a child up to 24) |
+  | `residency_eligibility` | every dependant | c. 2-bis: "Le detrazioni di cui al comma 1 non spettano ai contribuenti che non sono cittadini italiani o di uno Stato membro dell'Unione europea o di uno Stato aderente all'Accordo sullo Spazio economico europeo in relazione ai familiari residenti all'estero"; `True` when the worker is such a citizen or the dependant does not reside abroad |
+  | `cohabiting` | ascendant | lett. d: "per ciascun ascendente che conviva con il contribuente" |
+  | `allocation_pct` | child, ascendant | lett. c: "La detrazione è ripartita nella misura del 50 per cento tra i genitori non legalmente ed effettivamente separati ovvero, previo accordo tra gli stessi, spetta al genitore che possiede un reddito complessivo di ammontare più elevato", with the rules for separated parents and "In caso di coniuge fiscalmente a carico dell'altro, la detrazione compete a quest'ultimo per l'intero importo"; lett. d: "da ripartire pro quota tra coloro che hanno diritto alla detrazione". The share depends on facts the engine does not know (marriage, separation, agreement, the other parent's income), so no share is assumed. The spouse deduction of lett. a is not shared: only `None` or `100` is accepted for a spouse |
+
+  A dependant that may qualify in some month (no stated condition excludes
+  it, a child within its age band) with an unknown condition takes no
+  deduction: the decision is `required_fact_missing` with
+  `inputs["missing_facts"]`, and an `incomplete` issue
+  `dependent_condition_unknown` per field (`fact` the field name) gives a
+  `missing_fact` blocker. An unknown condition of a dependant that cannot
+  qualify (a child under 21 all year, an ascendant stated not cohabiting)
+  blocks nothing. The dependency interval has no default:
+  `dependent_from=None` and `dependent_until=None` state an open end and
+  must be passed.
 
 The decision `family_deductions` records the income, the months of each
 dependent and the amount per relationship. Its reason:
@@ -327,7 +348,7 @@ dependent and the amount per relationship. Its reason:
 | Reason | Status | When |
 |---|---|---|
 | `deductions_applied` / `no_deduction_due` | `final` | The reddito complessivo is known; or no income is needed: no dependent gives right to a deduction in any month, or this employment alone takes every deduction past its phase-out (zero whatever the other income) |
-| `required_fact_missing` | `provisional` | A dependent gives right to a deduction and `current_year` is missing or of another tax year. The decision has no amount; `inputs["simulated_amount"]` holds the deductions on this employment alone, which the IRPEF of the run uses (as for the IVS massimale and the seniority); issue `family_income_unknown` (`incomplete`, `fact="current_year"`), blocker `missing_fact`: the result is `incomplete` and not payable |
+| `required_fact_missing` | `provisional` | A dependant may qualify and leaves a condition unknown (see above), or a dependent gives right to a deduction and `current_year` is missing or of another tax year. The decision has no amount; `inputs["simulated_amount"]` holds the deductions on this employment alone, which the IRPEF of the run uses (as for the IVS massimale and the seniority); issue `family_income_unknown` (`incomplete`, `fact="current_year"`), blocker `missing_fact`: the result is `incomplete` and not payable |
 | `estimated_income_at_conguaglio` | `provisional` | The conguaglio rests on a `current_year` of quality `estimated`: state `declared` or `certified` figures to settle the year |
 
 Missing income is never taken as zero: a worker whose only income is this

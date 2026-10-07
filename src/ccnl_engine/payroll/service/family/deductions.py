@@ -4,7 +4,8 @@ The deductions are annual: each dependent's full-year amount at the reddito
 complessivo, times the months it is due over twelve (c. 3), times the share
 allocated to the worker, rounded to the cent.  Eligibility conditions the
 engine cannot verify (residency, disability certification, cohabitation,
-the dependents' own income) are taken as declared.
+the dependents' own income) are taken as declared; one left unknown grants
+no deduction and is named in :attr:`FamilyDeductions.missing_facts`.
 """
 
 from __future__ import annotations
@@ -66,6 +67,28 @@ class FamilyDeductions:
         When none does, the deductions are zero whatever the income.
         """
         return any(d.months for d in self.dependents)
+
+    @property
+    def missing_facts(self) -> tuple[str, ...]:
+        """Conditions left unknown by a dependant that may qualify.
+
+        Returns:
+            The field names, each once, in the order first met.
+        """
+        return tuple(dict.fromkeys(f for d in self.dependents for f in d.missing_facts))
+
+    @property
+    def exhausted(self) -> bool:
+        """Whether no dependant can take a deduction at more income.
+
+        A dependant that may qualify takes none when its annual amount is
+        past the phase-out, where it stays zero with more income, or its
+        stated share is zero.  A dependant with a missing fact counts
+        with its annual amount.
+        """
+        return not any(
+            d.months and d.annual and d.dependent.share for d in self.dependents
+        )
 
 
 def compute_family_deductions(

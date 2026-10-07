@@ -174,11 +174,21 @@ left still raises `OutOfScopeError` with reason `withholding_shortfall`.
 
 For tax years 2025 to 2027 goods and services granted to the worker are
 exempt from IRPEF and INPS up to 1,000 EUR in the year, or 2,000 EUR when the
-worker has a fiscally dependent child (art. 12 c. 2 TUIR) and declares it to
-the employer with the child's tax code (L. 207/2024 art. 1 cc. 390-391,
-derogating TUIR art. 51 c. 3). Set `PeriodFacts.has_dependent_children` on
-every run of the year once the declaration is made; the engine does not
-derive it from `family_composition`.
+worker has children "che si trovano nelle condizioni previste dall'articolo
+12, comma 2" TUIR and declares them to the employer with their tax codes
+(L. 207/2024 art. 1 cc. 390-391, derogating TUIR art. 51 c. 3). The engine
+derives the condition from `PeriodFacts.family_composition`: declare every
+child, a minor too, as a `Dependent` once the worker has made the
+declaration. A child counts when its dependency interval touches the tax
+year and its `own_income` is within the limit of art. 12 c. 2 (2,840.51
+EUR, 4,000 EUR for a child who turns at most 24 in the year); the age band
+and the residency condition of the art. 12 deduction do not apply. When the
+condition is unknown (no family composition, or a child's `own_income` left
+`None` and no other child within the limit) the 1,000 EUR threshold is
+applied and, if the 2,000 EUR one would tax another amount, the decision is
+`provisional` with an `incomplete` issue `fringe_threshold_undetermined`
+(`fact="own_income"` when a composition is given), so the run is not
+payable.
 
 The threshold is all or nothing (AdE circ. 4/E of 16 May 2025, par. 2.7): an
 amount equal to the threshold is still exempt, but once the year total

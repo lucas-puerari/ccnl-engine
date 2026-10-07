@@ -31,7 +31,6 @@ from ccnl_engine import (
 )
 from ccnl_engine.inputs import (
     CurrentYearTaxFacts,
-    Dependent,
     DependentRelationship,
     FamilyComposition,
     IncomeEstimateQuality,
@@ -40,6 +39,7 @@ from ccnl_engine.inputs import (
     PeriodState,
 )
 from ccnl_engine.results import BlockerCode, CalculationDecision, CalculationStatus
+from tests.fixtures.dependents import declared_dependent
 from tests.fixtures.normative_oracles.payslips.metalmeccanico_c3_2026 import (
     C3_MINIMUM_FROM_JUNE_2026,
     employee_taxable,
@@ -52,7 +52,7 @@ _ENGINE = PayrollEngine.bundled()
 _RUN = PayrollRun.thirteenth(2026, 12)
 _DAY = date(2026, 1, 15)
 _SPOUSE = FamilyComposition(
-    dependents=(Dependent(relationship=DependentRelationship.SPOUSE),)
+    dependents=(declared_dependent(relationship=DependentRelationship.SPOUSE),)
 )
 _EMPLOYMENT = Employment(
     ccnl_slug="metalmeccanico-federmeccanica.json",
@@ -161,7 +161,7 @@ class TestMonthlyEntitlement:
 
     def test_child_turning_21_in_may(self) -> None:
         """R 50,000: 950 x 0.4736 = 449.92 a year, May-December 299.95."""
-        child = Dependent(
+        child = declared_dependent(
             relationship=DependentRelationship.CHILD, birth_date=date(2005, 5, 10)
         )
         decision = _family_decision(
@@ -172,7 +172,7 @@ class TestMonthlyEntitlement:
 
     def test_child_turning_30_in_september(self) -> None:
         """R 50,000: January-September, 449.92 x 9 / 12 = 337.44."""
-        child = Dependent(
+        child = declared_dependent(
             relationship=DependentRelationship.CHILD, birth_date=date(1996, 9, 20)
         )
         decision = _family_decision(
@@ -182,7 +182,7 @@ class TestMonthlyEntitlement:
 
     def test_spouse_from_mid_june(self) -> None:
         """R 30,000: married on 15 June, 710 x 7 / 12 = 414.17."""
-        spouse = Dependent(
+        spouse = declared_dependent(
             relationship=DependentRelationship.SPOUSE,
             dependent_from=date(2026, 6, 15),
         )
@@ -193,7 +193,7 @@ class TestMonthlyEntitlement:
 
     def test_ascendant_leaving_mid_year(self) -> None:
         """R 40,000: cohabiting until 10 April, 375 x 4 / 12 = 125.00."""
-        parent = Dependent(
+        parent = declared_dependent(
             relationship=DependentRelationship.ASCENDANT,
             dependent_until=date(2026, 4, 10),
         )
@@ -232,7 +232,7 @@ class TestUnknownIncome:
 
     def test_no_entitled_dependent_needs_no_income(self) -> None:
         """A child under 21 gives no deduction whatever the income."""
-        child = Dependent(
+        child = declared_dependent(
             relationship=DependentRelationship.CHILD, birth_date=date(2012, 3, 1)
         )
         result = _conguaglio(_D(30000), FamilyComposition(dependents=(child,)), None)

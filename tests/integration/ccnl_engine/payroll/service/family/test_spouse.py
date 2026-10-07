@@ -16,11 +16,12 @@ import pytest
 from ccnl_engine.payroll.domain.family import Dependent, DependentRelationship
 from ccnl_engine.payroll.service.family.spouse import spouse_annual, spouse_deduction
 from ccnl_engine.tax.service.tax_optional_loaders import load_family_deduction_rules
+from tests.fixtures.dependents import declared_dependent
 from tests.fixtures.normative_oracles import family_2026
 
 _D = Decimal
 _RULES = load_family_deduction_rules(2026)
-_SPOUSE = Dependent(relationship=DependentRelationship.SPOUSE)
+_SPOUSE = declared_dependent(relationship=DependentRelationship.SPOUSE)
 
 #: (reddito complessivo, deduction, derivation)
 _FRONTIERS = [
@@ -96,7 +97,7 @@ def test_dependency_starting_or_ending_mid_year(
     start: date | None, end: date | None, months: int, expected: str
 ) -> None:
     """Reddito complessivo 30,000 (band 2): 710 a year, by the months (c. 3)."""
-    spouse = Dependent(
+    spouse = declared_dependent(
         relationship=DependentRelationship.SPOUSE,
         dependent_from=start,
         dependent_until=end,
@@ -110,8 +111,10 @@ def test_dependency_starting_or_ending_mid_year(
 @pytest.mark.parametrize(
     "spouse",
     [
-        Dependent(relationship=DependentRelationship.SPOUSE, own_income=_D("2840.52")),
-        Dependent(
+        declared_dependent(
+            relationship=DependentRelationship.SPOUSE, own_income=_D("2840.52")
+        ),
+        declared_dependent(
             relationship=DependentRelationship.SPOUSE, residency_eligibility=False
         ),
     ],
@@ -126,7 +129,7 @@ def test_spouse_not_dependent(spouse: Dependent) -> None:
 
 def test_own_income_on_the_limit_is_dependent() -> None:
     """The limit itself qualifies: "non superiore a 2.840,51 euro"."""
-    spouse = Dependent(
+    spouse = declared_dependent(
         relationship=DependentRelationship.SPOUSE, own_income=_D("2840.51")
     )
     assert spouse_deduction(spouse, _D(30000), _RULES).amount == _D(710)

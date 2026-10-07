@@ -22,7 +22,6 @@ from ccnl_engine.events import OvertimeEvent
 from ccnl_engine.inputs import (
     ContributableHours,
     ContributionHistory,
-    Dependent,
     DependentRelationship,
     EmploymentPeriod,
     EmploymentSector,
@@ -39,6 +38,7 @@ from ccnl_engine.inputs import (
 from ccnl_engine.payroll.domain.accrual_state import EmploymentAccrualState
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from tests.fixtures.current_year import employment_only
+from tests.fixtures.dependents import declared_dependent
 
 _YEAR = 2026
 _METAL = "metalmeccanico-federmeccanica.json"
@@ -82,7 +82,7 @@ def _employment() -> Employment:
 
 def _facts() -> PeriodFacts:
     family = FamilyComposition(
-        dependents=(Dependent(relationship=DependentRelationship.SPOUSE),)
+        dependents=(declared_dependent(relationship=DependentRelationship.SPOUSE),)
     )
     return PeriodFacts(
         contributable_hours=ContributableHours(Decimal(120)),
@@ -90,7 +90,6 @@ def _facts() -> PeriodFacts:
         regione="IT-45",
         comune_belfiore="F257",
         family_composition=family,
-        has_dependent_children=True,
     )
 
 

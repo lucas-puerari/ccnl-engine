@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 
@@ -47,18 +48,37 @@ def test_phase_out_follows_comma_4(income: Decimal, expected: Decimal) -> None:
     assert phase_out(_D(750), _D(80000), _D(80000), income, 4) == expected
 
 
+_CHILD = Dependent(
+    DependentRelationship.CHILD,
+    birth_date=date(2004, 1, 1),
+    own_income=_D(0),
+    allocation_pct=_D(50),
+    residency_eligibility=True,
+    dependent_from=None,
+    dependent_until=None,
+)
+
+
 def test_prorate_rounds_once_after_months_and_share() -> None:
     """710 x 7 / 12 x 50% = 207.0833... -> 207.08."""
-    spouse = Dependent(relationship=DependentRelationship.SPOUSE, allocation_pct=_D(50))
-    deduction = prorate(spouse, 7, _D(710))
+    deduction = prorate(_CHILD, 7, _D(710))
     assert deduction.amount == _D("207.08")
     assert deduction.months == 7
     assert deduction.annual == _D(710)
+    assert deduction.missing_facts == ()
 
 
 def test_prorate_zero_months_is_zero() -> None:
     """A dependent never entitled in the year has no deduction."""
-    child = Dependent(
-        relationship=DependentRelationship.CHILD, birth_date=date(2010, 1, 1)
-    )
-    assert prorate(child, 0, _D(950)).amount == _D(0)
+    unknown = replace(_CHILD, own_income=None)
+    deduction = prorate(unknown, 0, _D(950))
+    assert deduction.amount == _D(0)
+    assert deduction.missing_facts == ()
+
+
+def test_prorate_with_an_unknown_condition_grants_nothing() -> None:
+    """A dependant that may qualify with an unknown condition names it."""
+    unknown = replace(_CHILD, own_income=None, allocation_pct=None)
+    deduction = prorate(unknown, 12, _D(950))
+    assert deduction.amount == _D(0)
+    assert deduction.missing_facts == ("own_income", "allocation_pct")

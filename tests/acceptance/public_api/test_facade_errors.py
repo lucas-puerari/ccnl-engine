@@ -358,8 +358,9 @@ _DEPENDENTS = st.lists(
             DependentRelationship.ASCENDANT,
         ]),
         birth_date=st.dates(date(1940, 1, 1), date(2026, 12, 31)),
-        own_income=_AMOUNT,
+        own_income=st.none() | _AMOUNT,
         dependent_from=st.none() | st.dates(date(2025, 1, 1), date(2027, 12, 31)),
+        dependent_until=st.none(),
     ),
     max_size=3,
 )

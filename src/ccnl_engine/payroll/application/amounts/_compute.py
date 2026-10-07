@@ -60,8 +60,7 @@ def _decisions(
 
 
 def _issues(irpef: _Irpef) -> tuple[CalculationIssue, ...]:
-    issue = None if irpef.family is None else irpef.family.issue()
-    return () if issue is None else (issue,)
+    return () if irpef.family is None else irpef.family.issues()
 
 
 def _compute_amounts(
