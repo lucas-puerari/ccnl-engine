@@ -163,6 +163,10 @@ until the bundle carries it, every December 2026 run with a fund to revalue
 is blocked. The decision is not posted to the ledger: the revaluation
 changes the fund, not the pay, the net or the employer cost of the run.
 
+An employment that starts in the year is taken to have no fund. When it
+carries a TFR over (a transfer of undertaking under art. 2112 c.c., or a
+rehire whose TFR moved with the worker), state `tfr_fund` anyway.
+
 The engine never outputs the fund. Carry it to the next year yourself:
 `tfr_fund` of the next year = `tfr_fund` + `net_revaluation` + the
 `tfr_accrual` and `tfr_treasury_fund` postings of the year - the advances
