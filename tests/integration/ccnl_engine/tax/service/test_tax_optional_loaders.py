@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from decimal import Decimal
-from typing import TYPE_CHECKING
 from unittest.mock import patch
 
 import pytest
@@ -15,25 +14,16 @@ from ccnl_engine.tax.service.tax_annual_assembler import (
     load_year_rules,
 )
 from ccnl_engine.tax.service.tax_optional_loaders import (
-    load_art15_deduction_rules,
     load_family_deduction_rules,
     load_variable_pay_rules,
 )
 from ccnl_engine.tax.service.tax_resource_reader import _try_ruleset
 
-if TYPE_CHECKING:
-    from collections.abc import Callable
 
-
-@pytest.mark.parametrize(
-    "loader", [load_family_deduction_rules, load_art15_deduction_rules]
-)
-def test_year_keyed_rules_of_unbundled_year_raise_domain_error(
-    loader: Callable[[int], object],
-) -> None:
+def test_year_keyed_rules_of_unbundled_year_raise_domain_error() -> None:
     """A year the bundle does not ship raises UnsupportedTaxYearError."""
     with pytest.raises(UnsupportedTaxYearError) as info:
-        loader(1900)
+        load_family_deduction_rules(1900)
     assert info.value.year == 1900
     assert info.value.sector is None
 
@@ -108,37 +98,6 @@ class TestTryRuleset:
     def test_missing_ruleset_key_returns_none(self) -> None:
         """A payload without a ruleset key returns None."""
         assert _try_ruleset({"year": 2026}) is None
-
-
-class TestLoadArt15DeductionRules:
-    """load_art15_deduction_rules validation."""
-
-    def test_correct_year_loads_successfully(self) -> None:
-        """Requesting the bundled 2026 year returns an Art15DeductionRules."""
-        rules = load_art15_deduction_rules(2026)
-        assert rules.year == 2026
-        assert rules.mortgage_interest.ceiling > 0
-        assert rules.mortgage_interest.rate > 0
-
-    def test_year_mismatch_raises(self) -> None:
-        """A tampered file where year != filename year raises ValueError."""
-        tampered_raw = {
-            "year": 9999,
-            "description": "tampered",
-            "mortgage_interest": {
-                "ceiling": "4000.00",
-                "rate": "0.19",
-                "notes": "",
-            },
-        }
-        with (
-            patch(
-                "ccnl_engine.tax.service.tax_optional_loaders.read_year_json",
-                return_value=tampered_raw,
-            ),
-            pytest.raises(DataIntegrityError, match="does not match requested year"),
-        ):
-            load_art15_deduction_rules(2026)
 
 
 _BAD_APPRENTICE = {

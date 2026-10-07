@@ -29,6 +29,7 @@ from ccnl_engine.payroll.service.credit_decisions import credit_decision
 from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 
 if TYPE_CHECKING:
+    from ccnl_engine.payroll.service.irpef_net import NetIrpef
     from ccnl_engine.tax.domain.ruleset import YearRules
 
 __all__ = ["resolve_trattamento"]
@@ -134,8 +135,7 @@ def _recovery_decision(
 
 def resolve_trattamento(
     taxable: Decimal,
-    irpef_gross: Decimal,
-    work_deduction: Decimal,
+    annual: NetIrpef,
     rules: YearRules,
     opening_tratt_ytd: Decimal,
     remaining: int,
@@ -154,6 +154,14 @@ def resolve_trattamento(
     final run of the employment (``run.final``) the excess or the residual
     is recovered in full.
 
+    Above 15,000 EUR the gross tax of ``annual`` is compared with the sum of
+    its art. 12 and art. 13 c. 1 TUIR deductions (D.L. 3/2020 art. 1 c. 1,
+    second period); the ulteriore detrazione of L. 207/2024 art. 1 c. 6 is
+    not in that list.  The art. 15 TUIR items of the same period (loans up
+    to 2021, instalments of expenses up to 2021) are not known to the
+    payroll and are left to the worker's tax return: the credit of the run
+    can only be lower than the one of the return, never higher.
+
     Returns:
         ``(period_tratt, component, next_plan, decisions)`` where:
         - ``period_tratt`` is the signed per-period amount (negative = recovery);
@@ -167,11 +175,12 @@ def resolve_trattamento(
     """
     if rules.trattamento_integrativo is None:
         return _ZERO, None, None, ()
+    relevant_deductions = annual.work_deduction + annual.family_deductions
     outcome = irpef_credits.trattamento_integrativo_outcome(
         taxable,
-        irpef_gross,
-        work_deduction,
-        work_deduction,
+        annual.gross,
+        annual.work_deduction,
+        relevant_deductions,
         rules.trattamento_integrativo,
         eligible_work_days=eligible_work_days,
     )
@@ -197,8 +206,10 @@ def resolve_trattamento(
         outcome,
         {
             "taxable_income": taxable,
-            "irpef_gross": irpef_gross,
-            "work_deduction": work_deduction,
+            "irpef_gross": annual.gross,
+            "work_deduction": annual.work_deduction,
+            "family_deductions": annual.family_deductions,
+            "relevant_deductions": relevant_deductions,
             "eligible_work_days": str(eligible_work_days),
             "recovery_in_progress": str(existing_plan is not None).lower(),
             "period_amount": period_tratt,

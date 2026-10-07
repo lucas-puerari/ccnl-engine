@@ -57,22 +57,20 @@ def trattamento_integrativo(
 ) -> Decimal:
     """Compute the trattamento integrativo bonus (Art. 1 D.L. 3/2020).
 
-    Two income bands apply different eligibility rules:
+    Two income bands apply different eligibility rules (c. 1):
 
-    - RC ≤ ``rules.threshold_mid`` (15 000): the bonus (up to
-      ``rules.max_amount``) is granted when IRPEF lorda exceeds the Art. 13
-      work-income deduction reduced by the EUR 75 corrective
-      (Art. 1 co. 3 L. 207/2024, also pro-rated when part-year).
-      The EUR 75 corrective offsets the 2025 deduction increase so that
-      beneficiaries remain entitled.
+    - RC <= ``rules.threshold_mid`` (15 000), first period: the bonus (up
+      to ``rules.max_amount``) is granted when IRPEF lorda exceeds the
+      Art. 13 c. 1 work-income deduction "diminuita dell'importo di 75 euro
+      rapportato al periodo di lavoro nell'anno" (words inserted by
+      L. 207/2024).
 
-    - ``rules.threshold_mid`` < RC ≤ ``rules.threshold_upper`` (28 000):
-      the bonus equals the excess of relevant deductions over IRPEF lorda,
-      capped at ``rules.max_amount``.  Relevant deductions are the sum of
-      Art. 13 (work-income), Art. 12 (family), and qualifying Art. 15
-      deductions (mortgages pre-2022 and specific other oneri).  When IRPEF
-      lorda exceeds relevant deductions the requisito is not met and the
-      bonus is zero.
+    - ``rules.threshold_mid`` < RC <= ``rules.threshold_upper`` (28 000),
+      second and third periods: the bonus is due when the sum of the
+      deductions of Art. 12 and Art. 13 c. 1 TUIR, and of the Art. 15 items
+      listed there for loans and expenses up to 31 December 2021, exceeds
+      IRPEF lorda; it equals that excess, capped at ``rules.max_amount``.
+      The caller supplies the sum as ``relevant_deductions``.
 
     - RC > ``rules.threshold_upper``: zero.
 
@@ -86,8 +84,9 @@ def trattamento_integrativo(
         irpef_gross: IRPEF lorda (Art. 11 TUIR) before any deductions.
         work_deduction: Art. 13 co. 1 work-income deduction (already
             pro-rated when ``eligible_work_days < 365``).
-        relevant_deductions: Sum of Art. 12 + Art. 13 + qualifying Art. 15
-            deductions used to verify the requisito in the 15 000-28 000 band.
+        relevant_deductions: Sum of the deductions listed in c. 1, second
+            period (Art. 12, Art. 13 c. 1 and the Art. 15 items known to the
+            caller), compared with IRPEF lorda in the 15 000-28 000 band.
         rules: Threshold and cap parameters from the tax data file.
         eligible_work_days: Calendar days in the tax year for which the
             worker is employed.  Scales the max bonus and the 75 EUR
@@ -139,7 +138,8 @@ def trattamento_integrativo_outcome(
         if irpef_gross > threshold:
             return CreditOutcome(max_amount, "full_amount")
         return CreditOutcome(_ZERO, "irpef_not_above_work_deduction")
-    # 15 000 < RC <= 28 000: bonus = min(max_amount, relevant_deductions - IRPEF).
+    # 15 000 < RC <= 28 000 (c. 1, second and third periods):
+    # bonus = min(max_amount, relevant_deductions - IRPEF).
     if relevant_deductions <= irpef_gross:
         return CreditOutcome(_ZERO, "deductions_not_above_irpef")
     amount = money(min(max_amount, relevant_deductions - irpef_gross))
