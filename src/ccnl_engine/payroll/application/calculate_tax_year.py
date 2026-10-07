@@ -49,7 +49,13 @@ def calculate_tax_year(
     earlier competence year comes before, among or after the runs of the
     year.  A payment the opening state already closed is not computed
     again: resuming an interrupted plan on the state it reached gives the
-    same closing state as one uninterrupted pass.
+    same closing state as one uninterrupted pass.  A run of the tax year
+    whose competence date has no base salary of its level is not computed
+    and is listed in ``uncovered_runs``, as in
+    :func:`~ccnl_engine.payroll.application.calculate_competence_year\
+.calculate_competence_year`; when no run of a competence year has a base
+    salary, :class:`~ccnl_engine.shared.domain.errors.MissingRuleError` of
+    its first run is raised.
 
     Args:
         plan: The tax year, its competence years and its opening state.
@@ -97,6 +103,9 @@ def calculate_tax_year(
         bundle_version=bundle_version,
         tax_year=tax_year,
         payments=(*opening.cash.payments, *(p.payment for p in pending)),
+        uncovered_runs=tuple(
+            u for y in years for u in y.uncovered if u.payment.tax_year == tax_year
+        ),
     )
 
 

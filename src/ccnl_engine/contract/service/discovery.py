@@ -9,6 +9,8 @@ from functools import cache
 from typing import TYPE_CHECKING, NewType
 
 from ccnl_engine.contract.domain.identity import CCNLVerification
+from ccnl_engine.contract.domain.validity_window import ValidityWindow, model_window
+from ccnl_engine.contract.service.loaders import load_ccnl
 from ccnl_engine.knowledge.service.bundled_resources import BundledResourceStore
 from ccnl_engine.shared.domain.errors import UnknownCcnlError
 from ccnl_engine.shared.domain.validation import require_str
@@ -31,12 +33,21 @@ class ContractSummary:
         cnel_code: Official CNEL classification code (e.g. ``"E042"``).
         readiness: Readiness tier of the CCNL ruleset; only ``production``
             is payable in ``operational`` mode.
+        validity: Dates on which every rule of the CCNL has a value in the
+            bundle (pay tables, parameters, work rules), both ends included.
+            A run inside it never raises
+            :class:`~ccnl_engine.shared.domain.errors.MissingRuleError`; a
+            run outside it raises that error when it reads a rule not in
+            force on its date, and a competence year skips the runs before
+            the base salary of the level starts.  ``None`` when no date
+            covers every rule.
     """
 
     ccnl_id: CcnlId
     name: str
     cnel_code: str
     readiness: RulesetReadiness
+    validity: ValidityWindow | None
 
 
 @cache
@@ -59,6 +70,7 @@ def _load_all() -> tuple[ContractSummary, ...]:
                 name=meta["name"],
                 cnel_code=meta["cnel_code"],
                 readiness=verification.readiness,
+                validity=model_window(load_ccnl(filename)),
             )
         )
     return tuple(items)

@@ -18,6 +18,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application.year._accrual_rule import month_accrual_rule
 from ccnl_engine.payroll.application.year._calendar import effective_calendar
+from ccnl_engine.payroll.application.year._coverage import split_covered
 from ccnl_engine.payroll.application.year._runs import plan_year
 from ccnl_engine.payroll.domain.obligations import EmploymentObligations
 from ccnl_engine.payroll.domain.period_state import PeriodState
@@ -38,6 +39,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.competence_year_plan import CompetenceYearPlan
     from ccnl_engine.payroll.domain.payment import PaymentId
     from ccnl_engine.payroll.domain.run import PayrollRun
+    from ccnl_engine.payroll.domain.uncovered_run import UncoveredRun
 
 __all__ = [
     "PlannedPayment",
@@ -86,13 +88,17 @@ class PreparedYear:
         ccnl: The contract of its employment.
         calendar: Calendar the year runs on: the CCNL standard one or the
             accepted override.
-        payments: One payment per run of the year, in run order.
+        payments: One payment per run of the year the bundle can compute,
+            in run order.
+        uncovered: The runs of the year set aside: the bundle holds no base
+            salary of the level on their competence date.
     """
 
     plan: CompetenceYearPlan
     ccnl: CCNL
     calendar: WorkCalendar
     payments: tuple[PlannedPayment, ...]
+    uncovered: tuple[UncoveredRun, ...] = ()
 
 
 def prepare_year(plan: CompetenceYearPlan, repo: KnowledgeRepository) -> PreparedYear:
@@ -100,7 +106,11 @@ def prepare_year(plan: CompetenceYearPlan, repo: KnowledgeRepository) -> Prepare
 
     A rejected calendar override, an employment with no day in the year
     or a payment date of a run the year does not compute raises
-    :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`.
+    :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`.  A run
+    whose competence date has no base salary of the level is set aside in
+    :attr:`PreparedYear.uncovered`; when every run is,
+    :class:`~ccnl_engine.shared.domain.errors.MissingRuleError` of the
+    first run is raised.
 
     Returns:
         The prepared year.
@@ -109,7 +119,7 @@ def prepare_year(plan: CompetenceYearPlan, repo: KnowledgeRepository) -> Prepare
     calendar = effective_calendar(ccnl, plan.year, plan.calendar_override)
     year_plan = plan_year(plan, calendar, month_accrual_rule(ccnl))
     fractions = {e.kind.value: e.max_fraction for e in calendar.extra_months}
-    payments = tuple(
+    planned = tuple(
         PlannedPayment(
             plan=plan,
             year_plan=year_plan,
@@ -119,7 +129,14 @@ def prepare_year(plan: CompetenceYearPlan, repo: KnowledgeRepository) -> Prepare
         )
         for run in year_plan.schedule.runs
     )
-    return PreparedYear(plan=plan, ccnl=ccnl, calendar=calendar, payments=payments)
+    payments, uncovered = split_covered(ccnl, plan.employment.level_code, planned)
+    return PreparedYear(
+        plan=plan,
+        ccnl=ccnl,
+        calendar=calendar,
+        payments=payments,
+        uncovered=uncovered,
+    )
 
 
 def check_opening(opening: PeriodState | None, tax_year: int, path: str) -> PeriodState:

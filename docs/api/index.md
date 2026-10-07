@@ -33,7 +33,7 @@ exactly one import path: there are no aliases.
 | `ccnl_engine` | The common path: `PayrollEngine`, the request and plan types (`PeriodInput`, `PeriodFacts`, `PayrollRun`, `Employment`, `EmployerProfile`, `Headcount`, `CompetenceYearPlan`, `TaxYearPlan`), the results the facade returns (`PeriodResult`, `CompetenceYearResult`, `TaxYearResult`), every public error and `engine_version` |
 | `ccnl_engine.inputs` | Facts beyond the common path: contract types, hours, seniority, family, prior and current year tax facts, calendar, engine mode, opening state and imported balances |
 | `ccnl_engine.events` | Work events of a period and the `PeriodId` an arrears event refers to |
-| `ccnl_engine.results` | Assurance, blockers, decisions, issues, model limitations, capability gaps, ledger account kinds and remittance lines |
+| `ccnl_engine.results` | Assurance, blockers, decisions, issues, model limitations, capability gaps, runs a year left out, ledger account kinds and remittance lines |
 | `ccnl_engine.catalog` | Bundled contracts and their discovery, ruleset identity and readiness, the capability catalog |
 
 Any module below these five is internal and may change without notice,
@@ -82,6 +82,7 @@ from ccnl_engine.catalog import (
     RulesetIdentity,
     RulesetKind,
     RulesetReadiness,
+    ValidityWindow,
     VerificationStatus,
     get_ccnl,
     search_ccnls,
@@ -163,6 +164,7 @@ from ccnl_engine.results import (
     CapabilityGap,
     CapabilityScope,
     UnresolvedRequirement,
+    UncoveredRun,
     AccountKind,
     RemittanceColumn,
     RemittanceLine,

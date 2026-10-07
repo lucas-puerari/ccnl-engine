@@ -136,7 +136,7 @@ engine = PayrollEngine.bundled()  # mode="simulation", the default
 strict = PayrollEngine.bundled(mode="operational")
 
 for contract in engine.list_contracts():  # ContractSummary, with readiness
-    print(contract.ccnl_id, contract.readiness)
+    print(contract.ccnl_id, contract.readiness, contract.validity)
 ruleset = engine.inspect_ruleset("commercio-confcommercio")  # RulesetAssurance
 print(ruleset.readiness, ruleset.confidence)  # → reviewed unverified
 ```
@@ -148,6 +148,9 @@ mode. See [Readiness](docs/trust/readiness.md). Known simplifications of the
 model are typed limitations: `result.assurance.limitations` lists those that
 apply to the run, and an open one that can move an amount adds an
 `open_limitation` blocker (see [Assurance](docs/trust/confidence.md#model-limitations)).
+`contract.validity` is the span of dates on which every rule of the CCNL has
+a value; a competence year leaves out, with a `run_not_computed` blocker,
+the runs before the pay tables of its level start.
 
 A full year derives its calendar from the CCNL: Commercio grants tredicesima
 and quattordicesima, so the year has 14 runs. A different calendar needs a
