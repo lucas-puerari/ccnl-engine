@@ -1,7 +1,9 @@
 """Deductions the trattamento integrativo compares with the gross tax.
 
 D.L. 3/2020 art. 1 c. 1, second and third periods (Normattiva, in force on
-6 October 2026): above 15,000 and up to 28,000 EUR the credit is due "a
+6 October 2026,
+https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legge:2020-02-05;3~art1!vig=2026-10-06):
+above 15,000 and up to 28,000 EUR the credit is due "a
 condizione che la somma delle detrazioni di cui agli articoli 12 e 13, comma
 1, [...] sia di ammontare superiore all'imposta lorda", and equals "la
 differenza tra la somma delle detrazioni ivi elencate e l'imposta lorda",
@@ -11,7 +13,9 @@ differenza tra la somma delle detrazioni ivi elencate e l'imposta lorda",
 Reddito complessivo 20,000 EUR, full year 2026:
 
 - imposta lorda (art. 11 TUIR, 23% up to 28,000): 20,000 x 0.23 = 4,600.00;
-- art. 13 c. 1 lett. b TUIR: 1,910 + 1,190 x (28,000 - 20,000) / 13,000,
+- art. 13 c. 1 lett. b TUIR (Normattiva, in force on 6 October 2026,
+  https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1986-12-22;917~art13!vig=2026-10-06):
+  1,910 + 1,190 x (28,000 - 20,000) / 13,000,
   the ratio truncated to 0.6153 (c. 6): 1,910 + 732.21 = 2,642.21.
 """
 

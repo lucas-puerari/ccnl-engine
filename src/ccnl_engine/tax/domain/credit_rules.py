@@ -14,14 +14,16 @@ from ccnl_engine.shared.domain.primitives import PercentageRate
 class TrattamentoIntegrativoRules(BaseModel):
     """Parameters for the trattamento integrativo (Art. 1 D.L. 3/2020).
 
-    The bonus is computed on gross annual income (RAL) as follows:
+    The bonus depends on the reddito complessivo (RC), c. 1:
 
-    - RAL <= ``threshold_mid``: ``max_amount`` if IRPEF lorda > detrazioni lavoro,
-      else 0.
-    - ``threshold_mid`` < RAL <= ``threshold_upper``:
-      max(0, ``max_amount`` * (``threshold_upper`` - RAL)
-      / (``threshold_upper`` - ``threshold_mid``)).
-    - RAL > ``threshold_upper``: 0.
+    - RC <= ``threshold_mid``, first period: ``max_amount`` if IRPEF lorda
+      exceeds the art. 13 c. 1 TUIR deduction less 75 EUR for the days of
+      work, else 0.
+    - ``threshold_mid`` < RC <= ``threshold_upper``, second and third
+      periods: min(``max_amount``, deductions listed - IRPEF lorda) when the
+      deductions listed (art. 12 and art. 13 c. 1 TUIR, among others)
+      exceed IRPEF lorda, else 0.
+    - RC > ``threshold_upper``: 0.
     """
 
     model_config = ConfigDict(extra="forbid")
