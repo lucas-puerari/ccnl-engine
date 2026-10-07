@@ -26,6 +26,7 @@ from ccnl_engine.payroll.domain.employment_facts import (
     EmploymentPeriod,
     WeeklyHours,
 )
+from ccnl_engine.payroll.domain.employment_spells import EmploymentSpell
 from ccnl_engine.payroll.domain.engine_mode import EngineMode
 from ccnl_engine.payroll.domain.family import (
     Dependent,
@@ -67,6 +68,7 @@ __all__ = [
     "EmployerActivity",
     "EmploymentPeriod",
     "EmploymentSector",
+    "EmploymentSpell",
     "EngineMode",
     "FamilyComposition",
     "FixedTerm",

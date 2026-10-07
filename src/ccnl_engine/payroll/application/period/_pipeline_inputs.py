@@ -27,6 +27,7 @@ from ccnl_engine.payroll.application.period._sickness import sickness_terms
 from ccnl_engine.payroll.application.period._tfr_destination import (
     tfr_treasury_fund,
 )
+from ccnl_engine.payroll.domain.employment_spells import spell_days
 from ccnl_engine.payroll.domain.events import FringeEvent
 from ccnl_engine.payroll.domain.family import DependentRelationship
 from ccnl_engine.payroll.domain.obligations import (
@@ -37,7 +38,6 @@ from ccnl_engine.payroll.domain.run import RunKind
 from ccnl_engine.payroll.service.family.children import (
     children_within_income_limit,
 )
-from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.handlers._totals import _EventTotals
@@ -161,7 +161,8 @@ def amounts_input(
             ctx.regular_gross,
             contract.tctx.competence,
         ),
-        eligible_work_days=_eligible_work_days(ctx),
+        eligible_work_days=spell_days(ctx.employment_spells),
+        fixed_term_in_year=any(s.fixed_term for s in ctx.employment_spells),
         recovery_plan=ctx.opening.cash.obligations.recovery_of(
             fiscal_year, TRATTAMENTO_RECOVERY
         ),
@@ -190,17 +191,6 @@ def _contributable_hours(request: PeriodCalculationRequest) -> Decimal | None:
     """
     hours = request.contributable_hours
     return None if hours is None else hours.value
-
-
-def _eligible_work_days(ctx: RunContext) -> int:
-    """Return the days of employment in the tax year of the run.
-
-    Returns:
-        The days of the employment period in the year, or the whole year
-        when the period is not tracked.
-    """
-    period = ctx.request.employment_period
-    return DAYS_IN_YEAR if period is None else period.days_in_year(ctx.fiscal_year)
 
 
 def _deferred_irpef(ctx: RunContext) -> Decimal:

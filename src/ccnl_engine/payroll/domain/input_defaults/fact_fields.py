@@ -153,6 +153,10 @@ FACT_DEFAULTS: Mapping[str, FieldDefault] = {
     "OpeningBalances.sickness_episodes": _IMPORTED_LIST,
     **{f"OpeningBalances.{name}": _ACCOUNT for name in _ACCOUNTS},
     **{f"OpeningBalances.{name}": _NOT_COMPUTED for name in _LAST_COMPUTED},
+    "OpeningBalances.employment_spells": absence_is_fact(
+        "the totals hold no earlier employment of the tax year: the next run "
+        "adds the days of its own"
+    ),
     "OpeningBalances.deferred_shortfall": absence_is_fact(
         "no written request to defer the shortfall (art. 23 c. 3 DPR 600/1973)"
     ),

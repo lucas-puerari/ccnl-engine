@@ -14,6 +14,8 @@ from ccnl_engine.payroll.application.period._context_facts import (
     installment_run,
     settles_tax_year,
 )
+from ccnl_engine.payroll.domain.employment import FixedTerm
+from ccnl_engine.payroll.domain.employment_spells import EmploymentSpell, spells_with
 from ccnl_engine.payroll.domain.opening_history import opening_state_issue
 
 if TYPE_CHECKING:
@@ -158,6 +160,24 @@ class RunContext:
             self.payment.run_id,
             None if period is None else period.started_on,
             self.request.uncovered_runs,
+        )
+
+    @property
+    def employment_spells(self) -> tuple[EmploymentSpell, ...]:
+        """Employment spells of the tax year after the run.
+
+        The spells the opening state paid in the tax year, with the spell
+        of the run's employment in place of the one of its first day: the
+        income the withholding projects is the income of every one of them.
+        """
+        request = self.request
+        return spells_with(
+            self.opening.cash.employment_spells,
+            EmploymentSpell.of(
+                request.employment_period,
+                self.fiscal_year,
+                fixed_term=isinstance(request.contract_type, FixedTerm),
+            ),
         )
 
     @property

@@ -18,11 +18,13 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from ccnl_engine import InvalidInputError, PayrollRun
 from ccnl_engine.inputs import (
     DependentRelationship,
     EmploymentPeriod,
     FamilyComposition,
     FixedTerm,
+    PeriodState,
     Permanent,
 )
 from tests.acceptance.legal_scenarios._support import COMMERCIO, ENGINE
@@ -180,33 +182,46 @@ def test_short_employment_floor_decides_the_trattamento(
     )
 
 
-@pytest.mark.xfail(
-    strict=True,
-    raises=AssertionError,
-    reason=(
-        "a worker rehired in the same year projects the income of both "
-        "employments but the days of the second only (214 of 304); art. 13 "
-        "c. 1 TUIR proportions the deduction to the days of the income it "
-        "is computed on"
-    ),
-)
+def _decision_inputs(result: PeriodResult, capability: str) -> Mapping[str, object]:
+    (decision,) = (d for d in result.decisions if d.capability == capability)
+    return decision.inputs
+
+
+def _chain(employment: Employment, months: range) -> PeriodState | None:
+    state = None
+    for month in months:
+        run = regular_run(month, employment=employment, opening_state=state)
+        state = ENGINE.calculate_period(run).closing_state
+    return state
+
+
+def _rehire(
+    first: Employment, months: range, second: Employment, month: int
+) -> PeriodResult:
+    # The run of ``month`` of ``second``, opened with the state ``first`` closed.
+    state = _chain(first, months)
+    return ENGINE.calculate_period(
+        regular_run(month, employment=second, opening_state=state)
+    )
+
+
 def test_rehire_counts_the_days_of_the_income_it_projects() -> None:
     """Metalmeccanico C3 from 1 January to 31 March, rehired on 1 June 2026.
 
     The June run starts from the state closed by March, so its projection
-    holds both incomes: 31 + 28 + 31 = 90 days and 1 June to 31 December
-    214 days, 304 in all.  The deduction must be the art. 13 formula on
-    the projected income for 304 days, within a cent.
+    holds both incomes, as the one CU of the employer does (istruzioni CU
+    2026: one certificate "anche in presenza di più rapporti di lavoro ...
+    per il medesimo periodo d'imposta"; punto 721: the days of "tutti i
+    rapporti di lavoro conguagliati").  Days: 31 + 28 + 31 = 90 and 1 June
+    to 31 December 214, 304 in all.  The deduction must be the art. 13
+    formula on the projected income for 304 days, within a cent, and the
+    ulteriore detrazione and the trattamento count the same days.
     """
     first = replace(
         _C3, employment_period=EmploymentPeriod(date(2026, 1, 1), date(2026, 3, 31))
     )
-    state = None
-    for month in (1, 2, 3):
-        run = regular_run(month, employment=first, opening_state=state)
-        state = ENGINE.calculate_period(run).closing_state
     second = replace(_C3, employment_period=EmploymentPeriod(date(2026, 6, 1)))
-    june = ENGINE.calculate_period(regular_run(employment=second, opening_state=state))
+    june = _rehire(first, range(1, 4), second, 6)
     inputs = _irpef_inputs(june)
     taxable = inputs["projected_taxable"]
 
@@ -214,6 +229,76 @@ def test_rehire_counts_the_days_of_the_income_it_projects() -> None:
     deduction = inputs["work_deduction"]
     assert isinstance(deduction, Decimal)
     assert abs(deduction - employment_deduction(taxable, 304)) <= _CENT
+    for capability in ("ulteriore_detrazione_lavoro", "trattamento_integrativo"):
+        assert _decision_inputs(june, capability)["eligible_work_days"] == "304"
+
+
+@pytest.mark.parametrize(
+    ("contract", "floor"),
+    [
+        pytest.param(FixedTerm(), FIXED_TERM_EMPLOYMENT_DEDUCTION_FLOOR, id="fixed"),
+        pytest.param(Permanent(), EMPLOYMENT_DEDUCTION_FLOOR, id="permanent"),
+    ],
+)
+def test_rehire_takes_the_fixed_term_minimum_of_the_year(
+    contract: FixedTerm | Permanent, floor: Decimal
+) -> None:
+    """C3 from 1 January to 28 February, rehired open-ended 1 May to 30 June.
+
+    31 + 28 = 59 and 31 + 30 = 61 days, 120 in all: 1,955 x 120 / 365 =
+    642.74, below 690.  Four months of C3 pay are under 15,000 EUR, so the
+    minimum of lett. a) applies, 1,380 EUR when one employment of the year
+    is fixed-term: Allegato C to the 730/2026 instructions, par. 19.9.1,
+    "se nella casella di colonna 2 dei righi da C1 a C3 è presente in
+    almeno un rigo il codice 2".  The June run is open-ended; its minimum
+    follows the first employment.
+    """
+    first = replace(
+        _C3,
+        contract_type=contract,
+        employment_period=EmploymentPeriod(date(2026, 1, 1), date(2026, 2, 28)),
+    )
+    second = replace(
+        _C3, employment_period=EmploymentPeriod(date(2026, 5, 1), date(2026, 6, 30))
+    )
+    inputs = _irpef_inputs(_rehire(first, range(1, 3), second, 6))
+    taxable = inputs["projected_taxable"]
+
+    assert isinstance(taxable, Decimal)
+    assert taxable <= Decimal(15_000)
+    assert _for_days(Decimal(1_955), 120) < EMPLOYMENT_DEDUCTION_FLOOR
+    assert inputs["work_deduction"] == floor
+
+
+def test_rehire_after_a_termination_run_opens_a_new_employment() -> None:
+    """C3 terminated by the run of 31 March, rehired on 1 June 2026.
+
+    The termination run ended the employment, so the June run cannot close
+    on its state: the error names it instead of an order of months.  From
+    the zero state the June run is the first of a new employment whose start
+    is stated, with no ``opening_state`` blocker, and its withholding counts
+    its own days, 1 June to 31 December: 214.
+    """
+    first = replace(
+        _C3, employment_period=EmploymentPeriod(date(2026, 1, 1), date(2026, 3, 31))
+    )
+    termination = replace(
+        regular_run(3, employment=first, opening_state=_chain(first, range(1, 3))),
+        # RunKind is not public: the constructor normalises its value.
+        run=PayrollRun(run_kind="termination", month=3, year=2026),  # type: ignore[arg-type]
+        payment_date=date(2026, 3, 31),
+    )
+    closed = ENGINE.calculate_period(termination).closing_state
+    second = replace(_C3, employment_period=EmploymentPeriod(date(2026, 6, 1)))
+
+    with pytest.raises(InvalidInputError, match="'2026-03-termination' ended"):
+        ENGINE.calculate_period(regular_run(employment=second, opening_state=closed))
+    june = ENGINE.calculate_period(
+        regular_run(employment=second, opening_state=PeriodState.zero())
+    )
+    assert "opening_state" not in {b.detail for b in june.blockers}
+    for capability in ("ulteriore_detrazione_lavoro", "trattamento_integrativo"):
+        assert _decision_inputs(june, capability)["eligible_work_days"] == "214"
 
 
 #: Spouse and two children of 25 and 23 in 2026, all dependent all year.

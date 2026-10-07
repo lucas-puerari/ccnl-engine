@@ -82,6 +82,7 @@ def opening_state(balances: OpeningBalances) -> PeriodState:
             credit_recovery=balances.credit_recovery_shortfall,
         ),
         obligations=_obligations(balances),
+        employment_spells=balances.employment_spells,
     )
     accrual = EmploymentAccrualState(
         competence_runs=(

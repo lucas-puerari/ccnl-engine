@@ -212,12 +212,23 @@ def _check_next(closed: tuple[PayrollRunId, ...], run_id: PayrollRunId) -> None:
             "an extra month once per year whatever its month"
         )
         raise InvalidInputError(msg, field=_FIELD, feature=_FEATURE)
-    same_year = [r for r in closed if r.year == run_id.year]
-    blocking = [r for r in same_year if r.kind is RunKind.TERMINATION]
     if run_id.kind is RunKind.ADJUSTMENT:
         return
+    same_year = [r for r in closed if r.year == run_id.year]
+    termination = next((r for r in same_year if r.kind is RunKind.TERMINATION), None)
+    if termination is not None:
+        msg = (
+            f"run '{run_id}' cannot close: the termination run '{termination}' "
+            "ended the employment this state belongs to, and only an "
+            "adjustment run closes after it.  A rehire is a new employment: "
+            "open its first run with PeriodState.zero() and the employment "
+            "period of the rehire; the income and the days of the earlier "
+            "employment are then not merged into its withholding"
+        )
+        raise InvalidInputError(msg, field=_FIELD, feature=_FEATURE)
+    blocking = []
     if run_id.kind is RunKind.REGULAR:
-        blocking += [
+        blocking = [
             r for r in same_year if r.kind is RunKind.REGULAR and r.month > run_id.month
         ]
     if blocking:
