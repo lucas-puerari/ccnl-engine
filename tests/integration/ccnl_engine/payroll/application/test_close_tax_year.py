@@ -34,6 +34,7 @@ from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd
 from ccnl_engine.shared.domain.errors import InvalidInputError
 from tests.fixtures.opening_state import fresh_tax_year
+from tests.fixtures.residence import resident
 from tests.helpers import year_plan
 
 _CCNL = "metalmeccanico-federmeccanica.json"
@@ -96,15 +97,27 @@ class TestCloseTaxYear:
             close_tax_year(PeriodState(cash=TaxCashState(tax_year=2026)))
 
     def test_closes_the_state_of_the_last_run_of_calculate_year(self) -> None:
-        """The last run of a year calculation closes every withholding slot."""
-        year = calculate_competence_year(
-            year_plan(2026, _CCNL, _LEVEL, opening_state=fresh_tax_year(2026))
-        )
+        """The last run of a year calculation closes every withholding slot.
 
-        opening = close_tax_year(year.period_results[-1].closing_state)
+        With the residence the conguaglio determines the surtax, so the
+        state it closes is chainable and carries its obligations to 2027.
+        """
+        year = calculate_competence_year(
+            year_plan(
+                2026,
+                _CCNL,
+                _LEVEL,
+                facts=resident(),
+                opening_state=fresh_tax_year(2026),
+            )
+        )
+        closing = year.period_results[-1].closing_state
+
+        opening = close_tax_year(closing)
 
         assert opening == PeriodState(
-            accrual=year.closing_state.accrual, cash=TaxCashState(tax_year=2027)
+            accrual=year.closing_state.accrual,
+            cash=TaxCashState(tax_year=2027, obligations=closing.cash.obligations),
         )
         assert opening.accrual.regular_months(2026) == 12
 

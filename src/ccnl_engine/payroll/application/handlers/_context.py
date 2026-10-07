@@ -91,6 +91,11 @@ class _EventHandlerCtx:
     overtime_bands: CCNLOvertimeBands = field(default_factory=CCNLOvertimeBands)
     sickness: SicknessTerms = field(default_factory=SicknessTerms)
 
+    @property
+    def tax_year(self) -> int:
+        """Tax year of the run: the fringe threshold is the one of that year."""
+        return self.fringe_threshold.tax_year
+
 
 @dataclass
 class EventEffect:

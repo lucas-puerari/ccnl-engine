@@ -22,7 +22,7 @@ from ccnl_engine.payroll.application.invariants.withholding import (
 )
 from ccnl_engine.payroll.application.period import _closing_state
 from ccnl_engine.payroll.application.period._checks import check_net_covered
-from ccnl_engine.payroll.application.reconcile import check_period, reconcile
+from ccnl_engine.payroll.application.reconcile import reconcile
 from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
 from ccnl_engine.payroll.domain.accrual_state import EmploymentAccrualState
 from ccnl_engine.payroll.domain.credit_accounts import TrattamentoAccount
@@ -198,11 +198,12 @@ class TestYtdContinuity:
 
 
 class TestNetPayNonNegative:
-    """A negative net pay is an engine error once absences are ruled out."""
+    """A negative net is refused before the invariant, which stays as a guard."""
 
     def test_real_run_passes(self) -> None:
         """A real run has a non-negative net."""
         assert check_signs(_run()) == []
+        check_net_covered(_run())
 
     def test_negative_net_is_reported(self) -> None:
         """A negative period_net is a violation."""
@@ -218,16 +219,16 @@ class TestNetPayNonNegative:
             period_net=Decimal("-5.00"),
             unpaid_absence_deduction=Decimal(2000),
         )
-        with pytest.raises(OutOfScopeError, match=r"other than IRPEF") as exc:
+        with pytest.raises(OutOfScopeError, match=r"absences of 2000") as exc:
             check_net_covered(bad)
-        assert exc.value.reason == "withholding_shortfall"
+        assert exc.value.reason == "negative_net"
 
-    def test_negative_net_without_absences_reaches_the_invariant(self) -> None:
-        """Without absences a negative net is left to the invariant."""
+    def test_negative_net_without_absences_is_out_of_scope(self) -> None:
+        """Without absences a negative net is out of scope too, not an invariant."""
         bad = replace(_run(), period_net=Decimal("-1.00"))
-        check_net_covered(bad)
-        with pytest.raises(DataIntegrityError, match=r"\[net_pay_non_negative\]"):
-            check_period(bad, _OPENING, RunFacts())
+        with pytest.raises(OutOfScopeError, match=r"is -1\.00: the") as exc:
+            check_net_covered(bad)
+        assert (exc.value.reason, exc.value.feature) == ("negative_net", "net_pay")
 
 
 class TestClosingStateRejected:

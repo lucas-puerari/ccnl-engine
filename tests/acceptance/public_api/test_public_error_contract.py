@@ -23,6 +23,7 @@ from ccnl_engine import (
     Headcount,
     InvalidInputError,
     MissingRuleError,
+    OutOfScopeError,
     PayrollEngine,
     PayrollRun,
     PeriodFacts,
@@ -252,19 +253,20 @@ def test_sickness_for_a_whole_month_is_computed() -> None:
     assert result.unpaid_absence_deduction == base.amount
 
 
-@pytest.mark.xfail(
-    strict=True,
-    raises=AssertionError,
-    reason=(
-        "a 20,000 EUR fringe benefit on a part-time Commercio 7 drives the net "
-        "pay below zero (IRPEF is capped, employee INPS is not) and the run "
-        "raises DataIntegrityError, the error of a corrupt bundle, on lawful "
-        "input; it must return a result with a blocker or raise an input or "
-        "scope error"
-    ),
-)
-def test_negative_net_is_not_a_data_integrity_error() -> None:
-    """Commercio level 7, 20 hours of 40 a week, March 2026."""
+def test_negative_net_is_out_of_scope_not_a_data_integrity_error() -> None:
+    """Commercio level 7, 20 hours of 40 a week, March 2026, 20,000 EUR fringe.
+
+    The fringe benefit enters the INPS base (art. 51 c. 3 TUIR, art. 12
+    L. 153/1969) and the employee share is withheld "sulla retribuzione
+    corrisposta al lavoratore stesso alla scadenza del periodo di paga cui
+    il contributo si riferisce" (L. 218/1952 art. 19,
+    https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1952-04-04;218~art19).
+    At the employee IVS rate of 9.19% alone the share on the fringe is
+    20,000 x 0.0919 = 1,838 EUR, above half the monthly pay of a full-time
+    level 7, so the pay cannot cover it.  IRPEF is capped and carried;
+    the INPS share is not, and carrying it is not modelled: the run is
+    refused as out of scope, never as a corrupt bundle.
+    """
     employment = Employment(
         ccnl_slug="commercio-confcommercio.json",
         level_code="7",
@@ -273,9 +275,8 @@ def test_negative_net_is_not_a_data_integrity_error() -> None:
         full_time_weekly_hours=WeeklyHours(40),
     )
     fringe = FringeEvent(date(2026, 3, 10), Decimal(20_000))
-    outcomes: list[PeriodResult | CcnlEngineError] = []
-    try:
-        outcomes.append(_regular(employment, 3, PeriodFacts(events=(fringe,))))
-    except CcnlEngineError as error:
-        outcomes.append(error)
-    assert not isinstance(outcomes[0], DataIntegrityError)
+    with pytest.raises(OutOfScopeError, match=r"net pay of the run is -") as exc:
+        _regular(employment, 3, PeriodFacts(events=(fringe,)))
+    assert not isinstance(exc.value, DataIntegrityError)
+    assert exc.value.code == "out_of_scope"
+    assert exc.value.reason == "negative_net"

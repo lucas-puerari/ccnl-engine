@@ -5,9 +5,10 @@ payment in its tax year.  Unpaid absences are
 validated against the pay of the run before the run is computed.  IRPEF
 and surtax are withheld only up to the pay left, the rest carried to the
 next runs; a run whose other deductions (contributions, substitute tax,
-recovery installments) still exceed the pay left by the absences is
-rejected after it.  Both are caller-facing errors, raised before the
-reconciliation invariants, whose violations are engine errors.
+recovery installments) still exceed its pay, for example the INPS share
+of a large fringe benefit on a part-time salary, is rejected after it.
+Both are caller-facing errors, raised before the reconciliation
+invariants, whose violations are engine errors.
 """
 
 from __future__ import annotations
@@ -83,31 +84,41 @@ def check_absences_within_pay(
 
 
 def check_net_covered(result: PeriodResult) -> None:
-    """Reject a run whose absences leave less pay than the deductions.
+    """Reject a run whose pay does not cover its deductions.
 
-    IRPEF and surtax are already capped at the pay left, so a negative net
-    here comes from the other deductions of the run.
+    IRPEF and surtax are already capped at the pay left and carried, so a
+    negative net comes from the other deductions of the run: the employee
+    INPS share, which the employer withholds "sulla retribuzione
+    corrisposta al lavoratore stesso alla scadenza del periodo di paga cui
+    il contributo si riferisce" (L. 218/1952 art. 19), a substitute tax or
+    a recovery installment.  Carrying them to a later payslip, or
+    collecting them from the worker, is not modelled.
 
     Raises:
-        OutOfScopeError: When the net pay is negative and the run deducts
-            unpaid absences: the contributions and other deductions due
-            exceed the pay left, and carrying them forward is not
-            modelled.  A negative net without absences is left to the
-            ``net_pay_non_negative`` invariant.
+        OutOfScopeError: When the net pay is negative, with reason
+            ``negative_net``.
     """
-    if result.period_net >= _ZERO or result.unpaid_absence_deduction <= _ZERO:
+    if result.period_net >= _ZERO:
         return
+    absences = (
+        f" after unpaid absences of {result.unpaid_absence_deduction}"
+        if result.unpaid_absence_deduction > _ZERO
+        else ""
+    )
     msg = (
-        f"unpaid absences of {result.unpaid_absence_deduction} leave a net "
-        f"pay of {result.period_net}: the deductions other than IRPEF and "
-        "surtax exceed the pay left, and carrying them to a later payslip "
-        "is not modelled"
+        f"the net pay of the run is {result.period_net}{absences}: the "
+        "deductions other than IRPEF and surtax (employee contributions, "
+        "substitute tax, recovery installments) exceed the pay of the run, "
+        "and carrying them to a later payslip is not modelled"
     )
     raise OutOfScopeError(
         msg,
-        reason="withholding_shortfall",
-        feature=_FEATURE,
-        remediation="compute the withholdings of this payslip manually",
+        reason="negative_net",
+        feature="net_pay",
+        remediation=(
+            "compute the deductions of this payslip manually and agree with "
+            "the worker how the uncovered amount is settled"
+        ),
     )
 
 

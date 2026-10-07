@@ -74,9 +74,10 @@ class RunOutcome:
             withhold after the run.
         additional_ivs: Additional 1% IVS the run withheld, negative when
             its conguaglio gave some back.
-        history_known: Whether the run opened with the history of the
-            employment; ``False`` marks the closing state, so every run
-            that descends from it blocks.
+        history_known: Whether the closing state holds the history of the
+            employment: ``False`` when the run opened without it, or when
+            its conguaglio could not determine the surtax for lack of the
+            residence; every run that descends from it then blocks.
         employment_spells: Employment spells of the tax year after the
             run, the run's included.
     """

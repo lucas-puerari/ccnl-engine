@@ -136,6 +136,11 @@ in, which keep the jurisdiction of the year that determined them, are
 withheld all the same. On the conguaglio the municipal acconto of the tax
 year is, as always, not posted as an installment: the municipal saldo
 would absorb it, and that saldo is the amount the run cannot determine.
+Such a conguaglio opens no obligation for the next year either, so its
+closing state is marked `history_known=False`: every later run, the first
+of the next tax year included, has a `missing_fact opening_state` blocker
+until the conguaglio is recomputed with the residence (see
+[Opening state](opening-state.md)).
 
 The conguaglio and each installment record one more decision per
 component, with the same capability and `inputs["component"]`

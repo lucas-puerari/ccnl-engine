@@ -251,3 +251,58 @@ def test_termination_without_residence_determines_no_surtax_of_the_year() -> Non
         "deferred_to_installments",
         "surtax_refunded",
     }
+
+
+def _year_2026(facts: PeriodFacts) -> list[PeriodResult]:
+    """Commercio 4 employed since 2020, 2026 with the imported 2025 surtax.
+
+    Returns:
+        The period results of the year, the conguaglio last.
+    """
+    year = ENGINE.calculate_competence_year(
+        CompetenceYearPlan(
+            year=2026,
+            employment=Employment(
+                ccnl_slug=COMMERCIO,
+                level_code="4",
+                seniority=new_hire(),
+                employment_period=EmploymentPeriod(date(2020, 1, 1)),
+            ),
+            employer=EMPLOYER,
+            default_facts=facts,
+            opening_state=opening_with_2025_surtax("IT-45", "F257"),
+        )
+    )
+    return list(year.period_results)
+
+
+def test_conguaglio_without_residence_cannot_open_the_next_year() -> None:
+    """The 2026 conguaglio without residence leaves 2027 without its surtax.
+
+    The conguaglio of N determines the regional surtax and the municipal
+    saldo of N, withheld in N+1, and the municipal acconto of N+1 (D.Lgs.
+    446/1997 art. 50 c. 4, D.Lgs. 360/1998 art. 1 cc. 4-5).  Without the
+    domicilio fiscale it determines none of them, so the state it closes
+    misses what 2027 must withhold: it is not chainable, and the state
+    close_tax_year() opens from it is not either.
+    """
+    results = _year_2026(PeriodFacts(family_composition=FamilyComposition()))
+    conguaglio = results[-1]
+
+    _assert_residence_unknown(conguaglio, *_SURTAXES)
+    assert all(r.closing_state.history_known for r in results[:-1])
+    assert not conguaglio.closing_state.history_known
+    assert not ENGINE.close_tax_year(conguaglio.closing_state).history_known
+
+
+def test_conguaglio_with_residence_opens_the_next_year() -> None:
+    """Control: the same year with the residence closes a chainable state."""
+    results = _year_2026(
+        PeriodFacts(
+            family_composition=FamilyComposition(),
+            regione="IT-45",
+            comune_belfiore="F257",
+        )
+    )
+
+    assert ENGINE.close_tax_year(results[-1].closing_state).history_known

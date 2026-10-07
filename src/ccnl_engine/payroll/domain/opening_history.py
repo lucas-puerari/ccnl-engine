@@ -13,7 +13,9 @@ issue naming ``opening_state``.
 
 The history is missing when:
 
-- the state descends from a run that opened without it
+- the state descends from a run whose closing state misses it: a run that
+  opened without it, or a conguaglio that could not determine the surtax
+  of the year for lack of the residence
   (:attr:`~ccnl_engine.payroll.domain.period_state.PeriodState.history_known`
   is ``False``);
 - a regular month of the competence year of the run, from January or from
@@ -73,7 +75,10 @@ def opening_gap(
         holds it.
     """
     if not opening.history_known:
-        return "it descends from a run that opened without the history"
+        return (
+            "it descends from a run whose closing state misses the history "
+            "(a run opened without it, or a conguaglio without the residence)"
+        )
     year = run_id.year
     earlier = started_on is None or started_on < date(year, 1, 1)
     closed = {

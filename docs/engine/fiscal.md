@@ -141,6 +141,15 @@ take most of the month. The engine then:
 - on the last withholding slot, reports what is still not withheld as a
   provisional `withholding_shortfall_unrecovered` issue.
 
+The other deductions are not capped. The employee INPS share is withheld
+"sulla retribuzione corrisposta al lavoratore stesso alla scadenza del
+periodo di paga cui il contributo si riferisce" (L. 218/1952 art. 19), and
+carrying it, a substitute tax or a recovery installment to a later
+payslip is not modelled. A run whose pay does not cover them, for example
+a 20,000 EUR fringe benefit on a part-time Commercio level 7 in March
+2026, raises `OutOfScopeError` with reason `negative_net` (feature
+`net_pay`), never a result with a negative net.
+
 The cumulative conguaglio settles the tax on the whole year (art. 23 c. 3
 DPR 600/1973, in force for 2026: Normattiva gives it "in vigore dal
 21-5-2022 al 31-12-2026"; the same text is art. 33 c. 4 D.Lgs. 33/2025, in

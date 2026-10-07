@@ -119,10 +119,30 @@ def _closing(
                 ),
                 _ZERO,
             ),
-            history_known=ctx.opening_issue is None,
+            history_known=_chainable(ctx),
             employment_spells=ctx.employment_spells,
         ),
     )
+
+
+def _chainable(ctx: RunContext) -> bool:
+    """Return whether a later run can open with the closing state of the run.
+
+    It cannot when the run opened without the history of the employment,
+    or when it is the conguaglio of a withholding agent and the request
+    omits the residence: the surtax of the tax year is then undetermined,
+    so the conguaglio withholds no saldo, opens no installment and no
+    municipal acconto for the next year (D.Lgs. 446/1997 art. 50 c. 4,
+    D.Lgs. 360/1998 art. 1 cc. 4-5) and drops the acconto the year carried,
+    which the saldo would absorb.
+
+    Returns:
+        ``False`` when the closing state misses part of the history.
+    """
+    request = ctx.request
+    residence_unknown = request.regione is None or request.comune_belfiore is None
+    surtax_undetermined = ctx.conguaglio and ctx.withholding_agent and residence_unknown
+    return ctx.opening_issue is None and not surtax_undetermined
 
 
 def _benefits(events: RunEvents, entries: tuple[LedgerEntry, ...]) -> BenefitBreakdown:

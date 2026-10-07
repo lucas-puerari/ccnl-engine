@@ -146,6 +146,7 @@ class TestArrearsEventAccounting:
             event_date=date(_YEAR, _MONTH, 28),
             amount=Decimal("2000.00"),
             separate_tax_rate=Decimal("0.23"),
+            reference_period=PeriodId(year=_YEAR - 1, month=6),
         )
 
     def test_gross_increases(self) -> None:

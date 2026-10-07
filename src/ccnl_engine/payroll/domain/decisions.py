@@ -114,6 +114,7 @@ PUBLIC_FACTS: Mapping[str, str] = MappingProxyType({
     "other_employers_additional_ivs": "InpsBaseYtd.other_employers_additional_ivs",
     "own_income": "Dependent.own_income",
     "residency_eligibility": "Dependent.residency_eligibility",
+    "reference_period": "ArrearsEvent.reference_period",
     "sector": "Employment.sector",
     "seniority": "Employment.seniority",
     "tfr_fund": "Employment.tfr_fund",
