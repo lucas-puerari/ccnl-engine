@@ -183,6 +183,10 @@ def _night_shift(employer: EmployerProfile) -> PeriodInput:
     return replace(request, facts=replace(request.facts, events=(night,)))
 
 
+def _arrears(reference_period: PeriodId | None) -> ArrearsEvent:
+    return ArrearsEvent(_EVENT_DAY, Decimal(500), Decimal("0.23"), reference_period)
+
+
 def _leave(suspends_accrual: bool | None) -> AbsenceEvent:
     """Return an unpaid leave of the whole of March 2026 but the 1st.
 
@@ -454,15 +458,7 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
         ),
     ),
     "ArrearsEvent.reference_period": (
-        _event_pair(
-            ArrearsEvent(
-                _EVENT_DAY,
-                Decimal(500),
-                Decimal("0.23"),
-                reference_period=PeriodId(2025, 6),
-            ),
-            ArrearsEvent(_EVENT_DAY, Decimal(500), Decimal("0.23")),
-        ),
+        _event_pair(_arrears(PeriodId(2025, 6)), _arrears(None), "reference_period"),
     ),
     "BonusEvent.agreement_signed_on": (
         _event_pair(_renewal(), _renewal(None), "agreement_signed_on"),
