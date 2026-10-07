@@ -32,13 +32,22 @@ trattamento integrativo in [Tax credits](tax-credits.md).
    The taper ratio is not truncated: c. 6 has no four-decimal rule and the
    one of art. 13 c. 6 TUIR lists the ratios of art. 13 only.
 5. **IRPEF net** = IRPEF gross − work income deduction − ulteriore detrazione
-   − family deductions − Art. 15 deductions + clawback sterilisation (floored at 0)
+   − family deductions + clawback sterilisation (floored at 0). Art. 15
+   TUIR deductions are not applied in payroll (capability
+   `art15_deductions`, outside the input): the worker claims them in the
+   tax return.
 6. **Trattamento integrativo** (Art. 1 D.L. 3/2020): up to €1,200/year.
    Two income bands apply:
-   - RC ≤ €15,000: granted when IRPEF gross exceeds the Art. 13 deduction
-     minus a €75 corrective (Art. 1 co. 3 L. 207/2024).
-   - €15,001–€28,000: granted only when total deductions exceed IRPEF gross;
-     amount equals the excess, capped at €1,200.
+   - RC ≤ €15,000 (c. 1, first period): granted when IRPEF gross exceeds
+     the Art. 13 deduction minus a €75 corrective for the days of work
+     (words inserted by L. 207/2024).
+   - €15,001–€28,000 (c. 1, second and third periods): granted only when
+     the sum of the Art. 12 and Art. 13 c. 1 deductions exceeds IRPEF gross;
+     the amount equals the excess, capped at €1,200. The ulteriore
+     detrazione is not in the list. The law also counts Art. 15 deductions
+     for loans taken out up to 31 December 2021 and the instalments of
+     expenses incurred up to that date; payroll does not know them, so the
+     credit of the run can only be lower than the one of the tax return.
    - RC > €28,000: zero.
 
 For a part-year employment the work deduction, the ulteriore detrazione and

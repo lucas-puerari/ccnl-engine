@@ -77,11 +77,11 @@ def test_fractional_extra_months_withhold_the_annual_tax() -> None:
 def test_fractional_extra_months_settle_trattamento_integrativo() -> None:
     """Net trattamento integrativo over the year is zero.
 
-    D.L. 3/2020 art. 1 c. 1 and c. 1-bis: above 15,000 EUR the credit is due
-    only when the listed deductions exceed the gross tax.  With 21,182.05 EUR
-    the employment deduction of 2,534.04, even adding the 1,000 further
-    deduction, stays below the gross tax of 4,871.87, so nothing is due at
-    year end.
+    D.L. 3/2020 art. 1 c. 1, second period: above 15,000 EUR the credit is
+    due only when the listed deductions (art. 12 and art. 13 c. 1 TUIR, no
+    family deduction is computed here) exceed the gross tax.  With 21,182.05
+    EUR the employment deduction of 2,534.04 stays below the gross tax of
+    4,871.87, so nothing is due at year end.
 
     Before the withholding schedule was split from the equivalent months,
     the engine credited 171.43 in the fourteenth run and recovered seven

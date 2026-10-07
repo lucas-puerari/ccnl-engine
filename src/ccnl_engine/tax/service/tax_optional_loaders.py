@@ -1,4 +1,4 @@
-"""Optional tax rule loaders: sick pay, variable pay, family, Art. 15."""
+"""Optional tax rule loaders: sick pay, variable pay, family."""
 
 from __future__ import annotations
 
@@ -10,10 +10,6 @@ from pydantic import ValidationError
 
 from ccnl_engine.provenance.domain.chain import RuleProvenance
 from ccnl_engine.shared.domain.errors import DataIntegrityError
-from ccnl_engine.tax.domain.art15 import (
-    Art15DeductionRules,
-    MortgageInterestRules,
-)
 from ccnl_engine.tax.domain.family import FamilyDeductionRules
 from ccnl_engine.tax.domain.preferential_regime import PreferentialTaxRegime
 from ccnl_engine.tax.domain.sick_pay import (
@@ -165,43 +161,3 @@ def load_family_deduction_rules(year: int) -> FamilyDeductionRules:
     except ValidationError as exc:
         msg = f"{filename} is not a valid family deduction table: {exc}"
         raise DataIntegrityError(msg) from exc
-
-
-def load_art15_deduction_rules(year: int) -> Art15DeductionRules:
-    """Load Art. 15 TUIR oneri detraibili rules for *year*.
-
-    The file ``knowledge/tax/data/art15-deductions-{year}.json`` carries
-    mortgage interest ceiling and rate parameters.  These are pure law,
-    not CCNL-specific.
-
-    Args:
-        year: Fiscal year (e.g. ``2026``).
-
-    Returns:
-        An :class:`~ccnl_engine.tax.domain.art15.Art15DeductionRules`
-        with all deduction parameters validated.
-
-    Raises:
-        DataIntegrityError: If the file's ``year`` field does not match *year*.
-    """
-    pkg = importlib.resources.files("ccnl_engine.knowledge.tax.data")
-    filename = f"art15-deductions-{year}.json"
-    raw = read_year_json(pkg, filename, year)
-    if raw.get("year") != year:
-        msg = (
-            f"{filename} year={raw.get('year')!r} "
-            f"does not match requested year={year!r}"
-        )
-        raise DataIntegrityError(msg)
-
-    mi_raw = raw["mortgage_interest"]
-    return Art15DeductionRules(
-        year=int(raw["year"]),
-        description=raw.get("description", ""),
-        ruleset=_try_ruleset(raw),
-        mortgage_interest=MortgageInterestRules(
-            ceiling=Decimal(str(mi_raw["ceiling"])),
-            rate=Decimal(str(mi_raw["rate"])),
-            notes=mi_raw.get("notes", ""),
-        ),
-    )
