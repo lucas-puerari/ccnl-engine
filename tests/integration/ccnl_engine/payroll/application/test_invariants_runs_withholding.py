@@ -154,7 +154,7 @@ class TestIrpefAnnualReconciliation:
         """Above the 1% addizionale threshold the last slot uses actual INPS.
 
         Bancari QD4 earns about 67,000 EUR, above the 56,224 EUR threshold
-        of the 1% addizionale INPS (INPS circ. 4/2026).  The last run must
+        of the 1% addizionale INPS (INPS circ. 6/2026 par. 5).  The last run must
         project its taxable income with the INPS it actually withholds, so
         the conguaglio settles the IRPEF of the final taxable income.
         """
@@ -235,22 +235,33 @@ def test_large_bonus_is_withheld_on_the_payslip_that_pays_it() -> None:
     plus the whole tax the bonus adds to the year; spreading that tax over
     the later slots made the tredicesima run withhold more than it paid.
 
+    November also charges the additional 1% IVS on its pay above 4,685.00
+    (INPS circ. 6/2026 par. 5): 2,211.43 + 20,000 - 4,685 = 17,526.43,
+    x 1% = 175.2643 -> 175.26, deducted from its taxable income
+    (art. 51 c. 2 lett. a TUIR).  The pay of the year stays below 56,224,
+    so the December conguaglio gives the 175.26 back and the later runs
+    withhold the tax on it (msg. INPS 5327/2015 par. 2.3).
+
     Expected, from the oracle on the final taxable incomes of the year with
     and without the bonus: the November IRPEF grows by
-    ``net_irpef(with) - net_irpef(without)`` (8,398.79 EUR), and the runs
-    after it withhold what they withhold without the bonus.  The tolerance
-    of 0.50 EUR is the rounding of the projection of the later slots, which
-    the conguaglio settles (the engine withholds 8,398.60 more in November,
-    then 0.09 and 0.10 more on the two later runs).
+    ``net_irpef(with - 175.26) - net_irpef(without)``, and the runs after it
+    withhold ``net_irpef(with) - net_irpef(with - 175.26)`` more than
+    without the bonus.  The tolerance of 0.50 EUR is the rounding of the
+    projection of the later slots, which the conguaglio settles.
     """
     bonus = BonusEvent(event_date=date(_YEAR, 11, 10), amount=Decimal(20_000))
     with_bonus = calculate_competence_year(
         year_plan(_YEAR, _CCNL, _LEVEL, events={11: (bonus,)})
     )
     without = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
+    november_additional_ivs = Decimal("175.26")
 
-    bonus_tax = oracle_net_irpef(_final_taxable(with_bonus)) - oracle_net_irpef(
-        _final_taxable(without)
+    final_with = _final_taxable(with_bonus)
+    bonus_tax = oracle_net_irpef(final_with - november_additional_ivs) - (
+        oracle_net_irpef(_final_taxable(without))
+    )
+    refund_tax = oracle_net_irpef(final_with) - oracle_net_irpef(
+        final_with - november_additional_ivs
     )
     grown = _november_irpef(with_bonus) - _november_irpef(without)
 
@@ -265,4 +276,4 @@ def test_large_bonus_is_withheld_on_the_payslip_that_pays_it() -> None:
     )
 
     assert abs(grown - bonus_tax) <= Decimal("0.50")
-    assert abs(tail_growth) <= Decimal("0.50")
+    assert abs(tail_growth - refund_tax) <= Decimal("0.50")

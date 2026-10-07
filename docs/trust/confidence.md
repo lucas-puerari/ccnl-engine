@@ -129,7 +129,9 @@ without a classification, or on a classification without its field:
     category, contribution history, sector, employer activity, prior-year
     income, current-year income with a dependant, signing date of a
     renewal, contributable hours of a domestic CCNL, a child's birth date,
-    the apprenticeship track among several);
+    the apprenticeship track among several, the additional 1% IVS other
+    employers withheld when their base is imported and a run settles the
+    1%);
   - `pending`: not honoured yet. The default still selects a branch without
     a blocker. Treat these fields as required and state them.
 

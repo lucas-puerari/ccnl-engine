@@ -19,6 +19,9 @@ from ccnl_engine.payroll.application.amounts._domestic import _domestic_hourly_r
 from ccnl_engine.payroll.application.amounts._types import _AmountsInput
 from ccnl_engine.payroll.application.handlers._overtime_rate import CCNLOvertimeBands
 from ccnl_engine.payroll.application.handlers.benefits import fringe_threshold_of
+from ccnl_engine.payroll.application.period._additional_ivs import (
+    additional_ivs_position,
+)
 from ccnl_engine.payroll.application.period._pension_decision import pension_terms
 from ccnl_engine.payroll.application.period._sickness import sickness_terms
 from ccnl_engine.payroll.domain.obligations import (
@@ -33,6 +36,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.application.period._context import RunContext
     from ccnl_engine.payroll.domain.ledger import LedgerEntry
     from ccnl_engine.payroll.domain.pay_items import PayItem
+    from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
     from ccnl_engine.tax.domain.family import FamilyDeductionRules
     from ccnl_engine.tax.domain.surtax_rules import SurtaxRules
 
@@ -113,11 +117,7 @@ def amounts_input(
         ivs_ceiling_applies=ivs_ceiling_applies,
         pdr_rules=ctx.var_pay_rules.pdr,
         weekly_hours=_int_value(request.weekly_hours),
-        contributable_hours=(
-            request.contributable_hours.value
-            if request.contributable_hours is not None
-            else None
-        ),
+        contributable_hours=_contributable_hours(request),
         domestic_hourly_rate=_domestic_hourly_rate(
             contract.ccnl,
             contract.year_rules,
@@ -140,7 +140,18 @@ def amounts_input(
         regular_run=ctx.run_kind is RunKind.REGULAR,
         foreign_taxes=request.prior_year.foreign_taxes,
         deferred_irpef=_deferred_irpef(ctx),
+        additional_ivs=additional_ivs_position(ctx),
     )
+
+
+def _contributable_hours(request: PeriodCalculationRequest) -> Decimal | None:
+    """Return the contributable hours of a domestic run, if stated.
+
+    Returns:
+        The value of the request's contributable hours, or ``None``.
+    """
+    hours = request.contributable_hours
+    return None if hours is None else hours.value
 
 
 def _eligible_work_days(ctx: RunContext) -> int:

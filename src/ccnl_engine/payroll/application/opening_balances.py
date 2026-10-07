@@ -67,8 +67,10 @@ class OpeningBalances:
         inps_bases: INPS base toward the IVS massimale per competence year:
             this employment's (``own``) and the worker's other employments
             of the same year (``other_employers``, from their CU or the
-            worker's declaration; INPS circ. 237/2016 par. 3.1).  Import the
-            year before too when its December is paid in ``tax_year``.
+            worker's declaration; INPS circ. 237/2016 par. 3.1), with the
+            additional 1% IVS each withheld on it (``additional_ivs``,
+            ``other_employers_additional_ivs``).  Import the year before
+            too when its December is paid in ``tax_year``.
         sickness_episodes: Sickness episodes of the employment up to the
             last processed day, in start order: they set the waiting
             period, INPS days and CCNL tier of later episodes.

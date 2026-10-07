@@ -3,9 +3,10 @@
 Verifies that the contribution history on PeriodCalculationRequest correctly
 gates the IVS ceiling and addizionale 1% in the period-first pipeline.
 
-INPS limits 2026 (INPS circ. 4/2026):
-    Massimale retributivo IVS: 122,295 EUR
-    Soglia addizionale +1%:     56,224 EUR
+INPS limits 2026 (INPS circ. 6/2026 par. 5 and 6):
+    Massimale retributivo IVS:            122,295 EUR
+    Soglia addizionale +1%, annual:        56,224 EUR
+    Soglia addizionale +1%, mensilizzata:   4,685 EUR
 """
 
 from __future__ import annotations
@@ -25,6 +26,7 @@ from ccnl_engine.payroll.domain.period_state import PeriodState
 from tests.fixtures.period_requests import period_request
 
 if TYPE_CHECKING:
+    from ccnl_engine.payroll.domain.contributions import ContributionComponent
     from ccnl_engine.payroll.domain.period import PeriodResult
 
 _CCNL = "metalmeccanico-federmeccanica.json"
@@ -187,177 +189,108 @@ class TestMassimaleThreshold:
         assert ivs_uncapped_comp.base > headroom
 
 
-class TestAddizionale1Pct:
-    """1% addizionale is applied only within the IVS ceiling, above the soglia."""
-
-    def test_no_addizionale_in_january_with_zero_ytd(self) -> None:
-        """Normal C3 January (YTD=0) produces no addizionale: base << 56,224 EUR."""
-        result = calculate_period(_req(month=1, history=_POST_1995))
-        assert _addizionale(result) == _ZERO
-
-    def test_addizionale_when_ytd_crosses_threshold(self) -> None:
-        """Addizionale is emitted when cumulative INPS base exceeds 56,224 EUR."""
-        # ytd=55000, period will push total past 56,224
-        opening = PeriodState(
-            accrual=EmploymentAccrualState(
-                inps_bases=(InpsBaseYtd(2026, Decimal("55000.00")),),
-            )
+def _opening(own: Decimal, additional_ivs: Decimal = _ZERO) -> PeriodState:
+    return PeriodState(
+        accrual=EmploymentAccrualState(
+            inps_bases=(InpsBaseYtd(2026, own, additional_ivs=additional_ivs),),
         )
-        result = calculate_period(_req(month=6, opening=opening, history=_POST_1995))
-        assert _addizionale(result) > _ZERO
+    )
 
-    def test_addizionale_positive_when_ytd_already_above_threshold(self) -> None:
-        """Addizionale is charged on full period base when threshold exceeded."""
-        # ytd=70000 > 56224: addizionale applies to the full period base
-        opening = PeriodState(
-            accrual=EmploymentAccrualState(
-                inps_bases=(InpsBaseYtd(2026, Decimal("70000.00")),),
-            )
-        )
-        result = calculate_period(_req(month=7, opening=opening, history=_POST_1995))
-        assert _addizionale(result) > _ZERO
 
-    def test_addizionale_zero_above_massimale(self) -> None:
-        """Addizionale stops when YTD already exceeds the IVS massimale (122,295 EUR).
-
-        Source: INPS circ. 4/2026.  The +1% addizionale is an IVS component
-        and is subject to the same massimale cap as the base IVS rate.
-        """
-        opening = PeriodState(
-            accrual=EmploymentAccrualState(
-                inps_bases=(InpsBaseYtd(2026, Decimal("130000.00")),),
-            )
-        )
-        result = calculate_period(_req(month=12, opening=opening, history=_POST_1995))
-        assert _addizionale(result) == _ZERO
-
-    def test_addizionale_false_ceiling_allows_above_massimale(self) -> None:
-        """With _NOT_APPLICABLE ceiling, addizionale can apply above the massimale."""
-        # ytd=125000 > massimale; with ceiling bypassed, addizionale still runs
-        opening = PeriodState(
-            accrual=EmploymentAccrualState(
-                inps_bases=(InpsBaseYtd(2026, Decimal("125000.00")),),
-            )
-        )
-        r_uncapped = calculate_period(
-            _req(month=12, opening=opening, history=_NOT_APPLICABLE)
-        )
-        assert _addizionale(r_uncapped) > _ZERO
-
-    def test_addizionale_only_on_excess_above_threshold(self) -> None:
-        """Addizionale base equals only the portion crossing the 56,224 EUR soglia."""
-        # ytd=55900, threshold=56224, excess = (55900 + period_base) - 56224
-        opening = PeriodState(
-            accrual=EmploymentAccrualState(
-                inps_bases=(InpsBaseYtd(2026, Decimal("55900.00")),),
-            )
-        )
-        result = calculate_period(_req(month=6, opening=opening, history=_POST_1995))
-        comp = next(
-            (
-                c
-                for c in result.contribution_breakdown.components
-                if c.name == "addizionale_1pct"
-            ),
-            None,
-        )
-        assert comp is not None
-        non_ivs = next(
+def _settlement(result: PeriodResult) -> ContributionComponent | None:
+    return next(
+        (
             c
             for c in result.contribution_breakdown.components
-            if c.name == "non_ivs_employee"
-        )
-        assert comp.base < non_ivs.base
-
-
-# ---------------------------------------------------------------------------
-# 1% INPS addizionale on income > 56,224 EUR not computed
-#
-# INPS circ. 4/2026: workers whose cumulated INPS contribution base exceeds
-# 56,224 EUR pay an additional 1% on the excess (charged to the employee).
-# The contribution breakdown must include an 'addizionale_1pct' component.
-# Normative threshold 2026: 56,224 EUR (source: INPS circ. 4/2026).
-# ---------------------------------------------------------------------------
-
-
-def test_inps_addizionale_1pct_on_threshold_crossing() -> None:
-    """1% addizionale must appear when INPS base crosses 56,224 EUR.
-
-    Source: INPS circ. 4/2026.  With inps_base_ytd=56,000 and ~2,200 EUR
-    monthly base the cumulative crosses 56,224 EUR; an 'addizionale_1pct'
-    component with amount > 0 must appear in contribution_breakdown.
-    """
-    opening = PeriodState(
-        accrual=EmploymentAccrualState(
-            inps_bases=(InpsBaseYtd(2026, Decimal("56000.00")),),
-        )
-    )
-    result = calculate_period(period_request(month=6, opening=opening))
-
-    component_names = {c.name for c in result.contribution_breakdown.components}
-    assert "addizionale_1pct" in component_names, (
-        "ContributionBreakdown must include 'addizionale_1pct' when the "
-        "cumulative INPS base crosses 56,224 EUR (INPS circ. 4/2026).  "
-        f"Current components: {sorted(component_names)}."
-    )
-    addizionale = next(
-        (
-            c.amount
-            for c in result.contribution_breakdown.components
-            if c.name == "addizionale_1pct"
+            if c.name == "addizionale_1pct_conguaglio"
         ),
-        _ZERO,
-    )
-    assert addizionale > _ZERO, (
-        f"'addizionale_1pct' amount must be > 0; got {addizionale}."
+        None,
     )
 
 
-# ---------------------------------------------------------------------------
-# Addizionale 1% applied above the IVS massimale ceiling
-#
-# The +1% addizionale threshold (56,224 EUR) and the IVS massimale (122,295 EUR)
-# are distinct limits.  When the YTD INPS base already exceeds the massimale,
-# no IVS and no +1% should apply to the current period income.  The engine
-# currently computes the +1% on the full period base regardless of whether
-# the massimale has been reached.
-# Source: INPS circ. 4/2026.
-# ---------------------------------------------------------------------------
+class TestAddizionale1Pct:
+    """1% addizionale month by month, settled on the year in December.
 
-
-def test_addizionale_zero_above_ivs_massimale() -> None:
-    """addizionale_1pct must be 0 when inps_base_ytd exceeds the IVS massimale.
-
-    Source: INPS circ. 4/2026.  massimale IVS 2026 = 122,295 EUR.  With
-    inps_base_ytd=130,000 > 122,295, the period adds income above the ceiling
-    where no INPS component (including the +1% addizionale) should apply.
-    Expected: addizionale_1pct == 0.
+    Every month of the C3 runs below pays the June 2026 minimum, 2,211.43,
+    below the monthly threshold of 4,685.00: no regular month charges the
+    1%, whatever the YTD base (circ. 6/2026 par. 5; circ. 7/2010 par. 3).
+    December settles the year: 1% of the base of the year within the
+    massimale above 56,224.00, less what was withheld (msg. 5327/2015
+    par. 2.3).
     """
-    # > 122,295 IVS massimale 2026
-    opening = PeriodState(
-        accrual=EmploymentAccrualState(
-            inps_bases=(InpsBaseYtd(2026, Decimal("130000.00")),)
-        )
-    )
-    result = calculate_period(
-        period_request(
-            month=12,
-            opening=opening,
-            contribution_history=ContributionHistory(date(2001, 9, 1)),
-        )
-    )
 
-    addizionale = next(
-        (
-            c.amount
-            for c in result.contribution_breakdown.components
-            if c.name == "addizionale_1pct"
-        ),
-        _ZERO,
-    )
-    assert addizionale == _ZERO, (
-        "addizionale_1pct must be 0 when inps_base_ytd "
-        f"({opening.accrual.inps_base(2026).total}) "
-        f"exceeds the IVS massimale (122,295 EUR, INPS circ. 4/2026); "
-        f"got {addizionale}.  The +1% is currently not gated on the massimale."
-    )
+    def test_no_addizionale_in_january_with_zero_ytd(self) -> None:
+        """Normal C3 January (YTD=0) produces no addizionale."""
+        result = calculate_period(_req(month=1, history=_POST_1995))
+        assert _addizionale(result) == _ZERO
+        assert _settlement(result) is None
+
+    def test_regular_month_ignores_the_annual_band(self) -> None:
+        """July with YTD 70,000, above 56,224: still nothing until December."""
+        result = calculate_period(
+            _req(month=7, opening=_opening(Decimal(70000)), history=_POST_1995)
+        )
+        assert _addizionale(result) == _ZERO
+        assert _settlement(result) is None
+
+    def test_december_settles_the_year_above_the_annual_band(self) -> None:
+        """YTD 55,900, nothing withheld: 55,900 + 2,211.43 = 58,111.43.
+
+        58,111.43 - 56,224 = 1,887.43; x 1% = 18.8743 -> 18.87 due.
+        """
+        result = calculate_period(
+            _req(month=12, opening=_opening(Decimal(55900)), history=_POST_1995)
+        )
+        settlement = _settlement(result)
+        assert settlement is not None
+        assert settlement.base == Decimal("1887.43")
+        assert settlement.amount == Decimal("18.87")
+        assert _addizionale(result) == _ZERO
+
+    def test_december_gives_back_what_the_months_over_withheld(self) -> None:
+        """Same year with 30.00 withheld by the months: 18.87 - 30.00 = -11.13."""
+        opening = _opening(Decimal(55900), additional_ivs=Decimal("30.00"))
+        result = calculate_period(_req(month=12, opening=opening, history=_POST_1995))
+        settlement = _settlement(result)
+        assert settlement is not None
+        assert settlement.amount == Decimal("-11.13")
+        assert result.closing_state.accrual.inps_base(2026).additional_ivs == (
+            Decimal("18.87")
+        )
+
+    def test_december_settles_within_the_massimale(self) -> None:
+        """Post-1995, YTD 130,000: the year counts up to 122,295 only.
+
+        122,295 - 56,224 = 66,071; x 1% = 660.71, all withheld already:
+        nothing to settle.
+        """
+        opening = _opening(Decimal(130000), additional_ivs=Decimal("660.71"))
+        result = calculate_period(_req(month=12, opening=opening, history=_POST_1995))
+        assert _settlement(result) is None
+        assert _addizionale(result) == _ZERO
+
+    def test_december_without_the_massimale_settles_the_whole_year(self) -> None:
+        """Enrolled before 1996, YTD 125,000: no massimale caps the year.
+
+        125,000 + 2,211.43 - 56,224 = 70,987.43; x 1% = 709.8743 -> 709.87,
+        less the 660.71 withheld: 49.16.
+        """
+        opening = _opening(Decimal(125000), additional_ivs=Decimal("660.71"))
+        result = calculate_period(
+            _req(month=12, opening=opening, history=_NOT_APPLICABLE)
+        )
+        settlement = _settlement(result)
+        assert settlement is not None
+        assert settlement.amount == Decimal("49.16")
+
+    def test_a_month_past_the_massimale_pays_no_addizionale(self) -> None:
+        """November, post-1995, YTD 130,000: no headroom, no monthly 1%."""
+        result = calculate_period(
+            period_request(
+                month=11,
+                opening=_opening(Decimal(130000)),
+                contribution_history=ContributionHistory(date(2001, 9, 1)),
+            )
+        )
+        assert _addizionale(result) == _ZERO
+        assert _settlement(result) is None

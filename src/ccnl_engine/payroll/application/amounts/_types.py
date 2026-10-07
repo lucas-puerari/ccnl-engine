@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application.amounts._surtax import RunSurtax
 from ccnl_engine.payroll.domain.recovery_plan import InstallmentRun
+from ccnl_engine.payroll.service.additional_ivs import AdditionalIvsPosition
 from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 
 if TYPE_CHECKING:
@@ -59,7 +60,8 @@ class _AmountsInput:
     ``foreign_taxes`` are credited on the conguaglio only.
     ``deferred_irpef`` is the IRPEF a conguaglio of this tax year deferred
     on written request: it counts as withheld when the balance is settled
-    again.
+    again.  ``additional_ivs`` is the position of the run toward the
+    additional 1% IVS of its competence year.
     """
 
     monthly_gross: Decimal
@@ -97,6 +99,7 @@ class _AmountsInput:
     regular_run: bool = True
     foreign_taxes: tuple[ForeignTaxPaid, ...] = ()
     deferred_irpef: Decimal = Decimal(0)
+    additional_ivs: AdditionalIvsPosition = field(default_factory=AdditionalIvsPosition)
 
 
 @dataclass(frozen=True)

@@ -225,7 +225,7 @@ class TestInpsRawRatesEmptyTiers:
 
 
 class TestInpsRatesIvsAndAdditional:
-    """InpsRates validators: IVS <= total and paired additional fields."""
+    """InpsRates validators: IVS <= total; the nested additional 1% IVS rule."""
 
     _BASE: dict[str, Any] = {
         "employee_rate": "0.0919",
@@ -245,81 +245,15 @@ class TestInpsRatesIvsAndAdditional:
         with pytest.raises(ValidationError, match="employer_ivs_rate"):
             InpsRates(**{**self._BASE, "employer_ivs_rate": "0.40"})
 
-    def test_additional_rate_without_threshold_raises(self) -> None:
-        """employee_additional_rate set without threshold must raise."""
-        with pytest.raises(ValidationError, match="both be set or both be absent"):
-            InpsRates(**{
-                **self._BASE,
-                "employee_additional_rate": "0.01",
-            })
-
-    def test_additional_threshold_without_rate_raises(self) -> None:
-        """employee_additional_threshold set without rate must raise."""
-        with pytest.raises(ValidationError, match="both be set or both be absent"):
-            InpsRates(**{
-                **self._BASE,
-                "employee_additional_threshold": "56224",
-            })
-
-    def test_negative_additional_threshold_raises(self) -> None:
-        """employee_additional_threshold < 0 must raise ValidationError."""
-        with pytest.raises(ValidationError):
-            InpsRates(**{
-                **self._BASE,
-                "employee_additional_rate": "0.01",
-                "employee_additional_threshold": "-1000",
-            })
-
-    def test_valid_with_additional_fields(self) -> None:
-        """Valid rate+threshold pair is accepted."""
+    def test_valid_with_additional_rule(self) -> None:
+        """The additional 1% IVS rule is carried as a nested block."""
         r = InpsRates(**{
             **self._BASE,
-            "employee_additional_rate": "0.01",
-            "employee_additional_threshold": "56224",
+            "employee_additional": {
+                "rate": "0.01",
+                "annual_threshold": "56224",
+                "monthly_threshold": "4685",
+            },
         })
-        assert r.employee_additional_rate == Decimal("0.01")
-        assert r.employee_additional_threshold == Decimal(56224)
-
-
-class TestInpsRawRatesAdditionalThreshold:
-    """InpsRawRates rejects a negative employee_additional_threshold."""
-
-    _TIER: dict[str, Any] = {
-        "max_employees": None,
-        "rate": "0.0919",
-        "ivs_rate": "0.0919",
-    }
-
-    def test_negative_threshold_raises(self) -> None:
-        """employee_additional_threshold < 0 must raise ValidationError."""
-        with pytest.raises(ValidationError):
-            InpsRawRates(
-                employee_tiers=[InpsEmployeeTier.model_validate(self._TIER)],
-                employer_tiers=[
-                    InpsEmployerTier.model_validate({
-                        **self._TIER,
-                        "rate": "0.2898",
-                        "ivs_rate": "0.2381",
-                    })
-                ],
-                ceiling=None,
-                employee_additional_rate=Decimal("0.01"),
-                employee_additional_threshold=Decimal(-1000),
-            )
-
-    def test_zero_threshold_accepted(self) -> None:
-        """employee_additional_threshold = 0 is on the boundary and accepted."""
-        raw = InpsRawRates(
-            employee_tiers=[InpsEmployeeTier.model_validate(self._TIER)],
-            employer_tiers=[
-                InpsEmployerTier.model_validate({
-                    **self._TIER,
-                    "rate": "0.2898",
-                    "ivs_rate": "0.2381",
-                })
-            ],
-            ceiling=None,
-            employee_additional_rate=Decimal("0.01"),
-            employee_additional_threshold=Decimal(0),
-        )
-        assert raw.employee_additional_threshold == Decimal(0)
+        assert r.employee_additional is not None
+        assert r.employee_additional.monthly_threshold == Decimal(4685)

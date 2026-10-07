@@ -4,6 +4,7 @@ from decimal import Decimal
 
 from ccnl_engine.contract.domain.category import WorkerCategory
 from ccnl_engine.payroll.domain.contributions import (
+    ContributionBreakdown,
     ContributionComponent,
 )
 from ccnl_engine.payroll.domain.employment import (
@@ -173,13 +174,17 @@ class TestContributionAmounts:
         assert bd.employer == _D("741.30")
 
     def test_addizionale_base_stops_at_the_massimale(self) -> None:
-        """The 1% addizionale applies only up to the IVS massimale.
+        """The 1% addizionale of a month applies only up to the massimale.
 
-        INPS circ. 4/2026, with the IVS massimale at 122 295
-        and threshold 56 224; ytd 120 000, period 5 000:
-        IVS base = 122 295 - 120 000 = 2 295; 2 295 * 0.0919 = 210.91;
-        addizionale base = (122 295 - 56 224) - (120 000 - 56 224) = 2 295,
-        amount 2 295 * 0.01 = 22.95; employee = 210.91 + 22.95 = 233.86.
+        INPS circ. 6/2026 par. 5 and 6: massimale 122 295, monthly
+        threshold 4 685; ytd 120 000, period 9 000:
+        IVS base = 122 295 - 120 000 = 2 295; 2 295 * 0.0919 = 210.9105 ->
+        210.91; the month within the massimale is 2 295, below 4 685: no
+        addizionale.  Period 9 000 from ytd 110 000: IVS base 9 000,
+        9 000 * 0.0919 = 827.10; addizionale base 9 000 - 4 685 = 4 315,
+        amount 43.15; employee = 827.10 + 43.15 = 870.25.  From ytd
+        115 000 the month within the massimale is 7 295: addizionale base
+        7 295 - 4 685 = 2 610, amount 26.10.
         """
         rules = make_year_rules(
             inps={
@@ -188,17 +193,29 @@ class TestContributionAmounts:
                 "employer_rate": "0.2381",
                 "employer_ivs_rate": "0.2381",
                 "ceiling": "122295.00",
-                "employee_additional_rate": "0.01",
-                "employee_additional_threshold": "56224.00",
+                "employee_additional": {
+                    "rate": "0.01",
+                    "annual_threshold": "56224.00",
+                    "monthly_threshold": "4685.00",
+                },
             }
         )
-        bd = first_run_contributions(
-            _D("5000.00"), rules, Permanent(), None, ytd_inps_base=_D("120000.00")
-        )
-        assert bd.components[-1] == ContributionComponent(
+
+        def run(ytd: str) -> ContributionBreakdown:
+            return first_run_contributions(
+                _D("9000.00"), rules, Permanent(), None, ytd_inps_base=_D(ytd)
+            )
+
+        near = run("120000.00")
+        assert "addizionale_1pct" not in {c.name for c in near.components}
+        assert near.employee == _D("210.91")
+        below = run("110000.00")
+        assert below.components[-1] == ContributionComponent(
             name="addizionale_1pct",
-            base=_D("2295.00"),
+            base=_D("4315.00"),
             rate=_D("0.01"),
-            amount=_D("22.95"),
+            amount=_D("43.15"),
         )
-        assert bd.employee == _D("233.86")
+        assert below.employee == _D("870.25")
+        crossing = run("115000.00").components[-1]
+        assert (crossing.base, crossing.amount) == (_D("2610.00"), _D("26.10"))
