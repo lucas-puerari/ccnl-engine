@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "708a81a98b31b2895dda384aeae86bb127c4d527775671653c792fb8d8f177cb",
+    "source_hash": "1bac233d0ea02c6eb857f199bc459efc365c81aae3e27b2820e25ce17df6ce5b",
     "source_type": "estimated"
   },
   "irpef_brackets": [
@@ -110,9 +110,11 @@
           "kind": "legge",
           "url": "https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.codiceRedazionale=26A00149&art.dataPubblicazioneGazzetta=2026-01-21&art.flagTipoArticolo=0&art.idArticolo=1&art.idGruppo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.progressivo=1&art.versione=1"
         },
-        "section": "art. 1 cc. 3-4"
+        "section": "art. 1 c. 4",
+        "quote": "All'articolo 16-ter del testo unico delle imposte sui redditi, di cui al decreto del Presidente della Repubblica 22 dicembre 1986, n. 917, dopo il comma 5 e' inserito il seguente: «5-bis. Per i contribuenti titolari di un reddito complessivo superiore a 200.000 euro e' diminuito di un importo pari a 440 euro l'ammontare della detrazione dall'imposta lorda, determinato tenendo conto di quanto previsto dai commi da 1 a 5 del presente articolo e dall'articolo 15, comma 3-bis, spettante in relazione ai seguenti oneri: a) gli oneri la cui detraibilita' e' fissata nella misura del 19 per cento dal presente testo unico o da qualsiasi altra disposizione fiscale, fatta eccezione per le spese sanitarie di cui all'articolo 15, comma 1, lettera c); b) le erogazioni liberali in favore dei partiti politici, di cui all'articolo 11 del decreto-legge 28 dicembre 2013, n. 149, convertito, con modificazioni, dalla legge 21 febbraio 2014, n. 13; c) i premi di assicurazione per rischio eventi calamitosi, di cui all'articolo 119, comma 4, quinto periodo, del decreto-legge 19 maggio 2020, n. 34, convertito, con modificazioni, dalla legge 17 luglio 2020, n. 77»."
       },
-      "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+      "transformation": "threshold 200,000 EUR and reduction 440 EUR as written in art. 16-ter c. 5-bis TUIR. The reduction lowers only the deduction for the oneri of lett. a)-c): the 19% oneri except the spese sanitarie, the donations to political parties and the catastrophe insurance premiums. The payroll computes none of them, so it does not apply the block: the art. 12 and art. 13 TUIR deductions and the ulteriore detrazione (L. 207/2024 art. 1 c. 6) are not reduced.",
+      "note": "Quote checked on 2026-10-07 against the Gazzetta Ufficiale text of L. 199/2025 art. 1 at the url of the record, whitespace normalised; the Gazzetta text writes accented vowels as vowel and apostrophe (e' for è). Not checked by a named reviewer. Assumed, not derived: its ruleset declares source_type 'estimated'."
     }
   },
   "work_deduction": {
@@ -160,14 +162,14 @@
     }
   },
   "notes": [
-    "IRPEF brackets: three-bracket structure per L. 199/2025 (Legge di Bilancio 2026); second bracket reduced from 35% to 33% effective 2026-01-01.",
+    "IRPEF brackets: three-bracket structure of art. 11 c. 1 TUIR; second bracket rate reduced from 35% to 33% from 2026-01-01 by L. 199/2025 art. 1 c. 3.",
     "Art. 13 co. 1 TUIR work-income deduction: statutory piecewise schedule per D.Lgs. 216/2023 and L. 207/2024. Constants versioned in YearRules.work_deduction.",
     "INPS rates: credito sector (Credito e Assicurazioni). Rates confirmed from kitech.it 2026 Table 6.1 (https://www.kitech.it/Contributi-previdenziali.aspx?p=9_165): dirigenti and operai/impiegati 35.95% total = 9.19% employee + 26.76% employer. No size tiers (flat structure corroborated by absence of size-tier pages for credito on kitech.it). NOTE: kitech.it shows 'salariati' at 38.50% total (29.31% employer); this category (hourly auxiliary workers) is not present in standard credito CCNLs and is not modelled. SIMPLIFICATION: Fondo di solidarietà del credito (D.Lgs. 148/2015, bilateral fund substituting CIG/CIGS; ordinary rate 0.50% total: ~0.33% employer + ~0.17% employee) is presumed aggregated into the 26.76%/9.19% kitech.it totals. If the fund is reported separately by the employer, actual INPS rates would be 26.43% employer and 9.02% employee (IVS+NASpI only), and the 0.33%/0.17% must be remitted on top — verify against INPS circular for Fondo credito.",
     "fixed_term_additional_rate: NASpI addizionale base rate 1.4% (employer-only) per Art. 2 co. 28 L. 92/2012.",
     "INPS dipendente — employee_rate 9.19% flat confirmed (kitech.it 2026); includes IVS employee share + NASpI employee share. Fondo di solidarietà employee share (if not included in 9.19%) would be an additional ~0.17% — see SIMPLIFICATION note above.",
     "Apprentice contributions (L. 296/2006 art. 1 c. 773; L. 92/2012 art. 2 c. 36-37): employer 10% + NASpI 1.31% + 0.30% = 11.61%; employee 5.84%. Firms with at most 9 employees pay 1.5% (+1.61% NASpI) in months 0-11 and 3% (+1.61%) in months 12-23, then 11.61%. SIMPLIFICATION: hiring incentives (sgravi) and Cassa Edile apprentice schemes are not modelled.",
     "IVS ceiling: massimale annuo della base contributiva 2026 = EUR 122,295.00 (INPS Circ. 6/2026, 30 Jan 2026; L. 335/1995 art. 2 c. 18). Applies to workers without contributions before 1 Jan 1996 and to those who opted for the contributory system (art. 1 c. 23); the engine derives it from the contribution history.",
-    "Sterilizzazione detrazioni: Art. 1 c. 3-4 L. 199/2025 — for reddito complessivo > EUR 200 000, total detrazioni (Art. 12 + Art. 13 TUIR) reduced by EUR 440 (clawback of the 35% -> 33% bracket benefit on the 28 000-50 000 slice).",
+    "Art. 16-ter c. 5-bis TUIR (inserted by L. 199/2025 art. 1 c. 4): for a reddito complessivo > EUR 200 000 the deduction for the 19% oneri (spese sanitarie excluded), the donations to political parties and the catastrophe insurance premiums is reduced by EUR 440. The art. 12 and art. 13 TUIR deductions and the ulteriore detrazione are outside its scope; the payroll computes none of the oneri in scope and does not apply the reduction.",
     "Somma esente (L. 207/2024): band cut points 8 500 EUR and 15 000 EUR are reconstructions from worked examples — not verified against primary source. Rates 7.1%/5.3%/4.8% and ceiling 20 000 EUR are from AdE guidance."
   ],
   "somma_esente": {
@@ -207,9 +209,11 @@
         "kind": "legge",
         "url": "https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.codiceRedazionale=26A00149&art.dataPubblicazioneGazzetta=2026-01-21&art.flagTipoArticolo=0&art.idArticolo=1&art.idGruppo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.progressivo=1&art.versione=1"
       },
-      "section": "art. 1 c. 2"
+      "section": "art. 1 c. 3",
+      "quote": "All'articolo 11, comma 1, lettera b), del testo unico delle imposte sui redditi, di cui al decreto del Presidente della Repubblica 22 dicembre 1986, n. 917, le parole: «35 per cento» sono sostituite dalle seguenti: «33 per cento»."
     },
-    "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+    "transformation": "C. 3 sets the rate of the second bracket (art. 11 c. 1 lett. b) TUIR, 28,000-50,000 EUR) to 33%. The bracket bounds and the 23% and 43% rates are those of art. 11 c. 1 TUIR in force, not quoted here.",
+    "note": "Quote checked on 2026-10-07 against the Gazzetta Ufficiale text of L. 199/2025 art. 1 at the url of the record, whitespace normalised; the Gazzetta text writes accented vowels as vowel and apostrophe (e' for è). Not checked by a named reviewer. Assumed, not derived: its ruleset declares source_type 'estimated'."
   },
   "fixed_term_additional_rate_provenance": {
     "status": "assumed",

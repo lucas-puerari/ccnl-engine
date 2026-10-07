@@ -44,13 +44,11 @@ _ZERO = Decimal(0)
 _CENT = Decimal("0.01")
 _TAXABLE_TOLERANCE = Decimal("0.02")
 _IVS_COMPONENTS = frozenset({"ivs_employee", "ivs_employer"})
-#: Tax computation components that lower the gross IRPEF.  The
-#: sterilizzazione is recorded as a negative amount, so it adds back.
+#: Tax computation components that lower the gross IRPEF.
 _DEDUCTIONS = frozenset({
     "work_deduction",
     "family_deductions",
     "ulteriore_detrazione",
-    "sterilizzazione_detrazioni",
 })
 #: Component of the art. 165 TUIR credit, deducted from the net IRPEF.
 _FOREIGN_CREDIT = "foreign_tax_credit"

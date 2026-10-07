@@ -72,7 +72,6 @@ type _Blocks = tuple[tuple[str, tuple[str, ...], bool], ...]
 _TAX_BLOCKS: Final[_Blocks] = (
     ("irpef_brackets", ("irpef",), True),
     ("work_deduction", ("irpef",), False),
-    ("sterilizzazione_detrazioni", ("irpef",), False),
     ("fixed_term_additional_rate", ("inps_employer",), True),
     ("tfr", ("tfr",), False),
     ("trattamento_integrativo", ("trattamento_integrativo",), False),

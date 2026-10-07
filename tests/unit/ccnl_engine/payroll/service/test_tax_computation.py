@@ -86,22 +86,27 @@ class TestResolveTaxComputation:
         names = [c.name for c in tc.components]
         assert "ulteriore_detrazione" not in names
 
-    def test_sterilizzazione_reduces_deductions_for_high_earner(self) -> None:
-        """sterilizzazione_detrazioni: high-income worker gets reduced deductions."""
+    def test_art_16ter_reduction_leaves_family_deductions_whole(self) -> None:
+        """Above 200,000 EUR the trace keeps the art. 12 deductions in full.
+
+        Art. 16-ter c. 5-bis TUIR (L. 199/2025 art. 1 c. 4) lowers only the
+        19% oneri, party donations and catastrophe premiums, none of them
+        computed here: no reduction line, family deductions 1,000.
+        """
         rules = make_year_rules()
         steriliz = SterilizzazioneDetrazioniRules(
             threshold=Decimal(200000), reduction=Decimal(440)
         )
         rules_with_s = rules.model_copy(update={"sterilizzazione_detrazioni": steriliz})
-        # taxable > 200000 + non-zero deductions so reduction is applied
         tc = compute_tax(
             Decimal(250000),
             rules_with_s,
             family_deductions=Decimal(1000),
             remaining_slots=12,
         ).computation
-        names = [c.name for c in tc.components]
-        assert "sterilizzazione_detrazioni" in names
+        amounts = {c.name: c.amount for c in tc.components}
+        assert "sterilizzazione_detrazioni" not in amounts
+        assert amounts["family_deductions"] == Decimal(1000)
 
     def test_somma_esente_emitted_for_low_income(self) -> None:
         """somma_esente: low-income worker receives positive bonus component."""

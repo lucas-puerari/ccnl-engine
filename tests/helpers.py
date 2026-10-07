@@ -192,9 +192,9 @@ def make_year_rules(
         brackets: IRPEF bracket list; defaults to 2026 statutory values.
         inps: Raw INPS rates dict; defaults to terziario rates.
         apprentice: Raw apprentice rates dict; defaults to large-firm values.
-        sterilizzazione_detrazioni: Optional override for sterilizzazione
-            rules (Art. 1 c. 3-4 L. 199/2025). Pass ``{"threshold": ...,
-            "reduction": ...}`` to activate or a custom threshold for tests.
+        sterilizzazione_detrazioni: Optional art. 16-ter c. 5-bis TUIR block
+            (L. 199/2025 art. 1 c. 4), ``{"threshold": ..., "reduction":
+            ...}``.  The payroll does not apply it.
         ulteriore_detrazione: Optional override for ulteriore detrazione
             rules (Art. 1 c. 6 L. 207/2024). Pass ``{"threshold_low": ...,
             "threshold_mid": ..., "threshold_high": ...,

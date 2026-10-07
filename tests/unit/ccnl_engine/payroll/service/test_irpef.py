@@ -1,7 +1,7 @@
 """Tests for engine.irpef: gross tax, work income deduction and surtax.
 
 Covers irpef_gross(), work_income_deduction() (full year and pro rata),
-surtax_from_brackets(), and apply_sterilizzazione_detrazioni().
+and surtax_from_brackets().
 
 Every branch is tested: zero/negative income, each statutory band boundary,
 4-decimal truncation, the 65 EUR increment, and surtax.
@@ -11,14 +11,8 @@ from decimal import Decimal
 from typing import Any
 
 from ccnl_engine.payroll.service.irpef import irpef_gross, surtax_from_brackets
-from ccnl_engine.payroll.service.irpef_deductions import (
-    apply_sterilizzazione_detrazioni,
-    work_income_deduction,
-)
-from ccnl_engine.tax.domain.irpef_rules import (
-    SterilizzazioneDetrazioniRules,
-    WorkDeductionRules,
-)
+from ccnl_engine.payroll.service.irpef_deductions import work_income_deduction
+from ccnl_engine.tax.domain.irpef_rules import WorkDeductionRules
 from ccnl_engine.tax.domain.ruleset import YearRules
 from ccnl_engine.tax.domain.surtax_tables import SurtaxBracket
 from tests.helpers import make_year_rules
@@ -295,53 +289,6 @@ class TestSurtaxFromBrackets:
         """A zero-rate flat bracket yields zero."""
         bs = _brackets((None, "0"))
         assert surtax_from_brackets(Decimal(30000), bs) == Decimal("0.00")
-
-
-# ---------------------------------------------------------------------------
-# apply_sterilizzazione_detrazioni (Art. 1 c. 3-4 L. 199/2025)
-# ---------------------------------------------------------------------------
-
-_STRD_RULES = SterilizzazioneDetrazioniRules(
-    threshold=Decimal("200000.00"),
-    reduction=Decimal("440.00"),
-)
-
-
-class TestApplySterilizzazioneDetrazioni:
-    """Unit tests for apply_sterilizzazione_detrazioni() — targets Art. 15 oneri."""
-
-    def test_below_threshold_unchanged(self) -> None:
-        """Income at or below threshold: detrazioni total returned unchanged."""
-        result = apply_sterilizzazione_detrazioni(
-            Decimal(1200), Decimal("200000.00"), _STRD_RULES
-        )
-        assert result == Decimal(1200)
-
-    def test_above_threshold_detrazioni_reduced(self) -> None:
-        """Income > 200k: Art. 15 oneri total reduced by 440."""
-        result = apply_sterilizzazione_detrazioni(
-            Decimal(1000), Decimal(250000), _STRD_RULES
-        )
-        assert result == Decimal("560.00")
-
-    def test_above_threshold_floored_at_zero(self) -> None:
-        """Reduction larger than detrazioni total: result → 0."""
-        result = apply_sterilizzazione_detrazioni(
-            Decimal(300), Decimal(300000), _STRD_RULES
-        )
-        assert result == Decimal("0.00")
-
-    def test_above_threshold_zero_detrazioni_stays_zero(self) -> None:
-        """No Art. 15 oneri (no mortgage declared): result remains zero."""
-        result = apply_sterilizzazione_detrazioni(
-            Decimal(0), Decimal(250000), _STRD_RULES
-        )
-        assert result == Decimal("0.00")
-
-    def test_rules_none_unchanged(self) -> None:
-        """When rules is None, detrazioni total is returned unchanged."""
-        result = apply_sterilizzazione_detrazioni(Decimal(700), Decimal(250000), None)
-        assert result == Decimal(700)
 
 
 class TestWorkIncomeDeductionProrata:

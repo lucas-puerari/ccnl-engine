@@ -1,26 +1,22 @@
 """Deductions from gross IRPEF of employment income.
 
 Implements the Art. 13 co. 1 TUIR work-income deduction (piecewise-linear
-schedule as modified by D.Lgs. 216/2023 and confirmed by L. 199/2025, Art. 1
-c. 2), its proportion to the days of work, the minimum of lett. a) for a
-fixed-term or open-ended employment, and the sterilizzazione
-detrazioni for redditi > EUR 200k (Art. 1 c. 3-4 L. 199/2025).
+schedule of D.Lgs. 216/2023 and L. 207/2024), its proportion to the days of
+work and the minimum of lett. a) for a fixed-term or open-ended employment.
 
 The detrazioni per carichi di famiglia (Art. 12 TUIR) are in
-:mod:`~ccnl_engine.payroll.service.family_deductions`.
+:mod:`~ccnl_engine.payroll.service.family_deductions`.  The art. 16-ter
+c. 5-bis TUIR reduction does not apply to either: see
+:mod:`~ccnl_engine.payroll.service.irpef_net`.
 """
 
 from __future__ import annotations
 
 from decimal import ROUND_FLOOR, Decimal
-from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 from ccnl_engine.tax.domain.irpef_rules import WorkDeductionRules
-
-if TYPE_CHECKING:
-    from ccnl_engine.tax.domain.irpef_rules import SterilizzazioneDetrazioniRules
 
 _ZERO = Decimal(0)
 _TEN_THOUSAND = Decimal(10000)
@@ -144,26 +140,3 @@ def work_income_deduction(
     else:
         return _ZERO
     return for_days(full_year, eligible_work_days)
-
-
-def apply_sterilizzazione_detrazioni(
-    detrazioni_total: Decimal,
-    taxable_income: Decimal,
-    rules: SterilizzazioneDetrazioniRules | None,
-) -> Decimal:
-    """Reduce oneri detraibili al 19% by the statutory amount for high earners.
-
-    Per Art. 1 c. 3-4 L. 199/2025: when ``taxable_income`` (reddito
-    complessivo) exceeds ``rules.threshold`` (EUR 200 000), the tax credit
-    for oneri detraibili al 19% (Art. 15 c. 1 lett. a, b, d, e TUIR; not
-    spese sanitarie lett. c) is reduced by ``rules.reduction`` (EUR 440),
-    floored at zero.
-
-    Returns:
-        Effective deduction total, floored at zero.  When ``rules`` is
-        ``None`` or income is at or below the threshold, ``detrazioni_total``
-        is returned unchanged.
-    """
-    if rules is None or taxable_income <= rules.threshold:
-        return detrazioni_total
-    return money(max(_ZERO, detrazioni_total - rules.reduction))

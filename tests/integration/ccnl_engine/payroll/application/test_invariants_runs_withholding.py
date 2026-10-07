@@ -175,13 +175,12 @@ class TestIrpefAnnualReconciliation:
             components=(
                 TaxLineItem("irpef_gross", Decimal(1_000), "art11-tuir", "Art. 11"),
                 TaxLineItem("work_deduction", Decimal(300), "art13-tuir", "Art. 13"),
-                TaxLineItem("sterilizzazione_detrazioni", Decimal(-100), "l199", "L."),
                 TaxLineItem(
                     "trattamento_integrativo", Decimal(1_200), "dl3", "D.L. 3/2020"
                 ),
             ),
         )
-        assert net_annual_irpef(computation) == Decimal(800)
+        assert net_annual_irpef(computation) == Decimal(700)
 
     def test_net_annual_irpef_is_floored_at_zero(self) -> None:
         """Deductions above the gross IRPEF give no IRPEF due."""

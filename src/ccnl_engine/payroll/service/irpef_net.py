@@ -2,8 +2,15 @@
 
 :func:`net_irpef` gives the imposta netta of a projected annual income: the
 gross tax of art. 11 TUIR less the art. 13 and art. 12 TUIR deductions and
-the ulteriore detrazione (L. 207/2024 art. 1 c. 6), after the
-sterilizzazione of L. 199/2025 art. 1 c. 3-4, floored at zero.
+the ulteriore detrazione (L. 207/2024 art. 1 c. 6), floored at zero.
+
+The 440 EUR reduction of art. 16-ter c. 5-bis TUIR (inserted by L. 199/2025
+art. 1 c. 4) for a reddito complessivo above 200,000 EUR is not applied: it
+lowers only the deductions for the oneri detraibili al 19% (medical expenses
+excluded), the donations to political parties and the catastrophe insurance
+premiums, and the payroll computes none of them.  The art. 12 and art. 13
+deductions and the ulteriore detrazione are outside its scope.  An input
+that brings one of those oneri into the run must carry the reduction.
 
 :func:`run_withholding` splits what is still owed between the run and the
 slots after it.  Income the run pays once (a bonus, overtime, arrears
@@ -25,10 +32,7 @@ from typing import TYPE_CHECKING
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.service import irpef_credits
 from ccnl_engine.payroll.service.irpef import irpef_gross
-from ccnl_engine.payroll.service.irpef_deductions import (
-    apply_sterilizzazione_detrazioni,
-    work_income_deduction,
-)
+from ccnl_engine.payroll.service.irpef_deductions import work_income_deduction
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.service.irpef_credits import CreditOutcome
@@ -49,8 +53,6 @@ class NetIrpef:
         family_deductions: Art. 12 TUIR deductions, computed by the caller.
         ulteriore: Outcome of the ulteriore detrazione, ``None`` when the
             year does not configure it.
-        effective_deductions: Sum of the deductions after the
-            sterilizzazione.
         ulteriore_effect: IRPEF the ulteriore detrazione actually removes:
             the net without it less the net with it.  Below the deduction
             when the net is floored at zero.
@@ -62,20 +64,19 @@ class NetIrpef:
     work_deduction: Decimal
     family_deductions: Decimal
     ulteriore: CreditOutcome | None
-    effective_deductions: Decimal
     ulteriore_effect: Decimal = _ZERO
     foreign_credit: Decimal = _ZERO
 
     @property
     def total_deductions(self) -> Decimal:
-        """Sum of the deductions before the sterilizzazione."""
+        """Sum of the art. 13, art. 12 and ulteriore deductions."""
         ulteriore = _ZERO if self.ulteriore is None else self.ulteriore.amount
         return self.work_deduction + self.family_deductions + ulteriore
 
     @property
     def net_before_credit(self) -> Decimal:
-        """Imposta netta: gross less the effective deductions, at least zero."""
-        return max(_ZERO, self.gross - self.effective_deductions)
+        """Imposta netta: gross less the deductions, at least zero."""
+        return max(_ZERO, self.gross - self.total_deductions)
 
     @property
     def net(self) -> Decimal:
@@ -118,19 +119,13 @@ def net_irpef(
             taxable, rules.ulteriore_detrazione, eligible_work_days
         )
     )
-    total = (
-        work + family_deductions + (_ZERO if ulteriore is None else ulteriore.amount)
-    )
-    effective = apply_sterilizzazione_detrazioni(
-        total, taxable, rules.sterilizzazione_detrazioni
-    )
     effect = _ZERO
     if ulteriore is not None:
-        without = apply_sterilizzazione_detrazioni(
-            total - ulteriore.amount, taxable, rules.sterilizzazione_detrazioni
+        without = work + family_deductions
+        effect = max(_ZERO, gross - without) - max(
+            _ZERO, gross - without - ulteriore.amount
         )
-        effect = max(_ZERO, gross - without) - max(_ZERO, gross - effective)
-    return NetIrpef(gross, work, family_deductions, ulteriore, effective, effect)
+    return NetIrpef(gross, work, family_deductions, ulteriore, effect)
 
 
 def run_withholding(
