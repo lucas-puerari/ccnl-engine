@@ -188,7 +188,7 @@
       "cadence_months": 36,
       "maximum_count": 10,
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -203,7 +203,8 @@
           "extraction_timestamp": "2026-09-12T00:00:00",
           "verification_status": "verified",
           "effective_from": "2025-05-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       },
       "amount_by_level": {
         "Q": {
@@ -284,7 +285,7 @@
             "valid_until": "2026-01-01",
             "value": "2604.83",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -299,7 +300,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2025-05-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -307,7 +309,7 @@
             "valid_until": "2027-01-01",
             "value": "2664.62",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -322,7 +324,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -330,7 +333,7 @@
             "valid_until": "2027-05-01",
             "value": "2724.41",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -345,7 +348,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2027-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -353,7 +357,7 @@
             "valid_until": null,
             "value": "2799.14",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -368,7 +372,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2027-05-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -376,7 +381,7 @@
       "fixed_allowances": [],
       "category": "quadro",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -391,7 +396,8 @@
           "extraction_timestamp": "2026-09-12T00:00:00",
           "verification_status": "verified",
           "effective_from": "2025-05-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       }
     },
     {
@@ -405,7 +411,7 @@
             "valid_until": "2026-01-01",
             "value": "2404.16",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -420,7 +426,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2025-05-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -428,7 +435,7 @@
             "valid_until": "2027-01-01",
             "value": "2459.35",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -443,7 +450,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -451,7 +459,7 @@
             "valid_until": "2027-05-01",
             "value": "2514.53",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -466,7 +474,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2027-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -474,7 +483,7 @@
             "valid_until": null,
             "value": "2583.51",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -489,7 +498,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2027-05-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -497,7 +507,7 @@
       "fixed_allowances": [],
       "category": "impiegato",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -512,7 +522,8 @@
           "extraction_timestamp": "2026-09-12T00:00:00",
           "verification_status": "verified",
           "effective_from": "2025-05-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       }
     },
     {
@@ -526,7 +537,7 @@
             "valid_until": "2026-01-01",
             "value": "2156.50",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -541,7 +552,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2025-05-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -549,7 +561,7 @@
             "valid_until": "2027-01-01",
             "value": "2206.00",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -564,7 +576,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -572,7 +585,7 @@
             "valid_until": "2027-05-01",
             "value": "2255.50",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -587,7 +600,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2027-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -595,7 +609,7 @@
             "valid_until": null,
             "value": "2317.37",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -610,7 +624,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2027-05-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -618,7 +633,7 @@
       "fixed_allowances": [],
       "category": "impiegato",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -633,7 +648,8 @@
           "extraction_timestamp": "2026-09-12T00:00:00",
           "verification_status": "verified",
           "effective_from": "2025-05-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       }
     },
     {
@@ -647,7 +663,7 @@
             "valid_until": "2026-01-01",
             "value": "1925.95",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -662,7 +678,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2025-05-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -670,7 +687,7 @@
             "valid_until": "2027-01-01",
             "value": "1970.16",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -685,7 +702,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -693,7 +711,7 @@
             "valid_until": "2027-05-01",
             "value": "2014.37",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -708,7 +726,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2027-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -716,7 +735,7 @@
             "valid_until": null,
             "value": "2069.63",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -731,7 +750,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2027-05-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -739,7 +759,7 @@
       "fixed_allowances": [],
       "category": "impiegato",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -754,7 +774,8 @@
           "extraction_timestamp": "2026-09-12T00:00:00",
           "verification_status": "verified",
           "effective_from": "2025-05-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       }
     },
     {
@@ -768,7 +789,7 @@
             "valid_until": "2026-01-01",
             "value": "1742.68",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -783,7 +804,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2025-05-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -791,7 +813,7 @@
             "valid_until": "2027-01-01",
             "value": "1782.68",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -806,7 +828,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -814,7 +837,7 @@
             "valid_until": "2027-05-01",
             "value": "1822.68",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -829,7 +852,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2027-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -837,7 +861,7 @@
             "valid_until": null,
             "value": "1872.68",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -852,7 +876,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2027-05-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -860,7 +885,7 @@
       "fixed_allowances": [],
       "category": "impiegato",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -875,7 +900,8 @@
           "extraction_timestamp": "2026-09-12T00:00:00",
           "verification_status": "verified",
           "effective_from": "2025-05-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       }
     },
     {
@@ -889,7 +915,7 @@
             "valid_until": "2026-01-01",
             "value": "1629.42",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -904,7 +930,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2025-05-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -912,7 +939,7 @@
             "valid_until": "2027-01-01",
             "value": "1666.82",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -927,7 +954,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -935,7 +963,7 @@
             "valid_until": "2027-05-01",
             "value": "1704.22",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -950,7 +978,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2027-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -958,7 +987,7 @@
             "valid_until": null,
             "value": "1750.97",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -973,7 +1002,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2027-05-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -981,7 +1011,7 @@
       "fixed_allowances": [],
       "category": "impiegato",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -996,7 +1026,8 @@
           "extraction_timestamp": "2026-09-12T00:00:00",
           "verification_status": "verified",
           "effective_from": "2025-05-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       }
     },
     {
@@ -1010,7 +1041,7 @@
             "valid_until": "2026-01-01",
             "value": "1517.10",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -1025,7 +1056,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2025-05-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -1033,7 +1065,7 @@
             "valid_until": "2027-01-01",
             "value": "1549.75",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -1048,7 +1080,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -1056,7 +1089,7 @@
             "valid_until": "2027-05-01",
             "value": "1582.39",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -1071,7 +1104,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2027-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -1079,7 +1113,7 @@
             "valid_until": null,
             "value": "1623.19",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -1094,7 +1128,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2027-05-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -1102,7 +1137,7 @@
       "fixed_allowances": [],
       "category": "impiegato",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -1117,7 +1152,8 @@
           "extraction_timestamp": "2026-09-12T00:00:00",
           "verification_status": "verified",
           "effective_from": "2025-05-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       }
     }
   ],
@@ -1223,6 +1259,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "1bd2cd8274f7e0813b40af75167bc3f8e9d0a27e80c4ac90b15b25ba297f5d16"
+    "source_hash": "a60993cac3484cffe944a761130aa140ed9c432a0b93c0c66ce11d64009f2b82"
   }
 }

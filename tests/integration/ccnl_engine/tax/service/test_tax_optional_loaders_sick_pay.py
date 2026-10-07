@@ -15,8 +15,12 @@ class TestMiscCoverageGaps:
         assert rates.carenza_days >= 0
 
     def test_indemnity_bands_carry_their_provenance_record(self) -> None:
-        """The bands record is read from ``bands_provenance``, never left empty."""
+        """The bands record is read from ``bands_provenance``, never left empty.
+
+        The secondary summary it cites records no URL, so the record is
+        ``assumed`` while keeping its location.
+        """
         record = load_sick_pay_rates().bands_provenance
         assert record is not None
-        assert record.status is ProvenanceStatus.DERIVED
+        assert record.status is ProvenanceStatus.ASSUMED
         assert record.location is not None

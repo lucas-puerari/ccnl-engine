@@ -34,6 +34,10 @@ and the sick-pay bands, whose record sits in the sibling
 ``<block>_provenance`` key, the surtax
 tables, whose record is the file-level ``provenance``, and the substitute
 tax regimes, whose record is their ``source`` with its ``source_status``.
+A sub-block with its own record inside a fiscal block (the Art. 13
+minimum ``work_deduction.minimum``, the TFR additional IVS
+``tfr.additional_ivs``, the 1% employee IVS ``inps.employee_additional``) is
+a rule of its own, with the capabilities of its block.
 
 The module reads raw JSON with the standard library only, so the CI check
 runs without installing the project.
@@ -71,7 +75,6 @@ _TAX_BLOCKS: Final[_Blocks] = (
     ("sterilizzazione_detrazioni", ("irpef",), False),
     ("fixed_term_additional_rate", ("inps_employer",), True),
     ("tfr", ("tfr",), False),
-    ("tfr.additional_ivs", ("tfr",), False),
     ("trattamento_integrativo", ("trattamento_integrativo",), False),
     ("ulteriore_detrazione", ("ulteriore_detrazione_lavoro",), False),
     ("somma_esente", ("somma_esente",), False),
@@ -330,6 +333,25 @@ def _block_rules(
             else (block.get("provenance") if isinstance(block, dict) else None)
         )
         yield _rule(file, key, capabilities, record)
+        yield from _nested_rules(file, key, block, capabilities)
+
+
+def _nested_rules(
+    file: str, path: str, block: object, capabilities: tuple[str, ...]
+) -> Iterator[PayableRule]:
+    """Yield the sub-blocks of a fiscal block that carry their own record.
+
+    Yields:
+        One rule per nested object holding a ``provenance`` record, at
+        ``<block>.<key>``, depth first.
+    """
+    for key, child in block.items() if isinstance(block, dict) else ():
+        if key == "provenance" or not isinstance(child, dict):
+            continue
+        child_path = f"{path}.{key}"
+        if isinstance(child.get("provenance"), dict):
+            yield _rule(file, child_path, capabilities, child["provenance"])
+        yield from _nested_rules(file, child_path, child, capabilities)
 
 
 def fiscal_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]:

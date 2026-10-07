@@ -10,15 +10,16 @@ Two checks back the two gates of :mod:`scripts.ci.check_provenance`:
   ``production`` CCNL names its owner, its reviewer, the date of the last
   review and the date the next one is due, after the last, with
   ``confidence`` ``verified``.  A CCNL ruleset id is ``ccnl/<ccnl_id>``.
+  Labels that outrun their evidence, an estimated or uncited rule labelled
+  ``derived`` and a ``reviewed`` CCNL with weak rules, are checked by
+  :mod:`scripts.ci.provenance_labels` and have no baseline.
 - :func:`compare`: the evidence ratchet.  The weak evidence of the bundle,
-  every ``assumed`` or ``missing`` payable rule, every open model
-  limitation and every ``reviewed`` or ``production`` CCNL whose
-  ``confidence`` is not ``verified``, is listed in
-  ``provenance_baseline.json``.  A weak entry the baseline does not list,
-  or a rule weaker than its baseline status, is growth and fails.  A
-  baseline entry that no longer holds is stale and fails too, so the
-  baseline only shrinks.  Counts per capability and per CCNL follow from
-  the entries and so never grow either.
+  every ``assumed`` or ``missing`` payable rule and every open model
+  limitation, is listed in ``provenance_baseline.json``.  A weak entry
+  the baseline does not list, or a rule weaker than its baseline status,
+  is growth and fails.  A baseline entry that no longer holds is stale
+  and fails too, so the baseline only shrinks.  Counts per capability
+  and per CCNL follow from the entries and so never grow either.
 
 Promoting a rule to ``verified`` stays a human task: nothing here changes a
 status.  The module reads raw JSON with the standard library only.
@@ -44,7 +45,6 @@ BASELINE: Final = Path(__file__).with_name("provenance_baseline.json")
 WEAK: Final = ("assumed", "missing")
 ENGINE_LIMITATIONS: Final = "limitations/data/engine.json"
 _RANK: Final = {status: rank for rank, status in enumerate(payable_rules.STATUSES)}
-_CLEARED: Final = ("reviewed", "production")
 _SHA256: Final = re.compile(r"^[0-9a-f]{64}$")
 _PRODUCTION_FIELDS: Final = ("owner", "human_reviewed_by", "last_reviewed")
 
@@ -58,13 +58,10 @@ class Snapshot:
     Attributes:
         weak_rules: Data file to rule path to ``assumed`` or ``missing``.
         open_limitations: Data file to the ids of its open limitations.
-        readiness_contradictions: CCNL files whose readiness claims a
-            review their ``confidence`` does not record.
     """
 
     weak_rules: Mapping[str, Mapping[str, str]]
     open_limitations: Mapping[str, tuple[str, ...]]
-    readiness_contradictions: tuple[str, ...]
 
     def to_json(self) -> Json:
         """Return the snapshot as a JSON object with sorted keys.
@@ -80,7 +77,6 @@ class Snapshot:
             "open_limitations": {
                 file: sorted(ids) for file, ids in sorted(self.open_limitations.items())
             },
-            "readiness_contradictions": sorted(self.readiness_contradictions),
         }
 
     @classmethod
@@ -108,8 +104,7 @@ class Snapshot:
             file: _strings(ids, f"open_limitations[{file}]")
             for file, ids in limitations.items()
         }
-        contradictions = document.get("readiness_contradictions")
-        return cls(weak, open_ids, _strings(contradictions, "readiness_contradictions"))
+        return cls(weak, open_ids)
 
 
 def _mapping(value: object, name: str) -> Mapping[str, object]:
@@ -204,22 +199,6 @@ def open_limitations(root: Path) -> dict[str, tuple[str, ...]]:
     return found
 
 
-def _contradicts(data: Json) -> bool:
-    verification = _as_dict(data.get("verification"))
-    readiness = verification.get("readiness", "exploratory")
-    return readiness in _CLEARED and verification.get("confidence") != "verified"
-
-
-def readiness_contradictions(root: Path) -> tuple[str, ...]:
-    """Return the CCNL files whose readiness outruns their confidence.
-
-    Returns:
-        Files with readiness ``reviewed`` or ``production`` and a
-        ``confidence`` other than ``verified``, in file-name order.
-    """
-    return tuple(file for file, data in _ccnl_files(root) if _contradicts(data))
-
-
 def weak_rules(rules: tuple[PayableRule, ...]) -> dict[str, dict[str, str]]:
     """Return the ``assumed`` and ``missing`` rules by data file.
 
@@ -247,9 +226,7 @@ def snapshot(
         The snapshot to compare with the baseline.
     """
     found = payable_rules.inventory(root) if rules is None else rules
-    return Snapshot(
-        weak_rules(found), open_limitations(root), readiness_contradictions(root)
-    )
+    return Snapshot(weak_rules(found), open_limitations(root))
 
 
 @dataclass(frozen=True)
@@ -318,18 +295,9 @@ def compare(current: Snapshot, baseline: Snapshot) -> Ratchet:
     limitations = _compare_ids(
         "open limitation", current.open_limitations, baseline.open_limitations
     )
-    now = set(current.readiness_contradictions)
-    before = set(baseline.readiness_contradictions)
-    readiness = (
-        [
-            f"{f}: readiness claims a review confidence does not record"
-            for f in sorted(now - before)
-        ],
-        [f"{f}: readiness and confidence now agree" for f in sorted(before - now)],
-    )
     return Ratchet(
-        grown=(*rules[0], *limitations[0], *readiness[0]),
-        stale=(*rules[1], *limitations[1], *readiness[1]),
+        grown=(*rules[0], *limitations[0]),
+        stale=(*rules[1], *limitations[1]),
     )
 
 

@@ -18,7 +18,7 @@
     ],
     "ceiling": null,
     "provenance": {
-      "status": "derived",
+      "status": "assumed",
       "location": {
         "source_document": {
           "document_id": "kitech-contributi-17_210",
@@ -28,7 +28,7 @@
         },
         "section": "CTPS"
       },
-      "note": "Employee 8.80%, employer 24.20%, corroborated by INPS sources."
+      "note": "Employee 8.80%, employer 24.20%, corroborated by INPS sources. Assumed, not derived: its ruleset declares source_type 'estimated'."
     }
   },
   "apprentice": {
@@ -55,7 +55,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "08cd835237eb4c170b4475623edd5738db3424565a9e12a98d70f6dc87347706",
+    "source_hash": "b7b94877ecfb92d2938866df905014861e9a5b126edd0c1a76ace9297c2159b5",
     "source_type": "estimated"
   }
 }

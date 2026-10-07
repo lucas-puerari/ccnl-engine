@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "11e8c4ae005026fc2462ab975dec2677f00f28d1dfa9777badc3b82074b30c7e",
+    "source_hash": "ffd60491818b8eede552a0baaf48c3620152c85f1f4409f87bcdeec753758f7c",
     "source_type": "estimated"
   },
   "irpef_brackets": [
@@ -32,7 +32,7 @@
     "additional_ivs": {
       "rate": "0.0050",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "l-297-1982",
@@ -44,11 +44,11 @@
           "quote": "Agli oneri derivanti al Fondo pensioni dei lavoratori dipendenti dall'applicazione del presente articolo si provvede elevando le aliquote contributive a carico dei datori di lavoro, per l'assicurazione generale obbligatoria per l'invalidità, la vecchiaia ed i superstiti dei lavoratori dipendenti, ivi compresi gli addetti ai servizi domestici e familiari ed i pescatori della piccola pesca, con decorrenza dal periodo di paga in corso alla data del 1 luglio 1982 nella misura dello 0,30 per cento della retribuzione imponibile e con decorrenza dal periodo di paga in corso alla data del 1 gennaio 1983 nella misura ulteriore dello 0,20 per cento della retribuzione imponibile. I datori di lavoro detraggono per ciascun lavoratore l'importo della contribuzione aggiuntiva di cui al comma precedente dall'ammontare della quota del trattamento di fine rapporto relativa al periodo di riferimento della contribuzione stessa. Qualora il trattamento di fine rapporto sia erogato mediante forme previdenziali, la contribuzione aggiuntiva è detratta dal contributo dovuto per il finanziamento del trattamento stesso, il cui importo spettante al lavoratore è corrispondentemente ridotto."
         },
         "transformation": "0.30% from 1 July 1982 plus 0.20% from 1 January 1983 = 0.50% of the INPS taxable pay, applied to the IVS base of the period (capped at the massimale when it applies) and deducted from the TFR quota of the same period, or from the TFR paid to the pension fund.",
-        "note": "Quote checked on 2026-10-07 against the Normattiva text of art. 3 in force from 10-11-2022 (commi counted in order; INPS messaggio n. 1817 of 10 May 2019, read from the copy at https://assolavoro.eu/wp-content/uploads/attachments/mess_1817%20pdf.pdf, cites the rate as c. 15 and the deduction as c. 16), whitespace normalised. The 0.50% is already inside the employer IVS rate of the INPS ruleset. Not applied to apprentices: INPS circ. 70/2007 of 3 April 2007, note 5 (p. 18 of https://servizi2.inps.it/circolariZip/Circolare%20numero%2070%20del%203-4-2007.pdf, sha256 7def4bc121c204925ac5e8a20b640afc9e157243b6e6903c7c1942aab275d49a, read on 2026-10-07): 'Per i lavoratori con qualifica di apprendista il contributo dello 0,50% ex lege n. 297/1982, non è previsto.' Not checked by a named reviewer."
+        "note": "Quote checked on 2026-10-07 against the Normattiva text of art. 3 in force from 10-11-2022 (commi counted in order; INPS messaggio n. 1817 of 10 May 2019, read from the copy at https://assolavoro.eu/wp-content/uploads/attachments/mess_1817%20pdf.pdf, cites the rate as c. 15 and the deduction as c. 16), whitespace normalised. The 0.50% is already inside the employer IVS rate of the INPS ruleset. Not applied to apprentices: INPS circ. 70/2007 of 3 April 2007, note 5 (p. 18 of https://servizi2.inps.it/circolariZip/Circolare%20numero%2070%20del%203-4-2007.pdf, sha256 7def4bc121c204925ac5e8a20b640afc9e157243b6e6903c7c1942aab275d49a, read on 2026-10-07): 'Per i lavoratori con qualifica di apprendista il contributo dello 0,50% ex lege n. 297/1982, non è previsto.' Not checked by a named reviewer. Assumed, not derived: its ruleset declares source_type 'estimated'."
       }
     },
     "provenance": {
-      "status": "derived",
+      "status": "assumed",
       "location": {
         "source_document": {
           "document_id": "codice-civile",
@@ -57,7 +57,8 @@
         },
         "section": "art. 2120"
       },
-      "transformation": "Citation taken from the docstring of the rule model that consumes the block; the data file records none."
+      "transformation": "Citation taken from the docstring of the rule model that consumes the block; the data file records none.",
+      "note": "Assumed, not derived: its ruleset declares source_type 'estimated'; no citation (http(s) url and section or page)."
     }
   },
   "trattamento_integrativo": {
@@ -65,7 +66,7 @@
     "threshold_upper": "28000",
     "max_amount": "1200",
     "provenance": {
-      "status": "derived",
+      "status": "assumed",
       "location": {
         "source_document": {
           "document_id": "dl-3-2020",
@@ -74,7 +75,8 @@
         },
         "section": "art. 1 (as amended by L. 207/2024)"
       },
-      "transformation": "Citation taken from the docstring of the rule model that consumes the block; the data file records none."
+      "transformation": "Citation taken from the docstring of the rule model that consumes the block; the data file records none.",
+      "note": "Assumed, not derived: its ruleset declares source_type 'estimated'; no citation (http(s) url and section or page)."
     }
   },
   "ulteriore_detrazione": {
@@ -83,7 +85,7 @@
     "max_amount": "1000",
     "threshold_high": "40000",
     "provenance": {
-      "status": "derived",
+      "status": "assumed",
       "location": {
         "source_document": {
           "document_id": "l-207-2024",
@@ -92,14 +94,15 @@
         },
         "section": "art. 1 c. 6"
       },
-      "transformation": "Citation taken from the docstring of the rule model that consumes the block; the data file records none."
+      "transformation": "Citation taken from the docstring of the rule model that consumes the block; the data file records none.",
+      "note": "Assumed, not derived: its ruleset declares source_type 'estimated'; no citation (http(s) url and section or page)."
     }
   },
   "sterilizzazione_detrazioni": {
     "threshold": "200000.00",
     "reduction": "440.00",
     "provenance": {
-      "status": "derived",
+      "status": "assumed",
       "location": {
         "source_document": {
           "document_id": "l-199-2025",
@@ -108,7 +111,8 @@
           "url": "https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.codiceRedazionale=26A00149&art.dataPubblicazioneGazzetta=2026-01-21&art.flagTipoArticolo=0&art.idArticolo=1&art.idGruppo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.progressivo=1&art.versione=1"
         },
         "section": "art. 1 cc. 3-4"
-      }
+      },
+      "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
     }
   },
   "work_deduction": {
@@ -128,7 +132,7 @@
       "open_ended": "690",
       "fixed_term": "1380",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "dpr-917-1986",
@@ -139,11 +143,11 @@
           "section": "art. 13 c. 1 lett. a)",
           "quote": "1.955 euro, se il reddito complessivo non supera 15.000 euro. L'ammontare della detrazione effettivamente spettante non può essere inferiore a 690 euro. Per i rapporti di lavoro a tempo determinato, l'ammontare della detrazione effettivamente spettante non può essere inferiore a 1.380 euro"
         },
-        "note": "open_ended applies to every contract except a fixed term, apprenticeship included (D.Lgs. 81/2015 art. 41 c. 1: 'L'apprendistato è un contratto di lavoro a tempo indeterminato'). Applied up to 15,000 EUR only (lett. a), after the proportion to the days and not proportioned itself: Allegato C to the 730/2026 instructions (Agenzia delle Entrate, provvedimento 27 febbraio 2026, 'Circolare per la liquidazione ed il controllo del mod. 730/2026'), par. 19.9.1, p. 339, https://www.agenziaentrate.gov.it/portale/documents/20143/9772565/Allegato+C+-+Circolare+di+liquidazione+mod+730+2026.pdf/2e2b18aa-3d7d-f192-8a84-669f76c8b6c6, sha256 7bd481daa0cb0fbbd4e35358c64cf9453625ebe441b52060f576ec3a8106f7a1: 'Si precisa che l’importo della detrazione minima come sopra determinata non deve essere rapportata ai giorni di lavoro dipendente', the deduction due being 'il maggiore importo tra quello della Detrazione-LavDip-Rapportata-Giorni e quello della Detrazione minima-LavDip'. Quote checked on 2026-10-07 against the Normattiva text of art. 13 in force on that date (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:1986-12-22;917~art13!vig=2026-10-07), whitespace normalised, the '((' '))' amendment markers around '1.955 euro' and the footnote mark '(229)' removed: identical. Not checked by a named reviewer."
+        "note": "open_ended applies to every contract except a fixed term, apprenticeship included (D.Lgs. 81/2015 art. 41 c. 1: 'L'apprendistato è un contratto di lavoro a tempo indeterminato'). Applied up to 15,000 EUR only (lett. a), after the proportion to the days and not proportioned itself: Allegato C to the 730/2026 instructions (Agenzia delle Entrate, provvedimento 27 febbraio 2026, 'Circolare per la liquidazione ed il controllo del mod. 730/2026'), par. 19.9.1, p. 339, https://www.agenziaentrate.gov.it/portale/documents/20143/9772565/Allegato+C+-+Circolare+di+liquidazione+mod+730+2026.pdf/2e2b18aa-3d7d-f192-8a84-669f76c8b6c6, sha256 7bd481daa0cb0fbbd4e35358c64cf9453625ebe441b52060f576ec3a8106f7a1: 'Si precisa che l’importo della detrazione minima come sopra determinata non deve essere rapportata ai giorni di lavoro dipendente', the deduction due being 'il maggiore importo tra quello della Detrazione-LavDip-Rapportata-Giorni e quello della Detrazione minima-LavDip'. Quote checked on 2026-10-07 against the Normattiva text of art. 13 in force on that date (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:1986-12-22;917~art13!vig=2026-10-07), whitespace normalised, the '((' '))' amendment markers around '1.955 euro' and the footnote mark '(229)' removed: identical. Not checked by a named reviewer. Assumed, not derived: its ruleset declares source_type 'estimated'."
       }
     },
     "provenance": {
-      "status": "derived",
+      "status": "assumed",
       "location": {
         "source_document": {
           "document_id": "dpr-917-1986",
@@ -151,7 +155,8 @@
           "kind": "dpr"
         },
         "section": "art. 13 c. 1"
-      }
+      },
+      "note": "Assumed, not derived: its ruleset declares source_type 'estimated'; no citation (http(s) url and section or page)."
     }
   },
   "notes": [
@@ -194,7 +199,7 @@
     }
   },
   "irpef_brackets_provenance": {
-    "status": "derived",
+    "status": "assumed",
     "location": {
       "source_document": {
         "document_id": "l-199-2025",
@@ -203,10 +208,11 @@
         "url": "https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.codiceRedazionale=26A00149&art.dataPubblicazioneGazzetta=2026-01-21&art.flagTipoArticolo=0&art.idArticolo=1&art.idGruppo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.progressivo=1&art.versione=1"
       },
       "section": "art. 1 c. 2"
-    }
+    },
+    "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
   },
   "fixed_term_additional_rate_provenance": {
-    "status": "derived",
+    "status": "assumed",
     "location": {
       "source_document": {
         "document_id": "l-92-2012",
@@ -214,13 +220,14 @@
         "kind": "legge"
       },
       "section": "art. 2 c. 28"
-    }
+    },
+    "note": "Assumed, not derived: its ruleset declares source_type 'estimated'; no citation (http(s) url and section or page)."
   },
   "complementary_pension": {
     "deduction_cap": "5300.00",
     "solidarity_rate": "0.10",
     "provenance": {
-      "status": "derived",
+      "status": "assumed",
       "location": {
         "source_document": {
           "document_id": "dlgs-252-2005",
@@ -231,7 +238,7 @@
         "section": "art. 8 c. 4, last period (added by L. 199/2025 art. 1 c. 201 lett. a) n. 1); art. 16 c. 1",
         "quote": "A decorrere dal periodo d'imposta 2026, il limite di cui al primo periodo è innalzato a euro 5.300."
       },
-      "note": "deduction_cap: art. 8 c. 4 D.Lgs. 252/2005, via art. 10 c. 1 lett. e-bis and art. 51 c. 2 lett. h TUIR; the TFR paid to the fund does not count. solidarity_rate: art. 16 c. 1 D.Lgs. 252/2005, the 10% contribution of art. 9-bis D.L. 103/1991 (conv. L. 166/1991) on the employer contributions other than the TFR. Quote checked on 2026-09-27 against the Normattiva text of art. 8 in force from 1-1-2026 (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2005-12-05;252~art8), whitespace normalised and the '((' '))' amendment markers removed: identical; the sentence added by the Gazzetta Ufficiale text of L. 199/2025 art. 1 c. 201 lett. a) n. 1 (https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.codiceRedazionale=26A00149&art.dataPubblicazioneGazzetta=2026-01-21&art.flagTipoArticolo=0&art.idArticolo=1&art.idGruppo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.progressivo=3&art.versione=1) is the same except for the accent spelling (e' for è). Not checked by a named reviewer."
+      "note": "deduction_cap: art. 8 c. 4 D.Lgs. 252/2005, via art. 10 c. 1 lett. e-bis and art. 51 c. 2 lett. h TUIR; the TFR paid to the fund does not count. solidarity_rate: art. 16 c. 1 D.Lgs. 252/2005, the 10% contribution of art. 9-bis D.L. 103/1991 (conv. L. 166/1991) on the employer contributions other than the TFR. Quote checked on 2026-09-27 against the Normattiva text of art. 8 in force from 1-1-2026 (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2005-12-05;252~art8), whitespace normalised and the '((' '))' amendment markers removed: identical; the sentence added by the Gazzetta Ufficiale text of L. 199/2025 art. 1 c. 201 lett. a) n. 1 (https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.codiceRedazionale=26A00149&art.dataPubblicazioneGazzetta=2026-01-21&art.flagTipoArticolo=0&art.idArticolo=1&art.idGruppo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.progressivo=3&art.versione=1) is the same except for the accent spelling (e' for è). Not checked by a named reviewer. Assumed, not derived: its ruleset declares source_type 'estimated'."
     }
   }
 }

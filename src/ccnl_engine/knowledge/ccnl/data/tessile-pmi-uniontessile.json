@@ -129,7 +129,7 @@
       "cadence_months": 24,
       "maximum_count": 4,
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "kitech-tessile-pmi-categ501",
@@ -144,7 +144,8 @@
           "extraction_timestamp": "2026-09-17T00:00:00",
           "verification_status": "verified",
           "effective_from": "2024-04-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       },
       "amount_by_level": {
         "1": {
@@ -272,7 +273,7 @@
       "category": "operaio",
       "description": "Livello 1 — base",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "kitech-tessile-pmi-categ501",
@@ -287,7 +288,8 @@
           "extraction_timestamp": "2026-09-17T00:00:00",
           "verification_status": "verified",
           "effective_from": "2026-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       },
       "base_salary": {
         "periods": [
@@ -296,7 +298,7 @@
             "valid_until": "2025-01-01",
             "value": "1281.95",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -311,7 +313,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "unverified",
                 "effective_from": "2024-04-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -319,7 +322,7 @@
             "valid_until": null,
             "value": "1558.00",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -334,7 +337,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "unverified",
                 "effective_from": "2025-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -347,7 +351,7 @@
       "category": "operaio",
       "description": "Livello 2",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "kitech-tessile-pmi-categ501",
@@ -362,7 +366,8 @@
           "extraction_timestamp": "2026-09-17T00:00:00",
           "verification_status": "verified",
           "effective_from": "2026-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       },
       "base_salary": {
         "periods": [
@@ -371,7 +376,7 @@
             "valid_until": "2025-01-01",
             "value": "1624.36",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -386,7 +391,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "unverified",
                 "effective_from": "2024-04-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -394,7 +400,7 @@
             "valid_until": "2026-01-01",
             "value": "1710.47",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -409,7 +415,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "unverified",
                 "effective_from": "2025-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -417,7 +424,7 @@
             "valid_until": "2027-01-01",
             "value": "1762.14",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "kitech-tessile-pmi-categ501",
@@ -432,7 +439,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -440,7 +448,7 @@
             "valid_until": null,
             "value": "1796.58",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -455,7 +463,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "unverified",
                 "effective_from": "2027-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -468,7 +477,7 @@
       "category": "operaio",
       "description": "Livello 2 bis",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "kitech-tessile-pmi-categ501",
@@ -483,7 +492,8 @@
           "extraction_timestamp": "2026-09-17T00:00:00",
           "verification_status": "verified",
           "effective_from": "2026-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       },
       "base_salary": {
         "periods": [
@@ -492,7 +502,7 @@
             "valid_until": "2025-01-01",
             "value": "1669.04",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -507,7 +517,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "unverified",
                 "effective_from": "2024-04-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -515,7 +526,7 @@
             "valid_until": "2026-01-01",
             "value": "1759.60",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -530,7 +541,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "unverified",
                 "effective_from": "2025-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -538,7 +550,7 @@
             "valid_until": "2027-01-01",
             "value": "1813.93",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "kitech-tessile-pmi-categ501",
@@ -553,7 +565,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -561,7 +574,7 @@
             "valid_until": null,
             "value": "1850.15",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -576,7 +589,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "unverified",
                 "effective_from": "2027-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -589,7 +603,7 @@
       "category": "operaio",
       "description": "Livello 3",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "kitech-tessile-pmi-categ501",
@@ -604,7 +618,8 @@
           "extraction_timestamp": "2026-09-17T00:00:00",
           "verification_status": "verified",
           "effective_from": "2026-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       },
       "base_salary": {
         "periods": [
@@ -613,7 +628,7 @@
             "valid_until": "2025-01-01",
             "value": "1720.03",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -628,7 +643,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "unverified",
                 "effective_from": "2024-04-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -636,7 +652,7 @@
             "valid_until": "2026-01-01",
             "value": "1814.47",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -651,7 +667,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "unverified",
                 "effective_from": "2025-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -659,7 +676,7 @@
             "valid_until": "2027-01-01",
             "value": "1871.14",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "kitech-tessile-pmi-categ501",
@@ -674,7 +691,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -682,7 +700,7 @@
             "valid_until": null,
             "value": "1908.92",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -697,7 +715,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "unverified",
                 "effective_from": "2027-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -710,7 +729,7 @@
       "category": "operaio",
       "description": "Livello 3 bis",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "kitech-tessile-pmi-categ501",
@@ -725,7 +744,8 @@
           "extraction_timestamp": "2026-09-17T00:00:00",
           "verification_status": "verified",
           "effective_from": "2026-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       },
       "base_salary": {
         "periods": [
@@ -734,7 +754,7 @@
             "valid_until": "2025-01-01",
             "value": "1761.28",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -749,7 +769,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "unverified",
                 "effective_from": "2024-04-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -757,7 +778,7 @@
             "valid_until": "2026-01-01",
             "value": "1858.50",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -772,7 +793,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "unverified",
                 "effective_from": "2025-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -780,7 +802,7 @@
             "valid_until": "2027-01-01",
             "value": "1916.84",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "kitech-tessile-pmi-categ501",
@@ -795,7 +817,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -803,7 +826,7 @@
             "valid_until": null,
             "value": "1955.72",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -818,7 +841,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "unverified",
                 "effective_from": "2027-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -831,7 +855,7 @@
       "category": "impiegato",
       "description": "Livello 4",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "kitech-tessile-pmi-categ501",
@@ -846,7 +870,8 @@
           "extraction_timestamp": "2026-09-17T00:00:00",
           "verification_status": "verified",
           "effective_from": "2026-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       },
       "base_salary": {
         "periods": [
@@ -855,7 +880,7 @@
             "valid_until": "2025-01-01",
             "value": "1802.56",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -870,7 +895,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "unverified",
                 "effective_from": "2024-04-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -878,7 +904,7 @@
             "valid_until": "2026-01-01",
             "value": "1902.56",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -893,7 +919,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "unverified",
                 "effective_from": "2025-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -901,7 +928,7 @@
             "valid_until": "2027-01-01",
             "value": "1962.56",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "kitech-tessile-pmi-categ501",
@@ -916,7 +943,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -924,7 +952,7 @@
             "valid_until": null,
             "value": "2002.56",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -939,7 +967,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "unverified",
                 "effective_from": "2027-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -952,7 +981,7 @@
       "category": "impiegato",
       "description": "Livello 5",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "kitech-tessile-pmi-categ501",
@@ -967,7 +996,8 @@
           "extraction_timestamp": "2026-09-17T00:00:00",
           "verification_status": "verified",
           "effective_from": "2026-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       },
       "base_salary": {
         "periods": [
@@ -976,7 +1006,7 @@
             "valid_until": "2025-01-01",
             "value": "1904.62",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -991,7 +1021,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "unverified",
                 "effective_from": "2024-04-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -999,7 +1030,7 @@
             "valid_until": "2026-01-01",
             "value": "2010.73",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -1014,7 +1045,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "unverified",
                 "effective_from": "2025-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -1022,7 +1054,7 @@
             "valid_until": "2027-01-01",
             "value": "2074.40",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "kitech-tessile-pmi-categ501",
@@ -1037,7 +1069,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -1045,7 +1078,7 @@
             "valid_until": null,
             "value": "2116.84",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -1060,7 +1093,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "unverified",
                 "effective_from": "2027-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -1073,7 +1107,7 @@
       "category": "impiegato",
       "description": "Livello 6",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "kitech-tessile-pmi-categ501",
@@ -1088,7 +1122,8 @@
           "extraction_timestamp": "2026-09-17T00:00:00",
           "verification_status": "verified",
           "effective_from": "2026-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       },
       "base_salary": {
         "periods": [
@@ -1097,7 +1132,7 @@
             "valid_until": "2025-01-01",
             "value": "2032.22",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -1112,7 +1147,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "unverified",
                 "effective_from": "2024-04-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -1120,7 +1156,7 @@
             "valid_until": "2026-01-01",
             "value": "2145.00",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -1135,7 +1171,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "unverified",
                 "effective_from": "2025-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -1143,7 +1180,7 @@
             "valid_until": "2027-01-01",
             "value": "2212.66",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "kitech-tessile-pmi-categ501",
@@ -1158,7 +1195,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -1166,7 +1204,7 @@
             "valid_until": null,
             "value": "2257.77",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -1181,7 +1219,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "unverified",
                 "effective_from": "2027-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -1194,7 +1233,7 @@
       "category": "impiegato",
       "description": "Livello 7",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "kitech-tessile-pmi-categ501",
@@ -1209,7 +1248,8 @@
           "extraction_timestamp": "2026-09-17T00:00:00",
           "verification_status": "verified",
           "effective_from": "2026-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       },
       "base_salary": {
         "periods": [
@@ -1218,7 +1258,7 @@
             "valid_until": "2025-01-01",
             "value": "2165.73",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -1233,7 +1273,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "unverified",
                 "effective_from": "2024-04-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -1241,7 +1282,7 @@
             "valid_until": "2026-01-01",
             "value": "2284.62",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -1256,7 +1297,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "unverified",
                 "effective_from": "2025-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -1264,7 +1306,7 @@
             "valid_until": "2027-01-01",
             "value": "2355.95",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "kitech-tessile-pmi-categ501",
@@ -1279,7 +1321,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -1287,7 +1330,7 @@
             "valid_until": null,
             "value": "2403.51",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -1302,7 +1345,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "unverified",
                 "effective_from": "2027-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -1315,7 +1359,7 @@
       "category": "quadro",
       "description": "Livello 8 — quadro",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "kitech-tessile-pmi-categ501",
@@ -1330,7 +1374,8 @@
           "extraction_timestamp": "2026-09-17T00:00:00",
           "verification_status": "verified",
           "effective_from": "2026-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       },
       "base_salary": {
         "periods": [
@@ -1339,7 +1384,7 @@
             "valid_until": "2025-01-01",
             "value": "2294.34",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -1354,7 +1399,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "unverified",
                 "effective_from": "2024-04-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -1362,7 +1408,7 @@
             "valid_until": "2026-01-01",
             "value": "2421.56",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -1377,7 +1423,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "unverified",
                 "effective_from": "2025-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -1385,7 +1432,7 @@
             "valid_until": "2027-01-01",
             "value": "2497.90",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "kitech-tessile-pmi-categ501",
@@ -1400,7 +1447,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -1408,7 +1456,7 @@
             "valid_until": null,
             "value": "2548.78",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -1423,7 +1471,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "unverified",
                 "effective_from": "2027-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -1442,7 +1491,7 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "kitech-tessile-pmi-categ501",
@@ -1457,7 +1506,8 @@
               "extraction_timestamp": "2026-09-17T00:00:00",
               "verification_status": "unverified",
               "effective_from": "2024-04-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         }
       ]
@@ -1472,6 +1522,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "9b80e871a3b1ebafa0887a50168bca2635d734dc83d2f2028506f4708cd6e255"
+    "source_hash": "4fdd37af881df95c1ff971655e345e62ceba2943aa3015c21e5582574cb1733a"
   }
 }

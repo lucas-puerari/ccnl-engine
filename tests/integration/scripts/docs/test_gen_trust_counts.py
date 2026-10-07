@@ -85,7 +85,8 @@ def test_count_quoted_by_no_page_fails(trust_copy: Path) -> None:
 def test_readiness_counts_follow_the_loader_default() -> None:
     """Files without a readiness key count as the model default."""
     counts = bundle_counts()
-    reviewed = counts["readiness-reviewed-list"].split(", ")
+    listed = counts["readiness-reviewed-list"]
+    reviewed = [] if listed == "none" else listed.split(", ")
 
     assert len(reviewed) == int(counts["readiness-reviewed"])
     for ccnl_id in reviewed:

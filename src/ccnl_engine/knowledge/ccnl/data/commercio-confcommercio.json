@@ -2746,7 +2746,7 @@
     "effective_until": null,
     "source": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
     "verification_status": "unverified",
-    "source_hash": "31bcdb2aaee546a3048757e30a7eb3044d31065a97312ef342dc8eeefc55c34e",
+    "source_hash": "0239febc65d716ca98ce45282361f5cee55a5976a99a799ed711530fbb1295e5",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2981,7 +2981,7 @@
   },
   "verification": {
     "confidence": "unverified",
-    "readiness": "reviewed",
+    "readiness": "exploratory",
     "verified_cases": 0,
     "last_reviewed": "2026-09-18",
     "human_reviewed_by": "lucas-puerari"

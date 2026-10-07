@@ -22,7 +22,13 @@ if TYPE_CHECKING:
     import pytest
 
 _SCRIPT = Path(__file__).parents[4] / "scripts" / "ci" / "check_provenance.py"
-_RECORD: dict[str, object] = {"status": "derived", "location": {"section": "Art. 1"}}
+_RECORD: dict[str, object] = {
+    "status": "derived",
+    "location": {
+        "source_document": {"url": "https://www.cnel.it/ccnl-x.pdf"},
+        "section": "Art. 1",
+    },
+}
 
 
 def _knowledge(root: Path, level: dict[str, object]) -> Path:
@@ -78,6 +84,19 @@ def test_derived_record_passes(tmp_path: Path) -> None:
     assert [rule.status for rule in inventory(root)] == ["derived", "derived"]
 
 
+def test_uncited_derived_record_fails_the_schema_gate(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    """A ``derived`` record without a url is labelled stronger than it is."""
+    uncited: dict[str, object] = {"status": "derived", "location": {"section": "1"}}
+    assert not check_rules(_knowledge(tmp_path, _level(uncited)))
+    err = capsys.readouterr().err
+    assert (
+        "ccnl/data/x.json: levels[0].provenance: derived: no citation "
+        "(http(s) url and section or page)"
+    ) in err
+
+
 def test_bundle_passes_in_rules_mode() -> None:
     """The bundled data has a record for every payable rule."""
     result = subprocess.run(
@@ -111,7 +130,7 @@ def _evidence_tree(root: Path, status: str = "assumed") -> Path:
     return root
 
 
-_EMPTY = Snapshot(weak_rules={}, open_limitations={}, readiness_contradictions=())
+_EMPTY = Snapshot(weak_rules={}, open_limitations={})
 
 
 def test_verified_rule_without_evidence_fails_the_schema_gate(
@@ -134,7 +153,7 @@ def test_evidence_gate_passes_on_the_baseline(
     assert check_evidence(root, baseline)
     out = capsys.readouterr().out
     assert "Rules per capability" in out
-    assert "Weak rules: 1; open limitations: 0; readiness contradictions: 0" in out
+    assert "Weak rules: 1; open limitations: 0" in out
 
 
 def test_evidence_gate_fails_on_a_new_weak_rule(

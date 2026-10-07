@@ -17,7 +17,7 @@ import pytest
 from ccnl_engine.contract.domain.identity import TaxSector
 from ccnl_engine.contract.service import loaders as contract_loaders
 from ccnl_engine.contract.service.loaders import (
-    _verify_ruleset_hash as _verify_contract_hash,
+    _verify_payload as _verify_contract_hash,
 )
 from ccnl_engine.contract.service.loaders import (
     load_ccnl as load_ccnl_from_bundle,
@@ -115,46 +115,40 @@ class TestContractLoaderIntegrity:
 
 
 class TestVerifyRulesetHash:
-    """Direct branch coverage of _verify_ruleset_hash in each loader."""
+    """Direct branch coverage of _verify_payload in each loader."""
 
     @pytest.mark.parametrize("module_path", LOADER_PATHS)
     def test_no_ruleset_is_skipped(self, module_path: str) -> None:
         """A payload without a ruleset block is never verified."""
         loader = importlib.import_module(module_path)
-        verify = loader._verify_ruleset_hash
-        if "contract" in module_path:
-            verify({"levels": []})  # single-arg signature
-        else:
-            verify({"levels": []}, "file.json")
+        verify = loader._verify_payload
+        verify({"levels": []}, "file.json")
 
     @pytest.mark.parametrize("module_path", LOADER_PATHS)
     def test_malformed_source_hash_is_skipped(self, module_path: str) -> None:
         """A non-string source_hash is ignored (no hash comparison)."""
         loader = importlib.import_module(module_path)
-        verify = loader._verify_ruleset_hash
+        verify = loader._verify_payload
         payload = {"a": 1, "ruleset": {"source_hash": 123}}
-        if "contract" in module_path:
-            verify(payload)
-        else:
-            verify(payload, "file.json")
+        verify(payload, "file.json")
 
     def test_contract_mismatch_raises(self) -> None:
         """Contract loader raises on a stale hash with a stable message."""
         payload = {"a": 2, "ruleset": {"source_hash": "0" * 64}}
         with pytest.raises(DataIntegrityError, match="source_hash mismatch"):
-            _verify_contract_hash(payload)
+            _verify_contract_hash(payload, "x.json")
 
     def test_tax_mismatch_raises_with_filename(self) -> None:
         """Tax loader includes the filename in the mismatch error."""
         payload = {"a": 2, "ruleset": {"source_hash": "0" * 64}}
         with pytest.raises(DataIntegrityError, match=r"in 2026-terziario\.json"):
-            tax_resource_reader_mod._verify_ruleset_hash(payload, "2026-terziario.json")
+            tax_resource_reader_mod._verify_payload(payload, "2026-terziario.json")
 
     def test_surtax_mismatch_raises_with_filename(self) -> None:
         """Surtax loader includes the filename in the mismatch error."""
         payload = {"a": 2, "ruleset": {"source_hash": "0" * 64}}
         with pytest.raises(DataIntegrityError, match=r"in regionale-2026\.json"):
-            surtax_loaders._verify_ruleset_hash(payload, "regionale-2026.json")
+            surtax_loaders._verify_payload(payload, "regionale-2026.json")
 
 
 class TestTaxLoaderIntegrity:

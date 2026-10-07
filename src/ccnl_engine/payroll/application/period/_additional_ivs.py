@@ -19,8 +19,16 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.application.period._context import RunContext
     from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
     from ccnl_engine.payroll.domain.run import PayrollRunId
+    from ccnl_engine.provenance.domain.chain import RuleProvenance
+    from ccnl_engine.tax.domain.contribution_rules import InpsRates
 
-__all__ = ["FACT", "UNKNOWN_CODE", "additional_ivs_issue", "additional_ivs_position"]
+__all__ = [
+    "FACT",
+    "UNKNOWN_CODE",
+    "additional_ivs_issue",
+    "additional_ivs_position",
+    "additional_ivs_rules",
+]
 
 #: Fact a settling run needs when other employers have a base of the year.
 FACT = "other_employers_additional_ivs"
@@ -103,3 +111,21 @@ def additional_ivs_issue(ctx: RunContext) -> CalculationIssue | None:
         source=rule.provenance.location if rule.provenance else None,
         fact=FACT,
     )
+
+
+def additional_ivs_rules(
+    name: str, rates: InpsRates | None
+) -> tuple[tuple[str, RuleProvenance | None], ...]:
+    """Return the 1% employee IVS rule of the sector, when it models one.
+
+    Args:
+        name: Id of the INPS ruleset that holds the rule.
+        rates: INPS rates of the sector, if any.
+
+    Returns:
+        The ``inps.employee_additional`` rule with its record, or nothing.
+    """
+    rule = None if rates is None else rates.employee_additional
+    if rule is None:
+        return ()
+    return ((f"{name}:inps.employee_additional", rule.provenance),)

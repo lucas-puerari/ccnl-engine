@@ -29,6 +29,12 @@ At least the L1 values (base salary per level, seniority table, additional
 months, hourly divisor) have been cross-checked by a person against the
 primary CCNL document, and the source URL is recorded in the JSON.
 
+The tier also requires `verification.confidence = "verified"` and no
+`assumed` or `missing` payable rule in the CCNL file (salary tables,
+allowances, seniority, extra months and their accrual, overtime, absence and
+sickness rules, employer funds): a review cannot clear a value no source
+backs.
+
 **Safe for:** product simulations with an explicit disclaimer that names the
 verification scope and date; workforce-planning and offer-modelling tools.
 
@@ -57,7 +63,10 @@ A human reviewer must:
 4. Confirm `additional_months`, `hourly_divisor`, and any fixed allowances.
 5. Record `verification.last_reviewed`, `verification.human_reviewed_by`, and
    set `verification.confidence = "verified"` on the verified fields.
-6. Set `verification.readiness = "reviewed"` in the CCNL JSON.
+6. Source every `assumed` or `missing` payable rule of the CCNL file: each
+   must be `derived` or `verified` (see
+   [Provenance](provenance.md#a-label-never-outruns-its-evidence)).
+7. Set `verification.readiness = "reviewed"` in the CCNL JSON.
 
 ### `reviewed` → `production`
 
@@ -77,7 +86,9 @@ In addition to the `reviewed` criteria:
 5. Set `verification.readiness = "production"` in the CCNL JSON.
 
 The schema gate (`scripts/ci/check_provenance.py --schema`) rejects a
-`production` ruleset without these fields or without `confidence` `verified`.
+`reviewed` or `production` ruleset with an `assumed` or `missing` payable
+rule in its file or without `confidence` `verified`, and a `production`
+ruleset without the fields above. These errors have no baseline.
 
 ## Current status
 
@@ -90,18 +101,25 @@ it drifts):
 
 | Readiness | CCNL rulesets |
 |---|---:|
-| `exploratory` | 110 |
-| `reviewed` | 15 |
+| `exploratory` | 125 |
+| `reviewed` | 0 |
 | `production` | 0 |
 
 <!-- /trust:readiness-table -->
 
-The <!-- trust:readiness-reviewed -->15<!-- /trust:readiness-reviewed -->
-`reviewed` rulesets: <!-- trust:readiness-reviewed-list -->`commercio-confcommercio`, `cooperative-sociali`, `dmo-federdistribuzione`, `edilizia-ance`, `edilizia-artigianato-cna`, `funzioni-locali-aran`, `istruzione-ricerca-aran`, `lavoro-domestico-convivente`, `lavoro-domestico-non-convivente`, `logistica-trasporto-confetra`, `metalmeccanico-artigianato`, `metalmeccanico-federmeccanica`, `multiservizi-anip`, `operai-agricoli-florovivaisti`, `sanita-aran`<!-- /trust:readiness-reviewed-list -->.
+The <!-- trust:readiness-reviewed -->0<!-- /trust:readiness-reviewed -->
+`reviewed` rulesets: <!-- trust:readiness-reviewed-list -->none<!-- /trust:readiness-reviewed-list -->.
 Each [contract page](../contracts/index.md) shows its own tier.
 
+No ruleset is `reviewed` today. Fifteen rulesets were `reviewed` until
+October 2026 on a file-level review: each still read `assumed` or `missing`
+payable rules and none recorded a `verified` confidence, so all fifteen were
+lowered to `exploratory`. Their `verification.human_reviewed_by` and
+`verification.last_reviewed` are kept; they return to `reviewed` once their
+weak rules are sourced and their confidence is `verified`.
+
 `reviewed` records a file-level review, not a per-value one. Of the `reviewed`
-rulesets, <!-- trust:reviewed-with-reviewer -->15<!-- /trust:reviewed-with-reviewer -->
+rulesets, <!-- trust:reviewed-with-reviewer -->0<!-- /trust:reviewed-with-reviewer -->
 record `verification.human_reviewed_by` and `verification.last_reviewed`, and
 <!-- trust:reviewed-confidence-verified -->0<!-- /trust:reviewed-confidence-verified -->
 set `verification.confidence = "verified"` (step 5 of the criteria above).
@@ -129,10 +147,9 @@ identity as `confidence`; their evidence is the provenance of each rule (see
 
 `RulesetAssurance.confidence_contradicts_readiness` is `True` when a
 `reviewed` or `production` tier is not backed by
-`verification.confidence = "verified"` (step 5 of the criteria above). Of the
-<!-- trust:readiness-reviewed -->15<!-- /trust:readiness-reviewed --> `reviewed`
-rulesets, <!-- trust:reviewed-confidence-verified -->0<!-- /trust:reviewed-confidence-verified -->
-record a `verified` confidence; the flag is `True` for all the others. `RulesetAssurance.is_production` requires both the
+`verification.confidence = "verified"` (step 5 of the criteria above). The
+schema gate rejects such a tier in the bundle, so the flag is `False` for
+every bundled ruleset. `RulesetAssurance.is_production` requires both the
 `production` tier and a confidence that agrees.
 
 ## Simulation and operational modes
