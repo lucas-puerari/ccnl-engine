@@ -110,6 +110,16 @@ class TestEmploymentAccrualState:
 
         assert len(state.competence_runs) == 2
 
+    def test_second_adjustment_of_a_month_closes_once(self) -> None:
+        """A second correction of a month is a new run; repeating it is not."""
+        state = _state("2026-12-regular", "2026-12-adjustment")
+
+        state.check_next_run(PayrollRunId.parse("2026-12-adjustment-2"))
+        with pytest.raises(InvalidInputError, match="already closed"):
+            state.after(PayrollRunId.parse("2026-12-adjustment-2")).check_next_run(
+                PayrollRunId.parse("2026-12-adjustment-2")
+            )
+
     def test_check_next_run(self) -> None:
         """The rules apply to the next run before it is computed."""
         state = _state("2026-03-regular")

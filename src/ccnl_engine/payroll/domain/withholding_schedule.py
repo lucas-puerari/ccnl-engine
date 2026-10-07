@@ -112,7 +112,7 @@ class WithholdingSchedule:
         if not self.slots:
             msg = "a withholding schedule needs at least one payment"
             raise InvalidInputError(msg, feature=_FEATURE)
-        seen: set[tuple[int, int, RunKind]] = set()
+        seen: set[tuple[int, int, RunKind, int]] = set()
         for slot in self.slots:
             payment = slot.payment
             if payment.run_id.payment_key in seen:

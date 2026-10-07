@@ -86,7 +86,7 @@ def run_events(ctx: RunContext) -> RunEvents:
     """
     events = RunEvents(*variable_events(ctx))
     settlement = settle_extra_months(
-        ctx.request.extra_month_settlements,
+        ctx.settlements,
         ctx.regular_chain,
         ctx.cp,
         ctx.contract.tctx.payment,

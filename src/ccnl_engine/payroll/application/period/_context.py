@@ -71,6 +71,8 @@ class RunContext:
         regular_chain: Pay chain of a fully employed regular month, which
             the extra-month settlements and the domestic hourly rate read.
         proration: Payable part of the month of a regular run.
+        settlements: Ratei the run liquidates at the termination of the
+            employment, paid as extra-month earnings.
     """
 
     request: PeriodCalculationRequest
@@ -90,6 +92,7 @@ class RunContext:
     cp: CompetencePeriod
     regular_chain: MonthlyPayChain
     proration: RunProration
+    settlements: tuple[ExtraMonthAccrual, ...]
 
     @property
     def fiscal_year(self) -> int:

@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from datetime import date
+
 import pytest
 
 from ccnl_engine import (
@@ -64,5 +66,8 @@ def test_payment_month_override_is_reported_on_the_result() -> None:
     )
 
     assert run_ids[7] == "2026-07-fourteenth"
+    # The override sets its own payment month: the run is paid on the
+    # payment day of that month, not on the CCNL day of the standard one.
+    assert year.period_results[7].payment_date == date(2026, 7, 28)
     assert year.annual_gross == standard.annual_gross
     assert year.calendar_override is override

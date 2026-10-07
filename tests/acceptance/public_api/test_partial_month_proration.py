@@ -73,8 +73,29 @@ def _run(
     )
 
 
+def _month_pay(result: PeriodResult) -> Decimal:
+    """Return the gross of the month, without the ratei of a termination.
+
+    The run of the termination month also liquidates the tredicesima ratei
+    not yet paid, as extra-month earnings next to the month.
+
+    Returns:
+        The gross less the extra-month earnings.
+    """
+    ratei = sum(
+        (i.amount for i in result.pay_items if i.kind == "extra_month_earning"),
+        Decimal(0),
+    )
+    return result.period_gross - ratei
+
+
 def _base_salary(result: PeriodResult) -> tuple[str, Decimal | None]:
-    (decision,) = [d for d in result.decisions if d.capability == "base_salary"]
+    (decision,) = [
+        d
+        for d in result.decisions
+        if d.capability == "base_salary"
+        and d.reason_code != "extra_month_ratei_counted"
+    ]
     return decision.reason_code, decision.amount
 
 
@@ -138,7 +159,7 @@ def test_hire_and_termination_months_pay_daily_quotas(
     """The month pays ``2,158.26 x payable days / 26``, at most the month."""
     result = _run(month, _employment(period))
 
-    assert result.period_gross == expected
+    assert _month_pay(result) == expected
     assert _base_salary(result)[1] == expected
 
 
@@ -317,7 +338,9 @@ def test_termination_run_closing_the_month_pays_its_daily_quotas() -> None:
     """Ended 15 April, no regular April run: 13 payable days, 1,079.13."""
     result = _closing_run("termination", 4, _employment(_ENDS_15_APRIL), None)
 
-    assert result.period_gross == Decimal("1079.13")
+    assert _month_pay(result) == Decimal("1079.13")
+    # It pays the month, so it also liquidates the tredicesima ratei.
+    assert result.period_gross > _month_pay(result)
     assert _base_salary(result) == ("pay_chain_prorated", Decimal("1079.13"))
 
 
@@ -331,13 +354,13 @@ def test_regular_and_termination_runs_pay_the_month_once() -> None:
     regular = _run(4, employment)
     termination = _closing_run("termination", 4, employment, regular)
 
-    assert regular.period_gross == Decimal("1079.13")
+    assert _month_pay(regular) == Decimal("1079.13")
     assert termination.period_gross == Decimal("0.00")
     assert _base_salary(termination) == (
         "monthly_pay_posted_by_another_run",
         Decimal("0.00"),
     )
-    assert regular.period_gross + termination.period_gross == Decimal("1079.13")
+    assert _month_pay(regular) + _month_pay(termination) == Decimal("1079.13")
 
 
 def test_adjustment_run_never_posts_the_monthly_pay_again() -> None:

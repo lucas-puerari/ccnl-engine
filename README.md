@@ -185,7 +185,8 @@ The state keeps competence and cash apart: `closing_state.accrual` lists the
 runs closed over the employment and the INPS base of each competence year,
 `closing_state.cash` the payments and year-to-date totals of the tax year.
 A run is paid on `payment_day` of its month unless `payment_dates` names its
-date. A December paid after 12 January is a payment of the next tax year
+date, or the CCNL fixes the day of its quattordicesima (Commercio: 1 July).
+A December paid after 12 January is a payment of the next tax year
 (TUIR art. 51 c. 1): `calculate_competence_year` settles the conguaglio of
 the year on its last payment actually made in it and opens the next tax
 year with the late December, and `calculate_tax_year(TaxYearPlan(...))`

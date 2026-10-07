@@ -36,9 +36,9 @@ class TestPeriodState:
         assert state.cash.withholding_payments_closed == 0
         assert state.tax_year is None
 
-    def test_schema_version_is_nine(self) -> None:
-        """SCHEMA_VERSION is 10 since the cash state records employment spells."""
-        assert PeriodState.SCHEMA_VERSION == 10
+    def test_schema_version_is_eleven(self) -> None:
+        """SCHEMA_VERSION is 11 since a run id carries its sequence number."""
+        assert PeriodState.SCHEMA_VERSION == 11
 
     def test_tax_year_is_that_of_the_cash_state(self) -> None:
         """The tax year is read from the cash state."""

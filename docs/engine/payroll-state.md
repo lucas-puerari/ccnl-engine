@@ -47,10 +47,13 @@ competence run and a payment of tax year 2027 (TUIR art. 51 c. 1).
 - `state.cash.conguaglio` is the payment that settled the conguaglio of the
   tax year, `None` until then; `cash.is_complete` is true once it is set.
 
-A `PayrollRunId` holds the year and month of the run and its `RunKind`; its
-text form is the `run_id` of `PayrollRun` (`"2026-12-thirteenth"`), and
-`PayrollRunId.parse()` reads it back. A period computed without a `run`
-closes the regular run of its month.
+A `PayrollRunId` holds the year and month of the run, its `RunKind` and a
+sequence number; its text form is the `run_id` of `PayrollRun`
+(`"2026-12-thirteenth"`), and `PayrollRunId.parse()` reads it back. Every
+kind closes once per month except an adjustment: a second correction of
+the same month is `PayrollRun.adjustment(2026, 12, sequence=2)`, with run id
+`"2026-12-adjustment-2"`, and closes once like any run. A period computed
+without a `run` closes the regular run of its month.
 
 A run is rejected with `InvalidInputError` before any amount is computed
 when:
@@ -70,7 +73,20 @@ when:
   not ordered against each other;
 - its payment belongs to another tax year than the state, or is dated
   before the last payment closed in it (feature `tax_cash_state` or
-  `tax_year`).
+  `tax_year`);
+- it is a tredicesima or quattordicesima run, at or after the month the
+  employment ends, of an extra month whose ratei the run of that month
+  liquidates (feature `payroll_run`; see below).
+
+### Extra months at the termination
+
+An extra month paid after the end of the employment is liquidated on the
+run that pays the termination month (its regular run, or a termination run
+when the regular is not closed), on the window of the next payment counted
+up to the termination date: extra-month earnings `ratei at termination:
+n/12`. Chained `calculate_period` runs pay what a competence year pays, and
+an extra-month run of a liquidated kind in or after that month is refused.
+Chained runs read the absences that suspend accrual from that run only.
 
 Closing is idempotent by payment: the same request on the same opening
 state yields the same closing state, and a state that already closed the

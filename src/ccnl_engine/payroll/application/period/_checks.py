@@ -117,7 +117,7 @@ def run_facts(
     *,
     ivs_ceiling_applies: bool,
     pdr_cap: Decimal,
-    accrual: ExtraMonthAccrual | None,
+    accruals: tuple[ExtraMonthAccrual, ...],
     projected_taxable: Decimal | None,
     withholding_agent: bool,
 ) -> RunFacts:
@@ -130,9 +130,6 @@ def run_facts(
     """
     inps = year_rules.inps
     ceiling = inps.ceiling if inps is not None and ivs_ceiling_applies else None
-    accruals = (() if accrual is None else (accrual,)) + tuple(
-        request.extra_month_settlements
-    )
     return RunFacts(
         employment_period=request.employment_period,
         ivs_ceiling=ceiling,

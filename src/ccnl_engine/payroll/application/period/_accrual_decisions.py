@@ -38,7 +38,7 @@ def run_accruals(ctx: RunContext) -> tuple[ExtraMonthAccrual, ...]:
         on the run.
     """
     own = () if ctx.accrual is None else (ctx.accrual,)
-    return own + ctx.request.extra_month_settlements
+    return own + ctx.settlements
 
 
 def _origin(rule: MonthAccrualRule) -> str:

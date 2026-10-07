@@ -88,7 +88,9 @@ class CompetenceYearPlan:
             override that drops or lowers an extra month the CCNL grants, or
             does not match its reason, raises when the year is calculated.
         payment_day: Day of the run month on which a run is paid, 1-28,
-            unless :attr:`payment_dates` names its date.
+            unless :attr:`payment_dates` names its date or the CCNL fixes
+            the day of its quattordicesima (Commercio: 1 July) and the plan
+            has no :attr:`calendar_override`.
         payment_dates: Payment date per run, keyed like :attr:`periods`:
             ``{12: date(2027, 1, 13)}`` pays the December salary on 13
             January 2027; an employer that pays in arrears names every
