@@ -22,8 +22,9 @@ Rules of every example:
   first category that is;
 - seniority: recognised from 1 September 2026, a new hire, so the run
   states the fact its increments need and no increment is due;
-- domestic CCNLs: weekly hours and contributable hours of a full-time
-  month, both derived from the ``hourly_divisor`` of the CCNL.
+- domestic CCNLs: weekly hours, stated as the full time too, and
+  contributable hours of a full-time month, both derived from the
+  ``hourly_divisor`` of the CCNL.
 
 Run with::
 
@@ -295,7 +296,11 @@ def _call(spec: ExampleSpec) -> str:
     if spec.category is not None:
         employment.append(f"category=WorkerCategory.{spec.category}")
     if spec.domestic:
-        employment.append(f"weekly_hours=WeeklyHours({spec.weekly_hours})")
+        hours = f"WeeklyHours({spec.weekly_hours})"
+        employment.extend((
+            f"weekly_hours={hours}",
+            f"full_time_weekly_hours={hours}",
+        ))
         facts.insert(
             0,
             "contributable_hours=ContributableHours("
