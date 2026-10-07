@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 from ccnl_engine.payroll.application._period_utils import _ZERO
 from ccnl_engine.payroll.application.amounts._family import resolve_family
 from ccnl_engine.payroll.application.amounts._taxable import one_off_taxable
+from ccnl_engine.payroll.domain.employment import FixedTerm
 from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 from ccnl_engine.payroll.service.irpef_net import NetIrpef, net_irpef
 from ccnl_engine.payroll.service.tax_computation import TaxResolution, compute_tax
@@ -32,6 +33,17 @@ class _Irpef:
 
     tax: TaxResolution
     family: RunFamily | None
+
+
+def _fixed_term(inp: _AmountsInput) -> bool:
+    """Return whether the employment of the run is fixed-term.
+
+    It selects the minimum of the art. 13 deduction (c. 1 lett. a) TUIR).
+
+    Returns:
+        True for a :class:`FixedTerm` contract.
+    """
+    return isinstance(inp.contract_type, FixedTerm)
 
 
 def _family_deductions(family: RunFamily | None, own_income: Decimal) -> Decimal:
@@ -61,6 +73,7 @@ def _without_one_off(
         inp.rules,
         family_deductions=_family_deductions(family, taxable - one_off),
         eligible_work_days=min(inp.eligible_work_days, DAYS_IN_YEAR),
+        fixed_term=_fixed_term(inp),
     )
 
 
@@ -105,5 +118,6 @@ def withhold_irpef(
         run=inp.installment_run,
         ulteriore_plan=inp.ulteriore_plan,
         foreign_taxes=inp.foreign_taxes if inp.conguaglio else (),
+        fixed_term=_fixed_term(inp),
     )
     return _Irpef(tax=tax, family=family)

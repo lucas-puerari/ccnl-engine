@@ -4,6 +4,21 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Minimum of the art. 13 deduction
+
+Up to €15,000 of income the art. 13 TUIR deduction is at least €690, or
+€1,380 for a `FixedTerm` contract (c. 1 lett. a), and the minimum is not
+proportioned to the days. Short employments now withhold less IRPEF, and the
+trattamento integrativo test up to €15,000 compares the gross tax with the
+deduction after the minimum.
+
+| Before | After |
+|---|---|
+| Metalmeccanico C3, 10 July to 20 September 2026 (73 days), open-ended: deduction €391.00, net IRPEF €821.88 | Deduction €690.00, net IRPEF €522.88 |
+| Same, `FixedTerm()`: deduction €391.00, trattamento €240.00 | Deduction €1,380.00, net IRPEF €0.00; gross tax €1,212.88 is not above €1,380 − €15, so no trattamento |
+| `WorkDeductionRules` without a minimum | `WorkDeductionRules.minimum`, a `WorkDeductionMinimum` (`open_ended`, `fixed_term`, `provenance`), read from `work_deduction.minimum` of the tax rulesets |
+| `net_irpef(taxable, rules, family_deductions=..., eligible_work_days=...)` | Also `fixed_term=` (required); `compute_tax(..., fixed_term=False)` and `work_income_deduction(..., fixed_term=False)` |
+
 ## A month of sickness deducts at most its pay
 
 | Before | After |

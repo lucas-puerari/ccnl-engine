@@ -139,6 +139,10 @@ def tax_rules(ctx: RunContext) -> dict[str, tuple[Rule, ...]]:
             (f"{name}:irpef_brackets", rules.irpef_brackets_provenance),
             (f"{name}:work_deduction", rules.work_deduction.provenance),
             (
+                f"{name}:work_deduction.minimum",
+                rules.work_deduction.minimum.provenance,
+            ),
+            (
                 f"{name}:sterilizzazione_detrazioni",
                 _provenance(rules.sterilizzazione_detrazioni),
             ),

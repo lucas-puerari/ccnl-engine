@@ -121,11 +121,43 @@ def test_taper_ratio_is_not_truncated() -> None:
 
 
 def test_day_ratio_is_not_truncated() -> None:
-    """Income 10,000 EUR over 92 days: 1,955 * 92 / 365 = 492.7671..., 492.77.
+    """Income 10,000 EUR over 200 days: 1,955 * 200 / 365 = 1,071.2328..., 1,071.23.
 
-    Truncating 92 / 365 to 0.2520 would give 492.66.
+    Truncating 200 / 365 to 0.5479 would give 1,071.14.  Above the 690 floor.
     """
-    assert employment_deduction(Decimal(10_000), 92) == Decimal("492.77")
+    assert employment_deduction(Decimal(10_000), 200) == Decimal("1071.23")
+
+
+@pytest.mark.parametrize(
+    ("days", "fixed_term", "expected"),
+    [
+        pytest.param(92, False, Decimal("690.00"), id="open-ended-92"),
+        pytest.param(92, True, Decimal("1380.00"), id="fixed-term-92"),
+        pytest.param(200, True, Decimal("1380.00"), id="fixed-term-200"),
+        pytest.param(365, True, Decimal("1955.00"), id="fixed-term-full-year"),
+    ],
+)
+def test_flat_band_deduction_is_not_below_the_floor(
+    days: int, fixed_term: bool, expected: Decimal
+) -> None:
+    """Income 10,000 EUR: the larger of 1,955 * days / 365 and the floor.
+
+    Art. 13 c. 1 lett. a) TUIR: 690 EUR, 1,380 EUR for a fixed term, not
+    proportioned (Allegato C 730/2026, par. 19.9.1).  92 days give 492.77
+    and 200 days 1,071.23, below 1,380; the full year gives 1,955.
+    """
+    deduction = employment_deduction(Decimal(10_000), days, fixed_term=fixed_term)
+    assert deduction == expected
+
+
+def test_floor_is_limited_to_the_flat_band() -> None:
+    """Income 20,000 EUR over 30 days: lett. b) has no floor.
+
+    1,910 + 1,190 * 0.6153 (8,000 / 13,000 truncated) = 2,642.21 for the
+    year; * 30 / 365 = 217.1679..., 217.17, below 690 and still due as is.
+    """
+    deduction = employment_deduction(Decimal(20_000), 30, fixed_term=True)
+    assert deduction == Decimal("217.17")
 
 
 _RULES = load_year_rules(2026, TaxSector.TERZIARIO, 50)
@@ -144,9 +176,16 @@ _RULES = load_year_rules(2026, TaxSector.TERZIARIO, 50)
     ],
 )
 @pytest.mark.parametrize("days", [92, 182, 292, 365])
-def test_engine_matches_the_oracle(income: Decimal, days: int) -> None:
+@pytest.mark.parametrize("fixed_term", [False, True])
+def test_engine_matches_the_oracle(
+    income: Decimal, days: int, *, fixed_term: bool
+) -> None:
     """The engine net IRPEF equals the oracle for part-year and taper cases."""
     engine = engine_net_irpef(
-        income, _RULES, family_deductions=Decimal(0), eligible_work_days=days
+        income,
+        _RULES,
+        family_deductions=Decimal(0),
+        eligible_work_days=days,
+        fixed_term=fixed_term,
     )
-    assert engine.net == net_irpef(income, days)
+    assert engine.net == net_irpef(income, days, fixed_term=fixed_term)

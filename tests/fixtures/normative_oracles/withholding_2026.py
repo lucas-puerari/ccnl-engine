@@ -1,4 +1,4 @@
-"""Independent oracle of three 2026 withholding rules the IRPEF oracle leaves out.
+"""Independent oracle of two 2026 withholding rules the IRPEF oracle leaves out.
 
 Written from the statutory text, deliberately without importing anything from
 ``ccnl_engine``; the brackets and the art. 13 formula come from the sibling
@@ -6,19 +6,10 @@ oracle :mod:`.irpef_2026`, written the same way.
 
 Sources:
 
-- Floor of the employment deduction: art. 13 c. 1 lett. a) TUIR, text in
-  force, in the copy of the Normattiva page saved for the review of 6 October
-  2026 (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:1986-12-22;917~art13):
-  "L'ammontare della detrazione effettivamente spettante non può essere
-  inferiore a 690 euro. Per i rapporti di lavoro a tempo determinato,
-  l'ammontare della detrazione effettivamente spettante non può essere
-  inferiore a 1.380 euro".  Allegato C to the 730/2026 instructions of the
-  Agenzia delle Entrate, section on the employment deduction up to 15,000
-  EUR: "l'importo della detrazione minima come sopra determinata non deve
-  essere rapportata ai giorni di lavoro dipendente"; the deduction due is
-  the larger of the floor and the formula proportioned to the days.
 - Withholding on an additional month: art. 23 c. 2 lett. b) DPR 600/1973
-  (Normattiva, same saved copy): "sulle mensilità aggiuntive e sui
+  (Normattiva, copy of the page saved for the review of 6 October 2026,
+  https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:1973-09-29;600~art23):
+  "sulle mensilità aggiuntive e sui
   compensi della stessa natura, con le aliquote dell'imposta sul reddito
   delle persone fisiche, ragguagliando a mese i corrispondenti scaglioni
   annui di reddito", with no deduction, unlike lett. a) for the ordinary
@@ -45,16 +36,9 @@ from tests.fixtures.normative_oracles.irpef_2026 import (
 )
 
 __all__ = [
-    "EMPLOYMENT_DEDUCTION_FLOOR",
-    "FIXED_TERM_EMPLOYMENT_DEDUCTION_FLOOR",
     "extra_month_withholding",
     "trattamento_integrativo_above_15000",
 ]
-
-#: Art. 13 c. 1 lett. a) TUIR, open-ended employment; not proportioned.
-EMPLOYMENT_DEDUCTION_FLOOR = Decimal("690.00")
-#: Art. 13 c. 1 lett. a) TUIR, fixed-term employment; not proportioned.
-FIXED_TERM_EMPLOYMENT_DEDUCTION_FLOOR = Decimal("1380.00")
 
 _CENT = Decimal("0.01")
 _ZERO = Decimal(0)

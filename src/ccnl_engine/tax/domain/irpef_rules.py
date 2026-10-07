@@ -4,13 +4,33 @@ from __future__ import annotations
 
 from decimal import Decimal
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
 from ccnl_engine.provenance.domain.chain import RuleProvenance
 from ccnl_engine.shared.domain.primitives import Bracket
 
 #: A single IRPEF marginal tax bracket (Art. 11 TUIR).
 IrpefBracket = Bracket
+
+
+class WorkDeductionMinimum(BaseModel):
+    """Minimum of the Art. 13 co. 1 lett. a) TUIR deduction, by contract.
+
+    Lett. a): "L'ammontare della detrazione effettivamente spettante non può
+    essere inferiore a 690 euro. Per i rapporti di lavoro a tempo
+    determinato, [...] non può essere inferiore a 1.380 euro".  The minimum
+    is not proportioned to the days of work (Allegato C to the 730/2026
+    instructions, par. 19.9.1).  Defaults encode the 2026 values.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    open_ended: Decimal = Decimal(690)
+    """Minimum for an open-ended employment, apprenticeship included (EUR)."""
+    fixed_term: Decimal = Decimal(1380)
+    """Minimum for a fixed-term employment (EUR)."""
+    provenance: RuleProvenance | None = None
+    """Source and status of the minimum."""
 
 
 class WorkDeductionRules(BaseModel):
@@ -47,6 +67,8 @@ class WorkDeductionRules(BaseModel):
     """Upper bound of the EUR 65 increment range (inclusive, EUR)."""
     seventy_five: Decimal = Decimal(75)
     """Trattamento integrativo corrective (Art. 1 co. 3 L. 207/2024, EUR)."""
+    minimum: WorkDeductionMinimum = Field(default_factory=WorkDeductionMinimum)
+    """Minimum of the deduction up to detr_lo, not proportioned to the days."""
     provenance: RuleProvenance | None = None
     """Source and status of the constants."""
 

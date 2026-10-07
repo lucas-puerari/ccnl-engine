@@ -89,6 +89,7 @@ def net_irpef(
     *,
     family_deductions: Decimal,
     eligible_work_days: int,
+    fixed_term: bool,
 ) -> NetIrpef:
     """Return the net annual IRPEF of ``taxable``.
 
@@ -97,13 +98,18 @@ def net_irpef(
         rules: Year rules.
         family_deductions: Annual art. 12 TUIR deductions.
         eligible_work_days: Days of employment in the tax year, at most 365.
+        fixed_term: Whether the employment is fixed-term, which raises the
+            minimum of the art. 13 deduction (c. 1 lett. a) TUIR).
 
     Returns:
         The net IRPEF and its components.
     """
     gross = irpef_gross(taxable, rules)
     work = work_income_deduction(
-        taxable, eligible_work_days, constants=rules.work_deduction
+        taxable,
+        eligible_work_days,
+        constants=rules.work_deduction,
+        fixed_term=fixed_term,
     )
     ulteriore = (
         None

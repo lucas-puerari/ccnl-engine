@@ -138,7 +138,7 @@ The `pending` fields:
 | Field | What the default does today |
 |---|---|
 | `PeriodInput.opening_state`, `CompetenceYearPlan.opening_state`, `TaxYearPlan.opening_state` | A zero state: a run after the start of the employment in the same tax year restarts the progressive totals |
-| `Employment.contract_type` | A permanent contract: no NASpI surcharge of a fixed-term contract |
+| `Employment.contract_type` | A permanent contract: no NASpI surcharge of a fixed-term contract, and the 690 EUR minimum of the art. 13 TUIR deduction up to 15,000 EUR instead of 1,380 EUR |
 | `Employment.employment_period` | A full month and full ratei, even for a hire or a termination within the month |
 | `Employment.weekly_hours`, `Employment.full_time_weekly_hours` | Full time |
 | `Employment.roles` | No role: no allowance a role unlocks |

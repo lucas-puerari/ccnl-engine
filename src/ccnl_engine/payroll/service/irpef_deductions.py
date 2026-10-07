@@ -2,7 +2,8 @@
 
 Implements the Art. 13 co. 1 TUIR work-income deduction (piecewise-linear
 schedule as modified by D.Lgs. 216/2023 and confirmed by L. 199/2025, Art. 1
-c. 2), its proportion to the days of work, and the sterilizzazione
+c. 2), its proportion to the days of work, the minimum of lett. a) for a
+fixed-term or open-ended employment, and the sterilizzazione
 detrazioni for redditi > EUR 200k (Art. 1 c. 3-4 L. 199/2025).
 
 The detrazioni per carichi di famiglia (Art. 12 TUIR) are in
@@ -61,10 +62,27 @@ def for_days(full_year: Decimal, eligible_work_days: int) -> Decimal:
     return money(money(full_year) * eligible_work_days / DAYS_IN_YEAR)
 
 
+def _minimum(constants: WorkDeductionRules, *, fixed_term: bool) -> Decimal:
+    """Return the lett. a) minimum of the contract, in cents.
+
+    Art. 13 c. 1 lett. a) TUIR: 690 EUR, 1,380 EUR "per i rapporti di lavoro
+    a tempo determinato".  An apprenticeship is "un contratto di lavoro a
+    tempo indeterminato" (D.Lgs. 81/2015 art. 41 c. 1), so it takes the
+    open-ended minimum.
+
+    Returns:
+        ``constants.minimum.fixed_term`` or ``constants.minimum.open_ended``.
+    """
+    floor = constants.minimum
+    return money(floor.fixed_term if fixed_term else floor.open_ended)
+
+
 def work_income_deduction(
     gross_income: Decimal,
     eligible_work_days: int = DAYS_IN_YEAR,
     constants: WorkDeductionRules | None = None,
+    *,
+    fixed_term: bool = False,
 ) -> Decimal:
     """Compute the Art. 13 co. 1 TUIR work-income deduction.
 
@@ -83,6 +101,13 @@ def work_income_deduction(
     :func:`for_days`, without truncating ``eligible_work_days / 365``.
     Pass ``eligible_work_days=365`` (the default) for a full year.
 
+    Up to 15 000 the deduction due is at least the minimum of lett. a), 690
+    EUR or 1 380 EUR for a fixed-term employment, not proportioned to the
+    days: the larger of the two amounts (Allegato C to the 730/2026
+    instructions, par. 19.9.1, "non deve essere rapportata ai giorni di
+    lavoro dipendente").  Without days of work no deduction is due (same
+    paragraph: the days of rigo C5 must be filled).
+
     Args:
         gross_income: Reddito complessivo di riferimento (taxable income,
             i.e. RAL minus employee INPS contributions).
@@ -91,31 +116,33 @@ def work_income_deduction(
             the full-year deduction amount.
         constants: Versioned Art. 13 statutory constants. Defaults to the
             2026 schedule when ``None``.
+        fixed_term: Whether the employment is fixed-term, which selects the
+            minimum of lett. a).
 
     Returns:
         The applicable deduction, rounded to two decimal places.
     """
     c = constants if constants is not None else DEFAULT_WORK_DEDUCTION
-    if gross_income <= _ZERO:
+    if gross_income <= _ZERO or eligible_work_days <= 0:
         return _ZERO
     if gross_income <= c.detr_lo:
-        full_year = c.detr_flat
-    else:
-        increment = (
-            c.detr_increment
-            if c.increment_lo < gross_income <= c.increment_hi
-            else _ZERO
+        return max(
+            for_days(c.detr_flat, eligible_work_days),
+            _minimum(c, fixed_term=fixed_term),
         )
-        # Equivalent as `<`: the schedule is continuous at detr_mid (detr_a).
-        if gross_income <= c.detr_mid:  # pragma: no mutate
-            ratio = _trunc4((c.detr_mid - gross_income) / c.detr_b_span)
-            full_year = c.detr_a + c.detr_b_coeff * ratio + increment
-        # Equivalent as `<`: the schedule is zero at detr_high.
-        elif gross_income <= c.detr_high:  # pragma: no mutate
-            ratio = _trunc4((c.detr_high - gross_income) / c.detr_c_span)
-            full_year = c.detr_a * ratio + increment
-        else:
-            return _ZERO
+    increment = (
+        c.detr_increment if c.increment_lo < gross_income <= c.increment_hi else _ZERO
+    )
+    # Equivalent as `<`: the schedule is continuous at detr_mid (detr_a).
+    if gross_income <= c.detr_mid:  # pragma: no mutate
+        ratio = _trunc4((c.detr_mid - gross_income) / c.detr_b_span)
+        full_year = c.detr_a + c.detr_b_coeff * ratio + increment
+    # Equivalent as `<`: the schedule is zero at detr_high.
+    elif gross_income <= c.detr_high:  # pragma: no mutate
+        ratio = _trunc4((c.detr_high - gross_income) / c.detr_c_span)
+        full_year = c.detr_a * ratio + increment
+    else:
+        return _ZERO
     return for_days(full_year, eligible_work_days)
 
 
