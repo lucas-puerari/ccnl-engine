@@ -209,7 +209,7 @@ class PeriodInput:
         self,
         *,
         extra_month_accrual: ExtraMonthAccrual | None = None,
-        extra_month_settlements: tuple[ExtraMonthAccrual, ...] = (),
+        extra_month_settlements: tuple[ExtraMonthAccrual, ...] | None = None,
         withholding_schedule: WithholdingSchedule | None = None,
         uncovered_runs: tuple[PayrollRunId, ...] = (),
     ) -> PeriodCalculationRequest:
@@ -222,7 +222,9 @@ class PeriodInput:
             extra_month_accrual: Rateo of an extra-month run, supplied by the
                 year calculation.
             extra_month_settlements: Ratei liquidated on this run because the
-                employment ends before their payment month.
+                employment ends before their payment month, supplied by the
+                year calculation.  ``None`` derives them from the CCNL
+                calendar.
             withholding_schedule: Withholding slots of the tax year.
                 ``None`` uses the standard calendar of the CCNL.
             uncovered_runs: Runs of the year the year calculation left out

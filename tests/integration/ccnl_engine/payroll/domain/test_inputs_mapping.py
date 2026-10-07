@@ -128,5 +128,5 @@ def test_mapping_copies_every_fact_to_its_request_field() -> None:
         name = field.name
         assert getattr(request, name) == getattr(facts, name), name
     assert request.extra_month_accrual is None
-    assert request.extra_month_settlements == ()
+    assert request.extra_month_settlements is None
     assert request.withholding_schedule is None

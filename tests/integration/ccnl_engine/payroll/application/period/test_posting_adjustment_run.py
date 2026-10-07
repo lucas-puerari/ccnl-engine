@@ -102,6 +102,31 @@ def _adjustment(
     )
 
 
+def test_second_adjustment_of_the_month_is_its_own_run() -> None:
+    """A second correction of December closes as ``2026-12-adjustment-2``.
+
+    It pays only its own items, the same overtime as the first correction.
+    """
+    first = _adjustment(_bonus_year())
+    employment = year_plan(2026, _CCNL, "C3").employment
+    second = PayrollEngine().calculate_period(
+        PeriodInput(
+            run=PayrollRun.adjustment(2026, 12, sequence=2),
+            payment_date=date(2026, 12, 31),
+            employment=employment,
+            employer=EMPLOYER_50,
+            facts=_ADJUSTMENT_FACTS,
+            opening_state=first.closing_state,
+        )
+    )
+
+    assert second.period_gross == first.period_gross > _ZERO
+    assert [str(r) for r in second.closing_state.accrual.competence_runs[-2:]] == [
+        "2026-12-adjustment",
+        "2026-12-adjustment-2",
+    ]
+
+
 def _plan_of(result: PeriodResult, kind: str) -> RecoveryPlan | None:
     return result.closing_state.cash.obligations.recovery_of(2026, kind)
 

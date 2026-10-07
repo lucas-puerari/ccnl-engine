@@ -19,6 +19,9 @@ from ccnl_engine.payroll.application.period._context import RunContext
 from ccnl_engine.payroll.application.period._contract import load_contract
 from ccnl_engine.payroll.application.period._proration import run_proration
 from ccnl_engine.payroll.application.period._seniority import seniority_months_at
+from ccnl_engine.payroll.application.period._termination_ratei import (
+    run_settlements,
+)
 from ccnl_engine.payroll.application.withholding._plan import (
     resolve_withholding_schedule,
     upcoming_recurring_gross,
@@ -93,6 +96,7 @@ def build_context(
         contract.ccnl, contract.level, request.category, seniority=request.seniority
     )
     chain, apprenticeship = _base_chain(request, contract, worker_category)
+    settlements = run_settlements(request, contract.ccnl)
     payment = resolve_payment(request)
     schedule = resolve_withholding_schedule(request, payment, contract.ccnl, competence)
     opening = request.opening_state
@@ -133,4 +137,5 @@ def build_context(
         cp=CompetencePeriod(year=request.period_id.year, month=request.period_id.month),
         regular_chain=regular_chain,
         proration=proration,
+        settlements=settlements,
     )
