@@ -4,6 +4,22 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Payability is fail-closed on unknown residence and family
+
+A capability the registry declares required (`applicability_facts`) must be
+ruled out by a decision of the run or decided on the supplied facts; a
+default no longer rules it out. Amounts are unchanged.
+
+| Before | After |
+|---|---|
+| `PeriodFacts.regione` or `comune_belfiore` left `None` skipped the surtax as not applicable, without a blocker | A `requirement_unresolved` blocker on `addizionale_regionale` (`facts.regione`) or `addizionale_comunale` (`facts.comune_belfiore`) when the employer withholds; coverage `incomplete` |
+| `PeriodFacts.family_composition` left `None` skipped the art. 12 TUIR deductions without a blocker | A `requirement_unresolved` blocker on `family_deductions` (`facts.family_composition`); pass `FamilyComposition()` for a worker with no dependant |
+| `CapabilityReport` had gaps only | `CapabilityReport.unresolved`, a tuple of `UnresolvedRequirement` (exported by `ccnl_engine.results`) |
+| `BlockerCode` without a requirement member | `BlockerCode.REQUIREMENT_UNRESOLVED` (`"requirement_unresolved"`) |
+
+A household employer, not a withholding agent, decides that no surtax and no
+deduction is due: its runs need neither fact.
+
 ## Surtax table entries and ulteriore settlement moved
 
 Two internal modules were split. Names exported from `ccnl_engine` and its

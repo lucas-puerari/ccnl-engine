@@ -97,14 +97,15 @@ change gross, net and employer cost according to their treatment. See
   increments): `BonusEvent`
 - Welfare and fringe benefits: `WelfareEvent`, `FringeEvent`
 
-**Opt-in facts:**
+**Further facts:**
 
 - Family-dependent deductions (Art. 12 TUIR): `PeriodFacts.family_composition`
-  with dated dependency intervals, and `PeriodInput.current_year`
+  with dated dependency intervals (omitted, the deductions are undecided and
+  the result not payable; `FamilyComposition()` states no dependant), and `PeriodInput.current_year`
   (`CurrentYearTaxFacts`) for the income beyond this employment
 - Regional and municipal surtax: `PeriodFacts.regione` and `comune_belfiore`
-  (omitted, the surtax is skipped; a code without a table makes the result
-  `incomplete`)
+  (omitted, the surtax is undecided and the result not payable; a code
+  without a table makes the result `incomplete`)
 - Prior-year income and written waivers for the substitute-tax regimes:
   `PriorYearTaxFacts`
 

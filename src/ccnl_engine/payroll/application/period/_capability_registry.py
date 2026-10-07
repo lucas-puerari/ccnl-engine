@@ -8,7 +8,8 @@ rejects a registry the engine cannot honour:
 - a handler whose capability the run trace does not show, an event handler
   without a traced capability included;
 - a capability that takes caller values for a rule but is declared native
-  or unsupported, or one declared caller-supplied that takes none.
+  or unsupported, or one declared caller-supplied that takes none;
+- an applicability fact the request has no reader for.
 
 :func:`capability_report` then compares what the run traced with the
 registry, for the facts of the case.
@@ -21,6 +22,10 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application.handlers._totals import EVENT_FEATURES
 from ccnl_engine.payroll.application.handlers.registry import _HANDLER_REGISTRY
+from ccnl_engine.payroll.application.period._applicability_facts import (
+    FACT_READERS,
+    absent_facts,
+)
 from ccnl_engine.payroll.application.period._caller_rules import (
     CALLER_SUPPLIED_CAPABILITIES,
 )
@@ -36,8 +41,11 @@ from ccnl_engine.payroll.domain.capability_report import (
     CaseFacts,
     compare_with_catalog,
 )
+from ccnl_engine.payroll.domain.decisions import DecisionOrigin
 from ccnl_engine.payroll.domain.events import BonusEvent
+from ccnl_engine.payroll.domain.requirements import unresolved_requirements
 from ccnl_engine.payroll.domain.run import RunKind
+from ccnl_engine.payroll.domain.trace import TraceState
 from ccnl_engine.shared.domain.errors import DataIntegrityError
 
 if TYPE_CHECKING:
@@ -138,6 +146,12 @@ def registry_errors(catalog: CapabilityCatalog) -> list[str]:
         *_handler_errors(implemented),
         *_trace_errors(implemented),
         *_caller_errors(implemented),
+        *(
+            f"{entry.feature}: applicability fact {fact} has no request reader"
+            for entry in catalog.capabilities
+            for fact in entry.applicability_facts
+            if fact not in FACT_READERS
+        ),
     ]
 
 
@@ -158,9 +172,10 @@ def case_facts(ctx: RunContext) -> CaseFacts:
     """Return the facts of the run the applicability predicates read.
 
     Returns:
-        The capabilities of the declared events, and whether the run is a
+        The capabilities of the declared events, whether the run is a
         termination run or the regular run of the month the employment ends
-        in; an extra-month or adjustment run of that month does not close it.
+        in (an extra-month or adjustment run of that month does not close
+        it), and the applicability facts the request left to their default.
     """
     request = ctx.request
     period = request.employment_period
@@ -179,6 +194,24 @@ def case_facts(ctx: RunContext) -> CaseFacts:
             if type(event) in EVENT_FEATURES
         ),
         closes_employment=closes,
+        absent_facts=absent_facts(request),
+    )
+
+
+def _ruled_out(
+    decisions: tuple[CalculationDecision, ...], observed: Mapping[str, str]
+) -> frozenset[str]:
+    """Return the capabilities a decision of the run ruled out.
+
+    Returns:
+        Each capability that took a decision of the engine and is traced
+        not applicable: its every decision gives a not-applicable reason.
+    """
+    return frozenset(
+        d.capability
+        for d in decisions
+        if d.origin is not DecisionOrigin.CALLER_SUPPLIED
+        and observed.get(d.capability) == TraceState.NOT_APPLICABLE
     )
 
 
@@ -202,7 +235,8 @@ def capability_report(
 
     Returns:
         The capability report of the run, with the fields each capability
-        took from the caller and the evidence each executed one accepts.
+        took from the caller, the evidence each executed one accepts and
+        the required capabilities nothing resolved.
     """
     validate_registry(catalog)
     decisions = tuple(decisions)
@@ -221,4 +255,7 @@ def capability_report(
         rule_sources=sources,
         evidence_required=required,
         caller_supplied=caller_supplied_fields(decisions),
+        unresolved=unresolved_requirements(
+            catalog, _ruled_out(decisions, observed), case.absent_facts
+        ),
     )

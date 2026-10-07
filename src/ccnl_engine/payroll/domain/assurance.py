@@ -123,6 +123,10 @@ class BlockerCode(StrEnum):
             an amount rests on an assumption, a fallback or a condition the
             worker must be told about.
         MISSING_FACT: A fact the calculation needs was not supplied.
+        REQUIREMENT_UNRESOLVED: A capability required in every run was
+            not ruled out by a decision of the run, and the fact that
+            decides it was left to its default: a default never decides a
+            capability.
         CAPABILITY_NOT_COMPUTED: A capability the catalog promises was not
             computed, could not decide or came out partial.
         RULE_SOURCE_WEAK: An executed capability read a rule whose
@@ -139,6 +143,7 @@ class BlockerCode(StrEnum):
 
     CALCULATION_ISSUE = "calculation_issue"
     MISSING_FACT = "missing_fact"
+    REQUIREMENT_UNRESOLVED = "requirement_unresolved"
     CAPABILITY_NOT_COMPUTED = "capability_not_computed"
     RULE_SOURCE_WEAK = "rule_source_weak"
     CALLER_SUPPLIED_RULE = "caller_supplied_rule"
@@ -156,7 +161,8 @@ class ResultBlocker:
             the run as a whole (an issue, a missing fact).
         detail: Machine-readable specifics in lower snake case where the
             source allows: the issue code, the decision reason, the missing
-            fact, the gap kind, the provenance status, the caller fields,
+            fact, the fact left to its default, the gap kind, the
+            provenance status, the caller fields,
             the id of the ruleset short of ``production``, or the id of the
             open limitation.
         remediation: What removes the blocker, for a human reader.

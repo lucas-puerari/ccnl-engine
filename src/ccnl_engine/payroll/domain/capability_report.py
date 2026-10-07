@@ -8,7 +8,10 @@ capability.  Only an applicable capability can leave a gap:
 - an unsupported capability (or one the run did not trace) is not covered;
 - a traced capability that could not decide is unresolved;
 - a capability the engine implements in full that came out partial, and a
-  partial capability that executed, leave the run partially covered.
+  partial capability that executed, leave the run partially covered;
+- a required capability whose applicability fact was left to its default,
+  and that no decision of the run ruled out, is unresolved
+  (:mod:`~ccnl_engine.payroll.domain.requirements`).
 
 The report status is the ``coverage`` axis of the result assurance.
 """
@@ -34,6 +37,7 @@ if TYPE_CHECKING:
         CapabilityCatalog,
         CapabilityEntry,
     )
+    from ccnl_engine.payroll.domain.requirements import UnresolvedRequirement
     from ccnl_engine.provenance.domain.chain import ProvenanceStatus
 
 __all__ = [
@@ -113,10 +117,13 @@ class CaseFacts:
     Attributes:
         event_features: Capabilities of the events the request declares.
         closes_employment: Whether the run closes the employment.
+        absent_facts: Applicability facts of the registry the request left
+            to their default.
     """
 
     event_features: frozenset[str] = frozenset()
     closes_employment: bool = False
+    absent_facts: frozenset[str] = frozenset()
 
 
 def _scope(
@@ -219,6 +226,8 @@ class CapabilityReport:
         caller_supplied: Capabilities whose amounts rest on values the
             caller supplied in place of a rule, each with the names of the
             event fields it took them from.
+        unresolved: Required capabilities no decision of the run ruled
+            out, one per applicability fact left to its default.
     """
 
     catalog_year: int
@@ -227,6 +236,7 @@ class CapabilityReport:
     rule_sources: Mapping[str, ProvenanceStatus] = field(default_factory=dict)
     evidence_required: Mapping[str, EvidenceStatus] = field(default_factory=dict)
     caller_supplied: Mapping[str, tuple[str, ...]] = field(default_factory=dict)
+    unresolved: tuple[UnresolvedRequirement, ...] = ()
 
     def __post_init__(self) -> None:  # noqa: D105
         for name in ("scope", "rule_sources", "evidence_required", "caller_supplied"):
@@ -246,11 +256,14 @@ class CapabilityReport:
         """Coverage of the run, the ``coverage`` axis of its assurance.
 
         Returns:
-            :attr:`~CoverageStatus.COMPLETE` when no gap exists,
-            :attr:`~CoverageStatus.PARTIAL` when every gap is a partial
-            result or a partial implementation,
+            :attr:`~CoverageStatus.INCOMPLETE` with an unresolved
+            requirement, else :attr:`~CoverageStatus.COMPLETE` when no gap
+            exists, :attr:`~CoverageStatus.PARTIAL` when every gap is a
+            partial result or a partial implementation,
             :attr:`~CoverageStatus.INCOMPLETE` otherwise.
         """
+        if self.unresolved:
+            return CoverageStatus.INCOMPLETE
         if not self.gaps:
             return CoverageStatus.COMPLETE
         if {g.kind for g in self.gaps} <= _PARTIAL_KINDS:

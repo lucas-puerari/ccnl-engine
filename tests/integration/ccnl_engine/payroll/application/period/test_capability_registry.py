@@ -107,6 +107,17 @@ def test_caller_supplied_matches_the_caller_rules() -> None:
             _with("absence", implementation=_IMPL.NATIVE),
             "absence: takes caller values in place of a rule but is native",
         ),
+        (
+            _with(
+                "addizionale_regionale",
+                required_facts=("facts.residence",),
+                applicability_facts=("facts.residence",),
+            ),
+            (
+                "addizionale_regionale: applicability fact facts.residence has "
+                "no request reader"
+            ),
+        ),
     ],
 )
 def test_contradictions_are_listed(catalog: CapabilityCatalog, message: str) -> None:

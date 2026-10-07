@@ -25,7 +25,13 @@ from ccnl_engine import (
     PeriodResult,
 )
 from ccnl_engine.events import BonusEvent
-from ccnl_engine.inputs import EmploymentPeriod, WorkerCategory
+from ccnl_engine.inputs import (
+    ContributableHours,
+    EmploymentPeriod,
+    FamilyComposition,
+    WeeklyHours,
+    WorkerCategory,
+)
 from ccnl_engine.results import BlockerCode, CalculationStatus
 from tests.fixtures.seniority import new_hire
 
@@ -33,6 +39,9 @@ _ENGINE = PayrollEngine.bundled()
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
 _METALMECCANICO = "metalmeccanico-federmeccanica.json"
 _POSTAL_FISE = "servizi-postali-appalto-fise.json"
+_MILAN_NO_DEPENDANT = PeriodFacts(
+    regione="IT-25", comune_belfiore="F205", family_composition=FamilyComposition()
+)
 
 
 def _january(employment: Employment, facts: PeriodFacts | None = None) -> PeriodResult:
@@ -90,11 +99,13 @@ def test_incomplete_coverage_is_not_payable() -> None:
 def test_ordinary_month_has_no_coverage_gap() -> None:
     """Metalmeccanico C3, January 2026, an ordinary month.
 
-    No unsupported capability applies: the coverage is complete and no
-    coverage blocker hides the evidence blockers that remain.
+    No unsupported capability applies and the residence and the family are
+    stated: the coverage is complete and no coverage blocker hides the
+    evidence blockers that remain.
     """
     result = _january(
-        Employment(ccnl_slug=_METALMECCANICO, level_code="C3", seniority=new_hire())
+        Employment(ccnl_slug=_METALMECCANICO, level_code="C3", seniority=new_hire()),
+        _MILAN_NO_DEPENDANT,
     )
 
     assert result.capability_report.gaps == ()
@@ -219,3 +230,50 @@ def test_unknown_surtax_table_is_not_an_amount() -> None:
         decision.reason_code,
     ) in _blocker_keys(result)
     assert result.is_payable is False
+
+
+def test_unknown_family_is_not_an_empty_family() -> None:
+    """Metalmeccanico C3, January 2026, resident in Milan.
+
+    Left unknown, the family cannot rule out the art. 12 TUIR deductions:
+    the result names the requirement; an empty ``FamilyComposition``
+    states that there is no dependant and resolves it.
+    """
+    employment = Employment(
+        ccnl_slug=_METALMECCANICO, level_code="C3", seniority=new_hire()
+    )
+    resident = PeriodFacts(regione="IT-25", comune_belfiore="F205")
+    unresolved = (
+        BlockerCode.REQUIREMENT_UNRESOLVED,
+        "family_deductions",
+        "facts.family_composition",
+    )
+
+    assert unresolved in _blocker_keys(_january(employment, resident))
+    assert unresolved not in _blocker_keys(_january(employment, _MILAN_NO_DEPENDANT))
+
+
+def test_household_employer_needs_no_residence() -> None:
+    """Lavoro domestico B, January 2026, residence and family left unknown.
+
+    A household employer is not a withholding agent (art. 23 c. 1 DPR
+    600/1973): it decides that no surtax and no deduction is due, so the
+    unknown residence and family leave no requirement unresolved.
+    """
+    result = _ENGINE.calculate_period(
+        PeriodInput(
+            run=PayrollRun.regular(2026, 1),
+            payment_date=date(2026, 1, 28),
+            employment=Employment(
+                ccnl_slug="lavoro-domestico-non-convivente.json",
+                level_code="B",
+                seniority=new_hire(),
+                weekly_hours=WeeklyHours(25),
+            ),
+            employer=EmployerProfile(headcount=Headcount(1)),
+            facts=PeriodFacts(contributable_hours=ContributableHours(Decimal(108))),
+        )
+    )
+
+    assert result.capability_report.unresolved == ()
+    assert BlockerCode.REQUIREMENT_UNRESOLVED not in {b.code for b in result.blockers}

@@ -126,6 +126,7 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
         "RemittanceLine",
         "ResultAssurance",
         "ResultBlocker",
+        "UnresolvedRequirement",
     }),
     "ccnl_engine.catalog": frozenset({
         "CapabilityCatalog",

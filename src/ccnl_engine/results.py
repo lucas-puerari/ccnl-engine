@@ -1,7 +1,7 @@
 """What a :class:`~ccnl_engine.PeriodResult` reports beyond its amounts.
 
 Assurance and blockers, decisions and issues, model limitations, capability
-gaps and the remittance lines.
+gaps, unresolved requirements and the remittance lines.
 """
 
 from __future__ import annotations
@@ -23,6 +23,7 @@ from ccnl_engine.payroll.domain.decisions import (
 )
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.remittance import RemittanceColumn, RemittanceLine
+from ccnl_engine.payroll.domain.requirements import UnresolvedRequirement
 from ccnl_engine.shared.domain.limitation import (
     LimitationStatus,
     ModelLimitation,
@@ -48,4 +49,5 @@ __all__ = [
     "RemittanceLine",
     "ResultAssurance",
     "ResultBlocker",
+    "UnresolvedRequirement",
 ]

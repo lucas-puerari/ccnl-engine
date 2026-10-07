@@ -11,8 +11,8 @@ the oracle.
 Concia is the first candidate group for ``production``: no bundled CCNL
 has zero weak rules, four have one (the accrual rule), and of those only
 Concia takes its salaries from a renewal published by the contracting
-parties.  It reads only the shared industria tax and INPS rulesets and the
-bundled surtax tables.
+parties.  It reads only the shared industria tax and INPS rulesets, the
+family deduction rules and the bundled surtax tables.
 The employer contributions are not compared: the bundle holds them as one
 aggregate rate per headcount band, not as primary-sourced components.
 """
@@ -35,7 +35,12 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodResult,
 )
-from ccnl_engine.inputs import EmploymentPeriod, PriorYearTaxFacts, SurtaxComponent
+from ccnl_engine.inputs import (
+    EmploymentPeriod,
+    FamilyComposition,
+    PriorYearTaxFacts,
+    SurtaxComponent,
+)
 from tests.fixtures.normative_oracles.payslips.concia_d2_2026 import (
     CONCIA_D2_2026 as ORACLE,
 )
@@ -50,11 +55,13 @@ pytestmark = pytest.mark.legal_scenario
 
 _ENGINE = PayrollEngine.bundled()
 _ZERO = Decimal(0)
-#: The rulesets of the candidate group: the CCNL and what it reads.
+#: The rulesets of the candidate group: the CCNL and what it reads; the
+#: family deduction rules decide the empty family the scenario states.
 _GROUP = {
     "ccnl/concia-unic",
     "inps/2026/industria",
     "tax/2026/industria",
+    "tax/2026/family-deductions",
     "surtax/2026/regionale",
     "surtax/2026/comunale",
 }
@@ -72,7 +79,11 @@ def _year() -> CompetenceYearResult:
                 employment_period=EmploymentPeriod(date(2026, 1, 1)),
             ),
             employer=EmployerProfile(headcount=Headcount(50)),
-            default_facts=PeriodFacts(regione="IT-88", comune_belfiore="A192"),
+            default_facts=PeriodFacts(
+                regione="IT-88",
+                comune_belfiore="A192",
+                family_composition=FamilyComposition(),
+            ),
             prior_year=PriorYearTaxFacts(employment_income=Decimal(40_000)),
         )
     )

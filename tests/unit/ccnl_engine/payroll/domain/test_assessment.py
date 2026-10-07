@@ -25,6 +25,7 @@ from ccnl_engine.payroll.domain.decisions import (
     DecisionOrigin,
 )
 from ccnl_engine.payroll.domain.engine_mode import EngineMode
+from ccnl_engine.payroll.domain.requirements import UnresolvedRequirement
 from ccnl_engine.provenance.domain.chain import ProvenanceStatus
 from tests.fixtures.rulesets import tax_ruleset
 
@@ -70,6 +71,29 @@ def _keys(assurance: ResultAssurance) -> list[tuple[BlockerCode, str | None, str
 
 class TestAssess:
     """Each recorded condition is one blocker; nothing else blocks."""
+
+    def test_unresolved_requirement_blocks_its_capability(self) -> None:
+        """A default never rules out a required capability: it blocks."""
+        report = CapabilityReport(
+            catalog_year=2026,
+            gaps=(),
+            rule_sources=_DERIVED,
+            unresolved=(UnresolvedRequirement("addizionale_comunale", "facts.x"),),
+        )
+
+        assurance = assess((), (), report, (), _SIMULATION)
+
+        (blocker,) = assurance.blockers
+        assert (blocker.code, blocker.feature, blocker.detail) == (
+            BlockerCode.REQUIREMENT_UNRESOLVED,
+            "addizionale_comunale",
+            "facts.x",
+        )
+        assert "facts.x was left to its default: supply facts.x" in (
+            blocker.remediation
+        )
+        assert assurance.coverage is _INCOMPLETE_COVERAGE
+        assert not assurance.is_payable
 
     def test_derived_rules_alone_are_payable(self) -> None:
         """A derived rule lowers the evidence axis but does not block."""

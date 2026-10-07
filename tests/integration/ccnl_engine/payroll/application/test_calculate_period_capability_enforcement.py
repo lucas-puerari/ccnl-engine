@@ -23,6 +23,7 @@ from ccnl_engine.payroll.domain.capability_report import (
 )
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
+from ccnl_engine.payroll.domain.family import FamilyComposition
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
@@ -57,8 +58,14 @@ class TestOrdinaryMonth:
     """An ordinary month leaves no gap: nothing unsupported applies."""
 
     def test_report_is_complete(self) -> None:
-        """No gap, complete coverage, no coverage blocker."""
-        result = calculate_period(_req())
+        """With the residence and the family stated: complete, no blocker."""
+        stated = replace(
+            _req(),
+            regione="IT-25",
+            comune_belfiore="F205",
+            family_composition=FamilyComposition(),
+        )
+        result = calculate_period(stated)
         assert isinstance(result.capability_report, CapabilityReport)
         assert result.capability_report.catalog_year == _YEAR
         assert result.capability_report.gaps == ()

@@ -234,7 +234,8 @@ machine-readable `detail` and a `remediation`. Both come from `assurance`, a
 | `limitations` | `ModelLimitation` tuple | The known model simplifications that apply to the run; an open one with monetary impact `yes` or `unknown` is also an `open_limitation` blocker |
 
 A result is payable only when it raised no issue, every decision is final,
-the capability report has no gap, no executed rule is `assumed` or `missing`
+the capability report has no gap and no unresolved requirement, no executed
+rule is `assumed` or `missing`
 no rule was supplied by the caller and no open model limitation with a
 monetary impact applies; in `operational` mode, also only
 when the CCNL ruleset is `production`. A `derived` rule lowers `evidence`
@@ -295,8 +296,20 @@ not compute it, e.g. residual leave on the run that closes the employment),
 `unresolved` (e.g. a surtax without a table), a `partial_result` of a
 capability implemented in full, or a `partial_implementation` that executed
 (sickness, family deductions). Every gap is a `capability_not_computed`
-blocker, and the report `status` is the coverage axis of the assurance:
-`partial` when every gap is partial, `incomplete` otherwise.
+blocker.
+
+The gaps alone are a blocklist: a capability whose handler took no decision
+because a fact was left to its default looks `not_applicable`. An entry
+that declares `applicability_facts` (the residence for the regional and
+municipal surtaxes, the family composition for the family deductions) is
+therefore required in every run: it must be ruled out by a decision of the
+run or decided on the supplied facts, never on a default. Each such fact
+left to its default, on a run that did not rule the capability out, is an
+`UnresolvedRequirement` in
+`capability_report.unresolved` and a `requirement_unresolved` blocker. The
+report `status` is the coverage axis of the assurance: `incomplete` with an
+unresolved requirement, otherwise `partial` when every gap is partial and
+`incomplete` with any other gap.
 
 ::: ccnl_engine.payroll.domain.period
     options:
@@ -309,6 +322,11 @@ blocker, and the report `status` is the coverage axis of the assurance:
         - PaymentsResult
         - CompetenceYearResult
         - TaxYearResult
+
+::: ccnl_engine.payroll.domain.requirements
+    options:
+      members:
+        - UnresolvedRequirement
 
 ::: ccnl_engine.payroll.domain.assurance
     options:
