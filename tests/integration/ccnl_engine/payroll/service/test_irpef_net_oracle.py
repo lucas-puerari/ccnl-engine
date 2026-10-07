@@ -123,7 +123,7 @@ def test_taper_ratio_is_not_truncated() -> None:
 def test_day_ratio_is_not_truncated() -> None:
     """Income 10,000 EUR over 200 days: 1,955 * 200 / 365 = 1,071.2328..., 1,071.23.
 
-    Truncating 200 / 365 to 0.5479 would give 1,071.14.  Above the 690 floor.
+    Truncating 200 / 365 to 0.5479 would give 1,071.14.
     """
     assert employment_deduction(Decimal(10_000), 200) == Decimal("1071.23")
 
@@ -131,20 +131,28 @@ def test_day_ratio_is_not_truncated() -> None:
 @pytest.mark.parametrize(
     ("days", "fixed_term", "expected"),
     [
-        pytest.param(92, False, Decimal("690.00"), id="open-ended-92"),
-        pytest.param(92, True, Decimal("1380.00"), id="fixed-term-92"),
-        pytest.param(200, True, Decimal("1380.00"), id="fixed-term-200"),
+        pytest.param(92, False, Decimal("492.77"), id="open-ended-92"),
+        pytest.param(92, True, Decimal("492.77"), id="fixed-term-92"),
+        pytest.param(200, True, Decimal("1071.23"), id="fixed-term-200"),
         pytest.param(365, True, Decimal("1955.00"), id="fixed-term-full-year"),
     ],
 )
-def test_flat_band_deduction_is_not_below_the_floor(
+def test_withholding_proportions_the_flat_band_floor(
     days: int, fixed_term: bool, expected: Decimal
 ) -> None:
-    """Income 10,000 EUR: the larger of 1,955 * days / 365 and the floor.
+    """Income 10,000 EUR: the larger of 1,955 and the floor, both for the days.
 
-    Art. 13 c. 1 lett. a) TUIR: 690 EUR, 1,380 EUR for a fixed term, not
-    proportioned (Allegato C 730/2026, par. 19.9.1).  92 days give 492.77
-    and 200 days 1,071.23, below 1,380; the full year gives 1,955.
+    Art. 13 c. 1 lett. a) TUIR: 690 EUR, 1,380 EUR for a fixed term; the
+    withholding agent "deve ragguagliare anche la detrazione minima al
+    periodo di lavoro" (istruzioni CU 2026, punto 367, p. 33).
+
+    - 92 days: 1,955 * 92 / 365 = 492.767..., 492.77; floor 690 * 92 / 365
+      = 173.917..., 173.92, or 1,380 * 92 / 365 = 347.835..., 347.84;
+    - 200 days: 1,955 * 200 / 365 = 1,071.232..., 1,071.23; floor 1,380 *
+      200 / 365 = 756.164..., 756.16;
+    - 365 days: 1,955 and 1,380.
+
+    The larger is 1,955 for the days each time.
     """
     deduction = employment_deduction(Decimal(10_000), days, fixed_term=fixed_term)
     assert deduction == expected

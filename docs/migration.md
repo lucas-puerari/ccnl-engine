@@ -4,6 +4,23 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Art. 13 minimum proportioned in the withholding
+
+The withholding agent proportions the minimum of the art. 13 TUIR deduction
+(€690, €1,380 for a fixed term) to the days of work, as the Certificazione
+Unica 2026 instructions require (punto 367); the tax return grants it
+whole. With the 2026 amounts the minimum for the days never exceeds €1,955
+for the days, so payroll deducts €1,955 × days / 365 again up to €15,000,
+and a short employment withholds more IRPEF than before. A new `irpef`
+decision records the part of the minimum left to the tax return (see
+[Fiscal rules](engine/fiscal.md)).
+
+| Before | After |
+|---|---|
+| Metalmeccanico C3, 10 July to 20 September 2026 (73 days), open-ended: deduction €690.00 | Deduction €391.00 (1,955 × 73 / 365); decision `minimum_proportioned_to_days`, `tax_return_balance` €299.00 |
+| Same, `FixedTerm()`: deduction €1,380.00, net IRPEF €0.00, no trattamento | Deduction €391.00; gross tax above €391.00 − €15.00, so trattamento €240.00 (1,200 × 73 / 365); `tax_return_balance` €989.00 |
+| `irpef` decisions of a run: one, `withheld`, `refunded` or `nothing_due` | Also `minimum_proportioned_to_days` (no amount) when the whole minimum exceeds the deduction of the withholding |
+
 ## Negative net, arrears of the year and a conguaglio without residence
 
 | Before | After |

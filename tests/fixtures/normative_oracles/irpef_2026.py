@@ -2,7 +2,8 @@
 
 Written from the statutory text, deliberately without importing anything from
 ``ccnl_engine``.  It answers one question: given the final annual taxable
-employment income, what is the net ordinary IRPEF owed for the year?
+employment income, what net ordinary IRPEF does the withholding agent owe
+for the year at the conguaglio?
 
 Scope (anything outside raises :class:`ValueError`):
 
@@ -36,12 +37,19 @@ against an official worked example):
   "L'ammontare della detrazione effettivamente spettante non può essere
   inferiore a 690 euro. Per i rapporti di lavoro a tempo determinato,
   l'ammontare della detrazione effettivamente spettante non può essere
-  inferiore a 1.380 euro".  Allegato C to the 730/2026 instructions of the
-  Agenzia delle Entrate, par. 19.9.1, p. 339, under "A) REDDITO DI
-  RIFERIMENTO FINO AD EURO 15.000": "l'importo della detrazione minima come
-  sopra determinata non deve essere rapportata ai giorni di lavoro
-  dipendente"; the deduction due is "il maggiore importo" of the floor and
-  the formula proportioned to the days.
+  inferiore a 1.380 euro".  The oracle gives the deduction of the
+  withholding agent, who proportions the floor to the days: istruzioni per
+  la compilazione della Certificazione Unica 2026 of the Agenzia delle
+  Entrate, updated 24 February 2026, punto 367, p. 33
+  (https://www.agenziaentrate.gov.it/portale/documents/20143/9602395/CU_istr_2026_agg+24+02.pdf/4184818b-05a3-acce-5956-70811c7d2233,
+  sha256 a6ccf7cf53edcbd0d084c2266868649f8d17c348644401b540efd5e3fc95e841):
+  for an employment "di durata inferiore all'anno" "il sostituto deve
+  ragguagliare anche la detrazione minima al periodo di lavoro", the worker
+  getting the deduction "per l'intero anno in sede di dichiarazione dei
+  redditi".  The tax return does not proportion the floor (Allegato C to
+  the 730/2026 instructions, par. 19.9.1, p. 339: "l'importo della
+  detrazione minima come sopra determinata non deve essere rapportata ai
+  giorni di lavoro dipendente"), which the oracle does not compute.
 - Further deduction: L. 207/2024 art. 1 c. 6.
 - Day pro-rata: art. 13 c. 1 TUIR and L. 207/2024 art. 1 c. 6, both
   "rapportata al periodo di lavoro nell'anno".
@@ -74,9 +82,9 @@ _MAX_SUPPORTED_INCOME = Decimal(200_000)
 _DAYS_IN_YEAR = 365
 _FLAT_BAND_TOP = Decimal(15_000)
 
-#: Art. 13 c. 1 lett. a) TUIR, open-ended employment; not proportioned.
+#: Art. 13 c. 1 lett. a) TUIR, open-ended employment, for the whole year.
 EMPLOYMENT_DEDUCTION_FLOOR = Decimal("690.00")
-#: Art. 13 c. 1 lett. a) TUIR, fixed-term employment; not proportioned.
+#: Art. 13 c. 1 lett. a) TUIR, fixed-term employment, for the whole year.
 FIXED_TERM_EMPLOYMENT_DEDUCTION_FLOOR = Decimal("1380.00")
 
 # (upper bound of the bracket, marginal rate); ``None`` means no upper bound.
@@ -152,8 +160,9 @@ def employment_deduction(
 ) -> Decimal:
     """Return the art. 13 TUIR deduction for ``days`` of employment.
 
-    - income <= 15,000: 1,955 times ``days / 365``, at least 690 (1,380 for
-      a fixed term), the floor itself not proportioned;
+    - income <= 15,000: the larger of 1,955 and the floor, 690 (1,380 for
+      a fixed term), each times ``days / 365``: the floor of the
+      withholding agent;
     - 15,000 < income <= 28,000: 1,910 + 1,190 * (28,000 - income) / 13,000;
     - 28,000 < income <= 50,000: 1,910 * (50,000 - income) / 22,000;
     - above 50,000: 0;
@@ -170,7 +179,7 @@ def employment_deduction(
             if fixed_term
             else EMPLOYMENT_DEDUCTION_FLOOR
         )
-        return max(_for_days(Decimal(1_955), days), floor)
+        return max(_for_days(Decimal(1_955), days), _for_days(floor, days))
     if income <= Decimal(28_000):
         ratio = _ratio(Decimal(28_000) - income, Decimal(13_000))
         base = Decimal(1_910) + Decimal(1_190) * ratio

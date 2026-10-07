@@ -50,9 +50,17 @@ the chain; `seniority` has its own decision on every run, with the reason
 pay cap: when the pay does not cover it, a `withholding_shortfall` decision
 records what was carried to the next runs. Its `decisions` input names the
 credit decisions the annual tax was netted with (family deductions,
-ulteriore detrazione, trattamento integrativo, foreign tax credit). An
-employer that is not a withholding agent keeps its `not_withholding_agent`
-decision for `irpef` and records no other.
+ulteriore detrazione, trattamento integrativo, foreign tax credit).
+
+A run whose withholding proportions the art. 13 TUIR minimum to the days
+below the whole minimum also records an `irpef` decision with reason
+`minimum_proportioned_to_days`, rule `tuir-art13-c1-a-minimum`, no amount,
+and the inputs `taxable_income`, `eligible_work_days`, `contract`,
+`minimum` and `tax_return_balance`: the part of the minimum the tax return
+grants (istruzioni CU 2026, punto 367; see
+[Fiscal rules](../engine/fiscal.md)). An employer that is not a
+withholding agent keeps its `not_withholding_agent` decision for `irpef`
+and records no other.
 
 ## Caller-supplied values
 

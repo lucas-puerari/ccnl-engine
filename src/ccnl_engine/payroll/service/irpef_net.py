@@ -99,8 +99,9 @@ def net_irpef(
         rules: Year rules.
         family_deductions: Annual art. 12 TUIR deductions.
         eligible_work_days: Days of employment in the tax year, at most 365.
-        fixed_term: Whether an employment of the year is fixed-term, which raises the
-            minimum of the art. 13 deduction (c. 1 lett. a) TUIR).
+        fixed_term: Whether an employment of the year is fixed-term, which
+            raises the minimum of the art. 13 deduction (c. 1 lett. a) TUIR),
+            proportioned to the days in the withholding.
 
     Returns:
         The net IRPEF and its components.

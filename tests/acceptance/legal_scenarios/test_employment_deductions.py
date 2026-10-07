@@ -59,11 +59,15 @@ if TYPE_CHECKING:
         PeriodFacts,
         PeriodResult,
     )
+    from ccnl_engine.results import CalculationDecision
 
 pytestmark = pytest.mark.legal_scenario
 
 _CENT = Decimal("0.01")
 _ZERO = Decimal("0.00")
+_FLAT = Decimal(1_955)
+#: Reason of the decision on the minimum left to the tax return.
+_MINIMUM_REASON = "minimum_proportioned_to_days"
 _METALMECCANICO = "metalmeccanico-federmeccanica.json"
 
 
@@ -75,8 +79,21 @@ def _year(
     )
 
 
+def _irpef_decisions(result: PeriodResult) -> list[CalculationDecision]:
+    return [d for d in result.decisions if d.capability == "irpef"]
+
+
 def _irpef_inputs(result: PeriodResult) -> Mapping[str, object]:
-    (decision,) = (d for d in result.decisions if d.capability == "irpef")
+    (decision,) = (
+        d for d in _irpef_decisions(result) if d.reason_code != _MINIMUM_REASON
+    )
+    return decision.inputs
+
+
+def _minimum_inputs(result: PeriodResult) -> Mapping[str, object]:
+    (decision,) = (
+        d for d in _irpef_decisions(result) if d.reason_code == _MINIMUM_REASON
+    )
     return decision.inputs
 
 
@@ -132,51 +149,65 @@ def _for_days(amount: Decimal, days: int) -> Decimal:
 
 
 @_SHORT_EMPLOYMENTS
-def test_short_employment_deduction_is_not_below_the_floor(
+def test_short_employment_withholding_proportions_the_floor(
     contract: Permanent | FixedTerm, started_on: date, ended_on: date, days: int
 ) -> None:
-    """The deduction of the conguaglio is the floor of the contract.
+    """The conguaglio deducts the floor for the days, the rest is left to the 730.
 
-    Three months of pay are under 15,000 EUR, so lett. a) applies: 1,955 x
-    92 / 365 = 492.77 or 1,955 x 73 / 365 = 391.00, both below the floor,
-    690 EUR or 1,380 EUR for a fixed term, which is not proportioned.
+    Three months of pay are under 15,000 EUR, so lett. a) applies.  The
+    withholding agent "deve ragguagliare anche la detrazione minima al
+    periodo di lavoro" (istruzioni CU 2026, punto 367, p. 33): the floor
+    for the days, 690 x 92 / 365 = 173.92 or 1,380 x 92 / 365 = 347.84 (92
+    days), 690 x 73 / 365 = 138.00 or 1,380 x 73 / 365 = 276.00 (73 days),
+    is below 1,955 x 92 / 365 = 492.77 or 1,955 x 73 / 365 = 391.00, which
+    is the deduction.  The tax return grants the whole floor (Allegato C
+    730/2026, par. 19.9.1): the decision records 690 or 1,380 less the
+    deduction, e.g. 690 - 391.00 = 299.00 and 1,380 - 391.00 = 989.00.
     """
-    inputs = _irpef_inputs(
-        _short_year(contract, started_on, ended_on).period_results[-1]
-    )
+    result = _short_year(contract, started_on, ended_on).period_results[-1]
+    inputs = _irpef_inputs(result)
     taxable = inputs["projected_taxable"]
+    fixed_term = isinstance(contract, FixedTerm)
+    deduction = _for_days(_FLAT, days)
 
     assert isinstance(taxable, Decimal)
     assert taxable <= Decimal(15_000)
-    assert _for_days(Decimal(1_955), days) < EMPLOYMENT_DEDUCTION_FLOOR
-    assert inputs["work_deduction"] == _floor(contract)
+    assert _for_days(_floor(contract), days) < deduction
+    assert inputs["work_deduction"] == deduction
+    assert deduction == employment_deduction(taxable, days, fixed_term=fixed_term)
+    minimum = _minimum_inputs(result)
+    assert minimum["minimum"] == _floor(contract)
+    assert minimum["tax_return_balance"] == _floor(contract) - deduction
 
 
 @_SHORT_EMPLOYMENTS
-def test_short_employment_floor_decides_the_trattamento(
+def test_short_employment_trattamento_compares_the_withheld_deduction(
     contract: Permanent | FixedTerm, started_on: date, ended_on: date, days: int
 ) -> None:
-    """The floored deduction is the one the trattamento test compares with.
+    """The trattamento test compares the gross tax with the withheld deduction.
 
     D.L. 3/2020 art. 1 c. 1, first period, as restated by Allegato C to the
     730/2026 instructions, par. 8.2.4: up to 15,000 EUR the credit is due
     when the gross tax exceeds the art. 13 deduction due less 75 x days /
-    365, and is then 1,200 x days / 365.  The gross tax of the year is
-    about 1,460 EUR (92 days) or 1,213 EUR (73 days): above 690 - 75 x days
-    / 365 in both open-ended cases and above 1,380 - 18.90 = 1,361.10 in the
-    92-day fixed term, below 1,380 - 15.00 = 1,365.00 in the 73-day fixed
-    term, whose credit is zero.  The net IRPEF of the year is the gross tax
-    less the floor, at least zero: zero, never negative, in that case.
+    365, and is then 1,200 x days / 365.  The deduction of the withholding
+    is 1,955 x days / 365, the floor for the days being lower: 492.77 - 18.90
+    = 473.87 (92 days) and 391.00 - 15.00 = 376.00 (73 days).  The gross tax
+    of the year, about 1,460 EUR (92 days) or 1,213 EUR (73 days), exceeds
+    both, so every case, fixed term included, gets 1,200 x 92 / 365 =
+    302.47 or 1,200 x 73 / 365 = 240.00.  The net IRPEF is the gross tax
+    less the deduction: no ulteriore detrazione under 20,000 EUR.
     """
     cash = _short_year(contract, started_on, ended_on).closing_state.cash
     taxable = cash.earnings.taxable
     gross = gross_irpef(taxable)
-    threshold = _floor(contract) - _for_days(_TRATTAMENTO_CORRECTIVE, days)
+    deduction = _for_days(_FLAT, days)
+    threshold = deduction - _for_days(_TRATTAMENTO_CORRECTIVE, days)
     credit = _for_days(_TRATTAMENTO_FULL_YEAR, days) if gross > threshold else _ZERO
 
     assert taxable <= Decimal(15_000)
+    assert credit > _ZERO
     assert cash.trattamento.recognized == credit
-    assert cash.tax.irpef == max(_ZERO, gross - _floor(contract))
+    assert cash.tax.irpef == max(_ZERO, gross - deduction)
     assert cash.tax.irpef == net_irpef(
         taxable, days, fixed_term=isinstance(contract, FixedTerm)
     )
@@ -246,12 +277,15 @@ def test_rehire_takes_the_fixed_term_minimum_of_the_year(
     """C3 from 1 January to 28 February, rehired open-ended 1 May to 30 June.
 
     31 + 28 = 59 and 31 + 30 = 61 days, 120 in all: 1,955 x 120 / 365 =
-    642.74, below 690.  Four months of C3 pay are under 15,000 EUR, so the
-    minimum of lett. a) applies, 1,380 EUR when one employment of the year
-    is fixed-term: Allegato C to the 730/2026 instructions, par. 19.9.1,
-    "se nella casella di colonna 2 dei righi da C1 a C3 è presente in
-    almeno un rigo il codice 2".  The June run is open-ended; its minimum
-    follows the first employment.
+    642.74.  Four months of C3 pay are under 15,000 EUR, so the minimum of
+    lett. a) applies, 1,380 EUR when one employment of the year is
+    fixed-term: Allegato C to the 730/2026 instructions, par. 19.9.1, "se
+    nella casella di colonna 2 dei righi da C1 a C3 è presente in almeno un
+    rigo il codice 2".  The June run is open-ended; its minimum follows the
+    first employment.  The withholding proportions it (istruzioni CU 2026,
+    punto 367): 1,380 x 120 / 365 = 453.70 or 690 x 120 / 365 = 226.85,
+    below 642.74, which is deducted.  The tax return grants the rest of the
+    minimum: 1,380 - 642.74 = 737.26 or 690 - 642.74 = 47.26.
     """
     first = replace(
         _C3,
@@ -261,13 +295,17 @@ def test_rehire_takes_the_fixed_term_minimum_of_the_year(
     second = replace(
         _C3, employment_period=EmploymentPeriod(date(2026, 5, 1), date(2026, 6, 30))
     )
-    inputs = _irpef_inputs(_rehire(first, range(1, 3), second, 6))
+    june = _rehire(first, range(1, 3), second, 6)
+    inputs = _irpef_inputs(june)
     taxable = inputs["projected_taxable"]
+    deduction = _for_days(_FLAT, 120)
 
     assert isinstance(taxable, Decimal)
     assert taxable <= Decimal(15_000)
-    assert _for_days(Decimal(1_955), 120) < EMPLOYMENT_DEDUCTION_FLOOR
-    assert inputs["work_deduction"] == floor
+    assert inputs["work_deduction"] == deduction
+    minimum = _minimum_inputs(june)
+    assert minimum["minimum"] == floor
+    assert minimum["tax_return_balance"] == floor - deduction
 
 
 def test_rehire_after_a_termination_run_opens_a_new_employment() -> None:
