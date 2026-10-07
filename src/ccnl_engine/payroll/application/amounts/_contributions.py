@@ -33,17 +33,13 @@ def _raised(inp: _AmountsInput, base: Decimal) -> Decimal:
     return base if minimum is None else max(base, minimum)
 
 
-def _ordinary_breakdown(
-    inp: _AmountsInput, base: Decimal, *, settles: bool
-) -> ContributionBreakdown:
+def _ordinary_breakdown(inp: _AmountsInput, base: Decimal) -> ContributionBreakdown:
     """Return the ordinary INPS breakdown of ``base`` for the run.
 
     Returns:
         The breakdown with the YTD INPS base, the IVS ceiling and the
-        additional 1% IVS position of the run; without its settlement
-        unless ``settles``.
+        additional 1% IVS position of the run.
     """
-    position = inp.additional_ivs
     return resolve_contributions(
         base,
         inp.rules,
@@ -51,7 +47,7 @@ def _ordinary_breakdown(
         inp.category,
         ytd_inps_base=inp.ytd_inps_base,
         ivs_ceiling_applies=inp.ivs_ceiling_applies,
-        additional=replace(position, settles=position.settles and settles),
+        additional=inp.additional_ivs,
     )
 
 
@@ -67,7 +63,7 @@ def run_contributions(inp: _AmountsInput) -> tuple[ContributionBreakdown, Decima
     """
     if inp.rules.inps is not None:
         base = _raised(inp, inp.monthly_gross + inp.event_inps_base)
-        breakdown = _ordinary_breakdown(inp, base, settles=True)
+        breakdown = _ordinary_breakdown(inp, base)
         rates = resolve_rates(inp.rules, inp.contract_type, inp.category)
         return breakdown, rates.employee_rate
     breakdown = compute_domestic_breakdown(
@@ -78,24 +74,6 @@ def run_contributions(inp: _AmountsInput) -> tuple[ContributionBreakdown, Decima
         inp.contract_type,
     )
     return breakdown, _ZERO
-
-
-def recurring_employee_inps(inp: _AmountsInput, inps_employee: Decimal) -> Decimal:
-    """Return the employee INPS of the recurring pay of the run alone.
-
-    The conguaglio of the additional 1% IVS is left to the one-off pay.
-
-    Returns:
-        ``inps_employee`` for domestic CCNLs, else the employee INPS of the
-        monthly gross without the events, raised to the minimum base.
-    """
-    return (
-        inps_employee
-        if inp.rules.inps is None
-        else _ordinary_breakdown(
-            inp, _raised(inp, inp.monthly_gross), settles=False
-        ).employee
-    )
 
 
 #: Code of the issue of a TFR whose Fondo Tesoreria destination is unknown.

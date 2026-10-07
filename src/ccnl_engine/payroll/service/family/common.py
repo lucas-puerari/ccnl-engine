@@ -37,7 +37,7 @@ class DependentDeduction:
 
     Attributes:
         dependent: The dependent.
-        months: Months of the year the deduction is due.
+        due_months: Months of the year (1-12) the deduction is due.
         annual: Deduction for a full year at the reddito complessivo, before
             the months and the allocation; not rounded.
         amount: ``annual * months / 12 * allocation_pct / 100``, rounded to
@@ -48,10 +48,32 @@ class DependentDeduction:
     """
 
     dependent: Dependent
-    months: int
+    due_months: frozenset[int]
     annual: Decimal
     amount: Decimal
     missing_facts: tuple[str, ...] = ()
+
+    @property
+    def months(self) -> int:
+        """Number of months of the year the deduction is due."""
+        return len(self.due_months)
+
+    def of_month(self, month: int) -> Decimal:
+        """Return the deduction of one month of the year.
+
+        Art. 12 c. 3 TUIR: the deductions "sono rapportate a mese e competono
+        dal mese in cui si sono verificate a quello in cui sono cessate le
+        condizioni richieste".
+
+        Returns:
+            A twelfth of :attr:`annual` times the share, rounded to the cent,
+            in a month the deduction is due and determined; zero otherwise.
+        """
+        if self.missing_facts or month not in self.due_months:
+            return _ZERO
+        return money(
+            self.annual / Decimal(MONTHS_IN_YEAR) * self.dependent.share / _HUNDRED
+        )
 
 
 def truncated(ratio: Decimal, decimals: int) -> Decimal:
@@ -84,20 +106,23 @@ def phase_out(
     return amount * truncated(ratio, decimals)
 
 
-def prorate(dependent: Dependent, months: int, annual: Decimal) -> DependentDeduction:
-    """Return the deduction of ``dependent`` for ``months`` of the year.
+def prorate(
+    dependent: Dependent, due_months: frozenset[int], annual: Decimal
+) -> DependentDeduction:
+    """Return the deduction of ``dependent`` for ``due_months`` of the year.
 
-    ``months`` are those in which no stated condition excludes the
+    ``due_months`` are those in which no stated condition excludes the
     deduction; a dependant that may qualify in some month with a condition
     left unknown gets no deduction and names the missing facts.
 
     Returns:
         The deduction, rounded to the cent after the months and allocation.
     """
-    missing = dependent.missing_facts if months else ()
+    missing = dependent.missing_facts if due_months else ()
     if missing:
-        return DependentDeduction(dependent, months, annual, _ZERO, missing)
+        return DependentDeduction(dependent, due_months, annual, _ZERO, missing)
+    months = Decimal(len(due_months))
     amount = money(
-        annual * Decimal(months) / Decimal(MONTHS_IN_YEAR) * dependent.share / _HUNDRED
+        annual * months / Decimal(MONTHS_IN_YEAR) * dependent.share / _HUNDRED
     )
-    return DependentDeduction(dependent, months, annual, amount)
+    return DependentDeduction(dependent, due_months, annual, amount)

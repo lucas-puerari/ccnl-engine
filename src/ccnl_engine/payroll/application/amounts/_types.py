@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application.amounts._surtax import RunSurtax
 from ccnl_engine.payroll.domain.recovery_plan import InstallmentRun
+from ccnl_engine.payroll.domain.run import RunKind
 from ccnl_engine.payroll.service.additional_ivs import AdditionalIvsPosition
 from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 
@@ -47,6 +48,11 @@ class _AmountsInput:
     of the employments the tax cash state paid in it, the run's included.
     ``fixed_term_in_year`` tells whether one of them is fixed-term, which
     sets the art. 13 c. 1 lett. a) TUIR minimum at 1,380 EUR.
+    ``period_days`` are the days of the pay period of a regular run, zero
+    for any other run.  ``event_separate_base`` is the part of
+    ``event_irpef_base`` withheld apart from the pay of the period (art. 23
+    c. 2 lett. b) DPR 600/1973), and so is the whole of an
+    :attr:`additional_month` run.
     ``recovery_plan`` is the installment recovery opened in this tax year,
     if one is running, ``ulteriore_plan`` the ulteriore detrazione plan
     opened by a conguaglio of this tax year.  ``installment_run`` tells
@@ -58,8 +64,8 @@ class _AmountsInput:
     in, ``None`` when not enrolled.  ``conguaglio`` is true on the run that
     settles the tax year: its last withholding slot, or the last run of the
     employment.  ``surtax_obligations`` is the surtax determined by an
-    earlier conguaglio still to withhold; ``run_month`` and
-    ``regular_run`` place the run in the installment windows.
+    earlier conguaglio still to withhold; ``run_month`` and ``run_kind``
+    place the run in the installment windows.
     ``foreign_taxes`` are credited on the conguaglio only.
     ``deferred_irpef`` is the IRPEF a conguaglio of this tax year deferred
     on written request: it counts as withheld when the balance is settled
@@ -97,6 +103,8 @@ class _AmountsInput:
     domestic_hourly_rate: Decimal | None = None
     eligible_work_days: int = DAYS_IN_YEAR
     fixed_term_in_year: bool = False
+    period_days: int = 0
+    event_separate_base: Decimal = Decimal(0)
     recovery_plan: RecoveryPlan | None = None
     ulteriore_plan: RecoveryPlan | None = None
     installment_run: InstallmentRun = field(default_factory=InstallmentRun)
@@ -105,11 +113,21 @@ class _AmountsInput:
     conguaglio: bool = False
     surtax_obligations: tuple[SurtaxObligation, ...] = ()
     run_month: int = 1
-    regular_run: bool = True
+    run_kind: RunKind = RunKind.REGULAR
     foreign_taxes: tuple[ForeignTaxPaid, ...] = ()
     deferred_irpef: Decimal = Decimal(0)
     additional_ivs: AdditionalIvsPosition = field(default_factory=AdditionalIvsPosition)
     tfr_treasury_fund: bool | None = None
+
+    @property
+    def regular_run(self) -> bool:
+        """Whether the run pays a regular month."""
+        return self.run_kind is RunKind.REGULAR
+
+    @property
+    def additional_month(self) -> bool:
+        """Whether the run pays a tredicesima or a quattordicesima."""
+        return self.run_kind in {RunKind.THIRTEENTH, RunKind.FOURTEENTH}
 
 
 @dataclass(frozen=True)

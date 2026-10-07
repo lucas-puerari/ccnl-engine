@@ -12,15 +12,10 @@ premiums, and the payroll computes none of them.  The art. 12 and art. 13
 deductions and the ulteriore detrazione are outside its scope.  An input
 that brings one of those oneri into the run must carry the reduction.
 
-:func:`run_withholding` splits what is still owed between the run and the
-slots after it.  Income the run pays once (a bonus, overtime, arrears
-taxed ordinarily) is not in the projection of the later slots, so the tax
-it adds is withheld on the run that pays it.  Art. 23 c. 2 DPR 600/1973
-withholds when the sums are paid: lett. a) on the sums "corrisposti in
-ciascun periodo di paga", lett. b) "sulle mensilità aggiuntive e sui
-compensi della stessa natura".  The rest of the balance is spread over the
-remaining slots as before, and the last slot settles the whole balance at
-the conguaglio (art. 23 c. 3).
+:func:`run_withholding` returns the IRPEF of the run: before the last slot
+the tax of its pay period under art. 23 c. 2 DPR 600/1973
+(:mod:`~ccnl_engine.payroll.service.period_withholding`), on the last slot
+the whole balance of the year, the conguaglio of art. 23 c. 3.
 """
 
 from __future__ import annotations
@@ -131,36 +126,26 @@ def net_irpef(
 
 def run_withholding(
     net_annual: Decimal,
-    net_without_one_off: Decimal | None,
     withheld: Decimal,
     remaining: int,
+    period: Decimal,
     carried: Decimal = _ZERO,
 ) -> Decimal:
     """Return the IRPEF the run withholds.
 
     Args:
-        net_annual: Net annual IRPEF on the full projection.
-        net_without_one_off: Net annual IRPEF on the projection without the
-            one-off income of the run, ``None`` when the run pays none.
+        net_annual: Net annual IRPEF on the projection, the final taxable
+            income on the last slot.
         withheld: IRPEF withheld in the tax year before the run.
-        remaining: Withholding slots not yet closed, the run included.
-        carried: IRPEF due on earlier runs that their pay did not cover.
-            It is part of the balance and is withheld in full on this run,
-            like the tax of the one-off income, not spread again.
+        remaining: Withholding slots not yet paid, the run included.
+        period: IRPEF of the pay period of the run (art. 23 c. 2).
+        carried: IRPEF due on earlier runs that their pay did not cover,
+            withheld in full on this run.
 
     Returns:
         On the last slot the whole balance, which is negative for a refund.
-        Before it, the carried IRPEF and the tax the one-off income adds (at
-        least zero) plus the share of the rest of the balance, the share
-        floored at zero.
+        Before it, the IRPEF of the period plus the carried IRPEF.
     """
-    balance = net_annual - withheld
     if remaining == 1:
-        return money(balance)
-    one_off_tax = (
-        _ZERO
-        if net_without_one_off is None
-        else max(_ZERO, net_annual - net_without_one_off)
-    )
-    share = max(_ZERO, (balance - carried - one_off_tax) / remaining)
-    return money(share) + money(one_off_tax) + carried
+        return money(net_annual - withheld)
+    return period + carried

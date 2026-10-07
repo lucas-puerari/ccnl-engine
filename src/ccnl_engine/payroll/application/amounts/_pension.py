@@ -29,20 +29,6 @@ def run_pension(inp: _AmountsInput) -> PensionContribution | None:
     )
 
 
-def recurring_adjustment(inp: _AmountsInput) -> Decimal:
-    """Return the taxable change of the fund on the recurring pay alone.
-
-    Returns:
-        Zero when the worker is not enrolled.
-    """
-    if inp.pension is None:
-        return _ZERO
-    recurring = contribute(
-        inp.pension, inp.monthly_gross, inp.opening.earnings.pension_deducted
-    )
-    return recurring.taxable_adjustment
-
-
 def projected_adjustment(
     inp: _AmountsInput, pension: PensionContribution | None
 ) -> Decimal:

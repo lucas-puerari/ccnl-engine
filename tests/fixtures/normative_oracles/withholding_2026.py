@@ -6,6 +6,19 @@ oracle :mod:`.irpef_2026`, written the same way.
 
 Sources:
 
+- Withholding on the pay of a month: art. 23 c. 2 lett. a) DPR 600/1973
+  (Normattiva, text in force from 21 May 2022 to 31 December 2026, read on
+  7 October 2026): on the pay "corrisposti in ciascun periodo di paga, con
+  le aliquote dell'imposta sul reddito delle persone fisiche, ragguagliando
+  al periodo di paga i corrispondenti scaglioni annui di reddito, ed
+  effettuando le detrazioni previste negli articoli 12 e 13 del citato
+  testo unico, rapportate al periodo stesso".  AdE circ. 15/E/2007 par.
+  2.1 measures the deductions on the employment income the employer pays
+  in the year; par. 1.5.1 counts the days of the deduction on a year of
+  365.  The further deduction of L. 207/2024 art. 1 c. 6 is "rapportata
+  al periodo di lavoro" and recognized "all'atto dell'erogazione delle
+  retribuzioni" (c. 7, text in force for 2026); it is taken here, like
+  art. 13, for the days of the month over the days of employment.
 - Withholding on an additional month: art. 23 c. 2 lett. b) DPR 600/1973
   (Normattiva, copy of the page saved for the review of 6 October 2026,
   https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:1973-09-29;600~art23):
@@ -32,11 +45,13 @@ from decimal import ROUND_HALF_UP, Decimal
 
 from tests.fixtures.normative_oracles.irpef_2026 import (
     employment_deduction,
+    further_deduction,
     gross_irpef,
 )
 
 __all__ = [
     "extra_month_withholding",
+    "regular_month_withholding",
     "trattamento_integrativo_above_15000",
 ]
 
@@ -73,6 +88,38 @@ def extra_month_withholding(taxable: Decimal) -> Decimal:
             break
         lower = upper / _MONTHS
     return tax.quantize(_CENT, rounding=ROUND_HALF_UP)
+
+
+def regular_month_withholding(
+    taxable: Decimal,
+    annual_income: Decimal,
+    days: int,
+    *,
+    employment_days: int = 365,
+    family: Decimal = _ZERO,
+) -> Decimal:
+    """Return the IRPEF withheld on the pay of a month under lett. a).
+
+    Args:
+        taxable: Taxable income of the month.
+        annual_income: Employment income of the year the deductions are
+            measured on.
+        days: Days of employment in the month.
+        employment_days: Days of employment in the year.
+        family: Art. 12 TUIR deductions of the month.
+
+    Returns:
+        The tax of :func:`extra_month_withholding` less the art. 13 and the
+        further deduction of the year times ``days / employment_days``, each
+        rounded to the cent, less ``family``; at least zero.
+    """
+    share = Decimal(days) / Decimal(employment_days)
+    work = employment_deduction(annual_income, employment_days) * share
+    further = further_deduction(annual_income, employment_days) * share
+    deductions = work.quantize(_CENT, rounding=ROUND_HALF_UP) + further.quantize(
+        _CENT, rounding=ROUND_HALF_UP
+    )
+    return max(extra_month_withholding(taxable) - deductions - family, _ZERO)
 
 
 def trattamento_integrativo_above_15000(

@@ -61,7 +61,7 @@ _CHILD = Dependent(
 
 def test_prorate_rounds_once_after_months_and_share() -> None:
     """710 x 7 / 12 x 50% = 207.0833... -> 207.08."""
-    deduction = prorate(_CHILD, 7, _D(710))
+    deduction = prorate(_CHILD, frozenset(range(6, 13)), _D(710))
     assert deduction.amount == _D("207.08")
     assert deduction.months == 7
     assert deduction.annual == _D(710)
@@ -71,7 +71,7 @@ def test_prorate_rounds_once_after_months_and_share() -> None:
 def test_prorate_zero_months_is_zero() -> None:
     """A dependent never entitled in the year has no deduction."""
     unknown = replace(_CHILD, own_income=None)
-    deduction = prorate(unknown, 0, _D(950))
+    deduction = prorate(unknown, frozenset(), _D(950))
     assert deduction.amount == _D(0)
     assert deduction.missing_facts == ()
 
@@ -79,6 +79,19 @@ def test_prorate_zero_months_is_zero() -> None:
 def test_prorate_with_an_unknown_condition_grants_nothing() -> None:
     """A dependant that may qualify with an unknown condition names it."""
     unknown = replace(_CHILD, own_income=None, allocation_pct=None)
-    deduction = prorate(unknown, 12, _D(950))
+    deduction = prorate(unknown, frozenset(range(1, 13)), _D(950))
     assert deduction.amount == _D(0)
     assert deduction.missing_facts == ("own_income", "allocation_pct")
+
+
+def test_month_deduction_is_a_twelfth_in_a_due_month() -> None:
+    """Art. 12 c. 3: 710 / 12 x 50% = 29.58 from June; nothing before."""
+    deduction = prorate(_CHILD, frozenset(range(6, 13)), _D(710))
+    assert deduction.of_month(6) == _D("29.58")
+    assert deduction.of_month(5) == _D(0)
+
+
+def test_month_deduction_of_an_undetermined_dependant_is_zero() -> None:
+    """A deduction not determined for an unknown condition grants no month."""
+    unknown = replace(_CHILD, own_income=None)
+    assert prorate(unknown, frozenset(range(1, 13)), _D(950)).of_month(1) == _D(0)

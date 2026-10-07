@@ -18,6 +18,7 @@ from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 from ccnl_engine.payroll.service.irpef_minimum import minimum_decision
 from ccnl_engine.payroll.service.irpef_net import net_irpef
 from ccnl_engine.payroll.service.irpef_trace import annual_items, somma_esente_items
+from ccnl_engine.payroll.service.period_withholding import NO_PAY, period_tax
 from ccnl_engine.payroll.service.trattamento_credit import resolve_trattamento
 from ccnl_engine.payroll.service.ulteriore_recovery import withhold_with_ulteriore
 
@@ -28,6 +29,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
     from ccnl_engine.payroll.domain.tax import TaxLineItem
     from ccnl_engine.payroll.service.irpef_net import NetIrpef
+    from ccnl_engine.payroll.service.period_withholding import PayPeriod
     from ccnl_engine.payroll.service.ulteriore_settlement import (
         UlterioreSettlement,
     )
@@ -73,10 +75,9 @@ def compute_tax(
     family_deductions: Decimal = _ZERO,
     recovery_plan: RecoveryPlan | None = None,
     eligible_work_days: int = DAYS_IN_YEAR,
-    net_without_one_off: Decimal | None = None,
+    period: PayPeriod = NO_PAY,
     carried_shortfall: Decimal = _ZERO,
     ulteriore_account: CreditAccount | None = None,
-    ulteriore_without_one_off: Decimal = _ZERO,
     run: InstallmentRun = _ORDINARY_RUN,
     ulteriore_plan: RecoveryPlan | None = None,
     foreign_taxes: tuple[ForeignTaxPaid, ...] = (),
@@ -99,12 +100,12 @@ def compute_tax(
     :mod:`~ccnl_engine.payroll.service.irpef_net`).
 
     The period withholding (``ordinary_tax``) is
-    :func:`~ccnl_engine.payroll.service.irpef_net.run_withholding`: the tax
-    the one-off income of the run adds, plus the share
-    ``max(0, (irpef_net_annual - one_off_tax - ytd_withheld) /
-    remaining_slots)``, where ``remaining_slots`` counts the slots of the
-    withholding schedule not yet paid, the current one included.  The
-    last slot settles the full balance, which can be negative (a refund).
+    :func:`~ccnl_engine.payroll.service.irpef_net.run_withholding`: before
+    the last slot the IRPEF of the pay period under art. 23 c. 2 DPR
+    600/1973 (:func:`~ccnl_engine.payroll.service.period_withholding\
+.period_tax`), the deductions of the period taken from the annual ones on
+    the projection; the last slot settles the full balance, which can be
+    negative (a refund).
 
     Args:
         taxable: Annual IRPEF taxable base (gross - employee INPS).
@@ -127,16 +128,13 @@ def compute_tax(
             trattamento integrativo are proportioned to them ("rapportata
             al periodo di lavoro nell'anno": art. 13 c. 1 TUIR, L. 207/2024
             art. 1 c. 6, D.L. 3/2020 art. 1).
-        net_without_one_off: Net annual IRPEF on the projection without the
-            one-off income the run pays, or ``None`` when it pays none.  The
-            difference from the full net is withheld on the run.
+        period: Pay of the run as art. 23 c. 2 DPR 600/1973 withholds it
+            before the last slot; :data:`NO_PAY` withholds nothing then.
         carried_shortfall: IRPEF of earlier runs of the tax year that their
             pay did not cover; withheld in full on this run.
         ulteriore_account: YTD account of the ulteriore detrazione, or
             ``None`` not to track it.  On the last slot an excess above 60
             EUR is deferred to ten installments (L. 207/2024 art. 1 c. 7).
-        ulteriore_without_one_off: IRPEF the ulteriore detrazione removes
-            on the projection without the one-off income of the run.
         run: The run as a recovery sees it.  On the final run of the
             employment nothing is deferred and every running plan is
             settled; an adjustment run posts the next installment.
@@ -165,11 +163,10 @@ def compute_tax(
     ordinary_tax, ulteriore = withhold_with_ulteriore(
         annual,
         remaining,
+        period_tax(period, annual, rules),
         opening_irpef_withheld=opening_irpef_withheld,
-        net_without_one_off=net_without_one_off,
         carried_shortfall=carried_shortfall,
         ulteriore_account=ulteriore_account,
-        ulteriore_without_one_off=ulteriore_without_one_off,
         run=run,
         running_plan=ulteriore_plan,
     )

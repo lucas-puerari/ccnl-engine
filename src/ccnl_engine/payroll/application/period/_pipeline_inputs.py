@@ -7,6 +7,8 @@ computation.
 
 from __future__ import annotations
 
+import calendar
+from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
@@ -140,6 +142,7 @@ def amounts_input(
         event_inps_base=totals.inps_base,
         event_tfr_base=totals.tfr_base,
         event_irpef_base=totals.irpef_base,
+        event_separate_base=totals.separate_irpef_base,
         event_substitute_base=totals.substitute_base,
         opening=ctx.opening.cash,
         ytd_inps_base=ctx.ytd_inps_base,
@@ -162,6 +165,7 @@ def amounts_input(
         domestic_hourly_rate=_domestic_rate(ctx),
         eligible_work_days=spell_days(ctx.employment_spells),
         fixed_term_in_year=any(s.fixed_term for s in ctx.employment_spells),
+        period_days=_period_days(ctx),
         recovery_plan=ctx.opening.cash.obligations.recovery_of(
             fiscal_year, TRATTAMENTO_RECOVERY
         ),
@@ -174,7 +178,7 @@ def amounts_input(
         conguaglio=ctx.conguaglio,
         surtax_obligations=ctx.opening.cash.obligations.surtax,
         run_month=request.period_id.month,
-        regular_run=ctx.run_kind is RunKind.REGULAR,
+        run_kind=ctx.run_kind,
         foreign_taxes=request.prior_year.foreign_taxes,
         deferred_irpef=_deferred_irpef(ctx),
         additional_ivs=additional_ivs_position(ctx),
@@ -202,6 +206,28 @@ def _contributable_hours(request: PeriodCalculationRequest) -> Decimal | None:
     """
     hours = request.contributable_hours
     return None if hours is None else hours.value
+
+
+def _period_days(ctx: RunContext) -> int:
+    """Return the days of the pay period the deductions are proportioned to.
+
+    Art. 23 c. 2 lett. a) DPR 600/1973 applies the art. 12 and 13 TUIR
+    deductions "rapportate al periodo stesso"; the days are the calendar
+    days of the month of a regular run the employment covers.
+
+    Returns:
+        Zero for a run that is not a regular month: it takes no deduction.
+    """
+    if ctx.run_kind is not RunKind.REGULAR:
+        return 0
+    year, month = ctx.request.period_id.year, ctx.request.period_id.month
+    first = date(year, month, 1)
+    last = date(year, month, calendar.monthrange(year, month)[1])
+    period = ctx.request.employment_period
+    if period is not None:
+        first = max(first, period.started_on)
+        last = last if period.ended_on is None else min(last, period.ended_on)
+    return max(0, (last - first).days + 1)
 
 
 def _deferred_irpef(ctx: RunContext) -> Decimal:

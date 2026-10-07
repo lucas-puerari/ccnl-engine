@@ -40,12 +40,13 @@ a partire dalla prima retribuzione alla quale si applicano gli effetti del
 conguaglio".
 
 The deduction lowers the IRPEF withheld, so what a run recognizes is how
-much lower its withholding is than the withholding without the deduction,
-on the same projection. It accumulates in
-`state.cash.ulteriore_detrazione` (a `CreditAccount`). A run that takes part
-of it back before the conguaglio (a bonus above the band) records it as
-recovered by the withholding: that part is not found at the conguaglio and
-is not spread again. On the last withholding slot:
+much lower its withholding is than the withholding without the deduction:
+before the conguaglio, the share of the deduction its pay period took. It
+accumulates in `state.cash.ulteriore_detrazione` (a `CreditAccount`).
+Before the conguaglio a run never takes it back: a bonus that lifts the
+income above the band only stops the months after it from recognizing
+more, and what was recognized is found not due at the conguaglio. On the
+last withholding slot:
 
 - the account settles on the annual due;
 - an excess up to 60 EUR stays in the conguaglio IRPEF;
@@ -67,11 +68,18 @@ the part left to the installments), and the invariant
 `irpef_annual_reconciliation` counts the deferred installments with the
 IRPEF withheld.
 
+The deduction is recognized on the pay of each month, like the art. 13
+deduction (art. 23 c. 2 lett. a) DPR 600/1973; c. 6: "rapportata al
+periodo di lavoro"): the annual amount times the days of the month over the
+days of employment in the year. A tredicesima or quattordicesima takes no
+deduction (lett. b).
+
 Metalmeccanico C3 at 33 of 40 hours in 2026 is projected at about 20,950 EUR
-of taxable income, so the runs recognize 12/13 of the 1,000 EUR deduction
-(923.07 EUR) before the conguaglio. 144 absence hours on the tredicesima
-bring the final income to 19,639.09 EUR: the deduction is not due, 92.31 EUR
-are recovered on the conguaglio and nine installments (830.76 EUR) are
+of taxable income, so the twelve months recognize 1,000 EUR times their
+days over 365 (84.93 for 31 days, 82.19 for 30, 76.71 for February),
+999.98 EUR before the conguaglio. 144 absence hours on the tredicesima
+bring the final income to 19,639.09 EUR: the deduction is not due, 100.00
+EUR are recovered on the conguaglio and nine installments (899.98 EUR) are
 deferred to 2027.
 
 When the employment ends in the tax year no payslip follows the

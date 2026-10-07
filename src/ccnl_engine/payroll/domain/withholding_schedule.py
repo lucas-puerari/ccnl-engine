@@ -1,9 +1,9 @@
 """Withholding schedule of a tax year: the payments it holds and the conguaglio.
 
 The IRPEF projection and the year-end conguaglio (art. 23 c. 3 DPR
-600/1973) run on the payments of the tax year: the tax still due is spread
-over the payments not yet made, and the payment after which none is left
-settles the balance on the final taxable income.  A tax year counts the
+600/1973) run on the payments of the tax year: the projection counts the
+payments not yet made, and the payment after which none is left settles
+the balance on the final taxable income.  A tax year counts the
 payments made in it, whatever their competence (TUIR art. 51 c. 1): a
 December paid after 12 January takes a slot of the next tax year.
 

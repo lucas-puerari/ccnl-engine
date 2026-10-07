@@ -89,7 +89,7 @@ def _compute_amounts(
         return untaxed, breakdown, no_tax, None
     pdr = pdr_split(inp)
     taxable = taxable_income(inp, breakdown.employee, employee_rate, pdr, pension)
-    irpef = withhold_irpef(inp, taxable, breakdown.employee)
+    irpef = withhold_irpef(inp, taxable)
     tax_comp = irpef.tax.computation
     surtax = run_surtax(inp, taxable.projected, irpef.tax.irpef_net)
     amounts = _PeriodAmounts(

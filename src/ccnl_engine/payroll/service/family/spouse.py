@@ -67,5 +67,5 @@ def spouse_deduction(
         The deduction, zero months when a stated condition excludes it.
     """
     qualifies = spouse.may_qualify(rules.spouse.dependent_income_threshold)
-    months = len(spouse.dependency_months(rules.year)) if qualifies else 0
+    months = spouse.dependency_months(rules.year) if qualifies else frozenset()
     return prorate(spouse, months, spouse_annual(income, rules))

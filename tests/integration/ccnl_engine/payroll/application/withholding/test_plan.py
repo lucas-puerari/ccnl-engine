@@ -22,7 +22,6 @@ from ccnl_engine.payroll.domain.payment import PaymentId
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
-from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.payroll.domain.schedule import PayrollRunCount
 from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
@@ -240,8 +239,10 @@ def test_request_schedule_of_other_year_rejected() -> None:
 def test_standalone_december_is_not_the_last_slot_with_half_fourteenth() -> None:
     """Without a schedule, December regular still leaves the tredicesima slot.
 
-    With the twelve earlier payments identified, December splits the
-    balance over its own payslip and the tredicesima.
+    With the twelve earlier payments identified, December is not the
+    conguaglio: it withholds the tax of its own pay period (art. 23 c. 2
+    lett. a) DPR 600/1973), not the balance of the year, which the
+    tredicesima settles.
     """
     paid = _paid(paid_before(PayrollRun.regular(_YEAR, 12), Decimal("13.5")))
     opening = replace(
@@ -261,4 +262,4 @@ def test_standalone_december_is_not_the_last_slot_with_half_fourteenth() -> None
     )
     tax = result.tax_computation
     assert tax.withholding_due > 0
-    assert tax.ordinary_tax == money(tax.withholding_due / 2)
+    assert 0 < tax.ordinary_tax < tax.withholding_due

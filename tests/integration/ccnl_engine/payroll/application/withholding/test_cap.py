@@ -4,15 +4,23 @@ Art. 23 c. 3 DPR 600/1973 (art. 33 c. 4 D.Lgs. 33/2025 from 2027): the
 conguaglio settles the tax on the whole year; what the pay cannot cover on
 the last slot is communicated to the worker.
 
-The Metalmeccanico C3 case: 160 absence hours at 12.50 EUR deduct 2,000 EUR
-of the 2,158.26 EUR January pay.  The expectation is derived by hand:
+The Metalmeccanico C3 case: 100 absence hours at 12.50 EUR deduct 1,250 EUR
+of the 2,158.26 EUR January pay, and a 3,000 EUR fringe benefit in kind,
+above the 1,000 EUR threshold, is taxed in full.  The expectation is derived
+by hand:
 
-- employee INPS on the 158.26 EUR left: 9.19% IVS (14.54) plus 0.30% CIGS
-  (0.47), rounded per component: 15.01; pay left 158.26 - 15.01 = 143.25;
-- projected taxable: 143.25 plus twelve slots of 2,158.26 less 9.49% INPS
-  (2,457.83 on 25,899.12): 23,584.54;
-- net IRPEF by the independent oracle, split over 13 slots: 162.33;
-- shortfall: 162.33 - 143.25 = 19.08, carried to February.
+- INPS base 2,158.26 - 1,250 + 3,000 = 3,908.26; employee INPS 9.19% IVS
+  (359.17) plus 0.30% CIGS (11.72), rounded per component: 370.89; pay left
+  in cash 2,158.26 - 1,250 - 370.89 = 537.37;
+- taxable of the month 3,908.26 - 370.89 = 3,537.37, taxed on the brackets
+  divided by twelve (art. 23 c. 2 lett. a) DPR 600/1973): 23% of 2,333.33
+  plus 33% of the rest = 934.00;
+- projected taxable: 3,537.37 plus twelve slots of 2,158.26 less 9.49% INPS
+  (2,457.83 on 25,899.12): 26,978.66; art. 13 deduction 1,910 + 1,190 *
+  0.0785 + 65 = 2,068.42, times 31/365 = 175.67; ulteriore detrazione
+  1,000 * 31/365 = 84.93; IRPEF of January 934.00 - 175.67 - 84.93 = 673.40
+  (``regular_month_withholding``);
+- shortfall: 673.40 - 537.37 = 136.03, carried to February.
 """
 
 from __future__ import annotations
@@ -36,16 +44,18 @@ from ccnl_engine.payroll.application.withholding._cap import (
 )
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
-from ccnl_engine.payroll.domain.events import AbsenceEvent
+from ccnl_engine.payroll.domain.events import AbsenceEvent, FringeEvent
 from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
 from ccnl_engine.payroll.domain.pay_items import CompetencePeriod
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
-from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.ytd_accounts import WithholdingShortfall
 from ccnl_engine.tax.service.tax_annual_assembler import load_year_rules
 from tests.fixtures.normative_oracles.irpef_2026 import net_irpef
+from tests.fixtures.normative_oracles.withholding_2026 import (
+    regular_month_withholding,
+)
 from tests.fixtures.period_requests import period_request
 from tests.helpers import year_plan
 
@@ -58,11 +68,14 @@ _YEAR = 2026
 _ZERO = Decimal(0)
 _PAY = Decimal("2158.26")
 _ABSENCE = AbsenceEvent(
-    event_date=date(_YEAR, 1, 15), hours=Decimal(160), hourly_rate=Decimal("12.50")
+    event_date=date(_YEAR, 1, 15), hours=Decimal(100), hourly_rate=Decimal("12.50")
 )
+_FRINGE = FringeEvent(event_date=date(_YEAR, 1, 20), amount=Decimal(3000))
 
 
-def _run(month: int, opening: PeriodState, *events: AbsenceEvent) -> PeriodResult:
+def _run(
+    month: int, opening: PeriodState, *events: AbsenceEvent | FringeEvent
+) -> PeriodResult:
     return calculate_period(
         PeriodCalculationRequest(
             employer=EmployerProfile(headcount=Headcount(50)),
@@ -78,21 +91,21 @@ def _run(month: int, opening: PeriodState, *events: AbsenceEvent) -> PeriodResul
 
 @cache
 def _january() -> PeriodResult:
-    return _run(1, PeriodState.zero(), _ABSENCE)
+    return _run(1, PeriodState.zero(), _ABSENCE, _FRINGE)
 
 
 @cache
 def _year() -> CompetenceYearResult:
     return calculate_competence_year(
-        year_plan(_YEAR, _CCNL, "C3", events={1: (_ABSENCE,)})
+        year_plan(_YEAR, _CCNL, "C3", events={1: (_ABSENCE, _FRINGE)})
     )
 
 
-def _expected_january_share() -> Decimal:
+def _expected_january_irpef() -> Decimal:
     upcoming = 12 * _PAY
     inps = (upcoming * Decimal("0.0949")).quantize(Decimal("0.01"), ROUND_HALF_UP)
-    projected = Decimal("143.25") + upcoming - inps
-    return money(net_irpef(projected) / 13)
+    projected = Decimal("3537.37") + upcoming - inps
+    return regular_month_withholding(Decimal("3537.37"), projected, 31)
 
 
 def _ordinary_tax(result: PeriodResult) -> Decimal:
@@ -110,17 +123,17 @@ class TestAbsenceShortfall:
     """The C3 January absence withholds the pay left and carries the rest."""
 
     def test_january_net_is_zero(self) -> None:
-        """IRPEF takes the 143.25 EUR left and no more."""
+        """IRPEF takes the 537.37 EUR left and no more."""
         result = _january()
         assert result.period_net == Decimal("0.00")
-        assert _ordinary_tax(result) == Decimal("143.25")
+        assert _ordinary_tax(result) == Decimal("537.37")
 
     def test_shortfall_is_carried(self) -> None:
-        """The 19.08 EUR not withheld is carried in the tax year state."""
-        assert _expected_january_share() == Decimal("162.33")
+        """The 136.03 EUR not withheld is carried in the tax year state."""
+        assert _expected_january_irpef() == Decimal("673.40")
         shortfall = _january().closing_state.cash.shortfall
-        assert shortfall.irpef == _expected_january_share() - Decimal("143.25")
-        assert shortfall.irpef == Decimal("19.08")
+        assert shortfall.irpef == _expected_january_irpef() - Decimal("537.37")
+        assert shortfall.irpef == Decimal("136.03")
         assert shortfall.surtax == _ZERO
 
     def test_decision_records_the_cap(self) -> None:
@@ -129,8 +142,8 @@ class TestAbsenceShortfall:
             d for d in _january().decisions if d.capability == "withholding_shortfall"
         )
         assert decision.reason_code == "withholding_capped"
-        assert decision.amount == Decimal("19.08")
-        assert decision.inputs["pay_available"] == Decimal("143.25")
+        assert decision.amount == Decimal("136.03")
+        assert decision.inputs["pay_available"] == Decimal("537.37")
 
     def test_catalog_capabilities_have_no_gap(self) -> None:
         """The capabilities the catalog now declares are traced every run."""
@@ -144,18 +157,18 @@ class TestAbsenceShortfall:
         assert gaps.isdisjoint(declared)
 
     def test_february_withholds_the_carried_amount(self) -> None:
-        """February withholds the 19.08 EUR in full, outside the spread.
+        """February withholds the 136.03 EUR in full on top of its own tax.
 
-        With the carried amount the remaining balance spread over the twelve
-        slots left excludes it, so February withholds 19.08 - 19.08 / 12 =
-        17.49 EUR more than a state that carried nothing.
+        The IRPEF of February is the tax of its pay period, the same with or
+        without the carried amount, so February withholds exactly 136.03
+        EUR more than a state that carried nothing.
         """
         opening = _january().closing_state
         february = _run(2, opening)
         plain_ytd = replace(opening.cash, shortfall=WithholdingShortfall())
         plain = _run(2, replace(opening, cash=plain_ytd))
         difference = _ordinary_tax(february) - _ordinary_tax(plain)
-        assert abs(difference - Decimal("17.49")) <= Decimal("0.01")
+        assert difference == Decimal("136.03")
         assert february.closing_state.cash.shortfall.total == _ZERO
         (decision,) = (
             d for d in february.decisions if d.capability == "withholding_shortfall"
@@ -280,17 +293,13 @@ class TestCapWithholding:
 def test_absence_leaving_less_than_withholdings_caps_the_irpef() -> None:
     """An absence that leaves less pay than the withholdings nets to zero.
 
-    160 hours at 12.50 EUR deduct 2,000 EUR of 2,158.26 EUR of pay; the
-    IRPEF due (162.33 EUR) exceeds the 143.25 EUR left after INPS, which
-    gave a net pay of -19.08 EUR.  The IRPEF is withheld up to the pay left
-    and the 19.08 EUR are carried to the next run (art. 23 c. 3 DPR
-    600/1973); the derivation is in ``withholding/test_cap``.
+    100 hours at 12.50 EUR deduct 1,250 EUR of 2,158.26 EUR of pay and a
+    3,000 EUR fringe benefit in kind is taxed: the IRPEF of January (673.40
+    EUR) exceeds the 537.37 EUR left in cash after INPS.  The IRPEF is
+    withheld up to the pay left and the 136.03 EUR are carried to the next
+    run (art. 23 c. 3 DPR 600/1973); the derivation is in the module
+    docstring.
     """
-    absence = AbsenceEvent(
-        event_date=date(_YEAR, 1, 15),
-        hours=Decimal(160),
-        hourly_rate=Decimal("12.50"),
-    )
-    result = calculate_period(period_request(events=(absence,)))
+    result = calculate_period(period_request(events=(_ABSENCE, _FRINGE)))
     assert result.period_net == Decimal("0.00")
-    assert result.closing_state.cash.shortfall.irpef == Decimal("19.08")
+    assert result.closing_state.cash.shortfall.irpef == Decimal("136.03")

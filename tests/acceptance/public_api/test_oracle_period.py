@@ -28,6 +28,9 @@ from ccnl_engine.inputs import (
     FixedTerm,
     WeeklyHours,
 )
+from tests.fixtures.normative_oracles.withholding_2026 import (
+    regular_month_withholding,
+)
 from tests.fixtures.seniority import new_hire
 
 engine = PayrollEngine.bundled()
@@ -64,7 +67,17 @@ def test_inps_contributions_metalmeccanico_c3() -> None:
 
 
 def test_irpef_ordinary_tax_metalmeccanico_c3() -> None:
-    """Ordinary IRPEF for metalmeccanico C3; 2026 bracket: 23% up to 28,000 EUR."""
+    """January IRPEF of metalmeccanico C3 under art. 23 c. 2 lett. a) DPR 600/1973.
+
+    Taxable of the month 2,158.26 - 204.81 = 1,953.45, below 28,000 / 12:
+    23% gives 449.29.  The deductions are measured on the projected year:
+    13 slots, the twelve still to come at 2,158.26 less 9.49% INPS,
+    1,953.45 + 25,899.12 - 2,457.83 = 25,394.74.  Art. 13: 1,910 + 1,190 *
+    0.2004 + 65 = 2,213.48, times 31/365 = 187.99; ulteriore detrazione
+    1,000 * 31/365 = 84.93.  449.29 - 187.99 - 84.93 = 176.37
+    (``regular_month_withholding``).  Net: 2,158.26 - 204.81 - 176.37 =
+    1,777.08.
+    """
     result = engine.calculate_period(
         PeriodInput(
             run=PayrollRun.regular(year=2026, month=1),
@@ -74,8 +87,11 @@ def test_irpef_ordinary_tax_metalmeccanico_c3() -> None:
         )
     )
     tc = result.tax_computation
-    assert tc.ordinary_tax == Decimal("202.10")
-    assert result.period_net == Decimal("1751.35")
+    assert tc.ordinary_tax == regular_month_withholding(
+        Decimal("1953.45"), Decimal("25394.74"), 31
+    )
+    assert tc.ordinary_tax == Decimal("176.37")
+    assert result.period_net == Decimal("1777.08")
 
 
 # ---------------------------------------------------------------------------

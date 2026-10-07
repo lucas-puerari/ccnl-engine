@@ -27,6 +27,8 @@ if TYPE_CHECKING:
 
 _ZERO = Decimal(0)
 DAYS_IN_YEAR = 365  # "365 per l'intero anno": 730/2026 istruzioni, quadro C
+#: Monthly pay periods in a year, the divisor of the annual brackets.
+MONTHS_IN_YEAR = 12
 
 
 def _marginal_tax(taxable_income: Decimal, brackets: Sequence[Bracket]) -> Decimal:
@@ -34,6 +36,17 @@ def _marginal_tax(taxable_income: Decimal, brackets: Sequence[Bracket]) -> Decim
 
     Returns:
         The tax on ``taxable_income``, rounded to two decimal places.
+    """
+    return money(_exact_marginal_tax(taxable_income, brackets))
+
+
+def _exact_marginal_tax(
+    taxable_income: Decimal, brackets: Sequence[Bracket]
+) -> Decimal:
+    """Apply each bracket's rate to the slice of income inside it.
+
+    Returns:
+        The tax on ``taxable_income``, not rounded.
     """
     tax = _ZERO
     prev_limit = _ZERO
@@ -49,7 +62,7 @@ def _marginal_tax(taxable_income: Decimal, brackets: Sequence[Bracket]) -> Decim
         # Equivalent as `>=`: at equality the open bracket adds 0 * rate.
         elif taxable_income > prev_limit:  # pragma: no mutate
             tax += (taxable_income - prev_limit) * bracket.rate
-    return money(tax)
+    return tax
 
 
 def irpef_gross(taxable_income: Decimal, rules: YearRules) -> Decimal:
@@ -62,6 +75,32 @@ def irpef_gross(taxable_income: Decimal, rules: YearRules) -> Decimal:
     if taxable_income <= _ZERO:  # pragma: no mutate
         return _ZERO
     return _marginal_tax(taxable_income, rules.irpef_brackets)
+
+
+def period_irpef_gross(
+    taxable: Decimal, rules: YearRules, periods: int = MONTHS_IN_YEAR
+) -> Decimal:
+    """Return the IRPEF on the taxable of a pay period, before any deduction.
+
+    Art. 23 c. 2 DPR 600/1973 withholds on the pay of a period "con le
+    aliquote dell'imposta sul reddito delle persone fisiche, ragguagliando
+    al periodo di paga i corrispondenti scaglioni annui di reddito" (lett.
+    a), and on the mensilità aggiuntive "ragguagliando a mese" the same
+    brackets (lett. b).  Dividing every bracket limit by ``periods`` taxes
+    ``taxable`` as the annual brackets tax ``taxable * periods``, divided
+    by ``periods``: the limits are not rounded.
+
+    Args:
+        taxable: Taxable income of the pay period.
+        rules: Year rules with the annual brackets.
+        periods: Pay periods in a year, twelve for a monthly pay.
+
+    Returns:
+        The tax, rounded to two decimal places; zero at or below zero.
+    """
+    if taxable <= _ZERO:
+        return _ZERO
+    return money(_exact_marginal_tax(taxable * periods, rules.irpef_brackets) / periods)
 
 
 def surtax_from_brackets(

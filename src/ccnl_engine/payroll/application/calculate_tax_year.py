@@ -44,8 +44,8 @@ def calculate_tax_year(
     ``plan.tax_year`` by their payment date (TUIR art. 51 c. 1), after
     those already closed in ``plan.opening_state``.  Every payment is
     computed on the withholding schedule of all of them, so the IRPEF
-    projection spreads the tax over the payments actually made in the year
-    and the conguaglio falls on the last one, whether a late payment of an
+    projection counts the payments actually made in the year and the
+    conguaglio falls on the last one, whether a late payment of an
     earlier competence year comes before, among or after the runs of the
     year.  A payment the opening state already closed is not computed
     again: resuming an interrupted plan on the state it reached gives the

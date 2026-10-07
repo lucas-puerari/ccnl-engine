@@ -6,9 +6,12 @@ family deductions.  At the last run of the year the sostituto d'imposta must
 perform the conguaglio (art. 23 c. 3 DPR 600/1973), so the IRPEF withheld
 over the year equals the net IRPEF on the final annual taxable income.
 The same holds for a part-year employment, whose deductions are
-proportioned to its days.  An additional month has its own withholding
-rule (art. 23 c. 2 lett. b): the engine does not apply it yet, a strict
-xfail.
+proportioned to its days.  Before the conguaglio each run withholds on its
+own pay (art. 23 c. 2 DPR 600/1973): a regular month on the brackets
+divided by twelve less the deductions of the month (lett. a), an
+additional month on the same brackets with no deduction (lett. b), and
+the art. 12 TUIR deductions only from the month their conditions arise
+(art. 12 c. 3 TUIR).
 """
 
 from __future__ import annotations
@@ -25,17 +28,24 @@ from ccnl_engine import (
     Employment,
     PayrollRun,
 )
-from ccnl_engine.inputs import EmploymentPeriod
+from ccnl_engine.inputs import (
+    DependentRelationship,
+    EmploymentPeriod,
+    FamilyComposition,
+)
 from tests.acceptance.legal_scenarios._support import (
     COMMERCIO,
     COOP_SOCIALI,
     EMPLOYER,
     ENGINE,
 )
-from tests.fixtures.explicit_facts import CONCIA_D2, competence_year
+from tests.fixtures.dependents import declared_dependent
+from tests.fixtures.explicit_facts import CONCIA_D2, FACTS, competence_year
+from tests.fixtures.normative_oracles.family_2026 import spouse_deduction
 from tests.fixtures.normative_oracles.irpef_2026 import net_irpef
 from tests.fixtures.normative_oracles.withholding_2026 import (
     extra_month_withholding,
+    regular_month_withholding,
 )
 
 pytestmark = pytest.mark.legal_scenario
@@ -150,19 +160,20 @@ def test_part_year_employment_withholds_the_tax_on_its_days(
 
 
 def test_mid_year_hire_projects_the_tredicesima_it_will_accrue() -> None:
-    """Metalmeccanico C3 hired 1 July 2026 withholds evenly over its 7 slots.
+    """Metalmeccanico C3 hired 1 July 2026: 184 days, 7 slots.
 
-    The tredicesima of December pays 6/12 (July to December), so every run
-    must project that rateo, not a full month.  With the projection equal
-    to the final taxable income, each of the seven slots (July to December
-    plus the tredicesima) withholds a seventh of the annual tax.
+    The tredicesima of December pays 6/12 (July to December), so July
+    projects that rateo, not a full month: 2,001.57 (2,211.43 less 9.49%
+    INPS) + five months and half a month to come, 11,057.15 + 1,105.72 =
+    12,162.87, less 9.49% INPS 1,154.26: 13,010.18.  Observed on 26
+    September 2026 before the rateo reached the projection: 14,010.96.
 
-    Expected: ``net_irpef(final taxable, 184) / 7`` per run, within two
-    cents of rounding; 184 days from 1 July to 31 December.
-
-    Observed on 26 September 2026 before the rateo reached the projection:
-    the runs of July to December projected 14,010.96 EUR instead of
-    13,010.20 and withheld 319.57 each, leaving 89.39 for the tredicesima.
+    Each regular month withholds under art. 23 c. 2 lett. a) DPR 600/1973:
+    23% of 2,001.57 = 460.36, less the art. 13 deduction of the 184 days
+    (1,955 x 184 / 365 = 985.53) times the days of the month over 184: 31
+    days give 166.04 and 294.32 withheld, 30 days 160.68 and 299.68.  The
+    tredicesima settles the year (art. 23 c. 3): the IRPEF withheld is the
+    net IRPEF of the final taxable for 184 days.
     """
     year = ENGINE.calculate_competence_year(
         CompetenceYearPlan(
@@ -175,31 +186,38 @@ def test_mid_year_hire_projects_the_tredicesima_it_will_accrue() -> None:
             employer=EMPLOYER,
         )
     )
-    final_taxable = year.period_results[-1].closing_state.cash.earnings.taxable
-    share = net_irpef(final_taxable, 184) / 7
+    runs = year.period_results
+    (july_projection,) = (
+        d.inputs["taxable_income"]
+        for d in runs[0].decisions
+        if d.capability == "trattamento_integrativo"
+    )
+    final_taxable = runs[-1].closing_state.cash.earnings.taxable
+    withheld = sum((r.tax_computation.ordinary_tax for r in runs), Decimal(0))
 
-    assert len(year.period_results) == 7
-    for run in year.period_results:
-        assert abs(run.tax_computation.ordinary_tax - share) <= Decimal("0.02")
+    assert len(runs) == 7
+    assert july_projection == Decimal("13010.18")
+    for run, days in zip(runs[:6], (31, 31, 30, 31, 30, 31), strict=True):
+        assert run.tax_computation.ordinary_tax == regular_month_withholding(
+            Decimal("2001.57"), Decimal("13010.18"), days, employment_days=184
+        )
+    assert runs[0].tax_computation.ordinary_tax == Decimal("294.32")
+    assert runs[2].tax_computation.ordinary_tax == Decimal("299.68")
+    assert abs(withheld - net_irpef(final_taxable, 184)) <= _CENT
 
 
-@pytest.mark.xfail(
-    strict=True,
-    raises=AssertionError,
-    reason=(
-        "the quattordicesima withholds the share of the projected annual tax "
-        "of a regular month; art. 23 c. 2 lett. b) DPR 600/1973 taxes an "
-        "additional month on the annual brackets divided by twelve, with no "
-        "deduction"
-    ),
-)
 def test_fourteenth_withholds_on_monthly_brackets() -> None:
     """Commercio level 4, hired 1 January 2026: the June quattordicesima.
 
     The fourteenth pays 6/12 of the month (January to June of the July-June
-    window); its taxable is under 28,000 / 12 = 2,333.33, so lett. b)
-    withholds 23% of it.  The June regular run, with its deductions, must
-    withhold less.
+    window): 1,783.75 / 2 = 891.88, INPS 9.19% = 81.96, taxable 809.92.
+    It is under 28,000 / 12 = 2,333.33, so lett. b) withholds 23% of it
+    with no deduction: 186.28.  The June regular run pays 1,619.82 of
+    taxable (23% = 372.56) and takes the deductions of its 30 days on the
+    projected 21,867.60: art. 13 1,910 + 1,190 x 0.4717 = 2,471.32, times
+    30/365 = 203.12, and the ulteriore detrazione 1,000 x 30/365 = 82.19
+    (lett. a): 87.25.  Observed on 6 October 2026 before this rule: 129.91
+    on the fourteenth, the share of a regular month.
     """
     employment = replace(CONCIA_D2, ccnl_slug=COMMERCIO, level_code="4")
     year = ENGINE.calculate_competence_year(competence_year(employment=employment))
@@ -216,5 +234,49 @@ def test_fourteenth_withholds_on_monthly_brackets() -> None:
     )
     withheld = fourteenth.tax_computation.ordinary_tax
 
-    assert withheld > regular.tax_computation.ordinary_tax
-    assert abs(withheld - extra_month_withholding(taxable)) <= _CENT
+    assert taxable == Decimal("809.92")
+    assert withheld == extra_month_withholding(taxable) == Decimal("186.28")
+    assert regular.tax_computation.ordinary_tax == regular_month_withholding(
+        Decimal("1619.82"), Decimal("21867.60"), 30
+    )
+    assert regular.tax_computation.ordinary_tax == Decimal("87.25")
+
+
+def _concia_d2_with(family: FamilyComposition) -> dict[PayrollRun, Decimal]:
+    plan = replace(
+        competence_year(), default_facts=replace(FACTS, family_composition=family)
+    )
+    year = ENGINE.calculate_competence_year(plan)
+    return {
+        r.run: r.tax_computation.ordinary_tax
+        for r in year.period_results
+        if r.run is not None
+    }
+
+
+def test_spouse_from_july_does_not_lower_january() -> None:
+    """A spouse dependent from 15 July is deducted from July, not before.
+
+    Art. 12 c. 3 TUIR: the family deductions "sono rapportate a mese e
+    competono dal mese in cui si sono verificate"; art. 23 c. 2 lett. a)
+    DPR 600/1973 applies them to the pay of the period.  January withholds
+    the same with or without the spouse; July withholds one month of the
+    spouse deduction less: 690 / 12 = 57.50 (art. 12 c. 1 lett. a) n. 2,
+    reddito complessivo between 15,000 and 40,000: Concia D2 projects
+    2,052.32 x 13 less 194.77 x 13 of INPS = 24,148.15, see
+    ``normative_oracles.payslips.concia_d2_2026``).
+
+    Observed on 6 October 2026, when the annual tax was spread over the
+    slots: the spouse lowered the January withholding of Metalmeccanico C3
+    from 202.10 to 175.56.
+    """
+    spouse = declared_dependent(
+        DependentRelationship.SPOUSE, dependent_from=date(2026, 7, 15)
+    )
+    alone = _concia_d2_with(FamilyComposition())
+    married = _concia_d2_with(FamilyComposition(dependents=(spouse,)))
+    january, july = PayrollRun.regular(2026, 1), PayrollRun.regular(2026, 7)
+
+    assert married[january] == alone[january]
+    assert alone[july] - married[july] == spouse_deduction(Decimal("24148.15"), 1)
+    assert alone[july] - married[july] == Decimal("57.50")
