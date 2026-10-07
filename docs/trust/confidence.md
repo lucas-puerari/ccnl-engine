@@ -134,7 +134,9 @@ without a classification, or on a classification without its field:
     employers withheld when their base is imported and a run settles the
     1%, the opening state of a run that is not the first of an employment
     whose start is stated, the INPS base of other employments when the INPS
-    rules carry a massimale or a 1% threshold);
+    rules carry a massimale or a 1% threshold, the TFR fund at 31 December
+    of the year before on a December run, the Fondo Tesoreria destination
+    of the TFR);
   - `pending`: not honoured yet. The default still selects a branch without
     a blocker. Treat these fields as required and state them.
 

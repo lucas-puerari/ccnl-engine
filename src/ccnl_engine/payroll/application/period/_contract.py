@@ -26,7 +26,8 @@ if TYPE_CHECKING:
 
 __all__ = ["RunContract", "load_contract", "with_competence_contributions"]
 
-#: Fields of :class:`YearRules` read by the INPS contributions.
+#: Fields of :class:`YearRules` that follow competence: the INPS
+#: contributions and the TFR revaluation at 31 December of the year.
 _CONTRIBUTION_FIELDS = (
     "inps_ruleset",
     "inps",
@@ -36,6 +37,7 @@ _CONTRIBUTION_FIELDS = (
     "fixed_term_additional_rate_provenance",
     "inps_sources",
     "inps_extraction",
+    "tfr_revaluation",
 )
 
 
@@ -96,12 +98,14 @@ def with_competence_contributions(
     sector: TaxSector,
     headcount: int,
 ) -> YearRules:
-    """Return ``rules`` with the INPS rules of the competence year.
+    """Return ``rules`` with the INPS and TFR revaluation rules of competence.
 
     INPS contributions follow competence: a December paid on 13 January is
     contributed in the December denuncia, at the rates and under the
     massimale of its own year (INPS circ. 237/2016 par. 2.1 and 3.1).  The
-    IRPEF rules stay those of the tax year of the payment.
+    TFR revaluation is that of 31 December of the competence year (art.
+    2120 c. 4 c.c.).  The IRPEF rules stay those of the tax year of the
+    payment.
 
     Returns:
         ``rules`` when they are of ``competence_year``; otherwise a copy

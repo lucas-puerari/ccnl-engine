@@ -53,7 +53,7 @@ formulas or caller-declared amounts.
 | Layer | native | caller_supplied | partial | unsupported |
 |---|---:|---:|---:|---:|
 | gross | 3 | 1 | 0 | 4 |
-| net | 15 | 1 | 2 | 8 |
+| net | 16 | 1 | 2 | 8 |
 | work_rules | 3 | 6 | 0 | 3 |
 
 | Capability | Description | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
@@ -78,7 +78,8 @@ formulas or caller-declared amounts.
 | `health_fund_employer` | Fondo sanitario integrativo a carico azienda | net | unsupported | outside_input | — | `employment.health_fund` | — | unavailable | none bundled |
 | `territorial_supplement` | Integrazione da contratto territoriale | gross | unsupported | outside_input | — | `employment.territorial_agreement` | — | unavailable | none bundled |
 | `company_supplement` | Integrazione da contratto aziendale | gross | unsupported | outside_input | — | `employment.company_agreement` | — | unavailable | none bundled |
-| `tfr` | Trattamento di Fine Rapporto | net | native | always | pipeline | — | — | implemented | 0 / 13 / 0 / 0 |
+| `tfr` | Trattamento di Fine Rapporto | net | native | always | pipeline | `employment.tfr_treasury_fund` | — | implemented | 0 / 13 / 0 / 0 |
+| `tfr_revaluation` | Rivalutazione del fondo TFR al 31 dicembre e imposta sostitutiva (art. 2120 c. 4 c.c.) | net | native | decided | decision | `employment.tfr_fund` | — | implemented | 0 / 3 / 0 / 0 |
 | `irpef` | IRPEF (sostituto d'imposta) | net | native | always | pipeline | — | — | implemented | 0 / 24 / 0 / 0 |
 | `trattamento_integrativo` | Trattamento integrativo (ex bonus 80€) | net | native | decided | decision | — | — | implemented | 0 / 8 / 0 / 0 |
 | `ulteriore_detrazione_lavoro` | Ulteriore detrazione lavoro dipendente | net | native | decided | decision | — | — | implemented | 0 / 8 / 0 / 0 |

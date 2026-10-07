@@ -69,6 +69,7 @@ def _run(
         ccnl_slug=_METALMECCANICO,
         level_code="C3",
         seniority=new_hire(),
+        tfr_treasury_fund=False,
         employer=EmployerProfile(headcount=Headcount(50)),
         opening_state=PeriodState.zero(),
         employment_period=EmploymentPeriod(date(2026, 3, 1)),

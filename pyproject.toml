@@ -104,6 +104,7 @@ max-public-methods = 15
 "src/ccnl_engine/tax/domain/contribution_tiers.py" = ["TCH"]
 "src/ccnl_engine/tax/domain/domestic_contribution_rules.py" = ["TCH"]
 "src/ccnl_engine/tax/domain/tfr_rules.py" = ["TCH"]
+"src/ccnl_engine/tax/domain/tfr_revaluation.py" = ["TCH"]
 "src/ccnl_engine/tax/domain/credit_rules.py" = ["TCH"]
 "src/ccnl_engine/tax/domain/ruleset.py" = ["TCH"]
 "src/ccnl_engine/tax/domain/family.py" = ["TCH"]

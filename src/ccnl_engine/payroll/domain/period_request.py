@@ -30,6 +30,7 @@ from ccnl_engine.payroll.domain.seniority_fact import (
     SeniorityFact,
 )
 from ccnl_engine.payroll.domain.tax_year import TaxYearPolicy
+from ccnl_engine.payroll.domain.tfr_fund import TfrFundBalance
 from ccnl_engine.shared.domain.errors import InvalidInputError
 from ccnl_engine.shared.domain.validation import FieldSpec, require_instances
 from ccnl_engine.tax.domain.preferential_regime import EmploymentSector
@@ -146,6 +147,10 @@ class PeriodCalculationRequest:
             left out because the bundle holds no pay rules on their date.
             They are reported once, as ``run_not_computed`` blockers of the
             year, so the opening state is not judged to miss them.
+        tfr_fund: TFR fund at 31 December of the year before, the base of
+            the revaluation; ``None`` when not known.
+        tfr_treasury_fund: Whether the TFR not paid to a pension fund goes
+            to the Fondo Tesoreria INPS; ``None`` when not known.
     """
 
     period_id: PeriodId
@@ -178,6 +183,8 @@ class PeriodCalculationRequest:
     current_year: CurrentYearTaxFacts | None = None
     pension_fund: PensionFundEnrolment | None = None
     uncovered_runs: tuple[PayrollRunId, ...] = ()
+    tfr_fund: TfrFundBalance | None = None
+    tfr_treasury_fund: bool | None = None
 
     def __post_init__(self) -> None:
         """Guard dates, cross-year state or schedule and hours above full time.
@@ -288,4 +295,6 @@ class PeriodCalculationRequest:
             ("prior_year", self.prior_year, PriorYearTaxFacts, False),
             ("current_year", self.current_year, CurrentYearTaxFacts, True),
             ("pension_fund", self.pension_fund, PensionFundEnrolment, True),
+            ("tfr_fund", self.tfr_fund, TfrFundBalance, True),
+            ("tfr_treasury_fund", self.tfr_treasury_fund, bool, True),
         )

@@ -19,6 +19,7 @@ from ccnl_engine.payroll.domain.employment_facts import (
 )
 from ccnl_engine.payroll.domain.pension_fund import PensionFundEnrolment
 from ccnl_engine.payroll.domain.seniority_fact import SeniorityFact
+from ccnl_engine.payroll.domain.tfr_fund import TfrFundBalance
 from ccnl_engine.shared.domain.collection_validation import frozenset_of
 from ccnl_engine.shared.domain.validation import (
     FieldSpec,
@@ -148,6 +149,20 @@ class Employment:
             ``None`` means not enrolled: no fund contribution is computed,
             and on a CCNL that has funds the ``pension_fund_contribution``
             capability records the reason ``not_enrolled``.
+        tfr_fund: TFR fund at 31 December of the year before the run, the
+            base of the revaluation at 31 December (art. 2120 c. 4 c.c.).
+            ``None`` means not known: the December run then has a
+            ``missing_fact`` blocker, unless the employment starts in the
+            year of the run (no fund to revalue).
+        tfr_treasury_fund: Whether the TFR not paid to a pension fund is
+            paid to the Fondo Tesoreria INPS (L. 296/2006 art. 1 c. 756):
+            the employer is obliged by its size and the worker is not
+            excluded (DM 30 gennaio 2007 art. 1 cc. 5-8).  ``None`` means not
+            known: a run that accrues TFR in the company then has a
+            ``missing_fact`` blocker.  Domestic work and the public
+            administrations are outside the Fondo: ``True`` there raises
+            ``InvalidInputError``, ``None`` and ``False`` keep the TFR in
+            the company.
 
     Raises:
         InvalidInputError: When a field is not of its type, a role is not a
@@ -168,6 +183,8 @@ class Employment:
     contribution_history: ContributionHistory | None = None
     sector: EmploymentSector | None = None
     pension_fund: PensionFundEnrolment | None = None
+    tfr_fund: TfrFundBalance | None = None
+    tfr_treasury_fund: bool | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         if not isinstance(self.ccnl_slug, str) or not _SLUG.fullmatch(self.ccnl_slug):
@@ -225,4 +242,6 @@ class Employment:
                 True,
             ),
             ("pension_fund", self.pension_fund, PensionFundEnrolment, True),
+            ("tfr_fund", self.tfr_fund, TfrFundBalance, True),
+            ("tfr_treasury_fund", self.tfr_treasury_fund, bool, True),
         )

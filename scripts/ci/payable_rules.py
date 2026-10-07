@@ -9,7 +9,8 @@ indemnity bands; INPS
 contribution rates (ordinary, apprentice, domestic, fixed-term
 addizionale); IRPEF brackets, the Art. 13 work deduction and its
 sterilizzazione; the trattamento integrativo, the ulteriore detrazione and
-the somma esente; the TFR divisor; the regional and municipal surtax
+the somma esente; the TFR divisor and the TFR revaluation (rate, ISTAT
+index and substitute tax); the regional and municipal surtax
 tables; the Art. 12 family deductions; the complementary pension deduction
 cap and solidarity rate; the fringe-benefit thresholds and the PdR limits;
 the parameters of the substitute-tax regimes.
@@ -91,6 +92,11 @@ _NAMED_BLOCKS: Final[dict[str, _Blocks]] = {
     "tax/data/variable-pay-rules": (
         ("fringe_benefit", ("fringe_benefit",), False),
         ("pdr", ("bonus_pdr",), False),
+    ),
+    "tax/data/tfr-revaluation-": (
+        ("rate", ("tfr_revaluation",), False),
+        ("price_index", ("tfr_revaluation",), False),
+        ("substitute_tax", ("tfr_revaluation",), False),
     ),
     "inps/data/sick-pay-rates": (("bands", ("sickness",), True),),
 }

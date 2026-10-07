@@ -36,6 +36,8 @@ def _candidates(
     yield RulesetKind.TAX, rules.ruleset
     yield RulesetKind.INPS, rules.inps_ruleset
     yield RulesetKind.TAX, ctx.var_pay_rules.ruleset
+    if rules.tfr_revaluation is not None:
+        yield RulesetKind.TAX, rules.tfr_revaluation.ruleset
     if "family_deductions" in capabilities:
         family = ctx.repo.load_family_deduction_rules(ctx.fiscal_year)
         yield RulesetKind.TAX, family.ruleset

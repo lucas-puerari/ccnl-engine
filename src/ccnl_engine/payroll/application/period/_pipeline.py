@@ -35,6 +35,9 @@ from ccnl_engine.payroll.application.period._seniority import (
     run_seniority,
     seniority_decision,
 )
+from ccnl_engine.payroll.application.period._tfr_revaluation import (
+    tfr_revaluation_decisions,
+)
 from ccnl_engine.payroll.application.year._extra_month_settlement import (
     settle_extra_months,
 )
@@ -140,7 +143,8 @@ def run_decisions(
 
     Returns:
         The base stage decisions, the extra-month ratei counted, the
-        contract decisions, then those of the
+        contract decisions, the pension fund and the TFR revaluation, then
+        those of the
         events and of the amounts, and last the caller-supplied values of
         the events.
     """
@@ -164,6 +168,7 @@ def run_decisions(
             ctx.apprenticeship,
         )
         + ((pension,) if pension is not None else ())
+        + tfr_revaluation_decisions(ctx)
         + totals.decisions
         + amounts.decisions
         + caller_supplied_decisions(request.events, contract.ccnl)

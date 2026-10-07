@@ -35,6 +35,7 @@ _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
 _YEAR = 2026
 _RESIDUAL_LEAVE = "termination_residual_leave"
+_TFR_REVALUATION = "tfr_revaluation"
 
 
 def _req(month: int = 1) -> PeriodCalculationRequest:
@@ -99,13 +100,20 @@ class TestClosingRun:
     """A run that closes the employment needs residual leave settled."""
 
     def test_termination_run_is_incomplete(self) -> None:
-        """The unsupported capability applies: a gap and a blocker."""
+        """The unsupported capability applies: a gap and a blocker.
+
+        The revaluation of the TFR fund for the fraction of the year (art.
+        2120 c. 5 c.c.) is not computed either.
+        """
         request = replace(
             _req(month=3),
             run=PayrollRun(run_kind=RunKind.TERMINATION, month=3, year=2026),
         )
         result = calculate_period(request)
-        assert _gap_kinds(request) == {_RESIDUAL_LEAVE: CapabilityGapKind.UNSUPPORTED}
+        assert _gap_kinds(request) == {
+            _RESIDUAL_LEAVE: CapabilityGapKind.UNSUPPORTED,
+            _TFR_REVALUATION: CapabilityGapKind.UNRESOLVED,
+        }
         assert result.assurance.coverage is CoverageStatus.INCOMPLETE
         assert (BlockerCode.CAPABILITY_NOT_COMPUTED, _RESIDUAL_LEAVE) in {
             (b.code, b.feature) for b in result.blockers
@@ -118,7 +126,10 @@ class TestClosingRun:
             started_on=date(2020, 1, 1), ended_on=date(2026, 3, 15)
         )
         request = replace(_req(month=3), employment_period=period)
-        assert _gap_kinds(request) == {_RESIDUAL_LEAVE: CapabilityGapKind.UNSUPPORTED}
+        assert _gap_kinds(request) == {
+            _RESIDUAL_LEAVE: CapabilityGapKind.UNSUPPORTED,
+            _TFR_REVALUATION: CapabilityGapKind.UNRESOLVED,
+        }
 
     def test_extra_month_run_does_not_close_it(self) -> None:
         """The tredicesima paid in the last month leaves the closing to the payslip."""

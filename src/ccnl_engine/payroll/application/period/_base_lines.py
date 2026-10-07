@@ -109,19 +109,6 @@ def _pension_lines(amounts: _PeriodAmounts) -> list[_BaseLine]:
     ]
 
 
-def _tfr_account(amounts: _PeriodAmounts) -> AccountKind:
-    """Return the account of the TFR accrued on the run.
-
-    Returns:
-        ``PENSION_FUND_TFR`` when the TFR is paid to the fund, else
-        ``TFR_ACCRUAL``.
-    """
-    pension = amounts.pension
-    if pension is not None and pension.terms.tfr_to_fund:
-        return AccountKind.PENSION_FUND_TFR
-    return AccountKind.TFR_ACCRUAL
-
-
 def _contribution_lines(amounts: _PeriodAmounts) -> list[_BaseLine]:
     """Return the INPS employee, INPS employer and TFR lines of a run.
 
@@ -146,7 +133,7 @@ def _contribution_lines(amounts: _PeriodAmounts) -> list[_BaseLine]:
         _BaseLine(
             "tfr",
             "tfr_accrual_item",
-            _tfr_account(amounts),
+            amounts.tfr.account,
             amounts.tfr.amount,
             TfrAccrualItem,
         ),

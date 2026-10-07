@@ -45,7 +45,8 @@ class PeriodResult:
         period_employer_cost: Total employer cost net of unpaid absences:
             ``period_gross - unpaid_absence_deduction + employer_contributions
             + bilateral_fund_employer + tfr_accrual + non_cash_benefits
-            + pension_fund_employer + pension_fund_tfr``.
+            + pension_fund_employer + pension_fund_tfr
+            + tfr_treasury_fund``.
         unpaid_absence_deduction: Sum of EMPLOYEE_DEDUCTIONS ledger entries.
             Represents wages not paid due to unpaid absences or sickness.
             Zero when no absences are present.

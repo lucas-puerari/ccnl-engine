@@ -64,6 +64,7 @@ def _run(event: OvertimeEvent, slug: str = _METAL, level: str = "C3") -> PeriodR
             ccnl_slug=slug,
             level_code=level,
             seniority=new_hire(),
+            tfr_treasury_fund=False,
             events=(event,),
             employment_period=_HIRED,
             current_year=employment_only(),

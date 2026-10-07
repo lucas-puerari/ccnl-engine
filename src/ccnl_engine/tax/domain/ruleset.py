@@ -26,6 +26,7 @@ from ccnl_engine.tax.domain.irpef_rules import (
     WorkDeductionRules,
 )
 from ccnl_engine.tax.domain.pension_rules import ComplementaryPensionRules
+from ccnl_engine.tax.domain.tfr_revaluation import TfrRevaluationRules
 from ccnl_engine.tax.domain.tfr_rules import TfrRules
 
 
@@ -103,6 +104,8 @@ class YearRules(BaseModel):
     domestic sectors where ``domestic_contributions`` carries the flat-rate
     table instead.  Exactly one contribution model is present (enforced by
     the loader, which mirrors ``YearRulesRaw._check_contribution_model``).
+    ``tfr_revaluation`` holds the revaluation of the TFR fund at 31
+    December of the year, ``None`` when the bundle has no rules for it.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -118,6 +121,7 @@ class YearRules(BaseModel):
     apprentice: ApprenticeRates | None = None
     domestic_contributions: DomesticInpsRates | None = None
     tfr: TfrRules
+    tfr_revaluation: TfrRevaluationRules | None = None
     trattamento_integrativo: TrattamentoIntegrativoRules | None = None
     ulteriore_detrazione: UlterioreDetrazioneRules | None = None
     somma_esente: SommaEsenteRules | None = None

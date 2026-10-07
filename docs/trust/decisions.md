@@ -30,7 +30,8 @@ are referenced, not repeated.
 | `inps_employee` | `rates_applied`, `domestic_hourly_rates` | `<inps>:inps`, `<inps>:apprentice` or `<inps>:domestic_contributions` | `base`, `ytd_base`, `ivs_ceiling` (`applied`, `not_applied`, `undetermined`), `rate` | Worker contributions; `None` and `incomplete` when `ivs_ceiling` is `undetermined` |
 | `inps_employer` | as above | as above | as above, with the employer `rate` | Employer contributions, as above |
 | `ivs_ceiling_eligibility` | `first_enrolment_after_1995`, `contributory_option`, `enrolled_before_1996`, `ceiling_not_reached`, `required_fact_missing` | `<inps>:inps.ceiling` | `first_enrolled_on`, `contributory_option`, `cohort_start`, `legal_basis`, `ceiling`, `ytd_base`, `period_base`, `ceiling_applies`; with `required_fact_missing` also `employee_capped`, `employee_uncapped`, `employer_capped`, `employer_uncapped` | `None` |
-| `tfr` | `accrued` | `<tax>:tfr`, and `<tax>:tfr.additional_ivs` where the sector deducts it | `base`, `accrual_divisor`, `quota`, `additional_ivs_base`, `additional_ivs_rate`, `additional_ivs_deduction`, `account` | TFR accrued, in the company or in the pension fund: the quota less the 0.50% additional IVS of L. 297/1982 art. 3 c. 16; `provisional` for an apprentice, whose quota accrues whole |
+| `tfr` | `accrued` | `<tax>:tfr`, and `<tax>:tfr.additional_ivs` where the sector deducts it | `base`, `accrual_divisor`, `quota`, `additional_ivs_base`, `additional_ivs_rate`, `additional_ivs_deduction`, `treasury_fund` (`true`, `false`, `unknown`), `account` (`tfr_accrual`, `tfr_treasury_fund`, `pension_fund_tfr`) | TFR accrued, in the company, at the Fondo Tesoreria or in the pension fund: the quota less the 0.50% additional IVS of L. 297/1982 art. 3 c. 16; an apprentice owes no 0.50% (INPS circ. 70/2007 note 5) and accrues the whole quota |
+| `tfr_revaluation` | `revalued`, `no_opening_fund`, `required_fact_missing`, `fund_of_another_year`, `termination_not_computed`, `price_index_not_published`, `negative_rate` | `tax/<year>/tfr-revaluation:rate` | `moment` (`year_end`, `termination`), `fund`; when computed `fixed_rate`, `index_share`, `previous_december_index`, `december_index`, `link_coefficient`, `rate`, `substitute_tax_rate`, `substitute_tax`, `net_revaluation` | Revaluation of the TFR fund at 31 December (art. 2120 c. 4 c.c.), on the December regular run and on the run that ends the employment; `incomplete` with no amount unless `revalued` or `no_opening_fund`. Not posted to the ledger |
 | `irpef` | `withheld`, `refunded`, `nothing_due` | `<tax>:irpef_brackets` | `projected_taxable`, the annual components, `withholding_due`, `withholding_slots`, `decisions` | IRPEF of the run before the pay cap |
 
 The `ivs_ceiling_eligibility` decision is recorded on every run whose INPS
@@ -166,7 +167,7 @@ run.
   `inps_employee`, `ORDINARY_TAX` to `irpef`, `withholding_shortfall` or
   `shortfall_deferral`, `SURTAX` to the regional and municipal surtax or
   to `withholding_shortfall` for surtax carried from an earlier run,
-  `TFR_ACCRUAL` to `tfr`.
+  `TFR_ACCRUAL`, `TFR_TREASURY_FUND` and `PENSION_FUND_TFR` to `tfr`.
 
 An entry whose kind or account maps to no capability is a violation too, so
 a new posting has to name the capability that decides it. The mapping is in

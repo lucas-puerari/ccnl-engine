@@ -101,6 +101,116 @@ artigianato).
   `seniority` without a category, the calculation raises
   `InvalidInputError` instead of silently dropping the increment.
 
+## TFR
+
+Each run accrues the TFR quota of art. 2120 c.c. (the TFR base over 13.5),
+less the 0.50% additional IVS of L. 297/1982 art. 3 c. 16 where the sector
+deducts it (an apprentice owes none: INPS circ. 70/2007, note 5). Two facts
+of `Employment` decide where it goes and how the fund grows.
+
+### Fondo Tesoreria
+
+`tfr_treasury_fund` says whether the TFR not paid to a pension fund goes to
+the Fondo Tesoreria INPS (L. 296/2006 art. 1 cc. 755-756). The obligation
+does not follow the headcount of the run: it is the yearly average of 2006,
+or of the year the activity started (DM 30 gennaio 2007 art. 1 c. 6), and
+from 2026 also the average of the year before for an employer that grows
+past 50, with at least 60 employees in 2026 and 2027 (c. 756 as in force
+from 12 August 2026). Some workers are excluded whatever the size (DM art. 1
+c. 8: fixed-term contracts under three months, home workers, agricultural
+white collars insured with ENPAIA). State the outcome:
+
+| `tfr_treasury_fund` | Account of the TFR | Blocker |
+|---|---|---|
+| `True` | `tfr_treasury_fund` | none |
+| `False` | `tfr_accrual` | none |
+| `None` | `tfr_accrual` | `missing_fact` `tfr_treasury_fund` on a run with a non-zero TFR outside a pension fund |
+
+The amount and the employer cost are the same on both accounts. Domestic
+employers and public administrations are outside the Fondo: `None` and
+`False` keep the TFR in the company, `True` raises `InvalidInputError`. The
+TFR a worker pays to a pension fund goes to `pension_fund_tfr` whatever the
+fact says.
+
+### Revaluation at 31 December
+
+`tfr_fund` is a `TfrFundBalance(year, amount)`: the TFR the worker has with
+the employer at 31 December of `year`, after that day's revaluation and
+substitute tax and less the advances paid, including the part at the Fondo
+Tesoreria and excluding the part at a pension fund. The December regular
+run revalues it (art. 2120 c. 4 c.c.): the quota accrued in the year is
+excluded, the rate is 1.5% plus 75% of the increase of the ISTAT FOI index
+without tobacco from December to December (L. 81/1992 art. 4 c. 1; across a
+change of index base the ratio is multiplied by ISTAT's link coefficient,
+1.214 from base 2015 to base 2025). The revaluation bears a 17% substitute
+tax charged to the fund (D.Lgs. 47/2000 art. 11 cc. 3-4).
+
+The run records a `tfr_revaluation` decision:
+
+| Reason | When | Amount |
+|---|---|---|
+| `revalued` | Fund of the year before stated, December index bundled | Revaluation; `substitute_tax` and `net_revaluation` in the inputs |
+| `no_opening_fund` | A zero fund, or `tfr_fund=None` on an employment that starts in the year | `0` |
+| `required_fact_missing` | `tfr_fund=None` on an employment that started before the year or is not tracked | `None`, `missing_fact` `tfr_fund` |
+| `fund_of_another_year` | `tfr_fund.year` is not the year before the run | `None`, `missing_fact` `tfr_fund` |
+| `price_index_not_published` | The bundle has no December index of the year | `None` |
+| `termination_not_computed` | The run ends the employment before 31 December (art. 2120 c. 5: a fraction of the year) | `None` |
+| `negative_rate` | The index fell enough to make the rate negative: no source says how it applies | `None` |
+
+Every reason but the first two leaves the decision `incomplete` and the run
+not payable. ISTAT publishes the December 2026 index in mid-January 2027:
+until the bundle carries it, every December 2026 run with a fund to revalue
+is blocked. The decision is not posted to the ledger: the revaluation
+changes the fund, not the pay, the net or the employer cost of the run.
+
+An employment that starts in the year is taken to have no fund. When it
+carries a TFR over (a transfer of undertaking under art. 2112 c.c., or a
+rehire whose TFR moved with the worker), state `tfr_fund` anyway.
+
+The engine never outputs the fund. Carry it to the next year yourself:
+`tfr_fund` of the next year = `tfr_fund` + `net_revaluation` + the
+`tfr_accrual` and `tfr_treasury_fund` postings of the year - the advances
+paid.
+
+Not computed: the revaluation for a fraction of the year at termination,
+the acconto of the substitute tax (90% by 16 December) and its saldo (16
+February), the share of the revaluation the Fondo Tesoreria bears and the
+employer recovers, and the TFR of public employees, which INPS manages:
+`tfr_fund` is still required on their December runs.
+
+```python
+from datetime import date
+from decimal import Decimal
+
+from ccnl_engine import (
+    EmployerProfile,
+    Employment,
+    Headcount,
+    PayrollEngine,
+    PayrollRun,
+    PeriodInput,
+)
+from ccnl_engine.inputs import EmploymentPeriod, TfrFundBalance
+
+engine = PayrollEngine.bundled()
+result = engine.calculate_period(
+    PeriodInput(
+        run=PayrollRun.regular(year=2026, month=12),
+        payment_date=date(2026, 12, 23),
+        employment=Employment(
+            ccnl_slug="metalmeccanico-federmeccanica.json",
+            level_code="C3",
+            employment_period=EmploymentPeriod(date(2020, 1, 1)),
+            tfr_fund=TfrFundBalance(2025, Decimal("15000.00")),
+            tfr_treasury_fund=True,
+        ),
+        employer=EmployerProfile(headcount=Headcount(60)),
+    )
+)
+(revaluation,) = (d for d in result.decisions if d.capability == "tfr_revaluation")
+print(revaluation.reason_code)  # price_index_not_published until January 2027
+```
+
 ## Bilateral funds (*fondi bilaterali*)
 
 Many CCNLs require contributions to sector bilateral bodies (health funds,
@@ -174,7 +284,7 @@ When enrolled, each run posts:
 | Employer contribution | `pension_fund_employer` | CCNL rate x INPS base of the run | employer cost |
 | Solidarity contribution | `employer_contributions` | 10% of the employer contribution | employer cost |
 | Employee contribution | `pension_fund_employee` | chosen rate x INPS base | withheld from net |
-| TFR to the fund | `pension_fund_tfr` instead of `tfr_accrual` | TFR of the run, net of the 0.50% additional IVS (L. 297/1982 art. 3 c. 16) | none: the cost does not change |
+| TFR to the fund | `pension_fund_tfr` instead of `tfr_accrual` or `tfr_treasury_fund` | TFR of the run, net of the 0.50% additional IVS (L. 297/1982 art. 3 c. 16) | none: the cost does not change |
 
 The rules behind it:
 

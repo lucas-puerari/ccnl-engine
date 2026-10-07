@@ -181,7 +181,7 @@ def check_employer_cost_identity(
     CASH_EARNINGS - EMPLOYEE_DEDUCTIONS + NON_CASH_BENEFITS
     + EMPLOYER_CONTRIBUTIONS + BILATERAL_FUND_EMPLOYER
     + TFR_ACCRUAL + PENSION_FUND_EMPLOYER + PENSION_FUND_TFR
-    = period_employer_cost.
+    + TFR_TREASURY_FUND = period_employer_cost.
 
     Returns:
         A violation when the derived employer cost diverges from
@@ -192,7 +192,9 @@ def check_employer_cost_identity(
     ncb = _sum_account(result, AccountKind.NON_CASH_BENEFITS)
     employer = _sum_account(result, AccountKind.EMPLOYER_CONTRIBUTIONS)
     bilateral_er = _sum_account(result, AccountKind.BILATERAL_FUND_EMPLOYER)
-    tfr = _sum_account(result, AccountKind.TFR_ACCRUAL)
+    tfr = _sum_account(result, AccountKind.TFR_ACCRUAL) + _sum_account(
+        result, AccountKind.TFR_TREASURY_FUND
+    )
     pension = _sum_account(result, AccountKind.PENSION_FUND_EMPLOYER) + _sum_account(
         result, AccountKind.PENSION_FUND_TFR
     )

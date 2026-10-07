@@ -264,12 +264,26 @@ credito and edilizia. It does not apply it, and the quota accrues whole, in
 public administration (not insured with the FPLD), in domestic work (named
 by c. 15, but paid by flat hourly contributions with no percentage IVS base)
 and in agricoltura (the composition of its employer rate is not sourced).
-For apprentices no bundled source splits the 0.50% out of the overall rate
-(L. 296/2006 art. 1 c. 773): the quota accrues whole and the TFR is
-provisional.
+For apprentices the 0.50% is not due (INPS circ. 70/2007, note 5): the
+quota accrues whole.
 
-For employers with more than 50 employees, the TFR accrual is channelled to INPS
-(or a pension fund if the worker elects one) rather than held by the company.
+The TFR not destined to a pension fund goes to the Fondo Tesoreria INPS
+(L. 296/2006 art. 1 cc. 755-756) when the employer is obliged: at least 50
+employees on the yearly average of 2006, or of the year the activity
+started (DM 30 gennaio 2007 art. 1 c. 6); from 2026 also an employer that
+reaches the threshold later, on the average of the year before, with at
+least 60 employees in 2026 and 2027 (c. 756 as in force from 12 August
+2026). Some workers are excluded (DM art. 1 c. 8), and so are domestic
+employers and the public administrations. The Fondo takes the quota net of
+the 0.50%. The headcount of the run is not the test: the caller states the
+outcome as `Employment.tfr_treasury_fund`.
+
+The fund, excluding the quota accrued in the year, is revalued at 31
+December by 1.5% plus 75% of the yearly increase of the ISTAT FOI index
+without tobacco (art. 2120 c. 4 c.c.; L. 81/1992 art. 4 c. 1); the
+revaluation bears a 17% substitute tax charged to the fund (D.Lgs.
+47/2000 art. 11 cc. 3-4, paid by the employer: acconto by 16 December,
+saldo by 16 February). See [Pay components: TFR](../engine/pay-components.md#tfr).
 
 ## 12. Second-level bargaining (*contrattazione di secondo livello*)
 

@@ -4,6 +4,19 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## TFR revaluation and Fondo Tesoreria
+
+The December run decides the revaluation of the TFR fund at 31 December,
+and every run says where the TFR goes. Amounts posted to the ledger are
+unchanged.
+
+| Before | After |
+|---|---|
+| No revaluation: the `tfr` decision of December was `final` | A `tfr_revaluation` decision on the December regular run and on the run that ends the employment; state `Employment.tfr_fund`, a `TfrFundBalance` (exported by `ccnl_engine.inputs`), or the run has a `missing_fact` `tfr_fund` blocker unless the employment starts in the year |
+| The TFR outside a pension fund always posted to `tfr_accrual` | `Employment.tfr_treasury_fund`: `True` posts it to the new `tfr_treasury_fund` account (in the employer cost), `False` to `tfr_accrual`; `None` posts to `tfr_accrual` with a `missing_fact` `tfr_treasury_fund` blocker |
+| `AccountKind` had 21 members | 22, with `TFR_TREASURY_FUND` |
+| An apprentice's TFR was `provisional` with the `tfr_apprentice_additional_ivs_undetermined` issue | Final, with no deduction: the 0.50% is not due on an apprentice (INPS circ. 70/2007, note 5) |
+
 ## Opening state and other-employment bases are facts
 
 A run opened without the history of its employment, or whose contributions

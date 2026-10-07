@@ -29,6 +29,9 @@ from ccnl_engine.payroll.application.period._rule_sources import (
 )
 from ccnl_engine.payroll.application.period._rulesets import run_rulesets
 from ccnl_engine.payroll.application.period._seniority import run_seniority
+from ccnl_engine.payroll.application.period._tfr_revaluation import (
+    tfr_revaluation_issues,
+)
 from ccnl_engine.payroll.application.reconcile import check_period
 from ccnl_engine.payroll.application.withholding._cap import run_net
 from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
@@ -69,6 +72,7 @@ _EMPLOYER_COST_ACCOUNTS = (
     AccountKind.TFR_ACCRUAL,
     AccountKind.PENSION_FUND_EMPLOYER,
     AccountKind.PENSION_FUND_TFR,
+    AccountKind.TFR_TREASURY_FUND,
 )
 
 
@@ -133,8 +137,9 @@ def _input_issues(
 
     Returns:
         The issues of the category rates, the seniority, the proration, the
-        IVS massimale, the additional 1% IVS, the opening state and the INPS
-        base of other employments, in that order, each only when raised.
+        IVS massimale, the additional 1% IVS, the opening state, the INPS
+        base of other employments and the TFR revaluation, in that order,
+        each only when raised.
     """
     ivs = amounts.ivs_ceiling
     issues = (
@@ -148,7 +153,8 @@ def _input_issues(
         ctx.opening_issue,
         other_employers_issue(ctx, ctx.monthly_gross + events.totals.inps_base),
     )
-    return tuple(issue for issue in issues if issue is not None)
+    raised = tuple(issue for issue in issues if issue is not None)
+    return raised + tfr_revaluation_issues(ctx)
 
 
 def _result(
