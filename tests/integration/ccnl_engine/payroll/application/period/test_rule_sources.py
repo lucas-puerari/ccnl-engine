@@ -19,6 +19,7 @@ from ccnl_engine.payroll.application.period._rule_sources import (
 from ccnl_engine.payroll.domain.assurance import BlockerCode
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
+from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
 from ccnl_engine.payroll.domain.family import (
     Dependent,
     DependentRelationship,
@@ -70,7 +71,8 @@ def _run(
         seniority=new_hire(),
         employer=EmployerProfile(headcount=Headcount(50)),
         opening_state=PeriodState.zero(),
-        **kwargs,  # type: ignore[arg-type]
+        employment_period=EmploymentPeriod(date(2026, 3, 1)),
+        **({"current_year": employment_only()} | kwargs),  # type: ignore[arg-type]
     )
     return calculate_period(request, repo=repo)
 

@@ -93,7 +93,9 @@ def _employee_components(result: PeriodResult) -> dict[str, Decimal]:
 
 def _imported(base: InpsBaseYtd) -> PeriodState:
     return _ENGINE.import_opening_balances(
-        OpeningBalances(tax_year=2026, inps_bases=(base,))
+        OpeningBalances(
+            tax_year=2026, inps_bases=(base,), recoveries=(), surtax_obligations=()
+        )
     )
 
 
@@ -216,6 +218,8 @@ class TestCompetence:
                 tax_year=2027,
                 competence_runs=earlier,
                 inps_bases=(InpsBaseYtd(2026, own=Decimal("30000.00")),),
+                recoveries=(),
+                surtax_obligations=(),
             )
         )
 
@@ -261,6 +265,8 @@ class TestCompetence:
                         additional_ivs=Decimal("300.00"),
                     ),
                 ),
+                recoveries=(),
+                surtax_obligations=(),
             )
         )
 
@@ -286,7 +292,13 @@ class TestCompetence:
         november = PayrollRunId.parse("2026-11-regular")
         engine = PayrollEngine(repository=NextYearRepository())
         opening = engine.import_opening_balances(
-            OpeningBalances(tax_year=2027, competence_runs=(november,))
+            OpeningBalances(
+                tax_year=2027,
+                competence_runs=(november,),
+                inps_bases=(InpsBaseYtd(2026, other_employers=Decimal(0)),),
+                recoveries=(),
+                surtax_obligations=(),
+            )
         )
 
         with pytest.raises(InvalidInputError, match="already closed"):

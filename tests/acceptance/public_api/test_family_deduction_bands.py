@@ -18,6 +18,7 @@ deductions come from :mod:`tests.fixtures.normative_oracles.family_2026`.
 from __future__ import annotations
 
 from datetime import date
+from decimal import Decimal
 from typing import TYPE_CHECKING
 
 import pytest
@@ -36,6 +37,7 @@ from ccnl_engine.inputs import (
     Dependent,
     DependentRelationship,
     FamilyComposition,
+    InpsBaseYtd,
     OpeningBalances,
 )
 from ccnl_engine.results import CalculationStatus
@@ -50,8 +52,6 @@ from tests.fixtures.normative_oracles.payslips.metalmeccanico_c3_2026 import (
 from tests.fixtures.withholding import paid_before
 
 if TYPE_CHECKING:
-    from decimal import Decimal
-
     from tests.fixtures.normative_oracles.family_2026 import IncomeBand
 
 _ENGINE = PayrollEngine.bundled()
@@ -74,6 +74,9 @@ def test_spouse_deduction_follows_increase_bands(
             tax_year=2026,
             payments=paid_before(PayrollRun.thirteenth(2026, 12), day=18),
             taxable=income - employee_taxable(C3_MINIMUM_FROM_JUNE_2026),
+            inps_bases=(InpsBaseYtd(2026, other_employers=Decimal(0)),),
+            recoveries=(),
+            surtax_obligations=(),
         )
     )
 

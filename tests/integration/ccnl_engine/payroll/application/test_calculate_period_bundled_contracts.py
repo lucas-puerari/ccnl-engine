@@ -23,7 +23,12 @@ from ccnl_engine import (
     PeriodInput,
 )
 from ccnl_engine.contract.service.loaders import load_ccnl
-from ccnl_engine.inputs import ContributableHours, WeeklyHours
+from ccnl_engine.inputs import (
+    ContributableHours,
+    CurrentYearTaxFacts,
+    EmploymentPeriod,
+    WeeklyHours,
+)
 from ccnl_engine.results import CalculationStatus
 from tests.fixtures.seniority import new_hire, pricing_category
 
@@ -36,6 +41,10 @@ _DOMESTIC = frozenset({
 })
 _DOMESTIC_FACTS = PeriodFacts(contributable_hours=ContributableHours(Decimal(173)))
 _COMPUTED = frozenset({CalculationStatus.FINAL, CalculationStatus.PROVISIONAL})
+#: Hired on 1 September with no other employment in 2026: the September run
+#: is the first of the employment, so the zero opening state is the fact.
+_HIRED = EmploymentPeriod(date(2026, 9, 1))
+_ONLY_EMPLOYMENT = CurrentYearTaxFacts.employment_only(2026, date(2026, 9, 1))
 
 
 def test_bundle_lists_contracts() -> None:
@@ -64,9 +73,11 @@ def test_every_level_computes_sane_totals(slug: str) -> None:
                     weekly_hours=WeeklyHours(40) if slug in _DOMESTIC else None,
                     seniority=new_hire(),
                     category=pricing_category(increments, level.code),
+                    employment_period=_HIRED,
                 ),
                 employer=EmployerProfile(headcount=Headcount(50)),
                 facts=_DOMESTIC_FACTS if slug in _DOMESTIC else PeriodFacts(),
+                current_year=_ONLY_EMPLOYMENT,
             )
         )
         gross = result.period_gross

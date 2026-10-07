@@ -16,6 +16,7 @@ from tests.acceptance.legal_scenarios._support import (
     regular_period,
 )
 from tests.fixtures.imported_surtax import opening_with_2025_surtax
+from tests.fixtures.opening_state import fresh_tax_year
 
 _COMMERCIO_4 = Employment(ccnl_slug=COMMERCIO, level_code="4")
 
@@ -91,7 +92,9 @@ def test_unknown_surtax_tables_make_the_result_not_final() -> None:
     municipality; the result status was final.  Now nothing is withheld,
     but the result is incomplete and names both unknown tables.
     """
-    result = regular_period(regione="IT-99", comune_belfiore="Z999")
+    result = regular_period(
+        regione="IT-99", comune_belfiore="Z999", opening_state=fresh_tax_year()
+    )
 
     assert result.assurance.calculation is CalculationStatus.INCOMPLETE
     assert result.closing_state.cash.tax.surtax == Decimal(0)

@@ -27,7 +27,7 @@ The hourly pay is the monthly minimum over the hourly divisor of the CCNL
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import date
 from decimal import Decimal
 
@@ -48,6 +48,8 @@ from ccnl_engine import (
 from ccnl_engine.events import BonusEvent, NightShiftEvent, WorkEvent
 from ccnl_engine.inputs import (
     ContributableHours,
+    EmploymentPeriod,
+    InpsBaseYtd,
     OpeningBalances,
     PaymentId,
     PeriodState,
@@ -65,6 +67,8 @@ _ENGINE = PayrollEngine.bundled()
 _CONVIVENTE = "lavoro-domestico-convivente.json"
 _NON_CONVIVENTE = "lavoro-domestico-non-convivente.json"
 _HOUSEHOLD = EmployerProfile(headcount=Headcount(1))
+#: Hired on 1 September: the September run is the first of the employment.
+_HIRED = EmploymentPeriod(date(2026, 9, 1))
 _ZERO = Decimal(0)
 _TAX_ACCOUNTS = frozenset({
     "ordinary_tax",
@@ -172,11 +176,20 @@ def _september(
     facts: PeriodFacts | None = None,
     opening: PeriodState | None = None,
 ) -> PeriodResult:
+    """Return the September run of ``case``, the first of an employment.
+
+    Returns:
+        The run of a worker hired on 1 September, unless ``opening`` states
+        an earlier history.
+    """
+    employment = _employment(case)
+    if opening is None:
+        employment = replace(employment, employment_period=_HIRED)
     return _ENGINE.calculate_period(
         PeriodInput(
             run=PayrollRun.regular(year=2026, month=9),
             payment_date=date(2026, 9, 28),
-            employment=_employment(case),
+            employment=employment,
             employer=_HOUSEHOLD,
             facts=facts or _facts(case),
             prior_year=PriorYearTaxFacts(employment_income=Decimal(10_000)),
@@ -304,11 +317,16 @@ _PLAN = RecoveryPlan(
         OpeningBalances(
             tax_year=2026,
             recoveries=(RecoveryObligation(tax_year=2025, plan=_PLAN),),
+            inps_bases=(),
+            surtax_obligations=(),
         ),
         OpeningBalances(
             tax_year=2026,
             payments=(PaymentId.parse("2026-08-regular@2026-08-28"),),
             irpef_withheld=Decimal(100),
+            inps_bases=(InpsBaseYtd(2026),),
+            recoveries=(),
+            surtax_obligations=(),
         ),
     ],
     ids=["credit-recovery", "irpef-withheld"],

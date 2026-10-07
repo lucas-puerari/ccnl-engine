@@ -1,4 +1,11 @@
-"""Income of the worker in the current tax year beyond this employment."""
+"""Income of the worker in the current tax year beyond this employment.
+
+The same certification (the CU of an earlier or simultaneous employer, or
+the worker's declaration) states the income of the other employments,
+which enters the reddito complessivo, and their INPS base, which counts
+toward the IVS massimale of the year (L. 335/1995 art. 2 c. 18; INPS circ.
+237/2016 par. 3.1).
+"""
 
 from __future__ import annotations
 
@@ -53,7 +60,8 @@ class CurrentYearTaxFacts:
     Every amount is required: declaring no other income is a fact, stated
     with zeros (see :meth:`employment_only`).  Without these facts the
     reddito complessivo is unknown, and a run whose family deductions depend
-    on it is not payable.
+    on it is not payable; so is a run whose contributions could depend on
+    the INPS base of other employments, unless the opening state states it.
 
     Attributes:
         tax_year: The tax year the income belongs to.  Facts of another
@@ -61,6 +69,12 @@ class CurrentYearTaxFacts:
         other_employment_income: Employment and pension income of the tax
             year from other employers or payers (e.g. a previous employer of
             the year), net of their exclusions, ``>= 0``.
+        other_employment_inps_base: INPS base of the worker's other
+            employments of :attr:`tax_year`, earlier or simultaneous,
+            ``>= 0``.  It counts toward the IVS massimale and the
+            additional 1% threshold of the runs whose competence year is
+            :attr:`tax_year`, and is carried in their closing state
+            (:class:`~ccnl_engine.payroll.domain.inps_base.InpsBaseYtd`).
         other_income: Every other income of the tax year in the reddito
             complessivo (land and buildings, self-employment, rents under
             cedolare secca, art. 3 c. 7 D.Lgs. 23/2011), ``>= 0``.
@@ -77,6 +91,7 @@ class CurrentYearTaxFacts:
 
     tax_year: int
     other_employment_income: Decimal
+    other_employment_inps_base: Decimal
     other_income: Decimal
     main_dwelling_income: Decimal
     estimated_on: date
@@ -90,7 +105,12 @@ class CurrentYearTaxFacts:
             minimum=1970,
             maximum=9999,
         )
-        for name in ("other_employment_income", "other_income", "main_dwelling_income"):
+        for name in (
+            "other_employment_income",
+            "other_employment_inps_base",
+            "other_income",
+            "main_dwelling_income",
+        ):
             require_decimal(
                 getattr(self, name), f"{_OWNER}.{name}", feature=_FEATURE, minimum=_ZERO
             )
@@ -121,11 +141,13 @@ class CurrentYearTaxFacts:
         """Return the facts of a worker whose only income is this employment.
 
         Returns:
-            Facts with every other income stated as zero.
+            Facts with every other income and the INPS base of other
+            employments stated as zero.
         """
         return cls(
             tax_year=tax_year,
             other_employment_income=_ZERO,
+            other_employment_inps_base=_ZERO,
             other_income=_ZERO,
             main_dwelling_income=_ZERO,
             estimated_on=estimated_on,

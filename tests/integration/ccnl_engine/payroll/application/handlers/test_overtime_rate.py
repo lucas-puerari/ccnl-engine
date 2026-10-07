@@ -30,11 +30,13 @@ from ccnl_engine.payroll.application.handlers._standard_event import (
 )
 from ccnl_engine.payroll.domain.decisions import CalculationStatus, DecisionOrigin
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
+from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
 from ccnl_engine.payroll.domain.events import OvertimeEvent, OvertimeKind
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.provenance.domain.chain import ProvenanceStatus
 from ccnl_engine.shared.domain.errors import InvalidInputError
+from tests.fixtures.current_year import employment_only
 from tests.fixtures.seniority import new_hire
 
 if TYPE_CHECKING:
@@ -43,6 +45,8 @@ if TYPE_CHECKING:
 _DAY = date(2026, 3, 10)
 _METAL = "metalmeccanico-federmeccanica.json"
 _RATE = Decimal("15.00")
+#: Hired on 1 March: the March run is the first, opened by the zero state.
+_HIRED = EmploymentPeriod(date(2026, 3, 1))
 
 
 def _overtime(
@@ -61,6 +65,8 @@ def _run(event: OvertimeEvent, slug: str = _METAL, level: str = "C3") -> PeriodR
             level_code=level,
             seniority=new_hire(),
             events=(event,),
+            employment_period=_HIRED,
+            current_year=employment_only(),
         )
     )
 

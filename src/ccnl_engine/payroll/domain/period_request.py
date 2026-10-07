@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from datetime import date
 from typing import TYPE_CHECKING
 
@@ -133,7 +133,10 @@ class PeriodCalculationRequest:
         prior_year: Prior-year income and written waivers, read by every
             preferential tax regime.
         current_year: Income of the tax year beyond this employment, read
-            by the family deductions; ``None`` when not known.
+            by the family deductions; ``None`` when not known.  When its
+            tax year is the competence year of the run, its INPS base of
+            other employments is stated in ``opening_state`` for that
+            year, in place of the one the state carries.
         pension_fund: Enrolment in a pension fund of the CCNL, ``None``
             when the worker is not enrolled.
     """
@@ -217,6 +220,7 @@ class PeriodCalculationRequest:
                 f"the tax year of the run ({tax_year})"
             )
             raise InvalidInputError(msg, feature="tax_year")
+        object.__setattr__(self, "opening_state", self._stated_opening())
         schedule = self.withholding_schedule
         if schedule is not None and schedule.year != tax_year:
             msg = (
@@ -224,6 +228,22 @@ class PeriodCalculationRequest:
                 f"does not match tax year ({tax_year})"
             )
             raise InvalidInputError(msg, feature="tax_year")
+
+    def _stated_opening(self) -> PeriodState:
+        """Return the opening state with the stated base of other employers.
+
+        Returns:
+            ``opening_state``, with the INPS base of other employments of
+            ``current_year`` when it is of the competence year.
+        """
+        year, facts = self.period_id.year, self.current_year
+        if facts is None or facts.tax_year != year:
+            return self.opening_state
+        accrual = self.opening_state.accrual
+        base = accrual.inps_base(year).stating_other_employers(
+            facts.other_employment_inps_base
+        )
+        return replace(self.opening_state, accrual=accrual.with_inps_base(base))
 
     def _field_specs(self) -> tuple[FieldSpec, ...]:
         """Return the fields an untyped caller may supply with a wrong type.

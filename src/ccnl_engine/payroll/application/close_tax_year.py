@@ -38,6 +38,9 @@ def close_tax_year(closing: PeriodState) -> PeriodState:
     payment, or built by hand without a run, is rejected.  For balances
     imported from another provider at the turn of the year, build the N+1 state with
     :class:`~ccnl_engine.payroll.application.opening_balances.OpeningBalances`.
+    A state that misses the history of the employment
+    (:attr:`~ccnl_engine.payroll.domain.period_state.PeriodState.history_known`
+    ``False``) opens a year that misses it too.
 
     Args:
         closing: ``closing_state`` of the last run of tax year N.
@@ -66,4 +69,5 @@ def close_tax_year(closing: PeriodState) -> PeriodState:
     return PeriodState(
         accrual=closing.accrual,
         cash=TaxCashState(tax_year=cash.tax_year + 1, obligations=cash.obligations),
+        history_known=closing.history_known,
     )

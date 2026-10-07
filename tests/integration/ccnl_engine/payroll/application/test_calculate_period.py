@@ -222,7 +222,7 @@ class TestClosingStateTransitions:
         result = calculate_period(_req(opening_state=opening))
         base = result.closing_state.accrual.inps_base(2026)
         assert base.own > Decimal("1000.00")
-        assert base.other_employers == _ZERO
+        assert base.other_employers is None
 
 
 class TestPayItems:

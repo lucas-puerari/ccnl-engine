@@ -35,6 +35,7 @@ from ccnl_engine.inputs import (
     DependentRelationship,
     FamilyComposition,
     IncomeEstimateQuality,
+    InpsBaseYtd,
     OpeningBalances,
     PeriodState,
 )
@@ -70,6 +71,7 @@ def _facts(
     return CurrentYearTaxFacts(
         tax_year=tax_year,
         other_employment_income=_D(other_employment),
+        other_employment_inps_base=_D(other_employment),
         other_income=_D(other),
         main_dwelling_income=_D(main_dwelling),
         estimated_on=_DAY,
@@ -87,6 +89,9 @@ def _conguaglio(
             tax_year=2026,
             payments=paid_before(_RUN, day=18),
             taxable=employment_income - employee_taxable(C3_MINIMUM_FROM_JUNE_2026),
+            inps_bases=(InpsBaseYtd(2026, other_employers=Decimal(0)),),
+            recoveries=(),
+            surtax_obligations=(),
         )
     )
     result = _ENGINE.calculate_period(

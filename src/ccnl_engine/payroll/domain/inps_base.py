@@ -14,7 +14,9 @@ par. 3.1), on the certificate of the earlier employer or the worker's
 declaration.  They are held apart from the base of this employment, which
 alone is contributed here.  They count the same way toward the band of
 the additional 1% IVS of D.L. 384/1992 art. 3-ter (circ. INPS 6/2026 note
-10), whose conguaglio deducts the 1% already withheld on them.
+10), whose conguaglio deducts the 1% already withheld on them.  Whether the
+worker had other employments in the year is a fact the caller states:
+``None`` is not known, ``0`` is none.
 """
 
 from __future__ import annotations
@@ -44,7 +46,9 @@ class InpsBaseYtd:
             :attr:`year`, earlier or simultaneous, as certified (CU) or
             declared by the worker.  It counts toward the massimale and the
             band of the additional 1% IVS and is never contributed by this
-            employer.
+            employer.  ``None`` means not known: a run whose contributions
+            could depend on it has a ``missing_fact`` blocker; ``0`` states
+            that there is none.
         additional_ivs: Additional 1% IVS (D.L. 384/1992 art. 3-ter) this
             employment withheld on the pay of :attr:`year`, net of what its
             conguagli gave back.  Negative only when a conguaglio refunded
@@ -69,7 +73,7 @@ class InpsBaseYtd:
 
     year: int
     own: Decimal = _ZERO
-    other_employers: Decimal = _ZERO
+    other_employers: Decimal | None = None
     additional_ivs: Decimal = _ZERO
     other_employers_additional_ivs: Decimal | None = None
     month: int | None = None
@@ -90,7 +94,7 @@ class InpsBaseYtd:
                 f"InpsBaseYtd.{name}",
                 feature=_FEATURE,
                 minimum=_ZERO,
-                optional=name == "other_employers_additional_ivs",
+                optional=name in {"other_employers", "other_employers_additional_ivs"},
             )
         require_decimal(
             self.additional_ivs, "InpsBaseYtd.additional_ivs", feature=_FEATURE
@@ -110,9 +114,27 @@ class InpsBaseYtd:
             )
 
     @property
+    def other_employers_known(self) -> bool:
+        """Whether the base of the other employments is stated."""
+        return self.other_employers is not None
+
+    @property
     def total(self) -> Decimal:
-        """Base of the year toward the massimale: own and other employers."""
-        return self.own + self.other_employers
+        """Base of the year toward the massimale: own and other employers.
+
+        An unknown base of other employers counts as zero: the run computes
+        on this employment alone and reports the missing fact.
+        """
+        return self.own + (self.other_employers or _ZERO)
+
+    def stating_other_employers(self, amount: Decimal) -> InpsBaseYtd:
+        """Return the base with the other employers' base stated as ``amount``.
+
+        Returns:
+            A new base with ``other_employers`` set and every other field
+            unchanged.
+        """
+        return replace(self, other_employers=amount)
 
     @property
     def additional_ivs_withheld(self) -> Decimal:
@@ -127,9 +149,8 @@ class InpsBaseYtd:
     @property
     def other_employers_withheld_unknown(self) -> bool:
         """Whether other employers have a base but their 1% is not stated."""
-        return (
-            self.other_employers > _ZERO and self.other_employers_additional_ivs is None
-        )
+        others = self.other_employers or _ZERO
+        return others > _ZERO and self.other_employers_additional_ivs is None
 
     def base_of_month(self, month: int) -> Decimal:
         """Return the INPS base this employment already declared for ``month``.

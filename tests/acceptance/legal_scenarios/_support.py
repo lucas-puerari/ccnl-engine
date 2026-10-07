@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from datetime import date
 from decimal import Decimal
+from functools import cache
 from typing import TYPE_CHECKING
 
 from ccnl_engine import (
@@ -16,6 +17,7 @@ from ccnl_engine import (
     PeriodInput,
 )
 from ccnl_engine.inputs import ContributableHours, PeriodState, PriorYearTaxFacts
+from tests.fixtures.opening_state import fresh_tax_year
 from tests.fixtures.seniority import new_hire
 
 if TYPE_CHECKING:
@@ -80,6 +82,52 @@ def regular_period(
             opening_state=opening_state or PeriodState.zero(),
         )
     )
+
+
+@cache
+def history(
+    employment: Employment,
+    month: int,
+    *,
+    employer: EmployerProfile = EMPLOYER,
+    facts: PeriodFacts = PeriodFacts(),  # noqa: B008
+    prior_year: PriorYearTaxFacts = PriorYearTaxFacts(),  # noqa: B008
+    year: int = 2026,
+) -> PeriodState:
+    """Return the state the regular runs of ``year`` before ``month`` close.
+
+    A scenario of a month after January opens with the history of the same
+    worker: the regular runs of the months before it, without events, paid
+    on the 27th, from a tax year that carries nothing from the year before
+    and no other employment
+    (:func:`~tests.fixtures.opening_state.fresh_tax_year`).
+
+    Returns:
+        The closing state of the run of the month before ``month``, or the
+        state that opens ``year`` for January.
+    """
+    if month == 1:
+        return fresh_tax_year(year)
+    opening = history(
+        employment,
+        month - 1,
+        employer=employer,
+        facts=facts,
+        prior_year=prior_year,
+        year=year,
+    )
+    previous = ENGINE.calculate_period(
+        PeriodInput(
+            run=PayrollRun.regular(year=year, month=month - 1),
+            payment_date=date(year, month - 1, 27),
+            employment=employment,
+            employer=employer,
+            facts=facts,
+            prior_year=prior_year,
+            opening_state=opening,
+        )
+    )
+    return previous.closing_state
 
 
 def substitute_tax(result: PeriodResult) -> Decimal:

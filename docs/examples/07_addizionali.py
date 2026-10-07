@@ -34,6 +34,8 @@ opening = engine.import_opening_balances(
                 SurtaxComponent.MUNICIPAL_ADVANCE, 2025, "F257", Decimal("45.00")
             ),
         ),
+        inps_bases=(),
+        recoveries=(),
     )
 )
 

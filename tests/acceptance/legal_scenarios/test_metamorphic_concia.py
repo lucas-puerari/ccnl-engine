@@ -271,6 +271,8 @@ class TestStateExportAndImport:
             ulteriore_recognized=cash.ulteriore_detrazione.recognized,
             ulteriore_due=cash.ulteriore_detrazione.due,
             ulteriore_reason=cash.ulteriore_detrazione.reason,
+            recoveries=(),
+            surtax_obligations=(),
         )
 
     def test_import_gives_back_the_exported_state(self) -> None:

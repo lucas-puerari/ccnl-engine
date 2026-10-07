@@ -572,5 +572,7 @@ opening = engine.import_opening_balances(OpeningBalances(
             ),
         ),
     ),
+    inps_bases=(),
+    surtax_obligations=(),
 ))
 ```

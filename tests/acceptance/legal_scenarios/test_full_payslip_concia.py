@@ -36,6 +36,7 @@ from ccnl_engine import (
     PeriodResult,
 )
 from ccnl_engine.inputs import (
+    CurrentYearTaxFacts,
     EmploymentPeriod,
     FamilyComposition,
     PriorYearTaxFacts,
@@ -85,6 +86,7 @@ def _year() -> CompetenceYearResult:
                 family_composition=FamilyComposition(),
             ),
             prior_year=PriorYearTaxFacts(employment_income=Decimal(40_000)),
+            current_year=CurrentYearTaxFacts.employment_only(2026, date(2026, 1, 1)),
         )
     )
 

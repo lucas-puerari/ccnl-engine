@@ -30,7 +30,12 @@ from ccnl_engine import (
     PeriodInput,
     PeriodResult,
 )
-from ccnl_engine.inputs import OpeningBalances, PeriodState, WorkerCategory
+from ccnl_engine.inputs import (
+    InpsBaseYtd,
+    OpeningBalances,
+    PeriodState,
+    WorkerCategory,
+)
 from tests.fixtures.sickness_episode import metalmeccanico_c3, sickness_episode
 from tests.fixtures.withholding import paid_before
 
@@ -105,6 +110,9 @@ def test_resume_from_opening_balances_matches() -> None:
             tax_year=2026,
             payments=paid_before(PayrollRun.regular(2026, 3)),
             sickness_episodes=(_EPISODE.through(date(2026, 2, 28)),),
+            inps_bases=(InpsBaseYtd(2026, other_employers=Decimal(0)),),
+            recoveries=(),
+            surtax_obligations=(),
         )
     )
     assert _sickness(_run(3, opening)) == _MARCH

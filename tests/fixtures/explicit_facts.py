@@ -5,9 +5,10 @@ The scenario of :mod:`tests.fixtures.normative_oracles.payslips.concia_d2_2026`
 resident in Alghero, 2025 income of 40,000 EUR), with each field a caller
 could leave to its default given its value: hours, contribution history,
 sector, employer activity, residence, an empty family and the current-year
-income.  Its June run has one blocker, ``rule_source_weak somma_esente``, so
-a test that drops or changes one fact sees exactly the blockers that fact
-adds or removes.
+income, which states no other employment.  Its June run, opened with the
+state May closed, has one blocker, ``rule_source_weak somma_esente``, so a
+test that drops or changes one fact sees exactly the blockers that fact adds
+or removes.
 """
 
 from __future__ import annotations
@@ -83,8 +84,10 @@ def regular_run(
     """Return the request of the regular run of ``month`` 2026, paid on the 28th.
 
     ``opening_state`` left to ``None`` keeps the default of
-    :class:`~ccnl_engine.PeriodInput`, the one fact this builder does not
-    state, so that a test can compare the default with the chained state.
+    :class:`~ccnl_engine.PeriodInput`, the zero state, the one fact this
+    builder does not state: it is the fact of the January run only, and a
+    later month without the state of the months before has a
+    ``missing_fact opening_state`` blocker.
 
     Returns:
         The request with every other fact explicit.

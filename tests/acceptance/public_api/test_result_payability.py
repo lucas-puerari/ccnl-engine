@@ -33,6 +33,7 @@ from ccnl_engine.inputs import (
     WorkerCategory,
 )
 from ccnl_engine.results import BlockerCode, CalculationStatus
+from tests.fixtures.opening_state import fresh_tax_year
 from tests.fixtures.seniority import new_hire
 
 _ENGINE = PayrollEngine.bundled()
@@ -45,6 +46,11 @@ _MILAN_NO_DEPENDANT = PeriodFacts(
 
 
 def _january(employment: Employment, facts: PeriodFacts | None = None) -> PeriodResult:
+    """Return the January 2026 run, opening a tax year with nothing carried.
+
+    Returns:
+        The run, with no other employment of the worker in 2026.
+    """
     return _ENGINE.calculate_period(
         PeriodInput(
             run=PayrollRun.regular(2026, 1),
@@ -52,6 +58,7 @@ def _january(employment: Employment, facts: PeriodFacts | None = None) -> Period
             employment=employment,
             employer=_EMPLOYER,
             facts=facts or PeriodFacts(),
+            opening_state=fresh_tax_year(2026),
         )
     )
 

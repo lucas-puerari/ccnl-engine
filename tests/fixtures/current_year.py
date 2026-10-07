@@ -1,9 +1,12 @@
-"""Current-year income facts for tests that declare a family.
+"""Current-year income facts for tests that need the year beyond the run.
 
 A run with a dependent who gives right to an art. 12 TUIR deduction needs
 the reddito complessivo of the year: without it the result has a
-``missing_fact`` blocker on ``current_year``.  Tests about another subject
-state that the employment is the only income of the year.
+``missing_fact`` blocker on ``current_year``.  A run whose INPS rules carry
+a massimale or a 1% threshold needs the INPS base of the other employments
+of the year: without it the result has a ``missing_fact`` blocker on
+``other_employment_inps_base``.  Tests about another subject state that the
+employment is the only one of the year.
 """
 
 from __future__ import annotations

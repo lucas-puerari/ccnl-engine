@@ -33,6 +33,7 @@ from ccnl_engine.payroll.domain.run import PayrollRunId
 from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd
 from ccnl_engine.shared.domain.errors import InvalidInputError
+from tests.fixtures.opening_state import fresh_tax_year
 from tests.helpers import year_plan
 
 _CCNL = "metalmeccanico-federmeccanica.json"
@@ -96,7 +97,9 @@ class TestCloseTaxYear:
 
     def test_closes_the_state_of_the_last_run_of_calculate_year(self) -> None:
         """The last run of a year calculation closes every withholding slot."""
-        year = calculate_competence_year(year_plan(2026, _CCNL, _LEVEL))
+        year = calculate_competence_year(
+            year_plan(2026, _CCNL, _LEVEL, opening_state=fresh_tax_year(2026))
+        )
 
         opening = close_tax_year(year.period_results[-1].closing_state)
 
@@ -104,6 +107,15 @@ class TestCloseTaxYear:
             accrual=year.closing_state.accrual, cash=TaxCashState(tax_year=2027)
         )
         assert opening.accrual.regular_months(2026) == 12
+
+    def test_a_year_without_its_history_opens_one_without_it(self) -> None:
+        """A year opened from zero for an untracked employment taints the next."""
+        year = calculate_competence_year(year_plan(2026, _CCNL, _LEVEL))
+
+        opening = close_tax_year(year.period_results[-1].closing_state)
+
+        assert not year.closing_state.history_known
+        assert not opening.history_known
 
 
 class TestCarriedRecoveryInAYear:

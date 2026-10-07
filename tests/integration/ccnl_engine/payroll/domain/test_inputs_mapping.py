@@ -6,7 +6,7 @@ internal request they produce, field by field.
 
 from __future__ import annotations
 
-from dataclasses import fields
+from dataclasses import fields, replace
 from datetime import date
 from decimal import Decimal
 
@@ -28,6 +28,7 @@ from ccnl_engine.inputs import (
     EmploymentSector,
     FamilyComposition,
     FixedTerm,
+    InpsBaseYtd,
     PeriodState,
     PriorYearTaxFacts,
     SeniorityFact,
@@ -35,6 +36,7 @@ from ccnl_engine.inputs import (
     WeeklyHours,
     WorkerCategory,
 )
+from ccnl_engine.payroll.domain.accrual_state import EmploymentAccrualState
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from tests.fixtures.current_year import employment_only
 
@@ -115,7 +117,10 @@ def test_mapping_copies_every_fact_to_its_request_field() -> None:
     assert request.run is run
     assert request.payment_date == date(_YEAR, 6, 28)
     assert request.employer is _EMPLOYER
-    assert request.opening_state is opening
+    stated = InpsBaseYtd(_YEAR, Decimal(0), current.other_employment_inps_base)
+    assert request.opening_state == replace(
+        opening, accrual=EmploymentAccrualState(inps_bases=(stated,))
+    )
     assert request.prior_year is prior
     assert request.current_year is current
     for name in _EMPLOYMENT_FIELDS:
