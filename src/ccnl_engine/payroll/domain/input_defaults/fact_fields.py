@@ -69,16 +69,6 @@ _IMPORTED_LIST = absence_is_fact(
 )
 
 
-def _carried(capability: str, fact: str, what: str) -> FieldDefault:
-    return requires_fact(
-        capability,
-        f"opening_balances.{fact}",
-        _PENDING,
-        f"no {what} carried from an earlier run: what the previous provider "
-        "determined is never withheld unless imported",
-    )
-
-
 #: Classification of each defaulted field of the fact types.
 FACT_DEFAULTS: Mapping[str, FieldDefault] = {
     "Apprentice.track": requires_fact(
@@ -133,10 +123,11 @@ FACT_DEFAULTS: Mapping[str, FieldDefault] = {
     ),
     "InpsBaseYtd.other_employers": requires_fact(
         "inps_employee",
-        "opening_balances.inps_bases.other_employers",
-        _PENDING,
-        "no other employer: the IVS massimale and the 1% threshold count this "
-        "employment only",
+        "other_employers",
+        _REPORTED,
+        "unknown base of other employments: a run whose INPS rules carry a "
+        "massimale the worker may be subject to or a 1% threshold has a "
+        "missing_fact other_employers blocker; 0 states none",
     ),
     "InpsBaseYtd.additional_ivs": absence_is_fact(
         "this employment withheld no additional 1% IVS in the competence year"
@@ -156,28 +147,19 @@ FACT_DEFAULTS: Mapping[str, FieldDefault] = {
     ),
     "OpeningBalances.payments": _IMPORTED_LIST,
     "OpeningBalances.competence_runs": _IMPORTED_LIST,
-    "OpeningBalances.inps_bases": requires_fact(
-        "inps_employee",
-        "opening_balances.inps_bases",
-        _PENDING,
-        "no imported INPS base: the massimale and the 1% threshold restart "
-        "from the payments the engine computes",
-    ),
     "OpeningBalances.sickness_episodes": _IMPORTED_LIST,
     **{f"OpeningBalances.{name}": _ACCOUNT for name in _ACCOUNTS},
     **{f"OpeningBalances.{name}": _NOT_COMPUTED for name in _LAST_COMPUTED},
-    "OpeningBalances.recoveries": _carried(
-        "trattamento_integrativo", "recoveries", "credit recovery"
-    ),
-    "OpeningBalances.surtax_obligations": _carried(
-        "addizionale_regionale", "surtax_obligations", "surtax"
-    ),
     "OpeningBalances.deferred_shortfall": absence_is_fact(
         "no written request to defer the shortfall (art. 23 c. 3 DPR 600/1973)"
     ),
     "PeriodState.accrual": absence_is_fact(
         "a state built by the caller starts from empty accrual accounts; the "
         "opening state of a run is classified on PeriodInput"
+    ),
+    "PeriodState.history_known": absence_is_fact(
+        "a state the caller builds states the history of the employment; the "
+        "engine marks the closing state of a run opened without it"
     ),
     "PeriodState.cash": absence_is_fact(
         "a state built by the caller starts from empty tax accounts; the "

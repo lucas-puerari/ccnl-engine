@@ -93,7 +93,13 @@ def test_march_withholds_a_deferral_with_interest_under_1066() -> None:
     )
     year = _year(
         PriorYearTaxFacts(),
-        opening=OpeningBalances(tax_year=2026, deferred_shortfall=deferred),
+        opening=OpeningBalances(
+            tax_year=2026,
+            deferred_shortfall=deferred,
+            inps_bases=(),
+            recoveries=(),
+            surtax_obligations=(),
+        ),
     )
     runs = year.period_results
     codes = [

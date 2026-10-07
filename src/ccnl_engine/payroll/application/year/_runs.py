@@ -28,7 +28,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.payment import PaymentId
     from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
     from ccnl_engine.payroll.domain.period_state import PeriodState
-    from ccnl_engine.payroll.domain.run import PayrollRun
+    from ccnl_engine.payroll.domain.run import PayrollRun, PayrollRunId
     from ccnl_engine.payroll.domain.withholding_schedule import WithholdingSchedule
 
 
@@ -123,13 +123,15 @@ def run_request(
     state: PeriodState,
     withholding_schedule: WithholdingSchedule | None,
     planned_payments: tuple[PaymentId, ...] | None = None,
+    uncovered: tuple[PayrollRunId, ...] = (),
 ) -> PeriodCalculationRequest:
     """Return the calculation request of ``run``, opening with ``state``.
 
     Returns:
         The request with the facts and payment date of the run, its
-        extra-month rateo and settlements, and the withholding schedule of
-        its tax year or the payments planned after it.
+        extra-month rateo and settlements, the withholding schedule of its
+        tax year or the payments planned after it, and the runs of the year
+        left out as ``uncovered``.
     """
     period = plan.employment.employment_period
     extra_sched = year_plan.extra_months.get((run.run_kind, run.month))
@@ -158,4 +160,5 @@ def run_request(
         ),
         extra_month_settlements=year_plan.settlements.get(run.run_id, ()),
         withholding_schedule=withholding_schedule,
+        uncovered_runs=uncovered,
     )

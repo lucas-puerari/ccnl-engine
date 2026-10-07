@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from datetime import date
 from typing import TYPE_CHECKING
 
@@ -40,7 +40,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.events import WorkEvent
     from ccnl_engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.payroll.domain.payment import PaymentId
-    from ccnl_engine.payroll.domain.run import PayrollRun
+    from ccnl_engine.payroll.domain.run import PayrollRun, PayrollRunId
     from ccnl_engine.payroll.domain.withholding_schedule import WithholdingSchedule
 
 
@@ -59,10 +59,13 @@ class PeriodCalculationRequest:
         ccnl_slug: Knowledge-bundle CCNL filename, e.g.
             ``metalmeccanico-federmeccanica.json``.
         level_code: Worker's contractual level code, e.g. ``C3``.
-        opening_state: State entering this period.  Use
-            :meth:`PeriodState.zero` for the first run of an employment and
+        opening_state: State entering this period, with the history of
+            the employment.  :meth:`PeriodState.zero` is the fact only for
+            the first run of an employment whose start is stated; use
             :func:`~ccnl_engine.payroll.application.close_tax_year\
-.close_tax_year` for the first run of a later tax year.
+.close_tax_year` for the first run of a later tax year.  A state that
+            misses the history gives a ``missing_fact opening_state`` issue
+            (:mod:`~ccnl_engine.payroll.domain.opening_history`).
         employer: The employer; its headcount resolves INPS rates (some
             rates differ by firm size) and its activity the regimes that
             exclude some activities.
@@ -133,9 +136,16 @@ class PeriodCalculationRequest:
         prior_year: Prior-year income and written waivers, read by every
             preferential tax regime.
         current_year: Income of the tax year beyond this employment, read
-            by the family deductions; ``None`` when not known.
+            by the family deductions; ``None`` when not known.  When its
+            tax year is the competence year of the run, its INPS base of
+            other employments is stated in ``opening_state`` for that
+            year, in place of the one the state carries.
         pension_fund: Enrolment in a pension fund of the CCNL, ``None``
             when the worker is not enrolled.
+        uncovered_runs: Runs of the competence year the year calculation
+            left out because the bundle holds no pay rules on their date.
+            They are reported once, as ``run_not_computed`` blockers of the
+            year, so the opening state is not judged to miss them.
     """
 
     period_id: PeriodId
@@ -167,6 +177,7 @@ class PeriodCalculationRequest:
     prior_year: PriorYearTaxFacts = field(default_factory=PriorYearTaxFacts)
     current_year: CurrentYearTaxFacts | None = None
     pension_fund: PensionFundEnrolment | None = None
+    uncovered_runs: tuple[PayrollRunId, ...] = ()
 
     def __post_init__(self) -> None:
         """Guard dates, cross-year state or schedule and hours above full time.
@@ -217,6 +228,7 @@ class PeriodCalculationRequest:
                 f"the tax year of the run ({tax_year})"
             )
             raise InvalidInputError(msg, feature="tax_year")
+        object.__setattr__(self, "opening_state", self._stated_opening())
         schedule = self.withholding_schedule
         if schedule is not None and schedule.year != tax_year:
             msg = (
@@ -224,6 +236,22 @@ class PeriodCalculationRequest:
                 f"does not match tax year ({tax_year})"
             )
             raise InvalidInputError(msg, feature="tax_year")
+
+    def _stated_opening(self) -> PeriodState:
+        """Return the opening state with the stated base of other employers.
+
+        Returns:
+            ``opening_state``, with the INPS base of other employments of
+            ``current_year`` when it is of the competence year.
+        """
+        year, facts = self.period_id.year, self.current_year
+        if facts is None or facts.tax_year != year:
+            return self.opening_state
+        accrual = self.opening_state.accrual
+        base = accrual.inps_base(year).stating_other_employers(
+            facts.other_employment_inps_base
+        )
+        return replace(self.opening_state, accrual=accrual.with_inps_base(base))
 
     def _field_specs(self) -> tuple[FieldSpec, ...]:
         """Return the fields an untyped caller may supply with a wrong type.

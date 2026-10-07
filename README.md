@@ -69,7 +69,9 @@ result = engine.calculate_period(
     )
 )
 
-print(result.is_payable)  # → False: see result.blockers
+# → False: see result.blockers; among them the opening state of a worker
+# employed before 2026 and the INPS base of other employments, not stated.
+print(result.is_payable)
 print(result.period_gross)  # → Decimal('...')
 print(result.period_net)  # → Decimal('...')
 for ruleset in result.rulesets:
@@ -94,7 +96,8 @@ employment period, hours, recognised seniority as a dated `SeniorityFact`,
 sector), `EmployerProfile` (headcount,
 activity), `PriorYearTaxFacts` (prior-year income and written waivers, read by
 every substitute-tax regime), `CurrentYearTaxFacts` (income of the tax year
-beyond this employment, read by the Art. 12 family deductions) and
+beyond this employment, read by the Art. 12 family deductions, and the INPS
+base of the other employments of the year) and
 `PeriodFacts` (events, surtax jurisdiction, family, contributable hours of one
 run). Every input is validated when it is
 built, its collections element by element: a value of the wrong type, `NaN`
@@ -187,10 +190,15 @@ date. A December paid after 12 January is a payment of the next tax year
 the year on its last payment actually made in it and opens the next tax
 year with the late December, and `calculate_tax_year(TaxYearPlan(...))`
 computes every payment cashed in one tax year, late payments of an earlier
-competence year included. Totals of another provider, or the INPS base of
-the worker's other employers of the year, enter through
-`engine.import_opening_balances(OpeningBalances(...))`; see
-[Payroll state and the year change](docs/engine/payroll-state.md).
+competence year included. A run opens with the history of the employment:
+`PeriodState.zero()` is the fact only for the first run of an employment
+whose start is stated, and a run without its history is not payable.
+Totals of another provider enter through
+`engine.import_opening_balances(OpeningBalances(...))`, and the INPS base of
+the worker's other employments of the year through
+`CurrentYearTaxFacts.other_employment_inps_base` or the imported
+`inps_bases`; see
+[Opening state and imported balances](docs/engine/opening-state.md).
 
 `CompetenceYearPlan.periods` maps a month (1-12) or a run id such as
 `"2026-12-thirteenth"` to the `PeriodFacts` of that run; runs without an entry

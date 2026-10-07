@@ -73,6 +73,9 @@ class RunOutcome:
             withhold after the run.
         additional_ivs: Additional 1% IVS the run withheld, negative when
             its conguaglio gave some back.
+        history_known: Whether the run opened with the history of the
+            employment; ``False`` marks the closing state, so every run
+            that descends from it blocks.
     """
 
     tax_year: int
@@ -88,6 +91,7 @@ class RunOutcome:
     shortfall: WithholdingShortfall = field(default_factory=WithholdingShortfall)
     deferred: tuple[DeferredShortfall, ...] = ()
     additional_ivs: Decimal = _ZERO
+    history_known: bool = True
 
 
 def closing_state(opening: PeriodState, outcome: RunOutcome) -> PeriodState:
@@ -150,6 +154,7 @@ def _advance(opening: PeriodState, outcome: RunOutcome) -> PeriodState:
             outcome.additional_ivs,
         ),
         cash=_closing_cash(opening.cash, outcome, obligations),
+        history_known=outcome.history_known,
     )
 
 

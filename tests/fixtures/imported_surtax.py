@@ -13,6 +13,7 @@ from decimal import Decimal
 
 from ccnl_engine import PayrollEngine
 from ccnl_engine.inputs import (
+    InpsBaseYtd,
     OpeningBalances,
     PeriodState,
     SurtaxComponent,
@@ -62,11 +63,14 @@ def opening_with_2025_surtax(
     """Return the opening state of January 2026 with the 2025 surtax.
 
     Returns:
-        A zero 2026 state carrying :func:`imported_2025_surtax`.
+        A zero 2026 state carrying :func:`imported_2025_surtax`, of a worker
+        with no other employment in 2026.
     """
     return PayrollEngine.import_opening_balances(
         OpeningBalances(
             tax_year=2026,
             surtax_obligations=imported_2025_surtax(regione, comune_belfiore),
+            inps_bases=(InpsBaseYtd(2026, Decimal(0), Decimal(0)),),
+            recoveries=(),
         )
     )

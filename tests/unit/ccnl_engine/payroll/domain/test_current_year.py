@@ -20,6 +20,7 @@ def _facts(**overrides: object) -> CurrentYearTaxFacts:
     fields: dict[str, object] = {
         "tax_year": 2026,
         "other_employment_income": Decimal(5000),
+        "other_employment_inps_base": Decimal(5500),
         "other_income": Decimal(1500),
         "main_dwelling_income": Decimal(500),
         "estimated_on": _DAY,
@@ -38,6 +39,7 @@ def test_employment_only_states_zero_other_income() -> None:
     """Declaring no other income is an explicit fact, not a default."""
     facts = CurrentYearTaxFacts.employment_only(2026, _DAY)
     assert facts.external_income == Decimal(0)
+    assert facts.other_employment_inps_base == Decimal(0)
     assert facts.quality is IncomeEstimateQuality.DECLARED
     assert facts.tax_year == 2026
 
@@ -51,6 +53,8 @@ def test_quality_string_is_normalized() -> None:
     ("field", "value"),
     [
         ("other_employment_income", Decimal(-1)),
+        ("other_employment_inps_base", Decimal(-1)),
+        ("other_employment_inps_base", None),
         ("other_income", Decimal("-0.01")),
         ("main_dwelling_income", Decimal(-1)),
         ("other_income", None),

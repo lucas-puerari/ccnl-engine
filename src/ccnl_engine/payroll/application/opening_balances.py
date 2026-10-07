@@ -9,12 +9,13 @@ the totals is identified, so the engine never computes it again.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from decimal import Decimal
 from typing import final
 
 from ccnl_engine.payroll.application.opening_balance_fields import (
     FEATURE,
+    check_bases,
     check_carried,
     check_scalar_fields,
     items,
@@ -50,7 +51,10 @@ class OpeningBalances:
     (:class:`~ccnl_engine.payroll.domain.period_state.PeriodState`); a
     violation is raised as ``InvalidInputError``.  A tax-year total without
     the payments that produced it is rejected: it could not be told apart
-    from the payments the engine would compute again.
+    from the payments the engine would compute again.  The INPS bases and
+    the obligations carried from an earlier run have no default: what the
+    previous provider determined is a fact the import states, ``()`` when
+    there is none.
 
     Attributes:
         tax_year: Tax year of the totals.
@@ -64,13 +68,16 @@ class OpeningBalances:
             to compute must follow: with December 2026 paid on 13 January
             2027, the other 2026 runs paid in 2026.  Payments of
             ``tax_year`` go in ``payments``, not here.
-        inps_bases: INPS base toward the IVS massimale per competence year:
-            this employment's (``own``) and the worker's other employments
-            of the same year (``other_employers``, from their CU or the
-            worker's declaration; INPS circ. 237/2016 par. 3.1), with the
-            additional 1% IVS each withheld on it (``additional_ivs``,
-            ``other_employers_additional_ivs``).  Import the year before
-            too when its December is paid in ``tax_year``.
+        inps_bases: Required.  INPS base toward the IVS massimale per
+            competence year: this employment's (``own``) and the worker's
+            other employments of the same year (``other_employers``, from
+            their CU or the worker's declaration; INPS circ. 237/2016 par.
+            3.1; ``None`` when not known, which blocks the runs whose
+            contributions could depend on it), with the additional 1% IVS
+            each withheld on it (``additional_ivs``,
+            ``other_employers_additional_ivs``).  Every competence year of
+            ``payments`` and ``competence_runs`` needs its base; import the
+            year before too when its December is paid in ``tax_year``.
         sickness_episodes: Sickness episodes of the employment up to the
             last processed day, in start order: they set the waiting
             period, INPS days and CCNL tier of later episodes.
@@ -115,15 +122,15 @@ class OpeningBalances:
             and not yet withheld for lack of pay.
         work_time_regime_used: Night, holiday and shift supplements already
             taxed at the substitute rate (L. 199/2025 art. 1 cc. 10-11).
-        recoveries: Installment recoveries still running, from this tax
-            year or an earlier one.
+        recoveries: Required.  Installment recoveries still running, from
+            this tax year or an earlier one; ``()`` states that there is
+            none.
         surtax_obligations: Surtax determined by the conguaglio of an
             earlier tax year and not yet withheld: the regional surtax and
             municipal saldo of ``tax_year - 1`` and the municipal acconto of
-            ``tax_year``, by the installments still to post.  For a worker
-            employed in the previous year, import them: the engine
-            withholds no surtax the previous provider determined unless it
-            is stated here.
+            ``tax_year``, by the installments still to post.  Required:
+            the engine withholds no surtax the previous provider determined
+            unless it is stated here; ``()`` states that there is none.
         deferred_shortfall: IRPEF the conguaglio of ``tax_year - 1``
             deferred on the worker's written request (art. 23 c. 3 DPR
             600/1973) and not yet withheld, ``None`` without one.
@@ -132,7 +139,7 @@ class OpeningBalances:
     tax_year: int
     payments: tuple[PaymentId, ...] = ()
     competence_runs: tuple[PayrollRunId, ...] = ()
-    inps_bases: tuple[InpsBaseYtd, ...] = ()
+    inps_bases: tuple[InpsBaseYtd, ...] = field(kw_only=True)
     sickness_episodes: tuple[SicknessEpisode, ...] = ()
     gross: Decimal = _ZERO
     taxable: Decimal = _ZERO
@@ -162,8 +169,8 @@ class OpeningBalances:
     surtax_shortfall: Decimal = _ZERO
     credit_recovery_shortfall: Decimal = _ZERO
     work_time_regime_used: Decimal = _ZERO
-    recoveries: tuple[RecoveryObligation, ...] = ()
-    surtax_obligations: tuple[SurtaxObligation, ...] = ()
+    recoveries: tuple[RecoveryObligation, ...] = field(kw_only=True)
+    surtax_obligations: tuple[SurtaxObligation, ...] = field(kw_only=True)
     deferred_shortfall: DeferredShortfall | None = None
 
     def __post_init__(self) -> None:
@@ -176,7 +183,8 @@ class OpeningBalances:
                 payments, a recovery opened after
                 ``tax_year``, surtax determined by the conguaglio of
                 ``tax_year`` or later, a deferral of a conguaglio other than
-                that of ``tax_year - 1``) or an amount is finer than a cent.
+                that of ``tax_year - 1``, a closed run of a competence year
+                without its INPS base) or an amount is finer than a cent.
         """
         check_scalar_fields(self)
         for name, item in (
@@ -218,3 +226,4 @@ class OpeningBalances:
             raise InvalidInputError(
                 msg, field="OpeningBalances.payments", feature=FEATURE
             )
+        check_bases(self.payments, self.competence_runs, self.inps_bases)

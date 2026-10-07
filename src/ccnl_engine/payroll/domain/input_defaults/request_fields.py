@@ -29,14 +29,16 @@ _CURRENT_YEAR = requires_fact(
     "current_year",
     _REPORTED,
     "unknown income beyond this employment: with a dependant that gives right "
-    "to a deduction the run has a missing_fact current_year blocker",
+    "to a deduction the run has a missing_fact current_year blocker; the INPS "
+    "base of other employments stays unknown unless the opening state states it",
 )
 _OPENING_STATE = requires_fact(
     "irpef",
     "opening_state",
-    _PENDING,
-    "the zero state: a run after the start of the employment in the same tax "
-    "year restarts the progressive totals from zero without a blocker",
+    _REPORTED,
+    "the zero state, a fact only for the first run of an employment whose "
+    "start is stated: a later run, or one of an employment whose start is "
+    "not stated, has a missing_fact opening_state blocker",
 )
 
 #: Classification of each defaulted field of the root request types.

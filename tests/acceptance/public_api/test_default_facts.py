@@ -1,17 +1,16 @@
 """A default left in a public input is not the fact it stands for.
 
 Concia D2, June 2026, every other fact explicit
-(:mod:`tests.fixtures.explicit_facts`): its only blocker is
-``rule_source_weak somma_esente``, so the blockers a field adds or removes
-are visible.  Two properties of the payability contract
-(:mod:`tests.acceptance.public_api.test_result_payability`): a default that
-selects a monetary branch adds a blocker the explicit value does not have,
-and the true value of a fact never has more blockers than the default it
-replaces, otherwise the false default is the one path that looks payable.
-The residence left unknown is checked by
-``test_unknown_residence_is_not_no_surtax`` of the legal scenarios.  None
-of the properties below holds today: each is a strict xfail on its
-assertion.
+(:mod:`tests.fixtures.explicit_facts`) and opened with the state May closed:
+its only blocker is ``rule_source_weak somma_esente``, so the blockers a
+field adds or removes are visible.  Two properties of the payability
+contract (:mod:`tests.acceptance.public_api.test_result_payability`): a
+default that selects a monetary branch adds a blocker the explicit value
+does not have, and the true value of a fact never has more blockers than
+the default it replaces, otherwise the false default is the one path that
+looks payable.  The residence left unknown is checked by
+``test_unknown_residence_is_not_no_surtax`` of the legal scenarios.  The
+properties that do not hold yet are strict xfails on their assertion.
 """
 
 from __future__ import annotations
@@ -19,10 +18,18 @@ from __future__ import annotations
 from dataclasses import replace
 from datetime import date
 from decimal import Decimal
+from functools import cache
 
 import pytest
 
-from ccnl_engine import Employment, PayrollEngine, PayrollRun, PeriodFacts, PeriodResult
+from ccnl_engine import (
+    Employment,
+    PayrollEngine,
+    PayrollRun,
+    PeriodFacts,
+    PeriodInput,
+    PeriodResult,
+)
 from ccnl_engine.events import AbsenceEvent
 from ccnl_engine.inputs import (
     Dependent,
@@ -48,11 +55,34 @@ def _blocker_set(result: PeriodResult) -> set[tuple[BlockerCode, str | None]]:
     return {(b.code, b.feature) for b in result.blockers}
 
 
+@cache
+def _may_closing_state() -> PeriodState:
+    """Return the state the May run of the explicit year closes with.
+
+    Returns:
+        The closing state of May 2026 of the Concia D2 hired on 1 January.
+    """
+    year = _ENGINE.calculate_competence_year(competence_year())
+    return year.period_results[4].closing_state
+
+
 def _june_with(
     employment: Employment = CONCIA_D2,
     facts: PeriodFacts = FACTS,
     opening_state: PeriodState | None = None,
 ) -> PeriodResult:
+    """Return the June run opened with the history of its employment.
+
+    ``opening_state`` left ``None`` is that history: the zero state for a
+    hire in June, the state May closed otherwise.
+
+    Returns:
+        The June 2026 run.
+    """
+    if opening_state is None:
+        period = employment.employment_period
+        hired_in_june = period is not None and period.started_on.month == 6
+        opening_state = PeriodState.zero() if hired_in_june else _may_closing_state()
     request = regular_run(
         employment=employment, facts=facts, opening_state=opening_state
     )
@@ -100,24 +130,35 @@ class TestDefaultIsNotAFact:
             (BlockerCode.RULE_SOURCE_WEAK, "somma_esente")
         }
 
-    @pytest.mark.xfail(
-        strict=True,
-        raises=AssertionError,
-        reason=(
-            "the default opening state is a zero state, so a June run of an "
-            "employment open since 1 January restarts the progressive totals "
-            "from zero without a blocker; the withholding of art. 23 DPR "
-            "600/1973 and the INPS ceilings of L. 335/1995 art. 2 c. 18 are "
-            "computed on the year's totals"
-        ),
-    )
     def test_missing_opening_state_mid_year_is_not_a_zero_state(self) -> None:
-        """June without the state closed by May adds a blocker."""
-        year = _ENGINE.calculate_competence_year(competence_year())
-        may = year.period_results[4].closing_state
-        default = _blocker_set(_june_with())
-        chained = _blocker_set(_june_with(opening_state=may))
-        assert default - chained
+        """June opened with the zero state adds a missing opening_state.
+
+        The employment is open since 1 January: the withholding of art. 23
+        DPR 600/1973 and the INPS massimale of L. 335/1995 art. 2 c. 18 are
+        computed on the totals of the year, which the zero state drops.
+        """
+        default = _june_with(opening_state=PeriodState.zero())
+
+        assert _blocker_set(default) - _blocker_set(_june_with()) == {
+            (BlockerCode.MISSING_FACT, None)
+        }
+        assert {b.detail for b in default.blockers} >= {"opening_state"}
+        assert not default.closing_state.history_known
+
+    def test_unknown_base_of_other_employments_is_not_zero(self) -> None:
+        """January without the current-year facts adds a missing other_employers.
+
+        The January run of a hire on 1 January opens with the zero state, a
+        fact; the INPS base of other employments of 2026 is not stated, and
+        it counts toward the massimale (L. 335/1995 art. 2 c. 18).
+        """
+        stated = regular_run(1, opening_state=PeriodState.zero())
+        unknown = replace(stated, current_year=None)
+
+        def details(request: PeriodInput) -> set[str]:
+            return {b.detail for b in _ENGINE.calculate_period(request).blockers}
+
+        assert details(unknown) - details(stated) == {"other_employers"}
 
     @pytest.mark.xfail(
         strict=True,

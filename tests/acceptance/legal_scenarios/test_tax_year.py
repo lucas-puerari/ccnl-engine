@@ -18,6 +18,7 @@ from ccnl_engine import (
     UnsupportedTaxYearError,
 )
 from ccnl_engine.inputs import (
+    InpsBaseYtd,
     OpeningBalances,
     PeriodState,
     RecoveryObligation,
@@ -112,6 +113,8 @@ def _december_2026() -> tuple[PeriodResult, PeriodResult]:
             trattamento_recognized=Decimal(160),
             trattamento_recovered=Decimal(40),
             recoveries=(RecoveryObligation(tax_year=2026, plan=_PLAN),),
+            inps_bases=(InpsBaseYtd(2026, other_employers=Decimal(0)),),
+            surtax_obligations=(),
         )
     )
     december = regular_period(month=12, opening_state=opening)

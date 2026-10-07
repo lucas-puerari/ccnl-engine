@@ -38,7 +38,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.calendar import WorkCalendar
     from ccnl_engine.payroll.domain.competence_year_plan import CompetenceYearPlan
     from ccnl_engine.payroll.domain.payment import PaymentId
-    from ccnl_engine.payroll.domain.run import PayrollRun
+    from ccnl_engine.payroll.domain.run import PayrollRun, PayrollRunId
     from ccnl_engine.payroll.domain.uncovered_run import UncoveredRun
 
 __all__ = [
@@ -65,6 +65,8 @@ class PlannedPayment:
         payment: Its payment: the run and its payment date.
         pay_fraction: Share of a monthly pay the run carries at full
             accrual, from the calendar of its competence year.
+        uncovered: Runs of its competence year left out of the year because
+            the bundle holds no pay rules on their date.
     """
 
     plan: CompetenceYearPlan
@@ -72,6 +74,7 @@ class PlannedPayment:
     run: PayrollRun
     payment: PaymentId
     pay_fraction: Decimal
+    uncovered: tuple[PayrollRunId, ...] = ()
 
     @property
     def slot(self) -> WithholdingSlot:
@@ -130,11 +133,12 @@ def prepare_year(plan: CompetenceYearPlan, repo: KnowledgeRepository) -> Prepare
         for run in year_plan.schedule.runs
     )
     payments, uncovered = split_covered(ccnl, plan.employment.level_code, planned)
+    left_out = tuple(u.payment.run_id for u in uncovered)
     return PreparedYear(
         plan=plan,
         ccnl=ccnl,
         calendar=calendar,
-        payments=payments,
+        payments=tuple(replace(p, uncovered=left_out) for p in payments),
         uncovered=uncovered,
     )
 

@@ -147,6 +147,7 @@ _VALID: dict[type, dict[str, Any]] = {
     CurrentYearTaxFacts: {
         "tax_year": _YEAR,
         "other_employment_income": _ONE,
+        "other_employment_inps_base": _ONE,
         "other_income": _ONE,
         "main_dwelling_income": _ONE,
         "estimated_on": _DAY,
@@ -173,7 +174,12 @@ _VALID: dict[type, dict[str, Any]] = {
         "installments_posted": 0,
     },
     RecoveryObligation: {"tax_year": _YEAR - 1, "plan": _RECOVERY.plan},
-    OpeningBalances: {"tax_year": _YEAR},
+    OpeningBalances: {
+        "tax_year": _YEAR,
+        "inps_bases": (),
+        "recoveries": (),
+        "surtax_obligations": (),
+    },
     PeriodState: {},
     PeriodInput: {
         "run": PayrollRun.regular(_YEAR, 6),
@@ -331,7 +337,12 @@ def test_an_invalid_opening_recovery_is_rejected_at_any_position(
     """An imported recovery that is not a :class:`RecoveryObligation`."""
     recoveries: list[object] = [_RECOVERY, _RECOVERY]
     _check_position(
-        lambda r: OpeningBalances(tax_year=_YEAR, recoveries=r),  # type: ignore[arg-type]
+        lambda r: OpeningBalances(
+            tax_year=_YEAR,
+            recoveries=r,  # type: ignore[arg-type]
+            inps_bases=(),
+            surtax_obligations=(),
+        ),
         recoveries,
         index,
         bad,
@@ -371,5 +382,10 @@ def test_lists_are_normalised_to_tuples_after_validation() -> None:
     assert PeriodFacts(events=[_OVERTIME]).events == (_OVERTIME,)  # type: ignore[arg-type]
     family = FamilyComposition(dependents=[_CHILD])  # type: ignore[arg-type]
     assert family.dependents == (_CHILD,)
-    balances = OpeningBalances(tax_year=_YEAR, recoveries=[_RECOVERY])  # type: ignore[arg-type]
+    balances = OpeningBalances(
+        tax_year=_YEAR,
+        recoveries=[_RECOVERY],  # type: ignore[arg-type]
+        inps_bases=(),
+        surtax_obligations=(),
+    )
     assert balances.recoveries == (_RECOVERY,)

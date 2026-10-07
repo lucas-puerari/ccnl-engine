@@ -14,6 +14,7 @@ from ccnl_engine.payroll.application.period._context_facts import (
     installment_run,
     settles_tax_year,
 )
+from ccnl_engine.payroll.domain.opening_history import opening_state_issue
 
 if TYPE_CHECKING:
     from decimal import Decimal
@@ -23,6 +24,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.application.period._contract import RunContract
     from ccnl_engine.payroll.application.period._proration import RunProration
     from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
+    from ccnl_engine.payroll.domain.decisions import CalculationIssue
     from ccnl_engine.payroll.domain.pay_items import CompetencePeriod
     from ccnl_engine.payroll.domain.payment import PaymentId
     from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
@@ -146,6 +148,17 @@ class RunContext:
     def opening(self) -> PeriodState:
         """State the run opens with."""
         return self.request.opening_state
+
+    @property
+    def opening_issue(self) -> CalculationIssue | None:
+        """Issue of an opening state that misses the employment history."""
+        period = self.request.employment_period
+        return opening_state_issue(
+            self.opening,
+            self.payment.run_id,
+            None if period is None else period.started_on,
+            self.request.uncovered_runs,
+        )
 
     @property
     def monthly_gross(self) -> Decimal:

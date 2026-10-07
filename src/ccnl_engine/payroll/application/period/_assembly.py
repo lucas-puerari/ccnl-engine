@@ -19,6 +19,9 @@ from ccnl_engine.payroll.application.period._closing_state import (
     closing_state,
 )
 from ccnl_engine.payroll.application.period._limitations import run_limitations
+from ccnl_engine.payroll.application.period._other_employers import (
+    other_employers_issue,
+)
 from ccnl_engine.payroll.application.period._rule_sources import (
     missing_source_issues,
     run_rule_sources,
@@ -108,6 +111,7 @@ def _closing(
                 ),
                 _ZERO,
             ),
+            history_known=ctx.opening_issue is None,
         ),
     )
 
@@ -122,26 +126,28 @@ def _benefits(events: RunEvents, entries: tuple[LedgerEntry, ...]) -> BenefitBre
     )
 
 
-def _rule_issues(ctx: RunContext) -> tuple[CalculationIssue, ...]:
-    issue = category_rate_issue(
-        ctx.contract.year_rules, ctx.request.contract_type, ctx.worker_category
-    )
-    return () if issue is None else (issue,)
+def _input_issues(
+    ctx: RunContext, events: RunEvents, amounts: RunAmounts
+) -> tuple[CalculationIssue, ...]:
+    """Return the issues of the facts and rules the run read.
 
-
-def _seniority_issues(ctx: RunContext) -> tuple[CalculationIssue, ...]:
-    issue = run_seniority(ctx).issue()
-    return () if issue is None else (issue,)
-
-
-def _proration_issues(ctx: RunContext) -> tuple[CalculationIssue, ...]:
-    issue = ctx.proration.issue()
-    return () if issue is None else (issue,)
-
-
-def _ivs_issues(ctx: RunContext, amounts: RunAmounts) -> tuple[CalculationIssue, ...]:
+    Returns:
+        The issues of the category rates, the seniority, the proration, the
+        IVS massimale, the additional 1% IVS, the opening state and the INPS
+        base of other employments, in that order, each only when raised.
+    """
     ivs = amounts.ivs_ceiling
-    issues = (None if ivs is None else ivs.issue(), additional_ivs_issue(ctx))
+    issues = (
+        category_rate_issue(
+            ctx.contract.year_rules, ctx.request.contract_type, ctx.worker_category
+        ),
+        run_seniority(ctx).issue(),
+        ctx.proration.issue(),
+        None if ivs is None else ivs.issue(),
+        additional_ivs_issue(ctx),
+        ctx.opening_issue,
+        other_employers_issue(ctx, ctx.monthly_gross + events.totals.inps_base),
+    )
     return tuple(issue for issue in issues if issue is not None)
 
 
@@ -196,10 +202,7 @@ def _result(
         + somma.issues
         + capped.issues
         + posted.deferred.issues
-        + _rule_issues(ctx)
-        + _seniority_issues(ctx)
-        + _proration_issues(ctx)
-        + _ivs_issues(ctx, amounts)
+        + _input_issues(ctx, events, amounts)
         + missing_source_issues(sources),
         decisions=all_decisions,
         rulesets=run_rulesets(ctx, sources),

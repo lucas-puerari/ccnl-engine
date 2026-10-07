@@ -46,6 +46,7 @@ from ccnl_engine.results import CalculationDecision, CalculationStatus
 from tests.acceptance.legal_scenarios._support import (
     COMMERCIO,
     PA_FUNZIONI_CENTRALI,
+    history,
     regular_period,
     remitted,
     substitute_tax,
@@ -85,21 +86,33 @@ def _period(
     month: int = 3,
     opening: PeriodState | None = None,
 ) -> PeriodResult:
+    """Return the run of ``month`` of ``worker``, with ``events``.
+
+    Without ``opening`` the run opens with the months before it, computed
+    without events (:func:`~tests.acceptance.legal_scenarios._support.history`).
+
+    Returns:
+        The regular run of ``month`` 2026.
+    """
     waived = frozenset(SubstituteTaxRegime) if worker.waived else frozenset()
+    employment = Employment(
+        ccnl_slug=worker.ccnl_slug,
+        level_code=worker.level_code,
+        seniority=new_hire(),
+        sector=worker.sector,
+    )
+    employer = EmployerProfile(headcount=Headcount(50), activity=worker.activity)
+    prior_year = PriorYearTaxFacts(
+        employment_income=worker.income, waived_regimes=waived
+    )
     return regular_period(
         month=month,
         events=events,
-        opening_state=opening,
-        employment=Employment(
-            ccnl_slug=worker.ccnl_slug,
-            level_code=worker.level_code,
-            seniority=new_hire(),
-            sector=worker.sector,
-        ),
-        employer=EmployerProfile(headcount=Headcount(50), activity=worker.activity),
-        prior_year=PriorYearTaxFacts(
-            employment_income=worker.income, waived_regimes=waived
-        ),
+        opening_state=opening
+        or history(employment, month, employer=employer, prior_year=prior_year),
+        employment=employment,
+        employer=employer,
+        prior_year=prior_year,
     )
 
 

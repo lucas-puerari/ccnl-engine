@@ -43,7 +43,12 @@ import pytest
 
 from ccnl_engine import CompetenceYearPlan, Employment, InvalidInputError, PayrollEngine
 from ccnl_engine.events import BonusEvent
-from ccnl_engine.inputs import OpeningBalances, PaymentId, PensionFundEnrolment
+from ccnl_engine.inputs import (
+    InpsBaseYtd,
+    OpeningBalances,
+    PaymentId,
+    PensionFundEnrolment,
+)
 from tests.acceptance.legal_scenarios._support import EMPLOYER, ENGINE, regular_period
 
 if TYPE_CHECKING:
@@ -215,6 +220,9 @@ class TestDeductionCap:
                 tax_year=2026,
                 payments=(PaymentId.parse("2026-01-regular@2026-01-27"),),
                 pension_deducted=Decimal(deducted),
+                inps_bases=(InpsBaseYtd(2026, other_employers=Decimal(0)),),
+                recoveries=(),
+                surtax_obligations=(),
             )
         )
         enrolled = regular_period(employment=_tabacco(), month=2, opening_state=opening)

@@ -26,6 +26,8 @@ from ccnl_engine.payroll.domain.surtax_obligations import (
 from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _JUNE = (PaymentId.parse("2026-06-regular@2026-06-27"),)
+#: INPS base of 2026 up to June, with no other employment in the year.
+_BASES_2026 = (InpsBaseYtd(2026, Decimal("15000.00"), Decimal(0)),)
 _PLAN = RecoveryPlan(
     kind="trattamento_integrativo",
     original_amount=Decimal(160),
@@ -56,6 +58,8 @@ def test_opening_state_maps_every_total() -> None:
             somma_esente_recovered=Decimal("40.00"),
             work_time_regime_used=Decimal("500.00"),
             recoveries=(recovery,),
+            inps_bases=_BASES_2026,
+            surtax_obligations=(),
         )
     )
 
@@ -96,6 +100,9 @@ def test_opening_state_maps_due_reason_and_shortfall() -> None:
             irpef_shortfall=Decimal("19.08"),
             surtax_shortfall=Decimal("2.10"),
             credit_recovery_shortfall=Decimal("7.50"),
+            inps_bases=_BASES_2026,
+            recoveries=(),
+            surtax_obligations=(),
         )
     ).cash
 
@@ -112,7 +119,15 @@ def test_opening_state_maps_due_reason_and_shortfall() -> None:
 
 def test_unknown_due_is_accepted() -> None:
     """A due left ``None`` is not checked for cents."""
-    state = opening_state(OpeningBalances(tax_year=2026, ulteriore_due=None))
+    state = opening_state(
+        OpeningBalances(
+            tax_year=2026,
+            ulteriore_due=None,
+            inps_bases=(),
+            recoveries=(),
+            surtax_obligations=(),
+        )
+    )
     assert state.cash.ulteriore_detrazione.due is None
 
 
@@ -130,6 +145,8 @@ def test_imports_the_surtax_of_the_previous_conguaglio() -> None:
             regional_settled=Decimal(5),
             municipal_settled=Decimal(3),
             surtax_obligations=(saldo,),
+            inps_bases=_BASES_2026,
+            recoveries=(),
         )
     )
 
@@ -151,7 +168,15 @@ def _deferred(tax_year: int) -> DeferredShortfall:
 def test_imports_the_deferral_of_the_previous_conguaglio() -> None:
     """The IRPEF the 2025 conguaglio deferred opens 2026."""
     deferred = _deferred(2025)
-    state = opening_state(OpeningBalances(tax_year=2026, deferred_shortfall=deferred))
+    state = opening_state(
+        OpeningBalances(
+            tax_year=2026,
+            deferred_shortfall=deferred,
+            inps_bases=(),
+            recoveries=(),
+            surtax_obligations=(),
+        )
+    )
     assert state.cash.obligations.deferred_shortfall == (deferred,)
 
 
@@ -166,7 +191,15 @@ def test_accepts_more_than_fourteen_payments() -> None:
             payments.append(PaymentId.parse("2027-07-fourteenth@2027-07-27"))
     payments.append(PaymentId.parse("2027-12-thirteenth@2027-12-27"))
 
-    state = opening_state(OpeningBalances(tax_year=2027, payments=tuple(payments)))
+    state = opening_state(
+        OpeningBalances(
+            tax_year=2027,
+            payments=tuple(payments),
+            inps_bases=(InpsBaseYtd(2026), InpsBaseYtd(2027)),
+            recoveries=(),
+            surtax_obligations=(),
+        )
+    )
 
     assert state.cash.withholding_payments_closed == 15
 
@@ -174,7 +207,11 @@ def test_accepts_more_than_fourteen_payments() -> None:
 def test_obligations_alone_need_no_payment() -> None:
     """A new tax year opens with obligations and no payment."""
     recovery = RecoveryObligation(tax_year=2025, plan=_PLAN)
-    state = opening_state(OpeningBalances(tax_year=2026, recoveries=(recovery,)))
+    state = opening_state(
+        OpeningBalances(
+            tax_year=2026, recoveries=(recovery,), inps_bases=(), surtax_obligations=()
+        )
+    )
 
     assert state.cash.payments == ()
 
@@ -182,7 +219,15 @@ def test_obligations_alone_need_no_payment() -> None:
 def test_imports_competence_runs_of_an_earlier_tax_year() -> None:
     """2026 paid in 2026 is closed: December 2026 paid in 2027 may follow it."""
     earlier = tuple(PayrollRunId(2026, m, RunKind.REGULAR) for m in range(1, 12))
-    state = opening_state(OpeningBalances(tax_year=2027, competence_runs=earlier))
+    state = opening_state(
+        OpeningBalances(
+            tax_year=2027,
+            competence_runs=earlier,
+            inps_bases=(InpsBaseYtd(2026),),
+            recoveries=(),
+            surtax_obligations=(),
+        )
+    )
 
     assert state.accrual.regular_months(2026) == 11
     with pytest.raises(InvalidInputError, match="already closed"):
@@ -193,7 +238,11 @@ def test_imports_competence_runs_of_an_earlier_tax_year() -> None:
 def test_imports_the_inps_base_of_other_employers() -> None:
     """The base of an earlier employment of the year counts toward the massimale."""
     base = InpsBaseYtd(2026, other_employers=Decimal("80000.00"))
-    state = opening_state(OpeningBalances(tax_year=2026, inps_bases=(base,)))
+    state = opening_state(
+        OpeningBalances(
+            tax_year=2026, inps_bases=(base,), recoveries=(), surtax_obligations=()
+        )
+    )
 
     assert state.accrual.inps_base(2026).total == Decimal("80000.00")
     assert state.accrual.inps_base(2026).own == Decimal(0)
@@ -235,6 +284,9 @@ def test_every_total_of_the_cash_state_can_be_imported() -> None:
         OpeningBalances(
             tax_year=2026,
             payments=_JUNE,
+            inps_bases=_BASES_2026,
+            recoveries=(),
+            surtax_obligations=(),
             **amounts,  # type: ignore[arg-type]
             **reasons,  # type: ignore[arg-type]
         )

@@ -72,7 +72,9 @@ class CompetenceYearPlan:
             income and no waiver.
         current_year: Income beyond this employment of the tax year of the
             runs, read by the family deductions; runs paid in another tax
-            year ignore it.  ``None`` means not known.
+            year ignore it.  Its INPS base of other employments counts
+            toward the massimale of the runs of the same competence year.
+            ``None`` means not known.
         periods: Facts per run, keyed by run id (``"2026-12-thirteenth"``,
             any run kind) or by month number (1-12, the regular run of the
             month).  :attr:`facts_by_run` holds them keyed by run id.  An
@@ -93,8 +95,11 @@ class CompetenceYearPlan:
             month.  A date before the first day of the run month is
             rejected.
         opening_state: State the first run opens with, read by
-            ``calculate_competence_year``.  ``None`` starts a new
-            employment; pass ``close_tax_year()`` of the previous tax year,
+            ``calculate_competence_year``.  ``None`` is the zero state, the
+            fact only for an employment whose stated start falls in
+            :attr:`year`; otherwise the runs have a ``missing_fact
+            opening_state`` blocker.  Pass ``close_tax_year()`` of the
+            previous tax year, imported balances,
             or the ``next_opening_state`` of the previous competence year
             when its December was paid in this tax year.  A state that
             already closed some runs of :attr:`year` with the same payment

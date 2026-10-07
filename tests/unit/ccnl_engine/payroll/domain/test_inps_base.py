@@ -86,6 +86,7 @@ def test_the_1pct_of_other_employers_is_unknown_only_with_their_base(
         ({"month": 13}, "InpsBaseYtd.month"),
         ({"month": 1, "month_base": Decimal(-1)}, "InpsBaseYtd.month_base"),
         ({"month_base": Decimal(1)}, "InpsBaseYtd.month_base"),
+        ({"other_employers": Decimal(-1)}, "InpsBaseYtd.other_employers"),
     ],
 )
 def test_rejects_an_invalid_field(kwargs: dict[str, object], field: str) -> None:
@@ -94,3 +95,16 @@ def test_rejects_an_invalid_field(kwargs: dict[str, object], field: str) -> None
         InpsBaseYtd(**({"year": 2026} | kwargs))  # type: ignore[arg-type]
 
     assert info.value.field == field
+
+
+def test_an_unknown_base_of_other_employers_is_not_zero() -> None:
+    """``None`` is unknown: the total counts this employment alone meanwhile."""
+    unknown = InpsBaseYtd(2026, own=Decimal(100))
+    stated = unknown.stating_other_employers(Decimal(0))
+
+    assert unknown.other_employers is None
+    assert not unknown.other_employers_known
+    assert unknown.total == Decimal(100)
+    assert unknown.plus(Decimal(10), 1).other_employers is None
+    assert stated == InpsBaseYtd(2026, own=Decimal(100), other_employers=Decimal(0))
+    assert stated.other_employers_known

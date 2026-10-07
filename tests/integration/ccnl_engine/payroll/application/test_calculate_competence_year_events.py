@@ -14,6 +14,7 @@ from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.events import AbsenceEvent, BonusEvent, WorkEvent
 from ccnl_engine.payroll.domain.inputs import PeriodFacts
 from ccnl_engine.shared.domain.errors import InvalidInputError
+from tests.fixtures.opening_state import fresh_tax_year
 from tests.helpers import year_plan
 
 _CCNL = "metalmeccanico-federmeccanica.json"
@@ -148,7 +149,13 @@ class TestSurtaxStatus:
     ) -> None:
         """A Belfiore code without a table leaves the whole year incomplete."""
         result = calculate_competence_year(
-            year_plan(_YEAR, _CCNL, _LEVEL, facts=PeriodFacts(comune_belfiore="Z999"))
+            year_plan(
+                _YEAR,
+                _CCNL,
+                _LEVEL,
+                facts=PeriodFacts(comune_belfiore="Z999"),
+                opening_state=fresh_tax_year(_YEAR),
+            )
         )
 
         assert {r.assurance.calculation for r in result.period_results} == {

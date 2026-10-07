@@ -131,17 +131,35 @@ class EmploymentAccrualState:
         Returns:
             A new state with ``run_id`` appended; it is validated again.
         """
-        base = self.inps_base(run_id.year).plus(inps_base, run_id.month, additional_ivs)
-        others = [b for b in self.inps_bases if b.year != run_id.year]
         return EmploymentAccrualState(
             competence_runs=(*self.competence_runs, run_id),
-            inps_bases=tuple(sorted((*others, base), key=lambda b: b.year)),
+            inps_bases=self._bases_with(
+                self.inps_base(run_id.year).plus(
+                    inps_base, run_id.month, additional_ivs
+                )
+            ),
             sickness_episodes=(
                 self.sickness_episodes
                 if sickness_episodes is None
                 else sickness_episodes
             ),
         )
+
+    def with_inps_base(self, base: InpsBaseYtd) -> EmploymentAccrualState:
+        """Return the state with ``base`` in place of the base of its year.
+
+        Returns:
+            A new state; the runs and episodes are unchanged.
+        """
+        return EmploymentAccrualState(
+            competence_runs=self.competence_runs,
+            inps_bases=self._bases_with(base),
+            sickness_episodes=self.sickness_episodes,
+        )
+
+    def _bases_with(self, base: InpsBaseYtd) -> tuple[InpsBaseYtd, ...]:
+        others = [b for b in self.inps_bases if b.year != base.year]
+        return tuple(sorted((*others, base), key=lambda b: b.year))
 
     def inps_base(self, year: int) -> InpsBaseYtd:
         """Return the INPS base of competence year ``year``.

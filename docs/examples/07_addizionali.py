@@ -12,7 +12,12 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodInput,
 )
-from ccnl_engine.inputs import OpeningBalances, SurtaxComponent, SurtaxObligation
+from ccnl_engine.inputs import (
+    InpsBaseYtd,
+    OpeningBalances,
+    SurtaxComponent,
+    SurtaxObligation,
+)
 
 engine = PayrollEngine.bundled()
 
@@ -34,14 +39,17 @@ opening = engine.import_opening_balances(
                 SurtaxComponent.MUNICIPAL_ADVANCE, 2025, "F257", Decimal("45.00")
             ),
         ),
+        # No other employment of the worker in 2026, no recovery running.
+        inps_bases=(InpsBaseYtd(2026, Decimal(0), Decimal(0)),),
+        recoveries=(),
     )
 )
 
 
 result = engine.calculate_period(
     PeriodInput(
-        run=PayrollRun.regular(year=2026, month=3),
-        payment_date=date(2026, 3, 27),
+        run=PayrollRun.regular(year=2026, month=1),
+        payment_date=date(2026, 1, 27),
         employment=Employment(
             ccnl_slug="metalmeccanico-federmeccanica.json", level_code="C3"
         ),
@@ -51,8 +59,9 @@ result = engine.calculate_period(
     )
 )
 
-# March withholds one installment of each 2025 saldo and the first one
-# of the 2026 acconto: 30.00 (3802) + 10.00 (3848) + 5.00 (3847).
+# January, the first run of 2026 after the import, withholds one installment
+# of each 2025 saldo: 30.00 (3802) + 10.00 (3848); the 2026 acconto starts
+# in March.
 for line in result.remittance_summary():
     if line.account == "surtax":
         print(f"  {line.remittance_code}: {line.amount}")

@@ -47,13 +47,17 @@ class TaxYearPlan:
             usually the year before (for a December paid in January) and
             the tax year itself.  Their own ``opening_state`` must be
             ``None``.
-        opening_state: State the first payment opens with: ``None`` for a
-            new employment, ``close_tax_year()`` of the previous tax year,
-            or a state of :attr:`tax_year` that already closed some of the
-            payments; those are not computed again (resume after a retry).
-        current_year: Income of :attr:`tax_year` beyond this employment,
-            read by the family deductions of every payment in place of the
-            ``current_year`` of the competence years.  ``None`` keeps theirs.
+        opening_state: State the first payment opens with: ``None`` (the
+            zero state) only for an employment whose stated start falls in
+            the plans, else the payments have a ``missing_fact
+            opening_state`` blocker; ``close_tax_year()`` of the previous
+            tax year, imported balances, or a state of :attr:`tax_year` that
+            already closed some of the payments; those are not computed
+            again (resume after a retry).
+        current_year: Income of :attr:`tax_year` beyond this employment and
+            the INPS base of the other employments, read by every payment in
+            place of the ``current_year`` of the competence years.  ``None``
+            keeps theirs.
 
     Raises:
         InvalidInputError: When a field is not of its type, there is no

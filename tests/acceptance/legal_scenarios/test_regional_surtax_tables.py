@@ -44,6 +44,7 @@ from ccnl_engine.inputs import (
 )
 from ccnl_engine.results import CalculationStatus
 from tests.fixtures.normative_oracles.irpef_2026 import net_irpef
+from tests.fixtures.opening_state import fresh_tax_year
 from tests.fixtures.seniority import new_hire
 
 if TYPE_CHECKING:
@@ -99,6 +100,7 @@ def _conguaglio(regione: str, with_child: bool) -> PeriodResult:
             default_facts=PeriodFacts(
                 regione=regione, family_composition=_CHILD if with_child else None
             ),
+            opening_state=fresh_tax_year(2026),
         )
     )
     return result.period_results[-1]

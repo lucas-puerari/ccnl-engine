@@ -45,6 +45,7 @@ from tests.fixtures.normative_oracles.surtax_2026 import (
     municipal_sassari,
     regional_sardegna,
 )
+from tests.fixtures.opening_state import fresh_tax_year
 from tests.fixtures.seniority import new_hire
 
 if TYPE_CHECKING:
@@ -81,7 +82,7 @@ def _year(
 
 @cache
 def _year_2026() -> CompetenceYearResult:
-    return _year(2026, None, None)
+    return _year(2026, fresh_tax_year(2026), None)
 
 
 @cache

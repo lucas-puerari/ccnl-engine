@@ -132,7 +132,9 @@ without a classification, or on a classification without its field:
     renewal, contributable hours of a domestic CCNL, a child's birth date,
     the apprenticeship track among several, the additional 1% IVS other
     employers withheld when their base is imported and a run settles the
-    1%);
+    1%, the opening state of a run that is not the first of an employment
+    whose start is stated, the INPS base of other employments when the INPS
+    rules carry a massimale or a 1% threshold);
   - `pending`: not honoured yet. The default still selects a branch without
     a blocker. Treat these fields as required and state them.
 
@@ -140,7 +142,6 @@ The `pending` fields:
 
 | Field | What the default does today |
 |---|---|
-| `PeriodInput.opening_state`, `CompetenceYearPlan.opening_state`, `TaxYearPlan.opening_state` | A zero state: a run after the start of the employment in the same tax year restarts the progressive totals |
 | `Employment.contract_type` | A permanent contract: no NASpI surcharge of a fixed-term contract, and the 690 EUR minimum of the art. 13 TUIR deduction up to 15,000 EUR instead of 1,380 EUR |
 | `Employment.employment_period` | A full month and full ratei, even for a hire or a termination within the month |
 | `Employment.weekly_hours`, `Employment.full_time_weekly_hours` | Full time |
@@ -148,14 +149,21 @@ The `pending` fields:
 | `Employment.pension_fund` | Not enrolled, with no way to state the non-enrolment |
 | `PeriodFacts.has_dependent_children` | The lower fringe-benefit threshold |
 | `Dependent.own_income`, `dependent_from`, `dependent_until`, `allocation_pct`, `cohabiting`, `residency_eligibility` | The condition that grants the art. 12 TUIR deduction is met, for the whole year, in full to this worker |
-| `InpsBaseYtd.other_employers`, `OpeningBalances.inps_bases` | No other employer and no imported base toward the IVS massimale and the 1% threshold |
-| `OpeningBalances.surtax_obligations`, `OpeningBalances.recoveries` | Nothing carried from an earlier run of another provider |
 | `AbsenceEvent.suspends_accrual` | The absence does not suspend the accrual |
 | `ArrearsEvent.reference_period` | Not read: arrears of an earlier year are taxed with the run, not separately (art. 17 c. 1 lett. b TUIR) |
 
 A `pending` field becomes `requirement` or `reported` when its default can
 be told apart from a stated value (a field that defaults to `True` or `0`
-cannot) and the run blocks on it.
+cannot) and the run blocks on it, or leaves the registry when its default
+is removed. `OpeningBalances.inps_bases`, `surtax_obligations` and
+`recoveries` have no default: an import states what the previous provider
+determined, `()` when there is nothing, and a closed run of a competence
+year without its INPS base is an input error. The opening state is judged
+on its content, not on the default: `PeriodState.zero()` passed
+explicitly after the start of the employment blocks as the default does,
+and so does every run that descends from it (`PeriodState.history_known`
+is `False` on its closing state). See
+[Opening state and imported balances](../engine/opening-state.md).
 
 ## Model limitations
 

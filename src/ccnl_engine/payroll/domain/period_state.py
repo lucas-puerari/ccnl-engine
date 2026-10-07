@@ -9,7 +9,7 @@ from ccnl_engine.payroll.domain.accrual_state import EmploymentAccrualState
 from ccnl_engine.payroll.domain.payment import PaymentId
 from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.shared.domain.errors import InvalidInputError
-from ccnl_engine.shared.domain.validation import require_instances
+from ccnl_engine.shared.domain.validation import require_bool, require_instances
 
 __all__ = ["PeriodState"]
 
@@ -27,6 +27,13 @@ class PeriodState:
     :func:`~ccnl_engine.payroll.application.close_tax_year.close_tax_year`:
     it restarts :attr:`cash` with its obligations and keeps :attr:`accrual`.
 
+    A run that opens without the history of the employment before it (a
+    zero state after the start of the employment, or a state descending
+    from such a run) is computed as a simulation with a ``missing_fact
+    opening_state`` blocker, and its closing state has :attr:`history_known`
+    ``False``, so every later run of the chain blocks too.  Import the
+    balances of the previous provider to restart from a known history.
+
     A run closes once (its competence run in :attr:`accrual`) and is paid
     once (its payment in :attr:`cash`).  The same request on the same
     opening state yields the same closing state; a state that already closed
@@ -37,16 +44,21 @@ class PeriodState:
             tax years.
         cash: Payments, YTD accounts and carried obligations of the current
             tax year; the payments and accounts restart every tax year.
+        history_known: Whether the state accounts for every run of the
+            employment before it.  The engine sets it ``False`` on the
+            closing state of a run that opened without that history; a
+            state the caller builds states it.
 
     Raises:
         InvalidInputError: When a field is not of its type, or a payment of
             :attr:`cash` settles a run :attr:`accrual` has not closed.
     """
 
-    SCHEMA_VERSION: ClassVar[int] = 8
+    SCHEMA_VERSION: ClassVar[int] = 9
 
     accrual: EmploymentAccrualState = field(default_factory=EmploymentAccrualState)
     cash: TaxCashState = field(default_factory=TaxCashState)
+    history_known: bool = True
 
     def __post_init__(self) -> None:  # noqa: D105
         require_instances(
@@ -57,6 +69,7 @@ class PeriodState:
             ),
             feature=_FEATURE,
         )
+        require_bool(self.history_known, "PeriodState.history_known", feature=_FEATURE)
         closed = set(self.accrual.competence_runs)
         unclosed = [p for p in self.cash.payments if p.run_id not in closed]
         if unclosed:

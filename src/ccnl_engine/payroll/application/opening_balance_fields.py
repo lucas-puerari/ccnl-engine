@@ -24,10 +24,19 @@ from ccnl_engine.shared.domain.validation import (
 if TYPE_CHECKING:
     from _typeshed import DataclassInstance
 
+    from ccnl_engine.payroll.domain.inps_base import InpsBaseYtd
+    from ccnl_engine.payroll.domain.payment import PaymentId
+    from ccnl_engine.payroll.domain.run import PayrollRunId
     from ccnl_engine.payroll.domain.shortfall_deferral import DeferredShortfall
     from ccnl_engine.payroll.domain.surtax_obligations import SurtaxObligation
 
-__all__ = ["FEATURE", "check_carried", "check_scalar_fields", "items"]
+__all__ = [
+    "FEATURE",
+    "check_bases",
+    "check_carried",
+    "check_scalar_fields",
+    "items",
+]
 
 #: Feature reported by the errors of the opening balances.
 FEATURE = "opening_balances"
@@ -102,6 +111,35 @@ def check_carried(
         )
         raise InvalidInputError(
             msg, field="OpeningBalances.surtax_obligations", feature=FEATURE
+        )
+
+
+def check_bases(
+    payments: tuple[PaymentId, ...],
+    competence_runs: tuple[PayrollRunId, ...],
+    inps_bases: tuple[InpsBaseYtd, ...],
+) -> None:
+    """Reject runs of a competence year without its INPS base.
+
+    The base of a competence year counts toward the IVS massimale of every
+    later run of that year (L. 335/1995 art. 2 c. 18), so a year with a run
+    closed by the previous provider needs its base stated, ``own`` and
+    ``other_employers``.
+
+    Raises:
+        InvalidInputError: When a payment or a competence run is of a year
+            without an entry in ``inps_bases``.
+    """
+    years = {p.run_id.year for p in payments} | {r.year for r in competence_runs}
+    missing = sorted(years - {b.year for b in inps_bases})
+    if missing:
+        msg = (
+            f"OpeningBalances.inps_bases has no base for the competence years "
+            f"{missing} of the runs already closed: state the INPS base of "
+            "this employment and of the other employments of each year"
+        )
+        raise InvalidInputError(
+            msg, field="OpeningBalances.inps_bases", feature=FEATURE
         )
 
 

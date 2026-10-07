@@ -36,13 +36,21 @@ class TestPeriodState:
         assert state.cash.withholding_payments_closed == 0
         assert state.tax_year is None
 
-    def test_schema_version_is_seven(self) -> None:
-        """SCHEMA_VERSION is 8 since the accrual state records sickness episodes."""
-        assert PeriodState.SCHEMA_VERSION == 8
+    def test_schema_version_is_nine(self) -> None:
+        """SCHEMA_VERSION is 9 since the state records a known history."""
+        assert PeriodState.SCHEMA_VERSION == 9
 
     def test_tax_year_is_that_of_the_cash_state(self) -> None:
         """The tax year is read from the cash state."""
         assert _paid_january().tax_year == 2026
+
+    def test_history_is_known_unless_the_engine_marks_it(self) -> None:
+        """A state the caller builds states its history; a flag is a bool."""
+        assert PeriodState.zero().history_known
+        with pytest.raises(InvalidInputError) as info:
+            PeriodState(history_known=1)  # type: ignore[arg-type]
+
+        assert info.value.field == "PeriodState.history_known"
 
     def test_rejects_a_payment_of_a_run_not_closed(self) -> None:
         """A payment settles a run the accrual state has closed."""

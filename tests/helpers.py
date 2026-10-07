@@ -24,6 +24,7 @@ if TYPE_CHECKING:
     from collections.abc import Mapping
 
     from ccnl_engine.payroll.domain.calendar_override import CalendarOverride
+    from ccnl_engine.payroll.domain.current_year import CurrentYearTaxFacts
     from ccnl_engine.payroll.domain.events import WorkEvent
     from ccnl_engine.payroll.domain.period_state import PeriodState
 
@@ -335,6 +336,7 @@ def year_plan(
     calendar_override: CalendarOverride | None = None,
     payment_day: int = DEFAULT_PAYMENT_DAY,
     opening_state: PeriodState | None = None,
+    current_year: CurrentYearTaxFacts | None = None,
     **employment: Any,  # noqa: ANN401
 ) -> CompetenceYearPlan:
     """Build a :class:`CompetenceYearPlan` whose runs share the same facts.
@@ -362,4 +364,5 @@ def year_plan(
         calendar_override=calendar_override,
         payment_day=payment_day,
         opening_state=opening_state,
+        current_year=current_year,
     )
