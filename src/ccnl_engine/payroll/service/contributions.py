@@ -22,6 +22,10 @@ from ccnl_engine.payroll.domain.contributions import (
 )
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.service._contributions_rates import resolve_rates
+from ccnl_engine.payroll.service.additional_ivs import (
+    AdditionalIvsPosition,
+    additional_ivs,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.contract.domain.category import WorkerCategory
@@ -29,49 +33,7 @@ if TYPE_CHECKING:
     from ccnl_engine.tax.domain.ruleset import YearRules
 
 _ZERO = Decimal(0)
-
-
-def _addizionale_1pct(
-    period_inps_base: Decimal,
-    rules: YearRules,
-    *,
-    ytd_inps_base: Decimal,
-    ceiling: Decimal | None,
-) -> ContributionComponent | None:
-    """Return the 1% addizionale INPS component, or None when not applicable.
-
-    INPS circ. 4/2026: charged on the portion of the annual INPS base
-    exceeding the statutory threshold but capped at the IVS massimale.
-
-    Returns:
-        A :class:`ContributionComponent` or ``None`` if not applicable.
-    """
-    inps = rules.inps
-    if (
-        inps is None
-        or inps.employee_additional_rate is None
-        or inps.employee_additional_threshold is None
-    ):
-        return None
-    add_threshold = inps.employee_additional_threshold
-    ytd_capped = min(ytd_inps_base, ceiling) if ceiling is not None else ytd_inps_base
-    ytd_after_capped = (
-        min(ytd_inps_base + period_inps_base, ceiling)
-        if ceiling is not None
-        else ytd_inps_base + period_inps_base
-    )
-    period_excess = max(_ZERO, ytd_after_capped - add_threshold) - max(
-        _ZERO, ytd_capped - add_threshold
-    )
-    add_amount = money(period_excess * inps.employee_additional_rate)
-    if add_amount <= _ZERO:
-        return None
-    return ContributionComponent(
-        name="addizionale_1pct",
-        base=period_excess,
-        rate=inps.employee_additional_rate,
-        amount=add_amount,
-    )
+_NO_POSITION = AdditionalIvsPosition()
 
 
 def _side(
@@ -112,6 +74,30 @@ def _side(
     return ivs + non_ivs, components
 
 
+def _additional(
+    rules: YearRules,
+    period_inps_base: Decimal,
+    ytd_inps_base: Decimal,
+    ceiling: Decimal | None,
+    position: AdditionalIvsPosition,
+) -> ContributionComponent | None:
+    """Return the additional 1% IVS of the run, if the rules model it.
+
+    Returns:
+        The component of :func:`additional_ivs`, ``None`` without a rule.
+    """
+    rule = None if rules.inps is None else rules.inps.employee_additional
+    if rule is None:
+        return None
+    return additional_ivs(
+        rule,
+        period_inps_base,
+        ytd_base=ytd_inps_base,
+        ceiling=ceiling,
+        position=position,
+    )
+
+
 def resolve_contributions(
     period_inps_base: Decimal,
     rules: YearRules,
@@ -120,6 +106,7 @@ def resolve_contributions(
     *,
     ytd_inps_base: Decimal,
     ivs_ceiling_applies: bool,
+    additional: AdditionalIvsPosition = _NO_POSITION,
 ) -> ContributionBreakdown:
     """Compute INPS contributions with per-component breakdown and IVS ceiling.
 
@@ -140,6 +127,9 @@ def resolve_contributions(
             annual IVS ceiling across periods.
         ivs_ceiling_applies: Whether the massimale applies to the worker.
             When False all contributions are applied to the full base.
+        additional: Position of the run toward the additional 1% IVS
+            (:mod:`~ccnl_engine.payroll.service.additional_ivs`); by default
+            the first run of its month, settling nothing.
 
     Returns:
         :class:`~ccnl_engine.payroll.domain.contributions.ContributionBreakdown`
@@ -172,9 +162,7 @@ def resolve_contributions(
     )
     components = [*employee_items, *employer_items]
 
-    add_comp = _addizionale_1pct(
-        period_inps_base, rules, ytd_inps_base=ytd_inps_base, ceiling=ceiling
-    )
+    add_comp = _additional(rules, period_inps_base, ytd_inps_base, ceiling, additional)
     if add_comp is not None:
         employee_total += add_comp.amount
         components.append(add_comp)

@@ -20,6 +20,9 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.payroll.application.period._additional_ivs import (
+    additional_ivs_position,
+)
 from ccnl_engine.payroll.application.period._rule_lookup import contract_rules
 from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
@@ -189,6 +192,7 @@ def _branches(ctx: RunContext, ivs: IvsCeiling) -> dict[str, Decimal | str]:
             ctx.worker_category,
             ytd_inps_base=ivs.ytd_base,
             ivs_ceiling_applies=applies,
+            additional=additional_ivs_position(ctx),
         )
         branches[f"employee_{name}"] = breakdown.employee
         branches[f"employer_{name}"] = breakdown.employer

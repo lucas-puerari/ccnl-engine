@@ -115,19 +115,23 @@ class EmploymentAccrualState:
         run_id: PayrollRunId,
         inps_base: Decimal = _ZERO,
         sickness_episodes: tuple[SicknessEpisode, ...] | None = None,
+        additional_ivs: Decimal = _ZERO,
     ) -> EmploymentAccrualState:
         """Return the state with ``run_id`` closed and its INPS base added.
 
         Args:
             run_id: The run closed.
-            inps_base: INPS base of the run, added to its competence year.
+            inps_base: INPS base of the run, added to its competence year
+                and month.
             sickness_episodes: Sickness episodes after the run, ``None``
                 when the run processed none.
+            additional_ivs: Additional 1% IVS the run withheld, added to
+                its competence year.
 
         Returns:
             A new state with ``run_id`` appended; it is validated again.
         """
-        base = self.inps_base(run_id.year).plus(inps_base)
+        base = self.inps_base(run_id.year).plus(inps_base, run_id.month, additional_ivs)
         others = [b for b in self.inps_bases if b.year != run_id.year]
         return EmploymentAccrualState(
             competence_runs=(*self.competence_runs, run_id),

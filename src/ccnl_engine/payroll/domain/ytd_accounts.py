@@ -32,16 +32,25 @@ __all__ = [
 ]
 
 
-def check_non_negative(totals: DataclassInstance) -> None:
+def check_non_negative(
+    totals: DataclassInstance, signed: frozenset[str] = frozenset()
+) -> None:
     """Reject a negative or non-finite amount among the fields of ``totals``.
 
+    Args:
+        totals: The dataclass whose ``Decimal`` fields are checked.
+        signed: Fields that may be negative; they must still be finite.
+
     Raises:
-        ValueError: When a ``Decimal`` field is negative or not finite.
+        ValueError: When a ``Decimal`` field is not finite, or negative
+            and not in ``signed``.
     """
     name = type(totals).__name__
     for f in fields(totals):
         value = getattr(totals, f.name)
-        if isinstance(value, Decimal) and (not value.is_finite() or value < _ZERO):
+        if not isinstance(value, Decimal):
+            continue
+        if not value.is_finite() or (value < _ZERO and f.name not in signed):
             msg = f"{name}.{f.name} must be a non-negative amount; got {value}"
             raise ValueError(msg)
 
@@ -50,7 +59,8 @@ def check_non_negative(totals: DataclassInstance) -> None:
 class EarningsYtd:
     """Running totals for earned income paid in the tax year.
 
-    Every total is non-negative.  No relation between them is enforced:
+    Every total is non-negative except ``inps_employee``.  No relation
+    between them is enforced:
     ``taxable`` can exceed ``gross`` (a fringe benefit above the threshold
     enters the taxable income but not the cash earnings).  The INPS base
     toward the massimale follows competence, not cash: it is in
@@ -60,7 +70,11 @@ class EarningsYtd:
         gross: Sum of contractual gross earnings (CASH_EARNINGS ledger
             entries) closed this tax year.
         taxable: Total IRPEF taxable income accumulated YTD.
-        inps_employee: Employee INPS contributions withheld YTD.
+        inps_employee: Employee INPS contributions withheld YTD.  It can
+            be negative: the conguaglio of the additional 1% IVS of a
+            competence year can give back, on a December paid in the next
+            tax year, more than that tax year has withheld (INPS msg.
+            5327/2015 par. 2.3).
         pension_deducted: Employee and employer pension fund contributions
             already deducted from the taxable income YTD, against the annual
             cap of D.Lgs. 252/2005 art. 8 c. 4.
@@ -72,11 +86,11 @@ class EarningsYtd:
     pension_deducted: Decimal = _ZERO
 
     def __post_init__(self) -> None:
-        """Validate that every total is non-negative.
+        """Validate that every total but ``inps_employee`` is non-negative.
 
         A negative or non-finite total raises ``ValueError``.
         """
-        check_non_negative(self)
+        check_non_negative(self, signed=frozenset({"inps_employee"}))
 
 
 @dataclass(frozen=True)

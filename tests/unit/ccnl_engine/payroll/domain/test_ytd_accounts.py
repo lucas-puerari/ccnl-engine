@@ -21,14 +21,17 @@ _NEG = Decimal("-0.01")
 
 
 class TestAccumulators:
-    """Every running total of the tax year is non-negative."""
+    """Every running total of the tax year is non-negative, but employee INPS."""
 
     @pytest.mark.parametrize(
         ("build", "match"),
         [
             (lambda: EarningsYtd(gross=_NEG), r"EarningsYtd\.gross"),
             (lambda: EarningsYtd(taxable=_NEG), r"EarningsYtd\.taxable"),
-            (lambda: EarningsYtd(inps_employee=_NEG), r"EarningsYtd\.inps_employee"),
+            (
+                lambda: EarningsYtd(inps_employee=Decimal("NaN")),
+                r"EarningsYtd\.inps_employee",
+            ),
             (lambda: TaxYtd(irpef=_NEG), r"TaxYtd\.irpef"),
             (lambda: TaxYtd(surtax=Decimal("NaN")), r"TaxYtd\.surtax"),
             (lambda: FringeYtd(pdr=_NEG), r"FringeYtd\.pdr"),
@@ -42,6 +45,10 @@ class TestAccumulators:
         """A negative adjustment of one run never makes a YTD total negative."""
         with pytest.raises(ValueError, match=match):
             build()
+
+    def test_employee_inps_may_be_given_back_beyond_the_year(self) -> None:
+        """A 1% IVS conguaglio paid in the next tax year can exceed its INPS."""
+        assert EarningsYtd(inps_employee=_NEG).inps_employee == _NEG
 
     def test_fringe_taxed_above_the_value_is_rejected(self) -> None:
         """The taxed part of the fringe benefits never exceeds their value."""

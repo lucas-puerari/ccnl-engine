@@ -378,6 +378,39 @@ the massimale of its own year (see
 Conditions that lower the reliability of a result are reported in
 `result.issues`, never as free text.
 
+## Additional 1% IVS
+
+D.L. 384/1992 art. 3-ter charges the worker 1% on the pay above the first
+pensionable band of the year (EUR 56,224 for 2026), within the massimale
+when it applies. INPS applies it by the *mensilizzazione* (INPS circ.
+6/2026 par. 5, circ. 7/2010 par. 3, msg. 5327/2015 par. 2.1): each month
+the 1% is charged on the INPS base of the month above the band "rapportato
+a dodici mesi" (EUR 4,685 for 2026), whatever the base of the year. The
+runs of one competence month share its threshold; the state keeps the base
+of the latest month only, so an adjustment run of an earlier month and a
+later run of the current one each count from zero, a difference the
+settlement corrects. The rule, with both
+thresholds as INPS publishes them, is the `employee_additional` block of
+the INPS rules of the year.
+
+The runs of competence December, of the month the employment ends and the
+termination run settle the year (msg. 5327/2015 par. 2.3; circ. 156/2025
+par. 5): 1% of the base of the year within the massimale above the annual
+band, less the 1% already withheld on the year. A December run that follows
+another one of the same month settles only what the first left. The
+settlement can be a credit to the worker: the component
+`addizionale_1pct_conguaglio` then carries a negative amount, and the
+employee contributions of the run may be negative by as much. The monthly
+component is `addizionale_1pct`.
+
+The 1% withheld is kept per competence year on `InpsBaseYtd.additional_ivs`.
+The bases of other employers count toward the band; import them with what
+those employers withheld, `InpsBaseYtd.other_employers_additional_ivs`, from
+their CU. Left `None` with a base of other employers, a settling run cannot
+deduct it: it reports the issue `other_employers_additional_ivs_unknown`
+(`incomplete`, `fact="other_employers_additional_ivs"`), so the result has a
+`missing_fact` blocker and is not payable.
+
 **API reference:** [`CalculationDecision`](../api/engine.md#results-and-calculation-status),
 [`REGION_CODES`](../api/models.md#fiscal),
 [`FamilyComposition`](../api/engine.md), [`Art15Deductions`](../api/engine.md)

@@ -18,6 +18,7 @@ from ccnl_engine.shared.domain.primitives import (
     PositiveCeiling,
     assert_ivs_le_total,
 )
+from ccnl_engine.tax.domain.additional_ivs import AdditionalIvsRule
 
 
 class InpsEmployerTier(BaseModel):
@@ -75,13 +76,8 @@ class InpsEmployeeTier(BaseModel):
 class InpsRawRates(BaseModel):
     """Raw INPS block from the tax JSON file, before tier resolution.
 
-    ``employee_additional_rate`` and ``employee_additional_threshold`` are
-    optional; both must be present together (validated by the loader).  When
-    absent, the additional contribution is not modelled for this sector.
-
-    ``employee_additional_threshold`` must be non-negative; a negative
-    threshold would incorrectly widen the base on which the additional
-    rate applies.
+    ``employee_additional`` is optional: when absent, the additional 1% IVS
+    is not modelled for this sector.
 
     ``employee_tiers`` and ``employer_tiers`` must be non-empty; an empty
     list would cause ``_resolve_tier`` to raise with no tier available for
@@ -93,8 +89,7 @@ class InpsRawRates(BaseModel):
     employee_tiers: list[InpsEmployeeTier] = Field(min_length=1)
     employer_tiers: list[InpsEmployerTier] = Field(min_length=1)
     ceiling: PositiveCeiling | None
-    employee_additional_rate: NonNegativeRate | None = None
-    employee_additional_threshold: NonNegativeRate | None = None
+    employee_additional: AdditionalIvsRule | None = None
     provenance: RuleProvenance | None = None
 
 

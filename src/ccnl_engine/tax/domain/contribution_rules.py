@@ -19,6 +19,7 @@ from ccnl_engine.shared.domain.primitives import (
     PositiveCeiling,
     assert_ivs_le_total,
 )
+from ccnl_engine.tax.domain.additional_ivs import AdditionalIvsRule
 
 
 class InpsRates(BaseModel):
@@ -42,15 +43,12 @@ class InpsRates(BaseModel):
     non-negative.  A sector where the IVS rate genuinely varies by category
     would need a ``ivs_rate_by_category`` field.
 
-    ``employee_additional_rate`` and ``employee_additional_threshold`` model
-    the 1% IVS contribution charged to employees on the portion of annual
-    earnings exceeding the first pensionable band (Art. 3-ter D.L. 384/1992).
-    When set, the additional is applied on top of the ordinary rate; it is
-    IVS and therefore subject to the massimale when ``ivs_ceiling_applies``
-    is True.  Both fields must be present together or both absent; the pair
-    constraint is enforced by ``_check_rates``.  ``employee_additional_threshold``
-    must be non-negative: a negative value would widen the contribution base
-    beyond the actual pensionable earnings.
+    ``employee_additional`` is the 1% IVS charged to the worker on the pay
+    above the first pensionable band (art. 3-ter D.L. 384/1992), see
+    :class:`~ccnl_engine.tax.domain.additional_ivs.AdditionalIvsRule`; it is
+    applied on top of the ordinary rate and, being IVS, within the massimale
+    when ``ivs_ceiling_applies`` is True.  ``None`` when the sector does not
+    model it.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -61,21 +59,15 @@ class InpsRates(BaseModel):
     employer_ivs_rate: NonNegativeRate
     ceiling: PositiveCeiling | None
     employer_rate_by_category: dict[WorkerCategory, NonNegativeRate] = {}
-    employee_additional_rate: NonNegativeRate | None = None
-    employee_additional_threshold: NonNegativeRate | None = None
+    employee_additional: AdditionalIvsRule | None = None
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
     def _check_rates(self) -> Self:
-        """Enforce IVS <= total invariants and paired additional fields.
+        """Enforce the IVS <= total invariants (``ValueError`` otherwise).
 
         Returns:
             The validated instance.
-
-        Raises:
-            ValueError: If any IVS rate exceeds its total, or if only one of
-                employee_additional_rate / employee_additional_threshold is
-                set.
         """
         assert_ivs_le_total(
             "employee_ivs_rate",
@@ -89,14 +81,6 @@ class InpsRates(BaseModel):
             "employer_rate",
             self.employer_rate,
         )
-        has_rate = self.employee_additional_rate is not None
-        has_threshold = self.employee_additional_threshold is not None
-        if has_rate != has_threshold:
-            msg = (
-                "employee_additional_rate and employee_additional_threshold "
-                "must both be set or both be absent"
-            )
-            raise ValueError(msg)
         return self
 
 
