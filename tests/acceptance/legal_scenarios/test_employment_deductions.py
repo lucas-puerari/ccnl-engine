@@ -195,7 +195,7 @@ _FAMILY = FamilyComposition(
     reason=(
         "the trattamento integrativo between 15,000 and 28,000 EUR compares "
         "the gross tax with the art. 13 deduction alone; D.L. 3/2020 art. 1 "
-        "c. 1-bis compares it with the sum of the art. 12 and art. 13 "
+        "c. 1 compares it with the sum of the art. 12 and art. 13 "
         "deductions"
     ),
 )

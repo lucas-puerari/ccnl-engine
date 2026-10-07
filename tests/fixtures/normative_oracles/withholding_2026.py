@@ -4,11 +4,11 @@ Written from the statutory text, deliberately without importing anything from
 ``ccnl_engine``; the brackets and the art. 13 formula come from the sibling
 oracle :mod:`.irpef_2026`, written the same way.
 
-Sources (read on 7 October 2026):
+Sources:
 
 - Floor of the employment deduction: art. 13 c. 1 lett. a) TUIR, text in
-  force on Normattiva
-  (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:1986-12-22;917~art13):
+  force, in the copy of the Normattiva page saved for the review of 6 October
+  2026 (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:1986-12-22;917~art13):
   "L'ammontare della detrazione effettivamente spettante non può essere
   inferiore a 690 euro. Per i rapporti di lavoro a tempo determinato,
   l'ammontare della detrazione effettivamente spettante non può essere
@@ -18,18 +18,21 @@ Sources (read on 7 October 2026):
   essere rapportata ai giorni di lavoro dipendente"; the deduction due is
   the larger of the floor and the formula proportioned to the days.
 - Withholding on an additional month: art. 23 c. 2 lett. b) DPR 600/1973
-  (Normattiva): "sulle mensilità aggiuntive e sui compensi della stessa
-  natura, con le aliquote dell'imposta sul reddito delle persone fisiche,
-  ragguagliando a mese i corrispondenti scaglioni annui di reddito", with
-  no deduction, unlike lett. a) for the ordinary pay of the period.
-- Trattamento integrativo above 15,000 EUR: D.L. 3/2020 art. 1 c. 1 and
-  c. 1-bis (Normattiva): due up to 28,000 EUR of reddito complessivo when
-  "la somma delle detrazioni di cui agli articoli 12 e 13, comma 1" (plus
-  art. 15 interest on loans taken before 2022 and the other listed
-  deductions, none of which the callers here have) "sia di ammontare
-  superiore all'imposta lorda", for "un ammontare, comunque non superiore a
-  1.200 euro, determinato in misura pari alla differenza tra la somma delle
-  detrazioni [...] e l'imposta lorda".
+  (Normattiva, same saved copy): "sulle mensilità aggiuntive e sui
+  compensi della stessa natura, con le aliquote dell'imposta sul reddito
+  delle persone fisiche, ragguagliando a mese i corrispondenti scaglioni
+  annui di reddito", with no deduction, unlike lett. a) for the ordinary
+  pay of the period.
+- Trattamento integrativo above 15,000 EUR: D.L. 3/2020 art. 1 c. 1, second
+  and third periods, Normattiva, read on 7 October 2026
+  (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legge:2020-02-05;3~art1):
+  due "se il reddito complessivo è superiore a 15.000 euro ma non a 28.000
+  euro, a condizione che la somma delle detrazioni di cui agli articoli 12 e
+  13, comma 1" (plus art. 15 interest on loans taken until 2021 and the
+  other listed deductions, none of which the callers here have) "sia di
+  ammontare superiore all'imposta lorda", and then "per un ammontare,
+  comunque non superiore a 1.200 euro, determinato in misura pari alla
+  differenza tra la somma delle detrazioni ivi elencate e l'imposta lorda".
 """
 
 from __future__ import annotations
@@ -91,7 +94,7 @@ def extra_month_withholding(taxable: Decimal) -> Decimal:
 def trattamento_integrativo_above_15000(
     income: Decimal, family_deductions: Decimal
 ) -> Decimal:
-    """Return the trattamento integrativo of c. 1-bis for a full year.
+    """Return the trattamento integrativo of c. 1 above 15,000 EUR for a full year.
 
     Args:
         income: Reddito complessivo, employment only, 15,000 to 28,000 EUR.
@@ -102,10 +105,10 @@ def trattamento_integrativo_above_15000(
         deductions do not exceed the gross tax.
 
     Raises:
-        ValueError: When ``income`` is outside the band of c. 1-bis.
+        ValueError: When ``income`` is outside the 15,000-28,000 EUR band of c. 1.
     """
     if not _TRATTAMENTO_FLOOR_INCOME < income <= _TRATTAMENTO_CEILING_INCOME:
-        msg = f"income {income} is outside the 15,000-28,000 band of c. 1-bis"
+        msg = f"income {income} is outside the 15,000-28,000 band of c. 1"
         raise ValueError(msg)
     excess = family_deductions + employment_deduction(income) - gross_irpef(income)
     return min(max(excess, _ZERO), _TRATTAMENTO_CAP)
