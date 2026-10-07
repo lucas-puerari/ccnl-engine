@@ -28,6 +28,18 @@ against an official worked example):
   amended by L. 199/2025 art. 1 c. 2 (second rate from 35% to 33%).
 - Employment deduction: art. 13 c. 1 and c. 1.1 TUIR, as amended by
   D.Lgs. 216/2023 art. 1 c. 2 (1,955 EUR up to 15,000 EUR).
+- Minimum of the employment deduction: art. 13 c. 1 lett. a) TUIR, text in
+  force read on Normattiva on 7 October 2026
+  (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:1986-12-22;917~art13!vig=2026-10-07):
+  "L'ammontare della detrazione effettivamente spettante non può essere
+  inferiore a 690 euro. Per i rapporti di lavoro a tempo determinato,
+  l'ammontare della detrazione effettivamente spettante non può essere
+  inferiore a 1.380 euro".  Allegato C to the 730/2026 instructions of the
+  Agenzia delle Entrate, par. 19.9.1, p. 339, under "A) REDDITO DI
+  RIFERIMENTO FINO AD EURO 15.000": "l'importo della detrazione minima come
+  sopra determinata non deve essere rapportata ai giorni di lavoro
+  dipendente"; the deduction due is "il maggiore importo" of the floor and
+  the formula proportioned to the days.
 - Further deduction: L. 207/2024 art. 1 c. 6.
 - Day pro-rata: art. 13 c. 1 TUIR and L. 207/2024 art. 1 c. 6, both
   "rapportata al periodo di lavoro nell'anno".
@@ -45,6 +57,8 @@ from __future__ import annotations
 from decimal import ROUND_DOWN, ROUND_HALF_UP, Decimal
 
 __all__ = [
+    "EMPLOYMENT_DEDUCTION_FLOOR",
+    "FIXED_TERM_EMPLOYMENT_DEDUCTION_FLOOR",
     "employment_deduction",
     "further_deduction",
     "gross_irpef",
@@ -56,6 +70,12 @@ _RATIO_PLACES = Decimal("0.0001")
 _ZERO = Decimal(0)
 _MAX_SUPPORTED_INCOME = Decimal(200_000)
 _DAYS_IN_YEAR = 365
+_FLAT_BAND_TOP = Decimal(15_000)
+
+#: Art. 13 c. 1 lett. a) TUIR, open-ended employment; not proportioned.
+EMPLOYMENT_DEDUCTION_FLOOR = Decimal("690.00")
+#: Art. 13 c. 1 lett. a) TUIR, fixed-term employment; not proportioned.
+FIXED_TERM_EMPLOYMENT_DEDUCTION_FLOOR = Decimal("1380.00")
 
 # (upper bound of the bracket, marginal rate); ``None`` means no upper bound.
 _BRACKETS_2026: tuple[tuple[Decimal | None, Decimal], ...] = (
@@ -125,10 +145,13 @@ def gross_irpef(income: Decimal) -> Decimal:
     return _cents(tax)
 
 
-def employment_deduction(income: Decimal, days: int = _DAYS_IN_YEAR) -> Decimal:
+def employment_deduction(
+    income: Decimal, days: int = _DAYS_IN_YEAR, *, fixed_term: bool = False
+) -> Decimal:
     """Return the art. 13 TUIR deduction for ``days`` of employment.
 
-    - income <= 15,000: 1,955;
+    - income <= 15,000: 1,955 times ``days / 365``, at least 690 (1,380 for
+      a fixed term), the floor itself not proportioned;
     - 15,000 < income <= 28,000: 1,910 + 1,190 * (28,000 - income) / 13,000;
     - 28,000 < income <= 50,000: 1,910 * (50,000 - income) / 22,000;
     - above 50,000: 0;
@@ -139,9 +162,14 @@ def employment_deduction(income: Decimal, days: int = _DAYS_IN_YEAR) -> Decimal:
         Deduction in EUR, rounded to cents.
     """
     _check_scope(income)
-    if income <= Decimal(15_000):
-        base = Decimal(1_955)
-    elif income <= Decimal(28_000):
+    if income <= _FLAT_BAND_TOP:
+        floor = (
+            FIXED_TERM_EMPLOYMENT_DEDUCTION_FLOOR
+            if fixed_term
+            else EMPLOYMENT_DEDUCTION_FLOOR
+        )
+        return max(_for_days(Decimal(1_955), days), floor)
+    if income <= Decimal(28_000):
         ratio = _ratio(Decimal(28_000) - income, Decimal(13_000))
         base = Decimal(1_910) + Decimal(1_190) * ratio
     elif income <= Decimal(50_000):
@@ -176,7 +204,9 @@ def further_deduction(income: Decimal, days: int = _DAYS_IN_YEAR) -> Decimal:
     return _for_days(full_year, days)
 
 
-def net_irpef(income: Decimal, days: int = _DAYS_IN_YEAR) -> Decimal:
+def net_irpef(
+    income: Decimal, days: int = _DAYS_IN_YEAR, *, fixed_term: bool = False
+) -> Decimal:
     """Return the net annual ordinary IRPEF owed on ``income``.
 
     Net IRPEF is the gross tax minus the deductions, floored at zero because
@@ -185,5 +215,6 @@ def net_irpef(income: Decimal, days: int = _DAYS_IN_YEAR) -> Decimal:
     Returns:
         Net IRPEF in EUR, rounded to cents.
     """
-    deductions = employment_deduction(income, days) + further_deduction(income, days)
+    work = employment_deduction(income, days, fixed_term=fixed_term)
+    deductions = work + further_deduction(income, days)
     return max(gross_irpef(income) - deductions, Decimal("0.00"))

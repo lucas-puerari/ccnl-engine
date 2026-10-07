@@ -79,6 +79,7 @@ def compute_tax(
     run: InstallmentRun = _ORDINARY_RUN,
     ulteriore_plan: RecoveryPlan | None = None,
     foreign_taxes: tuple[ForeignTaxPaid, ...] = (),
+    fixed_term: bool = False,
 ) -> TaxResolution:
     """Compute IRPEF with a per-rule breakdown and the 2026 bonus measures.
 
@@ -140,6 +141,9 @@ def compute_tax(
         foreign_taxes: Foreign taxes paid, credited on the annual IRPEF
             (:mod:`~ccnl_engine.payroll.service.foreign_tax_credit`).  The
             caller passes them on the conguaglio only.
+        fixed_term: Whether the employment is fixed-term: the minimum of the
+            art. 13 deduction is then 1,380 EUR instead of 690 (c. 1 lett.
+            a) TUIR), on the projection and on the conguaglio alike.
 
     Returns:
         The IRPEF computation with all components, the updated recovery plan
@@ -150,7 +154,7 @@ def compute_tax(
     """
     days = min(eligible_work_days, DAYS_IN_YEAR)
     annual, components, decisions = _annual(
-        taxable, rules, family_deductions, days, foreign_taxes
+        taxable, rules, family_deductions, days, foreign_taxes, fixed_term=fixed_term
     )
     remaining = remaining_slots
     ordinary_tax, ulteriore = withhold_with_ulteriore(
@@ -195,6 +199,8 @@ def _annual(
     family_deductions: Decimal,
     days: int,
     foreign_taxes: tuple[ForeignTaxPaid, ...],
+    *,
+    fixed_term: bool,
 ) -> tuple[NetIrpef, list[TaxLineItem], list[CalculationDecision]]:
     """Return the net annual IRPEF after the foreign tax credit, with its trace.
 
@@ -203,7 +209,11 @@ def _annual(
         detrazione and of the foreign tax credit, each when it applies.
     """
     annual = net_irpef(
-        taxable, rules, family_deductions=family_deductions, eligible_work_days=days
+        taxable,
+        rules,
+        family_deductions=family_deductions,
+        eligible_work_days=days,
+        fixed_term=fixed_term,
     )
     credit = foreign_tax_credit(foreign_taxes, taxable, annual, rules)
     if credit is not None:

@@ -23,7 +23,9 @@ trattamento integrativo in [Tax credits](tax-credits.md).
 1. **Taxable income** = gross − INPS employee contributions
 2. **IRPEF gross** = taxable income × progressive brackets (Art. 11 TUIR)
 3. **Work income deduction** (Art. 13 TUIR) reduces IRPEF gross. Its income
-   ratios are truncated to four decimals (art. 13 c. 6 TUIR).
+   ratios are truncated to four decimals (art. 13 c. 6 TUIR). Up to €15,000
+   it is at least €690, or €1,380 for a fixed-term employment (c. 1
+   lett. a); apprenticeship is open-ended (D.Lgs. 81/2015 art. 41 c. 1).
 4. **Ulteriore detrazione lavoro** (Art. 1 c. 6 L. 207/2024): additional credit
    of up to €1,000/year for taxable income between €20,000 and €40,000.
    Flat €1,000 from €20,001 to €32,000; linear taper to zero from €32,001 to €40,000.
@@ -45,7 +47,20 @@ periodo di lavoro nell'anno": the full-year amount, in cents, times
 `days / 365` (730/2026 istruzioni, quadro C: "365 per l'intero anno"). The
 day ratio is not
 truncated to four decimals, since it is not one of the ratios art. 13 c. 6
-TUIR lists: 92 days of the €1,955 deduction give €492.77, not €492.66.
+TUIR lists: 200 days of the €1,955 deduction give €1,071.23, not €1,071.14.
+
+The minimum of art. 13 c. 1 lett. a) is not proportioned: the deduction due
+is the larger of the amount for the days and the minimum (Allegato C to the
+730/2026 instructions, par. 19.9.1: the minimum "non deve essere rapportata
+ai giorni di lavoro dipendente"). 92 days give €492.77, so €690 is due, or
+€1,380 for a fixed term. It applies to every withholding of the year, the
+conguaglio of a termination included, and the trattamento integrativo test
+up to €15,000 compares the gross tax with that deduction less the €75
+corrective for the days: a fixed-term worker whose gross tax does not exceed
+€1,380 less the corrective gets no trattamento and owes no IRPEF. A worker
+with a fixed-term and an open-ended employment in the same year takes the
+minimum of the contract of each run; the 730 takes €1,380 when any of the
+year's employments is fixed-term.
 
 ### Withholding of a run
 

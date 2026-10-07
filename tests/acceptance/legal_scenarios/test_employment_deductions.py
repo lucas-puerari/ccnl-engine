@@ -5,15 +5,15 @@ deducted or credited back.  The expected values come from the oracles in
 :mod:`tests.fixtures.normative_oracles` (:mod:`.irpef_2026`,
 :mod:`.family_2026`, :mod:`.withholding_2026`), written from the sources;
 every other fact of the runs is explicit
-(:mod:`tests.fixtures.explicit_facts`).  None of these rules holds today:
-each test is a strict xfail on the assertion it breaks.
+(:mod:`tests.fixtures.explicit_facts`).  A rule the engine does not apply
+yet is a strict xfail on the assertion it breaks.
 """
 
 from __future__ import annotations
 
 from dataclasses import replace
 from datetime import date
-from decimal import Decimal
+from decimal import ROUND_HALF_UP, Decimal
 from typing import TYPE_CHECKING
 
 import pytest
@@ -37,10 +37,14 @@ from tests.fixtures.normative_oracles.family_2026 import (
     child_deduction,
     spouse_deduction,
 )
-from tests.fixtures.normative_oracles.irpef_2026 import employment_deduction
-from tests.fixtures.normative_oracles.withholding_2026 import (
+from tests.fixtures.normative_oracles.irpef_2026 import (
     EMPLOYMENT_DEDUCTION_FLOOR,
     FIXED_TERM_EMPLOYMENT_DEDUCTION_FLOOR,
+    employment_deduction,
+    gross_irpef,
+    net_irpef,
+)
+from tests.fixtures.normative_oracles.withholding_2026 import (
     trattamento_integrativo_above_15000,
 )
 
@@ -57,6 +61,7 @@ if TYPE_CHECKING:
 pytestmark = pytest.mark.legal_scenario
 
 _CENT = Decimal("0.01")
+_ZERO = Decimal("0.00")
 _METALMECCANICO = "metalmeccanico-federmeccanica.json"
 
 
@@ -76,71 +81,103 @@ def _irpef_inputs(result: PeriodResult) -> Mapping[str, object]:
 _C3 = replace(CONCIA_D2, ccnl_slug=_METALMECCANICO, level_code="C3")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    raises=AssertionError,
-    reason=(
-        "the art. 13 deduction proportioned to the days has no floor; art. 13 "
-        "c. 1 lett. a) TUIR sets 690 EUR, 1,380 EUR for a fixed term, not "
-        "proportioned to the days (Allegato C 730/2026)"
-    ),
-)
-@pytest.mark.parametrize(
-    ("contract", "started_on", "ended_on", "floor"),
+#: Metalmeccanico C3 for about three months, settled by the termination run:
+#: 1 March to 31 May (31 + 30 + 31 = 92 days) or 10 July to 20 September
+#: (22 + 31 + 20 = 73 days), each open-ended or fixed-term.
+_SHORT_EMPLOYMENTS = pytest.mark.parametrize(
+    ("contract", "started_on", "ended_on", "days"),
     [
         pytest.param(
-            Permanent(),
-            date(2026, 3, 1),
-            date(2026, 5, 31),
-            EMPLOYMENT_DEDUCTION_FLOOR,
-            id="permanent-92-days",
+            Permanent(), date(2026, 3, 1), date(2026, 5, 31), 92, id="permanent-92"
         ),
         pytest.param(
-            FixedTerm(),
-            date(2026, 3, 1),
-            date(2026, 5, 31),
-            FIXED_TERM_EMPLOYMENT_DEDUCTION_FLOOR,
-            id="fixed-term-92-days",
+            FixedTerm(), date(2026, 3, 1), date(2026, 5, 31), 92, id="fixed-term-92"
         ),
         pytest.param(
-            Permanent(),
-            date(2026, 7, 10),
-            date(2026, 9, 20),
-            EMPLOYMENT_DEDUCTION_FLOOR,
-            id="permanent-73-days",
+            Permanent(), date(2026, 7, 10), date(2026, 9, 20), 73, id="permanent-73"
         ),
         pytest.param(
-            FixedTerm(),
-            date(2026, 7, 10),
-            date(2026, 9, 20),
-            FIXED_TERM_EMPLOYMENT_DEDUCTION_FLOOR,
-            id="fixed-term-73-days",
+            FixedTerm(), date(2026, 7, 10), date(2026, 9, 20), 73, id="fixed-term-73"
         ),
     ],
 )
+_TRATTAMENTO_FULL_YEAR = Decimal(1_200)
+_TRATTAMENTO_CORRECTIVE = Decimal(75)
+
+
+def _short_year(
+    contract: Permanent | FixedTerm, started_on: date, ended_on: date
+) -> CompetenceYearResult:
+    return _year(
+        replace(
+            _C3,
+            contract_type=contract,
+            employment_period=EmploymentPeriod(started_on, ended_on),
+        )
+    )
+
+
+def _floor(contract: Permanent | FixedTerm) -> Decimal:
+    return (
+        FIXED_TERM_EMPLOYMENT_DEDUCTION_FLOOR
+        if isinstance(contract, FixedTerm)
+        else EMPLOYMENT_DEDUCTION_FLOOR
+    )
+
+
+def _for_days(amount: Decimal, days: int) -> Decimal:
+    return (amount * days / 365).quantize(_CENT, rounding=ROUND_HALF_UP)
+
+
+@_SHORT_EMPLOYMENTS
 def test_short_employment_deduction_is_not_below_the_floor(
-    contract: Permanent | FixedTerm, started_on: date, ended_on: date, floor: Decimal
+    contract: Permanent | FixedTerm, started_on: date, ended_on: date, days: int
 ) -> None:
-    """Metalmeccanico C3 for three months, settled by the termination run.
+    """The deduction of the conguaglio is the floor of the contract.
 
     Three months of pay are under 15,000 EUR, so lett. a) applies: 1,955 x
-    92 / 365 = 492.77 (1 March to 31 May) or 1,955 x 73 / 365 = 391.00
-    (10 July to 20 September, 22 + 31 + 20 days), both below the floor of
-    the contract.  The deduction of the conguaglio is the floor.  With a
-    fixed term the gross tax of the 73-day case (about 1,213 EUR) is below
-    1,380, so the net IRPEF of the year is zero.
+    92 / 365 = 492.77 or 1,955 x 73 / 365 = 391.00, both below the floor,
+    690 EUR or 1,380 EUR for a fixed term, which is not proportioned.
     """
-    employment = replace(
-        _C3,
-        contract_type=contract,
-        employment_period=EmploymentPeriod(started_on, ended_on),
+    inputs = _irpef_inputs(
+        _short_year(contract, started_on, ended_on).period_results[-1]
     )
-    inputs = _irpef_inputs(_year(employment).period_results[-1])
     taxable = inputs["projected_taxable"]
 
     assert isinstance(taxable, Decimal)
     assert taxable <= Decimal(15_000)
-    assert inputs["work_deduction"] == floor
+    assert _for_days(Decimal(1_955), days) < EMPLOYMENT_DEDUCTION_FLOOR
+    assert inputs["work_deduction"] == _floor(contract)
+
+
+@_SHORT_EMPLOYMENTS
+def test_short_employment_floor_decides_the_trattamento(
+    contract: Permanent | FixedTerm, started_on: date, ended_on: date, days: int
+) -> None:
+    """The floored deduction is the one the trattamento test compares with.
+
+    D.L. 3/2020 art. 1 c. 1, first period, as restated by Allegato C to the
+    730/2026 instructions, par. 8.2.4: up to 15,000 EUR the credit is due
+    when the gross tax exceeds the art. 13 deduction due less 75 x days /
+    365, and is then 1,200 x days / 365.  The gross tax of the year is
+    about 1,460 EUR (92 days) or 1,213 EUR (73 days): above 690 - 75 x days
+    / 365 in both open-ended cases and above 1,380 - 18.90 = 1,361.10 in the
+    92-day fixed term, below 1,380 - 15.00 = 1,365.00 in the 73-day fixed
+    term, whose credit is zero.  The net IRPEF of the year is the gross tax
+    less the floor, at least zero: zero, never negative, in that case.
+    """
+    cash = _short_year(contract, started_on, ended_on).closing_state.cash
+    taxable = cash.earnings.taxable
+    gross = gross_irpef(taxable)
+    threshold = _floor(contract) - _for_days(_TRATTAMENTO_CORRECTIVE, days)
+    credit = _for_days(_TRATTAMENTO_FULL_YEAR, days) if gross > threshold else _ZERO
+
+    assert taxable <= Decimal(15_000)
+    assert cash.trattamento.recognized == credit
+    assert cash.tax.irpef == max(_ZERO, gross - _floor(contract))
+    assert cash.tax.irpef == net_irpef(
+        taxable, days, fixed_term=isinstance(contract, FixedTerm)
+    )
 
 
 @pytest.mark.xfail(
