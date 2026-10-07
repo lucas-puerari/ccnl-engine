@@ -24,6 +24,7 @@ from ccnl_engine.payroll.application.handlers.benefits import fringe_threshold_o
 from ccnl_engine.payroll.application.period._additional_ivs import (
     additional_ivs_position,
 )
+from ccnl_engine.payroll.application.period._assistance import assistance_terms
 from ccnl_engine.payroll.application.period._pension_decision import pension_terms
 from ccnl_engine.payroll.application.period._sickness import sickness_terms
 from ccnl_engine.payroll.application.period._tfr_destination import (
@@ -139,6 +140,7 @@ def amounts_input(
     fiscal_year = ctx.fiscal_year
     return _AmountsInput(
         monthly_gross=ctx.monthly_gross,
+        in_kind=ctx.chain.in_kind_total,
         event_inps_base=totals.inps_base,
         event_tfr_base=totals.tfr_base,
         event_irpef_base=totals.irpef_base,
@@ -183,6 +185,7 @@ def amounts_input(
         deferred_irpef=_deferred_irpef(ctx),
         additional_ivs=additional_ivs_position(ctx),
         tfr_treasury_fund=tfr_treasury_fund(ctx),
+        assistance=assistance_terms(contract.ccnl, contract.tctx.competence),
     )
 
 

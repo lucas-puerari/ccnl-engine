@@ -13,20 +13,27 @@ Sources:
   (D.L. 3/2020 art. 1 c. 3), and so are the somma esente and the ulteriore
   detrazione (L. 207/2024 art. 1 c. 7).
 
-So the net of a domestic payslip is the gross less the employee INPS.  The
-expected values below come from the bundled tables: the monthly minimum of
-the level (DOMINA table 2026, conviventi and non conviventi) and the INPS
-hourly rates of Circ. 9/2026:
+So the net of a domestic payslip is the gross less the employee INPS and
+the worker share of the Cas.Sa.Colf contribution.  The expected values
+below come from the bundled tables: the monthly minimum of the level (DOMINA
+table 2026, conviventi and non conviventi), the INPS hourly rates of Circ.
+9/2026:
 
 - more than 24 weekly hours: employee 0.31 EUR per contributable hour;
-- up to 24 weekly hours, hourly pay up to 9.61 EUR: employee 0.43 EUR.
+- up to 24 weekly hours, hourly pay up to 9.61 EUR: employee 0.43 EUR;
 
-The hourly pay is the monthly minimum over the hourly divisor of the CCNL
-(234 for conviventi, 173 for non conviventi).  The monthly minimum is the
-pay of a full-time week (54 hours for conviventi, 40 for non conviventi);
-a case that does not state the full time of its contracted hours is paid
-the minimum and has a ``missing_fact`` blocker: the engine never takes the
-contracted hours for full time.
+and the contributi di assistenza contrattuale of the CCNL lavoro domestico
+of 28 October 2025 (art. 54 c. 2: 0.06 EUR per paid hour, of which 0.02
+withheld from the worker).
+
+The monthly minimum of a non convivente is the Tabella C hourly rate times
+40 x 52 / 12 (art. 14 c. 1 lett. b and chiarimento a verbale 1).  The hourly
+pay is the monthly minimum over the hourly divisor of the CCNL (234 for
+conviventi, 173.33 for non conviventi).  The monthly minimum is the pay of a
+full-time week (54 hours for conviventi, 40 for non conviventi); a case that
+does not state the full time of its contracted hours is paid the minimum and
+has a ``missing_fact`` blocker: the engine never takes the contracted hours
+for full time.
 """
 
 from __future__ import annotations
@@ -106,23 +113,33 @@ class _Case:
     contributable_hours: int
     gross: Decimal
     employee_inps: Decimal
+    employee_assistance: Decimal
     net: Decimal
     full_time: int | None = None
 
 
 #: Convivente level A, September 2026, 40 weekly hours, 173 contributable
 #: hours: gross 908.10 (table A); 40 > 24, so 173 * 0.31 = 53.63;
-#: net 908.10 - 53.63 = 854.47.  Without a residence the engine used to
-#: pay 937.16, above the gross: IRPEF 57.53 withheld, trattamento
-#: integrativo 92.31 and somma esente 47.91 paid.
+#: Cas.Sa.Colf 173 * 0.02 = 3.46; net 908.10 - 53.63 - 3.46 = 851.01.
+#: Without a residence the engine used to pay 937.16, above the gross:
+#: IRPEF 57.53 withheld, trattamento integrativo 92.31 and somma esente
+#: 47.91 paid.
 _REPORTED = _Case(
-    _CONVIVENTE, "A", 40, 173, Decimal("908.10"), Decimal("53.63"), Decimal("854.47")
+    _CONVIVENTE,
+    "A",
+    40,
+    173,
+    Decimal("908.10"),
+    Decimal("53.63"),
+    Decimal("3.46"),
+    Decimal("851.01"),
 )
 
 _CASES = (
     _REPORTED,
     # Convivente level C, 54 weekly hours, 234 hours: gross 1,123.63;
-    # 234 * 0.31 = 72.54; net 1,123.63 - 72.54 = 1,051.09.
+    # 234 * 0.31 = 72.54; Cas.Sa.Colf 234 * 0.02 = 4.68;
+    # net 1,123.63 - 72.54 - 4.68 = 1,046.41.
     _Case(
         _CONVIVENTE,
         "C",
@@ -130,31 +147,37 @@ _CASES = (
         234,
         Decimal("1123.63"),
         Decimal("72.54"),
-        Decimal("1051.09"),
+        Decimal("4.68"),
+        Decimal("1046.41"),
         full_time=54,
     ),
-    # Non convivente level B, 25 weekly hours, 108 hours: gross 1,212.73;
-    # 108 * 0.31 = 33.48; net 1,212.73 - 33.48 = 1,179.25.
+    # Non convivente level B, 25 weekly hours, 108 hours: gross
+    # 7.01 * 40 * 52 / 12 = 1,215.07 (no full-time hours stated, so no
+    # part-time scaling); 108 * 0.31 = 33.48; Cas.Sa.Colf 108 * 0.02 = 2.16;
+    # net 1,215.07 - 33.48 - 2.16 = 1,179.43.
     _Case(
         _NON_CONVIVENTE,
         "B",
         25,
         108,
-        Decimal("1212.73"),
+        Decimal("1215.07"),
         Decimal("33.48"),
-        Decimal("1179.25"),
+        Decimal("2.16"),
+        Decimal("1179.43"),
     ),
-    # Non convivente level A, 20 weekly hours, 86 hours: gross 1,126.23;
-    # hourly pay 1,126.23 / 173 = 6.51 <= 9.61, so 86 * 0.43 = 36.98;
-    # net 1,126.23 - 36.98 = 1,089.25.
+    # Non convivente level A, 20 weekly hours, 86 hours: gross
+    # 6.51 * 40 * 52 / 12 = 1,128.40; hourly pay 1,128.40 / 173.33 = 6.51
+    # <= 9.61, so 86 * 0.43 = 36.98; Cas.Sa.Colf 86 * 0.02 = 1.72;
+    # net 1,128.40 - 36.98 - 1.72 = 1,089.70.
     _Case(
         _NON_CONVIVENTE,
         "A",
         20,
         86,
-        Decimal("1126.23"),
+        Decimal("1128.40"),
         Decimal("36.98"),
-        Decimal("1089.25"),
+        Decimal("1.72"),
+        Decimal("1089.70"),
     ),
 )
 
@@ -209,6 +232,17 @@ def _september(
     )
 
 
+def _withheld_assistance(result: PeriodResult) -> Decimal:
+    return sum(
+        (
+            e.amount
+            for e in result.ledger_entries
+            if e.account == "bilateral_fund_employee"
+        ),
+        _ZERO,
+    )
+
+
 def _tax_postings(result: PeriodResult) -> list[str]:
     return [
         e.account
@@ -221,11 +255,12 @@ def _tax_postings(result: PeriodResult) -> list[str]:
     "case", _CASES, ids=lambda c: f"{c.ccnl_slug[:-5]}-{c.level_code}"
 )
 def test_net_is_gross_less_employee_contributions(case: _Case) -> None:
-    """No IRPEF, surtax or credit: net = gross - employee INPS, below gross."""
+    """No IRPEF, surtax or credit: net = gross - employee shares, below gross."""
     result = _september(case)
 
     assert result.period_gross == case.gross
     assert result.contribution_breakdown.employee == case.employee_inps
+    assert _withheld_assistance(result) == case.employee_assistance
     assert result.period_net == case.net
     assert result.period_net <= result.period_gross
     assert _tax_postings(result) == []
@@ -238,7 +273,7 @@ def test_net_is_gross_less_employee_contributions(case: _Case) -> None:
 
 
 def test_reported_case_without_residence() -> None:
-    """The reported payslip, no residence declared: net 854.47, not 937.16."""
+    """The reported payslip, no residence declared: net 851.01, not 937.16."""
     facts = PeriodFacts(contributable_hours=ContributableHours(Decimal(173)))
 
     result = _september(_REPORTED, facts=facts)
@@ -277,22 +312,24 @@ def test_skipped_capabilities_read_no_tax_rule() -> None:
         "inps_employee",
         "inps_employer",
         "tfr",
+        "assistance_contribution",
     }
     assert not {g.feature for g in report.gaps} & set(_SKIPPED)
 
 
 def test_productivity_bonus_is_ordinary_income_without_substitute_tax() -> None:
-    """A PdR of 1,000 is paid in full: net 908.10 + 1,000 - 53.63 = 1,854.47.
+    """A PdR of 1,000 is paid in full: 908.10 + 1,000 - 53.63 - 3.46 = 1,851.01.
 
-    The employee INPS of a domestic worker is per contributable hour, so the
-    bonus does not change it (173 * 0.31 = 53.63).
+    The employee INPS and the Cas.Sa.Colf share of a domestic worker are per
+    contributable hour, so the bonus changes neither (173 * 0.31 = 53.63,
+    173 * 0.02 = 3.46).
     """
     bonus = BonusEvent(
         event_date=date(2026, 9, 1), amount=Decimal(1000), kind="productivity_bonus"
     )
     result = _september(_REPORTED, facts=_facts(_REPORTED, bonus))
 
-    assert result.period_net == Decimal("1854.47")
+    assert result.period_net == Decimal("1851.01")
     assert _tax_postings(result) == []
     (pdr,) = (d for d in result.decisions if d.capability == "bonus_pdr")
     assert pdr.reason_code == "not_withholding_agent"
@@ -302,7 +339,8 @@ def test_productivity_bonus_is_ordinary_income_without_substitute_tax() -> None:
 def test_night_supplement_gets_no_substitute_regime() -> None:
     """The 15% regime of L. 199/2025 c. 10 is withheld by the sostituto only.
 
-    The 50 EUR supplement is paid in full: net 908.10 + 50 - 53.63 = 904.47.
+    The 50 EUR supplement is paid in full: net 908.10 + 50 - 53.63 - 3.46 =
+    901.01.
     """
     night = NightShiftEvent(event_date=date(2026, 9, 10), supplement_amount=Decimal(50))
     result = _september(_REPORTED, facts=_facts(_REPORTED, night))
@@ -315,7 +353,7 @@ def test_night_supplement_gets_no_substitute_regime() -> None:
     )
     assert regime.reason_code == "not_withholding_agent"
     assert regime.amount == _ZERO
-    assert result.period_net == Decimal("904.47")
+    assert result.period_net == Decimal("901.01")
 
 
 _PLAN = RecoveryPlan(
@@ -369,7 +407,9 @@ def test_year_has_no_withholding_and_no_conguaglio() -> None:
     for result in results:
         assert _tax_postings(result) == []
         assert result.period_net == (
-            result.period_gross - result.contribution_breakdown.employee
+            result.period_gross
+            - result.contribution_breakdown.employee
+            - _withheld_assistance(result)
         )
     closing = results[-1].closing_state.cash
     assert closing.tax.irpef == _ZERO

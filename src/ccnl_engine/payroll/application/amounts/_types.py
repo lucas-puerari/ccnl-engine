@@ -14,6 +14,10 @@ from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 
 if TYPE_CHECKING:
     from ccnl_engine.contract.domain.category import WorkerCategory
+    from ccnl_engine.payroll.application.amounts._assistance import (
+        AssistanceContribution,
+        AssistanceTerms,
+    )
     from ccnl_engine.payroll.application.amounts._contributions import TfrAccrual
     from ccnl_engine.payroll.domain.current_year import CurrentYearTaxFacts
     from ccnl_engine.payroll.domain.decisions import (
@@ -72,12 +76,17 @@ class _AmountsInput:
     again.  ``additional_ivs`` is the position of the run toward the
     additional 1% IVS of its competence year.  ``tfr_treasury_fund`` says
     whether the TFR not paid to a pension fund goes to the Fondo Tesoreria,
-    ``None`` when not known.  ``inps_minimum`` is the minimum INPS base of
+    ``None`` when not known.  ``assistance`` holds the rates of the
+    contractual assistance contribution, ``None`` when the CCNL charges
+    none.  ``in_kind`` is the value of the benefits the
+    pay chain provides in kind, which enters the TFR base only.
+    ``inps_minimum`` is the minimum INPS base of
     the run (:mod:`~ccnl_engine.payroll.service.minimum_base`), ``None``
     when none is determined.
     """
 
     monthly_gross: Decimal
+    in_kind: Decimal
     event_inps_base: Decimal
     event_tfr_base: Decimal
     event_irpef_base: Decimal
@@ -118,6 +127,7 @@ class _AmountsInput:
     deferred_irpef: Decimal = Decimal(0)
     additional_ivs: AdditionalIvsPosition = field(default_factory=AdditionalIvsPosition)
     tfr_treasury_fund: bool | None = None
+    assistance: AssistanceTerms | None = None
 
     @property
     def regular_run(self) -> bool:
@@ -147,7 +157,8 @@ class _PeriodAmounts:
     when the worker is not enrolled.  ``issues`` are those of the
     capabilities computed here: the family deductions and the TFR.
     ``tfr`` holds the art. 2120 c.c. quota and the additional IVS
-    deducted from it.
+    deducted from it.  ``assistance`` is the contractual assistance
+    contribution of the run, ``None`` when the CCNL charges none.
     """
 
     monthly_gross: Decimal
@@ -166,3 +177,4 @@ class _PeriodAmounts:
     ulteriore: UlterioreSettlement | None = None
     pension: PensionContribution | None = None
     issues: tuple[CalculationIssue, ...] = ()
+    assistance: AssistanceContribution | None = None

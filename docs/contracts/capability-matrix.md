@@ -53,12 +53,12 @@ formulas or caller-declared amounts.
 | Layer | native | caller_supplied | partial | unsupported |
 |---|---:|---:|---:|---:|
 | gross | 3 | 1 | 0 | 4 |
-| net | 16 | 1 | 2 | 8 |
+| net | 17 | 1 | 2 | 8 |
 | work_rules | 3 | 6 | 0 | 3 |
 
 | Capability | Description | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|
-| `base_salary` | Paga base contrattuale | gross | native | always | pipeline | — | — | simplified | 0 / 5033 / 715 / 85 |
+| `base_salary` | Paga base contrattuale | gross | native | always | pipeline | — | — | simplified | 0 / 5043 / 713 / 85 |
 | `seniority` | Scatti di anzianità | gross | native | decided | decision | `employment.seniority` | — | simplified | 0 / 111 / 14 / 0 |
 | `worker_category` | Categoria lavoratore (dichiarata o fissata dal livello) | gross | native | decided | decision | `employment.category` | — | implemented | none bundled |
 | `inps_employee` | Contributi INPS a carico dipendente | net | native | always | pipeline | — | — | simplified | 0 / 0 / 28 / 0 |
@@ -105,6 +105,7 @@ formulas or caller-declared amounts.
 | `notte_festivi_turni_substitute_tax` | Imposta sostitutiva notturno, festivo e turni L. 199/2025 art. 1 cc. 10-11 | net | native | decided | decision | `prior_year` | — | implemented | 0 / 1 / 0 / 0 |
 | `bilateral_funds` | Fondi bilaterali (importi dal chiamante) | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
 | `pension_fund_contribution` | Previdenza complementare CCNL su adesione | net | partial | decided | decision | `employment.pension_fund` | ccnl_fund_on_enrolment | simplified | 0 / 0 / 14 / 0 |
+| `assistance_contribution` | Contributi di assistenza contrattuale per ora retribuita (Cas.Sa.Colf, lavoro domestico) | net | native | decided | decision | `facts.contributable_hours` | — | implemented | 0 / 2 / 0 / 0 |
 
 ## CCNL coverage
 
@@ -192,8 +193,8 @@ never grow.
 | 64 | [CCNL Laterizi e Manufatti Cementizi - Industria](laterizi-industria-f021.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 98 / 2 / 0 |
 | 65 | [CCNL Lavanderie Industriali (Assosistema Confindustria)](lavanderie-industriali-assosistema.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 37 / 1 / 1 |
 | 66 | [CCNL Lavoratori Dipendenti Organizzazioni Sindacali (UNSIC/CONFSAL)](ooss-unsic-confsal.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 19 / 2 / 0 |
-| 67 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (conviventi)](lavoro-domestico-convivente.md) | 🔲 | 🔲 | 🔲 | base_salary, inps_employer, seniority | 0 / 15 / 1 / 1 |
-| 68 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (non conviventi)](lavoro-domestico-non-convivente.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 13 / 1 / 1 |
+| 67 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (conviventi)](lavoro-domestico-convivente.md) | 🔲 | 🔲 | 🔲 | base_salary, inps_employer, seniority | 0 / 25 / 0 / 1 |
+| 68 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (non conviventi)](lavoro-domestico-non-convivente.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 15 / 0 / 1 |
 | 69 | [CCNL Logistica, Trasporto Merci e Spedizione (Confetra)](logistica-trasporto-confetra.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 43 / 2 / 0 |
 | 70 | [CCNL Marittimi — Industria Armatoriale (CONFITARMA)](marittimi-industria-armatoriale.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 40 / 2 / 0 |
 | 71 | [CCNL Materiali da Costruzione PMI — Lapidei (CONFAPI ANIEM)](materiali-costruzione-lapidei-confapi.md) | 🔲 | 🔲 | 🔲 | — | 0 / 0 / 60 / 0 |

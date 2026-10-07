@@ -172,14 +172,16 @@ def tfr_accrual(inp: _AmountsInput, breakdown: ContributionBreakdown) -> TfrAccr
     IVS rule accrue the whole quota; so do apprentices, for whom the
     contribution is not due (INPS circ. 70/2007, note 5).  The Fondo
     Tesoreria takes the quota net of the deduction (L. 296/2006 art. 1
-    c. 756).
+    c. 756).  The base counts the benefits provided in kind (CCNL lavoro
+    domestico art. 41 c. 1: the valore convenzionale of board and lodging).
 
     Returns:
         The quota over the accrual divisor, the deduction taken from it and
         its destination.
     """
     tfr = inp.rules.tfr
-    quota = money((inp.monthly_gross + inp.event_tfr_base) / tfr.accrual_divisor)
+    base = inp.monthly_gross + inp.in_kind + inp.event_tfr_base
+    quota = money(base / tfr.accrual_divisor)
     accrual = TfrAccrual(
         quota=quota,
         to_pension_fund=inp.pension is not None and inp.pension.tfr_to_fund,
@@ -188,6 +190,6 @@ def tfr_accrual(inp: _AmountsInput, breakdown: ContributionBreakdown) -> TfrAccr
     extra = tfr.additional_ivs
     if extra is None or isinstance(inp.contract_type, Apprentice):
         return accrual
-    base = _ivs_employer_base(breakdown)
-    deduction = min(quota, money(base * extra.rate))
-    return replace(accrual, ivs_base=base, ivs_rate=extra.rate, deduction=deduction)
+    ivs_base = _ivs_employer_base(breakdown)
+    deduction = min(quota, money(ivs_base * extra.rate))
+    return replace(accrual, ivs_base=ivs_base, ivs_rate=extra.rate, deduction=deduction)

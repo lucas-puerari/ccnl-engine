@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
+from dataclasses import replace
 from typing import TYPE_CHECKING
 
+from ccnl_engine.payroll.application.amounts._assistance import run_assistance
 from ccnl_engine.payroll.application.amounts._contributions import (
     run_contributions,
     tfr_accrual,
@@ -84,9 +86,10 @@ def _compute_amounts(
     breakdown, employee_rate = run_contributions(inp)
     tfr = tfr_accrual(inp, breakdown)
     pension = run_pension(inp)
+    assistance = run_assistance(inp.assistance, inp.contributable_hours)
     if not inp.withholding_agent:
         untaxed, no_tax = untaxed_amounts(inp, breakdown, employee_rate, tfr, pension)
-        return untaxed, breakdown, no_tax, None
+        return replace(untaxed, assistance=assistance), breakdown, no_tax, None
     pdr = pdr_split(inp)
     taxable = taxable_income(inp, breakdown.employee, employee_rate, pdr, pension)
     irpef = withhold_irpef(inp, taxable)
@@ -109,5 +112,6 @@ def _compute_amounts(
         decisions=_decisions(inp, pdr, irpef, surtax),
         pension=pension,
         issues=_issues(irpef) + tfr.issues(),
+        assistance=assistance,
     )
     return amounts, breakdown, tax_comp, irpef.tax.recovery_plan

@@ -14,6 +14,7 @@ from ccnl_engine.payroll.application.handlers._overtime_rate import (
 )
 from ccnl_engine.payroll.application.period._accrual_decisions import accrual_rules
 from ccnl_engine.payroll.application.period._additional_ivs import additional_ivs_rules
+from ccnl_engine.payroll.application.period._assistance import assistance_rules
 from ccnl_engine.payroll.application.period._sickness import sickness_rules
 from ccnl_engine.payroll.application.period._tfr_rules import (
     revaluation_rules,
@@ -85,7 +86,8 @@ def contract_rules(ctx: RunContext) -> dict[str, tuple[Rule, ...]]:
 
     Returns:
         Rules of ``base_salary``, ``seniority``, ``inps_employee``,
-        ``inps_employer`` and ``ivs_ceiling_eligibility`` (the massimale).
+        ``inps_employer``, ``ivs_ceiling_eligibility`` (the massimale) and
+        ``assistance_contribution``.
     """
     ccnl = ctx.contract.ccnl
     name = _name(ccnl.ruleset, f"ccnl/{ccnl.meta.ccnl_id}")
@@ -129,6 +131,9 @@ def contract_rules(ctx: RunContext) -> dict[str, tuple[Rule, ...]]:
         "inps_employer": inps + fixed_term,
         "ivs_ceiling_eligibility": (
             (f"{inps_name}:inps.ceiling", _provenance(rules.inps)),
+        ),
+        "assistance_contribution": assistance_rules(
+            ccnl, ctx.contract.tctx.competence.year
         ),
     }
 
