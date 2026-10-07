@@ -25,6 +25,7 @@ from ccnl_engine.payroll.application.period._ivs_ceiling import (
     ivs_ceiling_decision,
     run_ivs_ceiling,
 )
+from ccnl_engine.payroll.application.period._minimum_base import run_minimum_base
 from ccnl_engine.payroll.application.period._pension_decision import pension_decision
 from ccnl_engine.payroll.application.period._pipeline_inputs import (
     amounts_input,
@@ -43,12 +44,15 @@ from ccnl_engine.payroll.application.year._extra_month_settlement import (
 )
 
 if TYPE_CHECKING:
+    from decimal import Decimal
+
     from ccnl_engine.payroll.application.amounts._types import _PeriodAmounts
     from ccnl_engine.payroll.application.handlers._totals import _EventTotals
     from ccnl_engine.payroll.application.period._context import RunContext
     from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
     from ccnl_engine.payroll.domain.ledger import LedgerEntry
+    from ccnl_engine.payroll.domain.minimum_base import MinimumBase
     from ccnl_engine.payroll.domain.pay_items import PayItem
     from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
     from ccnl_engine.payroll.domain.tax import TaxComputation
@@ -72,6 +76,16 @@ class RunAmounts:
     tax_computation: TaxComputation
     recovery_plan: RecoveryPlan | None
     ivs_ceiling: IvsCeiling | None
+    minimum_base: MinimumBase | None
+
+    def inps_base(self, actual: Decimal) -> Decimal:
+        """Return the INPS base of the run: ``actual`` raised to the minimum.
+
+        Returns:
+            ``actual``, or the minimum base of the run when it is higher.
+        """
+        minimum = self.minimum_base
+        return actual if minimum is None else minimum.raise_to_minimum(actual)
 
 
 def run_events(ctx: RunContext) -> RunEvents:
@@ -123,7 +137,11 @@ def run_amounts(ctx: RunContext, totals: _EventTotals) -> RunAmounts:
         if withholds and request.family_composition is not None
         else None
     )
-    ivs = run_ivs_ceiling(ctx, totals.inps_base)
+    minimum = run_minimum_base(ctx, totals.inps_base)
+    actual = ctx.monthly_gross + totals.inps_base
+    ivs = run_ivs_ceiling(
+        ctx, actual if minimum is None else minimum.raise_to_minimum(actual)
+    )
     computed = _compute_amounts(
         amounts_input(
             ctx,
@@ -131,9 +149,10 @@ def run_amounts(ctx: RunContext, totals: _EventTotals) -> RunAmounts:
             surtax_rules,
             family_rules,
             ivs_ceiling_applies=ivs is not None and ivs.applies,
+            inps_minimum=None if minimum is None else minimum.minimum,
         )
     )
-    return RunAmounts(*computed, ivs_ceiling=ivs)
+    return RunAmounts(*computed, ivs_ceiling=ivs, minimum_base=minimum)
 
 
 def run_decisions(

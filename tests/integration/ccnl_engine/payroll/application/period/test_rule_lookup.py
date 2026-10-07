@@ -75,10 +75,15 @@ def _names(rules: tuple[tuple[str, object], ...]) -> list[str]:
 
 
 def test_permanent_worker_reads_ordinary_rates() -> None:
-    """A permanent worker reads the ordinary INPS block only."""
+    """A permanent worker reads the ordinary INPS block and its minimum base."""
     rules = contract_rules(_ctx())
-    assert _names(rules["inps_employer"]) == ["inps", "domestic_contributions"]
+    assert _names(rules["inps_employer"]) == [
+        "inps",
+        "domestic_contributions",
+        "inps.minimum_base",
+    ]
     assert rules["inps_employer"][1][1] is None
+    assert isinstance(rules["inps_employer"][2][1], RuleProvenance)
 
 
 def test_fixed_term_employer_reads_the_addizionale() -> None:
@@ -95,11 +100,12 @@ def test_apprentice_reads_the_apprentice_rates() -> None:
 
 
 def test_domestic_sector_reads_the_flat_contributions() -> None:
-    """A domestic sector has no ordinary rates but flat contributions."""
-    (ordinary, domestic) = contract_rules(_ctx(sector=TaxSector.LAVORO_DOMESTICO))[
-        "inps_employee"
-    ]
+    """A domestic sector has no ordinary rates nor minimum base, but flat rates."""
+    (ordinary, domestic, minimum) = contract_rules(
+        _ctx(sector=TaxSector.LAVORO_DOMESTICO)
+    )["inps_employee"]
     assert ordinary[1] is None
+    assert minimum[1] is None
     assert isinstance(domestic[1], RuleProvenance)
 
 

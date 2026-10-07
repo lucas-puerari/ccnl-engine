@@ -20,6 +20,7 @@ from ccnl_engine.payroll.application.period._closing_state import (
     closing_state,
 )
 from ccnl_engine.payroll.application.period._limitations import run_limitations
+from ccnl_engine.payroll.application.period._minimum_base import minimum_base_issue
 from ccnl_engine.payroll.application.period._other_employers import (
     other_employers_issue,
 )
@@ -100,7 +101,9 @@ def _closing(
             conguaglio=ctx.takes_last_slot,
             payment=ctx.payment,
             entries=posted.entries,
-            period_inps_base=ctx.monthly_gross + events.totals.inps_base,
+            period_inps_base=amounts.inps_base(
+                ctx.monthly_gross + events.totals.inps_base
+            ),
             amounts=posted.amounts,
             events=events.totals,
             somma_esente=recoveries.somma,
@@ -139,21 +142,24 @@ def _input_issues(
 
     Returns:
         The issues of the category rates, the seniority, the proration, the
-        IVS massimale, the additional 1% IVS, the opening state, the INPS
-        base of other employments and the TFR revaluation, in that order,
+        minimum INPS base, the IVS massimale, the additional 1% IVS, the
+        opening state, the INPS base of other employments and the TFR
+        revaluation, in that order,
         each only when raised.
     """
     ivs = amounts.ivs_ceiling
+    base = amounts.inps_base(ctx.monthly_gross + events.totals.inps_base)
     issues = (
         category_rate_issue(
             ctx.contract.year_rules, ctx.request.contract_type, ctx.worker_category
         ),
         run_seniority(ctx).issue(),
         ctx.proration.issue(),
+        minimum_base_issue(amounts.minimum_base),
         None if ivs is None else ivs.issue(),
         additional_ivs_issue(ctx),
         ctx.opening_issue,
-        other_employers_issue(ctx, ctx.monthly_gross + events.totals.inps_base),
+        other_employers_issue(ctx, base),
     )
     raised = tuple(issue for issue in issues if issue is not None)
     return raised + tfr_revaluation_issues(ctx)

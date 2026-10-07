@@ -158,8 +158,12 @@ def resolve_ivs_ceiling(
     )
 
 
-def run_ivs_ceiling(ctx: RunContext, event_inps_base: Decimal) -> IvsCeiling | None:
+def run_ivs_ceiling(ctx: RunContext, period_base: Decimal) -> IvsCeiling | None:
     """Return the IVS massimale eligibility of the run of ``ctx``.
+
+    Args:
+        ctx: Context of the run.
+        period_base: INPS base of the run, raised to the minimum base.
 
     Returns:
         The eligibility on the YTD and period INPS bases of the run, or
@@ -169,7 +173,7 @@ def run_ivs_ceiling(ctx: RunContext, event_inps_base: Decimal) -> IvsCeiling | N
         ctx.contract.year_rules,
         ctx.request.contribution_history,
         ytd_base=ctx.ytd_inps_base,
-        period_base=ctx.monthly_gross + event_inps_base,
+        period_base=period_base,
     )
 
 
