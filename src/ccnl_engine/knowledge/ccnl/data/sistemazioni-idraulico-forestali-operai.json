@@ -659,7 +659,7 @@
         }
       },
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "ccnl-idraulico-forestali-2021",
@@ -674,7 +674,8 @@
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2026-01-01"
-        }
+        },
+        "note": "Assumed, not derived: no citation (http(s) url and section or page)."
       }
     }
   },
@@ -760,7 +761,7 @@
     "source": "https://redigo.info/",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "ab450698fa300a60f8a86b9f3b163b4436d89b4e3e8033b76d35b5e9048a8f1a",
+    "source_hash": "0d92b8abba82089d6dd4a97c9a9dfdf70ce76f565f931ed11ba471eda5c4f9e7",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

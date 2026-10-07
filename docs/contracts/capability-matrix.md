@@ -58,11 +58,11 @@ formulas or caller-declared amounts.
 
 | Capability | Description | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|
-| `base_salary` | Paga base contrattuale | gross | native | always | pipeline | — | — | simplified | 0 / 5240 / 508 / 85 |
-| `seniority` | Scatti di anzianità | gross | native | decided | decision | `employment.seniority` | — | simplified | 0 / 119 / 6 / 0 |
+| `base_salary` | Paga base contrattuale | gross | native | always | pipeline | — | — | simplified | 0 / 5033 / 715 / 85 |
+| `seniority` | Scatti di anzianità | gross | native | decided | decision | `employment.seniority` | — | simplified | 0 / 111 / 14 / 0 |
 | `worker_category` | Categoria lavoratore (dichiarata o fissata dal livello) | gross | native | decided | decision | `employment.category` | — | implemented | none bundled |
-| `inps_employee` | Contributi INPS a carico dipendente | net | native | always | pipeline | — | — | simplified | 0 / 12 / 3 / 0 |
-| `inps_employer` | Contributi INPS a carico azienda | net | native | always | pipeline | — | — | simplified | 0 / 19 / 4 / 0 |
+| `inps_employee` | Contributi INPS a carico dipendente | net | native | always | pipeline | — | — | simplified | 0 / 0 / 21 / 0 |
+| `inps_employer` | Contributi INPS a carico azienda | net | native | always | pipeline | — | — | simplified | 0 / 0 / 29 / 0 |
 | `inail` | Premio INAIL a carico azienda | net | unsupported | outside_input | — | `employer.inail_tariff_rate` | — | unavailable | none bundled |
 | `contribution_exemption` | Esonero contributivo | net | unsupported | outside_input | — | `employer.contribution_exemption` | — | unavailable | none bundled |
 | `fiscal_adjustment` | Conguaglio IRPEF da assistenza fiscale o periodo precedente | net | unsupported | outside_input | — | `facts.fiscal_adjustment` | — | unavailable | none bundled |
@@ -78,11 +78,11 @@ formulas or caller-declared amounts.
 | `health_fund_employer` | Fondo sanitario integrativo a carico azienda | net | unsupported | outside_input | — | `employment.health_fund` | — | unavailable | none bundled |
 | `territorial_supplement` | Integrazione da contratto territoriale | gross | unsupported | outside_input | — | `employment.territorial_agreement` | — | unavailable | none bundled |
 | `company_supplement` | Integrazione da contratto aziendale | gross | unsupported | outside_input | — | `employment.company_agreement` | — | unavailable | none bundled |
-| `tfr` | Trattamento di Fine Rapporto | net | native | always | pipeline | `employment.tfr_treasury_fund` | — | implemented | 0 / 13 / 0 / 0 |
+| `tfr` | Trattamento di Fine Rapporto | net | native | always | pipeline | `employment.tfr_treasury_fund` | — | simplified | 0 / 0 / 13 / 0 |
 | `tfr_revaluation` | Rivalutazione del fondo TFR al 31 dicembre e imposta sostitutiva (art. 2120 c. 4 c.c.) | net | native | decided | decision | `employment.tfr_fund` | — | implemented | 0 / 3 / 0 / 0 |
-| `irpef` | IRPEF (sostituto d'imposta) | net | native | always | pipeline | — | — | implemented | 0 / 24 / 0 / 0 |
-| `trattamento_integrativo` | Trattamento integrativo (ex bonus 80€) | net | native | decided | decision | — | — | implemented | 0 / 8 / 0 / 0 |
-| `ulteriore_detrazione_lavoro` | Ulteriore detrazione lavoro dipendente | net | native | decided | decision | — | — | implemented | 0 / 8 / 0 / 0 |
+| `irpef` | IRPEF (sostituto d'imposta) | net | native | always | pipeline | — | — | simplified | 0 / 0 / 32 / 0 |
+| `trattamento_integrativo` | Trattamento integrativo (ex bonus 80€) | net | native | decided | decision | — | — | simplified | 0 / 0 / 8 / 0 |
+| `ulteriore_detrazione_lavoro` | Ulteriore detrazione lavoro dipendente | net | native | decided | decision | — | — | simplified | 0 / 0 / 8 / 0 |
 | `somma_esente` | Somma esente L. 207/2024 art. 1 c. 4 | net | native | decided | decision | — | — | simplified | 0 / 0 / 8 / 0 |
 | `withholding_shortfall` | Ritenute non capienti riportate ai cedolini successivi | net | native | decided | decision | — | — | implemented | none bundled |
 | `shortfall_deferral` | Differimento scritto dell'IRPEF incapiente del conguaglio con interessi 0,50% mensile (art. 23 c. 3 DPR 600/1973) | net | native | decided | decision | — | — | implemented | none bundled |
@@ -97,14 +97,14 @@ formulas or caller-declared amounts.
 | `shift_work` | Lavoro a turni | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
 | `absence` | Assenze ingiustificate | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
 | `leave` | Ferie e permessi ROL | work_rules | unsupported | outside_input | — | `facts.events[leave]` | — | unavailable | none bundled |
-| `sickness` | Malattia: episodi su più periodi, carenza, fasce INPS e integrazione CCNL | work_rules | native | event | event | — | multi_period_episode, inps_bands_and_carenza, ccnl_tiers | simplified | 0 / 223 / 4 / 0 |
+| `sickness` | Malattia: episodi su più periodi, carenza, fasce INPS e integrazione CCNL | work_rules | native | event | event | — | multi_period_episode, inps_bands_and_carenza, ccnl_tiers | simplified | 0 / 222 / 5 / 0 |
 | `fringe_benefit` | Fringe benefit (informativo) | work_rules | native | event | event | — | — | implemented | 0 / 1 / 0 / 0 |
 | `welfare` | Welfare aziendale (informativo) | work_rules | native | event | event | — | — | implemented | none bundled |
-| `bonus_pdr` | Premio di risultato PDR (informativo) | net | native | decided | decision | — | — | implemented | 0 / 1 / 0 / 0 |
+| `bonus_pdr` | Premio di risultato PDR (informativo) | net | native | decided | decision | — | — | simplified | 0 / 0 / 1 / 0 |
 | `rinnovo_substitute_tax` | Imposta sostitutiva aumenti da rinnovo L. 199/2025 art. 1 c. 7 | net | native | decided | decision | `prior_year` | — | implemented | 0 / 1 / 0 / 0 |
 | `notte_festivi_turni_substitute_tax` | Imposta sostitutiva notturno, festivo e turni L. 199/2025 art. 1 cc. 10-11 | net | native | decided | decision | `prior_year` | — | implemented | 0 / 1 / 0 / 0 |
 | `bilateral_funds` | Fondi bilaterali (importi dal chiamante) | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
-| `pension_fund_contribution` | Previdenza complementare CCNL su adesione | net | partial | decided | decision | `employment.pension_fund` | ccnl_fund_on_enrolment | simplified | 0 / 12 / 2 / 0 |
+| `pension_fund_contribution` | Previdenza complementare CCNL su adesione | net | partial | decided | decision | `employment.pension_fund` | ccnl_fund_on_enrolment | simplified | 0 / 0 / 14 / 0 |
 
 ## CCNL coverage
 
@@ -210,31 +210,31 @@ never grow.
 | 82 | [CCNL Panificazione e Settori Affini — Industria (Assipan/Fiesa)](panificazione-assipan.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 48 / 1 / 1 |
 | 83 | [CCNL Poste Italiane S.p.A. (personale non dirigente)](poste-italiane-k700.md) | 🔲 | 🔲 | 🔲 | base_salary, inps_employer | 0 / 53 / 2 / 0 |
 | 84 | [CCNL RSA e Strutture Residenziali Socio-Assistenziali (AIOP)](rsa-aiop.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 31 / 2 / 0 |
-| 85 | [CCNL Radiotelevisivo — Settore Radiofonico](radiotelevisive-radiofonico.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 20 / 0 / 1 |
-| 86 | [CCNL Radiotelevisivo — Settore Televisivo Multimediale](radiotelevisive-televisivo.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 38 / 0 / 1 |
+| 85 | [CCNL Radiotelevisivo — Settore Radiofonico](radiotelevisive-radiofonico.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 0 / 20 / 1 |
+| 86 | [CCNL Radiotelevisivo — Settore Televisivo Multimediale](radiotelevisive-televisivo.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 0 / 38 / 1 |
 | 87 | [CCNL Recapito Corrispondenza (FISE-ARE)](recapito-corrispondenza-fise.md) | 🔲 | 🔲 | 🔲 | — | 0 / 47 / 1 / 1 |
 | 88 | [CCNL Scuole Materne — FISM](scuole-materne-fism.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 47 / 2 / 0 |
 | 89 | [CCNL Scuole Private Laiche (ANINSEI-Assoscuola)](scuole-private-laiche-aninsei.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 43 / 2 / 0 |
 | 90 | [CCNL Servizi Postali in Appalto (FISE-ARE)](servizi-postali-appalto-fise.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 49 / 2 / 0 |
 | 91 | [CCNL Servizi di Pulizia e Servizi Integrati/Multiservizi (ANIP-Confindustria)](multiservizi-anip.md) | 🔲 | 🔲 | 🔲 | inps_employee, seniority | 0 / 148 / 2 / 0 |
-| 92 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Impiegati)](sistemazioni-idraulico-forestali-impiegati.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 28 / 1 / 1 |
-| 93 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Operai OTI)](sistemazioni-idraulico-forestali-operai.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 21 / 1 / 1 |
+| 92 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Impiegati)](sistemazioni-idraulico-forestali-impiegati.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 27 / 2 / 1 |
+| 93 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Operai OTI)](sistemazioni-idraulico-forestali-operai.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 20 / 2 / 1 |
 | 94 | [CCNL Telecomunicazioni — Assotelecomunicazioni (Asstel)](telecomunicazioni-asstel.md) | 🔲 | 🔲 | 🔲 | inps_employer, seniority | 0 / 45 / 2 / 0 |
 | 95 | [CCNL Terziario Distribuzione e Servizi — Confesercenti](terziario-confesercenti.md) | 🔲 | 🔲 | 🔲 | seniority, una_tantum | 0 / 62 / 2 / 0 |
 | 96 | [CCNL Terziario, Distribuzione e Servizi (Confcommercio)](commercio-confcommercio.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 4 / 62 / 0 |
-| 97 | [CCNL Tessile-Abbigliamento-Moda PMI (Uniontessile-Confapi)](tessile-pmi-uniontessile.md) | 🔲 | 🔲 | 🔲 | base_salary | 0 / 40 / 3 / 1 |
+| 97 | [CCNL Tessile-Abbigliamento-Moda PMI (Uniontessile-Confapi)](tessile-pmi-uniontessile.md) | 🔲 | 🔲 | 🔲 | base_salary | 0 / 0 / 43 / 1 |
 | 98 | [CCNL Trasporto Aereo — Gestori Aeroportuali](trasporto-aereo-assaeroporti.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 72 / 2 / 0 |
 | 99 | [CCNL Trasporto a Fune (Funivie Terrestri ed Aeree) - ANEF](funivie-anef.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 47 / 1 / 1 |
 | 100 | [CCNL Turismo (Assoturismo-Confesercenti)](turismo-confesercenti.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 56 / 1 / 1 |
 | 101 | [CCNL Turismo — Federalberghi/Faita](turismo-federalberghi.md) | 🔲 | 🔲 | 🔲 | seniority, worker_category | 0 / 66 / 1 / 1 |
 | 102 | [CCNL Turismo, Pubblici Esercizi e Ristorazione (Confcommercio)](turismo-confcommercio.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 56 / 1 / 1 |
-| 103 | [CCNL Vetro (Industrie) — Settori Meccanizzati (Prime Lavorazioni)](vetro-meccanizzato-assovetro.md) | 🔲 | 🔲 | 🔲 | base_salary | 0 / 33 / 1 / 1 |
+| 103 | [CCNL Vetro (Industrie) — Settori Meccanizzati (Prime Lavorazioni)](vetro-meccanizzato-assovetro.md) | 🔲 | 🔲 | 🔲 | base_salary | 0 / 0 / 34 / 1 |
 | 104 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG](vigilanza-privata-federdat-gpg.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 48 / 1 / 1 |
 | 105 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF](vigilanza-privata-federdat-sf.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 46 / 2 / 1 |
-| 106 | [CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso](agenti-immobiliari-fiaip.md) | 🔲 | 🔲 | 🔲 | base_salary, bilateral_funds, pension_fund_contribution, seniority, una_tantum | 0 / 29 / 1 / 1 |
+| 106 | [CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso](agenti-immobiliari-fiaip.md) | 🔲 | 🔲 | 🔲 | base_salary, bilateral_funds, pension_fund_contribution, seniority, una_tantum | 0 / 0 / 30 / 1 |
 | 107 | [CCNL per i dipendenti da autoscuole, scuole nautiche e studi di consulenza automobilistica](autoscuole-unasca.md) | 🔲 | 🔲 | 🔲 | bilateral_funds, health_fund_employer, seniority | 0 / 32 / 2 / 0 |
 | 108 | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo](pubblici-esercizi-fipe-angem.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 59 / 1 / 1 |
-| 109 | [CCNL per i dipendenti dalle aziende di lavorazione della foglia di tabacco secco allo stato sciolto](tabacco-apti.md) | 🔲 | 🔲 | 🔲 | pension_fund_contribution, seniority | 0 / 57 / 1 / 1 |
+| 109 | [CCNL per i dipendenti dalle aziende di lavorazione della foglia di tabacco secco allo stato sciolto](tabacco-apti.md) | 🔲 | 🔲 | 🔲 | pension_fund_contribution, seniority | 0 / 0 / 58 / 1 |
 | 110 | [CCNL per i dipendenti degli studi e delle attività professionali (Confprofessioni)](studi-professionali-confprofessioni.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 42 / 2 / 0 |
 | 111 | [CCNL per i dipendenti delle imprese artigiane esercenti servizi di pulizia, disinfezione, disinfestazione, derattizzazione e sanificazione](pulizia-artigianato-confartigianato.md) | 🔲 | 🔲 | 🔲 | base_salary, bilateral_funds, holiday_work, inps_employer, leave, night_work, overtime, seniority | 0 / 0 / 86 / 1 |
 | 112 | [CCNL per i lavoratori addetti all'industria delle calzature](calzaturiero-assocalzaturifici.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 37 / 1 / 1 |

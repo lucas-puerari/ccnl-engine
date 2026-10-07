@@ -19,6 +19,7 @@ import pytest
 
 from ccnl_engine.events import BonusEvent
 from ccnl_engine.inputs import EmploymentPeriod, FixedTerm, Permanent
+from ccnl_engine.results import BlockerCode
 from tests.acceptance.legal_scenarios._support import ENGINE
 from tests.fixtures.explicit_facts import CONCIA_D2, regular_run
 from tests.fixtures.normative_oracles.contributions_2026 import (
@@ -92,11 +93,15 @@ def test_monthly_base_reaches_the_daily_floor() -> None:
     The signed table pays 987.04 + 439.83 + 10.33 = 1,437.20
     (``tests/fixtures/reference_tables/autoscuole-unasca_3_2026.json``),
     below 58.13 x 26 = 1,511.38.  The base must be raised to the floor, or
-    the run must say through a blocker on the INPS base that it is not.
+    the run must say through a blocker on the INPS base that it is not.  A
+    weak rate source blocks INPS on every run and says nothing of the
+    floor, so it does not count.
     """
     employment = replace(CONCIA_D2, ccnl_slug="autoscuole-unasca.json", level_code="3")
     result = ENGINE.calculate_period(regular_run(employment=employment))
-    blocked = {b.feature for b in result.blockers}
+    blocked = {
+        b.feature for b in result.blockers if b.code is not BlockerCode.RULE_SOURCE_WEAK
+    }
 
     assert result.period_gross == Decimal("1437.20")
     assert _inps_base(result) >= FULL_TIME_MONTHLY_CONTRIBUTION_FLOOR or (

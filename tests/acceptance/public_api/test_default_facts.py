@@ -124,11 +124,15 @@ _INVERSION = (
 class TestDefaultIsNotAFact:
     """A field left to its default must not pass as the fact it stands for."""
 
-    def test_explicit_scenario_has_one_blocker(self) -> None:
-        """The premise: with every fact given, only the somma esente blocks."""
-        assert _blocker_set(_june_with()) == {
-            (BlockerCode.RULE_SOURCE_WEAK, "somma_esente")
-        }
+    def test_explicit_scenario_is_blocked_only_by_weak_sources(self) -> None:
+        """The premise: with every fact given, only assumed rules block.
+
+        The somma esente bands and the rules of the rulesets that declare
+        ``source_type`` ``estimated`` are assumed; no blocker names a fact.
+        """
+        blockers = _blocker_set(_june_with())
+        assert (BlockerCode.RULE_SOURCE_WEAK, "somma_esente") in blockers
+        assert {code for code, _ in blockers} == {BlockerCode.RULE_SOURCE_WEAK}
 
     def test_missing_opening_state_mid_year_is_not_a_zero_state(self) -> None:
         """June opened with the zero state adds a missing opening_state.

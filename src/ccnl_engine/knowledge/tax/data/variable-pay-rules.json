@@ -30,7 +30,7 @@
     "income_ceiling": "80000.00",
     "description": "Art. 1 cc. 182-190 L. 208/2015: premio di risultato, imposta sostitutiva 1% entro 5.000 EUR per il 2026 (L. 199/2025 art. 1 c. 9)",
     "provenance": {
-      "status": "derived",
+      "status": "assumed",
       "location": {
         "source_document": {
           "document_id": "l-208-2015",
@@ -39,7 +39,7 @@
         },
         "section": "art. 1 cc. 182-190"
       },
-      "note": "Substitute rate 1% within 5,000 EUR for the premi paid in 2026 and 2027 per L. 199/2025 art. 1 c. 9; L. 207/2024 art. 1 c. 385, restricted to 2025 by L. 199/2025 art. 1 c. 8, no longer applies to 2026. Both commi checked on 2026-09-27 against the Gazzetta Ufficiale text of L. 199/2025 (https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.codiceRedazionale=26A00149&art.dataPubblicazioneGazzetta=2026-01-21&art.flagTipoArticolo=0&art.idArticolo=1&art.idGruppo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.progressivo=1&art.versione=1)."
+      "note": "Substitute rate 1% within 5,000 EUR for the premi paid in 2026 and 2027 per L. 199/2025 art. 1 c. 9; L. 207/2024 art. 1 c. 385, restricted to 2025 by L. 199/2025 art. 1 c. 8, no longer applies to 2026. Both commi checked on 2026-09-27 against the Gazzetta Ufficiale text of L. 199/2025 (https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.codiceRedazionale=26A00149&art.dataPubblicazioneGazzetta=2026-01-21&art.flagTipoArticolo=0&art.idArticolo=1&art.idGruppo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.progressivo=1&art.versione=1). Assumed, not derived: no citation (http(s) url and section or page)."
     }
   },
   "rinnovo": {
@@ -109,7 +109,7 @@
     "published_at": "2026-09-08",
     "source": "TUIR art. 51 c. 3; L. 207/2024 art. 1 c. 390; L. 208/2015 art. 1 cc. 182-190; L. 199/2025 art. 1 cc. 7, 9, 10-11",
     "verification_status": "unverified",
-    "source_hash": "eb148207851286134ddee1f9e4831394272e2ab6e2335db467dfe9c64643ffa5",
+    "source_hash": "84ce7b9c87d014a49cfc508da32b61df829b7b0cf874e6b40cebce5b281c9af2",
     "source_type": "official_primary"
   }
 }

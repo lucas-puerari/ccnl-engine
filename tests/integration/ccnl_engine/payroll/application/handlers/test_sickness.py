@@ -296,16 +296,16 @@ def test_sick_pay_override_is_not_payable() -> None:
 def test_indemnity_bands_report_their_provenance() -> None:
     """The INPS bands record reaches the evidence of the sickness capability."""
 
-    class _AssumedBands(BundledKnowledgeRepository):
+    class _MissingBands(BundledKnowledgeRepository):
         def load_sick_pay_rates(self) -> InpsSickPayRates:
             rates = super().load_sick_pay_rates()
-            record = RuleProvenance(status=ProvenanceStatus.ASSUMED)
+            record = RuleProvenance(status=ProvenanceStatus.MISSING)
             return rates.model_copy(update={"bands_provenance": record})
 
     bundled = calculate_period(_req(3, _MARCH))
-    result = calculate_period(_req(3, _MARCH), repo=_AssumedBands())
+    result = calculate_period(_req(3, _MARCH), repo=_MissingBands())
     sources = result.capability_report.rule_sources
     assert (
-        bundled.capability_report.rule_sources["sickness"] is ProvenanceStatus.DERIVED
+        bundled.capability_report.rule_sources["sickness"] is ProvenanceStatus.ASSUMED
     )
-    assert sources["sickness"] is ProvenanceStatus.ASSUMED
+    assert sources["sickness"] is ProvenanceStatus.MISSING

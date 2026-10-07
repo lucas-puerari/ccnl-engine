@@ -661,7 +661,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1",
     "verification_status": "unverified",
-    "source_hash": "04568a7a4d2db3c23b13db395d5e592a157f8923a8d1b8f4b87c804c9c6019ab",
+    "source_hash": "1aa9b8bdfb9226da3db302ece5716277a0ed32a62bb2ad01a8b4fa5c9710e6c9",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -890,7 +890,7 @@
   },
   "verification": {
     "confidence": "unverified",
-    "readiness": "reviewed",
+    "readiness": "exploratory",
     "verified_cases": 0,
     "last_reviewed": "2026-09-18",
     "human_reviewed_by": "lucas-puerari"

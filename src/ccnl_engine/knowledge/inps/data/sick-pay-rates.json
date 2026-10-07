@@ -16,7 +16,7 @@
     }
   ],
   "bands_provenance": {
-    "status": "derived",
+    "status": "assumed",
     "location": {
       "source_document": {
         "document_id": "assolombarda-tutele-previdenziali",
@@ -24,7 +24,7 @@
         "kind": "associazione"
       }
     },
-    "note": "Secondary summary read on 2026-10-04 (no URL recorded): 50% from day 4 to day 20, 66.66% from day 21 to day 180. Not checked against an INPS circular or the text of D.L. 663/1979."
+    "note": "Secondary summary read on 2026-10-04 (no URL recorded): 50% from day 4 to day 20, 66.66% from day 21 to day 180. Not checked against an INPS circular or the text of D.L. 663/1979. Assumed, not derived: no citation (http(s) url and section or page)."
   },
   "ruleset": {
     "id": "inps/sick-pay-rates",
@@ -34,7 +34,7 @@
     "published_at": "2026-10-04",
     "source": "D.L. 30 dicembre 1979 n. 663, artt. 1-2 (conv. L. 29 febbraio 1980 n. 33) for the waiting period and the indemnity; rates, 180-day annual maximum and cover as summarised by Assolombarda, Lavoro a tempo indeterminato - Tutele previdenziali (secondary, read 2026-10-04); not checked against an INPS circular",
     "verification_status": "unverified",
-    "source_hash": "ad48a076506fa77ad8bf516a114fed11487d1b85db11393c30343009bf7a388e",
+    "source_hash": "91fb02bcc01e5fc6555ea979a177616dd9655b0b4f3b643b1b40f00832b223cf",
     "source_type": "contracting_party"
   },
   "annual_max_days": 180,

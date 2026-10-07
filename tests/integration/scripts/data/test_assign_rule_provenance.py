@@ -8,6 +8,10 @@ import pytest
 
 from scripts.data.assign_rule_provenance import ccnl_status, migrate_ccnl
 
+_CITED = {
+    "source_document": {"url": "https://www.cnel.it/ccnl"},
+    "section": "Art. 1",
+}
 _REVIEWED = {
     "verification_status": "verified",
     "verified_by": "reviewer",
@@ -27,13 +31,18 @@ _REVIEWED = {
 )
 def test_status_follows_the_extraction(extraction: dict[str, str], status: str) -> None:
     """Verified needs a named reviewer and a date; AI without them is assumed."""
-    record = {"location": {"section": "Art. 1"}, "extraction": extraction}
+    record = {"location": _CITED, "extraction": extraction}
     assert ccnl_status(record) == status
 
 
-def test_record_without_location_is_assumed() -> None:
-    """A value whose clause is not located cannot be derived."""
-    assert ccnl_status({"extraction": {"method": "manual"}}) == "assumed"
+@pytest.mark.parametrize(
+    "location",
+    [None, {"section": "Art. 1"}, {**_CITED, "section": None}],
+)
+def test_record_without_citation_is_assumed(location: object) -> None:
+    """A value without a url and a located clause cannot be derived."""
+    record = {"location": location, "extraction": {"method": "manual"}}
+    assert ccnl_status(record) == "assumed"
 
 
 def test_migration_keeps_statuses_and_fills_extra_months() -> None:

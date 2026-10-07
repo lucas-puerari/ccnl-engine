@@ -117,3 +117,33 @@ def test_nested_tfr_deduction_is_a_payable_rule() -> None:
 def test_tax_file_without_tfr_has_no_nested_rule() -> None:
     """A missing parent block yields neither the block nor its child."""
     assert list(fiscal_rules("tax/data/2026-industria.json", {})) == []
+
+
+def test_every_nested_record_of_a_block_is_a_rule() -> None:
+    """Sub-blocks with a record are found at any depth, without a key list."""
+    tax = {
+        "work_deduction": {
+            "provenance": _RECORD,
+            "brackets": [{"provenance": _RECORD}],
+            "minimum": {
+                "open_ended": "690",
+                "provenance": {"status": "assumed"},
+                "detail": {"provenance": _RECORD},
+            },
+            "plain": {"value": "1"},
+        }
+    }
+    employee_additional = {"provenance": _RECORD}
+    inps = {"inps": {"provenance": _RECORD, "employee_additional": employee_additional}}
+    found = [
+        *fiscal_rules("tax/data/2026-industria.json", tax),
+        *fiscal_rules("inps/data/2026-industria.json", inps),
+    ]
+    both = ("inps_employee", "inps_employer")
+    assert [(r.path, r.capabilities, r.status) for r in found] == [
+        ("work_deduction", ("irpef",), "derived"),
+        ("work_deduction.minimum", ("irpef",), "assumed"),
+        ("work_deduction.minimum.detail", ("irpef",), "derived"),
+        ("inps", both, "derived"),
+        ("inps.employee_additional", both, "derived"),
+    ]
