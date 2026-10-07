@@ -21,6 +21,10 @@ Implemented invariants:
         EMPLOYER_CONTRIBUTIONS entry is ``>= 0``, and so is every entry of
         the three PENSION_FUND accounts; a correction of past
         contributions is a distinct movement, not a negative contribution.
+        The one exception is the conguaglio of the additional 1% IVS
+        (INPS msg. 5327/2015 par. 2.3): a credit to the worker can exceed
+        the contributions of the run, so an EMPLOYEE_CONTRIBUTIONS entry
+        may go down to the credit of the settlement component and no lower.
     net_pay_non_negative: ``period_net >= 0``.  A run whose unpaid absences
         leave less pay than the withholdings due is rejected as invalid
         input before reconciliation, so a negative net reaching this check
@@ -37,6 +41,7 @@ from ccnl_engine.payroll.application.invariants._types import (
     ReconciliationViolation,
 )
 from ccnl_engine.payroll.domain.ledger import AccountKind
+from ccnl_engine.payroll.service.additional_ivs import SETTLEMENT_COMPONENT
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.period import PeriodResult
@@ -75,6 +80,26 @@ _NON_NEGATIVE_ACCOUNTS: tuple[tuple[AccountKind, InvariantCode], ...] = (
 )
 
 
+def _floor(result: PeriodResult, account: AccountKind) -> Decimal:
+    """Return the lowest amount an entry of ``account`` may post.
+
+    Returns:
+        The credit of the additional 1% IVS conguaglio for the employee
+        contributions, when the run settles one; zero otherwise.
+    """
+    if account is not AccountKind.EMPLOYEE_CONTRIBUTIONS:
+        return _ZERO
+    settled = sum(
+        (
+            c.amount
+            for c in result.contribution_breakdown.components
+            if c.name == SETTLEMENT_COMPONENT
+        ),
+        _ZERO,
+    )
+    return min(_ZERO, settled)
+
+
 def check_account_non_negative(
     result: PeriodResult,
     account: AccountKind,
@@ -82,9 +107,13 @@ def check_account_non_negative(
 ) -> list[ReconciliationViolation]:
     """Check that every entry of ``account`` has a non-negative amount.
 
+    An employee contribution entry may be as low as the credit of the
+    additional 1% IVS conguaglio of the run.
+
     Returns:
-        One violation, coded ``code``, per entry posting a negative amount.
+        One violation, coded ``code``, per entry posting less than allowed.
     """
+    floor = _floor(result, account)
     return [
         ReconciliationViolation(
             invariant_id=code,
@@ -92,11 +121,11 @@ def check_account_non_negative(
                 f"LedgerEntry '{e.pay_item_id}' posts a negative amount "
                 f"{e.amount} to {account.value}"
             ),
-            expected=_ZERO,
+            expected=floor,
             actual=e.amount,
         )
         for e in result.ledger_entries
-        if e.account == account and e.amount < _ZERO
+        if e.account == account and e.amount < floor
     ]
 
 

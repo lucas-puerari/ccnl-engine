@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application._period_utils import _ZERO
@@ -22,12 +22,17 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
 
 
-def _ordinary_breakdown(inp: _AmountsInput, base: Decimal) -> ContributionBreakdown:
+def _ordinary_breakdown(
+    inp: _AmountsInput, base: Decimal, *, settles: bool
+) -> ContributionBreakdown:
     """Return the ordinary INPS breakdown of ``base`` for the run.
 
     Returns:
-        The breakdown with the YTD INPS base and the IVS ceiling of the run.
+        The breakdown with the YTD INPS base, the IVS ceiling and the
+        additional 1% IVS position of the run; without its settlement
+        unless ``settles``.
     """
+    position = inp.additional_ivs
     return resolve_contributions(
         base,
         inp.rules,
@@ -35,6 +40,7 @@ def _ordinary_breakdown(inp: _AmountsInput, base: Decimal) -> ContributionBreakd
         inp.category,
         ytd_inps_base=inp.ytd_inps_base,
         ivs_ceiling_applies=inp.ivs_ceiling_applies,
+        additional=replace(position, settles=position.settles and settles),
     )
 
 
@@ -50,7 +56,7 @@ def run_contributions(inp: _AmountsInput) -> tuple[ContributionBreakdown, Decima
     """
     period_inps_base = inp.monthly_gross + inp.event_inps_base
     if inp.rules.inps is not None:
-        breakdown = _ordinary_breakdown(inp, period_inps_base)
+        breakdown = _ordinary_breakdown(inp, period_inps_base, settles=True)
         rates = resolve_rates(inp.rules, inp.contract_type, inp.category)
         return breakdown, rates.employee_rate
     breakdown = compute_domestic_breakdown(
@@ -66,6 +72,8 @@ def run_contributions(inp: _AmountsInput) -> tuple[ContributionBreakdown, Decima
 def recurring_employee_inps(inp: _AmountsInput, inps_employee: Decimal) -> Decimal:
     """Return the employee INPS of the recurring pay of the run alone.
 
+    The conguaglio of the additional 1% IVS is left to the one-off pay.
+
     Returns:
         ``inps_employee`` for domestic CCNLs, else the employee INPS of the
         monthly gross without the events.
@@ -73,7 +81,7 @@ def recurring_employee_inps(inp: _AmountsInput, inps_employee: Decimal) -> Decim
     return (
         inps_employee
         if inp.rules.inps is None
-        else _ordinary_breakdown(inp, inp.monthly_gross).employee
+        else _ordinary_breakdown(inp, inp.monthly_gross, settles=False).employee
     )
 
 

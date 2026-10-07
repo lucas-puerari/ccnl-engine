@@ -3,8 +3,9 @@
 The expected values come from
 :mod:`tests.fixtures.normative_oracles.contributions_2026`, written from the
 sources; every other fact of the runs is explicit
-(:mod:`tests.fixtures.explicit_facts`).  None of the three rules holds
-today and each test is a strict xfail on the assertion it breaks.
+(:mod:`tests.fixtures.explicit_facts`).  The floor and the NASpI
+exclusion do not hold today: each is a strict xfail on the assertion it
+breaks.
 """
 
 from __future__ import annotations
@@ -49,23 +50,14 @@ def _inps_base(result: PeriodResult) -> Decimal:
     return base
 
 
-@pytest.mark.xfail(
-    strict=True,
-    raises=AssertionError,
-    reason=(
-        "the additional 1% IVS (D.L. 384/1992 art. 3-ter) is charged only "
-        "once the year-to-date base passes 56,224 EUR; INPS circolare 6/2026 "
-        "section 5 requires the monthly threshold of 4,685 EUR "
-        "(mensilizzazione) with a conguaglio at year end"
-    ),
-)
 def test_additional_ivs_uses_the_monthly_threshold() -> None:
     """Metalmeccanico C3 hired 1 June 2026, June pay plus a 10,000 EUR bonus.
 
     Gross 2,211.43 + 10,000 = 12,211.43.  Employee INPS: 9.49% of it,
     1,158.8647, plus 1% of 12,211.43 - 4,685 = 7,526.43, that is 75.2643:
     1,234.13 within the cents that rounding each component apart moves.
-    The run without the additional rate posts about 1,158.86.
+    The year-to-date base stays far below 56,224 EUR: the monthly threshold
+    alone charges the 1% (circolare 6/2026 section 5, mensilizzazione).
     """
     employment = replace(
         CONCIA_D2,

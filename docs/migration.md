@@ -4,6 +4,22 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Additional 1% IVS charged month by month and settled in December
+
+The additional 1% IVS of D.L. 384/1992 art. 3-ter was charged only once the
+year-to-date INPS base passed the annual band. It is now charged each month
+on the pay of the month above the monthly threshold and settled on the year
+in December, in the month the employment ends and on a termination run
+(INPS circ. 6/2026 par. 5; msg. 5327/2015 par. 2.3). Amounts change: a
+month above EUR 4,685 pays the 1% even early in the year, a month below it
+pays none even past EUR 56,224, and December settles the difference.
+
+| Before | After |
+|---|---|
+| `InpsRates.employee_additional_rate`, `employee_additional_threshold` (and the same keys in the INPS data files) | `InpsRates.employee_additional`, an `AdditionalIvsRule` with `rate`, `annual_threshold`, `monthly_threshold` and `provenance` |
+| Component `addizionale_1pct` on the excess of the YTD base | `addizionale_1pct` on the excess of the month; `addizionale_1pct_conguaglio` on the settling runs, negative for a credit |
+| `InpsBaseYtd(year, own, other_employers)` | Also `additional_ivs`, `other_employers_additional_ivs`, `month`, `month_base`; `plus(amount, month, additional_ivs)` |
+
 ## Minimum of the art. 13 deduction
 
 Up to €15,000 of income the art. 13 TUIR deduction is at least €690, or

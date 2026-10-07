@@ -138,6 +138,22 @@ FACT_DEFAULTS: Mapping[str, FieldDefault] = {
         "no other employer: the IVS massimale and the 1% threshold count this "
         "employment only",
     ),
+    "InpsBaseYtd.additional_ivs": absence_is_fact(
+        "this employment withheld no additional 1% IVS in the competence year"
+    ),
+    "InpsBaseYtd.other_employers_additional_ivs": requires_fact(
+        "inps_employee",
+        "opening_balances.inps_bases.other_employers_additional_ivs",
+        _PENDING,
+        "the other employers withheld no additional 1% IVS: the conguaglio "
+        "charges the 1% on their base again",
+    ),
+    "InpsBaseYtd.month": absence_is_fact(
+        "no run of this employment in the competence year"
+    ),
+    "InpsBaseYtd.month_base": absence_is_fact(
+        "no INPS base of this employment in the latest month"
+    ),
     "OpeningBalances.payments": _IMPORTED_LIST,
     "OpeningBalances.competence_runs": _IMPORTED_LIST,
     "OpeningBalances.inps_bases": requires_fact(

@@ -6,13 +6,14 @@ Sources, written by hand and not read from the engine:
 - gross of the run: minimo C3 from June 2026, 2,211.43
   (``tests.fixtures.normative_oracles.payslips.metalmeccanico_c3_2026``);
 - employee INPS 9.49%, of which IVS 9.19% and CIGS 0.30%; employer IVS
-  23.81%; 1% addizionale above 56,224 within the massimale;
+  23.81%; 1% addizionale on the pay of the month above 4,685.00 (INPS
+  circ. 6/2026 par. 5, mensilizzazione), whatever the YTD base: June is a
+  regular month, not a conguaglio, and 2,211.43 is below it;
 - massimale 2026: 122,295.00 (INPS, L. 335/1995 art. 2 c. 18).
 
-Employee INPS of the full month uncapped, YTD above 56,224:
+Employee INPS of the full month uncapped:
 IVS 2,211.43 x 0.0919 = 203.230417 -> 203.23; CIGS 2,211.43 x 0.0030 =
-6.63429 -> 6.63; addizionale 2,211.43 x 0.01 = 22.1143 -> 22.11;
-total 231.97.
+6.63429 -> 6.63; no addizionale; total 209.86.
 """
 
 from __future__ import annotations
@@ -43,7 +44,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.period import PeriodResult
 
 _CEILING = Decimal("122295.00")
-_UNCAPPED_EMPLOYEE = Decimal("231.97")
+_UNCAPPED_EMPLOYEE = Decimal("209.86")
 _POST_1995 = ContributionHistory(first_enrolled_on=date(2001, 9, 1))
 _PRE_1996 = ContributionHistory(first_enrolled_on=date(1990, 3, 1))
 _OPTED_IN = ContributionHistory(
@@ -118,8 +119,8 @@ def test_missing_history_around_the_massimale(offset: str, *, missing: bool) -> 
 def test_missing_history_beyond_the_massimale_lists_both_branches() -> None:
     """YTD 130,000 is past the massimale: the two branches differ.
 
-    Capped: no IVS and no addizionale, employee CIGS 6.63 only; employer
-    IVS 0.  Uncapped: employee 231.97; employer IVS 2,211.43 x 0.2381 =
+    Capped: no IVS, employee CIGS 6.63 only; employer IVS 0.  Uncapped:
+    employee 209.86; employer IVS 2,211.43 x 0.2381 =
     526.541483 -> 526.54 more than capped.
     """
     result = _june(Decimal("130000.00"), None)
@@ -139,7 +140,7 @@ def test_missing_history_beyond_the_massimale_lists_both_branches() -> None:
 @pytest.mark.parametrize(
     ("history", "reason", "employee"),
     [
-        pytest.param(_PRE_1996, "enrolled_before_1996", "231.97", id="pre-1996"),
+        pytest.param(_PRE_1996, "enrolled_before_1996", "209.86", id="pre-1996"),
         pytest.param(_POST_1995, "first_enrolment_after_1995", "6.63", id="post-1995"),
         pytest.param(_OPTED_IN, "contributory_option", "6.63", id="opt-in"),
     ],

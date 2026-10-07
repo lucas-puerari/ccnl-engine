@@ -7,6 +7,7 @@ from typing import TYPE_CHECKING
 from unittest.mock import patch
 
 import pytest
+from pydantic import ValidationError
 
 from ccnl_engine.contract.domain.identity import TaxSector
 from ccnl_engine.shared.domain.errors import DataIntegrityError, UnsupportedTaxYearError
@@ -163,10 +164,10 @@ _BAD_TAX_RAW = {
 
 
 class TestResolveInpsAdditionalValidation:
-    """_resolve_inps rejects partial additional-rate configuration."""
+    """The loader rejects an additional 1% IVS block that cannot hold."""
 
-    def test_rate_without_threshold_raises(self) -> None:
-        """Only employee_additional_rate set (threshold absent) raises ValueError."""
+    def test_monthly_threshold_above_the_annual_raises(self) -> None:
+        """A monthly threshold above the annual one fails at load time."""
         bad_inps = {
             "employee_tiers": [
                 {"max_employees": None, "rate": "0.0949", "ivs_rate": "0.0949"}
@@ -175,7 +176,11 @@ class TestResolveInpsAdditionalValidation:
                 {"max_employees": None, "rate": "0.3050", "ivs_rate": "0.2381"}
             ],
             "ceiling": "122295.00",
-            "employee_additional_rate": "0.01",
+            "employee_additional": {
+                "rate": "0.01",
+                "annual_threshold": "4685.00",
+                "monthly_threshold": "56224.00",
+            },
         }
         bad_inps_raw = {
             "year": 2026,
@@ -193,9 +198,7 @@ class TestResolveInpsAdditionalValidation:
                 "ccnl_engine.tax.service.tax_annual_assembler.read_inps_rules_raw",
                 return_value=bad_inps_raw,
             ),
-            pytest.raises(
-                DataIntegrityError, match="must both be set or both be absent"
-            ),
+            pytest.raises(ValidationError, match="must not exceed"),
         ):
             load_year_rules(2026, TaxSector.INDUSTRIA, 100)
         _load_year_rules_cached.cache_clear()

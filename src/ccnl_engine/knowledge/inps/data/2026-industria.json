@@ -32,8 +32,26 @@
       }
     ],
     "ceiling": "122295.00",
-    "employee_additional_rate": "0.01",
-    "employee_additional_threshold": "56224.00",
+    "employee_additional": {
+      "rate": "0.01",
+      "annual_threshold": "56224.00",
+      "monthly_threshold": "4685.00",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "inps-circolare-6-2026",
+            "title": "INPS Circolare n. 6 del 30 gennaio 2026",
+            "kind": "inps_circolare",
+            "url": "https://www.inps.it/it/it/inps-comunica/atti/circolari-messaggi-e-normativa/dettaglio.circolari-e-messaggi.2026.01.circolare-numero-6-del-30-01-2026_15151.html"
+          },
+          "section": "par. 5, Quota di retribuzione soggetta all'aliquota aggiuntiva dell'1%",
+          "quote": "Posto che la prima fascia di retribuzione pensionabile è stata determinata, per l'anno 2026, in 56.224,00 euro, l'aliquota aggiuntiva dell'1% deve essere applicata sulla quota di retribuzione eccedente il predetto tetto retributivo che, rapportato a dodici mesi, è pari a 4.685,00 euro. Si rammenta, infatti, che ai fini del versamento del contributo aggiuntivo in questione deve essere osservato il criterio della mensilizzazione."
+        },
+        "transformation": "rate: the 1% of art. 3-ter D.L. 384/1992; annual_threshold: the 'Prima fascia di retribuzione pensionabile annua' of the par. 5 table; monthly_threshold: its 'Importo mensilizzato', 4,685.00 as published (56,224 / 12 = 4,685.33 is not used).",
+        "note": "Mensilizzazione as INPS applies it: each month the 1% is charged on the pay of the month above the monthly threshold, without regard to the annual threshold, and settled on the annual pay at year end or in the month the employment ends. Circ. INPS 7/2010 par. 3 (https://servizi2.inps.it/CircolariZIP/Circolare%20numero%207%20del%2015-01-2010.pdf, sha256 33134c1e8cb884b6341c87d81dabe31a97938e84b99bbd0d262c5eb75a77d900): 'le aziende aventi alle proprie dipendenze lavoratori che, nel mese in cui si riferisce la denuncia, abbiano superato la retribuzione imponibile di € 3.506,00, hanno già versato sulla parte eccedente detto importo il contributo dell'1%'. Msg. INPS 5327/2015 par. 2.1 and 2.3 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%205327%20del%2014-08-2015.pdf, sha256 76fd73b0bb4b1eea71b38b706aae7faa4055c1b54d5b3cdb7e1eb714e4c9c5c3): 'l'applicazione dell'1% avviene senza tenere conto del superamento del tetto minimo su base annua, ma al superamento del medesimo tetto minimo rapportato su base mensile'; the conguaglio is made with the denuncia of December (or January) and, on an earlier termination, 'con la denuncia relativa al mese nel corso del quale è cessato il rapporto di lavoro'. Circ. 6/2026 par. 6: 'Il massimale opera anche ai fini dell'aliquota aggiuntiva dell'1%'. Circ. 6/2026 read on 2026-10-07 in the copy attached to circolare 23/26 of Ascom Bologna (https://ascom.bo.it/wp-content/uploads/2026/02/Allegato-1-CIRCO-23-26_Circolare-INPS-n.-6-del-30-01-2026.pdf, sha256 ec8fce75b98095d5b7de3d7ba725a403e1c487e1c75512567066650b88118992): the INPS page loads its text by script. Circ. INPS 156/2025 par. 5, read in a third-party copy (https://www.fiscoetasse.com/files/21068/circolare-numero-156-del-30-12-2025.pdf), repeats the mensilizzazione and the conguaglio 'a fine anno (o nel mese in cui si risolve il rapporto di lavoro)'. Not checked by a named reviewer."
+      }
+    },
     "provenance": {
       "status": "derived",
       "location": {
@@ -79,7 +97,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "da7e2069fa1616c708bb4ae64c7b47562c1a773aac59e7c6b7430e9ad963b291",
+    "source_hash": "c9303a86732c70d5e6fdd2df552f2647fbd0dce51a55b7f4678293281e4bf47e",
     "source_type": "estimated"
   }
 }

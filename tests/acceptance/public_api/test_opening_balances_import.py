@@ -10,16 +10,23 @@ Hand computation, Metalmeccanico C3 of September 2026 (gross 2,211.43, the
 minimo of the fixture ``metalmeccanico_c3_2026``), industrial employer with
 50 employees, worker first enrolled in 2001 (the massimale applies), INPS
 2026 bundle rules: massimale 122,295.00, employee IVS 9.19%, other employee
-rate 0.30%, additional 1% above 56,224.00 up to the massimale.
+rate 0.30%, additional 1% on the pay of the month above 4,685.00 within
+the massimale, settled in December on the pay of the year above 56,224.00
+(INPS circ. 6/2026 par. 5 and 6; msg. 5327/2015 par. 2.3).
 
 - Base of the earlier employer: 121,000.00; headroom 1,295.00.
 - IVS employee: 1,295.00 x 9.19% = 119.0105 -> 119.01.
 - Other employee rate: 2,211.43 x 0.30% = 6.63429 -> 6.63.
-- Additional 1%: (122,295.00 - 56,224.00) - (121,000.00 - 56,224.00) =
-  1,295.00 x 1% = 12.95.
-- Employee INPS: 119.01 + 6.63 + 12.95 = 138.59.
+- Additional 1%: the base of September within the massimale, 1,295.00, is
+  below 4,685.00: none.
+- Employee INPS: 119.01 + 6.63 = 125.64.
 
 Without the import the same run pays 2,211.43 x 9.49% = 209.86.
+
+The same run in December settles the 1% of the year: 122,295.00 -
+56,224.00 = 66,071.00, x 1% = 660.71, less the 600.00 the earlier employer
+certifies it withheld: 60.71.  Employee INPS: 119.01 + 6.63 + 60.71 =
+186.35.
 """
 
 from __future__ import annotations
@@ -103,12 +110,41 @@ class TestInpsBaseOfOtherEmployers:
         assert _employee_components(result) == {
             "ivs_employee": Decimal("119.01"),
             "non_ivs_employee": Decimal("6.63"),
-            "addizionale_1pct": Decimal("12.95"),
         }
-        assert result.contribution_breakdown.employee == Decimal("138.59")
+        assert result.contribution_breakdown.employee == Decimal("125.64")
         base = result.closing_state.accrual.inps_base(2026)
         assert base.own == C3_MINIMUM_FROM_JUNE_2026
         assert base.other_employers == Decimal("121000.00")
+
+    def test_december_deducts_the_1pct_the_earlier_employer_withheld(self) -> None:
+        """December settles 660.71 less the 600.00 certified: 60.71."""
+        imported = _imported(
+            InpsBaseYtd(
+                2026,
+                other_employers=Decimal("121000.00"),
+                other_employers_additional_ivs=Decimal("600.00"),
+            )
+        )
+        result = _ENGINE.calculate_period(
+            PeriodInput(
+                run=PayrollRun.regular(2026, 12),
+                payment_date=date(2026, 12, 28),
+                employment=_C3,
+                employer=_EMPLOYER,
+                opening_state=imported,
+            )
+        )
+
+        assert result.period_gross == C3_MINIMUM_FROM_JUNE_2026
+        assert _employee_components(result) == {
+            "ivs_employee": Decimal("119.01"),
+            "non_ivs_employee": Decimal("6.63"),
+            "addizionale_1pct_conguaglio": Decimal("60.71"),
+        }
+        assert result.contribution_breakdown.employee == Decimal("186.35")
+        base = result.closing_state.accrual.inps_base(2026)
+        assert base.additional_ivs == Decimal("60.71")
+        assert base.additional_ivs_withheld == Decimal("660.71")
 
     def test_other_employers_count_as_this_employer_would(self) -> None:
         """Differential: the same base held by this employer gives the same run."""

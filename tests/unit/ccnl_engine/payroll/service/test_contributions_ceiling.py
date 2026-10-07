@@ -8,7 +8,8 @@ from ccnl_engine.payroll.domain.contributions import (
 from ccnl_engine.payroll.domain.employment import (
     Permanent,
 )
-from ccnl_engine.payroll.domain.rounding import money
+from ccnl_engine.payroll.service.additional_ivs import AdditionalIvsPosition
+from ccnl_engine.payroll.service.contributions import resolve_contributions
 from ccnl_engine.tax.domain.ruleset import YearRules
 from tests.fixtures.contribution_rules import first_run_contributions, inps_year_rules
 from tests.helpers import make_year_rules
@@ -17,8 +18,20 @@ _D = Decimal
 _ZERO = Decimal(0)
 
 
+#: INPS circ. 6/2026 par. 5: 1%, 56,224.00 a year, 4,685.00 a month.
+_ADDITIONAL = {
+    "rate": "0.01",
+    "annual_threshold": "56224.00",
+    "monthly_threshold": "4685.00",
+}
+
+
 class TestAddizionale1Pct:
-    """resolve_contributions: 1% addizionale INPS (INPS circ. 4/2026)."""
+    """resolve_contributions wires the additional 1% IVS (circ. 6/2026 par. 5).
+
+    The arithmetic of the rule is tested in ``test_additional_ivs``; here
+    the component reaches the breakdown and the employee total.
+    """
 
     def _rules_with_additional(self) -> YearRules:
         return make_year_rules(
@@ -28,46 +41,57 @@ class TestAddizionale1Pct:
                 "employer_rate": "0.2898",
                 "employer_ivs_rate": "0.2381",
                 "ceiling": None,
-                "employee_additional_rate": "0.01",
-                "employee_additional_threshold": "56224.00",
+                "employee_additional": _ADDITIONAL,
             }
         )
 
-    def test_addizionale_emitted_on_threshold_crossing(self) -> None:
-        """Component appears when period base crosses the threshold."""
-        rules = self._rules_with_additional()
-        # ytd=56000, period=1000 → ytd_after=57000 → excess_after=776, excess_before=0
+    def test_month_above_the_monthly_threshold(self) -> None:
+        """Period 5,000, YTD 1,000: 5,000 - 4,685 = 315; x 1% = 3.15."""
         bd = first_run_contributions(
-            _D("1000.00"), rules, Permanent(), None, ytd_inps_base=_D("56000.00")
+            _D("5000.00"),
+            self._rules_with_additional(),
+            Permanent(),
+            None,
+            ytd_inps_base=_D("1000.00"),
         )
-        names = {c.name for c in bd.components}
-        assert "addizionale_1pct" in names
         comp = next(c for c in bd.components if c.name == "addizionale_1pct")
-        assert comp.base == _D("776.00")
-        assert comp.amount == money(_D("776.00") * _D("0.01"))
+        assert (comp.base, comp.amount) == (_D("315.00"), _D("3.15"))
+        # 5,000 x 9.19% = 459.50, plus the 3.15.
+        assert bd.employee == _D("462.65")
 
-    def test_addizionale_emitted_when_ytd_already_over_threshold(self) -> None:
-        """Entire period is excess when ytd already past threshold."""
-        rules = self._rules_with_additional()
-        # ytd=60000 > 56224 → excess_before=3776, excess_after=4776 → period_excess=1000
+    def test_month_below_the_monthly_threshold_ignores_the_ytd(self) -> None:
+        """Period 1,000 with YTD 60,000 above 56,224: no component."""
         bd = first_run_contributions(
-            _D("1000.00"), rules, Permanent(), None, ytd_inps_base=_D("60000.00")
+            _D("1000.00"),
+            self._rules_with_additional(),
+            Permanent(),
+            None,
+            ytd_inps_base=_D("60000.00"),
         )
-        comp = next((c for c in bd.components if c.name == "addizionale_1pct"), None)
-        assert comp is not None
-        assert comp.base == _D("1000.00")
+        assert "addizionale_1pct" not in {c.name for c in bd.components}
 
-    def test_addizionale_not_emitted_below_threshold(self) -> None:
-        """No component when cumulative stays below threshold."""
-        rules = self._rules_with_additional()
-        bd = first_run_contributions(
-            _D("1000.00"), rules, Permanent(), None, ytd_inps_base=_D("1000.00")
+    def test_settlement_reaches_the_employee_total(self) -> None:
+        """Settling YTD 60,000 + 1,000 with 40.00 withheld.
+
+        61,000 - 56,224 = 4,776; x 1% = 47.76; less 40.00: 7.76.
+        Employee: 1,000 x 9.19% = 91.90 + 7.76 = 99.66.
+        """
+        bd = resolve_contributions(
+            _D("1000.00"),
+            self._rules_with_additional(),
+            Permanent(),
+            None,
+            ytd_inps_base=_D("60000.00"),
+            ivs_ceiling_applies=True,
+            additional=AdditionalIvsPosition(withheld=_D("40.00"), settles=True),
         )
-        names = {c.name for c in bd.components}
-        assert "addizionale_1pct" not in names
+        comp = bd.components[-1]
+        assert comp.name == "addizionale_1pct_conguaglio"
+        assert (comp.base, comp.amount) == (_D("4776.00"), _D("7.76"))
+        assert bd.employee == _D("99.66")
 
     def test_addizionale_not_emitted_without_rate_configured(self) -> None:
-        """No component when employee_additional_rate is absent from rules."""
+        """No component when the rules carry no additional 1% IVS."""
         rules = make_year_rules(
             inps={
                 "employee_rate": "0.0919",
@@ -78,21 +102,10 @@ class TestAddizionale1Pct:
             }
         )
         bd = first_run_contributions(
-            _D("1000.00"), rules, Permanent(), None, ytd_inps_base=_D("60000.00")
+            _D("9000.00"), rules, Permanent(), None, ytd_inps_base=_D("60000.00")
         )
         names = {c.name for c in bd.components}
         assert "addizionale_1pct" not in names
-
-    def test_addizionale_added_to_employee_total(self) -> None:
-        """Employee total includes the addizionale amount."""
-        rules = self._rules_with_additional()
-        bd_without = first_run_contributions(
-            _D("1000.00"), rules, Permanent(), None, ytd_inps_base=_D("1000.00")
-        )
-        bd_with = first_run_contributions(
-            _D("1000.00"), rules, Permanent(), None, ytd_inps_base=_D("60000.00")
-        )
-        assert bd_with.employee > bd_without.employee
 
 
 def _ivs_bases(breakdown: ContributionBreakdown) -> tuple[Decimal, Decimal]:

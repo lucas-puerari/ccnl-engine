@@ -71,6 +71,8 @@ class RunOutcome:
         shortfall: IRPEF and surtax not yet withheld after the run.
         deferred: IRPEF of conguagli deferred on written request, still to
             withhold after the run.
+        additional_ivs: Additional 1% IVS the run withheld, negative when
+            its conguaglio gave some back.
     """
 
     tax_year: int
@@ -85,6 +87,7 @@ class RunOutcome:
     carried: tuple[RecoveryObligation, ...]
     shortfall: WithholdingShortfall = field(default_factory=WithholdingShortfall)
     deferred: tuple[DeferredShortfall, ...] = ()
+    additional_ivs: Decimal = _ZERO
 
 
 def closing_state(opening: PeriodState, outcome: RunOutcome) -> PeriodState:
@@ -144,6 +147,7 @@ def _advance(opening: PeriodState, outcome: RunOutcome) -> PeriodState:
             outcome.payment.run_id,
             outcome.period_inps_base,
             outcome.events.sickness_episodes,
+            outcome.additional_ivs,
         ),
         cash=_closing_cash(opening.cash, outcome, obligations),
     )
