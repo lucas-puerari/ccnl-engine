@@ -204,6 +204,50 @@ class TestCompetence:
         assert accrual.inps_base(2027).total == 0
         assert accrual.regular_months(2026) == 12
 
+    def test_late_december_gives_back_the_1pct_of_its_own_year(self) -> None:
+        """December 2026 paid in 2027 settles the 1% of 2026 as a credit.
+
+        30,000.00 imported plus December is far below 56,224.00 (Commercio
+        level 4 pays under 4,685.00 a month): nothing is due on 2026, so the
+        300.00 withheld on it comes back on the late December
+        (msg. INPS 5327/2015 par. 2.3).  The credit exceeds the employee
+        INPS of the run, which is the first payment of tax year 2027.
+        """
+        engine = PayrollEngine(repository=NextYearRepository())
+        earlier = tuple(
+            PayrollRunId.parse(f"2026-{m:02d}-regular") for m in range(1, 12)
+        )
+        opening = engine.import_opening_balances(
+            OpeningBalances(
+                tax_year=2027,
+                competence_runs=earlier,
+                inps_bases=(
+                    InpsBaseYtd(
+                        2026,
+                        own=Decimal("30000.00"),
+                        additional_ivs=Decimal("300.00"),
+                    ),
+                ),
+            )
+        )
+
+        result = engine.calculate_period(
+            PeriodInput(
+                run=PayrollRun.regular(2026, 12),
+                payment_date=date(2027, 1, 13),
+                employment=Employment(
+                    ccnl_slug="commercio-confcommercio.json", level_code="4"
+                ),
+                employer=_EMPLOYER,
+                opening_state=opening,
+            )
+        )
+
+        components = _employee_components(result)
+        assert components["addizionale_1pct_conguaglio"] == Decimal("-300.00")
+        assert result.contribution_breakdown.employee < 0
+        assert result.closing_state.accrual.inps_base(2026).additional_ivs == 0
+
     def test_imported_competence_run_is_not_paid_again(self) -> None:
         """A run closed in an earlier tax year is rejected in the next one."""
         november = PayrollRunId.parse("2026-11-regular")

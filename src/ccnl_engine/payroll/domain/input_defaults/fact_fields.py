@@ -149,10 +149,10 @@ FACT_DEFAULTS: Mapping[str, FieldDefault] = {
         "charges the 1% on their base again",
     ),
     "InpsBaseYtd.month": absence_is_fact(
-        "no run of this employment in the competence year"
+        "the next run is the first of this employment in its competence month"
     ),
     "InpsBaseYtd.month_base": absence_is_fact(
-        "no INPS base of this employment in the latest month"
+        "the next run is the first of this employment in its competence month"
     ),
     "OpeningBalances.payments": _IMPORTED_LIST,
     "OpeningBalances.competence_runs": _IMPORTED_LIST,

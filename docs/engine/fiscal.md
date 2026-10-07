@@ -377,7 +377,10 @@ when it applies. INPS applies it by the *mensilizzazione* (INPS circ.
 6/2026 par. 5, circ. 7/2010 par. 3, msg. 5327/2015 par. 2.1): each month
 the 1% is charged on the INPS base of the month above the band "rapportato
 a dodici mesi" (EUR 4,685 for 2026), whatever the base of the year. The
-runs of one competence month share its threshold. The rule, with both
+runs of one competence month share its threshold; the state keeps the base
+of the latest month only, so an adjustment run of an earlier month and a
+later run of the current one each count from zero, a difference the
+settlement corrects. The rule, with both
 thresholds as INPS publishes them, is the `employee_additional` block of
 the INPS rules of the year.
 
