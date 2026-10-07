@@ -170,7 +170,10 @@ pay ratei inside regular runs. The effective calendar and the override are
 returned on the year result as `calendar` and `calendar_override`.
 
 Every run is paid on `payment_day` of its own month, 28 by default; any day
-from 1 to 28 is accepted, another raises `InvalidInputError`.
+from 1 to 28 is accepted, another raises `InvalidInputError`. A
+quattordicesima whose day the CCNL fixes (`parameters.fourteenth_payment_day`)
+is paid on that day unless the plan overrides the calendar: the Commercio
+quattordicesima of June is paid on 1 July (CCNL Terziario art. 221).
 `payment_dates` names the date of a run, keyed like `periods`: an employer
 that pays in arrears pays each month on the 10th of the next one and may pay
 the extra months before the salary of their month. A date before the first

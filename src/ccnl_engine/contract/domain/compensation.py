@@ -150,11 +150,40 @@ class ExtraMonthAccrualRule(BaseModel):
         return self
 
 
+class PaymentDay(BaseModel):
+    """Calendar day on which the CCNL pays an extra month.
+
+    Attributes:
+        month: Month of the payment, 1-12.
+        day: Day of the month, 1-28 so that every month has it.
+        provenance: Source of the clause; ``missing`` is not allowed, a
+            day without a source is left out of the data instead.
+
+    Raises:
+        ValueError: When the provenance is ``missing``.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    month: int = Field(ge=1, le=12)
+    day: int = Field(ge=1, le=28)
+    provenance: RuleProvenance
+
+    @model_validator(mode="after")
+    def _check_source(self) -> Self:
+        if self.provenance.status is ProvenanceStatus.MISSING:
+            msg = "a stored payment day needs a source; omit it when missing"
+            raise ValueError(msg)
+        return self
+
+
 class CCNLParameters(BaseModel):
     """Contract-wide parameters.
 
     ``accrual_rule`` is the CCNL threshold for counting a month of an
     extra-month window, ``None`` when the bundle has no sourced clause.
+    ``fourteenth_payment_day`` is the day the CCNL pays the quattordicesima,
+    ``None`` when the bundle has no sourced clause.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -164,6 +193,7 @@ class CCNLParameters(BaseModel):
     seniority_increments: SeniorityIncrements
     employer_funds: tuple[EmployerFund, ...] = Field(default=())
     accrual_rule: ExtraMonthAccrualRule | None = None
+    fourteenth_payment_day: PaymentDay | None = None
 
     @model_validator(mode="after")
     def _check_positive_params(self) -> Self:

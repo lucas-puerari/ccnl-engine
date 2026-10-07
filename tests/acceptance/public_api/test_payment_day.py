@@ -8,6 +8,7 @@ import pytest
 
 from ccnl_engine import (
     CompetenceYearPlan,
+    CompetenceYearResult,
     EmployerProfile,
     Employment,
     Headcount,
@@ -20,13 +21,27 @@ _EMPLOYMENT = Employment(ccnl_slug="commercio-confcommercio.json", level_code="4
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
 
 
+_FOURTEENTH = "2026-06-fourteenth"
+
+
+def _dates(year: CompetenceYearResult) -> dict[str, date]:
+    return {r.run.run_id: r.payment_date for r in year.period_results if r.run}
+
+
 def test_runs_are_paid_on_the_28th_by_default() -> None:
-    """Without a payment day every run is paid on the 28th of its month."""
+    """Without a payment day every run is paid on the 28th of its month.
+
+    Except the quattordicesima: the CCNL Terziario (Testo Unico 30 July 2019,
+    art. 221) pays it "il 1° luglio di ogni anno", for the window ending on
+    30 June, so the June quattordicesima is paid on 1 July.
+    """
     year = _ENGINE.calculate_competence_year(
         CompetenceYearPlan(year=2026, employment=_EMPLOYMENT, employer=_EMPLOYER)
     )
+    dates = _dates(year)
 
-    assert {r.payment_date.day for r in year.period_results} == {28}
+    assert dates.pop(_FOURTEENTH) == date(2026, 7, 1)
+    assert {paid_on.day for paid_on in dates.values()} == {28}
 
 
 def test_payment_day_moves_every_run_and_keeps_the_tax_year() -> None:
@@ -36,11 +51,26 @@ def test_payment_day_moves_every_run_and_keeps_the_tax_year() -> None:
             year=2026, employment=_EMPLOYMENT, employer=_EMPLOYER, payment_day=10
         )
     )
+    dates = _dates(year)
 
-    first = year.period_results[0]
-    assert first.payment_date == date(2026, 1, 10)
-    assert {r.payment_date.day for r in year.period_results} == {10}
+    assert dates["2026-01-regular"] == date(2026, 1, 10)
+    assert dates.pop(_FOURTEENTH) == date(2026, 7, 1)
+    assert {paid_on.day for paid_on in dates.values()} == {10}
     assert {r.closing_state.tax_year for r in year.period_results} == {2026}
+
+
+def test_payment_date_of_the_plan_wins_over_the_ccnl_day() -> None:
+    """A date the plan names for the quattordicesima replaces 1 July."""
+    year = _ENGINE.calculate_competence_year(
+        CompetenceYearPlan(
+            year=2026,
+            employment=_EMPLOYMENT,
+            employer=_EMPLOYER,
+            payment_dates={_FOURTEENTH: date(2026, 6, 20)},
+        )
+    )
+
+    assert _dates(year)[_FOURTEENTH] == date(2026, 6, 20)
 
 
 @pytest.mark.parametrize("payment_day", [0, 29])

@@ -67,7 +67,8 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "each run is paid within its own month, so in the tax year of the month"
     ),
     "CompetenceYearPlan.payment_dates": absence_is_fact(
-        "each run is paid on payment_day of its own month"
+        "each run is paid on payment_day of its own month, a quattordicesima "
+        "on the day its CCNL fixes"
     ),
     "CompetenceYearPlan.opening_state": _OPENING_STATE,
     "PayrollRun.sequence": _FIRST_RUN,
