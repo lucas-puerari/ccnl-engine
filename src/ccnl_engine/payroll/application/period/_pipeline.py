@@ -37,6 +37,7 @@ from ccnl_engine.payroll.application.period._pipeline_inputs import (
     amounts_input,
     variable_events,
 )
+from ccnl_engine.payroll.application.period._renewal_minimum import renewal_minimum
 from ccnl_engine.payroll.application.period._run_decisions import contract_decisions
 from ccnl_engine.payroll.application.period._seniority import (
     run_seniority,
@@ -172,8 +173,8 @@ def run_decisions(
 
     Returns:
         The base stage decisions, the extra-month ratei counted, the
-        contract decisions, the pension fund and the TFR revaluation, then
-        those of the
+        contract decisions, the pension fund, the TFR revaluation and the
+        renewal regime on the minimo, then those of the
         events and of the amounts, and last the caller-supplied values of
         the events.
     """
@@ -185,6 +186,7 @@ def run_decisions(
     )
     ivs = run.ivs_ceiling
     ivs_decision = () if ivs is None else (ivs_ceiling_decision(ctx, ivs),)
+    renewal = renewal_minimum(ctx)
     return (
         base_stage_decisions(ctx, totals, run)
         + ivs_decision
@@ -200,6 +202,7 @@ def run_decisions(
         )
         + ((pension,) if pension is not None else ())
         + tfr_revaluation_decisions(ctx)
+        + (() if renewal is None else (renewal.decision,))
         + totals.decisions
         + amounts.decisions
         + caller_supplied_decisions(request.events, contract.ccnl)

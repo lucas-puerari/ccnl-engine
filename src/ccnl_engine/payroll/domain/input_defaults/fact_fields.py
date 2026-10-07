@@ -185,7 +185,8 @@ FACT_DEFAULTS: Mapping[str, FieldDefault] = {
         "prior_year.employment_income",
         _REPORTED,
         "unknown prior-year income: a regime capped on it is undetermined, "
-        "with a blocker",
+        "with a blocker, also for the renewal increments a 2026 minimo may "
+        "carry",
     ),
     "PriorYearTaxFacts.waived_regimes": absence_is_fact(
         "the worker waived no substitute tax regime in writing"

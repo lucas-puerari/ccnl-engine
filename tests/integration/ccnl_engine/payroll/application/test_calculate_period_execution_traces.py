@@ -281,8 +281,9 @@ class TestYearDecisions:
         # Five base stages (pay chain, INPS worker and employer, TFR, IRPEF)
         # and three credits (ulteriore detrazione, trattamento, somma esente),
         # the IVS massimale eligibility, the seniority, the two surtaxes left
-        # undetermined by the residence the plan omits, plus the ratei
+        # undetermined by the residence the plan omits, the renewal regime on
+        # the minimo (a 2024-2026 table, waived by the plan), plus the ratei
         # counted by the tredicesima run and the TFR revaluation of the
         # December run (zero: a worker hired in the year has no fund to
         # revalue).
-        assert len(year.decisions) == 12 * len(runs) + 2
+        assert len(year.decisions) == 13 * len(runs) + 2

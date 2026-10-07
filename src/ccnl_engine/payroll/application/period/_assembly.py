@@ -34,6 +34,7 @@ from ccnl_engine.payroll.application.period._other_employers import (
 from ccnl_engine.payroll.application.period._pension_decision import (
     pension_fund_issue,
 )
+from ccnl_engine.payroll.application.period._renewal_minimum import renewal_minimum
 from ccnl_engine.payroll.application.period._rule_sources import (
     missing_source_issues,
     run_rule_sources,
@@ -175,8 +176,8 @@ def _input_issues(
         and the roles of the employment, the pension fund enrolment, the
         suspension of accrual of the absences, the proration, the minimum
         INPS base, the IVS massimale, the additional 1% IVS, the opening
-        state, the INPS base of other employments and the TFR revaluation,
-        in that order,
+        state, the INPS base of other employments, the TFR revaluation and
+        the renewal regime on the minimo, in that order,
         each only when raised.
     """
     ivs = amounts.ivs_ceiling
@@ -198,7 +199,12 @@ def _input_issues(
         other_employers_issue(ctx, base),
     )
     raised = tuple(issue for issue in issues if issue is not None)
-    return raised + tfr_revaluation_issues(ctx)
+    renewal = renewal_minimum(ctx)
+    return (
+        raised
+        + tfr_revaluation_issues(ctx)
+        + (() if renewal is None else renewal.issues)
+    )
 
 
 def _result(

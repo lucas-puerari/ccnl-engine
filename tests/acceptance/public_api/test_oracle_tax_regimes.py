@@ -32,6 +32,7 @@ from ccnl_engine.results import CalculationStatus
 from tests.fixtures.current_year import employment_only
 from tests.fixtures.dependents import declared_dependent
 from tests.fixtures.imported_surtax import opening_with_2025_surtax
+from tests.fixtures.prior_year import RENEWAL_WAIVED
 from tests.fixtures.seniority import new_hire
 
 engine = PayrollEngine.bundled()
@@ -58,7 +59,8 @@ def test_addizionali_emilia_romagna_modena() -> None:
     acconto (45.00) starts in March, and the 2026 surtax is determined at
     the conguaglio, so 1,777.08 - 40.00 = 1,737.08.  The net without surtax
     is derived in ``test_oracle_period.test_irpef_ordinary_tax_metalmeccanico_c3``:
-    2,158.26 - 204.81 INPS - 176.37 IRPEF.
+    2,158.26 - 204.81 INPS - 176.37 IRPEF.  The renewal regime on the minimo
+    is waived so that the status shows the surtax alone.
     """
     result_no_surtax = engine.calculate_period(
         PeriodInput(
@@ -76,6 +78,7 @@ def test_addizionali_emilia_romagna_modena() -> None:
             employer=EmployerProfile(headcount=Headcount(100)),
             facts=PeriodFacts(regione="IT-45", comune_belfiore="F257"),
             opening_state=opening_with_2025_surtax("IT-45", "F257"),
+            prior_year=RENEWAL_WAIVED,
         )
     )
     assert result_no_surtax.period_net == Decimal("1777.08")

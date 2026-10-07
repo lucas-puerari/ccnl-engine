@@ -37,6 +37,7 @@ from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.provenance.domain.chain import ProvenanceStatus
 from ccnl_engine.shared.domain.errors import InvalidInputError
 from tests.fixtures.current_year import employment_only
+from tests.fixtures.prior_year import RENEWAL_WAIVED
 from tests.fixtures.residence import COMUNE_BELFIORE, REGIONE
 from tests.fixtures.seniority import new_hire
 
@@ -57,6 +58,11 @@ def _overtime(
 
 
 def _run(event: OvertimeEvent, slug: str = _METAL, level: str = "C3") -> PeriodResult:
+    """Return the March 2026 run with ``event``, the renewal regime waived.
+
+    Returns:
+        The run, whose issues are those of the overtime only.
+    """
     return calculate_period(
         PeriodCalculationRequest(
             employer=EmployerProfile(headcount=Headcount(50)),
@@ -71,6 +77,7 @@ def _run(event: OvertimeEvent, slug: str = _METAL, level: str = "C3") -> PeriodR
             current_year=employment_only(),
             regione=REGIONE,
             comune_belfiore=COMUNE_BELFIORE,
+            prior_year=RENEWAL_WAIVED,
         )
     )
 

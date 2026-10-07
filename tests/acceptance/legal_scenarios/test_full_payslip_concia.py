@@ -12,7 +12,8 @@ Concia is the first candidate group for ``production``: no bundled CCNL
 has zero weak rules, four have one (the accrual rule), and of those only
 Concia takes its salaries from a renewal published by the contracting
 parties.  It reads only the shared industria tax and INPS rulesets, the
-family deduction rules and the bundled surtax tables.
+family deduction rules, the variable pay rules (the renewal regime on the
+minimo) and the bundled surtax tables.
 The employer contributions are not compared: the bundle holds them as one
 aggregate rate per headcount band, not as primary-sourced components.
 """
@@ -57,8 +58,12 @@ pytestmark = pytest.mark.legal_scenario
 _ENGINE = PayrollEngine.bundled()
 _ZERO = Decimal(0)
 #: The rulesets of the candidate group: the CCNL and what it reads; the
-#: family deduction rules decide the empty family the scenario states.
+#: family deduction rules decide the empty family the scenario states, and
+#: the variable pay rules rule out the renewal regime of L. 199/2025 art. 1
+#: c. 7 on the 2026 minimo, a table of the renewal signed on 7 March 2024,
+#: for a 2025 income of 40,000 EUR.
 _GROUP = {
+    "tax/variable-pay-rules/2026",
     "ccnl/concia-unic",
     "inps/2026/industria",
     "tax/2026/industria",

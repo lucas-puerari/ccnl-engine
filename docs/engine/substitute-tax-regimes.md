@@ -128,6 +128,32 @@ renewal = BonusEvent(
 
 `agreement_signed_on` is accepted only on a contract renewal.
 
+### Increments paid inside the minimo
+
+A renewal usually raises the minimo tabellare, so its increments are paid in
+the base salary of every month, not as a separate event. The bundle does not
+record which agreement set each table of the minimo, and how much of the
+minimo counts as a renewal increment is a reading the engine does not
+settle. It never posts the 5% on the minimo; it decides what the worker
+facts alone decide.
+
+A run of tax year 2026 by a withholding agent assesses the regime on its
+minimo when the level has a table dated within the signing window, on or
+before the competence date (Metalmeccanico C3: the tables of 1 June 2024,
+2025 and 2026). The run then records a `rinnovo_substitute_tax` decision
+with `paid_in="minimum"`, amount zero, and the date of the first such table
+in `table_from`:
+
+| Worker facts | Decision | Effect on the run |
+|---|---|---|
+| A known fact excludes the worker: public sector, 2025 income above 33,000, written waiver | `final`, the reason (e.g. `prior_income_above_ceiling`) | none |
+| Sector or 2025 income unknown | `provisional`, e.g. `prior_income_unknown` | one `rinnovo_eligibility_unknown` issue per missing fact: a `missing_fact` blocker naming `sector` or `employment_income` |
+| Every requirement met | `provisional`, `renewal_increment_in_minimum_unquantified` | issue `rinnovo_minimum_increment_unquantified`: a `calculation_issue` blocker, since the ordinary IRPEF on the whole minimo may be too high |
+
+The signing date is not asked for on the minimo: no event carries it. A run
+whose minimo has no table dated within the window (e.g. Farmacie private,
+last table of 2021) takes no decision on it.
+
 ## Night, holiday and shift supplements
 
 L. 199/2025 art. 1 cc. 10-11: for tax year 2026 the supplements paid for

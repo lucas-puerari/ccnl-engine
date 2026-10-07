@@ -57,6 +57,7 @@ from tests.fixtures.normative_oracles.withholding_2026 import (
     regular_month_withholding,
 )
 from tests.fixtures.period_requests import period_request
+from tests.fixtures.prior_year import RENEWAL_WAIVED
 from tests.helpers import year_plan
 
 if TYPE_CHECKING:
@@ -85,6 +86,7 @@ def _run(
             level_code="C3",
             opening_state=opening,
             events=events,
+            prior_year=RENEWAL_WAIVED,
         )
     )
 
@@ -146,7 +148,11 @@ class TestAbsenceShortfall:
         assert decision.inputs["pay_available"] == Decimal("537.37")
 
     def test_catalog_capabilities_have_no_gap(self) -> None:
-        """The capabilities the catalog now declares are traced every run."""
+        """The capabilities the catalog now declares are traced every run.
+
+        The renewal regime on the minimo is ruled out by the written waiver
+        of the run.
+        """
         gaps = {g.feature for g in _january().capability_report.gaps}
         declared = {
             "withholding_shortfall",

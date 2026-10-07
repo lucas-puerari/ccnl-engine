@@ -33,6 +33,7 @@ from ccnl_engine.payroll.service.bundled_knowledge_repository import (
 from ccnl_engine.provenance.domain.chain import ProvenanceStatus, RuleProvenance
 from tests.fixtures.current_year import employment_only
 from tests.fixtures.dependents import declared_dependent
+from tests.fixtures.prior_year import RENEWAL_WAIVED
 from tests.fixtures.residence import COMUNE_BELFIORE, REGIONE
 from tests.fixtures.seniority import new_hire
 
@@ -97,9 +98,12 @@ class TestBundledRun:
     def test_assumed_rules_block_payability_without_an_issue(self) -> None:
         """An assumed rule is a blocker, not an issue: the calculation is final.
 
-        The worker resides in Alghero, whose surtax rows are not assumed.
+        The worker resides in Alghero, whose surtax rows are not assumed,
+        and waived the renewal regime on the minimo in writing.
         """
-        result = _run(regione=REGIONE, comune_belfiore=COMUNE_BELFIORE)
+        result = _run(
+            regione=REGIONE, comune_belfiore=COMUNE_BELFIORE, prior_year=RENEWAL_WAIVED
+        )
         weak = {
             (b.feature, b.detail)
             for b in result.blockers
