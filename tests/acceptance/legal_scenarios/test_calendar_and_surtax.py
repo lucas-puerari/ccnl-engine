@@ -32,7 +32,7 @@ from tests.fixtures.opening_state import fresh_tax_year
 from tests.fixtures.seniority import new_hire
 
 if TYPE_CHECKING:
-    from ccnl_engine import PeriodResult
+    from ccnl_engine import CompetenceYearResult, PeriodResult
     from ccnl_engine.results import CalculationDecision
 
 _COMMERCIO_4 = Employment(ccnl_slug=COMMERCIO, level_code="4")
@@ -253,13 +253,13 @@ def test_termination_without_residence_determines_no_surtax_of_the_year() -> Non
     }
 
 
-def _year_2026(facts: PeriodFacts) -> list[PeriodResult]:
+def _year_2026(facts: PeriodFacts) -> CompetenceYearResult:
     """Commercio 4 employed since 2020, 2026 with the imported 2025 surtax.
 
     Returns:
-        The period results of the year, the conguaglio last.
+        The year result, its conguaglio last.
     """
-    year = ENGINE.calculate_competence_year(
+    return ENGINE.calculate_competence_year(
         CompetenceYearPlan(
             year=2026,
             employment=Employment(
@@ -273,7 +273,6 @@ def _year_2026(facts: PeriodFacts) -> list[PeriodResult]:
             opening_state=opening_with_2025_surtax("IT-45", "F257"),
         )
     )
-    return list(year.period_results)
 
 
 def test_conguaglio_without_residence_cannot_open_the_next_year() -> None:
@@ -286,18 +285,20 @@ def test_conguaglio_without_residence_cannot_open_the_next_year() -> None:
     misses what 2027 must withhold: it is not chainable, and the state
     close_tax_year() opens from it is not either.
     """
-    results = _year_2026(PeriodFacts(family_composition=FamilyComposition()))
+    year = _year_2026(PeriodFacts(family_composition=FamilyComposition()))
+    results = year.period_results
     conguaglio = results[-1]
 
     _assert_residence_unknown(conguaglio, *_SURTAXES)
     assert all(r.closing_state.history_known for r in results[:-1])
     assert not conguaglio.closing_state.history_known
     assert not ENGINE.close_tax_year(conguaglio.closing_state).history_known
+    assert not year.next_opening_state.history_known
 
 
 def test_conguaglio_with_residence_opens_the_next_year() -> None:
     """Control: the same year with the residence closes a chainable state."""
-    results = _year_2026(
+    year = _year_2026(
         PeriodFacts(
             family_composition=FamilyComposition(),
             regione="IT-45",
@@ -305,4 +306,4 @@ def test_conguaglio_with_residence_opens_the_next_year() -> None:
         )
     )
 
-    assert ENGINE.close_tax_year(results[-1].closing_state).history_known
+    assert year.next_opening_state.history_known

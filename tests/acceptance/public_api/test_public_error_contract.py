@@ -261,9 +261,8 @@ def test_negative_net_is_out_of_scope_not_a_data_integrity_error() -> None:
     corrisposta al lavoratore stesso alla scadenza del periodo di paga cui
     il contributo si riferisce" (L. 218/1952 art. 19,
     https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1952-04-04;218~art19).
-    At the employee IVS rate of 9.19% alone the share on the fringe is
-    20,000 x 0.0919 = 1,838 EUR, above half the monthly pay of a full-time
-    level 7, so the pay cannot cover it.  IRPEF is capped and carried;
+    The share on a 20,000 EUR fringe exceeds the part-time monthly pay, so
+    the pay cannot cover it.  IRPEF is capped and carried;
     the INPS share is not, and carrying it is not modelled: the run is
     refused as out of scope, never as a corrupt bundle.
     """

@@ -125,17 +125,23 @@ class WelfareEvent:
 
 @dataclass(frozen=True)
 class ArrearsEvent:
-    """Contract renewal arrears subject to tassazione separata (art. 17 TUIR).
+    """Contract renewal arrears, taxed by the year they refer to.
+
+    Arrears of a tax year earlier than the run are taxed separately (art. 17
+    c. 1 lett. b TUIR) at :attr:`separate_tax_rate`; arrears of the tax year
+    of the run are ordinary income of the run and the rate is not used.
 
     Attributes:
         event_date: Date the arrears are attributed to.
         amount: Gross arrears amount in EUR.  Must be >= 0.
-        separate_tax_rate: Caller-supplied average IRPEF rate from the
-            two prior tax years, applied as tassazione separata.
-            Must be in [0, 1].
-        reference_period: The competence period from which the arrears
-            originate (e.g. the period of the back-dated contract renewal).
-            ``None`` when the reference period is not tracked.
+        separate_tax_rate: Caller-supplied rate of the separate taxation:
+            the rate on half the income of the two years before the year of
+            receipt (art. 21 c. 1 TUIR).  Must be in [0, 1].
+        reference_period: The competence period the arrears refer to.  An
+            earlier tax year selects the separate taxation, the tax year of
+            the run the ordinary one, a later year is rejected.  ``None``
+            leaves the taxation undetermined: the run taxes the arrears
+            separately as a simulation, with a ``missing_fact`` blocker.
     """
 
     event_date: date
