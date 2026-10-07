@@ -18,11 +18,10 @@ if TYPE_CHECKING:
 __all__ = ["FACT_DEFAULTS"]
 
 _REPORTED = FactEnforcement.REPORTED
-_PENDING = FactEnforcement.PENDING
 
 
 def _dependent(fact: str, reason: str) -> FieldDefault:
-    return requires_fact("family_deductions", f"dependent.{fact}", _PENDING, reason)
+    return requires_fact("family_deductions", fact, _REPORTED, reason)
 
 
 #: Accounts of imported balances: zero is an account without movement.
@@ -92,23 +91,27 @@ FACT_DEFAULTS: Mapping[str, FieldDefault] = {
         "art. 3): not stated, it does not apply"
     ),
     "Dependent.own_income": _dependent(
-        "own_income", "no own income: the dependant is within the income limit"
-    ),
-    "Dependent.dependent_from": _dependent(
-        "dependent_from", "dependant from 1 January"
-    ),
-    "Dependent.dependent_until": _dependent(
-        "dependent_until", "dependant until 31 December"
+        "own_income",
+        "unknown own income (art. 12 c. 2 TUIR): a dependant that may qualify "
+        "takes no deduction and the run has a missing_fact own_income "
+        "blocker; it also leaves the fringe-benefit threshold of a child open",
     ),
     "Dependent.allocation_pct": _dependent(
-        "allocation_pct", "the whole deduction to this worker"
+        "allocation_pct",
+        "unknown share of a child or an ascendant (art. 12 c. 1 lett. c and "
+        "d TUIR): no deduction and a missing_fact allocation_pct blocker; a "
+        "spouse takes the whole deduction",
     ),
     "Dependent.cohabiting": _dependent(
-        "cohabiting", "cohabiting: the ascendant deduction is granted"
+        "cohabiting",
+        "unknown cohabitation of an ascendant (art. 12 c. 1 lett. d TUIR): no "
+        "deduction and a missing_fact cohabiting blocker",
     ),
     "Dependent.residency_eligibility": _dependent(
         "residency_eligibility",
-        "the residency condition of art. 12 c. 2-bis TUIR is met",
+        "unknown condition of art. 12 c. 2-bis TUIR: a dependant that may "
+        "qualify takes no deduction and the run has a missing_fact "
+        "residency_eligibility blocker",
     ),
     "EmploymentPeriod.ended_on": absence_is_fact("the employment has not ended"),
     "FamilyComposition.dependents": absence_is_fact(

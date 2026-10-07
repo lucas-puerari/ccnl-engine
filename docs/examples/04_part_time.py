@@ -6,9 +6,16 @@ included.  Without it the deductions are a simulation and the result is not
 payable.  Children under 21 are covered by the assegno unico and give no
 Art. 12 deduction; the one born in 2004 turned 21 in 2025, so it gives the
 deduction for the whole of 2026.
+
+Every condition of a dependant is stated: own income (art. 12 c. 2),
+residency (c. 2-bis), the share of a child (lett. c: the whole deduction,
+because the spouse is a dependant of the worker) and the dependency interval
+(``None`` for open ends).  A condition left ``None`` is unknown: the
+dependant takes no deduction and the run has a ``missing_fact`` blocker.
 """
 
 from datetime import date
+from decimal import Decimal
 
 from ccnl_engine import (
     EmployerProfile,
@@ -40,7 +47,7 @@ result_single = engine.calculate_period(
         payment_date=payment,
         employment=employment,
         employer=employer,
-        facts=PeriodFacts(regione="IT-45"),
+        facts=PeriodFacts(regione="IT-45", family_composition=FamilyComposition()),
     )
 )
 
@@ -55,14 +62,24 @@ result_family = engine.calculate_period(
             regione="IT-45",
             family_composition=FamilyComposition(
                 dependents=(
-                    Dependent(relationship=DependentRelationship.SPOUSE),
                     Dependent(
-                        relationship=DependentRelationship.CHILD,
-                        birth_date=date(2004, 5, 10),
+                        relationship=DependentRelationship.SPOUSE,
+                        own_income=Decimal(0),
+                        residency_eligibility=True,
+                        dependent_from=None,
+                        dependent_until=None,
                     ),
-                    Dependent(
-                        relationship=DependentRelationship.CHILD,
-                        birth_date=date(2018, 8, 20),
+                    *(
+                        Dependent(
+                            relationship=DependentRelationship.CHILD,
+                            birth_date=born,
+                            own_income=Decimal(0),
+                            allocation_pct=Decimal(100),
+                            residency_eligibility=True,
+                            dependent_from=None,
+                            dependent_until=None,
+                        )
+                        for born in (date(2004, 5, 10), date(2018, 8, 20))
                     ),
                 )
             ),

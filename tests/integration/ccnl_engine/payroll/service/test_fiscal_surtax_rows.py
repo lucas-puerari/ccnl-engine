@@ -28,14 +28,15 @@ from ccnl_engine.tax.domain.surtax_tables import (
     RegionaleEntry,
     WholeIncomeRate,
 )
+from tests.fixtures.dependents import declared_dependent
 
 _D = Decimal
 _FLAT = (Bracket(up_to=None, rate=_D("0.01")),)
-_CHILD = Dependent(
+_CHILD = declared_dependent(
     relationship=DependentRelationship.CHILD, birth_date=date(2015, 1, 1)
 )
-_SPOUSE = Dependent(relationship=DependentRelationship.SPOUSE)
-_DISABLED_PARENT = Dependent(
+_SPOUSE = declared_dependent(relationship=DependentRelationship.SPOUSE)
+_DISABLED_PARENT = declared_dependent(
     relationship=DependentRelationship.ASCENDANT, disabled=True
 )
 

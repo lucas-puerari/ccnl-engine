@@ -34,13 +34,13 @@ from ccnl_engine import (
 )
 from ccnl_engine.inputs import (
     CurrentYearTaxFacts,
-    Dependent,
     DependentRelationship,
     FamilyComposition,
     InpsBaseYtd,
     OpeningBalances,
 )
 from ccnl_engine.results import CalculationStatus
+from tests.fixtures.dependents import declared_dependent
 from tests.fixtures.normative_oracles.family_2026 import (
     SPOUSE_BAND_EXAMPLES,
     spouse_deduction,
@@ -56,7 +56,7 @@ if TYPE_CHECKING:
 
 _ENGINE = PayrollEngine.bundled()
 _SPOUSE = FamilyComposition(
-    dependents=(Dependent(relationship=DependentRelationship.SPOUSE),)
+    dependents=(declared_dependent(relationship=DependentRelationship.SPOUSE),)
 )
 
 

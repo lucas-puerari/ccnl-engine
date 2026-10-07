@@ -41,12 +41,12 @@ from ccnl_engine import (
     PeriodFacts,
 )
 from ccnl_engine.inputs import (
-    Dependent,
     DependentRelationship,
     EmploymentPeriod,
     FamilyComposition,
 )
 from ccnl_engine.results import CalculationStatus
+from tests.fixtures.dependents import declared_dependent
 from tests.fixtures.normative_oracles.irpef_2026 import net_irpef
 from tests.fixtures.opening_state import fresh_tax_year
 from tests.fixtures.seniority import new_hire
@@ -68,7 +68,7 @@ _LOMBARDIA = (
 _VENETO_RATE = Decimal("0.0123")
 _CHILD = FamilyComposition(
     dependents=(
-        Dependent(
+        declared_dependent(
             relationship=DependentRelationship.CHILD, birth_date=date(2015, 1, 1)
         ),
     )

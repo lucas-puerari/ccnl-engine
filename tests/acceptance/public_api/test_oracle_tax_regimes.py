@@ -24,13 +24,13 @@ from ccnl_engine import (
 )
 from ccnl_engine.events import BonusEvent
 from ccnl_engine.inputs import (
-    Dependent,
     DependentRelationship,
     FamilyComposition,
     PriorYearTaxFacts,
 )
 from ccnl_engine.results import CalculationStatus
 from tests.fixtures.current_year import employment_only
+from tests.fixtures.dependents import declared_dependent
 from tests.fixtures.imported_surtax import opening_with_2025_surtax
 from tests.fixtures.seniority import new_hire
 
@@ -162,8 +162,8 @@ def test_family_deductions_increase_net() -> None:
                 regione="IT-45",
                 family_composition=FamilyComposition(
                     dependents=(
-                        Dependent(relationship=DependentRelationship.SPOUSE),
-                        Dependent(
+                        declared_dependent(relationship=DependentRelationship.SPOUSE),
+                        declared_dependent(
                             relationship=DependentRelationship.CHILD,
                             birth_date=date(2015, 5, 10),
                         ),
@@ -200,7 +200,9 @@ def test_spouse_deduction_flat_band() -> None:
             employer=EmployerProfile(headcount=Headcount(50)),
             facts=PeriodFacts(
                 family_composition=FamilyComposition(
-                    dependents=(Dependent(relationship=DependentRelationship.SPOUSE),)
+                    dependents=(
+                        declared_dependent(relationship=DependentRelationship.SPOUSE),
+                    )
                 ),
             ),
             current_year=employment_only(),

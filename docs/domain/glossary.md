@@ -231,16 +231,16 @@ provinces.  A malformed code is invalid input, not an unknown table.
 ### fringe benefit decision (decisione sul fringe benefit)
 
 The `CalculationDecision` (`fringe_benefit`) of one `FringeEvent`.  The
-annual threshold is 1,000 EUR, 2,000 EUR when the worker declared a fiscally
-dependent child (`PeriodFacts.has_dependent_children`), for tax years 2025 to
-2027 (L. 207/2024 art. 1 cc. 390-391, derogating TUIR art. 51 c. 3).  The
+annual threshold is 1,000 EUR, 2,000 EUR when a child of
+`PeriodFacts.family_composition` is within the own-income limit of art. 12
+c. 2 TUIR, for tax years 2025 to 2027 (L. 207/2024 art. 1 cc. 390-391, derogating TUIR art. 51 c. 3).  The
 threshold is all or nothing: once the year total exceeds it, the whole
 amount of the year is taxable for IRPEF and INPS, not only the excess (AdE
 circ. 4/E of 16 May 2025, par. 2.7).  Reasons: `within_threshold` (amount
 0), `above_threshold` (this benefit is taxable) and
 `above_threshold_retroactive` (the benefit that crosses the threshold also
 taxes the earlier exempt amounts of the year).  Inputs: `threshold_annual`,
-`dependent_children`, `ytd_before`, `ytd_total`, `taxed_before`,
+`dependent_children` (`true`, `false` or `unknown`), `ytd_before`, `ytd_total`, `taxed_before`,
 `retroactive_amount`; the amount is the taxable amount of the benefit.  The
 `FringeBenefitItem` carries the same `threshold_annual`, `ytd_total` and
 `taxable_amount`.

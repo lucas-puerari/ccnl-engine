@@ -3,8 +3,10 @@
 Rule (2026): L. 207/2024 art. 1 c. 390, in derogation of TUIR art. 51 c. 3,
 exempts goods and services granted to an employee "entro il limite
 complessivo di 1.000 euro" per tax year for 2025, 2026 and 2027, raised to
-2.000 euro for a worker with a fiscally dependent child (art. 12 c. 2 TUIR)
-who declares it to the employer (c. 391).  AdE circolare 4/E of 16 May 2025,
+2.000 euro for a worker with children "che si trovano nelle condizioni
+previste dall'articolo 12, comma 2" TUIR, the own-income limit (2.840,51
+euro, 4.000 euro up to 24 years of age), who declares them to the employer
+(c. 391): the children of the family composition.  AdE circolare 4/E of 16 May 2025,
 par. 2.7: exceeding the limit "comporta la concorrenza dell'intero
 ammontare, e non soltanto della quota parte eccedente".  The engine puts
 the same taxable value in the INPS base, as it did before (art. 12 L.
@@ -18,6 +20,7 @@ part of the year total not yet taxed becomes taxable in the run.
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 
@@ -32,7 +35,7 @@ from ccnl_engine import (
     PeriodResult,
 )
 from ccnl_engine.events import FringeEvent
-from ccnl_engine.inputs import PeriodState
+from ccnl_engine.inputs import DependentRelationship, FamilyComposition, PeriodState
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.period._capability_traces import build_traces
 from ccnl_engine.payroll.domain.decisions import CalculationDecision, CalculationStatus
@@ -40,6 +43,7 @@ from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.pay_items import FringeBenefitItem
 from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.domain.ytd_accounts import FringeYtd
+from tests.fixtures.dependents import declared_dependent
 from tests.fixtures.period_requests import account_total, period_request
 
 engine = PayrollEngine.bundled()
@@ -50,12 +54,27 @@ _STANDARD = _D(1000)
 _WITH_CHILDREN = _D(2000)
 
 
+_CHILD = declared_dependent(DependentRelationship.CHILD, birth_date=date(2015, 1, 1))
+_NO_FAMILY = FamilyComposition()
+
+
 def _run(
     month: int,
     *amounts: Decimal,
     children: bool = False,
+    family: FamilyComposition | None = _NO_FAMILY,
     opening: PeriodState | None = None,
 ) -> PeriodResult:
+    """Return the run with fringe benefits ``amounts``.
+
+    ``children`` replaces ``family`` with one child within the own-income
+    limit of art. 12 c. 2 TUIR.
+
+    Returns:
+        The run of ``month``.
+    """
+    if children:
+        family = FamilyComposition(dependents=(_CHILD,))
     events = tuple(
         FringeEvent(event_date=date(_YEAR, month, 1), amount=a) for a in amounts
     )
@@ -67,7 +86,7 @@ def _run(
                 ccnl_slug="metalmeccanico-federmeccanica.json", level_code="C3"
             ),
             employer=EmployerProfile(headcount=Headcount(100)),
-            facts=PeriodFacts(events=events, has_dependent_children=children),
+            facts=PeriodFacts(events=events, family_composition=family),
             opening_state=opening or PeriodState.zero(),
         )
     )
@@ -203,6 +222,81 @@ class TestDependentChildren:
         assert item.ytd_total == _D(2100)
         assert item.taxable_amount == _D(2100)
         assert _decisions(march)[0].inputs["retroactive_amount"] == _D(1500)
+
+    def test_child_of_24_within_the_higher_income_limit(self) -> None:
+        """A child turning 24 in 2026 with 3.500 of own income counts.
+
+        Art. 12 c. 2: the limit is 4.000 for a child "di età non superiore
+        a ventiquattro anni"; 3.500 <= 4.000.  The age band of lett. c does
+        not matter: c. 390 refers to c. 2 alone.
+        """
+        child = replace(_CHILD, birth_date=date(2002, 6, 1), own_income=_D(3500))
+        result = _run(3, _D(1500), family=FamilyComposition(dependents=(child,)))
+        assert _item(result).threshold_annual == _WITH_CHILDREN
+
+    def test_child_above_the_income_limit_does_not_count(self) -> None:
+        """A child of 11 with 4.000,01 of own income is not within c. 2."""
+        child = replace(_CHILD, own_income=_D("4000.01"))
+        result = _run(3, _D(1500), family=FamilyComposition(dependents=(child,)))
+        assert _item(result).threshold_annual == _STANDARD
+        assert _decisions(result)[0].inputs["dependent_children"] == "false"
+
+    def test_child_dependent_only_in_another_year_does_not_count(self) -> None:
+        """A dependency that ended in 2025 does not touch the 2026 year."""
+        child = replace(_CHILD, dependent_until=date(2025, 12, 31))
+        result = _run(3, _D(1500), family=FamilyComposition(dependents=(child,)))
+        assert _item(result).threshold_annual == _STANDARD
+
+    def test_ascendant_is_not_a_child(self) -> None:
+        """Only children select the higher threshold."""
+        parent = declared_dependent(DependentRelationship.ASCENDANT)
+        result = _run(3, _D(1500), family=FamilyComposition(dependents=(parent,)))
+        assert _item(result).threshold_annual == _STANDARD
+
+
+class TestUnknownChildren:
+    """An unknown children condition never selects a threshold silently."""
+
+    def test_unknown_own_income_of_a_child_blocks_when_it_matters(self) -> None:
+        """1.500 is taxable against 1.000 and exempt against 2.000.
+
+        The standard threshold is applied, the decision is provisional and
+        the run names the missing own income.
+        """
+        child = replace(_CHILD, own_income=None)
+        result = _run(3, _D(1500), family=FamilyComposition(dependents=(child,)))
+        assert _item(result).taxable_amount == _D(1500)
+        (decision,) = _decisions(result)
+        assert decision.status is CalculationStatus.PROVISIONAL
+        assert decision.inputs["dependent_children"] == "unknown"
+        (issue,) = [
+            i for i in result.issues if i.code == "fringe_threshold_undetermined"
+        ]
+        assert issue.fact == "own_income"
+
+    def test_unknown_family_blocks_when_it_matters(self) -> None:
+        """Without a family composition the threshold is unknown."""
+        result = _run(3, _D(1500), family=None)
+        (issue,) = [
+            i for i in result.issues if i.code == "fringe_threshold_undetermined"
+        ]
+        assert issue.fact is None
+        assert "fringe_threshold_undetermined" in {b.detail for b in result.blockers}
+
+    def test_unknown_children_within_both_thresholds_is_final(self) -> None:
+        """400 is exempt against either threshold: nothing is missing."""
+        result = _run(3, _D(400), family=None)
+        (decision,) = _decisions(result)
+        assert decision.status is CalculationStatus.FINAL
+        assert "fringe_threshold_undetermined" not in {i.code for i in result.issues}
+
+    def test_a_known_child_settles_an_unknown_one(self) -> None:
+        """One child within the limit is enough: the other is not needed."""
+        unknown = replace(_CHILD, own_income=None)
+        family = FamilyComposition(dependents=(unknown, _CHILD))
+        result = _run(3, _D(1500), family=family)
+        assert _item(result).threshold_annual == _WITH_CHILDREN
+        assert _decisions(result)[0].status is CalculationStatus.FINAL
 
 
 # ---------------------------------------------------------------------------

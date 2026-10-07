@@ -19,7 +19,6 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine.inputs import (
-    Dependent,
     DependentRelationship,
     EmploymentPeriod,
     FamilyComposition,
@@ -27,6 +26,7 @@ from ccnl_engine.inputs import (
     Permanent,
 )
 from tests.acceptance.legal_scenarios._support import COMMERCIO, ENGINE
+from tests.fixtures.dependents import declared_dependent
 from tests.fixtures.explicit_facts import (
     CONCIA_D2,
     FACTS,
@@ -219,9 +219,9 @@ def test_rehire_counts_the_days_of_the_income_it_projects() -> None:
 #: Spouse and two children of 25 and 23 in 2026, all dependent all year.
 _FAMILY = FamilyComposition(
     dependents=(
-        Dependent(DependentRelationship.SPOUSE),
-        Dependent(DependentRelationship.CHILD, birth_date=date(2001, 5, 1)),
-        Dependent(DependentRelationship.CHILD, birth_date=date(2003, 5, 1)),
+        declared_dependent(DependentRelationship.SPOUSE),
+        declared_dependent(DependentRelationship.CHILD, birth_date=date(2001, 5, 1)),
+        declared_dependent(DependentRelationship.CHILD, birth_date=date(2003, 5, 1)),
     )
 )
 

@@ -64,11 +64,8 @@ def spouse_deduction(
     within the limit of c. 2, for the months of the dependency interval.
 
     Returns:
-        The deduction, zero months when the spouse does not qualify.
+        The deduction, zero months when a stated condition excludes it.
     """
-    qualifies = (
-        spouse.residency_eligibility
-        and spouse.own_income <= rules.spouse.dependent_income_threshold
-    )
+    qualifies = spouse.may_qualify(rules.spouse.dependent_income_threshold)
     months = len(spouse.dependency_months(rules.year)) if qualifies else 0
     return prorate(spouse, months, spouse_annual(income, rules))

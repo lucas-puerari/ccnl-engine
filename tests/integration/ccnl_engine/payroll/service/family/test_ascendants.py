@@ -15,6 +15,7 @@ import pytest
 from ccnl_engine.payroll.domain.family import Dependent, DependentRelationship
 from ccnl_engine.payroll.service.family.ascendants import ascendant_deductions
 from ccnl_engine.tax.service.tax_optional_loaders import load_family_deduction_rules
+from tests.fixtures.dependents import declared_dependent
 from tests.fixtures.normative_oracles import family_2026
 
 _D = Decimal
@@ -22,7 +23,7 @@ _RULES = load_family_deduction_rules(2026)
 
 
 def _parent(**kwargs: object) -> Dependent:
-    return Dependent(relationship=DependentRelationship.ASCENDANT, **kwargs)  # type: ignore[arg-type]
+    return declared_dependent(relationship=DependentRelationship.ASCENDANT, **kwargs)  # type: ignore[arg-type]
 
 
 @pytest.mark.parametrize(

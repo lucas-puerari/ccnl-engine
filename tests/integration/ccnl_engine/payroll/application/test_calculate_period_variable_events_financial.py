@@ -17,7 +17,6 @@ from ccnl_engine.payroll.domain.events import (
     TerminationTFREvent,
 )
 from ccnl_engine.payroll.domain.family import (
-    Dependent,
     DependentRelationship,
     FamilyComposition,
 )
@@ -26,6 +25,7 @@ from ccnl_engine.payroll.domain.period import PeriodResult
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
+from tests.fixtures.dependents import declared_dependent
 from tests.fixtures.imported_surtax import opening_with_2025_surtax
 
 _CCNL = "metalmeccanico-federmeccanica.json"
@@ -124,7 +124,7 @@ def _req_family(*events: object) -> PeriodCalculationRequest:
     Returns:
         A :class:`PeriodCalculationRequest` with a spouse in family_composition.
     """
-    spouse = Dependent(relationship=DependentRelationship.SPOUSE)
+    spouse = declared_dependent(relationship=DependentRelationship.SPOUSE)
     family = FamilyComposition(dependents=(spouse,))
     return PeriodCalculationRequest(
         employer=EmployerProfile(headcount=Headcount(50)),

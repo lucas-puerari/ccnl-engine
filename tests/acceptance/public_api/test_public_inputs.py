@@ -210,7 +210,6 @@ class TestPeriodFacts:
         [
             pytest.param({"contributable_hours": Decimal(10)}, id="raw-hours"),
             pytest.param({"regione": 45}, id="non-str-region"),
-            pytest.param({"has_dependent_children": 1}, id="non-bool-children"),
             pytest.param({"events": _OVERTIME}, id="single-event"),
         ],
     )

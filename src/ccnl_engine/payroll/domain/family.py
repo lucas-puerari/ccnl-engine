@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import KW_ONLY, dataclass
 from datetime import date
 from decimal import Decimal
 from enum import StrEnum
@@ -40,6 +40,18 @@ class Dependent:
     in cui si sono verificate a quello in cui sono cessate le condizioni
     richieste") and, for a child, the months of the age band.
 
+    A condition left ``None`` is unknown, never met by default: when the
+    dependant would give right to a deduction in some month, the family
+    deductions of the run are not determined and the run has a
+    ``missing_fact`` blocker naming the field.  A condition is read only
+    where art. 12 makes it one: ``own_income`` and
+    ``residency_eligibility`` for every dependant (c. 2 and c. 2-bis refer
+    to every deduction of c. 1), ``cohabiting`` for an ascendant (c. 1
+    lett. d), ``allocation_pct`` for a child and an ascendant (lett. c and
+    lett. d share the deduction; the spouse deduction of lett. a is not
+    shared).  The dependency interval has no default: ``None`` is an open
+    end the caller states.
+
     Attributes:
         relationship: Relationship to the worker.
         birth_date: Date of birth.  Required for a child: the age band of
@@ -48,33 +60,40 @@ class Dependent:
         disabled: ``True`` when a disability is certified under art. 3
             L. 104/1992; a child keeps the deduction from the age of 30.
         own_income: Dependent's own reddito complessivo of the year (EUR),
-            checked against the limit of art. 12 c. 2.
-        dependent_from: First day the conditions hold; ``None`` for since
-            before the tax year.
-        dependent_until: Last day the conditions hold; ``None`` for
-            beyond the tax year.
+            checked against the limit of art. 12 c. 2; ``None`` is unknown.
         allocation_pct: Percentage of the deduction allocated to this worker
-            (0-100).  Use 50 for a child shared between the parents.
-        cohabiting: ``True`` when the ascendant lives with the worker.  Only
-            relevant for ascendants (Art. 12 c. 1 lett. d post L. 207/2024).
-        residency_eligibility: ``True`` when citizenship/residency conditions
-            are met (Art. 12 c. 2-bis).  Caller-declared; not engine-verified.
+            (0-100): the share between the parents of lett. c, or the pro
+            quota share of lett. d.  ``None`` is unknown for a child or an
+            ascendant; a spouse takes the whole deduction, so only ``None``
+            or 100 is accepted for one.
+        cohabiting: ``True`` when the ascendant lives with the worker
+            (Art. 12 c. 1 lett. d post L. 207/2024); ``None`` is unknown.
+            Not read for a spouse or a child.
+        residency_eligibility: ``True`` when the condition of Art. 12
+            c. 2-bis is met: the worker is an Italian, EU or EEA citizen, or
+            the dependant is not resident abroad.  Caller-declared, not
+            engine-verified; ``None`` is unknown.
+        dependent_from: First day the conditions hold; ``None`` states
+            that they held before the tax year.  Keyword only, required.
+        dependent_until: Last day the conditions hold; ``None`` states
+            that they have not ceased.  Keyword only, required.
 
     Raises:
         InvalidInputError: When a field is not of its type or is outside its
-            range, a child has no birth date, or the interval ends before
-            it starts.
+            range, a child has no birth date, a spouse is allocated less
+            than the whole deduction, or the interval ends before it starts.
     """
 
     relationship: DependentRelationship
     birth_date: date | None = None
     disabled: bool = False
-    own_income: Decimal = _ZERO
-    dependent_from: date | None = None
-    dependent_until: date | None = None
-    allocation_pct: Decimal = _HUNDRED
-    cohabiting: bool = True
-    residency_eligibility: bool = True
+    own_income: Decimal | None = None
+    allocation_pct: Decimal | None = None
+    cohabiting: bool | None = None
+    residency_eligibility: bool | None = None
+    _: KW_ONLY
+    dependent_from: date | None
+    dependent_until: date | None
 
     def __post_init__(self) -> None:  # noqa: D105
         relationship = parse_enum(
@@ -91,10 +110,17 @@ class Dependent:
                 feature=_FEATURE,
                 optional=True,
             )
-        for name in ("disabled", "cohabiting", "residency_eligibility"):
-            require_bool(getattr(self, name), f"Dependent.{name}", feature=_FEATURE)
+        require_bool(self.disabled, "Dependent.disabled", feature=_FEATURE)
+        for name in ("cohabiting", "residency_eligibility"):
+            value = getattr(self, name)
+            if value is not None:
+                require_bool(value, f"Dependent.{name}", feature=_FEATURE)
         require_decimal(
-            self.own_income, "Dependent.own_income", feature=_FEATURE, minimum=_ZERO
+            self.own_income,
+            "Dependent.own_income",
+            feature=_FEATURE,
+            minimum=_ZERO,
+            optional=True,
         )
         require_decimal(
             self.allocation_pct,
@@ -102,8 +128,74 @@ class Dependent:
             feature=_FEATURE,
             minimum=_ZERO,
             maximum=_HUNDRED,
+            optional=True,
         )
+        self._check_spouse_share()
         self._check_dates()
+
+    def _check_spouse_share(self) -> None:
+        spouse = self.relationship is DependentRelationship.SPOUSE
+        share = self.allocation_pct
+        if spouse and share is not None and share != _HUNDRED:
+            msg = (
+                "the spouse deduction of art. 12 c. 1 lett. a TUIR is not "
+                f"shared: allocation_pct must be None or 100; got {share}"
+            )
+            raise InvalidInputError(
+                msg, field="Dependent.allocation_pct", feature=_FEATURE
+            )
+
+    @property
+    def share(self) -> Decimal:
+        """Percentage of the deduction to this worker; 100 when not stated.
+
+        A child or an ascendant without a stated share has a missing fact
+        (:attr:`missing_facts`) and no deduction, so the 100 is never
+        applied to one.
+        """
+        return _HUNDRED if self.allocation_pct is None else self.allocation_pct
+
+    @property
+    def missing_facts(self) -> tuple[str, ...]:
+        """Conditions of art. 12 this dependant leaves unknown.
+
+        Returns:
+            The names of the fields left ``None`` that art. 12 reads for
+            the relationship, in field order.
+        """
+        kind = self.relationship
+        read = {
+            "own_income": True,
+            "allocation_pct": kind is not DependentRelationship.SPOUSE,
+            "cohabiting": kind is DependentRelationship.ASCENDANT,
+            "residency_eligibility": True,
+        }
+        return tuple(
+            name
+            for name, needed in read.items()
+            if needed and getattr(self, name) is None
+        )
+
+    def may_qualify(self, income_limit: Decimal) -> bool:
+        """Return whether no stated condition excludes the deduction.
+
+        An unknown condition does not exclude it: the dependant may
+        qualify once the fact is stated.
+
+        Args:
+            income_limit: Own-income limit of art. 12 c. 2 for this
+                dependant.
+
+        Returns:
+            ``False`` when residency or, for an ascendant, cohabitation is
+            stated as not met, or the stated own income exceeds the limit.
+        """
+        cohabits = (
+            self.relationship is not DependentRelationship.ASCENDANT
+            or self.cohabiting is not False
+        )
+        within = self.own_income is None or self.own_income <= income_limit
+        return self.residency_eligibility is not False and cohabits and within
 
     def _check_dates(self) -> None:
         child = self.relationship is DependentRelationship.CHILD
@@ -146,7 +238,9 @@ class FamilyComposition:
     *sostituto d'imposta*, on the reddito complessivo of
     :class:`~ccnl_engine.payroll.domain.current_year.CurrentYearTaxFacts`.
     Eligibility conditions the engine cannot verify (residency, disability
-    certification, the dependents' own income) are taken as declared.
+    certification, the dependents' own income) are taken as declared; one
+    left unknown grants no deduction (see :class:`Dependent`).  The children
+    also select the fringe-benefit threshold (L. 207/2024 art. 1 c. 390).
 
     Attributes:
         dependents: The dependents; a list is accepted and stored as a

@@ -73,6 +73,7 @@ from ccnl_engine.inputs import (
     WeeklyHours,
     WorkCalendar,
 )
+from tests.fixtures.dependents import declared_dependent
 
 if TYPE_CHECKING:
     from collections.abc import Callable
@@ -85,7 +86,7 @@ _EMPLOYMENT = Employment(
 )
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
 _OVERTIME = OvertimeEvent(event_date=_DAY, hours=_ONE, hourly_rate=Decimal(15))
-_CHILD = Dependent(
+_CHILD = declared_dependent(
     relationship=DependentRelationship.CHILD, birth_date=date(2015, 1, 1)
 )
 _RECOVERY = RecoveryObligation(
@@ -139,7 +140,11 @@ _VALID: dict[type, dict[str, Any]] = {
         "employee_rate": Decimal("0.01"),
         "tfr_to_fund": True,
     },
-    Dependent: {"relationship": DependentRelationship.SPOUSE},
+    Dependent: {
+        "relationship": DependentRelationship.SPOUSE,
+        "dependent_from": None,
+        "dependent_until": None,
+    },
     FamilyComposition: {},
     ForeignTaxPaid: {"country": "FR", "income": _ONE, "tax": _ONE},
     ShortfallDeferralRequest: {"signed_on": _DAY},

@@ -27,11 +27,15 @@ from ccnl_engine.payroll.application.period._sickness import sickness_terms
 from ccnl_engine.payroll.application.period._tfr_destination import (
     tfr_treasury_fund,
 )
+from ccnl_engine.payroll.domain.family import DependentRelationship
 from ccnl_engine.payroll.domain.obligations import (
     TRATTAMENTO_RECOVERY,
     ULTERIORE_RECOVERY,
 )
 from ccnl_engine.payroll.domain.run import RunKind
+from ccnl_engine.payroll.service.family.children import (
+    children_within_income_limit,
+)
 from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 
 if TYPE_CHECKING:
@@ -44,6 +48,9 @@ if TYPE_CHECKING:
     from ccnl_engine.tax.domain.surtax_rules import SurtaxRules
 
 __all__ = ["amounts_input", "variable_events"]
+
+#: Fact that leaves the children condition of the fringe threshold unknown.
+OWN_INCOME = "own_income"
 
 
 def variable_events(
@@ -67,7 +74,8 @@ def variable_events(
         fringe_threshold_of(
             var_pay.fringe_benefit,
             var_pay.year,
-            with_children=request.has_dependent_children,
+            with_children=_children_within_limit(ctx),
+            missing_fact=None if request.family_composition is None else OWN_INCOME,
         ),
         opening_fringe_ytd=opening.cash.fringe.value,
         opening_fringe_taxed=opening.cash.fringe.taxed,
@@ -81,6 +89,27 @@ def variable_events(
         ),
         sickness=sickness_terms(ctx),
     )
+
+
+def _children_within_limit(ctx: RunContext) -> bool | None:
+    """Return whether a child of the family is within the limit of art. 12 c. 2.
+
+    Returns:
+        ``None`` without a family composition or with a child whose own
+        income is unknown and none within the limit; ``False`` without a
+        child.
+    """
+    family = ctx.request.family_composition
+    if family is None:
+        return None
+    children = [
+        d for d in family.dependents if d.relationship is DependentRelationship.CHILD
+    ]
+    if not children:
+        return False
+    year = ctx.fiscal_year
+    rules = ctx.repo.load_family_deduction_rules(year)
+    return children_within_income_limit(children, rules.children, year)
 
 
 def amounts_input(

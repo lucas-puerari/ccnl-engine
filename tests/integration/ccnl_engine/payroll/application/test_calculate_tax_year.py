@@ -18,7 +18,6 @@ from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment import Employment
 from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
 from ccnl_engine.payroll.domain.family import (
-    Dependent,
     DependentRelationship,
     FamilyComposition,
 )
@@ -26,6 +25,7 @@ from ccnl_engine.payroll.domain.inputs import PeriodFacts
 from ccnl_engine.payroll.domain.tax_year_plan import TaxYearPlan
 from ccnl_engine.shared.domain.errors import InvalidInputError
 from tests.fixtures.current_year import employment_only
+from tests.fixtures.dependents import declared_dependent
 from tests.fixtures.next_year_repository import NextYearRepository
 
 if TYPE_CHECKING:
@@ -148,7 +148,7 @@ class TestCurrentYearFacts:
     """The family deductions of a payment read the facts of its tax year."""
 
     _SPOUSE = FamilyComposition(
-        dependents=(Dependent(relationship=DependentRelationship.SPOUSE),)
+        dependents=(declared_dependent(relationship=DependentRelationship.SPOUSE),)
     )
 
     def _december_decision(self, plan: TaxYearPlan) -> CalculationStatus:

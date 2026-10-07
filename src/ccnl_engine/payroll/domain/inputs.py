@@ -31,7 +31,6 @@ from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
 from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.shared.domain.collection_validation import items_of_type, tuple_of
 from ccnl_engine.shared.domain.validation import (
-    require_bool,
     require_date,
     require_instances,
     require_str,
@@ -71,9 +70,10 @@ class PeriodFacts:
         family_composition: Dependents for the Art. 12 TUIR deductions.
             ``None`` is unknown: when the employer withholds, a
             ``requirement_unresolved`` blocker on ``family_deductions``;
-            ``FamilyComposition()`` states that there is no dependant.
-        has_dependent_children: Whether the worker has a fiscally dependent
-            child; selects the higher fringe-benefit threshold.
+            ``FamilyComposition()`` states that there is no dependant.  Its
+            children also select the fringe-benefit threshold: the higher
+            one when a child is within the own-income limit of art. 12
+            c. 2 TUIR (L. 207/2024 art. 1 c. 390).
 
     Raises:
         InvalidInputError: When a field is not of its type, an event is not
@@ -85,7 +85,6 @@ class PeriodFacts:
     regione: str | None = None
     comune_belfiore: str | None = None
     family_composition: FamilyComposition | None = None
-    has_dependent_children: bool = False
 
     def __post_init__(self) -> None:  # noqa: D105
         feature = "period_facts"
@@ -113,11 +112,6 @@ class PeriodFacts:
             "PeriodFacts.comune_belfiore",
             feature=feature,
             optional=True,
-        )
-        require_bool(
-            self.has_dependent_children,
-            "PeriodFacts.has_dependent_children",
-            feature=feature,
         )
         events = tuple_of(
             self.events,
@@ -251,7 +245,6 @@ class PeriodInput:
             regione=facts.regione,
             comune_belfiore=facts.comune_belfiore,
             family_composition=facts.family_composition,
-            has_dependent_children=facts.has_dependent_children,
             run=self.run,
             weekly_hours=employment.weekly_hours,
             contributable_hours=facts.contributable_hours,

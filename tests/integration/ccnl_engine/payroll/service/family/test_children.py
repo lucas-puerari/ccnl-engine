@@ -19,6 +19,7 @@ from ccnl_engine.payroll.service.family.children import (
     children_deductions,
 )
 from ccnl_engine.tax.service.tax_optional_loaders import load_family_deduction_rules
+from tests.fixtures.dependents import declared_dependent
 from tests.fixtures.normative_oracles import family_2026
 
 _D = Decimal
@@ -27,7 +28,7 @@ _INCOME = _D(50000)
 
 
 def _child(born: date, **kwargs: object) -> Dependent:
-    return Dependent(
+    return declared_dependent(
         relationship=DependentRelationship.CHILD,
         birth_date=born,
         **kwargs,  # type: ignore[arg-type]

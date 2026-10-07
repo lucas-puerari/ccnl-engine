@@ -85,10 +85,6 @@ class PeriodCalculationRequest:
         comune_belfiore: Belfiore code for the municipal surtax, e.g.
             ``"F257"``.  ``None`` is unknown, as for ``regione``, on
             ``addizionale_comunale``.
-        has_dependent_children: Whether the worker has at least one
-            fiscally dependent child (figlio a carico).  Selects the
-            higher fringe-benefit exemption threshold under Art. 51 c. 3
-            TUIR.  Defaults to ``False``.
         weekly_hours: Contracted weekly hours, positive.  Required for
             domestic CCNLs (``lavoro-domestico`` tax sector) to select the
             INPS contribution bracket (above or below the hours threshold).
@@ -164,7 +160,6 @@ class PeriodCalculationRequest:
     regione: str | None = None
     comune_belfiore: str | None = None
     family_composition: FamilyComposition | None = None
-    has_dependent_children: bool = False
     run: PayrollRun | None = None
     weekly_hours: WeeklyHours | None = None
     contributable_hours: ContributableHours | None = None
