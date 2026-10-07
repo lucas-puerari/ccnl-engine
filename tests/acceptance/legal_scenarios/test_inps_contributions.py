@@ -3,9 +3,8 @@
 The expected values come from
 :mod:`tests.fixtures.normative_oracles.contributions_2026`, written from the
 sources; every other fact of the runs is explicit
-(:mod:`tests.fixtures.explicit_facts`).  The floor and the NASpI
-exclusion do not hold today: each is a strict xfail on the assertion it
-breaks.
+(:mod:`tests.fixtures.explicit_facts`).  The NASpI exclusion does not
+hold today: it is a strict xfail on the assertion it breaks.
 """
 
 from __future__ import annotations
@@ -18,12 +17,19 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine.events import BonusEvent
-from ccnl_engine.inputs import EmploymentPeriod, FixedTerm, Permanent
+from ccnl_engine.inputs import (
+    EmploymentPeriod,
+    FixedTerm,
+    Permanent,
+    WeeklyHours,
+    WorkerCategory,
+)
 from ccnl_engine.results import BlockerCode
 from tests.acceptance.legal_scenarios._support import ENGINE
-from tests.fixtures.explicit_facts import CONCIA_D2, regular_run
+from tests.fixtures.explicit_facts import CONCIA_D2, competence_year, regular_run
 from tests.fixtures.normative_oracles.contributions_2026 import (
     FULL_TIME_MONTHLY_CONTRIBUTION_FLOOR,
+    HOURLY_FLOOR_40_HOURS,
     additional_ivs,
 )
 from tests.fixtures.normative_oracles.payslips.metalmeccanico_c3_2026 import (
@@ -42,6 +48,22 @@ _EMPLOYEE_RATE = Decimal("0.0949")
 
 def _account(result: PeriodResult, account: str) -> Decimal:
     return sum((e.amount for e in result.ledger_entries if e.account == account), _ZERO)
+
+
+def _issue_blocked(result: PeriodResult) -> set[str | None]:
+    """Return the features a calculation issue or a missing fact blocks.
+
+    A weak rate source blocks the INPS amounts of every run and says
+    nothing of the minimum base, so it is left out.
+
+    Returns:
+        The features of the calculation-issue and missing-fact blockers.
+    """
+    return {
+        b.feature
+        for b in result.blockers
+        if b.code in {BlockerCode.CALCULATION_ISSUE, BlockerCode.MISSING_FACT}
+    }
 
 
 def _inps_base(result: PeriodResult) -> Decimal:
@@ -78,35 +100,104 @@ def test_additional_ivs_uses_the_monthly_threshold() -> None:
     assert abs(employee - expected) <= Decimal("0.02")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    raises=AssertionError,
-    reason=(
-        "the INPS base is the CCNL pay even below the daily floor of 58.13 EUR "
-        "(D.L. 463/1983 art. 7 c. 1, INPS circolare 6/2026 section 1), "
-        "26 floors in a full-time month, and no blocker names it"
-    ),
-)
 def test_monthly_base_reaches_the_daily_floor() -> None:
     """Autoscuole UNASCA level 3, full time, June 2026.
 
     The signed table pays 987.04 + 439.83 + 10.33 = 1,437.20
     (``tests/fixtures/reference_tables/autoscuole-unasca_3_2026.json``),
-    below 58.13 x 26 = 1,511.38.  The base must be raised to the floor, or
-    the run must say through a blocker on the INPS base that it is not.  A
-    weak rate source blocks INPS on every run and says nothing of the
-    floor, so it does not count.
+    below 58.13 x 26 = 1,511.38.  The full month of a full-time worker
+    without absences is contributed on the floor, and no calculation issue
+    blocks the INPS amounts; the pay itself is not raised.  A weak rate
+    source blocks INPS on every run and says nothing of the floor, so it
+    does not count.
     """
-    employment = replace(CONCIA_D2, ccnl_slug="autoscuole-unasca.json", level_code="3")
-    result = ENGINE.calculate_period(regular_run(employment=employment))
-    blocked = {
-        b.feature for b in result.blockers if b.code is not BlockerCode.RULE_SOURCE_WEAK
-    }
+    result = ENGINE.calculate_period(regular_run(employment=_AUTOSCUOLE_3))
+    blocked = _issue_blocked(result)
 
     assert result.period_gross == Decimal("1437.20")
-    assert _inps_base(result) >= FULL_TIME_MONTHLY_CONTRIBUTION_FLOOR or (
-        {"inps_employee", "inps_employer"} & blocked
+    assert _inps_base(result) == FULL_TIME_MONTHLY_CONTRIBUTION_FLOOR
+    assert not {"inps_employee", "inps_employer"} & blocked
+
+
+_AUTOSCUOLE_3 = replace(CONCIA_D2, ccnl_slug="autoscuole-unasca.json", level_code="3")
+_CENT = Decimal("0.01")
+
+
+def test_part_time_base_reaches_the_hourly_floor() -> None:
+    """Autoscuole UNASCA level 3, 20 of 40 hours, June 2026.
+
+    Half of 1,437.20 is paid.  The hourly floor of a 40-hour week is 8.72
+    (circolare 6/2026 section 4); 20 hours a week over a month of 26 days
+    of a six-day week are 20 x 26 / 6 hours: 8.72 x 20 x 26 / 6 = 755.733,
+    so the base is 755.73.
+    """
+    employment = replace(
+        _AUTOSCUOLE_3,
+        weekly_hours=WeeklyHours(20),
+        full_time_weekly_hours=WeeklyHours(40),
     )
+    result = ENGINE.calculate_period(regular_run(employment=employment))
+    floor = (HOURLY_FLOOR_40_HOURS * 20 * 26 / 6).quantize(_CENT)
+
+    assert result.period_gross < floor
+    assert _inps_base(result) == floor
+
+
+def test_part_time_of_an_unpublished_week_blocks_the_inps_amounts() -> None:
+    """Autoscuole UNASCA level 3, 20 of 38 hours, June 2026.
+
+    The circular publishes the hourly floor of 40 and 36-hour weeks only,
+    and the days of a 38-hour normal week are not stated: the floor of
+    D.Lgs. 81/2015 art. 11 c. 1 can reach 58.13 x 6 / 38 x 20 x 26 / 6 =
+    795.46, above the 756.42 paid, so the INPS amounts are blocked.
+    """
+    employment = replace(
+        _AUTOSCUOLE_3,
+        weekly_hours=WeeklyHours(20),
+        full_time_weekly_hours=WeeklyHours(38),
+    )
+    result = ENGINE.calculate_period(regular_run(employment=employment))
+    assert {"inps_employee", "inps_employer"} <= _issue_blocked(result)
+
+
+def test_ratei_settled_at_termination_leave_the_floor_open() -> None:
+    """Autoscuole UNASCA level 3, employed 1 January to 30 June 2026.
+
+    The June run pays 1,437.20 and settles the tredicesima accrued from
+    January, 6/12 of it.  The month alone is below 26 x 58.13 = 1,511.38;
+    whether the settled ratei count toward the floor is not sourced (INPS
+    circ. 196/1995 leaves them out for the Fondo Volo only), so the INPS
+    amounts of the June run are blocked instead of guessed.
+    """
+    employment = replace(
+        _AUTOSCUOLE_3,
+        employment_period=EmploymentPeriod(date(2026, 1, 1), date(2026, 6, 30)),
+    )
+    year = ENGINE.calculate_competence_year(competence_year(employment=employment))
+    (june,) = (
+        r for r in year.period_results if r.run and r.run.run_id == "2026-06-regular"
+    )
+
+    assert june.period_gross > FULL_TIME_MONTHLY_CONTRIBUTION_FLOOR
+    assert _issue_blocked(june) >= {"inps_employee", "inps_employer"}
+
+
+def test_operaio_agricolo_is_contributed_on_the_pay() -> None:
+    """Operai agricoli florovivaisti Area 3, operaio, June 2026.
+
+    D.L. 463/1983 art. 7 c. 5: the floor of c. 1 does not apply to the
+    operai agricoli, so the base stays the pay, below 1,511.38.
+    """
+    employment = replace(
+        CONCIA_D2,
+        ccnl_slug="operai-agricoli-florovivaisti.json",
+        level_code="Area3",
+        category=WorkerCategory.OPERAIO,
+    )
+    result = ENGINE.calculate_period(regular_run(employment=employment))
+
+    assert result.period_gross < FULL_TIME_MONTHLY_CONTRIBUTION_FLOOR
+    assert _inps_base(result) == result.period_gross
 
 
 @pytest.mark.xfail(

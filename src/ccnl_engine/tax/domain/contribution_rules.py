@@ -20,6 +20,7 @@ from ccnl_engine.shared.domain.primitives import (
     assert_ivs_le_total,
 )
 from ccnl_engine.tax.domain.additional_ivs import AdditionalIvsRule
+from ccnl_engine.tax.domain.minimum_base import MinimumBaseRule
 
 
 class InpsRates(BaseModel):
@@ -49,6 +50,10 @@ class InpsRates(BaseModel):
     applied on top of the ordinary rate and, being IVS, within the massimale
     when ``ivs_ceiling_applies`` is True.  ``None`` when the sector does not
     model it.
+
+    ``minimum_base`` is the minimale the INPS base of a run is raised to,
+    see :class:`~ccnl_engine.tax.domain.minimum_base.MinimumBaseRule`;
+    ``None`` when the sector does not model it.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -60,6 +65,7 @@ class InpsRates(BaseModel):
     ceiling: PositiveCeiling | None
     employer_rate_by_category: dict[WorkerCategory, NonNegativeRate] = {}
     employee_additional: AdditionalIvsRule | None = None
+    minimum_base: MinimumBaseRule | None = None
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")

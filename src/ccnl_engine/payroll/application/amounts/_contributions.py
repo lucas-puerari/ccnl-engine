@@ -23,6 +23,16 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
 
 
+def _raised(inp: _AmountsInput, base: Decimal) -> Decimal:
+    """Return ``base`` raised to the minimum INPS base of the run.
+
+    Returns:
+        ``base``, or the minimum when one is determined and higher.
+    """
+    minimum = inp.inps_minimum
+    return base if minimum is None else max(base, minimum)
+
+
 def _ordinary_breakdown(
     inp: _AmountsInput, base: Decimal, *, settles: bool
 ) -> ContributionBreakdown:
@@ -55,9 +65,9 @@ def run_contributions(inp: _AmountsInput) -> tuple[ContributionBreakdown, Decima
     Returns:
         ``(breakdown, employee_rate)``.
     """
-    period_inps_base = inp.monthly_gross + inp.event_inps_base
     if inp.rules.inps is not None:
-        breakdown = _ordinary_breakdown(inp, period_inps_base, settles=True)
+        base = _raised(inp, inp.monthly_gross + inp.event_inps_base)
+        breakdown = _ordinary_breakdown(inp, base, settles=True)
         rates = resolve_rates(inp.rules, inp.contract_type, inp.category)
         return breakdown, rates.employee_rate
     breakdown = compute_domestic_breakdown(
@@ -77,12 +87,14 @@ def recurring_employee_inps(inp: _AmountsInput, inps_employee: Decimal) -> Decim
 
     Returns:
         ``inps_employee`` for domestic CCNLs, else the employee INPS of the
-        monthly gross without the events.
+        monthly gross without the events, raised to the minimum base.
     """
     return (
         inps_employee
         if inp.rules.inps is None
-        else _ordinary_breakdown(inp, inp.monthly_gross, settles=False).employee
+        else _ordinary_breakdown(
+            inp, _raised(inp, inp.monthly_gross), settles=False
+        ).employee
     )
 
 

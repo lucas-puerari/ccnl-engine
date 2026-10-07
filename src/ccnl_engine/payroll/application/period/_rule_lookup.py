@@ -96,12 +96,14 @@ def contract_rules(ctx: RunContext) -> dict[str, tuple[Rule, ...]]:
         if isinstance(contract, Apprentice)
         else ("inps", _provenance(rules.inps))
     )
+    minimum = None if rules.inps is None else rules.inps.minimum_base
     inps: tuple[Rule, ...] = (
         (f"{inps_name}:{rates[0]}", rates[1]),
         (
             f"{inps_name}:domestic_contributions",
             _provenance(rules.domestic_contributions),
         ),
+        (f"{inps_name}:inps.minimum_base", _provenance(minimum)),
     )
     tax_name = _name(rules.ruleset, f"tax/{rules.year}")
     fixed_term: tuple[Rule, ...] = (

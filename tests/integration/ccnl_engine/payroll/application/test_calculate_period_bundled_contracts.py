@@ -4,6 +4,12 @@ A smoke check over the whole bundle, asserting invariants only: no expected
 amount is frozen here, because values produced by the engine itself detect
 no systematic error. Amounts are owned by the reference cases, the oracle
 tests and the per-contract loader tests.
+
+The same scan checks the minimum INPS base of every level
+(:mod:`tests.fixtures.normative_oracles.contributions_2026`): a full month
+of a full-time worker is contributed on at least 26 daily floors, unless
+art. 7 c. 5 D.L. 463/1983 excludes the worker or a blocker on the INPS
+amounts says the minimum is undetermined.
 """
 
 from __future__ import annotations
@@ -21,6 +27,7 @@ from ccnl_engine import (
     PayrollRun,
     PeriodFacts,
     PeriodInput,
+    PeriodResult,
 )
 from ccnl_engine.contract.service.loaders import load_ccnl
 from ccnl_engine.inputs import (
@@ -29,7 +36,10 @@ from ccnl_engine.inputs import (
     EmploymentPeriod,
     WeeklyHours,
 )
-from ccnl_engine.results import CalculationStatus
+from ccnl_engine.results import BlockerCode, CalculationStatus
+from tests.fixtures.normative_oracles.contributions_2026 import (
+    FULL_TIME_MONTHLY_CONTRIBUTION_FLOOR,
+)
 from tests.fixtures.residence import resident
 from tests.fixtures.seniority import new_hire, pricing_category
 
@@ -46,6 +56,43 @@ _COMPUTED = frozenset({CalculationStatus.FINAL, CalculationStatus.PROVISIONAL})
 #: is the first of the employment, so the zero opening state is the fact.
 _HIRED = EmploymentPeriod(date(2026, 9, 1))
 _ONLY_EMPLOYMENT = CurrentYearTaxFacts.employment_only(2026, date(2026, 9, 1))
+#: Issue of a run whose minimum INPS base the bundle cannot fix.
+_MINIMUM_UNDETERMINED = "inps_minimum_base_undetermined"
+_INPS = frozenset({"inps_employee", "inps_employer"})
+
+
+def _minimum_held(result: PeriodResult) -> bool:
+    """Whether the INPS base respects the minimum, or says it cannot.
+
+    Returns:
+        True for a base at or above 26 daily floors, a worker
+        art. 7 c. 5 excludes, or an undetermined minimum that blocks both
+        INPS amounts.
+    """
+    (decision,) = (d for d in result.decisions if d.capability == "inps_employee")
+    if decision.inputs.get("minimum_base_reason") == "category_excluded":
+        return True
+    if any(i.code == _MINIMUM_UNDETERMINED for i in result.issues):
+        issues = BlockerCode.CALCULATION_ISSUE
+        return {b.feature for b in result.blockers if b.code is issues} >= _INPS
+    base = decision.inputs["base"]
+    return isinstance(base, Decimal) and base >= FULL_TIME_MONTHLY_CONTRIBUTION_FLOOR
+
+
+def _computed(result: PeriodResult) -> bool:
+    """Whether the run computed, or only its minimum INPS base is open.
+
+    Returns:
+        True for a final or provisional result, or an incomplete one whose
+        incomplete issues are all the undetermined minimum base.
+    """
+    if result.assurance.calculation in _COMPUTED:
+        return True
+    return all(
+        i.code == _MINIMUM_UNDETERMINED
+        for i in result.issues
+        if i.status is CalculationStatus.INCOMPLETE
+    )
 
 
 def test_bundle_lists_contracts() -> None:
@@ -58,7 +105,8 @@ def test_every_level_computes_sane_totals(slug: str) -> None:
     """Gross and net are positive, contributions non-negative, cost covers gross.
 
     Net may exceed gross when tax credits such as the trattamento integrativo
-    are paid, so only its sign is checked.
+    are paid, so only its sign is checked.  The INPS base holds the minimum
+    of the sector or a blocker says it cannot be fixed.
     """
     failures: list[str] = []
     ccnl = load_ccnl(slug)
@@ -83,7 +131,8 @@ def test_every_level_computes_sane_totals(slug: str) -> None:
         )
         gross = result.period_gross
         if not (
-            result.assurance.calculation in _COMPUTED
+            _computed(result)
+            and (slug in _DOMESTIC or _minimum_held(result))
             and gross > 0
             and result.period_net > 0
             and result.contribution_breakdown.employee >= 0

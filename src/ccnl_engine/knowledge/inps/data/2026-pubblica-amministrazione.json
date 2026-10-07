@@ -17,6 +17,32 @@
       }
     ],
     "ceiling": null,
+    "minimum_base": {
+      "daily": "58.13",
+      "week_days": 5,
+      "monthly_days": null,
+      "hourly": [
+        {
+          "full_time_weekly_hours": "36",
+          "amount": "8.07"
+        }
+      ],
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "inps-circolare-6-2026",
+            "title": "INPS Circolare n. 6 del 30 gennaio 2026",
+            "kind": "inps_circolare",
+            "url": "https://www.inps.it/it/it/inps-comunica/atti/circolari-messaggi-e-normativa/dettaglio.circolari-e-messaggi.2026.01.circolare-numero-6-del-30-01-2026_15151.html"
+          },
+          "section": "par. 1, Minimali di retribuzione giornaliera; par. 4, Minimale ai fini contributivi per i rapporti di lavoro subordinato a tempo parziale",
+          "quote": "Tali limiti, secondo quanto innanzi precisato, devono essere ragguagliati a 58,13 euro(9,5% dell'importo del trattamento minimo mensile di pensione a carico del Fondo pensioni lavoratori dipendenti in vigore al 1° gennaio 2026, pari a 611,85 euromensili) se di importo inferiore. [...] Qualora, invece, l'orario normale sia di 36 ore settimanali (ipotesi che ricorre, di norma, per i lavoratori iscritti alla Gestione pubblica), articolate su cinque giorni, il procedimento del calcolo è il seguente: 58,13 euro x 5/36 = 8,07 euro."
+        },
+        "transformation": "daily: the 'Minimale di retribuzione giornaliera (9,5%)' of the par. 1 table; week_days and hourly: the par. 4 formula of the Gestione pubblica, 36 hours on five days, 8.07 as published.",
+        "note": "monthly_days null: no bundled source gives the days of a fully paid month on a five-day week, so a run below the minimum is undetermined. D.L. 463/1983 art. 7 c. 1, second period, read on Normattiva on 2026-10-07 (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legge:1983-09-12;463~art7): 'il limite minimo di retribuzione giornaliera [...] per tutte le contribuzioni dovute in materia di previdenza e assistenza sociale non può essere inferiore al 7,50% dell'importo del trattamento minimo mensile di pensione', raised to 9,50 by D.L. 338/1989 art. 1 c. 2; c. 5: 'Le disposizioni di cui ai commi 1, 2, 3 e 4 del presente articolo non si applicano ai lavoratori addetti ai servizi domestici e familiari, agli operai agricoli, agli apprendisti'. D.Lgs. 81/2015 art. 11 c. 1 (Normattiva, same day): 'La retribuzione minima oraria, da assumere quale base per il calcolo dei contributi previdenziali dovuti per i lavoratori a tempo parziale, si determina rapportando alle giornate di lavoro settimanale ad orario normale il minimale giornaliero'. Circ. 6/2026 read on 2026-10-07 in the copy attached to circolare 23/26 of Ascom Bologna (https://ascom.bo.it/wp-content/uploads/2026/02/Allegato-1-CIRCO-23-26_Circolare-INPS-n.-6-del-30-01-2026.pdf, sha256 ec8fce75b98095d5b7de3d7ba725a403e1c487e1c75512567066650b88118992): the INPS page loads its text by script. Not checked by a named reviewer. Assumed, not derived: its ruleset declares source_type 'estimated'."
+      }
+    },
     "provenance": {
       "status": "assumed",
       "location": {
@@ -55,7 +81,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "b7b94877ecfb92d2938866df905014861e9a5b126edd0c1a76ace9297c2159b5",
+    "source_hash": "4aa6df0b24625d715e5d2f46c60e3d34370f1c9d338b8ebd3e6a2d1e7f4ed03b",
     "source_type": "estimated"
   }
 }
