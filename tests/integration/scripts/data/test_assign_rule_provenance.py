@@ -23,6 +23,7 @@ _REVIEWED = {
     ("extraction", "status"),
     [
         ({"method": "manual", **_REVIEWED}, "verified"),
+        ({"method": "ai", "model": "m", **_REVIEWED}, "verified"),
         ({"method": "manual", "verification_status": "verified"}, "derived"),
         ({"method": "ai", "verification_status": "unverified"}, "assumed"),
         ({"method": "manual", "verification_status": "unverified"}, "derived"),
@@ -40,8 +41,8 @@ def test_status_follows_the_extraction(extraction: dict[str, str], status: str) 
     [None, {"section": "Art. 1"}, {**_CITED, "section": None}],
 )
 def test_record_without_citation_is_assumed(location: object) -> None:
-    """A value without a url and a located clause cannot be derived."""
-    record = {"location": location, "extraction": {"method": "manual"}}
+    """A value without a url and a located clause is neither derived nor verified."""
+    record = {"location": location, "extraction": {"method": "manual", **_REVIEWED}}
     assert ccnl_status(record) == "assumed"
 
 

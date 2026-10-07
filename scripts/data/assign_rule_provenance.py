@@ -3,10 +3,10 @@
 CCNL records already cite a document location and an extraction trace; the
 status follows from what they record:
 
+- ``assumed``: a record without a citation (an http(s) document url and a
+  section or page), or an AI extraction without the review below;
 - ``verified``: ``extraction.verification_status`` is ``verified`` and the
   record names the reviewer (``verified_by``) and the date (``verified_at``);
-- ``assumed``: an AI extraction without that review, or a record without
-  a citation (an http(s) document url and a section or page);
 - ``derived``: any other record.
 
 A legacy ``verified`` without reviewer and date becomes ``derived``: the
@@ -60,15 +60,15 @@ def ccnl_status(record: dict[str, Any]) -> str:
         ``verified``, ``assumed`` or ``derived`` (see the module docstring).
     """
     extraction = record.get("extraction") or {}
+    if not has_citation(record.get("location")):
+        return "assumed"
     if (
         extraction.get("verification_status") == "verified"
         and extraction.get("verified_by")
         and extraction.get("verified_at")
     ):
         return "verified"
-    if extraction.get("method") == "ai" or not has_citation(record.get("location")):
-        return "assumed"
-    return "derived"
+    return "assumed" if extraction.get("method") == "ai" else "derived"
 
 
 def _with_status(record: dict[str, Any], counts: Counter[str]) -> dict[str, Any]:

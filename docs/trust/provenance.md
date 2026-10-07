@@ -134,7 +134,9 @@ transformation, and its note says why.
 `scripts/data/demote_weak_labels.py` applies the rule to the whole bundle
 (every provenance record of every data file, payable or not, and the
 `source_status` of the substitute-tax regimes) and rehashes the files it
-changes; it only lowers labels.
+changes; it only lowers labels. A record raised back to `derived` after
+its source is located must drop that note, which the gate reads as an
+estimate.
 Nothing becomes `verified` without a named reviewer and a date: the legacy
 `extraction.verification_status: "verified"` alone, or the file-level
 `verification.human_reviewed_by`, does not say which value was checked by
