@@ -55,9 +55,19 @@ _DOMESTIC = frozenset({
 })
 _SENIORITY = SeniorityFact(36, date(_YEAR, 1, 1), SenioritySource.PAYSLIP)
 #: First day of the base salary of every level in the bundle file of the
-#: CCNLs whose 2026 pay tables start after January (the first tranche of
-#: the renewal; no earlier table is bundled).  ANAS: CCNL 2025-2027,
-#: "Tabella retributiva", tranche of 1 March 2026.
+#: CCNLs whose 2026 pay tables start after January: the first tranche the
+#: bundle holds, with no earlier table.  The dates are those of the sources
+#: cited by each file, not checked here against a signed text:
+#: - anas: CCNL 2025-2027 signed 18 December 2025, "Tabella retributiva",
+#:   tranches from 1 March 2026 (https://www.stradeanas.it/sites/default/
+#:   files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf);
+#: - igiene-ambientale-utilitalia: renewal of 9 December 2025, the new
+#:   16-level classification in force from 1 February 2026
+#:   (https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551);
+#: - lavanderie-industriali-assosistema: tranche of 1 May 2026
+#:   (https://www.assosistema.it/11527-2/);
+#: - metalmeccanico-confimi-pmi: table "Categoria 2 - 01/06/2026"
+#:   (https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445).
 _LATE_TABLES = {
     "anas": date(_YEAR, 3, 1),
     "igiene-ambientale-utilitalia": date(_YEAR, 2, 1),

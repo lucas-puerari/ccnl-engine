@@ -346,8 +346,8 @@ unresolved requirement, otherwise `partial` when every gap is partial and
 
 A competence or tax year does not compute a run whose competence date has
 no base salary of the CCNL level in the bundle. The run is listed in
-`uncovered_runs` as an `UncoveredRun` (its `payment` and the
-`MissingRuleError` it would raise) and adds a `run_not_computed` blocker
+`uncovered_runs` as an `UncoveredRun` (its `payment`, the fields of the
+`MissingRuleError` it would raise, and that error as `error`) and adds a `run_not_computed` blocker
 whose `detail` is the run id; the other runs are computed on a withholding
 schedule without it, so the year is partial and not payable. A year in
 which no run has a base salary raises the `MissingRuleError` of its first

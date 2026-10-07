@@ -47,7 +47,7 @@ def split_covered(
             with rule_scope(ruleset=ccnl.meta.ccnl_id, feature=_FEATURE):
                 series.value_at(planned.payment.competence)
         except MissingRuleError as error:
-            uncovered.append(UncoveredRun(planned.payment, error))
+            uncovered.append(UncoveredRun.of(planned.payment, error))
         else:
             covered.append(planned)
     if not covered:
