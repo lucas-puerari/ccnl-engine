@@ -10,6 +10,7 @@ refused as out of scope.
 
 from __future__ import annotations
 
+import contextlib
 from datetime import date
 from decimal import Decimal
 
@@ -17,6 +18,7 @@ import pytest
 
 from ccnl_engine import (
     CcnlEngineError,
+    DataIntegrityError,
     EmployerProfile,
     Employment,
     Headcount,
@@ -28,8 +30,15 @@ from ccnl_engine import (
     PeriodInput,
     PeriodResult,
 )
-from ccnl_engine.inputs import SeniorityFact, SenioritySource, WorkerCategory
+from ccnl_engine.events import FringeEvent
+from ccnl_engine.inputs import (
+    SeniorityFact,
+    SenioritySource,
+    WeeklyHours,
+    WorkerCategory,
+)
 from ccnl_engine.results import BlockerCode, CalculationDecision
+from tests.fixtures.seniority import new_hire
 from tests.fixtures.sickness_episode import metalmeccanico_c3, sickness_episode
 
 _ENGINE = PayrollEngine.bundled()
@@ -227,3 +236,57 @@ def test_sickness_after_earlier_sick_days_is_computed() -> None:
     }
     (decision,) = (d for d in result.decisions if d.capability == "sickness")
     assert decision.reason_code == "sickness_episode_paid"
+
+
+@pytest.mark.xfail(
+    strict=True,
+    raises=AssertionError,
+    reason=(
+        "a sickness episode covering the whole of July is refused: the "
+        "absence deduction (2,211.44, 31 daily quotas rounded apart) exceeds "
+        "the month's pay (2,211.43); the episode is lawful input (art. 2110 "
+        "c.c.) and the deduction cannot exceed the pay it suspends"
+    ),
+)
+def test_sickness_for_a_whole_month_is_computed() -> None:
+    """Metalmeccanico C3 operaio, sick from 1 to 31 July 2026."""
+    episode = sickness_episode("2026-07-01", date(2026, 7, 1), date(2026, 7, 31))
+    computed: list[PeriodResult] = []
+    with contextlib.suppress(InvalidInputError):
+        computed.append(
+            _regular(
+                metalmeccanico_c3(WorkerCategory.OPERAIO),
+                7,
+                PeriodFacts(events=(episode,)),
+            )
+        )
+    assert computed
+
+
+@pytest.mark.xfail(
+    strict=True,
+    raises=AssertionError,
+    reason=(
+        "a 20,000 EUR fringe benefit on a part-time Commercio 7 drives the net "
+        "pay below zero (IRPEF is capped, employee INPS is not) and the run "
+        "raises DataIntegrityError, the error of a corrupt bundle, on lawful "
+        "input; it must return a result with a blocker or raise an input or "
+        "scope error"
+    ),
+)
+def test_negative_net_is_not_a_data_integrity_error() -> None:
+    """Commercio level 7, 20 hours of 40 a week, March 2026."""
+    employment = Employment(
+        ccnl_slug="commercio-confcommercio.json",
+        level_code="7",
+        seniority=new_hire(),
+        weekly_hours=WeeklyHours(20),
+        full_time_weekly_hours=WeeklyHours(40),
+    )
+    fringe = FringeEvent(date(2026, 3, 10), Decimal(20_000))
+    outcomes: list[PeriodResult | CcnlEngineError] = []
+    try:
+        outcomes.append(_regular(employment, 3, PeriodFacts(events=(fringe,))))
+    except CcnlEngineError as error:
+        outcomes.append(error)
+    assert not isinstance(outcomes[0], DataIntegrityError)

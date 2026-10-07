@@ -6,17 +6,25 @@ family deductions.  At the last run of the year the sostituto d'imposta must
 perform the conguaglio (art. 23 c. 3 DPR 600/1973), so the IRPEF withheld
 over the year equals the net IRPEF on the final annual taxable income.
 The same holds for a part-year employment, whose deductions are
-proportioned to its days.
+proportioned to its days.  An additional month has its own withholding
+rule (art. 23 c. 2 lett. b): the engine does not apply it yet, a strict
+xfail.
 """
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 
 import pytest
 
-from ccnl_engine import CompetenceYearPlan, CompetenceYearResult, Employment
+from ccnl_engine import (
+    CompetenceYearPlan,
+    CompetenceYearResult,
+    Employment,
+    PayrollRun,
+)
 from ccnl_engine.inputs import EmploymentPeriod
 from tests.acceptance.legal_scenarios._support import (
     COMMERCIO,
@@ -24,7 +32,11 @@ from tests.acceptance.legal_scenarios._support import (
     EMPLOYER,
     ENGINE,
 )
+from tests.fixtures.explicit_facts import CONCIA_D2, competence_year
 from tests.fixtures.normative_oracles.irpef_2026 import net_irpef
+from tests.fixtures.normative_oracles.withholding_2026 import (
+    extra_month_withholding,
+)
 
 pytestmark = pytest.mark.legal_scenario
 
@@ -169,3 +181,40 @@ def test_mid_year_hire_projects_the_tredicesima_it_will_accrue() -> None:
     assert len(year.period_results) == 7
     for run in year.period_results:
         assert abs(run.tax_computation.ordinary_tax - share) <= Decimal("0.02")
+
+
+@pytest.mark.xfail(
+    strict=True,
+    raises=AssertionError,
+    reason=(
+        "the quattordicesima withholds the share of the projected annual tax "
+        "of a regular month; art. 23 c. 2 lett. b) DPR 600/1973 taxes an "
+        "additional month on the annual brackets divided by twelve, with no "
+        "deduction"
+    ),
+)
+def test_fourteenth_withholds_on_monthly_brackets() -> None:
+    """Commercio level 4, hired 1 January 2026: the June quattordicesima.
+
+    The fourteenth pays 6/12 of the month (January to June of the July-June
+    window); its taxable is under 28,000 / 12 = 2,333.33, so lett. b)
+    withholds 23% of it.  The June regular run, with its deductions, must
+    withhold less.
+    """
+    employment = replace(CONCIA_D2, ccnl_slug=COMMERCIO, level_code="4")
+    year = ENGINE.calculate_competence_year(competence_year(employment=employment))
+    runs = {r.run: r for r in year.period_results}
+    fourteenth = runs[PayrollRun.fourteenth(2026, 6)]
+    regular = runs[PayrollRun.regular(2026, 6)]
+    taxable = fourteenth.period_gross - sum(
+        (
+            e.amount
+            for e in fourteenth.ledger_entries
+            if e.account == "employee_contributions"
+        ),
+        Decimal(0),
+    )
+    withheld = fourteenth.tax_computation.ordinary_tax
+
+    assert withheld > regular.tax_computation.ordinary_tax
+    assert abs(withheld - extra_month_withholding(taxable)) <= _CENT
