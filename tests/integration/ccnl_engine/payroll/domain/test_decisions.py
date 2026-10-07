@@ -23,6 +23,7 @@ from ccnl_engine.provenance.domain.source import (
     SourceLocation,
 )
 from tests.fixtures.opening_state import fresh_tax_year
+from tests.fixtures.residence import resident
 from tests.helpers import year_plan
 
 if TYPE_CHECKING:
@@ -67,13 +68,15 @@ def year_result() -> CompetenceYearResult:
     """Compute the standard year (13 runs) through the real pipeline.
 
     Returns:
-        The year result of a metalmeccanico C3 worker in 2026.
+        The year result of a metalmeccanico C3 worker in 2026, resident in
+        Alghero.
     """
     return calculate_competence_year(
         year_plan(
             2026,
             "metalmeccanico-federmeccanica.json",
             "C3",
+            facts=resident(),
             opening_state=fresh_tax_year(2026),
         )
     )

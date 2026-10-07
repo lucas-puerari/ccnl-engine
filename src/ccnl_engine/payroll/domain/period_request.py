@@ -79,12 +79,11 @@ class PeriodCalculationRequest:
         regione: ISO 3166-2:IT region code for the regional surtax, e.g.
             ``"IT-45"``, with ``"IT-BZ"`` / ``"IT-TN"`` for the autonomous
             provinces (:data:`~ccnl_engine.payroll.domain.jurisdiction\
-.REGION_CODES`).  ``None`` is unknown: when the employer
-            withholds, a ``requirement_unresolved`` blocker on
-            ``addizionale_regionale``.
+.REGION_CODES`).  ``None`` is unknown: when the employer withholds,
+            a ``residence_unknown`` decision and a ``requirement_unresolved``
+            blocker on ``addizionale_regionale``.
         comune_belfiore: Belfiore code for the municipal surtax, e.g.
-            ``"F257"``.  ``None`` is unknown: when the employer
-            withholds, a ``requirement_unresolved`` blocker on
+            ``"F257"``.  ``None`` is unknown, as for ``regione``, on
             ``addizionale_comunale``.
         has_dependent_children: Whether the worker has at least one
             fiscally dependent child (figlio a carico).  Selects the

@@ -60,11 +60,13 @@ class PeriodFacts:
         regione: ISO 3166-2:IT region code for the regional surtax, e.g.
             ``"IT-45"``, ``"IT-BZ"`` / ``"IT-TN"`` for the autonomous
             provinces.  ``None`` is unknown: when the employer
-            withholds, a ``requirement_unresolved`` blocker on
+            withholds, a ``residence_unknown`` decision and a
+            ``requirement_unresolved`` blocker on
             ``addizionale_regionale``.
         comune_belfiore: Belfiore code for the municipal surtax, e.g.
             ``"F257"``.  ``None`` is unknown: when the employer
-            withholds, a ``requirement_unresolved`` blocker on
+            withholds, a ``residence_unknown`` decision and a
+            ``requirement_unresolved`` blocker on
             ``addizionale_comunale``.
         family_composition: Dependents for the Art. 12 TUIR deductions.
             ``None`` is unknown: when the employer withholds, a

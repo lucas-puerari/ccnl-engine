@@ -33,6 +33,7 @@ from ccnl_engine.payroll.domain.surtax_obligations import (
     SurtaxPart,
 )
 from ccnl_engine.payroll.service.fiscal_surtax import SurtaxOutcome, compute_surtax
+from ccnl_engine.payroll.service.surtax_residence import residence_unknown_decisions
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.amounts._types import _AmountsInput
@@ -58,7 +59,8 @@ class RunSurtax:
         carried_in: Surtax of earlier runs not withheld for lack of pay.
         refund: Surtax given back by the conguaglio.
         obligations: Surtax still to withhold after the run.
-        decisions: Installment and conguaglio decisions, after those of
+        decisions: Decisions of the surtax the request gives no residence
+            for, then the installment and conguaglio ones, after those of
             ``annual``.
         conguaglio: What the conguaglio of the run settled, empty on any
             other run.
@@ -184,9 +186,14 @@ def run_surtax(inp: _AmountsInput, taxable: Decimal, irpef_due: Decimal) -> RunS
 
     Returns:
         The installments, the conguaglio and the surtax carried in; no
-        annual decision without surtax rules.
+        annual decision without surtax rules, and a ``residence_unknown``
+        decision for each of ``regione`` and ``comune_belfiore`` unset.
     """
-    parts, remaining, decisions = _installments(inp)
+    parts, remaining, posted = _installments(inp)
+    decisions = [
+        *residence_unknown_decisions(inp.regione, inp.comune_belfiore, inp.rules.year),
+        *posted,
+    ]
     carried_in = inp.opening.shortfall.surtax
     if inp.surtax_rules is None:
         return RunSurtax(

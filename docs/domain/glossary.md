@@ -209,8 +209,7 @@ year it is unknown, never zero: the `family_deductions` decision is
 ### surtax decision (decisione sulle addizionali)
 
 The `CalculationDecision` of the regional or municipal surtax
-(`addizionale_regionale`, `addizionale_comunale`) for a jurisdiction named in
-the request.  It separates a surtax not yet determined
+(`addizionale_regionale`, `addizionale_comunale`) of the tax year.  It separates a surtax not yet determined
 (`determined_at_conguaglio`: final, amount 0, any run before the
 conguaglio), a surtax not due by rule (`no_irpef_due`,
 `below_exemption_threshold`: final, amount 0), a table applied
@@ -219,7 +218,10 @@ conguaglio), a surtax not due by rule (`no_irpef_due`,
 provisional) and a
 well-formed code without a
 table row (`table_unknown`: incomplete, amount `None`, issue
-`regional_surtax_unknown` or `municipal_surtax_unknown`).  The region is the
+`regional_surtax_unknown` or `municipal_surtax_unknown`).  A withholding
+run that leaves `regione` or `comune_belfiore` unset records
+`residence_unknown` (incomplete, amount `None`, `inputs["fact"]` naming the
+fact): the surtax is undetermined, never not applicable.  The region is the
 ISO 3166-2:IT code (`IT-45`), with `IT-BZ` / `IT-TN` for the autonomous
 provinces.  A malformed code is invalid input, not an unknown table.
 

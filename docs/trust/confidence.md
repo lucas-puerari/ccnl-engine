@@ -50,7 +50,11 @@ A household employer is not a withholding agent (art. 23 c. 1 DPR
 600/1973): its run decides that no surtax and no deduction is due, so it
 needs neither fact. A resident owes both surtaxes when net IRPEF is due
 (D.Lgs. 446/1997 art. 50 c. 2, D.Lgs. 360/1998 art. 1 c. 4), so an unknown
-residence cannot stand for "no surtax".
+residence cannot stand for "no surtax". The run also records a
+`residence_unknown` decision on each surtax whose code is missing
+(incomplete, amount `None`, `inputs["fact"]` naming the fact), so its
+calculation is `incomplete` too; see
+[Surtax decisions](../engine/surtax.md#surtax-decisions).
 
 The registry rejects an applicability fact that is not one of the facts the
 capability reads, one on a capability that is not `decided`, and one the
@@ -87,7 +91,9 @@ on `code`, `feature` and `detail`, not on the sentence.
 For the first level of each CCNL, a regular run of June 2026 with no event,
 for a worker whose residence and empty family are stated, no result is
 payable. Without the residence or the family, each run also carries a
-`requirement_unresolved` blocker per unknown fact. None has a coverage gap: the capabilities the engine
+`requirement_unresolved` blocker per unknown fact; without the residence,
+the `residence_unknown` surtax decisions add a `calculation_issue` and a
+`capability_not_computed` blocker per missing code. None has a coverage gap: the capabilities the engine
 does not compute (INAIL, health funds, maternity, ...) do not apply to an
 ordinary month or are outside the request (see the
 [capability matrix](../contracts/capability-matrix.md)). Every run carries a

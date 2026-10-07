@@ -28,6 +28,7 @@ from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
+from tests.fixtures.residence import COMUNE_BELFIORE, REGIONE
 from tests.fixtures.seniority import new_hire
 from tests.fixtures.sickness_episode import march_sickness_episode
 
@@ -39,6 +40,13 @@ _TFR_REVALUATION = "tfr_revaluation"
 
 
 def _req(month: int = 1) -> PeriodCalculationRequest:
+    """Return the run of ``month``, resident in Alghero.
+
+    Without a residence the surtaxes are unresolved gaps of every run.
+
+    Returns:
+        The request of the regular run of ``month`` 2026.
+    """
     return PeriodCalculationRequest(
         employer=EmployerProfile(headcount=Headcount(50)),
         period_id=PeriodId(year=_YEAR, month=month),
@@ -47,6 +55,8 @@ def _req(month: int = 1) -> PeriodCalculationRequest:
         level_code=_LEVEL,
         seniority=new_hire(),
         opening_state=PeriodState.zero(),
+        regione=REGIONE,
+        comune_belfiore=COMUNE_BELFIORE,
     )
 
 
@@ -60,12 +70,7 @@ class TestOrdinaryMonth:
 
     def test_report_is_complete(self) -> None:
         """With the residence and the family stated: complete, no blocker."""
-        stated = replace(
-            _req(),
-            regione="IT-25",
-            comune_belfiore="F205",
-            family_composition=FamilyComposition(),
-        )
+        stated = replace(_req(), family_composition=FamilyComposition())
         result = calculate_period(stated)
         assert isinstance(result.capability_report, CapabilityReport)
         assert result.capability_report.catalog_year == _YEAR

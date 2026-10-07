@@ -4,6 +4,14 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Unknown residence recorded as an undetermined surtax
+
+Amounts are unchanged.
+
+| Before | After |
+|---|---|
+| A withholding run with `PeriodFacts.regione` or `comune_belfiore` left `None` took no decision on that surtax; only the `requirement_unresolved` blocker named the fact, and `assurance.calculation` could stay `final` | A `residence_unknown` decision on `addizionale_regionale` or `addizionale_comunale` (incomplete, amount `None`, `inputs["fact"]` = `facts.regione` or `facts.comune_belfiore`): `assurance.calculation` is `incomplete`, with a `calculation_issue` and a `capability_not_computed` blocker besides `requirement_unresolved` |
+
 ## TFR revaluation and Fondo Tesoreria
 
 The December run decides the revaluation of the TFR fund at 31 December,

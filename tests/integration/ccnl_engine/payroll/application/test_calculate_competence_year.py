@@ -27,6 +27,7 @@ from ccnl_engine.payroll.domain.run import RunKind
 from ccnl_engine.shared.domain.errors import InvalidInputError
 from tests.fixtures.current_year import employment_only
 from tests.fixtures.opening_state import fresh_tax_year
+from tests.fixtures.residence import resident
 from tests.helpers import year_plan
 
 if TYPE_CHECKING:
@@ -199,6 +200,7 @@ class TestEmploymentPeriodRuns:
                 _YEAR,
                 _CCNL,
                 _LEVEL,
+                facts=resident(),
                 employment_period=EmploymentPeriod(date(_YEAR, 3, 15)),
                 current_year=employment_only(_YEAR),
             )
@@ -246,6 +248,7 @@ class TestEmploymentPeriodRuns:
                 _YEAR,
                 _CCNL,
                 _LEVEL,
+                facts=resident(),
                 employment_period=EmploymentPeriod(
                     date(2020, 1, 1), date(_YEAR, 5, 31)
                 ),
