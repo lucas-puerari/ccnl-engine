@@ -15,7 +15,7 @@ import pytest
 
 from ccnl_engine.payroll.domain.family import Dependent, DependentRelationship
 from ccnl_engine.payroll.service.family.children import (
-    child_months,
+    child_due_months,
     children_deductions,
 )
 from ccnl_engine.tax.service.tax_optional_loaders import load_family_deduction_rules
@@ -70,7 +70,7 @@ def test_age_band_is_evaluated_per_month(
 ) -> None:
     """From the month of the 21st birthday to that of the 30th (c. 3)."""
     child = _child(born, disabled=disabled)
-    assert child_months(child, _RULES.children, 2026) == months
+    assert len(child_due_months(child, _RULES.children, 2026)) == months
     assert _one(child) == _D(expected)
     assert family_2026.child_deduction(_INCOME, months=months) == _D(expected)
 
@@ -78,7 +78,7 @@ def test_age_band_is_evaluated_per_month(
 def test_birthday_and_dependency_interval_combine() -> None:
     """Turns 21 in May, leaves in October: May to October, 449.92 x 6 / 12."""
     child = _child(date(2005, 5, 10), dependent_until=date(2026, 10, 3))
-    assert child_months(child, _RULES.children, 2026) == 6
+    assert len(child_due_months(child, _RULES.children, 2026)) == 6
     assert _one(child) == _D("224.96")
 
 
@@ -98,13 +98,13 @@ def test_own_income_limit_depends_on_the_age_reached_in_the_year(
 ) -> None:
     """C. 2: 4,000 for children "di età non superiore a ventiquattro anni"."""
     child = _child(born, own_income=own_income)
-    assert child_months(child, _RULES.children, 2026) == months
+    assert len(child_due_months(child, _RULES.children, 2026)) == months
 
 
 def test_not_resident_child_has_no_month() -> None:
     """C. 2-bis: the family member resident abroad gives no deduction."""
     child = _child(date(2001, 3, 1), residency_eligibility=False)
-    assert child_months(child, _RULES.children, 2026) == 0
+    assert len(child_due_months(child, _RULES.children, 2026)) == 0
 
 
 @pytest.mark.parametrize(

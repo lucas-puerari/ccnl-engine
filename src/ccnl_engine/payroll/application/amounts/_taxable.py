@@ -6,13 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application._period_utils import _ZERO
-from ccnl_engine.payroll.application.amounts._contributions import (
-    recurring_employee_inps,
-)
-from ccnl_engine.payroll.application.amounts._pension import (
-    projected_adjustment,
-    recurring_adjustment,
-)
+from ccnl_engine.payroll.application.amounts._pension import projected_adjustment
 from ccnl_engine.payroll.domain.rounding import money
 
 if TYPE_CHECKING:
@@ -46,11 +40,14 @@ class _Taxable:
         period: Taxable income of the run.
         projected: Annual taxable income: the opening YTD, the run and the
             recurring pay of the slots still to come.
+        separate: Part of :attr:`period` withheld apart from the pay of the
+            period (art. 23 c. 2 lett. b) DPR 600/1973).
     """
 
     irpef_base: Decimal
     period: Decimal
     projected: Decimal
+    separate: Decimal = _ZERO
 
 
 def pdr_split(inp: _AmountsInput) -> _PdrSplit:
@@ -105,23 +102,30 @@ def taxable_income(
         - upcoming_inps
         + projected_adjustment(inp, pension)
     )
-    return _Taxable(irpef_base=irpef_base, period=period_taxable, projected=projected)
+    return _Taxable(
+        irpef_base=irpef_base,
+        period=period_taxable,
+        projected=projected,
+        separate=_separate(inp, period_taxable, employee_rate, pdr),
+    )
 
 
-def one_off_taxable(
-    inp: _AmountsInput, taxable: _Taxable, inps_employee: Decimal
+def _separate(
+    inp: _AmountsInput, period_taxable: Decimal, employee_rate: Decimal, pdr: _PdrSplit
 ) -> Decimal:
-    """Return the taxable income of the one-off pay of the run.
+    """Return the taxable the run withholds on under art. 23 c. 2 lett. b).
 
-    One-off income of the run (events, excess PdR) is withheld on the run:
-    its taxable is the run's taxable less that of its recurring pay alone.
+    The lett. b) of art. 23 c. 2 DPR 600/1973 covers "le mensilità
+    aggiuntive e ... i compensi della stessa natura": the whole run of a
+    tredicesima or quattordicesima, and the premiums of another run (AdE
+    circ. 15/E/2007 par. 2.4: "premi trimestrali, semestrali e annuali"),
+    the PdR beyond its cap included, net of the employee INPS at the rate
+    of the run.
 
     Returns:
-        Zero when the run has no event IRPEF base.
+        The lett. b) taxable, between zero and ``period_taxable``.
     """
-    if taxable.irpef_base <= _ZERO:
-        return _ZERO
-    recurring_inps = recurring_employee_inps(inp, inps_employee)
-    recurring_taxable = money(inp.monthly_gross - recurring_inps)
-    recurring_taxable += recurring_adjustment(inp)
-    return max(_ZERO, taxable.period - recurring_taxable)
+    if inp.additional_month:
+        return max(_ZERO, period_taxable)
+    premiums = money((inp.event_separate_base + pdr.excess) * (1 - employee_rate))
+    return max(_ZERO, min(period_taxable, premiums))

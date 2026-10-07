@@ -10,7 +10,9 @@ retribuzione alla quale si applicano gli effetti del conguaglio".
 The deduction lowers the IRPEF, so the cumulative conguaglio would take the
 whole excess back on its payslip.  The engine tracks the part of the
 deduction each run's withholding applied (the withholding without the
-deduction less the withholding with it), keeps on the conguaglio payslip
+deduction less the withholding with it: before the conguaglio the share of
+the deduction the pay period took, see
+:mod:`~ccnl_engine.payroll.service.period_withholding`), keeps on the conguaglio payslip
 what c. 7 allows (the whole excess up to 60 EUR, otherwise the first
 installment) and defers the other nine installments to the next runs as a
 recovery obligation (:mod:`.ulteriore_settlement`).  A part the withholding
@@ -47,6 +49,7 @@ if TYPE_CHECKING:
     )
     from ccnl_engine.payroll.service.irpef_credits import CreditOutcome
     from ccnl_engine.payroll.service.irpef_net import NetIrpef
+    from ccnl_engine.payroll.service.period_withholding import PeriodTax
     from ccnl_engine.payroll.service.ulteriore_settlement import (
         UlterioreSettlement,
     )
@@ -88,22 +91,24 @@ def ulteriore_items(
 def withhold_with_ulteriore(
     annual: NetIrpef,
     remaining: int,
+    period: PeriodTax,
     *,
     opening_irpef_withheld: Decimal,
-    net_without_one_off: Decimal | None,
     carried_shortfall: Decimal,
     ulteriore_account: CreditAccount | None,
-    ulteriore_without_one_off: Decimal,
     run: InstallmentRun,
     running_plan: RecoveryPlan | None = None,
 ) -> tuple[Decimal, UlterioreSettlement | None]:
     """Return the IRPEF withheld on the run and the ulteriore settlement.
 
-    When the ulteriore detrazione is tracked, the withholding is computed
-    again without it, and on the last slot an excess above 60 EUR is
-    deferred: the run withholds that much less.  With ``running_plan``, a
-    plan opened by a conguaglio of the tax year, the run posts its next
-    installment and keeps deferring the rest (:func:`post_running_plan`).
+    Before the last slot the run recognizes the share of the deduction its
+    pay period took (:attr:`PeriodTax.without_ulteriore` less
+    :attr:`PeriodTax.withheld`).  On the last slot the withholding is
+    computed again on the year without the deduction, and an excess above
+    60 EUR is deferred: the run withholds that much less.  With
+    ``running_plan``, a plan opened by a conguaglio of the tax year, the
+    run posts its next installment and keeps deferring the rest
+    (:func:`post_running_plan`).
 
     Returns:
         ``(ordinary_tax, ulteriore)``; ``ulteriore`` is ``None`` when the
@@ -111,20 +116,18 @@ def withhold_with_ulteriore(
     """
     ordinary_tax = run_withholding(
         annual.net,
-        net_without_one_off,
         opening_irpef_withheld,
         remaining,
+        period.withheld,
         carried_shortfall,
     )
     if annual.ulteriore is None or ulteriore_account is None:
         return ordinary_tax, None
     without = run_withholding(
         annual.net + annual.ulteriore_effect,
-        None
-        if net_without_one_off is None
-        else net_without_one_off + ulteriore_without_one_off,
         opening_irpef_withheld + ulteriore_account.net,
         remaining,
+        period.without_ulteriore,
         carried_shortfall,
     )
     ulteriore = settle_ulteriore(

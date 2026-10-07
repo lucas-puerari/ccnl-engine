@@ -1,20 +1,17 @@
-"""IRPEF withheld on one run: family deductions, one-off pay and conguaglio."""
+"""IRPEF withheld on one run: family deductions, the pay period and conguaglio."""
 
 from __future__ import annotations
 
 from dataclasses import dataclass
+from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application._period_utils import _ZERO
 from ccnl_engine.payroll.application.amounts._family import resolve_family
-from ccnl_engine.payroll.application.amounts._taxable import one_off_taxable
-from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
-from ccnl_engine.payroll.service.irpef_net import NetIrpef, net_irpef
+from ccnl_engine.payroll.service.period_withholding import PayPeriod
 from ccnl_engine.payroll.service.tax_computation import TaxResolution, compute_tax
 
 if TYPE_CHECKING:
-    from decimal import Decimal
-
     from ccnl_engine.payroll.application.amounts._family import RunFamily
     from ccnl_engine.payroll.application.amounts._taxable import _Taxable
     from ccnl_engine.payroll.application.amounts._types import _AmountsInput
@@ -34,41 +31,42 @@ class _Irpef:
     family: RunFamily | None
 
 
-def _family_deductions(family: RunFamily | None, own_income: Decimal) -> Decimal:
-    """Return the annual art. 12 TUIR deductions with ``own_income``.
+def _pay_period(
+    inp: _AmountsInput, taxable: _Taxable, family: RunFamily | None
+) -> PayPeriod:
+    """Return the pay of the run as art. 23 c. 2 DPR 600/1973 withholds it.
+
+    The deductions of the period are those of a regular month: the days of
+    the month over the days of employment in the year for art. 13 TUIR and
+    the ulteriore detrazione, the dependents of the month for art. 12 TUIR.
+    A tredicesima, a quattordicesima or an adjustment run takes none
+    (``period_days`` is zero).
 
     Returns:
-        Zero without a family composition or its rules.
+        The taxable of lett. a) and b), the day share and the art. 12
+        deductions of the month.
     """
-    return _ZERO if family is None else family.deductions_at(own_income).total
-
-
-def _without_one_off(
-    inp: _AmountsInput,
-    taxable: Decimal,
-    one_off: Decimal,
-    family: RunFamily | None,
-) -> NetIrpef | None:
-    """Return the net IRPEF of the projection without the one-off pay.
-
-    Returns:
-        ``None`` when the run has no one-off taxable income.
-    """
-    if one_off <= _ZERO:
-        return None
-    return net_irpef(
-        taxable - one_off,
-        inp.rules,
-        family_deductions=_family_deductions(family, taxable - one_off),
-        eligible_work_days=min(inp.eligible_work_days, DAYS_IN_YEAR),
-        fixed_term=inp.fixed_term_in_year,
+    days = inp.eligible_work_days
+    share = Decimal(inp.period_days) / days if days > 0 else _ZERO
+    month_family = (
+        _ZERO
+        if family is None or not inp.period_days
+        else family.deductions.of_month(inp.run_month)
+    )
+    return PayPeriod(
+        regular_taxable=taxable.period - taxable.separate,
+        separate_taxable=taxable.separate,
+        day_share=share,
+        family=month_family,
     )
 
 
-def withhold_irpef(
-    inp: _AmountsInput, taxable: _Taxable, inps_employee: Decimal
-) -> _Irpef:
-    """Return the IRPEF of the run on the projected annual taxable income.
+def withhold_irpef(inp: _AmountsInput, taxable: _Taxable) -> _Irpef:
+    """Return the IRPEF of the run.
+
+    The annual deductions are measured on the projected annual taxable
+    income; the run withholds on its pay period, the last slot settles the
+    year (art. 23 c. 2-3 DPR 600/1973).
 
     Returns:
         The tax resolution and the family deductions it used.
@@ -81,9 +79,6 @@ def withhold_irpef(
         projected,
         conguaglio=inp.conguaglio,
     )
-    fam_ded = _family_deductions(family, projected)
-    one_off = one_off_taxable(inp, taxable, inps_employee)
-    without_one_off = _without_one_off(inp, projected, one_off, family)
     opening = inp.opening
     # Net credit = recognized minus already recovered; prevents re-recovering credits
     # that have already been clawed back in previous periods (D.L. 3/2020, art. 1 c. 3).
@@ -94,15 +89,12 @@ def withhold_irpef(
         opening_irpef_withheld=opening.tax.irpef + inp.deferred_irpef,
         opening_tratt_ytd=net_credit_ytd,
         remaining_slots=inp.withholding.remaining,
-        family_deductions=fam_ded,
+        family_deductions=_ZERO if family is None else family.deductions.total,
         recovery_plan=inp.recovery_plan,
         eligible_work_days=inp.eligible_work_days,
-        net_without_one_off=None if without_one_off is None else without_one_off.net,
+        period=_pay_period(inp, taxable, family),
         carried_shortfall=opening.shortfall.irpef,
         ulteriore_account=opening.ulteriore_detrazione,
-        ulteriore_without_one_off=(
-            _ZERO if without_one_off is None else without_one_off.ulteriore_effect
-        ),
         run=inp.installment_run,
         ulteriore_plan=inp.ulteriore_plan,
         foreign_taxes=inp.foreign_taxes if inp.conguaglio else (),

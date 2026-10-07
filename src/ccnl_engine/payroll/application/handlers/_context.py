@@ -108,6 +108,9 @@ class EventEffect:
         inps_delta: Increase in the INPS contribution base.
         tfr_delta: Increase in the TFR accrual base.
         irpef_delta: Increase in the IRPEF taxable base.
+        separate_irpef_delta: Part of ``irpef_delta`` withheld apart from
+            the pay of the period, as a premium (art. 23 c. 2 lett. b) DPR
+            600/1973).
         substitute_delta: Increase in the PdR substitute-tax base.
         fringe_value: Total fringe benefit value (FringeEvent only).
         fringe_inps: Fringe INPS-taxable portion (FringeEvent only).
@@ -129,6 +132,7 @@ class EventEffect:
     inps_delta: Decimal = _ZERO
     tfr_delta: Decimal = _ZERO
     irpef_delta: Decimal = _ZERO
+    separate_irpef_delta: Decimal = _ZERO
     substitute_delta: Decimal = _ZERO
     fringe_value: Decimal = _ZERO
     fringe_inps: Decimal = _ZERO

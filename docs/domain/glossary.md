@@ -32,8 +32,9 @@ The base on which IRPEF and its surcharges (addizionali) are computed.
 Projected annually as: YTD taxable, plus the current run, plus the recurring
 gross of the withholding slots still to come, minus the employee INPS on
 them.  On the last slot the projection is the final taxable income.
-One-off events (overtime, bonuses) are added on their own taxable amount
-after deducting the INPS due on them.  Non-cash benefits may contribute to
+It measures the annual deductions; the IRPEF of a run before the
+conguaglio is withheld on the taxable of its own pay period (see
+[withholding schedule](#withholding-schedule-piano-delle-ritenute)).  Non-cash benefits may contribute to
 the taxable base when the exempt threshold is exceeded (see
 [fringe benefit decision](#fringe-benefit-decision-decisione-sul-fringe-benefit)).
 
@@ -91,11 +92,11 @@ has 14 runs.
 ### withholding schedule (piano delle ritenute)
 
 The IRPEF withholding slots of a tax year, one per payment actually made in
-it, whatever its competence (TUIR art. 51 c. 1).  The annual projection
-spreads the tax still due over the slots not yet paid, read by identity
-from the payments closed, and the payment that leaves no slot unpaid
-performs the conguaglio on the final taxable income (art. 23 c. 3 DPR
-600/1973).  Surtax and somma esente are split per slot; the conguaglio
+it, whatever its competence (TUIR art. 51 c. 1).  Before the last slot a
+payment withholds on its own pay period (art. 23 c. 2 DPR 600/1973), with
+the deductions measured on the annual projection; the payment that leaves
+no slot unpaid, read by identity from the payments closed, performs the
+conguaglio on the final taxable income (art. 23 c. 3).  Surtax and somma esente are split per slot; the conguaglio
 settles the somma esente due and recovers what was paid in excess (L.
 207/2024 art. 1 c. 7).  Never derived from the entitlement.
 

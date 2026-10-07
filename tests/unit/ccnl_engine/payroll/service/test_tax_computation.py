@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from decimal import Decimal
 
+from ccnl_engine.payroll.service.period_withholding import PayPeriod
 from ccnl_engine.payroll.service.tax_computation import compute_tax
 from ccnl_engine.tax.domain.credit_rules import (
     SommaEsenteBand,
@@ -28,11 +29,19 @@ class TestResolveTaxComputation:
             rules,
             opening_irpef_withheld=_ZERO,
             remaining_slots=12,
+            period=PayPeriod(
+                regular_taxable=Decimal("2083.33"), day_share=Decimal(31) / 365
+            ),
         ).computation
         assert tc.ordinary_tax > _ZERO
         names = [c.name for c in tc.components]
         assert "irpef_gross" in names
         assert "work_deduction" in names
+
+    def test_a_run_without_pay_withholds_nothing_before_the_conguaglio(self) -> None:
+        """Art. 23 c. 2 DPR 600/1973 withholds on the pay of the period."""
+        tc = compute_tax(Decimal(25000), make_year_rules(), remaining_slots=12)
+        assert tc.computation.ordinary_tax == _ZERO
 
     def test_trattamento_integrativo_emitted_when_eligible(self) -> None:
         """Low-income worker with positive irpef: trattamento component emitted."""

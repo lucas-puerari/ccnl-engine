@@ -23,6 +23,7 @@ from ccnl_engine.payroll.application.invariants.withholding import (
 )
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.events import BonusEvent
+from ccnl_engine.payroll.domain.obligations import ULTERIORE_RECOVERY
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
@@ -30,6 +31,10 @@ from ccnl_engine.payroll.domain.run import RunKind
 from ccnl_engine.payroll.domain.tax import TaxComputation, TaxLineItem
 from ccnl_engine.payroll.domain.ytd_accounts import WithholdingShortfall
 from tests.fixtures.normative_oracles.irpef_2026 import net_irpef as oracle_net_irpef
+from tests.fixtures.normative_oracles.withholding_2026 import (
+    extra_month_withholding,
+    regular_month_withholding,
+)
 from tests.helpers import year_plan
 
 if TYPE_CHECKING:
@@ -227,52 +232,58 @@ def test_large_bonus_leaves_every_net_non_negative() -> None:
 
 
 def test_large_bonus_is_withheld_on_the_payslip_that_pays_it() -> None:
-    """A 20,000 EUR bonus in November is taxed on the November payslip.
+    """A 20,000 EUR bonus in November is withheld apart on its payslip.
 
-    Art. 23 c. 2 lett. a) DPR 600/1973 withholds on the sums paid in each
-    pay period.  The November run withholds its share of the recurring tax
-    plus the whole tax the bonus adds to the year; spreading that tax over
-    the later slots made the tredicesima run withhold more than it paid.
+    Art. 23 c. 2 DPR 600/1973: lett. a) withholds on the pay of the period
+    with its deductions, lett. b) on the "compensi della stessa natura" of
+    the mensilità aggiuntive, among which AdE circ. 15/E/2007 par. 2.4 lists
+    the annual premiums, on the brackets divided by twelve and without
+    deductions.
 
-    November also charges the additional 1% IVS on its pay above 4,685.00
-    (INPS circ. 6/2026 par. 5): 2,211.43 + 20,000 - 4,685 = 17,526.43,
-    x 1% = 175.2643 -> 175.26, deducted from its taxable income
-    (art. 51 c. 2 lett. a TUIR).  The pay of the year stays below 56,224,
-    so the December conguaglio gives the 175.26 back and the later runs
-    withhold the tax on it (msg. INPS 5327/2015 par. 2.3).
+    November pays 2,211.43 + 20,000 = 22,211.43; employee INPS 9.19%
+    (2,041.23) + 0.30% (66.63) + the additional 1% above 4,685.00 (INPS
+    circ. 6/2026 par. 5: 17,526.43 x 1% = 175.26) = 2,283.12; taxable
+    19,928.31.  The bonus net of 9.49% INPS, the employee rate of the run
+    (an engine choice: the statute does not split the INPS of the run, and
+    the 1% above the band falls on the rest of the month), is 18,102.00,
+    taxed under lett.
+    b): 23% of 2,333.33 + 33% up to 4,166.67 + 43% of the rest = 7,133.86.
+    The rest, 1,826.31, is taxed under lett. a): 23% = 420.05.  The year is
+    projected at 19,775.10 (January to October) + 19,928.31 + December and
+    tredicesima 4,422.86 less 9.49% INPS = 43,706.54: art. 13 1,910 x 0.2860
+    = 546.26, times 30/365 = 44.90; no ulteriore detrazione above 40,000.
+    November withholds 7,133.86 + 420.05 - 44.90 = 7,509.01.
 
-    Expected, from the oracle on the final taxable incomes of the year with
-    and without the bonus: the November IRPEF grows by
-    ``net_irpef(with - 175.26) - net_irpef(without)``, and the runs after it
-    withhold ``net_irpef(with) - net_irpef(with - 175.26)`` more than
-    without the bonus.  The tolerance of 0.50 EUR is the rounding of the
-    projection of the later slots, which the conguaglio settles.
+    Without the bonus November's taxable is 2,211.43 - 209.86 = 2,001.57,
+    taxed 460.36; the year is projected at 25,779.80: art. 13 1,910 + 1,190
+    x 0.1707 + 65 = 2,178.13, times 30/365 = 179.02; ulteriore detrazione
+    1,000 x 30/365 = 82.19; November withholds 199.15.
+
+    The ulteriore detrazione the months before the bonus recognized is not
+    due on the final income: L. 207/2024 art. 1 c. 7 recovers it in ten
+    installments, nine of them after the conguaglio, so the IRPEF withheld
+    plus those nine is the net IRPEF of the final taxable.
     """
     bonus = BonusEvent(event_date=date(_YEAR, 11, 10), amount=Decimal(20_000))
     with_bonus = calculate_competence_year(
         year_plan(_YEAR, _CCNL, _LEVEL, events={11: (bonus,)})
     )
     without = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
-    november_additional_ivs = Decimal("175.26")
 
-    final_with = _final_taxable(with_bonus)
-    bonus_tax = oracle_net_irpef(final_with - november_additional_ivs) - (
-        oracle_net_irpef(_final_taxable(without))
+    separate = extra_month_withholding(Decimal("18102.00"))
+    regular = regular_month_withholding(Decimal("1826.31"), Decimal("43706.54"), 30)
+    assert separate == Decimal("7133.86")
+    assert _november_irpef(with_bonus) == separate + regular == Decimal("7509.01")
+    assert _november_irpef(without) == regular_month_withholding(
+        Decimal("2001.57"), Decimal("25779.80"), 30
     )
-    refund_tax = oracle_net_irpef(final_with) - oracle_net_irpef(
-        final_with - november_additional_ivs
-    )
-    grown = _november_irpef(with_bonus) - _november_irpef(without)
-
-    tail_growth = sum(
-        (
-            a.tax_computation.ordinary_tax - b.tax_computation.ordinary_tax
-            for a, b in zip(
-                with_bonus.period_results[-2:], without.period_results[-2:], strict=True
-            )
-        ),
+    assert _november_irpef(without) == Decimal("199.15")
+    final = with_bonus.period_results[-1].closing_state.cash
+    withheld = sum(
+        (r.tax_computation.ordinary_tax for r in with_bonus.period_results),
         Decimal(0),
     )
-
-    assert abs(grown - bonus_tax) <= Decimal("0.50")
-    assert abs(tail_growth - refund_tax) <= Decimal("0.50")
+    plan = final.obligations.recovery_of(_YEAR, ULTERIORE_RECOVERY)
+    assert plan is not None
+    expected = oracle_net_irpef(final.earnings.taxable)
+    assert abs(withheld + plan.residual - expected) <= Decimal("0.01")

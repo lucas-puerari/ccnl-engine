@@ -8,6 +8,7 @@ retribuzione alla quale si applicano gli effetti del conguaglio" when above
 
 from __future__ import annotations
 
+from calendar import monthrange
 from datetime import date
 from decimal import Decimal
 from functools import cache
@@ -74,11 +75,25 @@ class TestConguaglioRecovery:
         assert final.earnings.taxable <= Decimal(20_000)
         assert further_deduction(final.earnings.taxable) == _ZERO
 
-    def test_twelve_runs_recognized_twelve_thirteenths(self) -> None:
-        """Before the conguaglio twelve of 13 slots recognized 12/13 of 1,000."""
+    def test_twelve_months_recognized_their_days(self) -> None:
+        """Before the conguaglio each month recognized 1,000 * its days / 365.
+
+        L. 207/2024 art. 1 c. 6 gives the deduction "rapportata al periodo di
+        lavoro"; art. 23 c. 2 lett. a) DPR 600/1973 applies the deductions of
+        the period on the pay of each month, none on the tredicesima (lett.
+        b).  Seven months of 31 days give 84.93 each, four of 30 give 82.19,
+        February 76.71: 594.51 + 328.76 + 76.71 = 999.98.
+        """
         before = _year().period_results[-2].closing_state.cash.ulteriore_detrazione
-        expected = money(Decimal(1000) * 12 / 13)
-        assert abs(before.net - expected) <= Decimal("0.02")
+        expected = sum(
+            (
+                money(Decimal(1000) * monthrange(2026, month)[1] / 365)
+                for month in range(1, 13)
+            ),
+            _ZERO,
+        )
+        assert expected == Decimal("999.98")
+        assert before.net == expected
 
     def test_excess_is_recovered_in_ten_installments(self) -> None:
         """The excess opens a ten installment plan, the first one on the payslip."""

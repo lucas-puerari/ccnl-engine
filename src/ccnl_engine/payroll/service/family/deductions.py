@@ -60,6 +60,15 @@ class FamilyDeductions:
         """Total annual family deductions."""
         return sum((d.amount for d in self.dependents), _ZERO)
 
+    def of_month(self, month: int) -> Decimal:
+        """Return the deductions of one month of the year (art. 12 c. 3).
+
+        Returns:
+            The sum of :meth:`DependentDeduction.of_month` of every
+            dependent.
+        """
+        return sum((d.of_month(month) for d in self.dependents), _ZERO)
+
     @property
     def entitled(self) -> bool:
         """Whether a dependent gives right to a deduction in some month.

@@ -45,9 +45,9 @@ def ascendant_deductions(
     return tuple(
         prorate(
             ascendant,
-            len(ascendant.dependency_months(rules.year))
+            ascendant.dependency_months(rules.year)
             if ascendant.may_qualify(other.dependent_income_threshold)
-            else 0,
+            else frozenset(),
             annual,
         )
         for ascendant in ascendants

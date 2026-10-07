@@ -29,7 +29,11 @@ if TYPE_CHECKING:
         FamilyDeductionRules,
     )
 
-__all__ = ["child_months", "children_deductions", "children_within_income_limit"]
+__all__ = [
+    "child_due_months",
+    "children_deductions",
+    "children_within_income_limit",
+]
 
 _NO_BIRTH_DATE = date.min
 
@@ -64,18 +68,20 @@ def _in_age_band(
     return child.disabled or age_at_start < rules.age_limit
 
 
-def child_months(child: Dependent, rules: ChildrenDeductionRules, year: int) -> int:
+def child_due_months(
+    child: Dependent, rules: ChildrenDeductionRules, year: int
+) -> frozenset[int]:
     """Return the months of ``year`` in which ``child`` gives right to lett. c.
 
     Returns:
-        Zero when the child is stated not resident under c. 2-bis or its
+        No month when the child is stated not resident under c. 2-bis or its
         stated own income exceeds its limit; an unknown condition does not
         exclude a month.
     """
     if not child.may_qualify(_income_limit(child, rules, year)):
-        return 0
-    return sum(
-        1
+        return frozenset()
+    return frozenset(
+        month
         for month in child.dependency_months(year)
         if _in_age_band(child, rules, year, month)
     )
@@ -124,7 +130,7 @@ def children_deductions(
         One deduction per child, zero months when it is not entitled.
     """
     child_rules = rules.children
-    months = [child_months(child, child_rules, rules.year) for child in children]
+    months = [child_due_months(child, child_rules, rules.year) for child in children]
     entitled = [index for index, m in enumerate(months) if m]
     ceiling = child_rules.income_ceiling + (
         max(len(entitled) - 1, 0) * child_rules.income_ceiling_increment_per_child

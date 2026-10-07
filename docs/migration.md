@@ -4,6 +4,21 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Withholding of each run under art. 23 DPR 600/1973
+
+The IRPEF of a run before the conguaglio changes; the IRPEF of the year,
+settled by the conguaglio, does not (see
+[Withholding of a run](engine/fiscal.md#withholding-of-a-run)).
+
+| Before | After |
+|---|---|
+| Every run withheld an even share of the projected annual IRPEF still due, plus the extra annual tax of its one-off income | A regular month withholds on its own taxable with the brackets divided by twelve, less the art. 13 deduction and the ulteriore detrazione for its days and the art. 12 deductions of its month (art. 23 c. 2 lett. a); the IRPEF withheld so far no longer changes it |
+| A tredicesima or quattordicesima withheld the share of a regular month | It withholds on the monthly brackets with no deduction (lett. b); so do a `BonusEvent` of kind `bonus` or `productivity_bonus` taxed ordinarily and the PdR above its cap, apart from the pay of the month |
+| A dependant from July lowered every run of the year | The art. 12 deduction counts from the month its conditions arise (art. 12 c. 3 TUIR) |
+| The ulteriore detrazione was recognized on every slot, the tredicesima included | It is recognized on the regular months, for their days |
+| A bonus that lifted the income above the band of the ulteriore detrazione took back what earlier runs had recognized (`recovered_by_withholding`) | No run takes it back before the conguaglio, which recovers it under L. 207/2024 art. 1 c. 7, in ten installments above 60 EUR |
+| `compute_tax(..., net_without_one_off=, ulteriore_without_one_off=)` | `compute_tax(..., period=PayPeriod(...))`, from `payroll.service.period_withholding`; `child_months` is `child_due_months` and returns the months, `DependentDeduction.months` is a property of `due_months` (internal modules) |
+
 ## Art. 13 minimum proportioned in the withholding
 
 The withholding agent proportions the minimum of the art. 13 TUIR deduction

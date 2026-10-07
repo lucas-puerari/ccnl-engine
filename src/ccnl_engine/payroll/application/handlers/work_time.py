@@ -68,6 +68,21 @@ def _pdr_ceiling_exceeded(
     return prior_income > ctx.pdr_income_ceiling
 
 
+def _premium(event: object) -> bool:
+    """Return whether the event is a premium withheld apart from the period.
+
+    Art. 23 c. 2 lett. b) DPR 600/1973 withholds on the "compensi della
+    stessa natura" of the mensilità aggiuntive, among which AdE circ.
+    15/E/2007 par. 2.4 lists "le gratifiche annuali di bilancio, i cosiddetti
+    premi trimestrali, semestrali e annuali".  A bonus or a productivity
+    bonus is one; a contract renewal increment is pay of the period.
+
+    Returns:
+        ``True`` for a :class:`BonusEvent` that is not a contract renewal.
+    """
+    return isinstance(event, BonusEvent) and event.kind != "contract_renewal"
+
+
 def _handle_standard(
     event: OvertimeEvent
     | NightShiftEvent
@@ -133,6 +148,7 @@ def _handle_standard(
         inps_delta=di,
         tfr_delta=dt,
         irpef_delta=dirpef,
+        separate_irpef_delta=dirpef if _premium(event) else _ZERO,
         substitute_delta=substitute_delta,
         regime_cap_used=cap_used,
         decisions=decisions,

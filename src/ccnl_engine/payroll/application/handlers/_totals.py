@@ -68,7 +68,9 @@ class _EventTotals:
     """Aggregated INPS/TFR/IRPEF bases, decisions and issues of the events.
 
     ``executed_features`` are the catalog features of the events whose
-    handler had an effect (see :func:`_has_effect`).
+    handler had an effect (see :func:`_has_effect`).  ``separate_irpef_base``
+    is the part of ``irpef_base`` withheld apart from the pay of the period
+    (art. 23 c. 2 lett. b) DPR 600/1973).
     """
 
     inps_base: Decimal
@@ -79,6 +81,7 @@ class _EventTotals:
     fringe_irpef: Decimal
     substitute_base: Decimal
     work_time_cap_used: Decimal = _ZERO
+    separate_irpef_base: Decimal = _ZERO
     decisions: tuple[CalculationDecision, ...] = ()
     issues: tuple[CalculationIssue, ...] = ()
     executed_features: frozenset[str] = frozenset()
@@ -102,6 +105,7 @@ class _EventAccumulator:
     inps: Decimal = _ZERO
     tfr: Decimal = _ZERO
     irpef: Decimal = _ZERO
+    separate_irpef: Decimal = _ZERO
     substitute: Decimal = _ZERO
     fringe_value: Decimal = _ZERO
     fringe_inps: Decimal = _ZERO
@@ -128,6 +132,7 @@ class _EventAccumulator:
         self.inps += result.inps_delta
         self.tfr += result.tfr_delta
         self.irpef += result.irpef_delta
+        self.separate_irpef += result.separate_irpef_delta
         self.substitute += result.substitute_delta
         self.fringe_value += result.fringe_value
         self.fringe_inps += result.fringe_inps
@@ -162,6 +167,7 @@ class _EventAccumulator:
             fringe_irpef=self.fringe_irpef,
             substitute_base=self.substitute,
             work_time_cap_used=self.work_time_cap.used - self.opening_cap.used,
+            separate_irpef_base=self.separate_irpef,
             decisions=tuple(self.decisions),
             issues=tuple(self.issues),
             executed_features=frozenset(self.executed),

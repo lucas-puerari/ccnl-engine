@@ -102,14 +102,14 @@ class TestWithholdingInYearN1:
     def test_thin_march_defers_to_april(self) -> None:
         """March absences leave no pay: April withholds with 4 months.
 
-        The 160 hours of absence leave no net pay in March, so nothing of
-        the 300.00 EUR is withheld; April withholds it with 300.00 x 0.50%
-        x 4 = 6.00 EUR of interest.
+        78 hours of absence at 27.67 EUR deduct the whole 2,158.26 EUR of
+        March pay, so nothing of the 300.00 EUR is withheld; April withholds
+        it with 300.00 x 0.50% x 4 = 6.00 EUR of interest.
         """
         absence = AbsenceEvent(
             event_date=date(_YEAR, 3, 16),
-            hours=Decimal(160),
-            hourly_rate=Decimal("12.50"),
+            hours=Decimal(78),
+            hourly_rate=Decimal("27.67"),
         )
         runs = year_n1(opening_with_deferral("300.00"), {3: (absence,)}).period_results
         assert runs[2].period_net == _ZERO

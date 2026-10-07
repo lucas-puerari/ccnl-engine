@@ -122,26 +122,57 @@ an input.
 
 ### Withholding of a run
 
-Every run projects the annual taxable income (YTD, this run, and the
-recurring pay of the slots still to come) and withholds on that basis:
+Art. 23 c. 2 DPR 600/1973 (in force for 2026) withholds on each payment;
+every run also projects the annual taxable income (YTD, this run, and the
+recurring pay of the slots still to come), the reddito complessivo the
+deductions are measured on (AdE circ. 15/E/2007 par. 2.1: without other
+indication, the employment income the employer "nel corso dell'anno
+corrisponde"):
 
-- income the run pays once (bonus, overtime, ordinary arrears, excess PdR,
-  ratei settled at termination) is not in the projection of later slots,
-  so the tax it adds to the year is withheld on that run (art. 23 c. 2
-  DPR 600/1973: lett. a) on the sums "corrisposti in ciascun periodo di
-  paga", lett. b) on the "compensi della stessa natura" of the mensilità
-  aggiuntive). It is the net annual IRPEF with the income less the net annual
-  IRPEF without it. A €20,000 bonus paid in November to a Metalmeccanico C3
-  withholds about €8,399 on the November payslip instead of spreading it
-  over November, December and the tredicesima;
-- the rest of the balance still owed is spread evenly over the slots of
-  the tax year not yet paid, the run included;
+- a regular month (lett. a) withholds on the taxable of the period "con le
+  aliquote dell'imposta sul reddito delle persone fisiche, ragguagliando al
+  periodo di paga i corrispondenti scaglioni annui di reddito, ed
+  effettuando le detrazioni previste negli articoli 12 e 13 ... rapportate
+  al periodo stesso": the brackets divided by twelve, less the art. 13
+  deduction and the ulteriore detrazione of the year times the days of the
+  month over the days of employment in the year (circ. 15/E/2007 par.
+  1.5.1 and 2.3), and less a twelfth of the art. 12 deduction of each
+  dependant whose conditions hold in that month (art. 12 c. 3 TUIR: "dal
+  mese in cui si sono verificate"). A deduction above the tax of the month
+  is lost to the month; the conguaglio settles the year;
+- a tredicesima or quattordicesima (lett. b, "sulle mensilità aggiuntive e
+  sui compensi della stessa natura ... ragguagliando a mese i
+  corrispondenti scaglioni annui di reddito") is taxed on the same monthly
+  brackets with no deduction. So is a bonus or a productivity bonus taxed
+  ordinarily, and the PdR above its cap, on the payslip that pays it,
+  apart from the pay of the month: circ. 15/E/2007 par. 2.4 counts among
+  those compensi "i cosiddetti premi trimestrali, semestrali e annuali".
+  Its taxable is the premium less the employee INPS at the rate of the
+  run. Overtime, shift and holiday pay, current-year arrears, renewal
+  increments and fringe benefits are pay of the period (lett. a). A
+  €20,000 bonus paid in November to a Metalmeccanico C3 withholds
+  €7,509.01 on the November payslip: €7,133.86 on the bonus and €375.15 on
+  the rest of the month;
+- an adjustment run before the conguaglio withholds on its own taxable,
+  with no deduction (the month already took them);
 - the payment that leaves no slot unpaid (the conguaglio) settles the whole
   balance on the final income, which can be a refund (art. 23 c. 3). The
   slots are the payments actually made in the tax year, so with December
   paid on 13 January the conguaglio of the year falls on the tredicesima,
   and a payment made after the conguaglio settles the year again (see
   [Payroll state](payroll-state.md#withholding-schedule-of-the-tax-year)).
+
+Metalmeccanico C3 in January 2026: taxable 1,953.45, 23% = 449.29; the year
+is projected at 25,394.74, art. 13 2,213.48 x 31/365 = 187.99, ulteriore
+detrazione 1,000 x 31/365 = 84.93; January withholds 176.37. Commercio
+level 4 hired on 1 January: the June quattordicesima (6/12, taxable 809.92)
+withholds 23% of it, 186.28, while the June regular month withholds 87.25.
+
+The trattamento integrativo is "ripartendolo fra le retribuzioni erogate"
+(D.L. 3/2020 art. 1 c. 3) and the somma esente is recognized "all'atto
+dell'erogazione delle retribuzioni" (L. 207/2024 art. 1 c. 7): both still
+pay the annual amount still due divided by the slots not yet paid, the
+tredicesima included.
 
 The projection of a future tredicesima or quattordicesima uses the rateo
 the run will pay on the employment period: a worker hired on 1 July is
@@ -158,8 +189,8 @@ take most of the month. The engine then:
   remains, so the net pay is never negative because of the taxes; a
   conguaglio refund is never capped;
 - carries what it could not withhold in `state.cash.shortfall` (`irpef`,
-  `surtax`) and withholds it in full on the next run, before the share of
-  the rest of the balance;
+  `surtax`) and withholds it in full on the next run, on top of the IRPEF
+  of that run's own pay period;
 - records a `withholding_shortfall` decision (`withholding_capped` when it
   carries an amount out, `shortfall_withheld` when it withholds a carried
   amount), with the pay available and the amounts due in its inputs;
@@ -193,10 +224,11 @@ on the next run is the engine's choice. Art. 23 c. 1, second sentence
 withholding that finds no cash, is written for values in kind and is not
 used here.
 
-Metalmeccanico C3, 160 absence hours at 12.50 EUR in January 2026: the pay
-left after INPS is 143.25 EUR, the IRPEF share is 162.33 EUR; January
-withholds 143.25 EUR and nets 0.00, February withholds the 19.08 EUR
-carried on top of its share.
+Metalmeccanico C3 in January 2026, 100 absence hours at 12.50 EUR and a
+3,000 EUR fringe benefit in kind above its threshold: the cash left after
+INPS is 537.37 EUR, the IRPEF of the month is 673.40 EUR; January withholds
+537.37 EUR and nets 0.00, February withholds the 136.03 EUR carried on top
+of the IRPEF of its own month.
 
 Credit recoveries (trattamento integrativo, somma esente, installments of an
 earlier year) are capped in the same way and taken before the IRPEF: the

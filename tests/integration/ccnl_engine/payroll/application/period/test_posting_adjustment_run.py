@@ -39,7 +39,6 @@ from ccnl_engine.payroll.domain.obligations import (
     RecoveryObligation,
 )
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
-from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
 from tests.fixtures.normative_oracles.irpef_2026 import net_irpef
 from tests.helpers import EMPLOYER_50, year_plan
@@ -137,8 +136,10 @@ def test_adjustment_posts_the_second_ulteriore_installment() -> None:
     opened = _plan_of(conguaglio, ULTERIORE_RECOVERY)
     assert opened is not None
     assert opened.installments_posted == 1
-    # Twelve of thirteen slots recognized 12/13 of 1,000 EUR before the bonus.
-    assert abs(opened.original_amount - money(Decimal(12000) / 13)) <= Decimal("0.02")
+    # The twelve months recognized 1,000 * days / 365 each before the bonus
+    # (art. 23 c. 2 lett. a) DPR 600/1973, L. 207/2024 art. 1 c. 6): seven
+    # months of 84.93, four of 82.19 and February 76.71, 999.98 in all.
+    assert opened.original_amount == Decimal("999.98")
 
     result = _adjustment(_bonus_year())
 

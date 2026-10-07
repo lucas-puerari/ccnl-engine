@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import replace
 from datetime import date
 from decimal import Decimal
+from typing import TYPE_CHECKING
 
 import pytest
 
@@ -30,6 +31,9 @@ from ccnl_engine.payroll.service.bundled_knowledge_repository import (
 from ccnl_engine.shared.domain.errors import InvalidInputError
 from tests.helpers import EMPLOYER_50
 
+if TYPE_CHECKING:
+    from ccnl_engine.payroll.domain.payment import PaymentId
+
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
 _ZERO = Decimal(0)
@@ -44,6 +48,7 @@ def _req(
     month: int = 1,
     payment_date: date | None = None,
     opening_state: PeriodState | TaxCashState | None = None,
+    planned_payments: tuple[PaymentId, ...] | None = None,
 ) -> PeriodCalculationRequest:
     if payment_date is None:
         payment_date = date(year, month, 28)
@@ -56,6 +61,7 @@ def _req(
         ccnl_slug=_CCNL,
         level_code=_LEVEL,
         opening_state=opening_state or PeriodState.zero(),
+        planned_payments=planned_payments,
     )
 
 
@@ -132,21 +138,32 @@ class TestCalculatePeriodBasic:
 
 
 class TestConguaglioDiscriminator:
-    """Real conguaglio: changing YTD IRPEF withheld changes the period net."""
+    """The IRPEF already withheld counts on the conguaglio only."""
 
-    def test_irpef_conguaglio_changes_net(self) -> None:
-        """The key discriminator: this fails with the legacy annual-divide engine."""
+    def test_ytd_irpef_does_not_change_a_run_before_the_conguaglio(self) -> None:
+        """Art. 23 c. 2 DPR 600/1973 withholds on the pay of the period.
+
+        Before the last slot the withholding is the tax of the month, so
+        what the year has withheld so far does not change it.
+        """
         result_zero = calculate_period(_req())
         result_with_ytd = calculate_period(
             _req(opening_state=TaxCashState(tax=TaxYtd(irpef=Decimal("1000.00"))))
         )
-        assert result_zero.period_net != result_with_ytd.period_net
+        assert result_zero.period_net == result_with_ytd.period_net
 
-    def test_higher_ytd_irpef_increases_net(self) -> None:
-        """More IRPEF already withheld → less to withhold now → higher net."""
-        result_zero = calculate_period(_req())
+    def test_higher_ytd_irpef_increases_net_on_the_conguaglio(self) -> None:
+        """Art. 23 c. 3: the last slot settles the tax of the year.
+
+        With no payment planned after January, January is the conguaglio:
+        more IRPEF already withheld leaves less to withhold.
+        """
+        result_zero = calculate_period(_req(planned_payments=()))
         result_with_ytd = calculate_period(
-            _req(opening_state=TaxCashState(tax=TaxYtd(irpef=Decimal("1000.00"))))
+            _req(
+                opening_state=TaxCashState(tax=TaxYtd(irpef=Decimal("1000.00"))),
+                planned_payments=(),
+            )
         )
         assert result_with_ytd.period_net > result_zero.period_net
 

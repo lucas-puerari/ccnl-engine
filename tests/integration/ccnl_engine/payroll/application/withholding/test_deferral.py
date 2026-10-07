@@ -179,7 +179,8 @@ class TestOtherRuns:
         Without the request the adjustment owes the IRPEF of its own pay
         plus the shortfall carried in: 1001 withheld plus the shortfall it
         carries out.  With the request it owes that less the deferred IRPEF,
-        which it neither withholds again nor drops.
+        which it neither withholds again nor drops.  The adjustment pays no
+        cash, so what it owes is carried out as a shortfall.
         """
         plain = _adjustment(
             12, year_n_without_request().period_results[-1].closing_state
@@ -188,8 +189,8 @@ class TestOtherRuns:
         (deferred,) = closing.cash.obligations.deferred_shortfall
         result = _adjustment(12, closing)
         owed = _ordinary_1001(plain) + plain.closing_state.cash.shortfall.irpef
-        assert _ordinary_1001(result) == owed - deferred.irpef
-        assert result.closing_state.cash.shortfall.irpef == _ZERO
+        result_owed = _ordinary_1001(result) + result.closing_state.cash.shortfall.irpef
+        assert result_owed == owed - deferred.irpef
         assert result.closing_state.cash.obligations.deferred_shortfall == (deferred,)
 
     def test_refund_while_deferred_is_rejected(self) -> None:

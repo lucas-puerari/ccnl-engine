@@ -105,8 +105,10 @@ slot per payment of the tax year, whatever its competence. Positions are
 read by identity, never by count: a slot is paid when `cash.payments` holds
 a payment of its run (an extra month matched by kind and year), and a
 payment settles the conguaglio (art. 23 c. 3 DPR 600/1973) when it leaves no
-other slot unpaid. The tax still due is divided by the slots not yet paid,
-the current one included.
+other slot unpaid. Before it a payment withholds the IRPEF of its own pay
+period (art. 23 c. 2; see [Fiscal](fiscal.md#withholding-of-a-run)); the
+trattamento integrativo and the somma esente still divide what is due by
+the slots not yet paid, the current one included.
 
 - `calculate_tax_year` and `calculate_competence_year` build the schedule
   from the payments actually made in the tax year: those already closed in
