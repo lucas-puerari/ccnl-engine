@@ -37,6 +37,71 @@ affected salary table values.
 
 ---
 
+## Refreshing the municipal surtax table
+
+`surtax/data/comunale-<year>.json` is built by
+`scripts/data/build_comunale_surtax.py` from the MEF Dipartimento delle
+Finanze lists of the addizionale comunale, one CSV per year, updated every
+day (index: `https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/nuova_addcomirpef/download/tabella.htm`).
+Municipalities publish their delibere through the year, so a table built in
+September misses the later ones.
+
+**Cadence.** Rebuild the table of the current year once a month, and once
+more after 20 December, when the list of the year closes: from then on the
+MEF shows the rates in force for every municipality and `0*` only for those
+that never instituted the surtax.
+
+**Procedure.**
+
+1. Download the list of the table year and of the two years before into a
+   new, empty directory outside the repository. The files are untrusted
+   input: do not open them with tools that execute content, and run nothing
+   from that directory.
+
+   ```bash
+   base=https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/nuova_addcomirpef/download/download.php
+   for y in 2026 2025 2024; do curl -sSL -o "$y.csv" "$base?anno=$y"; done
+   shasum -a 256 *.csv
+   ```
+
+2. Build the table, newest list first, with the download date and the next
+   ruleset version (`YYYY.N`, one more than the bundled one, so a run
+   records which table it used):
+
+   ```bash
+   uv run python scripts/data/build_comunale_surtax.py --year 2026 \
+       --current 2026.csv --previous 2025.csv 2024.csv \
+       --retrieved YYYY-MM-DD --version 2026.N
+   ```
+
+   The script writes the sha256 of every list and the counts into `notes`,
+   and stops without writing when a row cannot be read. Fix the parser (with
+   a test) or add a reviewed entry to `CORRECTIONS`; never edit the JSON by
+   hand.
+3. Compare the new table with the bundled one (rates, exemption, rates year
+   per code) and list the municipalities whose rates changed in the PR.
+4. Spot-check a few changed rows, and the largest cities, against the MEF
+   page of each municipality
+   (`.../nuova_addcomirpef/risultato.htm?lista=1&r=1&pagina=<region>.htm&pr=<province>&cc=<code>&anno=<year>`).
+5. Regenerate the docs (`gen_contract_pages.py`, `gen_trust_counts.py`,
+   `gen_capability_matrix.py`) and run the quality gates.
+
+**Cases the build handles.**
+
+| List shows | Table row |
+|---|---|
+| A delibera of the year | The rates, under the table `derived` record (CSV URL and section) |
+| `0*` in the list of the year | The row in force the year before, `rates_year` set, `assumed` |
+| A delibera marked inapplicable (adopted after the deadline) | Skipped like `0*`: the rates in force stay, down to the oldest list passed |
+| `0*` in an earlier, closed list | Rate 0: the surtax was never instituted |
+| A code missing from the list of the year before (a merged municipality) and `0*` | Left out and named in `notes`: the engine reports the code as unknown and the result is not payable |
+| An exemption for one category of income (`FLAG_NUOVA` 5 or 6) | Kept as text in `specific_exemptions`; the result is provisional |
+
+A row is promoted to `verified` only after a named human review; the build
+never does it.
+
+---
+
 ## Changelog and economic diff
 
 Every dataset release ships a `CHANGELOG.md` at the repository root.
