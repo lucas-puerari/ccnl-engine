@@ -12,6 +12,7 @@ from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 
 if TYPE_CHECKING:
     from ccnl_engine.contract.domain.category import WorkerCategory
+    from ccnl_engine.payroll.application.amounts._contributions import TfrAccrual
     from ccnl_engine.payroll.domain.current_year import CurrentYearTaxFacts
     from ccnl_engine.payroll.domain.decisions import (
         CalculationDecision,
@@ -112,14 +113,16 @@ class _PeriodAmounts:
     was computed on; ``None`` when not recorded.  ``ulteriore`` is what
     the run recognized or recovered of the ulteriore detrazione.
     ``pension`` holds the pension fund contributions of the run, ``None``
-    when the worker is not enrolled.  ``issues`` are those of the tax
-    capabilities of the run (the family deductions).
+    when the worker is not enrolled.  ``issues`` are those of the
+    capabilities computed here: the family deductions and the TFR.
+    ``tfr`` holds the art. 2120 c.c. quota and the additional IVS
+    deducted from it.
     """
 
     monthly_gross: Decimal
     inps_employee: Decimal
     inps_employer: Decimal
-    tfr: Decimal
+    tfr: TfrAccrual
     period_irpef: Decimal
     period_tratt: Decimal
     period_surtax: Decimal

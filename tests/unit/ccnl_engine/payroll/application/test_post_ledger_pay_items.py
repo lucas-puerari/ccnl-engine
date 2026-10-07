@@ -5,6 +5,7 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 
+from ccnl_engine.payroll.application.amounts._contributions import TfrAccrual
 from ccnl_engine.payroll.application.amounts._types import _PeriodAmounts
 from ccnl_engine.payroll.application.post_ledger import (
     _build_pay_items,
@@ -27,7 +28,7 @@ def _amounts(*, period_tratt: Decimal = _ZERO) -> _PeriodAmounts:
         monthly_gross=Decimal("2158.26"),
         inps_employee=Decimal("204.82"),
         inps_employer=Decimal("651.79"),
-        tfr=Decimal("159.87"),
+        tfr=TfrAccrual(quota=Decimal("159.87")),
         period_irpef=Decimal("279.02"),
         period_tratt=period_tratt,
         period_surtax=_ZERO,

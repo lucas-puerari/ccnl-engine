@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "c9bc94f30a3b8e684de1e5cf397cdbf4d3a171fb068f6e2ab42131c9773d0f48",
+    "source_hash": "d28c0847dc5afd55256811f5aa125c5c11504af64ec603c65616af82d28b8c37",
     "source_type": "estimated"
   },
   "irpef_brackets": [
@@ -29,6 +29,24 @@
   "fixed_term_additional_rate": "0.014",
   "tfr": {
     "accrual_divisor": "13.5",
+    "additional_ivs": {
+      "rate": "0.0050",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "l-297-1982",
+            "title": "L. 297/1982, disciplina del trattamento di fine rapporto e norme in materia pensionistica",
+            "kind": "legge",
+            "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1982-05-29;297~art3"
+          },
+          "section": "art. 3 cc. 15-16",
+          "quote": "Agli oneri derivanti al Fondo pensioni dei lavoratori dipendenti dall'applicazione del presente articolo si provvede elevando le aliquote contributive a carico dei datori di lavoro, per l'assicurazione generale obbligatoria per l'invalidità, la vecchiaia ed i superstiti dei lavoratori dipendenti, ivi compresi gli addetti ai servizi domestici e familiari ed i pescatori della piccola pesca, con decorrenza dal periodo di paga in corso alla data del 1 luglio 1982 nella misura dello 0,30 per cento della retribuzione imponibile e con decorrenza dal periodo di paga in corso alla data del 1 gennaio 1983 nella misura ulteriore dello 0,20 per cento della retribuzione imponibile. I datori di lavoro detraggono per ciascun lavoratore l'importo della contribuzione aggiuntiva di cui al comma precedente dall'ammontare della quota del trattamento di fine rapporto relativa al periodo di riferimento della contribuzione stessa. Qualora il trattamento di fine rapporto sia erogato mediante forme previdenziali, la contribuzione aggiuntiva è detratta dal contributo dovuto per il finanziamento del trattamento stesso, il cui importo spettante al lavoratore è corrispondentemente ridotto."
+        },
+        "transformation": "0.30% from 1 July 1982 plus 0.20% from 1 January 1983 = 0.50% of the INPS taxable pay, applied to the IVS base of the period (capped at the massimale when it applies) and deducted from the TFR quota of the same period, or from the TFR paid to the pension fund.",
+        "note": "Quote checked on 2026-10-07 against the Normattiva text of art. 3 in force from 10-11-2022 (commi counted in order; INPS messaggio n. 1817 of 10 May 2019, read from the copy at https://assolavoro.eu/wp-content/uploads/attachments/mess_1817%20pdf.pdf, cites the rate as c. 15 and the deduction as c. 16), whitespace normalised. The 0.50% is already inside the employer IVS rate of the INPS ruleset. Not applied to apprentices, whose overall rate is set by L. 296/2006 art. 1 c. 773: the engine reports that case provisional. Not checked by a named reviewer."
+      }
+    },
     "provenance": {
       "status": "derived",
       "location": {

@@ -21,6 +21,7 @@ from ccnl_engine.payroll.service.withholding_agent import (
 if TYPE_CHECKING:
     from decimal import Decimal
 
+    from ccnl_engine.payroll.application.amounts._contributions import TfrAccrual
     from ccnl_engine.payroll.application.amounts._types import _AmountsInput
     from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
@@ -58,7 +59,7 @@ def untaxed_amounts(
     inp: _AmountsInput,
     breakdown: ContributionBreakdown,
     employee_rate: Decimal,
-    tfr: Decimal,
+    tfr: TfrAccrual,
     pension: PensionContribution | None = None,
 ) -> tuple[_PeriodAmounts, TaxComputation]:
     """Return the amounts of a run that withholds no tax.
@@ -89,5 +90,6 @@ def untaxed_amounts(
         projected_taxable=taxable.projected,
         decisions=_decisions(inp),
         pension=pension,
+        issues=tfr.issues(),
     )
     return amounts, _NO_TAX

@@ -58,8 +58,9 @@ OVERTIME_PREFIX: Final = "OT_"
 
 _INPS = ("inps_employee", "inps_employer")
 
-#: Blocks of a fiscal file: key, capabilities, and whether the record sits
-#: in the sibling ``<key>_provenance`` instead of the block itself.
+#: Blocks of a fiscal file: key (dotted for a nested block), capabilities,
+#: and whether the record sits in the sibling ``<key>_provenance`` instead
+#: of the block itself.
 type _Blocks = tuple[tuple[str, tuple[str, ...], bool], ...]
 
 #: Blocks of a ``tax/data/<year>-<sector>.json`` file.
@@ -69,6 +70,7 @@ _TAX_BLOCKS: Final[_Blocks] = (
     ("sterilizzazione_detrazioni", ("irpef",), False),
     ("fixed_term_additional_rate", ("inps_employer",), True),
     ("tfr", ("tfr",), False),
+    ("tfr.additional_ivs", ("tfr",), False),
     ("trattamento_integrativo", ("trattamento_integrativo",), False),
     ("ulteriore_detrazione", ("ulteriore_detrazione_lavoro",), False),
     ("somma_esente", ("somma_esente",), False),
@@ -290,6 +292,18 @@ def _fund_rules(file: str, funds: object) -> Iterator[PayableRule]:
                 yield _rule(file, path, ("pension_fund_contribution",), record)
 
 
+def _at(data: Mapping[str, object], key: str) -> object:
+    """Return the value at the dotted ``key`` of ``data``.
+
+    Returns:
+        The value, or ``None`` when a step of the path is missing.
+    """
+    node: object = data
+    for part in key.split("."):
+        node = node.get(part) if isinstance(node, dict) else None
+    return node
+
+
 def _block_rules(
     file: str,
     data: Mapping[str, object],
@@ -301,7 +315,7 @@ def _block_rules(
         One rule per block of ``blocks`` found in ``data``.
     """
     for key, capabilities, sibling in blocks:
-        block = data.get(key)
+        block = _at(data, key)
         if block is None:
             continue
         record = (

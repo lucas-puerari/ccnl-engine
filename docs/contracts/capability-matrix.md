@@ -1,6 +1,6 @@
 <!-- auto-generated; run: uv run python scripts/docs/gen_capability_matrix.py -->
 
-<!-- generated: 2026-10-04 -->
+<!-- generated: 2026-10-07 -->
 
 # Capability Matrix
 
@@ -78,7 +78,7 @@ formulas or caller-declared amounts.
 | `health_fund_employer` | Fondo sanitario integrativo a carico azienda | net | unsupported | outside_input | — | `employment.health_fund` | — | unavailable | none bundled |
 | `territorial_supplement` | Integrazione da contratto territoriale | gross | unsupported | outside_input | — | `employment.territorial_agreement` | — | unavailable | none bundled |
 | `company_supplement` | Integrazione da contratto aziendale | gross | unsupported | outside_input | — | `employment.company_agreement` | — | unavailable | none bundled |
-| `tfr` | Trattamento di Fine Rapporto | net | native | always | pipeline | — | — | implemented | 0 / 8 / 0 / 0 |
+| `tfr` | Trattamento di Fine Rapporto | net | native | always | pipeline | — | — | implemented | 0 / 13 / 0 / 0 |
 | `irpef` | IRPEF (sostituto d'imposta) | net | native | always | pipeline | — | — | implemented | 0 / 24 / 0 / 0 |
 | `trattamento_integrativo` | Trattamento integrativo (ex bonus 80€) | net | native | decided | decision | — | — | implemented | 0 / 8 / 0 / 0 |
 | `ulteriore_detrazione_lavoro` | Ulteriore detrazione lavoro dipendente | net | native | decided | decision | — | — | implemented | 0 / 8 / 0 / 0 |

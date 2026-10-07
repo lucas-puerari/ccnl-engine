@@ -128,14 +128,20 @@ class TestEveryPayment:
 
     @pytest.mark.parametrize("index", range(13))
     def test_tfr_accrues_on_the_pay_divided_by_13_5(self, index: int) -> None:
-        """The TFR base is the pay of the month and the divisor 13.5.
-
-        The posted quota is checked by the strict xfail at the end of the
-        module: it should be net of the 0.50% L. 297/1982 deducts.
-        """
+        """The TFR base is the pay of the month and the divisor 13.5."""
         (decision,) = (d for d in _runs()[index].decisions if d.capability == "tfr")
         assert decision.inputs["base"] == ORACLE.monthly_gross
         assert decision.inputs["accrual_divisor"] == ORACLE.tfr_divisor
+        assert decision.inputs["quota"] == ORACLE.tfr_quota
+
+    @pytest.mark.parametrize("index", range(13))
+    def test_tfr_accrual_is_net_of_the_additional_ivs(self, index: int) -> None:
+        """The TFR posted is the quota less the 0.50% L. 297/1982 deducts."""
+        result = _runs()[index]
+        (decision,) = (d for d in result.decisions if d.capability == "tfr")
+        assert decision.inputs["additional_ivs_base"] == ORACLE.monthly_gross
+        assert decision.inputs["additional_ivs_deduction"] == ORACLE.tfr_deduction
+        assert _posted(result, "tfr_accrual") == ORACLE.tfr_net_of_extra_ivs
 
 
 class TestYearTotals:
@@ -210,17 +216,3 @@ class TestCandidateGroupEvidence:
         for result in _runs():
             blockers = {(b.code.value, b.feature, b.detail) for b in result.blockers}
             assert blockers == {("rule_source_weak", "somma_esente", "assumed")}
-
-
-@pytest.mark.xfail(
-    strict=True,
-    raises=AssertionError,
-    reason=(
-        "L. 297/1982 art. 3: the employer deducts the 0.50% additional IVS "
-        "contribution from the TFR quota of the period; the engine posts the "
-        "art. 2120 quota whole and keeps the 0.50% inside the employer rate"
-    ),
-)
-def test_tfr_accrual_is_net_of_the_additional_ivs() -> None:
-    """Tfr accrual is net of the additional ivs."""
-    assert _posted(_runs()[0], "tfr_accrual") == ORACLE.tfr_net_of_extra_ivs

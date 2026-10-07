@@ -19,6 +19,7 @@ from ccnl_engine.payroll.application.period._capability_traces import build_trac
 from ccnl_engine.payroll.domain.decisions import CalculationStatus, DecisionOrigin
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment import Apprentice
+from ccnl_engine.payroll.domain.events import AbsenceEvent, BonusEvent
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.pension_fund import PensionFundEnrolment
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
@@ -131,14 +132,24 @@ class TestPermanentWorker:
         )
 
     def test_tfr_divides_the_base_by_the_bundled_divisor(self) -> None:
-        """TFR is the base over 13.5 (art. 2120 c.c.), accrued in the company."""
+        """TFR is the base over 13.5 (art. 2120 c.c.), accrued in the company.
+
+        L. 297/1982 art. 3 cc. 15-16 deduct the 0.50% additional IVS of the
+        INPS base (here the gross, under the massimale) from the quota.
+        """
         assert self.rules.ruleset is not None
         decision = _decision(self.result, "tfr")
         assert decision.rule == f"{self.rules.ruleset.id}:tfr"
         assert decision.inputs["accrual_divisor"] == Decimal("13.5")
         assert decision.inputs["account"] == AccountKind.TFR_ACCRUAL.value
         base = Decimal(decision.inputs["base"])
-        assert decision.amount == money(base / Decimal("13.5"))
+        quota = money(base / Decimal("13.5"))
+        deduction = money(base * Decimal("0.0050"))
+        assert decision.inputs["quota"] == quota
+        assert decision.inputs["additional_ivs_base"] == base
+        assert decision.inputs["additional_ivs_rate"] == Decimal("0.0050")
+        assert decision.inputs["additional_ivs_deduction"] == deduction
+        assert decision.amount == quota - deduction
         assert decision.amount == _posted(self.result, AccountKind.TFR_ACCRUAL)
 
     def test_irpef_records_the_withholding_and_its_credits(self) -> None:
@@ -166,6 +177,48 @@ def test_apprentice_reads_the_apprentice_rates() -> None:
         "apprenticeship_scaling"
     )
     assert _decision(result, "apprenticeship_scaling").amount is None
+
+
+def test_apprentice_tfr_accrues_whole_and_is_provisional() -> None:
+    """No source splits the 0.50% out of the apprentice rate: no deduction.
+
+    The industria sector deducts the L. 297/1982 additional IVS, but the
+    apprentice rate of L. 296/2006 art. 1 c. 773 is an overall rate: the
+    quota accrues whole and the TFR is provisional, with an issue.
+    """
+    result = _run(
+        contract_type=Apprentice(months_elapsed=6, track="professionalizzante_36")
+    )
+    decision = _decision(result, "tfr")
+    assert decision.status is CalculationStatus.PROVISIONAL
+    assert decision.inputs["additional_ivs_deduction"] == Decimal(0)
+    assert decision.amount == decision.inputs["quota"]
+    assert decision.amount == _posted(result, AccountKind.TFR_ACCRUAL)
+    codes = {issue.code for issue in result.issues}
+    assert "tfr_apprentice_additional_ivs_undetermined" in codes
+
+
+def test_tfr_deduction_never_exceeds_the_quota() -> None:
+    """A month of unpaid absence with a bonus leaves the TFR at zero.
+
+    The absence of 173 x 12.4755 = 2,158.2615 -> 2,158.26 takes the TFR
+    base of the C3 gross 2,158.26 to zero, while the bonus of 10,000 stays
+    in the INPS base: its 0.50% (50.00) is deducted only down to the quota.
+    """
+    result = _run(
+        events=(
+            AbsenceEvent(
+                event_date=date(2026, 3, 2),
+                hours=Decimal(173),
+                hourly_rate=Decimal("12.4755"),
+            ),
+            BonusEvent(event_date=date(2026, 3, 27), amount=Decimal(10_000)),
+        )
+    )
+    decision = _decision(result, "tfr")
+    assert decision.inputs["additional_ivs_deduction"] == decision.inputs["quota"]
+    assert decision.amount == Decimal(0)
+    assert _posted(result, AccountKind.TFR_ACCRUAL) == Decimal(0)
 
 
 def test_household_employer_takes_no_irpef_decision() -> None:

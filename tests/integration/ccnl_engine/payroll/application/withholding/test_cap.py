@@ -24,6 +24,7 @@ from functools import cache
 from typing import TYPE_CHECKING
 
 from ccnl_engine.contract.domain.identity import TaxSector
+from ccnl_engine.payroll.application.amounts._contributions import TfrAccrual
 from ccnl_engine.payroll.application.amounts._types import _PeriodAmounts
 from ccnl_engine.payroll.application.calculate_competence_year import (
     calculate_competence_year,
@@ -179,7 +180,7 @@ def _amounts(irpef: Decimal, surtax: Decimal) -> _PeriodAmounts:
         monthly_gross=_ZERO,
         inps_employee=_ZERO,
         inps_employer=_ZERO,
-        tfr=_ZERO,
+        tfr=TfrAccrual(quota=_ZERO),
         period_irpef=irpef,
         period_tratt=_ZERO,
         period_surtax=surtax,

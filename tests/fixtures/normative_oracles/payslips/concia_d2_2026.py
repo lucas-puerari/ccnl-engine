@@ -63,6 +63,7 @@ Worked example:
     employee INPS   2,052.32 x 9.49% = 194.7652          ->  194.77
     TFR quota       2,052.32 / 13.5  = 152.0237          ->  152.02
     TFR deduction   2,052.32 x 0.50% = 10.2616           ->   10.26
+    TFR accrued     152.02 - 10.26                      =   141.76
     annual gross    2,052.32 x 13                       = 26,680.16
     annual INPS     194.77 x 13                         =  2,532.01
     annual taxable  26,680.16 - 2,532.01                = 24,148.15
@@ -121,7 +122,10 @@ class ConciaYear:
         monthly_inps: Employee INPS of each payment.
         tfr_divisor: Art. 2120 c.c. divisor of the yearly pay.
         tfr_quota: Art. 2120 c.c. TFR quota of each payment.
-        tfr_net_of_extra_ivs: The quota less the 0.50% L. 297/1982 deducts.
+        tfr_deduction: The 0.50% additional IVS of the payment, on the
+            gross (well under the IVS massimale), that L. 297/1982 art. 3
+            c. 16 deducts from the quota.
+        tfr_net_of_extra_ivs: The quota less ``tfr_deduction``.
         payments: Number of payments of the tax year.
         gross: Gross of the year.
         inps: Employee INPS of the year.
@@ -139,6 +143,7 @@ class ConciaYear:
     monthly_inps: Decimal
     tfr_divisor: Decimal
     tfr_quota: Decimal
+    tfr_deduction: Decimal
     tfr_net_of_extra_ivs: Decimal
     payments: int
     gross: Decimal
@@ -160,6 +165,7 @@ def _year() -> ConciaYear:
     monthly_gross = minimum + edr
     monthly_inps = _cents(monthly_gross * _EMPLOYEE_INPS_RATE)
     tfr_quota = _cents(monthly_gross / _TFR_DIVISOR)
+    tfr_deduction = _cents(monthly_gross * _TFR_EXTRA_IVS_RATE)
     gross = monthly_gross * _MONTHS_PAID
     inps = monthly_inps * _MONTHS_PAID
     taxable = gross - inps
@@ -172,7 +178,8 @@ def _year() -> ConciaYear:
         monthly_inps=monthly_inps,
         tfr_divisor=_TFR_DIVISOR,
         tfr_quota=tfr_quota,
-        tfr_net_of_extra_ivs=tfr_quota - _cents(monthly_gross * _TFR_EXTRA_IVS_RATE),
+        tfr_deduction=tfr_deduction,
+        tfr_net_of_extra_ivs=tfr_quota - tfr_deduction,
         payments=_MONTHS_PAID,
         gross=gross,
         inps=inps,

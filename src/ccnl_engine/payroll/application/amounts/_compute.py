@@ -83,7 +83,7 @@ def _compute_amounts(
         amounts carry only contributions, TFR and taxable income.
     """
     breakdown, employee_rate = run_contributions(inp)
-    tfr = tfr_accrual(inp)
+    tfr = tfr_accrual(inp, breakdown)
     pension = run_pension(inp)
     if not inp.withholding_agent:
         untaxed, no_tax = untaxed_amounts(inp, breakdown, employee_rate, tfr, pension)
@@ -109,6 +109,6 @@ def _compute_amounts(
         ulteriore=irpef.tax.ulteriore,
         decisions=_decisions(inp, pdr, irpef, surtax),
         pension=pension,
-        issues=_issues(irpef),
+        issues=_issues(irpef) + tfr.issues(),
     )
     return amounts, breakdown, tax_comp, irpef.tax.recovery_plan
