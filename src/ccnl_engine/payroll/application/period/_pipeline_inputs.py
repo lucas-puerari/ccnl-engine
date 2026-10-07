@@ -27,6 +27,7 @@ from ccnl_engine.payroll.application.period._sickness import sickness_terms
 from ccnl_engine.payroll.application.period._tfr_destination import (
     tfr_treasury_fund,
 )
+from ccnl_engine.payroll.domain.events import FringeEvent
 from ccnl_engine.payroll.domain.family import DependentRelationship
 from ccnl_engine.payroll.domain.obligations import (
     TRATTAMENTO_RECOVERY,
@@ -94,13 +95,17 @@ def variable_events(
 def _children_within_limit(ctx: RunContext) -> bool | None:
     """Return whether a child of the family is within the limit of art. 12 c. 2.
 
+    Only a fringe benefit reads it: a run without one does not load the
+    art. 12 rules for it.
+
     Returns:
-        ``None`` without a family composition or with a child whose own
-        income is unknown and none within the limit; ``False`` without a
-        child.
+        ``None`` without a fringe benefit in the run, without a family
+        composition, or with a child whose own income is unknown and none
+        within the limit; ``False`` without a child.
     """
-    family = ctx.request.family_composition
-    if family is None:
+    request = ctx.request
+    family = request.family_composition
+    if family is None or not any(isinstance(e, FringeEvent) for e in request.events):
         return None
     children = [
         d for d in family.dependents if d.relationship is DependentRelationship.CHILD
