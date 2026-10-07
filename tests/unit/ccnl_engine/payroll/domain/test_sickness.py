@@ -26,12 +26,13 @@ class TestEpisode:
             ({"ended_on": date(2026, 2, 1)}, "SicknessEpisode.ended_on"),
             ({"relapse_of": "a"}, "SicknessEpisode.relapse_of"),
             ({"relapse_of": ""}, "SicknessEpisode.relapse_of"),
+            ({"short_absence_exempt": 1}, "SicknessEpisode.short_absence_exempt"),
         ],
     )
     def test_invalid_episode_is_rejected(
         self, kwargs: dict[str, object], field: str
     ) -> None:
-        """Blank id, datetime, reversed days or a relapse of itself."""
+        """Blank id, datetime, reversed days, a relapse of itself, a non-bool."""
         values: dict[str, object] = {
             "episode_id": "a",
             "started_on": date(2026, 2, 2),

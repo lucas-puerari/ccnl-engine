@@ -17,6 +17,7 @@ from ccnl_engine.shared.domain.errors import InvalidInputError
 from ccnl_engine.shared.domain.validation import (
     reject,
     require_code,
+    require_date,
     require_decimal,
     require_int,
 )
@@ -161,9 +162,14 @@ def _reason(value: object, path: str) -> None:
     require_code(value, path, feature=FEATURE, optional=True)
 
 
+def _optional_date(value: object, path: str) -> None:
+    require_date(value, path, feature=FEATURE, optional=True)
+
+
 #: Check of a scalar field, by its annotation.
 _FIELD_CHECKS: dict[str, Callable[[object, str], None]] = {
     "Decimal": _amount,
     "Decimal | None": _optional_amount,
     "str | None": _reason,
+    "date | None": _optional_date,
 }

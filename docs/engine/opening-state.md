@@ -76,6 +76,24 @@ threshold, reports a `missing_fact other_employers` blocker (issue
 `other_employment_inps_base_unknown`). Domestic work, contributed per hour
 without either, reads no base of other employments.
 
+## Sickness history
+
+`OpeningBalances.sickness_episodes` lists the sickness of the employment up
+to the import, and `OpeningBalances.sickness_known_from` the first day from
+which that list is complete: the start of the employment when it lists
+every episode. Left `None`, the list covers the tax year only, from
+1 January. A CCNL that counts the sickness of earlier years
+(Metalmeccanici Federmeccanica: comporto over three years, treatment chain
+across episodes, see
+[Sickness counted over several episodes](work-rules.md#sickness-counted-over-several-episodes))
+cannot count the days before it. As many sick days as calendar days
+between the start of the window (or of the employment, if stated and
+later) and that day could be missing, so a mid-employment import without
+it gives a sick run of such a CCNL a `missing_fact sickness_known_from`
+blocker (issue `sickness_history_unknown`) whenever those days could pass
+a threshold: for an employment begun more than about six months before,
+always.
+
 ## Balances from a previous provider
 
 `OpeningBalances` takes the progressive totals of a previous payroll

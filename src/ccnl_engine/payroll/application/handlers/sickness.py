@@ -205,5 +205,6 @@ def _handle_sickness_episode(
     effect.sick_units = pay.units_of(SickDayKind.INDEMNIFIED) + pay.units_of(
         SickDayKind.CARENZA
     )
+    effect.sick_days = pay.sick_days
     effect.inps_delta, effect.tfr_delta, effect.irpef_delta = deltas
     return effect

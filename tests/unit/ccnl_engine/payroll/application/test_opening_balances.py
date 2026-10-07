@@ -99,6 +99,18 @@ def test_rejects_a_reason_that_is_not_a_code() -> None:
         )
 
 
+def test_rejects_a_known_sickness_day_that_is_not_a_date() -> None:
+    """The first day of the known sickness is a date."""
+    with pytest.raises(InvalidInputError, match="sickness_known_from"):
+        OpeningBalances(
+            tax_year=2026,
+            inps_bases=(),
+            recoveries=(),
+            surtax_obligations=(),
+            sickness_known_from="2025-01-01",  # type: ignore[arg-type]
+        )
+
+
 def test_rejects_surtax_of_the_conguaglio_of_the_tax_year() -> None:
     """Surtax the 2026 conguaglio determines cannot open 2026."""
     late = SurtaxObligation.open(

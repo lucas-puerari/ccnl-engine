@@ -4,6 +4,25 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Federmeccanica sickness counted over several episodes
+
+Metalmeccanici Federmeccanica no longer pays every sick day in full for 180
+days of an episode. It follows Sez. Quarta Titolo VI Art. 2: by seniority,
+122, 153 or 214 days of a treatment chain in full and the rest at 80%,
+comporto of 183, 274 or 365 days over three years, chain restarted after 61
+days of work, and the first three days of the fourth and later short
+absences of a year at 66% and 50%. Amounts change past day 122 of a chain,
+and days past the comporto are left out sooner.
+
+| Before | After |
+|---|---|
+| `SicknessRules` tiers and comporto per episode only | Also `SicknessRules.cumulation` (`SicknessCumulation`, `SicknessSeniorityBand`, `ShortAbsenceReduction`); a rule sets one model |
+| `SickPayRules` in `payroll.domain.sick_days` | `payroll.domain.sick_pay_rules.SickPayRules`, with `worker` (`SicknessWorker`) |
+| An import listed earlier sickness without saying from when | `OpeningBalances.sickness_known_from`; left `None`, the episodes cover the tax year only and a run that could pass a threshold has a `missing_fact` blocker. `EmploymentAccrualState.sickness_known_from` carries it; `PeriodState.SCHEMA_VERSION` 12 |
+| No way to state a short-absence exemption | `SicknessEpisode.short_absence_exempt` (`None`: not stated) |
+| A month whose payable days differ from the divisor was deducted silently (24/26 of a February) | `provisional` issue `sickness_month_quota_mismatch` |
+| An `AbsenceEvent` on a sick day was deducted twice; beside sick days over the pay it raised `InvalidInputError` | `InvalidInputError` on a sick day; issue `sickness_with_unpaid_absence` beside sick days; `OutOfScopeError` (`sickness_with_unpaid_absence`) over the pay |
+
 ## Withholding of each run under art. 23 DPR 600/1973
 
 The IRPEF of a run before the conguaglio changes; the IRPEF of the year,

@@ -21,7 +21,8 @@ before the run, whatever tax year paid them.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
+from datetime import date
 from decimal import Decimal
 from typing import final
 
@@ -30,6 +31,7 @@ from ccnl_engine.payroll.domain.run import PayrollRunId, RunKind
 from ccnl_engine.payroll.domain.sickness import SicknessEpisode
 from ccnl_engine.shared.domain.collection_validation import items_of_type, tuple_of
 from ccnl_engine.shared.domain.errors import InvalidInputError
+from ccnl_engine.shared.domain.validation import require_date
 
 __all__ = ["EmploymentAccrualState"]
 
@@ -65,6 +67,11 @@ class EmploymentAccrualState:
             with a base, one per year, in year order.
         sickness_episodes: Sickness episodes the runs processed, each cut at
             its last processed day, in start order.
+        sickness_known_from: First day from which :attr:`sickness_episodes`
+            list every sick day of the employment; ``None`` when they list
+            all of them (a new employment, or an import that states so).
+            A CCNL that counts the sickness of several episodes cannot
+            count the days before it.
 
     Raises:
         InvalidInputError: When a run id is not a
@@ -77,6 +84,7 @@ class EmploymentAccrualState:
     competence_runs: tuple[PayrollRunId, ...] = ()
     inps_bases: tuple[InpsBaseYtd, ...] = ()
     sickness_episodes: tuple[SicknessEpisode, ...] = ()
+    sickness_known_from: date | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         runs = tuple_of(
@@ -100,6 +108,12 @@ class EmploymentAccrualState:
             msg = f"inps_bases must hold one base per year, in year order; got {years}"
             raise InvalidInputError(msg, field=_BASES, feature=_FEATURE)
         object.__setattr__(self, "sickness_episodes", _episodes(self, _SICKNESS))
+        require_date(
+            self.sickness_known_from,
+            "EmploymentAccrualState.sickness_known_from",
+            feature=_FEATURE,
+            optional=True,
+        )
 
     def check_next_run(self, run_id: PayrollRunId) -> None:
         """Check that ``run_id`` can close next.
@@ -131,7 +145,8 @@ class EmploymentAccrualState:
         Returns:
             A new state with ``run_id`` appended; it is validated again.
         """
-        return EmploymentAccrualState(
+        return replace(
+            self,
             competence_runs=(*self.competence_runs, run_id),
             inps_bases=self._bases_with(
                 self.inps_base(run_id.year).plus(
@@ -149,13 +164,9 @@ class EmploymentAccrualState:
         """Return the state with ``base`` in place of the base of its year.
 
         Returns:
-            A new state; the runs and episodes are unchanged.
+            A new state; the runs and the sickness record are unchanged.
         """
-        return EmploymentAccrualState(
-            competence_runs=self.competence_runs,
-            inps_bases=self._bases_with(base),
-            sickness_episodes=self.sickness_episodes,
-        )
+        return replace(self, inps_bases=self._bases_with(base))
 
     def _bases_with(self, base: InpsBaseYtd) -> tuple[InpsBaseYtd, ...]:
         others = [b for b in self.inps_bases if b.year != base.year]

@@ -10,11 +10,16 @@ at most its pay.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from datetime import timedelta
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application._period_utils import _ZERO
 from ccnl_engine.payroll.domain.rounding import money
+from ccnl_engine.payroll.domain.sick_cumulation_report import (
+    CumulationReport,
+    cumulation_report,
+)
 from ccnl_engine.payroll.domain.sick_days import (
     SickDayKind,
     SickDaySegment,
@@ -45,6 +50,8 @@ class EpisodePay:
         inps: INPS indemnity.
         integration: Employer integration on indemnified days.
         carenza: Employer pay of the waiting period.
+        report: What a CCNL treatment counted over several episodes rests
+            on; ``None`` for a per-episode CCNL.
     """
 
     segments: tuple[SickDaySegment, ...]
@@ -53,11 +60,22 @@ class EpisodePay:
     inps: Decimal = _ZERO
     integration: Decimal = _ZERO
     carenza: Decimal = _ZERO
+    report: CumulationReport | None = None
 
     @property
     def paid(self) -> Decimal:
         """Everything paid back to the worker for the sick days."""
         return self.inps + self.integration + self.carenza
+
+    @property
+    def sick_days(self) -> frozenset[date]:
+        """Days of the segments within the comporto."""
+        return frozenset(
+            s.first + timedelta(days=step)
+            for s in self.segments
+            if s.kind is not SickDayKind.BEYOND_COMPORTO
+            for step in range((s.last - s.first).days + 1)
+        )
 
     def units_of(self, kind: SickDayKind) -> Decimal:
         """Return the payable units of the segments of ``kind``.
@@ -149,4 +167,6 @@ def episode_pay(
         share = money(base * segment.inps_rate)
         inps += share
         integration += worker - share
-    return EpisodePay(segments, units, absence, inps, integration, carenza)
+    cumulative = rules.cumulative(episode, terms.history)
+    report = None if cumulative is None else cumulation_report(cumulative, span)
+    return EpisodePay(segments, units, absence, inps, integration, carenza, report)

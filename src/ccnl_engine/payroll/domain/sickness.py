@@ -18,7 +18,11 @@ from dataclasses import dataclass, replace
 from datetime import date, timedelta
 
 from ccnl_engine.shared.domain.errors import InvalidInputError
-from ccnl_engine.shared.domain.validation import require_date, require_str
+from ccnl_engine.shared.domain.validation import (
+    require_bool,
+    require_date,
+    require_str,
+)
 
 __all__ = ["SicknessEpisode", "SicknessHistory"]
 
@@ -39,16 +43,24 @@ class SicknessEpisode:
         relapse_of: Identifier of the episode this one continues, when the
             certificate marks it as a relapse (*ricaduta*): the days of both
             count as one episode, so no new waiting period applies.
+        short_absence_exempt: Whether the CCNL exempts the absence from the
+            lower pay of repeated short absences (for Federmeccanica: a
+            hospital stay or day hospital, sickness during a certified
+            pregnancy, or one of the diseases the CCNL lists); ``None``
+            when not stated.  Read only by a CCNL that reduces short
+            absences, when the reduction could apply.
 
     Raises:
         InvalidInputError: When the identifier is blank, a day is not a
-            date, the episode ends before it starts or continues itself.
+            date, ``short_absence_exempt`` is not a bool, the episode ends
+            before it starts or continues itself.
     """
 
     episode_id: str
     started_on: date
     ended_on: date
     relapse_of: str | None = None
+    short_absence_exempt: bool | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         require_str(
@@ -63,6 +75,12 @@ class SicknessEpisode:
             non_blank=True,
             optional=True,
         )
+        if self.short_absence_exempt is not None:
+            require_bool(
+                self.short_absence_exempt,
+                f"{_OWNER}.short_absence_exempt",
+                feature=_FEATURE,
+            )
         if self.ended_on < self.started_on:
             msg = (
                 f"{_OWNER}.ended_on ({self.ended_on}) must not precede "

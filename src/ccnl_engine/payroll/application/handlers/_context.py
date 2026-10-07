@@ -124,6 +124,7 @@ class EventEffect:
         sickness_episode: Sickness episode the event processed, cut at its
             last processed day, to record in the accrual state.
         sick_units: Units of the monthly pay the sickness episode deducted.
+        sick_days: Sick days within the comporto the episode paid.
         limitations: Ids of the engine limitations whose path it took.
     """
 
@@ -144,6 +145,7 @@ class EventEffect:
     issues: list[CalculationIssue] = field(default_factory=list)
     sickness_episode: SicknessEpisode | None = None
     sick_units: Decimal = _ZERO
+    sick_days: frozenset[date] = frozenset()
     limitations: tuple[str, ...] = ()
 
 

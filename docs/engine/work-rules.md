@@ -108,7 +108,7 @@ it continues for a relapse. The index sets:
 | 1-3 (carenza) | nothing | CCNL `carenza_integration_rate` |
 | 4-20 | 50% | the higher of the CCNL tier rate and the INPS rate |
 | 21-180 | 66.66% | the same |
-| past `max_duration_days` (comporto) | left out, `incomplete` issue | left out |
+| past the comporto | left out, `incomplete` issue | left out |
 
 INPS pays at most 180 days a calendar year, counted over every recorded
 episode. INPS covers the worker by the rules of
@@ -120,9 +120,11 @@ dirigenti, public employees or domestic workers (unverified). Each rule
 names its source in the file. Without a rule the cover is unknown: the days
 are paid at the CCNL rate only and a `provisional` issue
 `sickness_inps_cover_unknown` names the fact `category` when the level does
-not fix it. The CCNL tier is the one of the month of sickness (30 days) the
-day falls in, so a month that crosses a tier threshold pays each day its own
-rate.
+not fix it. For most CCNLs the tier is the one of the month of sickness
+(30 days) the day falls in, so a month that crosses a tier threshold pays
+each day its own rate, and the comporto ends past `max_duration_days` of
+the episode and its relapses. A CCNL that counts several episodes sets a
+cumulation instead ([below](#sickness-counted-over-several-episodes)).
 
 The payable days of each class are counted with the CCNL daily quota of an
 unpaid absence (`work_rules.absence_rules.daily_divisor_method`), the same
@@ -149,8 +151,57 @@ records one `sickness` decision with the classified days in its inputs.
 
 Two engine limitations stay open: the INPS share uses the CCNL daily quota
 of the month instead of the INPS daily base of the month before
-(`sickness_inps_daily_base`), and CCNL tiers and comporto count one relapse
-chain, not the CCNL window across episodes (`sickness_cumulation_window`).
+(`sickness_inps_daily_base`), and, for a CCNL without a cumulation, tiers
+and comporto count one relapse chain, not the CCNL window across episodes
+(`sickness_cumulation_window`).
+
+#### Sickness counted over several episodes
+
+`work_rules.sickness_rules.cumulation` holds the rules of a CCNL that
+counts the sickness of several episodes. Metalmeccanici Federmeccanica
+(Sez. Quarta Titolo VI Art. 2) is the first:
+
+| Seniority | Full pay | Then | Comporto breve |
+|---|---|---|---|
+| up to 3 years | first 122 days of the chain | 80% | 183 days |
+| 3 to 6 years | first 153 days | 80% | 274 days |
+| over 6 years | first 214 days | 80% | 365 days |
+
+- The chain sums the days of consecutive episodes; it restarts for an
+  episode that starts after at least 61 calendar days of work.
+- The comporto counts the sick days of the three years that end on the
+  day; a day past it is left out with an `incomplete` issue (the comporto
+  prolungato and the days added for a certified disability are not
+  modelled).
+- From the fourth short absence (at most 5 days) of a calendar year, the
+  first three days are paid 66%, from the fifth 50%, unless the CCNL
+  exempts the absence (`SicknessEpisode.short_absence_exempt`).
+- The band is the one of the seniority on the first day of the episode.
+
+A fact the engine does not know raises a `provisional` issue, a blocker,
+only when it could change a day the run pays:
+
+| Issue | When | Settled by |
+|---|---|---|
+| `sickness_history_unknown` | days before the recorded history could pass a threshold | `OpeningBalances.sickness_known_from` (the hire date when the imported episodes are complete), or `Employment.employment_period` |
+| `sickness_seniority_unknown` | the counts pass the days of the first band | `Employment.seniority` |
+| `sickness_short_absence_exemption_unknown` | a short absence could be reduced | `SicknessEpisode.short_absence_exempt` |
+| `sickness_seniority_band_changes` | the band changes within the days paid | not modelled |
+| `sickness_hospital_stay_not_modelled` | a day is paid at 80% (a hospital stay over 10 days is paid in full) | not modelled |
+| `sickness_fixed_term_proportion` | a fixed-term contract (periods scaled to its length) | not modelled |
+
+An import without `sickness_known_from` lists the sickness of its tax year
+only, from 1 January; the engine's own chained state lists every sick day
+of the employment.
+
+#### A month whose days differ from the divisor
+
+No CCNL text in the bundle says how a month of sickness is deducted when
+its payable days differ from the divisor, so the run raises the
+`provisional` issue `sickness_month_quota_mismatch` when every payable day
+of a fully posted month is sick yet part of the pay is left (24/26 of a
+February by 26), or a payable day is worked yet the sick days deduct the
+whole pay (sick 1 to 30 of a 31-day month by 30).
 
 `SickLeaveEvent` remains as an explicit override: an amount the caller
 computed. It records a caller-supplied `sickness` decision, so the result is
@@ -161,8 +212,12 @@ never payable.
 Unpaid absences that deduct more than the monthly pay of the run raise
 `InvalidInputError` before any amount is computed: check the hours and the
 hourly rate. The sick days of `SicknessEpisode` are capped at the monthly
-pay by construction ([Sickness](#sickness)); an `AbsenceEvent` added to
-them still counts toward the bound. Absences below the pay can still leave less than the IRPEF and
+pay by construction ([Sickness](#sickness)). An `AbsenceEvent` on a day of
+an episode raises `InvalidInputError`; on another day of the month it is
+deducted at the caller's rate beside the sick days at the CCNL quota, with
+the `provisional` issue `sickness_with_unpaid_absence`, and when the two
+exceed the pay the run raises `OutOfScopeError` with reason
+`sickness_with_unpaid_absence`. Absences below the pay can still leave less than the IRPEF and
 surtax due on the run (the withholding follows the projected annual income).
 The taxes are then withheld up to the pay left and the rest is carried to
 the next runs of the tax year

@@ -7,6 +7,7 @@ and maps them here onto the competence and tax cash state.
 
 from __future__ import annotations
 
+from datetime import date
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.domain.accrual_state import EmploymentAccrualState
@@ -84,15 +85,29 @@ def opening_state(balances: OpeningBalances) -> PeriodState:
         obligations=_obligations(balances),
         employment_spells=balances.employment_spells,
     )
-    accrual = EmploymentAccrualState(
+    return PeriodState(accrual=_accrual(balances), cash=cash)
+
+
+def _accrual(balances: OpeningBalances) -> EmploymentAccrualState:
+    """Return the competence state of ``balances``.
+
+    Returns:
+        The runs closed, the INPS bases and the sickness episodes, known
+        from 1 January of the tax year unless the balances state a day.
+    """
+    return EmploymentAccrualState(
         competence_runs=(
             *balances.competence_runs,
             *(p.run_id for p in balances.payments),
         ),
         inps_bases=balances.inps_bases,
         sickness_episodes=balances.sickness_episodes,
+        sickness_known_from=(
+            date(balances.tax_year, 1, 1)
+            if balances.sickness_known_from is None
+            else balances.sickness_known_from
+        ),
     )
-    return PeriodState(accrual=accrual, cash=cash)
 
 
 def _obligations(balances: OpeningBalances) -> EmploymentObligations:

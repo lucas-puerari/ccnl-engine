@@ -24,6 +24,7 @@ from ccnl_engine.payroll.domain.sickness import SicknessHistory
 from ccnl_engine.payroll.domain.ytd_accounts import RegimeCapAccount
 
 if TYPE_CHECKING:
+    from datetime import date
     from decimal import Decimal
 
     from ccnl_engine.payroll.application.handlers._context import EventEffect
@@ -118,6 +119,7 @@ class _EventAccumulator:
     sickness: SicknessHistory = field(default_factory=SicknessHistory)
     sickness_changed: bool = False
     sick_units: Decimal = _ZERO
+    sick_days: set[date] = field(default_factory=set)
     limitations: set[str] = field(default_factory=set)
 
     def add(self, event: WorkEvent, result: EventEffect) -> None:
@@ -151,6 +153,7 @@ class _EventAccumulator:
             )
             self.sickness_changed = True
         self.sick_units += result.sick_units
+        self.sick_days.update(result.sick_days)
 
     def totals(self) -> _EventTotals:
         """Return the aggregated bases, decisions and issues of the events.

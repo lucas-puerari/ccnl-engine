@@ -61,7 +61,10 @@ def resolve_payment(request: PeriodCalculationRequest) -> PaymentId:
 
 
 def check_absences_within_pay(
-    entries: tuple[LedgerEntry, ...], period_pay: Decimal
+    entries: tuple[LedgerEntry, ...],
+    period_pay: Decimal,
+    *,
+    with_sickness: bool = False,
 ) -> None:
     """Reject unpaid absences that deduct more than the pay of the run.
 
@@ -69,18 +72,36 @@ def check_absences_within_pay(
         entries: Ledger entries of the events of the run.
         period_pay: Contractual pay of the run the absences are deducted
             from.
+        with_sickness: Whether the run deducts sick days at the CCNL daily
+            quota besides an unpaid absence at the caller's rate.
 
     Raises:
         InvalidInputError: When the EMPLOYEE_DEDUCTIONS of ``entries``
-            exceed ``period_pay``.
+            exceed ``period_pay`` and only the caller's absences deduct.
+        OutOfScopeError: When they exceed it with sick days: the two
+            quotas do not count the days of the month on one rule, and no
+            rule says which deduction gives way.
     """
     deducted = _sum_ledger(entries, AccountKind.EMPLOYEE_DEDUCTIONS)
-    if deducted > period_pay:
+    if deducted <= period_pay:
+        return
+    if with_sickness:
         msg = (
-            f"unpaid absences deduct {deducted}, more than the pay of the "
-            f"run ({period_pay}): check the absence hours and hourly rate"
+            f"sick days and unpaid absences deduct {deducted}, more than the "
+            f"pay of the run ({period_pay}): the sick days are deducted at the "
+            "CCNL daily quota and the absences at the hourly rate given"
         )
-        raise InvalidInputError(msg, feature=_FEATURE)
+        raise OutOfScopeError(
+            msg,
+            reason="sickness_with_unpaid_absence",
+            feature=_FEATURE,
+            remediation="compute the deductions of this month manually",
+        )
+    msg = (
+        f"unpaid absences deduct {deducted}, more than the pay of the "
+        f"run ({period_pay}): check the absence hours and hourly rate"
+    )
+    raise InvalidInputError(msg, feature=_FEATURE)
 
 
 def check_net_covered(result: PeriodResult) -> None:

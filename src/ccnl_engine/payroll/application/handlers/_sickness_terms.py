@@ -12,7 +12,7 @@ if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.contract.domain.absence import DailyDivisorMethod
-    from ccnl_engine.payroll.domain.sick_days import SickPayRules
+    from ccnl_engine.payroll.domain.sick_pay_rules import SickPayRules
     from ccnl_engine.payroll.service.types import MonthlyPayChain
     from ccnl_engine.provenance.domain.source import SourceLocation
 
@@ -58,6 +58,7 @@ class SicknessTerms:
         cover_fact: Public fact whose absence leaves INPS cover unknown
             (``category``), ``None`` when cover is known or the bundle has
             no rule for the worker.
+        fixed_term: Whether the contract is fixed-term.
     """
 
     employed: tuple[date, date] | None = None
@@ -70,3 +71,4 @@ class SicknessTerms:
     rule_version: str = "bundle"
     source: SourceLocation | None = None
     cover_fact: str | None = None
+    fixed_term: bool = False

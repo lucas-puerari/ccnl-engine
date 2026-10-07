@@ -34,6 +34,8 @@ from ccnl_engine.inputs import (
     InpsBaseYtd,
     OpeningBalances,
     PeriodState,
+    SeniorityFact,
+    SenioritySource,
     WorkerCategory,
 )
 from tests.fixtures.sickness_episode import metalmeccanico_c3, sickness_episode
@@ -123,6 +125,13 @@ def test_month_past_the_inps_cap_deducts_the_month_pay() -> None:
 
     INPS stops indemnifying within September: the month holds a band at
     66.66% and one at 0%, each deducted with the daily quota by 26.
+
+    The worker has 40 months of seniority, so CCNL Federmeccanica (Sez.
+    Quarta Titolo VI Art. 2) pays the first 153 days of a chain in full
+    within a comporto of 274 days.  The first episode is 27 + 28 + 31 + 30
+    + 31 = 147 days; 1 June to 2 August are 63 days of work, at least 61,
+    so the second episode starts a new chain of 29 + 30 = 59 days; the
+    three years hold 147 + 59 = 206 days.  Every day is paid in full.
     """
     first = PeriodFacts(
         events=(sickness_episode("A", date(2026, 1, 5), date(2026, 5, 31)),)
@@ -130,10 +139,11 @@ def test_month_past_the_inps_cap_deducts_the_month_pay() -> None:
     second = PeriodFacts(
         events=(sickness_episode("C", date(2026, 8, 3), date(2026, 9, 30)),)
     )
+    seniority = SeniorityFact(40, date(2026, 1, 1), SenioritySource.PAYSLIP)
     year = _ENGINE.calculate_competence_year(
         CompetenceYearPlan(
             year=2026,
-            employment=_EMPLOYMENT,
+            employment=replace(_EMPLOYMENT, seniority=seniority),
             employer=_EMPLOYER,
             periods={1: first, 2: first, 3: first, 4: first, 5: first}
             | {8: second, 9: second},
@@ -144,9 +154,15 @@ def test_month_past_the_inps_cap_deducts_the_month_pay() -> None:
         r for r in year.period_results if r.run == PayrollRun.regular(2026, 9)
     )
     (decision,) = (d for d in september.decisions if d.capability == "sickness")
-    assert ":inps=0.6666:" in str(decision.inputs["segments"])
-    assert ":inps=0:" in str(decision.inputs["segments"])
-    assert september.unpaid_absence_deduction == _base_salary(september)
+    segments = str(decision.inputs["segments"])
+    assert ":inps=0.6666:" in segments
+    assert ":inps=0:" in segments
+    assert segments.count(":worker=1") == segments.count(";") + 1
+    assert september.unpaid_absence_deduction == sum(
+        i.amount
+        for i in september.pay_items
+        if i.kind in {"base_salary_earning", "seniority_earning"}
+    )
 
 
 def _july(*episodes: SicknessEpisode) -> PeriodResult:

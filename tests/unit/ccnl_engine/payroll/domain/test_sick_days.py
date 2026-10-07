@@ -17,10 +17,10 @@ from ccnl_engine.contract.domain.sickness import SicknessRules, SicknessTier
 from ccnl_engine.payroll.domain.sick_days import (
     SickDayKind,
     SickDaySegment,
-    SickPayRules,
     classify_days,
     segment_units,
 )
+from ccnl_engine.payroll.domain.sick_pay_rules import SickPayRules
 from ccnl_engine.payroll.domain.sickness import SicknessEpisode, SicknessHistory
 from ccnl_engine.tax.domain.sick_pay import InpsSickPayRates, SickPayBand
 
