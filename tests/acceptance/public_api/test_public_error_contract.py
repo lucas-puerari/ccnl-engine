@@ -10,7 +10,6 @@ refused as out of scope.
 
 from __future__ import annotations
 
-import contextlib
 from datetime import date
 from decimal import Decimal
 
@@ -238,29 +237,18 @@ def test_sickness_after_earlier_sick_days_is_computed() -> None:
     assert decision.reason_code == "sickness_episode_paid"
 
 
-@pytest.mark.xfail(
-    strict=True,
-    raises=AssertionError,
-    reason=(
-        "a sickness episode covering the whole of July is refused: the "
-        "absence deduction (2,211.44, 31 daily quotas rounded apart) exceeds "
-        "the month's pay (2,211.43); the episode is lawful input (art. 2110 "
-        "c.c.) and the deduction cannot exceed the pay it suspends"
-    ),
-)
 def test_sickness_for_a_whole_month_is_computed() -> None:
-    """Metalmeccanico C3 operaio, sick from 1 to 31 July 2026."""
+    """Metalmeccanico C3 operaio, sick from 1 to 31 July 2026.
+
+    The episode is lawful input (art. 2110 c.c.): it suspends the pay of the
+    whole month, so the run deducts that pay, rounded once, and no more.
+    """
     episode = sickness_episode("2026-07-01", date(2026, 7, 1), date(2026, 7, 31))
-    computed: list[PeriodResult] = []
-    with contextlib.suppress(InvalidInputError):
-        computed.append(
-            _regular(
-                metalmeccanico_c3(WorkerCategory.OPERAIO),
-                7,
-                PeriodFacts(events=(episode,)),
-            )
-        )
-    assert computed
+    result = _regular(
+        metalmeccanico_c3(WorkerCategory.OPERAIO), 7, PeriodFacts(events=(episode,))
+    )
+    (base,) = (i for i in result.pay_items if i.kind == "base_salary_earning")
+    assert result.unpaid_absence_deduction == base.amount
 
 
 @pytest.mark.xfail(

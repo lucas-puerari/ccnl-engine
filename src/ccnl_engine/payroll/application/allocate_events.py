@@ -148,8 +148,8 @@ def _process_events(
     substitute rate on what is left of the annual cap.  ``overtime_bands``
     are the CCNL bands an overtime event without a multiplier is paid with;
     without them such an event is rejected.  ``sickness`` holds the rules
-    and recorded episodes a sickness episode is paid with; each episode is
-    recorded before the next event.
+    and recorded episodes a sickness episode is paid with; each episode and
+    its deducted units are recorded before the next event.
 
     Returns:
         Tuple of ``(_EventTotals, pay_items, ledger_entries)``.
@@ -186,7 +186,7 @@ def _process_events(
             cumulative_fringe=acc.cumulative_fringe,
             cumulative_taxed=acc.cumulative_taxed,
             work_time_cap=acc.work_time_cap,
-            sickness=replace(terms, history=acc.sickness),
+            sickness=replace(terms, history=acc.sickness, counted=acc.sick_units),
         )
         acc.add(event, handler(event, ctx))
     return (

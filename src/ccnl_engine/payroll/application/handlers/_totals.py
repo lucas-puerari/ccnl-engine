@@ -113,6 +113,7 @@ class _EventAccumulator:
     executed: set[str] = field(default_factory=set)
     sickness: SicknessHistory = field(default_factory=SicknessHistory)
     sickness_changed: bool = False
+    sick_units: Decimal = _ZERO
     limitations: set[str] = field(default_factory=set)
 
     def add(self, event: WorkEvent, result: EventEffect) -> None:
@@ -144,6 +145,7 @@ class _EventAccumulator:
                 self.sickness.with_episode(result.sickness_episode)
             )
             self.sickness_changed = True
+        self.sick_units += result.sick_units
 
     def totals(self) -> _EventTotals:
         """Return the aggregated bases, decisions and issues of the events.

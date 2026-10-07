@@ -4,6 +4,13 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## A month of sickness deducts at most its pay
+
+| Before | After |
+|---|---|
+| Each INPS band of a `SicknessEpisode` was rounded on its own: a whole month of sickness, or a month crossing the 180-day INPS cap, deducted one cent more than the pay and raised `InvalidInputError` | The pay of the sick days is rounded once on the days of the month counted so far; a whole month deducts exactly the monthly pay. The `absence_deduction` and the INPS share of an episode can move by one cent |
+| Two episodes in the same month each counted up to a monthly pay: 1-15 and 16-31 July 2026 (27 working days by 26) raised `InvalidInputError` | The days past the pay left by the earlier episodes of the run are dropped; the month deducts its pay |
+
 ## Payability is fail-closed on unknown residence and family
 
 A capability the registry declares required (`applicability_facts`) must be

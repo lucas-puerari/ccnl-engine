@@ -46,6 +46,8 @@ class SicknessTerms:
         employed: First and last employed day of the month whose monthly
             pay the run posts; ``None`` when the run posts none.
         history: Episodes recorded by earlier runs.
+        counted: Units of the monthly pay deducted by the episodes
+            processed earlier in the run.
         rules: INPS and CCNL rules; ``None`` when the CCNL defines no
             sickness rule.
         quota: Daily quota of the CCNL; ``None`` without an absence rule.
@@ -60,6 +62,7 @@ class SicknessTerms:
 
     employed: tuple[date, date] | None = None
     history: SicknessHistory = field(default_factory=SicknessHistory)
+    counted: Decimal = Decimal(0)
     rules: SickPayRules | None = None
     quota: DailyQuota | None = None
     chain: MonthlyPayChain | None = None
