@@ -276,10 +276,23 @@ class TestStateExportAndImport:
             employment_spells=cash.employment_spells,
         )
 
+    @staticmethod
+    def _imported(state: PeriodState) -> PeriodState:
+        """Return ``state`` as an import knows it: sickness from 1 January.
+
+        The engine's own state lists every sick day of the employment; an
+        import without ``sickness_known_from`` lists those of its tax year.
+
+        Returns:
+            The state with its sickness known from 1 January 2026.
+        """
+        accrual = replace(state.accrual, sickness_known_from=date(2026, 1, 1))
+        return replace(state, accrual=accrual)
+
     def test_import_gives_back_the_exported_state(self) -> None:
         """The imported June totals are the state the engine closed June with."""
         imported = _ENGINE.import_opening_balances(self._exported_june())
-        assert imported == _one_pass().period_results[5].closing_state
+        assert imported == self._imported(_one_pass().period_results[5].closing_state)
 
     def test_resuming_from_the_import_equals_one_pass(self) -> None:
         """July to the tredicesima from the import match the one-pass year."""
@@ -288,7 +301,6 @@ class TestStateExportAndImport:
         assert [r.period_net for r in resumed.period_results] == [
             r.period_net for r in tail
         ]
-        assert (
-            resumed.period_results[-1].closing_state
-            == _one_pass().period_results[-1].closing_state
+        assert resumed.period_results[-1].closing_state == self._imported(
+            _one_pass().period_results[-1].closing_state
         )

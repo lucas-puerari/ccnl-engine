@@ -26,7 +26,8 @@ from ccnl_engine.payroll.application.handlers._sickness_terms import (
     SicknessTerms,
 )
 from ccnl_engine.payroll.domain.run import RunKind
-from ccnl_engine.payroll.domain.sick_days import SickPayRules
+from ccnl_engine.payroll.domain.sick_cumulation import SicknessWorker
+from ccnl_engine.payroll.domain.sick_pay_rules import SickPayRules
 from ccnl_engine.payroll.domain.sickness import SicknessHistory
 
 if TYPE_CHECKING:
@@ -84,6 +85,22 @@ def _employed(ctx: RunContext) -> tuple[date, date] | None:
     return date(year, month, 1), date(year, month, calendar.monthrange(year, month)[1])
 
 
+def _worker(ctx: RunContext) -> SicknessWorker:
+    """Return the facts of the worker a cumulated treatment is counted with.
+
+    Returns:
+        The seniority, the first day of the employment and the first day of
+        the known sickness history of the opening state.
+    """
+    request = ctx.request
+    period = request.employment_period
+    return SicknessWorker(
+        seniority=request.seniority,
+        hired_on=None if period is None else period.started_on,
+        known_from=ctx.opening.accrual.sickness_known_from,
+    )
+
+
 def sickness_terms(ctx: RunContext) -> SicknessTerms:
     """Return the rules and facts the run pays sickness episodes with.
 
@@ -104,7 +121,9 @@ def sickness_terms(ctx: RunContext) -> SicknessTerms:
             None if category is None else str(category),
             ctx.request.contract_type.type,
         )
-        rules = SickPayRules(inps=inps, inps_cover=cover, ccnl=ccnl_rules)
+        rules = SickPayRules(
+            inps=inps, inps_cover=cover, ccnl=ccnl_rules, worker=_worker(ctx)
+        )
         cover_fact = _CATEGORY if cover is None and category is None else None
     provenance = None if ccnl_rules is None else ccnl_rules.provenance
     return SicknessTerms(
@@ -119,6 +138,7 @@ def sickness_terms(ctx: RunContext) -> SicknessTerms:
         ),
         source=None if provenance is None else provenance.location,
         cover_fact=cover_fact,
+        fixed_term=ctx.request.contract_type.type == "fixed_term",
     )
 
 

@@ -1,10 +1,14 @@
 """Sickness episodes paid by the runs of the months they touch.
 
 Metalmeccanico C3 operaio (INPS sector industria, so INPS covers the
-worker): 2158.26 EUR a month, daily quota by 26 = 83.01 EUR, CCNL
-integration and carenza at 100%, comporto 180 days.  INPS: carenza days
-1-3, 50% on days 4-20, 66.66% on days 21-180.  Every amount below is
-computed by hand from those rules, amounts rounded half up to the cent.
+worker): 2158.26 EUR a month to May 2026 and 2211.43 from June, daily
+quota by 26 = 83.01 EUR, CCNL integration and carenza at 100%.  With a
+seniority under three years (CCNL Federmeccanica, Sez. Quarta Titolo VI
+Art. 2) the first 122 days of the treatment chain are paid in full and the
+later ones at 80%, and the comporto breve is 183 days over three years.
+INPS: carenza days 1-3, 50% on days 4-20, 66.66% on days 21-180.  Every
+amount below is computed by hand from those rules, amounts rounded half up
+to the cent.
 """
 
 from __future__ import annotations
@@ -214,11 +218,18 @@ class TestMissingRulesAndFacts:
         assert _sick(result)["intg"] == Decimal("166.02")
 
     def test_days_past_the_comporto_are_left_out(self) -> None:
-        """From 1 January, every July day is past the 180-day comporto."""
+        """Sick from 1 January: only 1 and 2 July are within the comporto.
+
+        January to June are 31 + 28 + 31 + 30 + 31 + 30 = 181 days, so 1 and
+        2 July (Wednesday, Thursday) are days 182 and 183 of the 183-day
+        comporto, past the 122 full-pay days and past the 180 INPS days:
+        2211.43 * 2 / 26 = 170.11 deducted, 170.11 * 0.80 = 136.088, 136.09
+        paid by the employer.  From 3 July the days are left out.
+        """
         long = sickness_episode("a", date(2026, 1, 1), date(2026, 7, 31))
         result = calculate_period(_req(7, long))
         assert _decision(result).reason_code == "sickness_beyond_comporto"
-        assert _sick(result) == {}
+        assert _sick(result) == {"abs": Decimal("170.11"), "intg": Decimal("136.09")}
 
 
 def test_hourly_quota_counts_hours() -> None:
@@ -268,19 +279,44 @@ def test_hourly_quota_without_daily_hours_is_missing() -> None:
     assert _decision(result).reason_code == "sickness_daily_quota_missing"
 
 
-def test_earlier_episode_outside_the_chain_is_a_limitation() -> None:
-    """A March relapse chain after an unrelated January episode."""
+def _after_january_and_february() -> PeriodState:
     january = sickness_episode("j", date(2026, 1, 12), date(2026, 1, 14))
     february = sickness_episode("f", date(2026, 2, 2), date(2026, 2, 4))
-    state = replace(
+    return replace(
         PeriodState.zero(),
         accrual=replace(
             PeriodState.zero().accrual, sickness_episodes=(january, february)
         ),
     )
+
+
+def test_earlier_episode_outside_the_chain_is_a_limitation() -> None:
+    """A March relapse chain after an unrelated January episode (Commercio).
+
+    Commercio counts its comporto on the episode and its relapses.
+    """
     relapse = sickness_episode("m", date(2026, 3, 2), date(2026, 3, 3), "f")
-    result = calculate_period(_req(3, relapse, opening=state))
+    request = _req(
+        3,
+        relapse,
+        opening=_after_january_and_february(),
+        slug="commercio-confcommercio.json",
+        level="4",
+    )
+    result = calculate_period(request)
     assert "sickness_cumulation_window" in {lim.id for lim in result.limitations}
+
+
+def test_a_ccnl_counting_every_episode_has_no_window_limitation() -> None:
+    """Federmeccanica counts the January and February episodes itself.
+
+    18 and 25 days of work separate the three episodes, fewer than 61, so
+    the chain holds 3 + 3 + 2 days on 3 March.
+    """
+    relapse = sickness_episode("m", date(2026, 3, 2), date(2026, 3, 3), "f")
+    result = calculate_period(_req(3, relapse, opening=_after_january_and_february()))
+    assert "sickness_cumulation_window" not in {lim.id for lim in result.limitations}
+    assert _decision(result).inputs["chain_days"] == Decimal(3 + 3 + 2)
 
 
 def test_sick_pay_override_is_not_payable() -> None:

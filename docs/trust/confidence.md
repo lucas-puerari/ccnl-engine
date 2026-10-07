@@ -149,7 +149,9 @@ without a classification, or on a classification without its field:
     whose start is stated, the INPS base of other employments when the INPS
     rules carry a massimale or a 1% threshold, the TFR fund at 31 December
     of the year before on a December run, the Fondo Tesoreria destination
-    of the TFR);
+    of the TFR, the first day of the imported sickness history and the
+    exemption of a short absence when a CCNL counting several sickness
+    episodes needs them);
   - `pending`: not honoured yet. The default still selects a branch without
     a blocker. Treat these fields as required and state them.
 

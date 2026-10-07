@@ -86,6 +86,26 @@ class TestCloseTaxYear:
             cash=TaxCashState(tax_year=2027, obligations=obligations),
         )
 
+    def test_the_known_sickness_crosses_the_tax_year(self) -> None:
+        """An import's first known sick day stays known in the next year.
+
+        A CCNL counting three years of sickness reads it in 2027 too: left
+        behind, the history would read as complete.
+        """
+        december = PayrollRunId.parse("2026-12-regular")
+        accrual = EmploymentAccrualState(
+            competence_runs=(december,), sickness_known_from=date(2026, 1, 1)
+        )
+        payment = PaymentId(december, date(2026, 12, 27))
+        closing = PeriodState(
+            accrual=accrual,
+            cash=TaxCashState(tax_year=2026, payments=(payment,), conguaglio=payment),
+        )
+
+        opening = close_tax_year(closing)
+
+        assert opening.accrual.sickness_known_from == date(2026, 1, 1)
+
     def test_rejects_a_state_bound_to_no_tax_year(self) -> None:
         """A hand-built state without a run is not a year-end state."""
         with pytest.raises(InvalidInputError, match="bound to no tax year"):

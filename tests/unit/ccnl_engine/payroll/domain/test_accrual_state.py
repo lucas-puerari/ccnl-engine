@@ -9,7 +9,7 @@ import pytest
 
 from ccnl_engine.payroll.domain.accrual_state import EmploymentAccrualState
 from ccnl_engine.payroll.domain.inps_base import InpsBaseYtd
-from ccnl_engine.payroll.domain.run import PayrollRunId
+from ccnl_engine.payroll.domain.run import PayrollRunId, RunKind
 from ccnl_engine.payroll.domain.sickness import SicknessEpisode
 from ccnl_engine.shared.domain.errors import InvalidInputError
 
@@ -185,3 +185,13 @@ class TestSicknessEpisodes:
                 EmploymentAccrualState(sickness_episodes=episodes)
         state = EmploymentAccrualState(sickness_episodes=[first, second])  # type: ignore[arg-type]
         assert state.sickness_episodes == (first, second)
+
+    def test_a_run_keeps_the_first_known_day(self) -> None:
+        """The day the history is known from does not move with the runs."""
+        state = EmploymentAccrualState(sickness_known_from=date(2026, 1, 1))
+        after = state.after(PayrollRunId(2026, 3, RunKind.REGULAR))
+        assert after.sickness_known_from == date(2026, 1, 1)
+        rebased = state.with_inps_base(InpsBaseYtd(2026, other_employers=Decimal(0)))
+        assert rebased.sickness_known_from == date(2026, 1, 1)
+        with pytest.raises(InvalidInputError, match="sickness_known_from"):
+            EmploymentAccrualState(sickness_known_from="2026-01-01")  # type: ignore[arg-type]

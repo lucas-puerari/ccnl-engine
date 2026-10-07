@@ -151,6 +151,14 @@ FACT_DEFAULTS: Mapping[str, FieldDefault] = {
     "OpeningBalances.payments": _IMPORTED_LIST,
     "OpeningBalances.competence_runs": _IMPORTED_LIST,
     "OpeningBalances.sickness_episodes": _IMPORTED_LIST,
+    "OpeningBalances.sickness_known_from": requires_fact(
+        "sickness",
+        "opening_balances.sickness_known_from",
+        _REPORTED,
+        "the imported episodes list the sickness of the tax year only: a CCNL "
+        "that counts earlier years has a missing_fact sickness_known_from "
+        "blocker when the days before 1 January could change a sick day",
+    ),
     **{f"OpeningBalances.{name}": _ACCOUNT for name in _ACCOUNTS},
     **{f"OpeningBalances.{name}": _NOT_COMPUTED for name in _LAST_COMPUTED},
     "OpeningBalances.employment_spells": absence_is_fact(

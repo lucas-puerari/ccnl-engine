@@ -59,4 +59,11 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
     "SicknessEpisode.relapse_of": absence_is_fact(
         "a new episode; a relapse is stated by the medical certificate"
     ),
+    "SicknessEpisode.short_absence_exempt": requires_fact(
+        "sickness",
+        "event.short_absence_exempt",
+        FactEnforcement.REPORTED,
+        "unknown exemption: a short absence the CCNL could pay less has a "
+        "missing_fact short_absence_exempt blocker and is paid unreduced",
+    ),
 }

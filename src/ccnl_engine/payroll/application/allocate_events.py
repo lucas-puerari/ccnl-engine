@@ -9,6 +9,10 @@ from typing import TYPE_CHECKING
 from ccnl_engine.payroll.application._period_utils import _ZERO
 from ccnl_engine.payroll.application._posting_service import post as _post
 from ccnl_engine.payroll.application.handlers._overtime_rate import CCNLOvertimeBands
+from ccnl_engine.payroll.application.handlers._sickness_month import (
+    check_absences_off_sick_days,
+    month_issues,
+)
 from ccnl_engine.payroll.application.handlers._sickness_terms import SicknessTerms
 from ccnl_engine.payroll.application.handlers._totals import (
     _EventAccumulator,
@@ -146,6 +150,38 @@ def _processing_order(
     return order
 
 
+def _run_handlers(
+    events: tuple[WorkEvent, ...],
+    base_ctx: _EventHandlerCtx,
+    run: tuple[str, EffectiveDateContext],
+    acc: _EventAccumulator,
+) -> None:
+    """Run the handler of each event, then check the sick days of the month.
+
+    Each handler sees the fringe totals, the work-time cap and the sickness
+    episodes and units the earlier events recorded.  An unpaid absence on a
+    sick day is rejected before any handler runs.
+    """
+    tag, date_ctx = run
+    terms = base_ctx.sickness
+    check_absences_off_sick_days(events)
+    for i, event in _processing_order(events):
+        _check_event_date(event, date_ctx, i)
+        handler = _handler_of(event)
+        ctx = replace(
+            base_ctx,
+            evt_id=f"{tag}_evt{i}",
+            cumulative_fringe=acc.cumulative_fringe,
+            cumulative_taxed=acc.cumulative_taxed,
+            work_time_cap=acc.work_time_cap,
+            sickness=replace(terms, history=acc.sickness, counted=acc.sick_units),
+        )
+        acc.add(event, handler(event, ctx))
+    acc.issues.extend(
+        month_issues(events, terms, frozenset(acc.sick_days), acc.sick_units)
+    )
+
+
 def _process_events(
     events: tuple[WorkEvent, ...],
     cp: CompetencePeriod,
@@ -201,18 +237,7 @@ def _process_events(
         overtime_bands=overtime_bands or CCNLOvertimeBands(),
         sickness=terms,
     )
-    for i, event in _processing_order(events):
-        _check_event_date(event, date_ctx, i)
-        handler = _handler_of(event)
-        ctx = replace(
-            base_ctx,
-            evt_id=f"{tag}_evt{i}",
-            cumulative_fringe=acc.cumulative_fringe,
-            cumulative_taxed=acc.cumulative_taxed,
-            work_time_cap=acc.work_time_cap,
-            sickness=replace(terms, history=acc.sickness, counted=acc.sick_units),
-        )
-        acc.add(event, handler(event, ctx))
+    _run_handlers(events, base_ctx, (tag, date_ctx), acc)
     return (
         acc.totals(),
         tuple(acc.items),

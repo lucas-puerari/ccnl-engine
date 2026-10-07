@@ -235,6 +235,25 @@ def test_imports_competence_runs_of_an_earlier_tax_year() -> None:
     state.accrual.check_next_run(PayrollRunId(2026, 12, RunKind.REGULAR))
 
 
+@pytest.mark.parametrize(
+    ("stated", "known_from"),
+    [(None, date(2026, 1, 1)), (date(2025, 3, 1), date(2025, 3, 1))],
+    ids=["tax_year_only", "stated"],
+)
+def test_imports_the_first_day_of_the_known_sickness(
+    stated: date | None, known_from: date
+) -> None:
+    """Without a statement the imported episodes cover the tax year only."""
+    balances = OpeningBalances(
+        tax_year=2026,
+        inps_bases=(),
+        recoveries=(),
+        surtax_obligations=(),
+        sickness_known_from=stated,
+    )
+    assert opening_state(balances).accrual.sickness_known_from == known_from
+
+
 def test_imports_the_inps_base_of_other_employers() -> None:
     """The base of an earlier employment of the year counts toward the massimale."""
     base = InpsBaseYtd(2026, other_employers=Decimal("80000.00"))

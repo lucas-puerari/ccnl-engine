@@ -117,6 +117,8 @@ PUBLIC_FACTS: Mapping[str, str] = MappingProxyType({
     "reference_period": "ArrearsEvent.reference_period",
     "sector": "Employment.sector",
     "seniority": "Employment.seniority",
+    "short_absence_exempt": "SicknessEpisode.short_absence_exempt",
+    "sickness_known_from": "OpeningBalances.sickness_known_from",
     "tfr_fund": "Employment.tfr_fund",
     "tfr_treasury_fund": "Employment.tfr_treasury_fund",
 })

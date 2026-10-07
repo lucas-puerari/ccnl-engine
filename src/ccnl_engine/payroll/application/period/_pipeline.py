@@ -12,6 +12,9 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application.amounts._compute import _compute_amounts
+from ccnl_engine.payroll.application.handlers._sickness_month import (
+    WITH_UNPAID_ABSENCE,
+)
 from ccnl_engine.payroll.application.period._accrual_decisions import accrual_decisions
 from ccnl_engine.payroll.application.period._base_decisions import (
     base_stage_decisions,
@@ -108,7 +111,11 @@ def run_events(ctx: RunContext) -> RunEvents:
         ctx.resolver,
         ctx.policy_context,
     )
-    check_absences_within_pay(events.entries, ctx.monthly_gross)
+    check_absences_within_pay(
+        events.entries,
+        ctx.monthly_gross,
+        with_sickness=any(i.code == WITH_UNPAID_ABSENCE for i in events.totals.issues),
+    )
     return RunEvents(
         settlement.added_to(events.totals),
         events.items + settlement.items,

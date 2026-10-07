@@ -2,8 +2,10 @@
 
 The figures are those of the bundle for metalmeccanico Federmeccanica level
 C3 in the first half of 2026: a monthly base salary of 2158.26 EUR, no
-fixed allowance, daily quota ``by_26``, CCNL integration 100% from the
-first day and comporto of 180 days; INPS tax sector ``industria``.
+fixed allowance, daily quota ``by_26``; INPS tax sector ``industria``.  The
+CCNL (Sez. Quarta Titolo VI Art. 2) pays the first 122, 153 or 214 days of
+a treatment chain in full and the later ones at 80%, within a comporto of
+183, 274 or 365 days over three years, by seniority band.
 """
 
 from __future__ import annotations

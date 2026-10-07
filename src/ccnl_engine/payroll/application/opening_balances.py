@@ -10,6 +10,7 @@ the totals is identified, so the engine never computes it again.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from datetime import date
 from decimal import Decimal
 from typing import final
 
@@ -82,6 +83,13 @@ class OpeningBalances:
         sickness_episodes: Sickness episodes of the employment up to the
             last processed day, in start order: they set the waiting
             period, INPS days and CCNL tier of later episodes.
+        sickness_known_from: First day from which ``sickness_episodes``
+            list every sick day of the employment: the first day of the
+            employment when they list all of them.  ``None`` states the
+            episodes of ``tax_year`` only (from 1 January).  A CCNL that
+            counts the sickness of earlier years (Federmeccanica: the
+            comporto over three years) has a ``missing_fact`` blocker when
+            the days before it could change a sick day it pays.
         gross: Contractual gross earnings paid.
         taxable: IRPEF taxable income.
         inps_employee: Employee INPS contributions withheld.
@@ -147,6 +155,7 @@ class OpeningBalances:
     competence_runs: tuple[PayrollRunId, ...] = ()
     inps_bases: tuple[InpsBaseYtd, ...] = field(kw_only=True)
     sickness_episodes: tuple[SicknessEpisode, ...] = ()
+    sickness_known_from: date | None = None
     gross: Decimal = _ZERO
     taxable: Decimal = _ZERO
     inps_employee: Decimal = _ZERO

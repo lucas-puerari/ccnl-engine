@@ -1,17 +1,16 @@
 """Classify the sick days of a month: waiting period, INPS bands, CCNL tiers.
 
 Every calendar day of an episode has an index: its day in the episode,
-counted on from the episode it continues for a relapse.  The index alone
+counted on from the episode it continues for a relapse.  The index
 decides, for that day:
 
 - the waiting period (*carenza*): the first ``carenza_days`` days, which
   INPS does not pay and the CCNL integrates at its ``carenza`` rate;
 - the INPS band and rate, while INPS covers the worker and has paid fewer
   than its annual maximum of days in the calendar year of the day;
-- the CCNL tier: the integration rate of the month of sickness the day
-  falls in (months of 30 days), or the flat rate without tiers;
-- the end of the comporto: a day past ``max_duration_days`` is outside
-  what the CCNL integrates.
+- the CCNL treatment: the integration rate of the day and whether it is
+  past the comporto, from the index or from the sickness of several
+  episodes (:mod:`~ccnl_engine.payroll.domain.sick_pay_rules`).
 
 The worker receives the higher of the CCNL target rate and the INPS rate;
 the employer pays what INPS does not.  Consecutive days with the same
@@ -33,21 +32,18 @@ if TYPE_CHECKING:
     from collections.abc import Iterator
 
     from ccnl_engine.contract.domain.absence import DailyDivisorMethod
-    from ccnl_engine.contract.domain.sickness import SicknessRules
+    from ccnl_engine.payroll.domain.sick_cumulation import CcnlDay
+    from ccnl_engine.payroll.domain.sick_pay_rules import DayTreatment, SickPayRules
     from ccnl_engine.payroll.domain.sickness import SicknessEpisode, SicknessHistory
-    from ccnl_engine.tax.domain.sick_pay import InpsSickPayRates
 
 __all__ = [
     "SickDayKind",
     "SickDaySegment",
-    "SickPayRules",
     "classify_days",
     "segment_units",
 ]
 
 _ZERO = Decimal(0)
-_FEATURE = "sickness"
-_TIER_MONTH_DAYS = 30
 
 
 class SickDayKind(StrEnum):
@@ -62,46 +58,6 @@ class SickDayKind(StrEnum):
     CARENZA = "carenza"
     INDEMNIFIED = "indemnified"
     BEYOND_COMPORTO = "beyond_comporto"
-
-
-@dataclass(frozen=True)
-class SickPayRules:
-    """INPS and CCNL rules a sick day is classified with.
-
-    Attributes:
-        inps: Statutory INPS waiting period, bands and annual maximum.
-        inps_cover: Whether INPS pays the indemnity to the worker; ``None``
-            when the bundle does not say.  Without cover INPS pays nothing.
-        ccnl: CCNL integration rates, tiers and comporto.
-    """
-
-    inps: InpsSickPayRates
-    inps_cover: bool | None
-    ccnl: SicknessRules
-
-    def target_rate(self, index: int) -> Decimal:
-        """Return the CCNL integration target of episode day ``index``.
-
-        Returns:
-            The rate of the tier of the month of sickness ``index`` falls
-            in, the flat rate when no tier matches.
-        """
-        month = (index - 1) // _TIER_MONTH_DAYS + 1
-        tiers = sorted(self.ccnl.tiers, key=lambda t: t.month_from, reverse=True)
-        tier = next(
-            (
-                t
-                for t in tiers
-                if t.month_from <= month
-                and (t.month_until is None or month < t.month_until)
-            ),
-            None,
-        )
-        return (
-            self.ccnl.full_pay_integration_rate
-            if tier is None
-            else tier.integration_rate
-        )
 
 
 @dataclass(frozen=True)
@@ -158,26 +114,28 @@ class _InpsDays:
         return True
 
 
-def _classify(index: int, day: date, rules: SickPayRules, inps: _InpsDays) -> _Day:
+def _classify(
+    index: int, day: date, rules: SickPayRules, inps: _InpsDays, ccnl: CcnlDay
+) -> _Day:
     """Return the treatment of the sick day ``day`` of episode index ``index``.
 
     Returns:
         The kind, INPS rate and worker rate of the day.
     """
-    if index > rules.ccnl.max_duration_days:
+    if ccnl.beyond_comporto:
         return _Day(SickDayKind.BEYOND_COMPORTO, _ZERO, _ZERO)
     if index <= rules.inps.carenza_days:
-        return _Day(SickDayKind.CARENZA, _ZERO, rules.ccnl.carenza_integration_rate)
+        return _Day(SickDayKind.CARENZA, _ZERO, ccnl.carenza_rate)
     band = rules.inps.band_rate(index) if rules.inps_cover else _ZERO
     paid = band > _ZERO and inps.take(day, rules.inps.annual_max_days)
     rate = band if paid else _ZERO
-    return _Day(SickDayKind.INDEMNIFIED, rate, max(rules.target_rate(index), rate))
+    return _Day(SickDayKind.INDEMNIFIED, rate, max(ccnl.rate, rate))
 
 
 def _walk(
     episode: SicknessEpisode,
-    offset: int,
     span: tuple[date, date],
+    history: SicknessHistory,
     rules: SickPayRules,
     inps: _InpsDays,
 ) -> Iterator[tuple[date, int, _Day]]:
@@ -186,11 +144,13 @@ def _walk(
     Yields:
         ``(day, index, treatment)`` in day order.
     """
+    offset = history.offset(episode)
+    ccnl: DayTreatment = rules.treatment(episode, history)
     first, last = span
     for step in range((last - first).days + 1):
         day = first + timedelta(days=step)
         index = offset + (day - episode.started_on).days + 1
-        yield day, index, _classify(index, day, rules, inps)
+        yield day, index, _classify(index, day, rules, inps, ccnl(index, day))
 
 
 def _used_before(
@@ -208,12 +168,12 @@ def _used_before(
     inps = _InpsDays()
     for earlier in history.earlier(episode):
         span = (earlier.started_on, earlier.ended_on)
-        for _ in _walk(earlier, history.offset(earlier), span, rules, inps):
+        for _ in _walk(earlier, span, history, rules, inps):
             pass
     head = episode.before(first)
     if head is not None:
         span = (head.started_on, head.ended_on)
-        for _ in _walk(head, history.offset(episode), span, rules, inps):
+        for _ in _walk(episode, span, history, rules, inps):
             pass
     return inps
 
@@ -236,10 +196,9 @@ def classify_days(
         The segments in day order.
     """
     history.check(episode, span[0])
-    offset = history.offset(episode)
     inps = _used_before(episode, span[0], history, rules)
     segments: list[SickDaySegment] = []
-    for day, index, treatment in _walk(episode, offset, span, rules, inps):
+    for day, index, treatment in _walk(episode, span, history, rules, inps):
         last = segments[-1] if segments else None
         if (
             last is not None

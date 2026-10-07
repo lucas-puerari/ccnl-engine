@@ -81,6 +81,10 @@
         "text": "OVERTIME/NIGHT/HOLIDAY (L3): percentages modelled per Art. 14 CCNL Federmeccanica 2021 (straordinario diurno 15%, lavoro notturno 20%, lavoro festivo 30%). Source: testo contrattuale Art. 14. NOTE: the 2025-11-22 renewal (CCNL 2025-2028) is expected to update these percentages; a dedicated data correction PR will add time-versioned 2025 rates once the official text is available in machine-readable form."
       },
       {
+        "kind": "info",
+        "text": "SICKNESS (Sez. Quarta Titolo VI Art. 2): full pay for the first 122/153/214 days of the treatment chain and 80% after, by seniority band (up to 3 years, 3 to 6, over 6); comporto breve of 183/274/365 days over the sickness of the three years that end on the day; the chain restarts after 61 days of work; the first 3 days of the fourth short absence (at most 5 days) of a calendar year are paid 66%, of the fifth and later 50%. The history before the imported episodes, the seniority and the exemption of a short absence are facts: when they could change a sick day the run has a missing_fact blocker."
+      },
+      {
         "kind": "simplification",
         "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
         "capability": "seniority",
@@ -1859,7 +1863,7 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "d341c84b1bf5445207ebf3c47e7c073f1726f30942dcddf752079b616e628c06",
+    "source_hash": "e99c7d9e9ae1d20f3149fbd66d408c6c059341722eff467a5b46d7033bb827b4",
     "published_at": "2026-09-08",
     "source_type": "commercial_secondary"
   },
@@ -2131,24 +2135,61 @@
     "sickness_rules": {
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
-      "max_duration_days": 180,
+      "cumulation": {
+        "window_years": 3,
+        "reset_after_days": 61,
+        "reduced_integration_rate": "0.80",
+        "bands": [
+          {
+            "seniority_months_from": 0,
+            "full_pay_days": 122,
+            "comporto_days": 183
+          },
+          {
+            "seniority_months_from": 36,
+            "full_pay_days": 153,
+            "comporto_days": 274
+          },
+          {
+            "seniority_months_from": 72,
+            "full_pay_days": 214,
+            "comporto_days": 365
+          }
+        ],
+        "short_absences": {
+          "max_days": 5,
+          "from_event": 4,
+          "first_days": 3,
+          "rates": [
+            "0.66",
+            "0.50"
+          ]
+        }
+      },
       "provenance": {
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "metalmeccanico-federmeccanica",
-            "title": "CCNL Industria Metalmeccanica e Installazione Impianti",
-            "kind": "tabella_retributiva",
-            "url": "https://www.contratticcnl.it/metalmeccanici/"
+            "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+            "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
+            "kind": "associazione",
+            "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+            "pages": [
+              "196-199"
+            ]
           },
-          "section": "Art. 6 -- Malattia e infortuni (integrazione al 100% per tutta la durata)"
+          "page": "196-199",
+          "section": "Sez. Quarta, Titolo VI, Art. 2: Conservazione del posto di lavoro; Trattamento economico (sha256 ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151)",
+          "quote": "il lavoratore non in prova ha diritto alla conservazione del posto per un periodo, definito comporto breve, di: a) 183 giorni di calendario per anzianità di servizio fino a 3 anni compiuti; b) 274 giorni di calendario per anzianità di servizio oltre i 3 anni e fino ai 6 anni compiuti; c) 365 giorni di calendario per anzianità di servizio oltre i 6 anni. […] I suddetti periodi di conservazione del posto e le causali di prolungamento si intendono riferiti alle assenze complessivamente verificatesi nei tre anni precedenti ogni nuovo ultimo episodio morboso. […] – alla intera retribuzione globale per i primi 122 giorni di calendario e all’80% della retribuzione globale per i giorni residui, per anzianità di servizio fino a tre anni compiuti; – alla intera retribuzione globale per i primi 153 giorni di calendario e all’80% della retribuzione globale per i giorni residui, per anzianità di servizio da tre a sei anni compiuti; – alla intera retribuzione globale per i primi 214 giorni di calendario e all’80% della retribuzione globale per i giorni residui, per anzianità di servizio oltre i sei anni. Il suddetto trattamento economico ricomincia ex novo in caso di malattia o infortunio non sul lavoro intervenuto dopo un periodo di 61 giorni di calendario dalla ripresa del servizio. […] nel caso in cui durante ogni anno (1° gennaio-31 dicembre) si siano verificate assenze per malattia di durata non superiore a 5 giorni per un numero di eventi superiori a 3, i primi tre giorni della quarta e delle successive assenze di durata non superiore a 5 giorni saranno retribuiti nel seguente modo: – quarta assenza: 66% della intera retribuzione globale; – quinta e successive: 50% della intera retribuzione globale."
         },
         "extraction": {
           "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
+          "extraction_timestamp": "2026-10-07T00:00:00",
           "verification_status": "unverified",
-          "effective_from": "2021-01-01"
-        }
+          "effective_from": "2021-06-01"
+        },
+        "transformation": "Bands from 0, 36 and 72 completed months of recognised seniority (the exact third and sixth anniversary days fall in the higher band), read on the first day of the episode. Treatment chain: the sick days of consecutive episodes, restarted when at least 61 calendar days separate the return to work (the day after the last sick day) from the next episode. Comporto: sick days within the three years that end on the day assessed (FIOM leaflet: sickness on 10 March 2022 counts from 11 March 2019). Short absence: an episode of at most 5 calendar days, counted in the calendar year of its first day; an absence the CCNL exempts is neither reduced nor counted. 66% and 50% stored as 0.66 and 0.50.",
+        "note": "The ipotesi di accordo of 22 November 2025 (FIOM scan, Sez. Quarta Titolo VI Art. 2, sha256 b0be0185c1186a4dd9b56483172fdfd3e160ad92a8c0d3a068b097dc816cdee8) keeps the paragraphs quoted ('omissis') and adds, from 1 January 2026, 30/45/60 more days of comporto for a certified disability; Sez. Quarta Titolo I Art. 4 lowers from 36 to 24 months the fixed-term contracts whose periods are scaled. Not modelled, each with a blocker: comporto prolungato and the disability days (days past the comporto breve are left out), the full pay of hospital stays over 10 days (a day at 80% raises an issue), fixed-term scaling. Not modelled and not blocked: the probation period, during which the CCNL treatment is not due ('lavoratore non in prova'). PDF printed pages 196-199 are file pages 200-203."
       }
     }
   },

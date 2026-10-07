@@ -5,6 +5,10 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.payroll.application.handlers._sickness_cumulation import (
+    cumulation_inputs,
+    cumulation_issues,
+)
 from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
     CalculationIssue,
@@ -89,7 +93,8 @@ def episode_issues(
 
     Returns:
         An incomplete issue for a missing rule or days past the comporto;
-        a provisional one when INPS cover is unknown for indemnified days.
+        a provisional one when INPS cover is unknown for indemnified days,
+        and the issues of a treatment counted over several episodes.
     """
     if pay is None:
         return (_missing(episode, terms),)
@@ -100,8 +105,9 @@ def episode_issues(
             _issue(
                 BEYOND_COMPORTO,
                 f"sickness episode '{episode.episode_id}' lasts past the "
-                "comporto of the CCNL (max_duration_days): those days are left "
-                "out of the amounts",
+                "comporto of the CCNL: those days are left out of the amounts; "
+                "a longer comporto the CCNL grants in some cases (comporto "
+                "prolungato, certified disability) is not modelled",
                 CalculationStatus.INCOMPLETE,
             )
         )
@@ -123,6 +129,8 @@ def episode_issues(
                 terms.cover_fact,
             )
         )
+    if pay.report is not None:
+        issues.extend(cumulation_issues(episode, pay.report, terms))
     return tuple(issues)
 
 
@@ -162,6 +170,8 @@ def _inputs(
             "employer_integration": pay.integration,
             "carenza_pay": pay.carenza,
         }
+        if pay.report is not None:
+            inputs |= cumulation_inputs(pay.report)
     return inputs
 
 
@@ -198,13 +208,17 @@ def episode_limitations(
 
     Returns:
         The INPS daily base when INPS pays a share; the cumulation window
-        when an earlier episode outside the relapse chain is recorded.
+        of a per-episode CCNL when an earlier episode outside the relapse
+        chain is recorded.
     """
     found: list[str] = []
     if pay is not None and pay.inps > _ZERO:
         found.append(INPS_DAILY_BASE_LIMITATION)
+    cumulated = pay is not None and pay.report is not None
     chain = _chain_ids(event, terms)
-    if any(e.episode_id not in chain for e in terms.history.earlier(event)):
+    if not cumulated and any(
+        e.episode_id not in chain for e in terms.history.earlier(event)
+    ):
         found.append(CUMULATION_LIMITATION)
     return tuple(found)
 
