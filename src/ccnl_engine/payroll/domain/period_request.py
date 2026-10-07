@@ -124,9 +124,9 @@ class PeriodCalculationRequest:
             supplies it.  ``None`` on an extra-month run counts it from
             ``employment_period`` over the 12 months ending in the run month,
             without absences.  Ignored on a regular run.
-        extra_month_settlements: Ratei liquidated on this run because the
-            employment ends before their payment month.  Each is paid as an
-            extra-month earning next to the regular pay.
+        extra_month_settlements: Ratei the run liquidates at the end of the
+            employment, as extra-month earnings; ``None`` derives them
+            (:mod:`~ccnl_engine.payroll.application.period._termination_ratei`).
         sector: Private or public sector of the employment, ``None`` when
             not known.  Read by the regimes restricted to one sector.
         prior_year: Prior-year income and written waivers, read by every
@@ -169,7 +169,7 @@ class PeriodCalculationRequest:
     roles: frozenset[str] = field(default_factory=frozenset)
     category: WorkerCategory | None = None
     extra_month_accrual: ExtraMonthAccrual | None = None
-    extra_month_settlements: tuple[ExtraMonthAccrual, ...] = ()
+    extra_month_settlements: tuple[ExtraMonthAccrual, ...] | None = None
     withholding_schedule: WithholdingSchedule | None = None
     planned_payments: tuple[PaymentId, ...] | None = None
     sector: EmploymentSector | None = None

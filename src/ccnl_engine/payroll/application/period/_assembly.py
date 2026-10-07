@@ -6,6 +6,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application._period_utils import _sum_ledger
+from ccnl_engine.payroll.application.period._accrual_decisions import run_accruals
 from ccnl_engine.payroll.application.period._additional_ivs import (
     additional_ivs_issue,
 )
@@ -243,7 +244,7 @@ def assemble_result(
             amounts.ivs_ceiling is not None and amounts.ivs_ceiling.applies
         ),
         pdr_cap=ctx.var_pay_rules.pdr.max_amount,
-        accrual=ctx.accrual,
+        accruals=run_accruals(ctx),
         projected_taxable=posted.amounts.projected_taxable,
         withholding_agent=ctx.withholding_agent,
     )

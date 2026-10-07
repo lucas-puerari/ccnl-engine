@@ -142,7 +142,12 @@ class TestClosingRun:
             started_on=date(2020, 1, 1), ended_on=date(2026, 3, 15)
         )
         run = PayrollRun(run_kind=RunKind.THIRTEENTH, month=3, year=2026)
-        request = replace(_req(month=3), employment_period=period, run=run)
+        request = replace(
+            _req(month=3),
+            employment_period=period,
+            run=run,
+            extra_month_settlements=(),
+        )
         assert _RESIDUAL_LEAVE not in _gap_kinds(request)
 
     def test_employment_ending_later_does_not(self) -> None:

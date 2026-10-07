@@ -36,6 +36,8 @@ def _extra_month_req(
     run: PayrollRun,
     employment_period: EmploymentPeriod | None = None,
 ) -> PeriodCalculationRequest:
+    # The settlements are passed as a year plan does: none on this run, so
+    # the run pays its own window even in the month the employment ends.
     return PeriodCalculationRequest(
         employer=EmployerProfile(headcount=Headcount(50)),
         period_id=PeriodId(year=_YEAR, month=payment_month),
@@ -45,6 +47,7 @@ def _extra_month_req(
         opening_state=PeriodState(cash=TaxCashState()),
         run=run,
         employment_period=employment_period,
+        extra_month_settlements=(),
     )
 
 

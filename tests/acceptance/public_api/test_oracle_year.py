@@ -111,17 +111,6 @@ def _chained_gross() -> Decimal:
     return paid
 
 
-@pytest.mark.xfail(
-    strict=True,
-    raises=AssertionError,
-    reason=(
-        "on chained runs the quattordicesima of a worker leaving on 16 "
-        "November cannot be paid: fourteenth(2026, 11) is refused as already "
-        "closed by June and the November run has no blocker for the July to "
-        "November twelfths (CCNL Terziario art. 221) that the competence "
-        "year pays"
-    ),
-)
 def test_termination_fourteenth_is_paid_on_chained_runs() -> None:
     """Commercio level 4 from 15 March to 16 November 2026, both paths.
 
@@ -132,3 +121,63 @@ def test_termination_fourteenth_is_paid_on_chained_runs() -> None:
     )
     planned = sum((r.period_gross for r in year.period_results), Decimal(0))
     assert _chained_gross() == planned
+
+
+def _chained_november() -> PeriodResult:
+    """Return the November regular run chained after March to October.
+
+    Returns:
+        The run of the termination month, the quattordicesima of June paid.
+    """
+    state = PeriodState.zero()
+    runs = [PayrollRun.regular(2026, month) for month in range(3, 11)]
+    runs.insert(4, PayrollRun.fourteenth(2026, 6))
+    for run in runs:
+        state = _run(run, state).closing_state
+    return _run(PayrollRun.regular(2026, 11), state)
+
+
+def test_termination_month_liquidates_the_ratei_on_chained_runs() -> None:
+    """The November run pays 9/12 of the tredicesima and 5/12 of the fourteenth.
+
+    CCNL Terziario Confcommercio, Testo Unico 30 July 2019
+    (https://www.ebinter.it/ebinter-site/wp-content/uploads/2022/01/
+    CCNL-Terziario-Distribuzione-e-Servizi_30-Luglio-2019.pdf):
+
+    - art. 220: the tredicesima counts the 12 months before Christmas Eve,
+      so the window of 2026 is January to December; art. 221: the
+      quattordicesima is paid on 1 July with the pay in force on 30 June
+      and counts the 12 months before it, so the window after June 2026 is
+      July 2026 to June 2027;
+    - art. 204 (referred to by both): a fraction of a month of at least 15
+      days counts as a whole month.
+
+    Tredicesima: 15-31 March is 17 days (a month), April to October 7
+    months, 1-16 November 16 days (a month): 9/12.  Quattordicesima: July to
+    October 4 months and 1-16 November: 5/12.
+    """
+    november = _chained_november()
+
+    ratei = {
+        item.month_number: item.quantity
+        for item in november.pay_items
+        if item.kind == "extra_month_earning"
+    }
+    assert ratei == {13: Decimal(9) / 12, 14: Decimal(5) / 12}
+
+
+@pytest.mark.parametrize(
+    "run",
+    [
+        PayrollRun.thirteenth(2026, 11),
+        PayrollRun.fourteenth(2026, 11),
+        PayrollRun.thirteenth(2026, 12),
+    ],
+    ids=["thirteenth-november", "fourteenth-november", "thirteenth-december"],
+)
+def test_extra_month_run_after_the_liquidation_is_refused(run: PayrollRun) -> None:
+    """The ratei the November run liquidated are not paid a second time."""
+    november = _chained_november()
+
+    with pytest.raises(InvalidInputError, match="liquidates on the run"):
+        _run(run, november.closing_state)

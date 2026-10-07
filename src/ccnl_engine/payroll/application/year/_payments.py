@@ -13,6 +13,7 @@ skips a payment.
 from __future__ import annotations
 
 from dataclasses import dataclass, replace
+from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
@@ -21,7 +22,9 @@ from ccnl_engine.payroll.application.year._calendar import effective_calendar
 from ccnl_engine.payroll.application.year._coverage import split_covered
 from ccnl_engine.payroll.application.year._runs import plan_year
 from ccnl_engine.payroll.domain.obligations import EmploymentObligations
+from ccnl_engine.payroll.domain.payment import PaymentId
 from ccnl_engine.payroll.domain.period_state import PeriodState
+from ccnl_engine.payroll.domain.run import RunKind
 from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.domain.withholding_schedule import (
     WithholdingSchedule,
@@ -37,7 +40,6 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.application.year._runs import YearPlan
     from ccnl_engine.payroll.domain.calendar import WorkCalendar
     from ccnl_engine.payroll.domain.competence_year_plan import CompetenceYearPlan
-    from ccnl_engine.payroll.domain.payment import PaymentId
     from ccnl_engine.payroll.domain.run import PayrollRun, PayrollRunId
     from ccnl_engine.payroll.domain.uncovered_run import UncoveredRun
 
@@ -127,7 +129,7 @@ def prepare_year(plan: CompetenceYearPlan, repo: KnowledgeRepository) -> Prepare
             plan=plan,
             year_plan=year_plan,
             run=run,
-            payment=plan.payment_for(run),
+            payment=_payment_of(plan, run, ccnl),
             pay_fraction=fractions.get(run.run_kind, _ONE),
         )
         for run in year_plan.schedule.runs
@@ -141,6 +143,27 @@ def prepare_year(plan: CompetenceYearPlan, repo: KnowledgeRepository) -> Prepare
         payments=tuple(replace(p, uncovered=left_out) for p in payments),
         uncovered=uncovered,
     )
+
+
+def _payment_of(plan: CompetenceYearPlan, run: PayrollRun, ccnl: CCNL) -> PaymentId:
+    """Return the payment of ``run``: the plan's, or the CCNL day of the 14th.
+
+    A quattordicesima the plan gives no date is paid on the day the CCNL
+    fixes (``parameters.fourteenth_payment_day``, e.g. 1 July for the CCNL
+    Terziario art. 221), unless the plan overrides the calendar.
+
+    Returns:
+        The payment of the run.
+    """
+    clause = ccnl.parameters.fourteenth_payment_day
+    if (
+        clause is None
+        or run.run_kind is not RunKind.FOURTEENTH
+        or plan.calendar_override is not None
+        or run.run_id in plan.dated_runs
+    ):
+        return plan.payment_for(run)
+    return PaymentId(run.identifier, date(run.year, clause.month, clause.day))
 
 
 def check_opening(opening: PeriodState | None, tax_year: int, path: str) -> PeriodState:

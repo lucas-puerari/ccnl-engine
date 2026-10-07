@@ -41,6 +41,11 @@ _OPENING_STATE = requires_fact(
     "not stated, has a missing_fact opening_state blocker",
 )
 
+_FIRST_RUN = absence_is_fact(
+    "the first run of its kind in the month; only a second or later "
+    "adjustment of the same month has another number"
+)
+
 #: Classification of each defaulted field of the root request types.
 REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
     "PeriodInput.facts": _CONTAINER,
@@ -62,9 +67,12 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "each run is paid within its own month, so in the tax year of the month"
     ),
     "CompetenceYearPlan.payment_dates": absence_is_fact(
-        "each run is paid on payment_day of its own month"
+        "each run is paid on payment_day of its own month, a quattordicesima "
+        "on the day its CCNL fixes"
     ),
     "CompetenceYearPlan.opening_state": _OPENING_STATE,
+    "PayrollRun.sequence": _FIRST_RUN,
+    "PayrollRunId.sequence": _FIRST_RUN,
     "TaxYearPlan.opening_state": _OPENING_STATE,
     "TaxYearPlan.current_year": _CURRENT_YEAR,
     "EmployerProfile.activity": requires_fact(

@@ -105,6 +105,9 @@ class TestPayrollRunId:
             ("2026-13-regular", "month must be an int >= 1 and <= 12"),
             ("1969-01-regular", "year must be an int >= 1970"),
             ("2026-01-bonus", "kind must be one of"),
+            ("2026-12-adjustment-1", "must be a run id such as"),
+            ("2026-12-adjustment-02", "must be a run id such as"),
+            ("2026-12-regular-2", "sequence must be 1"),
         ],
     )
     def test_parse_rejects_a_malformed_id(self, text: str, match: str) -> None:
@@ -127,3 +130,38 @@ class TestPayrollRunId:
         assert run_identifier(None, 2026, 3) == PayrollRunId.parse("2026-03-regular")
         run = PayrollRun.thirteenth(2026, 12)
         assert run_identifier(run, 2026, 12) == run.identifier
+
+
+class TestAdjustmentSequence:
+    """A month holds several adjustment runs, each with its sequence number."""
+
+    def test_second_adjustment_carries_its_sequence(self) -> None:
+        """The first adjustment keeps the plain id; the second is suffixed."""
+        first = PayrollRun.adjustment(2026, 12)
+        second = PayrollRun.adjustment(2026, 12, sequence=2)
+
+        assert first.run_id == "2026-12-adjustment"
+        assert second.run_id == "2026-12-adjustment-2"
+        assert PayrollRun.of(PayrollRunId.parse(second.run_id)) == second
+
+    def test_sequences_pay_and_order_apart(self) -> None:
+        """Two adjustments of a month are two payments, in sequence order."""
+        first = PayrollRun.adjustment(2026, 12).identifier
+        second = PayrollRun.adjustment(2026, 12, sequence=2).identifier
+
+        assert first.payment_key != second.payment_key
+        assert first.order_key < second.order_key
+
+    @pytest.mark.parametrize(
+        ("kind", "sequence", "match"),
+        [
+            (RunKind.REGULAR, 2, "a regular run closes once per month"),
+            (RunKind.ADJUSTMENT, 0, "sequence must be an int >= 1"),
+        ],
+    )
+    def test_rejects_an_invalid_sequence(
+        self, kind: RunKind, sequence: int, match: str
+    ) -> None:
+        """Only an adjustment repeats in a month, and numbers start at 1."""
+        with pytest.raises(InvalidInputError, match=match):
+            PayrollRun(run_kind=kind, month=12, year=2026, sequence=sequence)
