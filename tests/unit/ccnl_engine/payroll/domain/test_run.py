@@ -106,6 +106,7 @@ class TestPayrollRunId:
             ("1969-01-regular", "year must be an int >= 1970"),
             ("2026-01-bonus", "kind must be one of"),
             ("2026-12-adjustment-1", "must be a run id such as"),
+            ("2026-12-adjustment-02", "must be a run id such as"),
             ("2026-12-regular-2", "sequence must be 1"),
         ],
     )

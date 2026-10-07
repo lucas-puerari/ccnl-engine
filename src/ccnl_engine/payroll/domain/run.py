@@ -18,7 +18,8 @@ from ccnl_engine.shared.domain.validation import reject, require_int
 __all__ = ["PayrollRun", "PayrollRunId", "RunKind", "run_identifier"]
 
 _FEATURE = "payroll_run"
-_RUN_ID_PATTERN = re.compile(r"(\d{4})-(\d{2})-([a-z]+)(?:-(\d+))?")
+#: A sequence suffix is canonical: 2 or more, without a leading zero.
+_RUN_ID_PATTERN = re.compile(r"(\d{4})-(\d{2})-([a-z]+)(?:-([2-9]|[1-9]\d+))?")
 _EXTRA_MONTH_KINDS = frozenset({RunKind.THIRTEENTH, RunKind.FOURTEENTH})
 
 
@@ -90,11 +91,12 @@ class PayrollRunId:
 
         Returns:
             The typed identifier.  A ``text`` that is not a well-formed run
-            id, or not in its canonical form (``"-1"`` suffix), raises
+            id, or not in its canonical form (a ``"-1"`` or ``"-02"``
+            suffix), raises
             :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`.
         """
         match = _RUN_ID_PATTERN.fullmatch(text) if isinstance(text, str) else None
-        if match is None or match.group(4) == "1":
+        if match is None:
             reject(
                 "PayrollRunId",
                 "a run id such as '2026-01-regular'",
