@@ -98,7 +98,7 @@ Territorial or company allowances on top of the CCNL minimums, with per-item con
 
 ### Regional and municipal surcharges (addizionali)
 
-Pass `regione` (ISO 3166-2:IT region code, e.g. `IT-45`) and `comune_belfiore` (Belfiore code, e.g. `F257`) to include addizionale regionale and comunale. The surtax of a year is determined by its conguaglio and withheld the next year by installments, so a run withholds the surtax an earlier conguaglio determined: import it with `OpeningBalances.surtax_obligations`. Check `result.assurance.calculation` and `result.decisions`: an unknown table makes the calculation `incomplete` and the result not payable.
+Pass `regione` (ISO 3166-2:IT region code, e.g. `IT-45`) and `comune_belfiore` (Belfiore code, e.g. `F257`) to include addizionale regionale and comunale. The surtax of a year is determined by its conguaglio and withheld the next year by installments, so a run withholds the surtax an earlier conguaglio determined: import it with `OpeningBalances.surtax_obligations`. Check `result.assurance.calculation` and `result.decisions`: an unknown table, or a `regione` or `comune_belfiore` left `None` (decision `residence_unknown`), makes the calculation `incomplete` and the result not payable.
 
 ```python
 --8<-- "docs/examples/07_addizionali.py"

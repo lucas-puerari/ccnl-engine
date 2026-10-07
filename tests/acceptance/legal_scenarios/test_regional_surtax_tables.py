@@ -1,9 +1,13 @@
 """Regional surtax of the 2026 conguaglio on the MEF 2026 tables.
 
 Commercio L4, employed since 2020 and computed by the engine for 2026, no
-municipality.  The expected amounts are computed below from the MEF
-Dipartimento delle Finanze pages retrieved on 27 September 2026, on the
-annual taxable income the conguaglio reports:
+municipality except where a test checks the status of the whole run: a run
+without ``comune_belfiore`` is incomplete (``residence_unknown``), so the
+Veneto status test places the worker in Vicenza (L840), whose 2026 row has
+2026 rates and no exemption for a category of income.  The expected
+amounts are computed below from the MEF Dipartimento delle Finanze pages
+retrieved on 27 September 2026, on the annual taxable income the
+conguaglio reports:
 
 - Lombardia, https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/
   fiscalitalocale/addregirpef/addregirpef.php?reg=10&anno=2026: 1.23% up to
@@ -86,7 +90,9 @@ def _marginal(
 
 
 @cache
-def _conguaglio(regione: str, with_child: bool) -> PeriodResult:
+def _conguaglio(
+    regione: str, with_child: bool, comune_belfiore: str | None = None
+) -> PeriodResult:
     result = _ENGINE.calculate_competence_year(
         CompetenceYearPlan(
             year=2026,
@@ -98,7 +104,9 @@ def _conguaglio(regione: str, with_child: bool) -> PeriodResult:
             ),
             employer=EmployerProfile(headcount=Headcount(50)),
             default_facts=PeriodFacts(
-                regione=regione, family_composition=_CHILD if with_child else None
+                regione=regione,
+                comune_belfiore=comune_belfiore,
+                family_composition=_CHILD if with_child else None,
             ),
             opening_state=fresh_tax_year(2026),
         )
@@ -137,7 +145,7 @@ def test_lombardia_applies_the_2026_brackets() -> None:
 
 def test_veneto_with_a_child_is_provisional() -> None:
     """Veneto: 1.23% on the whole income; the disability rate is not applied."""
-    result = _conguaglio("IT-34", with_child=True)
+    result = _conguaglio("IT-34", with_child=True, comune_belfiore="L840")
     decision = _regional(result)
 
     expected = (_taxable(decision) * _VENETO_RATE).quantize(

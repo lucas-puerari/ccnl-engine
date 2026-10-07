@@ -1,24 +1,45 @@
-"""Contractual calendar entitlements and missing surtax tables."""
+"""Contractual calendar entitlements, missing surtax tables and residence."""
 
 from __future__ import annotations
 
+from datetime import date
 from decimal import Decimal
+from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine import CompetenceYearPlan, Employment, InvalidInputError
-from ccnl_engine.inputs import CalendarOverride, CalendarOverrideReason, WorkCalendar
-from ccnl_engine.results import CalculationStatus
+from ccnl_engine import CompetenceYearPlan, Employment, InvalidInputError, PeriodFacts
+from ccnl_engine.inputs import (
+    CalendarOverride,
+    CalendarOverrideReason,
+    EmploymentPeriod,
+    FamilyComposition,
+    WorkCalendar,
+)
+from ccnl_engine.results import BlockerCode, CalculationStatus
 from tests.acceptance.legal_scenarios._support import (
     COMMERCIO,
     EMPLOYER,
     ENGINE,
     regular_period,
 )
-from tests.fixtures.imported_surtax import opening_with_2025_surtax
+from tests.fixtures.imported_surtax import (
+    MUNICIPAL_BALANCE_2025,
+    REGIONAL_2025,
+    opening_with_2025_surtax,
+)
 from tests.fixtures.opening_state import fresh_tax_year
+from tests.fixtures.seniority import new_hire
+
+if TYPE_CHECKING:
+    from ccnl_engine import PeriodResult
+    from ccnl_engine.results import CalculationDecision
 
 _COMMERCIO_4 = Employment(ccnl_slug=COMMERCIO, level_code="4")
+_SURTAXES = {
+    "addizionale_regionale": "facts.regione",
+    "addizionale_comunale": "facts.comune_belfiore",
+}
 
 pytestmark = pytest.mark.legal_scenario
 
@@ -121,3 +142,112 @@ def test_malformed_surtax_codes_are_rejected(
     """A malformed code is an input error, not an unknown table."""
     with pytest.raises(InvalidInputError, match=r"regione|comune_belfiore"):
         regular_period(regione=regione, comune_belfiore=comune_belfiore)
+
+
+def _annual_surtax(result: PeriodResult) -> dict[str, CalculationDecision]:
+    """Return the decision on the surtax of the tax year, by capability.
+
+    Returns:
+        The decisions without ``inputs["component"]``, by capability.
+    """
+    return {
+        d.capability: d
+        for d in result.decisions
+        if d.capability in _SURTAXES and "component" not in d.inputs
+    }
+
+
+def _assert_residence_unknown(result: PeriodResult, *capabilities: str) -> None:
+    """Each surtax in ``capabilities`` is undetermined for lack of residence.
+
+    The surtax is due to the region and municipality of the domicilio
+    fiscale on 1 January (D.Lgs. 446/1997 art. 50 c. 5, D.Lgs. 360/1998
+    art. 1 c. 4): without it the scope is unknown, never not applicable,
+    so the decision names the fact, carries no amount and is incomplete,
+    and the fact is a ``requirement_unresolved`` blocker as well.
+    """
+    annual = _annual_surtax(result)
+    blockers = {(b.code, b.feature, b.detail) for b in result.blockers}
+    for capability in capabilities:
+        decision = annual[capability]
+        assert decision.reason_code == "residence_unknown"
+        assert decision.status is CalculationStatus.INCOMPLETE
+        assert decision.amount is None
+        assert decision.inputs["fact"] == _SURTAXES[capability]
+        assert (
+            BlockerCode.REQUIREMENT_UNRESOLVED,
+            capability,
+            _SURTAXES[capability],
+        ) in blockers
+    assert result.assurance.calculation is CalculationStatus.INCOMPLETE
+    assert not result.is_payable
+
+
+def test_unknown_residence_leaves_the_surtax_undetermined() -> None:
+    """January without residence: both surtaxes undetermined, 2025 still withheld.
+
+    The 2025 debts keep the jurisdiction that determined them, so their
+    first installments are withheld all the same: 330.00 / 11 = 30.00
+    regional (3802) and 110.00 / 11 = 10.00 municipal saldo (3848),
+    D.Lgs. 446/1997 art. 50 c. 4 and D.Lgs. 360/1998 art. 1 c. 5; the
+    acconto starts in March.
+    """
+    result = regular_period(opening_state=opening_with_2025_surtax("IT-45", "F257"))
+
+    _assert_residence_unknown(result, *_SURTAXES)
+    first = REGIONAL_2025 / 11 + MUNICIPAL_BALANCE_2025 / 11
+    assert result.closing_state.cash.tax.surtax == first
+
+
+def test_region_alone_leaves_only_the_municipal_surtax_undetermined() -> None:
+    """A stated region decides the regional surtax; the municipality stays open."""
+    result = regular_period(regione="IT-88")
+
+    _assert_residence_unknown(result, "addizionale_comunale")
+    regional = _annual_surtax(result)["addizionale_regionale"]
+    assert regional.reason_code == "determined_at_conguaglio"
+    assert regional.status is CalculationStatus.FINAL
+
+
+def test_termination_without_residence_determines_no_surtax_of_the_year() -> None:
+    """The conguaglio of a March termination cannot determine the 2026 surtax.
+
+    Ended 31 March 2026: the March run is the last of the employment and
+    its conguaglio.  The residual 2025 debts are withheld at once (art. 50
+    c. 4, art. 1 c. 5): 330.00 - 2 x 30.00 = 270.00 regional and
+    110.00 - 2 x 10.00 = 90.00 municipal, after the January and February
+    installments.  No 2026 surtax is determined, withheld or refunded.
+    """
+    year = ENGINE.calculate_competence_year(
+        CompetenceYearPlan(
+            year=2026,
+            employment=Employment(
+                ccnl_slug=COMMERCIO,
+                level_code="4",
+                seniority=new_hire(),
+                employment_period=EmploymentPeriod(date(2020, 1, 1), date(2026, 3, 31)),
+            ),
+            employer=EMPLOYER,
+            default_facts=PeriodFacts(family_composition=FamilyComposition()),
+            opening_state=opening_with_2025_surtax("IT-45", "F257"),
+        )
+    )
+    closing = year.period_results[-1]
+    installment = REGIONAL_2025 / 11, MUNICIPAL_BALANCE_2025 / 11
+
+    _assert_residence_unknown(closing, *_SURTAXES)
+    settled = {
+        d.capability: d.amount
+        for d in closing.decisions
+        if d.reason_code == "settled_at_termination"
+    }
+    assert settled == {
+        "addizionale_regionale": REGIONAL_2025 - 2 * installment[0],
+        "addizionale_comunale": MUNICIPAL_BALANCE_2025 - 2 * installment[1],
+    }
+    assert not {d.reason_code for d in closing.decisions} & {
+        "table_applied",
+        "withheld_at_termination",
+        "deferred_to_installments",
+        "surtax_refunded",
+    }

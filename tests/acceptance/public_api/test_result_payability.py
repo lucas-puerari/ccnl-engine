@@ -35,6 +35,7 @@ from ccnl_engine.inputs import (
 )
 from ccnl_engine.results import BlockerCode, CalculationStatus
 from tests.fixtures.opening_state import fresh_tax_year
+from tests.fixtures.residence import resident
 from tests.fixtures.seniority import new_hire
 
 _ENGINE = PayrollEngine.bundled()
@@ -79,7 +80,8 @@ def test_incomplete_coverage_is_not_payable() -> None:
     ``base_salary`` and ``somma_esente`` come from ``assumed`` rules: each
     is a blocker too.  January is the only payment of the employment, so
     the year's income is one month of pay and the somma esente is due on an
-    assumed income.
+    assumed income.  The worker resides in Alghero, so the surtaxes leave no
+    gap of their own.
     """
     period = EmploymentPeriod(started_on=date(2020, 1, 1), ended_on=date(2026, 1, 30))
     result = _january(
@@ -90,7 +92,8 @@ def test_incomplete_coverage_is_not_payable() -> None:
             seniority=new_hire(),
             tfr_fund=TfrFundBalance(2025, Decimal("8000.00")),
             tfr_treasury_fund=False,
-        )
+        ),
+        resident(),
     )
 
     gaps = {gap.feature: gap.kind for gap in result.capability_report.gaps}

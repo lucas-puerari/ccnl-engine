@@ -16,9 +16,17 @@ for the jurisdictions the request names:
 A malformed code (`ER`, `Lombardia`, `IT45`, `f257`) is rejected with
 `InvalidInputError`.  A well-formed code without a row in the tax year table
 is not an input error: see the decisions below.  A code left `None` is an
-unknown residence, not a residence without surtax: when the employer is a
-withholding agent the run has a `requirement_unresolved` blocker on the
-surtax it cannot decide (see
+unknown residence, not a residence without surtax. The regional surtax is
+due to the region, and the municipal one to the municipality, of the
+*domicilio fiscale* on 1 January of the tax year (D.Lgs. 446/1997 art. 50
+c. 5: "alla regione in cui il contribuente ha il domicilio fiscale alla
+data del 1° gennaio dell'anno cui si riferisce l'addizionale stessa";
+D.Lgs. 360/1998 art. 1 c. 4: "L'addizionale è dovuta alla provincia e al
+comune nel quale il contribuente ha il domicilio fiscale alla data del 1°
+gennaio dell'anno cui si riferisce l'addizionale stessa"). Without the code
+the engine cannot tell which surtax, if any, is due: when the employer is a
+withholding agent, the run records a `residence_unknown` decision on that
+surtax (below) and has a `requirement_unresolved` blocker on it (see
 [Fail-closed payability](../trust/confidence.md#fail-closed-payability)).
 
 ```python
@@ -94,13 +102,14 @@ this employer paid in N.
 
 ## Surtax decisions
 
-Each jurisdiction named in the request records a `CalculationDecision` in
-`result.decisions`, with capability `addizionale_regionale` or
-`addizionale_comunale`. On the conguaglio its `amount` is the annual surtax
-of the tax year on the annual taxable income; on any other run the surtax
-is not determined. Its `inputs` hold the code, the table row name, the tax
-year and the taxable income, and its `rule` and `rule_version` the bundled
-ruleset.
+On every run of a withholding agent, each surtax records one
+`CalculationDecision` on the tax year in `result.decisions`, with
+capability `addizionale_regionale` or `addizionale_comunale` and no
+`inputs["component"]`. For a jurisdiction named in the request, on the
+conguaglio its `amount` is the annual surtax of the tax year on the annual
+taxable income; on any other run the surtax is not determined. Its `inputs`
+hold the code, the table row name, the tax year and the taxable income, and
+its `rule` and `rule_version` the bundled ruleset.
 
 | `reason_code` | Status | Amount | Meaning |
 |---|---|---|---|
@@ -112,14 +121,21 @@ ruleset.
 | `below_exemption_threshold` | `final` | 0 | The regional or municipal exemption threshold covers the taxable income. |
 | `no_irpef_due` | `final` | 0 | Net IRPEF (gross less the deductions) of the year is zero, so no surtax is due. |
 | `table_unknown` | `incomplete` | `None` | The code is well formed but the tax year table has no row for it. |
+| `residence_unknown` | `incomplete` | `None` | The request leaves `regione` (or `comune_belfiore`) `None`: the jurisdiction, hence whether and how much surtax is due, is undetermined. `inputs["fact"]` names the fact (`facts.regione`, `facts.comune_belfiore`), as the `requirement_unresolved` blocker does; `rule` is `dlgs446-1997-art50-c5` or `dlgs360-1998-art1-c4`, `rule_version` the tax year. Never `not_applicable`: an unknown residence does not rule the surtax out. |
 
 A `table_unknown` decision comes with a `CalculationIssue` coded
 `regional_surtax_unknown` or `municipal_surtax_unknown`, on every run, not
 only on the conguaglio. Nothing is determined for that surtax and the
 period result, hence the year result, is `incomplete`: **it must not be
-paid as is**. Without `regione` and `comune_belfiore` no surtax decision is
-taken and nothing is determined; the installments carried in are withheld
-all the same.
+paid as is**. The same holds for a `residence_unknown` decision: the run
+is `incomplete`, with a `calculation_issue` and a `capability_not_computed`
+blocker besides the `requirement_unresolved` one. Nothing of the surtax of
+the tax year is determined, withheld, refunded or left to withhold, on the
+conguaglio too, and no annual table is loaded; the installments carried
+in, which keep the jurisdiction of the year that determined them, are
+withheld all the same. On the conguaglio the municipal acconto of the tax
+year is, as always, not posted as an installment: the municipal saldo
+would absorb it, and that saldo is the amount the run cannot determine.
 
 The conguaglio and each installment record one more decision per
 component, with the same capability and `inputs["component"]`

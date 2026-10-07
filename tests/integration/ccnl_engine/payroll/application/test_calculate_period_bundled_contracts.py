@@ -30,6 +30,7 @@ from ccnl_engine.inputs import (
     WeeklyHours,
 )
 from ccnl_engine.results import CalculationStatus
+from tests.fixtures.residence import resident
 from tests.fixtures.seniority import new_hire, pricing_category
 
 _ENGINE = PayrollEngine.bundled()
@@ -76,7 +77,7 @@ def test_every_level_computes_sane_totals(slug: str) -> None:
                     employment_period=_HIRED,
                 ),
                 employer=EmployerProfile(headcount=Headcount(50)),
-                facts=_DOMESTIC_FACTS if slug in _DOMESTIC else PeriodFacts(),
+                facts=_DOMESTIC_FACTS if slug in _DOMESTIC else resident(),
                 current_year=_ONLY_EMPLOYMENT,
             )
         )

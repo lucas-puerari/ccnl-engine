@@ -12,7 +12,8 @@ Source: L. 199/2025 art. 1:
   excess is ordinary IRPEF.
 
 Scenario base: Commercio L4, private sector declared on the employment,
-employer activity outside c. 18, March 2026, 2025 income as stated.  The
+employer activity outside c. 18, resident in Alghero, March 2026, 2025
+income as stated.  The
 public-sector scenarios declare a public employment: on CCNL Funzioni
 Centrali and on a private CCNL applied by a public employer.
 """
@@ -51,6 +52,7 @@ from tests.acceptance.legal_scenarios._support import (
     remitted,
     substitute_tax,
 )
+from tests.fixtures.residence import COMUNE_BELFIORE, REGIONE
 from tests.fixtures.seniority import new_hire
 
 if TYPE_CHECKING:
@@ -114,6 +116,8 @@ def _period(
         employment=employment,
         employer=employer,
         prior_year=prior_year,
+        regione=REGIONE,
+        comune_belfiore=COMUNE_BELFIORE,
     )
 
 

@@ -33,6 +33,7 @@ from ccnl_engine.payroll.service.bundled_knowledge_repository import (
 )
 from ccnl_engine.provenance.domain.chain import ProvenanceStatus, RuleProvenance
 from tests.fixtures.current_year import employment_only
+from tests.fixtures.residence import COMUNE_BELFIORE, REGIONE
 from tests.fixtures.seniority import new_hire
 
 if TYPE_CHECKING:
@@ -93,8 +94,11 @@ class TestBundledRun:
         assert all(i.code != MISSING_SOURCE_CODE for i in result.issues)
 
     def test_assumed_rules_block_payability_without_an_issue(self) -> None:
-        """An assumed rule is a blocker, not an issue: the calculation is final."""
-        result = _run()
+        """An assumed rule is a blocker, not an issue: the calculation is final.
+
+        The worker resides in Alghero, whose surtax rows are not assumed.
+        """
+        result = _run(regione=REGIONE, comune_belfiore=COMUNE_BELFIORE)
         weak = {
             (b.feature, b.detail)
             for b in result.blockers
