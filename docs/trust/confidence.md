@@ -3,7 +3,12 @@
 A payroll result answers one question for an integration: can this amount be
 paid as it is? The answer is `result.is_payable`, and `result.blockers` says
 why not. Both come from `result.assurance`, a `ResultAssurance` derived from
-what the run recorded; neither is set by the caller.
+the run; neither is set by the caller.
+
+The answer is fail-closed. A run is payable only when every capability it
+requires is computed, or ruled out by a decision of the run or by a fact the
+caller supplied. A default never rules a capability out: a fact left to its
+default is not the fact it stands for.
 
 | Field | Answers |
 |---|---|
@@ -16,6 +21,40 @@ what the run recorded; neither is set by the caller.
 worst of its runs, rulesets, blockers and limitations are listed once each, and the year is
 payable only when every run is.
 
+## Fail-closed payability
+
+What a run must cover comes from the capability registry of the fiscal year
+(`knowledge/capabilities/data/<year>.json`) and from the run itself:
+
+- every capability that applies to the run (its predicate holds: a core
+  stage, an event the request declares, the run that closes the employment)
+  must be computed in full; otherwise it is a coverage gap;
+- every capability whose registry entry declares `applicability_facts` is
+  required in every run. It must be computed, or ruled out by a decision of
+  the run, or ruled out by the supplied facts. When the run took no decision
+  for it and one of those facts is left to its default, the capability is
+  neither: each such fact is an `UnresolvedRequirement` in
+  `result.capability_report.unresolved` and a `requirement_unresolved`
+  blocker.
+
+The required capabilities and their applicability facts today:
+
+| Capability | Applicability fact | Ruled out by |
+|---|---|---|
+| `addizionale_regionale` | `facts.regione` | a supplied region, or an employer that is not a withholding agent |
+| `addizionale_comunale` | `facts.comune_belfiore` | a supplied municipality, or an employer that is not a withholding agent |
+| `family_deductions` | `facts.family_composition` | a supplied composition (`FamilyComposition()` states that there is no dependant), or an employer that is not a withholding agent |
+
+A household employer is not a withholding agent (art. 23 c. 1 DPR
+600/1973): its run decides that no surtax and no deduction is due, so it
+needs neither fact. A resident owes both surtaxes when net IRPEF is due
+(D.Lgs. 446/1997 art. 50 c. 2, D.Lgs. 360/1998 art. 1 c. 4), so an unknown
+residence cannot stand for "no surtax".
+
+The registry rejects an applicability fact that is not one of the facts the
+capability reads, one on a capability that is not `decided`, and one the
+request has no reader for.
+
 ## Payability rules
 
 A result is payable only when it has no blocker. Each of the following adds
@@ -26,6 +65,7 @@ one:
 | `calculation_issue` | `None` | issue code | The run raised an issue (an assumption, a fallback, an unrecovered shortfall) |
 | `calculation_issue` | capability | decision reason | A decision is not `final` |
 | `missing_fact` | `None` | fact name | An issue names a fact the calculation needs and the request did not supply |
+| `requirement_unresolved` | capability | fact path | A required capability took no decision and its applicability fact (e.g. `facts.regione`) was left to its default |
 | `capability_not_computed` | capability | gap kind | A capability that applies to the run is unsupported, unresolved or partial |
 | `rule_source_weak` | capability | `assumed` or `missing` | An executed capability read a rule weaker than the evidence its registry entry accepts (`derived` for every capability today), or no rule of the run carries a record |
 | `caller_supplied_rule` | capability | field names | The caller supplied a rate or multiplier in place of a bundled rule |
@@ -43,7 +83,9 @@ on `code`, `feature` and `detail`, not on the sentence.
 ### What the bundle gives today
 
 For the first level of each CCNL, a regular run of June 2026 with no event,
-no result is payable. None has a coverage gap: the capabilities the engine
+for a worker whose residence and empty family are stated, no result is
+payable. Without the residence or the family, each run also carries a
+`requirement_unresolved` blocker per unknown fact. None has a coverage gap: the capabilities the engine
 does not compute (INAIL, health funds, maternity, ...) do not apply to an
 ordinary month or are outside the request (see the
 [capability matrix](../contracts/capability-matrix.md)). Every run carries a
@@ -63,6 +105,53 @@ Use the amounts for simulation, with the blockers shown; do not pay them
 automatically. In `operational` mode every one of these runs also carries a
 `ruleset_not_production` blocker: no bundled CCNL is `production` (see
 [Readiness](readiness.md#simulation-and-operational-modes)).
+
+## Defaults of the public inputs
+
+Every field with a default in the public input types (the request and plan
+types of `ccnl_engine`, the facts of `ccnl_engine.inputs`, the events of
+`ccnl_engine.events`) is classified in
+`ccnl_engine.payroll.domain.input_defaults`, and
+`tests/architecture/test_input_defaults.py` fails on a defaulted field
+without a classification, or on a classification without its field:
+
+- `absence_is_fact`: the default is the fact. No event happened, the
+  employment has not ended, the worker waived no regime, declared no
+  certified disability and no sole-parent condition, and exercised no
+  contributory option.
+- `requires_fact`: the default stands for a fact the caller has not stated.
+  Each entry names the capability the fact feeds and how a run honours it:
+  - `requirement`: an applicability fact of the registry (residence,
+    family composition), so a `requirement_unresolved` blocker;
+  - `reported`: the run reports the fact as missing when the capability
+    needs it, with a `missing_fact` blocker or an input error (seniority,
+    category, contribution history, sector, employer activity, prior-year
+    income, current-year income with a dependant, signing date of a
+    renewal, contributable hours of a domestic CCNL, a child's birth date,
+    the apprenticeship track among several);
+  - `pending`: not honoured yet. The default still selects a branch without
+    a blocker. Treat these fields as required and state them.
+
+The `pending` fields:
+
+| Field | What the default does today |
+|---|---|
+| `PeriodInput.opening_state`, `CompetenceYearPlan.opening_state`, `TaxYearPlan.opening_state` | A zero state: a run after the start of the employment in the same tax year restarts the progressive totals |
+| `Employment.contract_type` | A permanent contract: no NASpI surcharge of a fixed-term contract |
+| `Employment.employment_period` | A full month and full ratei, even for a hire or a termination within the month |
+| `Employment.weekly_hours`, `Employment.full_time_weekly_hours` | Full time |
+| `Employment.roles` | No role: no allowance a role unlocks |
+| `Employment.pension_fund` | Not enrolled, with no way to state the non-enrolment |
+| `PeriodFacts.has_dependent_children` | The lower fringe-benefit threshold |
+| `Dependent.own_income`, `dependent_from`, `dependent_until`, `allocation_pct`, `cohabiting`, `residency_eligibility` | The condition that grants the art. 12 TUIR deduction is met, for the whole year, in full to this worker |
+| `InpsBaseYtd.other_employers`, `OpeningBalances.inps_bases` | No other employer and no imported base toward the IVS massimale and the 1% threshold |
+| `OpeningBalances.surtax_obligations`, `OpeningBalances.recoveries` | Nothing carried from an earlier run of another provider |
+| `AbsenceEvent.suspends_accrual` | The absence does not suspend the accrual |
+| `ArrearsEvent.reference_period` | Not read: arrears of an earlier year are taxed with the run, not separately (art. 17 c. 1 lett. b TUIR) |
+
+A `pending` field becomes `requirement` or `reported` when its default can
+be told apart from a stated value (a field that defaults to `True` or `0`
+cannot) and the run blocks on it.
 
 ## Model limitations
 
@@ -121,7 +210,7 @@ each contract page lists its limitations under "Known simplifications".
 | Axis | Type | Derived from |
 |---|---|---|
 | `calculation` | `CalculationStatus` | Worst status of `result.issues` and `result.decisions`; `final` when there are none |
-| `coverage` | `CoverageStatus` | `result.capability_report.status` |
+| `coverage` | `CoverageStatus` | `result.capability_report.status`: gaps and unresolved requirements |
 | `evidence` | `EvidenceStatus` | Weakest provenance of the payable rules the run read (`verified`, `derived`, `assumed`, `missing`); `missing` when none carries a record |
 | `rulesets` | `tuple[RulesetAssurance, ...]` | Identity, version, hash, kind, readiness and confidence of the CCNL ruleset and of each ruleset a payable rule was read from |
 | `mode` | `EngineMode` | `simulation` (default) or `operational`, from the engine |
@@ -161,13 +250,15 @@ facts it reads and the weakest evidence its rules may have.
 `capability_report.scope` gives each capability as `applicable`,
 `not_applicable` or `outside_input` for the run. Only an applicable
 capability can leave a `CapabilityGap`, and each gap is a
-`capability_not_computed` blocker.
+`capability_not_computed` blocker. `capability_report.unresolved` lists the
+required capabilities neither computed nor ruled out (see
+[Fail-closed payability](#fail-closed-payability)).
 
 | `status` | When |
 |---|---|
-| `complete` | No gaps |
+| `complete` | No gaps and no unresolved requirement |
 | `partial` | Every gap is a `partial_result` (a capability implemented in full came out partial) or a `partial_implementation` (sickness, foreign tax credit, ... executed) |
-| `incomplete` | Any other gap: an applicable capability is `unsupported` (residual leave on the run that closes the employment) or `unresolved` |
+| `incomplete` | An unresolved requirement, or any other gap: an applicable capability is `unsupported` (residual leave on the run that closes the employment) or `unresolved` |
 
 `rule_sources` maps each executed capability that reads bundled rules to the
 weakest provenance status among them. Capabilities computed only from
@@ -188,6 +279,7 @@ from ccnl_engine import (
     Headcount,
     PayrollEngine,
     PayrollRun,
+    PeriodFacts,
     PeriodInput,
 )
 
@@ -200,12 +292,19 @@ result = engine.calculate_period(
             ccnl_slug="metalmeccanico-federmeccanica.json", level_code="C3"
         ),
         employer=EmployerProfile(headcount=Headcount(50)),
+        facts=PeriodFacts(regione="IT-25"),  # municipality and family unknown
     )
 )
 
 if not result.is_payable:
     for blocker in result.blockers:
         print(blocker.code.value, blocker.feature, blocker.detail)
+# among others (the seniority is unknown too):
+# → requirement_unresolved addizionale_comunale facts.comune_belfiore
+# → requirement_unresolved family_deductions facts.family_composition
+
+for requirement in result.capability_report.unresolved:
+    print(requirement.feature, requirement.fact)
 
 assurance = result.assurance
 print(assurance.calculation, assurance.coverage, assurance.evidence)

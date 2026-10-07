@@ -134,10 +134,16 @@ class CapabilityEntry:
             the only ones it computes.
         required_facts: Request facts the capability reads; for an
             ``outside_input`` capability, the fact the request lacks.
+        applicability_facts: Those of :attr:`required_facts` that decide
+            whether a ``decided`` capability applies.  The capability is
+            then required in every run: left to its default, each of them
+            blocks a run where the capability took no decision (see
+            :mod:`~ccnl_engine.payroll.domain.requirements`).
 
     Raises:
         ValueError: When the handler disagrees with the implementation or
-            with the applicability predicate.
+            with the applicability predicate, or an applicability fact is
+            not a required fact of a ``decided`` capability.
     """
 
     feature: str
@@ -149,8 +155,10 @@ class CapabilityEntry:
     description: str = ""
     variants: tuple[str, ...] = ()
     required_facts: tuple[str, ...] = ()
+    applicability_facts: tuple[str, ...] = ()
 
     def __post_init__(self) -> None:  # noqa: D105
+        self._check_applicability_facts()
         unsupported = self.implementation is CapabilityImplementation.UNSUPPORTED
         if unsupported != (self.handler is None):
             msg = (
@@ -164,6 +172,18 @@ class CapabilityEntry:
             msg = (
                 f"capability {self.feature!r}: applies_when {self.applies_when} "
                 f"is decided by a {expected} handler, not {self.handler}"
+            )
+            raise ValueError(msg)
+
+    def _check_applicability_facts(self) -> None:
+        if not self.applicability_facts:
+            return
+        stray = sorted(set(self.applicability_facts) - set(self.required_facts))
+        if stray or self.applies_when is not CapabilityApplicability.DECIDED:
+            msg = (
+                f"capability {self.feature!r}: applicability facts must be "
+                f"required facts of a decided capability; got {stray or 'none'} "
+                f"outside required_facts with applies_when {self.applies_when}"
             )
             raise ValueError(msg)
 

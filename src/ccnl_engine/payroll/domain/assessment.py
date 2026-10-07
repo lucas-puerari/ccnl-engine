@@ -1,11 +1,17 @@
 """Assessment of one run: its assurance derived from what it recorded.
 
-Each recorded condition is one :class:`~ccnl_engine.payroll.domain.assurance\
-.ResultBlocker`:
+The assessment is fail-closed.  The capability report holds, besides the
+gaps of the capabilities that apply, the capabilities required in every run
+that the run neither computed nor ruled out by a decision or a supplied
+fact (:mod:`~ccnl_engine.payroll.domain.requirements`): a default never
+rules a capability out.  Each such requirement and each recorded condition
+is one :class:`~ccnl_engine.payroll.domain.assurance.ResultBlocker`:
 
 - an issue, whatever its status; a ``missing_fact`` blocker when the issue
   names the fact;
 - a decision that is not final;
+- a required capability whose applicability fact was left to its default
+  (``requirement_unresolved``);
 - a gap of the capability report;
 - an executed capability whose weakest rule is weaker than the evidence
   its registry entry accepts (``derived`` for every capability today), or
@@ -79,10 +85,7 @@ def assess(
             for d in decisions
             if d.status is not CalculationStatus.FINAL
         ),
-        *(
-            _blocker(BlockerCode.CAPABILITY_NOT_COMPUTED, gap.feature, gap.kind)
-            for gap in report.gaps
-        ),
+        *_coverage_blockers(report),
         *_evidence_blockers(report),
         *(
             _blocker(BlockerCode.CALLER_SUPPLIED_RULE, feature, ",".join(fields))
@@ -107,6 +110,19 @@ def assess(
         payability=decide_payability(blockers),
         blockers=blockers,
         limitations=limitations,
+    )
+
+
+def _coverage_blockers(report: CapabilityReport) -> tuple[ResultBlocker, ...]:
+    return (
+        *(
+            _blocker(BlockerCode.REQUIREMENT_UNRESOLVED, req.feature, req.fact)
+            for req in report.unresolved
+        ),
+        *(
+            _blocker(BlockerCode.CAPABILITY_NOT_COMPUTED, gap.feature, gap.kind)
+            for gap in report.gaps
+        ),
     )
 
 
@@ -151,6 +167,11 @@ _REMEDIATION: dict[BlockerCode, str] = {
         "resolve the condition reported as {detail}, then calculate again"
     ),
     BlockerCode.MISSING_FACT: "supply the fact {detail} in the request",
+    BlockerCode.REQUIREMENT_UNRESOLVED: (
+        "{feature} applies to every run unless a decision or a supplied fact "
+        "rules it out, and {detail} was left to its default: supply {detail} "
+        "(a value that rules {feature} out is a fact too)"
+    ),
     BlockerCode.CAPABILITY_NOT_COMPUTED: (
         "{feature} was not computed ({detail}): compute it outside the engine "
         "or confirm it does not apply to this run"

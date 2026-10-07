@@ -162,6 +162,7 @@ from ccnl_engine.results import (
     LimitationStatus,
     CapabilityGap,
     CapabilityScope,
+    UnresolvedRequirement,
     AccountKind,
     RemittanceColumn,
     RemittanceLine,

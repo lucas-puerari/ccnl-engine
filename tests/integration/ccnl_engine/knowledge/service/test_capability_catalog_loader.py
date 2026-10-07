@@ -69,6 +69,7 @@ class TestBundledRegistry:
         assert entry.handler is CapabilityHandler.DECISION
         assert entry.evidence is EvidenceStatus.DERIVED
         assert entry.required_facts == ("facts.family_composition", "current_year")
+        assert entry.applicability_facts == ("facts.family_composition",)
         assert "spouse_increase_bands" in entry.variants
 
     def test_unsupported_capabilities_and_predicates(self) -> None:

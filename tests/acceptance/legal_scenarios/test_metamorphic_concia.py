@@ -7,9 +7,9 @@ the split of a year at an exported state change nothing, and the public
 totals are the sums of the postings.  The scenario is the one of
 :mod:`tests.fixtures.normative_oracles.payslips.concia_d2_2026`.
 
-Two properties do not hold today and are strict xfails: an unknown
-residence and the renewal increments paid inside the CCNL minimo are
-treated as not applicable instead of unknown.
+One property does not hold today and is a strict xfail: the renewal
+increments paid inside the CCNL minimo are treated as not applicable
+instead of unknown.
 """
 
 from __future__ import annotations
@@ -136,17 +136,13 @@ class TestUnknownIsNotZero:
         assert "rinnovo_substitute_tax" in _blocked_features(unknown)
         assert "rinnovo_substitute_tax" not in _blocked_features(known)
 
-    @pytest.mark.xfail(
-        strict=True,
-        raises=AssertionError,
-        reason=(
-            "a missing regione or comune skips the surtax as not applicable "
-            "(PeriodFacts documents None as skip); a resident always owes it "
-            "when net IRPEF is due (D.Lgs. 446/1997 art. 50 c. 2)"
-        ),
-    )
     def test_unknown_residence_is_not_no_surtax(self) -> None:
-        """A run without residence cannot decide the regional and municipal surtax."""
+        """A run without residence cannot decide the regional and municipal surtax.
+
+        A resident owes both surtaxes when net IRPEF is due (D.Lgs. 446/1997
+        art. 50 c. 2, D.Lgs. 360/1998 art. 1 c. 4): left unknown, the
+        residence cannot rule them out.
+        """
         result = _june(facts=PeriodFacts())
         assert {"addizionale_regionale", "addizionale_comunale"} <= (
             _blocked_features(result)

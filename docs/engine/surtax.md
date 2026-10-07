@@ -15,7 +15,11 @@ for the jurisdictions the request names:
 
 A malformed code (`ER`, `Lombardia`, `IT45`, `f257`) is rejected with
 `InvalidInputError`.  A well-formed code without a row in the tax year table
-is not an input error: see the decisions below.
+is not an input error: see the decisions below.  A code left `None` is an
+unknown residence, not a residence without surtax: when the employer is a
+withholding agent the run has a `requirement_unresolved` blocker on the
+surtax it cannot decide (see
+[Fail-closed payability](../trust/confidence.md#fail-closed-payability)).
 
 ```python
 --8<-- "docs/examples/07_addizionali.py"

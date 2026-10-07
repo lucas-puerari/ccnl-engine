@@ -1,7 +1,8 @@
 """Assurance of the bundled CCNLs: the first level of each, June 2026.
 
 Every CCNL of the bundle is run once, for its first level, on a regular run
-of June 2026 with no event.  A run the engine rejects before producing a
+of June 2026 with no event, for a worker resident in Milan with no
+dependant.  A run the engine rejects before producing a
 result is left out: it exposes no amount to pay.
 """
 
@@ -18,9 +19,11 @@ from ccnl_engine import (
     Headcount,
     PayrollEngine,
     PayrollRun,
+    PeriodFacts,
     PeriodInput,
     PeriodResult,
 )
+from ccnl_engine.inputs import FamilyComposition
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
@@ -28,6 +31,9 @@ from ccnl_engine.results import BlockerCode
 from tests.fixtures.seniority import new_hire
 
 _WEAK = frozenset({"assumed", "missing"})
+_FACTS = PeriodFacts(
+    regione="IT-25", comune_belfiore="F205", family_composition=FamilyComposition()
+)
 
 
 def _june(engine: PayrollEngine, slug: str, level: str) -> PeriodResult | None:
@@ -40,6 +46,7 @@ def _june(engine: PayrollEngine, slug: str, level: str) -> PeriodResult | None:
                     ccnl_slug=slug, level_code=level, seniority=new_hire()
                 ),
                 employer=EmployerProfile(headcount=Headcount(50)),
+                facts=_FACTS,
             )
         )
     except (CcnlEngineError, ValueError):

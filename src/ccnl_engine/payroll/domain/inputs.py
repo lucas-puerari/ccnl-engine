@@ -58,10 +58,17 @@ class PeriodFacts:
             list is accepted and stored as a tuple.
         regione: ISO 3166-2:IT region code for the regional surtax, e.g.
             ``"IT-45"``, ``"IT-BZ"`` / ``"IT-TN"`` for the autonomous
-            provinces.  ``None`` skips the regional surtax.
+            provinces.  ``None`` is unknown: when the employer
+            withholds, a ``requirement_unresolved`` blocker on
+            ``addizionale_regionale``.
         comune_belfiore: Belfiore code for the municipal surtax, e.g.
-            ``"F257"``.  ``None`` skips the municipal surtax.
+            ``"F257"``.  ``None`` is unknown: when the employer
+            withholds, a ``requirement_unresolved`` blocker on
+            ``addizionale_comunale``.
         family_composition: Dependents for the Art. 12 TUIR deductions.
+            ``None`` is unknown: when the employer withholds, a
+            ``requirement_unresolved`` blocker on ``family_deductions``;
+            ``FamilyComposition()`` states that there is no dependant.
         has_dependent_children: Whether the worker has a fiscally dependent
             child; selects the higher fringe-benefit threshold.
 

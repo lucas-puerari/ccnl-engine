@@ -109,6 +109,46 @@ class TestEntry:
         assert closing.handler is CapabilityHandler.EVENT
 
 
+class TestApplicabilityFacts:
+    """Applicability facts are required facts of a decided capability."""
+
+    @staticmethod
+    def _decided(required: tuple[str, ...], gating: tuple[str, ...]) -> CapabilityEntry:
+        return CapabilityEntry(
+            "addizionale_regionale",
+            CapabilityLayer.NET,
+            _NATIVE,
+            CapabilityApplicability.DECIDED,
+            CapabilityHandler.DECISION,
+            required_facts=required,
+            applicability_facts=gating,
+        )
+
+    def test_a_required_fact_of_a_decided_capability_gates_it(self) -> None:
+        """The residence decides whether the regional surtax applies."""
+        surtax = self._decided(("facts.regione",), ("facts.regione",))
+        assert surtax.applicability_facts == ("facts.regione",)
+        assert entry().applicability_facts == ()
+
+    def test_a_fact_the_capability_does_not_read_is_rejected(self) -> None:
+        """An applicability fact is one of the facts the capability reads."""
+        with pytest.raises(ValueError, match=r"\['facts.comune_belfiore'\]"):
+            self._decided(("facts.regione",), ("facts.comune_belfiore",))
+
+    def test_a_capability_that_is_not_decided_is_rejected(self) -> None:
+        """Only a decision can leave a capability not applicable."""
+        with pytest.raises(ValueError, match="applies_when always"):
+            CapabilityEntry(
+                "irpef",
+                CapabilityLayer.NET,
+                _NATIVE,
+                CapabilityApplicability.ALWAYS,
+                CapabilityHandler.PIPELINE,
+                required_facts=("facts.regione",),
+                applicability_facts=("facts.regione",),
+            )
+
+
 class TestCatalog:
     """The catalog holds one entry per feature."""
 

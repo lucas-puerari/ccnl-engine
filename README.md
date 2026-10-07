@@ -7,7 +7,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 A Python engine for auditable Italian payroll simulations. CCNL-aware gross-to-net and
-employer cost, versioned rules, provenance tracking, and an explicit status on every result.
+employer cost, versioned rules, provenance tracking, and an explicit payability answer on every result.
 Built for technical teams in HR, payroll, and compensation.
 
 **[Documentation](https://lucas-puerari.github.io/ccnl-engine/docs/) · [Demo](https://lucas-puerari.github.io/ccnl-engine/demo/)**
@@ -26,8 +26,8 @@ PayrollEngine.calculate_competence_year(CompetenceYearPlan) → CompetenceYearRe
 PayrollEngine.calculate_tax_year(TaxYearPlan) → TaxYearResult
 ```
 
-Each result carries a status (`final`, `provisional`, `incomplete` or `rejected`),
-the issues that lowered it and the decisions taken. It is fully itemised: gross, net, employer cost, INPS breakdown, IRPEF computation, pay items, and a ledger of every accounting entry, so any figure can be traced back to the engine and data that produced it.
+Each result says whether its amounts can be paid (`result.is_payable`), every
+reason they cannot (`result.blockers`) and the decisions taken. It is fully itemised: gross, net, employer cost, INPS breakdown, IRPEF computation, pay items, and a ledger of every accounting entry, so any figure can be traced back to the engine and data that produced it.
 
 ## Quickstart
 
@@ -39,9 +39,10 @@ from ccnl_engine import (
     Headcount,
     PayrollEngine,
     PayrollRun,
+    PeriodFacts,
     PeriodInput,
 )
-from ccnl_engine.inputs import SeniorityFact, SenioritySource
+from ccnl_engine.inputs import FamilyComposition, SeniorityFact, SenioritySource
 
 engine = PayrollEngine.bundled()
 employment = Employment(
@@ -58,6 +59,13 @@ result = engine.calculate_period(
         payment_date=date(2026, 1, 28),
         employment=employment,
         employer=employer,
+        # Resident in Milan, no dependant: an unknown residence or family
+        # would block the surtaxes and the family deductions.
+        facts=PeriodFacts(
+            regione="IT-25",
+            comune_belfiore="F205",
+            family_composition=FamilyComposition(),
+        ),
     )
 )
 
@@ -68,6 +76,9 @@ for ruleset in result.rulesets:
     print(ruleset.id, ruleset.kind, ruleset.readiness)
 # → ccnl/commercio-confcommercio ccnl reviewed
 # → inps/2026/terziario inps None   (readiness tracked for CCNLs only)
+# → surtax/2026/comunale surtax None
+# → surtax/2026/regionale surtax None
+# → tax/2026/family-deductions tax None
 # → tax/2026/terziario tax None
 ```
 
@@ -92,13 +103,24 @@ an object in `events` that is not a work event raises `InvalidInputError`
 naming the field (`error.field`, e.g. `"PeriodFacts.events[2]"`) with a
 `remediation`. Every error the engine raises is a `CcnlEngineError` exported
 at the root, with a stable `code`; none is a bare `ValueError`, `TypeError`
-or `AttributeError`. A fact left unknown never looks final: the regime it
-drives is not applied and the result is `provisional` and not payable.
+or `AttributeError`.
 
 `result.is_payable` is the one answer to "can this amount be paid as it is?".
-A result is payable only when it has no blocker: no issue, no capability of
-the catalog left uncomputed, no executed rule `assumed` or `missing` in the
-bundle, no rule supplied by the caller. Each `result.blockers` entry has a
+Payability is fail-closed: a result is payable only when it has no blocker,
+and every capability the registry requires is computed or ruled out by a
+decision of the run or by a fact the caller supplied, never by a default.
+The residence and the family composition are such facts: left `None` they
+add a `requirement_unresolved` blocker (an empty `FamilyComposition()`
+states that there is no dependant). Every defaulted public input field is
+classified as either the fact itself or a fact the caller must state, and a
+fact the engine reports as missing (seniority, contribution history, sector,
+prior-year income, ...) adds a `missing_fact` blocker. Some defaults still
+select a branch without a blocker (opening state, dependant conditions,
+hours, pension fund): see
+[Assurance](docs/trust/confidence.md#defaults-of-the-public-inputs).
+A result is also blocked by any issue, any capability of the catalog left
+uncomputed, any executed rule `assumed` or `missing` in the bundle and any
+rule supplied by the caller. Each `result.blockers` entry has a
 stable `code`, the `feature` it concerns and a `detail`; `result.assurance`
 holds the axes they come from. Today no bundled CCNL gives a payable result:
 the amounts are for simulation. See

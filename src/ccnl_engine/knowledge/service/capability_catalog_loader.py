@@ -130,4 +130,5 @@ def _build_entry(feature: str, cap: dict[str, Any]) -> CapabilityEntry:
         description=str(cap.get("description", "")),
         variants=_strings(cap.get("variants", [])),
         required_facts=_strings(cap.get("required_facts", [])),
+        applicability_facts=_strings(cap.get("applicability_facts", [])),
     )
