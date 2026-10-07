@@ -113,6 +113,8 @@ def test_floor_comes_from_the_rules() -> None:
         pytest.param(_FLAT_BAND, 200, True, Decimal("308.77"), id="fixed-term-200"),
         # 1,955 is above both floors.
         pytest.param(_FLAT_BAND, 365, True, Decimal(0), id="full-year"),
+        # 15,000 is still in lett. a): 690 - 492.77.
+        pytest.param(Decimal(15_000), 92, False, Decimal("197.23"), id="flat-band-top"),
         # Above 15,000 lett. a) and its minimum do not apply.
         pytest.param(Decimal(20_000), 30, True, Decimal(0), id="above-flat-band"),
     ],
