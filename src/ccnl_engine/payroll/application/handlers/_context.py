@@ -106,6 +106,7 @@ class EventEffect:
         issues: Conditions raised by the event; each blocks payability.
         sickness_episode: Sickness episode the event processed, cut at its
             last processed day, to record in the accrual state.
+        sick_units: Units of the monthly pay the sickness episode deducted.
         limitations: Ids of the engine limitations whose path it took.
     """
 
@@ -124,6 +125,7 @@ class EventEffect:
     decisions: list[CalculationDecision] = field(default_factory=list)
     issues: list[CalculationIssue] = field(default_factory=list)
     sickness_episode: SicknessEpisode | None = None
+    sick_units: Decimal = _ZERO
     limitations: tuple[str, ...] = ()
 
 

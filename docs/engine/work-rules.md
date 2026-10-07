@@ -126,8 +126,12 @@ rate.
 
 The payable days of each class are counted with the CCNL daily quota of an
 unpaid absence (`work_rules.absence_rules.daily_divisor_method`), the same
-count as a hire or termination month, and never exceed one monthly pay. The
-run deducts the daily pay of the sick days (`absence_deduction`) and pays
+count as a hire or termination month, and never exceed one monthly pay,
+however many episodes the month holds: the episodes of a run are taken by
+first day, whatever their order in the facts, and the days past the pay
+left by the earlier ones are dropped. Their pay is rounded once on the days
+counted so far, not band by band, so the sick days of a month never deduct
+more than the monthly pay. The run deducts the daily pay of the sick days (`absence_deduction`) and pays
 back the INPS share as `sickness_inps_item` (outside the contribution base,
 the days are covered by figurative contributions) and the employer share
 and carenza pay as `sickness_item`. TFR keeps the full monthly pay (art.
@@ -154,10 +158,11 @@ never payable.
 
 ### Absences are bounded by the pay of the run
 
-Unpaid absences (`AbsenceEvent`, and the deduction of a
-`SicknessEpisode`) that deduct more than the monthly pay of the run raise
+Unpaid absences that deduct more than the monthly pay of the run raise
 `InvalidInputError` before any amount is computed: check the hours and the
-hourly rate. Absences below the pay can still leave less than the IRPEF and
+hourly rate. The sick days of `SicknessEpisode` are capped at the monthly
+pay by construction ([Sickness](#sickness)); an `AbsenceEvent` added to
+them still counts toward the bound. Absences below the pay can still leave less than the IRPEF and
 surtax due on the run (the withholding follows the projected annual income).
 The taxes are then withheld up to the pay left and the rest is carried to
 the next runs of the tax year

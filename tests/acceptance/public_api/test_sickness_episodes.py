@@ -6,6 +6,11 @@ same sickness amounts when the whole competence year is computed, when the
 runs are chained by hand, and when March resumes from opening balances
 imported from another provider (INPS 484.22, employer 428.89, deduction
 913.11: see the integration tests of the handler for the hand computation).
+
+Sick days suspend the pay of the month (art. 2110 c.c.): the run deducts at
+most that pay, rounded once, however many episodes or INPS bands the month
+holds.  July and September 2026 have 27 and 26 working days by 26, so a
+whole month of sickness deducts the whole monthly pay.
 """
 
 from __future__ import annotations
@@ -13,6 +18,7 @@ from __future__ import annotations
 from dataclasses import replace
 from datetime import date
 from decimal import Decimal
+from typing import TYPE_CHECKING
 
 from ccnl_engine import (
     CompetenceYearPlan,
@@ -28,6 +34,9 @@ from ccnl_engine.inputs import OpeningBalances, PeriodState, WorkerCategory
 from tests.fixtures.sickness_episode import metalmeccanico_c3, sickness_episode
 from tests.fixtures.withholding import paid_before
 
+if TYPE_CHECKING:
+    from ccnl_engine.events import SicknessEpisode
+
 _ENGINE = PayrollEngine.bundled()
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
 _EMPLOYMENT = metalmeccanico_c3(WorkerCategory.OPERAIO)
@@ -38,6 +47,11 @@ _MARCH = {
     "sickness_item": Decimal("428.89"),
     "absence_deduction": Decimal("913.11"),
 }
+
+
+def _base_salary(result: PeriodResult) -> Decimal:
+    (item,) = (i for i in result.pay_items if i.kind == "base_salary_earning")
+    return item.amount
 
 
 def _sickness(result: PeriodResult) -> dict[str, Decimal]:
@@ -94,3 +108,67 @@ def test_resume_from_opening_balances_matches() -> None:
         )
     )
     assert _sickness(_run(3, opening)) == _MARCH
+
+
+def test_month_past_the_inps_cap_deducts_the_month_pay() -> None:
+    """Sick 5 January to 31 May, then 3 August to 30 September 2026.
+
+    INPS stops indemnifying within September: the month holds a band at
+    66.66% and one at 0%, each deducted with the daily quota by 26.
+    """
+    first = PeriodFacts(
+        events=(sickness_episode("A", date(2026, 1, 5), date(2026, 5, 31)),)
+    )
+    second = PeriodFacts(
+        events=(sickness_episode("C", date(2026, 8, 3), date(2026, 9, 30)),)
+    )
+    year = _ENGINE.calculate_competence_year(
+        CompetenceYearPlan(
+            year=2026,
+            employment=_EMPLOYMENT,
+            employer=_EMPLOYER,
+            periods={1: first, 2: first, 3: first, 4: first, 5: first}
+            | {8: second, 9: second},
+            payment_day=27,
+        )
+    )
+    september = next(
+        r for r in year.period_results if r.run == PayrollRun.regular(2026, 9)
+    )
+    (decision,) = (d for d in september.decisions if d.capability == "sickness")
+    assert ":inps=0.6666:" in str(decision.inputs["segments"])
+    assert ":inps=0:" in str(decision.inputs["segments"])
+    assert september.unpaid_absence_deduction == _base_salary(september)
+
+
+def _july(*episodes: SicknessEpisode) -> PeriodResult:
+    return _ENGINE.calculate_period(
+        PeriodInput(
+            run=PayrollRun.regular(2026, 7),
+            payment_date=date(2026, 7, 27),
+            employment=_EMPLOYMENT,
+            employer=_EMPLOYER,
+            facts=PeriodFacts(events=episodes),
+        )
+    )
+
+
+def _by_kind(result: PeriodResult) -> dict[str, Decimal]:
+    totals: dict[str, Decimal] = {}
+    for item in result.pay_items:
+        totals[item.kind] = totals.get(item.kind, Decimal(0)) + item.amount
+    return totals
+
+
+def test_two_episodes_of_a_whole_month_deduct_the_month_pay() -> None:
+    """Sick 1 to 15 July 2026, then again 16 to 31 July.
+
+    Each episode counts its days by 26 from its own first day: 13 and 14
+    of the 27 working days of July, one more than a monthly pay.  The last
+    day is dropped whatever the order of the episodes in the facts.
+    """
+    first = sickness_episode("J1", date(2026, 7, 1), date(2026, 7, 15))
+    second = sickness_episode("J2", date(2026, 7, 16), date(2026, 7, 31))
+    july = _july(first, second)
+    assert july.unpaid_absence_deduction == _base_salary(july)
+    assert _by_kind(_july(second, first)) == _by_kind(july)

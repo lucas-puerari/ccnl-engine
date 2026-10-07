@@ -15,10 +15,10 @@ from ccnl_engine.payroll.domain.sick_days import SickDayKind
 if TYPE_CHECKING:
     from datetime import date
 
+    from ccnl_engine.payroll.application.handlers._sickness_pay import EpisodePay
     from ccnl_engine.payroll.application.handlers._sickness_terms import (
         SicknessTerms,
     )
-    from ccnl_engine.payroll.application.handlers.sickness import EpisodePay
     from ccnl_engine.payroll.domain.sickness import SicknessEpisode
 
 __all__ = [
