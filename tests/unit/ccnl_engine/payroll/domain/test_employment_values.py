@@ -8,7 +8,7 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
-from ccnl_engine.payroll.domain.employment import Employment
+from ccnl_engine.payroll.domain.employment import Employment, Permanent
 from ccnl_engine.payroll.domain.employment_facts import (
     ContributableHours,
     EmploymentPeriod,
@@ -211,6 +211,7 @@ class TestEmploymentValidation:
             full_time_weekly_hours=WeeklyHours(40),
             seniority=_SENIORITY,
             employment_period=EmploymentPeriod(started_on=_START),
+            contract_type=Permanent(),
         )
         assert employment.weekly_hours == WeeklyHours(20)
         assert employment.full_time_weekly_hours == WeeklyHours(40)
@@ -220,7 +221,9 @@ class TestEmploymentValidation:
     def test_optional_facts_default_to_none(self) -> None:
         """Untracked facts stay ``None``."""
         employment = Employment(
-            ccnl_slug="commercio-confcommercio.json", level_code="4"
+            ccnl_slug="commercio-confcommercio.json",
+            level_code="4",
+            contract_type=Permanent(),
         )
         assert employment.weekly_hours is None
         assert employment.full_time_weekly_hours is None
@@ -245,6 +248,7 @@ class TestEmploymentValidation:
         fields: dict[str, object] = {
             "ccnl_slug": "commercio-confcommercio.json",
             "level_code": "4",
+            "contract_type": Permanent(),
             **kwargs,
         }
         with pytest.raises(InvalidInputError, match="must be"):

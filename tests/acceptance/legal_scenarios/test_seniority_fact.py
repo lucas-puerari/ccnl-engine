@@ -30,6 +30,7 @@ import pytest
 from ccnl_engine import CompetenceYearPlan, Employment, PayrollRun, PeriodResult
 from ccnl_engine.inputs import (
     EmploymentPeriod,
+    Permanent,
     SeniorityFact,
     SenioritySource,
     WorkerCategory,
@@ -70,6 +71,7 @@ def _postal(category: WorkerCategory, seniority: SeniorityFact | None) -> Period
             level_code="2",
             category=category,
             seniority=seniority,
+            contract_type=Permanent(),
         )
     )
 
@@ -141,6 +143,7 @@ def test_seniority_ages_to_each_run_of_the_year() -> None:
         level_code="2",
         category=WorkerCategory.OPERAIO,
         seniority=SeniorityFact.since(date(2024, 6, 15), SenioritySource.PAYSLIP),
+        contract_type=Permanent(),
     )
     year = ENGINE.calculate_competence_year(
         CompetenceYearPlan(year=2026, employment=employment, employer=EMPLOYER)
@@ -167,6 +170,7 @@ def test_seniority_from_a_mid_month_hire_counts_zero_in_the_hire_month() -> None
         category=WorkerCategory.OPERAIO,
         employment_period=EmploymentPeriod(started_on=date(2026, 3, 15)),
         seniority=SeniorityFact.since(date(2026, 3, 15), SenioritySource.PAYSLIP),
+        contract_type=Permanent(),
     )
     year = ENGINE.calculate_competence_year(
         CompetenceYearPlan(year=2026, employment=employment, employer=EMPLOYER)
@@ -186,7 +190,13 @@ def test_contract_without_increments_needs_no_seniority() -> None:
     The decision says the capability does not apply, and an unknown
     seniority is not a missing fact.
     """
-    result = _june(Employment(ccnl_slug=PA_FUNZIONI_CENTRALI, level_code="FUNZIONARI"))
+    result = _june(
+        Employment(
+            ccnl_slug=PA_FUNZIONI_CENTRALI,
+            level_code="FUNZIONARI",
+            contract_type=Permanent(),
+        )
+    )
 
     assert _seniority(result) == ("not_applicable_by_contract", Decimal("0.00"))
     assert not _missing_seniority(result)
@@ -211,7 +221,12 @@ def test_allowance_gated_by_service_needs_the_seniority(
     missing fact.  With it the premium follows the threshold.
     """
     result = _june(
-        Employment(ccnl_slug=_CONTOTERZISMO, level_code="6", seniority=seniority)
+        Employment(
+            ccnl_slug=_CONTOTERZISMO,
+            level_code="6",
+            seniority=seniority,
+            contract_type=Permanent(),
+        )
     )
 
     assert _seniority(result)[0] == reason

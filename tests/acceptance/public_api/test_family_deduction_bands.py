@@ -38,6 +38,7 @@ from ccnl_engine.inputs import (
     FamilyComposition,
     InpsBaseYtd,
     OpeningBalances,
+    Permanent,
 )
 from ccnl_engine.results import CalculationStatus
 from tests.fixtures.dependents import declared_dependent
@@ -85,7 +86,9 @@ def test_spouse_deduction_follows_increase_bands(
             run=PayrollRun.thirteenth(2026, 12),
             payment_date=date(2026, 12, 18),
             employment=Employment(
-                ccnl_slug="metalmeccanico-federmeccanica.json", level_code="C3"
+                ccnl_slug="metalmeccanico-federmeccanica.json",
+                level_code="C3",
+                contract_type=Permanent(),
             ),
             employer=EmployerProfile(headcount=Headcount(50)),
             facts=PeriodFacts(family_composition=_SPOUSE),

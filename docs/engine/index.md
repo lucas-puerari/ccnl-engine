@@ -23,10 +23,13 @@ from ccnl_engine import (
     PayrollRun,
     PeriodInput,
 )
+from ccnl_engine.inputs import Permanent
 
 engine = PayrollEngine.bundled()
 employment = Employment(
-    ccnl_slug="metalmeccanico-federmeccanica.json", level_code="C3"
+    ccnl_slug="metalmeccanico-federmeccanica.json",
+    level_code="C3",
+    contract_type=Permanent(),
 )
 employer = EmployerProfile(headcount=Headcount(50))
 
@@ -135,7 +138,11 @@ year instead, late payments of an earlier competence year included.
 ```python
 from ccnl_engine import CompetenceYearPlan
 
-commercio = Employment(ccnl_slug="commercio-confcommercio.json", level_code="4")
+commercio = Employment(
+    ccnl_slug="commercio-confcommercio.json",
+    level_code="4",
+    contract_type=Permanent(),
+)
 year = engine.calculate_competence_year(
     CompetenceYearPlan(year=2026, employment=commercio, employer=employer)
 )
@@ -292,6 +299,7 @@ short = engine.calculate_competence_year(
         employment=Employment(
             ccnl_slug="commercio-confcommercio.json",
             level_code="4",
+            contract_type=Permanent(),
             employment_period=EmploymentPeriod(date(2026, 7, 1), date(2026, 9, 30)),
         ),
         employer=employer,
@@ -326,7 +334,7 @@ The engine applies rules in a fixed sequence:
    ↓
 3. Add fixed allowances
    ↓
-4. Compute INPS contributions (employee + employer, NASpI addizionale if fixed-term)
+4. Compute INPS contributions (employee + employer, NASpI surcharge of a fixed term)
    ↓
 5. Compute TFR accrual (Art. 2120 c.c.), less the 0.50% additional IVS
    (L. 297/1982 art. 3 c. 16), to the company, the Fondo Tesoreria or

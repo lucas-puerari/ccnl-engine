@@ -14,7 +14,7 @@ from ccnl_engine.payroll.application.calculate_tax_year import calculate_tax_yea
 from ccnl_engine.payroll.application.year._payments import prepare_year
 from ccnl_engine.payroll.domain.competence_year_plan import CompetenceYearPlan
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
-from ccnl_engine.payroll.domain.employment import Employment
+from ccnl_engine.payroll.domain.employment import Employment, Permanent
 from ccnl_engine.payroll.domain.tax_year_plan import TaxYearPlan
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
@@ -28,7 +28,9 @@ _EMPLOYER = EmployerProfile(headcount=Headcount(50))
 def _plan(level_code: str = "C1") -> CompetenceYearPlan:
     return CompetenceYearPlan(
         year=2026,
-        employment=Employment(ccnl_slug="anas.json", level_code=level_code),
+        employment=Employment(
+            ccnl_slug="anas.json", level_code=level_code, contract_type=Permanent()
+        ),
         employer=_EMPLOYER,
     )
 

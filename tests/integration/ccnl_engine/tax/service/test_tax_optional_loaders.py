@@ -175,6 +175,7 @@ _BAD_TAX_RAW = {
     "sector": "industria",
     "irpef_brackets": [{"up_to": None, "rate": "0.43"}],
     "fixed_term_additional_rate": "0.014",
+    "fixed_term_renewal_increment": "0.005",
     "tfr": {"accrual_divisor": "13.5"},
 }
 

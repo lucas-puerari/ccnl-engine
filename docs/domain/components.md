@@ -186,8 +186,11 @@ amounts agreed outside the CCNL table) are not scaled.
 ## 8. Fixed-term (*tempo determinato*)
 
 Remuneration is identical to a permanent contract. The only difference is an
-additional **NASpI *addizionale*** of 1.40% of gross, charged to the employer
-(Art. 2, c. 28, L. 92/2012).
+additional **NASpI *addizionale*** charged to the employer on the INPS base:
+1.40%, plus 0.50% for each renewal of the contract (Art. 2, c. 28, L.
+92/2012). It is not due for replacement, seasonal, apprenticeship and public
+administration contracts (c. 29) nor for the operai agricoli (c. 3); see
+[Employment types](employment-types.md#fixed-term-tempo-determinato).
 
 ## 9. Social contributions (INPS)
 

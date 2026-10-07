@@ -25,14 +25,16 @@ from ccnl_engine import (
     PeriodResult,
 )
 from ccnl_engine.catalog import RulesetKind, RulesetReadiness
-from ccnl_engine.inputs import EngineMode
+from ccnl_engine.inputs import EngineMode, Permanent
 from ccnl_engine.results import BlockerCode
 
 _SIMULATION = PayrollEngine.bundled()
 _OPERATIONAL = PayrollEngine.bundled(mode="operational")
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
 _METALMECCANICO = "metalmeccanico-federmeccanica"
-_EMPLOYMENT = Employment(ccnl_slug=f"{_METALMECCANICO}.json", level_code="C3")
+_EMPLOYMENT = Employment(
+    ccnl_slug=f"{_METALMECCANICO}.json", level_code="C3", contract_type=Permanent()
+)
 
 
 def _june(engine: PayrollEngine) -> PeriodResult:

@@ -53,6 +53,7 @@ from ccnl_engine.inputs import (
     OpeningBalances,
     PayrollRunId,
     PeriodState,
+    Permanent,
 )
 from tests.fixtures.next_year_repository import NextYearRepository
 from tests.fixtures.normative_oracles.payslips.metalmeccanico_c3_2026 import (
@@ -67,6 +68,7 @@ _C3 = Employment(
     employment_period=EmploymentPeriod(date(2026, 9, 1)),
     seniority=new_hire(),
     contribution_history=ContributionHistory(first_enrolled_on=date(2001, 9, 1)),
+    contract_type=Permanent(),
 )
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
 
@@ -228,7 +230,9 @@ class TestCompetence:
                 run=PayrollRun.regular(2026, 12),
                 payment_date=date(2027, 1, 13),
                 employment=Employment(
-                    ccnl_slug="commercio-confcommercio.json", level_code="4"
+                    ccnl_slug="commercio-confcommercio.json",
+                    level_code="4",
+                    contract_type=Permanent(),
                 ),
                 employer=_EMPLOYER,
                 opening_state=opening,
@@ -275,7 +279,9 @@ class TestCompetence:
                 run=PayrollRun.regular(2026, 12),
                 payment_date=date(2027, 1, 13),
                 employment=Employment(
-                    ccnl_slug="commercio-confcommercio.json", level_code="4"
+                    ccnl_slug="commercio-confcommercio.json",
+                    level_code="4",
+                    contract_type=Permanent(),
                 ),
                 employer=_EMPLOYER,
                 opening_state=opening,
@@ -307,7 +313,9 @@ class TestCompetence:
                     run=PayrollRun.of(november),
                     payment_date=date(2027, 1, 13),
                     employment=Employment(
-                        ccnl_slug="commercio-confcommercio.json", level_code="4"
+                        ccnl_slug="commercio-confcommercio.json",
+                        level_code="4",
+                        contract_type=Permanent(),
                     ),
                     employer=_EMPLOYER,
                     opening_state=opening,

@@ -21,6 +21,7 @@ from ccnl_engine.inputs import (
     InpsBaseYtd,
     OpeningBalances,
     PeriodState,
+    Permanent,
     RecoveryObligation,
     RecoveryPlan,
 )
@@ -122,7 +123,9 @@ def _december_2026() -> tuple[PeriodResult, PeriodResult]:
         PeriodInput(
             run=PayrollRun.thirteenth(2026, 12),
             payment_date=date(2026, 12, 27),
-            employment=Employment(ccnl_slug=COMMERCIO, level_code="4"),
+            employment=Employment(
+                ccnl_slug=COMMERCIO, level_code="4", contract_type=Permanent()
+            ),
             employer=EMPLOYER,
             opening_state=december.closing_state,
         )
@@ -140,7 +143,9 @@ def _january_2027(opening: PeriodState) -> PeriodResult:
         PeriodInput(
             run=PayrollRun.regular(2027, 1),
             payment_date=date(2027, 1, 27),
-            employment=Employment(ccnl_slug=COMMERCIO, level_code="4"),
+            employment=Employment(
+                ccnl_slug=COMMERCIO, level_code="4", contract_type=Permanent()
+            ),
             employer=EMPLOYER,
             opening_state=opening,
         )

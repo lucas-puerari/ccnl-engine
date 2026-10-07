@@ -26,7 +26,7 @@ posted amount.
 | Art. 13 work deduction, its minimum | `tax/data/<year>-<sector>.json`: `work_deduction`, `work_deduction.minimum` | Per block |
 | Trattamento integrativo, ulteriore detrazione, somma esente | `tax/data/<year>-<sector>.json` | Per block |
 | TFR divisor, additional IVS deduction | `tax/data/<year>-<sector>.json`: `tfr`, `tfr.additional_ivs` | Per block |
-| Fixed-term addizionale NASpI | `tax/data/<year>-<sector>.json`: `fixed_term_additional_rate` | Sibling `fixed_term_additional_rate_provenance` |
+| Fixed-term addizionale NASpI | `tax/data/<year>-<sector>.json`: `fixed_term_additional_rate`, `fixed_term_renewal_increment`, `fixed_term_exempt_categories` | One sibling `fixed_term_additional_rate_provenance` for the three |
 | INPS rates, 1% additional IVS | `inps/data/<year>-<sector>.json`: `inps`, `inps.employee_additional`, `apprentice`, `domestic_contributions` | Per block |
 | Regional and municipal surtax | `surtax/data/regionale-<year>.json`, `comunale-<year>.json` | Per table (file-level `provenance`); an entry may override it |
 | Art. 12 family deductions | `tax/data/family-deductions-<year>.json`: `spouse`, `children`, `other_dependents` | Per block |

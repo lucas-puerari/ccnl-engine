@@ -26,6 +26,8 @@ from ccnl_engine.events import FringeEvent, SickLeaveEvent
 from ccnl_engine.inputs import (
     ContributableHours,
     FixedTerm,
+    NaspiExclusion,
+    Permanent,
     WeeklyHours,
 )
 from tests.fixtures.normative_oracles.withholding_2026 import (
@@ -38,6 +40,7 @@ _C3 = Employment(
     ccnl_slug="metalmeccanico-federmeccanica.json",
     level_code="C3",
     seniority=new_hire(),
+    contract_type=Permanent(),
 )
 
 
@@ -166,6 +169,7 @@ def test_domestic_inps_non_convivente() -> None:
                 level_code="B",
                 seniority=new_hire(),
                 weekly_hours=WeeklyHours(25),
+                contract_type=Permanent(),
             ),
             employer=EmployerProfile(headcount=Headcount(1)),
             facts=PeriodFacts(contributable_hours=ContributableHours(Decimal(108))),
@@ -257,6 +261,7 @@ def test_naspi_addizionale_fixed_term() -> None:
                 ccnl_slug="commercio-confcommercio.json",
                 level_code="4",
                 seniority=new_hire(),
+                contract_type=Permanent(),
             ),
             employer=EmployerProfile(headcount=Headcount(50)),
         )
@@ -269,7 +274,9 @@ def test_naspi_addizionale_fixed_term() -> None:
                 ccnl_slug="commercio-confcommercio.json",
                 level_code="4",
                 seniority=new_hire(),
-                contract_type=FixedTerm(),
+                contract_type=FixedTerm(
+                    renewals=0, naspi_exclusion=NaspiExclusion.NONE
+                ),
             ),
             employer=EmployerProfile(headcount=Headcount(50)),
         )

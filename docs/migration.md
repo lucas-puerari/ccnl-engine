@@ -4,6 +4,23 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## NASpI surcharge of fixed-term contracts
+
+The surcharge of L. 92/2012 art. 2 c. 28 was a flat 1.4% on every
+`FixedTerm`. It now adds 0.5% per renewal, is not charged in the cases of
+c. 29 nor to the operai agricoli (c. 3), and blocks the run while a fact it
+depends on is unknown (see
+[Employment types](domain/employment-types.md#naspi-surcharge)).
+
+| Before | After |
+|---|---|
+| `Employment.contract_type` defaulted to `Permanent()` | Required: pass `Permanent()`, `FixedTerm(...)` or `Apprentice(...)` |
+| `FixedTerm()` had no field and always charged 1.4% | `FixedTerm(renewals=..., naspi_exclusion=...)`; `NaspiExclusion` exported by `ccnl_engine.inputs`. `None`, the default of both, is unknown: a `missing_fact renewals` or `naspi_exclusion` blocker and no amount on the `inps_employer` decision |
+| A fixed-term operaio agricolo paid 1.4% | No surcharge; a level of the agricoltura sector whose category is open has a `missing_fact category` blocker |
+| A domestic fixed term always took the fixed-term hourly rate | An excluded one (e.g. `REPLACEMENT`) takes the permanent rate; renewals add nothing |
+| The `inps_employer` decision of a fixed term had no surcharge input | Inputs `naspi_surcharge`, `naspi_surcharge_rate`, `naspi_renewals`; issue `naspi_surcharge_undetermined` |
+| `YearRules` and the tax data files had `fixed_term_additional_rate` alone | Also `fixed_term_renewal_increment` (required) and `fixed_term_exempt_categories`, under the same provenance record |
+
 ## Renewal regime assessed on the minimo
 
 L. 199/2025 art. 1 c. 7 taxes at 5% the 2026 increments of renewals signed

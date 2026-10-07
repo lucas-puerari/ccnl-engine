@@ -101,6 +101,8 @@ def _load_year_rules_cached(
         irpef_brackets=rules.irpef_brackets,
         irpef_brackets_provenance=rules.irpef_brackets_provenance,
         fixed_term_additional_rate=rules.fixed_term_additional_rate,
+        fixed_term_renewal_increment=rules.fixed_term_renewal_increment,
+        fixed_term_exempt_categories=rules.fixed_term_exempt_categories,
         fixed_term_additional_rate_provenance=(
             rules.fixed_term_additional_rate_provenance
         ),

@@ -14,6 +14,7 @@ from ccnl_engine.inputs import (
     CalendarOverrideReason,
     EmploymentPeriod,
     FamilyComposition,
+    Permanent,
     WorkCalendar,
 )
 from ccnl_engine.results import BlockerCode, CalculationStatus
@@ -35,7 +36,9 @@ if TYPE_CHECKING:
     from ccnl_engine import CompetenceYearResult, PeriodResult
     from ccnl_engine.results import CalculationDecision
 
-_COMMERCIO_4 = Employment(ccnl_slug=COMMERCIO, level_code="4")
+_COMMERCIO_4 = Employment(
+    ccnl_slug=COMMERCIO, level_code="4", contract_type=Permanent()
+)
 _SURTAXES = {
     "addizionale_regionale": "facts.regione",
     "addizionale_comunale": "facts.comune_belfiore",
@@ -226,6 +229,7 @@ def test_termination_without_residence_determines_no_surtax_of_the_year() -> Non
                 level_code="4",
                 seniority=new_hire(),
                 employment_period=EmploymentPeriod(date(2020, 1, 1), date(2026, 3, 31)),
+                contract_type=Permanent(),
             ),
             employer=EMPLOYER,
             default_facts=PeriodFacts(family_composition=FamilyComposition()),
@@ -267,6 +271,7 @@ def _year_2026(facts: PeriodFacts) -> CompetenceYearResult:
                 level_code="4",
                 seniority=new_hire(),
                 employment_period=EmploymentPeriod(date(2020, 1, 1)),
+                contract_type=Permanent(),
             ),
             employer=EMPLOYER,
             default_facts=facts,

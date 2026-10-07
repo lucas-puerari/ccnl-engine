@@ -33,13 +33,16 @@ from ccnl_engine import (
     TaxYearPlan,
     TaxYearResult,
 )
+from ccnl_engine.inputs import Permanent
 from tests.fixtures.next_year_repository import NextYearRepository
 
 if TYPE_CHECKING:
     from ccnl_engine.inputs import PaymentId
 
 _ENGINE = PayrollEngine(repository=NextYearRepository())
-_COMMERCIO_L4 = Employment(ccnl_slug="commercio-confcommercio.json", level_code="4")
+_COMMERCIO_L4 = Employment(
+    ccnl_slug="commercio-confcommercio.json", level_code="4", contract_type=Permanent()
+)
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
 
 

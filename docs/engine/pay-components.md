@@ -27,7 +27,7 @@ from ccnl_engine import (
     PayrollRun,
     PeriodInput,
 )
-from ccnl_engine.inputs import WeeklyHours
+from ccnl_engine.inputs import Permanent, WeeklyHours
 
 engine = PayrollEngine.bundled()
 
@@ -36,6 +36,7 @@ def gross(weekly_hours: WeeklyHours | None = None) -> str:
     employment = Employment(
         ccnl_slug="metalmeccanico-federmeccanica.json",
         level_code="C3",
+        contract_type=Permanent(),
         weekly_hours=weekly_hours,
         full_time_weekly_hours=WeeklyHours(40),
     )
@@ -203,7 +204,7 @@ from ccnl_engine import (
     PayrollRun,
     PeriodInput,
 )
-from ccnl_engine.inputs import EmploymentPeriod, TfrFundBalance
+from ccnl_engine.inputs import EmploymentPeriod, Permanent, TfrFundBalance
 
 engine = PayrollEngine.bundled()
 result = engine.calculate_period(
@@ -213,6 +214,7 @@ result = engine.calculate_period(
         employment=Employment(
             ccnl_slug="metalmeccanico-federmeccanica.json",
             level_code="C3",
+            contract_type=Permanent(),
             employment_period=EmploymentPeriod(date(2020, 1, 1)),
             tfr_fund=TfrFundBalance(2025, Decimal("15000.00")),
             tfr_treasury_fund=True,
@@ -247,6 +249,7 @@ from ccnl_engine import (
     PeriodInput,
 )
 from ccnl_engine.events import BilateralFundEvent
+from ccnl_engine.inputs import Permanent
 
 engine = PayrollEngine.bundled()
 
@@ -255,7 +258,9 @@ result = engine.calculate_period(
         run=PayrollRun.regular(year=2026, month=3),
         payment_date=date(2026, 3, 27),
         employment=Employment(
-            ccnl_slug="metalmeccanico-federmeccanica.json", level_code="C3"
+            ccnl_slug="metalmeccanico-federmeccanica.json",
+            level_code="C3",
+            contract_type=Permanent(),
         ),
         employer=EmployerProfile(headcount=Headcount(50)),
         facts=PeriodFacts(

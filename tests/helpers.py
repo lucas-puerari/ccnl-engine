@@ -13,7 +13,7 @@ from typing import TYPE_CHECKING, Any
 from ccnl_engine.contract.domain.identity import CCNL
 from ccnl_engine.payroll.domain.competence_year_plan import CompetenceYearPlan
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
-from ccnl_engine.payroll.domain.employment import Employment
+from ccnl_engine.payroll.domain.employment import Employment, Permanent
 from ccnl_engine.payroll.domain.inputs import PeriodFacts
 from ccnl_engine.payroll.domain.tax_year import DEFAULT_PAYMENT_DAY
 from ccnl_engine.tax.domain.ruleset import YearRules
@@ -213,6 +213,7 @@ def make_year_rules(
         "year": 2026,
         "irpef_brackets": brackets or IRPEF_BRACKETS_2026,
         "fixed_term_additional_rate": "0.014",
+        "fixed_term_renewal_increment": "0.005",
         "inps": inps or INPS_RATES_TERZIARIO,
         "apprentice": apprentice or APPRENTICE_RATES_LARGE_FIRM,
         "tfr": {"accrual_divisor": "13.5"},
@@ -238,6 +239,7 @@ def make_domestic_year_rules() -> YearRules:
         "year": 2026,
         "irpef_brackets": IRPEF_BRACKETS_2026,
         "fixed_term_additional_rate": "0.014",
+        "fixed_term_renewal_increment": "0.005",
         "domestic_contributions": DOMESTIC_CONTRIBUTIONS,
         "tfr": {"accrual_divisor": "13.5"},
     })
@@ -345,7 +347,8 @@ def year_plan(
 
     Every run takes ``facts``; a run keyed in ``events`` takes ``facts`` with
     those events.  ``employment`` holds the :class:`Employment` fields other
-    than the CCNL and the level; the seniority defaults to
+    than the CCNL and the level; the contract defaults to
+    :class:`~ccnl_engine.inputs.Permanent`, the seniority to
     :func:`~tests.fixtures.seniority.new_hire` of ``year``, the TFR fund to
     :func:`~tests.fixtures.tfr.no_tfr_fund` of ``year`` and the TFR stays in
     the company (``tfr_treasury_fund=False``).  ``prior_year`` defaults to
@@ -354,6 +357,7 @@ def year_plan(
     Returns:
         The year input.
     """
+    employment.setdefault("contract_type", Permanent())
     employment.setdefault("seniority", new_hire(year))
     employment.setdefault("tfr_fund", no_tfr_fund(year))
     employment.setdefault("tfr_treasury_fund", False)

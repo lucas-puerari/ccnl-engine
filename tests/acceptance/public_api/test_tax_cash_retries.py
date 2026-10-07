@@ -29,6 +29,7 @@ from ccnl_engine import (
     PeriodInput,
     TaxYearPlan,
 )
+from ccnl_engine.inputs import Permanent
 from tests.fixtures.next_year_repository import NextYearRepository
 from tests.fixtures.payment_sequence import Payment, PaymentSequence
 
@@ -36,7 +37,9 @@ if TYPE_CHECKING:
     from ccnl_engine import CompetenceYearResult
     from ccnl_engine.inputs import PeriodState
 
-_COMMERCIO_L4 = Employment(ccnl_slug="commercio-confcommercio.json", level_code="4")
+_COMMERCIO_L4 = Employment(
+    ccnl_slug="commercio-confcommercio.json", level_code="4", contract_type=Permanent()
+)
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
 _ENGINE = PayrollEngine(repository=NextYearRepository())
 _LATE_DECEMBER = Payment(PayrollRun.regular(2026, 12), date(2027, 1, 13))

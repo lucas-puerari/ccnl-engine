@@ -32,7 +32,7 @@ from ccnl_engine import (
 from ccnl_engine.contract.domain.validity import SeriesGapError
 from ccnl_engine.contract.service.discovery import list_contracts
 from ccnl_engine.contract.service.loaders import load_ccnl
-from ccnl_engine.inputs import SeniorityFact, SenioritySource
+from ccnl_engine.inputs import Permanent, SeniorityFact, SenioritySource
 
 if TYPE_CHECKING:
     from collections.abc import Callable
@@ -98,7 +98,10 @@ def _period(slug: str, level: str, month: int, seniority: SeniorityFact | None) 
             run=PayrollRun.regular(2026, month),
             payment_date=date(2026, month, 27),
             employment=Employment(
-                ccnl_slug=slug, level_code=level, seniority=seniority
+                ccnl_slug=slug,
+                level_code=level,
+                seniority=seniority,
+                contract_type=Permanent(),
             ),
             employer=_EMPLOYER,
             facts=PeriodFacts(),
@@ -129,6 +132,7 @@ def test_the_year_2026_is_computed_or_typed(ccnl: CCNL) -> None:
         ccnl_slug=f"{ccnl.meta.ccnl_id}.json",
         level_code=level,
         seniority=SeniorityFact(0, _YEAR_START, SenioritySource.PAYSLIP),
+        contract_type=Permanent(),
     )
     request = CompetenceYearPlan(year=2026, employment=employment, employer=_EMPLOYER)
 

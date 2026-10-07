@@ -22,6 +22,7 @@ from ccnl_engine.inputs import (
     SurtaxComponent,
     SurtaxObligation,
 )
+from ccnl_engine.inputs import Permanent
 
 engine = PayrollEngine.bundled()
 
@@ -56,6 +57,7 @@ request = PeriodInput(
         ccnl_slug="metalmeccanico-federmeccanica.json",
         level_code="C3",
         seniority=SeniorityFact(36, date(2026, 1, 1), SenioritySource.PAYSLIP),
+        contract_type=Permanent(),
     ),
     employer=EmployerProfile(headcount=Headcount(100)),
     facts=PeriodFacts(

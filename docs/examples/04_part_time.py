@@ -32,10 +32,13 @@ from ccnl_engine.inputs import (
     DependentRelationship,
     FamilyComposition,
 )
+from ccnl_engine.inputs import Permanent
 
 engine = PayrollEngine.bundled()
 
-employment = Employment(ccnl_slug="commercio-confcommercio.json", level_code="4")
+employment = Employment(
+    ccnl_slug="commercio-confcommercio.json", level_code="4", contract_type=Permanent()
+)
 employer = EmployerProfile(headcount=Headcount(50))
 run = PayrollRun.regular(year=2026, month=1)
 payment = date(2026, 1, 28)

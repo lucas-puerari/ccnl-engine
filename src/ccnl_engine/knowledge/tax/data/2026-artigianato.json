@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "16ed657477d5325ed06be663ba2363192af3808355b8359e64224230250d5390",
+    "source_hash": "adedf2545fa5789a3f2c8f0c953df183684214ec71cf0a15f659eb8b651b5674",
     "source_type": "estimated"
   },
   "irpef_brackets": [
@@ -27,6 +27,7 @@
     }
   ],
   "fixed_term_additional_rate": "0.014",
+  "fixed_term_renewal_increment": "0.005",
   "tfr": {
     "accrual_divisor": "13.5",
     "additional_ivs": {
@@ -165,7 +166,7 @@
     "IRPEF brackets: statutory 2026 (L. 199/2025, Art. 1 c. 3). Art. 13 constants versioned in YearRules.work_deduction.",
     "INPS employer — SIMPLIFICATION: rate 26.93% from kitech.it (non-construction crafts sector 2026, source https://www.kitech.it/Contributi-previdenziali.aspx?p=1_1; specific INPS circular not retrieved). Component breakdown is part of the KNOWN GAP noted below: the operai-vs-impiegati difference (26.93% vs 24.71% = 2.22pp) does not reconcile with a malattia-only explanation (~0.83pp), suggesting the sector IVS rate may differ from the generic private-sector 23.81%. No CIGO/CIGS for the crafts sector (art. 3 D.Lgs. 148/2015). FSBA (0.45% employer + 0.15% employee) excluded: bilateral fund contribution, not INPS. No size tier.",
     "INPS employee — employee_tiers: 9.19% (IVS + NASpI) flat. No additional CIGS for employees (crafts sector has no CIGS).",
-    "fixed_term_additional_rate: NASpI additional rate 1.4% (employer-only) per Art. 2 co. 28 L. 92/2012.",
+    "fixed_term_additional_rate, fixed_term_renewal_increment: NASpI surcharge of fixed-term contracts, L. 92/2012 art. 2 c. 28-29; see fixed_term_additional_rate_provenance.",
     "KNOWN GAP: rate_by_category impiegato/quadro = 24.71% confirmed from kitech.it (non-construction crafts sector 2026, employer-only share of 33.90% total; source https://www.kitech.it/Contributi-previdenziali.aspx?p=1_1). The component breakdown of 24.71% is unknown: it does not reconcile with IVS (23.81%) + NASpI (1.61%) = 25.42%, suggesting either the artigianato IVS employer rate for impiegati is lower than the generic private-sector 23.81% (e.g. 23.10% IVS + 1.61% NASpI = 24.71%), or CUAF and/or NASpI differ in this sector. The operai-to-impiegati gap is 2.22pp (26.93% vs 24.71%), not the ~0.83pp malattia-only difference expected if IVS were uniform. IMPORTANT: the tier-level ivs_rate (23.81%) and the IVS ceiling split for impiegati are therefore also approximate until the component breakdown is confirmed from an authoritative INPS circular.",
     "Apprentice contributions (L. 296/2006 art. 1 c. 773; L. 92/2012 art. 2 c. 36-37): employer 10% + NASpI 1.31% + 0.30% = 11.61%; employee 5.84%. Firms with at most 9 employees pay 1.5% (+1.61% NASpI) in months 0-11 and 3% (+1.61%) in months 12-23, then 11.61%. SIMPLIFICATION: hiring incentives (sgravi) and Cassa Edile apprentice schemes are not modelled.",
     "IVS ceiling: massimale annuo della base contributiva 2026 = EUR 122,295.00 (INPS Circ. 6/2026, 30 Jan 2026; L. 335/1995 art. 2 c. 18). Applies to workers without contributions before 1 Jan 1996 and to those who opted for the contributory system (art. 1 c. 23); the engine derives it from the contribution history.",
@@ -221,12 +222,15 @@
     "location": {
       "source_document": {
         "document_id": "l-92-2012",
-        "title": "L. 92/2012",
-        "kind": "legge"
+        "title": "L. 28 giugno 2012 n. 92",
+        "kind": "legge",
+        "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2012-06-28;92~art2!vig=2026-10-07"
       },
-      "section": "art. 2 c. 28"
+      "section": "art. 2 c. 28",
+      "quote": "ai rapporti di lavoro subordinato non a tempo indeterminato si applica un contributo addizionale, a carico del datore di lavoro, pari all'1,4 per cento della retribuzione imponibile ai fini previdenziali. Il contributo addizionale è aumentato di 0,5 punti percentuali in occasione di ciascun rinnovo del contratto a tempo determinato, anche in regime di somministrazione. Le disposizioni del precedente periodo non si applicano ai contratti di lavoro domestico, nonché nelle ipotesi di cui al comma 29."
     },
-    "note": "Assumed, not derived: its ruleset declares source_type 'estimated'; no citation (http(s) url and section or page)."
+    "transformation": "fixed_term_additional_rate: '1,4 per cento' = 0.014; fixed_term_renewal_increment: '0,5 punti percentuali' = 0.005, added once per renewal to the rate of the previous contract.",
+    "note": "INPS circ. 121/2019 par. 2.3 (https://servizi2.inps.it/CircolariZIP/Circolare%20numero%20121%20del%2006-09-2019.pdf, sha256 4523ce7c22a7f5d8c51cfe4de8968642d1279ab7fc7209fc9a0e31e3ddb49449): 'contratto originario: 1,4%; 1° rinnovo: 1.9% (1,4% + 0,5%); 2° rinnovo: 2.4% (1,9% + 0,5%); 3° rinnovo: 2,9% (2,4% + 0,5%)', and 'si considera primo rinnovo contrattuale quello sottoscritto a far tempo dal 14 luglio 2018'; par. 2.2: the increase 'non trova applicazione in caso di proroga'. Normattiva text of L. 92/2012 art. 2 read on 2026-10-07 (in force on that date, last amending act published 2026-03-23). Not checked by a named reviewer. Assumed, not derived: its ruleset declares source_type 'estimated'."
   },
   "complementary_pension": {
     "deduction_cap": "5300.00",

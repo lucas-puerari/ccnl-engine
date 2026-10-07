@@ -33,6 +33,7 @@ from ccnl_engine.inputs import (
     EmployerActivity,
     EmploymentPeriod,
     EmploymentSector,
+    Permanent,
     PriorYearTaxFacts,
     SubstituteTaxRegime,
     WeeklyHours,
@@ -45,7 +46,7 @@ _YEAR = 2026
 _ZERO = Decimal(0)
 _METAL = "metalmeccanico-federmeccanica.json"
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
-_EMPLOYMENT = Employment(ccnl_slug=_METAL, level_code="C3")
+_EMPLOYMENT = Employment(ccnl_slug=_METAL, level_code="C3", contract_type=Permanent())
 _OVERTIME = OvertimeEvent(
     event_date=date(_YEAR, 6, 10), hours=Decimal(2), hourly_rate=Decimal(15)
 )
@@ -76,8 +77,10 @@ class TestEmployment:
     """The employment is validated and normalized at construction."""
 
     def test_defaults(self) -> None:
-        """Untracked facts default to ``None`` (not known) and permanent."""
-        employment = Employment(ccnl_slug=_METAL, level_code="C3")
+        """Untracked facts default to ``None`` (not known); permanent is stated."""
+        employment = Employment(
+            ccnl_slug=_METAL, level_code="C3", contract_type=Permanent()
+        )
         assert employment.weekly_hours is None
         assert employment.full_time_weekly_hours is None
         assert employment.employment_period is None
@@ -94,6 +97,7 @@ class TestEmployment:
             ccnl_slug=_METAL,
             level_code="C3",
             category="impiegato",  # type: ignore[arg-type]
+            contract_type=Permanent(),
         )
         assert employment.category is WorkerCategory.IMPIEGATO
 
@@ -104,6 +108,7 @@ class TestEmployment:
                 ccnl_slug=_METAL,
                 level_code="C3",
                 category="manager",  # type: ignore[arg-type]
+                contract_type=Permanent(),
             )
 
     def test_sector_string_value_is_normalized(self) -> None:
@@ -112,6 +117,7 @@ class TestEmployment:
             ccnl_slug=_METAL,
             level_code="C3",
             sector="private",  # type: ignore[arg-type]
+            contract_type=Permanent(),
         )
         assert employment.sector is EmploymentSector.PRIVATE
 
@@ -122,6 +128,7 @@ class TestEmployment:
                 ccnl_slug=_METAL,
                 level_code="C3",
                 sector="mixed",  # type: ignore[arg-type]
+                contract_type=Permanent(),
             )
 
     def test_hours_above_full_time_are_rejected(self) -> None:
@@ -132,6 +139,7 @@ class TestEmployment:
                 level_code="C3",
                 weekly_hours=WeeklyHours(41),
                 full_time_weekly_hours=WeeklyHours(40),
+                contract_type=Permanent(),
             )
 
 
@@ -253,6 +261,7 @@ class TestPeriodInput:
                     ccnl_slug="lavoro-domestico-convivente.json",
                     level_code="BS",
                     weekly_hours=WeeklyHours(30),
+                    contract_type=Permanent(),
                 ),
                 facts=PeriodFacts(contributable_hours=ContributableHours(Decimal(130))),
             )
@@ -266,6 +275,7 @@ class TestPeriodInput:
             ccnl_slug="commercio-confcommercio.json",
             level_code="Q",
             category=WorkerCategory.IMPIEGATO,
+            contract_type=Permanent(),
         )
         with pytest.raises(InvalidInputError, match="not admitted"):
             _ENGINE.calculate_period(_period(employment=employment))
@@ -277,7 +287,9 @@ class TestPeriodInput:
         24.71% for impiegati, applied to the same contribution base.
         """
         employment = Employment(
-            ccnl_slug="metalmeccanico-artigianato.json", level_code="3"
+            ccnl_slug="metalmeccanico-artigianato.json",
+            level_code="3",
+            contract_type=Permanent(),
         )
         default = _ENGINE.calculate_period(_period(employment=employment))
         impiegato = _ENGINE.calculate_period(

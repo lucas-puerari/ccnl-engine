@@ -77,6 +77,7 @@ from ccnl_engine import EmployerProfile, Employment, Headcount
 from ccnl_engine.inputs import (
     EmployerActivity,
     EmploymentSector,
+    Permanent,
     PriorYearTaxFacts,
     SubstituteTaxRegime,
 )
@@ -84,6 +85,7 @@ from ccnl_engine.inputs import (
 employment = Employment(
     ccnl_slug="commercio-confcommercio.json",
     level_code="4",
+    contract_type=Permanent(),
     sector=EmploymentSector.PRIVATE,
 )
 employer = EmployerProfile(headcount=Headcount(50), activity=EmployerActivity.OTHER)

@@ -12,6 +12,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.payroll.application.period._naspi import with_naspi
 from ccnl_engine.payroll.application.period._rule_lookup import contract_rules
 from ccnl_engine.payroll.domain.decisions import CalculationDecision, CalculationStatus
 from ccnl_engine.payroll.service._contributions_rates import resolve_rates
@@ -111,7 +112,9 @@ def inps_decisions(
         ``rates_applied`` for the ordinary rates of the contract,
         ``minimum_base_undetermined`` when the base may be below a minimum
         the bundle cannot fix, or ``domestic_hourly_rates`` for the flat
-        hourly contributions of a domestic CCNL.
+        hourly contributions of a domestic CCNL.  The employer decision
+        records the NASpI surcharge, and is incomplete while it is
+        undetermined.
     """
     year_rules = ctx.contract.year_rules
     rules = contract_rules(ctx)["inps_employee"]
@@ -121,9 +124,10 @@ def inps_decisions(
     sides = (breakdown.employee, breakdown.employer)
     if year_rules.inps is None:
         domestic: _Inputs = {"base": base}
-        return _pair(
+        employee, employer = _pair(
             ctx, "domestic_hourly_rates", rules[1], (domestic, domestic), sides
         )
+        return employee, with_naspi(ctx, employer)
     rates = resolve_rates(year_rules, ctx.request.contract_type, ctx.worker_category)
     ivs, minimum = amounts.ivs_ceiling, amounts.minimum_base
     below_minimum = minimum is not None and minimum.undetermined
@@ -134,7 +138,7 @@ def inps_decisions(
         "ivs_ceiling": _ivs_ceiling_state(ivs),
         **_minimum_inputs(actual, minimum),
     }
-    return _pair(
+    employee, employer = _pair(
         ctx,
         "minimum_base_undetermined" if below_minimum else "rates_applied",
         rules[0],
@@ -145,3 +149,4 @@ def inps_decisions(
         (None, None) if undetermined else sides,
         CalculationStatus.INCOMPLETE if undetermined else CalculationStatus.FINAL,
     )
+    return employee, with_naspi(ctx, employer)

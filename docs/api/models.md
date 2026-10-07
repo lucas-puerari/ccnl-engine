@@ -11,8 +11,13 @@ behind each model.
     options:
       members:
         - Permanent
-        - FixedTerm
         - Apprentice
+
+::: ccnl_engine.payroll.domain.fixed_term
+    options:
+      members:
+        - FixedTerm
+        - NaspiExclusion
 
 ## CCNL
 

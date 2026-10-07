@@ -23,6 +23,7 @@ from ccnl_engine import (
     PeriodResult,
 )
 from ccnl_engine.catalog import RulesetKind
+from ccnl_engine.inputs import Permanent
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
@@ -37,7 +38,9 @@ def _june(engine: PayrollEngine, slug: str, level: str) -> PeriodResult | None:
             PeriodInput(
                 run=PayrollRun.regular(2026, 6),
                 payment_date=date(2026, 6, 27),
-                employment=Employment(ccnl_slug=slug, level_code=level),
+                employment=Employment(
+                    ccnl_slug=slug, level_code=level, contract_type=Permanent()
+                ),
                 employer=EmployerProfile(headcount=Headcount(50)),
             )
         )

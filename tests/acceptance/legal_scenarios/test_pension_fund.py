@@ -49,6 +49,7 @@ from ccnl_engine.inputs import (
     OpeningBalances,
     PaymentId,
     PensionFundEnrolment,
+    Permanent,
 )
 from tests.acceptance.legal_scenarios._support import EMPLOYER, ENGINE, regular_period
 
@@ -73,7 +74,12 @@ _PENSION_ACCOUNTS = frozenset({
 def _tabacco(
     pension: PensionFundEnrolment | NoPensionFund | None = _ALIFOND,
 ) -> Employment:
-    return Employment(ccnl_slug=_TABACCO, level_code="4A", pension_fund=pension)
+    return Employment(
+        ccnl_slug=_TABACCO,
+        level_code="4A",
+        pension_fund=pension,
+        contract_type=Permanent(),
+    )
 
 
 def _year(employment: Employment) -> CompetenceYearResult:
@@ -172,7 +178,10 @@ class TestTfrToFund:
     def test_tfr_to_the_fund_is_net_of_the_additional_ivs(self) -> None:
         """Level 3A: 151.93 less 10.26 = 141.67 is paid to the fund."""
         employment = Employment(
-            ccnl_slug=_TABACCO, level_code="3A", pension_fund=_ALIFOND
+            ccnl_slug=_TABACCO,
+            level_code="3A",
+            pension_fund=_ALIFOND,
+            contract_type=Permanent(),
         )
         result = regular_period(employment=employment)
         assert _entry(result, "pension_fund_tfr") == Decimal("141.67")
@@ -192,9 +201,16 @@ class TestVetroFonchim:
 
     def test_employer_cost_rises_at_the_2026_rate(self) -> None:
         """13 x (35.47 + 3.55) = 507.26 a year."""
-        employment = Employment(ccnl_slug=_VETRO, level_code="C")
+        employment = Employment(
+            ccnl_slug=_VETRO, level_code="C", contract_type=Permanent()
+        )
         enrolled = _year(
-            Employment(ccnl_slug=_VETRO, level_code="C", pension_fund=_FONCHIM)
+            Employment(
+                ccnl_slug=_VETRO,
+                level_code="C",
+                pension_fund=_FONCHIM,
+                contract_type=Permanent(),
+            )
         )
         delta = enrolled.annual_employer_cost - _year(employment).annual_employer_cost
         assert delta == Decimal("507.26")
@@ -206,7 +222,10 @@ class TestVetroFonchim:
         """The bundle has no FONCHIM employee minimum: the decision says so."""
         result = regular_period(
             employment=Employment(
-                ccnl_slug=_VETRO, level_code="C", pension_fund=_FONCHIM
+                ccnl_slug=_VETRO,
+                level_code="C",
+                pension_fund=_FONCHIM,
+                contract_type=Permanent(),
             )
         )
         assert _pension_decision(result).inputs["employee_min_rate"] == (
@@ -310,6 +329,7 @@ class TestNotEnrolled:
             pension_fund=PensionFundEnrolment(
                 "FONCHIM", Decimal("0.01"), tfr_to_fund=False
             ),
+            contract_type=Permanent(),
         )
         with pytest.raises(InvalidInputError, match="not a fund of CCNL"):
             regular_period(employment=employment)

@@ -6,6 +6,7 @@ from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from ccnl_engine.contract.domain.category import WorkerCategory
 from ccnl_engine.contract.domain.identity import TaxSector
 from ccnl_engine.provenance.domain.chain import RuleProvenance
 from ccnl_engine.provenance.domain.extraction import ExtractionTrace
@@ -41,6 +42,12 @@ class YearRulesRaw(BaseModel):
     brackets (a list) and the fixed-term addizionale (a scalar) cannot hold
     a field, so their provenance sits in the sibling
     ``irpef_brackets_provenance`` and ``fixed_term_additional_rate_provenance``.
+
+    The NASpI surcharge of fixed-term contracts (L. 92/2012 art. 2 c. 28) is
+    three scalars under one record: ``fixed_term_additional_rate``, the
+    ``fixed_term_renewal_increment`` added at each renewal, and the
+    ``fixed_term_exempt_categories`` of the sector the article does not
+    apply to (c. 3: operai agricoli).
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -51,6 +58,8 @@ class YearRulesRaw(BaseModel):
     irpef_brackets: list[IrpefBracket]
     irpef_brackets_provenance: RuleProvenance | None = None
     fixed_term_additional_rate: PercentageRate
+    fixed_term_renewal_increment: PercentageRate
+    fixed_term_exempt_categories: frozenset[WorkerCategory] = frozenset()
     fixed_term_additional_rate_provenance: RuleProvenance | None = None
     inps: InpsRawRates | None = None
     apprentice: ApprenticeRawRates | None = None
@@ -116,6 +125,8 @@ class YearRules(BaseModel):
     irpef_brackets: list[IrpefBracket]
     irpef_brackets_provenance: RuleProvenance | None = None
     fixed_term_additional_rate: PercentageRate
+    fixed_term_renewal_increment: PercentageRate
+    fixed_term_exempt_categories: frozenset[WorkerCategory] = frozenset()
     fixed_term_additional_rate_provenance: RuleProvenance | None = None
     inps: InpsRates | None = None
     apprentice: ApprenticeRates | None = None

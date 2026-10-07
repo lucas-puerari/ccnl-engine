@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "4ef89031408aa0636e9e2c10f2222a3e046319accbf5a94048f338717fdd4254",
+    "source_hash": "376612aea09e51bff6bdb965208e9961bbd510be5536c1a211c26e987edd86c5",
     "source_type": "estimated"
   },
   "irpef_brackets": [
@@ -27,6 +27,7 @@
     }
   ],
   "fixed_term_additional_rate": "0.014",
+  "fixed_term_renewal_increment": "0.000",
   "tfr": {
     "accrual_divisor": "13.5",
     "provenance": {
@@ -201,12 +202,15 @@
     "location": {
       "source_document": {
         "document_id": "l-92-2012",
-        "title": "L. 92/2012",
-        "kind": "legge"
+        "title": "L. 28 giugno 2012 n. 92",
+        "kind": "legge",
+        "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2012-06-28;92~art2!vig=2026-10-07"
       },
-      "section": "art. 2 c. 28"
+      "section": "art. 2 c. 28",
+      "quote": "ai rapporti di lavoro subordinato non a tempo indeterminato si applica un contributo addizionale, a carico del datore di lavoro, pari all'1,4 per cento della retribuzione imponibile ai fini previdenziali. Il contributo addizionale è aumentato di 0,5 punti percentuali in occasione di ciascun rinnovo del contratto a tempo determinato, anche in regime di somministrazione. Le disposizioni del precedente periodo non si applicano ai contratti di lavoro domestico, nonché nelle ipotesi di cui al comma 29."
     },
-    "note": "Assumed, not derived: its ruleset declares source_type 'estimated'; no citation (http(s) url and section or page)."
+    "transformation": "fixed_term_additional_rate: '1,4 per cento' = 0.014, already included in the fixed-term hourly rates of domestic_contributions; fixed_term_renewal_increment: 0, the increase 'non si applica ai contratti di lavoro domestico'.",
+    "note": "Normattiva text of L. 92/2012 art. 2 read on 2026-10-07 (in force on that date, last amending act published 2026-03-23). Not checked by a named reviewer. Assumed, not derived: its ruleset declares source_type 'estimated'."
   },
   "complementary_pension": {
     "deduction_cap": "5300.00",

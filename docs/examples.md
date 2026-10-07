@@ -38,7 +38,7 @@ computation and the pay items.
 
 ### Fixed-term (tempo determinato)
 
-`FixedTerm()` adds the 1.40% NASpI *addizionale* to the employer's INPS contribution; gross and net are unchanged.
+`FixedTerm(renewals=..., naspi_exclusion=...)` adds the NASpI surcharge to the employer's INPS contribution: 1.4%, plus 0.5% per renewal, unless an exclusion of L. 92/2012 art. 2 c. 29 applies; gross and net are unchanged. Left unknown, either fact blocks the run.
 
 ```python
 --8<-- "docs/examples/03_fixed_term.py"

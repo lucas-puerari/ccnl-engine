@@ -6,11 +6,12 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.domain.decisions import CalculationIssue, CalculationStatus
-from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm
+from ccnl_engine.payroll.domain.employment import Apprentice
 from ccnl_engine.payroll.service._contributions_apprentice import (
     apprentice_employer_ivs_rate,
     apprentice_employer_rate,
 )
+from ccnl_engine.payroll.service.naspi_surcharge import naspi_surcharge
 
 if TYPE_CHECKING:
     from decimal import Decimal
@@ -86,13 +87,11 @@ def resolve_rates(
     """Resolve INPS rates for an employment type and worker category.
 
     Apprentices use the statutory reduced rates (L. 296/2006 art. 1 c. 773,
-    headcount already resolved in ``rules.apprentice``).  The NASpI
-    *addizionale* (Art. 2 c. 28 L. 92/2012) is **not** applied to apprentices:
-    apprendistato is explicitly exempt under Art. 2 c. 29 of the same law, so
-    the ``Apprentice`` branch returns before the ``FixedTerm`` check — this is
-    intentional, not an oversight.  Fixed-term non-apprentice contracts add the
-    addizionale to the employer rate only; the IVS rate is unchanged because
-    the addizionale is a non-IVS component (NASpI fund).
+    headcount already resolved in ``rules.apprentice``), without the NASpI
+    surcharge (L. 92/2012 art. 2 c. 29 lett. c).  Other contracts add the
+    surcharge of :func:`~ccnl_engine.payroll.service.naspi_surcharge\
+.naspi_surcharge` to the employer rate only; the IVS rate is unchanged
+    because the surcharge is a non-IVS component (NASpI fund).
 
     Returns:
         ContributionRates with employee and employer rates for the scenario.
@@ -118,14 +117,10 @@ def resolve_rates(
                 rules.apprentice, employment.months_elapsed
             ),
         )
-    employer_rate = inps_employer_rate(rules.inps, category)
-    # NASpI addizionale is not IVS; keep ivs_rate unchanged.
-    employer_ivs_rate = rules.inps.employer_ivs_rate
-    if isinstance(employment, FixedTerm):
-        employer_rate += rules.fixed_term_additional_rate
+    surcharge = naspi_surcharge(rules, employment, category)
     return ContributionRates(
         employee_rate=rules.inps.employee_rate,
         employee_ivs_rate=rules.inps.employee_ivs_rate,
-        employer_rate=employer_rate,
-        employer_ivs_rate=employer_ivs_rate,
+        employer_rate=inps_employer_rate(rules.inps, category) + surcharge.rate,
+        employer_ivs_rate=rules.inps.employer_ivs_rate,
     )

@@ -35,7 +35,12 @@ from ccnl_engine import (
     PeriodResult,
 )
 from ccnl_engine.events import FringeEvent
-from ccnl_engine.inputs import DependentRelationship, FamilyComposition, PeriodState
+from ccnl_engine.inputs import (
+    DependentRelationship,
+    FamilyComposition,
+    PeriodState,
+    Permanent,
+)
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.period._capability_traces import build_traces
 from ccnl_engine.payroll.domain.decisions import CalculationDecision, CalculationStatus
@@ -83,7 +88,9 @@ def _run(
             run=PayrollRun.regular(year=_YEAR, month=month),
             payment_date=date(_YEAR, month, 27),
             employment=Employment(
-                ccnl_slug="metalmeccanico-federmeccanica.json", level_code="C3"
+                ccnl_slug="metalmeccanico-federmeccanica.json",
+                level_code="C3",
+                contract_type=Permanent(),
             ),
             employer=EmployerProfile(headcount=Headcount(100)),
             facts=PeriodFacts(events=events, family_composition=family),

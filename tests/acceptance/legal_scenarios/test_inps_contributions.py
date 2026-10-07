@@ -3,8 +3,7 @@
 The expected values come from
 :mod:`tests.fixtures.normative_oracles.contributions_2026`, written from the
 sources; every other fact of the runs is explicit
-(:mod:`tests.fixtures.explicit_facts`).  The NASpI exclusion does not
-hold today: it is a strict xfail on the assertion it breaks.
+(:mod:`tests.fixtures.explicit_facts`).
 """
 
 from __future__ import annotations
@@ -20,7 +19,7 @@ from ccnl_engine.events import BonusEvent
 from ccnl_engine.inputs import (
     EmploymentPeriod,
     FixedTerm,
-    Permanent,
+    NaspiExclusion,
     WeeklyHours,
     WorkerCategory,
 )
@@ -31,13 +30,14 @@ from tests.fixtures.normative_oracles.contributions_2026 import (
     FULL_TIME_MONTHLY_CONTRIBUTION_FLOOR,
     HOURLY_FLOOR_40_HOURS,
     additional_ivs,
+    naspi_surcharge_rate,
 )
 from tests.fixtures.normative_oracles.payslips.metalmeccanico_c3_2026 import (
     C3_MINIMUM_FROM_JUNE_2026,
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine import PeriodResult
+    from ccnl_engine import Employment, PeriodResult
 
 pytestmark = pytest.mark.legal_scenario
 
@@ -200,30 +200,120 @@ def test_operaio_agricolo_is_contributed_on_the_pay() -> None:
     assert _inps_base(result) == result.period_gross
 
 
-@pytest.mark.xfail(
-    strict=True,
-    raises=AssertionError,
-    reason=(
-        "a fixed-term operaio agricolo is charged the 1.4% surcharge of "
-        "L. 92/2012 art. 2 c. 28; c. 3 excludes operai agricoli a tempo "
-        "determinato o indeterminato from the whole article"
-    ),
-)
-def test_agricultural_fixed_term_pays_no_naspi_surcharge() -> None:
-    """Operai agricoli florovivaisti Area 3, June 2026, fixed term and permanent.
+#: Facts the NASpI surcharge of a fixed term may miss.
+_SURCHARGE_FACTS = frozenset({"naspi_exclusion", "renewals", "category"})
 
-    In the bundle the contract type reaches the employer INPS rate only
-    through the surcharge of c. 28, so without it the two runs post the
-    same employer contributions; today the fixed term adds 1.4% of the base
-    (rate 23.06% against 21.66%).
+
+def _employer(employment: Employment) -> tuple[Decimal, PeriodResult]:
+    """Return the employer contributions of the January 2026 run.
+
+    January is the first run of the employment, so the zero state opening
+    it is a fact.
+
+    Returns:
+        The employer contributions and the result.
+    """
+    result = ENGINE.calculate_period(regular_run(1, employment=employment))
+    return _account(result, "employer_contributions"), result
+
+
+def _missing_facts(result: PeriodResult) -> set[str]:
+    return {
+        b.detail
+        for b in result.blockers
+        if b.code is BlockerCode.MISSING_FACT and b.detail in _SURCHARGE_FACTS
+    }
+
+
+def test_each_renewal_raises_the_naspi_surcharge_by_half_a_point() -> None:
+    """Concia D2, January 2026, a fixed term renewed twice against a permanent.
+
+    L. 92/2012 art. 2 c. 28 and circ. INPS 121/2019 par. 2.3: 1.4% + 2 x
+    0.5% = 2.4% of the INPS base, on top of the employer contributions of a
+    permanent contract; the two runs differ by that alone, within the cent
+    each rounded component may move.
+    """
+    renewed = FixedTerm(renewals=2, naspi_exclusion=NaspiExclusion.NONE)
+    permanent, _ = _employer(CONCIA_D2)
+    fixed_term, result = _employer(replace(CONCIA_D2, contract_type=renewed))
+    surcharge = _inps_base(result) * naspi_surcharge_rate(2)
+
+    assert abs(fixed_term - permanent - surcharge) <= _CENT
+    assert not _missing_facts(result)
+
+
+def test_replacement_worker_pays_no_naspi_surcharge() -> None:
+    """Concia D2, January 2026, hired on a fixed term to replace an absent worker.
+
+    C. 29 lett. a excludes the surcharge, and with it the renewal increase
+    (c. 28, third period), so the unknown renewals block nothing.
+    """
+    replacement = FixedTerm(naspi_exclusion=NaspiExclusion.REPLACEMENT)
+    permanent, _ = _employer(CONCIA_D2)
+    fixed_term, result = _employer(replace(CONCIA_D2, contract_type=replacement))
+
+    assert fixed_term == permanent
+    assert not _missing_facts(result)
+
+
+@pytest.mark.parametrize(
+    ("contract", "fact"),
+    [
+        pytest.param(FixedTerm(renewals=0), "naspi_exclusion", id="exclusion"),
+        pytest.param(
+            FixedTerm(naspi_exclusion=NaspiExclusion.NONE), "renewals", id="renewals"
+        ),
+    ],
+)
+def test_unknown_surcharge_fact_blocks_the_run(contract: FixedTerm, fact: str) -> None:
+    """Concia D2, January 2026, a fixed term with one surcharge fact unstated.
+
+    Whether c. 29 excludes the contract, and how many renewals raise the
+    rate, change the employer contributions: left unknown, each is a
+    missing fact and the employer INPS amount is not determined.
+    """
+    _, result = _employer(replace(CONCIA_D2, contract_type=contract))
+    (employer,) = (d for d in result.decisions if d.capability == "inps_employer")
+
+    assert _missing_facts(result) == {fact}
+    assert employer.amount is None
+    assert not result.is_payable
+
+
+def test_agricultural_fixed_term_pays_no_naspi_surcharge() -> None:
+    """Operai agricoli florovivaisti Area 3, operaio, January 2026.
+
+    C. 3 excludes the operai agricoli a tempo determinato o indeterminato
+    from the whole article, so from the surcharge of c. 28 and its renewal
+    increase: a fixed term renewed once posts the employer contributions of
+    a permanent contract.
     """
     agricultural = replace(
-        CONCIA_D2, ccnl_slug="operai-agricoli-florovivaisti.json", level_code="Area3"
+        CONCIA_D2,
+        ccnl_slug="operai-agricoli-florovivaisti.json",
+        level_code="Area3",
+        category=WorkerCategory.OPERAIO,
     )
+    renewed = FixedTerm(renewals=1, naspi_exclusion=NaspiExclusion.NONE)
+    permanent, _ = _employer(agricultural)
+    fixed_term, result = _employer(replace(agricultural, contract_type=renewed))
 
-    def employer(contract: Permanent | FixedTerm) -> Decimal:
-        employment = replace(agricultural, contract_type=contract)
-        result = ENGINE.calculate_period(regular_run(employment=employment))
-        return _account(result, "employer_contributions")
+    assert fixed_term == permanent
+    assert not _missing_facts(result)
 
-    assert employer(FixedTerm()) == employer(Permanent())
+
+def test_agricultural_fixed_term_without_category_blocks_the_run() -> None:
+    """Operai agricoli florovivaisti Area 3, January 2026, no category stated.
+
+    The level fixes no category and c. 3 exempts the operai only, so the
+    surcharge depends on the category: a missing fact.
+    """
+    agricultural = replace(
+        CONCIA_D2,
+        ccnl_slug="operai-agricoli-florovivaisti.json",
+        level_code="Area3",
+        contract_type=FixedTerm(renewals=0, naspi_exclusion=NaspiExclusion.NONE),
+    )
+    _, result = _employer(agricultural)
+
+    assert "category" in _missing_facts(result)

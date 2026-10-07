@@ -16,6 +16,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine import Employment
 from ccnl_engine.events import SicknessEpisode
+from ccnl_engine.inputs import Permanent
 
 if TYPE_CHECKING:
     from ccnl_engine.inputs import WorkerCategory
@@ -70,4 +71,5 @@ def metalmeccanico_c3(category: WorkerCategory | None) -> Employment:
         ccnl_slug="metalmeccanico-federmeccanica.json",
         level_code="C3",
         category=category,
+        contract_type=Permanent(),
     )

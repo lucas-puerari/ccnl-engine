@@ -19,6 +19,7 @@ from ccnl_engine import (
 )
 from ccnl_engine.inputs import (
     EmploymentPeriod,
+    Permanent,
     SeniorityFact,
     SenioritySource,
     WeeklyHours,
@@ -44,7 +45,9 @@ def _run(engine: PayrollEngine, **fields: Any) -> Decimal:  # noqa: ANN401
         PeriodInput(
             run=PayrollRun.regular(2026, 1),
             payment_date=date(2026, 1, 28),
-            employment=Employment(ccnl_slug=_CCNL, level_code="C3", **fields),
+            employment=Employment(
+                ccnl_slug=_CCNL, level_code="C3", contract_type=Permanent(), **fields
+            ),
             employer=_EMPLOYER,
         )
     )
@@ -86,6 +89,7 @@ def test_employment_dates_select_the_year_runs(engine: PayrollEngine) -> None:
                 ccnl_slug=_CCNL,
                 level_code="C3",
                 employment_period=EmploymentPeriod(date(2026, 3, 1), date(2026, 5, 31)),
+                contract_type=Permanent(),
             ),
             employer=_EMPLOYER,
         )

@@ -11,7 +11,7 @@ from ccnl_engine import (
     PayrollRun,
     PeriodInput,
 )
-from ccnl_engine.inputs import NoPensionFund, PensionFundEnrolment
+from ccnl_engine.inputs import NoPensionFund, PensionFundEnrolment, Permanent
 
 engine = PayrollEngine.bundled()
 
@@ -26,6 +26,7 @@ def run(pension_fund: PensionFundEnrolment | NoPensionFund) -> None:
                 ccnl_slug="tabacco-apti.json",
                 level_code="4A",
                 pension_fund=pension_fund,
+                contract_type=Permanent(),
             ),
             employer=EmployerProfile(headcount=Headcount(50)),
         )

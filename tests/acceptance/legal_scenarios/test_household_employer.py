@@ -57,6 +57,7 @@ from ccnl_engine.inputs import (
     OpeningBalances,
     PaymentId,
     PeriodState,
+    Permanent,
     PriorYearTaxFacts,
     RecoveryObligation,
     RecoveryPlan,
@@ -167,6 +168,7 @@ def _employment(case: _Case) -> Employment:
         full_time_weekly_hours=(
             None if case.full_time is None else WeeklyHours(case.full_time)
         ),
+        contract_type=Permanent(),
     )
 
 

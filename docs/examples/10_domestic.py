@@ -13,6 +13,7 @@ from ccnl_engine import (
     PeriodInput,
 )
 from ccnl_engine.inputs import ContributableHours, WeeklyHours
+from ccnl_engine.inputs import Permanent
 
 engine = PayrollEngine.bundled()
 
@@ -27,6 +28,7 @@ result = engine.calculate_period(
             level_code="B",
             weekly_hours=WeeklyHours(25),
             full_time_weekly_hours=WeeklyHours(40),
+            contract_type=Permanent(),
         ),
         employer=EmployerProfile(headcount=Headcount(1)),
         facts=PeriodFacts(contributable_hours=ContributableHours(Decimal(108))),

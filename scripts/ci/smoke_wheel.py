@@ -20,6 +20,7 @@ from ccnl_engine import (
     PeriodInput,
 )
 from ccnl_engine.catalog import get_ccnl
+from ccnl_engine.inputs import Permanent
 
 
 def main() -> int:
@@ -34,7 +35,9 @@ def main() -> int:
         run=PayrollRun.regular(year=2026, month=1),
         payment_date=date(2026, 1, 28),
         employment=Employment(
-            ccnl_slug="agenti-immobiliari-fiaip.json", level_code="II"
+            ccnl_slug="agenti-immobiliari-fiaip.json",
+            level_code="II",
+            contract_type=Permanent(),
         ),
         employer=EmployerProfile(headcount=Headcount(50)),
     )

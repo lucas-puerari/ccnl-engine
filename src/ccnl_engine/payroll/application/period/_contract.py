@@ -34,6 +34,8 @@ _CONTRIBUTION_FIELDS = (
     "apprentice",
     "domestic_contributions",
     "fixed_term_additional_rate",
+    "fixed_term_renewal_increment",
+    "fixed_term_exempt_categories",
     "fixed_term_additional_rate_provenance",
     "inps_sources",
     "inps_extraction",

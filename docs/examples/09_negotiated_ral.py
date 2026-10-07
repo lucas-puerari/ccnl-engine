@@ -11,10 +11,15 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodInput,
 )
+from ccnl_engine.inputs import Permanent
 
 engine = PayrollEngine.bundled()
 
-employment = Employment(ccnl_slug="metalmeccanico-federmeccanica.json", level_code="C3")
+employment = Employment(
+    ccnl_slug="metalmeccanico-federmeccanica.json",
+    level_code="C3",
+    contract_type=Permanent(),
+)
 employer = EmployerProfile(headcount=Headcount(100))
 facts = PeriodFacts(regione="IT-45")
 

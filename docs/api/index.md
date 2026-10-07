@@ -109,6 +109,7 @@ from ccnl_engine.inputs import (
     # Contract type, hours and seniority
     Apprentice,
     FixedTerm,
+    NaspiExclusion,
     Permanent,
     WorkerCategory,
     EmploymentPeriod,
@@ -178,7 +179,7 @@ For the work events see [Work rules](../engine/work-rules.md).
 
 | Guide | Relevant API |
 |---|---|
-| [Employment types](../domain/employment-types.md) | `Permanent`, `FixedTerm`, `Apprentice` |
+| [Employment types](../domain/employment-types.md) | `Permanent`, `FixedTerm`, `NaspiExclusion`, `Apprentice` |
 | [Pay components](../engine/pay-components.md) | `Employment.seniority`, `Employment.weekly_hours`, `WorkerCategory`, `BilateralFundEvent` |
 | [Second level](../engine/second-level.md) | `CompetenceYearPlan`, `CalendarOverride` |
 | [Fiscal](../engine/fiscal.md) | `CalculationDecision`, `CalculationIssue`, `REGION_CODES` |

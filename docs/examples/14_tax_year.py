@@ -17,9 +17,12 @@ from ccnl_engine import (
     PayrollEngine,
     TaxYearPlan,
 )
+from ccnl_engine.inputs import Permanent
 
 engine = PayrollEngine.bundled()
-employment = Employment(ccnl_slug="commercio-confcommercio.json", level_code="4")
+employment = Employment(
+    ccnl_slug="commercio-confcommercio.json", level_code="4", contract_type=Permanent()
+)
 employer = EmployerProfile(headcount=Headcount(50))
 
 

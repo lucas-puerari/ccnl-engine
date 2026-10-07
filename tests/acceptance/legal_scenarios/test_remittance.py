@@ -18,7 +18,7 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine import CompetenceYearPlan, Employment
-from ccnl_engine.inputs import PriorYearTaxFacts
+from ccnl_engine.inputs import Permanent, PriorYearTaxFacts
 from ccnl_engine.results import RemittanceColumn
 from tests.acceptance.legal_scenarios._support import (
     EMPLOYER,
@@ -80,7 +80,9 @@ def test_year_offsets_the_whole_trattamento_under_1701() -> None:
     year = ENGINE.calculate_competence_year(
         CompetenceYearPlan(
             year=2026,
-            employment=Employment(ccnl_slug=_PORTIERI, level_code="B5"),
+            employment=Employment(
+                ccnl_slug=_PORTIERI, level_code="B5", contract_type=Permanent()
+            ),
             employer=EMPLOYER,
             prior_year=_PRIOR,
         )

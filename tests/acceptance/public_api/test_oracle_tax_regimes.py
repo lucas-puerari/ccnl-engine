@@ -26,6 +26,7 @@ from ccnl_engine.events import BonusEvent
 from ccnl_engine.inputs import (
     DependentRelationship,
     FamilyComposition,
+    Permanent,
     PriorYearTaxFacts,
 )
 from ccnl_engine.results import CalculationStatus
@@ -41,6 +42,7 @@ _C3 = Employment(
     level_code="C3",
     seniority=new_hire(),
     tfr_treasury_fund=False,
+    contract_type=Permanent(),
 )
 
 
@@ -168,6 +170,7 @@ def test_family_deductions_increase_net() -> None:
                 ccnl_slug="commercio-confcommercio.json",
                 level_code="4",
                 seniority=new_hire(),
+                contract_type=Permanent(),
             ),
             employer=EmployerProfile(headcount=Headcount(50)),
             facts=PeriodFacts(regione="IT-45"),
@@ -181,6 +184,7 @@ def test_family_deductions_increase_net() -> None:
                 ccnl_slug="commercio-confcommercio.json",
                 level_code="4",
                 seniority=new_hire(),
+                contract_type=Permanent(),
             ),
             employer=EmployerProfile(headcount=Headcount(50)),
             facts=PeriodFacts(
@@ -221,6 +225,7 @@ def test_spouse_deduction_flat_band() -> None:
                 ccnl_slug="metalmeccanico-federmeccanica.json",
                 level_code="C2",
                 seniority=new_hire(),
+                contract_type=Permanent(),
             ),
             employer=EmployerProfile(headcount=Headcount(50)),
             facts=PeriodFacts(

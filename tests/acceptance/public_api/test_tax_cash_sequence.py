@@ -15,9 +15,12 @@ from decimal import Decimal
 from functools import cache
 
 from ccnl_engine import Employment, PayrollRun
+from ccnl_engine.inputs import Permanent
 from tests.fixtures.payment_sequence import Payment, PaymentSequence
 
-_COMMERCIO_L4 = Employment(ccnl_slug="commercio-confcommercio.json", level_code="4")
+_COMMERCIO_L4 = Employment(
+    ccnl_slug="commercio-confcommercio.json", level_code="4", contract_type=Permanent()
+)
 
 
 def _late_december_then_2027() -> list[Payment]:

@@ -32,6 +32,7 @@ from ccnl_engine.inputs import (
     DependentRelationship,
     EmploymentPeriod,
     FamilyComposition,
+    Permanent,
 )
 from tests.acceptance.legal_scenarios._support import (
     COMMERCIO,
@@ -57,7 +58,9 @@ def _coop_sociali_d2_year() -> CompetenceYearResult:
     return ENGINE.calculate_competence_year(
         CompetenceYearPlan(
             year=2026,
-            employment=Employment(ccnl_slug=COOP_SOCIALI, level_code="D2"),
+            employment=Employment(
+                ccnl_slug=COOP_SOCIALI, level_code="D2", contract_type=Permanent()
+            ),
             employer=EMPLOYER,
         )
     )
@@ -146,6 +149,7 @@ def test_part_year_employment_withholds_the_tax_on_its_days(
                 ccnl_slug=COMMERCIO,
                 level_code=level_code,
                 employment_period=EmploymentPeriod(date(2026, 3, 15)),
+                contract_type=Permanent(),
             ),
             employer=EMPLOYER,
         )
@@ -182,6 +186,7 @@ def test_mid_year_hire_projects_the_tredicesima_it_will_accrue() -> None:
                 ccnl_slug="metalmeccanico-federmeccanica.json",
                 level_code="C3",
                 employment_period=EmploymentPeriod(date(2026, 7, 1)),
+                contract_type=Permanent(),
             ),
             employer=EMPLOYER,
         )

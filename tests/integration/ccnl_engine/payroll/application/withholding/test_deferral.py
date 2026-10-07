@@ -27,7 +27,7 @@ import pytest
 from ccnl_engine.api.facade import PayrollEngine
 from ccnl_engine.payroll.application.close_tax_year import close_tax_year
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
-from ccnl_engine.payroll.domain.employment import Employment
+from ccnl_engine.payroll.domain.employment import Employment, Permanent
 from ccnl_engine.payroll.domain.employment_facts import (
     ContributableHours,
     EmploymentPeriod,
@@ -151,7 +151,10 @@ def _adjustment(
             run=PayrollRun(run_kind=kind, month=month, year=_YEAR),
             payment_date=date(_YEAR, month, 28),
             employment=Employment(
-                ccnl_slug=_CCNL, level_code="C3", employment_period=period
+                ccnl_slug=_CCNL,
+                level_code="C3",
+                employment_period=period,
+                contract_type=Permanent(),
             ),
             employer=EMPLOYER_50,
             opening_state=opening,
@@ -256,6 +259,7 @@ class TestOtherRuns:
                         ccnl_slug="lavoro-domestico-convivente.json",
                         level_code="A",
                         weekly_hours=WeeklyHours(40),
+                        contract_type=Permanent(),
                     ),
                     employer=EmployerProfile(headcount=Headcount(1)),
                     facts=PeriodFacts(

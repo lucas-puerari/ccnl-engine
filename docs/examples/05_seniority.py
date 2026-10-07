@@ -11,6 +11,7 @@ from ccnl_engine import (
     PeriodInput,
 )
 from ccnl_engine.inputs import SeniorityFact, SenioritySource, WorkerCategory
+from ccnl_engine.inputs import Permanent
 
 engine = PayrollEngine.bundled()
 run = PayrollRun.regular(year=2026, month=1)
@@ -28,6 +29,7 @@ def seniority_reason(seniority: SeniorityFact | None) -> None:
                 ccnl_slug="metalmeccanico-federmeccanica.json",
                 level_code="C3",
                 seniority=seniority,
+                contract_type=Permanent(),
             ),
             employer=employer,
         )
@@ -60,6 +62,7 @@ for category in (WorkerCategory.OPERAIO, WorkerCategory.IMPIEGATO):
                     60, date(2026, 1, 1), SenioritySource.EMPLOYER_RECORDS
                 ),
                 category=category,
+                contract_type=Permanent(),
             ),
             employer=EmployerProfile(headcount=Headcount(50)),
         )

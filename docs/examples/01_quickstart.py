@@ -10,6 +10,7 @@ from ccnl_engine import (
     PayrollRun,
     PeriodInput,
 )
+from ccnl_engine.inputs import Permanent
 
 engine = PayrollEngine.bundled()
 
@@ -17,7 +18,11 @@ result = engine.calculate_period(
     PeriodInput(
         run=PayrollRun.regular(year=2026, month=1),
         payment_date=date(2026, 1, 28),
-        employment=Employment(ccnl_slug="commercio-confcommercio.json", level_code="4"),
+        employment=Employment(
+            ccnl_slug="commercio-confcommercio.json",
+            level_code="4",
+            contract_type=Permanent(),
+        ),
         employer=EmployerProfile(headcount=Headcount(50)),
     )
 )
