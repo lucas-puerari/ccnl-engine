@@ -65,10 +65,10 @@ ADE_4E_2025: Final = _doc(
 MEF_COMUNALE: Final = _doc(
     "mef-addizionale-comunale-elenco-2026",
     "MEF, Dipartimento delle Finanze: addizionale comunale all'IRPEF, elenco "
-    "generale 2026 (CSV, retrieved 2026-09-27)",
+    "generale 2026 (CSV, retrieved 2026-10-07)",
     "amministrazione",
     "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/"
-    "fiscalitalocale/addirpef_newDF/download/download.php?anno=2026",
+    "fiscalitalocale/nuova_addcomirpef/download/download.php?anno=2026",
 )
 MEF_REGIONALE: Final = _doc(
     "mef-addregirpef-2026",
@@ -288,8 +288,8 @@ FISCAL_RECORDS: Final[dict[str, dict[str, dict[str, Any]]]] = {
             MEF_COMUNALE,
             "elenco generale 2026",
             note=(
-                "Rows without a 2026 delibera carry their own assumed record and "
-                "the 2025 rates."
+                "Rows without an applicable 2026 delibera carry their own "
+                "assumed record and the rates of the year in rates_year."
             ),
         ),
     },

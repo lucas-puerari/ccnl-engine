@@ -4,15 +4,20 @@ The MEF Dipartimento delle Finanze publishes one CSV per tax year with the
 rates and exemption deliberated by every municipality, updated daily:
 
     https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/
-    fiscalitalocale/addirpef_newDF/download/download.php?anno=YYYY
+    fiscalitalocale/nuova_addcomirpef/download/download.php?anno=YYYY
 
-(index page ``.../addirpef_newDF/download/tabella.htm``).  Until 20 December
+(index page ``.../nuova_addcomirpef/download/tabella.htm``).  Until 20 December
 of the year the list shows ``0*`` for a municipality that has not yet
-published a delibera for the year.  Without a new delibera the rates of the
-year before stay in force (art. 1 c. 169 L. 296/2006), so such a row takes
-the row of the list of the year before, with ``rates_year`` set to that
-year and an ``assumed`` provenance: the engine applies them as provisional.
-A municipality that is ``0*`` in both lists has no surtax (rate 0).
+published a delibera for the year.  Without an applicable delibera the
+rates in force stay in force (art. 1 c. 169 L. 296/2006), so such a row
+takes the row of the list of the year before, with ``rates_year`` set to
+that year and an ``assumed`` provenance: the engine applies them as
+provisional.  A delibera the list marks inapplicable (adopted after the
+deadline) is skipped the same way, down the lists passed with
+``--previous``.  ``0*`` in a list of an earlier year, closed after 20
+December, means no surtax (rate 0).  A municipality missing from the list
+of the year before (created by a merger) and without a delibera of its own
+is left out and named in the notes: the engine reports its code as unknown.
 
 Each row becomes marginal brackets, an exemption threshold and, when the
 delibera exempts only a category of income (``FLAG_NUOVA`` 5 and 6, or an
@@ -21,15 +26,17 @@ exemption text of that kind), the published texts in
 brackets cannot be read stops the build: nothing is dropped silently.
 
 The script is deterministic for given CSV files; their sha256 digests and
-the retrieval date are written into the file.
+the retrieval date are written into the file.  The refresh procedure is in
+``docs/trust/data-operations.md``.
 
 Usage::
 
     curl -o 2026.csv '<download.php?anno=2026>'
     curl -o 2025.csv '<download.php?anno=2025>'
+    curl -o 2024.csv '<download.php?anno=2024>'
     uv run python scripts/data/build_comunale_surtax.py \
-        --year 2026 --current 2026.csv --previous 2025.csv \
-        --retrieved 2026-09-27
+        --year 2026 --current 2026.csv --previous 2025.csv 2024.csv \
+        --retrieved 2026-10-07 --version 2026.4
 """
 
 from __future__ import annotations
@@ -43,7 +50,10 @@ import sys
 from dataclasses import dataclass, field
 from decimal import Decimal, InvalidOperation
 from pathlib import Path
-from typing import Any, Final
+from typing import TYPE_CHECKING, Any, Final
+
+if TYPE_CHECKING:
+    from collections.abc import Sequence
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
@@ -59,14 +69,15 @@ DATA_DIR: Final = (
 )
 INDEX_URL: Final = (
     "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/"
-    "fiscalitalocale/addirpef_newDF/download/tabella.htm"
+    "fiscalitalocale/nuova_addcomirpef/download/tabella.htm"
 )
 DOWNLOAD_URL: Final = (
     "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/"
-    "fiscalitalocale/addirpef_newDF/download/download.php?anno={year}"
+    "fiscalitalocale/nuova_addcomirpef/download/download.php?anno={year}"
 )
 NOT_DELIBERATED: Final = "0*"
 SPECIFIC_FLAGS: Final = frozenset({"5", "6"})
+_INAPPLICABLE: Final = re.compile(r"\bINAPPLICABIL[EI]\b", re.IGNORECASE)
 _SLOTS: Final = ("", *(f"_{i}" for i in range(2, 13)))
 _NUMBER: Final = re.compile(r"\d{1,3}(?:\.\d{3})+(?:,\d+)?|\d+(?:[.,]\d+)?")
 #: An exemption of every taxpayer up to an amount, typos of the list included
@@ -96,6 +107,10 @@ _CENT: Final = Decimal("0.01")
 _EURO: Final = Decimal(1)
 _HUNDRED: Final = Decimal(100)
 _RANGE: Final = 2
+
+
+type Row = dict[str, str]
+type MefList = dict[str, Row]
 
 
 class RowError(ValueError):
@@ -309,19 +324,127 @@ def _name(raw: str) -> str:
     return re.sub(r"\s+", " ", raw.strip()).title()
 
 
-def _zero(row: dict[str, str]) -> dict[str, Any]:
-    return {"nome": _name(row["COMUNE"]), "brackets": [{"up_to": None, "rate": "0"}]}
-
-
-def read_list(path: Path) -> dict[str, dict[str, str]]:
+def read_list(path: Path) -> MefList:
     """Read a MEF CSV list keyed by Belfiore code.
+
+    A byte order mark before the header is ignored.
 
     Returns:
         The rows keyed by ``CODICE_CATASTALE``.
+
+    Raises:
+        ValueError: When a code appears on two rows.
     """
-    with path.open(encoding="utf-8", newline="") as handle:
+    with path.open(encoding="utf-8-sig", newline="") as handle:
         rows = list(csv.DictReader(handle, delimiter=";"))
-    return {r["CODICE_CATASTALE"].strip(): r for r in rows}
+    keyed: MefList = {}
+    for row in rows:
+        code = row["CODICE_CATASTALE"].strip()
+        if code in keyed:
+            msg = f"{path}: code {code} is listed twice"
+            raise ValueError(msg)
+        keyed[code] = row
+    return keyed
+
+
+def is_inapplicable(row: Row) -> bool:
+    """Return whether the list marks the delibera of ``row`` inapplicable.
+
+    A delibera adopted after the deadline does not apply to its year
+    (``NOTE`` "ATTO OLTRE TERMINE - ALIQUOTE INAPPLICABILI PER IL 2026",
+    "INAPPLICABILE PER IL 2025 (ADOTTATA OLTRE TERMINE ...)"); one that
+    only confirms the rates in force is applicable ("... APPLICABILI ...
+    IN QUANTO CONFERMATE").
+
+    Returns:
+        ``True`` for an inapplicable delibera.
+    """
+    return bool(_INAPPLICABLE.search(row.get("NOTE") or ""))
+
+
+@dataclass(frozen=True)
+class _Source:
+    """The row the rates of a municipality come from.
+
+    Attributes:
+        year: Year of the list holding the row.
+        row: The row, ``None`` when the municipality had no surtax that year
+            (``0*`` in a list closed after 20 December).
+        skipped: Years whose delibera the list marks inapplicable.
+    """
+
+    year: int
+    row: Row | None
+    skipped: tuple[int, ...]
+
+
+def _resolve(year: int, code: str, lists: Sequence[MefList]) -> _Source | None:
+    """Find the row in force for ``code``, walking the lists newest first.
+
+    ``0*`` in the list of ``year`` and an inapplicable delibera move to the
+    list of the year before (art. 1 c. 169 L. 296/2006); ``0*`` in an
+    earlier list means no surtax.
+
+    Returns:
+        The source, or ``None`` when ``code`` is missing from an earlier
+        list (a municipality created that year, e.g. by a merger): its
+        rates cannot be read from the lists.
+
+    Raises:
+        RowError: When every list holds an inapplicable delibera.
+    """
+    skipped: list[int] = []
+    for offset, mef in enumerate(lists):
+        list_year = year - offset
+        row = mef.get(code)
+        if row is None:
+            return None
+        if row["ALIQUOTA"].strip() == NOT_DELIBERATED:
+            if offset:
+                return _Source(list_year, None, tuple(skipped))
+        elif is_inapplicable(row):
+            skipped.append(list_year)
+        else:
+            return _Source(list_year, row, tuple(skipped))
+    msg = f"no applicable delibera in the lists down to {year - len(lists) + 1}"
+    raise RowError(msg)
+
+
+def _carried_note(year: int, source: _Source, retrieved: str) -> str:
+    inapplicable = ""
+    if source.skipped:
+        years = ", ".join(str(y) for y in source.skipped)
+        inapplicable = (
+            f" (the delibera listed for {years} was adopted after the deadline "
+            "and the MEF list marks it inapplicable)"
+        )
+    return (
+        f"No applicable {year} delibera in the MEF list retrieved on "
+        f"{retrieved}{inapplicable}; the rates in force in {source.year} stay "
+        f"in force (art. 1 c. 169 L. 296/2006). The {year} list is updated "
+        f"until 20 December {year}."
+    )
+
+
+def _entry(year: int, code: str, source: _Source, retrieved: str) -> dict[str, Any]:
+    """Return the entry of one municipality from the row in force.
+
+    Returns:
+        The entry; one carried from an earlier year has ``rates_year`` and
+        an ``assumed`` record, so has a corrected row.
+    """
+    correction = CORRECTIONS.get((source.year, code))
+    if source.row is None:
+        entry: dict[str, Any] = {"brackets": [{"up_to": None, "rate": "0"}]}
+    else:
+        entry = parse_row({**source.row, **(correction or {})})
+    if source.year < year:
+        entry["rates_year"] = source.year
+        note = _carried_note(year, source, retrieved)
+        entry["provenance"] = {"status": "assumed", "transformation": note}
+    elif correction is not None:
+        entry["provenance"] = {"status": "assumed", "transformation": _CORRECTION_NOTE}
+    return entry
 
 
 def _document(year: int, retrieved: str) -> dict[str, str]:
@@ -336,51 +459,49 @@ def _document(year: int, retrieved: str) -> dict[str, str]:
     }
 
 
-def _entry(
-    year: int,
-    code: str,
-    row: dict[str, str],
-    previous: dict[str, dict[str, str]],
-    carried_note: str,
-) -> dict[str, Any]:
-    """Return the entry of one municipality, carried from the year before if needed.
+@dataclass(frozen=True)
+class Tally:
+    """Counts of the rows of a built table.
 
-    Returns:
-        The entry; a carried one has ``rates_year`` and an ``assumed`` record.
+    Attributes:
+        deliberated: Rows with an applicable delibera of the table year.
+        carried: Rows with the rates of an earlier year.
+        inapplicable: Carried rows whose delibera of the table year is
+            marked inapplicable.
+        unresolved: ``"<code> <name>"`` of the municipalities left out.
     """
-    if row["ALIQUOTA"].strip() != NOT_DELIBERATED:
-        correction = CORRECTIONS.get((year, code))
-        entry = parse_row({**row, **(correction or {})})
-        if correction is not None:
-            entry["provenance"] = {
-                "status": "assumed",
-                "transformation": _CORRECTION_NOTE,
-            }
-        return entry
-    old = previous.get(code)
-    if old is None or old["ALIQUOTA"].strip() == NOT_DELIBERATED:
-        entry = _zero(row)
-    else:
-        entry = parse_row({**old, **CORRECTIONS.get((year - 1, code), {})})
-    entry["rates_year"] = year - 1
-    entry["provenance"] = {"status": "assumed", "transformation": carried_note}
-    return entry
+
+    deliberated: int
+    carried: int
+    inapplicable: int
+    unresolved: tuple[str, ...]
 
 
 def _notes(
-    year: int, retrieved: str, digests: tuple[str, str], carried: int, total: int
+    year: int, retrieved: str, digests: Sequence[str], tally: Tally
 ) -> list[str]:
+    years = [year - offset for offset in range(len(digests))]
+    hashes = "; ".join(f"elenco {y}: {d}" for y, d in zip(years, digests, strict=True))
+    unresolved = ", ".join(tally.unresolved) or "nessuno"
     return [
         (
             "Fonte: MEF, Dipartimento delle Finanze, addizionale comunale "
-            f"all'IRPEF, elenchi generali {year} e {year - 1} (CSV) scaricati "
-            f"il {retrieved}; generato da scripts/data/build_comunale_surtax.py."
+            f"all'IRPEF, elenchi generali {', '.join(map(str, years))} (CSV) "
+            f"scaricati il {retrieved}; generato da "
+            "scripts/data/build_comunale_surtax.py."
         ),
-        f"sha256 elenco {year}: {digests[0]}; elenco {year - 1}: {digests[1]}.",
+        f"sha256 {hashes}.",
         (
-            f"{total - carried} comuni con delibera {year}; {carried} senza "
-            f"delibera {year} alla data di download, con le aliquote "
-            f"{year - 1} (rates_year) come provvisorie."
+            f"{tally.deliberated} comuni con delibera {year} applicabile; "
+            f"{tally.carried} senza delibera {year} applicabile alla data di "
+            f"download ({tally.inapplicable} con delibera {year} adottata oltre "
+            "termine e inapplicabile), con le aliquote dell'anno indicato in "
+            "rates_year come provvisorie."
+        ),
+        (
+            "Comuni senza riga, assenti dall'elenco dell'anno precedente "
+            "(istituiti per fusione) e senza delibera propria: "
+            f"{unresolved}. Il motore li tratta come codice sconosciuto."
         ),
         (
             "Chiave: codice catastale. Rate decimali (es. 0.008 = 0.8%); "
@@ -394,65 +515,118 @@ def _notes(
     ]
 
 
-def build(
-    year: int,
-    current: dict[str, dict[str, str]],
-    previous: dict[str, dict[str, str]],
-    *,
-    retrieved: str,
-    digests: tuple[str, str],
-) -> tuple[dict[str, Any], list[str]]:
-    """Build the table of ``year`` from its list and the list of the year before.
+def _ruleset(year: int, version: str, retrieved: str) -> dict[str, str]:
+    return {
+        "id": f"surtax/{year}/comunale",
+        "version": version,
+        "effective_from": f"{year}-01-01",
+        "effective_until": f"{year}-12-31",
+        "published_at": retrieved,
+        "source": INDEX_URL,
+        "source_hash": "",
+        "verification_status": "unverified",
+        "source_type": "official_primary",
+    }
 
-    Returns:
-        The JSON payload and one error per row that could not be read.
+
+@dataclass(frozen=True)
+class BuildOptions:
+    """Identity of one build.
+
+    Attributes:
+        retrieved: Download date of the lists, ``YYYY-MM-DD``.
+        digests: sha256 of each list, newest first.
+        version: Ruleset version, ``YYYY.N``; bump it on every refresh.
     """
-    carried_note = (
-        f"No {year} delibera in the MEF list retrieved on {retrieved}; the "
-        f"{year - 1} rates stay in force (art. 1 c. 169 L. 296/2006) unless a "
-        f"{year} delibera is published by 20 December {year}."
-    )
-    rates: dict[str, Any] = {}
-    errors: list[str] = []
-    for code in sorted(current):
-        try:
-            entry = _entry(year, code, current[code], previous, carried_note)
-        except RowError as exc:
-            errors.append(f"{code} {current[code]['COMUNE']}: {exc}")
-        else:
-            rates[code] = entry
-    carried = sum(1 for e in rates.values() if "rates_year" in e)
+
+    retrieved: str
+    digests: tuple[str, ...]
+    version: str
+
+
+def _payload(
+    year: int, rates: dict[str, Any], notes: list[str], options: BuildOptions
+) -> dict[str, Any]:
     payload: dict[str, Any] = {
         "year": year,
         "rates_are_advance": False,
-        "notes": _notes(year, retrieved, digests, carried, len(rates)),
+        "notes": notes,
         "rates": rates,
-        "sources": [_document(year, retrieved), _document(year - 1, retrieved)],
-        "ruleset": {
-            "id": f"surtax/{year}/comunale",
-            "version": f"{year}.3",
-            "effective_from": f"{year}-01-01",
-            "effective_until": f"{year}-12-31",
-            "published_at": retrieved,
-            "source": INDEX_URL,
-            "source_hash": "",
-            "verification_status": "unverified",
-            "source_type": "official_primary",
-        },
+        "sources": [
+            _document(year - offset, options.retrieved)
+            for offset in range(len(options.digests))
+        ],
+        "ruleset": _ruleset(year, options.version, options.retrieved),
         "provenance": {
             "status": "derived",
             "location": {
-                "source_document": _document(year, retrieved),
+                "source_document": _document(year, options.retrieved),
                 "section": f"elenco generale {year}",
             },
             "note": (
-                f"Rows without a {year} delibera carry their own assumed "
-                f"record and the {year - 1} rates."
+                f"Rows without an applicable {year} delibera carry their own "
+                "assumed record and the rates of the year in rates_year."
             ),
         },
     }
     payload["ruleset"]["source_hash"] = source_hash(payload)
-    return payload, errors
+    return payload
+
+
+@dataclass(frozen=True)
+class BuildResult:
+    """Outcome of :func:`build`.
+
+    Attributes:
+        payload: The JSON table.
+        errors: One message per row that could not be read.
+        tally: Counts of the rows, with the municipalities left out.
+    """
+
+    payload: dict[str, Any]
+    errors: list[str]
+    tally: Tally
+
+
+def build(year: int, lists: Sequence[MefList], options: BuildOptions) -> BuildResult:
+    """Build the table of ``year`` from its list and the lists before it.
+
+    Args:
+        year: Tax year of the table.
+        lists: The MEF list of ``year`` followed by the lists of the years
+            before, newest first.
+        options: Download date, digests and version.
+
+    Returns:
+        The payload, one error per row that could not be read and the
+        counts; a municipality whose rates the lists cannot give is left
+        out of the table and named in the tally and in the notes.
+    """
+    rates: dict[str, Any] = {}
+    errors: list[str] = []
+    unresolved: list[str] = []
+    current = lists[0]
+    for code in sorted(current):
+        name = current[code]["COMUNE"]
+        try:
+            source = _resolve(year, code, lists)
+            if source is None:
+                unresolved.append(f"{code} {_name(name)}")
+                continue
+            entry = _entry(year, code, source, options.retrieved)
+        except RowError as exc:
+            errors.append(f"{code} {name}: {exc}")
+        else:
+            entry.pop("nome", None)
+            rates[code] = {"nome": _name(name), **entry}
+    tally = Tally(
+        deliberated=sum(1 for e in rates.values() if "rates_year" not in e),
+        carried=sum(1 for e in rates.values() if "rates_year" in e),
+        inapplicable=sum(1 for c in rates if is_inapplicable(current[c])),
+        unresolved=tuple(unresolved),
+    )
+    notes = _notes(year, options.retrieved, options.digests, tally)
+    return BuildResult(_payload(year, rates, notes, options), errors, tally)
 
 
 def _sha256(path: Path) -> str:
@@ -468,25 +642,34 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Build comunale-{year}.json")
     parser.add_argument("--year", type=int, required=True)
     parser.add_argument("--current", type=Path, required=True)
-    parser.add_argument("--previous", type=Path, required=True)
+    parser.add_argument(
+        "--previous",
+        type=Path,
+        nargs="+",
+        required=True,
+        help="lists of the years before, newest first",
+    )
     parser.add_argument("--retrieved", required=True, help="YYYY-MM-DD")
+    parser.add_argument("--version", required=True, help="ruleset version YYYY.N")
     parser.add_argument("--out", type=Path, default=None)
     args = parser.parse_args(argv)
-    payload, errors = build(
-        args.year,
-        read_list(args.current),
-        read_list(args.previous),
+    paths: list[Path] = [args.current, *args.previous]
+    options = BuildOptions(
         retrieved=args.retrieved,
-        digests=(_sha256(args.current), _sha256(args.previous)),
+        digests=tuple(_sha256(p) for p in paths),
+        version=args.version,
     )
-    if errors:
-        for error in errors:
+    result = build(args.year, [read_list(p) for p in paths], options)
+    if result.errors:
+        for error in result.errors:
             print(f"ERROR: {error}", file=sys.stderr)
         return 1
+    for municipality in result.tally.unresolved:
+        print(f"WARNING: no rates for {municipality}; left out", file=sys.stderr)
     out = args.out or DATA_DIR / f"comunale-{args.year}.json"
-    text = json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
+    text = json.dumps(result.payload, ensure_ascii=False, indent=2) + "\n"
     out.write_text(text, encoding="utf-8")
-    print(f"wrote {out}: {len(payload['rates'])} municipalities")
+    print(f"wrote {out}: {len(result.payload['rates'])} municipalities")
     return 0
 
 

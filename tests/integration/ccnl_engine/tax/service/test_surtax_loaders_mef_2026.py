@@ -2,8 +2,10 @@
 
 Regional expected values are computed by hand from the MEF 2026 page of each
 region (``addregirpef.php?reg=NN&anno=2026``, retrieved on 2026-09-27);
-municipal ones from the MEF ``elenco generale`` CSV of 2026 and 2025
-(``addirpef_newDF/download/download.php?anno=YYYY``, same date).  Brackets
+municipal ones from the MEF ``elenco generale`` CSV of 2026, 2025 and 2024
+(``nuova_addcomirpef/download/download.php?anno=YYYY``, retrieved on
+2026-10-07) and the MEF page of each municipality
+(``nuova_addcomirpef/risultato.htm?...&cc=<code>&anno=YYYY``).  Brackets
 are marginal: each rate applies to the slice of income inside its band.
 """
 
@@ -269,5 +271,66 @@ class TestMunicipalRows:
         assert entry.exemption_threshold == 0
 
     def test_every_municipality_of_the_list_has_a_row(self, rules: SurtaxRules) -> None:
-        """The 2026 list has 7,897 municipalities, zero-rate ones included."""
-        assert len(rules.comunale) == 7897
+        """The 2026 list has 7,897 municipalities; one has no rates to read.
+
+        M439 Castegnero Nanto is ``0*`` in 2026 and absent from the 2025
+        list (created by merging Castegnero, 0.65%, and Nanto, 0.75%): its
+        code is unknown to the table rather than taxed at 0.
+        """
+        assert len(rules.comunale) == 7896
+        assert "M439" not in rules.comunale
+
+    def test_merged_municipality_is_not_computed(self, rules: SurtaxRules) -> None:
+        """M439 Castegnero Nanto: no amount and an incomplete issue, never 0."""
+        outcome = compute_surtax(
+            _D(30000), rules, regione=None, comune_belfiore="M439", irpef_due=_D(1)
+        )
+        (decision,) = outcome.decisions
+        assert decision.amount is None
+        assert decision.status is CalculationStatus.INCOMPLETE
+        assert [issue.code for issue in outcome.issues] == ["municipal_surtax_unknown"]
+
+    def test_brackets_of_a_2026_delibera(self, rules: SurtaxRules) -> None:
+        """F430 Montasola, delibera n. 5 del 28-02-2026 (published 30-09-2026).
+
+        MEF page: 0.2% up to 15,000; 0.4% to 28,000; 0.6% to 50,000; 0.8%
+        above; exempt up to 8,500.  60,000: 15,000 x 0.2% = 30.00;
+        13,000 x 0.4% = 52.00; 22,000 x 0.6% = 132.00; 10,000 x 0.8% =
+        80.00; total 294.00 (the 2025 flat 0.8% gave 480.00).
+        """
+        outcome = compute_surtax(
+            _D(60000), rules, regione=None, comune_belfiore="F430", irpef_due=_D(1)
+        )
+        (decision,) = outcome.decisions
+        assert (decision.reason_code, decision.amount) == (
+            "table_applied",
+            _D("294.00"),
+        )
+        assert rules.comunale["F430"].exemption_threshold == _D("8500")
+
+    @pytest.mark.parametrize(
+        ("code", "expected", "rates_year"),
+        [
+            # B097 Bova: 2026 delibera n. 7 (0.8%) "atto oltre termine -
+            # aliquote inapplicabili per il 2026"; 2025 delibera n. 05 del
+            # 28-03-2025, 0.5%: 30,000 x 0.5% = 150.00.
+            ("B097", "150.00", "2025"),
+            # L676 Varco Sabino: no 2026 delibera; the 2025 one (0.8%) is
+            # "inapplicabile per il 2025"; 2024 delibera n. 9, 0.4%:
+            # 30,000 x 0.4% = 120.00.
+            ("L676", "120.00", "2024"),
+        ],
+    )
+    def test_inapplicable_delibera_keeps_the_rates_in_force(
+        self, rules: SurtaxRules, code: str, expected: str, rates_year: str
+    ) -> None:
+        """A delibera adopted after the deadline does not change the rates."""
+        outcome = compute_surtax(
+            _D(30000), rules, regione=None, comune_belfiore=code, irpef_due=_D(1)
+        )
+        (decision,) = outcome.decisions
+        assert (decision.reason_code, decision.amount) == (
+            "prior_year_rates_applied",
+            _D(expected),
+        )
+        assert decision.inputs["rates_year"] == rates_year

@@ -9,7 +9,16 @@ import pytest
 
 from ccnl_engine.provenance.domain.ruleset_identity import source_hash
 from ccnl_engine.tax.domain.surtax_rules import ComunaleRaw
-from scripts.data.build_comunale_surtax import RowError, build, main, parse_row
+from scripts.data.build_comunale_surtax import (
+    BuildOptions,
+    RowError,
+    Tally,
+    build,
+    is_inapplicable,
+    main,
+    parse_row,
+    read_list,
+)
 
 if TYPE_CHECKING:
     from pathlib import Path
@@ -28,9 +37,10 @@ def _row(
     slots: list[tuple[str, str]],
     flag: str = "0",
     exempt: str = "0",
+    note: str = "",
 ) -> dict[str, str]:
     row = dict.fromkeys(_HEADER.split(";"), "")
-    row.update(CODICE_CATASTALE=code, COMUNE=name, FLAG_NUOVA=flag)
+    row.update(CODICE_CATASTALE=code, COMUNE=name, FLAG_NUOVA=flag, NOTE=note)
     row["IMPORTO_ESENTE"] = exempt
     for index, (rate, text) in enumerate(slots):
         suffix = "" if index == 0 else f"_{index + 1}"
@@ -155,6 +165,16 @@ class TestParseRow:
             parse_row(_row("Z999", "BROKEN", slots))
 
 
+#: ``NOTE`` of a delibera adopted after the deadline, as in the 2026 list.
+_LATE_2026 = "ATTO OLTRE TERMINE - ALIQUOTE INAPPLICABILI PER IL 2026"
+#: ``NOTE`` of the same case in the 2025 list.
+_LATE_2025 = (
+    "INAPPLICABILE PER IL 2025 (ADOTTATA OLTRE TERMINE - ART. 1, C. 750 E 751, "
+    "L. 207/2024)"
+)
+_OPTIONS = BuildOptions(retrieved="2026-10-07", digests=("a", "b"), version="2026.4")
+
+
 def _lists() -> tuple[dict[str, dict[str, str]], dict[str, dict[str, str]]]:
     flat = [(",8", "Aliquota unica")]
     current = {
@@ -182,57 +202,171 @@ def _lists() -> tuple[dict[str, dict[str, str]], dict[str, dict[str, str]]]:
 def test_build_carries_rows_without_a_delibera() -> None:
     """``0*`` takes the year before, or rate 0 when never instituted."""
     current, previous = _lists()
-    payload, errors = build(
-        2026, current, previous, retrieved="2026-09-27", digests=("a", "b")
-    )
+    result = build(2026, [current, previous], _OPTIONS)
 
-    assert errors == []
+    assert result.errors == []
+    payload = result.payload
     rates = payload["rates"]
     assert "rates_year" not in rates["A001"]
     assert rates["A002"]["rates_year"] == 2025
     assert rates["A002"]["brackets"] == [{"up_to": None, "rate": "0.006"}]
     assert rates["A002"]["provenance"]["status"] == "assumed"
-    assert rates["A003"]["brackets"] == [{"up_to": None, "rate": "0"}]
+    assert "inapplicable" not in rates["A002"]["provenance"]["transformation"]
+    assert rates["A003"] == {
+        "nome": "Never",
+        "brackets": [{"up_to": None, "rate": "0"}],
+        "rates_year": 2025,
+        "provenance": rates["A002"]["provenance"],
+    }
     assert rates["A112"]["brackets"][2] == {"up_to": "50000.00", "rate": "0.005"}
     assert rates["A112"]["provenance"]["status"] == "assumed"
+    assert payload["ruleset"]["version"] == "2026.4"
     assert payload["ruleset"]["source_hash"] == source_hash(payload)
+    assert [s["url"][-4:] for s in payload["sources"]] == ["2026", "2025"]
+    assert result.tally == Tally(
+        deliberated=2, carried=2, inapplicable=0, unresolved=()
+    )
     raw = ComunaleRaw.model_validate(payload)
     assert raw.rates_are_advance is False
     assert raw.rates["A002"].rates_year == 2025
 
 
+def test_inapplicable_delibere_take_the_rates_in_force() -> None:
+    """A late delibera is skipped, in the table year and the years before.
+
+    B097 Bova: 2026 delibera marked inapplicable, the 2025 rate 0.5% applies.
+    L676 Varco Sabino: ``0*`` in 2026, the 2025 delibera is marked
+    inapplicable for 2025, so the 2024 rate 0.4% is still in force.
+    """
+    current = {
+        "B097": _row("B097", "BOVA", [("0,8", "Aliquota unica")], note=_LATE_2026),
+        "L676": _undeliberated("L676", "VARCO SABINO"),
+    }
+    before = {
+        "B097": _row("B097", "BOVA", [("0,5", "Aliquota unica")], note="CONFERMA"),
+        "L676": _row(
+            "L676", "VARCO SABINO", [("0,8", "Aliquota unica")], note=_LATE_2025
+        ),
+    }
+    older = {"L676": _row("L676", "VARCO SABINO", [("0,4", "Aliquota unica")])}
+    options = BuildOptions(
+        retrieved="2026-10-07", digests=("a", "b", "c"), version="2026.4"
+    )
+
+    result = build(2026, [current, before, older], options)
+
+    rates = result.payload["rates"]
+    assert (rates["B097"]["rates_year"], rates["B097"]["brackets"]) == (
+        2025,
+        [{"up_to": None, "rate": "0.005"}],
+    )
+    assert "listed for 2026" in rates["B097"]["provenance"]["transformation"]
+    assert (rates["L676"]["rates_year"], rates["L676"]["brackets"]) == (
+        2024,
+        [{"up_to": None, "rate": "0.004"}],
+    )
+    assert "listed for 2025" in rates["L676"]["provenance"]["transformation"]
+    assert result.tally.inapplicable == 1
+    assert (
+        "sha256 elenco 2026: a; elenco 2025: b; elenco 2024: c."
+        in (result.payload["notes"])
+    )
+
+
+def test_is_inapplicable_reads_the_note() -> None:
+    """Only a delibera marked inapplicable is skipped; a late confirmation is not."""
+    late_confirmed = "ATTO OLTRE TERMINE - ALIQUOTE APPLICABILI PER IL 2026 IN QUANTO"
+    assert is_inapplicable(_row("A", "A", [], note=_LATE_2026))
+    assert is_inapplicable(_row("A", "A", [], note=_LATE_2025))
+    assert not is_inapplicable(_row("A", "A", [], note=late_confirmed + " CONFERMATE"))
+
+
+def test_inapplicable_in_every_list_is_an_error() -> None:
+    """Without a list holding the rates in force the row cannot be built."""
+    late = _row("B097", "BOVA", [("0,8", "Aliquota unica")], note=_LATE_2026)
+    result = build(2026, [{"B097": late}, {"B097": late}], _OPTIONS)
+
+    assert result.errors == [
+        "B097 BOVA: no applicable delibera in the lists down to 2025"
+    ]
+
+
+def test_new_municipality_without_a_delibera_is_left_out() -> None:
+    """M439 Castegnero Nanto: ``0*`` in 2026 and absent from the 2025 list.
+
+    It was created by merging Castegnero (0.65% in 2025) and Nanto (0.75%):
+    rate 0 would be wrong, so the row is left out and named in the notes.
+    """
+    current = {"M439": _undeliberated("M439", "CASTEGNERO NANTO")}
+
+    result = build(2026, [current, {}], _OPTIONS)
+
+    assert result.errors == []
+    assert result.payload["rates"] == {}
+    assert result.tally.unresolved == ("M439 Castegnero Nanto",)
+    assert any("M439 Castegnero Nanto" in note for note in result.payload["notes"])
+
+
 def test_build_reports_unreadable_rows() -> None:
     """An unreadable row is reported with its code and name."""
     current = {"Z999": _row("Z999", "BROKEN", [(",5", "Applicabile a fino a 9")])}
-    _, errors = build(2026, current, {}, retrieved="2026-09-27", digests=("a", "b"))
+    result = build(2026, [current, {}], _OPTIONS)
 
-    assert errors == ["Z999 BROKEN: expected one open-ended band, got 0"]
+    assert result.errors == ["Z999 BROKEN: expected one open-ended band, got 0"]
 
 
-def _write_csv(path: Path, rows: list[dict[str, str]]) -> None:
+def _write_csv(path: Path, rows: list[dict[str, str]], *, bom: bool = False) -> None:
     lines = [_HEADER, *(";".join(r[k] for k in _HEADER.split(";")) for r in rows)]
-    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    text = "\n".join(lines) + "\n"
+    path.write_text(("﻿" if bom else "") + text, encoding="utf-8")
 
 
-def test_main_writes_the_table(tmp_path: Path) -> None:
-    """The command line writes a table the loader model accepts."""
-    current, previous = _lists()
-    _write_csv(tmp_path / "2026.csv", list(current.values()))
-    _write_csv(tmp_path / "2025.csv", list(previous.values()))
-    out = tmp_path / "comunale-2026.json"
+def test_read_list_ignores_a_byte_order_mark(tmp_path: Path) -> None:
+    """A BOM before the header does not hide the code column."""
+    _write_csv(tmp_path / "2026.csv", [_undeliberated("A001", "ABANO")], bom=True)
 
-    code = main([
+    assert list(read_list(tmp_path / "2026.csv")) == ["A001"]
+
+
+def test_read_list_rejects_a_duplicate_code(tmp_path: Path) -> None:
+    """Two rows of one code would make the table depend on their order."""
+    row = _undeliberated("A001", "ABANO")
+    _write_csv(tmp_path / "2026.csv", [row, row])
+
+    with pytest.raises(ValueError, match="A001 is listed twice"):
+        read_list(tmp_path / "2026.csv")
+
+
+def _main(tmp_path: Path, out: Path) -> int:
+    return main([
         "--year=2026",
         f"--current={tmp_path / '2026.csv'}",
-        f"--previous={tmp_path / '2025.csv'}",
-        "--retrieved=2026-09-27",
+        "--previous",
+        str(tmp_path / "2025.csv"),
+        str(tmp_path / "2024.csv"),
+        "--retrieved=2026-10-07",
+        "--version=2026.4",
         f"--out={out}",
     ])
 
-    assert code == 0
+
+def test_main_writes_the_table(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    """The command line writes a table the loader model accepts."""
+    current, previous = _lists()
+    merged = _undeliberated("M439", "CASTEGNERO NANTO")
+    _write_csv(tmp_path / "2026.csv", [*current.values(), merged])
+    _write_csv(tmp_path / "2025.csv", list(previous.values()))
+    _write_csv(tmp_path / "2024.csv", [])
+    out = tmp_path / "comunale-2026.json"
+
+    assert _main(tmp_path, out) == 0
+
     payload = json.loads(out.read_text(encoding="utf-8"))
     assert len(payload["rates"]) == 4
-    assert "sha256" in payload["notes"][1]
+    assert payload["notes"][1].count("elenco 20") == 3
+    assert "WARNING: no rates for M439 Castegnero Nanto" in capsys.readouterr().err
 
 
 def test_main_fails_without_writing(tmp_path: Path) -> None:
@@ -242,15 +376,8 @@ def test_main_fails_without_writing(tmp_path: Path) -> None:
         [_row("Z999", "BROKEN", [(",5", "Applicabile a fino a 9")])],
     )
     _write_csv(tmp_path / "2025.csv", [])
+    _write_csv(tmp_path / "2024.csv", [])
     out = tmp_path / "comunale-2026.json"
 
-    code = main([
-        "--year=2026",
-        f"--current={tmp_path / '2026.csv'}",
-        f"--previous={tmp_path / '2025.csv'}",
-        "--retrieved=2026-09-27",
-        f"--out={out}",
-    ])
-
-    assert code == 1
+    assert _main(tmp_path, out) == 1
     assert not out.exists()
