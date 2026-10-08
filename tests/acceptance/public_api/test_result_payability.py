@@ -87,8 +87,8 @@ def test_incomplete_coverage_is_not_payable() -> None:
     ``base_salary`` comes from ``assumed`` rules: a blocker too.  January
     is the only payment of the employment, so the year's income is one
     month of pay and the somma esente is due on an assumed income, an
-    issue that blocks on its own.  The worker resides in Alghero, so the surtaxes leave no
-    gap of their own.
+    issue that blocks on its own.  The worker resides in Alghero, so the
+    surtaxes leave no gap of their own.
     """
     period = EmploymentPeriod(started_on=date(2020, 1, 1), ended_on=date(2026, 1, 30))
     result = _january(

@@ -1,7 +1,4 @@
-"""Payable rules each capability of a run reads, with their provenance.
-
-Rule identifiers are ``<ruleset id>:<location in the data file>``.
-"""
+"""Payable rules of a run's capabilities, ids ``<ruleset id>:<location>``."""
 
 from __future__ import annotations
 
@@ -149,8 +146,7 @@ def tax_rules(ctx: RunContext) -> dict[str, tuple[Rule, ...]]:
     name = _name(rules.ruleset, f"tax/{rules.year}")
     var_name = _name(var.ruleset, f"tax/variable-pay-rules/{var.year}")
     somma = rules.somma_esente
-    somma_set = None if somma is None else somma.ruleset
-    somma_name = _name(somma_set, f"tax/{rules.year}/somma-esente")
+    somma_name = _name(somma.ruleset if somma else None, f"tax/{rules.year}/somma")
     return {
         "irpef": (
             (f"{name}:irpef_brackets", rules.irpef_brackets_provenance),

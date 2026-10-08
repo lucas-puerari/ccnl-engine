@@ -13,15 +13,17 @@ from ccnl_engine.payroll.domain.engine_mode import EngineMode
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
+from ccnl_engine.payroll.service.bundled_knowledge_repository import (
+    BundledKnowledgeRepository,
+)
 from ccnl_engine.provenance.domain.ruleset_assurance import RulesetKind
 from ccnl_engine.provenance.domain.ruleset_identity import RulesetReadiness
 from tests.fixtures.anonymous_ccnl_repository import AnonymousCcnlRepository
 
 if TYPE_CHECKING:
+    from ccnl_engine.contract.domain.identity import TaxSector
     from ccnl_engine.payroll.domain.period import PeriodResult
-    from ccnl_engine.payroll.service.bundled_knowledge_repository import (
-        BundledKnowledgeRepository,
-    )
+    from ccnl_engine.tax.domain.ruleset import YearRules
 
 _METALMECCANICO = "metalmeccanico-federmeccanica.json"
 
@@ -72,3 +74,27 @@ def test_a_ccnl_without_identity_is_not_reported_and_fails_closed() -> None:
         if b.code is BlockerCode.RULESET_NOT_PRODUCTION
     ]
     assert readiness == [NO_TRACKED_READINESS]
+
+
+class _NoSommaEsenteRepository(BundledKnowledgeRepository):
+    """Bundled rules of a year whose somma esente is not bundled."""
+
+    def load_year_rules(
+        self, year: int, sector: TaxSector, num_employees: int
+    ) -> YearRules:
+        """Return the bundled year rules without their somma esente.
+
+        Returns:
+            The year rules.
+        """
+        rules = super().load_year_rules(year, sector, num_employees)
+        return rules.model_copy(update={"somma_esente": None})
+
+
+def test_a_year_without_somma_esente_reports_no_somma_ruleset() -> None:
+    """The somma esente file is reported only when the year bundles it."""
+    with_somma = {r.id for r in _run().rulesets}
+    without = {r.id for r in _run(_NoSommaEsenteRepository()).rulesets}
+
+    assert "tax/2026/somma-esente" in with_somma
+    assert "tax/2026/somma-esente" not in without
