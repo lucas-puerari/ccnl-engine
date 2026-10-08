@@ -37,7 +37,7 @@
       },
       {
         "kind": "info",
-        "text": "HOURLY DIVISOR: 130 = 30 x 52 / 12, the hours of the 30-hour ceiling in a month. Work beyond the agreed hours is paid at the hourly retribuzione globale di fatto (art. 14 c. 2), with the art. 15 supplements outside the agreed time arrangement; the overtime bands are those of the convivente file."
+        "text": "HOURLY DIVISOR: 130 = 30 x 52 / 12 in the file; a run uses the weekly hours of the employment x 52 / 12 (flat_pay_max_weekly_hours), since the Tabella B pay does not change with the hours: B super at 10 weekly hours is 737,39 / 43,33 = 17,02 an hour. Work beyond the agreed hours is paid at the hourly retribuzione globale di fatto (art. 14 c. 2), with the art. 15 supplements outside the agreed time arrangement; the overtime bands are those of the convivente file."
       },
       {
         "kind": "info",
@@ -61,7 +61,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Dividing TABELLA B monthly base by hourly_divisor 130 yields the cash-only rate: the INPS hourly bracket for weekly_hours <= 24 is selected on it, without the board and lodging the INPS retribuzione oraria effettiva counts. The hourly-wage INPS bracket lookup has not been validated for this file; the wage-bracket path is not exercised by the golden cases shipped with this file.",
+        "text": "Dividing TABELLA B monthly base by the monthly hours of the employment yields the cash-only rate: the INPS hourly bracket for weekly_hours <= 24 is selected on it, without the board and lodging the INPS retribuzione oraria effettiva counts. The hourly-wage INPS bracket lookup has not been validated for this file; the wage-bracket path is not exercised by the golden cases shipped with this file.",
         "capability": "inps_employer",
         "monetary_impact": "unknown",
         "limitation": {
@@ -132,7 +132,7 @@
               "section": "Art. 14 c. 2",
               "quote": "possono essere assunti in regime di convivenza anche con orario fino a 30 ore settimanali"
             },
-            "transformation": "30 x 52 / 12 = 130: the hours of the 30-hour ceiling in a month, as the convivente file derives 234 from 54 hours.",
+            "transformation": "30 x 52 / 12 = 130, the hours of the 30-hour ceiling in a month. The minimum is flat up to 30 hours, so a run replaces it with the weekly hours of the employment x 52 / 12: the hourly pay of the INPS bracket, the overtime and the proration is the monthly pay over the hours worked.",
             "note": "Read from the PDF the url serves (sha256 122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf), text layer. No human review recorded."
           }
         }
@@ -562,7 +562,7 @@
     "effective_until": null,
     "source": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
     "verification_status": "unverified",
-    "source_hash": "28bd6fa9559f5922ed437b3fcb3d5dc0a8ec376a414556ea1b1278ed210e935c",
+    "source_hash": "6abaa857f5905b6a2f00bfb06249b2a9be5365f8826cfa068ea3c314e43e8874",
     "published_at": "2026-10-08",
     "source_type": "commercial_secondary"
   },

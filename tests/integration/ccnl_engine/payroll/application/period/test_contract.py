@@ -1,4 +1,4 @@
-"""The INPS rules of a run are those of its competence year."""
+"""The contract of a run: INPS rules of its competence year, hourly divisor."""
 
 from __future__ import annotations
 
@@ -7,11 +7,14 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.contract.domain.identity import TaxSector
+from ccnl_engine.contract.service.loaders import load_ccnl
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.period._contract import (
+    flat_pay_divisor,
     with_competence_contributions,
 )
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
+from ccnl_engine.payroll.domain.employment_facts import WeeklyHours
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.run import PayrollRun
@@ -76,3 +79,26 @@ def test_rules_of_the_competence_year_are_returned_unchanged() -> None:
         with_competence_contributions(repository, rules, 2027, TaxSector.TERZIARIO, 50)
         is rules
     )
+
+
+class TestFlatPayDivisor:
+    """A flat-pay regime divides its pay by the hours of the employment."""
+
+    _REDUCED = "lavoro-domestico-convivente-orario-ridotto.json"
+
+    def test_divisor_of_the_weekly_hours(self) -> None:
+        """20 weekly hours: 20 x 52 / 12 = 86.67 instead of the file's 130."""
+        ccnl = flat_pay_divisor(load_ccnl(self._REDUCED), WeeklyHours(20))
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 3, 1)) == Decimal(
+            "86.67"
+        )
+
+    def test_unchanged_without_weekly_hours(self) -> None:
+        """Without the hours the divisor of the file stands."""
+        ccnl = load_ccnl(self._REDUCED)
+        assert flat_pay_divisor(ccnl, None) is ccnl
+
+    def test_unchanged_outside_a_flat_pay_regime(self) -> None:
+        """Commercio is not a flat-pay regime."""
+        ccnl = load_ccnl("commercio-confcommercio.json")
+        assert flat_pay_divisor(ccnl, WeeklyHours(20)) is ccnl

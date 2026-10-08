@@ -15,6 +15,12 @@ CCNL.pdf), art. 14:
 
 Tabella minimi retributivi 2026: Tabella B, level B super 737.39 a month;
 Tabella A, level C super 1,193.84 a month.
+
+INPS 2026 for up to 24 weekly hours (circ. 9/2026, bundled table): worker
+share 0.43 EUR an hour up to an hourly pay of 9.61, 0.48 up to 11.70, 0.59
+above.  The hourly pay of a Tabella B worker is the flat monthly pay over
+the hours worked: at 10 weekly hours 737.39 / (10 x 52 / 12 = 43.33) =
+17.02, at 20 hours 737.39 / 86.67 = 8.51.
 """
 
 from __future__ import annotations
@@ -99,3 +105,15 @@ def test_full_time_convivente_traverses_no_scaling() -> None:
     ids = {limitation.id for limitation in result.assurance.limitations}
     assert result.period_gross == Decimal("1193.84")
     assert "lavoro-domestico-convivente/part_time_scaling" not in ids
+
+
+@pytest.mark.parametrize(
+    ("weekly", "per_hour"),
+    [(10, Decimal("0.59")), (20, Decimal("0.43"))],
+)
+def test_inps_bracket_reads_the_hours_worked(weekly: int, per_hour: Decimal) -> None:
+    """The hourly pay is the flat pay over the hours worked, not over 30."""
+    result = _march(_REDUCED, "BS", weekly, None)
+    hours = Decimal(weekly * 52) / 12
+    expected = (per_hour * hours).quantize(Decimal("0.01"))
+    assert result.contribution_breakdown.employee == expected
