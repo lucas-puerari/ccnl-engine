@@ -134,7 +134,12 @@ def prepare_year(plan: CompetenceYearPlan, repo: KnowledgeRepository) -> Prepare
         )
         for run in year_plan.schedule.runs
     )
-    payments, uncovered = split_covered(ccnl, plan.employment.level_code, planned)
+    payments, uncovered = split_covered(
+        ccnl,
+        plan.employment.level_code,
+        planned,
+        seniority_stated=plan.employment.seniority is not None,
+    )
     left_out = tuple(u.payment.run_id for u in uncovered)
     return PreparedYear(
         plan=plan,

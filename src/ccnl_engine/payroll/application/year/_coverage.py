@@ -18,17 +18,22 @@ _FEATURE = "base_salary"
 
 
 def split_covered(
-    ccnl: CCNL, level_code: str, payments: tuple[PlannedPayment, ...]
+    ccnl: CCNL,
+    level_code: str,
+    payments: tuple[PlannedPayment, ...],
+    *,
+    seniority_stated: bool = False,
 ) -> tuple[tuple[PlannedPayment, ...], tuple[UncoveredRun, ...]]:
-    """Return the payments whose base salary is in force, and the others.
+    """Return the payments whose pay tables are in force, and the others.
 
     The base salary of the level is the first rule every run reads (see
-    :func:`~ccnl_engine.payroll.application.period._contract.load_contract`):
-    a run whose competence date has no base salary cannot be computed.
-    Such a run is set aside, so that the year computes its other runs on a
-    withholding schedule without it.  When no payment has a base salary,
-    the :class:`~ccnl_engine.shared.domain.errors.MissingRuleError` of the
-    first one is raised.
+    :func:`~ccnl_engine.payroll.application.period._contract.load_contract`),
+    and the seniority amount of the level the next one when the employment
+    states a seniority: a run whose competence date has no value of either
+    cannot be computed.  Such a run is set aside, so that the year computes
+    its other runs on a withholding schedule without it.  When no payment
+    is in force, the :class:`~ccnl_engine.shared.domain.errors\
+.MissingRuleError` of the first one is raised.
 
     Returns:
         The payments to compute, in their order, and the runs set aside.
@@ -37,15 +42,20 @@ def split_covered(
         UnknownLevelError: When the CCNL has no level ``level_code``.
     """
     try:
-        series = ccnl.level_by_code(level_code).base_salary
+        level = ccnl.level_by_code(level_code)
     except ValueError:
         raise UnknownLevelError(level_code, ccnl.meta.ccnl_id) from None
+    series = [(_FEATURE, level.base_salary)]
+    seniority = ccnl.parameters.seniority_increments.amount_by_level.get(level_code)
+    if seniority_stated and seniority is not None:
+        series.append(("seniority", seniority))
     covered: list[PlannedPayment] = []
     uncovered: list[UncoveredRun] = []
     for planned in payments:
         try:
-            with rule_scope(ruleset=ccnl.meta.ccnl_id, feature=_FEATURE):
-                series.value_at(planned.payment.competence)
+            for feature, values in series:
+                with rule_scope(ruleset=ccnl.meta.ccnl_id, feature=feature):
+                    values.value_at(planned.payment.competence)
         except MissingRuleError as error:
             uncovered.append(UncoveredRun.of(planned.payment, error))
         else:

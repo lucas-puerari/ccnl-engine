@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Partial years also leave out runs without a seniority amount
+
+| Before | After |
+|---|---|
+| A competence year left out only the runs before the base salary of the level; a seniority table starting later raised `MissingRuleError` (grafica editoria with a recognised seniority, January to June 2026) | The runs before the seniority amount of the level are also left out when the employment states a seniority, each with a `run_not_computed` blocker |
+
 ## Tredicesima of the CCNL Terziario on Christmas Eve
 
 | Before | After |

@@ -256,6 +256,30 @@ CCNL-2025-2027.pdf, "Tabella retributiva") start with the tranche of
         assert not_computed == left_out
         assert [str(c) for c in result.conguagli] == ["2026-12-thirteenth@2026-12-28"]
 
+    def test_a_seniority_table_starting_later_leaves_its_months_out(self) -> None:
+        """Grafica editoria declares no seniority amount before 1 July 2026.
+
+        A worker with a recognised seniority reads it from January: January
+        to June are left out with a ``seniority`` error each, the rest of the
+        year is computed and not payable.
+        """
+        (level, *_) = _ENGINE.list_levels("grafica-editoria-aieg")
+        employment = Employment(
+            ccnl_slug="grafica-editoria-aieg",
+            level_code=level.code,
+            seniority=SeniorityFact(36, date(_YEAR, 1, 1), SenioritySource.PAYSLIP),
+            contract_type=Permanent(),
+        )
+        result = _ENGINE.calculate_competence_year(
+            CompetenceYearPlan(year=_YEAR, employment=employment, employer=_EMPLOYER)
+        )
+
+        left_out = [u.payment.run_id.month for u in result.uncovered_runs]
+        assert left_out == [1, 2, 3, 4, 5, 6]
+        assert {u.error.feature for u in result.uncovered_runs} == {"seniority"}
+        assert result.period_results[0].period_id.month == 7
+        assert not result.is_payable
+
     def test_a_year_with_no_run_in_force_raises(self) -> None:
         """Employed only in January and February: nothing to compute."""
         employment = Employment(
