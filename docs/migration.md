@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Exempt income of the impatriati and researcher regimes in the somma esente
+
+| Before | After |
+|---|---|
+| `CurrentYearTaxFacts` had no place for the exempt share of the impatriati and researcher regimes, which L. 207/2024 art. 1 c. 9 counts in the reddito complessivo of the somma esente | New required field `CurrentYearTaxFacts.exempt_regime_income` (`>= 0`; `employment_only` states zero), added to the reddito complessivo of the somma esente only (`somma_esente_income`), not to that of the family deductions |
+
 ## Fonchim on the TFR base, with its insurance contribution
 
 | Before | After |

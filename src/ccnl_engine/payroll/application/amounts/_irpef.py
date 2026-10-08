@@ -35,14 +35,16 @@ def _external_income(inp: _AmountsInput) -> Decimal:
     """Return the reddito complessivo of the tax year beyond this employment.
 
     Returns:
-        The external income of the current-year facts of the tax year of
-        the run, zero without them: the somma esente is then computed on
-        this employment alone and flagged (L. 207/2024 art. 1 c. 4).
+        The income beyond this employment the somma esente counts, the
+        exempt share of the impatriati and researcher regimes included (L.
+        207/2024 art. 1 c. 9); zero without the facts of the tax year: the
+        somma esente is then computed on this employment alone and flagged
+        (c. 4).
     """
     facts = inp.current_year
     if facts is None or facts.tax_year != inp.rules.year:
         return _ZERO
-    return facts.external_income
+    return facts.somma_esente_income
 
 
 def _pay_period(

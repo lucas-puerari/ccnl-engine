@@ -224,8 +224,8 @@ def somma_esente(
       income plus ``external_income``, which the caller states net of the
       main dwelling (c. 9: "è assunto al netto del reddito dell'unità
       immobiliare adibita ad abitazione principale e di quello delle
-      relative pertinenze").  The exempt share of the impatriati and
-      researcher regimes c. 9 also counts is not modelled.
+      relative pertinenze") and with the exempt share of the impatriati
+      and researcher regimes c. 9 adds.
     - Percentage (c. 5): chosen on the employment income "rapportato
       all'intero anno", ``income * 365 / days`` (circolare AdE 4/E of 16
       May 2025, par. 1.2, esempio 1); the rate of the first band whose

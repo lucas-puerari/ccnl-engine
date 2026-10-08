@@ -30,6 +30,7 @@ def _facts(tax_year: int, inps_base: str) -> CurrentYearTaxFacts:
         other_employment_inps_base=Decimal(inps_base),
         other_income=Decimal(0),
         main_dwelling_income=Decimal(0),
+        exempt_regime_income=Decimal(0),
         estimated_on=date(tax_year, 3, 1),
         quality=IncomeEstimateQuality.CERTIFIED,
     )

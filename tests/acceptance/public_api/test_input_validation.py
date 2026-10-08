@@ -162,6 +162,7 @@ _VALID: dict[type, dict[str, Any]] = {
         "other_employment_inps_base": _ONE,
         "other_income": _ONE,
         "main_dwelling_income": _ONE,
+        "exempt_regime_income": _ONE,
         "estimated_on": _DAY,
         "quality": "declared",
     },

@@ -47,6 +47,9 @@ is known and computed, and nothing in the 2026 bundle is payable yet.
 - `PayrollEngine.list_levels()`, `ccnl_engine.catalog.supported_tax_years()`,
   `PeriodResult.paid_gross`, and the JSON form of a state
   (`period_state_to_json`, `period_state_from_json`); results pickle.
+- `CurrentYearTaxFacts.exempt_regime_income`: the exempt share of the
+  impatriati and researcher regimes, counted in the reddito complessivo of
+  the somma esente (L. 207/2024 art. 1 c. 9).
 - Fon.Te. on Commercio, Turismo (Confcommercio, Federalberghi), Pubblici
   esercizi and Agenzie di viaggio, on the TFR base
   (`EmployerFund.contribution_base`), with the employer rate of each CCNL

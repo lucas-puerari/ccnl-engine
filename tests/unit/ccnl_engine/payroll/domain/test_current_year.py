@@ -23,6 +23,7 @@ def _facts(**overrides: object) -> CurrentYearTaxFacts:
         "other_employment_inps_base": Decimal(5500),
         "other_income": Decimal(1500),
         "main_dwelling_income": Decimal(500),
+        "exempt_regime_income": Decimal(800),
         "estimated_on": _DAY,
         "quality": IncomeEstimateQuality.DECLARED,
     }
@@ -35,10 +36,16 @@ def test_external_income_excludes_the_main_dwelling() -> None:
     assert _facts().external_income == Decimal(6000)
 
 
+def test_somma_esente_income_adds_the_exempt_regimes() -> None:
+    """6,000 + 800 exempt under the impatriati regime (L. 207/2024 c. 9)."""
+    assert _facts().somma_esente_income == Decimal(6800)
+
+
 def test_employment_only_states_zero_other_income() -> None:
     """Declaring no other income is an explicit fact, not a default."""
     facts = CurrentYearTaxFacts.employment_only(2026, _DAY)
     assert facts.external_income == Decimal(0)
+    assert facts.somma_esente_income == Decimal(0)
     assert facts.other_employment_inps_base == Decimal(0)
     assert facts.quality is IncomeEstimateQuality.DECLARED
     assert facts.tax_year == 2026
@@ -57,6 +64,7 @@ def test_quality_string_is_normalized() -> None:
         ("other_employment_inps_base", None),
         ("other_income", Decimal("-0.01")),
         ("main_dwelling_income", Decimal(-1)),
+        ("exempt_regime_income", Decimal(-1)),
         ("other_income", None),
         ("estimated_on", None),
         ("tax_year", 26),
