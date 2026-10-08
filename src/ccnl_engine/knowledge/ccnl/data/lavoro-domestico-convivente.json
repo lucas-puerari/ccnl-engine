@@ -2,14 +2,14 @@
   "schema_version": "0.5",
   "meta": {
     "ccnl_id": "lavoro-domestico-convivente",
-    "name": "CCNL Lavoro Domestico \u2014 DOMINA/FIDALDO/ASSINDATCOLF (conviventi)",
+    "name": "CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (conviventi)",
     "cnel_code": "H501",
     "sector": "lavoro domestico",
     "tax_sector": "lavoro-domestico",
     "signatories": [
-      "DOMINA \u2014 Associazione Nazionale Famiglie Datori di Lavoro Domestico",
-      "FIDALDO \u2014 Federazione Italiana Datori di Lavoro Domestico",
-      "ASSINDATCOLF \u2014 Associazione Nazionale dei Datori di Lavoro Domestico",
+      "DOMINA — Associazione Nazionale Famiglie Datori di Lavoro Domestico",
+      "FIDALDO — Federazione Italiana Datori di Lavoro Domestico",
+      "ASSINDATCOLF — Associazione Nazionale dei Datori di Lavoro Domestico",
       "FILCAMS-CGIL",
       "FISASCAT-CISL",
       "UILTUCS-UIL",
@@ -34,7 +34,7 @@
     "notes": [
       {
         "kind": "info",
-        "text": "SALARY MODEL: conglobated retribuzione globale (TABELLA A \u2014 Lavoratori Conviventi, Art. 14 Co.1 lett. a CCNL). Values confirmed from official Domina salary table PDF (TABELLA-minimi-retributivi-2026.pdf, effective 01/01/2026, ISTAT +1.00%). Source is signatory employer association \u2014 primary source."
+        "text": "SALARY MODEL: conglobated retribuzione globale (TABELLA A — Lavoratori Conviventi, Art. 14 Co.1 lett. a CCNL). Values confirmed from official Domina salary table PDF (TABELLA-minimi-retributivi-2026.pdf, effective 01/01/2026, ISTAT +1.00%). Source is signatory employer association — primary source."
       },
       {
         "kind": "info",
@@ -50,7 +50,7 @@
       },
       {
         "kind": "info",
-        "text": "SENIORITY: biennale (24 months), maximum 7 scatti. Per-level euro amounts = 4% \u00d7 2026 base (confirmed: kitech.it amounts match Domina base \u00d7 4% exactly at every level). Amounts frozen at 2026 base \u2014 will not automatically recompute at future ISTAT tranches."
+        "text": "SENIORITY: biennale (24 months), maximum 7 scatti. Per-level euro amounts = 4% × 2026 base (confirmed: kitech.it amounts match Domina base × 4% exactly at every level). Amounts frozen at 2026 base — will not automatically recompute at future ISTAT tranches."
       },
       {
         "kind": "info",
@@ -58,7 +58,7 @@
       },
       {
         "kind": "info",
-        "text": "D/DS INDENNIT\u00c0 DI FUNZIONE: 207.69 EUR/month (Art. 34 CCNL) for levels D and DS only. Modelled as fixed_allowance (no role restriction \u2014 applies to all workers at those levels). Confirmed from Domina official table."
+        "text": "D/DS INDENNITÀ DI FUNZIONE: 207.69 EUR/month (Art. 34 CCNL) for levels D and DS only. Modelled as fixed_allowance (no role restriction — applies to all workers at those levels). Confirmed from Domina official table."
       },
       {
         "kind": "info",
@@ -66,7 +66,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SINGLE PERIOD 2026-01-01. Pre-2026 tranches out of scope. Post-2026 CCNL 2025-2028 tranches not yet modelled: +30 on BS convivente from Jan 2027, +15 from Jan 2028, +15 from Sep 2028 (other levels proportional \u2014 exact amounts require official ASSINDATCOLF/DOMINA table for those periods).",
+        "text": "SINGLE PERIOD 2026-01-01. Pre-2026 tranches out of scope. Post-2026 CCNL 2025-2028 tranches not yet modelled: +30 on BS convivente from Jan 2027, +15 from Jan 2028, +15 from Sep 2028 (other levels proportional — exact amounts require official ASSINDATCOLF/DOMINA table for those periods).",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -92,19 +92,19 @@
       },
       {
         "kind": "info",
-        "text": "Livello Unico (811.09) is a special sub-under-18 level excluded from this model \u2014 single-source, limited coverage."
+        "text": "Livello Unico (811.09) is a special sub-under-18 level excluded from this model — single-source, limited coverage."
       },
       {
         "kind": "simplification",
-        "text": "This file models TABELLA A only \u2014 full-time conviventi at 54 h/week (Art. 14 Co.1 lett. a CCNL). TABELLA B (conviventi ad orario ridotto, Art. 14 Co.2: B=702.25, BS=737.39, C=814.60) is out of scope. Callers must use a TABELLA B file (not yet modelled) for reduced-hours conviventi.",
+        "text": "REDUCED HOURS UNDER ART. 14 C. 1: a convivente may agree fewer than 54 weekly hours (art. 14 c. 1: 'con un massimo di [...] 54 ore settimanali'). The CCNL gives Tabella A as monthly values and no rule to proportion them to the agreed hours; the engine scales the pay linearly on the full time the employment states. The art. 14 c. 2 regime (levels C, B, B super up to 30 hours, Tabella B) is the separate file lavoro-domestico-convivente-orario-ridotto.",
         "capability": "base_salary",
-        "monetary_impact": "yes",
+        "monetary_impact": "unknown",
         "limitation": {
-          "variant": "tabella_b_reduced_hours",
+          "variant": "part_time_scaling",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "path"
           },
-          "remediation": "Model TABELLA B for conviventi ad orario ridotto."
+          "remediation": "Source how the Tabella A minimum of a convivente with fewer than 54 agreed weekly hours is computed and model it, then remove this note."
         }
       },
       {
@@ -305,7 +305,7 @@
             "kind": "tabella_retributiva",
             "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
           },
-          "section": "Scatti di anzianit\u00e0"
+          "section": "Scatti di anzianità"
         },
         "extraction": {
           "method": "manual",
@@ -360,7 +360,7 @@
     {
       "code": "A",
       "order": 1,
-      "description": "Level A \u2014 entry-level domestic worker (colf generica)",
+      "description": "Level A — entry-level domestic worker (colf generica)",
       "base_salary": {
         "periods": [
           {
@@ -448,7 +448,7 @@
     {
       "code": "AS",
       "order": 2,
-      "description": "Level AS \u2014 domestic worker with seniority qualification",
+      "description": "Level AS — domestic worker with seniority qualification",
       "base_salary": {
         "periods": [
           {
@@ -536,7 +536,7 @@
     {
       "code": "B",
       "order": 3,
-      "description": "Level B \u2014 qualified domestic worker (colf qualificata)",
+      "description": "Level B — qualified domestic worker (colf qualificata)",
       "base_salary": {
         "periods": [
           {
@@ -624,7 +624,7 @@
     {
       "code": "BS",
       "order": 4,
-      "description": "Level BS \u2014 qualified domestic worker with seniority",
+      "description": "Level BS — qualified domestic worker with seniority",
       "base_salary": {
         "periods": [
           {
@@ -712,7 +712,7 @@
     {
       "code": "C",
       "order": 5,
-      "description": "Level C \u2014 specialised domestic worker / assistant caregiver (badante)",
+      "description": "Level C — specialised domestic worker / assistant caregiver (badante)",
       "base_salary": {
         "periods": [
           {
@@ -800,7 +800,7 @@
     {
       "code": "CS",
       "order": 6,
-      "description": "Level CS \u2014 specialised domestic worker with seniority",
+      "description": "Level CS — specialised domestic worker with seniority",
       "base_salary": {
         "periods": [
           {
@@ -888,7 +888,7 @@
     {
       "code": "D",
       "order": 7,
-      "description": "Level D \u2014 senior caregiver / household manager",
+      "description": "Level D — senior caregiver / household manager",
       "base_salary": {
         "periods": [
           {
@@ -919,7 +919,7 @@
       "fixed_allowances": [
         {
           "code": "INDENNITA_FUNZIONE",
-          "description": "Indennit\u00e0 di funzione (Art. 34 CCNL) \u2014 livelli D/DS, conviventi",
+          "description": "Indennità di funzione (Art. 34 CCNL) — livelli D/DS, conviventi",
           "monthly": {
             "periods": [
               {
@@ -1007,7 +1007,7 @@
     {
       "code": "DS",
       "order": 8,
-      "description": "Level DS \u2014 senior caregiver / household manager with seniority",
+      "description": "Level DS — senior caregiver / household manager with seniority",
       "base_salary": {
         "periods": [
           {
@@ -1038,7 +1038,7 @@
       "fixed_allowances": [
         {
           "code": "INDENNITA_FUNZIONE",
-          "description": "Indennit\u00e0 di funzione (Art. 34 CCNL) \u2014 livelli D/DS, conviventi",
+          "description": "Indennità di funzione (Art. 34 CCNL) — livelli D/DS, conviventi",
           "monthly": {
             "periods": [
               {
@@ -1132,7 +1132,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "09d86756768dd4f6143aaef95fb0793e75119180f135c41ee24ad57ed169c7ef",
+    "source_hash": "91af88f8fe0be4a24636105e592edf8131ffc573d5ba6f3d87b888af8c37fbdf",
     "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },
@@ -1162,11 +1162,11 @@
             "location": {
               "source_document": {
                 "document_id": "ccnl-lavoro-domestico-2025",
-                "title": "CCNL Lavoro Domestico (Assindatcolf / Fidaldo) \u2014 Convivente 2025",
+                "title": "CCNL Lavoro Domestico (Assindatcolf / Fidaldo) — Convivente 2025",
                 "kind": "tabella_retributiva",
                 "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
               },
-              "section": "Art. orario lavoro \u2014 straordinario convivente oltre 54h"
+              "section": "Art. orario lavoro — straordinario convivente oltre 54h"
             },
             "extraction": {
               "method": "manual",
@@ -1198,11 +1198,11 @@
             "location": {
               "source_document": {
                 "document_id": "ccnl-lavoro-domestico-2025",
-                "title": "CCNL Lavoro Domestico (Assindatcolf / Fidaldo) \u2014 Convivente 2025",
+                "title": "CCNL Lavoro Domestico (Assindatcolf / Fidaldo) — Convivente 2025",
                 "kind": "tabella_retributiva",
                 "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
               },
-              "section": "Art. orario lavoro \u2014 maggiorazione notturno 20%"
+              "section": "Art. orario lavoro — maggiorazione notturno 20%"
             },
             "extraction": {
               "method": "manual",
@@ -1222,11 +1222,11 @@
         "location": {
           "source_document": {
             "document_id": "ccnl-lavoro-domestico-2025",
-            "title": "CCNL Lavoro Domestico (Assindatcolf / Fidaldo) \u2014 Convivente 2025",
+            "title": "CCNL Lavoro Domestico (Assindatcolf / Fidaldo) — Convivente 2025",
             "kind": "tabella_retributiva",
             "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
           },
-          "section": "Art. orario \u2014 retribuzione 1/26 mensile per giorno"
+          "section": "Art. orario — retribuzione 1/26 mensile per giorno"
         },
         "extraction": {
           "method": "manual",
@@ -1249,11 +1249,11 @@
         "location": {
           "source_document": {
             "document_id": "ccnl-lavoro-domestico-2025",
-            "title": "CCNL Lavoro Domestico (Assindatcolf / Fidaldo) \u2014 Convivente 2025",
+            "title": "CCNL Lavoro Domestico (Assindatcolf / Fidaldo) — Convivente 2025",
             "kind": "tabella_retributiva",
             "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
           },
-          "section": "Art. ferie \u2014 26 giorni lavorativi annui"
+          "section": "Art. ferie — 26 giorni lavorativi annui"
         },
         "extraction": {
           "method": "manual",
@@ -1272,11 +1272,11 @@
         "location": {
           "source_document": {
             "document_id": "ccnl-lavoro-domestico-2025",
-            "title": "CCNL Lavoro Domestico (Assindatcolf / Fidaldo) \u2014 Convivente 2025",
+            "title": "CCNL Lavoro Domestico (Assindatcolf / Fidaldo) — Convivente 2025",
             "kind": "tabella_retributiva",
             "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
           },
-          "section": "Art. malattia \u2014 conservazione posto 180 giorni (>2 anni anzianit\u00e0); nessuna integrazione datoriale"
+          "section": "Art. malattia — conservazione posto 180 giorni (>2 anni anzianità); nessuna integrazione datoriale"
         },
         "extraction": {
           "method": "manual",

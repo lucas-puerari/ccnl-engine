@@ -35,11 +35,13 @@ def full_time_issue(ctx: RunContext) -> CalculationIssue | None:
 
     Returns:
         An incomplete issue naming ``full_time_weekly_hours`` when the
-        weekly hours are stated and the full time is not, else ``None``.
+        weekly hours are stated and the full time is not, else ``None``;
+        never on a flat-pay regime, whose pay does not depend on it.
     """
     request = ctx.request
     hours = request.weekly_hours
-    if hours is None or request.full_time_weekly_hours is not None:
+    flat = ctx.contract.ccnl.parameters.flat_pay_max_weekly_hours is not None
+    if hours is None or request.full_time_weekly_hours is not None or flat:
         return None
     return CalculationIssue(
         code="full_time_hours_unknown",

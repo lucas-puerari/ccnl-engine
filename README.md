@@ -221,7 +221,7 @@ take `default_facts`.
 
 ## CCNL coverage
 
-125 contract configurations covering an estimated 16 million employees across
+126 contract configurations covering an estimated 16 million employees across
 private and public sectors (individual contracts may cover overlapping populations).
 
 - **L1 (Gross):** base salary, seniority, fixed allowances, additional months, hourly rate.

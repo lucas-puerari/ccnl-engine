@@ -93,7 +93,7 @@ ruleset without the fields above. These errors have no baseline.
 ## Current status
 
 Distribution across the
-<!-- trust:ccnl-total -->125<!-- /trust:ccnl-total --> bundled CCNL rulesets,
+<!-- trust:ccnl-total -->126<!-- /trust:ccnl-total --> bundled CCNL rulesets,
 generated from the data by `scripts/docs/gen_trust_counts.py` (CI fails when
 it drifts):
 
@@ -101,7 +101,7 @@ it drifts):
 
 | Readiness | CCNL rulesets |
 |---|---:|
-| `exploratory` | 125 |
+| `exploratory` | 126 |
 | `reviewed` | 0 |
 | `production` | 0 |
 

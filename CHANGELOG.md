@@ -47,6 +47,8 @@ is known and computed, and nothing in the 2026 bundle is payable yet.
 - `PayrollEngine.list_levels()`, `ccnl_engine.catalog.supported_tax_years()`,
   `PeriodResult.paid_gross`, and the JSON form of a state
   (`period_state_to_json`, `period_state_from_json`); results pickle.
+- `lavoro-domestico-convivente-orario-ridotto`: the reduced-hours
+  conviventi of art. 14 c. 2 CCNL lavoro domestico, Tabella B.
 - `CurrentYearTaxFacts.exempt_regime_income`: the exempt share of the
   impatriati and researcher regimes, counted in the reddito complessivo of
   the somma esente (L. 207/2024 art. 1 c. 9).

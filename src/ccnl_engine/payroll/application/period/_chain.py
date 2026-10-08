@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from dataclasses import replace
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
@@ -11,6 +12,7 @@ from ccnl_engine.payroll.service.apprenticeship import _apprentice_chain
 from ccnl_engine.payroll.service.chain import _level_chain
 from ccnl_engine.payroll.service.seniority import _resolve_seniority_count
 from ccnl_engine.payroll.service.types import ApprenticeshipScaling
+from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
     from datetime import date
@@ -43,25 +45,52 @@ def _seniority_count(
     )
 
 
+#: Variant of the CCNL limitation a part-time scaling of the pay traverses.
+PART_TIME_VARIANT = "part_time_scaling"
+
+
 def _part_time(
+    ccnl: CCNL,
     chain: MonthlyPayChain,
     weekly_hours: int | None,
     full_time_weekly_hours: int | None,
 ) -> MonthlyPayChain:
     """Scale ``chain`` to the part-time ratio of the weekly hours.
 
+    A regime with ``flat_pay_max_weekly_hours`` pays the chain in full up to
+    that ceiling.  A scaled chain records the :data:`PART_TIME_VARIANT`
+    path of its CCNL, which a CCNL whose text gives no proportioning rule
+    declares as a limitation.
+
     Returns:
         ``chain`` unchanged unless ``weekly_hours < full_time_weekly_hours``.
+
+    Raises:
+        InvalidInputError: When the weekly hours exceed the ceiling of a
+            flat-pay regime.
     """
+    ceiling = ccnl.parameters.flat_pay_max_weekly_hours
+    if ceiling is not None:
+        if weekly_hours is not None and weekly_hours > ceiling:
+            msg = (
+                f"CCNL {ccnl.meta.ccnl_id} pays its minimum up to {ceiling} "
+                f"weekly hours; the employment states {weekly_hours}"
+            )
+            raise InvalidInputError(
+                msg, field="Employment.weekly_hours", feature="employment_facts"
+            )
+        return chain
     # Both values are positive: WeeklyHours validates them on construction.
     if (
         full_time_weekly_hours is not None
         and weekly_hours is not None
         and weekly_hours < full_time_weekly_hours
     ):
-        return chain.scaled_for_part_time(
+        scaled = chain.scaled_for_part_time(
             Decimal(weekly_hours) / Decimal(full_time_weekly_hours)
         )
+        path = f"{ccnl.meta.ccnl_id}/{PART_TIME_VARIANT}"
+        return replace(scaled, limitations=(*scaled.limitations, path))
     return chain
 
 
@@ -100,7 +129,7 @@ def _resolve_chain(
             roles=roles,
             worker_category=worker_category,
         )
-    return _part_time(chain, weekly_hours, full_time_weekly_hours), scaling
+    return _part_time(ccnl, chain, weekly_hours, full_time_weekly_hours), scaling
 
 
 def _contract_chain(

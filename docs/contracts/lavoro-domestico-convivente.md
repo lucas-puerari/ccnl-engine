@@ -113,12 +113,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Update the seniority amounts with each ISTAT adjustment of the minimum tables.
 
-!!! warning "lavoro-domestico-convivente/tabella_b_reduced_hours · base_salary · impact yes · open"
-    This file models TABELLA A only — full-time conviventi at 54 h/week (Art. 14 Co.1 lett. a CCNL). TABELLA B (conviventi ad orario ridotto, Art. 14 Co.2: B=702.25, BS=737.39, C=814.60) is out of scope. Callers must use a TABELLA B file (not yet modelled) for reduced-hours conviventi.
+!!! warning "lavoro-domestico-convivente/part_time_scaling · base_salary · impact unknown · open"
+    REDUCED HOURS UNDER ART. 14 C. 1: a convivente may agree fewer than 54 weekly hours (art. 14 c. 1: 'con un massimo di [...] 54 ore settimanali'). The CCNL gives Tabella A as monthly values and no rule to proportion them to the agreed hours; the engine scales the pay linearly on the full time the employment states. The art. 14 c. 2 regime (levels C, B, B super up to 30 hours, Tabella B) is the separate file lavoro-domestico-convivente-orario-ridotto.
 
-    **Applies when:** a fact the request cannot express: never recorded on a run.
+    **Applies when:** `base_salary` applies; the run takes the engine code path.
 
-    **Remediation:** Model TABELLA B for conviventi ad orario ridotto.
+    **Remediation:** Source how the Tabella A minimum of a convivente with fewer than 54 agreed weekly hours is computed and model it, then remove this note.
 
 !!! warning "lavoro-domestico-convivente/hourly_inps_bracket_unvalidated · inps_employer · impact unknown · open"
     Dividing TABELLA A monthly base by hourly_divisor 234 yields the cash-only rate: the INPS hourly bracket for weekly_hours <= 24 is selected on it, without the board and lodging the INPS retribuzione oraria effettiva counts. The hourly-wage INPS bracket lookup has not been validated for this file; the wage-bracket path is not exercised by the golden cases shipped with this file.
