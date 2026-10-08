@@ -90,7 +90,7 @@ def _load_all() -> tuple[ContractSummary, ...]:
                 validity=model_window(load_ccnl(filename)),
             )
         )
-    return tuple(items)
+    return tuple(sorted(items, key=lambda item: item.ccnl_id))
 
 
 def list_contracts() -> tuple[ContractSummary, ...]:

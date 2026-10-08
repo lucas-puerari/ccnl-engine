@@ -4,6 +4,14 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Reduced-hours conviventi of the CCNL lavoro domestico
+
+| Before | After |
+|---|---|
+| A convivente under art. 14 c. 2 (levels B, B super, C, up to 30 weekly hours) had no file: the convivente file scaled Tabella A to the hours | New CCNL file `lavoro-domestico-convivente-orario-ridotto` with Tabella B, paid in full whatever the hours up to 30 (`CCNLParameters.flat_pay_max_weekly_hours`); more hours raise `InvalidInputError` |
+| A convivente with fewer than 54 agreed hours under art. 14 c. 1 was paid the linear share of Tabella A, payable | Same amount, with the open limitation `lavoro-domestico-convivente/part_time_scaling`: not payable until a source gives the rule |
+| `list_contracts()` followed the file names | Sorted by `ccnl_id`, as documented |
+
 ## Exempt income of the impatriati and researcher regimes in the somma esente
 
 | Before | After |

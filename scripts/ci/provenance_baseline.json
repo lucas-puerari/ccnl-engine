@@ -402,6 +402,9 @@
       "accrual_rule": "missing",
       "additional_months[2026-05-01]": "assumed"
     },
+    "ccnl/data/lavoro-domestico-convivente-orario-ridotto.json": {
+      "accrual_rule": "missing"
+    },
     "ccnl/data/lavoro-domestico-convivente.json": {
       "accrual_rule": "missing"
     },
@@ -1467,12 +1470,17 @@
     "ccnl/data/lavanderie-industriali-assosistema.json": [
       "lavanderie-industriali-assosistema/apprentice_seniority"
     ],
+    "ccnl/data/lavoro-domestico-convivente-orario-ridotto.json": [
+      "lavoro-domestico-convivente-orario-ridotto/board_lodging_substitute",
+      "lavoro-domestico-convivente-orario-ridotto/extra_month_hours",
+      "lavoro-domestico-convivente-orario-ridotto/hourly_inps_bracket_unvalidated"
+    ],
     "ccnl/data/lavoro-domestico-convivente.json": [
       "lavoro-domestico-convivente/board_lodging_substitute",
       "lavoro-domestico-convivente/extra_month_hours",
       "lavoro-domestico-convivente/hourly_inps_bracket_unvalidated",
+      "lavoro-domestico-convivente/part_time_scaling",
       "lavoro-domestico-convivente/seniority_frozen_at_2026",
-      "lavoro-domestico-convivente/tabella_b_reduced_hours",
       "lavoro-domestico-convivente/tranches_from_2027"
     ],
     "ccnl/data/lavoro-domestico-non-convivente.json": [

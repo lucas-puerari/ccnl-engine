@@ -21,9 +21,13 @@ for the background on the general and flat-rate systems.
 
 ## Convivente vs. non-convivente
 
-The library includes two separate JSON files:
+The library includes three separate JSON files:
 
-- `lavoro-domestico-convivente.json`: live-in domestic worker
+- `lavoro-domestico-convivente.json`: live-in domestic worker, Tabella A
+  (art. 14 c. 1 lett. a, up to 54 weekly hours)
+- `lavoro-domestico-convivente-orario-ridotto.json`: live-in worker of
+  levels B, B super and C hired under art. 14 c. 2, up to 30 weekly hours,
+  Tabella B
 - `lavoro-domestico-non-convivente.json`: non-live-in domestic worker
 
 Each file carries the correct INPS rate table and level structure for that variant.
@@ -33,6 +37,19 @@ The monthly minimum of a non convivente is the Tabella C hourly rate times
 verbale 1): level CS, €8.30 an hour, is €1,438.67 a month.  The hourly divisor
 of the file is 173.33, so the hourly rate the INPS bracket reads is the table
 rate to the cent.
+
+A convivente under art. 14 c. 2 is paid the Tabella B minimum "qualunque sia
+l'orario di lavoro osservato nel limite massimo delle 30 ore settimanali",
+board and lodging in full: level B super is €737.39 a month at 20 or at 30
+weekly hours. The file sets `flat_pay_max_weekly_hours` to 30, so the pay is
+not proportioned, no full time is needed and more than 30 weekly hours raise
+`InvalidInputError`. Seniority is 4% of the Tabella B minimum (art. 37).
+
+A convivente under art. 14 c. 1 may agree fewer than 54 weekly hours, but
+Tabella A gives monthly values and the CCNL no rule to proportion them. The
+engine scales the pay on the stated full time (C super at 40 of 54 hours:
+€884.33) and reports the open limitation
+`lavoro-domestico-convivente/part_time_scaling`, so the run is not payable.
 
 ## Cas.Sa.Colf contribution
 

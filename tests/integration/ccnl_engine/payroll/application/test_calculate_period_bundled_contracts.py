@@ -49,9 +49,11 @@ _ENGINE = PayrollEngine.bundled()
 _SLUGS = [f"{info.ccnl_id}.json" for info in PayrollEngine.list_contracts()]
 #: Domestic contracts need declared weekly and contributable hours for INPS:
 #: a full-time week, 54 hours for conviventi and 40 for non conviventi (the
-#: weeks the bundle derives the monthly minimum from).
+#: weeks the bundle derives the monthly minimum from), the 30-hour ceiling
+#: of the reduced-hours conviventi.
 _DOMESTIC = {
     "lavoro-domestico-convivente.json": WeeklyHours(54),
+    "lavoro-domestico-convivente-orario-ridotto.json": WeeklyHours(30),
     "lavoro-domestico-non-convivente.json": WeeklyHours(40),
 }
 _DOMESTIC_FACTS = PeriodFacts(contributable_hours=ContributableHours(Decimal(173)))

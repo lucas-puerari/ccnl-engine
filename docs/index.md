@@ -30,7 +30,7 @@ Built for technical teams in HR, payroll, and compensation.
 | [Trust](trust/index.md) | Provenance, calculation status, capability report, versioning, quality gates |
 | [Data operations](trust/data-operations.md) | Update policy, changelog, error reporting, version compatibility |
 | [Correctness layers](trust/correctness.md) | Software, source, and case correctness — what each layer means and how to read them |
-| [Contracts](contracts/index.md) | All 125 supported contracts — salary tables, sources, coverage |
+| [Contracts](contracts/index.md) | All 126 supported contracts — salary tables, sources, coverage |
 | [API reference](api/index.md) | Full reference for every public type and function |
 
 ---
@@ -83,7 +83,7 @@ full walkthrough.
 
 Second-level (territorial and company) allowances are not an engine input.
 
-**L3: work rules (125/125 contracts):**
+**L3: work rules (126/126 contracts):**
 
 Work events are part of the run: pass them in `PeriodFacts.events` and they
 change gross, net and employer cost according to their treatment. See

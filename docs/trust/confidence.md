@@ -104,9 +104,9 @@ trattamento integrativo and the ulteriore detrazione: those rulesets declare
 somma esente is `derived` from its own ruleset, quoted from L. 207/2024
 art. 1 cc. 4-5, and blocks no run by its label. Most also
 read an `assumed` base salary:
-<!-- trust:extra-months-assumed -->121 of 125<!-- /trust:extra-months-assumed -->
+<!-- trust:extra-months-assumed -->121 of 126<!-- /trust:extra-months-assumed -->
 CCNLs cite no clause for their number of monthly payments. The bundle holds
-<!-- trust:rules-missing -->85<!-- /trust:rules-missing --> `missing` rules
+<!-- trust:rules-missing -->86<!-- /trust:rules-missing --> `missing` rules
 (see [Provenance](provenance.md#current-counts)); a run that reads one also
 raises a `rule_source_missing` issue and is `incomplete`.
 
@@ -190,7 +190,7 @@ is `False` on its closing state). See
 ## Model limitations
 
 A known simplification of the model is data, not a comment. The registry has
-<!-- trust:limitations-total -->250<!-- /trust:limitations-total --> `ModelLimitation`
+<!-- trust:limitations-total -->253<!-- /trust:limitations-total --> `ModelLimitation`
 entries: one per `simplification` note of a CCNL file that can move an
 amount, and <!-- trust:limitations-engine -->5<!-- /trust:limitations-engine -->
 engine limitations of code paths several CCNLs share
@@ -207,11 +207,11 @@ limits, the `rulesets` and dates it affects, a `monetary_impact` (`yes`,
 `no`, `unknown`), a `status` (`open`, `resolved`), its `source` and a
 `remediation`.
 
-The <!-- trust:simplification-notes -->313<!-- /trust:simplification-notes -->
+The <!-- trust:simplification-notes -->316<!-- /trust:simplification-notes -->
 simplification notes of the bundle each state their impact on what the engine
 computes from the bundle:
-<!-- trust:simplification-yes -->74<!-- /trust:simplification-yes --> `yes`,
-<!-- trust:simplification-unknown -->171<!-- /trust:simplification-unknown --> `unknown`
+<!-- trust:simplification-yes -->73<!-- /trust:simplification-yes --> `yes`,
+<!-- trust:simplification-unknown -->175<!-- /trust:simplification-unknown --> `unknown`
 and <!-- trust:simplification-no -->68<!-- /trust:simplification-no --> `no` (the
 engine refuses the case, or takes the value from the caller). A file whose
 note can move an amount without declaring a limitation does not load, so the

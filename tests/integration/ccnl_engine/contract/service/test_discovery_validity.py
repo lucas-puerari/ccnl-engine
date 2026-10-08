@@ -52,6 +52,7 @@ _YEAR = 2026
 _CONTRACTS = {str(c.ccnl_id): c for c in PayrollEngine.list_contracts()}
 _DOMESTIC = frozenset({
     "lavoro-domestico-convivente",
+    "lavoro-domestico-convivente-orario-ridotto",
     "lavoro-domestico-non-convivente",
 })
 _SENIORITY = SeniorityFact(36, date(_YEAR, 1, 1), SenioritySource.PAYSLIP)

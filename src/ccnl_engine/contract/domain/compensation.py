@@ -211,6 +211,8 @@ class CCNLParameters(BaseModel):
     bundle has no sourced clause.
     ``assistance_contribution`` is the contribution the CCNL charges per
     paid hour, ``None`` when it charges none.
+    ``flat_pay_max_weekly_hours``: the ceiling up to which a regime pays its
+    minimum in full whatever the hours (lavoro domestico art. 14 c. 2: 30).
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -223,6 +225,7 @@ class CCNLParameters(BaseModel):
     thirteenth_payment_day: PaymentDay | None = None
     fourteenth_payment_day: PaymentDay | None = None
     assistance_contribution: AssistanceContribution | None = None
+    flat_pay_max_weekly_hours: int | None = Field(default=None, ge=1)
 
     @model_validator(mode="after")
     def _check_positive_params(self) -> Self:
