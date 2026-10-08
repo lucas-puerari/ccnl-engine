@@ -17,6 +17,8 @@ if TYPE_CHECKING:
     from datetime import date
 
 _ZERO = Decimal(0)
+#: Hours of a month of 31 days: no event of a month can exceed them.
+_HOURS_IN_A_MONTH = Decimal(31 * 24)
 
 __all__ = [
     "HolidayWorkEvent",
@@ -54,7 +56,8 @@ class OvertimeEvent:
 
     Attributes:
         event_date: Calendar date the overtime was worked.
-        hours: Number of overtime hours.  Must be > 0.
+        hours: Number of overtime hours, above 0 and at most the 744 hours
+            of a month of 31 days.
         hourly_rate: Base hourly rate in EUR.  Must be > 0.
         multiplier: Overtime multiplier applied to the hourly rate (e.g.
             ``1.25`` for 25% supplement).  Must be > 0.  ``None`` (the
@@ -75,7 +78,11 @@ class OvertimeEvent:
         feature = "overtime"
         require_date(self.event_date, "OvertimeEvent.event_date", feature=feature)
         require_decimal(
-            self.hours, "OvertimeEvent.hours", feature=feature, positive=True
+            self.hours,
+            "OvertimeEvent.hours",
+            feature=feature,
+            positive=True,
+            maximum=_HOURS_IN_A_MONTH,
         )
         require_decimal(
             self.hourly_rate,

@@ -165,3 +165,10 @@ class TestAdjustmentSequence:
         """Only an adjustment repeats in a month, and numbers start at 1."""
         with pytest.raises(InvalidInputError, match=match):
             PayrollRun(run_kind=kind, month=12, year=2026, sequence=sequence)
+
+
+@pytest.mark.parametrize("year", [1969, 9999, 10_000])
+def test_a_year_outside_1970_9998_is_invalid_input(year: int) -> None:
+    """A run of year 10000 used to escape as a ValueError of ``date``."""
+    with pytest.raises(InvalidInputError):
+        PayrollRun.regular(year, 12)

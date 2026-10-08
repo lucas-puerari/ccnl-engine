@@ -9,6 +9,8 @@ from ccnl_engine.shared.domain.validation import parse_enum, require_int
 __all__ = ["RunKind", "check_year_month", "run_kind"]
 
 _MIN_YEAR = 1970
+#: The last year whose next year is still a calendar date (``date`` ends in 9999).
+_MAX_YEAR = 9998
 _FEATURE = "payroll_run"
 
 
@@ -66,9 +68,11 @@ _RANK_IN_MONTH: dict[RunKind, int] = {
 
 
 def check_year_month(owner: str, year: object, month: object) -> None:
-    """Reject a month outside 1-12 or a year before 1970."""
+    """Reject a month outside 1-12 or a year outside 1970-9998."""
     require_int(month, f"{owner}.month", feature=_FEATURE, minimum=1, maximum=12)
-    require_int(year, f"{owner}.year", feature=_FEATURE, minimum=_MIN_YEAR)
+    require_int(
+        year, f"{owner}.year", feature=_FEATURE, minimum=_MIN_YEAR, maximum=_MAX_YEAR
+    )
 
 
 def run_kind(value: object, path: str) -> RunKind:

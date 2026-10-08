@@ -62,3 +62,18 @@ def test_rejects_payment_dates_that_cannot_pay_a_run(dates: object, field: str) 
         _plan(dates)
 
     assert info.value.field == field
+
+
+def test_the_plan_keeps_its_own_copy_of_the_dates() -> None:
+    """A caller editing its dict after the plan is built changes nothing."""
+    dates = {12: date(2026, 12, 18)}
+    plan = _plan(dates)
+    dates[12] = date(2026, 12, 20)
+
+    assert plan.payment_dates == {12: date(2026, 12, 18)}
+
+
+def test_a_plan_of_year_9999_is_rejected() -> None:
+    """Its December could be paid in 10000, which is not a date."""
+    with pytest.raises(InvalidInputError):
+        CompetenceYearPlan(year=9999, employment=_EMPLOYMENT, employer=_EMPLOYER)

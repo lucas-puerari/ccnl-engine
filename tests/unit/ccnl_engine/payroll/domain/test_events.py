@@ -48,6 +48,17 @@ class TestOvertimeEvent:
         assert evt.multiplier is None
         assert evt.kind is OvertimeKind.WEEKDAY
 
+    @pytest.mark.parametrize(
+        ("hours", "accepted"), [(Decimal(744), True), (Decimal(745), False)]
+    )
+    def test_hours_fit_in_a_month(self, hours: Decimal, *, accepted: bool) -> None:
+        """At most the 744 hours of a month of 31 days."""
+        if accepted:
+            assert OvertimeEvent(_DATE, hours, Decimal(10)).hours == hours
+            return
+        with pytest.raises(InvalidInputError, match=r"OvertimeEvent\.hours"):
+            OvertimeEvent(_DATE, hours, Decimal(10))
+
     def test_frozen(self) -> None:
         """OvertimeEvent is immutable."""
         evt = OvertimeEvent(event_date=_DATE, hours=Decimal(2), hourly_rate=Decimal(10))
