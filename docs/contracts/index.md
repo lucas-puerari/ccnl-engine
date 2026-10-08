@@ -166,7 +166,7 @@ Capabilities of the registry by layer and implementation:
 | 112 | D121 | [CCNL per i lavoratori addetti all'industria delle calzature](calzaturiero-assocalzaturifici.md) | industria | ~75k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 37 / 1 / 1 | 🧪 | 🤖 |
 | 113 | C021 | [CCNL per i lavoratori addetti all'industria orafa, argentiera e della gioielleria (Federorafi)](orafi-argentieri-industria-federorafi.md) | industria | ~18k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 40 / 2 / 0 | 🧪 | 🤖 |
 | 114 | D111 | [CCNL per i lavoratori addetti alle industrie delle pelli e dei succedanei della pelle (Assopellettieri)](pelli-cuoio-industria-assopellettieri.md) | industria | ~17k | — | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 35 / 1 / 1 | 🧪 | 🤖 |
-| 115 | E012 | [CCNL per i lavoratori dell'industria alimentare (Federalimentare)](alimentari-federalimentare.md) | industria | ~145k | — | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 71 / 2 / 0 | 🧪 | 🤖 |
+| 115 | E012 | [CCNL per i lavoratori dell'industria alimentare (Federalimentare)](alimentari-federalimentare.md) | industria | ~145k | — | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 73 / 2 / 0 | 🧪 | 🤖 |
 | 116 | B101 | [CCNL per i lavoratori dell'industria conciaria (UNIC)](concia-unic.md) | industria | ~22.6k | — | 🔲 | 🔲 | 🔲 | overtime, seniority, sickness | 0 / 57 / 0 / 1 | 🧪 | 🤖 |
 | 117 | F051 | [CCNL per i lavoratori dell'industria del legno, del sughero, del mobile, dell'arredamento e delle industrie affini (Federlegno-Arredo)](legno-arredamento-federlegno.md) | industria | ~90k | — | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 88 / 2 / 0 | 🧪 | 🤖 |
 | 118 | D014 | [CCNL per i lavoratori dell'industria tessile, abbigliamento, moda (SMI)](tessile-smi.md) | industria | ~160k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 47 / 1 / 1 | 🧪 | 🤖 |

@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Alifond on the TFR base and on the food industry
+
+| Before | After |
+|---|---|
+| ALIFOND on Tabacco computed on the INPS base, so a bonus or overtime raised the contributions; no fund on Alimentari Federalimentare | ALIFOND computes on the TFR base, as note (1) of its Scheda 'I destinatari e i contributi' states; `"ALIFOND"` (employer 1.50%, employee at least 1%) on `alimentari-federalimentare` |
+
 ## Fon.Te. employer rates of tourism and apprentices
 
 | Before | After |

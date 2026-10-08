@@ -304,7 +304,8 @@ not known: on every CCNL but domestic work, whether or not the bundle holds
 its negotiated fund, the decision is `incomplete` with the reason
 `required_fact_missing`, no fund line is posted and the run has a
 `missing_fact` blocker for `pension_fund`. The bundle holds the fund data of
-eight CCNLs (tabacco, tessile PMI, vetro meccanizzato, and Fon.Te. for
+nine CCNLs (Alifond for tabacco and alimentari Federalimentare, tessile
+PMI, vetro meccanizzato, and Fon.Te. for
 commercio, turismo Confcommercio and Federalberghi, pubblici esercizi FIPE
 and agenzie di viaggio FIAVET): an enrolment in the
 fund of another CCNL raises `InvalidInputError`, since its rates are not in
@@ -327,9 +328,9 @@ The rules behind it:
   its rates apply to in `contribution_base`: `inps_base`, the default, is
   the INPS contribution base of the run, events included; `tfr_base` is
   the pay that enters the TFR of the run (the monthly pay, the benefits in
-  kind and the events the TFR includes), the base of Fon.Te. (statute
-  Part I, Scheda III, note 1). Overtime and bonuses enter the INPS base
-  and not the TFR base.
+  kind and the events the TFR includes), the base of Fon.Te. and Alifond
+  (note 1 of the Scheda 'I destinatari e i contributi' of each fund).
+  Overtime and bonuses enter the INPS base and not the TFR base.
 - **Rates by contract.** A fund can charge apprentices another employer
   rate (`apprentice_rate`, used when `contract_type` is an `Apprentice`).
   Fon.Te. takes the rates of each CCNL from Allegato 1 of its nota

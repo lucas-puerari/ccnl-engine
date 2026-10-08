@@ -104,7 +104,7 @@ formulas or caller-declared amounts.
 | `rinnovo_substitute_tax` | Imposta sostitutiva aumenti da rinnovo L. 199/2025 art. 1 c. 7 | net | native | decided | decision | `prior_year` | — | implemented | 0 / 1 / 0 / 0 |
 | `notte_festivi_turni_substitute_tax` | Imposta sostitutiva notturno, festivo e turni L. 199/2025 art. 1 cc. 10-11 | net | native | decided | decision | `prior_year` | — | implemented | 0 / 1 / 0 / 0 |
 | `bilateral_funds` | Fondi bilaterali (importi dal chiamante) | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
-| `pension_fund_contribution` | Previdenza complementare CCNL su adesione | net | partial | decided | decision | `employment.pension_fund` | ccnl_fund_on_enrolment | simplified | 0 / 10 / 14 / 0 |
+| `pension_fund_contribution` | Previdenza complementare CCNL su adesione | net | partial | decided | decision | `employment.pension_fund` | ccnl_fund_on_enrolment | simplified | 0 / 12 / 14 / 0 |
 | `assistance_contribution` | Contributi di assistenza contrattuale per ora retribuita (Cas.Sa.Colf, lavoro domestico) | net | native | decided | decision | `facts.contributable_hours` | — | implemented | 0 / 2 / 0 / 0 |
 
 ## CCNL coverage
@@ -241,7 +241,7 @@ never grow.
 | 112 | [CCNL per i lavoratori addetti all'industria delle calzature](calzaturiero-assocalzaturifici.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 37 / 1 / 1 |
 | 113 | [CCNL per i lavoratori addetti all'industria orafa, argentiera e della gioielleria (Federorafi)](orafi-argentieri-industria-federorafi.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 40 / 2 / 0 |
 | 114 | [CCNL per i lavoratori addetti alle industrie delle pelli e dei succedanei della pelle (Assopellettieri)](pelli-cuoio-industria-assopellettieri.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 35 / 1 / 1 |
-| 115 | [CCNL per i lavoratori dell'industria alimentare (Federalimentare)](alimentari-federalimentare.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 71 / 2 / 0 |
+| 115 | [CCNL per i lavoratori dell'industria alimentare (Federalimentare)](alimentari-federalimentare.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 73 / 2 / 0 |
 | 116 | [CCNL per i lavoratori dell'industria conciaria (UNIC)](concia-unic.md) | 🔲 | 🔲 | 🔲 | overtime, seniority, sickness | 0 / 57 / 0 / 1 |
 | 117 | [CCNL per i lavoratori dell'industria del legno, del sughero, del mobile, dell'arredamento e delle industrie affini (Federlegno-Arredo)](legno-arredamento-federlegno.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 88 / 2 / 0 |
 | 118 | [CCNL per i lavoratori dell'industria tessile, abbigliamento, moda (SMI)](tessile-smi.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 47 / 1 / 1 |
