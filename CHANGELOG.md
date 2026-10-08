@@ -51,6 +51,8 @@ is known and computed, and nothing in the 2026 bundle is payable yet.
   esercizi and Agenzie di viaggio, on the TFR base
   (`EmployerFund.contribution_base`), with the employer rate of each CCNL
   and of apprentices (`EmployerFund.apprentice_rate`).
+- Alifond on Alimentari Federalimentare; Alifond on Tabacco moves to the
+  TFR base its statute names.
 - Payroll rules: per-run withholding under art. 23 DPR 600/1973, monthly
   1% additional IVS with year-end settlement, the INPS minimum base, the TFR
   net of the 0.50% additional IVS, the TFR revaluation and the Fondo

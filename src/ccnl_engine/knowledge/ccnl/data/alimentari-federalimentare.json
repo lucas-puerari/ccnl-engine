@@ -252,7 +252,47 @@
         },
         "note": "Text layer is font-encoded, read by OCR; clause read in the 2021 text. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
       }
-    }
+    },
+    "employer_funds": [
+      {
+        "code": "ALIFOND",
+        "description": "Alifond - Fondo nazionale pensione complementare per i lavoratori dell'industria alimentare e dei settori affini",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0150"
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0100"
+            }
+          ]
+        },
+        "contribution_base": "tfr_base",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "alifond-nota-informativa-2026",
+              "title": "Alifond Nota informativa, Parte I, scheda 'I destinatari e i contributi' (in vigore dal 31/07/2026, depositata presso la COVIP il 30/07/2026)",
+              "kind": "altro",
+              "url": "https://www.alifond.it/public/documenti/nota_informativa/20260730_3_Parte-I_Inf.-chiave-aderente_Scheda-I-dest.-e-i-contr.pdf"
+            },
+            "section": "Tabella 'Contribuzione' e note (1), (2)",
+            "quote": "Lavoratori occupati dopo il 28.04.1993 100% 1% 1,50% (4); (1) In percentuale della retribuzione utile ai fini del calcolo del TFR; (2) Misura minima del contributo da parte del lavoratore per avere diritto al contributo del datore di lavoro."
+          },
+          "transformation": "Employer 1.50% and worker minimum 1% of the retribuzione utile ai fini del calcolo del TFR, the columns 'Datore di lavoro' and 'Lavoratore'. Note (4) sets 1% for contoterzismo only, not this CCNL. The quota of TFR is the worker's choice in PensionFundEnrolment.tfr_to_fund.",
+          "note": "Read from the PDF the url serves (sha256 ee5d864c08f8ff13a874583f16d6f3898bd3ecaca5f6f343aba43969dba6675a), text layer. The scheda names the CCNL of 6 July 1995 for the food industry signed by Federalimentare and the associations of Confindustria as the founding contract. valid_from is the first day of the bundled tax year, the rates being in force before it. No human review recorded."
+        }
+      }
+    ]
   },
   "levels": [
     {
@@ -2281,7 +2321,7 @@
     "effective_until": null,
     "source": "https://flaiveneto.it/rinnovato-il-ccnl-industria-alimentare/",
     "verification_status": "unverified",
-    "source_hash": "3713f47e10595b05f72e4105b1a1ef3ff96e9e767aa28dfbc19ffc875d72b271",
+    "source_hash": "a201221b2bdb05a38c753d2e26315ce858c2d64dcc4881ef4b208263666aff92",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -250,7 +250,7 @@
             "section": "Art. 47 - Previdenza complementare volontaria",
             "quote": "l'1,50% a decorrere dal 1° luglio 2025 a carico dell'azienda; una quota non inferiore all'1% a carico del lavoratore"
           },
-          "note": "Art. 47 does not state the contribution base: it refers to the rules of the fund. The engine applies the rate to the INPS contribution base, as the schema defines it. Assumed, not derived: its ruleset declares source_type 'estimated'."
+          "note": "Art. 47 does not state the contribution base: it refers to the rules of the fund. The base is the retribuzione utile ai fini del calcolo del TFR, note (1) of the Alifond Scheda 'I destinatari e i contributi' in force from 31/07/2026 (https://www.alifond.it/public/documenti/nota_informativa/20260730_3_Parte-I_Inf.-chiave-aderente_Scheda-I-dest.-e-i-contr.pdf, sha256 ee5d864c08f8ff13a874583f16d6f3898bd3ecaca5f6f343aba43969dba6675a). Assumed, not derived: its ruleset declares source_type 'estimated'."
         },
         "employee_min_rate": {
           "periods": [
@@ -260,7 +260,8 @@
               "value": "0.0100"
             }
           ]
-        }
+        },
+        "contribution_base": "tfr_base"
       }
     ]
   },
@@ -2048,6 +2049,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "d678c95a3bcc9c822fbddaf343560b55e23dfd508b2922eca53391777cbf0d79"
+    "source_hash": "f3a558c1fca702d9f28e5942874fcf7595406d421a6f7500ca5e7f1a483edefb"
   }
 }

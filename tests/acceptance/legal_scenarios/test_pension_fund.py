@@ -15,8 +15,10 @@ Sources:
   the INPS taxable pay is deducted from the TFR quota of the period, and
   from the TFR paid to the fund when the TFR goes to a pension fund.
 
-CCNL rates from the bundle, each run on its INPS base (the rate times the
-base, rounded half up to the cent):
+CCNL rates from the bundle, each run on the base of the fund (the rate
+times the base, rounded half up to the cent).  ALIFOND computes on the pay
+that enters the TFR (Alifond Scheda 'I destinatari e i contributi', note
+(1)); FONCHIM on vetro stays on the INPS base:
 
 - Tabacco (APTI), level 4A in 2026: 1244.90 minimum + 508.45 contingenza +
   10.33 EDR = 1763.68 a month, 14 runs.  ALIFOND (art. 47 of the accord
@@ -24,6 +26,10 @@ base, rounded half up to the cent):
   = 17.6368 -> 17.64; solidarity 10% of 26.46 = 2.646 -> 2.65.  TFR:
   1763.68 / 13.5 = 130.643 -> 130.64, less 0.50% of 1763.68 = 8.8184 ->
   8.82: 121.82.
+- Alimentari (Federalimentare), level 3 in January 2026: 1566.16 minimum
+  + 522.32 contingenza + 10.33 EDR + 85.41 IAR = 2184.22.  ALIFOND
+  employer 1.50% = 32.7633 -> 32.76, employee minimum 1% = 21.8422 ->
+  21.84, solidarity 3.276 -> 3.28.
 - Tabacco (APTI), level 3A in 2026: 1524.95 minimum + 515.76 contingenza
   + 10.33 EDR = 2051.04.  TFR: 2051.04 / 13.5 = 151.929 -> 151.93, less
   0.50% of 2051.04 = 10.2552 -> 10.26: 141.67.
@@ -289,14 +295,31 @@ class TestDeductionCap:
 
 
 class TestEventBase:
-    """The fund rate applies to the INPS base of the run, events included."""
+    """A bonus enters the INPS base of the run, not the TFR base."""
 
-    def test_bonus_enters_the_base(self) -> None:
-        """1763.68 + 1000.00 bonus: employer 41.46, employee 27.64."""
+    def test_bonus_enters_an_inps_base(self) -> None:
+        """FONCHIM on vetro C, on the INPS base: 2364.38 + 1000.00 bonus.
+
+        Employer 1.5% of 3364.38 = 50.4657 -> 50.47, employee 1.2% =
+        40.37256 -> 40.37.
+        """
+        bonus = BonusEvent(event_date=date(2026, 1, 15), amount=Decimal(1000))
+        employment = Employment(
+            ccnl_slug=_VETRO,
+            level_code="C",
+            pension_fund=_FONCHIM,
+            contract_type=Permanent(),
+        )
+        result = regular_period(employment=employment, events=(bonus,))
+        assert _entry(result, "pension_fund_employer") == Decimal("50.47")
+        assert _entry(result, "pension_fund_employee") == Decimal("40.37")
+
+    def test_bonus_stays_out_of_the_tfr_base(self) -> None:
+        """ALIFOND on the TFR base: the bonus leaves 26.46 and 17.64."""
         bonus = BonusEvent(event_date=date(2026, 1, 15), amount=Decimal(1000))
         result = regular_period(employment=_tabacco(), events=(bonus,))
-        assert _entry(result, "pension_fund_employer") == Decimal("41.46")
-        assert _entry(result, "pension_fund_employee") == Decimal("27.64")
+        assert _entry(result, "pension_fund_employer") == Decimal("26.46")
+        assert _entry(result, "pension_fund_employee") == Decimal("17.64")
 
 
 class TestNotEnrolled:
@@ -420,3 +443,20 @@ class TestCommercioFonte:
         assert _pension_decision(result).inputs["base"] == Decimal("1660.69")
         assert _entry(result, "pension_fund_employer") == Decimal("9.13")
         assert _pension_decision(result).inputs["solidarity"] == Decimal("0.91")
+
+
+def test_alifond_on_the_food_industry() -> None:
+    """Alimentari level 3 enrolled in ALIFOND at the 1% minimum."""
+    employment = Employment(
+        ccnl_slug="alimentari-federalimentare.json",
+        level_code="3",
+        seniority=new_hire(),
+        pension_fund=PensionFundEnrolment("ALIFOND", Decimal("0.01"), tfr_to_fund=True),
+        contract_type=Permanent(),
+    )
+    result = regular_period(employment=employment)
+    decision = _pension_decision(result)
+    assert decision.inputs["base"] == Decimal("2184.22")
+    assert _entry(result, "pension_fund_employer") == Decimal("32.76")
+    assert _entry(result, "pension_fund_employee") == Decimal("21.84")
+    assert decision.inputs["solidarity"] == Decimal("3.28")
