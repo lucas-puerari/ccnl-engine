@@ -299,9 +299,13 @@ as `Employment.pension_fund`, a `PensionFundEnrolment`:
 fund line is posted. On a CCNL that has a fund, the
 `pension_fund_contribution` decision records the reason `not_enrolled` and
 the capability is not applicable. `pension_fund=None`, the default, means
-not known: on a CCNL that has a fund the decision is `incomplete` with the
-reason `required_fact_missing`, no fund line is posted and the run has a
-`missing_fact` blocker for `pension_fund`. Whether the TFR of a worker who
+not known: on every CCNL but domestic work, whether or not the bundle holds
+its negotiated fund, the decision is `incomplete` with the reason
+`required_fact_missing`, no fund line is posted and the run has a
+`missing_fact` blocker for `pension_fund`. The bundle holds the fund data of
+three CCNLs (tabacco, tessile PMI, vetro meccanizzato): an enrolment in the
+fund of another CCNL raises `InvalidInputError`, since its rates are not in
+the bundle. Whether the TFR of a worker who
 expressed no choice goes to the fund (silent consent, D.Lgs. 252/2005 art.
 8 c. 7) is for the caller to establish: the engine does not infer it.
 

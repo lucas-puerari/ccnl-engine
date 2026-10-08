@@ -44,6 +44,7 @@ from ccnl_engine.inputs import (
     DependentRelationship,
     EmploymentPeriod,
     FamilyComposition,
+    NoPensionFund,
     Permanent,
 )
 from ccnl_engine.results import CalculationStatus
@@ -103,6 +104,7 @@ def _conguaglio(
                 seniority=new_hire(),
                 employment_period=EmploymentPeriod(date(2020, 1, 1), None),
                 contract_type=Permanent(),
+                pension_fund=NoPensionFund(),
             ),
             employer=EmployerProfile(headcount=Headcount(50)),
             default_facts=PeriodFacts(

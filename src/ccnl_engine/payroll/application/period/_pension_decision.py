@@ -3,9 +3,11 @@
 Enrolment is voluntary (D.Lgs. 252/2005 art. 1 c. 2), so it is a fact of
 the employment: :class:`~ccnl_engine.payroll.domain.pension_fund\
 .PensionFundEnrolment` or :class:`~ccnl_engine.payroll.domain.pension_fund\
-.NoPensionFund`.  On a CCNL that has funds, an enrolment left unknown leaves
-the contributions undetermined: the decision is incomplete and an issue
-names the fact.  The engine does not infer the destination of the TFR of a
+.NoPensionFund`.  An enrolment left unknown leaves the contributions
+undetermined on a CCNL whose funds the bundle holds, and on every CCNL of
+the private sectors and the public administration whose negotiated fund it
+does not hold (domestic work has none): the decision is incomplete and an
+issue names the fact.  The engine does not infer the destination of the TFR of a
 worker who expressed no choice (art. 8 c. 7).
 """
 
@@ -13,6 +15,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.contract.domain.identity import TaxSector
 from ccnl_engine.payroll.application.period._run_decisions import _ccnl_rule
 from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
@@ -37,6 +40,8 @@ if TYPE_CHECKING:
     )
 
 _NOT_IN_BUNDLE = "not_in_bundle"
+#: Sectors whose CCNLs have no negotiated pension fund.
+_NO_NEGOTIATED_FUND = frozenset({TaxSector.LAVORO_DOMESTICO})
 #: Reason code of a run whose enrolment in a fund of the CCNL is unknown.
 REQUIRED_FACT_MISSING = "required_fact_missing"
 FACT = "pension_fund"
@@ -84,10 +89,13 @@ def enrolment_unknown(ctx: RunContext) -> bool:
     """Return whether the run cannot tell whether the worker is enrolled.
 
     Returns:
-        True on a CCNL that has funds when the enrolment is not stated.
+        True when the enrolment is not stated, unless the CCNL has no
+        negotiated fund and the bundle holds none.
     """
-    return ctx.request.pension_fund is None and bool(
-        ctx.contract.ccnl.parameters.employer_funds
+    ccnl = ctx.contract.ccnl
+    return ctx.request.pension_fund is None and (
+        bool(ccnl.parameters.employer_funds)
+        or ccnl.meta.tax_sector not in _NO_NEGOTIATED_FUND
     )
 
 
@@ -100,13 +108,14 @@ def pension_fund_issue(ctx: RunContext) -> CalculationIssue | None:
     if not enrolment_unknown(ctx):
         return None
     funds = ", ".join(f.code for f in ctx.contract.ccnl.parameters.employer_funds)
+    held = f"pension funds ({funds})" if funds else "a negotiated pension fund"
     return CalculationIssue(
         code="pension_fund_enrolment_unknown",
         message=(
-            f"the CCNL has pension funds ({funds}) and the enrolment of the "
-            "worker is not stated: the fund contributions and the destination "
-            "of the TFR are undetermined, the amounts shown leave them out; "
-            "state Employment.pension_fund (NoPensionFund when not enrolled)"
+            f"the CCNL has {held} and the enrolment of the worker is not "
+            "stated: the fund contributions and the destination of the TFR "
+            "are undetermined, the amounts shown leave them out; state "
+            "Employment.pension_fund (NoPensionFund when not enrolled)"
         ),
         status=CalculationStatus.INCOMPLETE,
         fact=FACT,
@@ -122,7 +131,8 @@ def pension_decision(
         ccnl: The applicable CCNL.
         pension: Contributions of the run, ``None`` when not enrolled.
         year: Competence year, the rule version when the CCNL has no ruleset.
-        unknown: Whether the enrolment is unknown on a CCNL with funds.
+        unknown: Whether the enrolment is unknown (see
+            :func:`enrolment_unknown`).
 
     Returns:
         A decision with reason ``enrolled`` and the employer and employee

@@ -14,6 +14,7 @@ from datetime import date
 import pytest
 
 from ccnl_engine.contract.domain.category import WorkerCategory
+from ccnl_engine.inputs import NoPensionFund
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.domain.assurance import BlockerCode, CoverageStatus
 from ccnl_engine.payroll.domain.capability_report import (
@@ -51,6 +52,7 @@ def _req(month: int = 1) -> PeriodCalculationRequest:
         The request of the regular run of ``month`` 2026.
     """
     return PeriodCalculationRequest(
+        pension_fund=NoPensionFund(),
         employer=EmployerProfile(headcount=Headcount(50)),
         period_id=PeriodId(year=_YEAR, month=month),
         payment_date=date(_YEAR, month, 28),

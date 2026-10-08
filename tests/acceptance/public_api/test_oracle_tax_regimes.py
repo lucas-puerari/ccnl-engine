@@ -26,6 +26,7 @@ from ccnl_engine.events import BonusEvent
 from ccnl_engine.inputs import (
     DependentRelationship,
     FamilyComposition,
+    NoPensionFund,
     Permanent,
     PriorYearTaxFacts,
 )
@@ -42,6 +43,7 @@ _C3 = Employment(
     level_code="C3",
     seniority=new_hire(),
     tfr_treasury_fund=False,
+    pension_fund=NoPensionFund(),
     contract_type=Permanent(),
 )
 

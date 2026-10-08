@@ -1,10 +1,9 @@
 """Pairs of requests: a defaulted public field stated, and left to its default.
 
-Every ``requires_fact`` field of the registry of input defaults
-(:mod:`ccnl_engine.payroll.domain.input_defaults`) has at least one
-:class:`DefaultCase` in :data:`DEFAULT_CASES`, or a reason in
-:data:`NOT_EXERCISED`; ``tests/architecture/test_input_defaults.py`` checks
-it.  Each case is the explicit Concia D2 of 2026
+Every ``requires_fact`` field of :mod:`ccnl_engine.payroll.domain.input_defaults`
+has a :class:`DefaultCase` in :data:`DEFAULT_CASES` or a reason in
+:data:`NOT_EXERCISED`, as ``tests/architecture/test_input_defaults.py`` checks.
+Each case is the explicit Concia D2 of 2026
 (:mod:`tests.fixtures.explicit_facts`) with one field changed: ``true`` states
 the fact, ``default`` leaves the field to its default.  The acceptance test
 ``tests/acceptance/public_api/test_default_facts.py`` runs both.
@@ -156,7 +155,9 @@ _LARGE_BONUS = BonusEvent(event_date=date(2026, 1, 15), amount=Decimal(150_000))
 _ELIGIBLE_PRIOR = PriorYearTaxFacts(employment_income=Decimal(20_000))
 _EVENT_DAY = date(2026, 1, 15)
 _SIGNED_ON = date(2025, 3, 1)
-_TABACCO_3A = replace(CONCIA_D2, ccnl_slug="tabacco-apti.json", level_code="3A")
+_TABACCO_3A = replace(
+    CONCIA_D2, ccnl_slug="tabacco-apti.json", level_code="3A", pension_fund=None
+)
 _ALIFOND = PensionFundEnrolment("ALIFOND", Decimal("0.01"), tfr_to_fund=False)
 #: Alimentari 1S, a quadro level paying the IND_FUNZIONE_QUADRO allowance
 #: to the holders of the role ``quadro``.
@@ -391,6 +392,9 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
             replace(_TABACCO_3A, pension_fund=NoPensionFund()),
             _TABACCO_3A,
             "pension_fund",
+        ),
+        _employment_pair(
+            CONCIA_D2, replace(CONCIA_D2, pension_fund=None), "pension_fund"
         ),
     ),
     "PeriodFacts.regione": (

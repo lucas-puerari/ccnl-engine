@@ -33,7 +33,13 @@ from ccnl_engine import (
     PeriodInput,
 )
 from ccnl_engine.events import OvertimeEvent
-from ccnl_engine.inputs import EmploymentPeriod, PeriodState, Permanent, SurtaxComponent
+from ccnl_engine.inputs import (
+    EmploymentPeriod,
+    NoPensionFund,
+    PeriodState,
+    Permanent,
+    SurtaxComponent,
+)
 from ccnl_engine.results import CalculationStatus
 from tests.fixtures.next_year_repository import NextYearRepository
 from tests.fixtures.normative_oracles.irpef_2026 import net_irpef
@@ -69,6 +75,7 @@ def _year(
         seniority=new_hire(),
         employment_period=EmploymentPeriod(date(2020, 1, 1), ended_on),
         contract_type=Permanent(),
+        pension_fund=NoPensionFund(),
     )
     return _ENGINE.calculate_competence_year(
         CompetenceYearPlan(
@@ -333,6 +340,7 @@ def _termination_after(ended_on: date | None) -> tuple[PeriodResult, PeriodResul
         seniority=new_hire(),
         employment_period=EmploymentPeriod(date(2020, 1, 1), ended_on),
         contract_type=Permanent(),
+        pension_fund=NoPensionFund(),
     )
     year = _ENGINE.calculate_competence_year(
         CompetenceYearPlan(
@@ -353,6 +361,7 @@ def _termination_after(ended_on: date | None) -> tuple[PeriodResult, PeriodResul
                     date(2020, 1, 1), date(2026, 12, 31)
                 ),
                 contract_type=Permanent(),
+                pension_fund=NoPensionFund(),
             ),
             employer=_EMPLOYER,
             facts=_TERMINATION_FACTS,

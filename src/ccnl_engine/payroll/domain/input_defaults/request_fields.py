@@ -163,8 +163,8 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "pension_fund_contribution",
         "employment.pension_fund",
         _REPORTED,
-        "unknown enrolment: on a CCNL that has funds the contributions are "
-        "undetermined and the run has a missing_fact pension_fund blocker; "
+        "unknown enrolment: on every CCNL but domestic work the contributions "
+        "are undetermined and the run has a missing_fact pension_fund blocker; "
         "NoPensionFund states the non-enrolment",
     ),
     "PeriodFacts.contributable_hours": requires_fact(

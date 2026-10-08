@@ -155,9 +155,9 @@ class Employment:
             to state that the worker is not enrolled: no fund contribution is
             computed, and on a CCNL that has funds the
             ``pension_fund_contribution`` capability records the reason
-            ``not_enrolled``.  ``None`` means not known: on a CCNL that has
-            funds the contributions are undetermined and the run has a
-            ``missing_fact`` blocker.
+            ``not_enrolled``.  ``None`` means not known: on every CCNL but
+            domestic work the contributions are undetermined and the run
+            has a ``missing_fact`` blocker.
         tfr_fund: TFR fund at 31 December of the year before the run, the
             base of the revaluation at 31 December (art. 2120 c. 4 c.c.).
             ``None`` means not known: the December run then has a

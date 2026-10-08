@@ -155,7 +155,8 @@ without a classification, or on a classification without its field:
     episodes needs them, the income beyond the employment when a somma
     esente is due, the full time of an employment whose weekly hours are
     stated, the roles of a worker on a level with an allowance restricted
-    to a role, the enrolment in a pension fund of a CCNL that has one, the
+    to a role, the enrolment in a pension fund of every CCNL but domestic
+    work, the
     suspension of accrual of an absence that could change a rateo, the
     renewals and the NASpI exclusion of a fixed-term contract);
   - `pending`: not honoured yet. The default still selects a branch without

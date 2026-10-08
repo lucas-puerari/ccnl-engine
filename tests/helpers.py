@@ -15,6 +15,7 @@ from ccnl_engine.payroll.domain.competence_year_plan import CompetenceYearPlan
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment import Employment, Permanent
 from ccnl_engine.payroll.domain.inputs import PeriodFacts
+from ccnl_engine.payroll.domain.pension_fund import NoPensionFund
 from ccnl_engine.payroll.domain.tax_year import DEFAULT_PAYMENT_DAY
 from ccnl_engine.tax.domain.ruleset import YearRules
 from tests.fixtures.prior_year import RENEWAL_WAIVED
@@ -351,7 +352,8 @@ def year_plan(
     :class:`~ccnl_engine.inputs.Permanent`, the seniority to
     :func:`~tests.fixtures.seniority.new_hire` of ``year``, the TFR fund to
     :func:`~tests.fixtures.tfr.no_tfr_fund` of ``year`` and the TFR stays in
-    the company (``tfr_treasury_fund=False``).  ``prior_year`` defaults to
+    the company (``tfr_treasury_fund=False``), not enrolled in a pension
+    fund.  ``prior_year`` defaults to
     :data:`~tests.fixtures.prior_year.RENEWAL_WAIVED`.
 
     Returns:
@@ -361,6 +363,7 @@ def year_plan(
     employment.setdefault("seniority", new_hire(year))
     employment.setdefault("tfr_fund", no_tfr_fund(year))
     employment.setdefault("tfr_treasury_fund", False)
+    employment.setdefault("pension_fund", NoPensionFund())
     base = facts if facts is not None else PeriodFacts()
     return CompetenceYearPlan(
         year=year,
