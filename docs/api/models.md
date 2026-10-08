@@ -1,5 +1,11 @@
 # Models
 
+!!! warning "Internal"
+    This page documents internal modules, for contributors and tooling such as
+    the demo. They are not part of the public API and may change without
+    notice: import the public types from `ccnl_engine` and its four
+    namespaces (see [API reference](index.md#public-namespaces)).
+
 Domain models for employment contracts and CCNL structure.
 
 See [Domain: Components](../domain/components.md) for the conceptual background

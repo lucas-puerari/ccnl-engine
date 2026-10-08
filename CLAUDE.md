@@ -52,6 +52,8 @@ uv run python scripts/ci/check_provenance.py --evidence   # no new assumed/missi
 uv run python scripts/docs/gen_capability_matrix.py --check   # matrix drift
 uv run python scripts/docs/gen_contract_pages.py --check      # contract page drift
 uv run python scripts/docs/gen_trust_counts.py --check        # docs/trust/ counts drift
+uv run python scripts/docs/gen_coverage_matrix.py --check     # contracts index drift
+uv run python scripts/docs/gen_contract_examples.py --check   # contract examples drift
 ```
 
 `check_structure.py` enforces file, function, class and Markdown page size
@@ -60,9 +62,10 @@ reports the non-blocking 80% targets (`--targets` lists them); see
 `docs/engine/architecture.md` for the limits and how to shrink the baseline.
 
 `check_provenance.py --evidence` compares every `assumed`/`missing` payable
-rule, open limitation and readiness contradiction with
-`scripts/ci/provenance_baseline.json`. After sourcing data, shrink it with
-`--update-baseline`; adding an entry needs `--update-baseline --allow-growth`
+rule and open limitation with `scripts/ci/provenance_baseline.json`;
+`--schema` rejects a `derived` record of an estimated ruleset or without a
+cited source, and a `reviewed` CCNL with weak payable rules. After sourcing
+data, shrink it with `--update-baseline`; adding an entry needs `--update-baseline --allow-growth`
 and a justification in the PR. Never promote a rule to `verified` without a
 human review; see `docs/trust/provenance.md`.
 

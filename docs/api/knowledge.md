@@ -5,7 +5,7 @@ JSON data plus version metadata — the knowledge base carries no Python logic,
 so it can be updated or redistributed independently of the engine.
 
 `ccnl_engine.knowledge.__version__` identifies the bundled data set (e.g.
-`"2026.1"`). It is independent of the library version in `pyproject.toml`.
+`"2026.3"`). It is independent of the library version in `pyproject.toml`.
 
 ## Layout
 

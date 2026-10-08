@@ -17,4 +17,4 @@ Current data set version: :data:`__version__`.
 
 #: Knowledge base version. Bumped when the bundled datasets change (new year,
 #: new CCNL, rate updates); independent of the library version.
-__version__ = "2026.2"
+__version__ = "2026.3"
