@@ -136,7 +136,7 @@ class CompetenceYearPlan:
 
     def __post_init__(self) -> None:  # noqa: D105
         require_int(
-            self.year, f"{_OWNER}.year", feature=_FEATURE, minimum=1970, maximum=9999
+            self.year, f"{_OWNER}.year", feature=_FEATURE, minimum=1970, maximum=9998
         )
         require_instances(
             _OWNER,
@@ -166,6 +166,10 @@ class CompetenceYearPlan:
             raise InvalidInputError(
                 msg, field=f"{_OWNER}.default_facts", feature=_FEATURE
             )
+        for name in ("periods", "payment_dates"):
+            value = getattr(self, name)
+            if isinstance(value, Mapping):
+                object.__setattr__(self, name, dict(value))
         facts = items_of_type(PeriodFacts, feature=_FEATURE)
         object.__setattr__(
             self, "_facts_by_run", self._by_run(self.periods, "periods", facts)

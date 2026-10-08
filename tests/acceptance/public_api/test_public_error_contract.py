@@ -259,6 +259,7 @@ def test_sickness_for_a_whole_month_is_computed() -> None:
     )
     (base,) = (i for i in result.pay_items if i.kind == "base_salary_earning")
     assert result.unpaid_absence_deduction == base.amount
+    assert result.paid_gross == result.period_gross - base.amount
 
 
 def test_negative_net_is_out_of_scope_not_a_data_integrity_error() -> None:

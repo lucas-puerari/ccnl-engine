@@ -291,6 +291,8 @@ CCNL-2025-2027.pdf, "Tabella retributiva") start with the tranche of
 _AMOUNT = st.decimals(min_value=Decimal(0), max_value=Decimal(99_999), places=2)
 _POSITIVE = st.decimals(min_value=Decimal("0.01"), max_value=Decimal(9_999), places=2)
 _RATE = st.decimals(min_value=Decimal(0), max_value=Decimal(1), places=3)
+#: Overtime hours of an event: at most the 744 hours of a month.
+_HOURS = st.decimals(min_value=Decimal("0.01"), max_value=Decimal(744), places=2)
 
 
 def _events(month: int) -> st.SearchStrategy[list[object]]:
@@ -305,7 +307,7 @@ def _events(month: int) -> st.SearchStrategy[list[object]]:
             st.builds(
                 OvertimeEvent,
                 event_date=day,
-                hours=_POSITIVE,
+                hours=_HOURS,
                 hourly_rate=_POSITIVE,
                 multiplier=st.one_of(st.none(), _POSITIVE),
                 kind=st.sampled_from(list(OvertimeKind)),

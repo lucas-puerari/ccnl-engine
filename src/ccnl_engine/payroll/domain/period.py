@@ -122,6 +122,16 @@ class PeriodResult:
         )
 
     @property
+    def paid_gross(self) -> Decimal:
+        """Gross actually paid: ``period_gross`` less the unpaid absences.
+
+        ``period_gross`` is the contractual pay of the period with the
+        earnings of its events (sick pay included) before the deduction of
+        the days not paid; this is what the payslip pays as gross.
+        """
+        return self.period_gross - self.unpaid_absence_deduction
+
+    @property
     def is_payable(self) -> bool:
         """Whether nothing blocks the amounts of this result."""
         return self.assurance.is_payable

@@ -4,6 +4,15 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Input bounds and the gross actually paid
+
+| Before | After |
+|---|---|
+| `PayrollRun.regular(10000, 12)` was accepted and `PeriodInput` raised a bare `ValueError` | A year outside 1970-9998 raises `InvalidInputError` on the run, the run id and the plan |
+| `OvertimeEvent.hours` had no upper bound | At most 744 hours (a month of 31 days), else `InvalidInputError` |
+| `CompetenceYearPlan.periods` and `payment_dates` kept the caller's dict | The plan keeps its own copy |
+| `period_gross` includes sick pay on top of the contractual pay, the days not paid being in `unpaid_absence_deduction` | New `PeriodResult.paid_gross`: `period_gross - unpaid_absence_deduction`, the gross the payslip pays |
+
 ## One CCNL identifier and the levels of a CCNL
 
 | Before | After |
