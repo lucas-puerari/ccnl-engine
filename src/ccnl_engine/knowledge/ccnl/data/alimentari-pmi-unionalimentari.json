@@ -224,7 +224,47 @@
           "effective_from": "2020-01-01"
         }
       }
-    }
+    },
+    "employer_funds": [
+      {
+        "code": "FONDAPI",
+        "description": "Fondapi - Fondo pensione complementare per i lavoratori delle piccole e medie imprese",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0120"
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0100"
+            }
+          ]
+        },
+        "contribution_base": "tfr_base",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "fondapi-nota-informativa-2026",
+              "title": "Fondapi Nota informativa, Parte I, scheda 'I destinatari e i contributi' (29 luglio 2026)",
+              "kind": "altro",
+              "url": "https://www.fondapi.it/documenti/i-destinatari-e-i-contributi"
+            },
+            "section": "CCNL PMI ALIMENTARE",
+            "quote": "Minima stabilita dal CCNL: 1,00% calcolata su “Retribuzione TFR”. [...] Aliquota stabilita dal CCNL (cfr. tabella) calcolata su “Retribuzione TFR”; Contributo lavoratore 1,00% o superiore, Contributo azienda dal 1/1/2015 1,20%"
+          },
+          "transformation": "Employer 1.20% and worker minimum 1.00% of the 'Retribuzione TFR', defined by the legend of the scheda as the retribuzione presa a base per il calcolo del trattamento di fine rapporto. The quota of TFR is the worker's choice in PensionFundEnrolment.tfr_to_fund.",
+          "note": "Read from the PDF the url serves (sha256 7e9b29394505b6cd14125c88c6f0cc4ba78c14f026b546bb387636e40e42ee15), text layer. valid_from is the first day of the bundled tax year, the employer rate being in force since 1/1/2015. No human review recorded."
+        }
+      }
+    ]
   },
   "apprenticeship": [],
   "levels": [
@@ -1469,7 +1509,7 @@
     "effective_until": null,
     "source": "https://www.unionalimentari.com/",
     "verification_status": "unverified",
-    "source_hash": "132ae62ba4eb7ac008620a3f4ceac0504b2b7e16f1f95a883cafce2c621011cd",
+    "source_hash": "d8e3721f43afe6a0c317b9a505b1cb063564f8ca982250d898ad51255fab9698",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

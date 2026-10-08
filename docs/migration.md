@@ -4,6 +4,13 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Fondapi on the food PMI, not on the textile PMI
+
+| Before | After |
+|---|---|
+| `"FONDAPI"` on `tessile-pmi-uniontessile` at 1.90% then 2.00% of the INPS base | Removed: Fondapi computes it on minimo tabellare + EDR, a base the engine does not compute, so an enrolment raises `InvalidInputError` |
+| No fund on `alimentari-pmi-unionalimentari` | `"FONDAPI"`: employer 1.20%, employee at least 1.00%, on the TFR base |
+
 ## Alifond on the TFR base and on the food industry
 
 | Before | After |

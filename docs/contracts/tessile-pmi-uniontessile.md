@@ -131,7 +131,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     LEVEL 8 IDF: indennità di funzione 51.65 EUR modelled as fixed_allowance (unverified for period before Jan 2026). Function-conditional, not automatic for all L8 workers.
     
-    FONDAPI: employer rate 1.90% from contract start, increased +0.10% to 2.00% from Mar 2025 per Art. 33 (source: farecontrattazione.adapt.it).
+    FONDAPI: not in the bundle. The Fondapi Scheda 'I destinatari e i contributi' (29/07/2026, https://www.fondapi.it/documenti/i-destinatari-e-i-contributi) computes both contributions on the 'elemento retributivo nazionale' (minimo tabellare + elemento distinto della retribuzione): employee at least 1.60%, employer 2.00% from 01/01/2026. The engine computes a fund on the INPS or the TFR base only, so an enrolment raises InvalidInputError until the contractual minimum base is modelled.
     
 
 ## Raw data
