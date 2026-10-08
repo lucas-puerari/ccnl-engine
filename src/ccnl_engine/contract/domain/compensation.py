@@ -189,8 +189,9 @@ class CCNLParameters(BaseModel):
 
     ``accrual_rule`` is the CCNL threshold for counting a month of an
     extra-month window, ``None`` when the bundle has no sourced clause.
-    ``fourteenth_payment_day`` is the day the CCNL pays the quattordicesima,
-    ``None`` when the bundle has no sourced clause.
+    ``thirteenth_payment_day`` and ``fourteenth_payment_day`` are the days
+    the CCNL pays the tredicesima and the quattordicesima, ``None`` when the
+    bundle has no sourced clause.
     ``assistance_contribution`` is the contribution the CCNL charges per
     paid hour, ``None`` when it charges none.
     """
@@ -202,6 +203,7 @@ class CCNLParameters(BaseModel):
     seniority_increments: SeniorityIncrements
     employer_funds: tuple[EmployerFund, ...] = Field(default=())
     accrual_rule: ExtraMonthAccrualRule | None = None
+    thirteenth_payment_day: PaymentDay | None = None
     fourteenth_payment_day: PaymentDay | None = None
     assistance_contribution: AssistanceContribution | None = None
 

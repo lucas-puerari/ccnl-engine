@@ -25,6 +25,7 @@ _EMPLOYER = EmployerProfile(headcount=Headcount(50))
 
 
 _FOURTEENTH = "2026-06-fourteenth"
+_THIRTEENTH = "2026-12-thirteenth"
 
 
 def _dates(year: CompetenceYearResult) -> dict[str, date]:
@@ -34,9 +35,11 @@ def _dates(year: CompetenceYearResult) -> dict[str, date]:
 def test_runs_are_paid_on_the_28th_by_default() -> None:
     """Without a payment day every run is paid on the 28th of its month.
 
-    Except the quattordicesima: the CCNL Terziario (Testo Unico 30 July 2019,
-    art. 221) pays it "il 1° luglio di ogni anno", for the window ending on
-    30 June, so the June quattordicesima is paid on 1 July.
+    Except the extra months: the CCNL Terziario (Testo Unico 30 July 2019)
+    pays the tredicesima "in coincidenza con la vigilia di Natale" (art. 220),
+    24 December, and the quattordicesima "il 1° luglio di ogni anno"
+    (art. 221), for the window ending on 30 June, so the June quattordicesima
+    is paid on 1 July.
     """
     year = _ENGINE.calculate_competence_year(
         CompetenceYearPlan(year=2026, employment=_EMPLOYMENT, employer=_EMPLOYER)
@@ -44,6 +47,7 @@ def test_runs_are_paid_on_the_28th_by_default() -> None:
     dates = _dates(year)
 
     assert dates.pop(_FOURTEENTH) == date(2026, 7, 1)
+    assert dates.pop(_THIRTEENTH) == date(2026, 12, 24)
     assert {paid_on.day for paid_on in dates.values()} == {28}
 
 
@@ -58,6 +62,7 @@ def test_payment_day_moves_every_run_and_keeps_the_tax_year() -> None:
 
     assert dates["2026-01-regular"] == date(2026, 1, 10)
     assert dates.pop(_FOURTEENTH) == date(2026, 7, 1)
+    assert dates.pop(_THIRTEENTH) == date(2026, 12, 24)
     assert {paid_on.day for paid_on in dates.values()} == {10}
     assert {r.closing_state.tax_year for r in year.period_results} == {2026}
 

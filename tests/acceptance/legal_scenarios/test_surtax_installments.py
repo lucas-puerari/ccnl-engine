@@ -53,6 +53,7 @@ from tests.fixtures.normative_oracles.surtax_2026 import (
 )
 from tests.fixtures.opening_state import fresh_tax_year
 from tests.fixtures.seniority import new_hire
+from tests.fixtures.tfr import no_tfr_fund
 
 if TYPE_CHECKING:
     from ccnl_engine import CompetenceYearResult, PeriodResult
@@ -76,6 +77,8 @@ def _year(
         employment_period=EmploymentPeriod(date(2020, 1, 1), ended_on),
         contract_type=Permanent(),
         pension_fund=NoPensionFund(),
+        tfr_fund=no_tfr_fund(year),
+        tfr_treasury_fund=False,
     )
     return _ENGINE.calculate_competence_year(
         CompetenceYearPlan(
@@ -186,12 +189,14 @@ def test_conguaglio_determines_the_saldi_and_the_next_acconto() -> None:
     No acconto was withheld in 2026, so the municipal saldo is the whole
     municipal surtax; the acconto of 2027 is 30% of it, on 2026 income and
     rate.  The bundled municipal table holds the 2025 rates, so the result
-    is provisional and names the missing table.
+    is provisional and names the missing table.  The conguaglio is the last
+    payment of the year: the December run of the 28th, after the tredicesima
+    paid on Christmas Eve (CCNL Terziario art. 220).
     """
     conguaglio = _year_2026().period_results[-1]
     regional, municipal, acconto = _saldi_2026()
 
-    assert _run(conguaglio).run_kind == "thirteenth"
+    assert _run(conguaglio).run_kind == "regular"
     assert _deferred(conguaglio) == {
         SurtaxComponent.REGIONAL_BALANCE: (regional, 11),
         SurtaxComponent.MUNICIPAL_BALANCE: (municipal, 11),

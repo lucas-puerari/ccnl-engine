@@ -146,19 +146,23 @@ def prepare_year(plan: CompetenceYearPlan, repo: KnowledgeRepository) -> Prepare
 
 
 def _payment_of(plan: CompetenceYearPlan, run: PayrollRun, ccnl: CCNL) -> PaymentId:
-    """Return the payment of ``run``: the plan's, or the CCNL day of the 14th.
+    """Return the payment of ``run``: the plan's, or the CCNL day of the month.
 
-    A quattordicesima the plan gives no date is paid on the day the CCNL
-    fixes (``parameters.fourteenth_payment_day``, e.g. 1 July for the CCNL
-    Terziario art. 221), unless the plan overrides the calendar.
+    An extra month the plan gives no date is paid on the day the CCNL fixes
+    (``parameters.thirteenth_payment_day`` or ``fourteenth_payment_day``,
+    e.g. Christmas Eve and 1 July for the CCNL Terziario art. 220 and 221),
+    unless the plan overrides the calendar.
 
     Returns:
         The payment of the run.
     """
-    clause = ccnl.parameters.fourteenth_payment_day
+    days = {
+        RunKind.THIRTEENTH: ccnl.parameters.thirteenth_payment_day,
+        RunKind.FOURTEENTH: ccnl.parameters.fourteenth_payment_day,
+    }
+    clause = days.get(run.run_kind)
     if (
         clause is None
-        or run.run_kind is not RunKind.FOURTEENTH
         or plan.calendar_override is not None
         or run.run_id in plan.dated_runs
     ):
