@@ -74,10 +74,10 @@ class TestCompetenceYearAcrossTaxYears:
     """A competence year whose December is paid in the next tax year."""
 
     def test_the_late_december_opens_the_next_tax_year(self) -> None:
-        """2026 closes on the tredicesima; the December opens 2027."""
+        """2026 closes on the tredicesima of Christmas Eve; the December opens 2027."""
         year = _late_year()
 
-        assert [str(c) for c in year.conguagli] == ["2026-12-thirteenth@2026-12-28"]
+        assert [str(c) for c in year.conguagli] == ["2026-12-thirteenth@2026-12-24"]
         assert year.closing_state.tax_year == 2027
         assert year.next_opening_state is year.closing_state
 

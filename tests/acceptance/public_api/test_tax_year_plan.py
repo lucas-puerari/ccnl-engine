@@ -84,11 +84,15 @@ class TestDecemberPaidInJanuary:
     def test_december_paid_on_13_january_leaves_2026_with_thirteen_payments(
         self,
     ) -> None:
-        """The tredicesima, last payment of 2026, settles its conguaglio."""
+        """The tredicesima of Christmas Eve, last payment of 2026, settles it.
+
+        CCNL Terziario art. 220 pays the tredicesima "in coincidenza con la
+        vigilia di Natale": 24 December, before the December run.
+        """
         year = _tax_year_2026(date(2027, 1, 13))
 
         assert len(year.payments) == 13
-        assert str(year.conguaglio) == "2026-12-thirteenth@2026-12-28"
+        assert str(year.conguaglio) == "2026-12-thirteenth@2026-12-24"
         assert year.closing_state.cash.is_complete
         assert year.next_opening_state.tax_year == 2027
 
@@ -101,7 +105,7 @@ class TestDecemberPaidInJanuary:
         assert len(year.payments) == 14
         assert str(year.conguaglio) == "2026-12-regular@2027-01-12"
         assert _ids(year.payments)[-2:] == [
-            "2026-12-thirteenth@2026-12-28",
+            "2026-12-thirteenth@2026-12-24",
             "2026-12-regular@2027-01-12",
         ]
 
@@ -119,7 +123,11 @@ class TestDecemberPaidInJanuary:
         )
 
     def test_2027_opens_with_the_late_december_and_closes(self) -> None:
-        """2027 holds fifteen payments, the late December first."""
+        """2027 holds fifteen payments, the late December first.
+
+        The December run of 28 December 2027 comes after the tredicesima of
+        Christmas Eve (CCNL Terziario art. 220): it is the conguaglio.
+        """
         late = date(2027, 1, 13)
         plan = TaxYearPlan(
             tax_year=2027,
@@ -131,7 +139,7 @@ class TestDecemberPaidInJanuary:
 
         assert len(year.payments) == 15
         assert _ids(year.payments)[0] == "2026-12-regular@2027-01-13"
-        assert str(year.conguaglio) == "2027-12-thirteenth@2027-12-28"
+        assert str(year.conguaglio) == "2027-12-regular@2027-12-28"
         assert year.next_opening_state.tax_year == 2028
         slots = {
             d.inputs["withholding_slots"]
@@ -181,8 +189,8 @@ def test_conguaglio_falls_on_the_last_payment_with_a_late_payment(
     """December 2026 paid before, among or after the 2027 runs.
 
     Every case has fifteen payments in date order; the conguaglio is the
-    last of them, the late December itself when it comes after the
-    tredicesima of 28 December 2027.
+    last of them, the late December itself when it comes after the December
+    run of 28 December 2027 (the tredicesima is paid on Christmas Eve).
     """
     plan = TaxYearPlan(
         tax_year=2027,

@@ -251,6 +251,26 @@
         "note": "Artt. 220 and 221 on tredicesima and quattordicesima refer to art. 204 in a footnote; months are those of the civil calendar. Copy of the bilateral body EBINTER; the signed scan (uiltucs.it, p. 129) and the 2024 renewal, read by OCR, agree. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
       }
     },
+    "thirteenth_payment_day": {
+      "month": 12,
+      "day": 24,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-terziario-confcommercio-testo-unico-2019",
+            "title": "Testo Unico 30 luglio 2019 CCNL Terziario, Distribuzione e Servizi",
+            "kind": "altro",
+            "url": "https://www.ebinter.it/ebinter-site/wp-content/uploads/2022/01/CCNL-Terziario-Distribuzione-e-Servizi_30-Luglio-2019.pdf",
+            "published_on": "2019-07-30"
+          },
+          "page": "200",
+          "section": "Art. 220, Tredicesima mensilità",
+          "quote": "In coincidenza con la vigilia di Natale di ogni anno le aziende dovranno corrispondere al personale dipendente un importo pari ad una mensilità della retribuzione di fatto di cui all’art. 208 (esclusi gli assegni familiari)."
+        },
+        "note": "Paid on Christmas Eve for the window January to December. Quote taken from the text layer of the cited PDF (PDF page 200, sha256 76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016), line-break hyphenation removed; read with AI assistance, no human review recorded."
+      }
+    },
     "fourteenth_payment_day": {
       "month": 7,
       "day": 1,
@@ -2766,7 +2786,7 @@
     "effective_until": null,
     "source": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
     "verification_status": "unverified",
-    "source_hash": "1a4c000454bb562a177fd9475dd111bb53863296d2fce584459718107a889c89",
+    "source_hash": "509f46cc3c97fad700785c77a2726d4223969271445641c0623ae06dcae26fef",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

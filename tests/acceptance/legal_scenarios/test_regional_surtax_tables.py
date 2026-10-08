@@ -52,6 +52,7 @@ from tests.fixtures.dependents import declared_dependent
 from tests.fixtures.normative_oracles.irpef_2026 import net_irpef
 from tests.fixtures.opening_state import fresh_tax_year
 from tests.fixtures.seniority import new_hire
+from tests.fixtures.tfr import no_tfr_fund
 
 if TYPE_CHECKING:
     from ccnl_engine import PeriodResult
@@ -105,6 +106,8 @@ def _conguaglio(
                 employment_period=EmploymentPeriod(date(2020, 1, 1), None),
                 contract_type=Permanent(),
                 pension_fund=NoPensionFund(),
+                tfr_fund=no_tfr_fund(2026),
+                tfr_treasury_fund=False,
             ),
             employer=EmployerProfile(headcount=Headcount(50)),
             default_facts=PeriodFacts(

@@ -4,6 +4,13 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Tredicesima of the CCNL Terziario on Christmas Eve
+
+| Before | After |
+|---|---|
+| The tredicesima of a Commercio competence year was paid on `payment_day` of December, after the December run, and settled the conguaglio | Paid on 24 December (CCNL Terziario art. 220, "in coincidenza con la vigilia di Natale"); the December run of the 28th is the last payment of the year and settles the conguaglio |
+| `CCNLParameters.fourteenth_payment_day` only | New `CCNLParameters.thirteenth_payment_day`; a date the plan names, or a calendar override, still wins |
+
 ## Results pickle and states persist as JSON
 
 | Before | After |
