@@ -22,6 +22,7 @@ from ccnl_engine.payroll.domain.decisions import (
     CalculationIssue,
     CalculationStatus,
 )
+from ccnl_engine.payroll.domain.employment import Apprentice
 from ccnl_engine.payroll.domain.pension_fund import PensionFundEnrolment
 from ccnl_engine.payroll.service.pension_fund import (
     CAPABILITY,
@@ -64,6 +65,7 @@ def pension_terms(ctx: RunContext) -> PensionFundTerms | None:
         ctx.worker_category,
         contract.tctx.competence,
         contract.year_rules.complementary_pension,
+        apprentice=isinstance(ctx.request.contract_type, Apprentice),
     )
 
 

@@ -187,7 +187,7 @@
             {
               "valid_from": "2026-01-01",
               "valid_until": null,
-              "value": "0.0155"
+              "value": "0.0055"
             }
           ]
         },
@@ -205,16 +205,16 @@
           "status": "derived",
           "location": {
             "source_document": {
-              "document_id": "fonte-nota-informativa-2026",
-              "title": "Fon.Te. Nota informativa, Parte I, scheda 'I destinatari e i contributi' (in vigore dal 23 marzo 2026, depositata presso la Covip il 29 luglio 2026)",
+              "document_id": "fonte-allegato-1-contribuzione-2026",
+              "title": "Fon.Te. Nota informativa, Allegato 1 'Informazioni sulla contribuzione' (dati aggiornati al 23 marzo 2026)",
               "kind": "altro",
-              "url": "https://www.fondofonte.it/statuto-e-nota-informativa/parte-i-scheda-iii-i-destinatari-e-i-contributi/"
+              "url": "https://fondofonte.it/wp-content/uploads/2022/06/Allegato-1-info-tab-contribuzione.pdf"
             },
-            "section": "Tabella 'Contribuzione' e nota (1)",
-            "quote": "Lavoratori occupati dopo il 28.04.1993 50% o 100% 0,55% 1,55%; (1) Misura minima del contributo da parte del lavoratore per avere diritto al contributo del datore di lavoro. [...] da calcolarsi sulla retribuzione utile ai fini del calcolo del TFR."
+            "section": "Table 'CCNL Turismo sottoscritto da FEDERALBERGHI, FAITA, FIAVET e le OO.SS. di settore'",
+            "quote": "Lavoratori occupati dopo il 28.04.1993 100% 0,55% 0,55% 29 novembre 1996 Trimestrale"
           },
-          "transformation": "Employer 1.55% and worker minimum 0.55% of the retribuzione utile ai fini del calcolo del TFR, the columns 'Datore di lavoro' and 'Lavoratore' of the table. The quota of TFR (50% or 100%) is the worker's choice in PensionFundEnrolment.tfr_to_fund.",
-          "note": "Read from the PDF the url serves (sha256 dc19e50af945d0671920bb1ebc77e5d75cc2a9dd2f6fd8cad5dd2882a66c8cb2), text layer; valid_from is the first day of the bundled tax year, the rates being in force since before it. No human review recorded."
+          "transformation": "Employer 0.55% and worker minimum 0.55%, the columns 'Datore di Lavoro' and 'Lavoratore' of the table of the CCNL. The quota of TFR is the worker's choice in PensionFundEnrolment.tfr_to_fund.",
+          "note": "Read from the PDF the url serves (sha256 e1604b50f245d34b4ea04aa53bb91056f55635b39b8c0935f31f2a79b578d40e), text layer; valid_from is the first day of the bundled tax year, the rates being in force since 29 November 1996. The base is the retribuzione utile ai fini del calcolo del TFR, as note (1) of the Scheda 'I destinatari e i contributi' states (https://www.fondofonte.it/statuto-e-nota-informativa/parte-i-scheda-iii-i-destinatari-e-i-contributi/, sha256 dc19e50af945d0671920bb1ebc77e5d75cc2a9dd2f6fd8cad5dd2882a66c8cb2). No human review recorded."
         }
       }
     ]
@@ -1987,7 +1987,7 @@
     "effective_until": "2027-12-31",
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf",
     "verification_status": "unverified",
-    "source_hash": "055216d1ada2885122cbf63885d2548ecb9821778868a4919e706a3b9b058f91",
+    "source_hash": "9ed1a1d6a564b8aa46f432d03c3d71256f5f196acbe2ea252ea7cd3a884c4f61",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

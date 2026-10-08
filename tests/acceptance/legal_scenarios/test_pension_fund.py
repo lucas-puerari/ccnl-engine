@@ -37,7 +37,12 @@ base, rounded half up to the cent):
   on the INPS base: employer 1.55% = 27.648 -> 27.65, employee minimum
   0.55% = 9.81063 -> 9.81, solidarity 2.765 -> 2.77.  A bonus enters the
   INPS base and not the TFR (policy ``it/earning/variable``): it leaves the
-  Fon.Te. contributions unchanged.
+  Fon.Te. contributions unchanged.  An apprentice of the CCNL Terziario
+  has an employer rate of 1.05% (Allegato 1 of the nota informativa,
+  updated to 23 March 2026).
+- Turismo (Federalberghi), level 4 in January 2026: 1660.69 a month.
+  Fon.Te. employer 0.55% (Allegato 1, row of the CCNL Turismo) = 9.133795
+  -> 9.13, solidarity 0.913 -> 0.91.
 """
 
 from __future__ import annotations
@@ -52,6 +57,7 @@ import pytest
 from ccnl_engine import CompetenceYearPlan, Employment, InvalidInputError, PayrollEngine
 from ccnl_engine.events import BonusEvent
 from ccnl_engine.inputs import (
+    Apprentice,
     InpsBaseYtd,
     NoPensionFund,
     OpeningBalances,
@@ -361,19 +367,26 @@ class TestNotEnrolled:
             regular_period(employment=employment)
 
 
+_PERMANENT = Permanent()
+
+
 class TestCommercioFonte:
     """Fon.Te. on commercio level 4, January 2026, on the TFR base."""
 
     @staticmethod
-    def _run(*events: BonusEvent) -> PeriodResult:
+    def _run(
+        *events: BonusEvent,
+        ccnl_slug: str = "commercio-confcommercio.json",
+        contract_type: Permanent | Apprentice = _PERMANENT,
+    ) -> PeriodResult:
         employment = Employment(
-            ccnl_slug="commercio-confcommercio.json",
+            ccnl_slug=ccnl_slug,
             level_code="4",
             seniority=new_hire(),
             pension_fund=PensionFundEnrolment(
                 "FONTE", Decimal("0.0055"), tfr_to_fund=True
             ),
-            contract_type=Permanent(),
+            contract_type=contract_type,
         )
         return regular_period(employment=employment, events=events)
 
@@ -392,3 +405,18 @@ class TestCommercioFonte:
         result = self._run(bonus)
         assert _pension_decision(result).inputs["base"] == Decimal("1783.75")
         assert _entry(result, "pension_fund_employer") == Decimal("27.65")
+
+    def test_apprentice_pays_the_apprentice_rate(self) -> None:
+        """1.05% of the apprentice pay of the run: 1541.77 -> 16.19."""
+        result = self._run(contract_type=Apprentice(months_elapsed=6))
+        decision = _pension_decision(result)
+        assert decision.inputs["employer_rate"] == Decimal("0.0105")
+        assert decision.inputs["base"] == result.period_gross == Decimal("1541.77")
+        assert _entry(result, "pension_fund_employer") == Decimal("16.19")
+
+    def test_turismo_employer_rate_is_lower(self) -> None:
+        """Turismo Federalberghi level 4: 0.55% of 1660.69 = 9.13."""
+        result = self._run(ccnl_slug="turismo-federalberghi.json")
+        assert _pension_decision(result).inputs["base"] == Decimal("1660.69")
+        assert _entry(result, "pension_fund_employer") == Decimal("9.13")
+        assert _pension_decision(result).inputs["solidarity"] == Decimal("0.91")

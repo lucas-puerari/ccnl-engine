@@ -4,7 +4,7 @@ Rules, D.Lgs. 252/2005 unless stated:
 
 - the fund is financed by the worker, the employer and the TFR (art. 8
   c. 1); the CCNL sets the rates (art. 8 c. 2).  The bundle stores them as
-  a fraction of the INPS contribution base
+  a fraction of the base the fund names, the INPS or the TFR base
   (:class:`~ccnl_engine.contract.domain.compensation.EmployerFund`);
 - the employee and employer contributions are deductible from the income
   up to an annual cap (art. 8 c. 4; TUIR art. 10 c. 1 lett. e-bis): the
@@ -75,7 +75,7 @@ class PensionContribution:
 
     Attributes:
         terms: Rates they were computed with.
-        base: INPS contribution base of the run.
+        base: Base of the fund for the run.
         employer: Employer contribution.
         employee: Employee contribution, withheld from the pay.
         solidarity: INPS solidarity contribution on ``employer``.
@@ -159,8 +159,12 @@ def resolve_terms(
     category: WorkerCategory | None,
     day: date,
     rules: ComplementaryPensionRules | None,
+    *,
+    apprentice: bool,
 ) -> PensionFundTerms:
     """Return the rates of the enrolment on ``day``.
+
+    An apprentice pays the apprentice rate of the fund when it sets one.
 
     Returns:
         The terms of the fund for the run.
@@ -173,7 +177,8 @@ def resolve_terms(
     """
     fund = _fund_of(ccnl, enrolment.fund_code)
     _check_category(fund, category)
-    in_force = _in_force(fund.rate, day)
+    apart = fund.apprentice_rate if apprentice else None
+    in_force = _in_force(apart or fund.rate, day)
     if in_force is None:
         msg = f"pension fund {fund.code} has no employer rate on {day}"
         raise InvalidInputError(msg, feature=PENSION_FEATURE)
