@@ -26,6 +26,7 @@ from ccnl_engine.provenance.domain.ruleset_identity import (
     RulesetReadiness,
     VerificationStatus,
 )
+from ccnl_engine.tax.service.tax_resource_reader import supported_tax_years
 
 __all__ = [
     "CapabilityCatalog",
@@ -41,4 +42,5 @@ __all__ = [
     "VerificationStatus",
     "get_ccnl",
     "search_ccnls",
+    "supported_tax_years",
 ]

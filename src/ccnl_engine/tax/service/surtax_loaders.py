@@ -18,6 +18,7 @@ from ccnl_engine.tax.domain.surtax_rules import (
     RegionaleRaw,
     SurtaxRules,
 )
+from ccnl_engine.tax.service.tax_resource_reader import supported_tax_years
 
 
 def load_surtax_rules(year: int) -> SurtaxRules:
@@ -74,7 +75,7 @@ def _load_surtax_rules_cached(year: int) -> SurtaxRules:
         reg_raw = read_bundled(pkg, f"regionale-{year}.json")
         com_raw = read_bundled(pkg, f"comunale-{year}.json")
     except FileNotFoundError as exc:
-        raise UnsupportedTaxYearError(year) from exc
+        raise UnsupportedTaxYearError(year, supported=supported_tax_years()) from exc
     reg_payload = json.loads(reg_raw)
     com_payload = json.loads(com_raw)
     _verify_payload(reg_payload, f"regionale-{year}.json")

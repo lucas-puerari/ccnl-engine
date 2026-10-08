@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import importlib.resources
 import json
+import re
+from functools import cache
 from typing import TYPE_CHECKING, Any
 
 from ccnl_engine.knowledge.service.bundled import read_bundled
@@ -55,6 +57,27 @@ def _verify_payload(payload: dict[str, Any], filename: str) -> None:
     verify_provenance_labels(payload, filename)
 
 
+#: A sector tax file of a year, as bundled (plain or compressed).
+_YEAR_FILE = re.compile(r"^(\d{4})-terziario\.json(\.gz)?$")
+
+
+def _years(package: str) -> set[int]:
+    names = (path.name for path in importlib.resources.files(package).iterdir())
+    return {int(m.group(1)) for name in names if (m := _YEAR_FILE.match(name))}
+
+
+@cache
+def supported_tax_years() -> tuple[int, ...]:
+    """Return the tax years whose tax and INPS tables the bundle ships.
+
+    Returns:
+        The years, ascending, that have both a sector tax file and a sector
+        INPS file.
+    """
+    tax = _years("ccnl_engine.knowledge.tax.data")
+    return tuple(sorted(tax & _years("ccnl_engine.knowledge.inps.data")))
+
+
 def _read_json(pkg: Traversable, filename: str) -> dict[str, Any]:
     data: dict[str, Any] = json.loads(read_bundled(pkg, filename))
     _verify_payload(data, filename)
@@ -81,7 +104,9 @@ def read_year_json(
     try:
         return _read_json(pkg, filename)
     except FileNotFoundError as exc:
-        raise UnsupportedTaxYearError(year, sector=sector) from exc
+        raise UnsupportedTaxYearError(
+            year, sector=sector, supported=supported_tax_years()
+        ) from exc
 
 
 def _read_year_json(package: str, year: int, sector: TaxSector) -> dict[str, Any]:

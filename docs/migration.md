@@ -4,6 +4,13 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Supported tax years in the catalog
+
+| Before | After |
+|---|---|
+| A payment of a tax year without bundled tables raised `UnsupportedTaxYearError` with a generic remediation | The error carries `supported`, the tax years the bundle ships, and names them in its remediation |
+| No public way to know the bundled tax years before a run | `ccnl_engine.catalog.supported_tax_years()` |
+
 ## Pension fund enrolment needed on every CCNL with a negotiated fund
 
 | Before | After |

@@ -199,7 +199,11 @@ A December paid after 12 January is a payment of the next tax year
 the year on its last payment actually made in it and opens the next tax
 year with the late December, and `calculate_tax_year(TaxYearPlan(...))`
 computes every payment cashed in one tax year, late payments of an earlier
-competence year included. A run opens with the history of the employment:
+competence year included. The bundle ships the tax tables of 2026 only
+(`ccnl_engine.catalog.supported_tax_years()`): a payment of another tax
+year, a late December included, raises `UnsupportedTaxYearError` until the
+tables of its year are published and bundled; the engine never applies the
+rules of one year to another. A run opens with the history of the employment:
 `PeriodState.zero()` is the fact only for the first run of an employment
 whose start is stated, and a run without its history is not payable.
 Totals of another provider enter through
