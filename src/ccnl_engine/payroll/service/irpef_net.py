@@ -86,6 +86,7 @@ def net_irpef(
     family_deductions: Decimal,
     eligible_work_days: int,
     fixed_term: bool,
+    other_income: Decimal = _ZERO,
 ) -> NetIrpef:
     """Return the net annual IRPEF of ``taxable``.
 
@@ -97,6 +98,9 @@ def net_irpef(
         fixed_term: Whether an employment of the year is fixed-term, which
             raises the minimum of the art. 13 deduction (c. 1 lett. a) TUIR),
             proportioned to the days in the withholding.
+        other_income: Reddito complessivo beyond this employment, which
+            the ulteriore detrazione reads with it (L. 207/2024 art. 1 c. 6),
+            the exempt share of c. 9 included.
 
     Returns:
         The net IRPEF and its components.
@@ -112,7 +116,7 @@ def net_irpef(
         None
         if rules.ulteriore_detrazione is None
         else irpef_credits.ulteriore_detrazione_outcome(
-            taxable, rules.ulteriore_detrazione, eligible_work_days
+            taxable + other_income, rules.ulteriore_detrazione, eligible_work_days
         )
     )
     effect = _ZERO

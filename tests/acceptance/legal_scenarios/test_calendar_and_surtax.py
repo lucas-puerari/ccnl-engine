@@ -24,6 +24,7 @@ from tests.acceptance.legal_scenarios._support import (
     ENGINE,
     regular_period,
 )
+from tests.fixtures.current_year import employment_only
 from tests.fixtures.imported_surtax import (
     MUNICIPAL_BALANCE_2025,
     REGIONAL_2025,
@@ -93,6 +94,7 @@ def test_known_surtax_tables_are_withheld() -> None:
         regione="IT-45",
         comune_belfiore="F257",
         opening_state=opening_with_2025_surtax("IT-45", "F257"),
+        current_year=employment_only(),
     )
 
     assert result.closing_state.cash.tax.surtax == Decimal("40.00")
@@ -117,7 +119,10 @@ def test_unknown_surtax_tables_make_the_result_not_final() -> None:
     but the result is incomplete and names both unknown tables.
     """
     result = regular_period(
-        regione="IT-99", comune_belfiore="Z999", opening_state=fresh_tax_year()
+        regione="IT-99",
+        comune_belfiore="Z999",
+        opening_state=fresh_tax_year(),
+        current_year=employment_only(),
     )
 
     assert result.assurance.calculation is CalculationStatus.INCOMPLETE

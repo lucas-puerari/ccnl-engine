@@ -41,6 +41,7 @@ from ccnl_engine.inputs import (
     SurtaxComponent,
 )
 from ccnl_engine.results import CalculationStatus
+from tests.fixtures.current_year import employment_only
 from tests.fixtures.next_year_repository import NextYearRepository
 from tests.fixtures.normative_oracles.irpef_2026 import net_irpef
 from tests.fixtures.normative_oracles.surtax_2026 import (
@@ -87,6 +88,7 @@ def _year(
             employer=_EMPLOYER,
             default_facts=_FACTS,
             opening_state=opening,
+            current_year=employment_only(year),
         )
     )
 

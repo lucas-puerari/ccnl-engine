@@ -97,13 +97,15 @@ INCOME_UNKNOWN_ISSUE = CalculationIssue(
     status=CalculationStatus.INCOMPLETE,
     fact="current_year",
 )
-#: With employment income of other employers the band of c. 4 is taken on
-#: the employment income of this employer alone.
+#: With employment income of other employers, or the exempt share of the
+#: impatriati and researcher regimes c. 9 counts in the reddito di lavoro
+#: dipendente, the band of c. 4 is taken on the income of this employer alone.
 BAND_ASSUMED_ISSUE = CalculationIssue(
     code="somma_esente_band_assumed",
     message=(
         "somma_esente: the worker has employment income from other employers "
-        "this tax year; the percentage of L. 207/2024 art. 1 c. 4 is taken on "
+        "or exempt regime income (c. 9) this tax year; the percentage of L. "
+        "207/2024 art. 1 c. 4 is taken on "
         "the employment income of this employer alone, which the conguaglio "
         "or the tax return settles"
     ),
@@ -124,7 +126,7 @@ def _income_issues(
         return ()
     if facts is None or facts.tax_year != tax_year:
         return (INCOME_UNKNOWN_ISSUE,)
-    if facts.other_employment_income > _ZERO:
+    if facts.other_employment_income > _ZERO or facts.exempt_regime_income > _ZERO:
         return (BAND_ASSUMED_ISSUE,)
     return ()
 

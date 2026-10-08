@@ -83,6 +83,7 @@ def test_addizionali_emilia_romagna_modena() -> None:
             facts=PeriodFacts(regione="IT-45", comune_belfiore="F257"),
             opening_state=opening_with_2025_surtax("IT-45", "F257"),
             prior_year=RENEWAL_WAIVED,
+            current_year=employment_only(),
         )
     )
     assert result_no_surtax.period_net == Decimal("1777.08")
