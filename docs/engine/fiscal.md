@@ -59,6 +59,12 @@ For a part-year employment the work deduction, the ulteriore detrazione and
 the trattamento integrativo (with its €75 corrective) are "rapportata al
 periodo di lavoro nell'anno": the full-year amount, in cents, times
 `days / 365` (730/2026 istruzioni, quadro C: "365 per l'intero anno"). The
+days are those "per i quali spetta la retribuzione" (AdE circ. 15/E/2007
+par. 1.5.1): the days of an `AbsenceEvent` with `no_pay_due=True`
+(aspettativa senza assegni) leave them, a strike (`no_pay_due=False`) does
+not, and an absence that leaves it `None` has the issue
+`deduction_days_unknown`. The spells of the tax cash state keep the unpaid
+days (`EmploymentSpell.unpaid_days`). The
 day ratio is not
 truncated to four decimals, since it is not one of the ratios art. 13 c. 6
 TUIR lists: 200 days of the €1,955 deduction give €1,071.23, not €1,071.14.

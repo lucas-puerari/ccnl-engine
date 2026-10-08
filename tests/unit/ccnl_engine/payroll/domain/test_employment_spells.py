@@ -182,3 +182,40 @@ class TestSpellsOf:
         """Each item is an EmploymentSpell."""
         with pytest.raises(InvalidInputError):
             spells_of(("2026-01-01",), _PATH, 2026)
+
+
+class TestUnpaidDays:
+    """Days without any pay leave the count (AdE circ. 15/E/2007 par. 1.5.1)."""
+
+    def test_unpaid_days_leave_the_count(self) -> None:
+        """January 2026, 31 days, less 12 and 13 January: 29."""
+        spell = _spell(date(2026, 1, 1), date(2026, 1, 31)).with_unpaid([
+            date(2026, 1, 13),
+            date(2026, 1, 12),
+            date(2026, 2, 2),
+        ])
+        assert spell.unpaid_days == (date(2026, 1, 12), date(2026, 1, 13))
+        assert spell_days((spell,)) == 29
+
+    def test_a_day_another_spell_pays_still_counts(self) -> None:
+        """12 January unpaid in one spell, paid by a concurrent one: 31."""
+        unpaid = _spell(date(2026, 1, 1), date(2026, 1, 31)).with_unpaid([
+            date(2026, 1, 12)
+        ])
+        other = _spell(date(2026, 1, 10), date(2026, 1, 20))
+        assert spell_days((unpaid, other)) == 31
+
+    @pytest.mark.parametrize(
+        "days",
+        [
+            (date(2026, 1, 13), date(2026, 1, 12)),
+            (date(2026, 1, 12), date(2026, 1, 12)),
+            (date(2026, 2, 1),),
+        ],
+        ids=["unordered", "repeated", "outside"],
+    )
+    def test_invalid_unpaid_days_raise(self, days: tuple[date, ...]) -> None:
+        """Unpaid days are distinct days of the spell, in order."""
+        with pytest.raises(InvalidInputError) as caught:
+            EmploymentSpell(date(2026, 1, 1), date(2026, 1, 31), False, days)
+        assert caught.value.field == "EmploymentSpell.unpaid_days"

@@ -3,10 +3,9 @@
 Every ``requires_fact`` field of :mod:`ccnl_engine.payroll.domain.input_defaults`
 has a :class:`DefaultCase` in :data:`DEFAULT_CASES` or a reason in
 :data:`NOT_EXERCISED`, as ``tests/architecture/test_input_defaults.py`` checks.
-Each case is the explicit Concia D2 of 2026
-(:mod:`tests.fixtures.explicit_facts`) with one field changed: ``true`` states
-the fact, ``default`` leaves the field to its default.  The acceptance test
-``tests/acceptance/public_api/test_default_facts.py`` runs both.
+Each case is the explicit Concia D2 of 2026 (:mod:`tests.fixtures.explicit_facts`)
+with one field changed: ``true`` states the fact, ``default`` leaves the field
+to its default; ``tests/acceptance/public_api/test_default_facts.py`` runs both.
 """
 
 from __future__ import annotations
@@ -47,6 +46,7 @@ from ccnl_engine.inputs import (
     WeeklyHours,
     WorkerCategory,
 )
+from tests.fixtures.default_cases_absence import absence_cases
 from tests.fixtures.default_cases_fixed_term import fixed_term_cases
 from tests.fixtures.default_cases_sickness import sickness_cases
 from tests.fixtures.dependents import declared_dependent
@@ -190,11 +190,7 @@ def _arrears(reference_period: PeriodId | None) -> ArrearsEvent:
 
 
 def _leave(suspends_accrual: bool | None) -> AbsenceEvent:
-    """Return an unpaid leave of the whole of March 2026 but the 1st.
-
-    Returns:
-        The absence; counted as suspending, March keeps one accruing day.
-    """
+    # Unpaid leave of March 2026 but the 1st: suspending, March keeps one day.
     return AbsenceEvent(
         date(2026, 3, 2),
         Decimal(173),
@@ -465,6 +461,7 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
     "BonusEvent.agreement_signed_on": (
         _event_pair(_renewal(), _renewal(None), "agreement_signed_on"),
     ),
+    **absence_cases(_event_pair),
     **fixed_term_cases(_employment_pair),
     **sickness_cases(DefaultCase),
 }

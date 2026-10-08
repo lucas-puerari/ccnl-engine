@@ -22,6 +22,7 @@ from ccnl_engine.payroll.application.period._closing_state import (
 )
 from ccnl_engine.payroll.application.period._employment_facts import (
     full_time_issue,
+    no_pay_issue,
     roles_issue,
 )
 from ccnl_engine.payroll.application.period._limitations import run_limitations
@@ -184,6 +185,7 @@ def _input_issues(
         ),
         run_seniority(ctx).issue(),
         full_time_issue(ctx),
+        no_pay_issue(ctx),
         roles_issue(ctx),
         pension_fund_issue(ctx),
         accrual_issue(ctx),

@@ -28,6 +28,14 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "extra month they could change has a missing_fact suspends_accrual "
         "blocker",
     ),
+    "AbsenceEvent.no_pay_due": requires_fact(
+        "absence",
+        "event.no_pay_due",
+        FactEnforcement.REPORTED,
+        "unknown pay of the days: they stay in the days of the art. 13 TUIR "
+        "deductions, and a withholding run has a missing_fact no_pay_due "
+        "blocker",
+    ),
     "ArrearsEvent.reference_period": requires_fact(
         "contract_renewal_arrears",
         "event.reference_period",
