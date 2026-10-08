@@ -253,3 +253,25 @@ class TestEmploymentValidation:
         }
         with pytest.raises(InvalidInputError, match="must be"):
             Employment(**fields)  # type: ignore[arg-type]
+
+
+class TestCcnlIdentifier:
+    """The CCNL is named by its id, with or without ``.json``."""
+
+    @pytest.mark.parametrize(
+        "ccnl_id", ["commercio-confcommercio", "commercio-confcommercio.json"]
+    )
+    def test_the_id_names_the_bundle_file(self, ccnl_id: str) -> None:
+        """Both forms name the same bundle file."""
+        employment = Employment(
+            ccnl_slug=ccnl_id, level_code="4", contract_type=Permanent()
+        )
+        assert employment.ccnl_slug == "commercio-confcommercio.json"
+
+    @pytest.mark.parametrize(
+        "ccnl_id", ["Commercio", "commercio.JSON", "-commercio", ""]
+    )
+    def test_a_malformed_id_is_rejected(self, ccnl_id: str) -> None:
+        """Upper case, a leading hyphen or an empty id are not CCNL ids."""
+        with pytest.raises(InvalidInputError, match="CCNL id"):
+            Employment(ccnl_slug=ccnl_id, level_code="4", contract_type=Permanent())

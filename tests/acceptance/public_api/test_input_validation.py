@@ -229,7 +229,7 @@ _INVALID: tuple[object, ...] = (
     1.5,
     float("nan"),
     "",
-    "not-a-value",
+    "not a value",
     datetime(_YEAR, 6, 10, 9, 0),  # noqa: DTZ001
     None,
     object(),

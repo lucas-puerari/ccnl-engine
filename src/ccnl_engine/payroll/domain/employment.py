@@ -40,7 +40,7 @@ __all__ = ["Apprentice", "Contract", "Employment", "FixedTerm", "Permanent"]
 
 _CONTRACT_FEATURE = "contract_type"
 #: A CCNL file name of the bundle: no directory, no other extension.
-_SLUG = re.compile(r"[a-z0-9][a-z0-9-]*\.json")
+_SLUG = re.compile(r"[a-z0-9][a-z0-9-]*(\.json)?")
 
 
 @dataclass(frozen=True, slots=True)
@@ -199,10 +199,13 @@ class Employment:
         if not isinstance(self.ccnl_slug, str) or not _SLUG.fullmatch(self.ccnl_slug):
             reject(
                 "Employment.ccnl_slug",
-                "a bundle file name such as 'metalmeccanico-federmeccanica.json'",
+                "a CCNL id such as 'metalmeccanico-federmeccanica', with or "
+                "without '.json'",
                 self.ccnl_slug,
                 feature=FEATURE,
             )
+        if not self.ccnl_slug.endswith(".json"):
+            object.__setattr__(self, "ccnl_slug", f"{self.ccnl_slug}.json")
         require_str(
             self.level_code, "Employment.level_code", feature=FEATURE, non_blank=True
         )

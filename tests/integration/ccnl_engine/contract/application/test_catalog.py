@@ -4,7 +4,11 @@ from __future__ import annotations
 
 import pytest
 
-from ccnl_engine.contract.application.catalog import inspect_ruleset, list_contracts
+from ccnl_engine.contract.application.catalog import (
+    inspect_ruleset,
+    list_contracts,
+    list_levels,
+)
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
@@ -31,6 +35,17 @@ def test_slug_and_cnel_code_name_the_same_ruleset() -> None:
 
     assert by_slug.id == f"ccnl/{_METALMECCANICO}"
     assert inspect_ruleset(repo, "C011") == by_slug
+    assert inspect_ruleset(repo, f"{_METALMECCANICO}.json") == by_slug
+
+
+def test_levels_are_listed_in_the_order_of_the_data() -> None:
+    """Every level of the CCNL, each code as ``Employment`` takes it."""
+    repo = BundledKnowledgeRepository()
+    levels = list_levels(repo, f"{_METALMECCANICO}.json")
+
+    assert levels == list_levels(repo, "C011")
+    assert len({level.code for level in levels}) == len(levels)
+    assert "C3" in {level.code for level in levels}
 
 
 def test_unknown_ccnl_is_a_typed_error() -> None:

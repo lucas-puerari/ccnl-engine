@@ -9,6 +9,7 @@ from ccnl_engine.contract.domain.validity_window import ValidityWindow
 from ccnl_engine.contract.service.discovery import (
     CcnlId,
     ContractSummary,
+    LevelSummary,
     get_ccnl,
     search_ccnls,
 )
@@ -34,6 +35,7 @@ __all__ = [
     "CapabilityImplementation",
     "CcnlId",
     "ContractSummary",
+    "LevelSummary",
     "RulesetAssurance",
     "RulesetIdentity",
     "RulesetKind",

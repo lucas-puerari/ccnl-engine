@@ -139,6 +139,7 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
         "CapabilityImplementation",
         "CcnlId",
         "ContractSummary",
+        "LevelSummary",
         "RulesetAssurance",
         "RulesetIdentity",
         "RulesetKind",

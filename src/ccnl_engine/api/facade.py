@@ -7,9 +7,8 @@ from typing import TYPE_CHECKING, Literal
 from ccnl_engine.contract.application.catalog import (
     inspect_ruleset as _inspect_ruleset,
 )
-from ccnl_engine.contract.application.catalog import (
-    list_contracts as _list_contracts,
-)
+from ccnl_engine.contract.application.catalog import list_contracts as _list_contracts
+from ccnl_engine.contract.application.catalog import list_levels as _list_levels
 from ccnl_engine.knowledge import __version__
 from ccnl_engine.payroll.application.bundled_sources import (
     bundled_policies,
@@ -40,7 +39,7 @@ from ccnl_engine.payroll.application.facade_input import (
 from ccnl_engine.payroll.application.opening_state import opening_state
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.service.discovery import ContractSummary
+    from ccnl_engine.contract.service.discovery import ContractSummary, LevelSummary
     from ccnl_engine.payroll.application.knowledge_repository import KnowledgeRepository
     from ccnl_engine.payroll.application.opening_balances import OpeningBalances
     from ccnl_engine.payroll.application.year_result import (
@@ -156,6 +155,18 @@ class PayrollEngine:
         """
         return _list_contracts()
 
+    def list_levels(self, ccnl_id: str) -> tuple[LevelSummary, ...]:
+        """Return the levels of one CCNL, each code as ``Employment`` takes it.
+
+        Args:
+            ccnl_id: Slug (with or without ``.json``) or CNEL code; an
+                unknown one raises ``UnknownCcnlError``.
+
+        Returns:
+            One summary per level, in the order of the CCNL data.
+        """
+        return _list_levels(self._repo, ccnl_id)
+
     def inspect_ruleset(self, ccnl_id: str) -> RulesetAssurance:
         """Return the identity, hash, readiness and confidence of a CCNL.
 
@@ -164,8 +175,8 @@ class PayrollEngine:
         calculating.
 
         Args:
-            ccnl_id: Slug (e.g. ``"metalmeccanico-federmeccanica"``) or CNEL
-                code of a bundled CCNL.
+            ccnl_id: Slug (e.g. ``"metalmeccanico-federmeccanica"``, with or
+                without ``.json``) or CNEL code of a bundled CCNL.
 
         Returns:
             The assurance of the CCNL ruleset.
