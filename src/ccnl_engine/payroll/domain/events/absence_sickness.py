@@ -37,16 +37,18 @@ class AbsenceEvent:
             employment, so its calendar days do not accrue tredicesima and
             quattordicesima ratei (for example aspettativa non retribuita,
             or the congedo for serious family reasons of art. 4 c. 2
-            L. 53/2000).  The caller states it: the engine does not decide
-            which absences suspend accrual under the CCNL.  Defaults to
-            ``False``: an unpaid absence reduces pay, not the ratei.
+            L. 53/2000); ``False`` when its days accrue the ratei.  The
+            caller states it: the engine does not decide which absences
+            suspend accrual under the CCNL.  ``None`` means not known: the
+            days count as accruing, and a rateo they could change has a
+            ``missing_fact`` blocker.
     """
 
     event_date: date
     hours: Decimal
     hourly_rate: Decimal
     end_date: date | None = None
-    suspends_accrual: bool = False
+    suspends_accrual: bool | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         feature = "absence"
@@ -60,9 +62,10 @@ class AbsenceEvent:
         require_date(
             self.end_date, "AbsenceEvent.end_date", feature=feature, optional=True
         )
-        require_bool(
-            self.suspends_accrual, "AbsenceEvent.suspends_accrual", feature=feature
-        )
+        if self.suspends_accrual is not None:
+            require_bool(
+                self.suspends_accrual, "AbsenceEvent.suspends_accrual", feature=feature
+            )
         if self.end_date is not None and self.end_date < self.event_date:
             msg = (
                 f"AbsenceEvent.end_date ({self.end_date}) must be "

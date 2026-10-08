@@ -21,7 +21,7 @@ from ccnl_engine.payroll.domain.employment_facts import (
     check_within_full_time,
 )
 from ccnl_engine.payroll.domain.jurisdiction import check_surtax_codes
-from ccnl_engine.payroll.domain.pension_fund import PensionFundEnrolment
+from ccnl_engine.payroll.domain.pension_fund import PENSION_FUND_TYPES
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
@@ -41,6 +41,10 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.events import WorkEvent
     from ccnl_engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.payroll.domain.payment import PaymentId
+    from ccnl_engine.payroll.domain.pension_fund import (
+        NoPensionFund,
+        PensionFundEnrolment,
+    )
     from ccnl_engine.payroll.domain.run import PayrollRun, PayrollRunId
     from ccnl_engine.payroll.domain.withholding_schedule import WithholdingSchedule
 
@@ -104,7 +108,8 @@ class PeriodCalculationRequest:
             ``None`` means not known: when the level pays seniority
             increments or service-gated allowances the run has a
             ``missing_fact`` blocker.
-        roles: Role codes that unlock role-specific contractual allowances.
+        roles: Role codes that unlock role-specific contractual allowances,
+            ``None`` when not known.
         category: Worker category declared on the employment.  ``None``
             takes the category fixed by the level, if any.  Must match the
             level's category when the level fixes one, and is required when
@@ -132,12 +137,13 @@ class PeriodCalculationRequest:
         prior_year: Prior-year income and written waivers, read by every
             preferential tax regime.
         current_year: Income of the tax year beyond this employment, read
-            by the family deductions; ``None`` when not known.  When its
-            tax year is the competence year of the run, its INPS base of
-            other employments is stated in ``opening_state`` for that
-            year, in place of the one the state carries.
-        pension_fund: Enrolment in a pension fund of the CCNL, ``None``
-            when the worker is not enrolled.
+            by the family deductions and the somma esente; ``None`` when not
+            known.  When its tax year is the competence year of the run, its
+            INPS base of other employments is stated in ``opening_state``
+            for that year, in place of the one the state carries.
+        pension_fund: Enrolment in a pension fund of the CCNL,
+            ``NoPensionFund`` when the worker is not enrolled, ``None`` when
+            not known.
         uncovered_runs: Runs of the competence year the year calculation
             left out because the bundle holds no pay rules on their date.
             They are reported once, as ``run_not_computed`` blockers of the
@@ -166,7 +172,7 @@ class PeriodCalculationRequest:
     full_time_weekly_hours: WeeklyHours | None = None
     employment_period: EmploymentPeriod | None = None
     seniority: SeniorityFact | None = None
-    roles: frozenset[str] = field(default_factory=frozenset)
+    roles: frozenset[str] | None = None
     category: WorkerCategory | None = None
     extra_month_accrual: ExtraMonthAccrual | None = None
     extra_month_settlements: tuple[ExtraMonthAccrual, ...] | None = None
@@ -175,7 +181,7 @@ class PeriodCalculationRequest:
     sector: EmploymentSector | None = None
     prior_year: PriorYearTaxFacts = field(default_factory=PriorYearTaxFacts)
     current_year: CurrentYearTaxFacts | None = None
-    pension_fund: PensionFundEnrolment | None = None
+    pension_fund: PensionFundEnrolment | NoPensionFund | None = None
     uncovered_runs: tuple[PayrollRunId, ...] = ()
     tfr_fund: TfrFundBalance | None = None
     tfr_treasury_fund: bool | None = None
@@ -288,7 +294,7 @@ class PeriodCalculationRequest:
             ("sector", self.sector, EmploymentSector, True),
             ("prior_year", self.prior_year, PriorYearTaxFacts, False),
             ("current_year", self.current_year, CurrentYearTaxFacts, True),
-            ("pension_fund", self.pension_fund, PensionFundEnrolment, True),
+            ("pension_fund", self.pension_fund, PENSION_FUND_TYPES, True),
             ("tfr_fund", self.tfr_fund, TfrFundBalance, True),
             ("tfr_treasury_fund", self.tfr_treasury_fund, bool, True),
         )

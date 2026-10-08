@@ -151,7 +151,11 @@ without a classification, or on a classification without its field:
     of the year before on a December run, the Fondo Tesoreria destination
     of the TFR, the first day of the imported sickness history and the
     exemption of a short absence when a CCNL counting several sickness
-    episodes needs them);
+    episodes needs them, the income beyond the employment when a somma
+    esente is due, the full time of an employment whose weekly hours are
+    stated, the roles of a worker on a level with an allowance restricted
+    to a role, the enrolment in a pension fund of a CCNL that has one, the
+    suspension of accrual of an absence that could change a rateo);
   - `pending`: not honoured yet. The default still selects a branch without
     a blocker. Treat these fields as required and state them.
 
@@ -160,16 +164,17 @@ The `pending` fields:
 | Field | What the default does today |
 |---|---|
 | `Employment.contract_type` | A permanent contract: no NASpI surcharge of a fixed-term contract, and the 690 EUR minimum of the art. 13 TUIR deduction up to 15,000 EUR instead of 1,380 EUR in the decision on the part left to the tax return |
-| `Employment.employment_period` | A full month and full ratei, even for a hire or a termination within the month |
-| `Employment.weekly_hours`, `Employment.full_time_weekly_hours` | Full time |
-| `Employment.roles` | No role: no allowance a role unlocks |
-| `Employment.pension_fund` | Not enrolled, with no way to state the non-enrolment |
-| `AbsenceEvent.suspends_accrual` | The absence does not suspend the accrual |
+| `Employment.employment_period` | A full month and full ratei, even for a hire or a termination within the month (a run after the first still needs its opening state) |
+| `Employment.weekly_hours` | Full time (a domestic CCNL raises without it) |
 
 A `pending` field becomes `requirement` or `reported` when its default can
 be told apart from a stated value (a field that defaults to `True` or `0`
 cannot) and the run blocks on it, or leaves the registry when its default
-is removed. `Dependent.dependent_from` and `dependent_until` have no
+is removed. For every `requires_fact` field, the run that states the fact
+has at most the blockers of the run that leaves it to its default
+(`tests/acceptance/public_api/test_default_facts.py`, on the request pairs
+of `tests/fixtures/default_cases.py`): a false default is never the one
+path that looks payable. `Dependent.dependent_from` and `dependent_until` have no
 default: `None` states an open end. `OpeningBalances.inps_bases`, `surtax_obligations` and
 `recoveries` have no default: an import states what the previous provider
 determined, `()` when there is nothing, and a closed run of a competence
@@ -262,7 +267,7 @@ Issues that lower the calculation axis include:
 |---|---|---|
 | `rule_source_missing` | `incomplete` | An executed capability read a payable rule whose provenance status is `missing` |
 | `employer_rate_category_assumed` | `provisional` | The sector sets INPS employer rates by worker category (artigianato: impiegati and quadri 24.71%), the level fixes no category and none was declared, so the general rate (26.93%, the operai rate) applied |
-| `somma_esente_income_assumed` | `provisional` | The reddito complessivo of the somma esente is taken as the employment income of this employer |
+| `somma_esente_band_assumed` | `provisional` | The worker has employment income from other employers this tax year; the percentage of the somma esente is taken on the income of this employer alone |
 | `withholding_shortfall_unrecovered` | `provisional` | The pay of the run cannot cover the tax due; the worker must be told the amount |
 
 ### Coverage

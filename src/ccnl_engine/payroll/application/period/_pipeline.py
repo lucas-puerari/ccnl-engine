@@ -29,7 +29,10 @@ from ccnl_engine.payroll.application.period._ivs_ceiling import (
     run_ivs_ceiling,
 )
 from ccnl_engine.payroll.application.period._minimum_base import run_minimum_base
-from ccnl_engine.payroll.application.period._pension_decision import pension_decision
+from ccnl_engine.payroll.application.period._pension_decision import (
+    enrolment_unknown,
+    pension_decision,
+)
 from ccnl_engine.payroll.application.period._pipeline_inputs import (
     amounts_input,
     variable_events,
@@ -177,7 +180,9 @@ def run_decisions(
     request, contract = ctx.request, ctx.contract
     amounts = run.amounts
     year = contract.tctx.competence.year
-    pension = pension_decision(contract.ccnl, amounts.pension, year)
+    pension = pension_decision(
+        contract.ccnl, amounts.pension, year, unknown=enrolment_unknown(ctx)
+    )
     ivs = run.ivs_ceiling
     ivs_decision = () if ivs is None else (ivs_ceiling_decision(ctx, ivs),)
     return (

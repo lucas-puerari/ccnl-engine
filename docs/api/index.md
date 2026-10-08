@@ -119,6 +119,7 @@ from ccnl_engine.inputs import (
     ContributionHistory,
     EmploymentSector,
     PensionFundEnrolment,
+    NoPensionFund,
     EmployerActivity,
     # Family and tax facts
     FamilyComposition,

@@ -259,10 +259,14 @@ The annual amount is a percentage of the employment income of the year; the
 percentage is chosen on that income "rapportato all'intero anno" (c. 5),
 `income * 365 / days`, as in circolare AdE 4/E of 16 May 2025, esempio 1
 (€2,000 in 62 days: 5.3%, €106). The 20,000 EUR limit applies to the
-reddito complessivo, which is not an input: the engine takes the employment
-income for it. Other income can only raise the reddito complessivo, so a
-run with an amount due carries the `provisional` issue
-`somma_esente_income_assumed`.
+reddito complessivo: the employment income plus the income beyond this
+employment that `current_year` states (`CurrentYearTaxFacts`, net of the
+main dwelling as c. 9 requires). Other income can only raise it, so only a
+run with an amount due needs it: without `current_year` such a run carries
+the `incomplete` issue `somma_esente_income_unknown` and a `missing_fact
+current_year` blocker. With employment income of other employers the
+percentage is still taken on the income of this employer, and the run
+carries the `provisional` issue `somma_esente_band_assumed`.
 Its entitlement is verified at the conguaglio, the last withholding slot
 (art. 1 c. 7):
 

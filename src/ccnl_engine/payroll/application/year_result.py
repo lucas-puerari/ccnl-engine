@@ -99,7 +99,7 @@ class PaymentsResult:
         """Issues of every payment in payment order, each reported once.
 
         A run repeats the issue of an assumption that holds for the whole
-        year (e.g. ``somma_esente_income_assumed``) on every payslip; the
+        year (e.g. ``somma_esente_band_assumed``) on every payslip; the
         result lists it once, at its first occurrence.  Issues with the same
         code and a different message (e.g. two shortfall amounts) are kept.
         The issues of a single run stay on :attr:`period_results`.

@@ -11,12 +11,12 @@ from ccnl_engine import (
     PayrollRun,
     PeriodInput,
 )
-from ccnl_engine.inputs import PensionFundEnrolment
+from ccnl_engine.inputs import NoPensionFund, PensionFundEnrolment
 
 engine = PayrollEngine.bundled()
 
 
-def run(pension_fund: PensionFundEnrolment | None) -> None:
+def run(pension_fund: PensionFundEnrolment | NoPensionFund) -> None:
     """Print the fund lines, net and employer cost of January 2026."""
     result = engine.calculate_period(
         PeriodInput(
@@ -37,6 +37,6 @@ def run(pension_fund: PensionFundEnrolment | None) -> None:
 
 
 print("Not enrolled:")
-run(None)
+run(NoPensionFund())
 print("Enrolled in ALIFOND, 1% employee, TFR to the fund:")
 run(PensionFundEnrolment("ALIFOND", Decimal("0.01"), tfr_to_fund=True))

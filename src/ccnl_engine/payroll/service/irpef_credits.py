@@ -215,12 +215,17 @@ def somma_esente(
     taxable_income: Decimal,
     rules: SommaEsenteRules,
     eligible_work_days: int = DAYS_IN_YEAR,
+    external_income: Decimal = _ZERO,
 ) -> Decimal:
     """Compute the somma esente of L. 207/2024 art. 1 c. 4-5.
 
     - Eligibility (c. 4): reddito complessivo not above the last band's
-      ``up_to`` (20,000 EUR).  Employment income is the only income the
-      engine knows, so it stands for the reddito complessivo.
+      ``up_to`` (20,000 EUR).  The reddito complessivo is the employment
+      income plus ``external_income``, which the caller states net of the
+      main dwelling (c. 9: "è assunto al netto del reddito dell'unità
+      immobiliare adibita ad abitazione principale e di quello delle
+      relative pertinenze").  The exempt share of the impatriati and
+      researcher regimes c. 9 also counts is not modelled.
     - Percentage (c. 5): chosen on the employment income "rapportato
       all'intero anno", ``income * 365 / days`` (circolare AdE 4/E of 16
       May 2025, par. 1.2, esempio 1); the rate of the first band whose
@@ -229,15 +234,18 @@ def somma_esente(
       earned in the year, not the annualised one.
 
     Args:
-        taxable_income: Employment income of the year, also used as the
-            reddito complessivo.
+        taxable_income: Employment income of the year.
         rules: Band schedule from the tax data file.
         eligible_work_days: Days of employment in the tax year, at most 365.
+        external_income: Reddito complessivo of the year beyond this
+            employment, zero when there is none or it is not known.
 
     Returns:
         The somma esente amount (unrounded; full-year), zero when not due.
     """
-    if taxable_income <= _ZERO or taxable_income > rules.bands[-1].up_to:
+    if taxable_income <= _ZERO:
+        return _ZERO
+    if taxable_income + external_income > rules.bands[-1].up_to:
         return _ZERO
     annualised = taxable_income * DAYS_IN_YEAR / eligible_work_days
     rate = next(

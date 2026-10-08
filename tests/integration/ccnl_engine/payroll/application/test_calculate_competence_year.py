@@ -240,8 +240,9 @@ class TestEmploymentPeriodRuns:
         """Ended 31 May: five regular runs, no extra-month run.
 
         The income of five months is within the 20,000 EUR limit of the
-        somma esente, which rests on the employment income standing for the
-        reddito complessivo: the result is provisional for that alone.
+        somma esente, whose reddito complessivo (L. 207/2024 art. 1 c. 4)
+        includes the income beyond this employment the plan does not state:
+        the result is incomplete for that alone.
         """
         result = calculate_competence_year(
             year_plan(
@@ -258,9 +259,9 @@ class TestEmploymentPeriodRuns:
         assert [r.run.run_kind for r in result.period_results if r.run] == [
             RunKind.REGULAR
         ] * 5
-        assert result.assurance.calculation is CalculationStatus.PROVISIONAL
+        assert result.assurance.calculation is CalculationStatus.INCOMPLETE
         assert {i.code for r in result.period_results for i in r.issues} == {
-            "somma_esente_income_assumed"
+            "somma_esente_income_unknown"
         }
 
     def test_employment_outside_the_year_is_rejected(self) -> None:

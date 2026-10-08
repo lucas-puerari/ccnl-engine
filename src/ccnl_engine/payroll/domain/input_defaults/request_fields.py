@@ -29,8 +29,9 @@ _CURRENT_YEAR = requires_fact(
     "current_year",
     _REPORTED,
     "unknown income beyond this employment: with a dependant that gives right "
-    "to a deduction the run has a missing_fact current_year blocker; the INPS "
-    "base of other employments stays unknown unless the opening state states it",
+    "to a deduction, or a somma esente due on this employment alone, the run "
+    "has a missing_fact current_year blocker; the INPS base of other "
+    "employments stays unknown unless the opening state states it",
 )
 _OPENING_STATE = requires_fact(
     "irpef",
@@ -102,20 +103,25 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "base_salary",
         "employment.employment_period",
         _PENDING,
-        "an employment not tracked: a full month and full ratei, even for a "
-        "hire or a termination within the month",
+        "an employment whose start is not stated: a full month and full "
+        "ratei without a blocker, even for a hire or a termination within the "
+        "month; a run after the first has a missing_fact opening_state blocker "
+        "unless its opening state is stated",
     ),
     "Employment.weekly_hours": requires_fact(
         "base_salary",
         "employment.weekly_hours",
         _PENDING,
-        "full time, without a blocker",
+        "full time, without a blocker; a domestic CCNL raises "
+        "MissingRequiredFactError without it",
     ),
     "Employment.full_time_weekly_hours": requires_fact(
         "base_salary",
         "employment.full_time_weekly_hours",
-        _PENDING,
-        "the contracted hours count as full time, without a blocker",
+        _REPORTED,
+        "unknown full time: with weekly_hours stated the part-time fraction is "
+        "undetermined and the run has a missing_fact full_time_weekly_hours "
+        "blocker; without weekly_hours it is not read",
     ),
     "Employment.seniority": requires_fact(
         "seniority",
@@ -126,8 +132,10 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
     "Employment.roles": requires_fact(
         "base_salary",
         "employment.roles",
-        _PENDING,
-        "no role: the allowances a role unlocks are not paid, without a blocker",
+        _REPORTED,
+        "unknown roles: a run whose level has an allowance restricted to a role "
+        "in force leaves it out and has a missing_fact roles blocker; an empty "
+        "set states that the worker holds no role",
     ),
     "Employment.contribution_history": requires_fact(
         "inps_employee",
@@ -161,9 +169,10 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
     "Employment.pension_fund": requires_fact(
         "pension_fund_contribution",
         "employment.pension_fund",
-        _PENDING,
-        "not enrolled: no contribution and no TFR to a fund, with no way to "
-        "state the non-enrolment apart from the default",
+        _REPORTED,
+        "unknown enrolment: on a CCNL that has funds the contributions are "
+        "undetermined and the run has a missing_fact pension_fund blocker; "
+        "NoPensionFund states the non-enrolment",
     ),
     "PeriodFacts.contributable_hours": requires_fact(
         "inps_employee",

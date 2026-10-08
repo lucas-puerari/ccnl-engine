@@ -11,7 +11,10 @@ See [Domain: Components](../domain/components.md) for the legal background.
 Pass the contracted `weekly_hours` together with the CCNL
 `full_time_weekly_hours` on `Employment`, as `WeeklyHours`. The engine derives the
 part-time fraction from the two and scales the contractual pay by it.
-`weekly_hours` must not exceed `full_time_weekly_hours`.
+`weekly_hours` must not exceed `full_time_weekly_hours`. The contracted hours
+alone never count as full time: without `full_time_weekly_hours` the run
+computes the full-time pay and carries a `missing_fact` blocker for it, on
+a domestic CCNL too, where `weekly_hours` also selects the INPS bracket.
 
 ```python
 from datetime import date
@@ -50,6 +53,16 @@ def gross(weekly_hours: WeeklyHours | None = None) -> str:
 print("Full time:", gross())
 print("Half time:", gross(WeeklyHours(20)))
 ```
+
+## Role allowances
+
+Some allowances of a level are paid only to a worker holding a role, e.g.
+`IND_FUNZIONE_QUADRO` of Alimentari 1S for the role `quadro`. State the roles
+on `Employment.roles`, a `frozenset` of role codes; `frozenset()` states that
+the worker holds none. `roles=None`, the default, means not known: on a level
+with an allowance restricted to a role in force, the run leaves the
+allowance out and has a `missing_fact` blocker for `roles`. A worker
+category, `QUADRO` included, does not unlock a role allowance.
 
 ## Seniority increments (*scatti di anzianità*)
 
@@ -273,9 +286,15 @@ as `Employment.pension_fund`, a `PensionFundEnrolment`:
 - `tfr_to_fund`: whether the TFR accrued is paid to the fund. Required,
   with no default.
 
-`pension_fund=None` means not enrolled: no fund line is posted. On a CCNL
-that has a fund, the `pension_fund_contribution` decision records the
-reason `not_enrolled` and the capability is not applicable.
+`pension_fund=NoPensionFund()` states that the worker is not enrolled: no
+fund line is posted. On a CCNL that has a fund, the
+`pension_fund_contribution` decision records the reason `not_enrolled` and
+the capability is not applicable. `pension_fund=None`, the default, means
+not known: on a CCNL that has a fund the decision is `incomplete` with the
+reason `required_fact_missing`, no fund line is posted and the run has a
+`missing_fact` blocker for `pension_fund`. Whether the TFR of a worker who
+expressed no choice goes to the fund (silent consent, D.Lgs. 252/2005 art.
+8 c. 7) is for the caller to establish: the engine does not infer it.
 
 When enrolled, each run posts:
 

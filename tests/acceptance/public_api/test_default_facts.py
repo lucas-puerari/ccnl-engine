@@ -10,38 +10,38 @@ does not have, and the true value of a fact never has more blockers than
 the default it replaces, otherwise the false default is the one path that
 looks payable.  The residence left unknown is checked by
 ``test_unknown_residence_is_not_no_surtax`` of the legal scenarios.  The
-properties that do not hold yet are strict xfails on their assertion.
+second property runs on every ``requires_fact`` field of the registry of
+input defaults, with one or more request pairs per field
+(:mod:`tests.fixtures.default_cases`).
 """
 
 from __future__ import annotations
 
 from dataclasses import replace
 from datetime import date
-from decimal import Decimal
 from functools import cache
 from typing import Any
 
 import pytest
 
 from ccnl_engine import (
+    CompetenceYearPlan,
+    CompetenceYearResult,
     Employment,
     PayrollEngine,
-    PayrollRun,
     PeriodFacts,
     PeriodInput,
     PeriodResult,
+    TaxYearResult,
 )
-from ccnl_engine.events import AbsenceEvent
 from ccnl_engine.inputs import (
     Dependent,
     DependentRelationship,
-    EmploymentPeriod,
     FamilyComposition,
-    PensionFundEnrolment,
     PeriodState,
-    WeeklyHours,
 )
 from ccnl_engine.results import BlockerCode
+from tests.fixtures.default_cases import DEFAULT_CASES, DefaultCase, Request
 from tests.fixtures.dependents import declared_dependent
 from tests.fixtures.explicit_facts import (
     CONCIA_D2,
@@ -112,39 +112,11 @@ def _unknown(dependent: Dependent, fact: str) -> Dependent:
     return replace(dependent, **fields)
 
 
-def _thirteenth(suspends_accrual: bool) -> PeriodResult:
-    """Return the tredicesima of a Concia D2 on unpaid leave all March.
-
-    Returns:
-        The tredicesima run of the 2026 competence year.
-    """
-    leave = AbsenceEvent(
-        date(2026, 3, 2),
-        Decimal(173),
-        Decimal("11.86"),
-        end_date=date(2026, 3, 31),
-        suspends_accrual=suspends_accrual,
-    )
-    year = _ENGINE.calculate_competence_year(
-        competence_year(periods={3: replace(FACTS, events=(leave,))})
-    )
-    return next(r for r in year.period_results if r.run == _THIRTEENTH)
-
-
-_THIRTEENTH = PayrollRun.thirteenth(2026, 12)
 _ASCENDANT = declared_dependent(DependentRelationship.ASCENDANT)
 _SPOUSE = declared_dependent(DependentRelationship.SPOUSE)
 _CHILD = declared_dependent(DependentRelationship.CHILD, birth_date=date(2004, 3, 1))
 _YOUNG_CHILD = declared_dependent(
     DependentRelationship.CHILD, birth_date=date(2015, 3, 1)
-)
-_TABACCO_3A = replace(CONCIA_D2, ccnl_slug="tabacco-apti.json", level_code="3A")
-_INVERSION = (
-    "declaring the true fact adds a blocker the default does not have: part "
-    "time and a hire on 15 June (somma_esente_income_assumed), enrolment in "
-    "the CCNL fund ALIFOND (pension_fund_contribution not computed), unpaid "
-    "leave that suspends accrual (tredicesima issue); the default full time, "
-    "full month, no fund and full accrual look more payable than the truth"
 )
 
 
@@ -251,47 +223,53 @@ class TestDefaultIsNotAFact:
         with pytest.raises(TypeError, match="dependent_from"):
             Dependent(DependentRelationship.SPOUSE)  # type: ignore[call-arg]
 
-    @pytest.mark.xfail(
-        strict=True,
-        raises=AssertionError,
-        reason=_INVERSION,
-    )
-    @pytest.mark.parametrize(
-        ("true", "default"),
-        [
-            pytest.param(
-                replace(CONCIA_D2, weekly_hours=WeeklyHours(20)),
-                replace(CONCIA_D2, weekly_hours=None, full_time_weekly_hours=None),
-                id="part_time",
-            ),
-            pytest.param(
-                replace(
-                    CONCIA_D2, employment_period=EmploymentPeriod(date(2026, 6, 15))
-                ),
-                replace(CONCIA_D2, employment_period=None),
-                id="hire_mid_month",
-            ),
-            pytest.param(
-                replace(
-                    _TABACCO_3A,
-                    pension_fund=PensionFundEnrolment(
-                        "ALIFOND", Decimal("0.01"), tfr_to_fund=False
-                    ),
-                ),
-                _TABACCO_3A,
-                id="pension_fund",
-            ),
-        ],
-    )
-    def test_true_employment_fact_has_no_more_blockers(
-        self, true: Employment, default: Employment
-    ) -> None:
-        """The June run with the true fact has at most the default's blockers."""
-        blockers = _blocker_set(_june_with(employment=true))
-        assert len(blockers) <= len(_blocker_set(_june_with(employment=default)))
 
-    @pytest.mark.xfail(strict=True, raises=AssertionError, reason=_INVERSION)
-    def test_leave_suspending_accrual_has_no_more_blockers(self) -> None:
-        """The tredicesima after a leave that suspends accrual blocks no more."""
-        blockers = _blocker_set(_thirteenth(suspends_accrual=True))
-        assert len(blockers) <= len(_blocker_set(_thirteenth(suspends_accrual=False)))
+def _triples(request: Request) -> set[tuple[BlockerCode, str | None, str]]:
+    """Return the blockers of ``request`` through the public facade.
+
+    Returns:
+        The code, feature and detail of every blocker of the result.
+    """
+    if isinstance(request, PeriodInput):
+        result: PeriodResult | CompetenceYearResult | TaxYearResult = (
+            _ENGINE.calculate_period(request)
+        )
+    elif isinstance(request, CompetenceYearPlan):
+        result = _ENGINE.calculate_competence_year(request)
+    else:
+        result = _ENGINE.calculate_tax_year(request)
+    return {(b.code, b.feature, b.detail) for b in result.blockers}
+
+
+_CASES = [
+    pytest.param(case, id=f"{field}[{index}]")
+    for field, cases in DEFAULT_CASES.items()
+    for index, case in enumerate(cases)
+]
+_NAMING_CASES = [
+    pytest.param(case, id=f"{field}[{index}]")
+    for field, cases in DEFAULT_CASES.items()
+    for index, case in enumerate(cases)
+    if case.names is not None
+]
+
+
+class TestTrueFactHasNoMoreBlockers:
+    """Stating a fact never looks less payable than leaving it to its default.
+
+    Otherwise the false default is the one path that looks payable.  Each
+    ``requires_fact`` field of the registry of input defaults has a case
+    (:mod:`tests.fixtures.default_cases`); a field honoured by a blocker
+    also shows the blocker its default adds.
+    """
+
+    @pytest.mark.parametrize("case", _CASES)
+    def test_true_fact_has_no_more_blockers(self, case: DefaultCase) -> None:
+        """The run stating the fact has at most the blockers of the default."""
+        assert len(_triples(case.true)) <= len(_triples(case.default))
+
+    @pytest.mark.parametrize("case", _NAMING_CASES)
+    def test_default_names_the_fact(self, case: DefaultCase) -> None:
+        """The default adds a blocker naming the fact the true run states."""
+        added = _triples(case.default) - _triples(case.true)
+        assert case.names in {detail for _, _, detail in added}

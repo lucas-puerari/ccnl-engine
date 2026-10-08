@@ -71,7 +71,7 @@ def _base_chain(
         seniority_months=seniority_months_at(
             request.seniority, contract.tctx.competence
         ),
-        roles=request.roles,
+        roles=request.roles or frozenset(),
         worker_category=worker_category,
         weekly_hours=_int_value(request.weekly_hours),
         full_time_weekly_hours=_int_value(request.full_time_weekly_hours),

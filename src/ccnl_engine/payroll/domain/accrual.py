@@ -197,6 +197,9 @@ class ExtraMonthAccrual:
         rule: The month-qualification rule the months were counted with.
         partial_months: Months of the window accrued for part of their
             days, whose counting the threshold of ``rule`` decided.
+        undetermined: Whether absences that may suspend accrual, their
+            suspension not stated, change ``months``: ``months`` counts
+            them as accruing.
 
     Raises:
         ValueError: When ``months`` is outside ``[0, 12]`` or
@@ -210,6 +213,7 @@ class ExtraMonthAccrual:
     ended_on: date | None = None
     rule: MonthAccrualRule = DEFAULT_MONTH_ACCRUAL_RULE
     partial_months: int = 0
+    undetermined: bool = False
 
     def __post_init__(self) -> None:  # noqa: D105
         if not 0 <= self.months <= _MONTHS_PER_WINDOW:
@@ -233,6 +237,7 @@ class ExtraMonthAccrual:
         *,
         non_accruing_days: frozenset[date] = frozenset(),
         rule: MonthAccrualRule = DEFAULT_MONTH_ACCRUAL_RULE,
+        unknown_days: frozenset[date] = frozenset(),
     ) -> ExtraMonthAccrual:
         """Count the rateo of ``schedule`` paid in ``payment_year``.
 
@@ -243,6 +248,8 @@ class ExtraMonthAccrual:
                 over the whole window.
             non_accruing_days: Days of absences that suspend accrual.
             rule: Month-qualification rule.
+            unknown_days: Days of absences whose suspension of accrual is
+                not stated, counted as accruing.
 
         Returns:
             The accrual, with the window clipped to the hire date and
@@ -253,18 +260,25 @@ class ExtraMonthAccrual:
         window = schedule.accrual_window(payment_year, started_on)
         if ended_on is not None and ended_on >= window.end:
             ended_on = None
+        months = rule.qualifying_months(
+            window, ended_on=ended_on, non_accruing_days=non_accruing_days
+        )
+        suspended = rule.qualifying_months(
+            window,
+            ended_on=ended_on,
+            non_accruing_days=non_accruing_days | unknown_days,
+        )
         return cls(
             kind=schedule.kind,
             window=window,
-            months=rule.qualifying_months(
-                window, ended_on=ended_on, non_accruing_days=non_accruing_days
-            ),
+            months=months,
             max_fraction=schedule.max_fraction,
             ended_on=ended_on,
             rule=rule,
             partial_months=partial_months(
                 window, ended_on=ended_on, non_accruing_days=non_accruing_days
             ),
+            undetermined=suspended != months,
         )
 
 

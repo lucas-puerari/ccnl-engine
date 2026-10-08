@@ -45,6 +45,7 @@ from ccnl_engine import CompetenceYearPlan, Employment, InvalidInputError, Payro
 from ccnl_engine.events import BonusEvent
 from ccnl_engine.inputs import (
     InpsBaseYtd,
+    NoPensionFund,
     OpeningBalances,
     PaymentId,
     PensionFundEnrolment,
@@ -69,7 +70,9 @@ _PENSION_ACCOUNTS = frozenset({
 })
 
 
-def _tabacco(pension: PensionFundEnrolment | None = _ALIFOND) -> Employment:
+def _tabacco(
+    pension: PensionFundEnrolment | NoPensionFund | None = _ALIFOND,
+) -> Employment:
     return Employment(ccnl_slug=_TABACCO, level_code="4A", pension_fund=pension)
 
 
@@ -98,7 +101,7 @@ class TestTabaccoAlifond:
         result = regular_period(employment=_tabacco())
         assert _entry(result, "pension_fund_employer") == Decimal("26.46")
         assert _entry(result, "pension_fund_employee") == Decimal("17.64")
-        inps_only = regular_period(employment=_tabacco(None))
+        inps_only = regular_period(employment=_tabacco(NoPensionFund()))
         solidarity = _entry(result, "employer_contributions") - _entry(
             inps_only, "employer_contributions"
         )
@@ -106,7 +109,7 @@ class TestTabaccoAlifond:
 
     def test_employer_cost_rises_by_fund_and_solidarity(self) -> None:
         """14 x (26.46 + 2.65) = 407.54 a year; the gross does not move."""
-        enrolled, not_enrolled = _year(_tabacco()), _year(_tabacco(None))
+        enrolled, not_enrolled = _year(_tabacco()), _year(_tabacco(NoPensionFund()))
         delta = enrolled.annual_employer_cost - not_enrolled.annual_employer_cost
         assert delta == Decimal("407.54")
         assert enrolled.annual_gross == not_enrolled.annual_gross
@@ -117,7 +120,7 @@ class TestTabaccoAlifond:
         The employer part (370.44) enters the income and is deducted with
         the employee part: 617.40 deducted in the year.
         """
-        enrolled, not_enrolled = _year(_tabacco()), _year(_tabacco(None))
+        enrolled, not_enrolled = _year(_tabacco()), _year(_tabacco(NoPensionFund()))
         closing = enrolled.period_results[-1].closing_state.cash.earnings
         base = not_enrolled.period_results[-1].closing_state.cash.earnings
         assert base.taxable - closing.taxable == Decimal("246.96")
@@ -130,7 +133,7 @@ class TestTabaccoAlifond:
         lett. b TUIR deduction 1910 + 1190 x (28000 - R) / 13000 rises by
         1190/13000 per euro.  Saving 246.96 x (0.23 + 1190/13000) = 79.41.
         """
-        enrolled, not_enrolled = _year(_tabacco()), _year(_tabacco(None))
+        enrolled, not_enrolled = _year(_tabacco()), _year(_tabacco(NoPensionFund()))
         irpef = (
             not_enrolled.period_results[-1].closing_state.cash.tax.irpef
             - enrolled.period_results[-1].closing_state.cash.tax.irpef
@@ -227,7 +230,7 @@ class TestDeductionCap:
         )
         enrolled = regular_period(employment=_tabacco(), month=2, opening_state=opening)
         plain = regular_period(
-            employment=_tabacco(None), month=2, opening_state=opening
+            employment=_tabacco(NoPensionFund()), month=2, opening_state=opening
         )
         change = (
             enrolled.closing_state.cash.earnings.taxable
@@ -266,7 +269,7 @@ class TestNotEnrolled:
 
     def test_no_pension_line_and_not_enrolled_reason(self) -> None:
         """A CCNL with a fund records that the worker is not enrolled."""
-        result = regular_period(employment=_tabacco(None))
+        result = regular_period(employment=_tabacco(NoPensionFund()))
         accounts = {e.account for e in result.ledger_entries}
         assert not accounts & _PENSION_ACCOUNTS
         decision = _pension_decision(result)
@@ -275,10 +278,29 @@ class TestNotEnrolled:
         assert _CAPABILITY not in {g.feature for g in result.capability_report.gaps}
         assert _CAPABILITY not in result.capability_report.rule_sources
 
+    def test_unknown_enrolment_is_not_no_enrolment(self) -> None:
+        """A CCNL with a fund and no stated enrolment: undetermined, blocked.
+
+        Enrolment is voluntary (D.Lgs. 252/2005 art. 1 c. 2), so it is a
+        fact of the worker: left unknown, the contributions to ALIFOND are
+        not computed and the run names the missing fact.
+        """
+        result = regular_period(employment=_tabacco(None))
+        accounts = {e.account for e in result.ledger_entries}
+        assert not accounts & _PENSION_ACCOUNTS
+        decision = _pension_decision(result)
+        assert decision.reason_code == "required_fact_missing"
+        assert decision.inputs["funds"] == "ALIFOND"
+        stated = regular_period(employment=_tabacco(NoPensionFund()))
+        facts = {i.fact for i in result.issues} - {i.fact for i in stated.issues}
+        assert facts == {"pension_fund"}
+        assert not result.is_payable
+
     def test_ccnl_without_fund_takes_no_decision(self) -> None:
         """Commercio has no fund in the bundle: nothing to enrol in."""
         result = regular_period()
         assert all(d.capability != _CAPABILITY for d in result.decisions)
+        assert "pension_fund" not in {i.fact for i in result.issues}
 
     def test_enrolment_in_a_fund_the_ccnl_lacks_raises(self) -> None:
         """A fund code the CCNL does not declare is rejected."""

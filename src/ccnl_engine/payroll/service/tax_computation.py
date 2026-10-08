@@ -82,6 +82,7 @@ def compute_tax(
     ulteriore_plan: RecoveryPlan | None = None,
     foreign_taxes: tuple[ForeignTaxPaid, ...] = (),
     fixed_term: bool = False,
+    external_income: Decimal = _ZERO,
 ) -> TaxResolution:
     """Compute IRPEF with a per-rule breakdown and the 2026 bonus measures.
 
@@ -147,6 +148,9 @@ def compute_tax(
             minimum of the art. 13 deduction is then 1,380 EUR instead of
             690 (c. 1 lett. a) TUIR), proportioned to the days on the
             projection and on the conguaglio alike.
+        external_income: Reddito complessivo of the tax year beyond this
+            employment, for the eligibility of the somma esente (L.
+            207/2024 art. 1 c. 4 and 9); zero when none is known.
 
     Returns:
         The IRPEF computation with all components, the updated recovery plan
@@ -178,7 +182,7 @@ def compute_tax(
     )
     components.extend(tratt_items)
     decisions.extend(tratt_decisions)
-    components.extend(somma_esente_items(taxable, rules, days))
+    components.extend(somma_esente_items(taxable, rules, days, external_income))
 
     return TaxResolution(
         TaxComputation(

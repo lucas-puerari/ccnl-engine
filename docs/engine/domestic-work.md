@@ -32,7 +32,11 @@ Each file carries the correct INPS rate table and level structure for that varia
 
 Pass `weekly_hours` on `Employment` and the `contributable_hours` of the run
 on `PeriodFacts`. The engine uses them together with the flat-rate INPS table
-to compute contributions.
+to compute contributions. Pass `full_time_weekly_hours` too: the monthly
+minimum of the bundle is the pay of a full-time week (54 hours for
+conviventi, 40 for non conviventi, the weeks of its hourly divisors), and
+weekly hours without it leave the part-time fraction unknown, with a
+`missing_fact` blocker.
 
 Both facts are value objects validated when they are built: `WeeklyHours` must
 be positive (and not above `full_time_weekly_hours` when that is given), and

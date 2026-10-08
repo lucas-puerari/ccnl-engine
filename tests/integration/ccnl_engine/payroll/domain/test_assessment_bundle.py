@@ -2,8 +2,8 @@
 
 Every CCNL of the bundle is run once, for its first level, on a regular run
 of June 2026 with no event, for a worker resident in Milan with no
-dependant.  A run the engine rejects before producing a
-result is left out: it exposes no amount to pay.
+dependant, no role and not enrolled in a pension fund.  A run the engine
+rejects before producing a result is left out: it exposes no amount to pay.
 """
 
 from __future__ import annotations
@@ -23,7 +23,7 @@ from ccnl_engine import (
     PeriodInput,
     PeriodResult,
 )
-from ccnl_engine.inputs import FamilyComposition
+from ccnl_engine.inputs import FamilyComposition, NoPensionFund
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
@@ -45,7 +45,11 @@ def _june(engine: PayrollEngine, slug: str, level: str) -> PeriodResult | None:
                 run=PayrollRun.regular(2026, 6),
                 payment_date=date(2026, 6, 27),
                 employment=Employment(
-                    ccnl_slug=slug, level_code=level, seniority=new_hire()
+                    ccnl_slug=slug,
+                    level_code=level,
+                    seniority=new_hire(),
+                    roles=frozenset(),
+                    pension_fund=NoPensionFund(),
                 ),
                 employer=EmployerProfile(headcount=Headcount(50)),
                 facts=_FACTS,

@@ -1,8 +1,10 @@
 """Qualification of extra-month ratei at the termination of an employment.
 
-The days of absences that suspend accrual do not count towards a month,
-and an extra month whose next payment falls outside the employment is
-liquidated on the regular run of the termination month.
+The days of absences that suspend accrual do not count towards a month.
+The days of absences whose suspension is not stated count, and mark the
+rateo they could change as undetermined.  An extra month whose next
+payment falls outside the employment is liquidated on the regular run of
+the termination month.
 """
 
 from __future__ import annotations
@@ -26,7 +28,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
     from ccnl_engine.payroll.domain.events import WorkEvent
 
-__all__ = ["non_accruing_days", "termination_settlements"]
+__all__ = ["non_accruing_days", "termination_settlements", "unknown_accrual_days"]
 
 
 def non_accruing_days(events: Iterable[WorkEvent]) -> frozenset[date]:
@@ -39,9 +41,28 @@ def non_accruing_days(events: Iterable[WorkEvent]) -> frozenset[date]:
         Every calendar day of an :class:`AbsenceEvent` with
         ``suspends_accrual`` set.
     """
+    return _absence_days(events, suspends=True)
+
+
+def unknown_accrual_days(events: Iterable[WorkEvent]) -> frozenset[date]:
+    """Return the days of the year's absences whose suspension is not stated.
+
+    Args:
+        events: Every event of the year, of any run.
+
+    Returns:
+        Every calendar day of an :class:`AbsenceEvent` whose
+        ``suspends_accrual`` is ``None``.
+    """
+    return _absence_days(events, suspends=None)
+
+
+def _absence_days(
+    events: Iterable[WorkEvent], *, suspends: bool | None
+) -> frozenset[date]:
     days: set[date] = set()
     for event in events:
-        if isinstance(event, AbsenceEvent) and event.suspends_accrual:
+        if isinstance(event, AbsenceEvent) and event.suspends_accrual is suspends:
             last = event.end_date or event.event_date
             days |= absence_days(event.event_date, last)
     return frozenset(days)
@@ -52,6 +73,7 @@ def termination_settlements(
     employment_period: EmploymentPeriod | None,
     non_accruing_days: frozenset[date],
     rule: MonthAccrualRule = DEFAULT_MONTH_ACCRUAL_RULE,
+    unknown_days: frozenset[date] = frozenset(),
 ) -> dict[str, tuple[ExtraMonthAccrual, ...]]:
     """Return the ratei the last run of an employment ending this year pays.
 
@@ -60,7 +82,8 @@ def termination_settlements(
     termination month.  Its window is the one of that next payment (the
     following year when the payment month precedes the termination month),
     clipped to the hire date and counted up to the termination date with
-    ``rule``.
+    ``rule``; the days of ``unknown_days`` count as accruing and mark
+    an accrual they change as undetermined.
 
     Returns:
         The accruals keyed by the ``run_id`` of the termination month's
@@ -78,6 +101,7 @@ def termination_settlements(
             employment_period,
             non_accruing_days=non_accruing_days,
             rule=rule,
+            unknown_days=unknown_days,
         )
         for extra in calendar.extra_months
         if extra.payment_month != ended_on.month

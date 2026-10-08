@@ -22,7 +22,11 @@ hourly rates of Circ. 9/2026:
 - up to 24 weekly hours, hourly pay up to 9.61 EUR: employee 0.43 EUR.
 
 The hourly pay is the monthly minimum over the hourly divisor of the CCNL
-(234 for conviventi, 173 for non conviventi).
+(234 for conviventi, 173 for non conviventi).  The monthly minimum is the
+pay of a full-time week (54 hours for conviventi, 40 for non conviventi);
+a case that does not state the full time of its contracted hours is paid
+the minimum and has a ``missing_fact`` blocker: the engine never takes the
+contracted hours for full time.
 """
 
 from __future__ import annotations
@@ -102,6 +106,7 @@ class _Case:
     gross: Decimal
     employee_inps: Decimal
     net: Decimal
+    full_time: int | None = None
 
 
 #: Convivente level A, September 2026, 40 weekly hours, 173 contributable
@@ -125,6 +130,7 @@ _CASES = (
         Decimal("1123.63"),
         Decimal("72.54"),
         Decimal("1051.09"),
+        full_time=54,
     ),
     # Non convivente level B, 25 weekly hours, 108 hours: gross 1,212.73;
     # 108 * 0.31 = 33.48; net 1,212.73 - 33.48 = 1,179.25.
@@ -158,6 +164,9 @@ def _employment(case: _Case) -> Employment:
         level_code=case.level_code,
         seniority=new_hire(),
         weekly_hours=WeeklyHours(case.weekly_hours),
+        full_time_weekly_hours=(
+            None if case.full_time is None else WeeklyHours(case.full_time)
+        ),
     )
 
 
@@ -218,7 +227,12 @@ def test_net_is_gross_less_employee_contributions(case: _Case) -> None:
     assert result.period_net == case.net
     assert result.period_net <= result.period_gross
     assert _tax_postings(result) == []
-    assert result.assurance.calculation is CalculationStatus.FINAL
+    missing = {b.detail for b in result.blockers if b.code == "missing_fact"}
+    if case.full_time is None:
+        assert result.assurance.calculation is CalculationStatus.INCOMPLETE
+        assert "full_time_weekly_hours" in missing
+    else:
+        assert result.assurance.calculation is CalculationStatus.FINAL
 
 
 def test_reported_case_without_residence() -> None:
