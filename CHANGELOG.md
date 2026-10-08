@@ -73,6 +73,9 @@ is known and computed, and nothing in the 2026 bundle is payable yet.
 
 ### Fixed
 
+- The somma esente of a run is the percentage applied to the income the
+  run pays (AdE circ. 4/E/2025 par. 1.2), not the annual amount over the
+  slots left.
 - The art. 16-ter c. 5-bis reduction is no longer applied to the art. 12
   and art. 13 deductions, which it does not concern.
 - A dependent's conditions, residence and opening state left unknown no

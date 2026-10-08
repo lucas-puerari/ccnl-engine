@@ -182,7 +182,7 @@ def compute_tax(
     )
     components.extend(tratt_items)
     decisions.extend(tratt_decisions)
-    components.extend(somma_esente_items(taxable, rules, days, external_income))
+    components.extend(somma_esente_items(taxable, rules, days, external_income, period))
 
     return TaxResolution(
         TaxComputation(

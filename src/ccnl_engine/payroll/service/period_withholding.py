@@ -79,6 +79,11 @@ class PayPeriod:
     day_share: Decimal = _ZERO
     family: Decimal = _ZERO
 
+    @property
+    def taxable(self) -> Decimal:
+        """Employment income the run pays, lett. a) and b) together."""
+        return self.regular_taxable + self.separate_taxable
+
 
 #: A run that pays nothing: before the conguaglio it withholds nothing.
 NO_PAY = PayPeriod()

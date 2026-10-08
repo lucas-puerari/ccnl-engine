@@ -169,10 +169,15 @@ level 4 hired on 1 January: the June quattordicesima (6/12, taxable 809.92)
 withholds 23% of it, 186.28, while the June regular month withholds 87.25.
 
 The trattamento integrativo is "ripartendolo fra le retribuzioni erogate"
-(D.L. 3/2020 art. 1 c. 3) and the somma esente is recognized "all'atto
-dell'erogazione delle retribuzioni" (L. 207/2024 art. 1 c. 7): both still
-pay the annual amount still due divided by the slots not yet paid, the
-tredicesima included.
+(D.L. 3/2020 art. 1 c. 3): it pays the annual amount still due divided by
+the slots not yet paid, the tredicesima included. The somma esente is
+recognized "all'atto dell'erogazione delle retribuzioni" (L. 207/2024 art.
+1 c. 7) by "applicando tale percentuale al reddito effettivamente
+corrisposto mensilmente" (AdE circ. 4/E/2025 par. 1.2): each run pays the
+percentage of the projected annual income times the taxable it pays
+(`somma_esente_period` in `tax_computation.components`), capped at what is
+still due, and the conguaglio settles the year. Commercio level 4 hired on
+1 July 2026: July pays 4.8% of 1,619.82, 77.75.
 
 The somma esente is due when the reddito complessivo is not above 20,000
 EUR (c. 4). It counts this employment, the income `current_year` states

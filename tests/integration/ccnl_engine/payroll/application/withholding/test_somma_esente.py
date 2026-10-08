@@ -60,13 +60,24 @@ _POSTING = SommaEsentePosting(
 )
 
 
-def _tax(annual: Decimal | None) -> TaxComputation:
+def _tax(annual: Decimal | None, period: Decimal = Decimal(100)) -> TaxComputation:
+    """Return a computation with the annual somma esente and its run share.
+
+    ``period`` is the percentage applied to the income the run pays (AdE
+    circ. 4/E/2025 par. 1.2).
+
+    Returns:
+        The computation, without somma esente when ``annual`` is ``None``.
+    """
     components = (
         ()
         if annual is None
         else (
             TaxLineItem(
                 name="somma_esente", amount=annual, rule_id="r", fonte="L. 207/2024"
+            ),
+            TaxLineItem(
+                name="somma_esente_period", amount=period, rule_id="r", fonte="4/E"
             ),
         )
     )
@@ -119,9 +130,10 @@ def _resolve(
     *,
     closed: int,
     current_year: CurrentYearTaxFacts | None = _EMPLOYMENT_ONLY,
+    period: Decimal = Decimal(100),
 ) -> SommaEsenteOutcome:
     return resolve_somma_esente(
-        _tax(annual),
+        _tax(annual, period),
         rules,
         opening,
         _position(closed),
@@ -134,8 +146,8 @@ def _resolve(
 class TestBeforeTheConguaglio:
     """A run before the last slot pays its share, never more than still due."""
 
-    def test_pays_the_slot_share(self) -> None:
-        """1,200 EUR over 12 slots: 100.00 per run."""
+    def test_pays_the_share_of_the_income_of_the_run(self) -> None:
+        """1,200 EUR due in the year, 100.00 on the income of the run."""
         outcome = _resolve(Decimal(1200), _opening(), closed=0)
 
         assert outcome.amount == Decimal("100.00")
@@ -151,6 +163,13 @@ class TestBeforeTheConguaglio:
         outcome = _resolve(Decimal(1200), _opening(recognized=Decimal(1150)), closed=5)
 
         assert outcome.amount == Decimal(50)
+
+    def test_a_larger_payment_pays_a_larger_share(self) -> None:
+        """A tredicesima doubles the income of the run: 200.00, not 1200/12."""
+        outcome = _resolve(Decimal(1200), _opening(), closed=5, period=Decimal(200))
+
+        assert outcome.amount == Decimal(200)
+        assert outcome.decisions[0].inputs["period_share"] == Decimal(200)
 
     def test_holds_an_excess_until_the_conguaglio(self) -> None:
         """The due fell below what was paid: nothing paid, nothing recovered."""

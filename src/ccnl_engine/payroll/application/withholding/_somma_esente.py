@@ -5,8 +5,11 @@ run by run on the projected annual income.  Its entitlement is verified at
 the conguaglio; an amount found not due is recovered there, in full up to
 60 EUR and otherwise in ten equal installments from the payslip that
 carries the conguaglio (art. 1 c. 7).  Before the conguaglio a run pays
-its share of the annual amount, capped at what is still due, and never
-recovers: an excess found mid-year waits for the conguaglio.
+the percentage of the projected annual income applied to the employment
+income it pays ("applicando tale percentuale al reddito effettivamente
+corrisposto mensilmente", AdE circ. 4/E/2025 par. 1.2), capped at what is
+still due, and never recovers: an excess found mid-year waits for the
+conguaglio.
 
 On the last run of the employment nothing is left to installments: the
 excess, or the residual of a running recovery, is recovered in full (AdE
@@ -159,12 +162,11 @@ def resolve_somma_esente(
     plan = opening.cash.obligations.recovery_of(tax_year, SOMMA_ESENTE_RECOVERY)
     if rules.somma_esente is None and plan is None and account.net == _ZERO:
         return SommaEsenteOutcome()
-    annual = next(
-        (c.amount for c in tax_computation.components if c.name == "somma_esente"),
-        _ZERO,
-    )
+    amounts = {c.name: c.amount for c in tax_computation.components}
+    annual = amounts.get("somma_esente", _ZERO)
+    period = amounts.get("somma_esente_period", _ZERO)
     remaining = withholding.remaining
-    settlement = settle(annual, withholding, account, plan, posting.run)
+    settlement = settle(annual, period, withholding, account, plan, posting.run)
     decision = CalculationDecision(
         capability=CAPABILITY,
         status=CalculationStatus.FINAL,
@@ -175,6 +177,7 @@ def resolve_somma_esente(
         ),
         inputs={
             "annual_due": money(annual),
+            "period_share": period,
             "net_paid_before": account.net,
             "remaining_slots": str(remaining),
             "recovery_in_progress": str(plan is not None).lower(),
