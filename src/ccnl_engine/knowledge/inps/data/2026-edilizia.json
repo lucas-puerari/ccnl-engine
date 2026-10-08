@@ -113,7 +113,7 @@
         "section": "art. 1 c. 773; L. 92/2012 art. 2 cc. 36-37"
       },
       "transformation": "Employer rate 10% + NASpI 1.31% + 0.30% = 11.61%.",
-      "note": "Assumed, not derived: its ruleset declares source_type 'estimated'; no citation (http(s) url and section or page)."
+      "note": "Assumed, not derived: its ruleset declares source_type 'estimated'; no citation (http(s) url and section or page). Open question, not settled by a source the bundle holds: since 1 January 2022 apprentices are covered by the wage-integration schemes and pay their contributions (D.Lgs. 148/2015 art. 2 c. 1 and 3): CIGO, CIGS and FIS shares are not in this flat rate."
     }
   },
   "ruleset": {
@@ -124,7 +124,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "966909d1602ec48ef5fabd652a98bbc45a6bd84e8060a57ed019e05daa4e2041",
+    "source_hash": "0b050d4ef9562b1b5d89ed6ad975dfb024871c80e3f0ca1600e9b5fd74eb042a",
     "source_type": "estimated"
   }
 }

@@ -89,7 +89,7 @@
         "section": "IVS rate and contribution ceiling 2026"
       },
       "transformation": "Employer tiers are the sum of IVS, NASpI, CUAF, CIGO and FIS or CIGS listed in the file notes.",
-      "note": "CIGO, CIGS and the employee CIGS share per D.Lgs. 148/2015 artt. 5 and 23, Circ. INPS 1/2026 and 5/2025. Assumed, not derived: its ruleset declares source_type 'estimated'; no citation (http(s) url and section or page)."
+      "note": "CIGO, CIGS and the employee CIGS share per D.Lgs. 148/2015 artt. 5 and 23, Circ. INPS 1/2026 and 5/2025. Assumed, not derived: its ruleset declares source_type 'estimated'; no citation (http(s) url and section or page). Open question, not settled by a source the bundle holds: the tier up to 15 employees adds a FIS share of 0.533% that D.Lgs. 148/2015 art. 29 c. 2-bis does not owe for employers within the CIGO of art. 10 c. 1 lett. a; the CUAF share of 2.48% is not located for industria. Settle the aggregate rate on the INPS circular of the sector before promoting."
     }
   },
   "apprentice": {
@@ -113,7 +113,7 @@
         "section": "art. 1 c. 773; L. 92/2012 art. 2 cc. 36-37"
       },
       "transformation": "Employer rate 10% + NASpI 1.31% + 0.30% = 11.61%.",
-      "note": "Assumed, not derived: its ruleset declares source_type 'estimated'; no citation (http(s) url and section or page)."
+      "note": "Assumed, not derived: its ruleset declares source_type 'estimated'; no citation (http(s) url and section or page). Open question, not settled by a source the bundle holds: since 1 January 2022 apprentices are covered by the wage-integration schemes and pay their contributions (D.Lgs. 148/2015 art. 2 c. 1 and 3): CIGO, CIGS and FIS shares are not in this flat rate."
     }
   },
   "ruleset": {
@@ -124,7 +124,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "98ecf057df092b633954938841b838e4b7924924cd8da553be666e201099e083",
+    "source_hash": "71b26c26b4b3e96d30866a81943b95635e2310e5c52e3594e524c584f2bd4a4f",
     "source_type": "estimated"
   }
 }

@@ -10,6 +10,11 @@ nella misura del 19 per cento [...], fatta eccezione per le spese sanitarie
 premi di assicurazione per rischio eventi calamitosi [...]".  The art. 12
 and art. 13 TUIR deductions and the ulteriore detrazione of L. 207/2024
 art. 1 c. 6 are not in the list.
+
+Source: https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?\
+art.codiceRedazionale=26A00149&art.dataPubblicazioneGazzetta=2026-01-21&\
+art.flagTipoArticolo=0&art.idArticolo=1&art.idGruppo=1&art.idSottoArticolo=1&\
+art.idSottoArticolo1=10&art.progressivo=1&art.versione=1
 """
 
 from __future__ import annotations

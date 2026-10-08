@@ -13,17 +13,27 @@ INPS files, the sibling `irpef_brackets_provenance` and
 `source_status` of each substitute-tax regime.
 
 The records cite what each file already recorded in its notes and ruleset
-source. None is `verified`: no file names a reviewer and a date. The blocks
-recorded as `assumed` are:
+source. None is `verified`: no file names a reviewer and a date.  Every
+record of a file whose ruleset is `estimated` (the eight sector tax files and
+the eight sector INPS files) is `assumed` under the label gate (see
+[Trust: Provenance](../trust/provenance.md)); the statutory blocks that do
+not depend on the sector live in their own files and are `derived` (the somma
+esente in `tax/data/somma-esente-2026.json`).  The `assumed` blocks with an
+open question beyond the missing citation are:
 
-| File | Block | Why |
+| File | Block | Open question |
 |---|---|---|
-| `tax/data/2026-pubblica-amministrazione.json` | `fixed_term_additional_rate` | Exemption of L. 92/2012 art. 2 c. 29 lett. d located on Normattiva; the ruleset is `estimated` |
+| `inps/data/2026-terziario.json` | `inps` | No FIS share up to 50 employees (D.Lgs. 148/2015 art. 29 c. 3 and 8, art. 33 c. 1) and no CIGS from 16 employees (art. 20 c. 3-bis, art. 23 c. 1-bis); no FIS share above 50 |
+| `inps/data/2026-industria.json` | `inps` | A FIS share of 0.533% up to 15 employees that art. 29 c. 2-bis does not owe within the CIGO (art. 10 c. 1 lett. a); the CUAF share of 2.48% not located |
+| `inps/data/2026-*.json` (six sectors) | `apprentice` | A flat rate with no CIGO, CIGS or FIS share, owed by apprentices since 2022 (D.Lgs. 148/2015 art. 2 c. 1 and 3) |
 | `inps/data/2026-artigianato.json` | `inps` | Aggregator rates; INPS circular not retrieved |
 | `inps/data/2026-edilizia.json` | `inps` | Proxy values from a 1998 rate structure |
 | `inps/data/2026-pubblica-amministrazione.json` | `apprentice` | Schema placeholder |
-| `surtax/data/comunale-2026.json` | rows with `rates_year: 2025` | No 2026 delibera in the MEF list of 27 September 2026; 2025 rates carried forward |
+| `surtax/data/comunale-2026.json` | rows carried from an earlier year | No applicable 2026 delibera in the MEF list; the rates in force are carried forward (L. 296/2006 art. 1 c. 169) |
 | `surtax/data/comunale-2026.json` | A112 Airuno, A785 Bentivoglio | Third band of the MEF list repeats the second; read as 28,000.01-50,000 |
+
+Each open question is also in the `note` of its record, so a run that reads
+the rule shows it through the `rule_source_weak` blocker of its capability.
 
 The regional table is `derived` row by row from the MEF 2026 pages (URL and
 publication date per row, retrieved on 27 September 2026); the municipal
@@ -47,7 +57,7 @@ For each block:
 
 Primary sources to check against:
 
-- IRPEF and credits 2026: L. 199/2025 art. 1 cc. 2-4, L. 207/2024 art. 1
+- IRPEF and credits 2026: L. 199/2025 art. 1 cc. 3-4, L. 207/2024 art. 1
   cc. 4-7, D.L. 3/2020 art. 1, Art. 13 TUIR.
 - INPS: the annual INPS circulars per sector (Circ. 6/2026 for the IVS
   ceiling and rates, Circ. 9/2026 for domestic work), D.Lgs. 148/2015 for
@@ -55,7 +65,7 @@ Primary sources to check against:
 - Surtax: the MEF pages of the addizionale regionale
   (`addregirpef.php?reg=NN&anno=2026`, the URL of each row) and the
   *elenco generale* CSV of the addizionale comunale
-  (`addirpef_newDF/download/download.php?anno=2026`).
+  (`nuova_addcomirpef/download/download.php?anno=2026`).
 
 ---
 
