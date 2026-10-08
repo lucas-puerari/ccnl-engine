@@ -28,6 +28,7 @@ from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
+from tests.fixtures.prior_year import RENEWAL_WAIVED
 from tests.fixtures.residence import COMUNE_BELFIORE, REGIONE
 from tests.fixtures.seniority import new_hire
 from tests.fixtures.sickness_episode import march_sickness_episode
@@ -42,7 +43,9 @@ _TFR_REVALUATION = "tfr_revaluation"
 def _req(month: int = 1) -> PeriodCalculationRequest:
     """Return the run of ``month``, resident in Alghero.
 
-    Without a residence the surtaxes are unresolved gaps of every run.
+    Without a residence the surtaxes are unresolved gaps of every run, and
+    without a fact that rules it out the renewal regime on the minimo is a
+    partial one (:mod:`tests.fixtures.prior_year`).
 
     Returns:
         The request of the regular run of ``month`` 2026.
@@ -57,6 +60,7 @@ def _req(month: int = 1) -> PeriodCalculationRequest:
         opening_state=PeriodState.zero(),
         regione=REGIONE,
         comune_belfiore=COMUNE_BELFIORE,
+        prior_year=RENEWAL_WAIVED,
     )
 
 

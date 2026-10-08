@@ -6,10 +6,6 @@ moves only the axes a bonus touches, the order of independent events and
 the split of a year at an exported state change nothing, and the public
 totals are the sums of the postings.  The scenario is the one of
 :mod:`tests.fixtures.normative_oracles.payslips.concia_d2_2026`.
-
-One property does not hold today and is a strict xfail: the renewal
-increments paid inside the CCNL minimo are treated as not applicable
-instead of unknown.
 """
 
 from __future__ import annotations
@@ -148,19 +144,14 @@ class TestUnknownIsNotZero:
             _blocked_features(result)
         )
 
-    @pytest.mark.xfail(
-        strict=True,
-        raises=AssertionError,
-        reason=(
-            "the increments of the 2024 Concia renewal are paid inside the "
-            "minimo and taxed as ordinary income with no decision; L. 199/2025 "
-            "art. 1 c. 7 taxes 2026 renewal increments at 5% up to 33,000 EUR "
-            "of 2025 income; how much of the minimo counts is a reading to "
-            "settle, so the engine should at least decide or report it"
-        ),
-    )
     def test_renewal_increments_in_the_minimo_are_not_ignored(self) -> None:
-        """Renewal increments inside the minimo reach the renewal regime."""
+        """Renewal increments inside the minimo reach the renewal regime.
+
+        The 2026 minimo of Concia D2 is a table of the renewal signed on 7
+        March 2024, inside the window of L. 199/2025 art. 1 c. 7; with 2025
+        income within 33,000 EUR the minimo cannot be taxed as ordinary
+        income without a renewal decision or a blocker.
+        """
         result = _june(prior_year=_WITHIN_RENEWAL_CEILING)
         regime = {d.capability for d in result.decisions}
         assert (

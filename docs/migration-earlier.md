@@ -3,6 +3,158 @@
 Continues the [Migration guide](migration.md); the oldest changes are on
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Validated public inputs and one error hierarchy
+
+Every public input is a frozen dataclass validated on construction, its
+collections element by element, and every error the engine raises is a
+`CcnlEngineError` exported at the root. No `ValueError`, `TypeError`,
+`AttributeError` or `decimal` signal reaches the caller for an input or a
+data gap.
+
+| Change | What to do |
+|---|---|
+| `InvalidInputError` no longer subclasses `ValueError` | Catch `InvalidInputError` or `CcnlEngineError`; an `except ValueError` no longer catches rejected input |
+| `InvalidInputError.field` | Read the path of the rejected field, e.g. `"PeriodFacts.events[2]"`, `"Employment.roles['x']"`, `"YearInput.periods[6]"`; `remediation` is set whenever `field` is |
+| `PeriodFacts(events=...)` accepted any object | Pass only work events; anything else raises `InvalidInputError` naming its position |
+| `Employment(roles=...)` accepted any element | Roles are non-blank strings in a `frozenset`; a `set` is rejected |
+| `Employment(ccnl_slug=...)` accepted any string | Pass a bundle file name, lower-case letters, digits and hyphens then `.json`; an unknown one raises `UnknownCcnlError` (was `FileNotFoundError`), an unknown level `UnknownLevelError` (was `ValueError`) |
+| `Permanent`, `FixedTerm`, `Apprentice`, `Dependent`, `FamilyComposition` were Pydantic models | They are frozen dataclasses: build them with keyword arguments; `model_validate`, `model_dump` and coercion of strings or ints into `Decimal` are gone. `Dependent(relationship="child")` still normalises the string |
+| Amounts accepted as `int`, `float` or any `Decimal` | Every amount and rate is a finite `Decimal`, below `1E+9` in magnitude; `NaN`, infinities and floats raise `InvalidInputError` |
+| `bool` accepted where an `int` is expected (`YearInput(year=True)`, `months_dependent=True`) | Rejected |
+| `datetime` accepted where a `date` is expected | Rejected: a `datetime` does not compare with a `date` |
+| `BonusEvent(kind=...)` accepted any string | One of `"bonus"`, `"productivity_bonus"`, `"contract_renewal"` |
+| `CalendarOverride(reason="payment_month")` was rejected | Accepted and normalised to the member, like the string values of `RunKind`, `SenioritySource`, `DependentRelationship`, `WorkerCategory`, `EmploymentSector`, `EmployerActivity`, `SubstituteTaxRegime`, `SurtaxComponent`, `OvertimeKind` and the engine mode; `ExtraMonthSchedule.kind` still takes an `ExtraMonthKind` member only |
+| `PayrollRun`, `PayrollRunId`, `WorkCalendar`, `ExtraMonthSchedule`, `RecoveryPlan`, `RecoveryObligation`, `SurtaxObligation`, `DeferredShortfall`, `PeriodState` raised `ValueError` | They raise `InvalidInputError` |
+| A seniority recognised after the first run raised on the run | `PeriodInput` and `YearInput` reject it on construction (`field="Employment.seniority"`) |
+| `YearInput(payment_day=...)` checked by the payment date helper | `InvalidInputError` with `field="YearInput.payment_day"` |
+| `OpeningBalances` reasons accepted any string | A lower snake case code such as `"full_amount"` |
+| A facade method called with a value of the wrong type raised `AttributeError` | `InvalidInputError` with `field="request"` (or `"closing_state"`, `"ccnl_id"`, `"PayrollEngine.mode"`) |
+| `MissingRequiredFactError` was not exported | Import it from `ccnl_engine` |
+| `CalculationIssue.fact` `"prior_income"` and `"agreement_signing_date"` | `"employment_income"` and `"agreement_signed_on"`, the public field names; reason codes are unchanged |
+| `calculate_year` of a CCNL whose data start during the year failed on `additional_months` | The calendar is read on the first day of the data; a run before it fails on `base_salary`, and a worker hired after it is computed |
+
+## Recognised seniority as a dated fact
+
+Unknown seniority is no longer priced as zero seniority. The months of
+service are a fact as of a date, with its source; the engine ages it to
+each run and records a `seniority` decision on every run.
+
+| Change | What to do |
+|---|---|
+| `SeniorityMonths` and `Employment.seniority_months` removed, with `PeriodCalculationRequest.seniority_months` | Pass `Employment(seniority=SeniorityFact(months, as_of, SenioritySource.EMPLOYER_RECORDS))`, or `SeniorityFact.since(recognised_from, source)` from the date the recognised service starts |
+| `seniority_months=None` (the old default, which silently paid no increment) | Leave `seniority=None` only when the level pays no seniority increment or service-gated allowance; otherwise the run has a `missing_fact` blocker for `seniority`, a `seniority_unknown` issue and is not payable |
+| Zero months | `SeniorityFact(0, as_of, source)`: the decision reason is `zero_confirmed` |
+| A constant month count over a year | The fact ages: a `calculate_year` run counts the months completed by the first day of each competence month, so an increment matured during the year is paid from the following month |
+| `seniority` decision only with months, reasons `increments_applied` or `no_increment_due` | Always emitted: `not_applicable_by_contract`, `zero_confirmed`, `increments_applied` or `required_fact_missing` (`provisional`, `amount` `None`) |
+| Capability registry `required_facts`: `employment.seniority_months` | `employment.seniority` |
+
+## IVS massimale from the contribution history
+
+Whether the IVS massimale applies is no longer a status the caller states:
+the engine derives it from the worker's contribution history
+(L. 335/1995 art. 2 c. 18). Without the history, a run whose INPS base
+crosses the massimale is not payable and names the missing fact.
+
+| Change | What to do |
+|---|---|
+| `ContributionCeilingStatus` removed, with `Employment.ceiling_status` and `PeriodCalculationRequest.ceiling_status` | Pass `Employment(contribution_history=ContributionHistory(first_enrolled_on=..., contributory_option=...))` |
+| `POST_1995` | `ContributionHistory(first_enrolled_on=<first contribution, from 1996>)` |
+| `OPTED_IN` | `ContributionHistory(first_enrolled_on=<first contribution>, contributory_option=True)` |
+| `NOT_APPLICABLE` | `ContributionHistory(first_enrolled_on=<first contribution, before 1996>)`; supply the history in force for the run (a credit of pre-1996 periods or the option counts only from its effective date) |
+| `UNKNOWN` (the old default, which silently computed the uncapped branch) | Leave `contribution_history=None`: up to the massimale nothing changes; beyond it the run has a `missing_fact` blocker for `contribution_history`, an `ivs_ceiling_eligibility_unknown` issue and is not payable |
+| New decision `ivs_ceiling_eligibility` on every run whose INPS rules carry a massimale | Read its `reason_code` and `inputs` to see why the massimale applies or not |
+| `inps_employee` and `inps_employer` decisions: input `ivs_ceiling_applies` replaced by `ivs_ceiling` (`applied`, `not_applied`, `undetermined`); with `undetermined` the decision is `incomplete` and its `amount` is `None`, so the coverage is `incomplete` with `capability_not_computed` blockers for both | Do not pay the INPS amounts of such a run; the breakdown carries the uncapped simulation |
+| `resolve_contributions` takes `ytd_inps_base` and `ivs_ceiling_applies` without defaults | Pass both |
+
+## Model limitations
+
+Known simplifications are typed data. A run records the limitations that
+apply to it, and an open one that can move an amount blocks payment.
+
+| Change | What to do |
+|---|---|
+| `ResultAssurance.limitations` added (`tuple[ModelLimitation, ...]`), also on `YearResult.assurance` | Read it to see which simplifications concern the run |
+| `BlockerCode.OPEN_LIMITATION` added (`feature`: capability, `detail`: limitation id) | Branch on it; validate the amount outside the engine or wait for the limitation to be resolved |
+| A `simplification` coverage note must state `monetary_impact` (`yes`, `no`, `unknown`); with `yes` or `unknown` it must name its `capability` and declare a `limitation` (`variant`, `applies_when`, `status`, `remediation`) | Add the fields to the note, or the file does not load |
+| `KnowledgeRepository.load_engine_limitations()` added | Implement it in a custom repository (delegate to the bundled one) |
+| An open limitation with an impact lowers its capability to `partial` in the contracts index and the capability matrix | Nothing |
+| New public names `ModelLimitation`, `MonetaryImpact`, `LimitationStatus` | Import them from `ccnl_engine` |
+
+## Capability coverage from one registry
+
+The capability catalog of each fiscal year is now the single source of
+coverage. The runtime capability report, the contracts index and the
+capability matrix derive from it; CCNL files no longer declare coverage
+flags.
+
+| Change | What to do |
+|---|---|
+| `CapabilityStatus` removed; `CapabilityEntry.status` replaced by `implementation` (`CapabilityImplementation`: `native`, `caller_supplied`, `partial`, `unsupported`) | Read `entry.implementation` |
+| `CapabilityEntry` adds `layer`, `applies_when`, `handler`, `evidence`, `variants`, `required_facts` | Nothing, unless you build entries: pass them |
+| `CapabilityCatalog.gaps()` removed | Read `result.capability_report.gaps` |
+| `CapabilityGap.declared` renamed `implementation` | Rename the attribute |
+| Gap kinds: `feature_absent` and `not_computed` replaced by `unsupported`; `promised_computed_got_partial` renamed `partial_result`; `partial_implementation` added | Branch on the new values |
+| `CapabilityReport.scope` added (`CapabilityScope`: `applicable`, `not_applicable`, `outside_input`) | Read it to know which capabilities concern the run |
+| An unsupported capability is a gap only when it applies: an ordinary month has no gap; the run that closes the employment has `termination_residual_leave` | Expect `coverage == "complete"` on ordinary runs; payability still depends on the other blockers |
+| A partial capability that executes (sickness, family deductions, foreign tax credit, pension fund) is a `partial_implementation` gap and blocks payment | Validate those amounts outside the engine |
+| `CapabilityReport.evidence_required` and `weak_sources()` added; `rule_source_weak` follows the evidence of each registry entry (`derived` for all today) | Nothing |
+| CCNL `coverage.gross`, `coverage.net`, `coverage.work_rules`, `coverage.work_rules_features` removed, and `CoverageStatus`, `WorkRuleFeature` removed from `ccnl_engine.contract.domain.identity` | Derive coverage with `ccnl_engine.payroll.service.capability_coverage.ccnl_capabilities` |
+| A `missing` coverage note must name its `capability` | Add `"capability"` to the note |
+| New public names `CapabilityImplementation`, `CapabilityScope` | Import them from `ccnl_engine` |
+| The contracts index drops the coverage percentage; it shows coverage, sources and readiness as separate columns | Nothing |
+
+## Ruleset readiness and engine modes
+
+Readiness is part of the public API, and the engine takes a mode. Amounts are
+unchanged in both modes.
+
+| Change | What to do |
+|---|---|
+| `CcnlInfo` replaced by `ContractSummary` (adds `readiness`) | Rename the type; read `summary.readiness` |
+| `list_ccnls()` removed | Call `PayrollEngine.list_contracts()` |
+| `engine.inspect_ruleset(ccnl_id)` added | Returns the `RulesetAssurance` of a CCNL, by slug or CNEL code |
+| `result.rulesets` and `assurance.rulesets` hold `RulesetAssurance`, not `RulesetIdentity` | Read `ruleset.identity` for the old value; `id`, `source_hash` and `str()` are unchanged; `kind`, `readiness` and `confidence` are new |
+| The CCNL ruleset is always in `result.rulesets` | Nothing |
+| `PayrollEngine.bundled(mode=...)` and `PayrollEngine(mode=...)` added; `result.mode`, `assurance.mode` | Default `"simulation"` keeps today's payability; `"operational"` adds a `ruleset_not_production` blocker for a CCNL ruleset that is not `production` |
+| `BlockerCode.RULESET_NOT_PRODUCTION` added | Branch on it when running in operational mode |
+| New public names `ContractSummary`, `EngineMode`, `RulesetAssurance`, `RulesetKind`, `RulesetReadiness`, `VerificationStatus` | Import them from `ccnl_engine` |
+| Docs no longer point to `ccnl.verification.readiness` | Use the public fields above |
+
+## Result assurance replaces the result status
+
+`PeriodResult.status` and `YearResult.status` are removed, with no alias. The
+question "can this amount be paid?" now has one answer, `result.is_payable`,
+derived from a `ResultAssurance` that also reads the capability report, the
+provenance of the executed rules and the caller-supplied rules, which the old
+status ignored. See [Assurance](trust/confidence.md).
+
+| Change | What to do |
+|---|---|
+| `PeriodResult.status`, `YearResult.status` removed | Read `result.is_payable` to decide whether to pay, `result.blockers` for why not, `result.assurance.calculation` for the old worst status of the issues (now also of the decisions) |
+| `PeriodResult.assurance`, `is_payable`, `blockers`, `rulesets` and the same on `YearResult` added | A year is payable only when every run is; its blockers and rulesets are listed once |
+| `CapabilityReport.confidence` removed; `CapabilityReport.status` is a `CoverageStatus` | Read `result.assurance.coverage`; the values `complete`, `partial`, `incomplete` are unchanged |
+| `CalculationIssue.fact` added | An issue about a missing fact names it; it becomes a `missing_fact` blocker |
+| New public names `ResultAssurance`, `ResultBlocker`, `BlockerCode`, `CoverageStatus`, `EvidenceStatus`, `Payability`, `RulesetIdentity` | Import them from `ccnl_engine` |
+
+A result that was `final` is not payable when the catalog lists a capability
+the run did not compute, an executed rule is `assumed` or `missing`, or the
+caller supplied a rule: today no bundled CCNL gives a payable result. Amounts
+are unchanged.
+
+## Withholding rule cited per tax year
+
+Art. 23 D.P.R. 600/1973 is in force until 31 December 2026; from 1 January
+2027 its rules are art. 33 of the testo unico of D.Lgs. 33/2025 (art. 243 c.
+1 as amended by D.L. 200/2025 art. 4 c. 4), with renumbered commi. The
+decisions and messages that cite it now take the rule of the tax year they
+compute. No amount changes.
+
+| Change | What to do |
+|---|---|
+| `withholding_shortfall` and `shortfall_deferral` decisions carry a `source` (art. 23 c. 3 DPR 600/1973 for 2026, art. 33 c. 4 D.Lgs. 33/2025 from 2027) | Nothing for 2026: the rule id stays `dpr600-1973-art23-c3`; from 2027 it is `dlgs33-2025-art33-c4` |
+| The `withholding_shortfall_unrecovered` and `deferred_shortfall_unrecovered` issues, the household-employer `InvalidInputError` and the `foreign_tax_credit` component `fonte` cite the rule of the tax year | Match on the issue code, not on the message text |
+| The source URL of art. 23 c. 1 DPR 600/1973 pins the version in force until 31 December 2026 (`!vig=2026-12-31`); art. 33 D.Lgs. 33/2025 points to Normattiva | Nothing |
+
 ## Accrual threshold and overtime multiplier from the CCNL data
 
 `OvertimeEvent.multiplier` no longer defaults to `1.25`. Without it the

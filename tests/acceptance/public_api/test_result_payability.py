@@ -35,6 +35,7 @@ from ccnl_engine.inputs import (
 )
 from ccnl_engine.results import BlockerCode, CalculationStatus
 from tests.fixtures.opening_state import fresh_tax_year
+from tests.fixtures.prior_year import RENEWAL_WAIVED
 from tests.fixtures.residence import resident
 from tests.fixtures.seniority import new_hire
 
@@ -50,6 +51,10 @@ _MILAN_NO_DEPENDANT = PeriodFacts(
 def _january(employment: Employment, facts: PeriodFacts | None = None) -> PeriodResult:
     """Return the January 2026 run, opening a tax year with nothing carried.
 
+    The renewal regime on the minimo is waived
+    (:data:`~tests.fixtures.prior_year.RENEWAL_WAIVED`): the subject of
+    these runs is another capability.
+
     Returns:
         The run, with no other employment of the worker in 2026.
     """
@@ -61,6 +66,7 @@ def _january(employment: Employment, facts: PeriodFacts | None = None) -> Period
             employer=_EMPLOYER,
             facts=facts or PeriodFacts(),
             opening_state=fresh_tax_year(2026),
+            prior_year=RENEWAL_WAIVED,
         )
     )
 

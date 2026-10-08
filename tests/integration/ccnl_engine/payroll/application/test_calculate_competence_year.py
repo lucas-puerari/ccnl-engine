@@ -234,7 +234,9 @@ class TestEmploymentPeriodRuns:
         assert keys.count(partial) == 1
         assert len(keys) == len(set(keys))
         assert not result.is_payable
-        assert result.rulesets == march.rulesets
+        assert set(result.rulesets) == {
+            ruleset for run in result.period_results for ruleset in run.rulesets
+        }
 
     def test_termination_in_may_has_no_december_tredicesima(self) -> None:
         """Ended 31 May: five regular runs, no extra-month run.

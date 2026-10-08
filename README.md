@@ -70,18 +70,20 @@ result = engine.calculate_period(
 )
 
 # → False: see result.blockers; among them the opening state of a worker
-# employed before 2026 and the INPS base of other employments, not stated.
+# employed before 2026, the INPS base of other employments, and the sector
+# and 2025 income the renewal regime on the 2026 minimo reads, not stated.
 print(result.is_payable)
 print(result.period_gross)  # → Decimal('...')
 print(result.period_net)  # → Decimal('...')
 for ruleset in result.rulesets:
     print(ruleset.id, ruleset.kind, ruleset.readiness)
-# → ccnl/commercio-confcommercio ccnl reviewed
+# → ccnl/commercio-confcommercio ccnl exploratory
 # → inps/2026/terziario inps None   (readiness tracked for CCNLs only)
 # → surtax/2026/comunale surtax None
 # → surtax/2026/regionale surtax None
 # → tax/2026/family-deductions tax None
 # → tax/2026/terziario tax None
+# → tax/variable-pay-rules/2026 tax None
 ```
 
 The root `ccnl_engine` holds this common path: the facade, the request and

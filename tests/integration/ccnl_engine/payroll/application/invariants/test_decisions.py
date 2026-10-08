@@ -76,8 +76,13 @@ def _with_decisions(
     return replace(result, decisions=decisions)
 
 
+#: Capability of the night supplements; the run also takes a renewal
+#: decision on its minimo, which posts nothing.
+_WORK_TIME = "notte_festivi_turni_substitute_tax"
+
+
 def _regime_decision(result: PeriodResult) -> CalculationDecision:
-    return next(d for d in result.decisions if d.capability.endswith("_substitute_tax"))
+    return next(d for d in result.decisions if d.capability == _WORK_TIME)
 
 
 class TestPlafondChain:
@@ -92,9 +97,7 @@ class TestPlafondChain:
     def test_wrong_cap_available_is_reported(self) -> None:
         """A cap_available that ignores the earlier eligible amount is caught."""
         result = _run(_night(1_000), _night(1_000))
-        first, second = [
-            d for d in result.decisions if d.capability.endswith("_substitute_tax")
-        ]
+        first, second = [d for d in result.decisions if d.capability == _WORK_TIME]
         bad_second = replace(
             second,
             inputs={**second.inputs, "cap_available": Decimal(1_500)},

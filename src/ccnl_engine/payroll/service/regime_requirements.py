@@ -23,7 +23,7 @@ if TYPE_CHECKING:
         PreferentialTaxRegime,
     )
 
-__all__ = ["RegimeFacts", "ineligibility", "missing_fact"]
+__all__ = ["RegimeFacts", "ineligibility", "missing_fact", "missing_facts"]
 
 
 @dataclass(frozen=True, slots=True)
@@ -104,13 +104,34 @@ def missing_fact(
         (:attr:`~ccnl_engine.payroll.domain.decisions.CalculationIssue.fact`),
         or ``None`` when every required fact is known.
     """
+    return next(iter(missing_facts(regime, facts)), None)
+
+
+def missing_facts(
+    regime: PreferentialTaxRegime, facts: RegimeFacts, *, signing: bool = True
+) -> tuple[tuple[str, str], ...]:
+    """Return every required fact that is missing, in checking order.
+
+    Args:
+        regime: The preferential regime.
+        facts: Worker facts from the request.
+        signing: Whether the signing date of the agreement is a fact the
+            caller can supply.  An increment paid inside the CCNL minimo has
+            no event to carry it, so it is not asked for.
+
+    Returns:
+        The reason code and public input field of each missing fact.
+    """
     missing = (
         (regime.required_sector is not None and facts.sector is None, "sector"),
         (bool(regime.excluded_activities) and facts.activity is None, "activity"),
-        (regime.has_signing_window and facts.agreement_signed_on is None, "signing"),
+        (
+            signing and regime.has_signing_window and facts.agreement_signed_on is None,
+            "signing",
+        ),
         (regime.income_ceiling is not None and facts.prior_income is None, "income"),
     )
-    return next((_UNKNOWN_FACTS[name] for absent, name in missing if absent), None)
+    return tuple(_UNKNOWN_FACTS[name] for absent, name in missing if absent)
 
 
 #: Reason code and public field of each fact a regime may require.

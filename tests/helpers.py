@@ -15,9 +15,9 @@ from ccnl_engine.payroll.domain.competence_year_plan import CompetenceYearPlan
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment import Employment
 from ccnl_engine.payroll.domain.inputs import PeriodFacts
-from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
 from ccnl_engine.payroll.domain.tax_year import DEFAULT_PAYMENT_DAY
 from ccnl_engine.tax.domain.ruleset import YearRules
+from tests.fixtures.prior_year import RENEWAL_WAIVED
 from tests.fixtures.seniority import new_hire
 from tests.fixtures.tfr import no_tfr_fund
 
@@ -28,6 +28,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.current_year import CurrentYearTaxFacts
     from ccnl_engine.payroll.domain.events import WorkEvent
     from ccnl_engine.payroll.domain.period_state import PeriodState
+    from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
 
 # ---------------------------------------------------------------------------
 # Shared raw data — canonical source for inline fixtures across the test suite
@@ -347,7 +348,8 @@ def year_plan(
     than the CCNL and the level; the seniority defaults to
     :func:`~tests.fixtures.seniority.new_hire` of ``year``, the TFR fund to
     :func:`~tests.fixtures.tfr.no_tfr_fund` of ``year`` and the TFR stays in
-    the company (``tfr_treasury_fund=False``).
+    the company (``tfr_treasury_fund=False``).  ``prior_year`` defaults to
+    :data:`~tests.fixtures.prior_year.RENEWAL_WAIVED`.
 
     Returns:
         The year input.
@@ -360,7 +362,7 @@ def year_plan(
         year=year,
         employment=Employment(ccnl_slug=ccnl_slug, level_code=level_code, **employment),
         employer=employer,
-        prior_year=prior_year if prior_year is not None else PriorYearTaxFacts(),
+        prior_year=prior_year if prior_year is not None else RENEWAL_WAIVED,
         periods={
             key: replace(base, events=run_events)
             for key, run_events in (events or {}).items()

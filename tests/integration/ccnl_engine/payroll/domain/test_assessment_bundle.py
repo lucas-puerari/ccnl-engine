@@ -2,8 +2,10 @@
 
 Every CCNL of the bundle is run once, for its first level, on a regular run
 of June 2026 with no event, for a worker resident in Milan with no
-dependant, no role and not enrolled in a pension fund.  A run the engine
-rejects before producing a result is left out: it exposes no amount to pay.
+dependant, no role, not enrolled in a pension fund and who waived the
+renewal regime of L. 199/2025 art. 1 c. 7 in writing
+(:mod:`tests.fixtures.prior_year`).  A run the engine rejects before
+producing a result is left out: it exposes no amount to pay.
 """
 
 from __future__ import annotations
@@ -28,6 +30,7 @@ from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
 from ccnl_engine.results import BlockerCode
+from tests.fixtures.prior_year import RENEWAL_WAIVED
 from tests.fixtures.seniority import new_hire
 
 _WEAK = frozenset({"assumed", "missing"})
@@ -53,6 +56,7 @@ def _june(engine: PayrollEngine, slug: str, level: str) -> PeriodResult | None:
                 ),
                 employer=EmployerProfile(headcount=Headcount(50)),
                 facts=_FACTS,
+                prior_year=RENEWAL_WAIVED,
             )
         )
     except (CcnlEngineError, ValueError):

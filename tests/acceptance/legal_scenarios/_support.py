@@ -18,6 +18,7 @@ from ccnl_engine import (
 )
 from ccnl_engine.inputs import ContributableHours, PeriodState, PriorYearTaxFacts
 from tests.fixtures.opening_state import fresh_tax_year
+from tests.fixtures.prior_year import RENEWAL_WAIVED
 from tests.fixtures.seniority import new_hire
 from tests.fixtures.tfr import no_tfr_fund
 
@@ -53,7 +54,7 @@ def regular_period(
     opening_state: PeriodState | None = None,
     regione: str | None = None,
     comune_belfiore: str | None = None,
-    prior_year: PriorYearTaxFacts | None = None,
+    prior_year: PriorYearTaxFacts = RENEWAL_WAIVED,
     contributable_hours: ContributableHours | None = None,
 ) -> PeriodResult:
     """Compute one regular payroll run through the public facade.
@@ -61,7 +62,8 @@ def regular_period(
     ``employment``, when given, replaces ``ccnl_slug`` and ``level_code``;
     otherwise the worker is a :func:`~tests.fixtures.seniority.new_hire`
     with no TFR fund (:func:`~tests.fixtures.tfr.no_tfr_fund`) whose TFR
-    accrues in the company.
+    accrues in the company.  ``prior_year`` defaults to
+    :data:`~tests.fixtures.prior_year.RENEWAL_WAIVED`.
 
     Returns:
         The engine result for the requested run.
@@ -85,7 +87,7 @@ def regular_period(
                 regione=regione,
                 comune_belfiore=comune_belfiore,
             ),
-            prior_year=prior_year or PriorYearTaxFacts(),
+            prior_year=prior_year,
             opening_state=opening_state or PeriodState.zero(),
         )
     )
@@ -98,7 +100,7 @@ def history(
     *,
     employer: EmployerProfile = EMPLOYER,
     facts: PeriodFacts = PeriodFacts(),  # noqa: B008
-    prior_year: PriorYearTaxFacts = PriorYearTaxFacts(),  # noqa: B008
+    prior_year: PriorYearTaxFacts = RENEWAL_WAIVED,
     year: int = 2026,
 ) -> PeriodState:
     """Return the state the regular runs of ``year`` before ``month`` close.
