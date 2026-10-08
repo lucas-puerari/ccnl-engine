@@ -4,6 +4,13 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Results pickle and states persist as JSON
+
+| Before | After |
+|---|---|
+| `PeriodResult` could not be pickled or deep-copied (`mappingproxy` in its capability report and decision inputs), so a batch could not fan runs out to worker processes | Those mappings are immutable `dict`s: a result pickles and deep-copies equal |
+| No public way to persist a `PeriodState` but pickle | `ccnl_engine.inputs.period_state_to_json(state)` and `period_state_from_json(text)`: tagged JSON with `PeriodState.SCHEMA_VERSION`; reading rejects another version and any type outside the payroll domain with `InvalidInputError` |
+
 ## Input bounds and the gross actually paid
 
 | Before | After |

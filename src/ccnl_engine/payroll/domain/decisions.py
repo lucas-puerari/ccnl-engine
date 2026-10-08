@@ -19,6 +19,8 @@ from enum import StrEnum
 from types import MappingProxyType
 from typing import TYPE_CHECKING
 
+from ccnl_engine.shared.domain.primitives import FrozenDict
+
 if TYPE_CHECKING:
     from collections.abc import Iterable
     from decimal import Decimal
@@ -208,9 +210,7 @@ class CalculationDecision:
     reason_code: str
     rule: str
     rule_version: str
-    inputs: Mapping[str, Decimal | str] = field(
-        default_factory=lambda: MappingProxyType({})
-    )
+    inputs: Mapping[str, Decimal | str] = field(default_factory=lambda: FrozenDict({}))
     source: SourceLocation | None = None
     amount: Decimal | None = None
     origin: DecisionOrigin = DecisionOrigin.ENGINE
@@ -226,4 +226,4 @@ class CalculationDecision:
         if self.origin is DecisionOrigin.CALLER_SUPPLIED and self.source is not None:
             msg = "a caller-supplied decision cannot cite a source"
             raise ValueError(msg)
-        object.__setattr__(self, "inputs", MappingProxyType(dict(self.inputs)))
+        object.__setattr__(self, "inputs", FrozenDict(dict(self.inputs)))

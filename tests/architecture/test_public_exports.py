@@ -92,6 +92,8 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
         "WeeklyHours",
         "WorkCalendar",
         "WorkerCategory",
+        "period_state_from_json",
+        "period_state_to_json",
     }),
     "ccnl_engine.events": frozenset({
         "AbsenceEvent",

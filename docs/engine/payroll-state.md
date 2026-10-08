@@ -93,6 +93,11 @@ the absences of the earlier months of the window, which can suspend the
 accrual, are not in the state (`termination_window_absences_unknown`); a
 `CompetenceYearPlan` settles both.
 
+A state is persisted between runs as JSON with
+`ccnl_engine.inputs.period_state_to_json` and read back with
+`period_state_from_json`, which checks `PeriodState.SCHEMA_VERSION` and
+rebuilds the state through its constructors.
+
 Closing is idempotent by payment: the same request on the same opening
 state yields the same closing state, and a state that already closed the
 payment rejects it, so a retry never counts competence, gross or

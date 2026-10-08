@@ -20,7 +20,6 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from enum import StrEnum
-from types import MappingProxyType
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.domain.assurance import CoverageStatus, EvidenceStatus
@@ -29,6 +28,7 @@ from ccnl_engine.payroll.domain.capability_catalog import (
     CapabilityImplementation,
 )
 from ccnl_engine.payroll.domain.trace import TraceState
+from ccnl_engine.shared.domain.primitives import FrozenDict
 
 if TYPE_CHECKING:
     from collections.abc import Mapping
@@ -207,7 +207,7 @@ def compare_with_catalog(
 
 
 def _frozen[V](mapping: Mapping[str, V]) -> Mapping[str, V]:
-    return MappingProxyType(dict(mapping))
+    return FrozenDict(dict(mapping))
 
 
 @dataclass(frozen=True)
