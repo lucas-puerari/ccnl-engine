@@ -90,7 +90,7 @@ Latest effective values per level (monthly gross, EUR).
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "lavoro-domestico-convivente-orario-ridotto/hourly_inps_bracket_unvalidated · inps_employer · impact unknown · open"
-    Dividing TABELLA B monthly base by hourly_divisor 130 yields the cash-only rate: the INPS hourly bracket for weekly_hours <= 24 is selected on it, without the board and lodging the INPS retribuzione oraria effettiva counts. The hourly-wage INPS bracket lookup has not been validated for this file; the wage-bracket path is not exercised by the golden cases shipped with this file.
+    Dividing TABELLA B monthly base by the monthly hours of the employment yields the cash-only rate: the INPS hourly bracket for weekly_hours <= 24 is selected on it, without the board and lodging the INPS retribuzione oraria effettiva counts. The hourly-wage INPS bracket lookup has not been validated for this file; the wage-bracket path is not exercised by the golden cases shipped with this file.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
@@ -119,7 +119,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 ??? note "Coverage notes"
     SALARY MODEL: TABELLA B of the CCNL of 28/10/2025, conviventi hired under art. 14 c. 2 (levels C, B and B super, up to 30 weekly hours, written act of c. 3). The monthly minimum is paid 'qualunque sia l'orario di lavoro osservato nel limite massimo delle 30 ore settimanali', so it is not proportioned to the hours and more than 30 weekly hours are rejected; board and lodging are due in full ('fermo restando l'obbligo di corresponsione dell'intera retribuzione in natura'). Values from the Tabella minimi retributivi decorrenza 1 gennaio 2026 annexed to the CCNL: B 702,35, BS 737,39, C 814,60.
     
-    HOURLY DIVISOR: 130 = 30 x 52 / 12, the hours of the 30-hour ceiling in a month. Work beyond the agreed hours is paid at the hourly retribuzione globale di fatto (art. 14 c. 2), with the art. 15 supplements outside the agreed time arrangement; the overtime bands are those of the convivente file.
+    HOURLY DIVISOR: 130 = 30 x 52 / 12 in the file; a run uses the weekly hours of the employment x 52 / 12 (flat_pay_max_weekly_hours), since the Tabella B pay does not change with the hours: B super at 10 weekly hours is 737,39 / 43,33 = 17,02 an hour. Work beyond the agreed hours is paid at the hourly retribuzione globale di fatto (art. 14 c. 2), with the art. 15 supplements outside the agreed time arrangement; the overtime bands are those of the convivente file.
     
     SENIORITY: biennale, 4% of the Tabella B minimum (art. 37 c. 1: 'sulla retribuzione minima contrattuale'), maximum 7 scatti: B 28,09, BS 29,50, C 32,58.
     

@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Hourly pay of a flat-pay regime
+
+| Before | After |
+|---|---|
+| The reduced-hours conviventi divided their flat monthly pay by 130 hours (the 30-hour ceiling) whatever the hours: the INPS hourly bracket of a worker at 10 hours was the first (5.67 EUR) | The divisor of a run is `weekly_hours` x 52 / 12 on a CCNL with `flat_pay_max_weekly_hours`: 737.39 / 43.33 = 17.02 EUR, the third bracket |
+
 ## Ulteriore detrazione on the reddito complessivo
 
 | Before | After |

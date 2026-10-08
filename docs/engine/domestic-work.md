@@ -43,7 +43,10 @@ l'orario di lavoro osservato nel limite massimo delle 30 ore settimanali",
 board and lodging in full: level B super is €737.39 a month at 20 or at 30
 weekly hours. The file sets `flat_pay_max_weekly_hours` to 30, so the pay is
 not proportioned, no full time is needed and more than 30 weekly hours raise
-`InvalidInputError`. Seniority is 4% of the Tabella B minimum (art. 37).
+`InvalidInputError`. Seniority is 4% of the Tabella B minimum (art. 37). The
+hourly pay is the monthly pay over the hours worked, `weekly_hours` x 52 / 12,
+for the INPS hourly bracket, the overtime and the proration: B super at 10
+weekly hours is €17.02 an hour, the third INPS bracket.
 
 A convivente under art. 14 c. 1 may agree fewer than 54 weekly hours, but
 Tabella A gives monthly values and the CCNL no rule to proportion them. The
