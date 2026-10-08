@@ -49,6 +49,7 @@ from ccnl_engine.inputs import (
     WeeklyHours,
     WorkerCategory,
 )
+from tests.fixtures.default_cases_sickness import sickness_cases
 from tests.fixtures.dependents import declared_dependent
 from tests.fixtures.explicit_facts import (
     CONCIA_D2,
@@ -463,6 +464,7 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
     "BonusEvent.agreement_signed_on": (
         _event_pair(_renewal(), _renewal(None), "agreement_signed_on"),
     ),
+    **sickness_cases(DefaultCase),
 }
 
 #: ``requires_fact`` fields without a case, and why.

@@ -1,5 +1,5 @@
 <!-- auto-generated -- run: uv run python scripts/docs/gen_coverage_matrix.py -->
-<!-- generated: 2026-10-07 -->
+<!-- generated: 2026-10-08 -->
 
 # CCNL Coverage
 
