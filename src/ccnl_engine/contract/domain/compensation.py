@@ -72,16 +72,29 @@ class Allowance(BaseModel):
         return "apprenticeship_pct_relevant" in self.model_fields_set
 
 
+class FundContributionBase(StrEnum):
+    """Pay the rates of a contractual fund are computed on.
+
+    Attributes:
+        INPS_BASE: The INPS contribution base of the run (gross minus the
+            allowances excluded from contributions).
+        TFR_BASE: The pay counted for the TFR of the run (*retribuzione
+            utile ai fini del TFR*, art. 2120 c.c.): the gross minus the
+            allowances excluded from the TFR, with the TFR-relevant events.
+    """
+
+    INPS_BASE = "inps_base"
+    TFR_BASE = "tfr_base"
+
+
 class EmployerFund(BaseModel):
     """An employer-side contribution to a contractual fund (e.g. a pension fund).
 
-    ``rate`` is a fraction of the **INPS contribution base** (gross minus
-    contribution-excluded allowances) as computed by the engine.  This is the
-    same base used for INPS social-security contributions.  Note that some
-    sector funds (notably Cassa Edile) are conventionally assessed on a
-    different base (*imponibile Cassa Edile*); if the fund's official rate is
-    expressed on that base, it must be adjusted to the INPS base before being
-    stored here.  ``employee_min_rate`` is the minimum employee contribution
+    ``rate`` is a fraction of the pay ``contribution_base`` names, as the
+    engine computes it: the INPS contribution base (the default) or the TFR
+    base.  A fund whose official rate is expressed on another base (e.g.
+    the *imponibile Cassa Edile* or the minimum wage alone) is not stored
+    with a rate.  ``employee_min_rate`` is the minimum employee contribution
     the CCNL sets on the same base, when the bundle records one.
     ``applies_to_categories`` restricts the fund to levels of the given
     categories (``None`` = all).
@@ -93,6 +106,7 @@ class EmployerFund(BaseModel):
     description: str
     rate: TimeSeries
     employee_min_rate: TimeSeries | None = None
+    contribution_base: FundContributionBase = FundContributionBase.INPS_BASE
     applies_to_categories: tuple[WorkerCategory, ...] | None = None
     provenance: RuleProvenance | None = None
 

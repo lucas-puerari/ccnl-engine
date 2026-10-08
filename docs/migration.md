@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Fon.Te. rates on the TFR base
+
+| Before | After |
+|---|---|
+| Fund rates applied to the INPS base only; no fund in Commercio, Turismo, Pubblici esercizi or Agenzie di viaggio, so an enrolment there raised `InvalidInputError` | `EmployerFund.contribution_base` (`FundContributionBase.INPS_BASE`, the default, or `TFR_BASE`); Fon.Te. (`"FONTE"`, employer 1.55%, employee at least 0.55%, on the TFR base) on those five CCNLs |
+
 ## Partial years also leave out runs without a seniority amount
 
 | Before | After |

@@ -47,6 +47,9 @@ is known and computed, and nothing in the 2026 bundle is payable yet.
 - `PayrollEngine.list_levels()`, `ccnl_engine.catalog.supported_tax_years()`,
   `PeriodResult.paid_gross`, and the JSON form of a state
   (`period_state_to_json`, `period_state_from_json`); results pickle.
+- Fon.Te. on Commercio, Turismo (Confcommercio, Federalberghi), Pubblici
+  esercizi and Agenzie di viaggio, on the TFR base
+  (`EmployerFund.contribution_base`).
 - Payroll rules: per-run withholding under art. 23 DPR 600/1973, monthly
   1% additional IVS with year-end settlement, the INPS minimum base, the TFR
   net of the 0.50% additional IVS, the TFR revaluation and the Fondo
