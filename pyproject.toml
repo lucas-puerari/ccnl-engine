@@ -220,6 +220,13 @@ source_paths = [
     "src/ccnl_engine/payroll/service/irpef_deductions.py",
     "src/ccnl_engine/payroll/domain/ledger.py",
     "src/ccnl_engine/payroll/domain/rounding.py",
+    "src/ccnl_engine/payroll/domain/assessment.py",
+    "src/ccnl_engine/payroll/domain/requirements.py",
+    "src/ccnl_engine/payroll/service/trattamento_credit.py",
+    "src/ccnl_engine/payroll/service/irpef_net.py",
+    "src/ccnl_engine/payroll/service/additional_ivs.py",
+    "src/ccnl_engine/payroll/service/minimum_base.py",
+    "src/ccnl_engine/payroll/service/period_withholding.py",
 ]
 # Limit collection to the tests of the mutated payroll modules; copy full src
 # so imports resolve. Hypothesis tests are left out: they use multiple
@@ -239,6 +246,22 @@ pytest_add_cli_args_test_selection = [
     "tests/unit/ccnl_engine/payroll/service/test_irpef_mutation_sentinels.py",
     "tests/integration/ccnl_engine/payroll/service/family/",
     "tests/integration/ccnl_engine/payroll/service/test_irpef_normative_oracles.py",
+    "tests/unit/ccnl_engine/payroll/service/test_irpef_deductions.py",
+    "tests/unit/ccnl_engine/payroll/domain/test_assessment.py",
+    "tests/unit/ccnl_engine/payroll/domain/test_assessment_readiness.py",
+    "tests/unit/ccnl_engine/payroll/domain/test_requirements.py",
+    "tests/unit/ccnl_engine/payroll/service/test_trattamento_credit.py",
+    "tests/unit/ccnl_engine/payroll/service/test_irpef_net.py",
+    "tests/integration/ccnl_engine/payroll/service/test_irpef_net_oracle.py",
+    "tests/unit/ccnl_engine/payroll/service/test_additional_ivs.py",
+    "tests/unit/ccnl_engine/payroll/service/test_minimum_base.py",
+    "tests/unit/ccnl_engine/payroll/domain/test_minimum_base.py",
+    "tests/unit/ccnl_engine/payroll/service/test_period_withholding.py",
+    "tests/unit/ccnl_engine/payroll/service/test_tax_computation.py",
+    "tests/unit/ccnl_engine/payroll/domain/test_recovery_plan.py",
+    "tests/integration/ccnl_engine/payroll/application/test_calculate_period_pdr_trattamento.py",
+    "tests/integration/ccnl_engine/payroll/application/test_calculate_period_fiscal_regime.py",
+    "tests/integration/ccnl_engine/payroll/application/withholding/",
 ]
 pytest_add_cli_args = ["--no-cov"]
 mutate_only_covered_lines = true
