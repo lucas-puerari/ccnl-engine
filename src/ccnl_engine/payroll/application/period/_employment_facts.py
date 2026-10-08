@@ -20,14 +20,50 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.domain.decisions import CalculationIssue, CalculationStatus
+from ccnl_engine.payroll.domain.events import AbsenceEvent
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.period._context import RunContext
 
-__all__ = ["FULL_TIME_FACT", "ROLES_FACT", "full_time_issue", "roles_issue"]
+__all__ = [
+    "FULL_TIME_FACT",
+    "NO_PAY_FACT",
+    "ROLES_FACT",
+    "full_time_issue",
+    "no_pay_issue",
+    "roles_issue",
+]
 
 FULL_TIME_FACT = "full_time_weekly_hours"
 ROLES_FACT = "roles"
+NO_PAY_FACT = "no_pay_due"
+
+
+def no_pay_issue(ctx: RunContext) -> CalculationIssue | None:
+    """Return the missing-fact issue of an absence whose pay is not stated.
+
+    The days of an absence for which no pay at all is due leave the days of
+    the art. 13 TUIR deductions (AdE circ. 15/E/2007 par. 1.5.1), a strike
+    does not: only a withholding employer computes them.
+
+    Returns:
+        An incomplete issue naming ``no_pay_due`` when an absence of the
+        run leaves it unknown, else ``None``.
+    """
+    if not ctx.withholding_agent or not any(
+        isinstance(e, AbsenceEvent) and e.no_pay_due is None for e in ctx.request.events
+    ):
+        return None
+    return CalculationIssue(
+        code="deduction_days_unknown",
+        message=(
+            "an absence of the run does not state whether any pay is due for "
+            "its days: the days of the art. 13 TUIR deductions count them; "
+            "state AbsenceEvent.no_pay_due"
+        ),
+        status=CalculationStatus.INCOMPLETE,
+        fact=NO_PAY_FACT,
+    )
 
 
 def full_time_issue(ctx: RunContext) -> CalculationIssue | None:

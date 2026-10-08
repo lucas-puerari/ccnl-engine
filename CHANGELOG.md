@@ -35,7 +35,7 @@ is known and computed, and nothing in the 2026 bundle is payable yet.
   in `ccnl_engine.catalog`.
 - **Competence and tax years.** `YearInput` is replaced by
   `CompetenceYearPlan` and `TaxYearPlan`; the state splits into an accrual
-  state and a tax cash state (`PeriodState.SCHEMA_VERSION` 12).
+  state and a tax cash state (`PeriodState.SCHEMA_VERSION` 13).
 - **Provenance labels.** A rule of an estimated ruleset, or without a cited
   source, cannot be `derived`; every `reviewed` CCNL became `exploratory`.
 
@@ -73,6 +73,9 @@ is known and computed, and nothing in the 2026 bundle is payable yet.
 
 ### Fixed
 
+- Days without any pay (`AbsenceEvent.no_pay_due`) leave the days of the
+  art. 13 deductions (AdE circ. 15/E/2007 par. 1.5.1); `PeriodState`
+  schema 13.
 - The ulteriore detrazione reads the reddito complessivo stated in
   `current_year`, the exempt impatriati and researcher income included
   (L. 207/2024 art. 1 c. 6 and 9).

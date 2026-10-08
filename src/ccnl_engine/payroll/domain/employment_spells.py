@@ -34,6 +34,8 @@ from ccnl_engine.shared.domain.errors import InvalidInputError
 from ccnl_engine.shared.domain.validation import require_bool, require_date
 
 if TYPE_CHECKING:
+    from collections.abc import Iterable
+
     from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
 
 __all__ = ["EmploymentSpell", "spell_days", "spells_of", "spells_with"]
@@ -55,6 +57,9 @@ class EmploymentSpell:
         last_day: Last day of the employment in the year: its end, or 31
             December while the end is not stated.
         fixed_term: Whether the employment is fixed-term.
+        unpaid_days: Days of the spell for which no pay at all is due
+            (aspettativa senza assegni), in order: they leave the days of the
+            deductions (AdE circ. 15/E/2007 par. 1.5.1).
 
     Raises:
         InvalidInputError: When a field is not of its type, or the days are
@@ -64,6 +69,7 @@ class EmploymentSpell:
     first_day: date
     last_day: date
     fixed_term: bool
+    unpaid_days: tuple[date, ...] = ()
 
     def __post_init__(self) -> None:  # noqa: D105
         require_date(self.first_day, f"{_OWNER}.first_day", feature=_FEATURE)
@@ -75,6 +81,29 @@ class EmploymentSpell:
                 f"got {self.first_day} to {self.last_day}"
             )
             raise InvalidInputError(msg, field=_OWNER, feature=_FEATURE)
+        days = tuple_of(
+            self.unpaid_days,
+            f"{_OWNER}.unpaid_days",
+            items_of_type(date, feature=_FEATURE),
+            feature=_FEATURE,
+        )
+        inside = all(self.first_day <= d <= self.last_day for d in days)
+        if list(days) != sorted(set(days)) or not inside:
+            msg = "unpaid days are distinct days of the spell, in order"
+            raise InvalidInputError(
+                msg, field=f"{_OWNER}.unpaid_days", feature=_FEATURE
+            )
+        object.__setattr__(self, "unpaid_days", days)
+
+    def with_unpaid(self, days: Iterable[date]) -> EmploymentSpell:
+        """Return the spell with ``days`` added to its unpaid days.
+
+        Returns:
+            The spell with the days of ``days`` that fall within it.
+        """
+        inside = {d for d in days if self.first_day <= d <= self.last_day}
+        merged = tuple(sorted(inside | set(self.unpaid_days)))
+        return EmploymentSpell(self.first_day, self.last_day, self.fixed_term, merged)
 
     @classmethod
     def of(
@@ -148,21 +177,20 @@ def spells_with(
 
 
 def spell_days(spells: tuple[EmploymentSpell, ...]) -> int:
-    """Return the days of the union of ``spells``, at most 365.
+    """Return the paid days of the union of ``spells``, at most 365.
 
-    Days in two spells count once (CU 2026, punto 721); a leap year counts
-    at most 365, the denominator of the art. 13 TUIR proportion.
+    Days in two spells count once (CU 2026, punto 721); a day leaves the
+    count when no spell that covers it pays it (AdE circ. 15/E/2007 par.
+    1.5.1); a leap year counts at most 365, the denominator of the art. 13
+    TUIR proportion.
 
     Returns:
-        The calendar days covered by at least one spell.
+        The calendar days for which at least one spell pays.
     """
-    days = 0
-    covered_to: date | None = None
-    for spell in sorted(spells, key=lambda s: s.first_day):
-        start = spell.first_day
-        if covered_to is not None:
-            start = max(start, covered_to + _DAY)
-        if spell.last_day >= start:
-            days += (spell.last_day - start).days + 1
-            covered_to = spell.last_day
-    return min(days, _MAX_DAYS)
+    paid: set[date] = set()
+    for spell in spells:
+        unpaid = set(spell.unpaid_days)
+        count = (spell.last_day - spell.first_day).days + 1
+        days = (spell.first_day + _DAY * n for n in range(count))
+        paid.update(d for d in days if d not in unpaid)
+    return min(len(paid), _MAX_DAYS)

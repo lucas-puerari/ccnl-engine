@@ -92,6 +92,9 @@ FACT_DEFAULTS: Mapping[str, FieldDefault] = {
         "(L. 92/2012 art. 2 c. 28-29) has a missing_fact naspi_exclusion "
         "blocker",
     ),
+    "EmploymentSpell.unpaid_days": absence_is_fact(
+        "every day of the spell was paid; the days without any pay are listed"
+    ),
     "ContributionHistory.contributory_option": absence_is_fact(
         "the option for the contributory system is an act of the worker "
         "(L. 335/1995 art. 1 c. 23): not exercised unless stated"

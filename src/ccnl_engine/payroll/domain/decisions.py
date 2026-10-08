@@ -113,6 +113,7 @@ PUBLIC_FACTS: Mapping[str, str] = MappingProxyType({
     "employment_income": "PriorYearTaxFacts.employment_income",
     "full_time_weekly_hours": "Employment.full_time_weekly_hours",
     "naspi_exclusion": "FixedTerm.naspi_exclusion",
+    "no_pay_due": "AbsenceEvent.no_pay_due",
     "opening_state": "PeriodInput.opening_state",
     "other_employers": "InpsBaseYtd.other_employers",
     "other_employers_additional_ivs": "InpsBaseYtd.other_employers_additional_ivs",

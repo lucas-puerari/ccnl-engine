@@ -4,6 +4,13 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Days without pay leave the days of the deductions
+
+| Before | After |
+|---|---|
+| An unpaid absence never changed the days of the art. 13 deductions, the ulteriore detrazione and the trattamento integrativo | New `AbsenceEvent.no_pay_due`: `True` (aspettativa senza assegni) removes its days (AdE circ. 15/E/2007 par. 1.5.1), `False` (a strike) keeps them, `None` keeps them with a `missing_fact` blocker `no_pay_due` on a withholding run |
+| `EmploymentSpell(first_day, last_day, fixed_term)` | New field `unpaid_days`, kept across the runs of the tax year; `PeriodState.SCHEMA_VERSION` 13 |
+
 ## Hourly pay of a flat-pay regime
 
 | Before | After |

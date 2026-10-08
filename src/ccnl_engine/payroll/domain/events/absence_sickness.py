@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from datetime import timedelta
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
@@ -42,6 +43,15 @@ class AbsenceEvent:
             suspend accrual under the CCNL.  ``None`` means not known: the
             days count as accruing, and a rateo they could change has a
             ``missing_fact`` blocker.
+        no_pay_due: ``True`` when no pay at all is due for every calendar
+            day of the absence (aspettativa senza assegni): the days leave
+            the days of the art. 13 TUIR deductions (AdE circ. 15/E/2007 par.
+            1.5.1: "vanno sottratti i giorni per i quali non spetta alcuna
+            retribuzione").  ``False`` for a strike, an absence of hours or
+            one whose days stay paid in part, which reduce nothing ("nessuna
+            riduzione [...] in caso di giornate di sciopero").  ``None`` means
+            not known: the days stay counted and a withholding run has a
+            ``missing_fact`` blocker.
     """
 
     event_date: date
@@ -49,6 +59,7 @@ class AbsenceEvent:
     hourly_rate: Decimal
     end_date: date | None = None
     suspends_accrual: bool | None = None
+    no_pay_due: bool | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         feature = "absence"
@@ -62,16 +73,24 @@ class AbsenceEvent:
         require_date(
             self.end_date, "AbsenceEvent.end_date", feature=feature, optional=True
         )
-        if self.suspends_accrual is not None:
-            require_bool(
-                self.suspends_accrual, "AbsenceEvent.suspends_accrual", feature=feature
-            )
+        for name in ("suspends_accrual", "no_pay_due"):
+            if getattr(self, name) is not None:
+                require_bool(
+                    getattr(self, name), f"AbsenceEvent.{name}", feature=feature
+                )
         if self.end_date is not None and self.end_date < self.event_date:
             msg = (
                 f"AbsenceEvent.end_date ({self.end_date}) must be "
                 f">= event_date ({self.event_date})"
             )
             raise InvalidInputError(msg, field="AbsenceEvent.end_date", feature=feature)
+
+    @property
+    def days(self) -> tuple[date, ...]:
+        """Calendar days of the absence, first to last."""
+        last = self.end_date or self.event_date
+        count = (last - self.event_date).days + 1
+        return tuple(self.event_date + timedelta(days=n) for n in range(count))
 
 
 @dataclass(frozen=True)

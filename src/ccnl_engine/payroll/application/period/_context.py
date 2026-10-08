@@ -16,6 +16,7 @@ from ccnl_engine.payroll.application.period._context_facts import (
 )
 from ccnl_engine.payroll.domain.employment import FixedTerm
 from ccnl_engine.payroll.domain.employment_spells import EmploymentSpell, spells_with
+from ccnl_engine.payroll.domain.events import AbsenceEvent
 from ccnl_engine.payroll.domain.opening_history import opening_state_issue
 
 if TYPE_CHECKING:
@@ -172,16 +173,26 @@ class RunContext:
         The spells the opening state paid in the tax year, with the spell
         of the run's employment in place of the one of its first day: the
         income the withholding projects is the income of every one of them.
+        The spell keeps the unpaid days earlier runs recorded and adds those
+        of the absences of the run with ``no_pay_due``.
         """
         request = self.request
-        return spells_with(
-            self.opening.cash.employment_spells,
-            EmploymentSpell.of(
-                request.employment_period,
-                self.fiscal_year,
-                fixed_term=isinstance(request.contract_type, FixedTerm),
-            ),
+        opening = self.opening.cash.employment_spells
+        spell = EmploymentSpell.of(
+            request.employment_period,
+            self.fiscal_year,
+            fixed_term=isinstance(request.contract_type, FixedTerm),
         )
+        earlier = [day for s in opening for day in s.unpaid_days]
+        unpaid = [
+            day
+            for event in request.events
+            if isinstance(event, AbsenceEvent) and event.no_pay_due
+            for day in event.days
+        ]
+        # A day of an earlier spell is kept by the spell it falls within.
+        merged = None if spell is None else spell.with_unpaid([*earlier, *unpaid])
+        return spells_with(opening, merged)
 
     @property
     def monthly_gross(self) -> Decimal:
