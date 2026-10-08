@@ -84,7 +84,7 @@
         },
         "section": "Table 7.1"
       },
-      "note": "Pages 4_136 and 4_134 for firms above 50 employees. Assumed, not derived: its ruleset declares source_type 'estimated'."
+      "note": "Pages 4_136 and 4_134 for firms above 50 employees. Assumed, not derived: its ruleset declares source_type 'estimated'. Open question, not settled by a source the bundle holds: the tier up to 50 employees carries no FIS share (D.Lgs. 148/2015 art. 29 c. 3 and 8: 0.50% up to 5 employees, 0.80% above, art. 33 c. 1: one third paid by the worker) and no CIGS from 16 employees (art. 20 c. 3-bis, art. 23 c. 1-bis: 0.90%, of which 0.30% paid by the worker); the tier above 50 carries no FIS share. Settle the aggregate rate on the INPS circular of the sector before promoting."
     }
   },
   "apprentice": {
@@ -108,7 +108,7 @@
         "section": "art. 1 c. 773; L. 92/2012 art. 2 cc. 36-37"
       },
       "transformation": "Employer rate 10% + NASpI 1.31% + 0.30% = 11.61%.",
-      "note": "Assumed, not derived: its ruleset declares source_type 'estimated'; no citation (http(s) url and section or page)."
+      "note": "Assumed, not derived: its ruleset declares source_type 'estimated'; no citation (http(s) url and section or page). Open question, not settled by a source the bundle holds: since 1 January 2022 apprentices are covered by the wage-integration schemes and pay their contributions (D.Lgs. 148/2015 art. 2 c. 1 and 3): CIGO, CIGS and FIS shares are not in this flat rate."
     }
   },
   "ruleset": {
@@ -119,7 +119,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "fa0ea5eb452239c9f76a11d0b92d477efb4bb01a1d5038005ef69cc15f96bbed",
+    "source_hash": "f5d229000259e2e75198de178e88bc276fa4a3087ad183931bd3fa384c2071e8",
     "source_type": "estimated"
   }
 }
