@@ -44,7 +44,10 @@ January 2021, chiarimento a verbale 6).  The engine charges them on the
 `bilateral_fund_employee` account (it reduces the net) and the employer share
 to `bilateral_fund_employer` (it adds to the employer cost), and records an
 `assistance_contribution` decision with the hours, rates and the clause as its
-source.  A tredicesima run, paid on no hours, charges nothing.
+source.  A run is charged on the hours it states, INPS and Cas.Sa.Colf alike:
+a tredicesima stated with 0 hours charges nothing, but a competence year gives
+every run, the tredicesima included, the hours of its `default_facts` (see
+the `extra_month_hours` limitation below).
 
 ## Board and lodging of a convivente
 
@@ -61,8 +64,9 @@ as the allowance `vitto_alloggio`, flagged `in_kind`:
 | Ratei at termination | Included in the tredicesima ratei | art. 39 c. 2 |
 | Reduced hours | Not reduced | art. 14 c. 2 |
 
-Two cases are open limitations, recorded on every regular and termination run
-of the CCNL, because the request has no fact for them:
+Three cases are open limitations.  The first two are recorded on every
+regular and termination run of the CCNL, because the request has no fact for
+them; the third on every tredicesima run of both files:
 
 - `lavoro-domestico-convivente/board_lodging_substitute`: the cash indennità
   sostitutiva for the days a convivente does not take board and lodging
@@ -70,7 +74,11 @@ of the CCNL, because the request has no fact for them:
   malattia and infortunio outside hospital art. 27 c. 9 and art. 29 c. 7);
 - `lavoro-domestico-non-convivente/meal_indennity`: the meal, or its
   valore convenzionale, owed to a non convivente on six or more hours a day
-  with continuous presence (art. 14 c. 8).
+  with continuous presence (art. 14 c. 8);
+- `<ccnl>/extra_month_hours`: no source in the bundle says whether a
+  tredicesima carries contributable hours; the engine charges INPS and
+  Cas.Sa.Colf on the hours the run states, and a competence year states the
+  hours of a regular month.
 
 ## Usage
 

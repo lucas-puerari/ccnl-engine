@@ -58,7 +58,7 @@ def run_assistance(
 
     The hours are those the INPS contributions of the run are paid on: the
     CCNL lavoro domestico collects the contribution with them (art. 54
-    c. 1), so a tredicesima run, paid on no hours, charges nothing.
+    c. 1).  A run is charged on the hours it states, a tredicesima run too.
 
     Args:
         terms: Rates of the CCNL, ``None`` when it charges no contribution.

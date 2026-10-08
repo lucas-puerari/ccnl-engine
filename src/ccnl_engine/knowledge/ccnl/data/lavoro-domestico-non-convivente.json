@@ -117,6 +117,21 @@
           },
           "remediation": "Add a fact for the days owed a meal not given and pay the Tabella F value for them."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "INPS and Cas.Sa.Colf are charged on the contributable hours the run states, a tredicesima run too. No bundled source says whether the tredicesima carries contributable hours of its own, and a competence year gives it the hours of its default facts, those of a regular month.",
+        "capability": "inps_employee",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "extra_month_hours",
+          "applies_when": {
+            "run_kinds": [
+              "thirteenth"
+            ]
+          },
+          "remediation": "Source from the INPS rules whether the tredicesima carries contributable hours and set them for extra-month runs."
+        }
       }
     ]
   },
@@ -750,7 +765,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "0bbf72b9ab70f7ca8ae956186a6d610e2bda6cf849c669ecaf40e899b9fd3b5b",
+    "source_hash": "bbbd93da0c4bfb7795def7319c1a3a0bb07afff8b970b91018186b44ec55f443",
     "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },
