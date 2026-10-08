@@ -104,7 +104,7 @@ formulas or caller-declared amounts.
 | `rinnovo_substitute_tax` | Imposta sostitutiva aumenti da rinnovo L. 199/2025 art. 1 c. 7 | net | native | decided | decision | `prior_year` | — | implemented | 0 / 1 / 0 / 0 |
 | `notte_festivi_turni_substitute_tax` | Imposta sostitutiva notturno, festivo e turni L. 199/2025 art. 1 cc. 10-11 | net | native | decided | decision | `prior_year` | — | implemented | 0 / 1 / 0 / 0 |
 | `bilateral_funds` | Fondi bilaterali (importi dal chiamante) | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
-| `pension_fund_contribution` | Previdenza complementare CCNL su adesione | net | partial | decided | decision | `employment.pension_fund` | ccnl_fund_on_enrolment | simplified | 0 / 14 / 12 / 0 |
+| `pension_fund_contribution` | Previdenza complementare CCNL su adesione | net | partial | decided | decision | `employment.pension_fund` | ccnl_fund_on_enrolment | simplified | 0 / 16 / 13 / 0 |
 | `assistance_contribution` | Contributi di assistenza contrattuale per ora retribuita (Cas.Sa.Colf, lavoro domestico) | net | native | decided | decision | `facts.contributable_hours` | — | implemented | 0 / 2 / 0 / 0 |
 
 ## CCNL coverage
@@ -182,7 +182,7 @@ never grow.
 | 53 | [CCNL Igiene Ambientale — Servizi Ambientali e di Igiene Urbana](igiene-ambientale-utilitalia.md) | 🔲 | 🔲 | 🔲 | inps_employer, seniority | 0 / 106 / 1 / 1 |
 | 54 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | 🔲 | 🔲 | 🔲 | base_salary, overtime, sickness | 0 / 32 / 1 / 1 |
 | 55 | [CCNL Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti](impiegati-tecnici-agricoli.md) | 🔲 | 🔲 | 🔲 | base_salary, bilateral_funds | 0 / 15 / 1 / 1 |
-| 56 | [CCNL Industria Chimica e Farmaceutica (Federchimica-Farmindustria-Assistal)](chimica-farmaceutica-federchimica.md) | 🔲 | 🔲 | 🔲 | — | 0 / 96 / 1 / 1 |
+| 56 | [CCNL Industria Chimica e Farmaceutica (Federchimica-Farmindustria-Assistal)](chimica-farmaceutica-federchimica.md) | 🔲 | 🔲 | 🔲 | — | 0 / 98 / 1 / 1 |
 | 57 | [CCNL Industria Turistica (Federturismo Confindustria)](industria-turistica-federturismo.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 45 / 1 / 1 |
 | 58 | [CCNL Industrie Cineaudiovisive (ANICA)](cinema-audiovisivi-industria.md) | 🔲 | 🔲 | 🔲 | bilateral_funds | 0 / 62 / 1 / 1 |
 | 59 | [CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fiduciari — ASSIV/ANIVP/UNIV (GPG)](vigilanza-privata-assiv.md) | 🔲 | 🔲 | 🔲 | inps_employer, seniority | 0 / 48 / 2 / 0 |
@@ -229,7 +229,7 @@ never grow.
 | 100 | [CCNL Turismo (Assoturismo-Confesercenti)](turismo-confesercenti.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 56 / 1 / 1 |
 | 101 | [CCNL Turismo — Federalberghi/Faita](turismo-federalberghi.md) | 🔲 | 🔲 | 🔲 | seniority, worker_category | 0 / 68 / 1 / 1 |
 | 102 | [CCNL Turismo, Pubblici Esercizi e Ristorazione (Confcommercio)](turismo-confcommercio.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 58 / 1 / 1 |
-| 103 | [CCNL Vetro (Industrie) — Settori Meccanizzati (Prime Lavorazioni)](vetro-meccanizzato-assovetro.md) | 🔲 | 🔲 | 🔲 | base_salary | 0 / 0 / 34 / 1 |
+| 103 | [CCNL Vetro (Industrie) — Settori Meccanizzati (Prime Lavorazioni)](vetro-meccanizzato-assovetro.md) | 🔲 | 🔲 | 🔲 | base_salary | 0 / 0 / 35 / 1 |
 | 104 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG](vigilanza-privata-federdat-gpg.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 48 / 1 / 1 |
 | 105 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF](vigilanza-privata-federdat-sf.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 46 / 2 / 1 |
 | 106 | [CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso](agenti-immobiliari-fiaip.md) | 🔲 | 🔲 | 🔲 | base_salary, bilateral_funds, pension_fund_contribution, seniority, una_tantum | 0 / 0 / 30 / 1 |

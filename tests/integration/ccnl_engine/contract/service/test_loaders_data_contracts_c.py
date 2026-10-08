@@ -217,12 +217,12 @@ class TestLoadVetroMeccanizzatoAssovetro:
         assert si.maximum_count == 5
 
     def test_vetro_meccanizzato_assovetro_fonchim_fund(self) -> None:
-        """Fonchim at 1.5%, 2.0% from 2027-01-01 (renewal of 9 April 2026)."""
+        """Fonchim at 1.5%, 2.0% from 2027-01-01, plus the 0.25% insurance."""
         ccnl = load_ccnl("vetro-meccanizzato-assovetro.json")
         funds = {f.code: f for f in ccnl.parameters.employer_funds}
         assert "FONCHIM" in funds
-        assert funds["FONCHIM"].rate.value_at(date(2027, 1, 1)) == Decimal("0.0200")
-        assert funds["FONCHIM"].rate.value_at(date(2026, 12, 31)) == Decimal("0.0150")
+        assert funds["FONCHIM"].rate.value_at(date(2027, 1, 1)) == Decimal("0.0225")
+        assert funds["FONCHIM"].rate.value_at(date(2026, 12, 31)) == Decimal("0.0175")
 
 
 class TestLoadTessilePmiUniontessile:

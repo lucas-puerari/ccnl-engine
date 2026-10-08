@@ -128,7 +128,48 @@
           "effective_from": "2020-01-01"
         }
       }
-    }
+    },
+    "employer_funds": [
+      {
+        "code": "FONCHIM",
+        "description": "Fonchim - Fondo pensione complementare per i lavoratori dell'industria chimica e farmaceutica e dei settori affini",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0235"
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0120"
+            }
+          ]
+        },
+        "contribution_base": "tfr_base",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "fonchim-opuscolo-informativo-2026",
+              "title": "Fonchim, opuscolo informativo 2026",
+              "kind": "altro",
+              "url": "https://www.fonchim.it/cms/resource/open/4853/opuscoloinformativo-2026.pdf"
+            },
+            "page": "13",
+            "section": "Tabella dei contributi per settore, riga Chimico-Farmaceutico",
+            "quote": "Contributo aderente / Contributo azienda, % sulla retribuzione utile al calcolo del TFR: Chimico-Farmaceutico 1,20% 2,10% + 0,25%"
+          },
+          "transformation": "Employer 2.10% plus the 0.25% insurance contribution = 2.35%, worker minimum 1.20%, of the retribuzione utile al calcolo del TFR. The quota of TFR is the worker's choice in PensionFundEnrolment.tfr_to_fund.",
+          "note": "Base and rates from the Fonchim opuscolo informativo 2026 (https://www.fonchim.it/cms/resource/open/4853/opuscoloinformativo-2026.pdf, sha256 847e1e0a0594f1db69cbe5e73694af81c0cdacf19d1954fd2c6f14ebfdef1d2b): 'Contributo aderente / Contributo azienda: % sulla retribuzione utile al calcolo del TFR'. The employer rate adds the 0.25% insurance contribution for premorienza e invalidita, which the employer pays to the fund for every member ('il contributo assicurativo (0,25% a carico dell'azienda)'). The rates match the Scheda 'I destinatari e i contributi' in force from 25/03/2026 (https://www.fonchim.it/cms/resource/open/16/parte-i-scheda-i-destinatari-e-i-contributi-250326.pdf, sha256 7fd3693ca3d0d41767ef5f7e144ec490663fdb457e059af5bc625fbd831241a0). valid_from is the first day of the bundled tax year, the rates being in force before it. No human review recorded."
+        }
+      }
+    ]
   },
   "levels": [
     {
@@ -2662,7 +2703,7 @@
     "effective_until": null,
     "source": "https://informatori.it/wp-content/uploads/2025/04/Tabelle-Incrementi-TEM-CCNL-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "927e275da93eaa0a575a6e91f32736ab6551c1c8da63e826b9ab8e9832d56396",
+    "source_hash": "c2fec5518306f8239df50cdb106490869a8d74b31871c65390925e0bc9ecf802",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

@@ -27,11 +27,23 @@ def run_pension(inp: _AmountsInput) -> PensionContribution | None:
     """
     if inp.pension is None:
         return None
-    if inp.pension.fund.contribution_base is FundContributionBase.TFR_BASE:
-        base = inp.monthly_gross + inp.in_kind + inp.event_tfr_base
-    else:
-        base = inp.monthly_gross + inp.event_inps_base
+    base = fund_base(
+        inp.pension.fund.contribution_base,
+        inps_base=inp.monthly_gross + inp.event_inps_base,
+        tfr_base=inp.monthly_gross + inp.in_kind + inp.event_tfr_base,
+    )
     return contribute(inp.pension, base, inp.opening.earnings.pension_deducted)
+
+
+def fund_base(
+    kind: FundContributionBase, *, inps_base: Decimal, tfr_base: Decimal
+) -> Decimal:
+    """Return the base of the run that ``kind`` names.
+
+    Returns:
+        ``tfr_base`` for a fund on the TFR base, ``inps_base`` otherwise.
+    """
+    return tfr_base if kind is FundContributionBase.TFR_BASE else inps_base
 
 
 def projected_adjustment(
