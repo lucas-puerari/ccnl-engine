@@ -1,6 +1,7 @@
 """Tests for FrozenDict — the immutable serializable dict primitive."""
 
 import copy
+import pickle
 
 import pytest
 
@@ -140,3 +141,12 @@ class TestFrozenDictLimitations:
         fd: FrozenDict[str, int] = FrozenDict({"a": 1})
         dict.__setitem__(fd, "a", 99)  # noqa: PLC2801
         assert fd["a"] == 99  # base-class bypass is a known non-guarantee
+
+
+def test_a_frozen_dict_pickles_to_an_equal_frozen_dict() -> None:
+    """A result holding frozen mappings can cross a process boundary."""
+    frozen = FrozenDict({"a": 1})
+    restored = pickle.loads(pickle.dumps(frozen))
+
+    assert restored == frozen
+    assert type(restored) is FrozenDict

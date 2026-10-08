@@ -49,6 +49,10 @@ from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.run import PayrollRunId
 from ccnl_engine.payroll.domain.seniority_fact import SeniorityFact, SenioritySource
 from ccnl_engine.payroll.domain.shortfall_deferral import DeferredShortfall
+from ccnl_engine.payroll.domain.state_codec import (
+    period_state_from_json,
+    period_state_to_json,
+)
 from ccnl_engine.payroll.domain.surtax_obligations import (
     SurtaxComponent,
     SurtaxObligation,
@@ -97,4 +101,6 @@ __all__ = [
     "WeeklyHours",
     "WorkCalendar",
     "WorkerCategory",
+    "period_state_from_json",
+    "period_state_to_json",
 ]

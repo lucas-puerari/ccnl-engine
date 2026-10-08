@@ -135,6 +135,14 @@ class FrozenDict[K, V](dict[K, V]):  # noqa: FURB189
         """
         return FrozenDict(copy.deepcopy(dict(self), memo))
 
+    def __reduce__(self) -> tuple[type[FrozenDict[K, V]], tuple[dict[K, V]]]:
+        """Pickle as the constructor called with a plain dict of the items.
+
+        Returns:
+            The class and the plain dict to rebuild it from.
+        """
+        return type(self), (dict(self),)
+
     def __repr__(self) -> str:
         """Return a repr identifying this as a FrozenDict.
 
