@@ -180,15 +180,15 @@ def test_every_result_names_its_rulesets(results: dict[str, PeriodResult]) -> No
 def test_no_bundled_result_is_payable_today(
     results: dict[str, PeriodResult],
 ) -> None:
-    """The somma esente rule is assumed, so every result is blocked by it.
+    """The TFR rule of every sector tax ruleset is assumed: it blocks them all.
 
     Documented in the trust pages: amounts are for simulation until the
     blocked rules are sourced.
     """
-    somma = (BlockerCode.RULE_SOURCE_WEAK, "somma_esente", "assumed")
+    tfr = (BlockerCode.RULE_SOURCE_WEAK, "tfr", "assumed")
     assert not any(result.is_payable for result in results.values())
     assert all(
-        somma in {(b.code, b.feature, b.detail) for b in result.blockers}
+        tfr in {(b.code, b.feature, b.detail) for b in result.blockers}
         for result in results.values()
     )
 

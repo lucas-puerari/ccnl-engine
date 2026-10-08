@@ -1,4 +1,4 @@
-"""Optional tax rule loaders: sick pay, variable pay, family, TFR revaluation."""
+"""Sector-independent tax rule loaders: sick pay, variable pay, family, TFR, somma."""
 
 from __future__ import annotations
 
@@ -13,6 +13,7 @@ from ccnl_engine.shared.domain.errors import (
     DataIntegrityError,
     UnsupportedTaxYearError,
 )
+from ccnl_engine.tax.domain.credit_rules import SommaEsenteRules
 from ccnl_engine.tax.domain.family import FamilyDeductionRules
 from ccnl_engine.tax.domain.preferential_regime import PreferentialTaxRegime
 from ccnl_engine.tax.domain.sick_pay import (
@@ -204,3 +205,40 @@ def load_tfr_revaluation_rules(year: int) -> TfrRevaluationRules | None:
         msg = f"{filename} year={rules.year!r} does not match requested year={year!r}"
         raise DataIntegrityError(msg)
     return rules
+
+
+def load_somma_esente_rules(year: int) -> SommaEsenteRules:
+    """Load the somma esente of L. 207/2024 art. 1 cc. 4-5 for *year*.
+
+    The file ``knowledge/tax/data/somma-esente-{year}.json`` holds the
+    bands of c. 4.  They are statutory and the same for every sector, so
+    the file carries its own ruleset, apart from the sector tax files.
+
+    Args:
+        year: Fiscal year (e.g. ``2026``).
+
+    Returns:
+        The validated bands, with their provenance and the ruleset of the
+        file.
+
+    Raises:
+        DataIntegrityError: If the file's ``year`` does not match *year* or
+            the file is not a valid somma esente table.
+    """
+    pkg = importlib.resources.files("ccnl_engine.knowledge.tax.data")
+    filename = f"somma-esente-{year}.json"
+    raw = read_year_json(pkg, filename, year)
+    if raw.get("year") != year:
+        msg = (
+            f"{filename} year={raw.get('year')!r} "
+            f"does not match requested year={year!r}"
+        )
+        raise DataIntegrityError(msg)
+    try:
+        return SommaEsenteRules.model_validate({
+            **raw["somma_esente"],
+            "ruleset": _as_ruleset(raw),
+        })
+    except (KeyError, ValidationError) as exc:
+        msg = f"{filename} is not a valid somma esente table: {exc!r}"
+        raise DataIntegrityError(msg) from exc

@@ -4,6 +4,22 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Somma esente in its own ruleset
+
+The somma esente bands of L. 207/2024 art. 1 cc. 4-5 (7.1% up to €8,500,
+5.3% up to €15,000, 4.8% above, reddito complessivo up to €20,000) moved
+from the eight `estimated` sector tax files to
+`knowledge/tax/data/somma-esente-2026.json`, an `official_primary` ruleset
+whose record is `derived`, quoting the Gazzetta Ufficiale text. The values
+are unchanged, so no amount changes; the `rule_source_weak` blocker on
+`somma_esente` is gone.
+
+| Before | After |
+|---|---|
+| Rule `tax/2026/<sector>:somma_esente`, `assumed` | Rule `tax/2026/somma-esente:somma_esente`, `derived`; `result.rulesets` lists `tax/2026/somma-esente` when the capability runs |
+| `YearRulesRaw.somma_esente` read from the sector file | Field removed: a sector file with a `somma_esente` block does not validate; `load_year_rules` takes it from `load_somma_esente_rules(year)` |
+| `SommaEsenteRules(bands, provenance)` | Also `ruleset`, the identity of the year file |
+
 ## NASpI surcharge of fixed-term contracts
 
 The surcharge of L. 92/2012 art. 2 c. 28 was a flat 1.4% on every

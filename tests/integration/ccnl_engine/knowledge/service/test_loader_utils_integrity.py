@@ -193,7 +193,7 @@ class TestTaxLoaderIntegrity:
         bundled = read_bundled
 
         def fake_read(pkg: "Traversable", f: str) -> str:
-            if f.startswith("tfr-revaluation-"):
+            if f.startswith(("tfr-revaluation-", "somma-esente-")):
                 return bundled(pkg, f)
             if "tax" in str(pkg):
                 return json.dumps(raw)

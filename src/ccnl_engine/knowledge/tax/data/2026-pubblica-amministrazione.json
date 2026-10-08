@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "e1fe5c01a415adb4fc2a2e7e1114defcb5daa975fffbc6a384a1e35c0dacc25e",
+    "source_hash": "6631789fb3d6058bee9b7e1a3c786ac325af15acc58d759168d944c5397ae4a5",
     "source_type": "estimated"
   },
   "irpef_brackets": [
@@ -150,37 +150,8 @@
     "INPS rates for pubblici dipendenti (CTPS — Cassa Trattamenti Pensionistici dei dipendenti dello Stato): employee 8.80%, employer 24.20%, total 33.00%. Confirmed from kitech.it (https://www.kitech.it/Contributi-previdenziali.aspx?p=17_210) and corroborated by INPS sources (33% total = 8.80% employee + 24.20% employer for CTPS, per INPS Gestione Dipendenti Pubblici). NOTE: other ex-INPDAP sub-funds differ — CPDEL/CPS/CPI total 32.65% (employee 8.85%, employer 23.80%); military, healthcare, and school sub-funds may vary. PA contracts mapped in this engine target CTPS-insured employees (civil servants); other sub-funds would require separate data.",
     "fixed_term_additional_rate, fixed_term_renewal_increment: NASpI surcharge of fixed-term contracts, L. 92/2012 art. 2 c. 28-29; see fixed_term_additional_rate_provenance.",
     "SIMPLIFICATION: apprentice block is a schema-required placeholder (same rates as employee/employer); apprendistato is not applicable to PA contracts under D.Lgs. 165/2001 and no CCNL track will reference these values.",
-    "Art. 16-ter c. 5-bis TUIR (inserted by L. 199/2025 art. 1 c. 4): for a reddito complessivo > EUR 200 000 the deduction for the 19% oneri (spese sanitarie excluded), the donations to political parties and the catastrophe insurance premiums is reduced by EUR 440. The art. 12 and art. 13 TUIR deductions and the ulteriore detrazione are outside its scope; the payroll computes none of the oneri in scope and does not apply the reduction.",
-    "Somma esente (L. 207/2024): band cut points 8 500 EUR and 15 000 EUR are reconstructions from worked examples — not verified against primary source. Rates 7.1%/5.3%/4.8% and ceiling 20 000 EUR are from AdE guidance."
+    "Art. 16-ter c. 5-bis TUIR (inserted by L. 199/2025 art. 1 c. 4): for a reddito complessivo > EUR 200 000 the deduction for the 19% oneri (spese sanitarie excluded), the donations to political parties and the catastrophe insurance premiums is reduced by EUR 440. The art. 12 and art. 13 TUIR deductions and the ulteriore detrazione are outside its scope; the payroll computes none of the oneri in scope and does not apply the reduction."
   ],
-  "somma_esente": {
-    "bands": [
-      {
-        "up_to": "8500",
-        "rate": "0.071"
-      },
-      {
-        "up_to": "15000",
-        "rate": "0.053"
-      },
-      {
-        "up_to": "20000",
-        "rate": "0.048"
-      }
-    ],
-    "provenance": {
-      "status": "assumed",
-      "location": {
-        "source_document": {
-          "document_id": "l-207-2024",
-          "title": "L. 207/2024, legge di bilancio 2025",
-          "kind": "legge"
-        },
-        "section": "art. 1 c. 4"
-      },
-      "note": "Band cut points 8 500 EUR and 15 000 EUR are reconstructions from worked examples, not verified against the primary source; rates 7.1%/5.3%/4.8% and the 20 000 EUR ceiling are from AdE guidance."
-    }
-  },
   "irpef_brackets_provenance": {
     "status": "assumed",
     "location": {

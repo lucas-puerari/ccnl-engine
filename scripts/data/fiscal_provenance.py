@@ -122,16 +122,6 @@ _TRATTAMENTO = _derived(
     DL_3_2020, "art. 1 (as amended by L. 207/2024)", transformation=_FROM_MODEL
 )
 _ULTERIORE = _derived(L_207_2024, "art. 1 c. 6", transformation=_FROM_MODEL)
-_SOMMA_ESENTE = _record(
-    "assumed",
-    L_207_2024,
-    "art. 1 c. 4",
-    note=(
-        "Band cut points 8 500 EUR and 15 000 EUR are reconstructions from "
-        "worked examples, not verified against the primary source; rates "
-        "7.1%/5.3%/4.8% and the 20 000 EUR ceiling are from AdE guidance."
-    ),
-)
 _APPRENTICE = _derived(
     L_296_2006,
     "art. 1 c. 773; L. 92/2012 art. 2 cc. 36-37",
@@ -153,7 +143,6 @@ def _tax(**overrides: dict[str, Any]) -> dict[str, dict[str, Any]]:
         "tfr": _TFR,
         "trattamento_integrativo": _TRATTAMENTO,
         "ulteriore_detrazione": _ULTERIORE,
-        "somma_esente": _SOMMA_ESENTE,
     } | overrides
 
 

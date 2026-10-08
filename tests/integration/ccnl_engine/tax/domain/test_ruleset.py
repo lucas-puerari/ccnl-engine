@@ -324,6 +324,22 @@ class TestYearRulesRawContributionModel:
         with pytest.raises(ValidationError, match="both absent"):
             YearRulesRaw.model_validate(data)
 
+    def test_sector_file_cannot_carry_the_somma_esente(self) -> None:
+        """The somma esente is read only from its own year file.
+
+        L. 207/2024 art. 1 c. 4 sets it for every employee, whatever the
+        sector, so a sector file holding a copy is rejected.
+        """
+        tax = read_tax_rules_raw(2026, TaxSector.TERZIARIO)
+        inps = read_inps_rules_raw(2026, TaxSector.TERZIARIO)
+        bands = [{"up_to": "8500", "rate": "0.071"}]
+        with pytest.raises(ValidationError, match="somma_esente"):
+            YearRulesRaw.model_validate({
+                **tax,
+                **inps,
+                "somma_esente": {"bands": bands},
+            })
+
     def test_apprentice_without_inps_raises(self) -> None:
         """'apprentice' present without 'inps' must raise ValidationError."""
         inps_raw = read_inps_rules_raw(2026, TaxSector.TERZIARIO)

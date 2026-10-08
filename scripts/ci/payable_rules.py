@@ -78,7 +78,6 @@ _TAX_BLOCKS: Final[_Blocks] = (
     ("tfr", ("tfr",), False),
     ("trattamento_integrativo", ("trattamento_integrativo",), False),
     ("ulteriore_detrazione", ("ulteriore_detrazione_lavoro",), False),
-    ("somma_esente", ("somma_esente",), False),
     ("complementary_pension", ("pension_fund_contribution",), False),
 )
 _INPS_BLOCKS: Final[_Blocks] = (
@@ -97,6 +96,7 @@ _NAMED_BLOCKS: Final[dict[str, _Blocks]] = {
         ("fringe_benefit", ("fringe_benefit",), False),
         ("pdr", ("bonus_pdr",), False),
     ),
+    "tax/data/somma-esente-": (("somma_esente", ("somma_esente",), False),),
     "tax/data/tfr-revaluation-": (
         ("rate", ("tfr_revaluation",), False),
         ("price_index", ("tfr_revaluation",), False),

@@ -69,6 +69,7 @@ _GROUP = {
     "inps/2026/industria",
     "tax/2026/industria",
     "tax/2026/family-deductions",
+    "tax/2026/somma-esente",
     "surtax/2026/regionale",
     "surtax/2026/comunale",
 }
@@ -224,12 +225,12 @@ class TestCandidateGroupEvidence:
     def test_the_only_blockers_are_the_assumed_rules_it_reads(self) -> None:
         """Only assumed rules block: none of the CCNL, family or surtax data.
 
-        The somma esente bands are reconstructions; the INPS and tax rules of
-        ``industria`` sit in rulesets that declare ``source_type``
-        ``estimated``, so the provenance label check labels them assumed.
+        The INPS and tax rules of ``industria`` sit in rulesets that declare
+        ``source_type`` ``estimated``, so the provenance label check labels
+        them assumed.  The somma esente, quoted from L. 207/2024 art. 1
+        cc. 4-5 in its own ruleset, blocks nothing.
         """
         weak = {
-            "somma_esente",
             "irpef",
             "trattamento_integrativo",
             "ulteriore_detrazione_lavoro",
