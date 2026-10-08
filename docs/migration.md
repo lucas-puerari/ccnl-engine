@@ -4,6 +4,14 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Extra months at the termination of chained runs
+
+| Before | After |
+|---|---|
+| A tredicesima paid before the termination month, then the regular run of the termination month, liquidated the ratei of the same window again | The run of the termination month leaves that extra month out and records the incomplete issue `extra_month_paid_before_termination` |
+| Chained runs counted only the absences of the termination run in the ratei they liquidated | The run records the provisional issue `termination_window_absences_unknown` when earlier months of the window were closed before it |
+| CCNL Agenti immobiliari FIAIP: the quattordicesima of a competence year was paid on `payment_day` of June | Paid on 1 July (art. 169, recorded as `assumed`: the clause is not located in a bundled source) |
+
 ## Somma esente in its own ruleset
 
 The somma esente bands of L. 207/2024 art. 1 cc. 4-5 (7.1% up to €8,500,

@@ -10,9 +10,7 @@ from ccnl_engine.payroll.application.period._accrual_decisions import (
     accrual_issue,
     run_accruals,
 )
-from ccnl_engine.payroll.application.period._additional_ivs import (
-    additional_ivs_issue,
-)
+from ccnl_engine.payroll.application.period._additional_ivs import additional_ivs_issue
 from ccnl_engine.payroll.application.period._capability_registry import (
     capability_report,
     case_facts,
@@ -43,6 +41,7 @@ from ccnl_engine.payroll.application.period._rule_sources import (
 )
 from ccnl_engine.payroll.application.period._rulesets import run_rulesets
 from ccnl_engine.payroll.application.period._seniority import run_seniority
+from ccnl_engine.payroll.application.period._termination_ratei import settlement_issues
 from ccnl_engine.payroll.application.period._tfr_revaluation import (
     tfr_revaluation_issues,
 )
@@ -200,6 +199,7 @@ def _input_issues(
     renewal = renewal_minimum(ctx)
     return (
         raised
+        + settlement_issues(ctx.request, ctx.contract.ccnl, ctx.settlements)
         + tfr_revaluation_issues(ctx)
         + (() if renewal is None else renewal.issues)
     )

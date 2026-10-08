@@ -86,7 +86,12 @@ when the regular is not closed), on the window of the next payment counted
 up to the termination date: extra-month earnings `ratei at termination:
 n/12`. Chained `calculate_period` runs pay what a competence year pays, and
 an extra-month run of a liquidated kind in or after that month is refused.
-Chained runs read the absences that suspend accrual from that run only.
+Two cases block the run instead of settling it: an extra month of the window
+already paid by an earlier run of the state is not liquidated again
+(`extra_month_paid_before_termination`, the residual is not computed), and
+the absences of the earlier months of the window, which can suspend the
+accrual, are not in the state (`termination_window_absences_unknown`); a
+`CompetenceYearPlan` settles both.
 
 Closing is idempotent by payment: the same request on the same opening
 state yields the same closing state, and a state that already closed the
