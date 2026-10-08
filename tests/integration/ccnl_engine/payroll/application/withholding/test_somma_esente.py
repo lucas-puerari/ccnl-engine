@@ -7,6 +7,8 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+import pytest
+
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.withholding._somma_esente import (
     SommaEsenteOutcome,
@@ -218,9 +220,22 @@ class TestBeforeTheConguaglio:
 
         assert outcome.issues == ()
 
-    def test_band_is_provisional_with_other_employment_income(self) -> None:
-        """The band of c. 4 is taken on this employer's income alone."""
-        other = replace(_EMPLOYMENT_ONLY, other_employment_income=Decimal(3000))
+    @pytest.mark.parametrize(
+        "other",
+        [
+            replace(_EMPLOYMENT_ONLY, other_employment_income=Decimal(3000)),
+            replace(_EMPLOYMENT_ONLY, exempt_regime_income=Decimal(3000)),
+        ],
+        ids=["other_employment_income", "exempt_regime_income"],
+    )
+    def test_band_is_provisional_with_income_of_other_employers(
+        self, other: CurrentYearTaxFacts
+    ) -> None:
+        """The band of c. 4 is taken on this employer's income alone.
+
+        Exempt income of the impatriati and researcher regimes counts in
+        the reddito di lavoro dipendente of c. 4 (L. 207/2024 c. 9).
+        """
         outcome = _resolve(Decimal(1200), _opening(), closed=0, current_year=other)
 
         (issue,) = outcome.issues

@@ -54,6 +54,7 @@ from tests.acceptance.legal_scenarios._support import (
     remitted,
     substitute_tax,
 )
+from tests.fixtures.current_year import employment_only
 from tests.fixtures.residence import COMUNE_BELFIORE, REGIONE
 from tests.fixtures.seniority import new_hire
 
@@ -122,6 +123,7 @@ def _period(
         prior_year=prior_year,
         regione=REGIONE,
         comune_belfiore=COMUNE_BELFIORE,
+        current_year=employment_only(),
     )
 
 

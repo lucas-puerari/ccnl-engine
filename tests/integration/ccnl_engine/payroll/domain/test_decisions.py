@@ -22,6 +22,7 @@ from ccnl_engine.provenance.domain.source import (
     SourceKind,
     SourceLocation,
 )
+from tests.fixtures.current_year import employment_only
 from tests.fixtures.opening_state import fresh_tax_year
 from tests.fixtures.residence import resident
 from tests.helpers import year_plan
@@ -78,6 +79,7 @@ def year_result() -> CompetenceYearResult:
             "C3",
             facts=resident(),
             opening_state=fresh_tax_year(2026),
+            current_year=employment_only(2026),
         )
     )
 

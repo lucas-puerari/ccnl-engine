@@ -14,6 +14,7 @@ from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.events import AbsenceEvent, BonusEvent, WorkEvent
 from ccnl_engine.payroll.domain.inputs import PeriodFacts
 from ccnl_engine.shared.domain.errors import InvalidInputError
+from tests.fixtures.current_year import employment_only
 from tests.fixtures.opening_state import fresh_tax_year
 from tests.helpers import year_plan
 
@@ -155,6 +156,7 @@ class TestSurtaxStatus:
                 _LEVEL,
                 facts=PeriodFacts(comune_belfiore="Z999"),
                 opening_state=fresh_tax_year(_YEAR),
+                current_year=employment_only(_YEAR),
             )
         )
 

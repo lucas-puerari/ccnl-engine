@@ -73,6 +73,9 @@ is known and computed, and nothing in the 2026 bundle is payable yet.
 
 ### Fixed
 
+- The ulteriore detrazione reads the reddito complessivo stated in
+  `current_year`, the exempt impatriati and researcher income included
+  (L. 207/2024 art. 1 c. 6 and 9).
 - The somma esente of a run is the percentage applied to the income the
   run pays (AdE circ. 4/E/2025 par. 1.2), not the annual amount over the
   slots left.

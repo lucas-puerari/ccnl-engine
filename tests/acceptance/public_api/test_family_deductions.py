@@ -243,7 +243,7 @@ class TestUnknownIncome:
         assert decision.status is CalculationStatus.FINAL
         assert decision.reason_code == "no_deduction_due"
         assert decision.amount == _D(0)
-        assert "current_year" not in _missing_facts(result)
+        assert "family_income_unknown" not in {i.code for i in result.issues}
 
     def test_income_past_every_phase_out_needs_no_more_income(self) -> None:
         """80,000.01 here: the spouse deduction is zero whatever comes on top."""

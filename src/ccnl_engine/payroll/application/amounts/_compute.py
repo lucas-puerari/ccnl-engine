@@ -10,7 +10,10 @@ from ccnl_engine.payroll.application.amounts._contributions import (
     run_contributions,
     tfr_accrual,
 )
-from ccnl_engine.payroll.application.amounts._irpef import withhold_irpef
+from ccnl_engine.payroll.application.amounts._irpef import (
+    ulteriore_issues,
+    withhold_irpef,
+)
 from ccnl_engine.payroll.application.amounts._pension import run_pension
 from ccnl_engine.payroll.application.amounts._surtax import run_surtax
 from ccnl_engine.payroll.application.amounts._taxable import (
@@ -61,8 +64,9 @@ def _decisions(
     )
 
 
-def _issues(irpef: _Irpef) -> tuple[CalculationIssue, ...]:
-    return () if irpef.family is None else irpef.family.issues()
+def _issues(inp: _AmountsInput, irpef: _Irpef) -> tuple[CalculationIssue, ...]:
+    family = () if irpef.family is None else irpef.family.issues()
+    return family + ulteriore_issues(inp, irpef)
 
 
 def _compute_amounts(
@@ -111,7 +115,7 @@ def _compute_amounts(
         ulteriore=irpef.tax.ulteriore,
         decisions=_decisions(inp, pdr, irpef, surtax),
         pension=pension,
-        issues=_issues(irpef) + tfr.issues(),
+        issues=_issues(inp, irpef) + tfr.issues(),
         assistance=assistance,
     )
     return amounts, breakdown, tax_comp, irpef.tax.recovery_plan

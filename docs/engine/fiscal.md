@@ -31,7 +31,11 @@ trattamento integrativo in [Tax credits](tax-credits.md).
    of up to €1,000/year for taxable income between €20,000 and €40,000.
    Flat €1,000 from €20,001 to €32,000; linear taper to zero from €32,001 to €40,000.
    The taper ratio is not truncated: c. 6 has no four-decimal rule and the
-   one of art. 13 c. 6 TUIR lists the ratios of art. 13 only.
+   one of art. 13 c. 6 TUIR lists the ratios of art. 13 only. The income
+   is the reddito complessivo: this employment plus what `current_year`
+   states beyond it, with the exempt share of the impatriati and researcher
+   regimes (c. 9). While it is due, a run without `current_year` of its tax
+   year has the issue `ulteriore_income_unknown` (`fact="current_year"`).
 5. **IRPEF net** = IRPEF gross − work income deduction − ulteriore detrazione
    − family deductions + clawback sterilisation (floored at 0). Art. 15
    TUIR deductions are not applied in payroll (capability

@@ -149,8 +149,8 @@ def compute_tax(
             690 (c. 1 lett. a) TUIR), proportioned to the days on the
             projection and on the conguaglio alike.
         external_income: Reddito complessivo of the tax year beyond this
-            employment, for the eligibility of the somma esente (L.
-            207/2024 art. 1 c. 4 and 9); zero when none is known.
+            employment, for the somma esente and the ulteriore detrazione
+            (L. 207/2024 art. 1 c. 4, 6 and 9); zero when none is known.
 
     Returns:
         The IRPEF computation with all components, the updated recovery plan
@@ -161,7 +161,13 @@ def compute_tax(
     """
     days = min(eligible_work_days, DAYS_IN_YEAR)
     annual, components, decisions = _annual(
-        taxable, rules, family_deductions, days, foreign_taxes, fixed_term=fixed_term
+        taxable,
+        rules,
+        family_deductions,
+        days,
+        foreign_taxes,
+        fixed_term=fixed_term,
+        other_income=external_income,
     )
     remaining = remaining_slots
     ordinary_tax, ulteriore = withhold_with_ulteriore(
@@ -207,6 +213,7 @@ def _annual(
     foreign_taxes: tuple[ForeignTaxPaid, ...],
     *,
     fixed_term: bool,
+    other_income: Decimal,
 ) -> tuple[NetIrpef, list[TaxLineItem], list[CalculationDecision]]:
     """Return the net annual IRPEF after the foreign tax credit, with its trace.
 
@@ -221,6 +228,7 @@ def _annual(
         family_deductions=family_deductions,
         eligible_work_days=days,
         fixed_term=fixed_term,
+        other_income=other_income,
     )
     credit = foreign_tax_credit(foreign_taxes, taxable, annual, rules)
     if credit is not None:

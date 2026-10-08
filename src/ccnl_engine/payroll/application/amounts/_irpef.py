@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application._period_utils import _ZERO
 from ccnl_engine.payroll.application.amounts._family import resolve_family
+from ccnl_engine.payroll.domain.decisions import CalculationIssue, CalculationStatus
 from ccnl_engine.payroll.service.period_withholding import PayPeriod
 from ccnl_engine.payroll.service.tax_computation import TaxResolution, compute_tax
 
@@ -29,6 +30,38 @@ class _Irpef:
 
     tax: TaxResolution
     family: RunFamily | None
+
+
+#: Other income can only raise the reddito complessivo of L. 207/2024 art. 1
+#: c. 6, so it matters only while the ulteriore detrazione is due.
+ULTERIORE_INCOME_UNKNOWN = CalculationIssue(
+    code="ulteriore_income_unknown",
+    message=(
+        "ulteriore_detrazione: the reddito complessivo of L. 207/2024 art. 1 "
+        "c. 6 includes the income beyond this employment, which the run does "
+        "not know: state it in PeriodInput.current_year (zero included); the "
+        "amount shown is computed on this employment alone"
+    ),
+    status=CalculationStatus.INCOMPLETE,
+    fact="current_year",
+)
+
+
+def ulteriore_issues(inp: _AmountsInput, irpef: _Irpef) -> tuple[CalculationIssue, ...]:
+    """Return the missing income beyond this employment of a due ulteriore.
+
+    Returns:
+        :data:`ULTERIORE_INCOME_UNKNOWN` while the ulteriore detrazione is
+        due and ``current_year`` of the tax year is not stated, else nothing.
+    """
+    due = any(
+        c.name == "ulteriore_detrazione" and c.amount > _ZERO
+        for c in irpef.tax.computation.components
+    )
+    facts = inp.current_year
+    if not due or (facts is not None and facts.tax_year == inp.rules.year):
+        return ()
+    return (ULTERIORE_INCOME_UNKNOWN,)
 
 
 def _external_income(inp: _AmountsInput) -> Decimal:

@@ -149,11 +149,13 @@ class TestDefaultIsNotAFact:
         assert not default.closing_state.history_known
 
     def test_unknown_base_of_other_employments_is_not_zero(self) -> None:
-        """January without the current-year facts adds a missing other_employers.
+        """January without the current-year facts adds two missing facts.
 
         The January run of a hire on 1 January opens with the zero state, a
         fact; the INPS base of other employments of 2026 is not stated, and
-        it counts toward the massimale (L. 335/1995 art. 2 c. 18).
+        it counts toward the massimale (L. 335/1995 art. 2 c. 18); nor is
+        the income beyond this employment, which the ulteriore detrazione
+        due on this income reads (L. 207/2024 art. 1 c. 6).
         """
         stated = regular_run(1, opening_state=PeriodState.zero())
         unknown = replace(stated, current_year=None)
@@ -161,7 +163,10 @@ class TestDefaultIsNotAFact:
         def details(request: PeriodInput) -> set[str]:
             return {b.detail for b in _ENGINE.calculate_period(request).blockers}
 
-        assert details(unknown) - details(stated) == {"other_employers"}
+        assert details(unknown) - details(stated) == {
+            "other_employers",
+            "current_year",
+        }
 
     @pytest.mark.parametrize(
         ("declared", "fact"),

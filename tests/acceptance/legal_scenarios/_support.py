@@ -18,6 +18,7 @@ from ccnl_engine import (
 )
 from ccnl_engine.inputs import (
     ContributableHours,
+    CurrentYearTaxFacts,
     NoPensionFund,
     PeriodState,
     Permanent,
@@ -62,6 +63,7 @@ def regular_period(
     comune_belfiore: str | None = None,
     prior_year: PriorYearTaxFacts = RENEWAL_WAIVED,
     contributable_hours: ContributableHours | None = None,
+    current_year: CurrentYearTaxFacts | None = None,
 ) -> PeriodResult:
     """Compute one regular payroll run through the public facade.
 
@@ -97,6 +99,7 @@ def regular_period(
             ),
             prior_year=prior_year,
             opening_state=opening_state or PeriodState.zero(),
+            current_year=current_year,
         )
     )
 

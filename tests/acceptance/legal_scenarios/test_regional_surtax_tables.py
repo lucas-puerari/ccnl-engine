@@ -48,6 +48,7 @@ from ccnl_engine.inputs import (
     Permanent,
 )
 from ccnl_engine.results import CalculationStatus
+from tests.fixtures.current_year import employment_only
 from tests.fixtures.dependents import declared_dependent
 from tests.fixtures.normative_oracles.irpef_2026 import net_irpef
 from tests.fixtures.opening_state import fresh_tax_year
@@ -116,6 +117,7 @@ def _conguaglio(
                 family_composition=_CHILD if with_child else None,
             ),
             opening_state=fresh_tax_year(2026),
+            current_year=employment_only(2026),
         )
     )
     return result.period_results[-1]

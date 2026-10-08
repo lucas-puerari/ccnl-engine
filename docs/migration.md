@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Ulteriore detrazione on the reddito complessivo
+
+| Before | After |
+|---|---|
+| The ulteriore detrazione of L. 207/2024 art. 1 c. 6 read the employment income of this employer only | It reads the reddito complessivo: this employment plus the income `current_year` states beyond it, the exempt share of c. 9 included; without `current_year` while it is due, issue `ulteriore_income_unknown`. Exempt regime income also makes the somma esente band provisional (`somma_esente_band_assumed`) |
+
 ## Somma esente on the income of each run
 
 | Before | After |
@@ -525,74 +531,3 @@ of the year instead of the income of this employment alone.
 - A run with a dependent entitled in some month and no `current_year` of its
   tax year is not payable: state the other income, zero included.
 
-## Competence and tax year plans, conguaglio by payment
-
-A year is now planned two ways: by competence (the runs of one year) and by
-tax year (the payments cashed in one year, late payments of an earlier
-competence year included). The conguaglio is the payment that leaves no
-slot of the tax year unpaid, read from the payments closed, never from a
-count.
-
-| Before | After |
-|---|---|
-| `YearInput` | `CompetenceYearPlan`: same fields and checks (`periods`, `default_facts`, seniority at the first run month, `payment_day` 1-28), plus `payment_dates` (a date per run, keyed like `periods`); field paths read `CompetenceYearPlan.*`, feature `competence_year_plan` |
-| `engine.calculate_year(YearInput(...))` → `YearResult` | `engine.calculate_competence_year(CompetenceYearPlan(...))` → `CompetenceYearResult`; runs paid in the next tax year (December after 12 January) open it after the conguaglio of the year |
-| none | `engine.calculate_tax_year(TaxYearPlan(tax_year, competence_years, opening_state))` → `TaxYearResult` (`payments`, `conguaglio`) |
-| `engine.close_tax_year(year.closing_state)` | Still available; `result.next_opening_state` does it when the year is complete |
-| `TaxCashState.withholding_payments_closed` (stored) and `withholding_slots` | `withholding_payments_closed` is read from `payments`; `withholding_slots` is gone; `TaxCashState.conguaglio` is the payment that settled the year and `is_complete` tests it |
-| `RunContext.takes_last_slot` from `remaining == 1` | The payment settles when no other slot of its schedule is unpaid; `PeriodInput.planned_payments` states the payments still planned (`()` makes the payment the conguaglio) |
-| A standalone run projected the full standard calendar from a count | It projects the standard runs of the tax year not yet paid, in months of the employment |
-| `YearInput.opening_state` had to close no run of the year | A plan resumed on a state that closed some of its payments with the same `PaymentId` skips them; another date is rejected (feature `accrual_state`); totals without payments are rejected |
-| Runs of a competence year closed in order: regular before extra months | Only regular months are ordered; tredicesima and quattordicesima are independent, nothing closes after the termination run; payments of a tax year close in date order |
-| `EarningsYtd.inps_base` | `state.accrual.inps_bases` (`InpsBaseYtd(year, own, other_employers)`, per competence year, kept across tax years); the INPS rules of a run are those of its competence year |
-| `OpeningBalances(withholding_payments_closed=..., inps_base=...)`, `.to_state()` | `engine.import_opening_balances(OpeningBalances(payments=..., competence_runs=..., inps_bases=...))`; new `regional_settled`, `municipal_settled`, `credit_recovery_shortfall`; totals need their `payments` |
-| `WithholdingSchedule` in `payroll.domain.schedule`, positions by count | `payroll.domain.withholding_schedule`, slots of `PaymentId`, `position(payment, paid)` |
-
-- `PeriodState.SCHEMA_VERSION` is 7. The engine ships no migrator: to
-  reuse a persisted state of version 6, move
-  `cash.earnings.inps_base` into `accrual.inps_bases` as the `own` base of
-  the tax year (exact unless a payment of another competence year was
-  made in it), drop `withholding_payments_closed` and `withholding_slots`,
-  and set `cash.conguaglio` to the last slot-consuming payment when
-  `withholding_payments_closed` had reached `withholding_slots`. A state
-  with totals and no payment ids now projects the whole standard calendar
-  of the year: list its payments, or import them with `OpeningBalances`.
-- New public names: `CompetenceYearPlan`, `CompetenceYearResult`,
-  `TaxYearPlan`, `TaxYearResult`, `InpsBaseYtd`. Removed: `YearInput`,
-  `YearResult`.
-- A late December of 2025 paid in 2026 reads the 2025 INPS tables, which
-  the bundle does not hold: it raises `UnsupportedTaxYearError`.
-
-## Competence accrual state and tax cash state
-
-`PeriodState` splits what is accrued from what is paid. A tax year counts
-the payments made in it, whatever their competence (TUIR art. 51 c. 1), so
-December paid after 12 January no longer exhausts the counters of the next
-year.
-
-| Before | After |
-|---|---|
-| `state.ytd` (`TaxYearState`) | `state.cash` (`TaxCashState`), same YTD accounts |
-| `state.obligations` | `state.cash.obligations`; `PeriodState(obligations=...)` becomes `PeriodState(cash=TaxCashState(obligations=...))` |
-| `state.ytd.regular_periods_closed` (at most 12 per tax year) | `state.accrual.regular_months(year)`: regular months of a competence year, at most 12 because a run closes once |
-| `state.ytd.tax_withholding_periods_closed` (at most 14) | `state.cash.withholding_payments_closed`, no maximum |
-| `state.ytd.closed_run_ids` (reset every tax year) | `state.accrual.competence_runs` (kept across tax years) and `state.cash.payments` (`PaymentId` of the tax year) |
-| `OpeningBalances(regular_periods_closed=..., tax_withholding_periods_closed=..., closed_run_ids=...)` | `OpeningBalances(withholding_payments_closed=..., payments=(PaymentId.parse("2026-06-regular@2026-06-27"),))` |
-| `close_tax_year` reset the closed run ids | `close_tax_year` keeps `state.accrual`: a run closed in N is rejected in N+1 |
-| `WithholdingSchedule` slots only of runs of its year | A slot per payment of the tax year, a late run of an earlier competence year included |
-| `YearInput.opening_state` closed no run of the tax year | It may hold payments of an earlier competence year already made in the tax year (a late December); they take the first withholding slots |
-
-- `PeriodState.SCHEMA_VERSION` is 6. A persisted state of version 5 maps
-  `ytd` to `cash`, moves `obligations` into `cash`, builds
-  `accrual.competence_runs` from `closed_run_ids` and `cash.payments` from
-  them with their payment dates, and drops `regular_periods_closed`.
-- New public name: `PaymentId` (`run_id`, `payment_date`; text form
-  `"2026-12-regular@2027-01-13"`).
-- A run already closed or out of order in its competence year raises
-  `InvalidInputError` with feature `accrual_state` (was `payroll_run`) and
-  the message "already closed" (was "already processed"). A payment of a
-  run already paid in the tax year raises it with feature
-  `tax_cash_state`.
-- `TaxCashState`, `EmploymentAccrualState` and `PeriodState` raise
-  `InvalidInputError` with the path of the field. A run whose closing state
-  breaks their invariants raises `DataIntegrityError`.
