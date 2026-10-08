@@ -25,7 +25,7 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.payroll.domain.recovery_plan import InstallmentRun
+from ccnl_engine.payroll.domain.recovery_plan import InstallmentRun, RecoveryPlan
 from ccnl_engine.payroll.service.irpef_credits import CreditOutcome
 from ccnl_engine.payroll.service.irpef_net import NetIrpef
 from ccnl_engine.payroll.service.trattamento_credit import resolve_trattamento
@@ -80,3 +80,74 @@ def test_family_deductions_enter_the_sum_and_ulteriore_does_not(
     assert decision.amount == expected
     assert decision.reason_code == reason
     assert decision.inputs["relevant_deductions"] == _ART13 + family
+
+
+def test_component_carries_the_annual_credit_only_when_due() -> None:
+    """A credit of 542.21 is traced; no credit leaves no component."""
+    _, due, _, decisions = resolve_trattamento(
+        _INCOME, _annual(_D(2500), _D(0)), _RULES, _D(0), 12, run=InstallmentRun()
+    )
+    _, none, _, _ = resolve_trattamento(
+        _INCOME, _annual(_D(0), _D(0)), _RULES, _D(0), 12, run=InstallmentRun()
+    )
+
+    assert due is not None
+    assert due.amount == _D("542.21")
+    assert due.rule_id
+    assert none is None
+    assert decisions[0].inputs["taxable_income"] == _INCOME
+
+
+def test_a_plan_in_force_takes_its_installment_not_the_balance() -> None:
+    """A recovery of 240.00 in eight installments posts 30.00 on the run.
+
+    The annual credit due (542.21) would otherwise be paid over the slots:
+    the plan in force decides the run, not the balance (D.L. 3/2020 art. 1
+    c. 3, eight installments above 60 EUR).
+    """
+    plan = RecoveryPlan(
+        kind="trattamento_integrativo",
+        original_amount=_D("240.00"),
+        installment_amount=_D("30.00"),
+        installments_total=8,
+        installments_posted=2,
+    )
+    period, _, next_plan, decisions = resolve_trattamento(
+        _INCOME,
+        _annual(_D(2500), _D(0)),
+        _RULES,
+        _D(0),
+        12,
+        plan,
+        run=InstallmentRun(),
+    )
+
+    assert period == _D("-30.00")
+    assert next_plan is not None
+    assert next_plan.installments_posted == 3
+    assert decisions[0].inputs["recovery_in_progress"] == "true"
+
+
+def test_the_credit_up_to_15000_follows_the_days_of_the_year() -> None:
+    """Up to 15,000 EUR the 1,200 EUR are rapportati al periodo di lavoro.
+
+    D.L. 3/2020 art. 1 c. 1, first period: income 10,000, gross tax
+    10,000 x 0.23 = 2,300.00 above the art. 13 deduction less 75: the
+    credit is due in full over a year and in proportion over half of it.
+    """
+    annual = NetIrpef(
+        gross=_D("2300.00"),
+        work_deduction=_D("1955.00"),
+        family_deductions=_D(0),
+        ulteriore=CreditOutcome(_D(0), "full_amount"),
+    )
+    full = resolve_trattamento(
+        _D(10_000), annual, _RULES, _D(0), 1, run=InstallmentRun()
+    )[3][0].amount
+    half = resolve_trattamento(
+        _D(10_000), annual, _RULES, _D(0), 1, None, 182, run=InstallmentRun()
+    )[3][0].amount
+
+    assert full == _D("1200.00")
+    assert half is not None
+    assert _D(0) < half < _D("1200.00")

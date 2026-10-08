@@ -125,3 +125,25 @@ def test_minimum_left_to_tax_return(
     """The whole minimum less the deduction of the withholding, at least 0."""
     balance = minimum_left_to_tax_return(income, days, fixed_term=fixed_term)
     assert balance == expected
+
+
+def test_an_open_ended_employment_is_the_default() -> None:
+    """Without ``fixed_term`` the open-ended minimum of 690 applies."""
+    assert work_income_deduction(_FLAT_BAND, 92) == Decimal("492.77")
+    assert minimum_left_to_tax_return(_FLAT_BAND, 92) == Decimal("197.23")
+
+
+def test_one_day_of_work_is_a_period_of_work() -> None:
+    """One day: 1,955 * 1 / 365 = 5.356..., 5.36; balance 690 - 5.36."""
+    assert work_income_deduction(_FLAT_BAND, 1) == Decimal("5.36")
+    assert minimum_left_to_tax_return(_FLAT_BAND, 1) == Decimal("684.64")
+
+
+def test_balance_reads_the_minimum_of_the_rules() -> None:
+    """Minimum 2,000 / 2,400 for 92 days: 2,000 - 504.11 and 2,400 - 604.93."""
+    rules = WorkDeductionRules(
+        minimum=WorkDeductionMinimum(open_ended=Decimal(2000), fixed_term=Decimal(2400))
+    )
+    open_ended = minimum_left_to_tax_return(_FLAT_BAND, 92, rules)
+    fixed_term = minimum_left_to_tax_return(_FLAT_BAND, 92, rules, fixed_term=True)
+    assert (open_ended, fixed_term) == (Decimal("1495.89"), Decimal("1795.07"))

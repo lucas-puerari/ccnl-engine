@@ -22,6 +22,7 @@ from __future__ import annotations
 from decimal import Decimal
 
 from ccnl_engine.payroll.service.irpef_net import net_irpef
+from ccnl_engine.tax.domain.irpef_rules import WorkDeductionMinimum, WorkDeductionRules
 from tests.helpers import make_year_rules
 
 #: The rules carry the 16-ter block, so the test fails if the engine uses it.
@@ -52,3 +53,61 @@ def test_family_deductions_above_200k_are_not_reduced() -> None:
     assert result.work_deduction == Decimal(0)
     assert result.total_deductions == Decimal(500)
     assert result.net == Decimal("82000.00")
+    assert result.ulteriore_effect == Decimal(0)
+
+
+def test_the_art13_minimum_of_the_rules_reaches_the_net() -> None:
+    """A versioned minimum of 2,000 / 2,400 for 92 days of 10,000 EUR.
+
+    2,000 * 92 / 365 = 504.11 and 2,400 * 92 / 365 = 604.93, both above
+    1,955 * 92 / 365 = 492.77 (art. 13 c. 1 lett. a) TUIR).
+    """
+    rules = make_year_rules().model_copy(
+        update={
+            "work_deduction": WorkDeductionRules(
+                minimum=WorkDeductionMinimum(
+                    open_ended=Decimal(2000), fixed_term=Decimal(2400)
+                )
+            )
+        }
+    )
+
+    def work(fixed_term: bool) -> Decimal:
+        return net_irpef(
+            Decimal(10_000),
+            rules,
+            family_deductions=Decimal(0),
+            eligible_work_days=92,
+            fixed_term=fixed_term,
+        ).work_deduction
+
+    assert (work(False), work(True)) == (Decimal("504.11"), Decimal("604.93"))
+
+
+def test_the_ulteriore_removes_only_the_tax_left_after_art12_and_art13() -> None:
+    """The ulteriore detrazione (L. 207/2024 art. 1 c. 6) removes what is left.
+
+    Income 25,000 with 3,000 EUR of art. 12 deductions: the IRPEF left
+    after art. 12 and art. 13 is below the 1,000 EUR of the ulteriore, so
+    its effect is that residual, not the whole 1,000.
+    """
+    rules = make_year_rules(
+        ulteriore_detrazione={
+            "threshold_low": "20000",
+            "threshold_mid": "32000",
+            "threshold_high": "40000",
+            "max_amount": "1000",
+        }
+    )
+    result = net_irpef(
+        Decimal(25_000),
+        rules,
+        family_deductions=Decimal(3000),
+        eligible_work_days=365,
+        fixed_term=False,
+    )
+    residual = result.gross - result.work_deduction - Decimal(3000)
+
+    assert result.ulteriore is not None
+    assert Decimal(0) < residual < result.ulteriore.amount
+    assert result.ulteriore_effect == residual

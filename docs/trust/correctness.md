@@ -17,6 +17,13 @@ Evidence:
 
 - 100% branch coverage: every branch of `src/ccnl_engine` runs in the test suite
 - `mypy --strict`: the type system rules out entire classes of logic error
+- Mutation testing (`mutmut`, weekly CI job): the money-moving modules
+  (contributions, IRPEF and its deductions, the trattamento integrativo,
+  the additional 1% IVS, the INPS minimum base, the per-run withholding,
+  the ledger, rounding and the payability assessment) are mutated and the
+  tests of those modules must kill at least 93% of the mutants; 805 of 855
+  (94.2%) on 8 October 2026.  The survivors are mostly the trace text of
+  decisions (source labels, input names).
 - Reference table cases: <!-- trust:reference-cases -->7<!-- /trust:reference-cases -->
   cases in `tests/fixtures/reference_tables/`, each running one regular period through
   `PayrollEngine` and asserting, to the cent, the three values its cited
@@ -53,9 +60,8 @@ Metamorphic tests in `tests/acceptance/legal_scenarios/test_metamorphic_concia.p
 check relations that need no expected amount: an unknown fact is not a known
 zero, a bonus moves only its axes, the order of independent events and the
 split of a year at an exported state change nothing, and the public totals
-are the sums of the postings. Where a relation does not hold yet (renewal
-increments inside the minimo, the TFR quota net of the additional IVS
-contribution) the test is a strict `xfail` that names the rule.
+are the sums of the postings. A relation the engine does not meet yet is a
+strict `xfail` that names the rule; none is left today.
 
 A wrong rule shared by the engine and a hand calculation that follows the
 same reading still goes undetected.
