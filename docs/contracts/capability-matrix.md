@@ -104,7 +104,7 @@ formulas or caller-declared amounts.
 | `rinnovo_substitute_tax` | Imposta sostitutiva aumenti da rinnovo L. 199/2025 art. 1 c. 7 | net | native | decided | decision | `prior_year` | — | implemented | 0 / 1 / 0 / 0 |
 | `notte_festivi_turni_substitute_tax` | Imposta sostitutiva notturno, festivo e turni L. 199/2025 art. 1 cc. 10-11 | net | native | decided | decision | `prior_year` | — | implemented | 0 / 1 / 0 / 0 |
 | `bilateral_funds` | Fondi bilaterali (importi dal chiamante) | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
-| `pension_fund_contribution` | Previdenza complementare CCNL su adesione | net | partial | decided | decision | `employment.pension_fund` | ccnl_fund_on_enrolment | simplified | 0 / 0 / 14 / 0 |
+| `pension_fund_contribution` | Previdenza complementare CCNL su adesione | net | partial | decided | decision | `employment.pension_fund` | ccnl_fund_on_enrolment | simplified | 0 / 10 / 14 / 0 |
 | `assistance_contribution` | Contributi di assistenza contrattuale per ora retribuita (Cas.Sa.Colf, lavoro domestico) | net | native | decided | decision | `facts.contributable_hours` | — | implemented | 0 / 2 / 0 / 0 |
 
 ## CCNL coverage
@@ -129,7 +129,7 @@ never grow.
 |---|---|:---:|:---:|:---:|---|---|
 | 1 | [CCNL Acconciatura ed Estetica — Confartigianato/CNA](acconciatura-estetica-confartigianato.md) | 🔲 | 🔲 | 🔲 | base_salary | 0 / 28 / 1 / 1 |
 | 2 | [CCNL Agenzie Marittime Raccomandatarie, Agenzie Aeree e Mediatori Marittimi](agenzie-marittime-i481.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 36 / 2 / 0 |
-| 3 | [CCNL Agenzie di Viaggio e Turismo — Fiavet/Confcommercio](agenzie-viaggio-fiavet.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 66 / 1 / 1 |
+| 3 | [CCNL Agenzie di Viaggio e Turismo — Fiavet/Confcommercio](agenzie-viaggio-fiavet.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 68 / 1 / 1 |
 | 4 | [CCNL Alimentaristi Cooperative (Fedagripesca/Legacoop Agroalimentare/AGCI-Agrital)](alimentaristi-cooperative-e016.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 70 / 1 / 1 |
 | 5 | [CCNL Area Alimentazione e Panificazione — Artigianato (Confartigianato/CNA)](panificazione-artigianato-confartigianato.md) | 🔲 | 🔲 | 🔲 | territorial_supplement | 0 / 46 / 1 / 1 |
 | 6 | [CCNL Area Comunicazione — Artigianato](comunicazione-artigianato-confartigianato.md) | 🔲 | 🔲 | 🔲 | base_salary, worker_category | 0 / 39 / 1 / 1 |
@@ -222,19 +222,19 @@ never grow.
 | 93 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Operai OTI)](sistemazioni-idraulico-forestali-operai.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 20 / 2 / 1 |
 | 94 | [CCNL Telecomunicazioni — Assotelecomunicazioni (Asstel)](telecomunicazioni-asstel.md) | 🔲 | 🔲 | 🔲 | inps_employer, seniority | 0 / 45 / 2 / 0 |
 | 95 | [CCNL Terziario Distribuzione e Servizi — Confesercenti](terziario-confesercenti.md) | 🔲 | 🔲 | 🔲 | seniority, una_tantum | 0 / 62 / 2 / 0 |
-| 96 | [CCNL Terziario, Distribuzione e Servizi (Confcommercio)](commercio-confcommercio.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 4 / 62 / 0 |
+| 96 | [CCNL Terziario, Distribuzione e Servizi (Confcommercio)](commercio-confcommercio.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 6 / 62 / 0 |
 | 97 | [CCNL Tessile-Abbigliamento-Moda PMI (Uniontessile-Confapi)](tessile-pmi-uniontessile.md) | 🔲 | 🔲 | 🔲 | base_salary | 0 / 0 / 43 / 1 |
 | 98 | [CCNL Trasporto Aereo — Gestori Aeroportuali](trasporto-aereo-assaeroporti.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 72 / 2 / 0 |
 | 99 | [CCNL Trasporto a Fune (Funivie Terrestri ed Aeree) - ANEF](funivie-anef.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 47 / 1 / 1 |
 | 100 | [CCNL Turismo (Assoturismo-Confesercenti)](turismo-confesercenti.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 56 / 1 / 1 |
-| 101 | [CCNL Turismo — Federalberghi/Faita](turismo-federalberghi.md) | 🔲 | 🔲 | 🔲 | seniority, worker_category | 0 / 66 / 1 / 1 |
-| 102 | [CCNL Turismo, Pubblici Esercizi e Ristorazione (Confcommercio)](turismo-confcommercio.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 56 / 1 / 1 |
+| 101 | [CCNL Turismo — Federalberghi/Faita](turismo-federalberghi.md) | 🔲 | 🔲 | 🔲 | seniority, worker_category | 0 / 68 / 1 / 1 |
+| 102 | [CCNL Turismo, Pubblici Esercizi e Ristorazione (Confcommercio)](turismo-confcommercio.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 58 / 1 / 1 |
 | 103 | [CCNL Vetro (Industrie) — Settori Meccanizzati (Prime Lavorazioni)](vetro-meccanizzato-assovetro.md) | 🔲 | 🔲 | 🔲 | base_salary | 0 / 0 / 34 / 1 |
 | 104 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG](vigilanza-privata-federdat-gpg.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 48 / 1 / 1 |
 | 105 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF](vigilanza-privata-federdat-sf.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 46 / 2 / 1 |
 | 106 | [CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso](agenti-immobiliari-fiaip.md) | 🔲 | 🔲 | 🔲 | base_salary, bilateral_funds, pension_fund_contribution, seniority, una_tantum | 0 / 0 / 30 / 1 |
 | 107 | [CCNL per i dipendenti da autoscuole, scuole nautiche e studi di consulenza automobilistica](autoscuole-unasca.md) | 🔲 | 🔲 | 🔲 | bilateral_funds, health_fund_employer, seniority | 0 / 32 / 2 / 0 |
-| 108 | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo](pubblici-esercizi-fipe-angem.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 59 / 1 / 1 |
+| 108 | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo](pubblici-esercizi-fipe-angem.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 61 / 1 / 1 |
 | 109 | [CCNL per i dipendenti dalle aziende di lavorazione della foglia di tabacco secco allo stato sciolto](tabacco-apti.md) | 🔲 | 🔲 | 🔲 | pension_fund_contribution, seniority | 0 / 0 / 58 / 1 |
 | 110 | [CCNL per i dipendenti degli studi e delle attività professionali (Confprofessioni)](studi-professionali-confprofessioni.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 42 / 2 / 0 |
 | 111 | [CCNL per i dipendenti delle imprese artigiane esercenti servizi di pulizia, disinfezione, disinfestazione, derattizzazione e sanificazione](pulizia-artigianato-confartigianato.md) | 🔲 | 🔲 | 🔲 | base_salary, bilateral_funds, holiday_work, inps_employer, leave, night_work, overtime, seniority | 0 / 0 / 86 / 1 |

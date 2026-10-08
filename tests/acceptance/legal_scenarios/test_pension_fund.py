@@ -31,6 +31,13 @@ base, rounded half up to the cent):
   2364.38 a month, 13 runs.  FONCHIM employer 1.5% until the +0.5% of
   1 January 2027: 35.4657 -> 35.47; employee 1.2% chosen = 28.37256 ->
   28.37; solidarity 3.547 -> 3.55.
+- Commercio (Confcommercio), level 4 in 2026: 1257.46 minimum + 524.22
+  contingenza and EDR + 2.07 terzo elemento = 1783.75.  Fon.Te. computes
+  on the pay that enters the TFR (statute Part I, Scheda III, note 1), not
+  on the INPS base: employer 1.55% = 27.648 -> 27.65, employee minimum
+  0.55% = 9.81063 -> 9.81, solidarity 2.765 -> 2.77.  A bonus enters the
+  INPS base and not the TFR (policy ``it/earning/variable``): it leaves the
+  Fon.Te. contributions unchanged.
 """
 
 from __future__ import annotations
@@ -352,3 +359,36 @@ class TestNotEnrolled:
         )
         with pytest.raises(InvalidInputError, match="not a fund of CCNL"):
             regular_period(employment=employment)
+
+
+class TestCommercioFonte:
+    """Fon.Te. on commercio level 4, January 2026, on the TFR base."""
+
+    @staticmethod
+    def _run(*events: BonusEvent) -> PeriodResult:
+        employment = Employment(
+            ccnl_slug="commercio-confcommercio.json",
+            level_code="4",
+            seniority=new_hire(),
+            pension_fund=PensionFundEnrolment(
+                "FONTE", Decimal("0.0055"), tfr_to_fund=True
+            ),
+            contract_type=Permanent(),
+        )
+        return regular_period(employment=employment, events=events)
+
+    def test_contributions_on_the_monthly_pay(self) -> None:
+        """1.55% and 0.55% of 1783.75, and 10% solidarity on the employer."""
+        result = self._run()
+        decision = _pension_decision(result)
+        assert decision.inputs["base"] == Decimal("1783.75")
+        assert _entry(result, "pension_fund_employer") == Decimal("27.65")
+        assert _entry(result, "pension_fund_employee") == Decimal("9.81")
+        assert decision.inputs["solidarity"] == Decimal("2.77")
+
+    def test_bonus_outside_the_tfr_base_leaves_the_fund_unchanged(self) -> None:
+        """A 1000.00 bonus is INPS taxable pay, not pay that enters the TFR."""
+        bonus = BonusEvent(event_date=date(2026, 1, 15), amount=Decimal(1000))
+        result = self._run(bonus)
+        assert _pension_decision(result).inputs["base"] == Decimal("1783.75")
+        assert _entry(result, "pension_fund_employer") == Decimal("27.65")

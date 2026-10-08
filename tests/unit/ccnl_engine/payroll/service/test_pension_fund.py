@@ -59,9 +59,9 @@ class TestResolveTerms:
 
     def test_ccnl_without_funds(self) -> None:
         """A CCNL with no fund rejects every enrolment."""
-        commercio = load_ccnl("commercio-confcommercio.json")
+        bancari = load_ccnl("bancari-abi.json")
         with pytest.raises(InvalidInputError, match="its funds are \\[\\]"):
-            resolve_terms(commercio, _ENROLMENT, None, _DAY, _RULES)
+            resolve_terms(bancari, _ENROLMENT, None, _DAY, _RULES)
 
     @pytest.mark.parametrize(
         ("category", "accepted"),

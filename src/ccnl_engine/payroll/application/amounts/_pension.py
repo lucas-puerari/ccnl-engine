@@ -5,6 +5,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.contract.domain.compensation import FundContributionBase
 from ccnl_engine.payroll.service.pension_fund import contribute, upcoming_adjustment
 
 if TYPE_CHECKING:
@@ -15,18 +16,22 @@ _ZERO = Decimal(0)
 
 
 def run_pension(inp: _AmountsInput) -> PensionContribution | None:
-    """Return the fund contributions of the run, on its INPS base.
+    """Return the fund contributions of the run, on the base of the fund.
+
+    The base is the INPS base of the run or, for a fund assessed on the pay
+    counted for the TFR (e.g. Fon.Te.), the TFR base: the recurring gross,
+    the benefits in kind and the events entering the TFR.
 
     Returns:
         ``None`` when the worker is not enrolled.
     """
     if inp.pension is None:
         return None
-    return contribute(
-        inp.pension,
-        inp.monthly_gross + inp.event_inps_base,
-        inp.opening.earnings.pension_deducted,
-    )
+    if inp.pension.fund.contribution_base is FundContributionBase.TFR_BASE:
+        base = inp.monthly_gross + inp.in_kind + inp.event_tfr_base
+    else:
+        base = inp.monthly_gross + inp.event_inps_base
+    return contribute(inp.pension, base, inp.opening.earnings.pension_deducted)
 
 
 def projected_adjustment(

@@ -287,11 +287,12 @@ Enrolment in a complementary pension fund is voluntary (D.Lgs. 252/2005
 art. 1 c. 2), so the engine never assumes it. Declare it on the employment
 as `Employment.pension_fund`, a `PensionFundEnrolment`:
 
-- `fund_code`: a fund of the CCNL, e.g. `"ALIFOND"` for Tabacco or
-  `"FONCHIM"` for Vetro meccanizzato. A code the CCNL does not declare
+- `fund_code`: a fund of the CCNL, e.g. `"ALIFOND"` for Tabacco,
+  `"FONCHIM"` for Vetro meccanizzato or `"FONTE"` for Commercio. A code the CCNL does not declare
   raises `InvalidInputError`.
 - `employee_rate`: the contribution the worker chose. It cannot be below
-  the CCNL minimum when the bundle records one (ALIFOND: 1%).
+  the CCNL minimum when the bundle records one (ALIFOND: 1%, Fon.Te.:
+  0.55%).
 - `tfr_to_fund`: whether the TFR accrued is paid to the fund. Required,
   with no default.
 
@@ -303,7 +304,9 @@ not known: on every CCNL but domestic work, whether or not the bundle holds
 its negotiated fund, the decision is `incomplete` with the reason
 `required_fact_missing`, no fund line is posted and the run has a
 `missing_fact` blocker for `pension_fund`. The bundle holds the fund data of
-three CCNLs (tabacco, tessile PMI, vetro meccanizzato): an enrolment in the
+eight CCNLs (tabacco, tessile PMI, vetro meccanizzato, and Fon.Te. for
+commercio, turismo Confcommercio and Federalberghi, pubblici esercizi FIPE
+and agenzie di viaggio FIAVET): an enrolment in the
 fund of another CCNL raises `InvalidInputError`, since its rates are not in
 the bundle. Whether the TFR of a worker who
 expressed no choice goes to the fund (silent consent, D.Lgs. 252/2005 art.
@@ -313,17 +316,20 @@ When enrolled, each run posts:
 
 | Line | Account | Amount | Effect |
 |---|---|---|---|
-| Employer contribution | `pension_fund_employer` | CCNL rate x INPS base of the run | employer cost |
+| Employer contribution | `pension_fund_employer` | CCNL rate x fund base of the run | employer cost |
 | Solidarity contribution | `employer_contributions` | 10% of the employer contribution | employer cost |
-| Employee contribution | `pension_fund_employee` | chosen rate x INPS base | withheld from net |
+| Employee contribution | `pension_fund_employee` | chosen rate x fund base | withheld from net |
 | TFR to the fund | `pension_fund_tfr` instead of `tfr_accrual` or `tfr_treasury_fund` | TFR of the run, net of the 0.50% additional IVS (L. 297/1982 art. 3 c. 16) | none: the cost does not change |
 
 The rules behind it:
 
-- **Base.** The bundle stores each fund rate as a fraction of the INPS
-  contribution base of the run, events included
-  (`CCNL.parameters.employer_funds`). A fund whose statute uses another
-  base (e.g. the TFR base) must be converted to it in the data.
+- **Base.** Each fund of `CCNL.parameters.employer_funds` names the base
+  its rates apply to in `contribution_base`: `inps_base`, the default, is
+  the INPS contribution base of the run, events included; `tfr_base` is
+  the pay that enters the TFR of the run (the monthly pay, the benefits in
+  kind and the events the TFR includes), the base of Fon.Te. (statute
+  Part I, Scheda III, note 1). Overtime and bonuses enter the INPS base
+  and not the TFR base.
 - **Deduction.** Employee and employer contributions are deductible from
   the taxable income up to 5 300.00 EUR a year from tax year 2026
   (D.Lgs. 252/2005 art. 8 c. 4 as amended by L. 199/2025; TUIR art. 10
@@ -343,7 +349,9 @@ Not modelled: the compensatory measures for employers whose TFR goes to a
 fund (D.Lgs. 252/2005 art. 10), the extra deduction of workers first
 employed from 2007 (art. 8 c. 6), a partial TFR conferment, and the eligibility
 conditions some CCNLs set (e.g. ALIFOND excludes fixed-term contracts up
-to six months).
+to six months). Cometa (metalmeccanico) is not in the bundle: its rates
+apply to the contractual minimum of the level, a third base the engine
+does not compute yet.
 
 ```python
 --8<-- "docs/examples/13_pension_fund.py"

@@ -52,7 +52,7 @@ class PensionFundTerms:
     Attributes:
         fund: The fund of the CCNL.
         rate_period: Period of the employer rate in force.
-        employer_rate: Employer rate on the INPS contribution base.
+        employer_rate: Employer rate on the base of the fund.
         employee_rate: Employee rate the worker chose.
         employee_min_rate: Minimum employee rate of the CCNL, ``None`` when
             the bundle records none.
