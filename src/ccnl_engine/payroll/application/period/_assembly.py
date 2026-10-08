@@ -173,13 +173,9 @@ def _input_issues(
     """Return the issues of the facts and rules the run read.
 
     Returns:
-        The issues of the category rates, the seniority, the full time
-        and the roles of the employment, the pension fund enrolment, the
-        suspension of accrual of the absences, the proration, the minimum
-        INPS base, the NASpI surcharge, the IVS massimale, the additional 1%
-        IVS, the opening state, the INPS base of other employments, the TFR
-        revaluation and the renewal regime on the minimo, in that order,
-        each only when raised.
+        The issues of the employment facts, the proration, the INPS
+        amounts, the opening state, the TFR revaluation and the renewal
+        regime on the minimo, in the order listed below, when raised.
     """
     ivs = amounts.ivs_ceiling
     base = amounts.inps_base(ctx.monthly_gross + events.totals.inps_base)

@@ -38,7 +38,6 @@ from ccnl_engine.inputs import (
     DependentRelationship,
     EmploymentPeriod,
     FamilyComposition,
-    FixedTerm,
     InpsBaseYtd,
     NoPensionFund,
     OpeningBalances,
@@ -49,6 +48,7 @@ from ccnl_engine.inputs import (
     WeeklyHours,
     WorkerCategory,
 )
+from tests.fixtures.default_cases_fixed_term import fixed_term_cases
 from tests.fixtures.default_cases_sickness import sickness_cases
 from tests.fixtures.dependents import declared_dependent
 from tests.fixtures.explicit_facts import (
@@ -293,9 +293,6 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
             "activity",
         ),
     ),
-    "Employment.contract_type": (
-        _employment_pair(replace(CONCIA_D2, contract_type=FixedTerm()), CONCIA_D2),
-    ),
     "Employment.category": (
         _employment_pair(
             replace(CONCIA_D2, category=WorkerCategory.OPERAIO), CONCIA_D2
@@ -464,6 +461,7 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
     "BonusEvent.agreement_signed_on": (
         _event_pair(_renewal(), _renewal(None), "agreement_signed_on"),
     ),
+    **fixed_term_cases(_employment_pair),
     **sickness_cases(DefaultCase),
 }
 

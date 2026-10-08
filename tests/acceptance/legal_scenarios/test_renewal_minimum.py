@@ -22,7 +22,7 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine import EmployerProfile, Employment, Headcount
-from ccnl_engine.inputs import EmploymentSector, PriorYearTaxFacts
+from ccnl_engine.inputs import EmploymentSector, Permanent, PriorYearTaxFacts
 from ccnl_engine.results import BlockerCode, CalculationStatus
 from tests.acceptance.legal_scenarios._support import (
     history,
@@ -40,6 +40,7 @@ pytestmark = pytest.mark.legal_scenario
 
 _RENEWAL = "rinnovo_substitute_tax"
 _EMPLOYMENT = Employment(
+    contract_type=Permanent(),
     ccnl_slug="metalmeccanico-federmeccanica.json",
     level_code="C3",
     seniority=new_hire(),
