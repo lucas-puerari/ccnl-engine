@@ -330,6 +330,12 @@ The rules behind it:
   kind and the events the TFR includes), the base of Fon.Te. (statute
   Part I, Scheda III, note 1). Overtime and bonuses enter the INPS base
   and not the TFR base.
+- **Rates by contract.** A fund can charge apprentices another employer
+  rate (`apprentice_rate`, used when `contract_type` is an `Apprentice`).
+  Fon.Te. takes the rates of each CCNL from Allegato 1 of its nota
+  informativa: 1.55% employer on Commercio (1.05% for apprentices), 0.55%
+  on Turismo, Pubblici esercizi and Agenzie di viaggio; the worker pays at
+  least 0.55% everywhere.
 - **Deduction.** Employee and employer contributions are deductible from
   the taxable income up to 5 300.00 EUR a year from tax year 2026
   (D.Lgs. 252/2005 art. 8 c. 4 as amended by L. 199/2025; TUIR art. 10

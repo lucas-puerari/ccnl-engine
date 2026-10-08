@@ -96,6 +96,8 @@ class EmployerFund(BaseModel):
     the *imponibile Cassa Edile* or the minimum wage alone) is not stored
     with a rate.  ``employee_min_rate`` is the minimum employee contribution
     the CCNL sets on the same base, when the bundle records one.
+    ``apprentice_rate`` is the employer rate for apprentices when the fund
+    sets one apart (``None`` = ``rate``).
     ``applies_to_categories`` restricts the fund to levels of the given
     categories (``None`` = all).
     """
@@ -106,6 +108,7 @@ class EmployerFund(BaseModel):
     description: str
     rate: TimeSeries
     employee_min_rate: TimeSeries | None = None
+    apprentice_rate: TimeSeries | None = None
     contribution_base: FundContributionBase = FundContributionBase.INPS_BASE
     applies_to_categories: tuple[WorkerCategory, ...] | None = None
     provenance: RuleProvenance | None = None

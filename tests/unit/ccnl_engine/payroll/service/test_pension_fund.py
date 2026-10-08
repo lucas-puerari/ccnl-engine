@@ -34,7 +34,7 @@ _TABACCO = load_ccnl("tabacco-apti.json")
 
 
 def _terms() -> PensionFundTerms:
-    return resolve_terms(_TABACCO, _ENROLMENT, None, _DAY, _RULES)
+    return resolve_terms(_TABACCO, _ENROLMENT, None, _DAY, _RULES, apprentice=False)
 
 
 class TestResolveTerms:
@@ -50,18 +50,46 @@ class TestResolveTerms:
     def test_no_rate_before_the_series(self) -> None:
         """ALIFOND starts on 2025-07-01: no rate in January 2025."""
         with pytest.raises(InvalidInputError, match="no employer rate"):
-            resolve_terms(_TABACCO, _ENROLMENT, None, date(2025, 1, 1), _RULES)
+            resolve_terms(
+                _TABACCO, _ENROLMENT, None, date(2025, 1, 1), _RULES, apprentice=False
+            )
 
     def test_missing_statutory_rules(self) -> None:
         """A tax year without complementary pension rules is rejected."""
         with pytest.raises(InvalidInputError, match="no complementary pension"):
-            resolve_terms(_TABACCO, _ENROLMENT, None, _DAY, None)
+            resolve_terms(_TABACCO, _ENROLMENT, None, _DAY, None, apprentice=False)
+
+    @pytest.mark.parametrize(
+        ("apprentice", "expected"),
+        [(True, Decimal("0.0105")), (False, Decimal("0.0150"))],
+    )
+    def test_apprentice_rate(self, *, apprentice: bool, expected: Decimal) -> None:
+        """A fund with an apprentice rate charges it to apprentices only."""
+        fund = _TABACCO.parameters.employer_funds[0]
+        apart = fund.rate.model_copy(
+            update={
+                "periods": tuple(
+                    p.model_copy(update={"value": Decimal("0.0105")})
+                    for p in fund.rate.periods
+                )
+            }
+        )
+        params = _TABACCO.parameters.model_copy(
+            update={
+                "employer_funds": (fund.model_copy(update={"apprentice_rate": apart}),)
+            }
+        )
+        ccnl = _TABACCO.model_copy(update={"parameters": params})
+        terms = resolve_terms(
+            ccnl, _ENROLMENT, None, _DAY, _RULES, apprentice=apprentice
+        )
+        assert terms.employer_rate == expected
 
     def test_ccnl_without_funds(self) -> None:
         """A CCNL with no fund rejects every enrolment."""
         bancari = load_ccnl("bancari-abi.json")
         with pytest.raises(InvalidInputError, match="its funds are \\[\\]"):
-            resolve_terms(bancari, _ENROLMENT, None, _DAY, _RULES)
+            resolve_terms(bancari, _ENROLMENT, None, _DAY, _RULES, apprentice=False)
 
     @pytest.mark.parametrize(
         ("category", "accepted"),
@@ -81,10 +109,14 @@ class TestResolveTerms:
         params = _TABACCO.parameters.model_copy(update={"employer_funds": (fund,)})
         ccnl = _TABACCO.model_copy(update={"parameters": params})
         if accepted:
-            assert resolve_terms(ccnl, _ENROLMENT, category, _DAY, _RULES)
+            assert resolve_terms(
+                ccnl, _ENROLMENT, category, _DAY, _RULES, apprentice=False
+            )
         else:
             with pytest.raises(InvalidInputError, match="covers the categories"):
-                resolve_terms(ccnl, _ENROLMENT, category, _DAY, _RULES)
+                resolve_terms(
+                    ccnl, _ENROLMENT, category, _DAY, _RULES, apprentice=False
+                )
 
 
 class TestContribute:

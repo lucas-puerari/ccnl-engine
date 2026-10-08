@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Fon.Te. employer rates of tourism and apprentices
+
+| Before | After |
+|---|---|
+| Fon.Te. charged the employer 1.55% on every CCNL that has it | 0.55% on Turismo (Confcommercio, Federalberghi), Pubblici esercizi FIPE and Agenzie di viaggio FIAVET, and 1.05% for apprentices of Commercio, as Allegato 1 of the Fon.Te. nota informativa sets; new `EmployerFund.apprentice_rate` |
+
 ## Fon.Te. rates on the TFR base
 
 | Before | After |
