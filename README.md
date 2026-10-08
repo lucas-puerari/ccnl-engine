@@ -148,6 +148,7 @@ strict = PayrollEngine.bundled(mode="operational")
 
 for contract in engine.list_contracts():  # ContractSummary, with readiness
     print(contract.ccnl_id, contract.readiness, contract.validity)
+levels = engine.list_levels("commercio-confcommercio")  # LevelSummary per level
 ruleset = engine.inspect_ruleset("commercio-confcommercio")  # RulesetAssurance
 print(ruleset.readiness, ruleset.confidence)  # → exploratory unverified
 ```

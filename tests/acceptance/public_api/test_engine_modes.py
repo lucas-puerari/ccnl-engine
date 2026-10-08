@@ -119,3 +119,11 @@ def test_an_operational_year_is_blocked_on_every_run() -> None:
         for r in year.period_results
     )
     assert not year.is_payable
+
+
+def test_the_levels_of_a_contract_are_listed_for_employment() -> None:
+    """Each listed level code computes a run of its CCNL."""
+    engine = PayrollEngine.bundled()
+    (level, *_) = engine.list_levels("metalmeccanico-federmeccanica")
+
+    assert level.code in {lv.code for lv in engine.list_levels("C011")}

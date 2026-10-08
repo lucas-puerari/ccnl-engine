@@ -16,6 +16,7 @@ from ccnl_engine.shared.domain.errors import UnknownCcnlError
 from ccnl_engine.shared.domain.validation import require_str
 
 if TYPE_CHECKING:
+    from ccnl_engine.contract.domain.category import WorkerCategory
     from ccnl_engine.provenance.domain.ruleset_identity import RulesetReadiness
 
 CcnlId = NewType("CcnlId", str)
@@ -48,6 +49,22 @@ class ContractSummary:
     cnel_code: str
     readiness: RulesetReadiness
     validity: ValidityWindow | None
+
+
+@dataclass(frozen=True, slots=True)
+class LevelSummary:
+    """One level of a bundled CCNL, as ``Employment.level_code`` names it.
+
+    Attributes:
+        code: The level code (e.g. ``"C3"``).
+        description: Label of the level in the CCNL data.
+        category: Worker category the level is restricted to, ``None``
+            when the level admits any.
+    """
+
+    code: str
+    description: str
+    category: WorkerCategory | None
 
 
 @cache
@@ -89,8 +106,8 @@ def get_ccnl(ccnl_id: str) -> ContractSummary:
     """Resolve a CCNL by slug or CNEL code.
 
     Args:
-        ccnl_id: A slug (e.g. ``"metalmeccanico-federmeccanica"``) or CNEL
-            code (e.g. ``"E042"``).
+        ccnl_id: A slug (e.g. ``"metalmeccanico-federmeccanica"``, with or
+            without ``.json``) or CNEL code (e.g. ``"E042"``).
 
     Returns:
         The matching :class:`ContractSummary`.
@@ -100,8 +117,9 @@ def get_ccnl(ccnl_id: str) -> ContractSummary:
             similar identifiers attached as suggestions.
     """
     require_str(ccnl_id, "ccnl_id", feature="catalog")
+    key = ccnl_id.removesuffix(".json")
     for info in _load_all():
-        if ccnl_id in {info.ccnl_id, info.cnel_code}:
+        if key in {info.ccnl_id, info.cnel_code}:
             return info
     query = ccnl_id.lower()
     suggestions = tuple(

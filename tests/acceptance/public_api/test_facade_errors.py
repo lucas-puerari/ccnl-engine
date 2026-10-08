@@ -155,8 +155,10 @@ def test_an_unknown_contract_is_a_public_error(
     assert error.code == code
 
 
-@pytest.mark.parametrize("slug", ["../ccnl.json", "Metal.json", "metal", "a/b.json"])
-def test_a_slug_that_is_not_a_bundle_file_name_is_invalid_input(slug: str) -> None:
+@pytest.mark.parametrize(
+    "slug", ["../ccnl.json", "Metal.json", "metal.txt", "a/b.json"]
+)
+def test_a_slug_that_is_not_a_ccnl_id_is_invalid_input(slug: str) -> None:
     """A path or another extension never reaches the bundle reader."""
     with pytest.raises(InvalidInputError) as raised:
         Employment(ccnl_slug=slug, level_code="C3", contract_type=Permanent())

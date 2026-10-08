@@ -4,6 +4,13 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## One CCNL identifier and the levels of a CCNL
+
+| Before | After |
+|---|---|
+| `Employment.ccnl_slug` took the bundle file name only (`"anas.json"`), `list_contracts()` and `inspect_ruleset()` the id only (`"anas"`) | Every entry point takes the id with or without `.json`; `Employment.ccnl_slug` stores the file name |
+| The levels of a CCNL were readable only through internal loaders | `PayrollEngine.list_levels(ccnl_id)` returns a `LevelSummary` (`code`, `description`, `category`) per level, exported by `ccnl_engine.catalog` |
+
 ## Supported tax years in the catalog
 
 | Before | After |
