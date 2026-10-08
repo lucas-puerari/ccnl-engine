@@ -140,6 +140,16 @@ Readiness is part of the public contract, before and after a run:
 | Which rulesets did this result read? | `result.rulesets`, one `RulesetAssurance` each |
 | Can the amounts of this computation be paid as computed? | `result.is_payable` and `result.blockers` |
 
+`ContractSummary.validity` and `RulesetIdentity.effective_from` answer two
+questions: the first is the span the bundled tables cover, the second the
+date the agreement of the ruleset takes effect. They can differ (the
+agreement of a renewal is signed before its first tranche is paid), so a
+caller deciding whether a date can be computed reads `validity`
+(`catalog.get_ccnl(ccnl_id).validity` for one CCNL). A competence year
+leaves out the runs before the base salary of the level, and before its
+seniority amount when the employment states a seniority, with a
+`run_not_computed` blocker each.
+
 Only CCNL rulesets carry a tier. Tax, INPS and surtax rulesets report
 `readiness = None` (not tracked) and the `verification_status` of their
 identity as `confidence`; their evidence is the provenance of each rule (see
