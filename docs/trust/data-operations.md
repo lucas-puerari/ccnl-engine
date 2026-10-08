@@ -103,6 +103,28 @@ never does it.
 
 ---
 
+## Calendar of yearly data
+
+The bundle ships the tax and INPS tables of the years
+`ccnl_engine.catalog.supported_tax_years()` returns; a payment of another
+tax year raises `UnsupportedTaxYearError` naming them.  Rules of one year are
+never copied into the next: each year is sourced on its own.
+
+| When | Task |
+|---|---|
+| Mid-January | Insert the ISTAT FOI index (without tobacco) of December of the previous year in `tax/data/tfr-revaluation-<year>.json` (`december` is `null` until then): every December run with a TFR fund to revalue is blocked without it (art. 2120 c. 4 c.c.). |
+| After the budget law and the INPS circulars of the year | Build the `<year>-<sector>.json` tax and INPS files, the somma esente, family deductions, surtax and TFR revaluation files of the year, each record with its own source. |
+
+Provisions of 2026 that change or end in 2027, to settle when the 2027
+rulesets are built (sources on Normattiva, read in October 2026):
+
+| Provision | Status in 2027 | Engine use |
+|---|---|---|
+| Art. 23 DPR 600/1973 (withholding by the sostituto) | Repealed from 1 January 2027, replaced by D.Lgs. 33/2025 (Testo unico versamenti e riscossione) | Per-run withholding and conguaglio |
+| Art. 17 TUIR (separate taxation) and the text of art. 21 TUIR | Art. 17 repealed from 1 January 2027 by D.Lgs. 19 giugno 2026 n. 117; the art. 21 text in force ends on 31 December 2026 | Arrears of earlier years |
+| L. 207/2024 art. 1 c. 6 (ulteriore detrazione) | Repealed from 2027 by D.Lgs. 117/2026 | Ulteriore detrazione and its recovery |
+| D.Lgs. 47/2000 art. 11 cc. 3-4 (substitute tax on the TFR revaluation) | Repealed from 1 January 2027 by D.Lgs. 33/2025, as amended by D.L. 200/2025 | TFR revaluation tax |
+
 ## Changelog and economic diff
 
 Every dataset release ships a `CHANGELOG.md` at the repository root.

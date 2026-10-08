@@ -1,8 +1,7 @@
 """Structured error hierarchy for ccnl-engine.
 
-Public error codes are declared in ``PUBLIC_ERROR_CODES``.  A code is a
-permanent commitment: its name and semantics cannot change without a major
-version bump.
+Public error codes are in ``PUBLIC_ERROR_CODES``: a permanent commitment,
+whose names and semantics change only with a major version bump.
 
 Note: Pydantic ``@field_validator`` and ``@model_validator`` methods in the
 domain layer must keep raising ``ValueError`` so Pydantic wraps them in
@@ -262,32 +261,33 @@ class MissingRuleError(CcnlEngineError):
 class UnsupportedTaxYearError(CcnlEngineError):
     """Raised when the knowledge bundle has no tax tables for a tax year.
 
-    The tax year of a run follows its payment date, so a run of one year
-    paid in the next can need tables the bundle does not ship yet.
+    The tax year of a run follows its payment date: a run paid in the next
+    year can need tables the bundle does not ship yet.
 
     Attributes:
         year: The tax year with no bundled tables.
-        sector: Tax sector of the missing table, or ``None`` when the
-            whole year is missing.
+        sector: Tax sector of the missing table, ``None`` for the whole year.
+        supported: The tax years the bundle ships, empty when unknown.
     """
 
-    def __init__(self, year: int, *, sector: str | None = None) -> None:
-        """Initialise with the unsupported tax year and optional sector."""
-        self.year = year
-        self.sector = sector
+    def __init__(
+        self, year: int, *, sector: str | None = None, supported: tuple[int, ...] = ()
+    ) -> None:
+        """Initialise with the unsupported tax year, its sector and the years."""
+        self.year, self.sector, self.supported = year, sector, supported
         scope = f" for sector {sector!r}" if sector is not None else ""
+        years = ", ".join(str(y) for y in supported) or "none"
         super().__init__(
             f"No tax tables for tax year {year}{scope} in the knowledge bundle",
             code="unsupported_tax_year",
             remediation=(
-                "Use a payment date in a supported tax year or upgrade the "
-                "knowledge bundle."
+                f"Supported tax years: {years} (catalog.supported_tax_years); "
+                "upgrade the knowledge bundle once the year is published."
             ),
         )
 
 
-#: Public error codes. Each code is a permanent commitment: its name and
-#: semantics cannot change without a major version bump.
+#: Public error codes (see the module docstring).
 PUBLIC_ERROR_CODES: frozenset[str] = frozenset({
     "unknown_ccnl",
     "unknown_level",

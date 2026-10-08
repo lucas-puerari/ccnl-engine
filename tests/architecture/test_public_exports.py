@@ -147,6 +147,7 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
         "VerificationStatus",
         "get_ccnl",
         "search_ccnls",
+        "supported_tax_years",
     }),
 }
 

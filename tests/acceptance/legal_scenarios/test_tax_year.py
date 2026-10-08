@@ -17,6 +17,7 @@ from ccnl_engine import (
     PeriodInput,
     UnsupportedTaxYearError,
 )
+from ccnl_engine.catalog import supported_tax_years
 from ccnl_engine.inputs import (
     InpsBaseYtd,
     OpeningBalances,
@@ -73,6 +74,8 @@ def test_run_of_unbundled_tax_year_raises_domain_error(
         regular_period(month=12, payment_date=payment_date)
 
     assert info.value.year == tax_year
+    assert info.value.supported == supported_tax_years() == (2026,)
+    assert "2026" in (info.value.remediation or "")
 
 
 def test_run_of_next_tax_year_is_not_added_to_current_year_state() -> None:
