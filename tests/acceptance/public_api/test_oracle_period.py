@@ -159,7 +159,13 @@ def test_employer_cost_counts_the_additional_ivs_once() -> None:
 
 
 def test_domestic_inps_non_convivente() -> None:
-    """Flat per-hour INPS contributions for domestic non-convivente worker, level B."""
+    """Flat per-hour INPS contributions for domestic non-convivente worker, level B.
+
+    Gross: Tabella C hourly 7.01 x 40 x 52 / 12 = 1,215.07 (CCNL lavoro
+    domestico 28/10/2025, art. 14 c. 1 lett. b and chiarimento a verbale 1).
+    25 weekly hours > 24, so INPS Circ. 9/2026 charges 0.31 and 0.93 per
+    hour: 108 x 0.31 = 33.48 and 108 x 0.93 = 100.44.
+    """
     result = engine.calculate_period(
         PeriodInput(
             run=PayrollRun.regular(year=2026, month=1),
@@ -175,7 +181,7 @@ def test_domestic_inps_non_convivente() -> None:
             facts=PeriodFacts(contributable_hours=ContributableHours(Decimal(108))),
         )
     )
-    assert result.period_gross == Decimal("1212.73")
+    assert result.period_gross == Decimal("1215.07")
     assert result.contribution_breakdown.employee == Decimal("33.48")
     assert result.contribution_breakdown.employer == Decimal("100.44")
 

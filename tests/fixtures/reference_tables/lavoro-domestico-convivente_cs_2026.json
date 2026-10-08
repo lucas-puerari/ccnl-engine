@@ -1,0 +1,29 @@
+{
+  "verification": "source_linked",
+  "_description": "CCNL lavoro domestico, convivente level CS (Tabella A), March 2026 regular run, permanent, 54 weekly hours.",
+  "_notes": [
+    "Tabella A, livello CS, valori mensili decorrenti dal 01/01/2026: 1.193,84.",
+    "Board and lodging are provided in kind (art. 36; Tabella F 2,33 + 2,33 + 2,00 per day, x 30 = 199,80): not paid in cash on a regular run, so no fixed allowance is paid.",
+    "Period gross = 1193.84.",
+    "Hours: 54 weekly hours (art. 14 c. 1 lett. a), 216 contributable hours (54 x 4 weeks), the hours the published Workledger payslip of the same case declares."
+  ],
+  "source": {
+    "document": "Tabella minimi retributivi 2026, valori decorrenti dal 01/01/2026 (DOMINA, firmataria del CCNL lavoro domestico)",
+    "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
+    "section": "Tabella A, lavoratori conviventi art. 14 c. 1 lettera a, livello CS"
+  },
+  "inputs": {
+    "ccnl_slug": "lavoro-domestico-convivente.json",
+    "level_code": "CS",
+    "year": 2026,
+    "month": 3,
+    "headcount": 1,
+    "weekly_hours": 54,
+    "contributable_hours": "216"
+  },
+  "expected": {
+    "base_salary": "1193.84",
+    "fixed_allowances": "0",
+    "period_gross": "1193.84"
+  }
+}

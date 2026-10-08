@@ -16,6 +16,7 @@ from ccnl_engine.payroll.application.handlers._sickness_month import (
     WITH_UNPAID_ABSENCE,
 )
 from ccnl_engine.payroll.application.period._accrual_decisions import accrual_decisions
+from ccnl_engine.payroll.application.period._assistance import assistance_decision
 from ccnl_engine.payroll.application.period._base_decisions import (
     base_stage_decisions,
 )
@@ -173,8 +174,9 @@ def run_decisions(
 
     Returns:
         The base stage decisions, the extra-month ratei counted, the
-        contract decisions, the pension fund, the TFR revaluation and the
-        renewal regime on the minimo, then those of the
+        contract decisions, the pension fund, the assistance contribution,
+        the TFR revaluation and the renewal regime on the minimo, then those
+        of the
         events and of the amounts, and last the caller-supplied values of
         the events.
     """
@@ -184,6 +186,7 @@ def run_decisions(
     pension = pension_decision(
         contract.ccnl, amounts.pension, year, unknown=enrolment_unknown(ctx)
     )
+    assistance = assistance_decision(contract.ccnl, amounts.assistance, year)
     ivs = run.ivs_ceiling
     ivs_decision = () if ivs is None else (ivs_ceiling_decision(ctx, ivs),)
     renewal = renewal_minimum(ctx)
@@ -201,6 +204,7 @@ def run_decisions(
             ctx.apprenticeship,
         )
         + ((pension,) if pension is not None else ())
+        + ((assistance,) if assistance is not None else ())
         + tfr_revaluation_decisions(ctx)
         + (() if renewal is None else (renewal.decision,))
         + totals.decisions

@@ -28,6 +28,58 @@ The library includes two separate JSON files:
 
 Each file carries the correct INPS rate table and level structure for that variant.
 
+The monthly minimum of a non convivente is the Tabella C hourly rate times
+40 × 52 / 12 (CCNL of 28 October 2025, art. 14 c. 1 lett. b and chiarimento a
+verbale 1): level CS, €8.30 an hour, is €1,438.67 a month.  The hourly divisor
+of the file is 173.33, so the hourly rate the INPS bracket reads is the table
+rate to the cent.
+
+## Cas.Sa.Colf contribution
+
+The CCNL charges contributi di assistenza contrattuale for the Cas.Sa.Colf and
+its other joint bodies: €0.06 per paid hour, of which €0.02 withheld from the
+worker and €0.04 paid by the employer (art. 54 c. 2, due at this rate from 1
+January 2021, chiarimento a verbale 6).  The engine charges them on the
+`contributable_hours` of the run, posts the worker share to the
+`bilateral_fund_employee` account (it reduces the net) and the employer share
+to `bilateral_fund_employer` (it adds to the employer cost), and records an
+`assistance_contribution` decision with the hours, rates and the clause as its
+source.  A run is charged on the hours it states, INPS and Cas.Sa.Colf alike:
+a tredicesima stated with 0 hours charges nothing, but a competence year gives
+every run, the tredicesima included, the hours of its `default_facts` (see
+the `extra_month_hours` limitation below).
+
+## Board and lodging of a convivente
+
+A convivente receives board and lodging in kind.  Their valore convenzionale
+is set by Tabella F (art. 36 c. 3): in 2026 €2.33 for pranzo e/o colazione,
+€2.33 for cena and €2.00 for alloggio a day, a month being 30 days, so
+€199.80 a month.  Every level of `lavoro-domestico-convivente.json` carries it
+as the allowance `vitto_alloggio`, flagged `in_kind`:
+
+| Run | Effect of board and lodging | Source |
+|---|---|---|
+| Regular | Not paid in cash; counted in the TFR base: (1,193.84 + 199.80) / 13.5 = €103.23 for level CS | art. 41 c. 1 |
+| Tredicesima | Paid in cash: 1,193.84 + 199.80 = €1,393.64 for a full year | art. 39 c. 1, chiarimento a verbale 5 |
+| Ratei at termination | Included in the tredicesima ratei | art. 39 c. 2 |
+| Reduced hours | Not reduced | art. 14 c. 2 |
+
+Three cases are open limitations.  The first two are recorded on every
+regular and termination run of the CCNL, because the request has no fact for
+them; the third on every tredicesima run of both files:
+
+- `lavoro-domestico-convivente/board_lodging_substitute`: the cash indennità
+  sostitutiva for the days a convivente does not take board and lodging
+  (ferie art. 17 c. 7, sospensioni art. 18 c. 1, matrimonio art. 24 c. 2,
+  malattia and infortunio outside hospital art. 27 c. 9 and art. 29 c. 7);
+- `lavoro-domestico-non-convivente/meal_indennity`: the meal, or its
+  valore convenzionale, owed to a non convivente on six or more hours a day
+  with continuous presence (art. 14 c. 8);
+- `<ccnl>/extra_month_hours`: no source in the bundle says whether a
+  tredicesima carries contributable hours; the engine charges INPS and
+  Cas.Sa.Colf on the hours the run states, and a competence year states the
+  hours of a regular month.
+
 ## Usage
 
 Pass `weekly_hours` on `Employment` and the `contributable_hours` of the run
@@ -66,10 +118,11 @@ credits of an ordinary payslip all go through the withholding agent:
 | Trattamento integrativo | D.L. 3/2020 art. 1 c. 3 | none |
 | Somma esente, ulteriore detrazione | L. 207/2024 art. 1 c. 7 | none |
 
-The net pay is therefore the gross less the employee INPS contributions (and
-any other non-tax deduction, such as unpaid absences). Convivente level A,
-September 2026, 40 weekly hours and 173 contributable hours: gross €908.10,
-employee INPS 173 × €0.31 = €53.63, net €854.47.
+The net pay is therefore the gross less the employee INPS contributions and the
+worker share of the Cas.Sa.Colf contribution (and any other non-tax deduction,
+such as unpaid absences). Convivente level A, September 2026, 40 weekly hours
+and 173 contributable hours: gross €908.10, employee INPS 173 × €0.31 = €53.63,
+Cas.Sa.Colf 173 × €0.02 = €3.46, net €851.01.
 
 The engine takes this from the CCNL: `CCNLMeta.withholding_agent` is false for
 the `lavoro-domestico` tax sector. For such a run:

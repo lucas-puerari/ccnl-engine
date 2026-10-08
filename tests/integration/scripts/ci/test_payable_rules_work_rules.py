@@ -28,6 +28,22 @@ def test_stored_accrual_rule_carries_its_record() -> None:
     assert rule.status == "derived"
 
 
+def test_assistance_contribution_is_payable() -> None:
+    """The contribution per paid hour is one rule with its own record."""
+    data = {
+        "parameters": {
+            "accrual_rule": {"provenance": _RECORD},
+            "assistance_contribution": {"provenance": _RECORD},
+        }
+    }
+    rules = ccnl_rules("ccnl/data/x.json", data)
+    assert [(r.path, r.status, r.capabilities) for r in rules][-1] == (
+        "assistance_contribution",
+        "derived",
+        ("assistance_contribution",),
+    )
+
+
 def test_only_first_tier_overtime_bands_are_payable() -> None:
     """Thresholded, conditional, per-hour and non-overtime bands are not read."""
     bands = [

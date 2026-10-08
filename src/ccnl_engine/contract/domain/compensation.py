@@ -6,6 +6,7 @@ from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from ccnl_engine.contract.domain.assistance import AssistanceContribution
 from ccnl_engine.contract.domain.category import WorkerCategory
 from ccnl_engine.contract.domain.seniority import SeniorityIncrements
 from ccnl_engine.contract.domain.validity import TimeSeries
@@ -39,6 +40,11 @@ class Allowance(BaseModel):
     (e.g. fixed-amount welfare contributions or presence-based indennità that
     Italian CCNL explicitly exclude from proportional reduction). Defaults to
     ``True`` so all existing allowances remain proportionable.
+
+    ``in_kind=True`` marks the conventional value of a benefit the employer
+    provides in kind (the board and lodging of a live-in domestic worker,
+    CCNL lavoro domestico art. 36): a regular run pays no cash for it but
+    counts it in the TFR base, and an extra-month run pays it in cash.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -52,6 +58,7 @@ class Allowance(BaseModel):
     contribution_relevant: bool = True
     apprenticeship_pct_relevant: bool = True
     part_time_proportionable: bool = True
+    in_kind: bool = False
     service_months_threshold: int | None = Field(default=None, ge=0)
     provenance: RuleProvenance | None = None
 
@@ -184,6 +191,8 @@ class CCNLParameters(BaseModel):
     extra-month window, ``None`` when the bundle has no sourced clause.
     ``fourteenth_payment_day`` is the day the CCNL pays the quattordicesima,
     ``None`` when the bundle has no sourced clause.
+    ``assistance_contribution`` is the contribution the CCNL charges per
+    paid hour, ``None`` when it charges none.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -194,6 +203,7 @@ class CCNLParameters(BaseModel):
     employer_funds: tuple[EmployerFund, ...] = Field(default=())
     accrual_rule: ExtraMonthAccrualRule | None = None
     fourteenth_payment_day: PaymentDay | None = None
+    assistance_contribution: AssistanceContribution | None = None
 
     @model_validator(mode="after")
     def _check_positive_params(self) -> Self:

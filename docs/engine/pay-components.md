@@ -233,7 +233,11 @@ training funds). The engine does not derive them from the CCNL: pass the
 amounts due in the period as a `BilateralFundEvent`. The employee portion
 reduces net pay; the employer portion increases employer cost. For the
 pension fund of the CCNL use the enrolment described in
-[Pension funds](#pension-funds-previdenza-complementare) instead.
+[Pension funds](#pension-funds-previdenza-complementare) instead.  A CCNL that
+fixes its contribution per paid hour in the bundle (the Cas.Sa.Colf of the
+CCNL lavoro domestico, see [Domestic work](domestic-work.md)) is charged by the
+engine itself, on the same accounts, under the `assistance_contribution`
+capability.
 
 ```python
 from datetime import date

@@ -26,7 +26,10 @@ class MonthlyPayChain:
     """Full-time monthly pay components of one level on one date.
 
     ``limitations`` holds the ids of the engine limitations whose code path
-    built the chain; every derived chain keeps them.
+    built the chain; every derived chain keeps them.  An allowance flagged
+    ``in_kind`` is the value of a benefit provided in kind: it stays out of
+    the cash gross (:attr:`allowances_total`) and counts in
+    :attr:`in_kind_total`, until :meth:`for_extra_month` pays it in cash.
     """
 
     base: Decimal
@@ -117,7 +120,10 @@ class MonthlyPayChain:
         (no restriction) or is at least ``months_threshold``.  Allowances
         paid fewer than ``months_threshold`` times per year (e.g. an EDR paid
         only 12 times in a 13-month contract) are excluded from the run.
-        Base salary and seniority are always included.
+        Base salary and seniority are always included.  An allowance
+        provided in kind is paid in cash in the extra month (CCNL lavoro
+        domestico art. 39 c. 1: the tredicesima includes the indennità
+        sostitutiva of board and lodging).
 
         Args:
             months_threshold: Minimum ``months_per_year`` for inclusion.
@@ -128,7 +134,7 @@ class MonthlyPayChain:
             A filtered :class:`MonthlyPayChain`.
         """
         eligible = tuple(
-            (a, v)
+            (a.model_copy(update={"in_kind": False}) if a.in_kind else a, v)
             for a, v in self.allowances
             if a.months_per_year is None or a.months_per_year >= months_threshold
         )
@@ -141,8 +147,13 @@ class MonthlyPayChain:
 
     @property
     def allowances_total(self) -> Decimal:
-        """Rounded sum of all allowance amounts."""
-        return money(sum((v for _, v in self.allowances), _ZERO))
+        """Rounded sum of the allowances paid in cash."""
+        return money(sum((v for a, v in self.allowances if not a.in_kind), _ZERO))
+
+    @property
+    def in_kind_total(self) -> Decimal:
+        """Rounded sum of the allowances provided in kind."""
+        return money(sum((v for a, v in self.allowances if a.in_kind), _ZERO))
 
 
 @dataclass(frozen=True)

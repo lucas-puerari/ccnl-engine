@@ -4,7 +4,8 @@ A payable rule is a bundled value that the payroll run reads to compute a
 posted amount: CCNL salary tables, fixed allowances, seniority increments,
 extra-month entitlements, the extra-month accrual threshold, the first-tier
 overtime bands, the absence rule (daily quota of partial months and sick
-days), the sickness rule and employer pension fund rates; the INPS sick-pay
+days), the sickness rule, employer pension fund rates and the assistance
+contribution charged per paid hour; the INPS sick-pay
 indemnity bands; INPS
 contribution rates (ordinary, apprentice, domestic, fixed-term
 addizionale); IRPEF brackets, the Art. 13 work deduction and its
@@ -212,8 +213,8 @@ def ccnl_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]:
     Yields:
         One rule per salary period, allowance, seniority block,
         additional-months period, the accrual rule, the absence and
-        sickness rules, one per first-tier overtime band and one per
-        employer fund rate period.
+        sickness rules, one per first-tier overtime band, one per
+        employer fund rate period and the assistance contribution.
     """
     levels = data.get("levels")
     for level in levels if isinstance(levels, list) else []:
@@ -235,6 +236,12 @@ def ccnl_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]:
     yield from _work_rules(file, data.get("work_rules"))
     yield from _overtime_rules(file, data.get("work_rules"))
     yield from _fund_rules(file, params.get("employer_funds"))
+    assistance = params.get("assistance_contribution")
+    if isinstance(assistance, dict):
+        record = assistance.get("provenance")
+        yield _rule(
+            file, "assistance_contribution", ("assistance_contribution",), record
+        )
 
 
 def _work_rules(file: str, work_rules: object) -> Iterator[PayableRule]:

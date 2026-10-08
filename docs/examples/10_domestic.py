@@ -1,4 +1,4 @@
-"""Domestic work (CCNL colf): flat per-hour INPS and no tax withholding."""
+"""Domestic work (CCNL colf): flat per-hour INPS, Cas.Sa.Colf, no withholding."""
 
 from datetime import date
 from decimal import Decimal
@@ -43,7 +43,14 @@ cb = result.contribution_breakdown
 print(f"Employee INPS:        {cb.employee}")
 print(f"Employer INPS:        {cb.employer}")
 
-# A household employer is not a withholding agent: net = gross - employee INPS
+# Cas.Sa.Colf (CCNL art. 54 c. 2): 0.02 per hour withheld, 0.04 paid by the employer
+assistance = next(
+    d for d in result.decisions if d.capability == "assistance_contribution"
+)
+print(f"Cas.Sa.Colf worker:   {assistance.inputs['employee']}")
+print(f"Cas.Sa.Colf employer: {assistance.inputs['employer']}")
+
+# A household employer is not a withholding agent: net = gross - employee shares
 skipped = [
     d.capability for d in result.decisions if d.reason_code == "not_withholding_agent"
 ]

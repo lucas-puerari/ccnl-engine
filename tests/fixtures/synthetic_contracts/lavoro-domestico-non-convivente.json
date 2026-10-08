@@ -1,88 +1,88 @@
 {
-  "_description": "lavoro-domestico-non-convivente — data checks 2026",
+  "_description": "lavoro-domestico-non-convivente - data checks 2026: monthly minimum = Tabella C hourly rate x 40 x 52 / 12 (CCNL 28/10/2025 art. 14 c. 1 lett. b, chiarimento a verbale 1); seniority increment = 4% of it (art. 37 c. 1)",
   "ccnl_file": "lavoro-domestico-non-convivente.json",
   "salary_checks": [
     {
       "level_code": "A",
       "as_of": "2026-01-01",
-      "expected_monthly": "1126.23"
+      "expected_monthly": "1128.40"
     },
     {
       "level_code": "AS",
       "as_of": "2026-01-01",
-      "expected_monthly": "1169.48"
+      "expected_monthly": "1171.73"
     },
     {
       "level_code": "B",
       "as_of": "2026-01-01",
-      "expected_monthly": "1212.73"
+      "expected_monthly": "1215.07"
     },
     {
       "level_code": "BS",
       "as_of": "2026-01-01",
-      "expected_monthly": "1288.85"
+      "expected_monthly": "1291.33"
     },
     {
       "level_code": "C",
       "as_of": "2026-01-01",
-      "expected_monthly": "1359.78"
+      "expected_monthly": "1362.40"
     },
     {
       "level_code": "CS",
       "as_of": "2026-01-01",
-      "expected_monthly": "1435.90"
+      "expected_monthly": "1438.67"
     },
     {
       "level_code": "D",
       "as_of": "2026-01-01",
-      "expected_monthly": "1655.61"
+      "expected_monthly": "1658.80"
     },
     {
       "level_code": "DS",
       "as_of": "2026-01-01",
-      "expected_monthly": "1724.81"
+      "expected_monthly": "1728.13"
     }
   ],
   "seniority_checks": [
     {
       "level_code": "A",
       "as_of": "2026-01-01",
-      "expected_amount": "45.05"
+      "expected_amount": "45.14"
     },
     {
       "level_code": "AS",
       "as_of": "2026-01-01",
-      "expected_amount": "46.78"
+      "expected_amount": "46.87"
     },
     {
       "level_code": "B",
       "as_of": "2026-01-01",
-      "expected_amount": "48.51"
+      "expected_amount": "48.60"
     },
     {
       "level_code": "BS",
       "as_of": "2026-01-01",
-      "expected_amount": "51.55"
+      "expected_amount": "51.65"
     },
     {
       "level_code": "C",
       "as_of": "2026-01-01",
-      "expected_amount": "54.39"
+      "expected_amount": "54.50"
     },
     {
       "level_code": "CS",
       "as_of": "2026-01-01",
-      "expected_amount": "57.44"
+      "expected_amount": "57.55"
     },
     {
       "level_code": "D",
       "as_of": "2026-01-01",
-      "expected_amount": "66.22"
+      "expected_amount": "66.35"
     },
     {
       "level_code": "DS",
       "as_of": "2026-01-01",
-      "expected_amount": "68.99"
+      "expected_amount": "69.13"
     }
   ]
 }

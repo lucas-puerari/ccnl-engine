@@ -136,7 +136,8 @@ def _tfr(
         tax_rules(ctx)["tfr"][0],
         _tax_version(year_rules),
         {
-            "base": ctx.monthly_gross + totals.tfr_base,
+            "base": ctx.monthly_gross + ctx.chain.in_kind_total + totals.tfr_base,
+            "in_kind": ctx.chain.in_kind_total,
             "accrual_divisor": year_rules.tfr.accrual_divisor,
             "quota": tfr.quota,
             "additional_ivs_base": tfr.ivs_base,

@@ -7,7 +7,7 @@
 | **Tax sector** | `lavoro-domestico` |
 | **Last renewal** | — |
 | **Workers (est.)** | ~900k |
-| **Ruleset version** | `2026.2` |
+| **Ruleset version** | `2026.3` |
 | **Extraction** | 🤖 AI-assisted |
 | **Verification** | 🔴 Unverified |
 | **Readiness** | 🧪 Exploratory |
@@ -41,7 +41,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | base_salary, inps_employer, seniority |
+| **Limits of this contract** | base_salary, inps_employee, inps_employer, seniority |
 
 ### Verifica
 
@@ -61,7 +61,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 
 ### Semplificazioni note
 
-4 semplificazioni documentate.
+6 semplificazioni documentate.
 Vedi [Known simplifications](#known-simplifications) per i dettagli.
 
 ## Salary table
@@ -121,11 +121,25 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model TABELLA B for conviventi ad orario ridotto.
 
 !!! warning "lavoro-domestico-convivente/hourly_inps_bracket_unvalidated · inps_employer · impact unknown · open"
-    Dividing TABELLA A monthly base by hourly_divisor 234 yields the cash-only rate (excludes board and lodging in kind). The hourly-wage INPS bracket lookup for weekly_hours <= 24 has not been validated for this file; the wage-bracket path is not exercised by the golden cases shipped with this file.
+    Dividing TABELLA A monthly base by hourly_divisor 234 yields the cash-only rate: the INPS hourly bracket for weekly_hours <= 24 is selected on it, without the board and lodging the INPS retribuzione oraria effettiva counts. The hourly-wage INPS bracket lookup has not been validated for this file; the wage-bracket path is not exercised by the golden cases shipped with this file.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Validate the hourly INPS bracket lookup for weekly hours up to 24 against the INPS domestic table.
+
+!!! warning "lavoro-domestico-convivente/board_lodging_substitute · base_salary · impact unknown · open"
+    The cash indennita sostitutiva of board and lodging is not paid for the days the convivente does not take them: ferie (Art. 17 c. 7), sospensioni extraferiali (Art. 18 c. 1), congedo matrimoniale (Art. 24 c. 2), malattia and infortunio outside hospital (Art. 27 c. 9, Art. 29 c. 7). The request carries no fact on whether board and lodging were taken, so the engine pays none.
+
+    **Applies when:** `base_salary` applies; run kind in regular, termination.
+
+    **Remediation:** Add a fact for the days without board and lodging and pay the Tabella F value for them.
+
+!!! warning "lavoro-domestico-convivente/extra_month_hours · inps_employee · impact unknown · open"
+    INPS and Cas.Sa.Colf are charged on the contributable hours the run states, a tredicesima run too. No bundled source says whether the tredicesima carries contributable hours of its own, and a competence year gives it the hours of its default facts, those of a regular month.
+
+    **Applies when:** `inps_employee` applies; run kind in thirteenth.
+
+    **Remediation:** Source from the INPS rules whether the tredicesima carries contributable hours and set them for extra-month runs.
 
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.
@@ -152,9 +166,9 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     TAX SECTOR: lavoro-domestico (TaxSector.LAVORO_DOMESTICO). Flat per-hour INPS contributions from INPS Circ. 9/2026. A household employer is not a withholding agent: it is not among the sostituti d'imposta of art. 23 c. 1 D.P.R. 600/1973 (art. 33 c. 1 D.Lgs. 33/2025 from 2027), so the engine withholds no IRPEF or surtax and pays no trattamento integrativo, ulteriore detrazione or somma esente.
     
-    HOURLY DIVISOR: 234, derived from 54 h/week contractual maximum for conviventi (Art. 10 CCNL). Formula: 54 × 52 / 12 = 234. Convivente and non-convivente are independent pay scales (different tables, different hourly divisors).
+    HOURLY DIVISOR: 234 = 54 x 52 / 12: 54 h/week contractual maximum for conviventi (Art. 14 c. 1 lett. a CCNL 28/10/2025) and monthly pay = hourly pay x weekly hours x 52 / 12 (chiarimento a verbale 1). Convivente and non-convivente are independent pay scales (different tables, different hourly divisors).
     
-    ADDITIONAL MONTHS: 13 (tredicesima mensilità, Art. 27 CCNL). No quattordicesima for domestic workers.
+    ADDITIONAL MONTHS: 13 (tredicesima mensilita, Art. 39 CCNL 28/10/2025). No quattordicesima for domestic workers.
     
     SENIORITY: biennale (24 months), maximum 7 scatti. Per-level euro amounts = 4% × 2026 base (confirmed: kitech.it amounts match Domina base × 4% exactly at every level). Amounts frozen at 2026 base — will not automatically recompute at future ISTAT tranches.
     
@@ -165,6 +179,10 @@ Each simplification below is a model limitation of the registry. An open limitat
     CNEL code H501 confirmed: lavoro-economia.it explicitly lists 'CCNL Lavoro Domestico (Colf e Badanti) [Cnel: H501]'. Also confirmed via kitech.it. CNEL archive verification not attempted (had returned 404 previously).
     
     Livello Unico (811.09) is a special sub-under-18 level excluded from this model — single-source, limited coverage.
+    
+    BOARD AND LODGING: every level carries the allowance vitto_alloggio, the valore convenzionale of board and lodging provided in kind (Art. 36 c. 3, Tabella F 2026: 2,33 + 2,33 + 2,00 per day, x 30 = 199,80 per month). A regular run pays no cash for it and counts it in the TFR base (Art. 41 c. 1); the tredicesima pays it in cash (Art. 39 c. 1, chiarimento a verbale 5). It is not reduced for reduced hours (Art. 14 c. 2: intera retribuzione in natura).
+    
+    CAS.SA.COLF: contributi di assistenza contrattuale of Art. 54 c. 2, 0,06 EUR per paid hour, 0,02 withheld from the worker and 0,04 paid by the employer, charged on the contributable hours of the run.
     
 
 ## Raw data

@@ -30,7 +30,7 @@ Capabilities of the registry by layer and implementation:
 | Layer | native | caller_supplied | partial | unsupported |
 |---|---:|---:|---:|---:|
 | gross | 3 | 1 | 0 | 4 |
-| net | 16 | 1 | 2 | 8 |
+| net | 17 | 1 | 2 | 8 |
 | work_rules | 3 | 6 | 0 | 3 |
 
 | | Functional coverage of a layer: its weakest capability |
@@ -118,8 +118,8 @@ Capabilities of the registry by layer and implementation:
 | 64 | F021 | [CCNL Laterizi e Manufatti Cementizi - Industria](laterizi-industria-f021.md) | industria | ~17k | — | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 98 / 2 / 0 | 🧪 | 🤖 |
 | 65 | D0L1 | [CCNL Lavanderie Industriali (Assosistema Confindustria)](lavanderie-industriali-assosistema.md) | lavanderie-industriali | ~17k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 37 / 1 / 1 | 🧪 | 🤖 |
 | 66 | V925 | [CCNL Lavoratori Dipendenti Organizzazioni Sindacali (UNSIC/CONFSAL)](ooss-unsic-confsal.md) | Organizzazioni sindacali nazionali e territoriali | ~7k | 2023 | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 19 / 2 / 0 | 🧪 | 🤖 |
-| 67 | H501 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (conviventi)](lavoro-domestico-convivente.md) | lavoro domestico | ~900k | — | 🔲 | 🔲 | 🔲 | base_salary, inps_employer, seniority | 0 / 15 / 1 / 1 | 🧪 | 🤖 |
-| 68 | H501 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (non conviventi)](lavoro-domestico-non-convivente.md) | lavoro domestico | ~900k | — | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 13 / 1 / 1 | 🧪 | 🤖 |
+| 67 | H501 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (conviventi)](lavoro-domestico-convivente.md) | lavoro domestico | ~900k | — | 🔲 | 🔲 | 🔲 | base_salary, inps_employee, inps_employer, seniority | 0 / 25 / 0 / 1 | 🧪 | 🤖 |
+| 68 | H501 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (non conviventi)](lavoro-domestico-non-convivente.md) | lavoro domestico | ~900k | — | 🔲 | 🔲 | 🔲 | base_salary, inps_employee, seniority | 0 / 15 / 0 / 1 | 🧪 | 🤖 |
 | 69 | I100 | [CCNL Logistica, Trasporto Merci e Spedizione (Confetra)](logistica-trasporto-confetra.md) | logistica | ~430k | 2024 | 🔲 | 🔲 | 🔲 | seniority | 0 / 43 / 2 / 0 | 🧪 | 🤖 |
 | 70 | I391 | [CCNL Marittimi — Industria Armatoriale (CONFITARMA)](marittimi-industria-armatoriale.md) | navigazione marittima — personale di terra | ~15k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 40 / 2 / 0 | 🧪 | 🤖 |
 | 71 | F020 | [CCNL Materiali da Costruzione PMI — Lapidei (CONFAPI ANIEM)](materiali-costruzione-lapidei-confapi.md) | Industria materiali da costruzione — Lapidei piccola industria | ~5000 | 2025 | 🔲 | 🔲 | 🔲 | — | 0 / 0 / 60 / 0 | 🧪 | 🤖 |

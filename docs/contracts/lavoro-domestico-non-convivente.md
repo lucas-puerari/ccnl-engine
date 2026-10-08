@@ -7,7 +7,7 @@
 | **Tax sector** | `lavoro-domestico` |
 | **Last renewal** | — |
 | **Workers (est.)** | ~900k |
-| **Ruleset version** | `2026.2` |
+| **Ruleset version** | `2026.3` |
 | **Extraction** | 🤖 AI-assisted |
 | **Verification** | 🔴 Unverified |
 | **Readiness** | 🧪 Exploratory |
@@ -41,7 +41,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | base_salary, seniority |
+| **Limits of this contract** | base_salary, inps_employee, seniority |
 
 ### Verifica
 
@@ -61,7 +61,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 
 ### Semplificazioni note
 
-2 semplificazioni documentate.
+4 semplificazioni documentate.
 Vedi [Known simplifications](#known-simplifications) per i dettagli.
 
 ## Salary table
@@ -70,14 +70,14 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `DS` | Level DS — senior caregiver / household manager with seniority | € 1,724.81 | 2026-01-01 |
-| `D` | Level D — senior caregiver / household manager | € 1,655.61 | 2026-01-01 |
-| `CS` | Level CS — specialised domestic worker with seniority | € 1,435.90 | 2026-01-01 |
-| `C` | Level C — specialised domestic worker / assistant caregiver (badante) | € 1,359.78 | 2026-01-01 |
-| `BS` | Level BS — qualified domestic worker with seniority | € 1,288.85 | 2026-01-01 |
-| `B` | Level B — qualified domestic worker (colf qualificata) | € 1,212.73 | 2026-01-01 |
-| `AS` | Level AS — domestic worker with seniority qualification | € 1,169.48 | 2026-01-01 |
-| `A` | Level A — entry-level domestic worker (colf generica) | € 1,126.23 | 2026-01-01 |
+| `DS` | Level DS — senior caregiver / household manager with seniority | € 1,728.13 | 2026-01-01 |
+| `D` | Level D — senior caregiver / household manager | € 1,658.80 | 2026-01-01 |
+| `CS` | Level CS — specialised domestic worker with seniority | € 1,438.67 | 2026-01-01 |
+| `C` | Level C — specialised domestic worker / assistant caregiver (badante) | € 1,362.40 | 2026-01-01 |
+| `BS` | Level BS — qualified domestic worker with seniority | € 1,291.33 | 2026-01-01 |
+| `B` | Level B — qualified domestic worker (colf qualificata) | € 1,215.07 | 2026-01-01 |
+| `AS` | Level AS — domestic worker with seniority qualification | € 1,171.73 | 2026-01-01 |
+| `A` | Level A — entry-level domestic worker (colf generica) | € 1,128.40 | 2026-01-01 |
 
 ## Seniority increments
 
@@ -86,14 +86,14 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Increment (monthly) |
 |---|---:|
-| `A` | € 45.05 |
-| `AS` | € 46.78 |
-| `B` | € 48.51 |
-| `BS` | € 51.55 |
-| `C` | € 54.39 |
-| `CS` | € 57.44 |
-| `D` | € 66.22 |
-| `DS` | € 68.99 |
+| `A` | € 45.14 |
+| `AS` | € 46.87 |
+| `B` | € 48.60 |
+| `BS` | € 51.65 |
+| `C` | € 54.50 |
+| `CS` | € 57.55 |
+| `D` | € 66.35 |
+| `DS` | € 69.13 |
 
 ## Known simplifications
 
@@ -112,6 +112,20 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; from 2027-01-01.
 
     **Remediation:** Update the seniority amounts with each ISTAT adjustment of the minimum tables.
+
+!!! warning "lavoro-domestico-non-convivente/meal_indennity · base_salary · impact unknown · open"
+    A non-convivente on 6 or more hours a day with continuous presence is owed the meal or, when it is not given, an indennita equal to its valore convenzionale (Art. 14 c. 8; Tabella F 2026: 2,33 per meal). The request carries no fact on daily hours, presence or meals given, so the engine pays none.
+
+    **Applies when:** `base_salary` applies; run kind in regular, termination.
+
+    **Remediation:** Add a fact for the days owed a meal not given and pay the Tabella F value for them.
+
+!!! warning "lavoro-domestico-non-convivente/extra_month_hours · inps_employee · impact unknown · open"
+    INPS and Cas.Sa.Colf are charged on the contributable hours the run states, a tredicesima run too. No bundled source says whether the tredicesima carries contributable hours of its own, and a competence year gives it the hours of its default facts, those of a regular month.
+
+    **Applies when:** `inps_employee` applies; run kind in thirteenth.
+
+    **Remediation:** Source from the INPS rules whether the tredicesima carries contributable hours and set them for extra-month runs.
 
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.
@@ -134,17 +148,17 @@ Each simplification below is a model limitation of the registry. An open limitat
 | — | — | 2026-01-01 | [↗](https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf) |
 
 ??? note "Coverage notes"
-    SALARY MODEL: conglobated retribuzione globale (TABELLA C — Lavoratori Non Conviventi, Art. 14 Co.2 lett. b CCNL). Hourly rates from official Domina salary table PDF (TABELLA-minimi-retributivi-2026.pdf, effective 01/01/2026). Monthly base_salary = hourly_rate × 173. Source is signatory employer association — primary source.
+    SALARY MODEL: conglobated retribuzione globale (TABELLA C - Lavoratori Non Conviventi, Art. 14 c. 1 lett. b CCNL 28/10/2025). Hourly rates from the official Domina salary table PDF (TABELLA-minimi-retributivi-2026.pdf, effective 01/01/2026). Monthly base_salary = hourly rate x 40 x 52 / 12 (chiarimento a verbale 1). Source is signatory employer association - primary source.
     
     TAX SECTOR: lavoro-domestico (TaxSector.LAVORO_DOMESTICO). Flat per-hour INPS contributions from INPS Circ. 9/2026. A household employer is not a withholding agent: it is not among the sostituti d'imposta of art. 23 c. 1 D.P.R. 600/1973 (art. 33 c. 1 D.Lgs. 33/2025 from 2027), so the engine withholds no IRPEF or surtax and pays no trattamento integrativo, ulteriore detrazione or somma esente.
     
-    HOURLY DIVISOR: 173, derived from 40 h/week (Art. 14 Co.2 CCNL). Formula: 40 × 52 / 12 = 173.33, rounded to 173. Convivente and non-convivente are independent pay scales (different tables, different hourly divisors).
+    HOURLY DIVISOR: 173.33 = 40 x 52 / 12 to the cent: 40 h/week contractual maximum for non conviventi (Art. 14 c. 1 lett. b CCNL 28/10/2025) and chiarimento a verbale 1. Convivente and non-convivente are independent pay scales (different tables, different hourly divisors).
     
-    BASE SALARY: computed as hourly_rate × 173. Engine divides gross_monthly / hourly_divisor to recover the contractual hourly rate exactly.
+    BASE SALARY: computed as hourly_rate x 40 x 52 / 12, rounded to the cent. Dividing it by the hourly divisor 173.33 recovers the Tabella C hourly rate to the cent.
     
-    ADDITIONAL MONTHS: 13 (tredicesima mensilità, Art. 27 CCNL). No quattordicesima.
+    ADDITIONAL MONTHS: 13 (tredicesima mensilita, Art. 39 CCNL 28/10/2025). No quattordicesima.
     
-    SENIORITY: biennale (24 months), maximum 7 scatti. Per-level amounts = 4% × non-convivente base (= hourly × 173 × 4%). Amounts frozen at 2026 values — future ISTAT tranches require manual update.
+    SENIORITY: biennale (24 months), maximum 7 scatti (Art. 37). Per-level amounts = 4% x the monthly minimum (hourly x 40 x 52 / 12). Amounts frozen at 2026 values - future ISTAT tranches require manual update.
     
     APPRENTICESHIP: none. Domestic workers excluded from D.lgs. 81/2015 Art. 47 apprenticeship.
     
@@ -153,6 +167,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     CNEL code H501 confirmed: lavoro-economia.it explicitly lists 'CCNL Lavoro Domestico (Colf e Badanti) [Cnel: H501]'. Also confirmed via kitech.it. CNEL archive verification not attempted (had returned 404 previously).
     
     Livello Unico (hourly 5.83) is a special sub-under-18 level excluded from this model.
+    
+    CAS.SA.COLF: contributi di assistenza contrattuale of Art. 54 c. 2, 0,06 EUR per paid hour, 0,02 withheld from the worker and 0,04 paid by the employer, charged on the contributable hours of the run.
     
 
 ## Raw data

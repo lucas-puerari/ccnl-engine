@@ -1,0 +1,30 @@
+{
+  "verification": "source_linked",
+  "_description": "CCNL lavoro domestico, non convivente level CS (Tabella C), January 2026 regular run, permanent, 40 weekly hours.",
+  "_notes": [
+    "Tabella C, livello CS, valori orari decorrenti dal 01/01/2026: 8,30.",
+    "CCNL 28/10/2025 chiarimento a verbale 1: monthly pay = hourly pay x weekly hours x 52 / 12; art. 14 c. 1 lett. b: at most 40 weekly hours for non conviventi.",
+    "Period gross = 8.30 x 40 x 52 / 12 = 17264 / 12 = 1438.666..., rounded to 1438.67.",
+    "No fixed allowance: Tabella C has no indennita column for non conviventi.",
+    "Hours: 40 weekly hours, 173 contributable hours."
+  ],
+  "source": {
+    "document": "Tabella minimi retributivi 2026, valori decorrenti dal 01/01/2026 (DOMINA, firmataria del CCNL lavoro domestico); CCNL sulla disciplina del rapporto di lavoro domestico del 28 ottobre 2025, chiarimento a verbale 1",
+    "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
+    "section": "Tabella C, lavoratori non conviventi, livello CS, valori orari"
+  },
+  "inputs": {
+    "ccnl_slug": "lavoro-domestico-non-convivente.json",
+    "level_code": "CS",
+    "year": 2026,
+    "month": 1,
+    "headcount": 1,
+    "weekly_hours": 40,
+    "contributable_hours": "173"
+  },
+  "expected": {
+    "base_salary": "1438.67",
+    "fixed_allowances": "0",
+    "period_gross": "1438.67"
+  }
+}

@@ -2,14 +2,14 @@
   "schema_version": "0.5",
   "meta": {
     "ccnl_id": "lavoro-domestico-non-convivente",
-    "name": "CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (non conviventi)",
+    "name": "CCNL Lavoro Domestico \u2014 DOMINA/FIDALDO/ASSINDATCOLF (non conviventi)",
     "cnel_code": "H501",
     "sector": "lavoro domestico",
     "tax_sector": "lavoro-domestico",
     "signatories": [
-      "DOMINA — Associazione Nazionale Famiglie Datori di Lavoro Domestico",
-      "FIDALDO — Federazione Italiana Datori di Lavoro Domestico",
-      "ASSINDATCOLF — Associazione Nazionale dei Datori di Lavoro Domestico",
+      "DOMINA \u2014 Associazione Nazionale Famiglie Datori di Lavoro Domestico",
+      "FIDALDO \u2014 Federazione Italiana Datori di Lavoro Domestico",
+      "ASSINDATCOLF \u2014 Associazione Nazionale dei Datori di Lavoro Domestico",
       "FILCAMS-CGIL",
       "FISASCAT-CISL",
       "UILTUCS-UIL",
@@ -34,7 +34,7 @@
     "notes": [
       {
         "kind": "info",
-        "text": "SALARY MODEL: conglobated retribuzione globale (TABELLA C — Lavoratori Non Conviventi, Art. 14 Co.2 lett. b CCNL). Hourly rates from official Domina salary table PDF (TABELLA-minimi-retributivi-2026.pdf, effective 01/01/2026). Monthly base_salary = hourly_rate × 173. Source is signatory employer association — primary source."
+        "text": "SALARY MODEL: conglobated retribuzione globale (TABELLA C - Lavoratori Non Conviventi, Art. 14 c. 1 lett. b CCNL 28/10/2025). Hourly rates from the official Domina salary table PDF (TABELLA-minimi-retributivi-2026.pdf, effective 01/01/2026). Monthly base_salary = hourly rate x 40 x 52 / 12 (chiarimento a verbale 1). Source is signatory employer association - primary source."
       },
       {
         "kind": "info",
@@ -42,19 +42,19 @@
       },
       {
         "kind": "info",
-        "text": "HOURLY DIVISOR: 173, derived from 40 h/week (Art. 14 Co.2 CCNL). Formula: 40 × 52 / 12 = 173.33, rounded to 173. Convivente and non-convivente are independent pay scales (different tables, different hourly divisors)."
+        "text": "HOURLY DIVISOR: 173.33 = 40 x 52 / 12 to the cent: 40 h/week contractual maximum for non conviventi (Art. 14 c. 1 lett. b CCNL 28/10/2025) and chiarimento a verbale 1. Convivente and non-convivente are independent pay scales (different tables, different hourly divisors)."
       },
       {
         "kind": "info",
-        "text": "BASE SALARY: computed as hourly_rate × 173. Engine divides gross_monthly / hourly_divisor to recover the contractual hourly rate exactly."
+        "text": "BASE SALARY: computed as hourly_rate x 40 x 52 / 12, rounded to the cent. Dividing it by the hourly divisor 173.33 recovers the Tabella C hourly rate to the cent."
       },
       {
         "kind": "info",
-        "text": "ADDITIONAL MONTHS: 13 (tredicesima mensilità, Art. 27 CCNL). No quattordicesima."
+        "text": "ADDITIONAL MONTHS: 13 (tredicesima mensilita, Art. 39 CCNL 28/10/2025). No quattordicesima."
       },
       {
         "kind": "info",
-        "text": "SENIORITY: biennale (24 months), maximum 7 scatti. Per-level amounts = 4% × non-convivente base (= hourly × 173 × 4%). Amounts frozen at 2026 values — future ISTAT tranches require manual update."
+        "text": "SENIORITY: biennale (24 months), maximum 7 scatti (Art. 37). Per-level amounts = 4% x the monthly minimum (hourly x 40 x 52 / 12). Amounts frozen at 2026 values - future ISTAT tranches require manual update."
       },
       {
         "kind": "info",
@@ -62,7 +62,7 @@
       },
       {
         "kind": "info",
-        "text": "D/DS function allowance: not applicable for non-convivente (TABELLA C shows only hourly rates, no separate indennità column). D/DS hourly rates already reflect the seniority grade."
+        "text": "D/DS function allowance: not applicable for non-convivente (TABELLA C shows only hourly rates, no separate indennit\u00e0 column). D/DS hourly rates already reflect the seniority grade."
       },
       {
         "kind": "info",
@@ -70,7 +70,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SINGLE PERIOD 2026-01-01. Pre-2026 tranches out of scope. Post-2026 CCNL 2025-2028 tranches not yet modelled: +30 on BS from Jan 2027, +15 from Jan 2028, +15 from Sep 2028 (other levels proportional — exact amounts require official ASSINDATCOLF/DOMINA table for those periods).",
+        "text": "SINGLE PERIOD 2026-01-01. Pre-2026 tranches out of scope. Post-2026 CCNL 2025-2028 tranches not yet modelled: +30 on BS from Jan 2027, +15 from Jan 2028, +15 from Sep 2028 (other levels proportional \u2014 exact amounts require official ASSINDATCOLF/DOMINA table for those periods).",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -97,6 +97,41 @@
       {
         "kind": "info",
         "text": "Livello Unico (hourly 5.83) is a special sub-under-18 level excluded from this model."
+      },
+      {
+        "kind": "info",
+        "text": "CAS.SA.COLF: contributi di assistenza contrattuale of Art. 54 c. 2, 0,06 EUR per paid hour, 0,02 withheld from the worker and 0,04 paid by the employer, charged on the contributable hours of the run."
+      },
+      {
+        "kind": "simplification",
+        "text": "A non-convivente on 6 or more hours a day with continuous presence is owed the meal or, when it is not given, an indennita equal to its valore convenzionale (Art. 14 c. 8; Tabella F 2026: 2,33 per meal). The request carries no fact on daily hours, presence or meals given, so the engine pays none.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "meal_indennity",
+          "applies_when": {
+            "run_kinds": [
+              "regular",
+              "termination"
+            ]
+          },
+          "remediation": "Add a fact for the days owed a meal not given and pay the Tabella F value for them."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "INPS and Cas.Sa.Colf are charged on the contributable hours the run states, a tredicesima run too. No bundled source says whether the tredicesima carries contributable hours of its own, and a competence year gives it the hours of its default facts, those of a regular month.",
+        "capability": "inps_employee",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "extra_month_hours",
+          "applies_when": {
+            "run_kinds": [
+              "thirteenth"
+            ]
+          },
+          "remediation": "Source from the INPS rules whether the tredicesima carries contributable hours and set them for extra-month runs."
+        }
       }
     ]
   },
@@ -106,7 +141,27 @@
         {
           "valid_from": "2026-01-01",
           "valid_until": null,
-          "value": "173"
+          "value": "173.33",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                "kind": "associazione",
+                "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf"
+              },
+              "page": "26, 58",
+              "section": "Art. 14 c. 1 lett. b (40 ore settimanali per i non conviventi); chiarimento a verbale 1 (retribuzione mensile = paga oraria x ore settimanali x 52 / 12)"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-10-07T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2025-11-01"
+            },
+            "transformation": "40 x 52 / 12 = 173.333 monthly hours, to the cent 173.33"
+          }
         }
       ]
     },
@@ -117,9 +172,23 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                "kind": "associazione",
+                "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf"
+              },
+              "page": "47",
+              "section": "Art. 39 c. 1 (tredicesima mensilita entro il mese di dicembre)"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-10-07T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2025-11-01"
+            }
           }
         }
       ]
@@ -133,7 +202,7 @@
             {
               "valid_from": "2026-01-01",
               "valid_until": null,
-              "value": "45.05"
+              "value": "45.14"
             }
           ]
         },
@@ -142,7 +211,7 @@
             {
               "valid_from": "2026-01-01",
               "valid_until": null,
-              "value": "46.78"
+              "value": "46.87"
             }
           ]
         },
@@ -151,7 +220,7 @@
             {
               "valid_from": "2026-01-01",
               "valid_until": null,
-              "value": "48.51"
+              "value": "48.60"
             }
           ]
         },
@@ -160,7 +229,7 @@
             {
               "valid_from": "2026-01-01",
               "valid_until": null,
-              "value": "51.55"
+              "value": "51.65"
             }
           ]
         },
@@ -169,7 +238,7 @@
             {
               "valid_from": "2026-01-01",
               "valid_until": null,
-              "value": "54.39"
+              "value": "54.50"
             }
           ]
         },
@@ -178,7 +247,7 @@
             {
               "valid_from": "2026-01-01",
               "valid_until": null,
-              "value": "57.44"
+              "value": "57.55"
             }
           ]
         },
@@ -187,7 +256,7 @@
             {
               "valid_from": "2026-01-01",
               "valid_until": null,
-              "value": "66.22"
+              "value": "66.35"
             }
           ]
         },
@@ -196,7 +265,7 @@
             {
               "valid_from": "2026-01-01",
               "valid_until": null,
-              "value": "68.99"
+              "value": "69.13"
             }
           ]
         }
@@ -210,14 +279,55 @@
             "kind": "tabella_retributiva",
             "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
           },
-          "section": "Scatti di anzianità"
+          "section": "Scatti di anzianit\u00e0"
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-07T15:03:36",
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
-        }
+        },
+        "transformation": "4% of the monthly minimum of each level (Art. 37 c. 1), the monthly minimum being Tabella C hourly x 40 x 52 / 12"
+      }
+    },
+    "assistance_contribution": {
+      "employee_per_hour": {
+        "periods": [
+          {
+            "valid_from": "2021-01-01",
+            "valid_until": null,
+            "value": "0.02"
+          }
+        ]
+      },
+      "employer_per_hour": {
+        "periods": [
+          {
+            "valid_from": "2021-01-01",
+            "valid_until": null,
+            "value": "0.04"
+          }
+        ]
+      },
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-lavoro-domestico-2025-10-28",
+            "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+            "kind": "associazione",
+            "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf"
+          },
+          "page": "56, 58",
+          "section": "Art. 54 c. 2 (contributi di assistenza contrattuale: euro 0,06 per ora, di cui 0,02 a carico del lavoratore); chiarimento a verbale 6 (dovuti dal 01/01/2021)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-10-07T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2021-01-01"
+        },
+        "transformation": "employer share = 0.06 - 0.02 = 0.04 per paid hour"
       }
     }
   },
@@ -225,13 +335,13 @@
     {
       "code": "A",
       "order": 1,
-      "description": "Level A — entry-level domestic worker (colf generica)",
+      "description": "Level A \u2014 entry-level domestic worker (colf generica)",
       "base_salary": {
         "periods": [
           {
             "valid_from": "2026-01-01",
             "valid_until": null,
-            "value": "1126.23",
+            "value": "1128.40",
             "provenance": {
               "status": "derived",
               "location": {
@@ -248,7 +358,8 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
-              }
+              },
+              "transformation": "Tabella C hourly 6.51 x 40 x 52 / 12 = 1128.40 (Art. 14 c. 1 lett. b and chiarimento a verbale 1, CCNL 28/10/2025)"
             }
           }
         ]
@@ -277,13 +388,13 @@
     {
       "code": "AS",
       "order": 2,
-      "description": "Level AS — domestic worker with seniority qualification",
+      "description": "Level AS \u2014 domestic worker with seniority qualification",
       "base_salary": {
         "periods": [
           {
             "valid_from": "2026-01-01",
             "valid_until": null,
-            "value": "1169.48",
+            "value": "1171.73",
             "provenance": {
               "status": "derived",
               "location": {
@@ -300,7 +411,8 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
-              }
+              },
+              "transformation": "Tabella C hourly 6.76 x 40 x 52 / 12 = 1171.73 (Art. 14 c. 1 lett. b and chiarimento a verbale 1, CCNL 28/10/2025)"
             }
           }
         ]
@@ -329,13 +441,13 @@
     {
       "code": "B",
       "order": 3,
-      "description": "Level B — qualified domestic worker (colf qualificata)",
+      "description": "Level B \u2014 qualified domestic worker (colf qualificata)",
       "base_salary": {
         "periods": [
           {
             "valid_from": "2026-01-01",
             "valid_until": null,
-            "value": "1212.73",
+            "value": "1215.07",
             "provenance": {
               "status": "derived",
               "location": {
@@ -352,7 +464,8 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
-              }
+              },
+              "transformation": "Tabella C hourly 7.01 x 40 x 52 / 12 = 1215.07 (Art. 14 c. 1 lett. b and chiarimento a verbale 1, CCNL 28/10/2025)"
             }
           }
         ]
@@ -381,13 +494,13 @@
     {
       "code": "BS",
       "order": 4,
-      "description": "Level BS — qualified domestic worker with seniority",
+      "description": "Level BS \u2014 qualified domestic worker with seniority",
       "base_salary": {
         "periods": [
           {
             "valid_from": "2026-01-01",
             "valid_until": null,
-            "value": "1288.85",
+            "value": "1291.33",
             "provenance": {
               "status": "derived",
               "location": {
@@ -404,7 +517,8 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
-              }
+              },
+              "transformation": "Tabella C hourly 7.45 x 40 x 52 / 12 = 1291.33 (Art. 14 c. 1 lett. b and chiarimento a verbale 1, CCNL 28/10/2025)"
             }
           }
         ]
@@ -433,13 +547,13 @@
     {
       "code": "C",
       "order": 5,
-      "description": "Level C — specialised domestic worker / assistant caregiver (badante)",
+      "description": "Level C \u2014 specialised domestic worker / assistant caregiver (badante)",
       "base_salary": {
         "periods": [
           {
             "valid_from": "2026-01-01",
             "valid_until": null,
-            "value": "1359.78",
+            "value": "1362.40",
             "provenance": {
               "status": "derived",
               "location": {
@@ -456,7 +570,8 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
-              }
+              },
+              "transformation": "Tabella C hourly 7.86 x 40 x 52 / 12 = 1362.40 (Art. 14 c. 1 lett. b and chiarimento a verbale 1, CCNL 28/10/2025)"
             }
           }
         ]
@@ -485,13 +600,13 @@
     {
       "code": "CS",
       "order": 6,
-      "description": "Level CS — specialised domestic worker with seniority",
+      "description": "Level CS \u2014 specialised domestic worker with seniority",
       "base_salary": {
         "periods": [
           {
             "valid_from": "2026-01-01",
             "valid_until": null,
-            "value": "1435.90",
+            "value": "1438.67",
             "provenance": {
               "status": "derived",
               "location": {
@@ -508,7 +623,8 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
-              }
+              },
+              "transformation": "Tabella C hourly 8.30 x 40 x 52 / 12 = 1438.67 (Art. 14 c. 1 lett. b and chiarimento a verbale 1, CCNL 28/10/2025)"
             }
           }
         ]
@@ -537,13 +653,13 @@
     {
       "code": "D",
       "order": 7,
-      "description": "Level D — senior caregiver / household manager",
+      "description": "Level D \u2014 senior caregiver / household manager",
       "base_salary": {
         "periods": [
           {
             "valid_from": "2026-01-01",
             "valid_until": null,
-            "value": "1655.61",
+            "value": "1658.80",
             "provenance": {
               "status": "derived",
               "location": {
@@ -560,7 +676,8 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
-              }
+              },
+              "transformation": "Tabella C hourly 9.57 x 40 x 52 / 12 = 1658.80 (Art. 14 c. 1 lett. b and chiarimento a verbale 1, CCNL 28/10/2025)"
             }
           }
         ]
@@ -589,13 +706,13 @@
     {
       "code": "DS",
       "order": 8,
-      "description": "Level DS — senior caregiver / household manager with seniority",
+      "description": "Level DS \u2014 senior caregiver / household manager with seniority",
       "base_salary": {
         "periods": [
           {
             "valid_from": "2026-01-01",
             "valid_until": null,
-            "value": "1724.81",
+            "value": "1728.13",
             "provenance": {
               "status": "derived",
               "location": {
@@ -612,7 +729,8 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
-              }
+              },
+              "transformation": "Tabella C hourly 9.97 x 40 x 52 / 12 = 1728.13 (Art. 14 c. 1 lett. b and chiarimento a verbale 1, CCNL 28/10/2025)"
             }
           }
         ]
@@ -642,13 +760,13 @@
   "apprenticeship": [],
   "ruleset": {
     "id": "ccnl/lavoro-domestico-non-convivente",
-    "version": "2026.2",
+    "version": "2026.3",
     "effective_from": "2026-01-01",
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "4a3a503113b2afedc38f636f7f4c2fee83ea0ccb485f66e38c304e133b938da9",
-    "published_at": "2026-09-07",
+    "source_hash": "bbbd93da0c4bfb7795def7319c1a3a0bb07afff8b970b91018186b44ec55f443",
+    "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
@@ -677,11 +795,11 @@
             "location": {
               "source_document": {
                 "document_id": "ccnl-lavoro-domestico-2025",
-                "title": "CCNL Lavoro Domestico (Assindatcolf / Fidaldo) — Non Convivente 2025",
+                "title": "CCNL Lavoro Domestico (Assindatcolf / Fidaldo) \u2014 Non Convivente 2025",
                 "kind": "tabella_retributiva",
                 "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
               },
-              "section": "Art. orario lavoro — straordinario non convivente 10%"
+              "section": "Art. orario lavoro \u2014 straordinario non convivente 10%"
             },
             "extraction": {
               "method": "manual",
@@ -713,11 +831,11 @@
             "location": {
               "source_document": {
                 "document_id": "ccnl-lavoro-domestico-2025",
-                "title": "CCNL Lavoro Domestico (Assindatcolf / Fidaldo) — Non Convivente 2025",
+                "title": "CCNL Lavoro Domestico (Assindatcolf / Fidaldo) \u2014 Non Convivente 2025",
                 "kind": "tabella_retributiva",
                 "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
               },
-              "section": "Art. orario lavoro — maggiorazione notturno 20%"
+              "section": "Art. orario lavoro \u2014 maggiorazione notturno 20%"
             },
             "extraction": {
               "method": "manual",
@@ -737,11 +855,11 @@
         "location": {
           "source_document": {
             "document_id": "ccnl-lavoro-domestico-2025",
-            "title": "CCNL Lavoro Domestico (Assindatcolf / Fidaldo) — Non Convivente 2025",
+            "title": "CCNL Lavoro Domestico (Assindatcolf / Fidaldo) \u2014 Non Convivente 2025",
             "kind": "tabella_retributiva",
             "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
           },
-          "section": "Art. orario — retribuzione oraria su base mensile"
+          "section": "Art. orario \u2014 retribuzione oraria su base mensile"
         },
         "extraction": {
           "method": "manual",
@@ -764,11 +882,11 @@
         "location": {
           "source_document": {
             "document_id": "ccnl-lavoro-domestico-2025",
-            "title": "CCNL Lavoro Domestico (Assindatcolf / Fidaldo) — Non Convivente 2025",
+            "title": "CCNL Lavoro Domestico (Assindatcolf / Fidaldo) \u2014 Non Convivente 2025",
             "kind": "tabella_retributiva",
             "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
           },
-          "section": "Art. ferie — 26 giorni lavorativi annui"
+          "section": "Art. ferie \u2014 26 giorni lavorativi annui"
         },
         "extraction": {
           "method": "manual",
@@ -787,11 +905,11 @@
         "location": {
           "source_document": {
             "document_id": "ccnl-lavoro-domestico-2025",
-            "title": "CCNL Lavoro Domestico (Assindatcolf / Fidaldo) — Non Convivente 2025",
+            "title": "CCNL Lavoro Domestico (Assindatcolf / Fidaldo) \u2014 Non Convivente 2025",
             "kind": "tabella_retributiva",
             "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
           },
-          "section": "Art. malattia — conservazione posto 180 giorni (>2 anni anzianità); nessuna integrazione datoriale"
+          "section": "Art. malattia \u2014 conservazione posto 180 giorni (>2 anni anzianit\u00e0); nessuna integrazione datoriale"
         },
         "extraction": {
           "method": "manual",

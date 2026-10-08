@@ -50,6 +50,7 @@ _DECISION_FEATURES: dict[str, TraceState] = {
     "rinnovo_substitute_tax": TraceState.NOT_APPLICABLE,
     "notte_festivi_turni_substitute_tax": TraceState.NOT_APPLICABLE,
     "pension_fund_contribution": TraceState.NOT_APPLICABLE,
+    "assistance_contribution": TraceState.NOT_APPLICABLE,
     "tfr_revaluation": TraceState.NOT_APPLICABLE,
 }
 

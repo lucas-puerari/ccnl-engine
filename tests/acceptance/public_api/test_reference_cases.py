@@ -4,7 +4,9 @@ Each case pins the salary table components of one regular run to the signed
 table its ``source`` cites: base salary, fixed allowances and period gross.
 Only values read from that source are asserted; net pay, taxes and employer
 cost depend on the engine's own rules and are owned by the oracle and legal
-scenario tests instead.
+scenario tests instead.  A case may state ``weekly_hours`` and
+``contributable_hours`` among its inputs: a domestic CCNL needs both to
+select and charge its hourly contributions.
 """
 
 from __future__ import annotations
@@ -23,10 +25,11 @@ from ccnl_engine import (
     Headcount,
     PayrollEngine,
     PayrollRun,
+    PeriodFacts,
     PeriodInput,
     PeriodResult,
 )
-from ccnl_engine.inputs import Permanent
+from ccnl_engine.inputs import ContributableHours, Permanent, WeeklyHours
 
 _CASES_DIR = Path(__file__).parents[2] / "fixtures" / "reference_tables"
 _CASE_FILES = sorted(_CASES_DIR.glob("*.json"))
@@ -36,6 +39,8 @@ _ENGINE = PayrollEngine.bundled()
 def _run(inputs: dict[str, Any]) -> PeriodResult:
     year = int(inputs["year"])
     month = int(inputs["month"])
+    weekly = inputs.get("weekly_hours")
+    hours = inputs.get("contributable_hours")
     return _ENGINE.calculate_period(
         PeriodInput(
             run=PayrollRun.regular(year=year, month=month),
@@ -44,8 +49,14 @@ def _run(inputs: dict[str, Any]) -> PeriodResult:
                 ccnl_slug=inputs["ccnl_slug"],
                 level_code=inputs["level_code"],
                 contract_type=Permanent(),
+                weekly_hours=None if weekly is None else WeeklyHours(int(weekly)),
             ),
             employer=EmployerProfile(headcount=Headcount(int(inputs["headcount"]))),
+            facts=PeriodFacts(
+                contributable_hours=(
+                    None if hours is None else ContributableHours(Decimal(hours))
+                )
+            ),
         )
     )
 

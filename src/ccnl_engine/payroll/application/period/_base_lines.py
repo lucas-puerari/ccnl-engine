@@ -32,8 +32,11 @@ __all__ = ["_BaseLine", "_base_lines"]
 def _earning_lines(chain: MonthlyPayChain) -> list[_BaseLine]:
     """Return the base salary, seniority and allowance lines of ``chain``.
 
+    An allowance provided in kind is not paid: it has no line.
+
     Returns:
-        The base salary line, then seniority and each allowance when positive.
+        The base salary line, then seniority and each cash allowance when
+        positive.
     """
     cash = AccountKind.CASH_EARNINGS
     lines = [
@@ -66,7 +69,7 @@ def _earning_lines(chain: MonthlyPayChain) -> list[_BaseLine]:
             allowance_code=allowance.code,
         )
         for allowance, amount in chain.allowances
-        if amount > _ZERO
+        if amount > _ZERO and not allowance.in_kind
     )
     return lines
 
@@ -109,11 +112,42 @@ def _pension_lines(amounts: _PeriodAmounts) -> list[_BaseLine]:
     ]
 
 
+def _assistance_lines(amounts: _PeriodAmounts) -> list[_BaseLine]:
+    """Return the shares of the contractual assistance contribution.
+
+    The worker share is withheld from the pay; both go to the joint fund
+    the CCNL collects them for.
+
+    Returns:
+        The worker and employer lines, none when the CCNL charges none.
+    """
+    assistance = amounts.assistance
+    if assistance is None:
+        return []
+    return [
+        _BaseLine(
+            "assistance_employee",
+            WITHHOLDING,
+            AccountKind.BILATERAL_FUND_EMPLOYEE,
+            assistance.employee,
+            EmployeeWithholdingItem,
+        ),
+        _BaseLine(
+            "assistance_employer",
+            "employer_contribution_item",
+            AccountKind.BILATERAL_FUND_EMPLOYER,
+            assistance.employer,
+            EmployerContributionItem,
+        ),
+    ]
+
+
 def _contribution_lines(amounts: _PeriodAmounts) -> list[_BaseLine]:
     """Return the INPS employee, INPS employer and TFR lines of a run.
 
     Returns:
-        The three lines, posted even when zero, then the pension fund lines.
+        The three lines, posted even when zero, then the pension fund and
+        assistance contribution lines.
     """
     return [
         _BaseLine(
@@ -138,6 +172,7 @@ def _contribution_lines(amounts: _PeriodAmounts) -> list[_BaseLine]:
             TfrAccrualItem,
         ),
         *_pension_lines(amounts),
+        *_assistance_lines(amounts),
     ]
 
 

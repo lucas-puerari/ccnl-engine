@@ -37,6 +37,8 @@ if TYPE_CHECKING:
 
 _ALL_CASES = sorted(CASES_DIR.glob("*.json"))
 _INPUT_KEYS = frozenset({"ccnl_slug", "level_code", "year", "month", "headcount"})
+#: Inputs a case may add: the hours a domestic CCNL needs.
+_OPTIONAL_INPUT_KEYS = frozenset({"weekly_hours", "contributable_hours"})
 _EXPECTED_KEYS = frozenset({"base_salary", "fixed_allowances", "period_gross"})
 _SOURCE: dict[str, object] = {"document": "CCNL", "section": "Art. 1"}
 
@@ -118,7 +120,7 @@ def test_case_declares_runnable_inputs(path: Path) -> None:
     expected = case.get("expected")
     assert isinstance(inputs, dict), path.name
     assert isinstance(expected, dict), path.name
-    assert set(inputs) == _INPUT_KEYS, path.name
+    assert _INPUT_KEYS <= set(inputs) <= _INPUT_KEYS | _OPTIONAL_INPUT_KEYS, path.name
     assert set(expected) == _EXPECTED_KEYS, path.name
 
 

@@ -291,14 +291,14 @@ class TestLoadLavoroDomesticoConvivente:
         assert min(orders, key=lambda k: orders[k]) == "A"
 
     def test_lavoro_domestico_convivente_additional_months(self) -> None:
-        """Additional months: 13 (tredicesima, Art. 27 CCNL)."""
+        """Additional months: 13 (tredicesima, Art. 39 CCNL 28/10/2025)."""
         ccnl = load_ccnl("lavoro-domestico-convivente.json")
         assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
             13
         )
 
     def test_lavoro_domestico_convivente_hourly_divisor(self) -> None:
-        """Hourly divisor: 234 (54 h/week x 52/12, convivente Art. 10)."""
+        """Hourly divisor: 234 (54 h/week x 52/12, Art. 14 c. 1 lett. a)."""
         ccnl = load_ccnl("lavoro-domestico-convivente.json")
         assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(234)
 
@@ -306,14 +306,30 @@ class TestLoadLavoroDomesticoConvivente:
         """D and DS have indennità di funzione 207.69; A-CS have none."""
         ccnl = load_ccnl("lavoro-domestico-convivente.json")
         for code in ("A", "AS", "B", "BS", "C", "CS"):
-            assert ccnl.level_by_code(code).fixed_allowances == ()
+            codes = [a.code for a in ccnl.level_by_code(code).fixed_allowances]
+            assert codes == ["vitto_alloggio"]
         for code in ("D", "DS"):
             lv = ccnl.level_by_code(code)
-            assert len(lv.fixed_allowances) == 1
-            assert lv.fixed_allowances[0].code == "INDENNITA_FUNZIONE"
+            assert [a.code for a in lv.fixed_allowances] == [
+                "INDENNITA_FUNZIONE",
+                "vitto_alloggio",
+            ]
             assert lv.fixed_allowances[0].monthly.value_at(date(2026, 1, 1)) == Decimal(
                 "207.69"
             )
+
+    def test_lavoro_domestico_convivente_board_and_lodging(self) -> None:
+        """Every level has board and lodging in kind, Tabella F 2026 x 30.
+
+        Art. 36 c. 3: (2.33 + 2.33 + 2.00) x 30 = 199.80 per month, not
+        reduced for reduced hours (art. 14 c. 2).
+        """
+        ccnl = load_ccnl("lavoro-domestico-convivente.json")
+        for lv in ccnl.levels:
+            (board,) = (a for a in lv.fixed_allowances if a.code == "vitto_alloggio")
+            assert board.in_kind
+            assert not board.part_time_proportionable
+            assert board.monthly.value_at(date(2026, 1, 1)) == Decimal("199.80")
 
     def test_lavoro_domestico_convivente_tax_sector(self) -> None:
         """Contract declares LAVORO_DOMESTICO tax sector."""
@@ -353,16 +369,16 @@ class TestLoadLavoroDomesticoNonConvivente:
         }
 
     def test_lavoro_domestico_non_convivente_level_a_salary(self) -> None:
-        """Level A monthly salary: 6.51 EUR/h x 173 = 1126.23 EUR."""
+        """Level A monthly salary: 6.51 EUR/h x 40 x 52 / 12 = 1128.40 EUR."""
         ccnl = load_ccnl("lavoro-domestico-non-convivente.json")
         lv = ccnl.level_by_code("A")
-        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("1126.23")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("1128.40")
 
     def test_lavoro_domestico_non_convivente_level_ds_salary(self) -> None:
-        """Level DS monthly salary: 9.97 EUR/h x 173 = 1724.81 EUR."""
+        """Level DS monthly salary: 9.97 EUR/h x 40 x 52 / 12 = 1728.13 EUR."""
         ccnl = load_ccnl("lavoro-domestico-non-convivente.json")
         lv = ccnl.level_by_code("DS")
-        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("1724.81")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("1728.13")
 
     def test_lavoro_domestico_non_convivente_level_ordering(self) -> None:
         """DS has highest order (8); A has lowest (1)."""
@@ -372,16 +388,29 @@ class TestLoadLavoroDomesticoNonConvivente:
         assert min(orders, key=lambda k: orders[k]) == "A"
 
     def test_lavoro_domestico_non_convivente_additional_months(self) -> None:
-        """Additional months: 13 (tredicesima, Art. 27 CCNL)."""
+        """Additional months: 13 (tredicesima, Art. 39 CCNL 28/10/2025)."""
         ccnl = load_ccnl("lavoro-domestico-non-convivente.json")
         assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
             13
         )
 
     def test_lavoro_domestico_non_convivente_hourly_divisor(self) -> None:
-        """Hourly divisor: 173 (40 h/week x 52/12, non-convivente)."""
+        """Hourly divisor: 40 h/week x 52 / 12 = 173.33 (Art. 14 c. 1 lett. b)."""
         ccnl = load_ccnl("lavoro-domestico-non-convivente.json")
-        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(173)
+        divisor = ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1))
+        assert divisor == Decimal("173.33")
+
+    def test_lavoro_domestico_assistance_contribution(self) -> None:
+        """Art. 54 c. 2: 0.06 EUR per paid hour, 0.02 of it from the worker."""
+        for slug in (
+            "lavoro-domestico-non-convivente.json",
+            "lavoro-domestico-convivente.json",
+        ):
+            assistance = load_ccnl(slug).parameters.assistance_contribution
+            assert assistance is not None
+            day = date(2026, 1, 1)
+            assert assistance.employee_per_hour.value_at(day) == Decimal("0.02")
+            assert assistance.employer_per_hour.value_at(day) == Decimal("0.04")
 
     def test_lavoro_domestico_non_convivente_no_fixed_allowances(self) -> None:
         """All levels have no fixed allowances (function indennità not applicable)."""
