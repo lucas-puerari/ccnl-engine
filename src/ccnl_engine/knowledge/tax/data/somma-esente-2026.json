@@ -1,0 +1,46 @@
+{
+  "year": 2026,
+  "description": "Somma esente per i titolari di reddito di lavoro dipendente (L. 207/2024 art. 1 cc. 4-5)",
+  "somma_esente": {
+    "bands": [
+      {
+        "up_to": "8500",
+        "rate": "0.071"
+      },
+      {
+        "up_to": "15000",
+        "rate": "0.053"
+      },
+      {
+        "up_to": "20000",
+        "rate": "0.048"
+      }
+    ],
+    "provenance": {
+      "status": "derived",
+      "location": {
+        "source_document": {
+          "document_id": "l-207-2024",
+          "title": "L. 207/2024, legge di bilancio 2025",
+          "kind": "legge",
+          "url": "https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.codiceRedazionale=24G00229&art.dataPubblicazioneGazzetta=2024-12-31&art.flagTipoArticolo=0&art.idArticolo=1&art.idGruppo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.progressivo=1&art.versione=1"
+        },
+        "section": "art. 1 cc. 4-5",
+        "quote": "4. Ai titolari di reddito di lavoro dipendente di cui all'articolo 49 del testo unico delle imposte sui redditi, di cui al decreto del Presidente della Repubblica 22 dicembre 1986, n. 917, con esclusione di quelli indicati alla lettera a) del comma 2 del medesimo articolo 49, che hanno un reddito complessivo non superiore a 20.000 euro e' riconosciuta una somma, che non concorre alla formazione del reddito, determinata applicando al reddito di lavoro dipendente del contribuente la percentuale corrispondente di seguito indicata: a) 7,1 per cento, se il reddito di lavoro dipendente non e' superiore a 8.500 euro; b) 5,3 per cento, se il reddito di lavoro dipendente e' superiore a 8.500 euro ma non a 15.000 euro; c) 4,8 per cento, se il reddito di lavoro dipendente e' superiore a 15.000 euro. 5. Ai soli fini dell'individuazione della percentuale applicabile ai sensi del comma 4 il reddito di lavoro dipendente e' rapportato all'intero anno."
+      },
+      "transformation": "Bands a) to c) of c. 4 stored as ascending up_to limits of the reddito di lavoro dipendente: 8500 at 7.1%, 15000 at 5.3%. Lett. c) has no upper limit on that income; the up_to of the last band, 20000, stores instead the ceiling of the reddito complessivo of c. 4, above which no somma is due, and an annualised income above it takes the 4.8% of the last band. Per c. 5 the employment income is annualised only to select the percentage, which then applies to the employment income itself. The exclusion of the incomes of art. 49 c. 2 lett. a) TUIR (pensions) is not a parameter.",
+      "note": "Quote checked on 2026-10-07 against the Gazzetta Ufficiale text of L. 207/2024 art. 1 at the url of the record, whitespace normalised; the Gazzetta text writes accented vowels as vowel and apostrophe (e' for è). Commi 4 and 5 read identical, with no amendment marker, in the text in force on Normattiva (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2024-12-30;207~art1) on the same day. Not checked by a named reviewer."
+    }
+  },
+  "ruleset": {
+    "id": "tax/2026/somma-esente",
+    "version": "2026.1",
+    "effective_from": "2026-01-01",
+    "effective_until": "2026-12-31",
+    "published_at": "2026-10-07",
+    "source": "L. 30 dicembre 2024 n. 207, art. 1 cc. 4-5",
+    "source_type": "official_primary",
+    "verification_status": "unverified",
+    "source_hash": "dda3c48e41b6facd7359dc4aefecc76545a1a6f5629bf2351ddcb9c7bc450b5a"
+  }
+}

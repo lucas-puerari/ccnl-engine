@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "8d6c08773faff75eab3aca78cf4d75bd726f53e273026906d3f02293bdef85c4",
+    "source_hash": "08a4a266569819835dc90dce6c5f76de4de040c97eccd213bdc55233e5110413",
     "source_type": "estimated"
   },
   "irpef_brackets": [
@@ -160,37 +160,8 @@
     "fixed_term_additional_rate, fixed_term_renewal_increment, fixed_term_exempt_categories: NASpI surcharge of fixed-term contracts, L. 92/2012 art. 2 c. 28-29 (c. 3: not charged for operai agricoli); see fixed_term_additional_rate_provenance.",
     "Apprentice rates: same statutory structure as other sectors per L. 296/2006 and L. 92/2012. Agricultural apprenticeship is governed by Allegato n. 10 CCNL (agreement 23/02/2017).",
     "IVS ceiling: EUR 122,295 (INPS Circ. 6/2026).",
-    "Art. 16-ter c. 5-bis TUIR (inserted by L. 199/2025 art. 1 c. 4): for a reddito complessivo > EUR 200 000 the deduction for the 19% oneri (spese sanitarie excluded), the donations to political parties and the catastrophe insurance premiums is reduced by EUR 440. The art. 12 and art. 13 TUIR deductions and the ulteriore detrazione are outside its scope; the payroll computes none of the oneri in scope and does not apply the reduction.",
-    "Somma esente (L. 207/2024): band cut points 8 500 EUR and 15 000 EUR are reconstructions from worked examples — not verified against primary source. Rates 7.1%/5.3%/4.8% and ceiling 20 000 EUR are from AdE guidance."
+    "Art. 16-ter c. 5-bis TUIR (inserted by L. 199/2025 art. 1 c. 4): for a reddito complessivo > EUR 200 000 the deduction for the 19% oneri (spese sanitarie excluded), the donations to political parties and the catastrophe insurance premiums is reduced by EUR 440. The art. 12 and art. 13 TUIR deductions and the ulteriore detrazione are outside its scope; the payroll computes none of the oneri in scope and does not apply the reduction."
   ],
-  "somma_esente": {
-    "bands": [
-      {
-        "up_to": "8500",
-        "rate": "0.071"
-      },
-      {
-        "up_to": "15000",
-        "rate": "0.053"
-      },
-      {
-        "up_to": "20000",
-        "rate": "0.048"
-      }
-    ],
-    "provenance": {
-      "status": "assumed",
-      "location": {
-        "source_document": {
-          "document_id": "l-207-2024",
-          "title": "L. 207/2024, legge di bilancio 2025",
-          "kind": "legge"
-        },
-        "section": "art. 1 c. 4"
-      },
-      "note": "Band cut points 8 500 EUR and 15 000 EUR are reconstructions from worked examples, not verified against the primary source; rates 7.1%/5.3%/4.8% and the 20 000 EUR ceiling are from AdE guidance."
-    }
-  },
   "irpef_brackets_provenance": {
     "status": "assumed",
     "location": {

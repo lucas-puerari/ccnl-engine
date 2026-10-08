@@ -7,7 +7,10 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.shared.domain.errors import DataIntegrityError
 from ccnl_engine.tax.domain.ruleset import YearRules, YearRulesRaw
-from ccnl_engine.tax.service.tax_optional_loaders import load_tfr_revaluation_rules
+from ccnl_engine.tax.service.tax_optional_loaders import (
+    load_somma_esente_rules,
+    load_tfr_revaluation_rules,
+)
 from ccnl_engine.tax.service.tax_resource_reader import (
     _as_ruleset,
     read_inps_rules_raw,
@@ -36,7 +39,8 @@ def load_year_rules(
     with the resolved rates -- callers do not need to handle tier logic.
 
     The IRPEF/TFR block comes from ``ccnl_engine/knowledge/tax/data/``, with
-    the TFR revaluation of the year from its national file; the
+    the TFR revaluation and the somma esente of the year from their
+    national files; the
     INPS contribution block (aliquote, apprentice, domestic) comes from
     ``ccnl_engine/knowledge/inps/data/``. Both are merged and validated
     against :class:`~ccnl_engine.tax.domain.ruleset.YearRulesRaw` before
@@ -113,7 +117,7 @@ def _load_year_rules_cached(
         tfr_revaluation=load_tfr_revaluation_rules(year),
         trattamento_integrativo=rules.trattamento_integrativo,
         ulteriore_detrazione=rules.ulteriore_detrazione,
-        somma_esente=rules.somma_esente,
+        somma_esente=load_somma_esente_rules(year),
         sterilizzazione_detrazioni=rules.sterilizzazione_detrazioni,
         work_deduction=rules.work_deduction,
         complementary_pension=rules.complementary_pension,

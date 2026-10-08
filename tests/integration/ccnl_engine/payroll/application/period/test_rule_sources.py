@@ -90,7 +90,8 @@ class TestBundledRun:
         # The industria tax ruleset declares source_type "estimated".
         assert sources["irpef"] is ProvenanceStatus.ASSUMED
         assert sources["tfr"] is ProvenanceStatus.ASSUMED
-        assert sources["somma_esente"] is ProvenanceStatus.ASSUMED
+        # The somma esente sits in its own ruleset, quoted from the law.
+        assert sources["somma_esente"] is ProvenanceStatus.DERIVED
         # A known seniority decides the increments, so their rule is read.
         assert sources["seniority"] is ProvenanceStatus.DERIVED
         assert all(i.code != MISSING_SOURCE_CODE for i in result.issues)
@@ -110,7 +111,7 @@ class TestBundledRun:
             if b.code is BlockerCode.RULE_SOURCE_WEAK
         }
         assert result.assurance.calculation is CalculationStatus.FINAL
-        assert ("somma_esente", "assumed") in weak
+        assert ("irpef", "assumed") in weak
         assert all(detail != "derived" for _, detail in weak)
         assert not result.is_payable
 

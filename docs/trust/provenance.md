@@ -24,7 +24,8 @@ posted amount.
 | INPS sick-pay indemnity bands | `inps/data/sick-pay-rates.json`: `bands` | Sibling `bands_provenance` |
 | IRPEF brackets | `tax/data/<year>-<sector>.json`: `irpef_brackets` | Sibling `irpef_brackets_provenance` |
 | Art. 13 work deduction, its minimum | `tax/data/<year>-<sector>.json`: `work_deduction`, `work_deduction.minimum` | Per block |
-| Trattamento integrativo, ulteriore detrazione, somma esente | `tax/data/<year>-<sector>.json` | Per block |
+| Trattamento integrativo, ulteriore detrazione | `tax/data/<year>-<sector>.json` | Per block |
+| Somma esente | `tax/data/somma-esente-<year>.json`: `somma_esente` | Per block |
 | TFR divisor, additional IVS deduction | `tax/data/<year>-<sector>.json`: `tfr`, `tfr.additional_ivs` | Per block |
 | Fixed-term addizionale NASpI | `tax/data/<year>-<sector>.json`: `fixed_term_additional_rate`, `fixed_term_renewal_increment`, `fixed_term_exempt_categories` | One sibling `fixed_term_additional_rate_provenance` for the three |
 | INPS rates, 1% additional IVS | `inps/data/<year>-<sector>.json`: `inps`, `inps.employee_additional`, `apprentice`, `domestic_contributions` | Per block |
@@ -38,8 +39,9 @@ allowance is read from its own row of a table. Fiscal values are statutory
 parameters stated once per block (the brackets of one comma, the constants
 of one article), so their record is per block: a record per bracket would
 repeat the same citation, and a record per file would mix blocks with
-different backing (for example the somma esente cut points, which are
-reconstructions, sit next to the IRPEF brackets of the law). The surtax
+different backing (for example the public administration fixed-term
+exemption, cited from commentary, sits next to the IRPEF brackets of the
+law). The surtax
 tables come from one MEF publication each, so they carry one record per
 table instead of one per municipality.
 
@@ -147,6 +149,17 @@ Nothing becomes `verified` without a named reviewer and a date: the legacy
 `verification.human_reviewed_by`, does not say which value was checked by
 whom, so such records are `derived`.
 
+A statutory block that is the same for every sector lives in a year file
+of its own, with an `official_primary` ruleset, rather than in the
+`estimated` sector files: the somma esente of L. 207/2024 art. 1 cc. 4-5
+(`tax/data/somma-esente-<year>.json`, ruleset `tax/<year>/somma-esente`)
+is `derived`, its record quoting the Gazzetta Ufficiale text of the two
+commi and saying in `transformation` how the bands store them. The loader
+merges it into the rules of every sector, and a sector file that carries
+its own copy does not load. The IRPEF brackets, the Art. 13 deduction and
+the other credits stay in the sector files, `assumed`, until their text
+is quoted the same way.
+
 `scripts/data/assign_rule_provenance.py` assigns the status of existing
 records from what they record and fills the fiscal blocks from the citations
 in each file's notes and ruleset source (or, where the data records none,
@@ -179,7 +192,7 @@ records that cite no URL (the INPS sick-pay bands, the PdR limits), the
 AI-extracted CCNL values (including
 <!-- trust:accrual-assumed -->40<!-- /trust:accrual-assumed --> accrual
 thresholds read from signed texts, each with its article and quote),
-extra-month counts with no located clause, the somma esente cut points, the
+extra-month counts with no located clause, the
 artigianato and edilizia INPS proxies, the PA apprentice placeholder, the PA
 fixed-term exemption and the regional surtax table.
 `python scripts/ci/check_provenance.py --rules` prints the same counts.

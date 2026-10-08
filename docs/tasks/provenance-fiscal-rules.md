@@ -18,7 +18,6 @@ recorded as `assumed` are:
 
 | File | Block | Why |
 |---|---|---|
-| `tax/data/2026-*.json` | `somma_esente` | Band cut points are reconstructions from worked examples |
 | `tax/data/2026-pubblica-amministrazione.json` | `fixed_term_additional_rate` | Exemption of L. 92/2012 art. 2 c. 29 lett. d located on Normattiva; the ruleset is `estimated` |
 | `inps/data/2026-artigianato.json` | `inps` | Aggregator rates; INPS circular not retrieved |
 | `inps/data/2026-edilizia.json` | `inps` | Proxy values from a 1998 rate structure |

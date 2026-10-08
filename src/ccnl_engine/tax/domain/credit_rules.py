@@ -8,6 +8,7 @@ from typing import Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.provenance.domain.chain import RuleProvenance
+from ccnl_engine.provenance.domain.ruleset_identity import RulesetIdentity
 from ccnl_engine.shared.domain.primitives import PercentageRate
 
 
@@ -61,9 +62,10 @@ class UlterioreDetrazioneRules(BaseModel):
 class SommaEsenteBand(BaseModel):
     """One income band for the somma esente schedule.
 
-    The ``rate`` applies to the full reddito complessivo (not a marginal
-    slice) when the income falls within this band (i.e. does not exceed
-    ``up_to``).  Bands are ordered ascending by ``up_to``.
+    The ``rate`` applies to the whole employment income (not a marginal
+    slice) when the employment income annualised to the whole year falls
+    within this band (i.e. does not exceed ``up_to``).  Bands are ordered
+    ascending by ``up_to``.
 
     ``rate`` must be in [0, 1]; negative bonus rates are economically
     impossible.
@@ -85,8 +87,8 @@ class SommaEsenteRules(BaseModel):
     it is applied to the whole employment income of the year (not just
     the marginal slice).
 
-    Band cut points in the knowledge bundle are unverified reconstructions
-    from available examples and are flagged in the JSON ``notes`` array.
+    The rules are statutory and the same for every sector: the bundle
+    keeps them in their own year file, whose identity is ``ruleset``.
 
     ``bands`` must be non-empty and strictly ascending by ``up_to``.
     """
@@ -95,6 +97,7 @@ class SommaEsenteRules(BaseModel):
 
     bands: list[SommaEsenteBand] = Field(min_length=1)
     provenance: RuleProvenance | None = None
+    ruleset: RulesetIdentity | None = None
 
     @model_validator(mode="after")
     def _check_bands_order(self) -> Self:

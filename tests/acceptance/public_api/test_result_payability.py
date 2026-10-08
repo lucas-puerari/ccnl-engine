@@ -84,10 +84,10 @@ def test_incomplete_coverage_is_not_payable() -> None:
     ``unsupported`` gap and the result is not payable.  So must it revalue
     the TFR fund at 31 December 2025 for January (art. 2120 c. 5 c.c.),
     which the engine reports as not computed: an ``unresolved`` gap.
-    ``base_salary`` and ``somma_esente`` come from ``assumed`` rules: each
-    is a blocker too.  January is the only payment of the employment, so
-    the year's income is one month of pay and the somma esente is due on an
-    assumed income.  The worker resides in Alghero, so the surtaxes leave no
+    ``base_salary`` comes from ``assumed`` rules: a blocker too.  January
+    is the only payment of the employment, so the year's income is one
+    month of pay and the somma esente is due on an assumed income, an
+    issue that blocks on its own.  The worker resides in Alghero, so the surtaxes leave no
     gap of their own.
     """
     period = EmploymentPeriod(started_on=date(2020, 1, 1), ended_on=date(2026, 1, 30))
@@ -117,10 +117,9 @@ def test_incomplete_coverage_is_not_payable() -> None:
         "tfr_revaluation": "unresolved",
     }
     assert blocked == set(gaps)
-    assert {
-        (BlockerCode.RULE_SOURCE_WEAK, "base_salary", "assumed"),
-        (BlockerCode.RULE_SOURCE_WEAK, "somma_esente", "assumed"),
-    } <= _blocker_keys(result)
+    assert (BlockerCode.RULE_SOURCE_WEAK, "base_salary", "assumed") in (
+        _blocker_keys(result)
+    )
 
 
 def test_ordinary_month_has_no_coverage_gap() -> None:
@@ -128,7 +127,8 @@ def test_ordinary_month_has_no_coverage_gap() -> None:
 
     No unsupported capability applies and the residence and the family are
     stated: the coverage is complete and no coverage blocker hides the
-    evidence blockers that remain.
+    evidence blockers that remain.  The somma esente, quoted from
+    L. 207/2024 art. 1 cc. 4-5, is not one of them.
     """
     result = _january(
         Employment(
@@ -145,9 +145,9 @@ def test_ordinary_month_has_no_coverage_gap() -> None:
     assert not any(
         b.code is BlockerCode.CAPABILITY_NOT_COMPUTED for b in result.blockers
     )
-    assert (BlockerCode.RULE_SOURCE_WEAK, "somma_esente", "assumed") in (
-        _blocker_keys(result)
-    )
+    keys = _blocker_keys(result)
+    assert (BlockerCode.RULE_SOURCE_WEAK, "irpef", "assumed") in keys
+    assert not any(feature == "somma_esente" for _code, feature, _d in keys)
 
 
 def test_unknown_ivs_ceiling_eligibility_is_a_missing_fact() -> None:

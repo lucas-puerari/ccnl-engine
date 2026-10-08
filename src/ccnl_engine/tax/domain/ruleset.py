@@ -48,6 +48,9 @@ class YearRulesRaw(BaseModel):
     ``fixed_term_renewal_increment`` added at each renewal, and the
     ``fixed_term_exempt_categories`` of the sector the article does not
     apply to (c. 3: operai agricoli).
+
+    The somma esente is not a field: it is statutory and the same for
+    every sector, so it lives in its own year file (``somma-esente-<year>``).
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -67,7 +70,6 @@ class YearRulesRaw(BaseModel):
     tfr: TfrRules
     trattamento_integrativo: TrattamentoIntegrativoRules | None = None
     ulteriore_detrazione: UlterioreDetrazioneRules | None = None
-    somma_esente: SommaEsenteRules | None = None
     sterilizzazione_detrazioni: SterilizzazioneDetrazioniRules | None = None
     work_deduction: WorkDeductionRules = Field(default_factory=WorkDeductionRules)
     complementary_pension: ComplementaryPensionRules | None = None
@@ -115,6 +117,8 @@ class YearRules(BaseModel):
     the loader, which mirrors ``YearRulesRaw._check_contribution_model``).
     ``tfr_revaluation`` holds the revaluation of the TFR fund at 31
     December of the year, ``None`` when the bundle has no rules for it.
+    ``somma_esente`` comes from the year file shared by every sector and
+    carries the identity of that file.
     """
 
     model_config = ConfigDict(extra="forbid")

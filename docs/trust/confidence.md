@@ -96,12 +96,13 @@ the `residence_unknown` surtax decisions add a `calculation_issue` and a
 `capability_not_computed` blocker per missing code. None has a coverage gap: the capabilities the engine
 does not compute (INAIL, health funds, maternity, ...) do not apply to an
 ordinary month or are outside the request (see the
-[capability matrix](../contracts/capability-matrix.md)). Every run carries a
-`rule_source_weak` blocker on `somma_esente`, whose cut points are
-reconstructions. Every run that reads a 2026 sector tax or INPS file is
-also blocked on IRPEF, INPS, TFR and the credits: those rulesets declare
+[capability matrix](../contracts/capability-matrix.md)). Every run that
+reads a 2026 sector tax or INPS file is blocked on IRPEF, INPS, TFR, the
+trattamento integrativo and the ulteriore detrazione: those rulesets declare
 `source_type: "estimated"`, so their rules are `assumed` (see
-[Provenance](provenance.md#a-label-never-outruns-its-evidence)). Most also
+[Provenance](provenance.md#a-label-never-outruns-its-evidence)). The
+somma esente is `derived` from its own ruleset, quoted from L. 207/2024
+art. 1 cc. 4-5, and blocks no run by its label. Most also
 read an `assumed` base salary:
 <!-- trust:extra-months-assumed -->121 of 125<!-- /trust:extra-months-assumed -->
 CCNLs cite no clause for their number of monthly payments. The bundle holds
