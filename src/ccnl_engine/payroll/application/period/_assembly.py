@@ -28,6 +28,7 @@ from ccnl_engine.payroll.application.period._employment_facts import (
 )
 from ccnl_engine.payroll.application.period._limitations import run_limitations
 from ccnl_engine.payroll.application.period._minimum_base import minimum_base_issue
+from ccnl_engine.payroll.application.period._naspi import naspi_issue
 from ccnl_engine.payroll.application.period._other_employers import (
     other_employers_issue,
 )
@@ -172,13 +173,9 @@ def _input_issues(
     """Return the issues of the facts and rules the run read.
 
     Returns:
-        The issues of the category rates, the seniority, the full time
-        and the roles of the employment, the pension fund enrolment, the
-        suspension of accrual of the absences, the proration, the minimum
-        INPS base, the IVS massimale, the additional 1% IVS, the opening
-        state, the INPS base of other employments, the TFR revaluation and
-        the renewal regime on the minimo, in that order,
-        each only when raised.
+        The issues of the employment facts, the proration, the INPS
+        amounts, the opening state, the TFR revaluation and the renewal
+        regime on the minimo, in the order listed below, when raised.
     """
     ivs = amounts.ivs_ceiling
     base = amounts.inps_base(ctx.monthly_gross + events.totals.inps_base)
@@ -193,6 +190,7 @@ def _input_issues(
         accrual_issue(ctx),
         ctx.proration.issue(),
         minimum_base_issue(amounts.minimum_base),
+        naspi_issue(ctx),
         None if ivs is None else ivs.issue(),
         additional_ivs_issue(ctx),
         ctx.opening_issue,

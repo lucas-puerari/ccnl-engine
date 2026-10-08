@@ -17,7 +17,7 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine import EmployerProfile, Employment, Headcount, PeriodResult
-from ccnl_engine.inputs import EmploymentPeriod, TfrFundBalance
+from ccnl_engine.inputs import EmploymentPeriod, Permanent, TfrFundBalance
 from ccnl_engine.results import BlockerCode, CalculationStatus
 from tests.acceptance.legal_scenarios._support import regular_period
 from tests.fixtures.seniority import new_hire
@@ -31,6 +31,7 @@ def _december(headcount: int, **facts: object) -> PeriodResult:
     employment = Employment(
         ccnl_slug=_METALMECCANICO,
         level_code="C3",
+        contract_type=Permanent(),
         seniority=new_hire(),
         employment_period=EmploymentPeriod(date(2020, 1, 1)),
         **facts,  # type: ignore[arg-type]

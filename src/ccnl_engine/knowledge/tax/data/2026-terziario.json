@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "3436f87c85bfeb16f172a2d5c758e9334bf8e3109c2e9f55a096f81d691611e4",
+    "source_hash": "5309e55f3cc9568760a90a5ea06663f1b411eb4cdaa6a4792a76ca1fb3ce24b6",
     "source_type": "estimated"
   },
   "irpef_brackets": [
@@ -27,6 +27,7 @@
     }
   ],
   "fixed_term_additional_rate": "0.014",
+  "fixed_term_renewal_increment": "0.005",
   "tfr": {
     "accrual_divisor": "13.5",
     "additional_ivs": {
@@ -165,7 +166,7 @@
     "IRPEF brackets: three-bracket structure of art. 11 c. 1 TUIR; second bracket rate reduced from 35% to 33% from 2026-01-01 by L. 199/2025 art. 1 c. 3.",
     "Art. 13 co. 1 TUIR work-income deduction: statutory piecewise schedule (circolare AdE 4/E/2025, p. 6). Constants versioned in YearRules.work_deduction.",
     "INPS rates: terziario sector (commercio ingrosso e dettaglio, CUAF intera). employer_tiers sourced from kitech.it 2026 (https://www.kitech.it/Contributi-previdenziali.aspx?p=4_138 for <=50; p=4_136 for 51-200; p=4_134 for >200). <=50 employees 28.98% (Table 7.1); >50 employees 29.58% — kitech.it shows identical rate for 51-200 and >200, so a single tier suffices. The +0.60pp employer delta (28.98% to 29.58%) reflects the switch from FIS (Fondo di Integrazione Salariale, applied for firms up to 50 employees) to CIGS ordinaria (Cassa Integrazione Guadagni Straordinaria, applied for firms above 50 employees); the CIGS employer share is 0.60% while the FIS employer share at that headcount is lower. Symmetrically, for >50 the employee rate rises from 9.19% to 9.49% (+0.30% CIGS employee share), see employee_tiers. SIMPLIFICATION: ivs_rate 23.81% at tier level is uniform across categories (no rate_by_category in terziario).",
-    "fixed_term_additional_rate: NASpI addizionale base rate 1.4% (employer-only) per Art. 2 co. 28 L. 92/2012, confirmed in force 2026 per INPS messaggi 269/2025 and 483/2025. The +0.50% increment per contract renewal is not modelled (SIMPLIFICATION).",
+    "fixed_term_additional_rate, fixed_term_renewal_increment: NASpI surcharge of fixed-term contracts, L. 92/2012 art. 2 c. 28-29; see fixed_term_additional_rate_provenance.",
     "INPS dipendente — employee_tiers: 9.19% up to 50 employees; 9.49% above 50 (0.30% CIGS employee share, consistent with the employer tier that adds CIGS above 50).",
     "Apprentice contributions (L. 296/2006 art. 1 c. 773; L. 92/2012 art. 2 c. 36-37): employer 10% + NASpI 1.31% + 0.30% = 11.61%; employee 5.84%. Firms with at most 9 employees pay 1.5% (+1.61% NASpI) in months 0-11 and 3% (+1.61%) in months 12-23, then 11.61%. SIMPLIFICATION: hiring incentives (sgravi) and Cassa Edile apprentice schemes are not modelled.",
     "IVS ceiling: massimale annuo della base contributiva 2026 = EUR 122,295.00 (INPS Circ. 6/2026, 30 Jan 2026; L. 335/1995 art. 2 c. 18). Applies to workers without contributions before 1 Jan 1996 and to those who opted for the contributory system (art. 1 c. 23); the engine derives it from the contribution history.",
@@ -220,12 +221,15 @@
     "location": {
       "source_document": {
         "document_id": "l-92-2012",
-        "title": "L. 92/2012",
-        "kind": "legge"
+        "title": "L. 28 giugno 2012 n. 92",
+        "kind": "legge",
+        "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2012-06-28;92~art2!vig=2026-10-07"
       },
-      "section": "art. 2 c. 28"
+      "section": "art. 2 c. 28",
+      "quote": "ai rapporti di lavoro subordinato non a tempo indeterminato si applica un contributo addizionale, a carico del datore di lavoro, pari all'1,4 per cento della retribuzione imponibile ai fini previdenziali. Il contributo addizionale è aumentato di 0,5 punti percentuali in occasione di ciascun rinnovo del contratto a tempo determinato, anche in regime di somministrazione. Le disposizioni del precedente periodo non si applicano ai contratti di lavoro domestico, nonché nelle ipotesi di cui al comma 29."
     },
-    "note": "Assumed, not derived: its ruleset declares source_type 'estimated'; no citation (http(s) url and section or page)."
+    "transformation": "fixed_term_additional_rate: '1,4 per cento' = 0.014; fixed_term_renewal_increment: '0,5 punti percentuali' = 0.005, added once per renewal to the rate of the previous contract.",
+    "note": "INPS circ. 121/2019 par. 2.3 (https://servizi2.inps.it/CircolariZIP/Circolare%20numero%20121%20del%2006-09-2019.pdf, sha256 4523ce7c22a7f5d8c51cfe4de8968642d1279ab7fc7209fc9a0e31e3ddb49449): 'contratto originario: 1,4%; 1° rinnovo: 1.9% (1,4% + 0,5%); 2° rinnovo: 2.4% (1,9% + 0,5%); 3° rinnovo: 2,9% (2,4% + 0,5%)', and 'si considera primo rinnovo contrattuale quello sottoscritto a far tempo dal 14 luglio 2018'; par. 2.2: the increase 'non trova applicazione in caso di proroga'. Normattiva text of L. 92/2012 art. 2 read on 2026-10-07 (in force on that date, last amending act published 2026-03-23). Not checked by a named reviewer. Assumed, not derived: its ruleset declares source_type 'estimated'."
   },
   "complementary_pension": {
     "deduction_cap": "5300.00",

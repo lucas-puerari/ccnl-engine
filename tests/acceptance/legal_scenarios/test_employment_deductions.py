@@ -24,6 +24,7 @@ from ccnl_engine.inputs import (
     EmploymentPeriod,
     FamilyComposition,
     FixedTerm,
+    NaspiExclusion,
     PeriodState,
     Permanent,
 )
@@ -110,13 +111,21 @@ _SHORT_EMPLOYMENTS = pytest.mark.parametrize(
             Permanent(), date(2026, 3, 1), date(2026, 5, 31), 92, id="permanent-92"
         ),
         pytest.param(
-            FixedTerm(), date(2026, 3, 1), date(2026, 5, 31), 92, id="fixed-term-92"
+            FixedTerm(renewals=0, naspi_exclusion=NaspiExclusion.NONE),
+            date(2026, 3, 1),
+            date(2026, 5, 31),
+            92,
+            id="fixed-term-92",
         ),
         pytest.param(
             Permanent(), date(2026, 7, 10), date(2026, 9, 20), 73, id="permanent-73"
         ),
         pytest.param(
-            FixedTerm(), date(2026, 7, 10), date(2026, 9, 20), 73, id="fixed-term-73"
+            FixedTerm(renewals=0, naspi_exclusion=NaspiExclusion.NONE),
+            date(2026, 7, 10),
+            date(2026, 9, 20),
+            73,
+            id="fixed-term-73",
         ),
     ],
 )
@@ -267,7 +276,11 @@ def test_rehire_counts_the_days_of_the_income_it_projects() -> None:
 @pytest.mark.parametrize(
     ("contract", "floor"),
     [
-        pytest.param(FixedTerm(), FIXED_TERM_EMPLOYMENT_DEDUCTION_FLOOR, id="fixed"),
+        pytest.param(
+            FixedTerm(renewals=0, naspi_exclusion=NaspiExclusion.NONE),
+            FIXED_TERM_EMPLOYMENT_DEDUCTION_FLOOR,
+            id="fixed",
+        ),
         pytest.param(Permanent(), EMPLOYMENT_DEDUCTION_FLOOR, id="permanent"),
     ],
 )

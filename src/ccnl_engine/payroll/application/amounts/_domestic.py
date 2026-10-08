@@ -11,8 +11,11 @@ from ccnl_engine.payroll.domain.contributions import (
     ContributionBreakdown,
     ContributionComponent,
 )
-from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm, Permanent
 from ccnl_engine.payroll.domain.rounding import money
+from ccnl_engine.payroll.service.naspi_surcharge import (
+    SurchargeReason,
+    naspi_surcharge,
+)
 from ccnl_engine.shared.domain.errors import (
     DataIntegrityError,
     MissingRequiredFactError,
@@ -22,6 +25,7 @@ if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.contract.domain.identity import CCNL
+    from ccnl_engine.payroll.domain.employment import Contract
     from ccnl_engine.tax.domain.domestic_contribution_rules import DomesticInpsRates
     from ccnl_engine.tax.domain.ruleset import YearRules
 
@@ -30,9 +34,13 @@ def _pick_domestic_per_hour(
     dc: DomesticInpsRates,
     weekly_hours: int,
     domestic_hourly_rate: Decimal,
-    contract_type: Permanent | FixedTerm | Apprentice,
+    *,
+    surcharged: bool,
 ) -> tuple[Decimal, Decimal]:
     """Return (employee_per_hour, employer_per_hour) for a domestic CCNL bracket.
+
+    The fixed-term employer rates of the INPS table include the NASpI
+    surcharge; they apply when the run is charged it.
 
     Returns:
         ``(emp_ph, empr_ph)`` flat rates to multiply by contributable hours.
@@ -41,7 +49,7 @@ def _pick_domestic_per_hour(
         emp_ph = dc.hours_bracket.employee_per_hour
         empr_ph = (
             dc.hours_bracket.employer_per_hour_fixed_term
-            if isinstance(contract_type, FixedTerm)
+            if surcharged
             else dc.hours_bracket.employer_per_hour
         )
     else:
@@ -55,7 +63,7 @@ def _pick_domestic_per_hour(
                 emp_ph = wb.employee_per_hour
                 empr_ph = (
                     wb.employer_per_hour_fixed_term
-                    if isinstance(contract_type, FixedTerm)
+                    if surcharged
                     else wb.employer_per_hour
                 )
                 break
@@ -67,7 +75,7 @@ def compute_domestic_breakdown(
     weekly_hours: int | None,
     contributable_hours: Decimal | None,
     domestic_hourly_rate: Decimal | None,
-    contract_type: Permanent | FixedTerm | Apprentice,
+    contract_type: Contract,
 ) -> ContributionBreakdown:
     """Compute domestic flat-rate INPS contributions.
 
@@ -96,8 +104,12 @@ def compute_domestic_breakdown(
             "to compute INPS contributions"
         )
         raise MissingRequiredFactError(msg, feature="domestic_contributions")
+    surcharge = naspi_surcharge(rules, contract_type, None, domestic=True)
     emp_ph, empr_ph = _pick_domestic_per_hour(
-        dc, weekly_hours, domestic_hourly_rate or _ZERO, contract_type
+        dc,
+        weekly_hours,
+        domestic_hourly_rate or _ZERO,
+        surcharged=surcharge.reason is SurchargeReason.CHARGED,
     )
     employee_contribution = money(emp_ph * contributable_hours)
     employer_contribution = money(empr_ph * contributable_hours)

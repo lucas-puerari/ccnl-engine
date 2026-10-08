@@ -40,6 +40,7 @@ from ccnl_engine.inputs import (
     CurrentYearTaxFacts,
     EmploymentPeriod,
     FamilyComposition,
+    Permanent,
     PriorYearTaxFacts,
     SurtaxComponent,
 )
@@ -84,6 +85,7 @@ def _year() -> CompetenceYearResult:
                 seniority=new_hire(),
                 employment_period=EmploymentPeriod(date(2026, 1, 1)),
                 tfr_treasury_fund=False,
+                contract_type=Permanent(),
             ),
             employer=EmployerProfile(headcount=Headcount(50)),
             default_facts=PeriodFacts(

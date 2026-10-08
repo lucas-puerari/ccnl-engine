@@ -15,9 +15,12 @@ from ccnl_engine import (
     InvalidInputError,
     PayrollEngine,
 )
+from ccnl_engine.inputs import Permanent
 
 _ENGINE = PayrollEngine.bundled()
-_EMPLOYMENT = Employment(ccnl_slug="commercio-confcommercio.json", level_code="4")
+_EMPLOYMENT = Employment(
+    ccnl_slug="commercio-confcommercio.json", level_code="4", contract_type=Permanent()
+)
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
 
 

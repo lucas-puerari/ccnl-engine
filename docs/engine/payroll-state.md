@@ -392,11 +392,12 @@ from datetime import date
 from ccnl_engine import (
     CompetenceYearPlan, EmployerProfile, Employment, Headcount, PayrollEngine,
 )
-from ccnl_engine.inputs import EmploymentPeriod
+from ccnl_engine.inputs import EmploymentPeriod, Permanent
 
 engine = PayrollEngine.bundled()
 employment = Employment(  # hired on 1 January 2026: the zero state is the fact
     ccnl_slug="metalmeccanico-federmeccanica.json", level_code="C3",
+    contract_type=Permanent(),
     employment_period=EmploymentPeriod(date(2026, 1, 1)),
 )
 employer = EmployerProfile(headcount=Headcount(50))

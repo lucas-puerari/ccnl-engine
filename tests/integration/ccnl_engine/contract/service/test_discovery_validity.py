@@ -34,6 +34,7 @@ from ccnl_engine import (
 from ccnl_engine.contract.service.loaders import load_ccnl
 from ccnl_engine.inputs import (
     ContributableHours,
+    Permanent,
     SeniorityFact,
     SenioritySource,
     WeeklyHours,
@@ -84,6 +85,7 @@ def _employment(ccnl: CCNL, level_code: str) -> Employment:
         weekly_hours=WeeklyHours(25) if domestic else None,
         seniority=_SENIORITY,
         category=pricing_category(ccnl.parameters.seniority_increments, level_code),
+        contract_type=Permanent(),
     )
 
 

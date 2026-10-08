@@ -26,6 +26,7 @@ from ccnl_engine import (
     PeriodInput,
     PeriodResult,
 )
+from ccnl_engine.inputs import Permanent
 
 _CASES_DIR = Path(__file__).parents[2] / "fixtures" / "reference_tables"
 _CASE_FILES = sorted(_CASES_DIR.glob("*.json"))
@@ -40,7 +41,9 @@ def _run(inputs: dict[str, Any]) -> PeriodResult:
             run=PayrollRun.regular(year=year, month=month),
             payment_date=date(year, month, 27),
             employment=Employment(
-                ccnl_slug=inputs["ccnl_slug"], level_code=inputs["level_code"]
+                ccnl_slug=inputs["ccnl_slug"],
+                level_code=inputs["level_code"],
+                contract_type=Permanent(),
             ),
             employer=EmployerProfile(headcount=Headcount(int(inputs["headcount"]))),
         )

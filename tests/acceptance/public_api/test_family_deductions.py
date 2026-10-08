@@ -37,6 +37,7 @@ from ccnl_engine.inputs import (
     InpsBaseYtd,
     OpeningBalances,
     PeriodState,
+    Permanent,
 )
 from ccnl_engine.results import BlockerCode, CalculationDecision, CalculationStatus
 from tests.fixtures.dependents import declared_dependent
@@ -58,6 +59,7 @@ _EMPLOYMENT = Employment(
     ccnl_slug="metalmeccanico-federmeccanica.json",
     level_code="C3",
     seniority=new_hire(),
+    contract_type=Permanent(),
 )
 
 

@@ -53,6 +53,7 @@ from ccnl_engine.inputs import (
     DependentRelationship,
     EmploymentPeriod,
     FamilyComposition,
+    Permanent,
     PriorYearTaxFacts,
     SeniorityFact,
     SenioritySource,
@@ -65,7 +66,11 @@ if TYPE_CHECKING:
 _ENGINE = PayrollEngine.bundled()
 _YEAR = 2026
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
-_METAL = Employment(ccnl_slug="metalmeccanico-federmeccanica.json", level_code="C3")
+_METAL = Employment(
+    ccnl_slug="metalmeccanico-federmeccanica.json",
+    level_code="C3",
+    contract_type=Permanent(),
+)
 _PUBLIC_CODES = {
     "unknown_ccnl",
     "unknown_level",
@@ -140,7 +145,7 @@ def test_an_unknown_contract_is_a_public_error(
     slug: str, level: str, code: str
 ) -> None:
     """A slug or a level the bundle does not know is a typed error."""
-    employment = Employment(ccnl_slug=slug, level_code=level)
+    employment = Employment(ccnl_slug=slug, level_code=level, contract_type=Permanent())
 
     error = _public_outcome(
         lambda: _ENGINE.calculate_period(_june(employment, PeriodFacts()))
@@ -154,7 +159,7 @@ def test_an_unknown_contract_is_a_public_error(
 def test_a_slug_that_is_not_a_bundle_file_name_is_invalid_input(slug: str) -> None:
     """A path or another extension never reaches the bundle reader."""
     with pytest.raises(InvalidInputError) as raised:
-        Employment(ccnl_slug=slug, level_code="C3")
+        Employment(ccnl_slug=slug, level_code="C3", contract_type=Permanent())
     assert raised.value.field == "Employment.ccnl_slug"
 
 
@@ -166,7 +171,10 @@ class TestSeniorityOnTheInput:
     def test_period_input_rejects_service_starting_after_the_run(self) -> None:
         """Service recognised from September cannot pay a June run."""
         employment = Employment(
-            ccnl_slug=_METAL.ccnl_slug, level_code="C3", seniority=self._LATE
+            ccnl_slug=_METAL.ccnl_slug,
+            level_code="C3",
+            seniority=self._LATE,
+            contract_type=Permanent(),
         )
         with pytest.raises(InvalidInputError, match="starts after") as raised:
             _june(employment, PeriodFacts())
@@ -192,6 +200,7 @@ class TestSeniorityOnTheInput:
             level_code="C3",
             seniority=self._LATE,
             employment_period=EmploymentPeriod.from_dates(started_on, None),
+            contract_type=Permanent(),
         )
         if rejected:
             with pytest.raises(InvalidInputError, match="starts after"):
@@ -224,7 +233,9 @@ CCNL-2025-2027.pdf, "Tabella retributiva") start with the tranche of
         """January and February are left out with a typed blocker each."""
         request = CompetenceYearPlan(
             year=_YEAR,
-            employment=Employment(ccnl_slug="anas.json", level_code="C1"),
+            employment=Employment(
+                ccnl_slug="anas.json", level_code="C1", contract_type=Permanent()
+            ),
             employer=_EMPLOYER,
         )
         result = _ENGINE.calculate_competence_year(request)
@@ -251,6 +262,7 @@ CCNL-2025-2027.pdf, "Tabella retributiva") start with the tranche of
             employment_period=EmploymentPeriod(
                 started_on=date(_YEAR, 1, 1), ended_on=date(_YEAR, 2, 28)
             ),
+            contract_type=Permanent(),
         )
         request = CompetenceYearPlan(
             year=_YEAR, employment=employment, employer=_EMPLOYER
@@ -266,6 +278,7 @@ CCNL-2025-2027.pdf, "Tabella retributiva") start with the tranche of
             ccnl_slug="anas.json",
             level_code="C1",
             employment_period=EmploymentPeriod(started_on=date(_YEAR, 4, 1)),
+            contract_type=Permanent(),
         )
         result = _ENGINE.calculate_competence_year(
             CompetenceYearPlan(year=_YEAR, employment=employment, employer=_EMPLOYER)
@@ -369,7 +382,9 @@ _DEPENDENTS = st.lists(
 def _employment(contract: tuple[str, str], weekly_hours: int | None) -> Employment:
     slug, level = contract
     hours = None if weekly_hours is None else WeeklyHours(weekly_hours)
-    return Employment(ccnl_slug=slug, level_code=level, weekly_hours=hours)
+    return Employment(
+        ccnl_slug=slug, level_code=level, weekly_hours=hours, contract_type=Permanent()
+    )
 
 
 @settings(max_examples=50, deadline=None)

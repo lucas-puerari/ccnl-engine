@@ -34,6 +34,7 @@ from ccnl_engine.inputs import (
     EmploymentPeriod,
     OpeningBalances,
     PeriodState,
+    Permanent,
     PriorYearTaxFacts,
 )
 from tests.fixtures.seniority import new_hire
@@ -48,6 +49,7 @@ _EMPLOYMENT = Employment(
     level_code="D2",
     seniority=new_hire(),
     employment_period=EmploymentPeriod(date(2026, 1, 1)),
+    contract_type=Permanent(),
 )
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
 _ALGHERO = PeriodFacts(regione="IT-88", comune_belfiore="A192")

@@ -9,12 +9,14 @@ import pytest
 from ccnl_engine.payroll.domain.competence_year_plan import CompetenceYearPlan
 from ccnl_engine.payroll.domain.current_year import CurrentYearTaxFacts
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
-from ccnl_engine.payroll.domain.employment import Employment
+from ccnl_engine.payroll.domain.employment import Employment, Permanent
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.tax_year_plan import TaxYearPlan
 from ccnl_engine.shared.domain.errors import InvalidInputError
 
-_EMPLOYMENT = Employment(ccnl_slug="commercio-confcommercio.json", level_code="4")
+_EMPLOYMENT = Employment(
+    ccnl_slug="commercio-confcommercio.json", level_code="4", contract_type=Permanent()
+)
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
 
 

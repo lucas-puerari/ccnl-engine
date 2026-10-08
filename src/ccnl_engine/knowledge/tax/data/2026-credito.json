@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "6eac9e7ead9c61b0dd33aca08afc0dc3b8e6be8658674a460661c224c04ee145",
+    "source_hash": "45fe8dad9bf8d0e71705a1dbf1619f932914d07b6dde73165fc2de29ab9dd6b3",
     "source_type": "estimated"
   },
   "irpef_brackets": [
@@ -27,6 +27,7 @@
     }
   ],
   "fixed_term_additional_rate": "0.014",
+  "fixed_term_renewal_increment": "0.005",
   "tfr": {
     "accrual_divisor": "13.5",
     "additional_ivs": {
@@ -165,7 +166,7 @@
     "IRPEF brackets: three-bracket structure of art. 11 c. 1 TUIR; second bracket rate reduced from 35% to 33% from 2026-01-01 by L. 199/2025 art. 1 c. 3.",
     "Art. 13 co. 1 TUIR work-income deduction: statutory piecewise schedule per D.Lgs. 216/2023 and L. 207/2024. Constants versioned in YearRules.work_deduction.",
     "INPS rates: credito sector (Credito e Assicurazioni). Rates confirmed from kitech.it 2026 Table 6.1 (https://www.kitech.it/Contributi-previdenziali.aspx?p=9_165): dirigenti and operai/impiegati 35.95% total = 9.19% employee + 26.76% employer. No size tiers (flat structure corroborated by absence of size-tier pages for credito on kitech.it). NOTE: kitech.it shows 'salariati' at 38.50% total (29.31% employer); this category (hourly auxiliary workers) is not present in standard credito CCNLs and is not modelled. SIMPLIFICATION: Fondo di solidarietà del credito (D.Lgs. 148/2015, bilateral fund substituting CIG/CIGS; ordinary rate 0.50% total: ~0.33% employer + ~0.17% employee) is presumed aggregated into the 26.76%/9.19% kitech.it totals. If the fund is reported separately by the employer, actual INPS rates would be 26.43% employer and 9.02% employee (IVS+NASpI only), and the 0.33%/0.17% must be remitted on top — verify against INPS circular for Fondo credito.",
-    "fixed_term_additional_rate: NASpI addizionale base rate 1.4% (employer-only) per Art. 2 co. 28 L. 92/2012.",
+    "fixed_term_additional_rate, fixed_term_renewal_increment: NASpI surcharge of fixed-term contracts, L. 92/2012 art. 2 c. 28-29; see fixed_term_additional_rate_provenance.",
     "INPS dipendente — employee_rate 9.19% flat confirmed (kitech.it 2026); includes IVS employee share + NASpI employee share. Fondo di solidarietà employee share (if not included in 9.19%) would be an additional ~0.17% — see SIMPLIFICATION note above.",
     "Apprentice contributions (L. 296/2006 art. 1 c. 773; L. 92/2012 art. 2 c. 36-37): employer 10% + NASpI 1.31% + 0.30% = 11.61%; employee 5.84%. Firms with at most 9 employees pay 1.5% (+1.61% NASpI) in months 0-11 and 3% (+1.61%) in months 12-23, then 11.61%. SIMPLIFICATION: hiring incentives (sgravi) and Cassa Edile apprentice schemes are not modelled.",
     "IVS ceiling: massimale annuo della base contributiva 2026 = EUR 122,295.00 (INPS Circ. 6/2026, 30 Jan 2026; L. 335/1995 art. 2 c. 18). Applies to workers without contributions before 1 Jan 1996 and to those who opted for the contributory system (art. 1 c. 23); the engine derives it from the contribution history.",
@@ -220,12 +221,15 @@
     "location": {
       "source_document": {
         "document_id": "l-92-2012",
-        "title": "L. 92/2012",
-        "kind": "legge"
+        "title": "L. 28 giugno 2012 n. 92",
+        "kind": "legge",
+        "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2012-06-28;92~art2!vig=2026-10-07"
       },
-      "section": "art. 2 c. 28"
+      "section": "art. 2 c. 28",
+      "quote": "ai rapporti di lavoro subordinato non a tempo indeterminato si applica un contributo addizionale, a carico del datore di lavoro, pari all'1,4 per cento della retribuzione imponibile ai fini previdenziali. Il contributo addizionale è aumentato di 0,5 punti percentuali in occasione di ciascun rinnovo del contratto a tempo determinato, anche in regime di somministrazione. Le disposizioni del precedente periodo non si applicano ai contratti di lavoro domestico, nonché nelle ipotesi di cui al comma 29."
     },
-    "note": "Assumed, not derived: its ruleset declares source_type 'estimated'; no citation (http(s) url and section or page)."
+    "transformation": "fixed_term_additional_rate: '1,4 per cento' = 0.014; fixed_term_renewal_increment: '0,5 punti percentuali' = 0.005, added once per renewal to the rate of the previous contract.",
+    "note": "INPS circ. 121/2019 par. 2.3 (https://servizi2.inps.it/CircolariZIP/Circolare%20numero%20121%20del%2006-09-2019.pdf, sha256 4523ce7c22a7f5d8c51cfe4de8968642d1279ab7fc7209fc9a0e31e3ddb49449): 'contratto originario: 1,4%; 1° rinnovo: 1.9% (1,4% + 0,5%); 2° rinnovo: 2.4% (1,9% + 0,5%); 3° rinnovo: 2,9% (2,4% + 0,5%)', and 'si considera primo rinnovo contrattuale quello sottoscritto a far tempo dal 14 luglio 2018'; par. 2.2: the increase 'non trova applicazione in caso di proroga'. Normattiva text of L. 92/2012 art. 2 read on 2026-10-07 (in force on that date, last amending act published 2026-03-23). Not checked by a named reviewer. Assumed, not derived: its ruleset declares source_type 'estimated'."
   },
   "complementary_pension": {
     "deduction_cap": "5300.00",

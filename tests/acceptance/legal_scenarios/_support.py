@@ -16,7 +16,12 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodInput,
 )
-from ccnl_engine.inputs import ContributableHours, PeriodState, PriorYearTaxFacts
+from ccnl_engine.inputs import (
+    ContributableHours,
+    PeriodState,
+    Permanent,
+    PriorYearTaxFacts,
+)
 from tests.fixtures.opening_state import fresh_tax_year
 from tests.fixtures.prior_year import RENEWAL_WAIVED
 from tests.fixtures.seniority import new_hire
@@ -79,6 +84,7 @@ def regular_period(
                 seniority=new_hire(year),
                 tfr_fund=no_tfr_fund(year),
                 tfr_treasury_fund=False,
+                contract_type=Permanent(),
             ),
             employer=employer,
             facts=PeriodFacts(

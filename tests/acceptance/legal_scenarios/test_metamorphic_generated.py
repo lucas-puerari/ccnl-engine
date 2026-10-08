@@ -15,7 +15,7 @@ from hypothesis import strategies as st
 
 from ccnl_engine import EmployerProfile, Employment, Headcount
 from ccnl_engine.events import OvertimeEvent
-from ccnl_engine.inputs import ContributableHours, WeeklyHours
+from ccnl_engine.inputs import ContributableHours, Permanent, WeeklyHours
 from tests.acceptance.legal_scenarios._support import (
     COMMERCIO,
     DOMESTIC,
@@ -41,6 +41,7 @@ def _part_time(weekly_hours: int) -> Employment:
         level_code="4",
         weekly_hours=WeeklyHours(weekly_hours),
         full_time_weekly_hours=WeeklyHours(_FULL_TIME),
+        contract_type=Permanent(),
     )
 
 
@@ -61,7 +62,10 @@ def test_part_time_contributions_are_never_negative(weekly_hours: int) -> None:
 def test_domestic_contributions_are_never_negative(hours: Decimal) -> None:
     """Domestic INPS is an hourly flat rate times non-negative paid hours."""
     employment = Employment(
-        ccnl_slug=DOMESTIC, level_code="B", weekly_hours=WeeklyHours(25)
+        ccnl_slug=DOMESTIC,
+        level_code="B",
+        weekly_hours=WeeklyHours(25),
+        contract_type=Permanent(),
     )
     breakdown = regular_period(
         employment=employment,

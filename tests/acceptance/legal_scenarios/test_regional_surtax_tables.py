@@ -44,6 +44,7 @@ from ccnl_engine.inputs import (
     DependentRelationship,
     EmploymentPeriod,
     FamilyComposition,
+    Permanent,
 )
 from ccnl_engine.results import CalculationStatus
 from tests.fixtures.dependents import declared_dependent
@@ -101,6 +102,7 @@ def _conguaglio(
                 level_code="4",
                 seniority=new_hire(),
                 employment_period=EmploymentPeriod(date(2020, 1, 1), None),
+                contract_type=Permanent(),
             ),
             employer=EmployerProfile(headcount=Headcount(50)),
             default_facts=PeriodFacts(

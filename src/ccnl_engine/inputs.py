@@ -33,6 +33,7 @@ from ccnl_engine.payroll.domain.family import (
     DependentRelationship,
     FamilyComposition,
 )
+from ccnl_engine.payroll.domain.fixed_term import NaspiExclusion
 from ccnl_engine.payroll.domain.inps_base import InpsBaseYtd
 from ccnl_engine.payroll.domain.obligations import RecoveryObligation
 from ccnl_engine.payroll.domain.payment import PaymentId
@@ -75,6 +76,7 @@ __all__ = [
     "ForeignTaxPaid",
     "IncomeEstimateQuality",
     "InpsBaseYtd",
+    "NaspiExclusion",
     "NoPensionFund",
     "OpeningBalances",
     "PaymentId",

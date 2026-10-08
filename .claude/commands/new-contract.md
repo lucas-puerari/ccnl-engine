@@ -269,12 +269,15 @@ from ccnl_engine import (
     PayrollRun,
     PeriodInput,
 )
+from ccnl_engine.inputs import Permanent
 
 result = PayrollEngine.bundled().calculate_period(
     PeriodInput(
         run=PayrollRun.regular(year={year}, month={mm}),
         payment_date=date({year}, {mm}, 28),
-        employment=Employment(ccnl_slug="{id}.json", level_code="{level}"),
+        employment=Employment(
+            ccnl_slug="{id}.json", level_code="{level}", contract_type=Permanent()
+        ),
         employer=EmployerProfile(headcount=Headcount(50)),
     )
 )

@@ -36,6 +36,7 @@ from ccnl_engine.inputs import (
     EmploymentSector,
     FamilyComposition,
     PeriodState,
+    Permanent,
     PriorYearTaxFacts,
     WeeklyHours,
 )
@@ -63,6 +64,7 @@ CONCIA_D2 = Employment(
     contribution_history=ContributionHistory(date(2005, 3, 1)),
     sector=EmploymentSector.PRIVATE,
     tfr_treasury_fund=False,
+    contract_type=Permanent(),
 )
 EMPLOYER = EmployerProfile(headcount=Headcount(50), activity=EmployerActivity.OTHER)
 #: Resident in Alghero (Sardegna), no dependant.

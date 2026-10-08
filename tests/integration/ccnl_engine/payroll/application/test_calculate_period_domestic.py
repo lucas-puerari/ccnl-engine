@@ -12,7 +12,8 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.payroll.application.calculate_period import calculate_period
-from ccnl_engine.payroll.domain.employment import FixedTerm
+from ccnl_engine.payroll.domain.employment import FixedTerm, Permanent
+from ccnl_engine.payroll.domain.fixed_term import NaspiExclusion
 from ccnl_engine.shared.domain.errors import MissingRequiredFactError
 from tests.fixtures.period_requests import period_request
 
@@ -159,7 +160,7 @@ def test_domestic_contributions_fixed_term_hours_bracket() -> None:
             level="BS",
             weekly_hours=30,
             contributable_hours=Decimal(130),
-            contract_type=FixedTerm(),
+            contract_type=FixedTerm(renewals=0, naspi_exclusion=NaspiExclusion.NONE),
         )
     )
     assert result.contribution_breakdown.employer > _ZERO
@@ -178,7 +179,35 @@ def test_domestic_contributions_fixed_term_wage_bracket() -> None:
             level="BS",
             weekly_hours=20,
             contributable_hours=Decimal(86),
-            contract_type=FixedTerm(),
+            contract_type=FixedTerm(renewals=0, naspi_exclusion=NaspiExclusion.NONE),
         )
     )
     assert result.contribution_breakdown.employer > _ZERO
+
+
+@pytest.mark.parametrize("weekly_hours", [20, 30])
+def test_domestic_replacement_worker_takes_the_permanent_hourly_rate(
+    weekly_hours: int,
+) -> None:
+    """A fixed term replacing an absent worker owes no NASpI surcharge.
+
+    L. 92/2012 art. 2 c. 29 lett. a: the hourly employer rate is the one of
+    a permanent contract, in both kinds of bracket.
+    """
+
+    def employer(contract: FixedTerm | Permanent) -> Decimal:
+        return calculate_period(
+            period_request(
+                month=6,
+                ccnl="lavoro-domestico-convivente.json",
+                level="BS",
+                weekly_hours=weekly_hours,
+                contributable_hours=Decimal(86),
+                contract_type=contract,
+            )
+        ).contribution_breakdown.employer
+
+    replacement = FixedTerm(naspi_exclusion=NaspiExclusion.REPLACEMENT)
+    charged = FixedTerm(renewals=3, naspi_exclusion=NaspiExclusion.NONE)
+    assert employer(replacement) == employer(Permanent())
+    assert employer(charged) > employer(Permanent())

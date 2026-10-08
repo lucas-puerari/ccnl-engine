@@ -83,13 +83,6 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "unknown activity: the regime that excludes some activities is "
         "undetermined, with a blocker",
     ),
-    "Employment.contract_type": requires_fact(
-        "inps_employer",
-        "employment.contract_type",
-        _PENDING,
-        "a permanent contract: no NASpI surcharge of fixed-term contracts "
-        "(L. 92/2012 art. 2 c. 28) and the permanent art. 13 TUIR deduction",
-    ),
     "Employment.category": requires_fact(
         "worker_category",
         "employment.category",

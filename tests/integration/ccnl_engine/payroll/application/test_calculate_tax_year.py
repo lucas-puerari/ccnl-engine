@@ -15,7 +15,7 @@ from ccnl_engine.payroll.application.calculate_tax_year import calculate_tax_yea
 from ccnl_engine.payroll.domain.competence_year_plan import CompetenceYearPlan
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
-from ccnl_engine.payroll.domain.employment import Employment
+from ccnl_engine.payroll.domain.employment import Employment, Permanent
 from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
 from ccnl_engine.payroll.domain.family import (
     DependentRelationship,
@@ -50,6 +50,7 @@ def _plan(
             ccnl_slug="commercio-confcommercio.json",
             level_code="4",
             employment_period=period,
+            contract_type=Permanent(),
         ),
         employer=_EMPLOYER,
         payment_dates={12: _LATE} if dates is None else dates,

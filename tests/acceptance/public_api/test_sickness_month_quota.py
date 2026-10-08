@@ -37,19 +37,22 @@ from ccnl_engine import (
     PeriodResult,
 )
 from ccnl_engine.events import AbsenceEvent, SicknessEpisode, WorkEvent
-from ccnl_engine.inputs import EmploymentPeriod, WorkerCategory
+from ccnl_engine.inputs import EmploymentPeriod, Permanent, WorkerCategory
 from tests.fixtures.seniority import new_hire
 
 _ENGINE = PayrollEngine.bundled()
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
 _METALMECCANICO = Employment(
+    contract_type=Permanent(),
     ccnl_slug="metalmeccanico-federmeccanica.json",
     level_code="C3",
     category=WorkerCategory.OPERAIO,
     seniority=new_hire(),
 )
 _DIRIGENTE = Employment(
-    ccnl_slug="dirigenza-funzioni-locali-aran.json", level_code="DIRIGENTE"
+    contract_type=Permanent(),
+    ccnl_slug="dirigenza-funzioni-locali-aran.json",
+    level_code="DIRIGENTE",
 )
 _MISMATCH = "sickness_month_quota_mismatch"
 

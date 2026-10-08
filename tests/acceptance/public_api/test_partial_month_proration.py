@@ -32,7 +32,7 @@ from ccnl_engine import (
     PeriodResult,
 )
 from ccnl_engine.events import AbsenceEvent, HolidayWorkEvent, SickLeaveEvent
-from ccnl_engine.inputs import EmploymentPeriod, WeeklyHours
+from ccnl_engine.inputs import EmploymentPeriod, Permanent, WeeklyHours
 
 _ENGINE = PayrollEngine.bundled()
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
@@ -54,6 +54,7 @@ def _employment(
         employment_period=period,
         weekly_hours=hours,
         full_time_weekly_hours=None if hours is None else WeeklyHours(40),
+        contract_type=Permanent(),
     )
 
 

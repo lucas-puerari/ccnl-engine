@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "d79753458a8253e07199f2ac7037b8b5d76c75e2ffcff3a9458b0342fa52c6ea",
+    "source_hash": "8d6c08773faff75eab3aca78cf4d75bd726f53e273026906d3f02293bdef85c4",
     "source_type": "estimated"
   },
   "irpef_brackets": [
@@ -27,6 +27,10 @@
     }
   ],
   "fixed_term_additional_rate": "0.014",
+  "fixed_term_renewal_increment": "0.005",
+  "fixed_term_exempt_categories": [
+    "operaio"
+  ],
   "tfr": {
     "accrual_divisor": "13.5",
     "provenance": {
@@ -153,7 +157,7 @@
     "SIMPLIFICATION: Employee rate is a flat single tier (no CIGO or FIS addizionale for standard agricultural OTI). The standard agricultural sector does not apply CIGS/FIS contribution differentials by firm size.",
     "SIMPLIFICATION: ivs_rate equals the full rate; no separate non-IVS component isolated.",
     "IRPEF brackets: statutory 2026 (L. 199/2025, Art. 1 c. 3). Agricultural employers ARE sostituti d'imposta for OTI workers. Art. 13 constants versioned in YearRules.work_deduction.",
-    "fixed_term_additional_rate: NASpI addizionale 1.4% per Art. 2 co. 28 L. 92/2012.",
+    "fixed_term_additional_rate, fixed_term_renewal_increment, fixed_term_exempt_categories: NASpI surcharge of fixed-term contracts, L. 92/2012 art. 2 c. 28-29 (c. 3: not charged for operai agricoli); see fixed_term_additional_rate_provenance.",
     "Apprentice rates: same statutory structure as other sectors per L. 296/2006 and L. 92/2012. Agricultural apprenticeship is governed by Allegato n. 10 CCNL (agreement 23/02/2017).",
     "IVS ceiling: EUR 122,295 (INPS Circ. 6/2026).",
     "Art. 16-ter c. 5-bis TUIR (inserted by L. 199/2025 art. 1 c. 4): for a reddito complessivo > EUR 200 000 the deduction for the 19% oneri (spese sanitarie excluded), the donations to political parties and the catastrophe insurance premiums is reduced by EUR 440. The art. 12 and art. 13 TUIR deductions and the ulteriore detrazione are outside its scope; the payroll computes none of the oneri in scope and does not apply the reduction.",
@@ -207,12 +211,15 @@
     "location": {
       "source_document": {
         "document_id": "l-92-2012",
-        "title": "L. 92/2012",
-        "kind": "legge"
+        "title": "L. 28 giugno 2012 n. 92",
+        "kind": "legge",
+        "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2012-06-28;92~art2!vig=2026-10-07"
       },
-      "section": "art. 2 c. 28"
+      "section": "art. 2 c. 28, c. 3",
+      "quote": "ai rapporti di lavoro subordinato non a tempo indeterminato si applica un contributo addizionale, a carico del datore di lavoro, pari all'1,4 per cento della retribuzione imponibile ai fini previdenziali. Il contributo addizionale è aumentato di 0,5 punti percentuali in occasione di ciascun rinnovo del contratto a tempo determinato, anche in regime di somministrazione. Le disposizioni del precedente periodo non si applicano ai contratti di lavoro domestico, nonché nelle ipotesi di cui al comma 29."
     },
-    "note": "Assumed, not derived: its ruleset declares source_type 'estimated'; no citation (http(s) url and section or page)."
+    "transformation": "fixed_term_additional_rate: '1,4 per cento' = 0.014; fixed_term_renewal_increment: '0,5 punti percentuali' = 0.005, added once per renewal to the rate of the previous contract. fixed_term_exempt_categories: operaio, art. 2 c. 3: 'Le disposizioni di cui al presente articolo non si applicano nei confronti degli operai agricoli a tempo determinato o indeterminato'. Quadri and impiegati agricoli are not exempt.",
+    "note": "INPS circ. 121/2019 par. 2.3 (https://servizi2.inps.it/CircolariZIP/Circolare%20numero%20121%20del%2006-09-2019.pdf, sha256 4523ce7c22a7f5d8c51cfe4de8968642d1279ab7fc7209fc9a0e31e3ddb49449): 'contratto originario: 1,4%; 1° rinnovo: 1.9% (1,4% + 0,5%); 2° rinnovo: 2.4% (1,9% + 0,5%); 3° rinnovo: 2,9% (2,4% + 0,5%)', and 'si considera primo rinnovo contrattuale quello sottoscritto a far tempo dal 14 luglio 2018'; par. 2.2: the increase 'non trova applicazione in caso di proroga'. Normattiva text of L. 92/2012 art. 2 read on 2026-10-07 (in force on that date, last amending act published 2026-03-23). Not checked by a named reviewer. Assumed, not derived: its ruleset declares source_type 'estimated'."
   },
   "complementary_pension": {
     "deduction_cap": "5300.00",

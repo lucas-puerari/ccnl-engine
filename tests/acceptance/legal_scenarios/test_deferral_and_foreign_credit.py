@@ -32,6 +32,7 @@ from ccnl_engine.inputs import (
     DeferredShortfall,
     ForeignTaxPaid,
     OpeningBalances,
+    Permanent,
     PriorYearTaxFacts,
     ShortfallDeferralRequest,
 )
@@ -40,7 +41,9 @@ from tests.acceptance.legal_scenarios._support import EMPLOYER, ENGINE
 pytestmark = pytest.mark.legal_scenario
 
 _EMPLOYMENT = Employment(
-    ccnl_slug="metalmeccanico-federmeccanica.json", level_code="C3"
+    ccnl_slug="metalmeccanico-federmeccanica.json",
+    level_code="C3",
+    contract_type=Permanent(),
 )
 
 

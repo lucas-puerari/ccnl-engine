@@ -40,6 +40,7 @@ from ccnl_engine.events import (
 from ccnl_engine.inputs import (
     EmployerActivity,
     EmploymentSector,
+    Permanent,
     PriorYearTaxFacts,
     SubstituteTaxRegime,
 )
@@ -103,6 +104,7 @@ def _period(
         seniority=new_hire(),
         sector=worker.sector,
         tfr_treasury_fund=False,
+        contract_type=Permanent(),
     )
     employer = EmployerProfile(headcount=Headcount(50), activity=worker.activity)
     prior_year = PriorYearTaxFacts(

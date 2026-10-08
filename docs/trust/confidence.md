@@ -155,7 +155,8 @@ without a classification, or on a classification without its field:
     esente is due, the full time of an employment whose weekly hours are
     stated, the roles of a worker on a level with an allowance restricted
     to a role, the enrolment in a pension fund of a CCNL that has one, the
-    suspension of accrual of an absence that could change a rateo);
+    suspension of accrual of an absence that could change a rateo, the
+    renewals and the NASpI exclusion of a fixed-term contract);
   - `pending`: not honoured yet. The default still selects a branch without
     a blocker. Treat these fields as required and state them.
 
@@ -163,7 +164,6 @@ The `pending` fields:
 
 | Field | What the default does today |
 |---|---|
-| `Employment.contract_type` | A permanent contract: no NASpI surcharge of a fixed-term contract, and the 690 EUR minimum of the art. 13 TUIR deduction up to 15,000 EUR instead of 1,380 EUR in the decision on the part left to the tax return |
 | `Employment.employment_period` | A full month and full ratei, even for a hire or a termination within the month (a run after the first still needs its opening state) |
 | `Employment.weekly_hours` | Full time (a domestic CCNL raises without it) |
 
@@ -314,6 +314,7 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodInput,
 )
+from ccnl_engine.inputs import Permanent
 
 engine = PayrollEngine.bundled()
 result = engine.calculate_period(
@@ -321,7 +322,9 @@ result = engine.calculate_period(
         run=PayrollRun.regular(year=2026, month=1),
         payment_date=date(2026, 1, 28),
         employment=Employment(
-            ccnl_slug="metalmeccanico-federmeccanica.json", level_code="C3"
+            ccnl_slug="metalmeccanico-federmeccanica.json",
+            level_code="C3",
+            contract_type=Permanent(),
         ),
         employer=EmployerProfile(headcount=Headcount(50)),
         facts=PeriodFacts(regione="IT-25"),  # municipality and family unknown

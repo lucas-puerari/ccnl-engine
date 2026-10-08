@@ -27,7 +27,7 @@ from ccnl_engine import (
     PeriodInput,
     PeriodResult,
 )
-from ccnl_engine.inputs import EmploymentPeriod, PeriodState
+from ccnl_engine.inputs import EmploymentPeriod, PeriodState, Permanent
 from tests.fixtures.seniority import new_hire
 
 engine = PayrollEngine.bundled()
@@ -51,6 +51,7 @@ def test_tredicesima_commercio_level4() -> None:
                 ccnl_slug="commercio-confcommercio.json",
                 level_code="4",
                 seniority=new_hire(),
+                contract_type=Permanent(),
             ),
             employer=EmployerProfile(headcount=Headcount(50)),
         )
@@ -73,6 +74,7 @@ _LEAVER = Employment(
     level_code="4",
     seniority=new_hire(),
     employment_period=EmploymentPeriod(date(2026, 3, 15), date(2026, 11, 16)),
+    contract_type=Permanent(),
 )
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
 

@@ -6,7 +6,7 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.payroll.domain.employment import Employment
+from ccnl_engine.payroll.domain.employment import Employment, Permanent
 from ccnl_engine.payroll.domain.pension_fund import PensionFundEnrolment
 from ccnl_engine.shared.domain.errors import InvalidInputError
 
@@ -15,7 +15,12 @@ def test_valid_enrolment() -> None:
     """A code, a rate in [0, 1] and the TFR choice are accepted."""
     enrolment = PensionFundEnrolment("ALIFOND", Decimal("0.01"), tfr_to_fund=False)
     assert enrolment.fund_code == "ALIFOND"
-    employment = Employment(ccnl_slug="x.json", level_code="1", pension_fund=enrolment)
+    employment = Employment(
+        ccnl_slug="x.json",
+        level_code="1",
+        pension_fund=enrolment,
+        contract_type=Permanent(),
+    )
     assert employment.pension_fund is enrolment
 
 
@@ -42,4 +47,9 @@ def test_invalid_enrolment(
 def test_employment_rejects_another_type() -> None:
     """Employment.pension_fund must be an enrolment or None."""
     with pytest.raises(InvalidInputError, match="pension_fund must be"):
-        Employment(ccnl_slug="x.json", level_code="1", pension_fund="ALIFOND")  # type: ignore[arg-type]
+        Employment(
+            ccnl_slug="x.json",
+            level_code="1",
+            pension_fund="ALIFOND",  # type: ignore[arg-type]
+            contract_type=Permanent(),
+        )

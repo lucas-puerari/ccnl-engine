@@ -32,6 +32,7 @@ from ccnl_engine import (
 )
 from ccnl_engine.events import FringeEvent
 from ccnl_engine.inputs import (
+    Permanent,
     SeniorityFact,
     SenioritySource,
     WeeklyHours,
@@ -79,6 +80,7 @@ def _grafica_e(month: int, months_of_service: int | None) -> Employment:
                 months_of_service, date(2026, month, 1), SenioritySource.PAYSLIP
             )
         ),
+        contract_type=Permanent(),
     )
 
 
@@ -160,7 +162,12 @@ def test_run_before_the_first_tranche_raises_a_typed_error() -> None:
     has no base salary and raises :class:`MissingRuleError`, not a bare
     ``ValueError``.
     """
-    employment = Employment(ccnl_slug="anas.json", level_code="C1", seniority=None)
+    employment = Employment(
+        ccnl_slug="anas.json",
+        level_code="C1",
+        seniority=None,
+        contract_type=Permanent(),
+    )
 
     with pytest.raises(MissingRuleError) as raised:
         _regular(employment, month=1)
@@ -190,6 +197,7 @@ def test_employment_rejects_a_role_that_is_not_a_string() -> None:
             ccnl_slug="metalmeccanico-federmeccanica.json",
             level_code="C3",
             roles=frozenset({1}),  # type: ignore[arg-type]
+            contract_type=Permanent(),
         )
 
     assert raised.value.field == "Employment.roles[1]"
@@ -272,6 +280,7 @@ def test_negative_net_is_out_of_scope_not_a_data_integrity_error() -> None:
         seniority=new_hire(),
         weekly_hours=WeeklyHours(20),
         full_time_weekly_hours=WeeklyHours(40),
+        contract_type=Permanent(),
     )
     fringe = FringeEvent(date(2026, 3, 10), Decimal(20_000))
     with pytest.raises(OutOfScopeError, match=r"net pay of the run is -") as exc:

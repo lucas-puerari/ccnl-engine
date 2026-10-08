@@ -25,7 +25,7 @@ from ccnl_engine import (
     PeriodInput,
     PeriodResult,
 )
-from ccnl_engine.inputs import FamilyComposition, NoPensionFund
+from ccnl_engine.inputs import FamilyComposition, NoPensionFund, Permanent
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
@@ -53,6 +53,7 @@ def _june(engine: PayrollEngine, slug: str, level: str) -> PeriodResult | None:
                     seniority=new_hire(),
                     roles=frozenset(),
                     pension_fund=NoPensionFund(),
+                    contract_type=Permanent(),
                 ),
                 employer=EmployerProfile(headcount=Headcount(50)),
                 facts=_FACTS,

@@ -21,6 +21,7 @@ from ccnl_engine import (
     PayrollRun,
     PeriodInput,
 )
+from ccnl_engine.inputs import Permanent
 from tests.fixtures.seniority import new_hire
 
 engine = PayrollEngine.bundled()
@@ -37,6 +38,7 @@ def test_ytd_state_carries_irpef_forward() -> None:
         ccnl_slug="metalmeccanico-federmeccanica.json",
         level_code="C3",
         seniority=new_hire(),
+        contract_type=Permanent(),
     )
     employer = EmployerProfile(headcount=Headcount(100))
     jan = engine.calculate_period(

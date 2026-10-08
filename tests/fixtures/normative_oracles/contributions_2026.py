@@ -1,4 +1,4 @@
-"""Independent oracle of four 2026 INPS rules on the contribution base.
+"""Independent oracle of five 2026 INPS rules on the contribution base.
 
 Written from the sources, deliberately without importing anything from
 ``ccnl_engine``.
@@ -33,6 +33,16 @@ Sources:
   disposizioni di cui al presente articolo non si applicano nei confronti
   degli operai agricoli a tempo determinato o indeterminato", so the
   surcharge of c. 28, a provision of the same article, is not due for them.
+  C. 28, second period (inserted by D.L. 87/2018 art. 3 c. 2): "Il
+  contributo addizionale è aumentato di 0,5 punti percentuali in occasione
+  di ciascun rinnovo del contratto a tempo determinato"; c. 29: "Il
+  contributo addizionale di cui al comma 28 non si applica: a) ai
+  lavoratori assunti a termine in sostituzione di lavoratori assenti".
+- INPS circolare n. 121 of 6 September 2019, par. 2.3
+  (https://servizi2.inps.it/CircolariZIP/Circolare%20numero%20121%20del%2006-09-2019.pdf,
+  sha256 4523ce7c22a7f5d8c51cfe4de8968642d1279ab7fc7209fc9a0e31e3ddb49449):
+  "contratto originario: 1,4%; 1° rinnovo: 1.9% (1,4% + 0,5%); 2° rinnovo:
+  2.4% (1,9% + 0,5%)".
 """
 
 from __future__ import annotations
@@ -46,6 +56,7 @@ __all__ = [
     "HOURLY_FLOOR_40_HOURS",
     "HOURLY_FLOOR_PUBLIC_36_HOURS",
     "additional_ivs",
+    "naspi_surcharge_rate",
 ]
 
 #: Circolare INPS 6/2026 section 1.
@@ -58,6 +69,10 @@ HOURLY_FLOOR_40_HOURS = Decimal("8.72")
 HOURLY_FLOOR_PUBLIC_36_HOURS = Decimal("8.07")
 #: Circolare INPS 6/2026 section 5: 56,224 EUR over twelve months.
 ADDITIONAL_IVS_MONTHLY_THRESHOLD = Decimal("4685.00")
+
+#: L. 92/2012 art. 2 c. 28: "1,4 per cento" and "0,5 punti percentuali".
+_NASPI_RATE = Decimal("0.014")
+_NASPI_RENEWAL_INCREASE = Decimal("0.005")
 
 _CENT = Decimal("0.01")
 _ADDITIONAL_RATE = Decimal("0.01")
@@ -75,3 +90,15 @@ def additional_ivs(monthly_base: Decimal) -> Decimal:
     """
     excess = max(monthly_base - ADDITIONAL_IVS_MONTHLY_THRESHOLD, _ZERO)
     return (excess * _ADDITIONAL_RATE).quantize(_CENT, rounding=ROUND_HALF_UP)
+
+
+def naspi_surcharge_rate(renewals: int) -> Decimal:
+    """Return the NASpI surcharge rate of a fixed-term contract.
+
+    Circolare INPS 121/2019 par. 2.3: each renewal adds 0.5 points to the
+    rate of the previous contract, so 1.4% + 0.5% x renewals.
+
+    Returns:
+        The rate of a contract renewed ``renewals`` times.
+    """
+    return _NASPI_RATE + _NASPI_RENEWAL_INCREASE * renewals

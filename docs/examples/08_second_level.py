@@ -14,6 +14,7 @@ from ccnl_engine import (
     PayrollEngine,
 )
 from ccnl_engine.inputs import CalendarOverride, CalendarOverrideReason, WorkCalendar
+from ccnl_engine.inputs import Permanent
 
 engine = PayrollEngine.bundled()
 
@@ -26,7 +27,11 @@ def year_request(calendar: CalendarOverride | None = None) -> CompetenceYearPlan
     """
     return CompetenceYearPlan(
         year=2026,
-        employment=Employment(ccnl_slug="commercio-confcommercio.json", level_code="4"),
+        employment=Employment(
+            ccnl_slug="commercio-confcommercio.json",
+            level_code="4",
+            contract_type=Permanent(),
+        ),
         employer=EmployerProfile(headcount=Headcount(50)),
         calendar_override=calendar,
     )

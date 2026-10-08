@@ -217,6 +217,7 @@ def test_missing_status_is_allowed_but_unknown_status_fails() -> None:
     data = {
         "tfr": {"provenance": {"status": "missing"}},
         "fixed_term_additional_rate": "0.014",
+        "fixed_term_renewal_increment": "0.005",
         "fixed_term_additional_rate_provenance": {"status": "unknown"},
     }
     rules = tuple(fiscal_rules("tax/data/2026-x.json", data))

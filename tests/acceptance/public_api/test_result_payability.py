@@ -29,6 +29,7 @@ from ccnl_engine.inputs import (
     ContributableHours,
     EmploymentPeriod,
     FamilyComposition,
+    Permanent,
     TfrFundBalance,
     WeeklyHours,
     WorkerCategory,
@@ -98,6 +99,7 @@ def test_incomplete_coverage_is_not_payable() -> None:
             seniority=new_hire(),
             tfr_fund=TfrFundBalance(2025, Decimal("8000.00")),
             tfr_treasury_fund=False,
+            contract_type=Permanent(),
         ),
         resident(),
     )
@@ -129,7 +131,12 @@ def test_ordinary_month_has_no_coverage_gap() -> None:
     evidence blockers that remain.
     """
     result = _january(
-        Employment(ccnl_slug=_METALMECCANICO, level_code="C3", seniority=new_hire()),
+        Employment(
+            ccnl_slug=_METALMECCANICO,
+            level_code="C3",
+            seniority=new_hire(),
+            contract_type=Permanent(),
+        ),
         _MILAN_NO_DEPENDANT,
     )
 
@@ -153,7 +160,9 @@ def test_unknown_ivs_ceiling_eligibility_is_a_missing_fact() -> None:
     blocker.  The result is already not payable for unrelated gaps, so the
     test asserts the blocker of its own fact.
     """
-    employment = Employment(ccnl_slug=_METALMECCANICO, level_code="C3")
+    employment = Employment(
+        ccnl_slug=_METALMECCANICO, level_code="C3", contract_type=Permanent()
+    )
     bonus = BonusEvent(event_date=date(2026, 1, 15), amount=Decimal(200_000))
 
     result = _january(employment, PeriodFacts(events=(bonus,)))
@@ -185,6 +194,7 @@ def test_unknown_seniority_is_a_missing_fact() -> None:
         level_code="2",
         category=WorkerCategory.OPERAIO,
         seniority=None,
+        contract_type=Permanent(),
     )
 
     result = _january(employment)
@@ -208,6 +218,7 @@ def _march(started_on: date) -> PeriodResult:
         ccnl_slug=_METALMECCANICO,
         level_code="C3",
         employment_period=EmploymentPeriod(started_on=started_on),
+        contract_type=Permanent(),
     )
     year = _ENGINE.calculate_competence_year(
         CompetenceYearPlan(year=2026, employment=employment, employer=_EMPLOYER)
@@ -241,7 +252,9 @@ def test_unknown_surtax_table_is_not_an_amount() -> None:
     The decision carries no amount rather than zero, and the result is not
     payable for that capability, whatever the other blockers.
     """
-    employment = Employment(ccnl_slug=_METALMECCANICO, level_code="C3")
+    employment = Employment(
+        ccnl_slug=_METALMECCANICO, level_code="C3", contract_type=Permanent()
+    )
 
     result = _january(employment, PeriodFacts(comune_belfiore="Z999"))
 
@@ -265,7 +278,10 @@ def test_unknown_family_is_not_an_empty_family() -> None:
     states that there is no dependant and resolves it.
     """
     employment = Employment(
-        ccnl_slug=_METALMECCANICO, level_code="C3", seniority=new_hire()
+        ccnl_slug=_METALMECCANICO,
+        level_code="C3",
+        seniority=new_hire(),
+        contract_type=Permanent(),
     )
     resident = PeriodFacts(regione="IT-25", comune_belfiore="F205")
     unresolved = (
@@ -294,6 +310,7 @@ def test_household_employer_needs_no_residence() -> None:
                 level_code="B",
                 seniority=new_hire(),
                 weekly_hours=WeeklyHours(25),
+                contract_type=Permanent(),
             ),
             employer=EmployerProfile(headcount=Headcount(1)),
             facts=PeriodFacts(contributable_hours=ContributableHours(Decimal(108))),

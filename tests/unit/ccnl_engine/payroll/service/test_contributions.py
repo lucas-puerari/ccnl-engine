@@ -11,6 +11,7 @@ from ccnl_engine.payroll.domain.employment import (
     FixedTerm,
     Permanent,
 )
+from ccnl_engine.payroll.domain.fixed_term import NaspiExclusion
 from ccnl_engine.payroll.domain.rounding import money
 from tests.fixtures.contribution_rules import first_run_contributions, inps_year_rules
 from tests.helpers import make_year_rules
@@ -158,7 +159,10 @@ class TestContributionAmounts:
         employer = 714.30 + 197.10 = 911.40.
         """
         bd = first_run_contributions(
-            _D("3000.00"), inps_year_rules(), FixedTerm(), None
+            _D("3000.00"),
+            inps_year_rules(),
+            FixedTerm(renewals=0, naspi_exclusion=NaspiExclusion.NONE),
+            None,
         )
         assert bd.employer == _D("911.40")
 

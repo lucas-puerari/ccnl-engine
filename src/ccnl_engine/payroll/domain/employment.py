@@ -17,6 +17,7 @@ from ccnl_engine.payroll.domain.employment_facts import (
     WeeklyHours,
     check_within_full_time,
 )
+from ccnl_engine.payroll.domain.fixed_term import FixedTerm
 from ccnl_engine.payroll.domain.pension_fund import (
     PENSION_FUND_TYPES,
     NoPensionFund,
@@ -35,6 +36,8 @@ from ccnl_engine.shared.domain.validation import (
 )
 from ccnl_engine.tax.domain.preferential_regime import EmploymentSector
 
+__all__ = ["Apprentice", "Contract", "Employment", "FixedTerm", "Permanent"]
+
 _CONTRACT_FEATURE = "contract_type"
 #: A CCNL file name of the bundle: no directory, no other extension.
 _SLUG = re.compile(r"[a-z0-9][a-z0-9-]*\.json")
@@ -45,13 +48,6 @@ class Permanent:
     """Standard open-ended (permanent) employment contract."""
 
     type: Literal["permanent"] = field(default="permanent", init=False)
-
-
-@dataclass(frozen=True, slots=True)
-class FixedTerm:
-    """Fixed-term contract; attracts NASpI addizionale on employer INPS."""
-
-    type: Literal["fixed_term"] = field(default="fixed_term", init=False)
 
 
 @dataclass(frozen=True, slots=True)
@@ -118,7 +114,9 @@ class Employment:
 .UnknownCcnlError` when the run loads it.
         level_code: Contractual level code, e.g. ``"C3"``.
         contract_type: :class:`Permanent`, :class:`FixedTerm` or
-            :class:`Apprentice`.
+            :class:`Apprentice`, always stated: it selects the NASpI
+            surcharge of a fixed-term contract and the art. 13 TUIR
+            deduction minimum.
         category: Worker category; its string value (e.g. ``"operaio"``) is
             accepted and normalized.  ``None`` takes the category fixed by
             the level, if any.  The calculation raises when the category
@@ -184,7 +182,7 @@ class Employment:
 
     ccnl_slug: str
     level_code: str
-    contract_type: Permanent | Apprentice | FixedTerm = field(default_factory=Permanent)
+    contract_type: Permanent | Apprentice | FixedTerm
     category: WorkerCategory | None = None
     employment_period: EmploymentPeriod | None = None
     weekly_hours: WeeklyHours | None = None

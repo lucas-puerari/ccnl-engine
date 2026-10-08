@@ -10,6 +10,7 @@ from ccnl_engine.payroll.domain.employment import (
     FixedTerm,
     Permanent,
 )
+from ccnl_engine.payroll.domain.fixed_term import NaspiExclusion
 from ccnl_engine.payroll.service._contributions_rates import resolve_rates
 from tests.fixtures.contribution_rules import inps_year_rules
 from tests.helpers import make_domestic_year_rules
@@ -36,9 +37,18 @@ class TestResolveRates:
         ).employer_rate == _D("0.2898")
 
     def test_fixed_term_adds_naspi(self) -> None:
-        """Fixed-term: employer rate + fixed_term_additional_rate."""
-        r = resolve_rates(inps_year_rules(), FixedTerm(), None)
-        assert r.employer_rate == _D("0.3038")
+        """Fixed term renewed once: employer rate + 1.4% + 0.5% (L. 92/2012 c. 28)."""
+        contract = FixedTerm(renewals=1, naspi_exclusion=NaspiExclusion.NONE)
+        r = resolve_rates(inps_year_rules(), contract, None)
+        assert r.employer_rate == _D("0.2898") + _D("0.014") + _D("0.005")
+        assert r.employer_ivs_rate == _D("0.2381")
+
+    def test_excluded_fixed_term_keeps_the_permanent_rates(self) -> None:
+        """A replacement worker (c. 29 lett. a) pays the permanent rates."""
+        contract = FixedTerm(naspi_exclusion=NaspiExclusion.REPLACEMENT)
+        assert resolve_rates(inps_year_rules(), contract, None) == resolve_rates(
+            inps_year_rules(), Permanent(), None
+        )
 
     def test_apprentice_by_months(self) -> None:
         """Apprentice: statutory employee rate, employer rate stepping by months."""

@@ -12,6 +12,7 @@ import pytest
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.domain.accrual_state import EmploymentAccrualState
 from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm
+from ccnl_engine.payroll.domain.fixed_term import NaspiExclusion
 from ccnl_engine.payroll.domain.inps_base import InpsBaseYtd
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.pay_items import (
@@ -413,7 +414,10 @@ class TestContractTypeRouting:
             level_code=_LEVEL,
             opening_state=PeriodState.zero(),
         )
-        fixed_req = replace(permanent_req, contract_type=FixedTerm())
+        fixed_req = replace(
+            permanent_req,
+            contract_type=FixedTerm(renewals=0, naspi_exclusion=NaspiExclusion.NONE),
+        )
         perm_result = calculate_period(permanent_req)
         fixed_result = calculate_period(fixed_req)
         assert fixed_result.period_gross == perm_result.period_gross

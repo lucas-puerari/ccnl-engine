@@ -42,12 +42,18 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodInput,
 )
-from ccnl_engine.inputs import FamilyComposition, SeniorityFact, SenioritySource
+from ccnl_engine.inputs import (
+    FamilyComposition,
+    Permanent,
+    SeniorityFact,
+    SenioritySource,
+)
 
 engine = PayrollEngine.bundled()
 employment = Employment(
     ccnl_slug="commercio-confcommercio.json",
     level_code="4",
+    contract_type=Permanent(),
     # Recognised seniority: 36 months on 1 January 2026, read from a payslip.
     seniority=SeniorityFact(36, date(2026, 1, 1), SenioritySource.PAYSLIP),
 )

@@ -71,6 +71,7 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
         "ForeignTaxPaid",
         "IncomeEstimateQuality",
         "InpsBaseYtd",
+        "NaspiExclusion",
         "NoPensionFund",
         "OpeningBalances",
         "PaymentId",

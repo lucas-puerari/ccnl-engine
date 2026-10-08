@@ -71,6 +71,7 @@ def _year_rules(overrides: dict[str, Any] | None = None) -> dict[str, Any]:
         "year": 2026,
         "irpef_brackets": _VALID_BRACKETS,
         "fixed_term_additional_rate": "0.014",
+        "fixed_term_renewal_increment": "0.005",
         "inps": _VALID_INPS,
         "apprentice": _VALID_APPRENTICE,
         "tfr": {"accrual_divisor": "13.5"},
@@ -291,6 +292,7 @@ _RAW_BASE: dict[str, Any] = {
     "sector": "terziario",
     "irpef_brackets": IRPEF_BRACKETS_2026,
     "fixed_term_additional_rate": "0.014",
+    "fixed_term_renewal_increment": "0.005",
     "tfr": {"accrual_divisor": "13.5"},
 }
 

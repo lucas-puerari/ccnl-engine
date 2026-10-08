@@ -27,6 +27,7 @@ from ccnl_engine.inputs import (
     InpsBaseYtd,
     OpeningBalances,
     PeriodState,
+    Permanent,
     WorkerCategory,
 )
 from tests.fixtures.seniority import new_hire
@@ -38,6 +39,7 @@ if TYPE_CHECKING:
 __all__ = ["sickness_cases"]
 
 _EMPLOYMENT = Employment(
+    contract_type=Permanent(),
     ccnl_slug="metalmeccanico-federmeccanica.json",
     level_code="C3",
     category=WorkerCategory.OPERAIO,

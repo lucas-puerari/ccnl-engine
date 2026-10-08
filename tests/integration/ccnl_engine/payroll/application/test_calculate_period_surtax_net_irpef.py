@@ -22,7 +22,7 @@ from ccnl_engine import (
     PayrollEngine,
     PeriodFacts,
 )
-from ccnl_engine.inputs import WeeklyHours
+from ccnl_engine.inputs import Permanent, WeeklyHours
 from tests.fixtures.normative_oracles.irpef_2026 import gross_irpef, net_irpef
 
 if TYPE_CHECKING:
@@ -49,6 +49,7 @@ def _run(weekly_hours: int) -> PeriodResult:
                 level_code="C3",
                 weekly_hours=WeeklyHours(weekly_hours),
                 full_time_weekly_hours=WeeklyHours(_FULL_TIME),
+                contract_type=Permanent(),
             ),
             employer=EmployerProfile(headcount=Headcount(50)),
             default_facts=PeriodFacts(regione="IT-25", comune_belfiore="F205"),
