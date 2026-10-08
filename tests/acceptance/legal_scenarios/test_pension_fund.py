@@ -30,6 +30,11 @@ that enters the TFR (Alifond Scheda 'I destinatari e i contributi', note
   + 522.32 contingenza + 10.33 EDR + 85.41 IAR = 2184.22.  ALIFOND
   employer 1.50% = 32.7633 -> 32.76, employee minimum 1% = 21.8422 ->
   21.84, solidarity 3.276 -> 3.28.
+- Alimentari PMI (Unionalimentari), level 4 in January 2026: 1746.87
+  minimum + 525.02 contingenza + 10.33 EDR = 2282.22.  Fondapi computes
+  on the 'Retribuzione TFR' (Scheda 'I destinatari e i contributi',
+  section CCNL PMI ALIMENTARE): employer 1.20% = 27.38664 -> 27.39,
+  employee minimum 1.00% = 22.8222 -> 22.82, solidarity 2.739 -> 2.74.
 - Tabacco (APTI), level 3A in 2026: 1524.95 minimum + 515.76 contingenza
   + 10.33 EDR = 2051.04.  TFR: 2051.04 / 13.5 = 151.929 -> 151.93, less
   0.50% of 2051.04 = 10.2552 -> 10.26: 141.67.
@@ -460,3 +465,20 @@ def test_alifond_on_the_food_industry() -> None:
     assert _entry(result, "pension_fund_employer") == Decimal("32.76")
     assert _entry(result, "pension_fund_employee") == Decimal("21.84")
     assert decision.inputs["solidarity"] == Decimal("3.28")
+
+
+def test_fondapi_on_the_food_pmi() -> None:
+    """Alimentari PMI level 4 enrolled in FONDAPI at the 1% minimum."""
+    employment = Employment(
+        ccnl_slug="alimentari-pmi-unionalimentari.json",
+        level_code="4",
+        seniority=new_hire(),
+        pension_fund=PensionFundEnrolment("FONDAPI", Decimal("0.01"), tfr_to_fund=True),
+        contract_type=Permanent(),
+    )
+    result = regular_period(employment=employment)
+    decision = _pension_decision(result)
+    assert decision.inputs["base"] == Decimal("2282.22")
+    assert _entry(result, "pension_fund_employer") == Decimal("27.39")
+    assert _entry(result, "pension_fund_employee") == Decimal("22.82")
+    assert decision.inputs["solidarity"] == Decimal("2.74")

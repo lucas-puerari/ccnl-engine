@@ -297,13 +297,10 @@ class TestLoadTessilePmiUniontessile:
         assert si.cadence_months == 24
         assert si.maximum_count == 4
 
-    def test_tessile_pmi_uniontessile_fondapi_fund(self) -> None:
-        """FONDAPI rate 1.90% until Mar 2025, 2.00% from Mar 2025 (adapt.it)."""
+    def test_tessile_pmi_uniontessile_has_no_fund(self) -> None:
+        """FONDAPI computes on minimo + EDR, a base the engine lacks: no fund."""
         ccnl = load_ccnl("tessile-pmi-uniontessile.json")
-        funds = {f.code: f for f in ccnl.parameters.employer_funds}
-        assert "FONDAPI" in funds
-        assert funds["FONDAPI"].rate.value_at(date(2024, 4, 1)) == Decimal("0.0190")
-        assert funds["FONDAPI"].rate.value_at(date(2025, 3, 1)) == Decimal("0.0200")
+        assert ccnl.parameters.employer_funds == ()
 
 
 class TestLoadTabaccoApti:

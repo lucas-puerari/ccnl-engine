@@ -961,8 +961,6 @@
     "ccnl/data/tessile-pmi-uniontessile.json": {
       "accrual_rule": "missing",
       "additional_months[2024-04-01]": "assumed",
-      "employer_funds[FONDAPI].rate[2024-04-01]": "assumed",
-      "employer_funds[FONDAPI].rate[2025-03-01]": "assumed",
       "levels[1].base_salary[2024-04-01]": "assumed",
       "levels[1].base_salary[2025-01-01]": "assumed",
       "levels[2].base_salary[2024-04-01]": "assumed",

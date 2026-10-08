@@ -87,7 +87,7 @@ Capabilities of the registry by layer and implementation:
 | 33 | T151 | [CCNL Cooperative Sociali (Confcooperative/Legacoop/AGCI)](cooperative-sociali.md) | servizi socio-assistenziali | ~380k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 58 / 2 / 1 | 🧪 | 🤖 |
 | 34 | A016 | [CCNL Cooperative e Consorzi Agricoli](cooperative-consorzi-agricoli.md) | cooperative e consorzi agricoli — impiegati e operai agricoli | ~60k | 2024 | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 40 / 2 / 0 | 🧪 | 🤖 |
 | 35 | T611 | [CCNL Dipendenti Aziende Enti Pubblici Economici Federcasa](federcasa.md) | Case popolari | ~6k | 2024 | 🔲 | 🔲 | 🔲 | — | 0 / 23 / 2 / 0 | 🧪 | 🤖 |
-| 36 | E018 | [CCNL Dipendenti Piccola e Media Industria Alimentare (Unionalimentari-Confapi)](alimentari-pmi-unionalimentari.md) | Alimentare | ~35k | 2025 | 🔲 | 🔲 | 🔲 | base_salary | 0 / 42 / 1 / 1 | 🧪 | 🤖 |
+| 36 | E018 | [CCNL Dipendenti Piccola e Media Industria Alimentare (Unionalimentari-Confapi)](alimentari-pmi-unionalimentari.md) | Alimentare | ~35k | 2025 | 🔲 | 🔲 | 🔲 | base_salary | 0 / 44 / 1 / 1 | 🧪 | 🤖 |
 | 37 | H401 | [CCNL Dipendenti da Proprietari di Fabbricati (Confedilizia)](portieri-fabbricati-confedilizia.md) | portieri e custodi di condominio | ~40k | 2025 | 🔲 | 🔲 | 🔲 | seniority | 0 / 37 / 1 / 1 | 🧪 | 🤖 |
 | 38 | H124 | [CCNL Dipendenti delle Farmacie Municipalizzate (ASSOFARM)](farmacie-municipalizzate-assofarm.md) | Farmacie municipalizzate e partecipate da enti locali | ~6k | 2022 | 🔲 | 🔲 | 🔲 | inps_employer, seniority | 0 / 45 / 2 / 0 | 🧪 | 🤖 |
 | 39 | H121 | [CCNL Dipendenti delle Farmacie Private](farmacie-private-h121.md) | Farmacie private | ~60k | 2021 | 🔲 | 🔲 | 🔲 | seniority | 0 / 37 / 1 / 1 | 🧪 | 🤖 |
@@ -148,7 +148,7 @@ Capabilities of the registry by layer and implementation:
 | 94 | K411 | [CCNL Telecomunicazioni — Assotelecomunicazioni (Asstel)](telecomunicazioni-asstel.md) | telecomunicazioni | ~110k | 2025 | 🔲 | 🔲 | 🔲 | inps_employer, seniority | 0 / 45 / 2 / 0 | 🧪 | 🤖 |
 | 95 | H012 | [CCNL Terziario Distribuzione e Servizi — Confesercenti](terziario-confesercenti.md) | Terziario distribuzione e servizi | ~230k | 2024 | 🔲 | 🔲 | 🔲 | seniority, una_tantum | 0 / 62 / 2 / 0 | 🧪 | 🤖 |
 | 96 | H011 | [CCNL Terziario, Distribuzione e Servizi (Confcommercio)](commercio-confcommercio.md) | terziario | ~800k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 6 / 62 / 0 | 🧪 | 🤖 |
-| 97 | D018 | [CCNL Tessile-Abbigliamento-Moda PMI (Uniontessile-Confapi)](tessile-pmi-uniontessile.md) | tessile abbigliamento moda PMI | ~48k | 2025 | 🔲 | 🔲 | 🔲 | base_salary | 0 / 0 / 43 / 1 | 🧪 | 🔍 |
+| 97 | D018 | [CCNL Tessile-Abbigliamento-Moda PMI (Uniontessile-Confapi)](tessile-pmi-uniontessile.md) | tessile abbigliamento moda PMI | ~48k | 2025 | 🔲 | 🔲 | 🔲 | base_salary | 0 / 0 / 41 / 1 | 🧪 | 🔍 |
 | 98 | I810 | [CCNL Trasporto Aereo — Gestori Aeroportuali](trasporto-aereo-assaeroporti.md) | trasporto aereo | ~40k | 2025 | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 72 / 2 / 0 | 🧪 | 🤖 |
 | 99 | I911 | [CCNL Trasporto a Fune (Funivie Terrestri ed Aeree) - ANEF](funivie-anef.md) | Trasporto a fune | ~15k | 2025 | 🔲 | 🔲 | 🔲 | seniority | 0 / 47 / 1 / 1 | 🧪 | 🤖 |
 | 100 | H058 | [CCNL Turismo (Assoturismo-Confesercenti)](turismo-confesercenti.md) | turismo — alberghi, campeggi, pubblici esercizi, agenzie di viaggi | — | 2024 | 🔲 | 🔲 | 🔲 | seniority | 0 / 56 / 1 / 1 | 🧪 | 🤖 |

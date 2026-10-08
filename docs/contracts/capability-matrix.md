@@ -104,7 +104,7 @@ formulas or caller-declared amounts.
 | `rinnovo_substitute_tax` | Imposta sostitutiva aumenti da rinnovo L. 199/2025 art. 1 c. 7 | net | native | decided | decision | `prior_year` | — | implemented | 0 / 1 / 0 / 0 |
 | `notte_festivi_turni_substitute_tax` | Imposta sostitutiva notturno, festivo e turni L. 199/2025 art. 1 cc. 10-11 | net | native | decided | decision | `prior_year` | — | implemented | 0 / 1 / 0 / 0 |
 | `bilateral_funds` | Fondi bilaterali (importi dal chiamante) | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
-| `pension_fund_contribution` | Previdenza complementare CCNL su adesione | net | partial | decided | decision | `employment.pension_fund` | ccnl_fund_on_enrolment | simplified | 0 / 12 / 14 / 0 |
+| `pension_fund_contribution` | Previdenza complementare CCNL su adesione | net | partial | decided | decision | `employment.pension_fund` | ccnl_fund_on_enrolment | simplified | 0 / 14 / 12 / 0 |
 | `assistance_contribution` | Contributi di assistenza contrattuale per ora retribuita (Cas.Sa.Colf, lavoro domestico) | net | native | decided | decision | `facts.contributable_hours` | — | implemented | 0 / 2 / 0 / 0 |
 
 ## CCNL coverage
@@ -162,7 +162,7 @@ never grow.
 | 33 | [CCNL Cooperative Sociali (Confcooperative/Legacoop/AGCI)](cooperative-sociali.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 58 / 2 / 1 |
 | 34 | [CCNL Cooperative e Consorzi Agricoli](cooperative-consorzi-agricoli.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 40 / 2 / 0 |
 | 35 | [CCNL Dipendenti Aziende Enti Pubblici Economici Federcasa](federcasa.md) | 🔲 | 🔲 | 🔲 | — | 0 / 23 / 2 / 0 |
-| 36 | [CCNL Dipendenti Piccola e Media Industria Alimentare (Unionalimentari-Confapi)](alimentari-pmi-unionalimentari.md) | 🔲 | 🔲 | 🔲 | base_salary | 0 / 42 / 1 / 1 |
+| 36 | [CCNL Dipendenti Piccola e Media Industria Alimentare (Unionalimentari-Confapi)](alimentari-pmi-unionalimentari.md) | 🔲 | 🔲 | 🔲 | base_salary | 0 / 44 / 1 / 1 |
 | 37 | [CCNL Dipendenti da Proprietari di Fabbricati (Confedilizia)](portieri-fabbricati-confedilizia.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 37 / 1 / 1 |
 | 38 | [CCNL Dipendenti delle Farmacie Municipalizzate (ASSOFARM)](farmacie-municipalizzate-assofarm.md) | 🔲 | 🔲 | 🔲 | inps_employer, seniority | 0 / 45 / 2 / 0 |
 | 39 | [CCNL Dipendenti delle Farmacie Private](farmacie-private-h121.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 37 / 1 / 1 |
@@ -223,7 +223,7 @@ never grow.
 | 94 | [CCNL Telecomunicazioni — Assotelecomunicazioni (Asstel)](telecomunicazioni-asstel.md) | 🔲 | 🔲 | 🔲 | inps_employer, seniority | 0 / 45 / 2 / 0 |
 | 95 | [CCNL Terziario Distribuzione e Servizi — Confesercenti](terziario-confesercenti.md) | 🔲 | 🔲 | 🔲 | seniority, una_tantum | 0 / 62 / 2 / 0 |
 | 96 | [CCNL Terziario, Distribuzione e Servizi (Confcommercio)](commercio-confcommercio.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 6 / 62 / 0 |
-| 97 | [CCNL Tessile-Abbigliamento-Moda PMI (Uniontessile-Confapi)](tessile-pmi-uniontessile.md) | 🔲 | 🔲 | 🔲 | base_salary | 0 / 0 / 43 / 1 |
+| 97 | [CCNL Tessile-Abbigliamento-Moda PMI (Uniontessile-Confapi)](tessile-pmi-uniontessile.md) | 🔲 | 🔲 | 🔲 | base_salary | 0 / 0 / 41 / 1 |
 | 98 | [CCNL Trasporto Aereo — Gestori Aeroportuali](trasporto-aereo-assaeroporti.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 72 / 2 / 0 |
 | 99 | [CCNL Trasporto a Fune (Funivie Terrestri ed Aeree) - ANEF](funivie-anef.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 47 / 1 / 1 |
 | 100 | [CCNL Turismo (Assoturismo-Confesercenti)](turismo-confesercenti.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 56 / 1 / 1 |

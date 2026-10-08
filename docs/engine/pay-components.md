@@ -304,8 +304,8 @@ not known: on every CCNL but domestic work, whether or not the bundle holds
 its negotiated fund, the decision is `incomplete` with the reason
 `required_fact_missing`, no fund line is posted and the run has a
 `missing_fact` blocker for `pension_fund`. The bundle holds the fund data of
-nine CCNLs (Alifond for tabacco and alimentari Federalimentare, tessile
-PMI, vetro meccanizzato, and Fon.Te. for
+nine CCNLs (Alifond for tabacco and alimentari Federalimentare, Fondapi
+for alimentari PMI, vetro meccanizzato, and Fon.Te. for
 commercio, turismo Confcommercio and Federalberghi, pubblici esercizi FIPE
 and agenzie di viaggio FIAVET): an enrolment in the
 fund of another CCNL raises `InvalidInputError`, since its rates are not in
@@ -356,9 +356,10 @@ Not modelled: the compensatory measures for employers whose TFR goes to a
 fund (D.Lgs. 252/2005 art. 10), the extra deduction of workers first
 employed from 2007 (art. 8 c. 6), a partial TFR conferment, and the eligibility
 conditions some CCNLs set (e.g. ALIFOND excludes fixed-term contracts up
-to six months). Cometa (metalmeccanico) is not in the bundle: its rates
-apply to the contractual minimum of the level, a third base the engine
-does not compute yet.
+to six months). Cometa (metalmeccanico) and Fondapi on tessile PMI and
+metalmeccanico PMI are not in the bundle: their rates apply to the
+contractual minimum of the level (with the EDR for Fondapi), a third base
+the engine does not compute yet.
 
 ```python
 --8<-- "docs/examples/13_pension_fund.py"
