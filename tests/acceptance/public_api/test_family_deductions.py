@@ -76,6 +76,7 @@ def _facts(
         other_employment_inps_base=_D(other_employment),
         other_income=_D(other),
         main_dwelling_income=_D(main_dwelling),
+        exempt_regime_income=_D(0),
         estimated_on=_DAY,
         quality=quality,
     )

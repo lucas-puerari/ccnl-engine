@@ -57,6 +57,9 @@ class CurrentYearTaxFacts:
         reddito complessivo = this employment + other_employment_income
             + other_income - main_dwelling_income
 
+    The somma esente of L. 207/2024 art. 1 c. 4 adds the exempt share of
+    the impatriati and researcher regimes (c. 9), ``exempt_regime_income``.
+
     Every amount is required: declaring no other income is a fact, stated
     with zeros (see :meth:`employment_only`).  Without these facts the
     reddito complessivo is unknown, and a run whose family deductions depend
@@ -82,6 +85,11 @@ class CurrentYearTaxFacts:
             appurtenances included in ``other_income``, excluded from the
             reddito complessivo of art. 12 (c. 4-bis), ``>= 0`` and not above
             ``other_income``.
+        exempt_regime_income: Exempt share of the income of the tax year
+            under art. 44 c. 1 D.L. 78/2010 (researchers), art. 16 D.Lgs.
+            147/2015 or art. 5 D.Lgs. 209/2023 (impatriati), ``>= 0``.  It
+            counts only in the reddito complessivo of the somma esente (L.
+            207/2024 art. 1 c. 9), not in that of the family deductions.
         estimated_on: Date the amounts were stated.
         quality: How the amounts are known.
 
@@ -94,6 +102,7 @@ class CurrentYearTaxFacts:
     other_employment_inps_base: Decimal
     other_income: Decimal
     main_dwelling_income: Decimal
+    exempt_regime_income: Decimal
     estimated_on: date
     quality: IncomeEstimateQuality
 
@@ -110,6 +119,7 @@ class CurrentYearTaxFacts:
             "other_employment_inps_base",
             "other_income",
             "main_dwelling_income",
+            "exempt_regime_income",
         ):
             require_decimal(
                 getattr(self, name), f"{_OWNER}.{name}", feature=_FEATURE, minimum=_ZERO
@@ -150,6 +160,7 @@ class CurrentYearTaxFacts:
             other_employment_inps_base=_ZERO,
             other_income=_ZERO,
             main_dwelling_income=_ZERO,
+            exempt_regime_income=_ZERO,
             estimated_on=estimated_on,
             quality=quality,
         )
@@ -160,3 +171,12 @@ class CurrentYearTaxFacts:
         return (
             self.other_employment_income + self.other_income - self.main_dwelling_income
         )
+
+    @property
+    def somma_esente_income(self) -> Decimal:
+        """Reddito complessivo beyond this employment for the somma esente.
+
+        L. 207/2024 art. 1 c. 9 adds the exempt share of the impatriati and
+        researcher regimes to :attr:`external_income`.
+        """
+        return self.external_income + self.exempt_regime_income

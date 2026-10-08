@@ -174,6 +174,13 @@ dell'erogazione delle retribuzioni" (L. 207/2024 art. 1 c. 7): both still
 pay the annual amount still due divided by the slots not yet paid, the
 tredicesima included.
 
+The somma esente is due when the reddito complessivo is not above 20,000
+EUR (c. 4). It counts this employment, the income `current_year` states
+(net of the main dwelling) and `CurrentYearTaxFacts.exempt_regime_income`,
+the exempt share of the researcher (art. 44 c. 1 D.L. 78/2010) and
+impatriati (art. 16 D.Lgs. 147/2015, art. 5 D.Lgs. 209/2023) regimes, which
+c. 9 adds; the family deductions do not count that share.
+
 The projection of a future tredicesima or quattordicesima uses the rateo
 the run will pay on the employment period: a worker hired on 1 July is
 projected 6/12 of the tredicesima, not a full month. Absences still to come
