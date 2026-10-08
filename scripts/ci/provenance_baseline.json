@@ -1478,12 +1478,14 @@
     ],
     "ccnl/data/lavoro-domestico-convivente.json": [
       "lavoro-domestico-convivente/board_lodging_substitute",
+      "lavoro-domestico-convivente/extra_month_hours",
       "lavoro-domestico-convivente/hourly_inps_bracket_unvalidated",
       "lavoro-domestico-convivente/seniority_frozen_at_2026",
       "lavoro-domestico-convivente/tabella_b_reduced_hours",
       "lavoro-domestico-convivente/tranches_from_2027"
     ],
     "ccnl/data/lavoro-domestico-non-convivente.json": [
+      "lavoro-domestico-non-convivente/extra_month_hours",
       "lavoro-domestico-non-convivente/meal_indennity",
       "lavoro-domestico-non-convivente/seniority_frozen_at_2026",
       "lavoro-domestico-non-convivente/tranches_from_2027"

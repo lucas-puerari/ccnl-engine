@@ -38,7 +38,12 @@ from ccnl_engine import (
     PeriodInput,
     PeriodResult,
 )
-from ccnl_engine.inputs import ContributableHours, EmploymentPeriod, WeeklyHours
+from ccnl_engine.inputs import (
+    ContributableHours,
+    EmploymentPeriod,
+    Permanent,
+    WeeklyHours,
+)
 from tests.fixtures.seniority import new_hire
 
 pytestmark = pytest.mark.legal_scenario
@@ -56,6 +61,8 @@ def _employment(slug: str = _CONVIVENTE, weekly: int = 54) -> Employment:
         level_code="CS",
         seniority=new_hire(),
         weekly_hours=WeeklyHours(weekly),
+        full_time_weekly_hours=WeeklyHours(54 if slug == _CONVIVENTE else 40),
+        contract_type=Permanent(),
     )
 
 
@@ -166,6 +173,8 @@ def test_termination_ratei_include_board_and_lodging() -> None:
                 level_code="CS",
                 seniority=new_hire(),
                 weekly_hours=WeeklyHours(54),
+                full_time_weekly_hours=WeeklyHours(54),
+                contract_type=Permanent(),
                 employment_period=EmploymentPeriod(date(2026, 1, 1), date(2026, 6, 30)),
             ),
             employer=_HOUSEHOLD,

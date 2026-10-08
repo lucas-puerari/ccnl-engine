@@ -193,8 +193,8 @@ never grow.
 | 64 | [CCNL Laterizi e Manufatti Cementizi - Industria](laterizi-industria-f021.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 98 / 2 / 0 |
 | 65 | [CCNL Lavanderie Industriali (Assosistema Confindustria)](lavanderie-industriali-assosistema.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 37 / 1 / 1 |
 | 66 | [CCNL Lavoratori Dipendenti Organizzazioni Sindacali (UNSIC/CONFSAL)](ooss-unsic-confsal.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 19 / 2 / 0 |
-| 67 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (conviventi)](lavoro-domestico-convivente.md) | 🔲 | 🔲 | 🔲 | base_salary, inps_employer, seniority | 0 / 25 / 0 / 1 |
-| 68 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (non conviventi)](lavoro-domestico-non-convivente.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 15 / 0 / 1 |
+| 67 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (conviventi)](lavoro-domestico-convivente.md) | 🔲 | 🔲 | 🔲 | base_salary, inps_employee, inps_employer, seniority | 0 / 25 / 0 / 1 |
+| 68 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (non conviventi)](lavoro-domestico-non-convivente.md) | 🔲 | 🔲 | 🔲 | base_salary, inps_employee, seniority | 0 / 15 / 0 / 1 |
 | 69 | [CCNL Logistica, Trasporto Merci e Spedizione (Confetra)](logistica-trasporto-confetra.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 43 / 2 / 0 |
 | 70 | [CCNL Marittimi — Industria Armatoriale (CONFITARMA)](marittimi-industria-armatoriale.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 40 / 2 / 0 |
 | 71 | [CCNL Materiali da Costruzione PMI — Lapidei (CONFAPI ANIEM)](materiali-costruzione-lapidei-confapi.md) | 🔲 | 🔲 | 🔲 | — | 0 / 0 / 60 / 0 |
