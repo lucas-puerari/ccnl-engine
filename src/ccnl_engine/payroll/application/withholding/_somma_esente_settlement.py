@@ -1,7 +1,8 @@
 """Account transition of the somma esente: what a run pays or recovers.
 
-Before the conguaglio a run pays its share of the annual amount, capped at
-what is still due, and never recovers.  At the conguaglio the balance
+Before the conguaglio a run pays the percentage applied to the income it
+pays (AdE circ. 4/E/2025 par. 1.2), capped at what is still due, and never
+recovers.  At the conguaglio the balance
 between the annual due and the net paid is settled: an amount not due is
 recovered in full up to 60 EUR and otherwise in ten equal installments
 (L. 207/2024 art. 1 c. 7), in full on the last run of the employment (AdE
@@ -14,7 +15,6 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.application.withholding._plan import slot_share
 from ccnl_engine.payroll.domain.obligations import (
     RECOVERY_RULES,
     SOMMA_ESENTE_RECOVERY,
@@ -81,6 +81,7 @@ def _recover(excess: Decimal, run: InstallmentRun) -> Settlement:
 
 def settle(
     annual: Decimal,
+    period: Decimal,
     withholding: WithholdingPosition,
     account: SommaEsenteAccount,
     plan: RecoveryPlan | None,
@@ -91,8 +92,9 @@ def settle(
     Returns:
         The installment of a running recovery, its residual on the final
         run; at the conguaglio the balance between the annual due and the
-        net paid, recovered when negative; before it the slot share capped
-        at what is still due.
+        net paid, recovered when negative; before it ``period``, the
+        percentage applied to the income of the run, capped at what is
+        still due.
     """
     if plan is not None:
         return _installment(plan, run)
@@ -103,5 +105,5 @@ def settle(
         return Settlement(amount=balance, reason="settled_at_conguaglio")
     if balance < _ZERO:
         return Settlement(amount=_ZERO, reason="overpayment_pending_conguaglio")
-    share = min(slot_share(annual, withholding.slots), balance)
+    share = min(period, balance)
     return Settlement(amount=share, reason="share_paid" if share else "not_due")

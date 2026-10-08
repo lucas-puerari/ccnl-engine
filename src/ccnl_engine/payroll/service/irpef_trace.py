@@ -10,8 +10,10 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.tax import TaxLineItem
 from ccnl_engine.payroll.service.irpef_credits import somma_esente
+from ccnl_engine.payroll.service.period_withholding import NO_PAY, PayPeriod
 from ccnl_engine.payroll.service.ulteriore_recovery import ulteriore_items
 from ccnl_engine.payroll.service.withholding_law import (
     WithholdingTopic,
@@ -92,15 +94,20 @@ def somma_esente_items(
     rules: YearRules,
     eligible_work_days: int,
     external_income: Decimal = _ZERO,
+    period: PayPeriod = NO_PAY,
 ) -> tuple[TaxLineItem, ...]:
     """Return the trace of the somma esente of L. 207/2024, when it is due.
 
     ``external_income`` is the reddito complessivo beyond this employment
-    (art. 1 c. 4 and 9).
+    (art. 1 c. 4 and 9).  ``period`` holds the employment income the run
+    pays: the withholding agent applies the percentage of the projected
+    annual income "al reddito effettivamente corrisposto mensilmente" (AdE
+    circ. 4/E/2025 par. 1.2), the ``somma_esente_period`` component.
 
     Returns:
-        One component when the rules are in force and the amount is
-        positive, otherwise none.
+        The annual ``somma_esente`` and the ``somma_esente_period`` of the
+        run when the rules are in force and the amount is positive,
+        otherwise none.
     """
     if rules.somma_esente is None:
         return ()
@@ -115,5 +122,11 @@ def somma_esente_items(
             amount=amount,
             rule_id="l207-2024-somma-esente",
             fonte="Art. 1 c. 4-5 L. 207/2024",
+        ),
+        TaxLineItem(
+            name="somma_esente_period",
+            amount=money(amount * period.taxable / taxable),
+            rule_id="l207-2024-somma-esente",
+            fonte="Art. 1 c. 7 L. 207/2024; AdE circ. 4/E/2025 par. 1.2",
         ),
     )

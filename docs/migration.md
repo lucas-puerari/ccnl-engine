@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Somma esente on the income of each run
+
+| Before | After |
+|---|---|
+| Before the conguaglio a run paid the annual somma esente still due divided by the slots left | A run pays the percentage of the projected annual income times the taxable it pays (AdE circ. 4/E/2025 par. 1.2), capped at what is still due; new component `somma_esente_period` and decision input `period_share`. Equal amounts for a constant pay, different for a hire in the year, a tredicesima or a bonus |
+
 ## Reduced-hours conviventi of the CCNL lavoro domestico
 
 | Before | After |
