@@ -184,6 +184,15 @@
         }
       ]
     },
+    "fourteenth_payment_day": {
+      "month": 7,
+      "day": 1,
+      "provenance": {
+        "status": "assumed",
+        "location": null,
+        "note": "Art. 169 of the CCNL Agenti immobiliari FIAIP pays the quattordicesima on 1 July, as recorded in the coverage notes of this file; the clause is not located in a source the bundle holds (the ruleset source is unavailable)."
+      }
+    },
     "seniority_increments": {
       "cadence_months": 36,
       "maximum_count": 10,
@@ -1259,6 +1268,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "a60993cac3484cffe944a761130aa140ed9c432a0b93c0c66ce11d64009f2b82"
+    "source_hash": "d6325aedbe42a24797d2ca78a53992deeea8b366b386061b022f4360cde74218"
   }
 }
