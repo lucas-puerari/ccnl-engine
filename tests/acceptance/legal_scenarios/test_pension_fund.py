@@ -16,9 +16,11 @@ Sources:
   from the TFR paid to the fund when the TFR goes to a pension fund.
 
 CCNL rates from the bundle, each run on the base of the fund (the rate
-times the base, rounded half up to the cent).  ALIFOND computes on the pay
-that enters the TFR (Alifond Scheda 'I destinatari e i contributi', note
-(1)); FONCHIM on vetro stays on the INPS base:
+times the base, rounded half up to the cent).  ALIFOND and FONCHIM compute
+on the pay that enters the TFR (Alifond Scheda 'I destinatari e i
+contributi', note (1); Fonchim opuscolo informativo 2026, page 13), and
+FONCHIM adds 0.25% paid by the employer for the insurance of premorienza
+and invalidity:
 
 - Tabacco (APTI), level 4A in 2026: 1244.90 minimum + 508.45 contingenza +
   10.33 EDR = 1763.68 a month, 14 runs.  ALIFOND (art. 47 of the accord
@@ -35,13 +37,16 @@ that enters the TFR (Alifond Scheda 'I destinatari e i contributi', note
   on the 'Retribuzione TFR' (Scheda 'I destinatari e i contributi',
   section CCNL PMI ALIMENTARE): employer 1.20% = 27.38664 -> 27.39,
   employee minimum 1.00% = 22.8222 -> 22.82, solidarity 2.739 -> 2.74.
+- Chimica farmaceutica (Federchimica), level D1 in January 2026: 2360.26
+  a month.  FONCHIM employer 2.10% + 0.25% = 2.35% = 55.46611 -> 55.47,
+  employee minimum 1.20% = 28.32312 -> 28.32, solidarity 5.547 -> 5.55.
 - Tabacco (APTI), level 3A in 2026: 1524.95 minimum + 515.76 contingenza
   + 10.33 EDR = 2051.04.  TFR: 2051.04 / 13.5 = 151.929 -> 151.93, less
   0.50% of 2051.04 = 10.2552 -> 10.26: 141.67.
 - Vetro meccanizzato (Assovetro), level C in 2026: 2354.05 + 10.33 TER =
-  2364.38 a month, 13 runs.  FONCHIM employer 1.5% until the +0.5% of
-  1 January 2027: 35.4657 -> 35.47; employee 1.2% chosen = 28.37256 ->
-  28.37; solidarity 3.547 -> 3.55.
+  2364.38 a month, 13 runs.  FONCHIM employer 1.50% + 0.25% = 1.75% until
+  the +0.5% of 1 January 2027: 41.37665 -> 41.38; employee minimum 1.50%
+  = 35.4657 -> 35.47; solidarity 4.138 -> 4.14.
 - Commercio (Confcommercio), level 4 in 2026: 1257.46 minimum + 524.22
   contingenza and EDR + 2.07 terzo elemento = 1783.75.  Fon.Te. computes
   on the pay that enters the TFR (statute Part I, Scheda III, note 1), not
@@ -90,7 +95,7 @@ _TABACCO = "tabacco-apti.json"
 _VETRO = "vetro-meccanizzato-assovetro.json"
 _CAPABILITY = "pension_fund_contribution"
 _ALIFOND = PensionFundEnrolment("ALIFOND", Decimal("0.01"), tfr_to_fund=True)
-_FONCHIM = PensionFundEnrolment("FONCHIM", Decimal("0.012"), tfr_to_fund=True)
+_FONCHIM = PensionFundEnrolment("FONCHIM", Decimal("0.015"), tfr_to_fund=True)
 _PENSION_ACCOUNTS = frozenset({
     "pension_fund_employee",
     "pension_fund_employer",
@@ -224,10 +229,10 @@ class TestTfrToFund:
 
 
 class TestVetroFonchim:
-    """FONCHIM on vetro level C: 1.5% in 2026, 2.0% only from 2027."""
+    """FONCHIM on vetro level C: 1.75% in 2026, 2.25% only from 2027."""
 
     def test_employer_cost_rises_at_the_2026_rate(self) -> None:
-        """13 x (35.47 + 3.55) = 507.26 a year."""
+        """13 x (41.38 + 4.14) = 591.76 a year."""
         employment = Employment(
             ccnl_slug=_VETRO, level_code="C", contract_type=Permanent()
         )
@@ -240,13 +245,13 @@ class TestVetroFonchim:
             )
         )
         delta = enrolled.annual_employer_cost - _year(employment).annual_employer_cost
-        assert delta == Decimal("507.26")
+        assert delta == Decimal("591.76")
         first = enrolled.period_results[0]
-        assert _entry(first, "pension_fund_employer") == Decimal("35.47")
-        assert _entry(first, "pension_fund_employee") == Decimal("28.37")
+        assert _entry(first, "pension_fund_employer") == Decimal("41.38")
+        assert _entry(first, "pension_fund_employee") == Decimal("35.47")
 
-    def test_no_bundled_minimum_is_recorded(self) -> None:
-        """The bundle has no FONCHIM employee minimum: the decision says so."""
+    def test_bundled_minimum_is_recorded(self) -> None:
+        """The FONCHIM employee minimum of vetro, 1.50%, is in the decision."""
         result = regular_period(
             employment=Employment(
                 ccnl_slug=_VETRO,
@@ -256,7 +261,7 @@ class TestVetroFonchim:
             )
         )
         assert _pension_decision(result).inputs["employee_min_rate"] == (
-            "not_in_bundle"
+            Decimal("0.0150")
         )
 
 
@@ -301,23 +306,6 @@ class TestDeductionCap:
 
 class TestEventBase:
     """A bonus enters the INPS base of the run, not the TFR base."""
-
-    def test_bonus_enters_an_inps_base(self) -> None:
-        """FONCHIM on vetro C, on the INPS base: 2364.38 + 1000.00 bonus.
-
-        Employer 1.5% of 3364.38 = 50.4657 -> 50.47, employee 1.2% =
-        40.37256 -> 40.37.
-        """
-        bonus = BonusEvent(event_date=date(2026, 1, 15), amount=Decimal(1000))
-        employment = Employment(
-            ccnl_slug=_VETRO,
-            level_code="C",
-            pension_fund=_FONCHIM,
-            contract_type=Permanent(),
-        )
-        result = regular_period(employment=employment, events=(bonus,))
-        assert _entry(result, "pension_fund_employer") == Decimal("50.47")
-        assert _entry(result, "pension_fund_employee") == Decimal("40.37")
 
     def test_bonus_stays_out_of_the_tfr_base(self) -> None:
         """ALIFOND on the TFR base: the bonus leaves 26.46 and 17.64."""
@@ -482,3 +470,22 @@ def test_fondapi_on_the_food_pmi() -> None:
     assert _entry(result, "pension_fund_employer") == Decimal("27.39")
     assert _entry(result, "pension_fund_employee") == Decimal("22.82")
     assert decision.inputs["solidarity"] == Decimal("2.74")
+
+
+def test_fonchim_on_the_chemical_industry() -> None:
+    """Chimica farmaceutica D1 enrolled in FONCHIM at the 1.20% minimum."""
+    employment = Employment(
+        ccnl_slug="chimica-farmaceutica-federchimica.json",
+        level_code="D1",
+        seniority=new_hire(),
+        pension_fund=PensionFundEnrolment(
+            "FONCHIM", Decimal("0.012"), tfr_to_fund=True
+        ),
+        contract_type=Permanent(),
+    )
+    result = regular_period(employment=employment)
+    decision = _pension_decision(result)
+    assert decision.inputs["base"] == Decimal("2360.26")
+    assert _entry(result, "pension_fund_employer") == Decimal("55.47")
+    assert _entry(result, "pension_fund_employee") == Decimal("28.32")
+    assert decision.inputs["solidarity"] == Decimal("5.55")

@@ -1033,6 +1033,7 @@
     "ccnl/data/vetro-meccanizzato-assovetro.json": {
       "accrual_rule": "missing",
       "additional_months[2023-03-01]": "assumed",
+      "employer_funds[FONCHIM].employee_min_rate[2026-01-01]": "assumed",
       "employer_funds[FONCHIM].rate[2023-03-01]": "assumed",
       "employer_funds[FONCHIM].rate[2027-01-01]": "assumed",
       "levels[A].base_salary[2023-03-01]": "assumed",

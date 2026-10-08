@@ -4,6 +4,13 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Fonchim on the TFR base, with its insurance contribution
+
+| Before | After |
+|---|---|
+| FONCHIM on vetro: employer 1.50% (2.00% from 2027) of the INPS base, no employee minimum | 1.75% (2.25% from 2027) of the TFR base, the 0.25% insurance contribution included, and an employee minimum of 1.50%: an enrolment at 1.2% now raises `InvalidInputError` |
+| No fund on `chimica-farmaceutica-federchimica` | `"FONCHIM"`: employer 2.35% (2.10% + 0.25%), employee at least 1.20%, on the TFR base |
+
 ## Fondapi on the food PMI, not on the textile PMI
 
 | Before | After |
