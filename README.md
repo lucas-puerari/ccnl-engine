@@ -4,7 +4,7 @@
 [![Python](https://img.shields.io/pypi/pyversions/ccnl-engine?logo=python&logoColor=white)](https://pypi.org/project/ccnl-engine/)
 [![CI](https://github.com/lucas-puerari/ccnl-engine/actions/workflows/ci.yml/badge.svg)](https://github.com/lucas-puerari/ccnl-engine/actions/workflows/ci.yml)
 [![Coverage](https://lucas-puerari.github.io/ccnl-engine/coverage-badge.svg)](https://github.com/lucas-puerari/ccnl-engine/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/lucas-puerari/ccnl-engine/blob/main/LICENSE)
 
 A Python engine for auditable Italian payroll simulations. CCNL-aware gross-to-net and
 employer cost, versioned rules, provenance tracking, and an explicit payability answer on every result.
@@ -97,7 +97,7 @@ plan types, the results and the errors. Every other public name has one home:
 `ccnl_engine.inputs` (further facts), `ccnl_engine.events` (work events),
 `ccnl_engine.results` (assurance, decisions, limitations) and
 `ccnl_engine.catalog` (contracts and ruleset readiness); see
-[API reference](docs/api/index.md).
+[API reference](https://github.com/lucas-puerari/ccnl-engine/blob/main/docs/api/index.md).
 
 The inputs group the facts by owner: `Employment` (CCNL, level, contract,
 employment period, hours, recognised seniority as a dated `SeniorityFact`,
@@ -128,14 +128,14 @@ fact the engine reports as missing (seniority, contribution history, sector,
 prior-year income, ...) adds a `missing_fact` blocker. Some defaults still
 select a branch without a blocker (opening state, dependant conditions,
 hours, pension fund): see
-[Assurance](docs/trust/confidence.md#defaults-of-the-public-inputs).
+[Assurance](https://github.com/lucas-puerari/ccnl-engine/blob/main/docs/trust/confidence.md#defaults-of-the-public-inputs).
 A result is also blocked by any issue, any capability of the catalog left
 uncomputed, any executed rule `assumed` or `missing` in the bundle and any
 rule supplied by the caller. Each `result.blockers` entry has a
 stable `code`, the `feature` it concerns and a `detail`; `result.assurance`
 holds the axes they come from. Today no bundled CCNL gives a payable result:
 the amounts are for simulation. See
-[Assurance](docs/trust/confidence.md).
+[Assurance](https://github.com/lucas-puerari/ccnl-engine/blob/main/docs/trust/confidence.md).
 
 `result.rulesets` names every ruleset the run read, with its identity, hash
 and readiness. Readiness (`exploratory`, `reviewed`, `production`) is tracked
@@ -156,10 +156,10 @@ print(ruleset.readiness, ruleset.confidence)  # → exploratory unverified
 `simulation` reports readiness; `operational` also adds a
 `ruleset_not_production` blocker when the CCNL ruleset is not `production`.
 No bundled CCNL is `production` yet, so nothing is payable in operational
-mode. See [Readiness](docs/trust/readiness.md). Known simplifications of the
+mode. See [Readiness](https://github.com/lucas-puerari/ccnl-engine/blob/main/docs/trust/readiness.md). Known simplifications of the
 model are typed limitations: `result.assurance.limitations` lists those that
 apply to the run, and an open one that can move an amount adds an
-`open_limitation` blocker (see [Assurance](docs/trust/confidence.md#model-limitations)).
+`open_limitation` blocker (see [Assurance](https://github.com/lucas-puerari/ccnl-engine/blob/main/docs/trust/confidence.md#model-limitations)).
 `contract.validity` is the span of dates on which every rule of the CCNL has
 a value; a competence year leaves out, with a `run_not_computed` blocker,
 the runs before the pay tables of its level start.
@@ -212,7 +212,7 @@ Totals of another provider enter through
 the worker's other employments of the year through
 `CurrentYearTaxFacts.other_employment_inps_base` or the imported
 `inps_bases`; see
-[Opening state and imported balances](docs/engine/opening-state.md).
+[Opening state and imported balances](https://github.com/lucas-puerari/ccnl-engine/blob/main/docs/engine/opening-state.md).
 
 `CompetenceYearPlan.periods` maps a month (1-12) or a run id such as
 `"2026-12-thirteenth"` to the `PeriodFacts` of that run; runs without an entry

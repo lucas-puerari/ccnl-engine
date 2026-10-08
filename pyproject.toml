@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ccnl-engine"
-version = "0.5.1"
+version = "0.6.0"
 description = "Python engine for auditable Italian payroll simulations: CCNL-aware gross-to-net, employer cost, versioned rules, provenance and explicit scope."
 readme = "README.md"
 license = { text = "MIT" }
@@ -16,12 +16,14 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Topic :: Office/Business :: Financial",
     "Typing :: Typed",
 ]
 requires-python = ">=3.12"
 dependencies = [
-    "pydantic>=2.0",
+    "pydantic>=2.6",
 ]
 
 [project.urls]
@@ -198,14 +200,15 @@ exclude = [
 
 [tool.hatch.build.targets.sdist]
 include = [
-    "src/",
-    "tests/",
-    "pyproject.toml",
-    "README.md",
-    "LICENSE",
-    "Makefile",
-    "scripts/packaging/",
+    "/src/",
+    "/pyproject.toml",
+    "/README.md",
+    "/CHANGELOG.md",
+    "/LICENSE",
+    "/Makefile",
+    "/scripts/packaging/",
 ]
+exclude = [".complexipy_cache", "**/__pycache__"]
 
 [tool.hatch.build.hooks.custom]
 path = "scripts/packaging/build_hook.py"
