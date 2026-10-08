@@ -22,7 +22,12 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine import EmployerProfile, Employment, Headcount
-from ccnl_engine.inputs import EmploymentSector, Permanent, PriorYearTaxFacts
+from ccnl_engine.inputs import (
+    EmploymentSector,
+    NoPensionFund,
+    Permanent,
+    PriorYearTaxFacts,
+)
 from ccnl_engine.results import BlockerCode, CalculationStatus
 from tests.acceptance.legal_scenarios._support import (
     history,
@@ -46,6 +51,7 @@ _EMPLOYMENT = Employment(
     seniority=new_hire(),
     sector=EmploymentSector.PRIVATE,
     tfr_treasury_fund=False,
+    pension_fund=NoPensionFund(),
 )
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
 

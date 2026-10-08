@@ -75,7 +75,7 @@ class NoPensionFund:
     """The worker is stated not enrolled in a pension fund of the CCNL.
 
     It is the fact ``Employment.pension_fund`` left ``None`` does not
-    state: on a CCNL that has funds, an unknown enrolment leaves the
+    state: on every CCNL but domestic work, an unknown enrolment leaves the
     contributions to the fund undetermined.  Whether the TFR of a worker
     who expressed no choice goes to the fund (D.Lgs. 252/2005 art. 8 c. 7)
     is for the caller to establish: the engine does not infer it.

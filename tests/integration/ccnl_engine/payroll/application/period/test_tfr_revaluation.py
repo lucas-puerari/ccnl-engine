@@ -19,7 +19,7 @@ from typing import TYPE_CHECKING, Any
 import pytest
 
 from ccnl_engine.contract.domain.identity import TaxSector
-from ccnl_engine.inputs import TfrFundBalance
+from ccnl_engine.inputs import NoPensionFund, TfrFundBalance
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.domain.decisions import CalculationDecision, CalculationStatus
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
@@ -89,6 +89,7 @@ def _run(
             employer=EmployerProfile(headcount=Headcount(50)),
             seniority=new_hire(),
             tfr_treasury_fund=False,
+            pension_fund=NoPensionFund(),
             run=PayrollRun(run_kind=kind, month=month, year=2026),
             **kwargs,  # type: ignore[arg-type]
         ),

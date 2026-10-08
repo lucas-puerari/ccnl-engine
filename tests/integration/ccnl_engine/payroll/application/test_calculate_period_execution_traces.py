@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.contract.domain.category import WorkerCategory
 from ccnl_engine.contract.service.loaders import load_ccnl
+from ccnl_engine.inputs import NoPensionFund
 from ccnl_engine.payroll.application.allocate_events import _process_events
 from ccnl_engine.payroll.application.calculate_competence_year import (
     calculate_competence_year,
@@ -69,6 +70,7 @@ def _run(
     ccnl_slug: str = _METALMECCANICO, level_code: str = "C3", **kwargs: object
 ) -> PeriodResult:
     request = PeriodCalculationRequest(
+        pension_fund=NoPensionFund(),
         period_id=PeriodId(year=_YEAR, month=1),
         payment_date=_PAYMENT,
         ccnl_slug=ccnl_slug,

@@ -29,6 +29,7 @@ from ccnl_engine.inputs import (
     ContributableHours,
     EmploymentPeriod,
     FamilyComposition,
+    NoPensionFund,
     Permanent,
     TfrFundBalance,
     WeeklyHours,
@@ -99,6 +100,7 @@ def test_incomplete_coverage_is_not_payable() -> None:
             seniority=new_hire(),
             tfr_fund=TfrFundBalance(2025, Decimal("8000.00")),
             tfr_treasury_fund=False,
+            pension_fund=NoPensionFund(),
             contract_type=Permanent(),
         ),
         resident(),
@@ -136,6 +138,7 @@ def test_ordinary_month_has_no_coverage_gap() -> None:
             level_code="C3",
             seniority=new_hire(),
             contract_type=Permanent(),
+            pension_fund=NoPensionFund(),
         ),
         _MILAN_NO_DEPENDANT,
     )
@@ -161,7 +164,10 @@ def test_unknown_ivs_ceiling_eligibility_is_a_missing_fact() -> None:
     test asserts the blocker of its own fact.
     """
     employment = Employment(
-        ccnl_slug=_METALMECCANICO, level_code="C3", contract_type=Permanent()
+        ccnl_slug=_METALMECCANICO,
+        level_code="C3",
+        contract_type=Permanent(),
+        pension_fund=NoPensionFund(),
     )
     bonus = BonusEvent(event_date=date(2026, 1, 15), amount=Decimal(200_000))
 
@@ -195,6 +201,7 @@ def test_unknown_seniority_is_a_missing_fact() -> None:
         category=WorkerCategory.OPERAIO,
         seniority=None,
         contract_type=Permanent(),
+        pension_fund=NoPensionFund(),
     )
 
     result = _january(employment)
@@ -219,6 +226,7 @@ def _march(started_on: date) -> PeriodResult:
         level_code="C3",
         employment_period=EmploymentPeriod(started_on=started_on),
         contract_type=Permanent(),
+        pension_fund=NoPensionFund(),
     )
     year = _ENGINE.calculate_competence_year(
         CompetenceYearPlan(year=2026, employment=employment, employer=_EMPLOYER)
@@ -253,7 +261,10 @@ def test_unknown_surtax_table_is_not_an_amount() -> None:
     payable for that capability, whatever the other blockers.
     """
     employment = Employment(
-        ccnl_slug=_METALMECCANICO, level_code="C3", contract_type=Permanent()
+        ccnl_slug=_METALMECCANICO,
+        level_code="C3",
+        contract_type=Permanent(),
+        pension_fund=NoPensionFund(),
     )
 
     result = _january(employment, PeriodFacts(comune_belfiore="Z999"))
@@ -282,6 +293,7 @@ def test_unknown_family_is_not_an_empty_family() -> None:
         level_code="C3",
         seniority=new_hire(),
         contract_type=Permanent(),
+        pension_fund=NoPensionFund(),
     )
     resident = PeriodFacts(regione="IT-25", comune_belfiore="F205")
     unresolved = (
@@ -311,6 +323,7 @@ def test_household_employer_needs_no_residence() -> None:
                 seniority=new_hire(),
                 weekly_hours=WeeklyHours(25),
                 contract_type=Permanent(),
+                pension_fund=NoPensionFund(),
             ),
             employer=EmployerProfile(headcount=Headcount(1)),
             facts=PeriodFacts(contributable_hours=ContributableHours(Decimal(108))),

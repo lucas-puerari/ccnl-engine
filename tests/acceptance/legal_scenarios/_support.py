@@ -18,6 +18,7 @@ from ccnl_engine import (
 )
 from ccnl_engine.inputs import (
     ContributableHours,
+    NoPensionFund,
     PeriodState,
     Permanent,
     PriorYearTaxFacts,
@@ -67,7 +68,7 @@ def regular_period(
     ``employment``, when given, replaces ``ccnl_slug`` and ``level_code``;
     otherwise the worker is a :func:`~tests.fixtures.seniority.new_hire`
     with no TFR fund (:func:`~tests.fixtures.tfr.no_tfr_fund`) whose TFR
-    accrues in the company.  ``prior_year`` defaults to
+    accrues in the company, not enrolled in a pension fund.  ``prior_year`` defaults to
     :data:`~tests.fixtures.prior_year.RENEWAL_WAIVED`.
 
     Returns:
@@ -85,6 +86,7 @@ def regular_period(
                 tfr_fund=no_tfr_fund(year),
                 tfr_treasury_fund=False,
                 contract_type=Permanent(),
+                pension_fund=NoPensionFund(),
             ),
             employer=employer,
             facts=PeriodFacts(

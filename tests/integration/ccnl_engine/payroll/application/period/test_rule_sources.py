@@ -9,6 +9,7 @@ from __future__ import annotations
 from datetime import date
 from typing import TYPE_CHECKING
 
+from ccnl_engine.inputs import NoPensionFund
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.period._rule_sources import (
     MISSING_SOURCE_CODE,
@@ -72,6 +73,7 @@ def _run(
         level_code="C3",
         seniority=new_hire(),
         tfr_treasury_fund=False,
+        pension_fund=NoPensionFund(),
         employer=EmployerProfile(headcount=Headcount(50)),
         opening_state=PeriodState.zero(),
         employment_period=EmploymentPeriod(date(2026, 3, 1)),

@@ -4,6 +4,13 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Pension fund enrolment needed on every CCNL with a negotiated fund
+
+| Before | After |
+|---|---|
+| `pension_fund=None` blocked only on the three CCNLs whose fund data the bundle holds | It blocks on every CCNL but domestic work (`missing_fact pension_fund`): most CCNLs have a negotiated fund the bundle does not hold, and an enrolled worker's contributions and TFR destination are then undetermined |
+| A run on another CCNL left the enrolment unread | State `NoPensionFund()` for a worker not enrolled; an enrolment in a fund whose data the bundle does not hold raises `InvalidInputError` |
+
 ## Extra months at the termination of chained runs
 
 | Before | After |

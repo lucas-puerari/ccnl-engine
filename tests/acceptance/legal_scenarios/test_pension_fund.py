@@ -35,6 +35,7 @@ base, rounded half up to the cent):
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
@@ -52,6 +53,8 @@ from ccnl_engine.inputs import (
     Permanent,
 )
 from tests.acceptance.legal_scenarios._support import EMPLOYER, ENGINE, regular_period
+from tests.fixtures.seniority import new_hire
+from tests.fixtures.tfr import no_tfr_fund
 
 if TYPE_CHECKING:
     from ccnl_engine import CompetenceYearResult, PeriodResult
@@ -315,11 +318,27 @@ class TestNotEnrolled:
         assert facts == {"pension_fund"}
         assert not result.is_payable
 
-    def test_ccnl_without_fund_takes_no_decision(self) -> None:
-        """Commercio has no fund in the bundle: nothing to enrol in."""
-        result = regular_period()
-        assert all(d.capability != _CAPABILITY for d in result.decisions)
-        assert "pension_fund" not in {i.fact for i in result.issues}
+    def test_ccnl_without_fund_data_still_needs_the_enrolment(self) -> None:
+        """Commercio has a negotiated fund the bundle does not hold.
+
+        An unknown enrolment blocks; stated not enrolled, the run takes the
+        ``not_enrolled`` reading of no fund and names nothing.
+        """
+        employment = Employment(
+            ccnl_slug="commercio-confcommercio.json",
+            level_code="4",
+            seniority=new_hire(),
+            tfr_fund=no_tfr_fund(2026),
+            tfr_treasury_fund=False,
+            contract_type=Permanent(),
+        )
+        unknown = regular_period(employment=employment)
+        assert "pension_fund" in {i.fact for i in unknown.issues}
+        assert not unknown.is_payable
+        stated = regular_period(
+            employment=replace(employment, pension_fund=NoPensionFund())
+        )
+        assert "pension_fund" not in {i.fact for i in stated.issues}
 
     def test_enrolment_in_a_fund_the_ccnl_lacks_raises(self) -> None:
         """A fund code the CCNL does not declare is rejected."""
