@@ -225,7 +225,13 @@ Left `None`, the run leaves these contributions out with the issue
 `public_end_of_service_unknown`.
 
 Every public employee also pays the credit contribution of the Gestione: 0.35% of the
-pension base (L. 662/1996 art. 1 c. 242), the component `credit_employee`.
+pension base (L. 662/1996 art. 1 c. 242), the component `credit_employee`. The
+employees of an ente di diritto pubblico other than the State, the Province and the
+Comuni also pay the Assicurazione Sociale Vita, ex ENPDEP (INPS circ. 104/2014):
+0.027% of the worker and 0.093% of the employer on the pension base. State it in
+`EmployerProfile.public_life_insurance`; the CCNL of the State school and of the
+forze di polizia fix it as not owed, the others leave the run incomplete with the
+issue `public_life_insurance_unknown` until it is stated.
 
 ### Flat hourly rate (domestic work)
 

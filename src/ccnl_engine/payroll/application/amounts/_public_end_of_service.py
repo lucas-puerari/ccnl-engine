@@ -35,14 +35,29 @@ if TYPE_CHECKING:
 
 __all__ = [
     "END_OF_SERVICE_UNKNOWN",
+    "LIFE_INSURANCE_UNKNOWN",
     "end_of_service_base",
     "end_of_service_employee_rate",
     "end_of_service_issue",
+    "life_insurance_issue",
     "with_end_of_service",
+    "with_life_insurance",
     "with_public_credit",
 ]
 
 _ZERO = Decimal(0)
+#: A public employer needs to state whether it owes the ASV.
+LIFE_INSURANCE_UNKNOWN = CalculationIssue(
+    code="public_life_insurance_unknown",
+    message=(
+        "the employers of the CCNL differ on the Assicurazione Sociale Vita "
+        "(ex ENPDEP): every ente di diritto pubblico owes it but the State, the "
+        "Province and the Comuni (INPS circ. 104/2014); the amounts shown leave "
+        "it out; state EmployerProfile.public_life_insurance"
+    ),
+    status=CalculationStatus.INCOMPLETE,
+    fact="public_life_insurance",
+)
 #: A public employee needs the end-of-service regime to be stated.
 END_OF_SERVICE_UNKNOWN = CalculationIssue(
     code="public_end_of_service_unknown",
@@ -195,3 +210,36 @@ def with_public_credit(
         return breakdown, _ZERO
     component = _component("credit_employee", pension_base, credit.employee_rate)
     return _added(breakdown, (component,)), credit.employee_rate
+
+
+def life_insurance_issue(inp: _AmountsInput) -> CalculationIssue | None:
+    """Return the missing-fact issue of an ASV the employer does not state.
+
+    Returns:
+        :data:`LIFE_INSURANCE_UNKNOWN` when the year has ASV rates for the
+        CCNL and neither the employer nor the CCNL decides it.
+    """
+    rates = None if inp.rules.inps is None else inp.rules.inps.public_life_insurance
+    if rates is None or inp.public_life_insurance is not None:
+        return None
+    return LIFE_INSURANCE_UNKNOWN
+
+
+def with_life_insurance(
+    inp: _AmountsInput, breakdown: ContributionBreakdown, pension_base: Decimal
+) -> tuple[ContributionBreakdown, Decimal]:
+    """Return ``breakdown`` with the ASV contributions of a public employee.
+
+    INPS circ. 104/2014 par. 3.1: 0.027% of the worker and 0.093% of the
+    employer on the pension base.
+
+    Returns:
+        The breakdown with the ``life_insurance_*`` components and the
+        employee rate; ``breakdown`` and zero when no ASV is owed.
+    """
+    rates = None if inp.rules.inps is None else inp.rules.inps.public_life_insurance
+    if rates is None or not inp.public_life_insurance:
+        return breakdown, _ZERO
+    employee = _component("life_insurance_employee", pension_base, rates.employee_rate)
+    employer = _component("life_insurance_employer", pension_base, rates.employer_rate)
+    return _added(breakdown, (employee,), (employer,)), rates.employee_rate

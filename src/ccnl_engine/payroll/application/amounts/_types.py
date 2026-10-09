@@ -134,6 +134,7 @@ class _AmountsInput:
     assistance: AssistanceTerms | None = None
     public_end_of_service: PublicEndOfService | None = None
     tfr_excluded: Decimal = Decimal(0)
+    public_life_insurance: bool | None = None
 
     @property
     def tfr_pay(self) -> Decimal:

@@ -96,6 +96,14 @@ def _public(regime: PublicEndOfService | None) -> Employment:
     )
 
 
+def _public_employer(
+    january: Callable[[Employment], PeriodInput], insured: bool | None
+) -> PeriodInput:
+    request = january(_public(PublicEndOfService.TFS))
+    employer = replace(request.employer, public_life_insurance=insured)
+    return replace(request, employer=employer)
+
+
 def _operaio(
     january: Callable[[Employment], PeriodInput], hours: Decimal | None
 ) -> PeriodInput:
@@ -143,6 +151,18 @@ def pension_cases[C](
         "Employment.public_end_of_service": (
             pair(
                 _public(PublicEndOfService.TFS), _public(None), "public_end_of_service"
+            ),
+        ),
+        "EmployerProfile.public_life_insurance": (
+            case(
+                _public_employer(january, True),
+                _public_employer(january, None),
+                "public_life_insurance",
+            ),
+            case(
+                _public_employer(january, False),
+                _public_employer(january, None),
+                "public_life_insurance",
             ),
         ),
         "PensionFundEnrolment.young_member": (

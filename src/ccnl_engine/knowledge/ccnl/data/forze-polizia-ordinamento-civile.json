@@ -47,7 +47,8 @@
       "human_reviewed": false
     },
     "workers_estimate": "~130k",
-    "public_pension_fund": "ctps"
+    "public_pension_fund": "ctps",
+    "public_life_insurance": false
   },
   "parameters": {
     "hourly_divisor": {
@@ -2228,6 +2229,10 @@
       {
         "kind": "info",
         "text": "Accordo triennio 2025-2027 (Comparto Sicurezza-Difesa) firmato 2026-07-15 a Palazzo Vidoni. Tre nuovi valori del punto parametrale: 200,90 EUR/anno (decorrenza 2025-01-01), 205,40 EUR/anno (2026-01-01), 207,51 EUR/anno (2027-01-01), da T3=195,50. Incremento totale +12,01 punti pari al +6,14%. Retroattività 2025 e 2026 in forma di arretrati. DPR di recepimento (art. 2 D.Lgs. 195/1995) non ancora emanato al 2026-09-09; firma definitiva sospesa per il nodo della previdenza dedicata. I nuovi periodi non sono modellati in attesa del DPR. Fonte: UIL Polizia (uilpolizia.com), money.it."
+      },
+      {
+        "kind": "info",
+        "text": "ASSICURAZIONE SOCIALE VITA. The employers of this CCNL are Amministrazioni dello Stato (the State schools; the forze di polizia), which INPS circ. 104/2014 leaves out of the Assicurazione Sociale Vita (ex ENPDEP): meta.public_life_insurance is false."
       }
     ]
   },
@@ -2238,7 +2243,7 @@
     "effective_until": null,
     "source": "https://www.normattiva.it/atto/caricaDettaglioAtto?atto.dataPubblicazioneGazzetta=2025-04-18&atto.codiceRedazionale=25G00046&atto.articolo.numero=0&atto.articolo.sottoArticolo=1&atto.articolo.sottoArticolo1=0&qId=1ede7c71-4666-4c74-b496-2391fce88e7f",
     "verification_status": "unverified",
-    "source_hash": "8e10f9099c6077a52392ce3f4b5c9ec72458ff4a1f8e073e74c6904168e30727",
+    "source_hash": "0852ab2a125a34e7a66ff63c5215ea6beb43d3bd56d7ec3eff899d3aa9362d12",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
