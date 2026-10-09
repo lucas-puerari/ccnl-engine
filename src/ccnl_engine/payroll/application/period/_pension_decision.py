@@ -21,6 +21,9 @@ from ccnl_engine.contract.domain.identity import TaxSector
 from ccnl_engine.payroll.application.period._contractual_fund import contractual_run
 from ccnl_engine.payroll.application.period._erc import erc_of
 from ccnl_engine.payroll.application.period._run_decisions import _ccnl_rule
+from ccnl_engine.payroll.application.period._seniority_conversion import (
+    converted_seniority,
+)
 from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
     CalculationIssue,
@@ -61,8 +64,9 @@ PAID_MONTH_VARIANT = "fund_paid_month"
 def pension_terms(ctx: RunContext) -> PensionFundTerms | None:
     """Return the rates of the fund the worker is enrolled in.
 
-    A worker who confers the TFR alone owes no contribution of either side
-    and no fixed amount of an enrolled worker (``tfr_only``).
+    A worker who converted the seniority increments adds their amount to
+    the fixed amount of an enrolled worker; one who confers the TFR alone
+    owes no contribution of either side and no fixed amount (``tfr_only``).
 
     Returns:
         ``None`` when the worker is not enrolled or the enrolment is
@@ -83,6 +87,9 @@ def pension_terms(ctx: RunContext) -> PensionFundTerms | None:
         minimum_base=ctx.chain.base,
         erc_amount=erc_of(ctx),
     )
+    converted = converted_seniority(ctx)
+    if converted:
+        terms = replace(terms, enrolled_monthly=terms.enrolled_monthly + converted)
     if not enrolment.tfr_only:
         return terms
     return replace(

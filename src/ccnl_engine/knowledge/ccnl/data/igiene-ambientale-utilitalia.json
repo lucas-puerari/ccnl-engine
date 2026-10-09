@@ -98,7 +98,7 @@
       },
       {
         "kind": "info",
-        "text": "BILATERAL FUNDS. FASDA healthcare (Fondo Assistenza Sanitaria Dipendenti Aziende di Servizi Ambientali) contributions are not modelled. Previambiente is (art. 65 lett. A, with the TFR alone of c. 12); the conversion of the scatti into fund contributions of lett. A) bis, an option of the new hires is not."
+        "text": "BILATERAL FUNDS. FASDA healthcare (Fondo Assistenza Sanitaria Dipendenti Aziende di Servizi Ambientali) contributions are not modelled. Previambiente is (art. 65 lett. A, with the TFR alone of c. 12, and the conversion of the seniority increments of a new hire of lett. A) bis); the partial conversion of a worker already in service (lett. A) bis c. 6) is not."
       },
       {
         "kind": "simplification",
@@ -443,6 +443,170 @@
           },
           "transformation": "The percentages of c. 5 lett. a) and b) go on the conventional base of c. 6, which the tables of the text give for the levels of the classification before 1 February 2026 (Q 2077.84: 42.24 employer, 27.01 employee) and no source gives for the levels of this file: the enrolment states it (PensionFundEnrolment.conventional_base). A higher employee rate goes on the TFR base (c. 9). Due on the 12 monthly payments; none for a month without pay, an open limitation for a month paid in part (c. 8).",
           "note": "Read from the PDF the url serves (sha256 57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756), text layer. No human review recorded."
+        },
+        "seniority_conversion": {
+          "by_level": {
+            "Q": {
+              "periods": [
+                {
+                  "valid_from": "2026-02-01",
+                  "valid_until": null,
+                  "value": "50.27"
+                }
+              ]
+            },
+            "A1": {
+              "periods": [
+                {
+                  "valid_from": "2026-02-01",
+                  "valid_until": null,
+                  "value": "37.28"
+                }
+              ]
+            },
+            "A2s": {
+              "periods": [
+                {
+                  "valid_from": "2026-02-01",
+                  "valid_until": null,
+                  "value": "33.42"
+                }
+              ]
+            },
+            "A2": {
+              "periods": [
+                {
+                  "valid_from": "2026-02-01",
+                  "valid_until": null,
+                  "value": "33.42"
+                }
+              ]
+            },
+            "B1s": {
+              "periods": [
+                {
+                  "valid_from": "2026-02-01",
+                  "valid_until": null,
+                  "value": "31.63"
+                }
+              ]
+            },
+            "B1": {
+              "periods": [
+                {
+                  "valid_from": "2026-02-01",
+                  "valid_until": null,
+                  "value": "31.63"
+                }
+              ]
+            },
+            "B2s": {
+              "periods": [
+                {
+                  "valid_from": "2026-02-01",
+                  "valid_until": null,
+                  "value": "28.02"
+                }
+              ]
+            },
+            "B2": {
+              "periods": [
+                {
+                  "valid_from": "2026-02-01",
+                  "valid_until": null,
+                  "value": "28.02"
+                }
+              ]
+            },
+            "C1s": {
+              "periods": [
+                {
+                  "valid_from": "2026-02-01",
+                  "valid_until": null,
+                  "value": "26.85"
+                }
+              ]
+            },
+            "C1": {
+              "periods": [
+                {
+                  "valid_from": "2026-02-01",
+                  "valid_until": null,
+                  "value": "26.85"
+                }
+              ]
+            },
+            "C2s": {
+              "periods": [
+                {
+                  "valid_from": "2026-02-01",
+                  "valid_until": null,
+                  "value": "24.52"
+                }
+              ]
+            },
+            "C2": {
+              "periods": [
+                {
+                  "valid_from": "2026-02-01",
+                  "valid_until": null,
+                  "value": "24.52"
+                }
+              ]
+            },
+            "D1s": {
+              "periods": [
+                {
+                  "valid_from": "2026-02-01",
+                  "valid_until": null,
+                  "value": "22.66"
+                }
+              ]
+            },
+            "D1": {
+              "periods": [
+                {
+                  "valid_from": "2026-02-01",
+                  "valid_until": null,
+                  "value": "22.66"
+                }
+              ]
+            },
+            "D2s": {
+              "periods": [
+                {
+                  "valid_from": "2026-02-01",
+                  "valid_until": null,
+                  "value": "19.56"
+                }
+              ]
+            },
+            "D2": {
+              "periods": [
+                {
+                  "valid_from": "2026-02-01",
+                  "valid_until": null,
+                  "value": "19.56"
+                }
+              ]
+            }
+          },
+          "maximum_count": 10,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "servizi-ambientali-testo-consolidato-2026",
+                "title": "CCNL Servizi Ambientali, testo consolidato 24/07/2025 con l'ipotesi di accordo 09/12/2025 (edizione 2026)",
+                "kind": "altro",
+                "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf"
+              },
+              "section": "Art. 65 Lett. A) bis - Misure di incentivazione della previdenza complementare",
+              "quote": "2. Nei confronti di tali lavoratori verrà versato esclusivamente al Fondo Previambiente l'importo mensile corrispondente all'aumento periodico, calcolato in trentaseiesimi [...] maggiorato del 10% e riproporzionato su 12 mensilità, come da importi unitari mensili di seguito indicati. Livello J 11,29 €; 1 19,56 €; 2 22,66 €; 3 24,52 €; 4 26,85 €; 5 28,02 €; 6 31,63 €; 7 33,42 €; 8 37,28 €; Q 50,27 € 3. [...] fino al raggiungimento dell'importo massimo [...] 1 195,60 € [...] Q 502,70 € [...] 5. Tali importi costituiscono contribuzione aggiuntiva corrisposta per 12 mensilità a carico dell'azienda [...] non costituiscono base di calcolo [...] ivi compreso il TFR."
+            },
+            "transformation": "The amount of the old level each level of this file takes its seniority increment from (the increments of art. 30 these levels carry: 15.24 -> 19.56, 17.66 -> 22.66, 19.11 -> 24.52, 20.92 -> 26.85, 21.83 -> 28.02, 24.65 -> 31.63, 26.04 -> 33.42, 29.05 -> 37.28, 39.17 -> 50.27), each the increment x 1.10 x 14 / 12; the maxima of c. 3 are 10 amounts for every level. On the 12 monthly payments of an enrolled worker, outside the TFR base.",
+            "note": "Read from the PDF the url serves (sha256 57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756), text layer. The increments of a worker already in service (c. 6) are not converted. No human review recorded."
+          }
         }
       }
     ],
@@ -4046,7 +4210,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "83a7f92fb53e4d033d8e9a1e6d5c0a2cc090e94f27be01b92886ba8621479f75",
+    "source_hash": "2b5d6ed3c66fe17d354843295020a92cd09c275a489af04d02b6adfc36db621b",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

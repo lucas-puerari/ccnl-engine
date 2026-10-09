@@ -108,6 +108,11 @@ FACT_DEFAULTS: Mapping[str, FieldDefault] = {
         "(Previambiente) leaves its rates out and the run has a missing_fact "
         "conventional_base blocker",
     ),
+    "PensionFundEnrolment.seniority_to_fund": absence_is_fact(
+        "the conversion of the seniority increments into fund contributions "
+        "is an option of the worker (Previambiente art. 65 lett. A) bis): "
+        "not exercised unless stated"
+    ),
     "EmploymentSpell.unpaid_days": absence_is_fact(
         "every day of the spell was paid; the days without any pay are listed"
     ),
