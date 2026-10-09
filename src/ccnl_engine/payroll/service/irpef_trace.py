@@ -12,6 +12,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.tax import TaxLineItem
+from ccnl_engine.payroll.service.foreign_tax_credit import foreign_credit_rule
 from ccnl_engine.payroll.service.irpef_credits import somma_esente
 from ccnl_engine.payroll.service.period_withholding import NO_PAY, PayPeriod
 from ccnl_engine.payroll.service.ulteriore_recovery import ulteriore_items
@@ -78,12 +79,13 @@ def annual_items(
         components.extend(component)
     if annual.foreign_credit > _ZERO:
         law = withholding_rule(WithholdingTopic.CONGUAGLIO, rules.year)
+        rule_id, citation = foreign_credit_rule(rules.year)
         components.append(
             TaxLineItem(
                 name="foreign_tax_credit",
                 amount=annual.foreign_credit,
-                rule_id="tuir-art165-c1",
-                fonte=f"Art. 165 TUIR; {law.citation}",
+                rule_id=rule_id,
+                fonte=f"{citation}; {law.citation}",
             )
         )
     return components, decisions
