@@ -47,6 +47,7 @@ is known and computed, and nothing in the 2026 bundle is payable yet.
 - `PayrollEngine.list_levels()`, `ccnl_engine.catalog.supported_tax_years()`,
   `PeriodResult.paid_gross`, and the JSON form of a state
   (`period_state_to_json`, `period_state_from_json`); results pickle.
+- Prevedi on Edilizia industria and artigianato (voluntary 1% and 1%).
 - `lavoro-domestico-convivente-orario-ridotto`: the reduced-hours
   conviventi of art. 14 c. 2 CCNL lavoro domestico, Tabella B.
 - `CurrentYearTaxFacts.exempt_regime_income`: the exempt share of the

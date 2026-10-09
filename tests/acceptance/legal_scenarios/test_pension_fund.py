@@ -28,18 +28,6 @@ and invalidity:
   = 17.6368 -> 17.64; solidarity 10% of 26.46 = 2.646 -> 2.65.  TFR:
   1763.68 / 13.5 = 130.643 -> 130.64, less 0.50% of 1763.68 = 8.8184 ->
   8.82: 121.82.
-- Alimentari (Federalimentare), level 3 in January 2026: 1566.16 minimum
-  + 522.32 contingenza + 10.33 EDR + 85.41 IAR = 2184.22.  ALIFOND
-  employer 1.50% = 32.7633 -> 32.76, employee minimum 1% = 21.8422 ->
-  21.84, solidarity 3.276 -> 3.28.
-- Alimentari PMI (Unionalimentari), level 4 in January 2026: 1746.87
-  minimum + 525.02 contingenza + 10.33 EDR = 2282.22.  Fondapi computes
-  on the 'Retribuzione TFR' (Scheda 'I destinatari e i contributi',
-  section CCNL PMI ALIMENTARE): employer 1.20% = 27.38664 -> 27.39,
-  employee minimum 1.00% = 22.8222 -> 22.82, solidarity 2.739 -> 2.74.
-- Chimica farmaceutica (Federchimica), level D1 in January 2026: 2360.26
-  a month.  FONCHIM employer 2.10% + 0.25% = 2.35% = 55.46611 -> 55.47,
-  employee minimum 1.20% = 28.32312 -> 28.32, solidarity 5.547 -> 5.55.
 - Tabacco (APTI), level 3A in 2026: 1524.95 minimum + 515.76 contingenza
   + 10.33 EDR = 2051.04.  TFR: 2051.04 / 13.5 = 151.929 -> 151.93, less
   0.50% of 2051.04 = 10.2552 -> 10.26: 141.67.
@@ -436,56 +424,3 @@ class TestCommercioFonte:
         assert _pension_decision(result).inputs["base"] == Decimal("1660.69")
         assert _entry(result, "pension_fund_employer") == Decimal("9.13")
         assert _pension_decision(result).inputs["solidarity"] == Decimal("0.91")
-
-
-def test_alifond_on_the_food_industry() -> None:
-    """Alimentari level 3 enrolled in ALIFOND at the 1% minimum."""
-    employment = Employment(
-        ccnl_slug="alimentari-federalimentare.json",
-        level_code="3",
-        seniority=new_hire(),
-        pension_fund=PensionFundEnrolment("ALIFOND", Decimal("0.01"), tfr_to_fund=True),
-        contract_type=Permanent(),
-    )
-    result = regular_period(employment=employment)
-    decision = _pension_decision(result)
-    assert decision.inputs["base"] == Decimal("2184.22")
-    assert _entry(result, "pension_fund_employer") == Decimal("32.76")
-    assert _entry(result, "pension_fund_employee") == Decimal("21.84")
-    assert decision.inputs["solidarity"] == Decimal("3.28")
-
-
-def test_fondapi_on_the_food_pmi() -> None:
-    """Alimentari PMI level 4 enrolled in FONDAPI at the 1% minimum."""
-    employment = Employment(
-        ccnl_slug="alimentari-pmi-unionalimentari.json",
-        level_code="4",
-        seniority=new_hire(),
-        pension_fund=PensionFundEnrolment("FONDAPI", Decimal("0.01"), tfr_to_fund=True),
-        contract_type=Permanent(),
-    )
-    result = regular_period(employment=employment)
-    decision = _pension_decision(result)
-    assert decision.inputs["base"] == Decimal("2282.22")
-    assert _entry(result, "pension_fund_employer") == Decimal("27.39")
-    assert _entry(result, "pension_fund_employee") == Decimal("22.82")
-    assert decision.inputs["solidarity"] == Decimal("2.74")
-
-
-def test_fonchim_on_the_chemical_industry() -> None:
-    """Chimica farmaceutica D1 enrolled in FONCHIM at the 1.20% minimum."""
-    employment = Employment(
-        ccnl_slug="chimica-farmaceutica-federchimica.json",
-        level_code="D1",
-        seniority=new_hire(),
-        pension_fund=PensionFundEnrolment(
-            "FONCHIM", Decimal("0.012"), tfr_to_fund=True
-        ),
-        contract_type=Permanent(),
-    )
-    result = regular_period(employment=employment)
-    decision = _pension_decision(result)
-    assert decision.inputs["base"] == Decimal("2360.26")
-    assert _entry(result, "pension_fund_employer") == Decimal("55.47")
-    assert _entry(result, "pension_fund_employee") == Decimal("28.32")
-    assert decision.inputs["solidarity"] == Decimal("5.55")

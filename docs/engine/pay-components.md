@@ -304,9 +304,9 @@ not known: on every CCNL but domestic work, whether or not the bundle holds
 its negotiated fund, the decision is `incomplete` with the reason
 `required_fact_missing`, no fund line is posted and the run has a
 `missing_fact` blocker for `pension_fund`. The bundle holds the fund data of
-ten CCNLs (Alifond for tabacco and alimentari Federalimentare, Fondapi
+twelve CCNLs (Alifond for tabacco and alimentari Federalimentare, Fondapi
 for alimentari PMI, Fonchim for chimica farmaceutica and vetro
-meccanizzato, and Fon.Te. for
+meccanizzato, Prevedi for edilizia industria and artigianato, and Fon.Te. for
 commercio, turismo Confcommercio and Federalberghi, pubblici esercizi FIPE
 and agenzie di viaggio FIAVET): an enrolment in the
 fund of another CCNL raises `InvalidInputError`, since its rates are not in
