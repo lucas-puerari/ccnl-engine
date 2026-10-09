@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Fondapi on the chemical PMI with employer rate tiers
+
+| Before | After |
+|---|---|
+| No fund on `chimica-affini-pmi-unionchimica` | `"FONDAPI"` on the TFR base: employer 1.66%, 2.00% from an employee rate of 1.60%, employee at least 1.06%; new `EmployerFund.employer_rate_tiers` (`EmployerRateTier`: `employee_from`, `rate`) |
+
 ## Fondapi on the minimum of the textile and metalworking PMI
 
 | Before | After |

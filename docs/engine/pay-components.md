@@ -394,6 +394,11 @@ indennita di funzione of the quadri and the elemento of the 8th and 9th
 categories), which the bundle pay lacks: an enrolled run has the open
 limitation `fondapi_base_elements` and is not payable.
 
+A fund can raise the employer rate with the rate the worker chooses
+(`EmployerFund.employer_rate_tiers`): Fondapi on the chemical PMI pays
+1.66% on the TFR base, 2.00% once the worker contributes at least 1.60%
+(minimum 1.06%).
+
 Cometa computes on the contractual minimum of the level
 (`contribution_base` `contractual_minimum`, the base salary of the pay
 chain): employer 2%, employee at least 1.2%. A higher employee rate goes on
