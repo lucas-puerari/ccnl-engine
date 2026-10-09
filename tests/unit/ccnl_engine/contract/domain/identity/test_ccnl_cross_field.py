@@ -12,7 +12,7 @@ import pytest
 from pydantic import ValidationError
 
 from ccnl_engine.contract.domain.category import WorkerCategory
-from ccnl_engine.contract.domain.compensation import EmployerFund
+from ccnl_engine.contract.domain.fund_contribution import EmployerFund
 from ccnl_engine.contract.domain.identity import CCNL
 from tests.helpers import TEST_PROV, make_ccnl_dict
 

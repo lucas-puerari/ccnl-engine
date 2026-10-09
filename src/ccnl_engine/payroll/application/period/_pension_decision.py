@@ -68,6 +68,7 @@ def pension_terms(ctx: RunContext) -> PensionFundTerms | None:
         contract.tctx.competence,
         contract.year_rules.complementary_pension,
         apprentice=isinstance(ctx.request.contract_type, Apprentice),
+        minimum_base=ctx.chain.base,
     )
 
 
@@ -94,6 +95,7 @@ def _inputs(pension: PensionContribution) -> dict[str, Decimal | str]:
         "deduction_cap": terms.rules.deduction_cap,
         "tfr_to_fund": str(terms.tfr_to_fund).lower(),
         "contractual": pension.contractual,
+        "contribution_base": str(terms.fund.contribution_base),
     }
 
 

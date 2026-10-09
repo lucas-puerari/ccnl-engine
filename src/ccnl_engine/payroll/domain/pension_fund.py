@@ -42,6 +42,10 @@ class PensionFundEnrolment:
         tfr_to_fund: Whether the TFR accrued is paid to the fund
             (D.Lgs. 252/2005 art. 8 c. 1-2).  Required: the choice is the
             worker's, and it moves the TFR out of the company.
+        young_member: Whether the worker belongs to the members the CCNL
+            favours for the age at enrolment (Cometa: enrolled after 5
+            February 2021 before turning 35), read only by a fund with a
+            ``young_member_rate``; ``None`` when not stated.
 
     Raises:
         InvalidInputError: When a field is not of its type, ``fund_code``
@@ -51,6 +55,7 @@ class PensionFundEnrolment:
     fund_code: str
     employee_rate: Decimal
     tfr_to_fund: bool
+    young_member: bool | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         owner = "PensionFundEnrolment"
@@ -68,6 +73,10 @@ class PensionFundEnrolment:
             maximum=_ONE,
         )
         require_bool(self.tfr_to_fund, f"{owner}.tfr_to_fund", feature=PENSION_FEATURE)
+        if self.young_member is not None:
+            require_bool(
+                self.young_member, f"{owner}.young_member", feature=PENSION_FEATURE
+            )
 
 
 @dataclass(frozen=True, slots=True)

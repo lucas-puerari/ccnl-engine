@@ -14,7 +14,10 @@ from ccnl_engine.payroll.application.amounts._irpef import (
     ulteriore_issues,
     withhold_irpef,
 )
-from ccnl_engine.payroll.application.amounts._pension import run_pension
+from ccnl_engine.payroll.application.amounts._pension import (
+    YOUNG_MEMBER_UNKNOWN,
+    run_pension,
+)
 from ccnl_engine.payroll.application.amounts._surtax import run_surtax
 from ccnl_engine.payroll.application.amounts._taxable import (
     pdr_split,
@@ -67,10 +70,12 @@ def _decisions(
 def _issues(inp: _AmountsInput, irpef: _Irpef) -> tuple[CalculationIssue, ...]:
     family = () if irpef.family is None else irpef.family.issues()
     contractual = inp.contractual_fund.issue
+    young = inp.pension is not None and inp.pension.young_member_unknown
     return (
         family
         + ulteriore_issues(inp, irpef)
         + (() if contractual is None else (contractual,))
+        + ((YOUNG_MEMBER_UNKNOWN,) if young else ())
     )
 
 

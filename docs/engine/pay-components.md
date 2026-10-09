@@ -304,7 +304,8 @@ not known: on every CCNL but domestic work, whether or not the bundle holds
 its negotiated fund, the decision is `incomplete` with the reason
 `required_fact_missing`, no fund line is posted and the run has a
 `missing_fact` blocker for `pension_fund`. The bundle holds the fund data of
-twelve CCNLs (Alifond for tabacco and alimentari Federalimentare, Fondapi
+thirteen CCNLs (Cometa for metalmeccanico Federmeccanica, Alifond for
+tabacco and alimentari Federalimentare, Fondapi
 for alimentari PMI, Fonchim for chimica farmaceutica and vetro
 meccanizzato, Prevedi for edilizia industria and artigianato, and Fon.Te. for
 commercio, turismo Confcommercio and Federalberghi, pubblici esercizi FIPE
@@ -382,10 +383,16 @@ Not modelled: the compensatory measures for employers whose TFR goes to a
 fund (D.Lgs. 252/2005 art. 10), the extra deduction of workers first
 employed from 2007 (art. 8 c. 6), a partial TFR conferment, and the eligibility
 conditions some CCNLs set (e.g. ALIFOND excludes fixed-term contracts up
-to six months). Cometa (metalmeccanico) and Fondapi on tessile PMI and
-metalmeccanico PMI are not in the bundle: their rates apply to the
-contractual minimum of the level (with the EDR for Fondapi), a third base
-the engine does not compute yet.
+to six months). Fondapi on tessile PMI and metalmeccanico PMI is not in the bundle yet.
+
+Cometa computes on the contractual minimum of the level
+(`contribution_base` `contractual_minimum`, the base salary of the pay
+chain): employer 2%, employee at least 1.2%. A higher employee rate goes on
+the TFR base (`employee_base_above_minimum`). A member enrolled after 5
+February 2021 before turning 35 has an employer rate of 2.2%: state it in
+`PensionFundEnrolment.young_member`. Left `None`, the run uses 2% and has
+the issue `pension_fund_young_member_unknown`. The 40% TFR quota of a worker
+employed before 28 April 1993 is not modelled.
 
 ```python
 --8<-- "docs/examples/13_pension_fund.py"

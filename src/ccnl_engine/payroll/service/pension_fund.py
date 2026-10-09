@@ -24,13 +24,14 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.domain.pension_fund import PENSION_FEATURE
 from ccnl_engine.payroll.domain.rounding import money
+from ccnl_engine.payroll.service.pension_fund_lookup import check_category, fund_of
 from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.contract.domain.category import WorkerCategory
-    from ccnl_engine.contract.domain.compensation import EmployerFund
+    from ccnl_engine.contract.domain.fund_contribution import EmployerFund
     from ccnl_engine.contract.domain.identity import CCNL
     from ccnl_engine.contract.domain.validity import TimeSeries, ValidityPeriod
     from ccnl_engine.payroll.domain.pension_fund import PensionFundEnrolment
@@ -58,6 +59,12 @@ class PensionFundTerms:
             the bundle records none.
         tfr_to_fund: Whether the TFR accrued is paid to the fund.
         rules: Deduction cap and solidarity rate of the tax year.
+        minimum_base: Contractual minimum of the run, the base of a fund
+            on the contractual minimum (:class:`~ccnl_engine.contract.domain\
+.fund_contribution.FundContributionBase`).
+        young_member_unknown: Whether the fund has a young member rate and
+            the enrolment does not state whether it applies: the base rate
+            is used.
     """
 
     fund: EmployerFund
@@ -67,6 +74,8 @@ class PensionFundTerms:
     employee_min_rate: Decimal | None
     tfr_to_fund: bool
     rules: ComplementaryPensionRules
+    minimum_base: Decimal = _ZERO
+    young_member_unknown: bool = False
 
 
 @dataclass(frozen=True)
@@ -105,27 +114,6 @@ class PensionContribution:
         return self.employer - self.deductible
 
 
-def _fund_of(ccnl: CCNL, code: str) -> EmployerFund:
-    """Return the fund ``code`` of ``ccnl``.
-
-    Returns:
-        The fund whose code is ``code``.
-
-    Raises:
-        InvalidInputError: When the CCNL has no fund with that code.
-    """
-    funds = ccnl.parameters.employer_funds
-    for fund in funds:
-        if fund.code == code:
-            return fund
-    known = [f.code for f in funds]
-    msg = (
-        f"pension fund {code!r} is not a fund of CCNL {ccnl.meta.ccnl_id}; "
-        f"its funds are {known}"
-    )
-    raise InvalidInputError(msg, feature=PENSION_FEATURE)
-
-
 def _in_force(
     series: TimeSeries | None, day: date
 ) -> tuple[ValidityPeriod, Decimal] | None:
@@ -140,24 +128,6 @@ def _in_force(
     return period, period.value
 
 
-def _check_category(fund: EmployerFund, category: WorkerCategory | None) -> None:
-    """Reject a worker outside the categories the fund covers.
-
-    Raises:
-        InvalidInputError: When the fund is restricted and the category is
-            unknown or not among those it covers.
-    """
-    allowed = fund.applies_to_categories
-    if allowed is None or category in allowed:
-        return
-    msg = (
-        f"pension fund {fund.code} covers the categories "
-        f"{[c.value for c in allowed]}; the worker category is "
-        f"{None if category is None else category.value!r}"
-    )
-    raise InvalidInputError(msg, feature=PENSION_FEATURE)
-
-
 def resolve_terms(
     ccnl: CCNL,
     enrolment: PensionFundEnrolment,
@@ -166,10 +136,12 @@ def resolve_terms(
     rules: ComplementaryPensionRules | None,
     *,
     apprentice: bool,
+    minimum_base: Decimal = _ZERO,
 ) -> PensionFundTerms:
     """Return the rates of the enrolment on ``day``.
 
-    An apprentice pays the apprentice rate of the fund when it sets one.
+    An apprentice pays the apprentice rate of the fund when it sets one; a
+    young member stated by the enrolment, the young member rate.
 
     Returns:
         The terms of the fund for the run.
@@ -180,10 +152,11 @@ def resolve_terms(
             rate is below the CCNL minimum, or when the tax year has no
             complementary pension rules.
     """
-    fund = _fund_of(ccnl, enrolment.fund_code)
-    _check_category(fund, category)
+    fund = fund_of(ccnl, enrolment.fund_code)
+    check_category(fund, category)
     apart = fund.apprentice_rate if apprentice else None
-    in_force = _in_force(apart or fund.rate, day)
+    young = fund.young_member_rate if enrolment.young_member else None
+    in_force = _in_force(apart or young or fund.rate, day)
     if in_force is None:
         msg = f"pension fund {fund.code} has no employer rate on {day}"
         raise InvalidInputError(msg, feature=PENSION_FEATURE)
@@ -206,6 +179,9 @@ def resolve_terms(
         employee_min_rate=min_rate,
         tfr_to_fund=enrolment.tfr_to_fund,
         rules=rules,
+        minimum_base=minimum_base,
+        young_member_unknown=fund.young_member_rate is not None
+        and enrolment.young_member is None,
     )
 
 
@@ -214,6 +190,7 @@ def contribute(
     base: Decimal,
     deducted_ytd: Decimal,
     contractual: Decimal = _ZERO,
+    employee_base: Decimal | None = None,
 ) -> PensionContribution:
     """Return the contributions of a run on the base ``base`` of the fund.
 
@@ -223,13 +200,16 @@ def contribute(
         deducted_ytd: Contributions already deducted this tax year.
         contractual: Contractual contribution of the CCNL, added to the
             employer part.
+        employee_base: Base of the employee rate when it is not ``base``.
 
     Returns:
         Employer, employee and solidarity contributions and the part
         deducted within the cap left.
     """
     employer = money(base * terms.employer_rate) + contractual
-    employee = money(base * terms.employee_rate)
+    employee = money(
+        (base if employee_base is None else employee_base) * terms.employee_rate
+    )
     return _contribution(
         terms, terms.rules, base, (employer, employee, contractual), deducted_ytd
     )

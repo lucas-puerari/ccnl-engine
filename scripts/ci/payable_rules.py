@@ -291,15 +291,19 @@ def _overtime_rules(file: str, work_rules: object) -> Iterator[PayableRule]:
             yield _rule(file, path, ("overtime",), band.get("provenance"))
 
 
+#: Rate series of an employer fund.
+_FUND_SERIES = ("rate", "employee_min_rate", "apprentice_rate", "young_member_rate")
+
+
 def _fund_rules(file: str, funds: object) -> Iterator[PayableRule]:
     """Yield the rate periods of the employer pension funds of a CCNL.
 
     Yields:
-        One rule per non-gap period of each fund rate and employee minimum.
+        One rule per non-gap period of each fund rate series.
     """
     for fund in funds if isinstance(funds, list) else []:
         inherited = fund.get("provenance")
-        for key in ("rate", "employee_min_rate"):
+        for key in _FUND_SERIES:
             for period in _periods(fund.get(key)):
                 path = (
                     f"employer_funds[{fund.get('code')}].{key}"
