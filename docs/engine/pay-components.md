@@ -408,8 +408,9 @@ Byblos on the CCNL grafici editoriali pays the employer 1.9% of the TFR base
 (the retribuzione contrattuale annua), 1.4% for a holder of the Elemento di
 Raccordo Contrattuale (`EmployerFund.erc_holder_rate`), whose employer rate
 the renewal of 19 January 2021 did not raise. State the annual ERC in
-`Employment.erc_amount`, zero when the worker has none. Left `None`, an
-enrolled run uses 1.9% and has the issue `pension_fund_erc_unknown`. The
+`Employment.erc_amount`, zero when the worker has none; an employment
+started after December 2020 has none. Left `None` otherwise, an enrolled run
+uses 1.9% and has the issue `pension_fund_erc_unknown`. The
 same amount is paid with the tredicesima (see the extra months in the
 engine overview).
 

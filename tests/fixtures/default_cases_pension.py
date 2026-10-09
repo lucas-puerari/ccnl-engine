@@ -4,18 +4,21 @@ Part of :data:`tests.fixtures.default_cases.DEFAULT_CASES`: the explicit
 Concia D2 moved to Metalmeccanico Federmeccanica C3 and enrolled in Cometa,
 whose employer rate is higher for a young member, moved to Edilizia
 industria as an operaio, whose Prevedi contractual contribution is an
-amount per ordinary hour worked, and moved to Grafica editoria C1 and
-enrolled in Byblos, whose employer rate is lower for a holder of the ERC.
+amount per ordinary hour worked, and moved to Grafica editoria C1, hired
+in 2019 and enrolled in Byblos, whose employer rate is lower for a holder
+of the ERC.
 """
 
 from __future__ import annotations
 
 from dataclasses import replace
+from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.inputs import (
     ContributableHours,
+    EmploymentPeriod,
     NoPensionFund,
     PensionFundEnrolment,
     WorkerCategory,
@@ -49,6 +52,7 @@ def _byblos(erc_amount: Decimal | None) -> Employment:
         ccnl_slug="grafica-editoria-aieg.json",
         level_code="C1",
         seniority=new_hire(),
+        employment_period=EmploymentPeriod(date(2019, 1, 1)),
         pension_fund=PensionFundEnrolment("BYBLOS", Decimal("0.01"), tfr_to_fund=True),
         erc_amount=erc_amount,
     )

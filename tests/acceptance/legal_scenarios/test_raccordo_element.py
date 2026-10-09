@@ -20,7 +20,7 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine import CompetenceYearPlan, Employment
+from ccnl_engine import CompetenceYearPlan, Employment, PayrollRun, PeriodInput
 from ccnl_engine.inputs import (
     EmploymentPeriod,
     NoPensionFund,
@@ -98,12 +98,33 @@ def test_liquidated_at_the_termination() -> None:
     assert _erc(september) == Decimal("103.13")
 
 
-def test_unknown_erc_is_a_missing_fact() -> None:
-    """The tredicesima run leaves the ERC out and names erc_amount."""
+def test_none_after_december_2020() -> None:
+    """Hired in July 2026: no ERC to state, none paid, no issue."""
     thirteenth = _run(_year(None), "thirteenth")
+    assert _erc(thirteenth) == 0
+    assert "erc_unknown" not in {i.code for i in thirteenth.issues}
+
+
+def test_unknown_erc_is_a_missing_fact() -> None:
+    """Employed since 2019: the tredicesima leaves the ERC out, names it."""
+    employment = Employment(
+        ccnl_slug="grafica-editoria-aieg.json",
+        level_code="C1",
+        seniority=_SINCE_JULY,
+        pension_fund=NoPensionFund(),
+        contract_type=Permanent(),
+        employment_period=EmploymentPeriod(started_on=date(2019, 1, 1)),
+    )
+    thirteenth = ENGINE.calculate_period(
+        PeriodInput(
+            run=PayrollRun.thirteenth(2026, 12),
+            payment_date=date(2026, 12, 18),
+            employment=employment,
+            employer=EMPLOYER,
+            current_year=employment_only(),
+        )
+    )
     assert _erc(thirteenth) == 0
     (issue,) = [i for i in thirteenth.issues if i.code == "erc_unknown"]
     assert issue.fact == "erc_amount"
     assert not thirteenth.is_payable
-    regular = _run(_year(None), "regular", 8)
-    assert "erc_unknown" not in {i.code for i in regular.issues}
