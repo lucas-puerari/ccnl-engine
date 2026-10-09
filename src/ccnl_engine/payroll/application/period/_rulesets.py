@@ -27,27 +27,36 @@ if TYPE_CHECKING:
     from ccnl_engine.provenance.domain.ruleset_identity import RulesetIdentity
 
 _SURTAX = frozenset({"addizionale_regionale", "addizionale_comunale"})
-#: Engine limitation of a run that reads a provisional ruleset.
+#: Engine limitation of a run that reads provisional tax rules.
 PROVISIONAL_RULESET = "provisional_ruleset"
+#: Engine limitation of a run that reads provisional INPS rules.
+PROVISIONAL_INPS_RULESET = "provisional_inps_ruleset"
 
 
 def provisional_paths(ctx: RunContext) -> frozenset[str]:
-    """Return the limitation path of a run on provisional tax or INPS rules.
+    """Return the limitation paths of a run on provisional tax or INPS rules.
 
     The IRPEF rules are those of the tax year of the payment, the INPS
-    rules those of the competence year: either can be provisional.  The
-    other rulesets of a year (family deductions, somma esente, surtax)
-    are provisional together with its tax ruleset.
+    rules those of the competence year: either can be provisional.  Each
+    has its own limitation, so a run that withholds no IRPEF (a household
+    employer) still records the INPS one.  The other rulesets of a year
+    (family deductions, somma esente, surtax) are provisional together
+    with its tax ruleset.
 
     Returns:
-        ``provisional_ruleset`` when the tax or the INPS ruleset of the run
-        is provisional, empty otherwise.
+        ``provisional_ruleset`` when the tax ruleset of the run is
+        provisional, ``provisional_inps_ruleset`` when its INPS ruleset is.
     """
     rules = ctx.contract.year_rules
-    identities = (rules.ruleset, rules.inps_ruleset)
-    if any(i is not None and i.provisional for i in identities):
-        return frozenset({PROVISIONAL_RULESET})
-    return frozenset()
+    paths = (
+        (rules.ruleset, PROVISIONAL_RULESET),
+        (rules.inps_ruleset, PROVISIONAL_INPS_RULESET),
+    )
+    return frozenset(
+        path
+        for identity, path in paths
+        if identity is not None and identity.provisional
+    )
 
 
 def _candidates(
