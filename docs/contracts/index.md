@@ -92,7 +92,7 @@ Capabilities of the registry by layer and implementation:
 | 38 | H124 | [CCNL Dipendenti delle Farmacie Municipalizzate (ASSOFARM)](farmacie-municipalizzate-assofarm.md) | Farmacie municipalizzate e partecipate da enti locali | ~6k | 2022 | 🔲 | 🔲 | 🔲 | inps_employer, seniority | 0 / 45 / 2 / 0 | 🧪 | 🤖 |
 | 39 | H121 | [CCNL Dipendenti delle Farmacie Private](farmacie-private-h121.md) | Farmacie private | ~60k | 2021 | 🔲 | 🔲 | 🔲 | seniority | 0 / 37 / 1 / 1 | 🧪 | 🤖 |
 | 40 | H016 | [CCNL Distribuzione Cooperativa (ANCC-Coop / Confcooperative Consumo)](distribuzione-cooperativa-ancc.md) | distribuzione-cooperativa | ~63k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 62 / 2 / 0 | 🧪 | 🤖 |
-| 41 | F018 | [CCNL Edilizia PMI CONFAPI ANIEM](edilizia-pmi-confapi-aniem.md) | Edilizia | ~70000 | 2025 | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 35 / 2 / 0 | 🧪 | 🤖 |
+| 41 | F018 | [CCNL Edilizia PMI CONFAPI ANIEM](edilizia-pmi-confapi-aniem.md) | Edilizia | ~70000 | 2025 | 🔲 | 🔲 | 🔲 | base_salary, pension_fund_contribution, seniority | 0 / 44 / 2 / 0 | 🧪 | 🤖 |
 | 42 | F015 | [CCNL Edilizia e Affini Artigianato](edilizia-artigianato-cna.md) | edilizia | ~350k | — | 🔲 | 🔲 | 🔲 | bilateral_funds, pension_fund_contribution, seniority | 0 / 71 / 1 / 1 | 🧪 | 🤖 |
 | 43 | F016 | [CCNL Edilizia — Cooperative (ANCPL/Legacoop/Confcooperative/AGCI)](edilizia-cooperative-ancpl.md) | Edilizia | ~90000 | 2025 | 🔲 | 🔲 | 🔲 | seniority | 0 / 57 / 1 / 1 | 🧪 | 🤖 |
 | 44 | F012 | [CCNL Edilizia — Industria (ANCE)](edilizia-ance.md) | edilizia | ~550k | — | 🔲 | 🔲 | 🔲 | pension_fund_contribution, seniority | 0 / 43 / 2 / 0 | 🧪 | 🤖 |
