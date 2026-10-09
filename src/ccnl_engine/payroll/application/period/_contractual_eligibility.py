@@ -21,9 +21,23 @@ if TYPE_CHECKING:
     )
     from ccnl_engine.payroll.application.period._context import RunContext
 
-__all__ = ["not_permanent", "short_fixed_term", "worked_days"]
+__all__ = ["contributing", "not_permanent", "short_fixed_term", "worked_days"]
 
 _DAY = timedelta(days=1)
+
+
+def contributing(enrolment: object) -> bool:
+    """Return whether the worker contributes to the fund voluntarily.
+
+    A worker who confers the TFR alone adheres without contributing:
+    Previambiente art. 65 c. 12 owes the contractual contribution of c. 11
+    "anche [...] ai lavoratori che aderiscono al Fondo a seguito di
+    conferimento, ancorché in forma tacita, del solo TFR".
+
+    Returns:
+        True for an enrolment with an employee rate above zero.
+    """
+    return isinstance(enrolment, PensionFundEnrolment) and not enrolment.tfr_only
 
 
 def not_permanent(spec: ContractualFundContribution, ctx: RunContext) -> bool:
@@ -37,7 +51,7 @@ def not_permanent(spec: ContractualFundContribution, ctx: RunContext) -> bool:
     return (
         spec.permanent_only
         and isinstance(request.contract_type, FixedTerm)
-        and not isinstance(request.pension_fund, PensionFundEnrolment)
+        and not contributing(request.pension_fund)
     )
 
 

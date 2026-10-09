@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Conferring the TFR alone to a pension fund
+
+| Before | After |
+|---|---|
+| `PensionFundEnrolment.employee_rate` 0 was below the minimum of every fund with one | Zero states the TFR alone: no contribution of either side, the TFR to the fund, the contractual contribution of a worker not enrolled voluntarily (Previambiente c. 12); `tfr_to_fund` must be `True`, and a public employee cannot |
+
 ## Espero and Perseo Sirio on every CCNL of the public administrations
 
 | Before | After |

@@ -21,13 +21,13 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.contract.domain.validity import rule_scope
 from ccnl_engine.payroll.application.period._contractual_eligibility import (
+    contributing,
     not_permanent,
     short_fixed_term,
     worked_days,
 )
 from ccnl_engine.payroll.domain.decisions import CalculationIssue, CalculationStatus
 from ccnl_engine.payroll.domain.employment import Apprentice
-from ccnl_engine.payroll.domain.pension_fund import PensionFundEnrolment
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.run import RunKind
 
@@ -147,7 +147,7 @@ def _by_month(
     if series is None:
         return ContractualRun(issue=_UNCOVERED)
     added = spec.not_enrolled_monthly
-    if isinstance(ctx.request.pension_fund, PensionFundEnrolment):
+    if contributing(ctx.request.pension_fund):
         added = None
     with rule_scope(ruleset=ctx.contract.ccnl.meta.ccnl_id, feature=_FEATURE):
         day = ctx.contract.tctx.competence

@@ -34,12 +34,13 @@ def test_valid_enrolment() -> None:
         ("ALIFOND", Decimal("-0.01"), True, ">= 0 and <= 1"),
         ("ALIFOND", Decimal("1.01"), True, ">= 0 and <= 1"),
         ("ALIFOND", Decimal("NaN"), True, ">= 0 and <= 1"),
+        ("ALIFOND", Decimal(0), False, "confers the TFR alone"),
     ],
 )
 def test_invalid_enrolment(
     code: object, rate: object, tfr: object, message: str
 ) -> None:
-    """A wrong type, an empty code or a rate outside [0, 1] is rejected."""
+    """A wrong type, an empty code, a rate outside [0, 1] or none at all."""
     with pytest.raises(InvalidInputError, match=message):
         PensionFundEnrolment(code, rate, tfr)  # type: ignore[arg-type]
 
