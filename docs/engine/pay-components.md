@@ -399,6 +399,11 @@ A fund can raise the employer rate with the rate the worker chooses
 1.66% on the TFR base, 2.00% once the worker contributes at least 1.60%
 (minimum 1.06%).
 
+A fund due on the twelve monthly payments alone has
+`EmployerFund.extra_months` false: an extra-month run of an enrolled worker
+has a zero base. Byblos on the CCNL Esercizi cinematografici (art. 43: 1%
+employer and 1% employee "per 12 mensilità annue") is one.
+
 Cometa computes on the contractual minimum of the level
 (`contribution_base` `contractual_minimum`, the base salary of the pay
 chain): employer 2%, employee at least 1.2%. A higher employee rate goes on

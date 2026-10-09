@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Byblos on the CCNL Esercizi cinematografici, on twelve monthly payments
+
+| Before | After |
+|---|---|
+| No fund on `esercizi-cinematografici-anec` | `"BYBLOS"` on the TFR base: employer 1%, employee at least 1%, on the twelve monthly payments; new `EmployerFund.extra_months` (default `true`), false when an extra-month run owes no contribution |
+
 ## Byblos on the CCNL carta e cartotecnica
 
 | Before | After |

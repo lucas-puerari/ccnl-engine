@@ -296,7 +296,48 @@
         },
         "note": "Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
       }
-    }
+    },
+    "employer_funds": [
+      {
+        "code": "BYBLOS",
+        "description": "Byblos - Fondo nazionale pensione complementare per i lavoratori delle aziende della carta, grafiche ed editoriali",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0100"
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0100"
+            }
+          ]
+        },
+        "contribution_base": "tfr_base",
+        "extra_months": false,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+              "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+              "kind": "associazione",
+              "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+            },
+            "section": "Art. 43 - Previdenza complementare",
+            "quote": "Le parti individuano nel Fondo Byblos il fondo di previdenza complementare per le aziende del settore. [...] L'adesione volontaria del lavoratore, al Fondo Byblos, comporterà una contribuzione percentuale mensile per 12 mensilità annue a carico delle aziende ed una contribuzione percentuale mensile per 12 mensilità annue a carico del lavoratore dell'1% della retribuzione contrattuale"
+          },
+          "transformation": "1% employer and 1% worker of the retribuzione contrattuale on each of the 12 monthly payments: the TFR base of the engine on a regular run, which on this CCNL (no allowance on any level) holds the minimum and the scatti; none on the tredicesima and quattordicesima runs (extra_months false).",
+          "note": "Read from the PDF the url serves (sha256 3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382, the ruleset records an earlier hash of the same url), text layer. The Byblos Scheda 'I destinatari e i contributi' in force from 25/09/2026 (https://www.fondobyblos.it/cms/resource/open/1234/202609-sezione-i-scheda-i-destinatari-e-contributi-def.pdf, sha256 4d60e5c0111f822c7ce37dd24fa2032fbfb4b64289f227df34dd38e04a0db58a) lists Esercizi cinematografici at 1% worker and 1% employer. No human review recorded."
+        }
+      }
+    ]
   },
   "apprenticeship": [
     {
@@ -1818,7 +1859,7 @@
     "effective_until": null,
     "source": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "ff9136e0e7195375f9ee5f937ed733e7f02da048ffc9078d10e49e3a2247074b",
+    "source_hash": "6e9d047137ac161e62f98c1f76e606f9ca94d8cbcb328da8cafa8a634c59f4a1",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -97,7 +97,7 @@ Capabilities of the registry by layer and implementation:
 | 43 | F016 | [CCNL Edilizia — Cooperative (ANCPL/Legacoop/Confcooperative/AGCI)](edilizia-cooperative-ancpl.md) | Edilizia | ~90000 | 2025 | 🔲 | 🔲 | 🔲 | seniority | 0 / 57 / 1 / 1 | 🧪 | 🤖 |
 | 44 | F012 | [CCNL Edilizia — Industria (ANCE)](edilizia-ance.md) | edilizia | ~550k | — | 🔲 | 🔲 | 🔲 | pension_fund_contribution, seniority | 0 / 43 / 2 / 0 | 🧪 | 🤖 |
 | 45 | B254 | [CCNL Energia e Petrolio (Confindustria Energia)](energia-petrolio-confindustria.md) | energia | ~38k | — | 🔲 | 🔲 | 🔲 | — | 0 / 170 / 1 / 1 | 🧪 | 🤖 |
-| 46 | G211 | [CCNL Esercizi Cinematografici e Cinema-Teatrali (ANEC)](esercizi-cinematografici-anec.md) | cinema | ~6k | — | 🔲 | 🔲 | 🔲 | inps_employer, seniority | 0 / 52 / 2 / 0 | 🧪 | 🤖 |
+| 46 | G211 | [CCNL Esercizi Cinematografici e Cinema-Teatrali (ANEC)](esercizi-cinematografici-anec.md) | cinema | ~6k | — | 🔲 | 🔲 | 🔲 | inps_employer, seniority | 0 / 54 / 2 / 0 | 🧪 | 🤖 |
 | 47 | H201 | [CCNL Fiori Freschi Recisi, Verde e Piante Ornamentali (ANCEF)](fiori-recisi-ancef.md) | Fiori recisi, verde e piante ornamentali (import-export) | ~1.3k | 2023 | 🔲 | 🔲 | 🔲 | seniority | 0 / 38 / 1 / 1 | 🧪 | 🤖 |
 | 48 | T261 | [CCNL Formazione Professionale (CNOS-FAP/CIOFS-FP/FORMA/CNF)](formazione-professionale.md) | formazione professionale | ~19.8k | — | 🔲 | 🔲 | 🔲 | — | 0 / 33 / 1 / 1 | 🧪 | 🤖 |
 | 49 | K321 | [CCNL Gas e Acqua — Utilitalia/Proxigas/Anfida/Assogas](gas-acqua-utilitalia.md) | gas e acqua | ~65k | 2025 | 🔲 | 🔲 | 🔲 | inps_employer, seniority | 0 / 62 / 2 / 0 | 🧪 | 🤖 |
