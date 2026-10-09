@@ -71,7 +71,7 @@ Latest effective values per level (monthly gross, EUR).
 | `6` | Livello VI — impiegato di 1a categoria | € 2,093.36 | 2027-03-01 |
 | `5` | Livello V — impiegato di 2a categoria | € 1,744.48 | 2027-03-01 |
 | `4` | Livello IV — operaio di 4o livello / assistente tecnico | € 1,628.17 | 2027-03-01 |
-| `3` | Livello III — operaio specializzato / impiegato di 3a categoria | € 1,551.88 | 2027-03-01 |
+| `3` | Livello III — operaio specializzato / impiegato di 3a categoria | € 1,511.88 | 2027-03-01 |
 | `2` | Livello II — operaio qualificato / impiegato d'ordine | € 1,360.69 | 2027-03-01 |
 | `1` | Livello I — manodopera generica | € 1,162.99 | 2027-03-01 |
 

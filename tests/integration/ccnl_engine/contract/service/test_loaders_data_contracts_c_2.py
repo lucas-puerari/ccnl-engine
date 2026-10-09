@@ -8,6 +8,8 @@ Confapi.
 from datetime import date
 from decimal import Decimal
 
+import pytest
+
 from ccnl_engine.contract.domain.identity import TaxSector
 from ccnl_engine.contract.service.loaders import load_ccnl
 
@@ -39,6 +41,26 @@ class TestLoadEdiliziaPmiConfapiAniem:
         ccnl = load_ccnl("edilizia-pmi-confapi-aniem.json")
         lv = ccnl.level_by_code("4")
         assert lv.base_salary.value_at(date(2027, 3, 1)) == Decimal("1628.17")
+
+    @pytest.mark.parametrize(
+        ("code", "minimum"),
+        [
+            ("1", "1162.99"),
+            ("2", "1360.69"),
+            ("3", "1511.88"),
+            ("4", "1628.17"),
+            ("5", "1744.48"),
+            ("6", "2093.36"),
+            ("7", "2325.96"),
+        ],
+    )
+    def test_edilizia_pmi_confapi_aniem_minima_2027(
+        self, code: str, minimum: str
+    ) -> None:
+        """Allegati A and B, nuovi minimi dal 01/03/2027 (III: 1511,88)."""
+        ccnl = load_ccnl("edilizia-pmi-confapi-aniem.json")
+        lv = ccnl.level_by_code(code)
+        assert lv.base_salary.value_at(date(2027, 3, 1)) == Decimal(minimum)
 
     def test_edilizia_pmi_confapi_aniem_level_ordering(self) -> None:
         """Level 1 has lowest order; level 7 has highest order."""
