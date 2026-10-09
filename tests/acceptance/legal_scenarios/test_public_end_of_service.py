@@ -12,8 +12,11 @@ Funzioni Centrali (ENPAS), Funzionari, January 2026: 2227.99, base 80% =
 - TFS: worker 2.50% = 44.55975 -> 44.56, administration 7.10% =
   126.54969 -> 126.55; with the CTPS (196.06 and 539.17) and the credit
   (0.35% of 2227.99 = 7.797965 -> 7.80) 248.42 and 665.72.
-- TFR at INPS: reduction 44.56, administration 9.60% = 171.10944 ->
-  171.11; 248.42 and 710.28; the same net and taxable as the TFS.
+- TFR at INPS: the gross reduced by 44.56 to 2183.43 (a negative earning,
+  the INPS base and the end-of-service base unreduced), administration
+  9.60% = 171.10944 -> 171.11; 203.86 and 710.28; the same net, taxable and
+  cost of the administration as the TFS (2227.99 + 665.72 = 2183.43 +
+  710.28 = 2893.71).
 - TFR at the employer: the CTPS and the credit, 203.86 and 539.17, the TFR
   accrued in the company.
 
@@ -24,13 +27,21 @@ administration 3.60% = 55.53288 -> 55.53.  ENPAS leaves it out.
 
 from __future__ import annotations
 
+from dataclasses import replace
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine import CompetenceYearPlan, Employment
-from ccnl_engine.inputs import NoPensionFund, Permanent, PublicEndOfService
+from ccnl_engine import CompetenceYearPlan, Employment, InvalidInputError
+from ccnl_engine.inputs import (
+    FixedTerm,
+    NaspiExclusion,
+    NoPensionFund,
+    PensionFundEnrolment,
+    Permanent,
+    PublicEndOfService,
+)
 from tests.acceptance.legal_scenarios._support import EMPLOYER, ENGINE, regular_period
 from tests.fixtures.current_year import employment_only
 from tests.fixtures.seniority import new_hire
@@ -84,9 +95,9 @@ def _entry(result: PeriodResult, account: str) -> Decimal:
         ),
         (
             PublicEndOfService.TFR_INPS,
-            "248.42",
+            "203.86",
             "710.28",
-            ("tfr_reduction_employee", "tfr_employer", "credit_employee"),
+            ("tfr_employer", "credit_employee"),
         ),
         (PublicEndOfService.TFR_EMPLOYER, "203.86", "539.17", ("credit_employee",)),
     ],
@@ -107,13 +118,16 @@ def test_contributions_of_the_regime(
 
 
 def test_tfr_keeps_the_net_of_the_tfs() -> None:
-    """DPCM art. 1 c. 3: the same net and the same taxable."""
+    """DPCM art. 1 c. 3: the same net, taxable and cost, a lower gross."""
     tfs = _january(PublicEndOfService.TFS)
     tfr = _january(PublicEndOfService.TFR_INPS)
     assert tfs.period_net == tfr.period_net
     taxable = [r.closing_state.cash.earnings.taxable for r in (tfs, tfr)]
     assert taxable[0] == taxable[1]
-    assert tfs.period_gross == tfr.period_gross
+    assert tfs.period_employer_cost == tfr.period_employer_cost == Decimal("2893.71")
+    assert tfs.period_gross - tfr.period_gross == Decimal("44.56")
+    (reduction,) = [i for i in tfr.pay_items if i.kind == "public_tfr_reduction"]
+    assert reduction.amount == Decimal("-44.56")
 
 
 @pytest.mark.parametrize(
@@ -172,3 +186,30 @@ def test_tredicesima_in_the_base_of_inadel_alone(
         return
     assert components["tfs_employee"] == Decimal(employee)
     assert components["tfs_employer"] == Decimal("55.53")
+
+
+@pytest.mark.parametrize(
+    "employment",
+    [
+        replace(
+            _employment(PublicEndOfService.TFS),
+            contract_type=FixedTerm(renewals=0, naspi_exclusion=NaspiExclusion.NONE),
+        ),
+        replace(
+            _employment(PublicEndOfService.TFS),
+            pension_fund=PensionFundEnrolment(
+                "PERSEO_SIRIO", Decimal("0.01"), tfr_to_fund=True
+            ),
+        ),
+        replace(
+            _employment(PublicEndOfService.TFR_INPS),
+            ccnl_slug="commercio-confcommercio.json",
+            level_code="4",
+        ),
+    ],
+    ids=["tfs_fixed_term", "tfs_enrolled", "private_ccnl"],
+)
+def test_regimes_the_employment_cannot_have(employment: Employment) -> None:
+    """The TFS of a fixed term or of a fund member, any regime off the PA."""
+    with pytest.raises(InvalidInputError, match="public_end_of_service"):
+        regular_period(employment=employment, current_year=employment_only())

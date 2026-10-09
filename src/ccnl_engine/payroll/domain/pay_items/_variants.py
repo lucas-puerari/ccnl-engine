@@ -30,6 +30,7 @@ __all__ = [
     "OvertimeEarning",
     "PayItem",
     "ProductivityBonusEarning",
+    "PublicTfrReduction",
     "RaccordoElementEarning",
     "SeniorityEarning",
     "SicknessInpsItem",
@@ -128,6 +129,16 @@ class RaccordoElementEarning(_PayItemBase):
     """Elemento di Raccordo Contrattuale paid with the tredicesima."""
 
     kind: Literal["raccordo_element_earning"] = "raccordo_element_earning"
+
+
+class PublicTfrReduction(_PayItemBase):
+    """Reduction of the gross of a public employee under the TFR at INPS.
+
+    DPCM 20 dicembre 1999 art. 1 c. 3: the gross is reduced by the 2.50%
+    contribution the worker no longer pays; a negative amount.
+    """
+
+    kind: Literal["public_tfr_reduction"] = "public_tfr_reduction"
 
 
 class FringeBenefitItem(_PayItemBase):
@@ -249,6 +260,7 @@ PayItem = Annotated[
     | OneOffEarning
     | ExtraMonthEarning
     | RaccordoElementEarning
+    | PublicTfrReduction
     | FringeBenefitItem
     | WelfareItem
     | AbsenceDeduction

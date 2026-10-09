@@ -23,7 +23,7 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine import Employment
-from ccnl_engine.inputs import PensionFundEnrolment, Permanent
+from ccnl_engine.inputs import PensionFundEnrolment, Permanent, PublicEndOfService
 from tests.acceptance.legal_scenarios._support import regular_period
 from tests.fixtures.current_year import employment_only
 from tests.fixtures.seniority import new_hire
@@ -41,6 +41,7 @@ def _january(slug: str, level: str, fund: str) -> PeriodResult:
         seniority=new_hire(),
         pension_fund=PensionFundEnrolment(fund, Decimal("0.01"), tfr_to_fund=True),
         contract_type=Permanent(),
+        public_end_of_service=PublicEndOfService.TFR_INPS,
     )
     return regular_period(employment=employment, current_year=employment_only())
 

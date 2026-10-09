@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Reduction of the gross under the TFR of public employees
+
+| Before | After |
+|---|---|
+| The 2.50% of a public employee under `tfr_inps` was the employee contribution `tfr_reduction_employee` | It is a negative earning `public_tfr_reduction` (new pay item `PublicTfrReduction`, policy `it/deduction/public_tfr_reduction`): it lowers the gross and the employer cost, which now equals that of the TFS, and stays out of the INPS and TFR bases; `tfs` on a fixed term or a member of a pension fund, and any regime outside the public administrations, raise `InvalidInputError` |
+
 ## Credit contribution of public employees
 
 | Before | After |

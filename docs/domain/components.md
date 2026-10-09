@@ -213,9 +213,11 @@ included). State the regime in `Employment.public_end_of_service`:
 - `tfs`: the worker pays 2.50%, the administration 7.10% (ENPAS) or 3.60% (INADEL);
   no TFR accrues;
 - `tfr_inps`: the administration pays 9.60% or 6.10% and the gross is reduced by the
-  2.50% the worker no longer pays, posted as `tfr_reduction_employee` (DPCM 20
-  dicembre 1999 art. 1 c. 3), so net and taxable equal those of the TFS; INPS
-  accrues the TFR notionally, the run posts none;
+  2.50% the worker no longer pays, a negative earning `public_tfr_reduction` outside
+  the INPS and TFR bases (DPCM 20 dicembre 1999 art. 1 c. 3), so net, taxable and the
+  cost of the administration equal those of the TFS; INPS accrues the TFR
+  notionally, the run posts none. A fixed term or a member of Perseo Sirio or Espero
+  is on the TFR: `tfs` raises `InvalidInputError`;
 - `tfr_employer`: enti pubblici non economici and enti di ricerca accrue the TFR
   themselves and pay the Gestione nothing.
 
