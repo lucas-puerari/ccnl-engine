@@ -78,8 +78,7 @@ class PeriodCalculationRequest:
             is derived from.  ``None`` means not known: a run whose INPS base
             crosses the massimale is then incomplete, with a ``missing_fact``
             blocker for ``contribution_history``.
-        events: Variable work events (overtime, absences, bonuses, etc.)
-            that occurred in this period. Defaults to no events.
+        events: Variable work events of the period (overtime, absences...).
         regione: ISO 3166-2:IT region code for the regional surtax, e.g.
             ``"IT-45"``, with ``"IT-BZ"`` / ``"IT-TN"`` for the autonomous
             provinces (:data:`~ccnl_engine.payroll.domain.jurisdiction\
@@ -89,14 +88,11 @@ class PeriodCalculationRequest:
         comune_belfiore: Belfiore code for the municipal surtax, e.g.
             ``"F257"``.  ``None`` is unknown, as for ``regione``, on
             ``addizionale_comunale``.
-        weekly_hours: Contracted weekly hours, positive.  Required for
-            domestic CCNLs (``lavoro-domestico`` tax sector) to select the
-            INPS contribution bracket (above or below the hours threshold).
-            Below ``full_time_weekly_hours`` it scales the pay chain for
-            part time.
-        contributable_hours: Actual hours worked and paid in the period
-            that are subject to INPS contributions, non-negative.  Required
-            for domestic CCNLs.  Ignored for standard sectors.
+        weekly_hours: Contracted weekly hours, positive: the INPS bracket of
+            a domestic CCNL, the part time below ``full_time_weekly_hours``.
+        contributable_hours: Hours worked and paid subject to INPS
+            contributions (domestic CCNLs).  ``ordinary_hours_worked``: the
+            ordinary hours actually worked (Prevedi operai).
         full_time_weekly_hours: Full-time weekly hours of the contract,
             positive.  ``weekly_hours`` must not exceed it.
         employment_period: Start and optional end of the employment.
@@ -108,8 +104,7 @@ class PeriodCalculationRequest:
             ``None`` means not known: when the level pays seniority
             increments or service-gated allowances the run has a
             ``missing_fact`` blocker.
-        roles: Role codes that unlock role-specific contractual allowances,
-            ``None`` when not known.
+        roles: Role codes of the role-specific allowances, ``None`` unknown.
         category: Worker category declared on the employment.  ``None``
             takes the category fixed by the level, if any.  Must match the
             level's category when the level fixes one, and is required when
@@ -123,10 +118,8 @@ class PeriodCalculationRequest:
             one, in payment order; ``()`` makes this payment the
             conguaglio.  ``None`` projects the runs of the CCNL standard
             calendar that follow this run.
-        extra_month_accrual: Rateo of an extra-month run: its window,
-            clipped to the hire date, and the qualifying months.
-            :func:`~ccnl_engine.payroll.application.calculate_year.calculate_year`
-            supplies it.  ``None`` on an extra-month run counts it from
+        extra_month_accrual: Rateo of an extra-month run (window, qualifying
+            months), from ``calculate_year``; ``None`` counts it from
             ``employment_period`` over the 12 months ending in the run month,
             without absences.  Ignored on a regular run.
         extra_month_settlements: Ratei the run liquidates at the end of the
@@ -169,6 +162,7 @@ class PeriodCalculationRequest:
     run: PayrollRun | None = None
     weekly_hours: WeeklyHours | None = None
     contributable_hours: ContributableHours | None = None
+    ordinary_hours_worked: ContributableHours | None = None
     full_time_weekly_hours: WeeklyHours | None = None
     employment_period: EmploymentPeriod | None = None
     seniority: SeniorityFact | None = None
@@ -288,6 +282,12 @@ class PeriodCalculationRequest:
             ("events", self.events, (tuple, list), False),
             ("weekly_hours", self.weekly_hours, WeeklyHours, True),
             ("contributable_hours", self.contributable_hours, ContributableHours, True),
+            (
+                "ordinary_hours_worked",
+                self.ordinary_hours_worked,
+                ContributableHours,
+                True,
+            ),
             ("full_time_weekly_hours", self.full_time_weekly_hours, WeeklyHours, True),
             ("employment_period", self.employment_period, EmploymentPeriod, True),
             ("seniority", self.seniority, SeniorityFact, True),

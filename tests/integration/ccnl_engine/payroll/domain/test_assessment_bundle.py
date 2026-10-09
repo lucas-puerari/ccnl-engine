@@ -124,15 +124,16 @@ _PENSION = "pension_fund_contribution"
 
 
 def _contractual(result: PeriodResult) -> bool:
-    """Whether the run owes only the contractual contribution of its CCNL.
+    """Whether the run owes the contractual contribution of its CCNL.
 
     Returns:
-        True when the pension fund decision has reason ``contractual_only``.
+        True when the pension fund decision has reason ``contractual_only``
+        or a fact of the contractual contribution is missing.
     """
     return any(
         d.capability == _PENSION and d.reason_code == "contractual_only"
         for d in result.decisions
-    )
+    ) or any(i.code.startswith("contractual_fund_") for i in result.issues)
 
 
 def _open_gaps(result: PeriodResult) -> list[str]:

@@ -167,6 +167,14 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "are undetermined and the run has a missing_fact pension_fund blocker; "
         "NoPensionFund states the non-enrolment",
     ),
+    "PeriodFacts.ordinary_hours_worked": requires_fact(
+        "pension_fund_contribution",
+        "facts.ordinary_hours_worked",
+        _REPORTED,
+        "unknown hours: the Prevedi contractual contribution of an operaio "
+        "of the building CCNLs is left out, with a missing_fact "
+        "ordinary_hours_worked blocker; other CCNLs do not read it",
+    ),
     "PeriodFacts.contributable_hours": requires_fact(
         "inps_employee",
         "facts.contributable_hours",

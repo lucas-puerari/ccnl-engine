@@ -31,8 +31,8 @@ from ccnl_engine.payroll.application.period._ivs_ceiling import (
 )
 from ccnl_engine.payroll.application.period._minimum_base import run_minimum_base
 from ccnl_engine.payroll.application.period._pension_decision import (
-    enrolment_unknown,
     pension_decision,
+    pension_unresolved,
 )
 from ccnl_engine.payroll.application.period._pipeline_inputs import (
     amounts_input,
@@ -184,7 +184,7 @@ def run_decisions(
     amounts = run.amounts
     year = contract.tctx.competence.year
     pension = pension_decision(
-        contract.ccnl, amounts.pension, year, unknown=enrolment_unknown(ctx)
+        contract.ccnl, amounts.pension, year, unknown=pension_unresolved(ctx)
     )
     assistance = assistance_decision(contract.ccnl, amounts.assistance, year)
     ivs = run.ivs_ceiling

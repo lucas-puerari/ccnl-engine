@@ -34,6 +34,9 @@ if TYPE_CHECKING:
     from decimal import Decimal
 
     from ccnl_engine.contract.domain.compensation import CCNLParameters, Level
+    from ccnl_engine.contract.domain.fund_contribution import (
+        ContractualFundContribution,
+    )
     from ccnl_engine.contract.domain.seniority import SeniorityIncrements
     from ccnl_engine.contract.domain.validity import TimeSeries
 
@@ -156,6 +159,25 @@ def _ts_valid_from_dates(ts: TimeSeries) -> set[date]:
     return {p.valid_from for p in ts.periods}
 
 
+def _contractual_series(
+    contractual: ContractualFundContribution | None,
+) -> tuple[TimeSeries, ...]:
+    """Return every amount series of a contractual fund contribution.
+
+    Returns:
+        The monthly, hourly and apprentice series; empty without one.
+    """
+    if contractual is None:
+        return ()
+    series = (
+        *contractual.monthly_by_level.values(),
+        *(contractual.hourly_by_level or {}).values(),
+        contractual.apprentice_monthly,
+        contractual.apprentice_hourly,
+    )
+    return tuple(s for s in series if s is not None)
+
+
 def _all_valid_from_dates(ccnl: CCNL) -> set[date]:
     """Return all valid_from dates from every TimeSeries in *ccnl*.
 
@@ -180,11 +202,8 @@ def _all_valid_from_dates(ccnl: CCNL) -> set[date]:
         dates |= _ts_valid_from_dates(si.apprentice_amount)
     for fund in params.employer_funds:
         dates |= _ts_valid_from_dates(fund.rate)
-    contractual = params.contractual_fund_contribution
-    for series in () if contractual is None else contractual.monthly_by_level.values():
+    for series in _contractual_series(params.contractual_fund_contribution):
         dates |= _ts_valid_from_dates(series)
-    if contractual is not None and contractual.apprentice_monthly is not None:
-        dates |= _ts_valid_from_dates(contractual.apprentice_monthly)
     if ccnl.work_rules is not None and ccnl.work_rules.time_supplements is not None:
         for band in ccnl.work_rules.time_supplements.overtime_bands:
             dates |= _ts_valid_from_dates(band.rate)

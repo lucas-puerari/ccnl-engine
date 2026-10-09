@@ -374,9 +374,14 @@ level (apprentices 10), only for a month of at least 15 calendar days worked
 (sickness and days without pay left out), in proportion to part time, on
 the tredicesima and quattordicesima in proportion to their ratei, and not
 for a fixed term of three months or less unless the worker pays voluntary
-contributions (CNCE vademecum; accordo of 4 July 2025). The operai pay per
-hour worked, which the request does not state: their runs have the issue
-`contractual_fund_not_computed`; a level that leaves the category open has
+contributions (CNCE vademecum; accordo of 4 July 2025). The operai pay the
+hourly amount of their level (0.0685 to 0.1027 EUR, apprentices 0.0700)
+times `PeriodFacts.ordinary_hours_worked`, the ordinary hours actually
+worked in the month, rounded to the euro, and nothing on an extra month:
+an operaio qualificato of the industria with 160 hours owes 0.0801 x 160 =
+12.82, 13 EUR. Without the hours the run has the issue
+`contractual_fund_hours_unknown`; a level the table has no row for,
+`contractual_fund_not_computed`; a level that leaves the category open,
 `contractual_fund_category_unknown`.
 
 Not modelled: the compensatory measures for employers whose TFR goes to a

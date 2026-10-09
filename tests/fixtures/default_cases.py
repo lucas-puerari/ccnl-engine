@@ -464,7 +464,7 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
     ),
     **absence_cases(_event_pair),
     **fixed_term_cases(_employment_pair),
-    **pension_cases(_employment_pair),
+    **pension_cases(_employment_pair, _january, DefaultCase),
     **sickness_cases(DefaultCase),
 }
 

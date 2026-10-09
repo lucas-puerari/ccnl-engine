@@ -64,6 +64,7 @@ def regular_period(
     prior_year: PriorYearTaxFacts = RENEWAL_WAIVED,
     contributable_hours: ContributableHours | None = None,
     current_year: CurrentYearTaxFacts | None = None,
+    ordinary_hours_worked: ContributableHours | None = None,
 ) -> PeriodResult:
     """Compute one regular payroll run through the public facade.
 
@@ -93,6 +94,7 @@ def regular_period(
             employer=employer,
             facts=PeriodFacts(
                 contributable_hours=contributable_hours,
+                ordinary_hours_worked=ordinary_hours_worked,
                 events=events,
                 regione=regione,
                 comune_belfiore=comune_belfiore,
