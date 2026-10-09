@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Byblos on the CCNL carta e cartotecnica
+
+| Before | After |
+|---|---|
+| No fund on `carta-cartone-assocarta` | `"BYBLOS"` on the TFR base: employer 1.5%, 1.7% from January 2027; employee at least 1% |
+
 ## Level III minimum of the building PMI from March 2027
 
 | Before | After |

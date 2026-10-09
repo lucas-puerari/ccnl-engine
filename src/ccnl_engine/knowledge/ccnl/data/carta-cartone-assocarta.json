@@ -287,7 +287,82 @@
         },
         "note": "Database printout of the text hosted by a company. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
       }
-    }
+    },
+    "employer_funds": [
+      {
+        "code": "BYBLOS",
+        "description": "Byblos - Fondo nazionale pensione complementare per i lavoratori delle aziende della carta, grafiche ed editoriali",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": "2027-01-01",
+              "value": "0.0150",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "byblos-scheda-destinatari-contributi-2026-09-25",
+                    "title": "Fondo Byblos, Nota informativa, Parte I, Scheda 'I destinatari e i contributi' (in vigore dal 25/09/2026)",
+                    "kind": "altro",
+                    "url": "https://www.fondobyblos.it/cms/resource/open/1234/202609-sezione-i-scheda-i-destinatari-e-contributi-def.pdf"
+                  },
+                  "section": "Contribuzione SETTORE CARTARIO-CARTOTECNICO",
+                  "quote": "Lavoratori occupati dopo il 28.04.1993: Quota TFR 100%, Contributo Lavoratore (1) 1%, Datore di lavoro (2) 1,5% (5) [...] (1) Misura minima del contributo da parte del lavoratore per avere diritto al contributo del datore di lavoro [...] (5) Percentuale in vigore dal 1.1.2023 sulla normale retribuzione annua comprensiva di 13ma mensilità"
+                },
+                "transformation": "Employer 1.5% of the normale retribuzione annua from 1.1.2023, still in force on the Scheda of 25/09/2026. The normale retribuzione annua comprensiva di 13ma is the stipendio or salario contrattuale, the scatti and, where due, the indennita of ciclo continuo and turni: the pay chain of this CCNL (minimum and scatti, no allowance) on each monthly run and on the tredicesima, the TFR base of the engine on this CCNL, which holds the pay chain, the extra months and the deductions of unpaid absences, not overtime, bonuses or other events (policy it.json: only ordinary earnings, absence deductions, extra months and leave settlements enter it).",
+                "note": "Read from the PDF the url serves (sha256 4d60e5c0111f822c7ce37dd24fa2032fbfb4b64289f227df34dd38e04a0db58a), text layer. No human review recorded."
+              }
+            },
+            {
+              "valid_from": "2027-01-01",
+              "valid_until": null,
+              "value": "0.0170",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "carta-ipotesi-rinnovo-2026-02-10",
+                    "title": "Ipotesi di accordo di rinnovo CCNL aziende cartarie e cartotecniche, 10/02/2026",
+                    "kind": "altro",
+                    "url": "https://confindustriatoscanacentroecosta.it/wp-content/plugins/download-attachments/includes/download.php?id=394925"
+                  },
+                  "section": "Parte economica",
+                  "quote": "Da gennaio 2027: Byblos incremento dello 0,2%"
+                },
+                "transformation": "1.5% + 0.2% = 1.7% of the employer from 1 January 2027. The signed text does not name the share the increase goes to; the summary of Confindustria Toscana Centro e Costa (https://confindustriatoscanacentroecosta.it/ipotesi-di-accordo-di-rinnovo-per-il-ccnl-dei-dipendenti-delle-aziende-cartarie-e-cartotecniche/) reads 'un aumento dello 0,2 della percentuale di contributo a carico del datore di lavoro per i lavoratori iscritti al Fondo di previdenza complementare Byblos (1,7%)'.",
+                "note": "The signed ipotesi is a scan (sha256 6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c); the quote is an OCR of it. No human review recorded."
+              }
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0100"
+            }
+          ]
+        },
+        "contribution_base": "tfr_base",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "byblos-scheda-destinatari-contributi-2026-09-25",
+              "title": "Fondo Byblos, Nota informativa, Parte I, Scheda 'I destinatari e i contributi' (in vigore dal 25/09/2026)",
+              "kind": "altro",
+              "url": "https://www.fondobyblos.it/cms/resource/open/1234/202609-sezione-i-scheda-i-destinatari-e-contributi-def.pdf"
+            },
+            "section": "Contribuzione SETTORE CARTARIO-CARTOTECNICO",
+            "quote": "Lavoratori occupati dopo il 28.04.1993: Quota TFR 100%, Contributo Lavoratore (1) 1%, Datore di lavoro (2) 1,5% (5) [...] (1) Misura minima del contributo da parte del lavoratore per avere diritto al contributo del datore di lavoro [...] (5) Percentuale in vigore dal 1.1.2023 sulla normale retribuzione annua comprensiva di 13ma mensilità"
+          },
+          "transformation": "Worker minimum 1% of the normale retribuzione annua for the employer contribution to be due. The normale retribuzione annua comprensiva di 13ma is the stipendio or salario contrattuale, the scatti and, where due, the indennita of ciclo continuo and turni: the pay chain of this CCNL (minimum and scatti, no allowance) on each monthly run and on the tredicesima, the TFR base of the engine on this CCNL, which holds the pay chain, the extra months and the deductions of unpaid absences, not overtime, bonuses or other events (policy it.json: only ordinary earnings, absence deductions, extra months and leave settlements enter it).",
+          "note": "Read from the PDF the url serves (sha256 4d60e5c0111f822c7ce37dd24fa2032fbfb4b64289f227df34dd38e04a0db58a), text layer. No human review recorded."
+        }
+      }
+    ]
   },
   "levels": [
     {
@@ -2247,7 +2322,7 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/",
     "verification_status": "unverified",
-    "source_hash": "888048470c885bfb5649b0b79c693ccc4b946c244dd47b7ed84fb914b55fca30",
+    "source_hash": "5f6ea7522b4b94a5a43931b0506e8c5dc0bcc69902557b8419f7b07a8c25a9c1",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

@@ -104,7 +104,7 @@ formulas or caller-declared amounts.
 | `rinnovo_substitute_tax` | Imposta sostitutiva aumenti da rinnovo L. 199/2025 art. 1 c. 7 | net | native | decided | decision | `prior_year` | — | implemented | 0 / 1 / 0 / 0 |
 | `notte_festivi_turni_substitute_tax` | Imposta sostitutiva notturno, festivo e turni L. 199/2025 art. 1 cc. 10-11 | net | native | decided | decision | `prior_year` | — | implemented | 0 / 1 / 0 / 0 |
 | `bilateral_funds` | Fondi bilaterali (importi dal chiamante) | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
-| `pension_fund_contribution` | Previdenza complementare CCNL su adesione e contributo contrattuale | net | partial | decided | decision | `employment.pension_fund` | ccnl_fund_on_enrolment, ccnl_contractual_contribution | simplified | 0 / 65 / 25 / 0 |
+| `pension_fund_contribution` | Previdenza complementare CCNL su adesione e contributo contrattuale | net | partial | decided | decision | `employment.pension_fund` | ccnl_fund_on_enrolment, ccnl_contractual_contribution | simplified | 0 / 68 / 25 / 0 |
 | `assistance_contribution` | Contributi di assistenza contrattuale per ora retribuita (Cas.Sa.Colf, lavoro domestico) | net | native | decided | decision | `facts.contributable_hours` | — | implemented | 0 / 3 / 0 / 0 |
 
 ## CCNL coverage
@@ -147,7 +147,7 @@ never grow.
 | 18 | [CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)](autorimesse-ic35.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 95 / 1 / 1 |
 | 19 | [CCNL Autostrade e Trafori Concessionari](autostrade-trafori.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 140 / 1 / 1 |
 | 20 | [CCNL CED, ICT, Professioni Digitali e STP (Assoced-UGL)](ced-assoced.md) | 🔲 | 🔲 | 🔲 | base_salary, inps_employer | 0 / 44 / 1 / 1 |
-| 21 | [CCNL Carta e Cartone — Aziende Industriali (Assocarta)](carta-cartone-assocarta.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 71 / 2 / 0 |
+| 21 | [CCNL Carta e Cartone — Aziende Industriali (Assocarta)](carta-cartone-assocarta.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 74 / 2 / 0 |
 | 22 | [CCNL Case di Cura Private - Personale Non Medico (AIOP/ARIS)](sanita-privata-aiop-aris.md) | 🔲 | 🔲 | 🔲 | — | 0 / 35 / 2 / 0 |
 | 23 | [CCNL Cemento, Calce e Gesso — Industria (Federbeton)](cemento-calce-gesso-industria.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 80 / 2 / 0 |
 | 24 | [CCNL Ceramica Industria (Confindustria-Assopiastrelle)](ceramica-industria-confindustria.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 60 / 1 / 1 |

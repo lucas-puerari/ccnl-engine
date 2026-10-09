@@ -204,3 +204,15 @@ class TestOvertimeBandInvariants:
             return
         # Validator already ran during load_ccnl; reaching here means it passed.
         assert wr.time_supplements is not None
+
+
+@pytest.mark.parametrize(
+    ("on", "rate"),
+    [(date(2026, 12, 31), "0.0150"), (date(2027, 1, 1), "0.0170")],
+)
+def test_byblos_employer_rate_of_the_paper_ccnl(on: date, rate: str) -> None:
+    """Byblos Scheda 1.5%; ipotesi 10/02/2026: "Da gennaio 2027 [...] 0,2%"."""
+    ccnl = load_ccnl("carta-cartone-assocarta.json")
+    (fund,) = ccnl.parameters.employer_funds
+    assert fund.code == "BYBLOS"
+    assert fund.rate.value_at(on) == Decimal(rate)
