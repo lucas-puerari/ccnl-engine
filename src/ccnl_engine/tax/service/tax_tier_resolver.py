@@ -101,6 +101,7 @@ def _resolve_inps(raw: InpsRawRates | None, num_employees: int) -> InpsRates | N
         provenance=raw.provenance,
         public_funds=raw.public_funds,
         end_of_service=raw.end_of_service,
+        public_credit=raw.public_credit,
     )
 
 

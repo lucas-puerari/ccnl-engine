@@ -245,6 +245,24 @@
         "transformation": "ENPAS, the end-of-service fund of the employees of the State (the CTPS of the tiers): TFS 7.10% administration + 2.50% worker, TFR 9.60% administration, on 80% of the pay. DPR 1032/1973 art. 38 (https://www.rgs.mef.gov.it/_Documenti/VERSIONE-I/Selezione_normativa/D-P-R-/DPR29-12-1973_1032.pdf, sha256 b6c8f536875a82657c482ed4d074ceda77a82b9e923f63bf409ee6a6adf6133e): 'La base contributiva è costituita dall'80 per cento dello stipendio, paga o retribuzione annui': the tredicesima is left out. The pay is the TFR base of the run.",
         "note": "Read on 2026-10-09 from the page the url serves (sha256 576c808bac9fff92e7635be0922ffa46aa4742eb2b584e82cd094625ed9d2451). No human review recorded."
       }
+    },
+    "public_credit": {
+      "employee_rate": "0.0035",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "l-662-1996-art1-cc193-267",
+            "title": "Legge 23 dicembre 1996, n. 662, art. 1, commi 193-267",
+            "kind": "legge",
+            "url": "https://leg14.camera.it/parlam/leggi/96662l05.htm"
+          },
+          "section": "art. 1, commi 242-243",
+          "quote": "242. Il contributo obbligatorio per il credito previsto dall'articolo 37, secondo comma, del testo unico approvato con decreto del Presidente della Repubblica 29 dicembre 1973, n. 1032, e' pari allo 0,35 per cento della retribuzione contributiva e pensionabile determinata ai sensi dell'articolo 2, commi 9 e 10, della legge 8 agosto 1995, n. 335. 243. I dipendenti iscritti alle Casse pensioni gia' amministrate dalla Direzione generale degli istituti di previdenza e confluite nell'INPDAP sono iscritti per le sole prestazioni creditizie al \"Fondo di previdenza e credito\" [...] e obbligati al versamento del contributo indicato al comma 242."
+        },
+        "transformation": "0.35% of the worker on the pension base of the run (the retribuzione contributiva e pensionabile), every fund of the Gestione Dipendenti Pubblici; INPS 'I contributi dei dipendenti pubblici' lists 'GESTIONE CREDITO 0,35 -- 0,35'.",
+        "note": "Read on 2026-10-09 from the page the url serves (sha256 cc729b317cb25469a9cb95d02f9d539979ad47f5d9c2d4376e62900dc5f3f25f). No human review recorded."
+      }
     }
   },
   "apprentice": {
@@ -271,7 +289,7 @@
     "published_at": "2026-09-07",
     "source": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html",
     "verification_status": "unverified",
-    "source_hash": "0f0f93e319ad37d674ba09e8922ad174635dfc87f3539210cf9a9176c93bbbd6",
+    "source_hash": "a7d6671f33aaafe3f5710db88e902cfa8a30d8280a8b1f3a36ceb76ed8be4748",
     "source_type": "institutional_secondary"
   }
 }

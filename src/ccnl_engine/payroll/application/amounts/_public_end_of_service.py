@@ -1,4 +1,4 @@
-"""Contributions to the end-of-service fund of a public employee.
+"""Contributions to the end-of-service fund and the credit of a public employee.
 
 INPS Gestione Dipendenti Pubblici finances the TFS and the TFR of the
 public employees with a contribution on 80% of the pay: ENPAS for the
@@ -35,6 +35,7 @@ __all__ = [
     "end_of_service_employee_rate",
     "end_of_service_issue",
     "with_end_of_service",
+    "with_public_credit",
 ]
 
 _ZERO = Decimal(0)
@@ -108,7 +109,20 @@ def with_end_of_service(
         its totals, employee components before the employer ones.
     """
     employee, employer = _components(inp)
-    if not employee:
+    return _added(breakdown, employee, employer)
+
+
+def _added(
+    breakdown: ContributionBreakdown,
+    employee: tuple[ContributionComponent, ...],
+    employer: tuple[ContributionComponent, ...] = (),
+) -> ContributionBreakdown:
+    """Return ``breakdown`` with components added, employee ones first.
+
+    Returns:
+        The breakdown with the amounts added to its totals.
+    """
+    if not employee and not employer:
         return breakdown
     components = breakdown.components
     split = next(
@@ -119,7 +133,7 @@ def with_end_of_service(
         breakdown,
         employee=breakdown.employee + sum((c.amount for c in employee), _ZERO),
         employer=breakdown.employer + sum((c.amount for c in employer), _ZERO),
-        components=components[:split] + employee + components[split:] + employer,
+        components=(*components[:split], *employee, *components[split:], *employer),
     )
 
 
@@ -135,3 +149,22 @@ def end_of_service_employee_rate(inp: _AmountsInput) -> Decimal:
         return _ZERO
     rates = inp.rules.inps.end_of_service if inp.rules.inps else None
     return _ZERO if rates is None else rates.tfs_employee_rate * rates.base_share
+
+
+def with_public_credit(
+    inp: _AmountsInput, breakdown: ContributionBreakdown, pension_base: Decimal
+) -> tuple[ContributionBreakdown, Decimal]:
+    """Return ``breakdown`` with the credit contribution of a public employee.
+
+    L. 662/1996 art. 1 c. 242: 0.35% of the "retribuzione contributiva e
+    pensionabile", the pension base of the run, whatever the regime.
+
+    Returns:
+        The breakdown with the ``credit_employee`` component, and its rate;
+        ``breakdown`` and zero outside the public administrations.
+    """
+    credit = None if inp.rules.inps is None else inp.rules.inps.public_credit
+    if credit is None:
+        return breakdown, _ZERO
+    component = _component("credit_employee", pension_base, credit.employee_rate)
+    return _added(breakdown, (component,)), credit.employee_rate

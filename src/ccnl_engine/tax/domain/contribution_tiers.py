@@ -22,6 +22,7 @@ from ccnl_engine.shared.domain.primitives import (
 from ccnl_engine.tax.domain.additional_ivs import AdditionalIvsRule
 from ccnl_engine.tax.domain.contribution_rules import (
     EndOfServiceRates,
+    PublicCreditRate,
     PublicFundRates,
 )
 from ccnl_engine.tax.domain.minimum_base import MinimumBaseRule
@@ -104,6 +105,7 @@ class InpsRawRates(BaseModel):
     provenance: RuleProvenance | None = None
     public_funds: dict[PublicPensionFund, PublicFundRates] = {}
     end_of_service: EndOfServiceRates | None = None
+    public_credit: PublicCreditRate | None = None
 
 
 class ApprenticeRawRates(BaseModel):

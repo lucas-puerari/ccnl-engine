@@ -10,11 +10,12 @@ Funzioni Centrali (ENPAS), Funzionari, January 2026: 2227.99, base 80% =
 1782.392 -> 1782.39.
 
 - TFS: worker 2.50% = 44.55975 -> 44.56, administration 7.10% =
-  126.54969 -> 126.55; with the CTPS (196.06 and 539.17) 240.62 and
-  665.72.
+  126.54969 -> 126.55; with the CTPS (196.06 and 539.17) and the credit
+  (0.35% of 2227.99 = 7.797965 -> 7.80) 248.42 and 665.72.
 - TFR at INPS: reduction 44.56, administration 9.60% = 171.10944 ->
-  171.11; 240.62 and 710.28; the same net and taxable as the TFS.
-- TFR at the employer: the CTPS alone, the TFR accrued in the company.
+  171.11; 248.42 and 710.28; the same net and taxable as the TFS.
+- TFR at the employer: the CTPS and the credit, 203.86 and 539.17, the TFR
+  accrued in the company.
 
 Funzioni Locali (INADEL), Istruttori: the tredicesima of 2026, 1928.23,
 is part of the base: 1542.584 -> 1542.58, worker 38.5645 -> 38.56,
@@ -75,14 +76,19 @@ def _entry(result: PeriodResult, account: str) -> Decimal:
 @pytest.mark.parametrize(
     ("regime", "employee", "employer", "names"),
     [
-        (PublicEndOfService.TFS, "240.62", "665.72", ("tfs_employee", "tfs_employer")),
+        (
+            PublicEndOfService.TFS,
+            "248.42",
+            "665.72",
+            ("tfs_employee", "tfs_employer", "credit_employee"),
+        ),
         (
             PublicEndOfService.TFR_INPS,
-            "240.62",
+            "248.42",
             "710.28",
-            ("tfr_reduction_employee", "tfr_employer"),
+            ("tfr_reduction_employee", "tfr_employer", "credit_employee"),
         ),
-        (PublicEndOfService.TFR_EMPLOYER, "196.06", "539.17", ()),
+        (PublicEndOfService.TFR_EMPLOYER, "203.86", "539.17", ("credit_employee",)),
     ],
     ids=["tfs", "tfr_inps", "tfr_employer"],
 )
