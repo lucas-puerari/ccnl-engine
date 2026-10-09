@@ -303,8 +303,13 @@ def _fund_rules(file: str, funds: object) -> Iterator[PayableRule]:
     """
     for fund in funds if isinstance(funds, list) else []:
         inherited = fund.get("provenance")
-        for key in _FUND_SERIES:
-            for period in _periods(fund.get(key)):
+        tiers = fund.get("employer_rate_tiers") or []
+        series = {key: fund.get(key) for key in _FUND_SERIES} | {
+            f"employer_rate_tiers[{tier.get('employee_from')}]": tier.get("rate")
+            for tier in tiers
+        }
+        for key, values in series.items():
+            for period in _periods(values):
                 path = (
                     f"employer_funds[{fund.get('code')}].{key}"
                     f"[{period.get('valid_from')}]"

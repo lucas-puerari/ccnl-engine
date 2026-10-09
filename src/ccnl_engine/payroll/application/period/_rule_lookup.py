@@ -245,10 +245,9 @@ def _pension_rules(ctx: RunContext) -> tuple[Rule, ...]:
     funds = [f for f in ccnl.parameters.employer_funds if f.code == code]
     day = ctx.contract.tctx.competence
     ccnl_name = _name(ccnl.ruleset, f"ccnl/{ccnl.meta.ccnl_id}")
-    prefix = f"{ccnl_name}:employer_funds"
     rules: list[Rule] = [
         (
-            f"{prefix}[{code}].{key}[{period.valid_from}]",
+            f"{ccnl_name}:employer_funds[{code}].{key}[{period.valid_from}]",
             period.provenance or fund.provenance,
         )
         for fund in funds
@@ -256,6 +255,7 @@ def _pension_rules(ctx: RunContext) -> tuple[Rule, ...]:
             ("rate", fund.rate),
             ("employee_min_rate", fund.employee_min_rate),
             ("young_member_rate", fund.young_member_rate),
+            *((f"tier[{t.employee_from}]", t.rate) for t in fund.employer_rate_tiers),
         )
         if series is not None
         for period in _in_force(series.period_at(day))

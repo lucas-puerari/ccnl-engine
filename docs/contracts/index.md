@@ -76,7 +76,7 @@ Capabilities of the registry by layer and implementation:
 | 22 | T011 | [CCNL Case di Cura Private - Personale Non Medico (AIOP/ARIS)](sanita-privata-aiop-aris.md) | Sanità privata | ~150k | 2020 | 🔲 | 🔲 | 🔲 | — | 0 / 35 / 2 / 0 | 🧪 | 🤖 |
 | 23 | F032 | [CCNL Cemento, Calce e Gesso — Industria (Federbeton)](cemento-calce-gesso-industria.md) | industria del cemento calce e gesso | ~25k | — | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 80 / 2 / 0 | 🧪 | 🤖 |
 | 24 | B122 | [CCNL Ceramica Industria (Confindustria-Assopiastrelle)](ceramica-industria-confindustria.md) | ceramica | ~23k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 60 / 1 / 1 | 🧪 | 🤖 |
-| 25 | B018 | [CCNL Chimica e Affini PMI — Unionchimica Confapi](chimica-affini-pmi-unionchimica.md) | chimica | ~56k | 2026 | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 18 / 1 / 1 | 🧪 | 🤖 |
+| 25 | B018 | [CCNL Chimica e Affini PMI — Unionchimica Confapi](chimica-affini-pmi-unionchimica.md) | chimica | ~56k | 2026 | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 21 / 1 / 1 | 🧪 | 🤖 |
 | 26 | S005 | [CCNL Comparto Funzioni Centrali — Triennio 2022-2024](funzioni-centrali-aran.md) | Pubblica Amministrazione — Comparto Funzioni Centrali | ~250k | 2025 | 🔲 | 🔲 | 🔲 | inps_employer | 0 / 27 / 1 / 1 | 🧪 | 🤖 |
 | 27 | S105 | [CCNL Comparto Funzioni Locali 2022-2024 — ARAN](funzioni-locali-aran.md) | Pubblica Amministrazione | ~400k | 2026 | 🔲 | 🔲 | 🔲 | base_salary, company_supplement | 0 / 19 / 1 / 1 | 🧪 | 🤖 |
 | 28 | S305 | [CCNL Comparto Istruzione e Ricerca 2022-2024 — ARAN](istruzione-ricerca-aran.md) | Pubblica Amministrazione | ~1,2M | 2025 | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 19 / 1 / 1 | 🧪 | 🤖 |

@@ -225,7 +225,61 @@
           "effective_from": "2020-01-01"
         }
       }
-    }
+    },
+    "employer_funds": [
+      {
+        "code": "FONDAPI",
+        "description": "Fondapi - Fondo pensione complementare per i lavoratori delle piccole e medie imprese",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0166"
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0106"
+            }
+          ]
+        },
+        "employer_rate_tiers": [
+          {
+            "employee_from": "0.0160",
+            "rate": {
+              "periods": [
+                {
+                  "valid_from": "2026-01-01",
+                  "valid_until": null,
+                  "value": "0.0200"
+                }
+              ]
+            }
+          }
+        ],
+        "contribution_base": "tfr_base",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "fondapi-nota-informativa-2026",
+              "title": "Fondapi Nota informativa, Parte I, scheda 'I destinatari e i contributi' (29 luglio 2026)",
+              "kind": "altro",
+              "url": "https://www.fondapi.it/documenti/i-destinatari-e-i-contributi"
+            },
+            "section": "CCNL PMI CHIMICA, CONCIA E SETTORI ACCORPATI, PLASTICA E GOMMA, ABRASIVI, CERAMICA E VETRO, Settore Chimico Concia - Accorpati",
+            "quote": "CONTRIBUZIONE calcolata su 'retribuzione TFR': Dal 01.01.2026 Contributo lavoratore / Contributo azienda: Settore Chimico Concia - Accorpati & Settore Gomma Plastica 1,06 1,66; 1,60* 2,00*. * La quota di contribuzione a carico del datore di lavoro è determinata in misura variabile, in funzione dell'aliquota scelta dall'aderente [...] Qualora l'aderente versi un contributo compreso tra l'1,06% e l'1,59%, l'azienda è tenuta a corrispondere una quota pari all'1,66% [...] pari o superiore all'1,60%, il contributo a carico dell'azienda viene elevato all'2,00%."
+          },
+          "transformation": "Employer 1.66%, 2.00% from an employee rate of 1.60%; worker minimum 1.06%; on the retribuzione TFR. The CCNL Chimica e Affini PMI (Unionchimica) is the chemical sector of the unified Confapi CCNL the Scheda lists.",
+          "note": "Read from the PDF the url serves (sha256 7e9b29394505b6cd14125c88c6f0cc4ba78c14f026b546bb387636e40e42ee15), text layer. valid_from is the first day of the bundled tax year, the rates being in force from 01.01.2026. No human review recorded."
+        }
+      }
+    ]
   },
   "levels": [
     {
@@ -834,7 +888,7 @@
     "effective_until": "2028-12-31",
     "source": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=181",
     "verification_status": "unverified",
-    "source_hash": "eb00b915d8863a6fed6efd16c2b4b38f93258e9861359049caade3beea2697b7",
+    "source_hash": "7cbf9eff2a5d0a9d12c501805cc13534b14400e4bf94bf1ea2ce2ef904c447e5",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

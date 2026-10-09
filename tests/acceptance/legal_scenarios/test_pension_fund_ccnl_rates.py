@@ -37,6 +37,10 @@ the pay that enters the TFR, as their Scheda 'I destinatari e i contributi'
   26.35; tessile Uniontessile level 4, 1962.56, employer 2% = 39.2512 ->
   39.25, employee 1.60% = 31.40096 -> 31.40.  The Fondapi base also counts
   the EDR, which the bundle pay lacks: an open limitation blocks the run.
+- Fondapi on the chemical PMI (Unionchimica), level D in January 2026,
+  2267.00, on the retribuzione TFR: an employee 1.06% takes employer 1.66%
+  = 37.6322 -> 37.63 and employee 24.0302 -> 24.03; an employee 1.60%
+  reaches the 2.00% tier: 45.34 and 36.272 -> 36.27.
 """
 
 from __future__ import annotations
@@ -229,3 +233,25 @@ def test_fondapi_on_the_minimum(
     limitations = {limitation.id for limitation in result.assurance.limitations}
     assert f"{slug.removesuffix('.json')}/fondapi_base_elements" in limitations
     assert not result.is_payable
+
+
+@pytest.mark.parametrize(
+    ("rate", "employer", "employee"),
+    [("0.0106", "37.63", "24.03"), ("0.016", "45.34", "36.27")],
+    ids=["base_tier", "higher_tier"],
+)
+def test_fondapi_chemical_tiers(rate: str, employer: str, employee: str) -> None:
+    """The employer rate rises with the rate the worker chooses."""
+    result = regular_period(
+        employment=Employment(
+            ccnl_slug="chimica-affini-pmi-unionchimica.json",
+            level_code="D",
+            seniority=new_hire(),
+            pension_fund=PensionFundEnrolment(
+                "FONDAPI", Decimal(rate), tfr_to_fund=True
+            ),
+            contract_type=Permanent(),
+        )
+    )
+    assert _entry(result, "pension_fund_employer") == Decimal(employer)
+    assert _entry(result, "pension_fund_employee") == Decimal(employee)

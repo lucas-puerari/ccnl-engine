@@ -141,7 +141,8 @@ def resolve_terms(
     """Return the rates of the enrolment on ``day``.
 
     An apprentice pays the apprentice rate of the fund when it sets one; a
-    young member stated by the enrolment, the young member rate.
+    young member stated by the enrolment, the young member rate; an employee
+    rate that reaches a tier, the employer rate of the highest such tier.
 
     Returns:
         The terms of the fund for the run.
@@ -156,7 +157,13 @@ def resolve_terms(
     check_category(fund, category)
     apart = fund.apprentice_rate if apprentice else None
     young = fund.young_member_rate if enrolment.young_member else None
-    in_force = _in_force(apart or young or fund.rate, day)
+    tiers = [
+        t
+        for t in fund.employer_rate_tiers
+        if enrolment.employee_rate >= t.employee_from
+    ]
+    tier = max(tiers, key=lambda t: t.employee_from).rate if tiers else None
+    in_force = _in_force(apart or young or tier or fund.rate, day)
     if in_force is None:
         msg = f"pension fund {fund.code} has no employer rate on {day}"
         raise InvalidInputError(msg, feature=PENSION_FEATURE)

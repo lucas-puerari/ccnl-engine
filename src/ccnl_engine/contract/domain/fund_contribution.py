@@ -1,5 +1,6 @@
 """Contributions a CCNL sets to its funds: rates of an enrolment, fixed amounts."""
 
+from decimal import Decimal
 from enum import StrEnum
 from typing import Self
 
@@ -29,6 +30,20 @@ class FundContributionBase(StrEnum):
     CONTRACTUAL_MINIMUM = "contractual_minimum"
 
 
+class EmployerRateTier(BaseModel):
+    """Employer rate due once the worker contributes at least a rate.
+
+    Attributes:
+        employee_from: Least employee rate of the tier.
+        rate: Employer rate of the tier.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    employee_from: Decimal = Field(ge=0, le=1)
+    rate: TimeSeries
+
+
 class EmployerFund(BaseModel):
     """An employer-side contribution to a contractual fund (e.g. a pension fund).
 
@@ -46,7 +61,10 @@ class EmployerFund(BaseModel):
     fund sets one apart (Cometa: the TFR base).  ``young_member_rate`` is
     the employer rate of a member the CCNL favours for the age at enrolment
     (Cometa: enrolled after 5 February 2021 before turning 35), stated by
-    ``PensionFundEnrolment.young_member``.
+    ``PensionFundEnrolment.young_member``.  ``employer_rate_tiers`` raise
+    the employer rate when the worker chooses a higher rate (Fondapi on the
+    chemical PMI: 2.00% from an employee 1.60%); the highest tier reached
+    replaces ``rate``.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -61,6 +79,7 @@ class EmployerFund(BaseModel):
     provenance: RuleProvenance | None = None
     employee_base_above_minimum: FundContributionBase | None = None
     young_member_rate: TimeSeries | None = None
+    employer_rate_tiers: tuple[EmployerRateTier, ...] = ()
 
 
 class ContractualFundContribution(BaseModel):
