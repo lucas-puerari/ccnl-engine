@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Credit contribution of public employees
+
+| Before | After |
+|---|---|
+| No credit contribution | Every run on a CCNL of the public administrations withholds 0.35% of the pension base for the Gestione unitaria delle prestazioni creditizie (component `credit_employee`, `InpsRates.public_credit`) |
+
 ## End-of-service contributions of public employees
 
 | Before | After |

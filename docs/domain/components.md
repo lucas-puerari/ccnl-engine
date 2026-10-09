@@ -222,6 +222,9 @@ included). State the regime in `Employment.public_end_of_service`:
 Left `None`, the run leaves these contributions out with the issue
 `public_end_of_service_unknown`.
 
+Every public employee also pays the credit contribution of the Gestione: 0.35% of the
+pension base (L. 662/1996 art. 1 c. 242), the component `credit_employee`.
+
 ### Flat hourly rate (domestic work)
 
 Domestic workers (*lavoro domestico*) use a different system: INPS publishes tables

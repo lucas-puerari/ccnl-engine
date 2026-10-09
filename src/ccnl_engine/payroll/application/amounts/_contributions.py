@@ -12,6 +12,7 @@ from ccnl_engine.payroll.application.amounts._domestic import (
 from ccnl_engine.payroll.application.amounts._public_end_of_service import (
     end_of_service_employee_rate,
     with_end_of_service,
+    with_public_credit,
 )
 from ccnl_engine.payroll.domain.decisions import CalculationIssue, CalculationStatus
 from ccnl_engine.payroll.domain.employment import Apprentice
@@ -69,8 +70,10 @@ def run_contributions(inp: _AmountsInput) -> tuple[ContributionBreakdown, Decima
     if inp.rules.inps is not None:
         base = _raised(inp, inp.monthly_gross + inp.event_inps_base)
         breakdown = with_end_of_service(inp, _ordinary_breakdown(inp, base))
+        breakdown, credit = with_public_credit(inp, breakdown, base)
         rates = resolve_rates(inp.rules, inp.contract_type, inp.category)
-        return breakdown, rates.employee_rate + end_of_service_employee_rate(inp)
+        employee = rates.employee_rate + end_of_service_employee_rate(inp) + credit
+        return breakdown, employee
     breakdown = compute_domestic_breakdown(
         inp.rules,
         inp.weekly_hours,

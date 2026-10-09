@@ -55,6 +55,21 @@ class EndOfServiceRates(BaseModel):
     provenance: RuleProvenance | None = None
 
 
+class PublicCreditRate(BaseModel):
+    """Contribution of a public employee to the Gestione unitaria del credito.
+
+    L. 662/1996 art. 1 cc. 242-243: "Il contributo obbligatorio per il
+    credito [...] è pari allo 0,35 per cento della retribuzione contributiva
+    e pensionabile", owed by the members of every fund of the Gestione
+    Dipendenti Pubblici.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    employee_rate: NonNegativeRate
+    provenance: RuleProvenance | None = None
+
+
 class PublicFundRates(BaseModel):
     """Pension contribution rates of a fund of INPS Gestione Dipendenti Pubblici.
 
@@ -116,6 +131,7 @@ class InpsRates(BaseModel):
     provenance: RuleProvenance | None = None
     public_funds: dict[PublicPensionFund, PublicFundRates] = {}
     end_of_service: EndOfServiceRates | None = None
+    public_credit: PublicCreditRate | None = None
 
     def for_public_fund(self, fund: PublicPensionFund | None) -> InpsRates:
         """Return the rates of a fund of the Gestione Dipendenti Pubblici.
