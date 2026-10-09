@@ -39,6 +39,9 @@ from ccnl_engine.payroll.application.period._pipeline_inputs import (
     amounts_input,
     variable_events,
 )
+from ccnl_engine.payroll.application.period._public_tfr_reduction import (
+    public_tfr_reduction,
+)
 from ccnl_engine.payroll.application.period._renewal_minimum import renewal_minimum
 from ccnl_engine.payroll.application.period._run_decisions import contract_decisions
 from ccnl_engine.payroll.application.period._seniority import (
@@ -118,15 +121,17 @@ def run_events(ctx: RunContext) -> RunEvents:
         ctx.policy_context,
     )
     erc = erc_settlement(ctx)
+    reduction = public_tfr_reduction(ctx, events.totals)
     check_absences_within_pay(
         events.entries,
         ctx.monthly_gross,
         with_sickness=any(i.code == WITH_UNPAID_ABSENCE for i in events.totals.issues),
     )
+    totals = reduction.added_to(erc.added_to(settlement.added_to(events.totals)))
     return RunEvents(
-        erc.added_to(settlement.added_to(events.totals)),
-        events.items + settlement.items + erc.items,
-        events.entries + settlement.entries + erc.entries,
+        totals,
+        events.items + settlement.items + erc.items + reduction.items,
+        events.entries + settlement.entries + erc.entries + reduction.entries,
     )
 
 

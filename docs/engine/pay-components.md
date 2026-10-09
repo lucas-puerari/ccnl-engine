@@ -446,8 +446,9 @@ Sirio and Espero allow it to the private employees alone.
 Perseo Sirio, on the CCNLs of the public administrations, pays 1% employer
 and at least 1% employee of the TFR base. The TFR a public employee confers
 is not paid to the fund: INPS Gestione Dipendenti Pubblici accrues it
-notionally and pays it at the termination, so the run keeps it where it
-accrues it and the decision records `tfr_to_fund` as `notional`. The 1.5%
+notionally and pays it at the termination: with
+`Employment.public_end_of_service` `tfr_inps` the run posts no TFR, and the
+pension decision records `tfr_to_fund` as `notional`. The 1.5%
 of an optant is notional too and not computed. Fondo Scuola Espero, on the
 school CCNL and for the dirigenti scolastici, works the same way (1% + 1%,
 the 1.2% of an optant notional); the dirigenza Istruzione e Ricerca holds

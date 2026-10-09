@@ -20,7 +20,7 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine import CompetenceYearPlan, Employment
-from ccnl_engine.inputs import PensionFundEnrolment, Permanent
+from ccnl_engine.inputs import PensionFundEnrolment, Permanent, PublicEndOfService
 from tests.acceptance.legal_scenarios._support import EMPLOYER, ENGINE, regular_period
 from tests.fixtures.current_year import employment_only
 from tests.fixtures.seniority import new_hire
@@ -38,6 +38,7 @@ _EMPLOYMENT = Employment(
         "PERSEO_SIRIO", Decimal("0.01"), tfr_to_fund=True
     ),
     contract_type=Permanent(),
+    public_end_of_service=PublicEndOfService.TFR_INPS,
 )
 
 
@@ -56,7 +57,7 @@ def _inputs(result: PeriodResult) -> dict[str, object]:
 
 
 def test_one_percent_each_with_the_tfr_notional() -> None:
-    """22.28 employer and worker, 2.23 solidarity, no TFR paid to the fund."""
+    """22.28 employer and worker, 2.23 solidarity, the TFR accrued at INPS."""
     result = regular_period(employment=_EMPLOYMENT, current_year=employment_only())
     inputs = _inputs(result)
     assert inputs["base"] == Decimal("2227.99")
@@ -65,7 +66,9 @@ def test_one_percent_each_with_the_tfr_notional() -> None:
     assert inputs["solidarity"] == Decimal("2.23")
     assert inputs["tfr_to_fund"] == "notional"
     assert _entry(result, "pension_fund_tfr") == 0
-    assert _entry(result, "tfr_accrual") > 0
+    assert _entry(result, "tfr_accrual") == 0
+    (tfr,) = [d for d in result.decisions if d.capability == "tfr"]
+    assert tfr.inputs["account"] == "inps_notional"
 
 
 def test_tredicesima_bears_the_contribution() -> None:

@@ -8,10 +8,12 @@ Under the TFS the worker pays 2.50% of the base and the administration the
 rest.  Under the TFR at INPS the administration pays the whole contribution
 and "la retribuzione lorda viene ridotta in misura pari al contributo
 previdenziale obbligatorio soppresso" (DPCM 20 dicembre 1999 art. 1 c. 3):
-the engine posts that reduction as an employee deduction, so the net and
-the IRPEF taxable equal those of the TFS ("La soppressione del contributo
-non determina effetti sulla retribuzione imponibile ai fini fiscali", c. 2)
-and the INPS base keeps the unreduced pay (the recupero of c. 3).  An
+the run posts that reduction as a negative earning of the gross
+(:mod:`~ccnl_engine.payroll.application.period._public_tfr_reduction`), so
+the net, the IRPEF taxable and the cost of the administration equal those
+of the TFS ("La soppressione del contributo non determina effetti sulla
+retribuzione imponibile ai fini fiscali", c. 2), while the INPS and the
+end-of-service bases keep the unreduced pay (the recupero of c. 3).  An
 employer that keeps the TFR itself (c. 6 and 8) pays the Gestione nothing.
 """
 
@@ -29,9 +31,11 @@ from ccnl_engine.payroll.domain.rounding import money
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.amounts._types import _AmountsInput
     from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
+    from ccnl_engine.tax.domain.contribution_rules import EndOfServiceRates
 
 __all__ = [
     "END_OF_SERVICE_UNKNOWN",
+    "end_of_service_base",
     "end_of_service_employee_rate",
     "end_of_service_issue",
     "with_end_of_service",
@@ -82,21 +86,42 @@ def _components(
     """
     rates = None if inp.rules.inps is None else inp.rules.inps.end_of_service
     regime = inp.public_end_of_service
-    if rates is None or regime in {None, PublicEndOfService.TFR_EMPLOYER}:
-        return (), ()
-    if inp.additional_month and not rates.thirteenth:
-        return (), ()
     pay = inp.monthly_gross + inp.in_kind + inp.event_tfr_base
-    base = money(pay * rates.base_share)
+    base = end_of_service_base(rates, regime, pay, extra=inp.additional_month)
+    if rates is None or base is None:
+        return (), ()
     if regime is PublicEndOfService.TFS:
         return (
             (_component("tfs_employee", base, rates.tfs_employee_rate),),
             (_component("tfs_employer", base, rates.tfs_employer_rate),),
         )
-    return (
-        (_component("tfr_reduction_employee", base, rates.tfs_employee_rate),),
-        (_component("tfr_employer", base, rates.tfr_employer_rate),),
-    )
+    return (), (_component("tfr_employer", base, rates.tfr_employer_rate),)
+
+
+def end_of_service_base(
+    rates: EndOfServiceRates | None,
+    regime: PublicEndOfService | None,
+    pay: Decimal,
+    *,
+    extra: bool,
+) -> Decimal | None:
+    """Return the end-of-service base of a run, ``None`` when it has none.
+
+    Args:
+        rates: End-of-service rates of the CCNL's fund, ``None`` outside the
+            public administrations.
+        regime: End-of-service regime of the worker.
+        pay: TFR base of the run, the unreduced pay (DPCM art. 1 c. 3).
+        extra: Whether the run pays a tredicesima or a quattordicesima.
+
+    Returns:
+        80% of ``pay`` under the TFS or the TFR at INPS, unless the fund
+        leaves the extra month out of its base.
+    """
+    at_inps = regime in {PublicEndOfService.TFS, PublicEndOfService.TFR_INPS}
+    if rates is None or not at_inps or (extra and not rates.thirteenth):
+        return None
+    return money(pay * rates.base_share)
 
 
 def with_end_of_service(
@@ -138,17 +163,19 @@ def _added(
 
 
 def end_of_service_employee_rate(inp: _AmountsInput) -> Decimal:
-    """Return the employee rate of the end-of-service fund on the gross.
+    """Return the share of the gross the worker gives up for the fund.
 
     Returns:
-        The rate of the worker times the share of the base, zero without
-        a regime the worker pays; used to project the slots still to come.
+        The 2.50% of the worker times the share of the base, under the TFS
+        (a contribution) or the TFR at INPS (a reduction of the gross); zero
+        otherwise.  It projects the taxable of the slots still to come.
     """
-    employee, _ = _components(inp)
-    if not employee:
+    rates = None if inp.rules.inps is None else inp.rules.inps.end_of_service
+    pay = inp.monthly_gross + inp.in_kind + inp.event_tfr_base
+    base = end_of_service_base(rates, inp.public_end_of_service, pay, extra=False)
+    if rates is None or base is None:
         return _ZERO
-    rates = inp.rules.inps.end_of_service if inp.rules.inps else None
-    return _ZERO if rates is None else rates.tfs_employee_rate * rates.base_share
+    return rates.tfs_employee_rate * rates.base_share
 
 
 def with_public_credit(
