@@ -121,6 +121,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13-18, comporto max 18 mesi (540 gg) — Art. 19 CCNL FC 09/03/2020. Modellato con SicknessTier. Periodi di paga a cavallo di soglia mensile ricevono un unico tasso (engine limitation accettabile).
     
+    PENSION FUND. Perseo Sirio (1% + 1% of the retribuzione utile ai fini del TFR). Enrolment is a fact: the silenzio-assenso of the hires from 2 January 2019 (accordo ARAN 16/09/2021) is not inferred, nor the three months a fixed term needs to enrol. The TFR conferred stays a notional INPS accrual.
+    
     Stipendio tabellare da testo ufficiale CCNL 28/10/2025 (Ministero del Lavoro, Art. 23 e Art. 26).
     
     Prima fascia — Art. 23 comma 1: previgente 60.102,87€/anno (CCNL 16/11/2023); incremento +285€/mese × 13 = +3.705€/anno; nuovo valore 63.807,87€/anno = 4.908,30€/mese per 13 mensilità.

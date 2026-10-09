@@ -87,7 +87,47 @@
           "effective_from": "2020-01-01"
         }
       }
-    }
+    },
+    "employer_funds": [
+      {
+        "code": "ESPERO",
+        "description": "Fondo Scuola Espero - fondo pensione complementare dei lavoratori della scuola",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0100"
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0100"
+            }
+          ]
+        },
+        "contribution_base": "tfr_base",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "espero-scheda-destinatari-contributi-2026-07-30",
+              "title": "Fondo Scuola Espero, Nota informativa, Scheda 'I destinatari e i contributi' (in vigore dal 30/07/2026)",
+              "kind": "altro",
+              "url": "https://www.fondoespero.it/cms/resource/open/1803/scheda-i-destinatari-e-i-contributi.pdf"
+            },
+            "section": "Scheda 'I destinatari e i contributi', Dipendenti pubblici",
+            "quote": "DIPENDENTI PUBBLICI (D.Lgs. 124/1993): Assunti dopo il 31-dic-2000 ovvero a tempo determinato: Quota TFR 100%, Lavoratore 1%, Datore di lavoro 1% [...] (1) Le quote di TFR dei dipendenti pubblici prima della cessazione del servizio non sono versate al Fondo ma sono accantonate figurativamente presso l'INPS Gestione ex INPDAP [...] (4) La contribuzione destinata al Fondo dalle Amministrazioni e dai lavoratori, è pari all'1% dei seguenti elementi retributivi: retribuzione tabellare, indennità integrativa speciale, tredicesima mensilità e retribuzione professionale (5) Misura minima per avere diritto al contributo del datore di lavoro."
+          },
+          "transformation": "1% employer and at least 1% worker of the retribuzione tabellare (with the indennita integrativa speciale, conglobated in the tabellare of this file), the tredicesima and the retribuzione professionale: the TFR base of the engine, which holds the pay this file models. The TFR conferred and the 1.2% of an optant are accrued notionally by INPS, not paid to the fund.",
+          "note": "Read from the PDF the url serves (sha256 1c1edd47165239d4faf3cd1c2689091392d73a0716e070e939110d8f764c2e8a); the footnotes are images, read by OCR. No human review recorded."
+        }
+      }
+    ]
   },
   "levels": [
     {
@@ -651,6 +691,10 @@
           },
           "remediation": "Source the signing date of the CCNL 2019-2021 for the start of period 1."
         }
+      },
+      {
+        "kind": "info",
+        "text": "PENSION FUND. Fondo Scuola Espero (1% + 1%); enrolment is a fact, the silenzio-assenso of the hires from 2019 is not inferred, nor the three months a fixed term needs to enrol. The TFR conferred stays a notional INPS accrual."
       }
     ]
   },
@@ -661,7 +705,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1",
     "verification_status": "unverified",
-    "source_hash": "1aa9b8bdfb9226da3db302ece5716277a0ed32a62bb2ad01a8b4fa5c9710e6c9",
+    "source_hash": "f4ad1e1a4f6f393217bcfcc5d678a3949f5f0c1523e6033f74825d5dc23043a6",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

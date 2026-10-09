@@ -104,7 +104,7 @@ formulas or caller-declared amounts.
 | `rinnovo_substitute_tax` | Imposta sostitutiva aumenti da rinnovo L. 199/2025 art. 1 c. 7 | net | native | decided | decision | `prior_year` | — | implemented | 0 / 1 / 0 / 0 |
 | `notte_festivi_turni_substitute_tax` | Imposta sostitutiva notturno, festivo e turni L. 199/2025 art. 1 cc. 10-11 | net | native | decided | decision | `prior_year` | — | implemented | 0 / 1 / 0 / 0 |
 | `bilateral_funds` | Fondi bilaterali (importi dal chiamante) | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
-| `pension_fund_contribution` | Previdenza complementare CCNL su adesione e contributo contrattuale | net | partial | decided | decision | `employment.pension_fund` | ccnl_fund_on_enrolment, ccnl_contractual_contribution | simplified | 0 / 96 / 25 / 0 |
+| `pension_fund_contribution` | Previdenza complementare CCNL su adesione e contributo contrattuale | net | partial | decided | decision | `employment.pension_fund` | ccnl_fund_on_enrolment, ccnl_contractual_contribution | simplified | 0 / 114 / 25 / 0 |
 | `assistance_contribution` | Contributi di assistenza contrattuale per ora retribuita (Cas.Sa.Colf, lavoro domestico) | net | native | decided | decision | `facts.contributable_hours` | — | implemented | 0 / 3 / 0 / 0 |
 
 ## CCNL coverage
@@ -133,12 +133,12 @@ never grow.
 | 4 | [CCNL Alimentaristi Cooperative (Fedagripesca/Legacoop Agroalimentare/AGCI-Agrital)](alimentaristi-cooperative-e016.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 70 / 1 / 1 |
 | 5 | [CCNL Area Alimentazione e Panificazione — Artigianato (Confartigianato/CNA)](panificazione-artigianato-confartigianato.md) | 🔲 | 🔲 | 🔲 | territorial_supplement | 0 / 46 / 1 / 1 |
 | 6 | [CCNL Area Comunicazione — Artigianato](comunicazione-artigianato-confartigianato.md) | 🔲 | 🔲 | 🔲 | base_salary, worker_category | 0 / 39 / 1 / 1 |
-| 7 | [CCNL Area Dirigenza Funzioni Centrali 2022-2024 — ARAN](dirigenza-funzioni-centrali-aran.md) | 🔲 | 🔲 | 🔲 | — | 0 / 9 / 1 / 1 |
-| 8 | [CCNL Area Dirigenza Funzioni Locali 2022-2024 — ARAN](dirigenza-funzioni-locali-aran.md) | 🔲 | 🔲 | 🔲 | — | 0 / 5 / 1 / 1 |
-| 9 | [CCNL Area Dirigenza Istruzione e Ricerca 2022-2024 — ARAN](dirigenza-istruzione-ricerca-aran.md) | 🔲 | 🔲 | 🔲 | — | 0 / 7 / 1 / 1 |
+| 7 | [CCNL Area Dirigenza Funzioni Centrali 2022-2024 — ARAN](dirigenza-funzioni-centrali-aran.md) | 🔲 | 🔲 | 🔲 | — | 0 / 11 / 1 / 1 |
+| 8 | [CCNL Area Dirigenza Funzioni Locali 2022-2024 — ARAN](dirigenza-funzioni-locali-aran.md) | 🔲 | 🔲 | 🔲 | — | 0 / 7 / 1 / 1 |
+| 9 | [CCNL Area Dirigenza Istruzione e Ricerca 2022-2024 — ARAN](dirigenza-istruzione-ricerca-aran.md) | 🔲 | 🔲 | 🔲 | — | 0 / 11 / 1 / 1 |
 | 10 | [CCNL Area Legno-Lapidei — Artigianato](legno-lapidei-artigianato-confartigianato.md) | 🔲 | 🔲 | 🔲 | base_salary, inps_employer | 0 / 38 / 2 / 0 |
-| 11 | [CCNL Area Sanità 2022-2024 — ARAN (Dirigenti Medici e Veterinari SSN)](dirigenza-sanitaria-medico-veterinaria-aran.md) | 🔲 | 🔲 | 🔲 | base_salary | 0 / 6 / 1 / 1 |
-| 12 | [CCNL Area Sanità 2022-2024 — ARAN (Dirigenti Sanitari: psicologi, farmacisti, biologi, fisici, chimici)](dirigenza-sanitaria-area-sanita-aran.md) | 🔲 | 🔲 | 🔲 | base_salary | 0 / 6 / 1 / 1 |
+| 11 | [CCNL Area Sanità 2022-2024 — ARAN (Dirigenti Medici e Veterinari SSN)](dirigenza-sanitaria-medico-veterinaria-aran.md) | 🔲 | 🔲 | 🔲 | base_salary | 0 / 8 / 1 / 1 |
+| 12 | [CCNL Area Sanità 2022-2024 — ARAN (Dirigenti Sanitari: psicologi, farmacisti, biologi, fisici, chimici)](dirigenza-sanitaria-area-sanita-aran.md) | 🔲 | 🔲 | 🔲 | base_salary | 0 / 8 / 1 / 1 |
 | 13 | [CCNL Area Tessile-Moda e Chimica-Ceramica — Artigianato](tessile-moda-artigianato-confartigianato.md) | 🔲 | 🔲 | 🔲 | base_salary, inps_employer, seniority | 0 / 35 / 1 / 1 |
 | 14 | [CCNL Attivita Agromeccaniche (Contoterzismo) CAI Agromec-FAI-FLAI-UILA](contoterzismo-caiagromec.md) | 🔲 | 🔲 | 🔲 | — | 0 / 48 / 1 / 1 |
 | 15 | [CCNL Attivita Minerarie (ASSORISORSE)](attivita-minerarie-assorisorse.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 0 / 38 / 1 |
@@ -153,9 +153,9 @@ never grow.
 | 24 | [CCNL Ceramica Industria (Confindustria-Assopiastrelle)](ceramica-industria-confindustria.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 60 / 1 / 1 |
 | 25 | [CCNL Chimica e Affini PMI — Unionchimica Confapi](chimica-affini-pmi-unionchimica.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 21 / 1 / 1 |
 | 26 | [CCNL Comparto Funzioni Centrali — Triennio 2022-2024](funzioni-centrali-aran.md) | 🔲 | 🔲 | 🔲 | inps_employer | 0 / 29 / 1 / 1 |
-| 27 | [CCNL Comparto Funzioni Locali 2022-2024 — ARAN](funzioni-locali-aran.md) | 🔲 | 🔲 | 🔲 | base_salary, company_supplement | 0 / 19 / 1 / 1 |
-| 28 | [CCNL Comparto Istruzione e Ricerca 2022-2024 — ARAN](istruzione-ricerca-aran.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 19 / 1 / 1 |
-| 29 | [CCNL Comparto Sanità 2022-2024 — ARAN](sanita-aran.md) | 🔲 | 🔲 | 🔲 | base_salary | 0 / 17 / 1 / 1 |
+| 27 | [CCNL Comparto Funzioni Locali 2022-2024 — ARAN](funzioni-locali-aran.md) | 🔲 | 🔲 | 🔲 | base_salary, company_supplement | 0 / 21 / 1 / 1 |
+| 28 | [CCNL Comparto Istruzione e Ricerca 2022-2024 — ARAN](istruzione-ricerca-aran.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 21 / 1 / 1 |
+| 29 | [CCNL Comparto Sanità 2022-2024 — ARAN](sanita-aran.md) | 🔲 | 🔲 | 🔲 | base_salary | 0 / 19 / 1 / 1 |
 | 30 | [CCNL Comunicazione, Informatica e Servizi Innovativi PMI — Settore Informatico](informatica-pmi-unimatica.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 40 / 2 / 0 |
 | 31 | [CCNL Consorzi Agrari (ASSOCAP-FLAI-FAI-UILA)](consorzi-agrari-assocap.md) | 🔲 | 🔲 | 🔲 | base_salary, health_fund_employer | 0 / 36 / 1 / 1 |
 | 32 | [CCNL Consorzi di Bonifica (SNEBI-FLAI-FAI-FILBI)](consorzi-di-bonifica-snebi.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 56 / 1 / 1 |

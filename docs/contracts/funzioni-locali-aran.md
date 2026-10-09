@@ -130,6 +130,10 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     CNEL code S105 confirmed via multiple secondary sources: kitech.it lists 'CCNL Comparto Funzioni Locali [Cnel: S105]', lavoro-economia.it concurs. Not stated in official ARAN PDF; CNEL archive not separately queried.
     
+    PENSION FUND. Perseo Sirio (1% + 1% of the retribuzione utile ai fini del TFR). Enrolment is a fact: the silenzio-assenso of the hires from 2 January 2019 (accordo ARAN 16/09/2021) is not inferred, nor the three months a fixed term needs to enrol. The TFR conferred stays a notional INPS accrual.
+    
+    PENSION FUND. The contractual adherence to Perseo Sirio of art. 98 CCNL 16/11/2022 (polizia locale) is funded by the fines of art. 208 D.Lgs. 285/1992, not by the payroll: it is not modelled.
+    
     Salary tables from CCNL Comparto Funzioni Locali 2022-2024 (ARAN, 23.02.2026). Art. 56 Tabella A (monthly increments per 13 months) and Tabella B (annual amounts per 12 months + 13th). Monthly values = Tabella B / 12.
     
     Tranche 1 (2022-11-16) values back-calculated from CCNL 16.11.2022 base by subtracting Tabella A col.1 increments from 2024-01-01 values. The 2022 and 2023 anticipation payments (Art. 56, alinea 1-2) are not modelled as separate tabellare periods.

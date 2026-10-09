@@ -123,6 +123,10 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13-18, comporto max 18 mesi (540 gg) — CCNL Area IR 2022-2024 (stessa disciplina delle altre aree ARAN). Modellato con SicknessTier; periodi a cavallo di soglia ricevono un unico tasso (engine limitation accettabile).
     
+    PENSION FUND. Perseo Sirio (1% + 1% of the retribuzione utile ai fini del TFR). Enrolment is a fact: the silenzio-assenso of the hires from 2 January 2019 (accordo ARAN 16/09/2021) is not inferred, nor the three months a fixed term needs to enrol. The TFR conferred stays a notional INPS accrual.
+    
+    PENSION FUND. Two funds: Fondo Scuola Espero for the dirigenti scolastici and Perseo Sirio for the dirigenti of universities and research bodies; PensionFundEnrolment.fund_code names the worker's.
+    
     Tabellare previgente da CCNL Area Dirigenza Istruzione e Ricerca 2019-2021 (firmato 7/8/2024). Seconda fascia: 47.015,73€/anno = 3.616,594...€/mese → 3.616,59€. Prima fascia: 60.102,87€/anno = 4.623,298...€/mese → 4.623,30€.
     
     Incremento CCNL 2022-2024 (firmato 6/8/2026): seconda fascia +230€/mese × 13 = 50.005,73€/anno = 3.846,594...€/mese → 3.846,59€. Prima fascia +285€/mese × 13 = 63.807,87€/anno = 4.908,298...€/mese → 4.908,30€.
