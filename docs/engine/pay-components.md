@@ -388,7 +388,11 @@ Not modelled: the compensatory measures for employers whose TFR goes to a
 fund (D.Lgs. 252/2005 art. 10), the extra deduction of workers first
 employed from 2007 (art. 8 c. 6), a partial TFR conferment, and the eligibility
 conditions some CCNLs set (e.g. ALIFOND excludes fixed-term contracts up
-to six months). Fondapi on tessile PMI and metalmeccanico PMI is not in the bundle yet.
+to six months). Fondapi on tessile PMI and metalmeccanico PMI computes on the contractual
+minimum too; its base also counts the EDR (and, for the metalmeccanico, the
+indennita di funzione of the quadri and the elemento of the 8th and 9th
+categories), which the bundle pay lacks: an enrolled run has the open
+limitation `fondapi_base_elements` and is not payable.
 
 Cometa computes on the contractual minimum of the level
 (`contribution_base` `contractual_minimum`, the base salary of the pay

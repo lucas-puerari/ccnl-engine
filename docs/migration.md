@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Fondapi on the minimum of the textile and metalworking PMI
+
+| Before | After |
+|---|---|
+| No fund on `metalmeccanico-confapi` and `tessile-pmi-uniontessile` | `"FONDAPI"` on the contractual minimum (2.00% employer; employee at least 1.20% or 1.60%; a higher metalworking rate on the TFR base), with the open limitation `fondapi_base_elements` for the EDR and the other elements the bundle pay lacks |
+
 ## Prevedi contractual contribution of the operai
 
 | Before | After |

@@ -38,7 +38,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | base_salary, seniority |
+| **Limits of this contract** | base_salary, pension_fund_contribution, seniority |
 
 ### Verifica
 
@@ -58,7 +58,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 
 ### Semplificazioni note
 
-2 semplificazioni documentate.
+3 semplificazioni documentate.
 Vedi [Known simplifications](#known-simplifications) per i dettagli.
 
 ## Salary table
@@ -116,6 +116,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
+
+!!! warning "metalmeccanico-confapi/fondapi_base_elements · pension_fund_contribution · impact yes · open"
+    The Fondapi base ('retribuzione Fondapi' or 'elemento retributivo nazionale') counts the EDR, the indennita di funzione of the quadri and the elemento retributivo of the 8th and 9th categories besides the minimum; the bundle pay of this CCNL does not hold them, so the fund contributions of an enrolled worker are computed on the minimum alone and understated.
+
+    **Applies when:** `pension_fund_contribution` applies.
+
+    **Remediation:** Model the EDR, the indennita di funzione of the quadri and the elemento retributivo of the 8th and 9th categories in the pay of the CCNL and add them to the Fondapi base, then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

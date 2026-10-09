@@ -127,7 +127,7 @@ Capabilities of the registry by layer and implementation:
 | 73 | C016 | [CCNL Metalmeccanica - Cooperative](metalmeccanica-cooperative.md) | metalmeccanico cooperativo | ~28k | — | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 45 / 1 / 1 | 🧪 | 🤖 |
 | 74 | C030 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | metalmeccanico | ~350k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 79 / 1 / 1 | 🧪 | 🤖 |
 | 75 | C01A | [CCNL Metalmeccanici Piccola Industria (CONFIMI IMPRESA MECCANICA)](metalmeccanico-confimi-pmi.md) | metalmeccanico | ~100k | — | 🔲 | 🔲 | 🔲 | overtime | 0 / 44 / 0 / 1 | 🧪 | 🤖 |
-| 76 | C018 | [CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Confapi)](metalmeccanico-confapi.md) | metalmeccanico | ~350k | — | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 43 / 1 / 1 | 🧪 | 🤖 |
+| 76 | C018 | [CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Confapi)](metalmeccanico-confapi.md) | metalmeccanico | ~350k | — | 🔲 | 🔲 | 🔲 | base_salary, pension_fund_contribution, seniority | 0 / 45 / 1 / 1 | 🧪 | 🤖 |
 | 77 | C011 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | metalmeccanico | ~1,7M | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 60 / 6 / 0 | 🧪 | 🤖 |
 | 78 | IC36 | [CCNL Noleggio Autobus con Conducente (ANAV)](noleggio-autobus-conducente-anav.md) | Trasporti - Noleggio autobus con conducente | ~5422 | 2025 | 🔲 | 🔲 | 🔲 | base_salary, seniority, una_tantum | 0 / 0 / 70 / 1 | 🧪 | 🤖 |
 | 79 | D271 | [CCNL Occhiali e Occhialeria — Industria (ANFAO)](occhiali-occhialeria-industria.md) | industria occhialeria e ottica | ~20k | — | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 88 / 1 / 1 | 🧪 | 🤖 |
@@ -149,7 +149,7 @@ Capabilities of the registry by layer and implementation:
 | 95 | K411 | [CCNL Telecomunicazioni — Assotelecomunicazioni (Asstel)](telecomunicazioni-asstel.md) | telecomunicazioni | ~110k | 2025 | 🔲 | 🔲 | 🔲 | inps_employer, seniority | 0 / 45 / 2 / 0 | 🧪 | 🤖 |
 | 96 | H012 | [CCNL Terziario Distribuzione e Servizi — Confesercenti](terziario-confesercenti.md) | Terziario distribuzione e servizi | ~230k | 2024 | 🔲 | 🔲 | 🔲 | seniority, una_tantum | 0 / 62 / 2 / 0 | 🧪 | 🤖 |
 | 97 | H011 | [CCNL Terziario, Distribuzione e Servizi (Confcommercio)](commercio-confcommercio.md) | terziario | ~800k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 7 / 62 / 0 | 🧪 | 🤖 |
-| 98 | D018 | [CCNL Tessile-Abbigliamento-Moda PMI (Uniontessile-Confapi)](tessile-pmi-uniontessile.md) | tessile abbigliamento moda PMI | ~48k | 2025 | 🔲 | 🔲 | 🔲 | base_salary | 0 / 0 / 41 / 1 | 🧪 | 🔍 |
+| 98 | D018 | [CCNL Tessile-Abbigliamento-Moda PMI (Uniontessile-Confapi)](tessile-pmi-uniontessile.md) | tessile abbigliamento moda PMI | ~48k | 2025 | 🔲 | 🔲 | 🔲 | base_salary, pension_fund_contribution | 0 / 0 / 43 / 1 | 🧪 | 🔍 |
 | 99 | I810 | [CCNL Trasporto Aereo — Gestori Aeroportuali](trasporto-aereo-assaeroporti.md) | trasporto aereo | ~40k | 2025 | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 72 / 2 / 0 | 🧪 | 🤖 |
 | 100 | I911 | [CCNL Trasporto a Fune (Funivie Terrestri ed Aeree) - ANEF](funivie-anef.md) | Trasporto a fune | ~15k | 2025 | 🔲 | 🔲 | 🔲 | seniority | 0 / 47 / 1 / 1 | 🧪 | 🤖 |
 | 101 | H058 | [CCNL Turismo (Assoturismo-Confesercenti)](turismo-confesercenti.md) | turismo — alberghi, campeggi, pubblici esercizi, agenzie di viaggi | — | 2024 | 🔲 | 🔲 | 🔲 | seniority | 0 / 56 / 1 / 1 | 🧪 | 🤖 |

@@ -297,10 +297,12 @@ class TestLoadTessilePmiUniontessile:
         assert si.cadence_months == 24
         assert si.maximum_count == 4
 
-    def test_tessile_pmi_uniontessile_has_no_fund(self) -> None:
-        """FONDAPI computes on minimo + EDR, a base the engine lacks: no fund."""
+    def test_tessile_pmi_uniontessile_fondapi_on_the_minimum(self) -> None:
+        """FONDAPI 2.00% employer, 1.60% employee, on the contractual minimum."""
         ccnl = load_ccnl("tessile-pmi-uniontessile.json")
-        assert ccnl.parameters.employer_funds == ()
+        (fund,) = ccnl.parameters.employer_funds
+        assert fund.code == "FONDAPI"
+        assert fund.contribution_base == "contractual_minimum"
 
 
 class TestLoadTabaccoApti:

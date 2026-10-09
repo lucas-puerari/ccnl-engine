@@ -38,7 +38,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | base_salary |
+| **Limits of this contract** | base_salary, pension_fund_contribution |
 
 ### Verifica
 
@@ -58,7 +58,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 
 ### Semplificazioni note
 
-3 semplificazioni documentate.
+4 semplificazioni documentate.
 Vedi [Known simplifications](#known-simplifications) per i dettagli.
 
 ## Salary table
@@ -107,6 +107,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the calzature, pelli, occhiali and giocattoli salary tables with a sub-sector input.
 
+!!! warning "tessile-pmi-uniontessile/fondapi_base_elements · pension_fund_contribution · impact yes · open"
+    The Fondapi base ('retribuzione Fondapi' or 'elemento retributivo nazionale') counts the EDR besides the minimum; the bundle pay of this CCNL does not hold them, so the fund contributions of an enrolled worker are computed on the minimum alone and understated.
+
+    **Applies when:** `pension_fund_contribution` applies.
+
+    **Remediation:** Model the EDR in the pay of the CCNL and add them to the Fondapi base, then remove this note.
+
 ### Without monetary impact
 
 !!! note ""
@@ -131,7 +138,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     LEVEL 8 IDF: indennità di funzione 51.65 EUR modelled as fixed_allowance (unverified for period before Jan 2026). Function-conditional, not automatic for all L8 workers.
     
-    FONDAPI: not in the bundle. The Fondapi Scheda 'I destinatari e i contributi' (29/07/2026, https://www.fondapi.it/documenti/i-destinatari-e-i-contributi) computes both contributions on the 'elemento retributivo nazionale' (minimo tabellare + elemento distinto della retribuzione): employee at least 1.60%, employer 2.00% from 01/01/2026. The engine computes a fund on the INPS or the TFR base only, so an enrolment raises InvalidInputError until the contractual minimum base is modelled.
+    FONDAPI: the contributions are computed on the contractual minimum of the level; the Fondapi base also counts the EDR, not in the bundle pay.
     
 
 ## Raw data
