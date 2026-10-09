@@ -15,6 +15,7 @@ from ccnl_engine.payroll.domain.eligibility import ContributionHistory
 from ccnl_engine.payroll.domain.employment_facts import (
     FEATURE,
     EmploymentPeriod,
+    PublicEndOfService,
     WeeklyHours,
     check_within_full_time,
 )
@@ -182,6 +183,12 @@ class Employment:
             zero for an employment that started after December 2020: an
             enrolled run, or a run paying the tredicesima, on that CCNL has
             a ``missing_fact`` blocker.
+        public_end_of_service: End-of-service regime of a public employee
+            (TFS, TFR at INPS or TFR at the employer), which sets the
+            contributions to INPS Gestione Dipendenti Pubblici and whether
+            the run accrues the TFR.  ``None`` means not known: a run on a
+            CCNL of the public administrations has a ``missing_fact``
+            blocker.
 
     Raises:
         InvalidInputError: When a field is not of its type, a role is not a
@@ -205,6 +212,7 @@ class Employment:
     tfr_fund: TfrFundBalance | None = None
     tfr_treasury_fund: bool | None = None
     erc_amount: Decimal | None = None
+    public_end_of_service: PublicEndOfService | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         if not isinstance(self.ccnl_slug, str) or not _SLUG.fullmatch(self.ccnl_slug):
@@ -230,6 +238,14 @@ class Employment:
                 self.sector, EmploymentSector, "Employment.sector", feature=FEATURE
             )
             object.__setattr__(self, "sector", sector)
+        if self.public_end_of_service is not None:
+            regime = parse_enum(
+                self.public_end_of_service,
+                PublicEndOfService,
+                "Employment.public_end_of_service",
+                feature=FEATURE,
+            )
+            object.__setattr__(self, "public_end_of_service", regime)
         check_within_full_time(self.weekly_hours, self.full_time_weekly_hours)
         require_decimal(
             self.erc_amount,

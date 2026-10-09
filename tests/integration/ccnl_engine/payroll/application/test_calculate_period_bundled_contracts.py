@@ -29,6 +29,7 @@ from ccnl_engine import (
     PeriodInput,
     PeriodResult,
 )
+from ccnl_engine.contract.domain.identity import CCNL, TaxSector
 from ccnl_engine.contract.service.loaders import load_ccnl
 from ccnl_engine.inputs import (
     ContributableHours,
@@ -36,6 +37,7 @@ from ccnl_engine.inputs import (
     EmploymentPeriod,
     NoPensionFund,
     Permanent,
+    PublicEndOfService,
     WeeklyHours,
 )
 from ccnl_engine.results import BlockerCode, CalculationStatus
@@ -109,6 +111,16 @@ def _computed(result: PeriodResult) -> bool:
     )
 
 
+def _public_regime(ccnl: CCNL) -> PublicEndOfService | None:
+    """Return the regime of a public employee hired in 2026: the TFR at INPS.
+
+    Returns:
+        ``tfr_inps`` on a CCNL of the public administrations, else ``None``.
+    """
+    public = ccnl.meta.tax_sector is TaxSector.PUBBLICA_AMMINISTRAZIONE
+    return PublicEndOfService.TFR_INPS if public else None
+
+
 def test_bundle_lists_contracts() -> None:
     """The parametrization below runs on the real bundle, not an empty list."""
     assert len(_SLUGS) > 100
@@ -141,6 +153,7 @@ def test_every_level_computes_sane_totals(slug: str) -> None:
                     roles=frozenset(),
                     pension_fund=NoPensionFund(),
                     contract_type=Permanent(),
+                    public_end_of_service=_public_regime(ccnl),
                 ),
                 employer=EmployerProfile(headcount=Headcount(50)),
                 facts=_DOMESTIC_FACTS if slug in _DOMESTIC else resident(),

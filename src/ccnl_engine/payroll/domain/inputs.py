@@ -273,6 +273,7 @@ class PeriodInput:
             tfr_fund=employment.tfr_fund,
             tfr_treasury_fund=employment.tfr_treasury_fund,
             erc_amount=employment.erc_amount,
+            public_end_of_service=employment.public_end_of_service,
             prior_year=self.prior_year,
             current_year=self.current_year,
             extra_month_accrual=extra_month_accrual,

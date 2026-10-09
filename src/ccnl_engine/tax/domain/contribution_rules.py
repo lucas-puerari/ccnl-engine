@@ -24,10 +24,42 @@ from ccnl_engine.tax.domain.additional_ivs import AdditionalIvsRule
 from ccnl_engine.tax.domain.minimum_base import MinimumBaseRule
 
 
+class EndOfServiceRates(BaseModel):
+    """Contributions to the end-of-service fund of INPS Gestione Dipendenti Pubblici.
+
+    ENPAS for the employees of the State (DPR 1032/1973 artt. 37-38: 80% of
+    the "stipendio, paga o retribuzione annui", the tredicesima left out),
+    INADEL for those of the enti locali and of the health service (L.
+    152/1968 art. 11: 80% of the pay, the tredicesima included).  Under the
+    TFS the worker pays ``tfs_employee_rate`` and the administration
+    ``tfs_employer_rate``; under the TFR at INPS the administration pays
+    ``tfr_employer_rate`` and the gross is reduced by ``tfs_employee_rate``
+    (DPCM 20 dicembre 1999 art. 1 cc. 2-3).
+
+    Attributes:
+        base_share: Share of the pay that forms the contribution base.
+        tfs_employee_rate: Rate of the worker under the TFS.
+        tfs_employer_rate: Rate of the administration under the TFS.
+        tfr_employer_rate: Rate of the administration under the TFR.
+        thirteenth: Whether the tredicesima forms part of the base.
+        provenance: Source of the rates.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    base_share: NonNegativeRate
+    tfs_employee_rate: NonNegativeRate
+    tfs_employer_rate: NonNegativeRate
+    tfr_employer_rate: NonNegativeRate
+    thirteenth: bool
+    provenance: RuleProvenance | None = None
+
+
 class PublicFundRates(BaseModel):
     """Pension contribution rates of a fund of INPS Gestione Dipendenti Pubblici.
 
     The whole rate is IVS: the Gestione pays pensions alone.
+    ``end_of_service`` is the end-of-service fund of its members.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -35,6 +67,7 @@ class PublicFundRates(BaseModel):
     employee_rate: NonNegativeRate
     employer_rate: NonNegativeRate
     provenance: RuleProvenance | None = None
+    end_of_service: EndOfServiceRates | None = None
 
 
 class InpsRates(BaseModel):
@@ -82,6 +115,7 @@ class InpsRates(BaseModel):
     minimum_base: MinimumBaseRule | None = None
     provenance: RuleProvenance | None = None
     public_funds: dict[PublicPensionFund, PublicFundRates] = {}
+    end_of_service: EndOfServiceRates | None = None
 
     def for_public_fund(self, fund: PublicPensionFund | None) -> InpsRates:
         """Return the rates of a fund of the Gestione Dipendenti Pubblici.
@@ -100,6 +134,7 @@ class InpsRates(BaseModel):
                 "employer_rate": rates.employer_rate,
                 "employer_ivs_rate": rates.employer_rate,
                 "provenance": rates.provenance,
+                "end_of_service": rates.end_of_service,
             }
         )
 

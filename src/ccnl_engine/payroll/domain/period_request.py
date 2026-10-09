@@ -14,6 +14,7 @@ from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm, Permane
 from ccnl_engine.payroll.domain.employment_facts import (
     ContributableHours,
     EmploymentPeriod,
+    PublicEndOfService,
     WeeklyHours,
     check_within_full_time,
 )
@@ -129,19 +130,16 @@ class PeriodCalculationRequest:
             known.  When its tax year is the competence year of the run, its
             INPS base of other employments is stated in ``opening_state``
             for that year, in place of the one the state carries.
-        pension_fund: Enrolment in a pension fund of the CCNL,
-            ``NoPensionFund`` when the worker is not enrolled, ``None`` when
-            not known.
+        pension_fund: Enrolment in a pension fund of the CCNL, if known
+            (``NoPensionFund``: not enrolled).
         uncovered_runs: Runs of the competence year the year calculation
             left out because the bundle holds no pay rules on their date.
             They are reported once, as ``run_not_computed`` blockers of the
             year, so the opening state is not judged to miss them.
-        tfr_fund: TFR fund at 31 December of the year before, the base of
-            the revaluation; ``None`` when not known.
-        tfr_treasury_fund: Whether the TFR not paid to a pension fund goes
-            to the Fondo Tesoreria INPS; ``None`` when not known.
-        erc_amount: Annual Elemento di Raccordo Contrattuale of the CCNL
-            grafici editoriali, ``None`` when not known.
+        tfr_fund: TFR fund at 31 December of the year before, if known.
+        tfr_treasury_fund: Whether the TFR goes to the Fondo Tesoreria.
+        erc_amount: Annual ERC of the CCNL grafici editoriali, if known.
+        public_end_of_service: End-of-service regime of a public employee.
     """
 
     period_id: PeriodId
@@ -177,6 +175,7 @@ class PeriodCalculationRequest:
     tfr_fund: TfrFundBalance | None = None
     tfr_treasury_fund: bool | None = None
     erc_amount: Decimal | None = None
+    public_end_of_service: PublicEndOfService | None = None
 
     def __post_init__(self) -> None:
         """Guard dates, cross-year state or schedule and hours above full time.
@@ -292,4 +291,10 @@ class PeriodCalculationRequest:
             ("tfr_fund", self.tfr_fund, TfrFundBalance, True),
             ("tfr_treasury_fund", self.tfr_treasury_fund, bool, True),
             ("erc_amount", self.erc_amount, Decimal, True),
+            (
+                "public_end_of_service",
+                self.public_end_of_service,
+                PublicEndOfService,
+                True,
+            ),
         )

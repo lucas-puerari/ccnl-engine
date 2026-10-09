@@ -1,0 +1,168 @@
+"""Contributions of a public employee to the end-of-service fund of INPS.
+
+INPS, 'I contributi dei dipendenti pubblici': "ENPAS (TFS) 9,6 7,1 2,5
+ENPAS (TFR) 9,6 9,6 -- INADEL (TFS) 6,1 3,6 2,5 INADEL (TFR) 6,1 6,1 --".
+DPCM 20 dicembre 1999 art. 1 c. 3: under the TFR "la retribuzione lorda
+viene ridotta in misura pari al contributo previdenziale obbligatorio
+soppresso", for "l'invarianza della retribuzione netta complessiva".
+
+Funzioni Centrali (ENPAS), Funzionari, January 2026: 2227.99, base 80% =
+1782.392 -> 1782.39.
+
+- TFS: worker 2.50% = 44.55975 -> 44.56, administration 7.10% =
+  126.54969 -> 126.55; with the CTPS (196.06 and 539.17) 240.62 and
+  665.72.
+- TFR at INPS: reduction 44.56, administration 9.60% = 171.10944 ->
+  171.11; 240.62 and 710.28; the same net and taxable as the TFS.
+- TFR at the employer: the CTPS alone, the TFR accrued in the company.
+
+Funzioni Locali (INADEL), Istruttori: the tredicesima of 2026, 1928.23,
+is part of the base: 1542.584 -> 1542.58, worker 38.5645 -> 38.56,
+administration 3.60% = 55.53288 -> 55.53.  ENPAS leaves it out.
+"""
+
+from __future__ import annotations
+
+from decimal import Decimal
+from typing import TYPE_CHECKING
+
+import pytest
+
+from ccnl_engine import CompetenceYearPlan, Employment
+from ccnl_engine.inputs import NoPensionFund, Permanent, PublicEndOfService
+from tests.acceptance.legal_scenarios._support import EMPLOYER, ENGINE, regular_period
+from tests.fixtures.current_year import employment_only
+from tests.fixtures.seniority import new_hire
+
+if TYPE_CHECKING:
+    from ccnl_engine import PeriodResult
+
+pytestmark = pytest.mark.legal_scenario
+
+
+def _employment(
+    regime: PublicEndOfService | None,
+    slug: str = "funzioni-centrali-aran.json",
+    level: str = "FUNZIONARI",
+) -> Employment:
+    return Employment(
+        ccnl_slug=slug,
+        level_code=level,
+        seniority=new_hire(),
+        pension_fund=NoPensionFund(),
+        contract_type=Permanent(),
+        public_end_of_service=regime,
+    )
+
+
+def _january(regime: PublicEndOfService | None) -> PeriodResult:
+    return regular_period(
+        employment=_employment(regime), current_year=employment_only()
+    )
+
+
+def _components(result: PeriodResult) -> dict[str, Decimal]:
+    return {c.name: c.amount for c in result.contribution_breakdown.components}
+
+
+def _entry(result: PeriodResult, account: str) -> Decimal:
+    return sum(
+        (e.amount for e in result.ledger_entries if e.account == account),
+        Decimal(0),
+    )
+
+
+@pytest.mark.parametrize(
+    ("regime", "employee", "employer", "names"),
+    [
+        (PublicEndOfService.TFS, "240.62", "665.72", ("tfs_employee", "tfs_employer")),
+        (
+            PublicEndOfService.TFR_INPS,
+            "240.62",
+            "710.28",
+            ("tfr_reduction_employee", "tfr_employer"),
+        ),
+        (PublicEndOfService.TFR_EMPLOYER, "196.06", "539.17", ()),
+    ],
+    ids=["tfs", "tfr_inps", "tfr_employer"],
+)
+def test_contributions_of_the_regime(
+    regime: PublicEndOfService, employee: str, employer: str, names: tuple[str, ...]
+) -> None:
+    """ENPAS on 80% of the pay, the CTPS beside it."""
+    result = _january(regime)
+    breakdown = result.contribution_breakdown
+    assert breakdown.employee == Decimal(employee)
+    assert breakdown.employer == Decimal(employer)
+    components = _components(result)
+    for name in names:
+        assert name in components
+    assert "public_end_of_service_unknown" not in {i.code for i in result.issues}
+
+
+def test_tfr_keeps_the_net_of_the_tfs() -> None:
+    """DPCM art. 1 c. 3: the same net and the same taxable."""
+    tfs = _january(PublicEndOfService.TFS)
+    tfr = _january(PublicEndOfService.TFR_INPS)
+    assert tfs.period_net == tfr.period_net
+    taxable = [r.closing_state.cash.earnings.taxable for r in (tfs, tfr)]
+    assert taxable[0] == taxable[1]
+    assert tfs.period_gross == tfr.period_gross
+
+
+@pytest.mark.parametrize(
+    ("regime", "posted"),
+    [
+        (PublicEndOfService.TFS, False),
+        (PublicEndOfService.TFR_INPS, False),
+        (PublicEndOfService.TFR_EMPLOYER, True),
+    ],
+    ids=["tfs", "tfr_inps", "tfr_employer"],
+)
+def test_tfr_accrued_by_the_employer_alone(
+    regime: PublicEndOfService, posted: bool
+) -> None:
+    """INPS accrues the TFR notionally; the TFS accrues none."""
+    result = _january(regime)
+    assert (_entry(result, "tfr_accrual") > 0) is posted
+
+
+def test_unknown_regime_is_a_missing_fact() -> None:
+    """Without the regime the contributions are left out."""
+    result = _january(None)
+    (issue,) = [i for i in result.issues if i.code == "public_end_of_service_unknown"]
+    assert issue.fact == "public_end_of_service"
+    assert not result.is_payable
+
+
+@pytest.mark.parametrize(
+    ("slug", "level", "employee"),
+    [
+        ("funzioni-locali-aran.json", "ISTRUTTORI", "38.56"),
+        ("funzioni-centrali-aran.json", "FUNZIONARI", None),
+    ],
+    ids=["inadel", "enpas"],
+)
+def test_tredicesima_in_the_base_of_inadel_alone(
+    slug: str, level: str, employee: str | None
+) -> None:
+    """L. 152/1968 art. 11 counts the tredicesima, DPR 1032/1973 does not."""
+    year = ENGINE.calculate_competence_year(
+        CompetenceYearPlan(
+            year=2026,
+            employment=_employment(PublicEndOfService.TFS, slug, level),
+            employer=EMPLOYER,
+            current_year=employment_only(),
+        )
+    )
+    (thirteenth,) = [
+        r
+        for r in year.period_results
+        if r.run is not None and r.run.run_kind == "thirteenth"
+    ]
+    components = _components(thirteenth)
+    if employee is None:
+        assert "tfs_employee" not in components
+        return
+    assert components["tfs_employee"] == Decimal(employee)
+    assert components["tfs_employer"] == Decimal("55.53")

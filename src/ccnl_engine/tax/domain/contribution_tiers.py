@@ -20,7 +20,10 @@ from ccnl_engine.shared.domain.primitives import (
     assert_ivs_le_total,
 )
 from ccnl_engine.tax.domain.additional_ivs import AdditionalIvsRule
-from ccnl_engine.tax.domain.contribution_rules import PublicFundRates
+from ccnl_engine.tax.domain.contribution_rules import (
+    EndOfServiceRates,
+    PublicFundRates,
+)
 from ccnl_engine.tax.domain.minimum_base import MinimumBaseRule
 
 
@@ -83,7 +86,8 @@ class InpsRawRates(BaseModel):
     is not modelled for this sector.  ``minimum_base`` is the minimale of
     the year; when absent, the INPS base is never raised to a minimum.
     ``public_funds`` are the rates of the funds of the Gestione Dipendenti
-    Pubblici other than the tiers, by fund (``CCNLMeta.public_pension_fund``).
+    Pubblici other than the tiers, by fund (``CCNLMeta.public_pension_fund``);
+    ``end_of_service`` the end-of-service fund of the tiers (ENPAS).
 
     ``employee_tiers`` and ``employer_tiers`` must be non-empty; an empty
     list would cause ``_resolve_tier`` to raise with no tier available for
@@ -99,6 +103,7 @@ class InpsRawRates(BaseModel):
     minimum_base: MinimumBaseRule | None = None
     provenance: RuleProvenance | None = None
     public_funds: dict[PublicPensionFund, PublicFundRates] = {}
+    end_of_service: EndOfServiceRates | None = None
 
 
 class ApprenticeRawRates(BaseModel):

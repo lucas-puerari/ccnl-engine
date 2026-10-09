@@ -206,6 +206,22 @@ CCNL names (`meta.public_pension_fund`): CTPS for the State (8.80% employee, 24.
 employer), CPDEL for the enti locali and the health service, CPS for its doctors and
 veterinarians (8.85% and 23.80%).
 
+They also finance the end-of-service fund of the Gestione on 80% of the pay: ENPAS
+for the State (the tredicesima left out), INADEL for the others (the tredicesima
+included). State the regime in `Employment.public_end_of_service`:
+
+- `tfs`: the worker pays 2.50%, the administration 7.10% (ENPAS) or 3.60% (INADEL);
+  no TFR accrues;
+- `tfr_inps`: the administration pays 9.60% or 6.10% and the gross is reduced by the
+  2.50% the worker no longer pays, posted as `tfr_reduction_employee` (DPCM 20
+  dicembre 1999 art. 1 c. 3), so net and taxable equal those of the TFS; INPS
+  accrues the TFR notionally, the run posts none;
+- `tfr_employer`: enti pubblici non economici and enti di ricerca accrue the TFR
+  themselves and pay the Gestione nothing.
+
+Left `None`, the run leaves these contributions out with the issue
+`public_end_of_service_unknown`.
+
 ### Flat hourly rate (domestic work)
 
 Domestic workers (*lavoro domestico*) use a different system: INPS publishes tables

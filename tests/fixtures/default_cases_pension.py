@@ -6,8 +6,9 @@ whose employer rate is higher for a young member, moved to Edilizia
 industria as an operaio, whose Prevedi contractual contribution is an
 amount per ordinary hour worked, and moved to Grafica editoria C1, hired
 in 2019 and enrolled in Byblos, whose employer rate is lower for a holder
-of the ERC, and moved to Servizi ambientali Q and enrolled in
-Previambiente, whose rates go on a conventional base of the worker.
+of the ERC, moved to Servizi ambientali Q and enrolled in Previambiente,
+whose rates go on a conventional base of the worker, and moved to Funzioni
+Centrali, whose end-of-service regime sets the contributions to INPS.
 """
 
 from __future__ import annotations
@@ -21,8 +22,10 @@ from ccnl_engine import PayrollRun
 from ccnl_engine.inputs import (
     ContributableHours,
     EmploymentPeriod,
+    EmploymentSector,
     NoPensionFund,
     PensionFundEnrolment,
+    PublicEndOfService,
     WorkerCategory,
 )
 from tests.fixtures.explicit_facts import CONCIA_D2
@@ -83,6 +86,16 @@ def _previambiente(
     )
 
 
+def _public(regime: PublicEndOfService | None) -> Employment:
+    return replace(
+        CONCIA_D2,
+        ccnl_slug="funzioni-centrali-aran.json",
+        level_code="FUNZIONARI",
+        sector=EmploymentSector.PUBLIC,
+        public_end_of_service=regime,
+    )
+
+
 def _operaio(
     january: Callable[[Employment], PeriodInput], hours: Decimal | None
 ) -> PeriodInput:
@@ -125,6 +138,11 @@ def pension_cases[C](
                 _previambiente(january, Decimal("2077.84")),
                 _previambiente(january, None),
                 "conventional_base",
+            ),
+        ),
+        "Employment.public_end_of_service": (
+            pair(
+                _public(PublicEndOfService.TFS), _public(None), "public_end_of_service"
             ),
         ),
         "PensionFundEnrolment.young_member": (
