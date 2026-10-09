@@ -128,7 +128,8 @@ class ArrearsEvent:
     """Contract renewal arrears, taxed by the year they refer to.
 
     Arrears of a tax year earlier than the run are taxed separately (art. 17
-    c. 1 lett. b TUIR) at :attr:`separate_tax_rate`; arrears of the tax year
+    c. 1 lett. b TUIR; art. 19 c. 1 lett. b D.Lgs. 117/2026 from 2027) at
+    :attr:`separate_tax_rate`; arrears of the tax year
     of the run are ordinary income of the run and the rate is not used.
 
     Attributes:
@@ -136,7 +137,8 @@ class ArrearsEvent:
         amount: Gross arrears amount in EUR.  Must be >= 0.
         separate_tax_rate: Caller-supplied rate of the separate taxation:
             the rate on half the income of the two years before the year of
-            receipt (art. 21 c. 1 TUIR).  Must be in [0, 1].
+            receipt (art. 21 c. 1 TUIR; art. 23 c. 1 D.Lgs. 117/2026 from
+            2027).  Must be in [0, 1].
         reference_period: The competence period the arrears refer to.  An
             earlier tax year selects the separate taxation, the tax year of
             the run the ordinary one, a later year is rejected.  ``None``

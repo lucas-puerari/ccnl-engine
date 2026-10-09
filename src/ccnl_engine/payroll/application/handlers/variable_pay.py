@@ -1,6 +1,8 @@
 """Handler for contract-renewal arrears.
 
-Art. 17 c. 1 lett. b TUIR (text in force until 31 December 2026) taxes
+Art. 17 c. 1 lett. b TUIR (text in force until 31 December 2026; art. 19
+c. 1 lett. b of the testo unico of D.Lgs. 117/2026 from 2027, see
+:mod:`~ccnl_engine.payroll.service.separate_tax_law`) taxes
 separately the "emolumenti arretrati per prestazioni di lavoro dipendente
 riferibili ad anni precedenti, percepiti per effetto di leggi, di contratti
 collettivi, [...] o per altre cause non dipendenti dalla volontà delle
@@ -33,13 +35,13 @@ from ccnl_engine.payroll.domain.ledger import AccountKind, PostingIntent
 from ccnl_engine.payroll.domain.pay_items import ContractRenewalArrears
 from ccnl_engine.payroll.domain.remittance import ARREARS_WITHHOLDING
 from ccnl_engine.payroll.domain.rounding import money
+from ccnl_engine.payroll.service.separate_tax_law import separate_tax_rule
 from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.period_payroll import PeriodId
 
 _CAPABILITY = "contract_renewal_arrears"
-_RULE = "tuir-art17-c1-b"
 #: Reason of arrears of an earlier tax year: separate taxation.
 SEPARATE_TAXATION = "separate_taxation"
 #: Reason of arrears of the tax year of the run: ordinary IRPEF.
@@ -83,7 +85,7 @@ def _decision(
             else CalculationStatus.FINAL
         ),
         reason_code=reason,
-        rule=_RULE,
+        rule=separate_tax_rule(tax_year).rule,
         rule_version=str(tax_year),
         inputs={
             "tax_year": str(tax_year),
@@ -98,12 +100,13 @@ def _decision(
     )
 
 
-def _unknown_issue(index: str) -> CalculationIssue:
+def _unknown_issue(index: str, tax_year: int) -> CalculationIssue:
+    law = separate_tax_rule(tax_year)
     return CalculationIssue(
         code="arrears_reference_period_unknown",
         message=(
             f"ArrearsEvent {index} states no reference_period: arrears of an "
-            "earlier year are taxed separately (art. 17 c. 1 lett. b TUIR), "
+            f"earlier year are taxed separately ({law.citation}), "
             "those of the tax year of the run with the ordinary IRPEF; the "
             "run taxes them separately at the caller's rate as a simulation"
         ),
@@ -172,5 +175,5 @@ def _handle_arrears(event: ArrearsEvent, ctx: _EventHandlerCtx) -> EventEffect:
         intents=intents,
         inps_delta=gross,
         decisions=[_decision(reason, event, tax_year, sep_tax)],
-        issues=[_unknown_issue(ctx.evt_id)] if unknown else [],
+        issues=[_unknown_issue(ctx.evt_id, tax_year)] if unknown else [],
     )
