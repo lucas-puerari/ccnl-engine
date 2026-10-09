@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass, field
+from decimal import Decimal
 from typing import Literal
 
 from ccnl_engine.contract.domain.category import (
@@ -30,6 +31,7 @@ from ccnl_engine.shared.domain.validation import (
     FieldSpec,
     parse_enum,
     reject,
+    require_decimal,
     require_instances,
     require_int,
     require_str,
@@ -172,6 +174,12 @@ class Employment:
             administrations are outside the Fondo: ``True`` there raises
             ``InvalidInputError``, ``None`` and ``False`` keep the TFR in
             the company.
+        erc_amount: Annual Elemento di Raccordo Contrattuale of the CCNL
+            grafici editoriali (renewal of 19 January 2021), frozen in
+            December 2020; zero when the worker has none.  It sets the
+            Byblos employer rate (1.4% with one, 1.9% without).  ``None``
+            means not known: an enrolled run on that CCNL has a
+            ``missing_fact`` blocker.
 
     Raises:
         InvalidInputError: When a field is not of its type, a role is not a
@@ -194,6 +202,7 @@ class Employment:
     pension_fund: PensionFundEnrolment | NoPensionFund | None = None
     tfr_fund: TfrFundBalance | None = None
     tfr_treasury_fund: bool | None = None
+    erc_amount: Decimal | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         if not isinstance(self.ccnl_slug, str) or not _SLUG.fullmatch(self.ccnl_slug):
@@ -220,6 +229,13 @@ class Employment:
             )
             object.__setattr__(self, "sector", sector)
         check_within_full_time(self.weekly_hours, self.full_time_weekly_hours)
+        require_decimal(
+            self.erc_amount,
+            "Employment.erc_amount",
+            feature=FEATURE,
+            minimum=Decimal(0),
+            optional=True,
+        )
 
     def check_seniority_in(self, year: int, month: int) -> None:
         """Reject a seniority whose recognised service starts after a month.

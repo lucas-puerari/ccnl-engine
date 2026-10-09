@@ -65,6 +65,8 @@ class PensionFundTerms:
         young_member_unknown: Whether the fund has a young member rate and
             the enrolment does not state whether it applies: the base rate
             is used.
+        erc_unknown: Whether the fund has an ERC holder rate and the
+            employment does not state the ERC: the base rate is used.
     """
 
     fund: EmployerFund
@@ -76,6 +78,7 @@ class PensionFundTerms:
     rules: ComplementaryPensionRules
     minimum_base: Decimal = _ZERO
     young_member_unknown: bool = False
+    erc_unknown: bool = False
 
 
 @dataclass(frozen=True)
@@ -137,11 +140,13 @@ def resolve_terms(
     *,
     apprentice: bool,
     minimum_base: Decimal = _ZERO,
+    erc_amount: Decimal | None = None,
 ) -> PensionFundTerms:
     """Return the rates of the enrolment on ``day``.
 
     An apprentice pays the apprentice rate of the fund when it sets one; a
-    young member stated by the enrolment, the young member rate; an employee
+    young member stated by the enrolment, the young member rate; a holder
+    of the ERC (``erc_amount`` above zero), the ERC holder rate; an employee
     rate that reaches a tier, the employer rate of the highest such tier.
 
     Returns:
@@ -157,13 +162,14 @@ def resolve_terms(
     check_category(fund, category)
     apart = fund.apprentice_rate if apprentice else None
     young = fund.young_member_rate if enrolment.young_member else None
+    erc = fund.erc_holder_rate if erc_amount else None
     tiers = [
         t
         for t in fund.employer_rate_tiers
         if enrolment.employee_rate >= t.employee_from
     ]
     tier = max(tiers, key=lambda t: t.employee_from).rate if tiers else None
-    in_force = _in_force(apart or young or tier or fund.rate, day)
+    in_force = _in_force(apart or young or erc or tier or fund.rate, day)
     if in_force is None:
         msg = f"pension fund {fund.code} has no employer rate on {day}"
         raise InvalidInputError(msg, feature=PENSION_FEATURE)
@@ -189,6 +195,7 @@ def resolve_terms(
         minimum_base=minimum_base,
         young_member_unknown=fund.young_member_rate is not None
         and enrolment.young_member is None,
+        erc_unknown=fund.erc_holder_rate is not None and erc_amount is None,
     )
 
 

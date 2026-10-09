@@ -4,6 +4,13 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Byblos on the CCNL grafici editoriali and the ERC
+
+| Before | After |
+|---|---|
+| No fund on `grafica-editoria-aieg` | `"BYBLOS"` on the TFR base: employer 1.9%, 1.4% for a holder of the ERC; employee at least 1% |
+| No input for the Elemento di Raccordo Contrattuale | `Employment.erc_amount` (annual ERC, zero for none); `None` gives an enrolled Byblos run the `missing_fact` issue `pension_fund_erc_unknown`; new `EmployerFund.erc_holder_rate` |
+
 ## Byblos on the CCNL Esercizi cinematografici, on twelve monthly payments
 
 | Before | After |

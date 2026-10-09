@@ -30,6 +30,18 @@ YOUNG_MEMBER_UNKNOWN = CalculationIssue(
     status=CalculationStatus.INCOMPLETE,
     fact="young_member",
 )
+#: A fund with an ERC holder rate needs the employment to state the ERC.
+ERC_UNKNOWN = CalculationIssue(
+    code="pension_fund_erc_unknown",
+    message=(
+        "Byblos has a lower employer rate (1.4%) for the holders of the "
+        "Elemento di Raccordo Contrattuale of the CCNL grafici editoriali and "
+        "the employment does not state it: the amounts shown use the base "
+        "rate; state Employment.erc_amount"
+    ),
+    status=CalculationStatus.INCOMPLETE,
+    fact="erc_amount",
+)
 
 
 def run_pension(inp: _AmountsInput) -> PensionContribution | None:

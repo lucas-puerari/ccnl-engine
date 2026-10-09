@@ -404,6 +404,13 @@ A fund due on the twelve monthly payments alone has
 has a zero base. Byblos on the CCNL Esercizi cinematografici (art. 43: 1%
 employer and 1% employee "per 12 mensilità annue") is one.
 
+Byblos on the CCNL grafici editoriali pays the employer 1.9% of the TFR base
+(the retribuzione contrattuale annua), 1.4% for a holder of the Elemento di
+Raccordo Contrattuale (`EmployerFund.erc_holder_rate`), whose employer rate
+the renewal of 19 January 2021 did not raise. State the annual ERC in
+`Employment.erc_amount`, zero when the worker has none. Left `None`, an
+enrolled run uses 1.9% and has the issue `pension_fund_erc_unknown`.
+
 Cometa computes on the contractual minimum of the level
 (`contribution_base` `contractual_minimum`, the base salary of the pay
 chain): employer 2%, employee at least 1.2%. A higher employee rate goes on

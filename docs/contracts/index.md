@@ -102,7 +102,7 @@ Capabilities of the registry by layer and implementation:
 | 48 | T261 | [CCNL Formazione Professionale (CNOS-FAP/CIOFS-FP/FORMA/CNF)](formazione-professionale.md) | formazione professionale | ~19.8k | — | 🔲 | 🔲 | 🔲 | — | 0 / 33 / 1 / 1 | 🧪 | 🤖 |
 | 49 | K321 | [CCNL Gas e Acqua — Utilitalia/Proxigas/Anfida/Assogas](gas-acqua-utilitalia.md) | gas e acqua | ~65k | 2025 | 🔲 | 🔲 | 🔲 | inps_employer, seniority | 0 / 62 / 2 / 0 | 🧪 | 🤖 |
 | 50 | B371 | [CCNL Gomma e Plastica Industria (Federazione Gomma Plastica)](gomma-plastica-federazione-gomma-plastica.md) | gomma-plastica | ~90k | — | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 77 / 1 / 1 | 🧪 | 🤖 |
-| 51 | G011 | [CCNL Grafica e Editoria Industria (AIEG-Acigraf)](grafica-editoria-aieg.md) | grafica-editoria | ~70k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 67 / 1 / 1 | 🧪 | 🤖 |
+| 51 | G011 | [CCNL Grafica e Editoria Industria (AIEG-Acigraf)](grafica-editoria-aieg.md) | grafica-editoria | ~70k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 70 / 1 / 1 | 🧪 | 🤖 |
 | 52 | T511 | [CCNL Gruppo ANAS](anas.md) | anas spa - personale non dirigente | ~7k | 2025 | 🔲 | 🔲 | 🔲 | seniority | 0 / 42 / 2 / 0 | 🧪 | 🤖 |
 | 53 | K540 | [CCNL Igiene Ambientale — Servizi Ambientali e di Igiene Urbana](igiene-ambientale-utilitalia.md) | servizi ambientali | ~65k | 2025 | 🔲 | 🔲 | 🔲 | inps_employer, seniority | 0 / 106 / 1 / 1 | 🧪 | 🤖 |
 | 54 | H077 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | impianti sportivi, palestre e attività sportive | 35533 | 2024 | 🔲 | 🔲 | 🔲 | base_salary, overtime, sickness | 0 / 32 / 1 / 1 | 🧪 | 🤖 |

@@ -70,6 +70,7 @@ def pension_terms(ctx: RunContext) -> PensionFundTerms | None:
         contract.year_rules.complementary_pension,
         apprentice=isinstance(ctx.request.contract_type, Apprentice),
         minimum_base=ctx.chain.base,
+        erc_amount=ctx.request.erc_amount,
     )
 
 
