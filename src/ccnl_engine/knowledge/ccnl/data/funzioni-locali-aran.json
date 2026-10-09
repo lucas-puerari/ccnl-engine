@@ -37,7 +37,8 @@
       "timestamp": "2026-09-03",
       "human_reviewed": false
     },
-    "workers_estimate": "~400k"
+    "workers_estimate": "~400k",
+    "public_pension_fund": "cpdel"
   },
   "parameters": {
     "hourly_divisor": {
@@ -612,7 +613,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
     "verification_status": "unverified",
-    "source_hash": "61ac3c072cded52673126b691a035c7714184643de14978942f071c85dd01eaa",
+    "source_hash": "7ff2f9d98239e98b19b1e7a68c81c03760f344b46ac01084a2428713f11c14d6",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

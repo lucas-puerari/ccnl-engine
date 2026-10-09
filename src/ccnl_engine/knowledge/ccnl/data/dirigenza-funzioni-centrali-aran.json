@@ -35,7 +35,8 @@
       "timestamp": "2026-09-03",
       "human_reviewed": false
     },
-    "workers_estimate": "~30k"
+    "workers_estimate": "~30k",
+    "public_pension_fund": "ctps"
   },
   "parameters": {
     "hourly_divisor": {
@@ -345,7 +346,7 @@
     "effective_until": "2024-12-31",
     "source": "https://trasparenza.lavoro.gov.it/archiviofile/minlavoro/2025_10_28_CCNL_A_FC_2022-2024_Pubblicazione-1%20vigente.pdf",
     "verification_status": "unverified",
-    "source_hash": "7a3160f08664c6e2a6143f7e912768058daf9a1477fe81db61b87d80e7df8bde",
+    "source_hash": "4ef3e440627c23d805fff439364fba72213300ce7876607b551d8429455c3b35",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },

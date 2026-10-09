@@ -7,7 +7,7 @@ from typing import Any
 
 from pydantic import BaseModel, ConfigDict, model_validator
 
-from ccnl_engine.contract.domain.identity._enums import TaxSector
+from ccnl_engine.contract.domain.identity._enums import PublicPensionFund, TaxSector
 from ccnl_engine.contract.domain.validation import (
     _coerce_legacy_extraction,
     _coerce_legacy_source,
@@ -88,6 +88,9 @@ class CCNLMeta(BaseModel):
         workers_estimate: Approximate number of workers covered by this agreement,
             as a human-readable string (e.g. ``"~800k"``). Based on CNEL and INPS
             estimates. Empty string when unknown.
+        public_pension_fund: Pension fund of INPS Gestione Dipendenti
+            Pubblici the workers enrol in, which sets their INPS rates;
+            ``None`` outside the public administrations.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -103,6 +106,7 @@ class CCNLMeta(BaseModel):
     agreement_date: str | None = None
     validity: CCNLValidity | None = None
     workers_estimate: str = ""
+    public_pension_fund: PublicPensionFund | None = None
 
     @property
     def withholding_agent(self) -> bool:
@@ -119,6 +123,14 @@ class CCNLMeta(BaseModel):
         file can contradict it.
         """
         return self.tax_sector is not TaxSector.LAVORO_DOMESTICO
+
+    @model_validator(mode="after")
+    def _check_public_fund(self) -> CCNLMeta:
+        public = self.tax_sector is TaxSector.PUBBLICA_AMMINISTRAZIONE
+        if self.public_pension_fund is not None and not public:
+            msg = "public_pension_fund is for the public administrations only"
+            raise ValueError(msg)
+        return self
 
     @model_validator(mode="before")
     @classmethod

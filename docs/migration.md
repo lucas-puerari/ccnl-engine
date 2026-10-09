@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## INPS rates of the public administrations by pension fund
+
+| Before | After |
+|---|---|
+| Every CCNL of the public administrations paid the CTPS rates (8.80% employee, 24.20% employer) | The CCNL names its fund in the new `meta.public_pension_fund`; CPDEL (funzioni locali, sanità and their dirigenze) and CPS (dirigenza medica e veterinaria) pay 8.85% and 23.80% (`InpsRates.public_funds`) |
+
 ## Seniority conversion of a worker already in service
 
 | Before | After |

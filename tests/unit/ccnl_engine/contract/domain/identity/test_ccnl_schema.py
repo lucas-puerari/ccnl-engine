@@ -61,6 +61,15 @@ class TestStrictSchema:
         assert ccnl.meta.validity is not None
         assert ccnl.meta.validity.valid_until is None
 
+    def test_public_pension_fund_is_for_the_public_administrations(self) -> None:
+        """A fund of the Gestione Dipendenti Pubblici needs that sector."""
+        data = make_ccnl_dict()
+        data["meta"]["public_pension_fund"] = "cpdel"
+        with pytest.raises(ValidationError, match="public administrations only"):
+            _validate(data)
+        data["meta"]["tax_sector"] = "pubblica-amministrazione"
+        assert _validate(data).meta.public_pension_fund == "cpdel"
+
 
 # ---------------------------------------------------------------------------
 # Legacy schema 0.4 coercion

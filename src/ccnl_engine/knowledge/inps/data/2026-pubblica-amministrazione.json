@@ -44,17 +44,97 @@
       }
     },
     "provenance": {
-      "status": "assumed",
+      "status": "derived",
       "location": {
         "source_document": {
-          "document_id": "kitech-contributi-17_210",
-          "title": "kitech.it, contributi previdenziali dipendenti pubblici",
-          "kind": "rivista",
-          "url": "https://www.kitech.it/Contributi-previdenziali.aspx?p=17_210"
+          "document_id": "inps-contributi-dipendenti-pubblici",
+          "title": "INPS, scheda informativa 'I contributi dei dipendenti pubblici'",
+          "kind": "inps_circolare",
+          "url": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html"
         },
-        "section": "CTPS"
+        "section": "Le aliquote contributive della Gestione dipendenti pubblici",
+        "quote": "LE ALIQUOTE CONTRIBUTIVE DELLA GESTIONE DIPENDENTI PUBBLICI: Aliquota totale (%) Aliquota a carico datore di lavoro (%) Aliquota a carico lavoratore (%) CTPS 33 24,2 8,8 CPDEL 32,65 23,8 8,85 CPI 32,65 23,8 8,85 CPUG 32,65 23,8 8,85 CPS 32,65 23,8 8,85"
       },
-      "note": "Employee 8.80%, employer 24.20%, corroborated by INPS sources. Assumed, not derived: its ruleset declares source_type 'estimated'."
+      "transformation": "The tiers hold the CTPS, the fund of the State: employee 8.80%, employer 24.20%, all pension (IVS).",
+      "note": "Read on 2026-10-09 from the page the url serves (sha256 576c808bac9fff92e7635be0922ffa46aa4742eb2b584e82cd094625ed9d2451, HTML). No human review recorded."
+    },
+    "public_funds": {
+      "cpdel": {
+        "employee_rate": "0.0885",
+        "employer_rate": "0.2380",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "inps-contributi-dipendenti-pubblici",
+              "title": "INPS, scheda informativa 'I contributi dei dipendenti pubblici'",
+              "kind": "inps_circolare",
+              "url": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html"
+            },
+            "section": "Le aliquote contributive della Gestione dipendenti pubblici",
+            "quote": "LE ALIQUOTE CONTRIBUTIVE DELLA GESTIONE DIPENDENTI PUBBLICI: Aliquota totale (%) Aliquota a carico datore di lavoro (%) Aliquota a carico lavoratore (%) CTPS 33 24,2 8,8 CPDEL 32,65 23,8 8,85 CPI 32,65 23,8 8,85 CPUG 32,65 23,8 8,85 CPS 32,65 23,8 8,85"
+          },
+          "transformation": "CPDEL: employee 8.85%, employer 23.80%, all pension (IVS).",
+          "note": "Read on 2026-10-09 from the page the url serves (sha256 576c808bac9fff92e7635be0922ffa46aa4742eb2b584e82cd094625ed9d2451, HTML). No human review recorded."
+        }
+      },
+      "cps": {
+        "employee_rate": "0.0885",
+        "employer_rate": "0.2380",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "inps-contributi-dipendenti-pubblici",
+              "title": "INPS, scheda informativa 'I contributi dei dipendenti pubblici'",
+              "kind": "inps_circolare",
+              "url": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html"
+            },
+            "section": "Le aliquote contributive della Gestione dipendenti pubblici",
+            "quote": "LE ALIQUOTE CONTRIBUTIVE DELLA GESTIONE DIPENDENTI PUBBLICI: Aliquota totale (%) Aliquota a carico datore di lavoro (%) Aliquota a carico lavoratore (%) CTPS 33 24,2 8,8 CPDEL 32,65 23,8 8,85 CPI 32,65 23,8 8,85 CPUG 32,65 23,8 8,85 CPS 32,65 23,8 8,85"
+          },
+          "transformation": "CPS: employee 8.85%, employer 23.80%, all pension (IVS).",
+          "note": "Read on 2026-10-09 from the page the url serves (sha256 576c808bac9fff92e7635be0922ffa46aa4742eb2b584e82cd094625ed9d2451, HTML). No human review recorded."
+        }
+      },
+      "cpi": {
+        "employee_rate": "0.0885",
+        "employer_rate": "0.2380",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "inps-contributi-dipendenti-pubblici",
+              "title": "INPS, scheda informativa 'I contributi dei dipendenti pubblici'",
+              "kind": "inps_circolare",
+              "url": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html"
+            },
+            "section": "Le aliquote contributive della Gestione dipendenti pubblici",
+            "quote": "LE ALIQUOTE CONTRIBUTIVE DELLA GESTIONE DIPENDENTI PUBBLICI: Aliquota totale (%) Aliquota a carico datore di lavoro (%) Aliquota a carico lavoratore (%) CTPS 33 24,2 8,8 CPDEL 32,65 23,8 8,85 CPI 32,65 23,8 8,85 CPUG 32,65 23,8 8,85 CPS 32,65 23,8 8,85"
+          },
+          "transformation": "CPI: employee 8.85%, employer 23.80%, all pension (IVS).",
+          "note": "Read on 2026-10-09 from the page the url serves (sha256 576c808bac9fff92e7635be0922ffa46aa4742eb2b584e82cd094625ed9d2451, HTML). No human review recorded."
+        }
+      },
+      "cpug": {
+        "employee_rate": "0.0885",
+        "employer_rate": "0.2380",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "inps-contributi-dipendenti-pubblici",
+              "title": "INPS, scheda informativa 'I contributi dei dipendenti pubblici'",
+              "kind": "inps_circolare",
+              "url": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html"
+            },
+            "section": "Le aliquote contributive della Gestione dipendenti pubblici",
+            "quote": "LE ALIQUOTE CONTRIBUTIVE DELLA GESTIONE DIPENDENTI PUBBLICI: Aliquota totale (%) Aliquota a carico datore di lavoro (%) Aliquota a carico lavoratore (%) CTPS 33 24,2 8,8 CPDEL 32,65 23,8 8,85 CPI 32,65 23,8 8,85 CPUG 32,65 23,8 8,85 CPS 32,65 23,8 8,85"
+          },
+          "transformation": "CPUG: employee 8.85%, employer 23.80%, all pension (IVS).",
+          "note": "Read on 2026-10-09 from the page the url serves (sha256 576c808bac9fff92e7635be0922ffa46aa4742eb2b584e82cd094625ed9d2451, HTML). No human review recorded."
+        }
+      }
     }
   },
   "apprentice": {
@@ -79,9 +159,9 @@
     "effective_from": "2026-01-01",
     "effective_until": "2026-12-31",
     "published_at": "2026-09-07",
-    "source": "unavailable",
+    "source": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html",
     "verification_status": "unverified",
-    "source_hash": "4aa6df0b24625d715e5d2f46c60e3d34370f1c9d338b8ebd3e6a2d1e7f4ed03b",
-    "source_type": "estimated"
+    "source_hash": "ed58e94443f90d7637f8cb70f4d897f7fd480017cb2fa6eeab331e527a9821d0",
+    "source_type": "institutional_secondary"
   }
 }

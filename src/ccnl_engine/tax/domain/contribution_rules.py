@@ -13,6 +13,7 @@ from typing import Self
 from pydantic import BaseModel, ConfigDict, model_validator
 
 from ccnl_engine.contract.domain.category import WorkerCategory
+from ccnl_engine.contract.domain.identity import PublicPensionFund
 from ccnl_engine.provenance.domain.chain import RuleProvenance
 from ccnl_engine.shared.domain.primitives import (
     NonNegativeRate,
@@ -21,6 +22,19 @@ from ccnl_engine.shared.domain.primitives import (
 )
 from ccnl_engine.tax.domain.additional_ivs import AdditionalIvsRule
 from ccnl_engine.tax.domain.minimum_base import MinimumBaseRule
+
+
+class PublicFundRates(BaseModel):
+    """Pension contribution rates of a fund of INPS Gestione Dipendenti Pubblici.
+
+    The whole rate is IVS: the Gestione pays pensions alone.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    employee_rate: NonNegativeRate
+    employer_rate: NonNegativeRate
+    provenance: RuleProvenance | None = None
 
 
 class InpsRates(BaseModel):
@@ -67,6 +81,27 @@ class InpsRates(BaseModel):
     employee_additional: AdditionalIvsRule | None = None
     minimum_base: MinimumBaseRule | None = None
     provenance: RuleProvenance | None = None
+    public_funds: dict[PublicPensionFund, PublicFundRates] = {}
+
+    def for_public_fund(self, fund: PublicPensionFund | None) -> InpsRates:
+        """Return the rates of a fund of the Gestione Dipendenti Pubblici.
+
+        Returns:
+            These rates with the pension rates of ``fund`` when the year
+            gives them apart, else these rates (the tiers hold the CTPS).
+        """
+        rates = None if fund is None else self.public_funds.get(fund)
+        if rates is None:
+            return self
+        return self.model_copy(
+            update={
+                "employee_rate": rates.employee_rate,
+                "employee_ivs_rate": rates.employee_rate,
+                "employer_rate": rates.employer_rate,
+                "employer_ivs_rate": rates.employer_rate,
+                "provenance": rates.provenance,
+            }
+        )
 
     @model_validator(mode="after")
     def _check_rates(self) -> Self:

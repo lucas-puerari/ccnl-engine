@@ -8,6 +8,7 @@ from ccnl_engine.contract.domain.identity._coverage import (
 )
 from ccnl_engine.contract.domain.identity._enums import (
     NoteKind,
+    PublicPensionFund,
     TaxSector,
 )
 from ccnl_engine.contract.domain.identity._meta import (
@@ -25,5 +26,6 @@ __all__ = [
     "CCNLWorkRules",
     "CoverageNote",
     "NoteKind",
+    "PublicPensionFund",
     "TaxSector",
 ]
