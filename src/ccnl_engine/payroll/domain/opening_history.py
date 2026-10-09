@@ -117,7 +117,8 @@ def opening_state_issue(
         code=_CODE,
         message=(
             f"the opening state of run '{run_id}' misses the history of the "
-            f"employment: {gap}.  The progressive IRPEF (art. 23 DPR 600/1973), "
+            f"employment: {gap}.  The progressive IRPEF (art. 23 DPR 600/1973; "
+            "art. 33 D.Lgs. 33/2025 from 2027), "
             "the INPS base of the year and the carried obligations are "
             f"computed from zero as a simulation: {_REMEDY}"
         ),
