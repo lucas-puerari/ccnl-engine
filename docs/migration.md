@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Allowances left out of the TFR base
+
+| Before | After |
+|---|---|
+| `Allowance.tfr_relevant` false was ignored: the TFR, the funds on the TFR base and the end-of-service base of a public employee counted the allowance (`autoferrotranvieri-internavigatori`, `poste-italiane-k700`, the two dirigenze sanitarie) | They leave it out (`MonthlyPayChain.tfr_excluded_total`); `Allowance.contribution_relevant` false, which nothing used and the INPS base ignored, is rejected |
+
 ## Reduction of the gross under the TFR of public employees
 
 | Before | After |

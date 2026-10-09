@@ -156,6 +156,7 @@ def amounts_input(
     return _AmountsInput(
         monthly_gross=ctx.monthly_gross,
         in_kind=ctx.chain.in_kind_total,
+        tfr_excluded=ctx.chain.tfr_excluded_total,
         event_inps_base=totals.inps_base,
         event_tfr_base=totals.tfr_base,
         event_irpef_base=totals.irpef_base,

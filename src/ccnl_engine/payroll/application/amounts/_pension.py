@@ -103,9 +103,7 @@ def run_pension(inp: _AmountsInput) -> PensionContribution | None:
     terms = inp.pension
     bases = {
         FundContributionBase.INPS_BASE: inp.monthly_gross + inp.event_inps_base,
-        FundContributionBase.TFR_BASE: inp.monthly_gross
-        + inp.in_kind
-        + inp.event_tfr_base,
+        FundContributionBase.TFR_BASE: inp.tfr_pay,
         FundContributionBase.CONTRACTUAL_MINIMUM: terms.minimum_base,
         FundContributionBase.CONVENTIONAL: terms.conventional_base or _ZERO,
     }

@@ -22,9 +22,11 @@ class Allowance(BaseModel):
 
     ``role`` restricts the allowance to workers holding that role (``None``
     means every worker at the level). ``months_per_year`` overrides the
-    contract-wide ``additional_months`` for this allowance only. The three
-    relevance flags exclude the allowance from the TFR base, the contribution
-    base, or the apprenticeship-percentage base respectively.
+    contract-wide ``additional_months`` for this allowance only. The
+    relevance flags exclude the allowance from the TFR base (with the
+    end-of-service base of a public employee and the fund bases on it) or the
+    apprenticeship-percentage base.  ``contribution_relevant`` false is
+    rejected: the engine does not take an allowance out of the INPS base.
     ``apprenticeship_pct_relevant=False`` means the allowance is paid at full
     value even for percentage-based apprentices (e.g. the EDR, which Italian
     CCNL commonly leave out of the elements the apprenticeship percentage
@@ -65,6 +67,16 @@ class Allowance(BaseModel):
     in_kind: bool = False
     service_months_threshold: int | None = Field(default=None, ge=0)
     provenance: RuleProvenance | None = None
+
+    @model_validator(mode="after")
+    def _check_contribution_relevant(self) -> Self:
+        if not self.contribution_relevant:
+            msg = (
+                f"allowance {self.code}: contribution_relevant false is not "
+                "supported, the INPS base would keep it"
+            )
+            raise ValueError(msg)
+        return self
 
     @property
     def apprenticeship_pct_declared(self) -> bool:

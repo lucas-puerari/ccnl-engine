@@ -93,7 +93,7 @@ def public_tfr_reduction(ctx: RunContext, totals: _EventTotals) -> ExtraMonthSet
     regime = ctx.request.public_end_of_service
     inps = ctx.contract.year_rules.inps
     rates = None if inps is None else inps.end_of_service
-    pay = ctx.monthly_gross + ctx.chain.in_kind_total + totals.tfr_base
+    pay = ctx.tfr_pay + totals.tfr_base
     extra = ctx.run_kind in _EXTRA
     base = end_of_service_base(rates, regime, pay, extra=extra)
     if rates is None or base is None or regime is not PublicEndOfService.TFR_INPS:

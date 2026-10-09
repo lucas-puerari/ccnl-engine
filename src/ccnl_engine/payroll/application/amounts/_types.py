@@ -133,6 +133,18 @@ class _AmountsInput:
     tfr_treasury_fund: bool | None = None
     assistance: AssistanceTerms | None = None
     public_end_of_service: PublicEndOfService | None = None
+    tfr_excluded: Decimal = Decimal(0)
+
+    @property
+    def tfr_pay(self) -> Decimal:
+        """TFR base of the run, the excluded allowances left out.
+
+        The gross, the benefits in kind and the events entering the TFR,
+        less the allowances the CCNL leaves out of it.
+        """
+        return (
+            self.monthly_gross + self.in_kind + self.event_tfr_base - self.tfr_excluded
+        )
 
     @property
     def regular_run(self) -> bool:
