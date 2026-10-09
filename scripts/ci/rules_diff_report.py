@@ -180,6 +180,9 @@ def _all_valid_from_dates(ccnl: CCNL) -> set[date]:
         dates |= _ts_valid_from_dates(si.apprentice_amount)
     for fund in params.employer_funds:
         dates |= _ts_valid_from_dates(fund.rate)
+    contractual = params.contractual_fund_contribution
+    for series in () if contractual is None else contractual.monthly_by_level.values():
+        dates |= _ts_valid_from_dates(series)
     if ccnl.work_rules is not None and ccnl.work_rules.time_supplements is not None:
         for band in ccnl.work_rules.time_supplements.overtime_bands:
             dates |= _ts_valid_from_dates(band.rate)

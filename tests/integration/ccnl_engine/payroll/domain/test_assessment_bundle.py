@@ -120,6 +120,38 @@ def test_coverage_axis_is_the_report_status(
         assert blocked == gaps
 
 
+_PENSION = "pension_fund_contribution"
+
+
+def _contractual(result: PeriodResult) -> bool:
+    """Whether the run owes only the contractual contribution of its CCNL.
+
+    Returns:
+        True when the pension fund decision has reason ``contractual_only``.
+    """
+    return any(
+        d.capability == _PENSION and d.reason_code == "contractual_only"
+        for d in result.decisions
+    )
+
+
+def _open_gaps(result: PeriodResult) -> list[str]:
+    """Return the gaps of an ordinary run that no known reason explains.
+
+    Returns:
+        The features with a gap, less the INPS ones of an undetermined
+        minimum base and the pension fund of a contractual contribution.
+    """
+    explained = set(_INPS) if _minimum_open(result) else set()
+    if _contractual(result):
+        explained.add(_PENSION)
+    return [
+        gap.feature
+        for gap in result.capability_report.gaps
+        if gap.feature not in explained
+    ]
+
+
 def _minimum_open(result: PeriodResult) -> bool:
     """Whether the run leaves its minimum INPS base undetermined.
 
@@ -137,22 +169,17 @@ def test_ordinary_runs_have_no_coverage_gap(
     The INPS amounts of a run whose minimum base is undetermined are
     unresolved, and blocked: an agricultural level that leaves the category
     open (art. 7 c. 5 D.L. 463/1983 excludes the operai agricoli only),
-    a public level without a sourced day count.
+    a public level without a sourced day count.  A CCNL that owes its fund a
+    contribution for every worker applies the pension fund capability, which
+    the catalog marks partial, to a worker not enrolled too.
     """
-    gapped = {
-        ccnl_id: [
-            gap.feature
-            for gap in result.capability_report.gaps
-            if not (_minimum_open(result) and gap.feature in _INPS)
-        ]
-        for ccnl_id, result in results.items()
-    }
+    gapped = {ccnl_id: _open_gaps(result) for ccnl_id, result in results.items()}
     open_minimum = [r for r in results.values() if _minimum_open(r)]
     assert {k: v for k, v in gapped.items() if v} == {}
     assert all(
         r.assurance.coverage == "complete"
         for r in results.values()
-        if not _minimum_open(r)
+        if not (_minimum_open(r) or _contractual(r))
     )
     issue = BlockerCode.CALCULATION_ISSUE
     assert all(

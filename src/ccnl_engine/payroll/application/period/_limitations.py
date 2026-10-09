@@ -12,6 +12,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.payroll.application.period._contractual_fund import contractual_paths
 from ccnl_engine.payroll.application.period._seniority import seniority_months_at
 from ccnl_engine.payroll.domain.capability_report import CapabilityScope
 from ccnl_engine.shared.domain.limitation import LimitationFacts
@@ -51,7 +52,7 @@ def limitation_facts(
             for feature, scope in report.scope.items()
             if scope is CapabilityScope.APPLICABLE
         ),
-        traversed=frozenset(ctx.chain.limitations) | traversed,
+        traversed=frozenset(ctx.chain.limitations) | traversed | contractual_paths(ctx),
     )
 
 

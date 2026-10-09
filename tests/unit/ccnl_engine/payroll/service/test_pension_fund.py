@@ -18,6 +18,7 @@ from ccnl_engine.contract.service.loaders import load_ccnl
 from ccnl_engine.payroll.domain.pension_fund import PensionFundEnrolment
 from ccnl_engine.payroll.service.pension_fund import (
     PensionFundTerms,
+    contractual_only,
     contribute,
     resolve_terms,
     upcoming_adjustment,
@@ -152,3 +153,32 @@ class TestContribute:
         """
         change = upcoming_adjustment(_terms(), Decimal("10000.00"), Decimal("5200.00"))
         assert change == Decimal("50.00")
+
+
+class TestContractual:
+    """The contractual contribution joins the employer part."""
+
+    def test_added_to_the_employer_part(self) -> None:
+        """30.00 on 2000.00 at 1.50% plus 6.80: 36.80, solidarity 3.68."""
+        pension = contribute(_terms(), Decimal("2000.00"), Decimal(0), Decimal("6.80"))
+        assert (pension.employer, pension.contractual) == (
+            Decimal("36.80"),
+            Decimal("6.80"),
+        )
+        assert pension.solidarity == Decimal("3.68")
+
+    def test_alone_without_enrolment(self) -> None:
+        """6.80 alone: no rates, deducted in full within the cap."""
+        pension = contractual_only(Decimal("6.80"), _RULES, Decimal(0))
+        assert pension.terms is None
+        assert (pension.employer, pension.employee) == (Decimal("6.80"), Decimal(0))
+        assert (pension.solidarity, pension.deductible) == (
+            Decimal("0.68"),
+            Decimal("6.80"),
+        )
+        assert pension.taxable_adjustment == 0
+
+    def test_alone_needs_the_rules_of_the_year(self) -> None:
+        """A tax year without complementary pension rules is rejected."""
+        with pytest.raises(InvalidInputError, match="no complementary pension"):
+            contractual_only(Decimal("6.80"), None, Decimal(0))

@@ -25,6 +25,7 @@ from ccnl_engine.payroll.application.period._additional_ivs import (
     additional_ivs_position,
 )
 from ccnl_engine.payroll.application.period._assistance import assistance_terms
+from ccnl_engine.payroll.application.period._contractual_fund import contractual_amount
 from ccnl_engine.payroll.application.period._pension_decision import pension_terms
 from ccnl_engine.payroll.application.period._sickness import sickness_terms
 from ccnl_engine.payroll.application.period._tfr_destination import (
@@ -127,17 +128,14 @@ def amounts_input(
     family_rules: FamilyDeductionRules | None,
     *,
     ivs_ceiling_applies: bool,
-    inps_minimum: Decimal | None = None,
+    inps_minimum: Decimal | None = None,  # None when not determined
 ) -> _AmountsInput:
     """Gather what the amounts of the run are computed from.
-
-    ``inps_minimum`` is the minimum INPS base, ``None`` when not determined.
 
     Returns:
         The input of the amounts computation.
     """
-    request, contract = ctx.request, ctx.contract
-    fiscal_year = ctx.fiscal_year
+    request, contract, fiscal_year = ctx.request, ctx.contract, ctx.fiscal_year
     return _AmountsInput(
         monthly_gross=ctx.monthly_gross,
         in_kind=ctx.chain.in_kind_total,
@@ -177,6 +175,7 @@ def amounts_input(
         installment_run=ctx.installment_run,
         withholding_agent=ctx.withholding_agent,
         pension=pension_terms(ctx),
+        contractual_fund=contractual_amount(ctx),
         conguaglio=ctx.conguaglio,
         surtax_obligations=ctx.opening.cash.obligations.surtax,
         run_month=request.period_id.month,

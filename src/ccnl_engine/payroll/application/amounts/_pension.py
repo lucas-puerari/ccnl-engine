@@ -6,7 +6,11 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.contract.domain.compensation import FundContributionBase
-from ccnl_engine.payroll.service.pension_fund import contribute, upcoming_adjustment
+from ccnl_engine.payroll.service.pension_fund import (
+    contractual_only,
+    contribute,
+    upcoming_adjustment,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.amounts._types import _AmountsInput
@@ -22,17 +26,25 @@ def run_pension(inp: _AmountsInput) -> PensionContribution | None:
     counted for the TFR (e.g. Fon.Te.), the TFR base: the recurring gross,
     the benefits in kind and the events entering the TFR.
 
+    The contractual contribution of the CCNL is added to the employer part,
+    and is the whole contribution of a worker not enrolled voluntarily.
+
     Returns:
-        ``None`` when the worker is not enrolled.
+        ``None`` when the worker is not enrolled and owes no contractual
+        contribution.
     """
+    deducted = inp.opening.earnings.pension_deducted
     if inp.pension is None:
-        return None
+        if inp.contractual_fund == _ZERO:
+            return None
+        rules = inp.rules.complementary_pension
+        return contractual_only(inp.contractual_fund, rules, deducted)
     base = fund_base(
         inp.pension.fund.contribution_base,
         inps_base=inp.monthly_gross + inp.event_inps_base,
         tfr_base=inp.monthly_gross + inp.in_kind + inp.event_tfr_base,
     )
-    return contribute(inp.pension, base, inp.opening.earnings.pension_deducted)
+    return contribute(inp.pension, base, deducted, inp.contractual_fund)
 
 
 def fund_base(
@@ -52,12 +64,13 @@ def projected_adjustment(
     """Return the taxable change of the fund on the slots still to come.
 
     The recurring gross still to come is taken as their INPS base, as the
-    projection of the employee INPS does.
+    projection of the employee INPS does.  A contractual contribution alone
+    stays within the cap: the projection leaves it out.
 
     Returns:
         Zero when the worker is not enrolled.
     """
-    if pension is None:
+    if pension is None or pension.terms is None:
         return _ZERO
     deducted = inp.opening.earnings.pension_deducted + pension.deductible
     return upcoming_adjustment(pension.terms, inp.upcoming_gross, deducted)

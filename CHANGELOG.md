@@ -48,6 +48,9 @@ is known and computed, and nothing in the 2026 bundle is payable yet.
   `PeriodResult.paid_gross`, and the JSON form of a state
   (`period_state_to_json`, `period_state_from_json`); results pickle.
 - Prevedi on Edilizia industria and artigianato (voluntary 1% and 1%).
+- Contractual fund contributions owed for every worker
+  (`CCNLParameters.contractual_fund_contribution`): Fondapi on Materiali da
+  costruzione (lapidei).
 - `lavoro-domestico-convivente-orario-ridotto`: the reduced-hours
   conviventi of art. 14 c. 2 CCNL lavoro domestico, Tabella B.
 - `CurrentYearTaxFacts.exempt_regime_income`: the exempt share of the

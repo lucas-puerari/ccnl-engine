@@ -355,6 +355,18 @@ The rules behind it:
   is not a component of `contribution_breakdown`, which holds the INPS
   contributions on the pay only.
 
+A CCNL can also owe its fund a fixed contribution a month for every
+worker, enrolled or not (`CCNL.parameters.contractual_fund_contribution`,
+an amount per level). The Materiali da costruzione CCNL (lapidei) owes
+Fondapi 5 EUR "riparametrati su base 100": 6.80 EUR for level 5. It is an
+employer contribution to the fund: posted to `pension_fund_employer` with
+its 10% solidarity, within the deduction cap, on every run that pays the
+month and on no extra-month run. A worker not enrolled has the decision
+reason `contractual_only`; an enrolled one has it in the `contractual`
+input, on top of the ordinary rates. The sources give no rule for a partial
+month or part time: the run pays the full amount and has the open
+limitation `contractual_fund_partial`.
+
 Not modelled: the compensatory measures for employers whose TFR goes to a
 fund (D.Lgs. 252/2005 art. 10), the extra deduction of workers first
 employed from 2007 (art. 8 c. 6), a partial TFR conferment, and the eligibility

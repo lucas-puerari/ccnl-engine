@@ -8,6 +8,7 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.contract.domain.assistance import AssistanceContribution
 from ccnl_engine.contract.domain.category import WorkerCategory
+from ccnl_engine.contract.domain.fund_contribution import ContractualFundContribution
 from ccnl_engine.contract.domain.seniority import SeniorityIncrements
 from ccnl_engine.contract.domain.validity import TimeSeries
 from ccnl_engine.provenance.domain.chain import ProvenanceStatus, RuleProvenance
@@ -209,8 +210,9 @@ class CCNLParameters(BaseModel):
     ``thirteenth_payment_day`` and ``fourteenth_payment_day`` are the days
     the CCNL pays the tredicesima and the quattordicesima, ``None`` when the
     bundle has no sourced clause.
-    ``assistance_contribution`` is the contribution the CCNL charges per
-    paid hour, ``None`` when it charges none.
+    ``assistance_contribution`` and ``contractual_fund_contribution`` are
+    the contributions the CCNL charges per paid hour and per month to a
+    fund, ``None`` when it charges none.
     ``flat_pay_max_weekly_hours``: the ceiling up to which a regime pays its
     minimum in full whatever the hours (lavoro domestico art. 14 c. 2: 30).
     """
@@ -226,14 +228,13 @@ class CCNLParameters(BaseModel):
     fourteenth_payment_day: PaymentDay | None = None
     assistance_contribution: AssistanceContribution | None = None
     flat_pay_max_weekly_hours: int | None = Field(default=None, ge=1)
+    contractual_fund_contribution: ContractualFundContribution | None = None
 
     @model_validator(mode="after")
     def _check_positive_params(self) -> Self:
         """Reject non-positive hourly_divisor or additional_months values.
 
-        Both parameters appear in the denominator of hourly-rate and monthly
-        pay calculations; a zero or negative value would produce nonsensical
-        results and is always a data-entry error.
+        Both divide the pay: a zero or negative value is a data-entry error.
 
         Returns:
             The validated instance (required by Pydantic model_validator).

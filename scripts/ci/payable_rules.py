@@ -236,6 +236,7 @@ def ccnl_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]:
     yield from _work_rules(file, data.get("work_rules"))
     yield from _overtime_rules(file, data.get("work_rules"))
     yield from _fund_rules(file, params.get("employer_funds"))
+    yield from _contractual_rules(file, params.get("contractual_fund_contribution"))
     assistance = params.get("assistance_contribution")
     if isinstance(assistance, dict):
         record = assistance.get("provenance")
@@ -306,6 +307,22 @@ def _fund_rules(file: str, funds: object) -> Iterator[PayableRule]:
                 )
                 record = period.get("provenance") or inherited
                 yield _rule(file, path, ("pension_fund_contribution",), record)
+
+
+def _contractual_rules(file: str, spec: object) -> Iterator[PayableRule]:
+    """Yield the monthly amounts of the contractual fund contribution.
+
+    Yields:
+        One rule per non-gap period of the amount of each level.
+    """
+    if not isinstance(spec, dict):
+        return
+    amounts = spec.get("monthly_by_level")
+    for level, series in (amounts if isinstance(amounts, dict) else {}).items():
+        for period in _periods(series):
+            path = f"contractual_fund_contribution[{level}][{period.get('valid_from')}]"
+            record = period.get("provenance") or spec.get("provenance")
+            yield _rule(file, path, ("pension_fund_contribution",), record)
 
 
 def _at(data: Mapping[str, object], key: str) -> object:

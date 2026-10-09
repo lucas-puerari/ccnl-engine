@@ -45,6 +45,8 @@ _NOT_IN_BUNDLE = "not_in_bundle"
 _NO_NEGOTIATED_FUND = frozenset({TaxSector.LAVORO_DOMESTICO})
 #: Reason code of a run whose enrolment in a fund of the CCNL is unknown.
 REQUIRED_FACT_MISSING = "required_fact_missing"
+#: Reason code of a run that owes only the contractual contribution.
+CONTRACTUAL_ONLY = "contractual_only"
 FACT = "pension_fund"
 
 
@@ -71,6 +73,13 @@ def pension_terms(ctx: RunContext) -> PensionFundTerms | None:
 
 def _inputs(pension: PensionContribution) -> dict[str, Decimal | str]:
     terms = pension.terms
+    if terms is None:
+        return {
+            "contractual": pension.contractual,
+            "employer": pension.employer,
+            "solidarity": pension.solidarity,
+            "deductible": pension.deductible,
+        }
     minimum = terms.employee_min_rate
     return {
         "fund_code": terms.fund.code,
@@ -84,6 +93,7 @@ def _inputs(pension: PensionContribution) -> dict[str, Decimal | str]:
         "deductible": pension.deductible,
         "deduction_cap": terms.rules.deduction_cap,
         "tfr_to_fund": str(terms.tfr_to_fund).lower(),
+        "contractual": pension.contractual,
     }
 
 
@@ -139,12 +149,15 @@ def pension_decision(
     Returns:
         A decision with reason ``enrolled`` and the employer and employee
         contributions as amount; with reason ``not_enrolled`` when the
-        worker is stated not enrolled in a fund the CCNL has; an incomplete
+        worker is stated not enrolled in a fund the CCNL has; with reason
+        ``contractual_only`` and its amount when the worker, not enrolled,
+        is owed the contractual contribution of the CCNL; an incomplete
         one with reason ``required_fact_missing`` when the enrolment is
         unknown; ``None`` when the CCNL has no fund.
     """
     rule, version = _ccnl_rule(ccnl, year)
     funds = ",".join(f.code for f in ccnl.parameters.employer_funds)
+    contractual = ccnl.parameters.contractual_fund_contribution
     if unknown:
         return CalculationDecision(
             capability=CAPABILITY,
@@ -152,7 +165,8 @@ def pension_decision(
             reason_code=REQUIRED_FACT_MISSING,
             rule=rule,
             rule_version=version,
-            inputs={"funds": funds},
+            inputs={"funds": funds}
+            | ({} if pension is None else {"contractual": pension.contractual}),
         )
     if pension is None:
         if not funds:
@@ -165,12 +179,24 @@ def pension_decision(
             rule_version=version,
             inputs={"funds": funds},
         )
-    provenance = pension.terms.rate_period.provenance or pension.terms.fund.provenance
+    terms = pension.terms
+    if terms is None:
+        return CalculationDecision(
+            capability=CAPABILITY,
+            status=CalculationStatus.FINAL,
+            reason_code=CONTRACTUAL_ONLY,
+            rule=f"{rule}:contractual_fund_contribution",
+            rule_version=version,
+            inputs=_inputs(pension),
+            source=None if contractual is None else contractual.provenance.location,
+            amount=pension.employer,
+        )
+    provenance = terms.rate_period.provenance or terms.fund.provenance
     return CalculationDecision(
         capability=CAPABILITY,
         status=CalculationStatus.FINAL,
         reason_code="enrolled",
-        rule=f"{rule}:employer_funds[{pension.terms.fund.code}]",
+        rule=f"{rule}:employer_funds[{terms.fund.code}]",
         rule_version=version,
         inputs=_inputs(pension),
         source=None if provenance is None else provenance.location,

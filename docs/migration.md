@@ -4,6 +4,13 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Contractual fund contribution owed for every worker
+
+| Before | After |
+|---|---|
+| A fund contribution was posted only for a worker enrolled in it | New `CCNLParameters.contractual_fund_contribution` (fund code and an amount a month per level): owed whatever `Employment.pension_fund` states, posted to `pension_fund_employer` with its solidarity; decision reason `contractual_only` for a worker not enrolled, input `contractual` otherwise. `PensionContribution.terms` is `None` for a contractual contribution alone |
+| No fund on `materiali-costruzione-lapidei-confapi` | Fondapi: 5 EUR x parametro / 100 a month for every worker, and 2.40% employer and at least 1.40% employee on the TFR base for an enrolled one |
+
 ## Prevedi on the building CCNLs
 
 | Before | After |

@@ -65,7 +65,8 @@ class _AmountsInput:
     ``withholding_agent`` is false for an employer that withholds no tax
     (see :mod:`~ccnl_engine.payroll.service.withholding_agent`).
     ``pension`` holds the rates of the pension fund the worker is enrolled
-    in, ``None`` when not enrolled.  ``conguaglio`` is true on the run that
+    in, ``None`` when not enrolled; ``contractual_fund`` the contribution
+    the CCNL owes a fund for every worker.  ``conguaglio`` is true on the run that
     settles the tax year: its last withholding slot, or the last run of the
     employment.  ``surtax_obligations`` is the surtax determined by an
     earlier conguaglio still to withhold; ``run_month`` and ``run_kind``
@@ -119,6 +120,7 @@ class _AmountsInput:
     installment_run: InstallmentRun = field(default_factory=InstallmentRun)
     withholding_agent: bool = True
     pension: PensionFundTerms | None = None
+    contractual_fund: Decimal = Decimal(0)
     conguaglio: bool = False
     surtax_obligations: tuple[SurtaxObligation, ...] = ()
     run_month: int = 1
