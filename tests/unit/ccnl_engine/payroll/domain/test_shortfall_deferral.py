@@ -58,8 +58,13 @@ class TestRequest:
     @pytest.mark.parametrize("signed_on", [date(2025, 12, 31), date(2027, 3, 1)])
     def test_rejects_a_date_outside_the_window(self, signed_on: date) -> None:
         """Before N or after the deadline of the conguaglio."""
-        with pytest.raises(InvalidInputError, match="deferral request"):
+        with pytest.raises(InvalidInputError, match=r"art\. 23 c\. 3 DPR 600/1973"):
             ShortfallDeferralRequest(signed_on).check_for(2026)
+
+    def test_rejection_from_2027_cites_the_testo_unico(self) -> None:
+        """From 2027 the rule is art. 33 c. 4 D.Lgs. 33/2025 (art. 243 c. 1)."""
+        with pytest.raises(InvalidInputError, match=r"art\. 33 c\. 4 D\.Lgs\. 33/2025"):
+            ShortfallDeferralRequest(date(2028, 3, 1)).check_for(2027)
 
     def test_prior_year_facts_reject_another_type(self) -> None:
         """The facts hold a request or nothing."""

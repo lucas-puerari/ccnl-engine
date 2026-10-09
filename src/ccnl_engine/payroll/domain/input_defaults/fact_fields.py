@@ -210,7 +210,8 @@ FACT_DEFAULTS: Mapping[str, FieldDefault] = {
         "adds the days of its own"
     ),
     "OpeningBalances.deferred_shortfall": absence_is_fact(
-        "no written request to defer the shortfall (art. 23 c. 3 DPR 600/1973)"
+        "no written request to defer the shortfall (art. 23 c. 3 DPR 600/1973; "
+        "art. 33 c. 4 D.Lgs. 33/2025 from 2027)"
     ),
     "PeriodState.accrual": absence_is_fact(
         "a state built by the caller starts from empty accrual accounts; the "
