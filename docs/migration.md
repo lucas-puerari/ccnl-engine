@@ -4,6 +4,13 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Perseo Sirio and the notional TFR of public employees
+
+| Before | After |
+|---|---|
+| No fund on `funzioni-centrali-aran` | `"PERSEO_SIRIO"` on the TFR base: employer 1%, employee at least 1% |
+| A public employee's TFR conferred to a fund was posted to `pension_fund_tfr` | It stays on the account the run accrues it on: INPS accrues it notionally (`tfr_to_fund` of the decision is `notional`) |
+
 ## Previambiente on the CCNL Servizi Ambientali
 
 | Before | After |

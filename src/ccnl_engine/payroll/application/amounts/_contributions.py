@@ -149,6 +149,21 @@ class TfrAccrual:
         )
 
 
+def _tfr_paid_to_fund(inp: _AmountsInput) -> bool:
+    """Return whether the TFR of the run is paid to the pension fund.
+
+    A public employee's TFR conferred to the fund is not paid: INPS
+    Gestione Dipendenti Pubblici accrues it notionally and pays it at the
+    termination (Perseo Sirio and Espero, Scheda 'I destinatari e i
+    contributi'), so it stays where the run accrues it.
+
+    Returns:
+        True when the worker confers the TFR and it is paid to the fund.
+    """
+    pension = inp.pension
+    return pension is not None and pension.tfr_to_fund and not pension.tfr_notional
+
+
 def _ivs_employer_base(breakdown: ContributionBreakdown) -> Decimal:
     """Return the employer IVS base of the run, zero without an IVS share.
 
@@ -184,7 +199,7 @@ def tfr_accrual(inp: _AmountsInput, breakdown: ContributionBreakdown) -> TfrAccr
     quota = money(base / tfr.accrual_divisor)
     accrual = TfrAccrual(
         quota=quota,
-        to_pension_fund=inp.pension is not None and inp.pension.tfr_to_fund,
+        to_pension_fund=_tfr_paid_to_fund(inp),
         treasury_fund=inp.tfr_treasury_fund,
     )
     extra = tfr.additional_ivs
