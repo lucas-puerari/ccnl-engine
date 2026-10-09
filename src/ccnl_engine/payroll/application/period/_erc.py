@@ -10,10 +10,14 @@ the tredicesima, or liquidates it at the termination, pays the ERC of the
 same months: ``Employment.erc_amount`` x months / 12.  It is ordinary pay
 for IRPEF and INPS and stays out of the TFR base
 (``raccordo_element_earning``, policy ``it/earning/raccordo_element``).
+
+Only a worker employed in December 2020 holds one: an employment that
+started after that month has none (:func:`erc_of`).
 """
 
 from __future__ import annotations
 
+from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
@@ -40,11 +44,13 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.application.period._context import RunContext
     from ccnl_engine.payroll.application.period._rule_lookup import Rule
 
-__all__ = ["ERC_UNKNOWN", "erc_decisions", "erc_rules", "erc_settlement"]
+__all__ = ["ERC_UNKNOWN", "erc_decisions", "erc_of", "erc_rules", "erc_settlement"]
 
 _ZERO = Decimal(0)
 _TWELVE = Decimal(12)
 _KIND = "raccordo_element_earning"
+#: Last day of the month whose tredicesima the ERC was counted on.
+_ERC_COUNTED_ON = date(2020, 12, 31)
 #: The ERC of a run that pays it needs the employment to state it.
 ERC_UNKNOWN = CalculationIssue(
     code="erc_unknown",
@@ -56,6 +62,21 @@ ERC_UNKNOWN = CalculationIssue(
     status=CalculationStatus.INCOMPLETE,
     fact="erc_amount",
 )
+
+
+def erc_of(ctx: RunContext) -> Decimal | None:
+    """Return the annual ERC of the worker.
+
+    Returns:
+        ``Employment.erc_amount`` when stated; zero for an employment that
+        started after December 2020, when the ERC was counted; ``None``
+        otherwise.
+    """
+    stated = ctx.request.erc_amount
+    period = ctx.request.employment_period
+    if stated is None and period is not None and period.started_on > _ERC_COUNTED_ON:
+        return _ZERO
+    return stated
 
 
 def _months(ctx: RunContext) -> int:
@@ -78,7 +99,7 @@ def _amount(ctx: RunContext) -> Decimal | None:
     Returns:
         The annual ERC x months / 12, rounded to the cent.
     """
-    annual = ctx.request.erc_amount
+    annual = erc_of(ctx)
     if annual is None:
         return None
     return money(annual * Decimal(_months(ctx)) / _TWELVE)
@@ -144,7 +165,7 @@ def erc_decisions(ctx: RunContext) -> tuple[CalculationDecision, ...]:
         return ()
     rule, version = _ccnl_rule(ctx.contract.ccnl, ctx.contract.tctx.competence.year)
     amount = _amount(ctx)
-    annual = ctx.request.erc_amount
+    annual = erc_of(ctx)
     inputs: dict[str, Decimal | str] = {"months": str(months)}
     if annual is not None:
         inputs["annual"] = annual

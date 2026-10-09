@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## No ERC for an employment started after December 2020
+
+| Before | After |
+|---|---|
+| `Employment.erc_amount` left `None` was a missing fact on every Byblos run and tredicesima of `grafica-editoria-aieg` | An employment whose `employment_period.started_on` is after 31 December 2020 has no ERC (it was counted on the tredicesima of December 2020): `None` counts as zero there |
+
 ## ERC paid with the tredicesima of the CCNL grafici editoriali
 
 | Before | After |

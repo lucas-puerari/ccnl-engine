@@ -17,6 +17,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.contract.domain.identity import TaxSector
 from ccnl_engine.payroll.application.period._contractual_fund import contractual_run
+from ccnl_engine.payroll.application.period._erc import erc_of
 from ccnl_engine.payroll.application.period._run_decisions import _ccnl_rule
 from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
@@ -70,7 +71,7 @@ def pension_terms(ctx: RunContext) -> PensionFundTerms | None:
         contract.year_rules.complementary_pension,
         apprentice=isinstance(ctx.request.contract_type, Apprentice),
         minimum_base=ctx.chain.base,
-        erc_amount=ctx.request.erc_amount,
+        erc_amount=erc_of(ctx),
     )
 
 

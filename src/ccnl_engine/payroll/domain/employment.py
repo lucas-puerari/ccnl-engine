@@ -178,9 +178,10 @@ class Employment:
             grafici editoriali (renewal of 19 January 2021), frozen in
             December 2020; zero when the worker has none.  It is paid with
             the tredicesima, by its months, and sets the Byblos employer
-            rate (1.4% with one, 1.9% without).  ``None`` means not known:
-            an enrolled run, or a run paying the tredicesima, on that CCNL
-            has a ``missing_fact`` blocker.
+            rate (1.4% with one, 1.9% without).  ``None`` means not known,
+            zero for an employment that started after December 2020: an
+            enrolled run, or a run paying the tredicesima, on that CCNL has
+            a ``missing_fact`` blocker.
 
     Raises:
         InvalidInputError: When a field is not of its type, a role is not a

@@ -13,13 +13,14 @@ C1 in January 2026, hired that month: 1954.47.  Without ERC: employer
 
 from __future__ import annotations
 
+from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
 import pytest
 
 from ccnl_engine import Employment
-from ccnl_engine.inputs import PensionFundEnrolment, Permanent
+from ccnl_engine.inputs import EmploymentPeriod, PensionFundEnrolment, Permanent
 from tests.acceptance.legal_scenarios._support import regular_period
 from tests.fixtures.current_year import employment_only
 from tests.fixtures.seniority import new_hire
@@ -81,3 +82,18 @@ def test_unknown_erc_is_a_missing_fact() -> None:
     (issue,) = [i for i in result.issues if i.code == "pension_fund_erc_unknown"]
     assert issue.fact == "erc_amount"
     assert not result.is_payable
+
+
+def test_no_erc_after_december_2020() -> None:
+    """Hired in 2026: no ERC by definition, 1.9% without a missing fact."""
+    employment = Employment(
+        ccnl_slug="grafica-editoria-aieg.json",
+        level_code="C1",
+        seniority=new_hire(),
+        employment_period=EmploymentPeriod(started_on=date(2026, 1, 1)),
+        pension_fund=PensionFundEnrolment("BYBLOS", Decimal("0.01"), tfr_to_fund=True),
+        contract_type=Permanent(),
+    )
+    result = regular_period(employment=employment, current_year=employment_only())
+    assert _entry(result, "pension_fund_employer") == Decimal("37.13")
+    assert "pension_fund_erc_unknown" not in {i.code for i in result.issues}
