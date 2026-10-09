@@ -430,6 +430,13 @@ apprenticeship 10 EUR more (`ContractualFundContribution.not_enrolled_monthly`,
 of c. 5 (`paid_month_only`); a month paid in part has the open limitation
 `fund_paid_month`.
 
+Perseo Sirio, on the CCNLs of the public administrations, pays 1% employer
+and at least 1% employee of the TFR base. The TFR a public employee confers
+is not paid to the fund: INPS Gestione Dipendenti Pubblici accrues it
+notionally and pays it at the termination, so the run keeps it where it
+accrues it and the decision records `tfr_to_fund` as `notional`. The 1.5%
+of an optant is notional too and not computed.
+
 Cometa computes on the contractual minimum of the level
 (`contribution_base` `contractual_minimum`, the base salary of the pay
 chain): employer 2%, employee at least 1.2%. A higher employee rate goes on

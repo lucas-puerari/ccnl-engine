@@ -22,6 +22,7 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.contract.domain.identity import TaxSector
 from ccnl_engine.payroll.domain.pension_fund import PENSION_FEATURE
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.service.pension_fund_lookup import check_category, fund_of
@@ -58,6 +59,9 @@ class PensionFundTerms:
         employee_min_rate: Minimum employee rate of the CCNL, ``None`` when
             the bundle records none.
         tfr_to_fund: Whether the TFR accrued is paid to the fund.
+        tfr_notional: Whether the TFR conferred stays a notional accrual
+            (public administrations: INPS Gestione Dipendenti Pubblici
+            accrues it and pays it to the fund at the termination).
         rules: Deduction cap and solidarity rate of the tax year.
         minimum_base: Contractual minimum of the run, the base of a fund
             on the contractual minimum (:class:`~ccnl_engine.contract.domain\
@@ -79,6 +83,7 @@ class PensionFundTerms:
     employee_min_rate: Decimal | None
     tfr_to_fund: bool
     rules: ComplementaryPensionRules
+    tfr_notional: bool = False
     minimum_base: Decimal = _ZERO
     young_member_unknown: bool = False
     erc_unknown: bool = False
@@ -197,6 +202,7 @@ def resolve_terms(
         employee_rate=enrolment.employee_rate,
         employee_min_rate=min_rate,
         tfr_to_fund=enrolment.tfr_to_fund,
+        tfr_notional=ccnl.meta.tax_sector is TaxSector.PUBBLICA_AMMINISTRAZIONE,
         rules=rules,
         minimum_base=minimum_base,
         young_member_unknown=fund.young_member_rate is not None

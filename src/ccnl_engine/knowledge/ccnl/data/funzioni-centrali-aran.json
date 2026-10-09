@@ -92,7 +92,47 @@
           "effective_from": "2020-01-01"
         }
       }
-    }
+    },
+    "employer_funds": [
+      {
+        "code": "PERSEO_SIRIO",
+        "description": "Perseo Sirio - Fondo pensione complementare dei dipendenti pubblici",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0100"
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0100"
+            }
+          ]
+        },
+        "contribution_base": "tfr_base",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "perseo-sirio-nota-informativa-2026",
+              "title": "Perseo Sirio, Nota informativa, Parte I, Scheda 'I destinatari e i contributi' (in vigore dal 27/03/2026)",
+              "kind": "altro",
+              "url": "https://www.fondoperseosirio.it/wp-content/uploads/2026/07/Nota-Info-completa_18.12.25.pdf"
+            },
+            "section": "Scheda 'I destinatari e i contributi', Dipendenti pubblici",
+            "quote": "Dipendenti pubblici (D. Lgs. 124/1993): Assunti dopo il 31-dic-2000 ovvero a tempo determinato: Quota TFR 100%, Lavoratore 1%, Datore di lavoro 1% [...] Assunti prima del 1-gen-2001 (optanti): 28,94%, 1%, 1%, 1,5% [...] (1) Le quote di TFR dei dipendenti pubblici non sono versate al fondo ma sono accantonate figurativamente presso l'INPS Gestione Dipendenti Pubblici [...] (5) In percentuale della retribuzione utile ai fini del calcolo del TFR."
+          },
+          "transformation": "1% employer and at least 1% worker of the retribuzione utile ai fini del TFR, the TFR base of the engine, on the monthly payments and the tredicesima. The TFR conferred and the 1.5% of an optant are accrued notionally by INPS Gestione Dipendenti Pubblici, not paid to the fund: the run keeps the TFR where it accrues it.",
+          "note": "Read from the PDF the url serves (sha256 7a52a0d7ea3445ad54eb67bb0ccf206d930a7e72110221a9b010231437b261cc), text layer. No human review recorded."
+        }
+      }
+    ]
   },
   "levels": [
     {
@@ -716,6 +756,10 @@
       {
         "kind": "info",
         "text": "sub-settori ENAC, ANSFISA, ANSV e AGID hanno tabelle retributive proprie (Tabelle 3-6 CCNL) non modellate — out_of_scope per implementazione standard."
+      },
+      {
+        "kind": "info",
+        "text": "PENSION FUND. Perseo Sirio (1% + 1% of the retribuzione utile ai fini del TFR). Enrolment is a fact: the silenzio-assenso of the hires from 2 January 2019 (accordo ARAN 16/09/2021) is not inferred, nor the three months a fixed term needs to enrol. The TFR conferred stays a notional INPS accrual."
       }
     ]
   },
@@ -726,7 +770,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "eb4b545b11369c3aa9dd8b26908d6632f4ff2def2686c01d1d60dbc77d463cc6",
+    "source_hash": "3c723f1e880ec2f3b7a8ab5414c8efc2d350174eabaec4f9df7f6a3b5cd8030f",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

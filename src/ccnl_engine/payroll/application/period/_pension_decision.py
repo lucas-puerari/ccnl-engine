@@ -100,7 +100,9 @@ def _inputs(pension: PensionContribution) -> dict[str, Decimal | str]:
         "solidarity": pension.solidarity,
         "deductible": pension.deductible,
         "deduction_cap": terms.rules.deduction_cap,
-        "tfr_to_fund": str(terms.tfr_to_fund).lower(),
+        "tfr_to_fund": "notional"
+        if terms.tfr_to_fund and terms.tfr_notional
+        else str(terms.tfr_to_fund).lower(),
         "contractual": pension.contractual,
         "contribution_base": str(terms.fund.contribution_base),
     }
