@@ -40,7 +40,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | bilateral_funds, seniority |
+| **Limits of this contract** | bilateral_funds, pension_fund_contribution, seniority |
 
 ### Verifica
 
@@ -60,7 +60,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 
 ### Semplificazioni note
 
-3 semplificazioni documentate.
+4 semplificazioni documentate.
 Vedi [Known simplifications](#known-simplifications) per i dettagli.
 
 ## Salary table
@@ -140,6 +140,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
+
+!!! warning "edilizia-artigianato-cna/contractual_fund_uncovered · pension_fund_contribution · impact yes · open"
+    The Prevedi contractual contribution of the operai is an amount per hour of ordinary work actually done, rounded to the euro a month (CNCE vademecum); the request has no fact for those hours, so an operaio, or a level the Prevedi table has no row for, owes no contractual contribution in the engine: the run has the incomplete issue contractual_fund_not_computed.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add a fact for the ordinary hours worked in the month and model the hourly Prevedi amounts of the operai, then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

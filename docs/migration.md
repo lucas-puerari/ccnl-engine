@@ -4,6 +4,13 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Prevedi contractual contribution of the impiegati
+
+| Before | After |
+|---|---|
+| `ContractualFundContribution` had an amount per level only | New fields `categories`, `apprentice_monthly`, `minimum_days_in_month`, `extra_months`, `part_time_proportional`, `minimum_fixed_term_months` |
+| No contractual contribution on `edilizia-ance` and `edilizia-artigianato-cna` | Prevedi for the impiegati and quadri (CNCE vademecum rules); an operaio has the incomplete issue `contractual_fund_not_computed`, an open category `contractual_fund_category_unknown` |
+
 ## Contractual fund contribution owed for every worker
 
 | Before | After |

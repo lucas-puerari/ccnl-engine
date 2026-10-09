@@ -2,8 +2,9 @@
 
 from typing import Self
 
-from pydantic import BaseModel, ConfigDict, model_validator
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from ccnl_engine.contract.domain.category import WorkerCategory
 from ccnl_engine.contract.domain.validity import TimeSeries
 from ccnl_engine.provenance.domain.chain import RuleProvenance
 
@@ -21,8 +22,24 @@ class ContractualFundContribution(BaseModel):
     Attributes:
         code: Code of the fund it is paid to.
         description: Name of the fund.
-        monthly_by_level: Amount a month for each level code, in EUR.
+        monthly_by_level: Amount a month for each level code, in EUR; a
+            level without one is not covered by this model.
         provenance: Source of the clause.
+        categories: Worker categories the amounts are for, ``None`` for
+            all; another category (e.g. the operai the Prevedi pays per hour
+            worked) is not covered by this model.
+        apprentice_monthly: Amount a month of an apprentice, when the CCNL
+            sets one apart.
+        minimum_days_in_month: Calendar days worked in the month below
+            which nothing is owed, sickness and days without pay left out
+            (15 for Prevedi); ``None`` when the clause sets none.
+        extra_months: Whether an extra-month run owes the amount in
+            proportion to its ratei.
+        part_time_proportional: Whether a part-time worker owes the amount
+            in proportion to the weekly hours.
+        minimum_fixed_term_months: A fixed-term employment that lasts no
+            more than these months owes nothing; ``None`` when the clause
+            sets no minimum.
 
     Raises:
         ValueError: When an amount is negative.
@@ -34,6 +51,12 @@ class ContractualFundContribution(BaseModel):
     description: str
     monthly_by_level: dict[str, TimeSeries]
     provenance: RuleProvenance
+    categories: tuple[WorkerCategory, ...] | None = None
+    apprentice_monthly: TimeSeries | None = None
+    minimum_days_in_month: int | None = Field(default=None, ge=1, le=31)
+    extra_months: bool = False
+    part_time_proportional: bool = False
+    minimum_fixed_term_months: int | None = Field(default=None, ge=1)
 
     @model_validator(mode="after")
     def _check_non_negative(self) -> Self:

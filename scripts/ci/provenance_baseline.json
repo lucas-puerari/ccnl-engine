@@ -1377,11 +1377,13 @@
       "dmo-federdistribuzione/provincial_elements_missing"
     ],
     "ccnl/data/edilizia-ance.json": [
-      "edilizia-ance/apprentice_seniority"
+      "edilizia-ance/apprentice_seniority",
+      "edilizia-ance/contractual_fund_uncovered"
     ],
     "ccnl/data/edilizia-artigianato-cna.json": [
       "edilizia-artigianato-cna/apprentice_seniority",
       "edilizia-artigianato-cna/cassa_edile_accruals_missing",
+      "edilizia-artigianato-cna/contractual_fund_uncovered",
       "edilizia-artigianato-cna/seniority_cadence_unconfirmed"
     ],
     "ccnl/data/edilizia-cooperative-ancpl.json": [

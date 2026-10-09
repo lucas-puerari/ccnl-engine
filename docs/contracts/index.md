@@ -93,9 +93,9 @@ Capabilities of the registry by layer and implementation:
 | 39 | H121 | [CCNL Dipendenti delle Farmacie Private](farmacie-private-h121.md) | Farmacie private | ~60k | 2021 | 🔲 | 🔲 | 🔲 | seniority | 0 / 37 / 1 / 1 | 🧪 | 🤖 |
 | 40 | H016 | [CCNL Distribuzione Cooperativa (ANCC-Coop / Confcooperative Consumo)](distribuzione-cooperativa-ancc.md) | distribuzione-cooperativa | ~63k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 62 / 2 / 0 | 🧪 | 🤖 |
 | 41 | F018 | [CCNL Edilizia PMI CONFAPI ANIEM](edilizia-pmi-confapi-aniem.md) | Edilizia | ~70000 | 2025 | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 35 / 2 / 0 | 🧪 | 🤖 |
-| 42 | F015 | [CCNL Edilizia e Affini Artigianato](edilizia-artigianato-cna.md) | edilizia | ~350k | — | 🔲 | 🔲 | 🔲 | bilateral_funds, seniority | 0 / 57 / 1 / 1 | 🧪 | 🤖 |
+| 42 | F015 | [CCNL Edilizia e Affini Artigianato](edilizia-artigianato-cna.md) | edilizia | ~350k | — | 🔲 | 🔲 | 🔲 | bilateral_funds, pension_fund_contribution, seniority | 0 / 65 / 1 / 1 | 🧪 | 🤖 |
 | 43 | F016 | [CCNL Edilizia — Cooperative (ANCPL/Legacoop/Confcooperative/AGCI)](edilizia-cooperative-ancpl.md) | Edilizia | ~90000 | 2025 | 🔲 | 🔲 | 🔲 | seniority | 0 / 57 / 1 / 1 | 🧪 | 🤖 |
-| 44 | F012 | [CCNL Edilizia — Industria (ANCE)](edilizia-ance.md) | edilizia | ~550k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 30 / 2 / 0 | 🧪 | 🤖 |
+| 44 | F012 | [CCNL Edilizia — Industria (ANCE)](edilizia-ance.md) | edilizia | ~550k | — | 🔲 | 🔲 | 🔲 | pension_fund_contribution, seniority | 0 / 38 / 2 / 0 | 🧪 | 🤖 |
 | 45 | B254 | [CCNL Energia e Petrolio (Confindustria Energia)](energia-petrolio-confindustria.md) | energia | ~38k | — | 🔲 | 🔲 | 🔲 | — | 0 / 170 / 1 / 1 | 🧪 | 🤖 |
 | 46 | G211 | [CCNL Esercizi Cinematografici e Cinema-Teatrali (ANEC)](esercizi-cinematografici-anec.md) | cinema | ~6k | — | 🔲 | 🔲 | 🔲 | inps_employer, seniority | 0 / 52 / 2 / 0 | 🧪 | 🤖 |
 | 47 | H201 | [CCNL Fiori Freschi Recisi, Verde e Piante Ornamentali (ANCEF)](fiori-recisi-ancef.md) | Fiori recisi, verde e piante ornamentali (import-export) | ~1.3k | 2023 | 🔲 | 🔲 | 🔲 | seniority | 0 / 38 / 1 / 1 | 🧪 | 🤖 |

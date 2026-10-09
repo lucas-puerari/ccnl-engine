@@ -183,6 +183,8 @@ def _all_valid_from_dates(ccnl: CCNL) -> set[date]:
     contractual = params.contractual_fund_contribution
     for series in () if contractual is None else contractual.monthly_by_level.values():
         dates |= _ts_valid_from_dates(series)
+    if contractual is not None and contractual.apprentice_monthly is not None:
+        dates |= _ts_valid_from_dates(contractual.apprentice_monthly)
     if ccnl.work_rules is not None and ccnl.work_rules.time_supplements is not None:
         for band in ccnl.work_rules.time_supplements.overtime_bands:
             dates |= _ts_valid_from_dates(band.rate)

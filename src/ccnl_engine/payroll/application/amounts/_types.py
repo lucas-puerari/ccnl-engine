@@ -7,6 +7,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application.amounts._surtax import RunSurtax
+from ccnl_engine.payroll.application.period._contractual_fund import ContractualRun
 from ccnl_engine.payroll.domain.recovery_plan import InstallmentRun
 from ccnl_engine.payroll.domain.run import RunKind
 from ccnl_engine.payroll.service.additional_ivs import AdditionalIvsPosition
@@ -120,7 +121,7 @@ class _AmountsInput:
     installment_run: InstallmentRun = field(default_factory=InstallmentRun)
     withholding_agent: bool = True
     pension: PensionFundTerms | None = None
-    contractual_fund: Decimal = Decimal(0)
+    contractual_fund: ContractualRun = field(default_factory=ContractualRun)
     conguaglio: bool = False
     surtax_obligations: tuple[SurtaxObligation, ...] = ()
     run_month: int = 1

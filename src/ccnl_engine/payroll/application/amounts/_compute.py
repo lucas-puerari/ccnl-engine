@@ -66,7 +66,12 @@ def _decisions(
 
 def _issues(inp: _AmountsInput, irpef: _Irpef) -> tuple[CalculationIssue, ...]:
     family = () if irpef.family is None else irpef.family.issues()
-    return family + ulteriore_issues(inp, irpef)
+    contractual = inp.contractual_fund.issue
+    return (
+        family
+        + ulteriore_issues(inp, irpef)
+        + (() if contractual is None else (contractual,))
+    )
 
 
 def _compute_amounts(
