@@ -1,10 +1,11 @@
 """Knowledge repository that serves the bundled 2026 rules as 2027 rules.
 
-The 2027 tax tables are not bundled, so a run of tax year 2027 fails with
-``UnsupportedTaxYearError``.  Tests of the year change need a 2027 run: this
-repository answers a 2027 request with the bundled 2026 rules relabelled as
-2027.  The amounts are 2026 law; only differential assertions (with and
-without a carried obligation) are meaningful on its results.
+The bundled 2027 tables are provisional copies of 2026, so a run of tax
+year 2027 is not payable.  Tests of the year change need a 2027 run on
+rules that are not provisional: this repository answers a 2027 request
+with the bundled 2026 rules relabelled as 2027.  The amounts are 2026
+law; only differential assertions (with and without a carried obligation)
+are meaningful on its results.
 """
 
 from __future__ import annotations

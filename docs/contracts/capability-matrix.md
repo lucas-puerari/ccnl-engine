@@ -4,9 +4,9 @@
 
 # Capability Matrix
 
-What the engine computes for fiscal year 2026, and how far the bundled
+What the engine computes for fiscal year 2027, and how far the bundled
 data behind it is backed by sources. Generated from the capability registry
-(`knowledge/capabilities/data/2026.json`), the provenance records of the
+(`knowledge/capabilities/data/2027.json`), the provenance records of the
 payable rules, the `missing` notes and the model limitations of the 126
 bundled CCNLs. The
 runtime capability report of every run, the [CCNL Coverage
@@ -61,8 +61,8 @@ formulas or caller-declared amounts.
 | `base_salary` | Paga base contrattuale | gross | native | always | pipeline | — | — | simplified | 0 / 5054 / 713 / 86 |
 | `seniority` | Scatti di anzianità | gross | native | decided | decision | `employment.seniority` | — | simplified | 0 / 112 / 14 / 0 |
 | `worker_category` | Categoria lavoratore (dichiarata o fissata dal livello) | gross | native | decided | decision | `employment.category` | — | implemented | none bundled |
-| `inps_employee` | Contributi INPS a carico dipendente | net | native | always | pipeline | — | — | simplified | 0 / 13 / 27 / 0 |
-| `inps_employer` | Contributi INPS a carico azienda | net | native | always | pipeline | — | — | simplified | 0 / 13 / 35 / 0 |
+| `inps_employee` | Contributi INPS a carico dipendente | net | native | always | pipeline | — | — | simplified | 0 / 13 / 67 / 0 |
+| `inps_employer` | Contributi INPS a carico azienda | net | native | always | pipeline | — | — | simplified | 0 / 13 / 83 / 0 |
 | `inail` | Premio INAIL a carico azienda | net | unsupported | outside_input | — | `employer.inail_tariff_rate` | — | unavailable | none bundled |
 | `contribution_exemption` | Esonero contributivo | net | unsupported | outside_input | — | `employer.contribution_exemption` | — | unavailable | none bundled |
 | `fiscal_adjustment` | Conguaglio IRPEF da assistenza fiscale o periodo precedente | net | unsupported | outside_input | — | `facts.fiscal_adjustment` | — | unavailable | none bundled |
@@ -78,18 +78,18 @@ formulas or caller-declared amounts.
 | `health_fund_employer` | Fondo sanitario integrativo a carico azienda | net | unsupported | outside_input | — | `employment.health_fund` | — | unavailable | none bundled |
 | `territorial_supplement` | Integrazione da contratto territoriale | gross | unsupported | outside_input | — | `employment.territorial_agreement` | — | unavailable | none bundled |
 | `company_supplement` | Integrazione da contratto aziendale | gross | unsupported | outside_input | — | `employment.company_agreement` | — | unavailable | none bundled |
-| `tfr` | Trattamento di Fine Rapporto | net | native | always | pipeline | `employment.tfr_treasury_fund` | — | simplified | 0 / 0 / 13 / 0 |
+| `tfr` | Trattamento di Fine Rapporto | net | native | always | pipeline | `employment.tfr_treasury_fund` | — | simplified | 0 / 0 / 26 / 0 |
 | `tfr_revaluation` | Rivalutazione del fondo TFR al 31 dicembre e imposta sostitutiva (art. 2120 c. 4 c.c.) | net | native | decided | decision | `employment.tfr_fund` | — | implemented | 0 / 3 / 0 / 0 |
-| `irpef` | IRPEF (sostituto d'imposta) | net | native | always | pipeline | — | — | simplified | 0 / 0 / 24 / 0 |
-| `trattamento_integrativo` | Trattamento integrativo (ex bonus 80€) | net | native | decided | decision | — | — | simplified | 0 / 0 / 8 / 0 |
-| `ulteriore_detrazione_lavoro` | Ulteriore detrazione lavoro dipendente | net | native | decided | decision | — | — | simplified | 0 / 0 / 8 / 0 |
-| `somma_esente` | Somma esente L. 207/2024 art. 1 c. 4 | net | native | decided | decision | — | — | implemented | 0 / 1 / 0 / 0 |
+| `irpef` | IRPEF (sostituto d'imposta) | net | native | always | pipeline | — | — | simplified | 0 / 0 / 48 / 0 |
+| `trattamento_integrativo` | Trattamento integrativo (ex bonus 80€) | net | native | decided | decision | — | — | simplified | 0 / 0 / 16 / 0 |
+| `ulteriore_detrazione_lavoro` | Ulteriore detrazione lavoro dipendente | net | native | decided | decision | — | — | simplified | 0 / 0 / 16 / 0 |
+| `somma_esente` | Somma esente L. 207/2024 art. 1 c. 4 | net | native | decided | decision | — | — | simplified | 0 / 1 / 1 / 0 |
 | `withholding_shortfall` | Ritenute non capienti riportate ai cedolini successivi | net | native | decided | decision | — | — | implemented | none bundled |
 | `shortfall_deferral` | Differimento scritto dell'IRPEF incapiente del conguaglio con interessi 0,50% mensile (art. 23 c. 3 DPR 600/1973) | net | native | decided | decision | — | — | implemented | none bundled |
 | `foreign_tax_credit` | Credito imposte estere art. 165 TUIR al conguaglio | net | partial | decided | decision | — | declared_foreign_tax_at_conguaglio | simplified | none bundled |
-| `addizionale_regionale` | Addizionale regionale IRPEF | net | native | decided | decision | `facts.regione` | — | implemented | 0 / 1 / 0 / 0 |
-| `addizionale_comunale` | Addizionale comunale IRPEF | net | native | decided | decision | `facts.comune_belfiore` | — | implemented | 0 / 1 / 0 / 0 |
-| `family_deductions` | Detrazioni familiari a carico (Art. 12 TUIR) | net | native | decided | decision | `facts.family_composition`, `current_year` | children, other_dependants, sole_parent_first_child, spouse, spouse_increase_bands | implemented | 0 / 4 / 0 / 0 |
+| `addizionale_regionale` | Addizionale regionale IRPEF | net | native | decided | decision | `facts.regione` | — | simplified | 0 / 1 / 1 / 0 |
+| `addizionale_comunale` | Addizionale comunale IRPEF | net | native | decided | decision | `facts.comune_belfiore` | — | simplified | 0 / 1 / 1 / 0 |
+| `family_deductions` | Detrazioni familiari a carico (Art. 12 TUIR) | net | native | decided | decision | `facts.family_composition`, `current_year` | children, other_dependants, sole_parent_first_child, spouse, spouse_increase_bands | simplified | 0 / 4 / 4 / 0 |
 | `art15_deductions` | Detrazioni Art. 15 TUIR (interessi mutuo e oneri) | net | unsupported | outside_input | — | `facts.art15_expenses` | — | unavailable | none bundled |
 | `overtime` | Lavoro straordinario e supplementare | work_rules | caller_supplied | event | event | — | ccnl_band_multiplier, caller_multiplier | caller-supplied | 0 / 371 / 12 / 0 |
 | `night_work` | Lavoro notturno | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
@@ -98,13 +98,13 @@ formulas or caller-declared amounts.
 | `absence` | Assenze ingiustificate | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
 | `leave` | Ferie e permessi ROL | work_rules | unsupported | outside_input | — | `facts.events[leave]` | — | unavailable | none bundled |
 | `sickness` | Malattia: episodi su più periodi, carenza, fasce INPS e integrazione CCNL | work_rules | native | event | event | — | multi_period_episode, inps_bands_and_carenza, ccnl_tiers | simplified | 0 / 224 / 5 / 0 |
-| `fringe_benefit` | Fringe benefit (informativo) | work_rules | native | event | event | — | — | implemented | 0 / 1 / 0 / 0 |
+| `fringe_benefit` | Fringe benefit (informativo) | work_rules | native | event | event | — | — | simplified | 0 / 1 / 1 / 0 |
 | `welfare` | Welfare aziendale (informativo) | work_rules | native | event | event | — | — | implemented | none bundled |
-| `bonus_pdr` | Premio di risultato PDR (informativo) | net | native | decided | decision | — | — | simplified | 0 / 0 / 1 / 0 |
-| `rinnovo_substitute_tax` | Imposta sostitutiva aumenti da rinnovo L. 199/2025 art. 1 c. 7 | net | native | decided | decision | `prior_year` | — | implemented | 0 / 1 / 0 / 0 |
-| `notte_festivi_turni_substitute_tax` | Imposta sostitutiva notturno, festivo e turni L. 199/2025 art. 1 cc. 10-11 | net | native | decided | decision | `prior_year` | — | implemented | 0 / 1 / 0 / 0 |
+| `bonus_pdr` | Premio di risultato PDR (informativo) | net | native | decided | decision | — | — | simplified | 0 / 0 / 2 / 0 |
+| `rinnovo_substitute_tax` | Imposta sostitutiva aumenti da rinnovo L. 199/2025 art. 1 c. 7 | net | native | decided | decision | `prior_year` | — | simplified | 0 / 1 / 1 / 0 |
+| `notte_festivi_turni_substitute_tax` | Imposta sostitutiva notturno, festivo e turni L. 199/2025 art. 1 cc. 10-11 | net | native | decided | decision | `prior_year` | — | simplified | 0 / 1 / 1 / 0 |
 | `bilateral_funds` | Fondi bilaterali (importi dal chiamante) | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
-| `pension_fund_contribution` | Previdenza complementare CCNL su adesione e contributo contrattuale | net | partial | decided | decision | `employment.pension_fund` | ccnl_fund_on_enrolment, ccnl_contractual_contribution | simplified | 0 / 130 / 25 / 0 |
+| `pension_fund_contribution` | Previdenza complementare CCNL su adesione e contributo contrattuale | net | partial | decided | decision | `employment.pension_fund` | ccnl_fund_on_enrolment, ccnl_contractual_contribution | simplified | 0 / 130 / 33 / 0 |
 | `assistance_contribution` | Contributi di assistenza contrattuale per ora retribuita (Cas.Sa.Colf, lavoro domestico) | net | native | decided | decision | `facts.contributable_hours` | — | implemented | 0 / 3 / 0 / 0 |
 
 ## CCNL coverage

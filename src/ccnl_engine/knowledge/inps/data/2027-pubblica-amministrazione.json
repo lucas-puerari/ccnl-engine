@@ -1,0 +1,334 @@
+{
+  "year": 2027,
+  "sector": "pubblica-amministrazione",
+  "inps": {
+    "employee_tiers": [
+      {
+        "max_employees": null,
+        "rate": "0.0880",
+        "ivs_rate": "0.0880"
+      }
+    ],
+    "employer_tiers": [
+      {
+        "max_employees": null,
+        "rate": "0.2420",
+        "ivs_rate": "0.2420"
+      }
+    ],
+    "ceiling": null,
+    "minimum_base": {
+      "daily": "58.13",
+      "week_days": 5,
+      "monthly_days": null,
+      "hourly": [
+        {
+          "full_time_weekly_hours": "36",
+          "amount": "8.07"
+        }
+      ],
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "inps-circolare-6-2026",
+            "title": "INPS Circolare n. 6 del 30 gennaio 2026",
+            "kind": "inps_circolare",
+            "url": "https://www.inps.it/it/it/inps-comunica/atti/circolari-messaggi-e-normativa/dettaglio.circolari-e-messaggi.2026.01.circolare-numero-6-del-30-01-2026_15151.html"
+          },
+          "section": "par. 1, Minimali di retribuzione giornaliera; par. 4, Minimale ai fini contributivi per i rapporti di lavoro subordinato a tempo parziale",
+          "quote": "Tali limiti, secondo quanto innanzi precisato, devono essere ragguagliati a 58,13 euro(9,5% dell'importo del trattamento minimo mensile di pensione a carico del Fondo pensioni lavoratori dipendenti in vigore al 1° gennaio 2026, pari a 611,85 euromensili) se di importo inferiore. [...] Qualora, invece, l'orario normale sia di 36 ore settimanali (ipotesi che ricorre, di norma, per i lavoratori iscritti alla Gestione pubblica), articolate su cinque giorni, il procedimento del calcolo è il seguente: 58,13 euro x 5/36 = 8,07 euro."
+        },
+        "transformation": "daily: the 'Minimale di retribuzione giornaliera (9,5%)' of the par. 1 table; week_days and hourly: the par. 4 formula of the Gestione pubblica, 36 hours on five days, 8.07 as published.",
+        "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: monthly_days null: no bundled source gives the days of a fully paid month on a five-day week, so a run below the minimum is undetermined. D.L. 463/1983 art. 7 c. 1, second period, read on Normattiva on 2026-10-07 (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legge:1983-09-12;463~art7): 'il limite minimo di retribuzione giornaliera [...] per tutte le contribuzioni dovute in materia di previdenza e assistenza sociale non può essere inferiore al 7,50% dell'importo del trattamento minimo mensile di pensione', raised to 9,50 by D.L. 338/1989 art. 1 c. 2; c. 5: 'Le disposizioni di cui ai commi 1, 2, 3 e 4 del presente articolo non si applicano ai lavoratori addetti ai servizi domestici e familiari, agli operai agricoli, agli apprendisti'. D.Lgs. 81/2015 art. 11 c. 1 (Normattiva, same day): 'La retribuzione minima oraria, da assumere quale base per il calcolo dei contributi previdenziali dovuti per i lavoratori a tempo parziale, si determina rapportando alle giornate di lavoro settimanale ad orario normale il minimale giornaliero'. Circ. 6/2026 read on 2026-10-07 in the copy attached to circolare 23/26 of Ascom Bologna (https://ascom.bo.it/wp-content/uploads/2026/02/Allegato-1-CIRCO-23-26_Circolare-INPS-n.-6-del-30-01-2026.pdf, sha256 ec8fce75b98095d5b7de3d7ba725a403e1c487e1c75512567066650b88118992): the INPS page loads its text by script. Not checked by a named reviewer. Assumed, not derived: its ruleset declares source_type 'estimated'."
+      }
+    },
+    "provenance": {
+      "status": "assumed",
+      "location": {
+        "source_document": {
+          "document_id": "inps-contributi-dipendenti-pubblici",
+          "title": "INPS, scheda informativa 'I contributi dei dipendenti pubblici'",
+          "kind": "inps_circolare",
+          "url": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html"
+        },
+        "section": "Le aliquote contributive della Gestione dipendenti pubblici",
+        "quote": "LE ALIQUOTE CONTRIBUTIVE DELLA GESTIONE DIPENDENTI PUBBLICI: Aliquota totale (%) Aliquota a carico datore di lavoro (%) Aliquota a carico lavoratore (%) CTPS 33 24,2 8,8 CPDEL 32,65 23,8 8,85 CPI 32,65 23,8 8,85 CPUG 32,65 23,8 8,85 CPS 32,65 23,8 8,85"
+      },
+      "transformation": "The tiers hold the CTPS, the fund of the State: employee 8.80%, employer 24.20%, all pension (IVS).",
+      "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Read on 2026-10-09 from the page the url serves (sha256 576c808bac9fff92e7635be0922ffa46aa4742eb2b584e82cd094625ed9d2451, HTML). No human review recorded."
+    },
+    "public_funds": {
+      "cpdel": {
+        "employee_rate": "0.0885",
+        "employer_rate": "0.2380",
+        "provenance": {
+          "status": "assumed",
+          "location": {
+            "source_document": {
+              "document_id": "inps-contributi-dipendenti-pubblici",
+              "title": "INPS, scheda informativa 'I contributi dei dipendenti pubblici'",
+              "kind": "inps_circolare",
+              "url": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html"
+            },
+            "section": "Le aliquote contributive della Gestione dipendenti pubblici",
+            "quote": "LE ALIQUOTE CONTRIBUTIVE DELLA GESTIONE DIPENDENTI PUBBLICI: Aliquota totale (%) Aliquota a carico datore di lavoro (%) Aliquota a carico lavoratore (%) CTPS 33 24,2 8,8 CPDEL 32,65 23,8 8,85 CPI 32,65 23,8 8,85 CPUG 32,65 23,8 8,85 CPS 32,65 23,8 8,85"
+          },
+          "transformation": "CPDEL: employee 8.85%, employer 23.80%, all pension (IVS).",
+          "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Read on 2026-10-09 from the page the url serves (sha256 576c808bac9fff92e7635be0922ffa46aa4742eb2b584e82cd094625ed9d2451, HTML). No human review recorded."
+        },
+        "end_of_service": {
+          "base_share": "0.80",
+          "tfs_employee_rate": "0.0250",
+          "tfs_employer_rate": "0.0360",
+          "tfr_employer_rate": "0.0610",
+          "thirteenth": true,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "inps-contributi-dipendenti-pubblici",
+                "title": "INPS, scheda informativa 'I contributi dei dipendenti pubblici'",
+                "kind": "inps_circolare",
+                "url": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html"
+              },
+              "section": "Le aliquote contributive della Gestione dipendenti pubblici; Contributo TFR",
+              "quote": "ENPAS (TFS) 9,6 7,1 2,5 ENPAS (TFR) 9,6 9,6 -- INADEL (TFS) 6,1 3,6 2,5 INADEL (TFR) 6,1 6,1 -- [...] il contributo per il TFR, a totale carico del datore di lavoro, è dovuto con le stesse aliquote e sulla stessa base contributiva prevista per il TFS, con un imponibile calcolato sull'80% delle voci utili."
+            },
+            "transformation": "INADEL, the end-of-service fund of the enti locali and of the health service: TFS 3.60% administration + 2.50% worker, TFR 6.10% administration, on 80% of the pay. L. 152/1968 art. 11 c. 5 (https://www.jurinote.it/doc/italia/legge/1968/152/11): 'Lo stipendio o salario comprensivo degli aumenti periodici, della tredicesima mensilità': the tredicesima is part of the base. The pay is the TFR base of the run.",
+            "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Read on 2026-10-09 from the page the url serves (sha256 576c808bac9fff92e7635be0922ffa46aa4742eb2b584e82cd094625ed9d2451). No human review recorded."
+          }
+        }
+      },
+      "cps": {
+        "employee_rate": "0.0885",
+        "employer_rate": "0.2380",
+        "provenance": {
+          "status": "assumed",
+          "location": {
+            "source_document": {
+              "document_id": "inps-contributi-dipendenti-pubblici",
+              "title": "INPS, scheda informativa 'I contributi dei dipendenti pubblici'",
+              "kind": "inps_circolare",
+              "url": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html"
+            },
+            "section": "Le aliquote contributive della Gestione dipendenti pubblici",
+            "quote": "LE ALIQUOTE CONTRIBUTIVE DELLA GESTIONE DIPENDENTI PUBBLICI: Aliquota totale (%) Aliquota a carico datore di lavoro (%) Aliquota a carico lavoratore (%) CTPS 33 24,2 8,8 CPDEL 32,65 23,8 8,85 CPI 32,65 23,8 8,85 CPUG 32,65 23,8 8,85 CPS 32,65 23,8 8,85"
+          },
+          "transformation": "CPS: employee 8.85%, employer 23.80%, all pension (IVS).",
+          "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Read on 2026-10-09 from the page the url serves (sha256 576c808bac9fff92e7635be0922ffa46aa4742eb2b584e82cd094625ed9d2451, HTML). No human review recorded."
+        },
+        "end_of_service": {
+          "base_share": "0.80",
+          "tfs_employee_rate": "0.0250",
+          "tfs_employer_rate": "0.0360",
+          "tfr_employer_rate": "0.0610",
+          "thirteenth": true,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "inps-contributi-dipendenti-pubblici",
+                "title": "INPS, scheda informativa 'I contributi dei dipendenti pubblici'",
+                "kind": "inps_circolare",
+                "url": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html"
+              },
+              "section": "Le aliquote contributive della Gestione dipendenti pubblici; Contributo TFR",
+              "quote": "ENPAS (TFS) 9,6 7,1 2,5 ENPAS (TFR) 9,6 9,6 -- INADEL (TFS) 6,1 3,6 2,5 INADEL (TFR) 6,1 6,1 -- [...] il contributo per il TFR, a totale carico del datore di lavoro, è dovuto con le stesse aliquote e sulla stessa base contributiva prevista per il TFS, con un imponibile calcolato sull'80% delle voci utili."
+            },
+            "transformation": "INADEL, the end-of-service fund of the enti locali and of the health service: TFS 3.60% administration + 2.50% worker, TFR 6.10% administration, on 80% of the pay. L. 152/1968 art. 11 c. 5 (https://www.jurinote.it/doc/italia/legge/1968/152/11): 'Lo stipendio o salario comprensivo degli aumenti periodici, della tredicesima mensilità': the tredicesima is part of the base. The pay is the TFR base of the run.",
+            "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Read on 2026-10-09 from the page the url serves (sha256 576c808bac9fff92e7635be0922ffa46aa4742eb2b584e82cd094625ed9d2451). No human review recorded."
+          }
+        }
+      },
+      "cpi": {
+        "employee_rate": "0.0885",
+        "employer_rate": "0.2380",
+        "provenance": {
+          "status": "assumed",
+          "location": {
+            "source_document": {
+              "document_id": "inps-contributi-dipendenti-pubblici",
+              "title": "INPS, scheda informativa 'I contributi dei dipendenti pubblici'",
+              "kind": "inps_circolare",
+              "url": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html"
+            },
+            "section": "Le aliquote contributive della Gestione dipendenti pubblici",
+            "quote": "LE ALIQUOTE CONTRIBUTIVE DELLA GESTIONE DIPENDENTI PUBBLICI: Aliquota totale (%) Aliquota a carico datore di lavoro (%) Aliquota a carico lavoratore (%) CTPS 33 24,2 8,8 CPDEL 32,65 23,8 8,85 CPI 32,65 23,8 8,85 CPUG 32,65 23,8 8,85 CPS 32,65 23,8 8,85"
+          },
+          "transformation": "CPI: employee 8.85%, employer 23.80%, all pension (IVS).",
+          "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Read on 2026-10-09 from the page the url serves (sha256 576c808bac9fff92e7635be0922ffa46aa4742eb2b584e82cd094625ed9d2451, HTML). No human review recorded."
+        },
+        "end_of_service": {
+          "base_share": "0.80",
+          "tfs_employee_rate": "0.0250",
+          "tfs_employer_rate": "0.0360",
+          "tfr_employer_rate": "0.0610",
+          "thirteenth": true,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "inps-contributi-dipendenti-pubblici",
+                "title": "INPS, scheda informativa 'I contributi dei dipendenti pubblici'",
+                "kind": "inps_circolare",
+                "url": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html"
+              },
+              "section": "Le aliquote contributive della Gestione dipendenti pubblici; Contributo TFR",
+              "quote": "ENPAS (TFS) 9,6 7,1 2,5 ENPAS (TFR) 9,6 9,6 -- INADEL (TFS) 6,1 3,6 2,5 INADEL (TFR) 6,1 6,1 -- [...] il contributo per il TFR, a totale carico del datore di lavoro, è dovuto con le stesse aliquote e sulla stessa base contributiva prevista per il TFS, con un imponibile calcolato sull'80% delle voci utili."
+            },
+            "transformation": "INADEL, the end-of-service fund of the enti locali and of the health service: TFS 3.60% administration + 2.50% worker, TFR 6.10% administration, on 80% of the pay. L. 152/1968 art. 11 c. 5 (https://www.jurinote.it/doc/italia/legge/1968/152/11): 'Lo stipendio o salario comprensivo degli aumenti periodici, della tredicesima mensilità': the tredicesima is part of the base. The pay is the TFR base of the run.",
+            "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Read on 2026-10-09 from the page the url serves (sha256 576c808bac9fff92e7635be0922ffa46aa4742eb2b584e82cd094625ed9d2451). No human review recorded."
+          }
+        }
+      },
+      "cpug": {
+        "employee_rate": "0.0885",
+        "employer_rate": "0.2380",
+        "provenance": {
+          "status": "assumed",
+          "location": {
+            "source_document": {
+              "document_id": "inps-contributi-dipendenti-pubblici",
+              "title": "INPS, scheda informativa 'I contributi dei dipendenti pubblici'",
+              "kind": "inps_circolare",
+              "url": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html"
+            },
+            "section": "Le aliquote contributive della Gestione dipendenti pubblici",
+            "quote": "LE ALIQUOTE CONTRIBUTIVE DELLA GESTIONE DIPENDENTI PUBBLICI: Aliquota totale (%) Aliquota a carico datore di lavoro (%) Aliquota a carico lavoratore (%) CTPS 33 24,2 8,8 CPDEL 32,65 23,8 8,85 CPI 32,65 23,8 8,85 CPUG 32,65 23,8 8,85 CPS 32,65 23,8 8,85"
+          },
+          "transformation": "CPUG: employee 8.85%, employer 23.80%, all pension (IVS).",
+          "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Read on 2026-10-09 from the page the url serves (sha256 576c808bac9fff92e7635be0922ffa46aa4742eb2b584e82cd094625ed9d2451, HTML). No human review recorded."
+        },
+        "end_of_service": {
+          "base_share": "0.80",
+          "tfs_employee_rate": "0.0250",
+          "tfs_employer_rate": "0.0360",
+          "tfr_employer_rate": "0.0610",
+          "thirteenth": true,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "inps-contributi-dipendenti-pubblici",
+                "title": "INPS, scheda informativa 'I contributi dei dipendenti pubblici'",
+                "kind": "inps_circolare",
+                "url": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html"
+              },
+              "section": "Le aliquote contributive della Gestione dipendenti pubblici; Contributo TFR",
+              "quote": "ENPAS (TFS) 9,6 7,1 2,5 ENPAS (TFR) 9,6 9,6 -- INADEL (TFS) 6,1 3,6 2,5 INADEL (TFR) 6,1 6,1 -- [...] il contributo per il TFR, a totale carico del datore di lavoro, è dovuto con le stesse aliquote e sulla stessa base contributiva prevista per il TFS, con un imponibile calcolato sull'80% delle voci utili."
+            },
+            "transformation": "INADEL, the end-of-service fund of the enti locali and of the health service: TFS 3.60% administration + 2.50% worker, TFR 6.10% administration, on 80% of the pay. L. 152/1968 art. 11 c. 5 (https://www.jurinote.it/doc/italia/legge/1968/152/11): 'Lo stipendio o salario comprensivo degli aumenti periodici, della tredicesima mensilità': the tredicesima is part of the base. The pay is the TFR base of the run.",
+            "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Read on 2026-10-09 from the page the url serves (sha256 576c808bac9fff92e7635be0922ffa46aa4742eb2b584e82cd094625ed9d2451). No human review recorded."
+          }
+        }
+      }
+    },
+    "end_of_service": {
+      "base_share": "0.80",
+      "tfs_employee_rate": "0.0250",
+      "tfs_employer_rate": "0.0710",
+      "tfr_employer_rate": "0.0960",
+      "thirteenth": false,
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "inps-contributi-dipendenti-pubblici",
+            "title": "INPS, scheda informativa 'I contributi dei dipendenti pubblici'",
+            "kind": "inps_circolare",
+            "url": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html"
+          },
+          "section": "Le aliquote contributive della Gestione dipendenti pubblici; Contributo TFR",
+          "quote": "ENPAS (TFS) 9,6 7,1 2,5 ENPAS (TFR) 9,6 9,6 -- INADEL (TFS) 6,1 3,6 2,5 INADEL (TFR) 6,1 6,1 -- [...] il contributo per il TFR, a totale carico del datore di lavoro, è dovuto con le stesse aliquote e sulla stessa base contributiva prevista per il TFS, con un imponibile calcolato sull'80% delle voci utili."
+        },
+        "transformation": "ENPAS, the end-of-service fund of the employees of the State (the CTPS of the tiers): TFS 7.10% administration + 2.50% worker, TFR 9.60% administration, on 80% of the pay. DPR 1032/1973 art. 38 (https://www.rgs.mef.gov.it/_Documenti/VERSIONE-I/Selezione_normativa/D-P-R-/DPR29-12-1973_1032.pdf, sha256 b6c8f536875a82657c482ed4d074ceda77a82b9e923f63bf409ee6a6adf6133e): 'La base contributiva è costituita dall'80 per cento dello stipendio, paga o retribuzione annui': the tredicesima is left out. The pay is the TFR base of the run.",
+        "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Read on 2026-10-09 from the page the url serves (sha256 576c808bac9fff92e7635be0922ffa46aa4742eb2b584e82cd094625ed9d2451). No human review recorded."
+      }
+    },
+    "public_credit": {
+      "employee_rate": "0.0035",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "l-662-1996-art1-cc193-267",
+            "title": "Legge 23 dicembre 1996, n. 662, art. 1, commi 193-267",
+            "kind": "legge",
+            "url": "https://leg14.camera.it/parlam/leggi/96662l05.htm"
+          },
+          "section": "art. 1, commi 242-243",
+          "quote": "242. Il contributo obbligatorio per il credito previsto dall'articolo 37, secondo comma, del testo unico approvato con decreto del Presidente della Repubblica 29 dicembre 1973, n. 1032, e' pari allo 0,35 per cento della retribuzione contributiva e pensionabile determinata ai sensi dell'articolo 2, commi 9 e 10, della legge 8 agosto 1995, n. 335. 243. I dipendenti iscritti alle Casse pensioni gia' amministrate dalla Direzione generale degli istituti di previdenza e confluite nell'INPDAP sono iscritti per le sole prestazioni creditizie al \"Fondo di previdenza e credito\" [...] e obbligati al versamento del contributo indicato al comma 242."
+        },
+        "transformation": "0.35% of the worker on the pension base of the run (the retribuzione contributiva e pensionabile), every fund of the Gestione Dipendenti Pubblici; INPS 'I contributi dei dipendenti pubblici' lists 'GESTIONE CREDITO 0,35 -- 0,35'.",
+        "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Read on 2026-10-09 from the page the url serves (sha256 cc729b317cb25469a9cb95d02f9d539979ad47f5d9c2d4376e62900dc5f3f25f). No human review recorded."
+      }
+    },
+    "public_life_insurance": {
+      "employee_rate": "0.00027",
+      "employer_rate": "0.00093",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "inps-circolare-104-2014",
+            "title": "INPS Circolare n. 104 del 12 settembre 2014, Assicurazione Sociale Vita",
+            "kind": "inps_circolare",
+            "url": "https://servizi2.inps.it/servizi/Bussola/VisualizzaDoc.aspx?sVirtualURL=%2FCircolari%2FCircolare+numero+104+del+12-09-2014.htm"
+          },
+          "section": "par. 2.1 Obbligatoria; par. 3.1 Lavoratori attivi",
+          "quote": "Sono, pertanto, iscritti all'assicurazione tutti i dipendenti da enti dotati di personalità giuridica di diritto pubblico, ad eccezione delle Amministrazioni dello Stato, delle Province, dei Comuni e degli enti pubblici di assistenza e beneficenza. [...] la base imponibile è costituita dalla retribuzione pensionabile coincidente con quella assoggettata alla contribuzione ai fini pensionistici. Il contributo è pari allo 0,12% della base imponibile e grava in misura pari allo 0,027% sul lavoratore ed allo 0,093% sul datore di lavoro."
+        },
+        "transformation": "0.027% of the worker and 0.093% of the employer on the pension base of the run, when the employer owes the ASV (EmployerProfile.public_life_insurance or the CCNL).",
+        "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Read on 2026-10-09 from the page the url serves (sha256 9a98ccdd6149c9df7f7d1a62d31a9695b1b4146b98331b41b546692e77279956). No human review recorded."
+      }
+    },
+    "public_enam": {
+      "employee_rate": "0.01",
+      "base_share": "0.80",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "l-93-1957-art3",
+            "title": "Legge 7 marzo 1957, n. 93, art. 3",
+            "kind": "legge",
+            "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1957-03-07;93~art3"
+          },
+          "section": "art. 3, primo comma, lettera a)",
+          "quote": "L'Ente provvede al raggiungimento dei suoi fini: a) con un contributo mensile a carico degli iscritti pari all'1 per cento dell'ammontare lordo dello stipendio"
+        },
+        "transformation": "1% of the worker on 80% of the stipendio: the INPS page 'I contributi dei dipendenti pubblici' lists 'ENAM 1 -- 1' on the contribution base of the Gestione (80% of the pay). The stipendio excludes the IIS conglobata the retribuzione tabellare holds: the CCNL declares the open limitation enam_base.",
+        "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Read on 2026-10-09 from the page the url serves (sha256 1ee846e8202f19f073eeca4bb3a2195f7e1863baeb27e0061e26431391301956). The 80% share is read from the INPS table and the article's reference to DPR 19/1956 art. 10, not quoted here. No human review recorded."
+      }
+    }
+  },
+  "apprentice": {
+    "employee_rate": "0.0880",
+    "employee_ivs_rate": "0.0880",
+    "employer_rate": "0.2420",
+    "employer_ivs_rate": "0.2420",
+    "small_firm_max_employees": 9,
+    "small_firm_employer_rate_months_0_11": "0.2420",
+    "small_firm_employer_ivs_rate_months_0_11": "0.2420",
+    "small_firm_employer_rate_months_12_23": "0.2420",
+    "small_firm_employer_ivs_rate_months_12_23": "0.2420",
+    "provenance": {
+      "status": "assumed",
+      "location": null,
+      "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Schema-required placeholder: apprenticeship does not apply to PA contracts."
+    }
+  },
+  "ruleset": {
+    "id": "inps/2027/pubblica-amministrazione",
+    "version": "2026.1",
+    "effective_from": "2027-01-01",
+    "effective_until": "2027-12-31",
+    "published_at": "2026-10-09",
+    "source": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html",
+    "verification_status": "unverified",
+    "source_hash": "46c4351320f6b9157e150b7417057fc910e64f0875b6db3b5d1a2f90646866a0",
+    "source_type": "estimated",
+    "provisional": true
+  }
+}

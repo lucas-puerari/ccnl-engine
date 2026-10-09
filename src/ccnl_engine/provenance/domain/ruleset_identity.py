@@ -150,6 +150,10 @@ class RulesetIdentity(BaseModel):
             required when ``verification_status`` is ``"verified"``.
         verified_at: Date the ruleset was verified; required when
             ``verification_status`` is ``"verified"``.
+        provisional: The sources of the year are not published yet: the
+            values are carried over from the year before, pending them.  A
+            run that reads a provisional tax or INPS ruleset traverses the
+            open engine limitation ``provisional_ruleset``.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -165,6 +169,7 @@ class RulesetIdentity(BaseModel):
     verification_status: VerificationStatus
     verified_by: str | None = None
     verified_at: date | None = None
+    provisional: bool = False
 
     def __str__(self) -> str:
         """Collapse the identity to a compact ``id@version`` string.

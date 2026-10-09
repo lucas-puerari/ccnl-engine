@@ -1,0 +1,224 @@
+{
+  "year": 2027,
+  "sector": "industria",
+  "ruleset": {
+    "id": "tax/2027/industria",
+    "version": "2026.1",
+    "effective_from": "2027-01-01",
+    "effective_until": "2027-12-31",
+    "published_at": "2026-10-09",
+    "source": "unavailable",
+    "verification_status": "unverified",
+    "source_hash": "262117e564b725c37548ec5c78d477950998bda6e51ac308e728ba581cb0f623",
+    "source_type": "estimated",
+    "provisional": true
+  },
+  "irpef_brackets": [
+    {
+      "up_to": "28000.00",
+      "rate": "0.23"
+    },
+    {
+      "up_to": "50000.00",
+      "rate": "0.33"
+    },
+    {
+      "up_to": null,
+      "rate": "0.43"
+    }
+  ],
+  "fixed_term_additional_rate": "0.014",
+  "fixed_term_renewal_increment": "0.005",
+  "tfr": {
+    "accrual_divisor": "13.5",
+    "additional_ivs": {
+      "rate": "0.0050",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "l-297-1982",
+            "title": "L. 297/1982, disciplina del trattamento di fine rapporto e norme in materia pensionistica",
+            "kind": "legge",
+            "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1982-05-29;297~art3"
+          },
+          "section": "art. 3 cc. 15-16",
+          "quote": "Agli oneri derivanti al Fondo pensioni dei lavoratori dipendenti dall'applicazione del presente articolo si provvede elevando le aliquote contributive a carico dei datori di lavoro, per l'assicurazione generale obbligatoria per l'invalidità, la vecchiaia ed i superstiti dei lavoratori dipendenti, ivi compresi gli addetti ai servizi domestici e familiari ed i pescatori della piccola pesca, con decorrenza dal periodo di paga in corso alla data del 1 luglio 1982 nella misura dello 0,30 per cento della retribuzione imponibile e con decorrenza dal periodo di paga in corso alla data del 1 gennaio 1983 nella misura ulteriore dello 0,20 per cento della retribuzione imponibile. I datori di lavoro detraggono per ciascun lavoratore l'importo della contribuzione aggiuntiva di cui al comma precedente dall'ammontare della quota del trattamento di fine rapporto relativa al periodo di riferimento della contribuzione stessa. Qualora il trattamento di fine rapporto sia erogato mediante forme previdenziali, la contribuzione aggiuntiva è detratta dal contributo dovuto per il finanziamento del trattamento stesso, il cui importo spettante al lavoratore è corrispondentemente ridotto."
+        },
+        "transformation": "0.30% from 1 July 1982 plus 0.20% from 1 January 1983 = 0.50% of the INPS taxable pay, applied to the IVS base of the period (capped at the massimale when it applies) and deducted from the TFR quota of the same period, or from the TFR paid to the pension fund.",
+        "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Quote checked on 2026-10-07 against the Normattiva text of art. 3 in force from 10-11-2022 (commi counted in order; INPS messaggio n. 1817 of 10 May 2019, read from the copy at https://assolavoro.eu/wp-content/uploads/attachments/mess_1817%20pdf.pdf, cites the rate as c. 15 and the deduction as c. 16), whitespace normalised. The 0.50% is already inside the employer IVS rate of the INPS ruleset. Not applied to apprentices: INPS circ. 70/2007 of 3 April 2007, note 5 (p. 18 of https://servizi2.inps.it/circolariZip/Circolare%20numero%2070%20del%203-4-2007.pdf, sha256 7def4bc121c204925ac5e8a20b640afc9e157243b6e6903c7c1942aab275d49a, read on 2026-10-07): 'Per i lavoratori con qualifica di apprendista il contributo dello 0,50% ex lege n. 297/1982, non è previsto.' Not checked by a named reviewer. Assumed, not derived: its ruleset declares source_type 'estimated'."
+      }
+    },
+    "provenance": {
+      "status": "assumed",
+      "location": {
+        "source_document": {
+          "document_id": "codice-civile",
+          "title": "Codice civile",
+          "kind": "legge"
+        },
+        "section": "art. 2120"
+      },
+      "transformation": "Citation taken from the docstring of the rule model that consumes the block; the data file records none.",
+      "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Assumed, not derived: its ruleset declares source_type 'estimated'; no citation (http(s) url and section or page)."
+    }
+  },
+  "trattamento_integrativo": {
+    "threshold_mid": "15000",
+    "threshold_upper": "28000",
+    "max_amount": "1200",
+    "provenance": {
+      "status": "assumed",
+      "location": {
+        "source_document": {
+          "document_id": "dl-3-2020",
+          "title": "D.L. 3/2020",
+          "kind": "dl"
+        },
+        "section": "art. 1 (as amended by L. 207/2024)"
+      },
+      "transformation": "Citation taken from the docstring of the rule model that consumes the block; the data file records none.",
+      "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Assumed, not derived: its ruleset declares source_type 'estimated'; no citation (http(s) url and section or page)."
+    }
+  },
+  "ulteriore_detrazione": {
+    "threshold_low": "20000",
+    "threshold_mid": "32000",
+    "max_amount": "1000",
+    "threshold_high": "40000",
+    "provenance": {
+      "status": "assumed",
+      "location": {
+        "source_document": {
+          "document_id": "l-207-2024",
+          "title": "L. 207/2024, legge di bilancio 2025",
+          "kind": "legge"
+        },
+        "section": "art. 1 c. 6"
+      },
+      "transformation": "Citation taken from the docstring of the rule model that consumes the block; the data file records none.",
+      "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Assumed, not derived: its ruleset declares source_type 'estimated'; no citation (http(s) url and section or page)."
+    }
+  },
+  "sterilizzazione_detrazioni": {
+    "threshold": "200000.00",
+    "reduction": "440.00",
+    "provenance": {
+      "status": "assumed",
+      "location": {
+        "source_document": {
+          "document_id": "l-199-2025",
+          "title": "L. 199/2025, legge di bilancio 2026",
+          "kind": "legge",
+          "url": "https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.codiceRedazionale=26A00149&art.dataPubblicazioneGazzetta=2026-01-21&art.flagTipoArticolo=0&art.idArticolo=1&art.idGruppo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.progressivo=1&art.versione=1"
+        },
+        "section": "art. 1 c. 4",
+        "quote": "All'articolo 16-ter del testo unico delle imposte sui redditi, di cui al decreto del Presidente della Repubblica 22 dicembre 1986, n. 917, dopo il comma 5 e' inserito il seguente: «5-bis. Per i contribuenti titolari di un reddito complessivo superiore a 200.000 euro e' diminuito di un importo pari a 440 euro l'ammontare della detrazione dall'imposta lorda, determinato tenendo conto di quanto previsto dai commi da 1 a 5 del presente articolo e dall'articolo 15, comma 3-bis, spettante in relazione ai seguenti oneri: a) gli oneri la cui detraibilita' e' fissata nella misura del 19 per cento dal presente testo unico o da qualsiasi altra disposizione fiscale, fatta eccezione per le spese sanitarie di cui all'articolo 15, comma 1, lettera c); b) le erogazioni liberali in favore dei partiti politici, di cui all'articolo 11 del decreto-legge 28 dicembre 2013, n. 149, convertito, con modificazioni, dalla legge 21 febbraio 2014, n. 13; c) i premi di assicurazione per rischio eventi calamitosi, di cui all'articolo 119, comma 4, quinto periodo, del decreto-legge 19 maggio 2020, n. 34, convertito, con modificazioni, dalla legge 17 luglio 2020, n. 77»."
+      },
+      "transformation": "threshold 200,000 EUR and reduction 440 EUR as written in art. 16-ter c. 5-bis TUIR. The reduction lowers only the deduction for the oneri of lett. a)-c): the 19% oneri except the spese sanitarie, the donations to political parties and the catastrophe insurance premiums. The payroll computes none of them, so it does not apply the block: the art. 12 and art. 13 TUIR deductions and the ulteriore detrazione (L. 207/2024 art. 1 c. 6) are not reduced.",
+      "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Quote checked on 2026-10-07 against the Gazzetta Ufficiale text of L. 199/2025 art. 1 at the url of the record, whitespace normalised; the Gazzetta text writes accented vowels as vowel and apostrophe (e' for è). Not checked by a named reviewer. Assumed, not derived: its ruleset declares source_type 'estimated'."
+    }
+  },
+  "work_deduction": {
+    "detr_flat": "1955",
+    "detr_a": "1910",
+    "detr_b_coeff": "1190",
+    "detr_b_span": "13000",
+    "detr_c_span": "22000",
+    "detr_lo": "15000",
+    "detr_mid": "28000",
+    "detr_high": "50000",
+    "detr_increment": "65",
+    "increment_lo": "25000",
+    "increment_hi": "35000",
+    "seventy_five": "75",
+    "minimum": {
+      "open_ended": "690",
+      "fixed_term": "1380",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "dpr-917-1986",
+            "title": "D.P.R. 22 dicembre 1986 n. 917 (TUIR)",
+            "kind": "dpr",
+            "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:1986-12-22;917~art13"
+          },
+          "section": "art. 13 c. 1 lett. a)",
+          "quote": "1.955 euro, se il reddito complessivo non supera 15.000 euro. L'ammontare della detrazione effettivamente spettante non può essere inferiore a 690 euro. Per i rapporti di lavoro a tempo determinato, l'ammontare della detrazione effettivamente spettante non può essere inferiore a 1.380 euro"
+        },
+        "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: open_ended applies to every contract except a fixed term, apprenticeship included (D.Lgs. 81/2015 art. 41 c. 1: 'L'apprendistato è un contratto di lavoro a tempo indeterminato'). Applied up to 15,000 EUR only (lett. a). The withholding agent proportions it to the days of work, the larger of the two amounts for the days being due: Agenzia delle Entrate, istruzioni per la compilazione della Certificazione Unica 2026, aggiornate al 24 febbraio 2026, punto 367, p. 33, https://www.agenziaentrate.gov.it/portale/documents/20143/9602395/CU_istr_2026_agg+24+02.pdf/4184818b-05a3-acce-5956-70811c7d2233, sha256 a6ccf7cf53edcbd0d084c2266868649f8d17c348644401b540efd5e3fc95e841: 'Nel caso di rapporti di lavoro a tempo determinato o a tempo indeterminato di durata inferiore all'anno (inizio o cessazione del rapporto di lavoro nel corso dell'anno), limitatamente ai redditi di cui ai punti 1 e 2, il sostituto deve ragguagliare anche la detrazione minima al periodo di lavoro', apostrophes normalised to U+0027, the worker being told with code AN (Tabella F, p. 93) that the tax return grants the deduction for the whole year. Those instructions certify 2025 income; the rule is read as unchanged for the 2026 withholding. The whole minimum on the worker's request (punto 367, 'su richiesta del percipiente'; punto 473 code B, p. 40) is not modelled. The tax return grants it whole: Allegato C to the 730/2026 instructions (Agenzia delle Entrate, provvedimento 27 febbraio 2026, 'Circolare per la liquidazione ed il controllo del mod. 730/2026'), par. 19.9.1, p. 339, https://www.agenziaentrate.gov.it/portale/documents/20143/9772565/Allegato+C+-+Circolare+di+liquidazione+mod+730+2026.pdf/2e2b18aa-3d7d-f192-8a84-669f76c8b6c6, sha256 7bd481daa0cb0fbbd4e35358c64cf9453625ebe441b52060f576ec3a8106f7a1: 'Si precisa che l’importo della detrazione minima come sopra determinata non deve essere rapportata ai giorni di lavoro dipendente', the deduction due being 'il maggiore importo tra quello della Detrazione-LavDip-Rapportata-Giorni e quello della Detrazione minima-LavDip'. Quote checked on 2026-10-07 against the Normattiva text of art. 13 in force on that date (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:1986-12-22;917~art13!vig=2026-10-07), whitespace normalised, the '((' '))' amendment markers around '1.955 euro' and the footnote mark '(229)' removed: identical. Not checked by a named reviewer. Assumed, not derived: its ruleset declares source_type 'estimated'."
+      }
+    },
+    "provenance": {
+      "status": "assumed",
+      "location": {
+        "source_document": {
+          "document_id": "dpr-917-1986",
+          "title": "D.P.R. 22 dicembre 1986 n. 917 (TUIR)",
+          "kind": "dpr"
+        },
+        "section": "art. 13 c. 1"
+      },
+      "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Assumed, not derived: its ruleset declares source_type 'estimated'; no citation (http(s) url and section or page)."
+    }
+  },
+  "notes": [
+    "PROVISIONAL 2027: the values are those of the 2026 ruleset, carried over until the 2027 sources are published (ruleset.provisional); a run that reads this ruleset traverses the open engine limitation provisional_ruleset and is not payable.",
+    "IRPEF brackets: statutory 2026 (L. 199/2025, Art. 1 c. 3). Art. 13 constants versioned in YearRules.work_deduction.",
+    "INPS employer — components verified for manufacturing/metalworking industry 2026: IVS 23.81% (Circ. INPS 6/2026) + DS/NASpI 1.61% + CUAF 2.48% + CIGO 1.70% (≤50 employees) or 2.00% (>50 employees, D.Lgs. 148/2015 art. 5, Circ. INPS 1/2026) + FIS 0.533% employer (6-15 employees, 2/3 of 0.80%, Circ. INPS 5/2025) or CIGS 0.60% employer (>15 employees, 2/3 of 0.90%). Total by tier: ≤15 employees = 30.13%; 16-50 employees = 30.20%; >50 employees = 30.50%. Does not include INAIL (sector-variable, not modelled).",
+    "fixed_term_additional_rate, fixed_term_renewal_increment: NASpI surcharge of fixed-term contracts, L. 92/2012 art. 2 c. 28-29; see fixed_term_additional_rate_provenance.",
+    "INPS dipendente — employee_tiers: 9.19% (IVS) up to 15 employees; 9.49% above 15 (adds the 0.30% CIGS employee share, D.Lgs. 148/2015 art. 23).",
+    "Apprentice contributions (L. 296/2006 art. 1 c. 773; L. 92/2012 art. 2 c. 36-37): employer 10% + NASpI 1.31% + 0.30% = 11.61%; employee 5.84%. Firms with at most 9 employees pay 1.5% (+1.61% NASpI) in months 0-11 and 3% (+1.61%) in months 12-23, then 11.61%. SIMPLIFICATION: hiring incentives (sgravi) and Cassa Edile apprentice schemes are not modelled.",
+    "IVS ceiling: massimale annuo della base contributiva 2026 = EUR 122,295.00 (INPS Circ. 6/2026, 30 Jan 2026; L. 335/1995 art. 2 c. 18). Applies to workers without contributions before 1 Jan 1996 and to those who opted for the contributory system (art. 1 c. 23); the engine derives it from the contribution history.",
+    "Art. 16-ter c. 5-bis TUIR (inserted by L. 199/2025 art. 1 c. 4): for a reddito complessivo > EUR 200 000 the deduction for the 19% oneri (spese sanitarie excluded), the donations to political parties and the catastrophe insurance premiums is reduced by EUR 440. The art. 12 and art. 13 TUIR deductions and the ulteriore detrazione are outside its scope; the payroll computes none of the oneri in scope and does not apply the reduction."
+  ],
+  "irpef_brackets_provenance": {
+    "status": "assumed",
+    "location": {
+      "source_document": {
+        "document_id": "dlgs-117-2026",
+        "title": "D.Lgs. 19 giugno 2026, n. 117, testo unico delle imposte sui redditi (applies from 1 January 2027)",
+        "kind": "dlgs",
+        "url": "https://www.normattiva.it/atto/caricaArticolo?art.versione=1&art.idGruppo=1&art.flagTipoArticolo=1&art.codiceRedazionale=26G00131&art.idArticolo=11&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=2026-07-03&art.progressivo=0"
+      },
+      "section": "art. 11 c. 1",
+      "quote": "L'imposta lorda è determinata applicando al reddito complessivo, al netto degli oneri deducibili indicati nell'articolo 10, le seguenti aliquote per scaglioni di reddito: a) fino a euro 28.000, 23 per cento; b) oltre euro 28.000 e fino a euro 50.000, 33 per cento; c) oltre euro 50.000, 43 per cento."
+    },
+    "transformation": "Art. 11 c. 1 of the testo unico (from art. 11 TUIR) sets the three brackets and rates, the same as 2026.",
+    "note": "Quote checked on 2026-10-09 against the Normattiva text of the testo unico, art. 11, in force from 4 July 2026. Not checked by a named reviewer. Assumed, not derived: its ruleset declares source_type 'estimated'."
+  },
+  "fixed_term_additional_rate_provenance": {
+    "status": "assumed",
+    "location": {
+      "source_document": {
+        "document_id": "l-92-2012",
+        "title": "L. 28 giugno 2012 n. 92",
+        "kind": "legge",
+        "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2012-06-28;92~art2!vig=2026-10-07"
+      },
+      "section": "art. 2 c. 28",
+      "quote": "ai rapporti di lavoro subordinato non a tempo indeterminato si applica un contributo addizionale, a carico del datore di lavoro, pari all'1,4 per cento della retribuzione imponibile ai fini previdenziali. Il contributo addizionale è aumentato di 0,5 punti percentuali in occasione di ciascun rinnovo del contratto a tempo determinato, anche in regime di somministrazione. Le disposizioni del precedente periodo non si applicano ai contratti di lavoro domestico, nonché nelle ipotesi di cui al comma 29."
+    },
+    "transformation": "fixed_term_additional_rate: '1,4 per cento' = 0.014; fixed_term_renewal_increment: '0,5 punti percentuali' = 0.005, added once per renewal to the rate of the previous contract.",
+    "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: INPS circ. 121/2019 par. 2.3 (https://servizi2.inps.it/CircolariZIP/Circolare%20numero%20121%20del%2006-09-2019.pdf, sha256 4523ce7c22a7f5d8c51cfe4de8968642d1279ab7fc7209fc9a0e31e3ddb49449): 'contratto originario: 1,4%; 1° rinnovo: 1.9% (1,4% + 0,5%); 2° rinnovo: 2.4% (1,9% + 0,5%); 3° rinnovo: 2,9% (2,4% + 0,5%)', and 'si considera primo rinnovo contrattuale quello sottoscritto a far tempo dal 14 luglio 2018'; par. 2.2: the increase 'non trova applicazione in caso di proroga'. Normattiva text of L. 92/2012 art. 2 read on 2026-10-07 (in force on that date, last amending act published 2026-03-23). Not checked by a named reviewer. Assumed, not derived: its ruleset declares source_type 'estimated'."
+  },
+  "complementary_pension": {
+    "deduction_cap": "5300.00",
+    "solidarity_rate": "0.10",
+    "provenance": {
+      "status": "assumed",
+      "location": {
+        "source_document": {
+          "document_id": "dlgs-252-2005",
+          "title": "D.Lgs. 252/2005, disciplina delle forme pensionistiche complementari",
+          "kind": "legge",
+          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2005-12-05;252~art8"
+        },
+        "section": "art. 8 c. 4, last period (added by L. 199/2025 art. 1 c. 201 lett. a) n. 1); art. 16 c. 1",
+        "quote": "A decorrere dal periodo d'imposta 2026, il limite di cui al primo periodo è innalzato a euro 5.300."
+      },
+      "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: deduction_cap: art. 8 c. 4 D.Lgs. 252/2005, via art. 10 c. 1 lett. e-bis and art. 51 c. 2 lett. h TUIR; the TFR paid to the fund does not count. solidarity_rate: art. 16 c. 1 D.Lgs. 252/2005, the 10% contribution of art. 9-bis D.L. 103/1991 (conv. L. 166/1991) on the employer contributions other than the TFR. Quote checked on 2026-09-27 against the Normattiva text of art. 8 in force from 1-1-2026 (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2005-12-05;252~art8), whitespace normalised and the '((' '))' amendment markers removed: identical; the sentence added by the Gazzetta Ufficiale text of L. 199/2025 art. 1 c. 201 lett. a) n. 1 (https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.codiceRedazionale=26A00149&art.dataPubblicazioneGazzetta=2026-01-21&art.flagTipoArticolo=0&art.idArticolo=1&art.idGruppo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.progressivo=3&art.versione=1) is the same except for the accent spelling (e' for è). Not checked by a named reviewer. Assumed, not derived: its ruleset declares source_type 'estimated'."
+    }
+  }
+}

@@ -27,6 +27,27 @@ if TYPE_CHECKING:
     from ccnl_engine.provenance.domain.ruleset_identity import RulesetIdentity
 
 _SURTAX = frozenset({"addizionale_regionale", "addizionale_comunale"})
+#: Engine limitation of a run that reads a provisional ruleset.
+PROVISIONAL_RULESET = "provisional_ruleset"
+
+
+def provisional_paths(ctx: RunContext) -> frozenset[str]:
+    """Return the limitation path of a run on provisional tax or INPS rules.
+
+    The IRPEF rules are those of the tax year of the payment, the INPS
+    rules those of the competence year: either can be provisional.  The
+    other rulesets of a year (family deductions, somma esente, surtax)
+    are provisional together with its tax ruleset.
+
+    Returns:
+        ``provisional_ruleset`` when the tax or the INPS ruleset of the run
+        is provisional, empty otherwise.
+    """
+    rules = ctx.contract.year_rules
+    identities = (rules.ruleset, rules.inps_ruleset)
+    if any(i is not None and i.provisional for i in identities):
+        return frozenset({PROVISIONAL_RULESET})
+    return frozenset()
 
 
 def _candidates(

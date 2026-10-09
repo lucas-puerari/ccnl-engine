@@ -62,7 +62,7 @@ def test_productivity_bonus_ineligible_above_income_ceiling() -> None:
     """Productivity bonus above the income ceiling must be taxed at ordinary rates.
 
     Source: L. 199/2025 art. 1 co. 9 — tassazione sostitutiva 1% applies only
-    for workers with prior-year reddito <= income_ceiling (variable-pay-rules.json
+    for workers with prior-year reddito <= income_ceiling (variable-pay-rules-2026.json
     income_ceiling=80000).  A worker with prior-year income 90000 must have
     SUBSTITUTE_TAX = 0.00 and the bonus taxed at ordinary IRPEF rates.
     """

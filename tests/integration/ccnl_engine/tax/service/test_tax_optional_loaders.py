@@ -38,10 +38,21 @@ class TestLoadVariablePayRules:
         rules = load_variable_pay_rules(2026)
         assert rules.year == 2026
 
-    def test_wrong_year_raises(self) -> None:
-        """Requesting a year that does not match the file raises ValueError."""
-        with pytest.raises(DataIntegrityError, match="does not match requested year"):
+    def test_unbundled_year_raises(self) -> None:
+        """A year without a variable-pay-rules file is not supported."""
+        with pytest.raises(UnsupportedTaxYearError):
             load_variable_pay_rules(2099)
+
+    def test_wrong_year_raises(self) -> None:
+        """A file whose year does not match its name is rejected."""
+        with (
+            patch(
+                "ccnl_engine.tax.service.tax_optional_loaders.read_year_json",
+                return_value={"year": 2026},
+            ),
+            pytest.raises(DataIntegrityError, match="does not match requested year"),
+        ):
+            load_variable_pay_rules(2027)
 
 
 class TestLoadTfrRevaluationRules:

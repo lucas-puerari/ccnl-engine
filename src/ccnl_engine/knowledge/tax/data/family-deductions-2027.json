@@ -1,0 +1,133 @@
+{
+  "year": 2027,
+  "description": "Art. 12 TUIR detrazioni per carichi di famiglia (anno d'imposta 2026)",
+  "ratio_decimals": 4,
+  "spouse": {
+    "dependent_income_threshold": "2840.51",
+    "full_amount": "800.00",
+    "low_income_reduction": "110.00",
+    "low_income_limit": "15000.00",
+    "flat_amount": "690.00",
+    "flat_income_limit": "40000.00",
+    "phase_out_limit": "80000.00",
+    "notes": "Lett. a): 800 - 110 x R/15000 up to 15000; 690 above 15000 up to 40000; 690 x (80000 - R)/40000 above 40000 up to 80000. Ratios taken to four decimals (c. 4); R net of the main dwelling (c. 4-bis).",
+    "provenance": {
+      "status": "assumed",
+      "location": {
+        "source_document": {
+          "document_id": "dpr-917-1986",
+          "title": "D.P.R. 22 dicembre 1986 n. 917 (TUIR)",
+          "kind": "dpr",
+          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:1986-12-22;917~art12!vig="
+        },
+        "section": "art. 12 c. 1 lett. a; c. 4",
+        "quote": "1) 800 euro, diminuiti del prodotto tra 110 euro e l'importo corrispondente al rapporto fra reddito complessivo e 15.000 euro, se il reddito complessivo non supera 15.000 euro; 2) 690 euro, se il reddito complessivo è superiore a 15.000 euro ma non a 40.000 euro; 3) 690 euro, se il reddito complessivo è superiore a 40.000 euro ma non a 80.000 euro. La detrazione spetta per la parte corrispondente al rapporto tra l'importo di 80.000 euro, diminuito del reddito complessivo, e 40.000 euro"
+      },
+      "transformation": "Amounts and limits of numbers 1) to 3) stored as statutory parameters; the formulas are applied by the engine.",
+      "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Text in force read on Normattiva on 2026-10-03 (vigenza 12-8-2026 al 31-12-2026); the 2025-2026 amendments (notes 241, 250) touch only c. 4-ter."
+    }
+  },
+  "spouse_increases": {
+    "bands": [
+      {
+        "above": "29000.00",
+        "up_to": "29200.00",
+        "amount": "10.00"
+      },
+      {
+        "above": "29200.00",
+        "up_to": "34700.00",
+        "amount": "20.00"
+      },
+      {
+        "above": "34700.00",
+        "up_to": "35000.00",
+        "amount": "30.00"
+      },
+      {
+        "above": "35000.00",
+        "up_to": "35100.00",
+        "amount": "20.00"
+      },
+      {
+        "above": "35100.00",
+        "up_to": "35200.00",
+        "amount": "10.00"
+      }
+    ],
+    "notes": "Lett. b): increase of the lett. a) spouse deduction, each band above its lower limit and not above its upper limit.",
+    "provenance": {
+      "status": "assumed",
+      "location": {
+        "source_document": {
+          "document_id": "dpr-917-1986",
+          "title": "D.P.R. 22 dicembre 1986 n. 917 (TUIR)",
+          "kind": "dpr",
+          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:1986-12-22;917~art12!vig="
+        },
+        "section": "art. 12 c. 1 lett. b",
+        "quote": "la detrazione spettante ai sensi della lettera a) è aumentata di un importo pari a: 1) 10 euro, se il reddito complessivo è superiore a 29.000 euro ma non a 29.200 euro; 2) 20 euro, se il reddito complessivo è superiore a 29.200 euro ma non a 34.700 euro; 3) 30 euro, se il reddito complessivo è superiore a 34.700 euro ma non a 35.000 euro; 4) 20 euro, se il reddito complessivo è superiore a 35.000 euro ma non a 35.100 euro; 5) 10 euro, se il reddito complessivo è superiore a 35.100 euro ma non a 35.200 euro"
+      },
+      "transformation": "One row per numbered band: 'superiore a X ma non a Y' stored as above=X, up_to=Y.",
+      "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Text in force read on Normattiva on 2026-10-03 (vigenza 12-8-2026 al 31-12-2026); the 2025-2026 amendments (notes 241, 250) touch only c. 4-ter."
+    }
+  },
+  "children": {
+    "auu_age_cutoff": 21,
+    "age_limit": 30,
+    "base_amount": "950.00",
+    "income_ceiling": "95000.00",
+    "income_ceiling_increment_per_child": "15000.00",
+    "dependent_income_threshold": "2840.51",
+    "young_child_income_threshold": "4000.00",
+    "young_child_max_age": 24,
+    "notes": "Children from the month they turn 21 to the month they turn 30 (c. 3); from 30 only with a disability under art. 3 L. 104/1992. Children under 21 are covered by the assegno unico (D.Lgs. 230/2021). Own-income limit 2840.51, 4000 for children who turn at most 24 in the year (c. 2).",
+    "provenance": {
+      "status": "assumed",
+      "location": {
+        "source_document": {
+          "document_id": "dpr-917-1986",
+          "title": "D.P.R. 22 dicembre 1986 n. 917 (TUIR)",
+          "kind": "dpr",
+          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:1986-12-22;917~art12!vig="
+        },
+        "section": "art. 12 c. 1 lett. c; c. 2",
+        "quote": "950 euro per ciascun figlio [...] di età pari o superiore a 21 anni ma inferiore a 30 anni, nonché per ciascun figlio di età pari o superiore a 30 anni con disabilità accertata ai sensi dell'articolo 3 della legge 5 febbraio 1992, n. 104. [...] La detrazione spetta per la parte corrispondente al rapporto tra l'importo di 95.000 euro, diminuito del reddito complessivo, e 95.000 euro. In presenza di più figli che danno diritto alla detrazione, l'importo di 95.000 euro è aumentato per tutti di 15.000 euro per ogni figlio successivo al primo."
+      },
+      "transformation": "The 4000 EUR own-income limit for children 'di età non superiore a ventiquattro anni' (c. 2) is applied for the whole year in which the child turns at most 24: the reading of the Agenzia delle Entrate 730 instructions as reported by secondary sources, the primary text of the instructions not yet retrieved. The number of children for the 95000 EUR increase counts every child entitled in at least one month of the year.",
+      "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Text in force read on Normattiva on 2026-10-03 (vigenza 12-8-2026 al 31-12-2026); the 2025-2026 amendments (notes 241, 250) touch only c. 4-ter."
+    }
+  },
+  "other_dependents": {
+    "dependent_income_threshold": "2840.51",
+    "amount": "750.00",
+    "income_ceiling": "80000.00",
+    "notes": "Post L. 207/2024: only ascendenti conviventi qualify. Other categories (fratelli, sorelle, generi, nuore, suoceri) no longer eligible.",
+    "provenance": {
+      "status": "assumed",
+      "location": {
+        "source_document": {
+          "document_id": "dpr-917-1986",
+          "title": "D.P.R. 22 dicembre 1986 n. 917 (TUIR)",
+          "kind": "dpr",
+          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:1986-12-22;917~art12!vig="
+        },
+        "section": "art. 12 c. 1 lett. d",
+        "quote": "750 euro, da ripartire pro quota tra coloro che hanno diritto alla detrazione, per ciascun ascendente che conviva con il contribuente. La detrazione spetta per la parte corrispondente al rapporto tra l'importo di 80.000 euro, diminuito del reddito complessivo, e 80.000 euro."
+      },
+      "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Text in force read on Normattiva on 2026-10-03 (vigenza 12-8-2026 al 31-12-2026); the 2025-2026 amendments (notes 241, 250) touch only c. 4-ter."
+    }
+  },
+  "ruleset": {
+    "id": "tax/2027/family-deductions",
+    "version": "2026.2",
+    "effective_from": "2027-01-01",
+    "effective_until": null,
+    "published_at": "2026-10-09",
+    "source": "D.P.R. 22 dicembre 1986 n. 917 (TUIR), art. 12",
+    "source_type": "estimated",
+    "verification_status": "unverified",
+    "source_hash": "10854a23ece71ff6e8ffc0bd00ce1dd26f8dcfd1f63338f17393547c0cd08a81",
+    "provisional": true
+  }
+}

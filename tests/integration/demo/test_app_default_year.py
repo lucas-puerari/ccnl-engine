@@ -44,13 +44,13 @@ class TestDemoDefaultYear:
     def test_latest_bundled_year_falls_back_at_future_system_date(
         self, demo_app: types.ModuleType
     ) -> None:
-        """_latest_bundled_year() returns 2026 when the system year has no data."""
+        """_latest_bundled_year() returns 2027 when the system year has no data."""
         future_now = MagicMock()
-        future_now.year = 2027
+        future_now.year = 2028
         with patch.object(demo_app, "datetime") as mock_dt:
             mock_dt.now.return_value = future_now
             year = demo_app._latest_bundled_year()
-        assert year == 2026
+        assert year == 2027
 
     def test_latest_bundled_year_raises_when_no_data_found(
         self, demo_app: types.ModuleType

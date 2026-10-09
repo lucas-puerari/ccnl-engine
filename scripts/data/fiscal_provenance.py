@@ -288,7 +288,7 @@ FISCAL_RECORDS: Final[dict[str, dict[str, dict[str, Any]]]] = {
         "children": _derived(TUIR, "art. 12 c. 1 lett. c"),
         "other_dependents": _derived(TUIR, "art. 12 c. 1 lett. d"),
     },
-    "tax/data/variable-pay-rules.json": {
+    "tax/data/variable-pay-rules-2026.json": {
         "fringe_benefit": _derived(
             TUIR, "art. 51 c. 3", note="Thresholds per L. 207/2024 art. 1 c. 390."
         ),

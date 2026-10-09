@@ -26,6 +26,7 @@ from ccnl_engine.inputs import (
     RecoveryObligation,
     RecoveryPlan,
 )
+from ccnl_engine.results import BlockerCode
 from tests.acceptance.legal_scenarios._support import (
     COMMERCIO,
     EMPLOYER,
@@ -58,24 +59,48 @@ def test_december_paid_by_ten_january_stays_in_previous_year() -> None:
     assert result.closing_state.tax_year == 2026
 
 
-@pytest.mark.parametrize(
-    ("payment_date", "tax_year"),
-    [(date(2027, 1, 13), 2027), (date(2028, 6, 28), 2028)],
-)
-def test_run_of_unbundled_tax_year_raises_domain_error(
-    payment_date: date, tax_year: int
-) -> None:
+def test_run_of_unbundled_tax_year_raises_domain_error() -> None:
     """The engine computes the run with the payment year's tables.
 
-    Those tables are not bundled, so the run fails with a domain error that
-    names the attributed tax year instead of computing it with 2026 rules.
+    No 2028 tables are bundled, so a run paid in 2028 fails with a domain
+    error that names the attributed tax year instead of computing it with
+    the rules of another year.
     """
     with pytest.raises(UnsupportedTaxYearError) as info:
-        regular_period(month=12, payment_date=payment_date)
+        regular_period(month=12, payment_date=date(2028, 6, 28))
 
-    assert info.value.year == tax_year
-    assert info.value.supported == supported_tax_years() == (2026,)
-    assert "2026" in (info.value.remediation or "")
+    assert info.value.year == 2028
+    assert info.value.supported == supported_tax_years() == (2026, 2027)
+    assert "2026, 2027" in (info.value.remediation or "")
+
+
+def test_december_paid_in_january_reads_provisional_2027_tax_rules() -> None:
+    """December 2026 paid on 13 January 2027: 2027 IRPEF, 2026 INPS.
+
+    The payment belongs to tax year 2027 (art. 51 c. 1 TUIR), so the IRPEF
+    rules are those of 2027; INPS follows competence (INPS circ. 237/2016
+    par. 2.1).  The 2027 tables are provisional, carried over from 2026
+    until the 2027 sources are published: the run is computed and not
+    payable, with the open limitation ``provisional_ruleset``.
+    """
+    result = regular_period(month=12, payment_date=date(2027, 1, 13))
+    rulesets = {r.id for r in result.assurance.rulesets}
+
+    assert result.closing_state.tax_year == 2027
+    assert {"tax/2027/terziario", "inps/2026/terziario"} <= rulesets
+    assert "inps/2027/terziario" not in rulesets
+    assert "provisional_ruleset" in {lim.id for lim in result.assurance.limitations}
+    assert (BlockerCode.OPEN_LIMITATION, "provisional_ruleset") in {
+        (b.code, b.detail) for b in result.blockers
+    }
+    assert not result.is_payable
+
+
+def test_december_paid_in_december_reads_no_provisional_rules() -> None:
+    """December 2026 paid in 2026 reads only the 2026 tables."""
+    result = regular_period(month=12, payment_date=date(2026, 12, 27))
+
+    assert "provisional_ruleset" not in {lim.id for lim in result.assurance.limitations}
 
 
 def test_run_of_next_tax_year_is_not_added_to_current_year_state() -> None:

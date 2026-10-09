@@ -40,6 +40,7 @@ def test_bundled_engine_limitations_are_path_triggered() -> None:
         "apprenticeship_pct_undeclared_components",
         "sickness_inps_daily_base",
         "sickness_cumulation_window",
+        "provisional_ruleset",
     }
     assert {lim.id for lim in limitations} - blocking == {
         "apprenticeship_midpoint_allowances",
