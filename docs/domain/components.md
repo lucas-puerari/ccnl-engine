@@ -234,9 +234,12 @@ of fixed per-hour contributions by wage bracket. No percentage of gross applies.
 
 ### Contribution base
 
-The INPS base is gross pay minus any elements flagged
-`contribution_relevant = false` in the contract data (e.g. certain expense
-reimbursements).
+The INPS base is the gross pay of the run with the events that enter it; a fixed
+allowance is never taken out of it, so the contract data rejects
+`contribution_relevant = false`. The TFR base leaves out the allowances flagged
+`tfr_relevant = false` (art. 2120 c. 2 c.c.: "salvo diversa previsione dei contratti
+collettivi"), and so do the bases built on it: the pension funds on the TFR base and
+the end-of-service base of a public employee.
 
 ## 10. IRPEF and surcharges
 

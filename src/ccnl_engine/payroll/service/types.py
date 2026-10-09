@@ -155,6 +155,16 @@ class MonthlyPayChain:
         """Rounded sum of the allowances provided in kind."""
         return money(sum((v for a, v in self.allowances if a.in_kind), _ZERO))
 
+    @property
+    def tfr_excluded_total(self) -> Decimal:
+        """Rounded sum of the allowances the CCNL leaves out of the TFR.
+
+        Art. 2120 c. 2 c.c.: the TFR counts every sum paid "salvo diversa
+        previsione dei contratti collettivi"; the allowances flagged
+        ``tfr_relevant`` false are that provision.
+        """
+        return money(sum((v for a, v in self.allowances if not a.tfr_relevant), _ZERO))
+
 
 @dataclass(frozen=True)
 class ApprenticeshipScaling:

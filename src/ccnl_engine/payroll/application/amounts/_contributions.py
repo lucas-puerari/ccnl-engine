@@ -221,7 +221,7 @@ def tfr_accrual(inp: _AmountsInput, breakdown: ContributionBreakdown) -> TfrAccr
         its destination.
     """
     tfr = inp.rules.tfr
-    base = inp.monthly_gross + inp.in_kind + inp.event_tfr_base
+    base = inp.tfr_pay
     quota = money(base / tfr.accrual_divisor)
     public = inp.public_end_of_service
     accrual = TfrAccrual(

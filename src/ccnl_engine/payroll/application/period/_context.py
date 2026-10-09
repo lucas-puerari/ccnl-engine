@@ -200,6 +200,19 @@ class RunContext:
         return chain_gross(self.chain)
 
     @property
+    def tfr_pay(self) -> Decimal:
+        """TFR base of the pay chain, the excluded allowances left out.
+
+        The gross and the benefits in kind, less the allowances the CCNL
+        leaves out of the TFR.
+        """
+        return (
+            self.monthly_gross
+            + self.chain.in_kind_total
+            - self.chain.tfr_excluded_total
+        )
+
+    @property
     def regular_gross(self) -> Decimal:
         """Gross of the pay chain of a fully employed regular month."""
         return chain_gross(self.regular_chain)

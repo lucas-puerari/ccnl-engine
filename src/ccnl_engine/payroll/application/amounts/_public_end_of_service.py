@@ -86,7 +86,7 @@ def _components(
     """
     rates = None if inp.rules.inps is None else inp.rules.inps.end_of_service
     regime = inp.public_end_of_service
-    pay = inp.monthly_gross + inp.in_kind + inp.event_tfr_base
+    pay = inp.tfr_pay
     base = end_of_service_base(rates, regime, pay, extra=inp.additional_month)
     if rates is None or base is None:
         return (), ()
@@ -171,7 +171,7 @@ def end_of_service_employee_rate(inp: _AmountsInput) -> Decimal:
         otherwise.  It projects the taxable of the slots still to come.
     """
     rates = None if inp.rules.inps is None else inp.rules.inps.end_of_service
-    pay = inp.monthly_gross + inp.in_kind + inp.event_tfr_base
+    pay = inp.tfr_pay
     base = end_of_service_base(rates, inp.public_end_of_service, pay, extra=False)
     if rates is None or base is None:
         return _ZERO

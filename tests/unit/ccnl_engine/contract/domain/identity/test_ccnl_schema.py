@@ -70,6 +70,20 @@ class TestStrictSchema:
         data["meta"]["tax_sector"] = "pubblica-amministrazione"
         assert _validate(data).meta.public_pension_fund == "cpdel"
 
+    def test_contribution_relevant_false_is_rejected(self) -> None:
+        """The engine never takes an allowance out of the INPS base."""
+        data = make_ccnl_dict()
+        data["levels"][0]["fixed_allowances"] = [
+            {
+                "code": "X",
+                "description": "x",
+                "monthly": _SERIES,
+                "contribution_relevant": False,
+            }
+        ]
+        with pytest.raises(ValidationError, match="contribution_relevant"):
+            _validate(data)
+
 
 # ---------------------------------------------------------------------------
 # Legacy schema 0.4 coercion
