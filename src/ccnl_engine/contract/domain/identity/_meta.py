@@ -91,6 +91,9 @@ class CCNLMeta(BaseModel):
         public_pension_fund: Pension fund of INPS Gestione Dipendenti
             Pubblici the workers enrol in, which sets their INPS rates;
             ``None`` outside the public administrations.
+        public_life_insurance: Whether the employers of the CCNL enrol their
+            staff in the Assicurazione Sociale Vita, when the CCNL decides
+            it (the State does not); ``None`` when its employers differ.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -107,6 +110,7 @@ class CCNLMeta(BaseModel):
     validity: CCNLValidity | None = None
     workers_estimate: str = ""
     public_pension_fund: PublicPensionFund | None = None
+    public_life_insurance: bool | None = None
 
     @property
     def withholding_agent(self) -> bool:
@@ -127,8 +131,9 @@ class CCNLMeta(BaseModel):
     @model_validator(mode="after")
     def _check_public_fund(self) -> CCNLMeta:
         public = self.tax_sector is TaxSector.PUBBLICA_AMMINISTRAZIONE
-        if self.public_pension_fund is not None and not public:
-            msg = "public_pension_fund is for the public administrations only"
+        stated = (self.public_pension_fund, self.public_life_insurance)
+        if any(value is not None for value in stated) and not public:
+            msg = "public funds are for the public administrations only"
             raise ValueError(msg)
         return self
 

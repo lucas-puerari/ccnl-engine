@@ -24,6 +24,7 @@ from ccnl_engine.tax.domain.contribution_rules import (
     EndOfServiceRates,
     PublicCreditRate,
     PublicFundRates,
+    PublicLifeInsuranceRates,
 )
 from ccnl_engine.tax.domain.minimum_base import MinimumBaseRule
 
@@ -106,6 +107,7 @@ class InpsRawRates(BaseModel):
     public_funds: dict[PublicPensionFund, PublicFundRates] = {}
     end_of_service: EndOfServiceRates | None = None
     public_credit: PublicCreditRate | None = None
+    public_life_insurance: PublicLifeInsuranceRates | None = None
 
 
 class ApprenticeRawRates(BaseModel):

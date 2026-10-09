@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Assicurazione Sociale Vita of public employees
+
+| Before | After |
+|---|---|
+| No ASV (ex ENPDEP) contribution | New `EmployerProfile.public_life_insurance` and `CCNLMeta.public_life_insurance`: when owed, the components `life_insurance_employee` (0.027%) and `life_insurance_employer` (0.093%) on the pension base; on a CCNL of the public administrations that does not fix it, `None` gives the `missing_fact` issue `public_life_insurance_unknown` |
+
 ## Allowances left out of the TFR base
 
 | Before | After |

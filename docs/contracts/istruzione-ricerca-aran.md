@@ -149,6 +149,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     PENSION FUND. Fondo Scuola Espero (1% + 1%); enrolment is a fact, the silenzio-assenso of the hires from 2019 is not inferred, nor the three months a fixed term needs to enrol. The TFR conferred stays a notional INPS accrual.
     
+    ASSICURAZIONE SOCIALE VITA. The employers of this CCNL are Amministrazioni dello Stato (the State schools; the forze di polizia), which INPS circ. 104/2014 leaves out of the Assicurazione Sociale Vita (ex ENPDEP): meta.public_life_insurance is false.
+    
     Stipendio tabellare annuo da Tabella A2 CCNL 23/12/2025 allegato ufficiale (notiziedellascuola.it). Valori fascia 0-8 anni da 1/1/2024.
     
     Pre-2024: back-calcolato sottraendo incremento mensile (Tabella A1) × 13. Esempio COLLABORATORE: 17.456,64 - 85,74×13 = 16.342,02€/anno = 1.257,08€/mese.

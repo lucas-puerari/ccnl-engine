@@ -40,7 +40,8 @@
       "human_reviewed": false
     },
     "workers_estimate": "~1,2M",
-    "public_pension_fund": "ctps"
+    "public_pension_fund": "ctps",
+    "public_life_insurance": false
   },
   "parameters": {
     "hourly_divisor": {
@@ -696,6 +697,10 @@
       {
         "kind": "info",
         "text": "PENSION FUND. Fondo Scuola Espero (1% + 1%); enrolment is a fact, the silenzio-assenso of the hires from 2019 is not inferred, nor the three months a fixed term needs to enrol. The TFR conferred stays a notional INPS accrual."
+      },
+      {
+        "kind": "info",
+        "text": "ASSICURAZIONE SOCIALE VITA. The employers of this CCNL are Amministrazioni dello Stato (the State schools; the forze di polizia), which INPS circ. 104/2014 leaves out of the Assicurazione Sociale Vita (ex ENPDEP): meta.public_life_insurance is false."
       }
     ]
   },
@@ -706,7 +711,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1",
     "verification_status": "unverified",
-    "source_hash": "1c0a10041d91e2979cb9f62ab74e99a83443fe367a41a609e8243f46ab42b2dd",
+    "source_hash": "01e780227fe23133ea5133d3af207293ba189c4db6d88d9c5bd5c202a1a1d053",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

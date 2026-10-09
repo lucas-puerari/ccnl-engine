@@ -83,6 +83,14 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "unknown activity: the regime that excludes some activities is "
         "undetermined, with a blocker",
     ),
+    "EmployerProfile.public_life_insurance": requires_fact(
+        "inps_employee",
+        "employer.public_life_insurance",
+        _REPORTED,
+        "the value the CCNL fixes; on a CCNL of the public administrations "
+        "whose employers differ, the Assicurazione Sociale Vita is left out "
+        "and the run has a missing_fact public_life_insurance blocker",
+    ),
     "Employment.category": requires_fact(
         "worker_category",
         "employment.category",

@@ -135,6 +135,7 @@ PUBLIC_FACTS: Mapping[str, str] = MappingProxyType({
     "erc_amount": "Employment.erc_amount",
     "conventional_base": "PensionFundEnrolment.conventional_base",
     "public_end_of_service": "Employment.public_end_of_service",
+    "public_life_insurance": "EmployerProfile.public_life_insurance",
 })
 
 

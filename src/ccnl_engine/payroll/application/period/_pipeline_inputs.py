@@ -122,6 +122,16 @@ def _children_within_limit(ctx: RunContext) -> bool | None:
     return children_within_income_limit(children, rules.children, year)
 
 
+def _life_insurance(ctx: RunContext) -> bool | None:
+    """Return whether the employer enrols the worker in the ASV.
+
+    Returns:
+        The employer's statement, else the value the CCNL fixes.
+    """
+    stated = ctx.request.employer.public_life_insurance
+    return ctx.contract.ccnl.meta.public_life_insurance if stated is None else stated
+
+
 def _recovery_plans(
     ctx: RunContext, fiscal_year: int
 ) -> tuple[RecoveryPlan | None, RecoveryPlan | None]:
@@ -199,6 +209,7 @@ def amounts_input(
         additional_ivs=additional_ivs_position(ctx),
         tfr_treasury_fund=tfr_treasury_fund(ctx),
         public_end_of_service=request.public_end_of_service,
+        public_life_insurance=_life_insurance(ctx),
         assistance=assistance_terms(contract.ccnl, contract.tctx.competence),
     )
 

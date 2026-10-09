@@ -70,6 +70,22 @@ class PublicCreditRate(BaseModel):
     provenance: RuleProvenance | None = None
 
 
+class PublicLifeInsuranceRates(BaseModel):
+    """Rates of the Assicurazione Sociale Vita (ex ENPDEP) of a public employee.
+
+    INPS circ. 104/2014 par. 3.1: "la base imponibile è costituita dalla
+    retribuzione pensionabile [...] Il contributo è pari allo 0,12% della
+    base imponibile e grava in misura pari allo 0,027% sul lavoratore ed
+    allo 0,093% sul datore di lavoro".
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    employee_rate: NonNegativeRate
+    employer_rate: NonNegativeRate
+    provenance: RuleProvenance | None = None
+
+
 class PublicFundRates(BaseModel):
     """Pension contribution rates of a fund of INPS Gestione Dipendenti Pubblici.
 
@@ -132,6 +148,7 @@ class InpsRates(BaseModel):
     public_funds: dict[PublicPensionFund, PublicFundRates] = {}
     end_of_service: EndOfServiceRates | None = None
     public_credit: PublicCreditRate | None = None
+    public_life_insurance: PublicLifeInsuranceRates | None = None
 
     def for_public_fund(self, fund: PublicPensionFund | None) -> InpsRates:
         """Return the rates of a fund of the Gestione Dipendenti Pubblici.

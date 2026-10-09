@@ -6,6 +6,7 @@ from dataclasses import dataclass
 
 from ccnl_engine.shared.domain.validation import (
     parse_enum,
+    require_bool,
     require_instance,
     require_int,
 )
@@ -50,14 +51,23 @@ class EmployerProfile:
             some activities.  ``None`` means not known: the night, holiday
             and shift substitute tax (L. 199/2025 art. 1 c. 11) excludes the
             activities of c. 18, so its eligibility is then ``unknown``.
+        public_life_insurance: Whether a public employer enrols its staff in
+            the Assicurazione Sociale Vita (ex ENPDEP): every "ente dotato di
+            personalità giuridica di diritto pubblico" except the State, the
+            Province, the Comuni and the enti di assistenza e beneficenza
+            (INPS circ. 104/2014).  ``None`` takes the value the CCNL fixes;
+            when it fixes none, a run of the public administrations has a
+            ``missing_fact`` blocker.
 
     Raises:
-        InvalidInputError: When ``headcount`` is not a :class:`Headcount` or
-            ``activity`` is not an :class:`EmployerActivity` value.
+        InvalidInputError: When ``headcount`` is not a :class:`Headcount`,
+            ``activity`` is not an :class:`EmployerActivity` value or
+            ``public_life_insurance`` is not a bool.
     """
 
     headcount: Headcount
     activity: EmployerActivity | None = None
+    public_life_insurance: bool | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         require_instance(
@@ -71,3 +81,9 @@ class EmployerProfile:
                 feature=_FEATURE,
             )
             object.__setattr__(self, "activity", activity)
+        if self.public_life_insurance is not None:
+            require_bool(
+                self.public_life_insurance,
+                "EmployerProfile.public_life_insurance",
+                feature=_FEATURE,
+            )

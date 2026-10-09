@@ -23,6 +23,7 @@ from ccnl_engine.payroll.application.amounts._pension import (
 )
 from ccnl_engine.payroll.application.amounts._public_end_of_service import (
     end_of_service_issue,
+    life_insurance_issue,
 )
 from ccnl_engine.payroll.application.amounts._surtax import run_surtax
 from ccnl_engine.payroll.application.amounts._taxable import (
@@ -81,6 +82,7 @@ def _issues(inp: _AmountsInput, irpef: _Irpef) -> tuple[CalculationIssue, ...]:
     erc = pension is not None and pension.erc_unknown
     conventional = conventional_base_unknown(pension)
     public = end_of_service_issue(inp)
+    life = life_insurance_issue(inp)
     return (
         family
         + ulteriore_issues(inp, irpef)
@@ -89,6 +91,7 @@ def _issues(inp: _AmountsInput, irpef: _Irpef) -> tuple[CalculationIssue, ...]:
         + ((ERC_UNKNOWN,) if erc else ())
         + ((CONVENTIONAL_BASE_UNKNOWN,) if conventional else ())
         + (() if public is None else (public,))
+        + (() if life is None else (life,))
     )
 
 

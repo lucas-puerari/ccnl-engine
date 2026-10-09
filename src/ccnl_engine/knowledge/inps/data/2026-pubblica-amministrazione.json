@@ -263,6 +263,25 @@
         "transformation": "0.35% of the worker on the pension base of the run (the retribuzione contributiva e pensionabile), every fund of the Gestione Dipendenti Pubblici; INPS 'I contributi dei dipendenti pubblici' lists 'GESTIONE CREDITO 0,35 -- 0,35'.",
         "note": "Read on 2026-10-09 from the page the url serves (sha256 cc729b317cb25469a9cb95d02f9d539979ad47f5d9c2d4376e62900dc5f3f25f). No human review recorded."
       }
+    },
+    "public_life_insurance": {
+      "employee_rate": "0.00027",
+      "employer_rate": "0.00093",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "inps-circolare-104-2014",
+            "title": "INPS Circolare n. 104 del 12 settembre 2014, Assicurazione Sociale Vita",
+            "kind": "inps_circolare",
+            "url": "https://servizi2.inps.it/servizi/Bussola/VisualizzaDoc.aspx?sVirtualURL=%2FCircolari%2FCircolare+numero+104+del+12-09-2014.htm"
+          },
+          "section": "par. 2.1 Obbligatoria; par. 3.1 Lavoratori attivi",
+          "quote": "Sono, pertanto, iscritti all'assicurazione tutti i dipendenti da enti dotati di personalità giuridica di diritto pubblico, ad eccezione delle Amministrazioni dello Stato, delle Province, dei Comuni e degli enti pubblici di assistenza e beneficenza. [...] la base imponibile è costituita dalla retribuzione pensionabile coincidente con quella assoggettata alla contribuzione ai fini pensionistici. Il contributo è pari allo 0,12% della base imponibile e grava in misura pari allo 0,027% sul lavoratore ed allo 0,093% sul datore di lavoro."
+        },
+        "transformation": "0.027% of the worker and 0.093% of the employer on the pension base of the run, when the employer owes the ASV (EmployerProfile.public_life_insurance or the CCNL).",
+        "note": "Read on 2026-10-09 from the page the url serves (sha256 9a98ccdd6149c9df7f7d1a62d31a9695b1b4146b98331b41b546692e77279956). No human review recorded."
+      }
     }
   },
   "apprentice": {
@@ -289,7 +308,7 @@
     "published_at": "2026-09-07",
     "source": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html",
     "verification_status": "unverified",
-    "source_hash": "a7d6671f33aaafe3f5710db88e902cfa8a30d8280a8b1f3a36ceb76ed8be4748",
+    "source_hash": "e2efdc59924e821f27221602fbecd6b00b054c2246cabc39d2e7c71036058304",
     "source_type": "institutional_secondary"
   }
 }
