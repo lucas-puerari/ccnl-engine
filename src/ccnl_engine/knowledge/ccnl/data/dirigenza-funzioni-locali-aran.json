@@ -44,7 +44,8 @@
       "timestamp": "2026-09-03",
       "human_reviewed": false
     },
-    "workers_estimate": "~13k"
+    "workers_estimate": "~13k",
+    "public_pension_fund": "cpdel"
   },
   "parameters": {
     "hourly_divisor": {
@@ -287,7 +288,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.truenumbers.it/ccnl-dirigenti-enti-locali-aumenti-arretrati/",
     "verification_status": "unverified",
-    "source_hash": "803d086dc50528a8e6bbf2215b713253d90817a614dbb0891d614011b5c3ac53",
+    "source_hash": "0aed7efe1d3f25dc0114457990464302e2b9922f7084d477bbf4fde869ff6dd0",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

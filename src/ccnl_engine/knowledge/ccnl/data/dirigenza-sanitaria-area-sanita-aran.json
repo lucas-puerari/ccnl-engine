@@ -47,7 +47,8 @@
       "timestamp": "2026-09-03",
       "human_reviewed": false
     },
-    "workers_estimate": "~37k"
+    "workers_estimate": "~37k",
+    "public_pension_fund": "cpdel"
   },
   "parameters": {
     "hourly_divisor": {
@@ -332,7 +333,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "c274ef503a3064fcb1650097781d7192e5163fc0da0f47b66a6f5762e4988e1e",
+    "source_hash": "ecb760fef114c59e83dc8f793cc32481b62c6a78498a0e7019c85d32b90780a1",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

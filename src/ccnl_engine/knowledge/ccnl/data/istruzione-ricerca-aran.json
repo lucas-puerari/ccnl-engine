@@ -39,7 +39,8 @@
       "timestamp": "2026-09-03",
       "human_reviewed": false
     },
-    "workers_estimate": "~1,2M"
+    "workers_estimate": "~1,2M",
+    "public_pension_fund": "ctps"
   },
   "parameters": {
     "hourly_divisor": {
@@ -705,7 +706,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1",
     "verification_status": "unverified",
-    "source_hash": "f4ad1e1a4f6f393217bcfcc5d678a3949f5f0c1523e6033f74825d5dc23043a6",
+    "source_hash": "1c0a10041d91e2979cb9f62ab74e99a83443fe367a41a609e8243f46ab42b2dd",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

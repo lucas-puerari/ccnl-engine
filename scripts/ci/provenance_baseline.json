@@ -1131,7 +1131,6 @@
     },
     "inps/data/2026-pubblica-amministrazione.json": {
       "apprentice": "assumed",
-      "inps": "assumed",
       "inps.minimum_base": "assumed"
     },
     "inps/data/2026-terziario.json": {

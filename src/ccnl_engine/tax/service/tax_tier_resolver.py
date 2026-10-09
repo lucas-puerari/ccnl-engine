@@ -99,6 +99,7 @@ def _resolve_inps(raw: InpsRawRates | None, num_employees: int) -> InpsRates | N
         employee_additional=raw.employee_additional,
         minimum_base=raw.minimum_base,
         provenance=raw.provenance,
+        public_funds=raw.public_funds,
     )
 
 

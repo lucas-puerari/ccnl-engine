@@ -201,6 +201,11 @@ ceiling (*massimale IVS*). Rates vary by sector, employer size, and contract typ
 The `tax/data/` files bundled with the library carry the precise rates for each year
 and sector.
 
+Public employees contribute to the fund of INPS Gestione Dipendenti Pubblici their
+CCNL names (`meta.public_pension_fund`): CTPS for the State (8.80% employee, 24.20%
+employer), CPDEL for the enti locali and the health service, CPS for its doctors and
+veterinarians (8.85% and 23.80%).
+
 ### Flat hourly rate (domestic work)
 
 Domestic workers (*lavoro domestico*) use a different system: INPS publishes tables

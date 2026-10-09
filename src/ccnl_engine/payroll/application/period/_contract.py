@@ -91,6 +91,9 @@ def load_contract(
         sector,
         headcount,
     )
+    if year_rules.inps is not None:
+        inps = year_rules.inps.for_public_fund(ccnl.meta.public_pension_fund)
+        year_rules = year_rules.model_copy(update={"inps": inps})
     catalog = repo.load_capability_catalog(tctx.fiscal_year)
     return RunContract(ccnl, level, tctx, date_ctx, year_rules, catalog)
 

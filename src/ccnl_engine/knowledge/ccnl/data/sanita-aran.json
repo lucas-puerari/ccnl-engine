@@ -39,7 +39,8 @@
       "timestamp": "2026-09-03",
       "human_reviewed": false
     },
-    "workers_estimate": "~580k"
+    "workers_estimate": "~580k",
+    "public_pension_fund": "cpdel"
   },
   "parameters": {
     "hourly_divisor": {
@@ -585,7 +586,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf",
     "verification_status": "unverified",
-    "source_hash": "6ca310befb9933ad43423583578184d9c73e2b10f93d1db0d1d3eb3052364981",
+    "source_hash": "715dc7a22af4028dd253656d57eb4043dde451f24b6a19ac6216a57153a99b08",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

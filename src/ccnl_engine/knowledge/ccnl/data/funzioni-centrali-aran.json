@@ -44,7 +44,8 @@
       "timestamp": "2026-09-03",
       "human_reviewed": false
     },
-    "workers_estimate": "~250k"
+    "workers_estimate": "~250k",
+    "public_pension_fund": "ctps"
   },
   "parameters": {
     "hourly_divisor": {
@@ -770,7 +771,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "3c723f1e880ec2f3b7a8ab5414c8efc2d350174eabaec4f9df7f6a3b5cd8030f",
+    "source_hash": "a6d3c84b5739a1f6b99385cc0d447fce2e00bb6f36cfa6753de605a0d3bde26e",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
