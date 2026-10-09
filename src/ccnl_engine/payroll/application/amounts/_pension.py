@@ -71,6 +71,7 @@ def conventional_base_unknown(terms: PensionFundTerms | None) -> bool:
         terms is not None
         and terms.fund.contribution_base is conventional
         and terms.conventional_base is None
+        and terms.employee_rate > 0
     )
 
 

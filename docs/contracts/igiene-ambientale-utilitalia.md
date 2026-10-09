@@ -200,7 +200,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     APPRENTICESHIP PERCENTAGE BASE. Art. 14 punto 8 (CCNL K540 testo consolidato 09/12/2025, fonte: utroppitu.eu) dispone che le indennità ex Art. 32 lett. D (indennità integrativa EUR 50.00) siano corrisposte per intero dal 1° periodo di formazione — pagamento a valore pieno, non soggetto alla percentuale. L'EDR (EUR 10.33, Art. 27 c.4 lett. d, Accordo interconfederale 31/07/1992) non è citato in Art. 14; per sua natura di elemento fisso interconfederale è trattato come esente dalla percentuale. Entrambi modellati con apprenticeship_pct_relevant=false.
     
-    BILATERAL FUNDS. FASDA healthcare (Fondo Assistenza Sanitaria Dipendenti Aziende di Servizi Ambientali) contributions are not modelled. Previambiente is (art. 65 lett. A); the conversion of the scatti into fund contributions of lett. A) bis, an option of the new hires, and the contractual contribution of a worker who adheres with the TFR alone (c. 12) are not.
+    BILATERAL FUNDS. FASDA healthcare (Fondo Assistenza Sanitaria Dipendenti Aziende di Servizi Ambientali) contributions are not modelled. Previambiente is (art. 65 lett. A, with the TFR alone of c. 12); the conversion of the scatti into fund contributions of lett. A) bis, an option of the new hires is not.
     
 
 ## Raw data

@@ -13,6 +13,8 @@ worker who expressed no choice (art. 8 c. 7).
 
 from __future__ import annotations
 
+from dataclasses import replace
+from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.contract.domain.identity import TaxSector
@@ -32,10 +34,9 @@ from ccnl_engine.payroll.service.pension_fund import (
     NOT_ENROLLED,
     resolve_terms,
 )
+from ccnl_engine.payroll.service.pension_fund_lookup import check_tfr_only
 
 if TYPE_CHECKING:
-    from decimal import Decimal
-
     from ccnl_engine.contract.domain.identity import CCNL
     from ccnl_engine.payroll.application.period._context import RunContext
     from ccnl_engine.payroll.service.pension_fund import (
@@ -43,6 +44,7 @@ if TYPE_CHECKING:
         PensionFundTerms,
     )
 
+_ZERO = Decimal(0)
 _NOT_IN_BUNDLE = "not_in_bundle"
 #: Sectors whose CCNLs have no negotiated pension fund.
 _NO_NEGOTIATED_FUND = frozenset({TaxSector.LAVORO_DOMESTICO})
@@ -59,6 +61,9 @@ PAID_MONTH_VARIANT = "fund_paid_month"
 def pension_terms(ctx: RunContext) -> PensionFundTerms | None:
     """Return the rates of the fund the worker is enrolled in.
 
+    A worker who confers the TFR alone owes no contribution of either side
+    and no fixed amount of an enrolled worker (``tfr_only``).
+
     Returns:
         ``None`` when the worker is not enrolled or the enrolment is
         unknown.
@@ -67,7 +72,8 @@ def pension_terms(ctx: RunContext) -> PensionFundTerms | None:
     if not isinstance(enrolment, PensionFundEnrolment):
         return None
     contract = ctx.contract
-    return resolve_terms(
+    check_tfr_only(contract.ccnl, enrolment)
+    terms = resolve_terms(
         contract.ccnl,
         enrolment,
         ctx.worker_category,
@@ -76,6 +82,15 @@ def pension_terms(ctx: RunContext) -> PensionFundTerms | None:
         apprentice=isinstance(ctx.request.contract_type, Apprentice),
         minimum_base=ctx.chain.base,
         erc_amount=erc_of(ctx),
+    )
+    if not enrolment.tfr_only:
+        return terms
+    return replace(
+        terms,
+        employer_rate=_ZERO,
+        enrolled_monthly=_ZERO,
+        young_member_unknown=False,
+        erc_unknown=False,
     )
 
 

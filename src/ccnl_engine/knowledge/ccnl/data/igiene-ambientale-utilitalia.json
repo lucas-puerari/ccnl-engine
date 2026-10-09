@@ -98,7 +98,7 @@
       },
       {
         "kind": "info",
-        "text": "BILATERAL FUNDS. FASDA healthcare (Fondo Assistenza Sanitaria Dipendenti Aziende di Servizi Ambientali) contributions are not modelled. Previambiente is (art. 65 lett. A); the conversion of the scatti into fund contributions of lett. A) bis, an option of the new hires, and the contractual contribution of a worker who adheres with the TFR alone (c. 12) are not."
+        "text": "BILATERAL FUNDS. FASDA healthcare (Fondo Assistenza Sanitaria Dipendenti Aziende di Servizi Ambientali) contributions are not modelled. Previambiente is (art. 65 lett. A, with the TFR alone of c. 12); the conversion of the scatti into fund contributions of lett. A) bis, an option of the new hires is not."
       },
       {
         "kind": "simplification",
@@ -4046,7 +4046,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "9e690db4dace8cd8b91eaaab054f4158078464ebd4ca07c9abfbd5aaaf5116a4",
+    "source_hash": "83a7f92fb53e4d033d8e9a1e6d5c0a2cc090e94f27be01b92886ba8621479f75",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

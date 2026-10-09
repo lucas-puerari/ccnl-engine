@@ -64,11 +64,9 @@ class PensionFundTerms:
             accrues it and pays it to the fund at the termination).
         rules: Deduction cap and solidarity rate of the tax year.
         minimum_base: Contractual minimum of the run, the base of a fund
-            on the contractual minimum (:class:`~ccnl_engine.contract.domain\
-.fund_contribution.FundContributionBase`).
-        young_member_unknown: Whether the fund has a young member rate and
-            the enrolment does not state whether it applies: the base rate
-            is used.
+            on the contractual minimum.
+        young_member_unknown: Whether the fund has a young member rate the
+            enrolment does not state: the base rate is used.
         erc_unknown: Whether the fund has an ERC holder rate and the
             employment does not state the ERC: the base rate is used.
         conventional_base: Base of a fund on a conventional base, stated by
@@ -185,7 +183,8 @@ def resolve_terms(
         raise InvalidInputError(msg, feature=PENSION_FEATURE)
     minimum = _in_force(fund.employee_min_rate, day)
     min_rate = None if minimum is None else minimum[1]
-    if min_rate is not None and enrolment.employee_rate < min_rate:
+    below = min_rate is not None and enrolment.employee_rate < min_rate
+    if below and not enrolment.tfr_only:
         msg = (
             f"employee_rate {enrolment.employee_rate} is below the minimum "
             f"{min_rate} of pension fund {fund.code}"

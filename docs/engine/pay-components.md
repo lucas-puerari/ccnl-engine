@@ -430,6 +430,12 @@ apprenticeship 10 EUR more (`ContractualFundContribution.not_enrolled_monthly`,
 of c. 5 (`paid_month_only`); a month paid in part has the open limitation
 `fund_paid_month`.
 
+A worker who confers the TFR alone states `employee_rate` zero (with
+`tfr_to_fund`): neither side contributes, the TFR goes to the fund, and a
+contractual contribution owed to a worker not enrolled voluntarily is owed
+(Previambiente art. 65 c. 12: 15 EUR). A public employee cannot: Perseo
+Sirio and Espero allow it to the private employees alone.
+
 Perseo Sirio, on the CCNLs of the public administrations, pays 1% employer
 and at least 1% employee of the TFR base. The TFR a public employee confers
 is not paid to the fund: INPS Gestione Dipendenti Pubblici accrues it

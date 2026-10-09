@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.contract.domain.identity import TaxSector
 from ccnl_engine.payroll.domain.pension_fund import PENSION_FEATURE
 from ccnl_engine.shared.domain.errors import InvalidInputError
 
@@ -11,8 +12,9 @@ if TYPE_CHECKING:
     from ccnl_engine.contract.domain.category import WorkerCategory
     from ccnl_engine.contract.domain.fund_contribution import EmployerFund
     from ccnl_engine.contract.domain.identity import CCNL
+    from ccnl_engine.payroll.domain.pension_fund import PensionFundEnrolment
 
-__all__ = ["check_category", "fund_of"]
+__all__ = ["check_category", "check_tfr_only", "fund_of"]
 
 
 def fund_of(ccnl: CCNL, code: str) -> EmployerFund:
@@ -52,3 +54,25 @@ def check_category(fund: EmployerFund, category: WorkerCategory | None) -> None:
         f"{None if category is None else category.value!r}"
     )
     raise InvalidInputError(msg, feature=PENSION_FEATURE)
+
+
+def check_tfr_only(ccnl: CCNL, enrolment: PensionFundEnrolment) -> None:
+    """Reject the TFR alone of a public employee.
+
+    Perseo Sirio and Espero: the TFR alone is conferred "esclusivamente per
+    i dipendenti del settore privato"; a public employee's TFR is a notional
+    accrual of INPS that follows the contributions.
+
+    Raises:
+        InvalidInputError: When the enrolment confers the TFR alone on a
+            CCNL of the public administrations.
+    """
+    if (
+        enrolment.tfr_only
+        and ccnl.meta.tax_sector is TaxSector.PUBBLICA_AMMINISTRAZIONE
+    ):
+        msg = (
+            f"pension fund {enrolment.fund_code}: a public employee cannot "
+            "confer the TFR alone; state employee_rate at least the minimum"
+        )
+        raise InvalidInputError(msg, feature=PENSION_FEATURE)

@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from decimal import Decimal
 
+from ccnl_engine.shared.domain.errors import InvalidInputError
 from ccnl_engine.shared.domain.validation import (
     require_bool,
     require_decimal,
@@ -38,7 +39,8 @@ class PensionFundEnrolment:
         employee_rate: Contribution the worker chose, as a fraction of the
             same base as the employer rate, e.g. ``Decimal("0.01")``.  It
             cannot be below the minimum of the CCNL when the bundle records
-            one.
+            one, except zero: a worker who confers the TFR alone, with no
+            contribution of either side (D.Lgs. 252/2005 art. 8 c. 1).
         tfr_to_fund: Whether the TFR accrued is paid to the fund
             (D.Lgs. 252/2005 art. 8 c. 1-2).  Required: the choice is the
             worker's, and it moves the TFR out of the company.
@@ -53,7 +55,8 @@ class PensionFundEnrolment:
 
     Raises:
         InvalidInputError: When a field is not of its type, ``fund_code``
-            is empty or ``employee_rate`` is outside [0, 1].
+            is empty, ``employee_rate`` is outside [0, 1], or zero with no
+            TFR conferred.
     """
 
     fund_code: str
@@ -61,6 +64,11 @@ class PensionFundEnrolment:
     tfr_to_fund: bool
     young_member: bool | None = None
     conventional_base: Decimal | None = None
+
+    @property
+    def tfr_only(self) -> bool:
+        """Whether the worker confers the TFR alone, with no contribution."""
+        return self.employee_rate == 0
 
     def __post_init__(self) -> None:  # noqa: D105
         owner = "PensionFundEnrolment"
@@ -78,6 +86,12 @@ class PensionFundEnrolment:
             maximum=_ONE,
         )
         require_bool(self.tfr_to_fund, f"{owner}.tfr_to_fund", feature=PENSION_FEATURE)
+        if self.tfr_only and not self.tfr_to_fund:
+            msg = (
+                f"{owner} with employee_rate 0 confers the TFR alone: "
+                "tfr_to_fund must be True"
+            )
+            raise InvalidInputError(msg, feature=PENSION_FEATURE)
         if self.young_member is not None:
             require_bool(
                 self.young_member, f"{owner}.young_member", feature=PENSION_FEATURE
