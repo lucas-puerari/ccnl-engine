@@ -96,7 +96,7 @@
       },
       {
         "kind": "simplification",
-        "text": "The Prevedi contractual contribution of the operai is an amount per hour of ordinary work actually done, rounded to the euro a month (CNCE vademecum); the request has no fact for those hours, so an operaio, or a level the Prevedi table has no row for, owes no contractual contribution in the engine: the run has the incomplete issue contractual_fund_not_computed.",
+        "text": "The Prevedi table has no row for some levels of the bundle (a quadro level, or an operaio at a level the hourly table lacks): such a worker owes a contractual contribution the engine does not compute, and the run has the incomplete issue contractual_fund_not_computed.",
         "capability": "pension_fund_contribution",
         "monetary_impact": "yes",
         "limitation": {
@@ -104,7 +104,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add a fact for the ordinary hours worked in the month and model the hourly Prevedi amounts of the operai, then remove this note."
+          "remediation": "Source the Prevedi amount of the levels without a row and add it, then remove this note."
         }
       }
     ]
@@ -381,11 +381,61 @@
             "kind": "altro",
             "url": "https://www.prevedi.it/wp-content/uploads/2026/09/3722_Nota_Informativa_-_Informazioni_chiave_per_laderente_-_Scheda_I_destinatari_e_i_contributi.pdf"
           },
-          "section": "Contribuzione, nota 1), tabella CCNL EDILI - INDUSTRIA, Impiegati - contributo contrattuale mensile",
-          "quote": "Il contributo contrattuale è un versamento mensile al Fondo Prevedi a carico del datore di lavoro, che varia da 10 a 20 euro per ogni mese intero di lavoro a seconda della qualifica e del livello di inquadramento del lavoratore edile (applicato anche per 13° e 14° mensilità). Contributo contrattuale in vigore dal 1 ottobre 2019: 7 20,00; 6 18,00; 5 15,00; 4 14,00; 3 13,00; 2 11,70; 1 10,00; Apprendisti 10,00"
+          "section": "Contribuzione, nota 1), tabella CCNL EDILI - INDUSTRIA, Impiegati - contributo contrattuale mensile; Operai - contributo contrattuale orario",
+          "quote": "Il contributo contrattuale è un versamento mensile al Fondo Prevedi a carico del datore di lavoro, che varia da 10 a 20 euro per ogni mese intero di lavoro a seconda della qualifica e del livello di inquadramento del lavoratore edile (applicato anche per 13° e 14° mensilità). Contributo contrattuale in vigore dal 1 ottobre 2019: 7 20,00; 6 18,00; 5 15,00; 4 14,00; 3 13,00; 2 11,70; 1 10,00; Apprendisti 10,00; Operai - contributo contrattuale orario: a) Operai di produzione Operaio di quarto livello 0,0959; Operaio specializzato 0,0890; Operaio qualificato 0,0801; Operaio comune 0,0685; c) Apprendisti 0,0700. * Il contributo complessivo di ciascun operaio è dato dal contributo orario moltiplicato per il numero di ore lavorate nel mese e viene arrotondato all'euro."
         },
-        "transformation": "The monthly amounts of the impiegati by level and of the apprentices. Rules of the CNCE vademecum (Comunicazione 559, Allegato 1): for the impiegati 'il contributo contrattuale è versato per quattordici mensilità', 'riconosciuto in relazione ai ratei maturati per l'erogazione della 13° e della 14° mensilità', 'per intero se nel mese abbiano lavorato per almeno 15 giorni di calendario' (sickness, cassa integrazione and aspettativa non retribuita not counted), 'riproporzionato in relazione al ridotto orario di lavoro' for part time. Accordo of 4 July 2025: from October 2025 owed only when the employment lasts more than three months, unless the worker pays voluntary contributions. The operai pay per hour of ordinary work actually done, a fact the engine lacks: not covered.",
+        "transformation": "The monthly amounts of the impiegati by level and of the apprentices. Rules of the CNCE vademecum (Comunicazione 559, Allegato 1): for the impiegati 'il contributo contrattuale è versato per quattordici mensilità', 'riconosciuto in relazione ai ratei maturati per l'erogazione della 13° e della 14° mensilità', 'per intero se nel mese abbiano lavorato per almeno 15 giorni di calendario' (sickness, cassa integrazione and aspettativa non retribuita not counted), 'riproporzionato in relazione al ridotto orario di lavoro' for part time. Accordo of 4 July 2025: from October 2025 owed only when the employment lasts more than three months, unless the worker pays voluntary contributions. The operai pay the hourly amount of their level times the ordinary hours actually worked in the month (PeriodFacts.ordinary_hours_worked; the vademecum leaves out sickness, cassa integrazione and the other hours not worked), rounded to the euro, and nothing on the extra months; the custodi and the operai discontinui of the table are not levels of the bundle.",
         "note": "Read from the PDFs the urls serve, text layer: Scheda sha256 195f6e83abef137bc3ad9ad832af61b633e1c923f202623d6bc16fdef2900de6; vademecum https://ance.it/wp-content/uploads/archive/19415-Cnce_com.559_Vademecum.pdf sha256 712a4a9c469f7e9790d96a59373f90366e87bd2082f84ce2eee7015603257a02; accordo https://prevedi.it/public/php_normative/documenti/2192_Accordo_del_4_luglio_2025_con_indicazioni_operative_CNCE-Prevedi.pdf sha256 1032c48b677856db1393189f84c855e0cda4bf5514e3af5b3a6792fed55fd257. No human review recorded."
+      },
+      "hourly_by_level": {
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2019-10-01",
+              "valid_until": null,
+              "value": "0.0685"
+            }
+          ]
+        },
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2019-10-01",
+              "valid_until": null,
+              "value": "0.0801"
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2019-10-01",
+              "valid_until": null,
+              "value": "0.0890"
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2019-10-01",
+              "valid_until": null,
+              "value": "0.0959"
+            }
+          ]
+        }
+      },
+      "hourly_categories": [
+        "operaio"
+      ],
+      "apprentice_hourly": {
+        "periods": [
+          {
+            "valid_from": "2019-10-01",
+            "valid_until": null,
+            "value": "0.0700"
+          }
+        ]
       }
     }
   },
@@ -1128,7 +1178,7 @@
     "effective_until": null,
     "source": "https://www.idealista.it/news/finanza/lavoro/2025/07/10/251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
     "verification_status": "unverified",
-    "source_hash": "61758e31c891afd084390b7b3e1a246d9fb08b66a9015ae28551cd89d201a9f5",
+    "source_hash": "bcd84693b165619c4d1a3df65ef24fec96a261d53f5f95ca23c982eec7223792",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

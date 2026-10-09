@@ -52,7 +52,9 @@ is known and computed, and nothing in the 2026 bundle is payable yet.
 - Prevedi on Edilizia industria and artigianato (voluntary 1% and 1%).
 - Contractual fund contributions owed for every worker
   (`CCNLParameters.contractual_fund_contribution`): Fondapi on Materiali da
-  costruzione (lapidei); Prevedi on the impiegati of the building CCNLs.
+  costruzione (lapidei); Prevedi on the impiegati and, per ordinary hour
+  worked (`PeriodFacts.ordinary_hours_worked`), the operai of the building
+  CCNLs.
 - `lavoro-domestico-convivente-orario-ridotto`: the reduced-hours
   conviventi of art. 14 c. 2 CCNL lavoro domestico, Tabella B.
 - `CurrentYearTaxFacts.exempt_regime_income`: the exempt share of the

@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Prevedi contractual contribution of the operai
+
+| Before | After |
+|---|---|
+| An operaio of the building CCNLs had the issue `contractual_fund_not_computed` | New `PeriodFacts.ordinary_hours_worked`: the hourly Prevedi amount of the level times the hours, rounded to the euro; `None` gives the missing fact `ordinary_hours_worked`. `ContractualFundContribution.hourly_by_level`, `hourly_categories`, `apprentice_hourly` |
+
 ## Cometa on the contractual minimum
 
 | Before | After |

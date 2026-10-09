@@ -20,8 +20,9 @@ the pay that enters the TFR, as their Scheda 'I destinatari e i contributi'
   employee minimum 1.20% = 28.32312 -> 28.32, solidarity 5.547 -> 5.55.
 - Edilizia industria (ANCE), level 5 in January 2026: 2134.70 a month.
   Prevedi, option A of its Scheda (note 2): employer 1% and employee at
-  least 1% of the pay the TFR is computed on = 21.347 -> 21.35 each,
-  solidarity 2.135 -> 2.14.
+  least 1% of the pay the TFR is computed on = 21.347 -> 21.35 each; an
+  impiegato of level 5 also owes the contractual 15.00 (note 1): employer
+  36.35, solidarity 3.635 -> 3.64.
 - Metalmeccanico (Federmeccanica), level C3 in January 2026: 2158.26 a
   month, the consolidated minimum.  Cometa computes the employer 2% (2.2%
   for a member enrolled after 5 February 2021 before turning 35) and the
@@ -46,6 +47,7 @@ from ccnl_engine.inputs import (
     Permanent,
     SeniorityFact,
     SenioritySource,
+    WorkerCategory,
 )
 from tests.acceptance.legal_scenarios._support import regular_period
 from tests.fixtures.seniority import new_hire
@@ -128,6 +130,7 @@ def test_prevedi_voluntary_contributions() -> None:
     employment = Employment(
         ccnl_slug="edilizia-ance.json",
         level_code="5",
+        category=WorkerCategory.IMPIEGATO,
         seniority=new_hire(),
         pension_fund=PensionFundEnrolment("PREVEDI", Decimal("0.01"), tfr_to_fund=True),
         contract_type=Permanent(),
@@ -135,9 +138,9 @@ def test_prevedi_voluntary_contributions() -> None:
     result = regular_period(employment=employment)
     decision = _pension_decision(result)
     assert decision.inputs["base"] == Decimal("2134.70")
-    assert _entry(result, "pension_fund_employer") == Decimal("21.35")
+    assert _entry(result, "pension_fund_employer") == Decimal("36.35")
     assert _entry(result, "pension_fund_employee") == Decimal("21.35")
-    assert decision.inputs["solidarity"] == Decimal("2.14")
+    assert decision.inputs["solidarity"] == Decimal("3.64")
 
 
 def _cometa(

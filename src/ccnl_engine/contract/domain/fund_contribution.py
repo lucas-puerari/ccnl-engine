@@ -94,6 +94,9 @@ class ContractualFundContribution(BaseModel):
         minimum_fixed_term_months: A fixed-term employment that lasts no
             more than these months owes nothing; ``None`` when the clause
             sets no minimum.
+        hourly_by_level: Amount per ordinary hour worked for each level, for
+            the ``hourly_categories`` (Prevedi: the operai), rounded to the
+            euro a month; ``apprentice_hourly`` the one of an apprentice.
 
     Raises:
         ValueError: When an amount is negative.
@@ -111,6 +114,9 @@ class ContractualFundContribution(BaseModel):
     extra_months: bool = False
     part_time_proportional: bool = False
     minimum_fixed_term_months: int | None = Field(default=None, ge=1)
+    hourly_by_level: dict[str, TimeSeries] | None = None
+    hourly_categories: tuple[WorkerCategory, ...] | None = None
+    apprentice_hourly: TimeSeries | None = None
 
     @model_validator(mode="after")
     def _check_non_negative(self) -> Self:

@@ -16,6 +16,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from ccnl_engine.contract.domain.identity import TaxSector
+from ccnl_engine.payroll.application.period._contractual_fund import contractual_run
 from ccnl_engine.payroll.application.period._run_decisions import _ccnl_rule
 from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
@@ -111,6 +112,16 @@ def enrolment_unknown(ctx: RunContext) -> bool:
         bool(ccnl.parameters.employer_funds)
         or ccnl.meta.tax_sector not in _NO_NEGOTIATED_FUND
     )
+
+
+def pension_unresolved(ctx: RunContext) -> bool:
+    """Return whether the run cannot determine its fund contributions.
+
+    Returns:
+        True when the enrolment is unknown (:func:`enrolment_unknown`) or a
+        fact of the contractual contribution is missing.
+    """
+    return enrolment_unknown(ctx) or contractual_run(ctx).issue is not None
 
 
 def pension_fund_issue(ctx: RunContext) -> CalculationIssue | None:

@@ -111,11 +111,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! warning "edilizia-ance/contractual_fund_uncovered · pension_fund_contribution · impact yes · open"
-    The Prevedi contractual contribution of the operai is an amount per hour of ordinary work actually done, rounded to the euro a month (CNCE vademecum); the request has no fact for those hours, so an operaio, or a level the Prevedi table has no row for, owes no contractual contribution in the engine: the run has the incomplete issue contractual_fund_not_computed.
+    The Prevedi table has no row for some levels of the bundle (a quadro level, or an operaio at a level the hourly table lacks): such a worker owes a contractual contribution the engine does not compute, and the run has the incomplete issue contractual_fund_not_computed.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add a fact for the ordinary hours worked in the month and model the hourly Prevedi amounts of the operai, then remove this note.
+    **Remediation:** Source the Prevedi amount of the levels without a row and add it, then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

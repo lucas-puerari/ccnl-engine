@@ -14,9 +14,9 @@ the clause gives no rule for pays the full amount and traverses
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import date, timedelta
-from decimal import Decimal
+from decimal import ROUND_HALF_UP, Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.contract.domain.validity import rule_scope
@@ -45,6 +45,7 @@ __all__ = [
 
 _ZERO = Decimal(0)
 _TWELVE = Decimal(12)
+_EURO = Decimal(1)
 _DAY = timedelta(days=1)
 #: Variant of the CCNL limitation a partial month or part time traverses.
 PARTIAL_VARIANT = "contractual_fund_partial"
@@ -60,6 +61,16 @@ _CATEGORY_UNKNOWN = CalculationIssue(
     ),
     status=CalculationStatus.INCOMPLETE,
     fact="category",
+)
+_HOURS_UNKNOWN = CalculationIssue(
+    code="contractual_fund_hours_unknown",
+    message=(
+        "the contractual fund contribution of an operaio is an amount per "
+        "ordinary hour worked, which the run does not state: the amounts "
+        "shown leave it out; state PeriodFacts.ordinary_hours_worked"
+    ),
+    status=CalculationStatus.INCOMPLETE,
+    fact="ordinary_hours_worked",
 )
 _UNCOVERED = CalculationIssue(
     code="contractual_fund_not_computed",
@@ -79,6 +90,8 @@ class ContractualRun:
     Attributes:
         amount: Amount the run owes.
         series: Amount series of the clause the run read, if any.
+        key: Key of ``series`` in the clause (``5``, ``apprentice``,
+            ``hourly[2]``...).
         paths: Limitation paths the run traversed.
         issue: Missing fact that leaves the amount out, if any.
     """
@@ -86,6 +99,7 @@ class ContractualRun:
     amount: Decimal = _ZERO
     series: TimeSeries | None = None
     paths: frozenset[str] = frozenset()
+    key: str = ""
     issue: CalculationIssue | None = None
 
 
@@ -105,28 +119,73 @@ def contractual_run(ctx: RunContext) -> ContractualRun:
     category = ctx.worker_category
     if spec.categories is not None and category is None:
         return ContractualRun(issue=_CATEGORY_UNKNOWN)
-    series = _series(spec, ctx)
-    if series is None or (spec.categories and category not in spec.categories):
-        return ContractualRun(issue=_UNCOVERED)
     if _short_fixed_term(spec, ctx):
         return _NONE
+    if category in (spec.hourly_categories or ()):
+        return _NONE if extra else _hourly(spec, ctx)
+    if spec.categories and category not in spec.categories:
+        return ContractualRun(issue=_UNCOVERED)
+    return _by_month(spec, ctx, extra=extra)
+
+
+def _by_month(
+    spec: ContractualFundContribution, ctx: RunContext, *, extra: bool
+) -> ContractualRun:
+    """Return the monthly amount of the level, or the ratei of an extra month.
+
+    Returns:
+        The amount, an issue when the level has none.
+    """
+    key, series = _series(spec, ctx)
+    if series is None:
+        return ContractualRun(issue=_UNCOVERED)
     with rule_scope(ruleset=ctx.contract.ccnl.meta.ccnl_id, feature=_FEATURE):
         monthly = series.value_at(ctx.contract.tctx.competence)
     if extra:
         months = _ZERO if ctx.accrual is None else Decimal(ctx.accrual.months)
-        return ContractualRun(money(monthly * months / _TWELVE), series)
-    return _monthly(spec, ctx, monthly, series)
+        return ContractualRun(money(monthly * months / _TWELVE), series, key=key)
+    return _monthly(spec, ctx, monthly, ContractualRun(series=series, key=key))
+
+
+def _hourly(spec: ContractualFundContribution, ctx: RunContext) -> ContractualRun:
+    """Return the amount per ordinary hour worked of an hourly category.
+
+    CNCE vademecum: "dovrà essere calcolato [...] con esclusivo riferimento
+    [...] alle ore ordinarie effettivamente lavorate", the monthly amount
+    "arrotondato all'euro".
+
+    Returns:
+        The amount rounded to the euro, an issue without the hours or the
+        level amount.
+    """
+    apprentice = isinstance(ctx.request.contract_type, Apprentice)
+    level = ctx.contract.level.code
+    key, series = f"hourly[{level}]", (spec.hourly_by_level or {}).get(level)
+    if apprentice and spec.apprentice_hourly is not None:
+        key, series = "hourly[apprentice]", spec.apprentice_hourly
+    hours = ctx.request.ordinary_hours_worked
+    if series is None:
+        return ContractualRun(issue=_UNCOVERED)
+    if hours is None:
+        return ContractualRun(series=series, issue=_HOURS_UNKNOWN, key=key)
+    with rule_scope(ruleset=ctx.contract.ccnl.meta.ccnl_id, feature=_FEATURE):
+        rate = series.value_at(ctx.contract.tctx.competence)
+    amount = (rate * hours.value).quantize(_EURO, rounding=ROUND_HALF_UP)
+    return ContractualRun(amount, series, key=key)
 
 
 def _pays_month(ctx: RunContext) -> bool:
     return ctx.run_kind in _PAYING_KINDS and ctx.proration.posted_by is None
 
 
-def _series(spec: ContractualFundContribution, ctx: RunContext) -> TimeSeries | None:
+def _series(
+    spec: ContractualFundContribution, ctx: RunContext
+) -> tuple[str, TimeSeries | None]:
     apprentice = isinstance(ctx.request.contract_type, Apprentice)
     if apprentice and spec.apprentice_monthly is not None:
-        return spec.apprentice_monthly
-    return spec.monthly_by_level.get(ctx.contract.level.code)
+        return "apprentice", spec.apprentice_monthly
+    level = ctx.contract.level.code
+    return level, spec.monthly_by_level.get(level)
 
 
 def _short_fixed_term(spec: ContractualFundContribution, ctx: RunContext) -> bool:
@@ -160,7 +219,7 @@ def _monthly(
     spec: ContractualFundContribution,
     ctx: RunContext,
     monthly: Decimal,
-    series: TimeSeries,
+    read: ContractualRun,
 ) -> ContractualRun:
     request = ctx.request
     hours, full = request.weekly_hours, request.full_time_weekly_hours
@@ -168,7 +227,7 @@ def _monthly(
     if spec.minimum_days_in_month is not None and (
         _worked_days(ctx) < spec.minimum_days_in_month
     ):
-        return ContractualRun(series=series)
+        return read
     partial = ctx.proration.partial and spec.minimum_days_in_month is None
     unruled = partial or (part_time and not spec.part_time_proportional)
     paths = frozenset(
@@ -176,7 +235,7 @@ def _monthly(
     )
     if part_time and spec.part_time_proportional and hours and full:
         monthly = money(monthly * hours.value / full.value)
-    return ContractualRun(monthly, series, paths)
+    return replace(read, amount=monthly, paths=paths)
 
 
 def _worked_days(ctx: RunContext) -> int:
@@ -220,11 +279,11 @@ def contractual_rules(ctx: RunContext, prefix: str) -> tuple[Rule, ...]:
         The amount in force of the series the run read, empty without one.
     """
     spec = ctx.contract.ccnl.parameters.contractual_fund_contribution
-    series = contractual_run(ctx).series
+    run = contractual_run(ctx)
+    series = run.series
     if spec is None or series is None:
         return ()
-    level = ctx.contract.level.code
-    key = "apprentice" if series is spec.apprentice_monthly else level
+    key = run.key
     rule = f"{prefix}:contractual_fund_contribution[{key}]"
     periods = (series.period_at(ctx.contract.tctx.competence),)
     return tuple(

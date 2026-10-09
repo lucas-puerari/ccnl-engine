@@ -115,6 +115,7 @@ PUBLIC_FACTS: Mapping[str, str] = MappingProxyType({
     "naspi_exclusion": "FixedTerm.naspi_exclusion",
     "no_pay_due": "AbsenceEvent.no_pay_due",
     "opening_state": "PeriodInput.opening_state",
+    "ordinary_hours_worked": "PeriodFacts.ordinary_hours_worked",
     "other_employers": "InpsBaseYtd.other_employers",
     "other_employers_additional_ivs": "InpsBaseYtd.other_employers_additional_ivs",
     "own_income": "Dependent.own_income",

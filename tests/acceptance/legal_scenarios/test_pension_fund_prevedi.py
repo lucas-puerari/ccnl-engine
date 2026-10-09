@@ -25,6 +25,7 @@ from ccnl_engine import CompetenceYearPlan, Employment
 from ccnl_engine.events import AbsenceEvent, SicknessEpisode
 from ccnl_engine.inputs import (
     Apprentice,
+    ContributableHours,
     EmploymentPeriod,
     FixedTerm,
     NaspiExclusion,
@@ -123,12 +124,44 @@ def test_fixed_term_of_three_months_owes_none(
     assert _contractual(_january(employment)) == expected
 
 
-def test_operaio_is_not_computed() -> None:
-    """The hourly amount of an operaio needs the hours worked: an issue."""
+def test_operaio_pays_per_hour_worked() -> None:
+    """Operaio qualificato, 160 hours: 0.0801 x 160 = 12.816 -> 13."""
+    result = regular_period(
+        employment=_employment("2", WorkerCategory.OPERAIO),
+        current_year=employment_only(),
+        ordinary_hours_worked=ContributableHours(Decimal(160)),
+    )
+    assert _contractual(result) == Decimal(13)
+
+
+def test_apprentice_operaio_pays_the_apprentice_rate() -> None:
+    """Apprentice operaio, 150 hours: 0.0700 x 150 = 10.50 -> 11."""
+    result = regular_period(
+        employment=_employment(
+            "2", WorkerCategory.OPERAIO, contract_type=Apprentice(months_elapsed=6)
+        ),
+        current_year=employment_only(),
+        ordinary_hours_worked=ContributableHours(Decimal(150)),
+    )
+    assert _contractual(result) == Decimal(11)
+
+
+def test_operaio_hours_unknown_is_a_missing_fact() -> None:
+    """Without the hours the amount is left out and the run names the fact."""
     result = _january(_employment("2", WorkerCategory.OPERAIO))
     assert _contractual(result) == 0
-    assert "contractual_fund_not_computed" in _codes(result)
+    assert "contractual_fund_hours_unknown" in _codes(result)
     assert not result.is_payable
+
+
+def test_level_without_a_row_is_not_computed() -> None:
+    """Artigianato 7Q, a quadro level the Prevedi table has no row for."""
+    employment = replace(
+        _employment("7Q", WorkerCategory.QUADRO),
+        ccnl_slug="edilizia-artigianato-cna.json",
+    )
+    result = _january(employment)
+    assert "contractual_fund_not_computed" in _codes(result)
 
 
 def test_unknown_category_is_a_missing_fact() -> None:
@@ -200,3 +233,20 @@ def test_a_strike_still_counts() -> None:
         employment=_employment(), events=(strike,), current_year=employment_only()
     )
     assert _contractual(result) == Decimal("15.00")
+
+
+@pytest.mark.parametrize(
+    ("level", "category"),
+    [("5", WorkerCategory.OPERAIO), ("5", WorkerCategory.DIRIGENTE)],
+    ids=["operaio_without_hourly_rate", "dirigente"],
+)
+def test_category_or_level_without_amount_is_not_computed(
+    level: str, category: WorkerCategory
+) -> None:
+    """An operaio at a level the hourly table lacks, a dirigente: an issue."""
+    result = regular_period(
+        employment=_employment(level, category),
+        current_year=employment_only(),
+        ordinary_hours_worked=ContributableHours(Decimal(160)),
+    )
+    assert "contractual_fund_not_computed" in _codes(result)

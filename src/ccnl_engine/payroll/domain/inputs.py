@@ -52,6 +52,11 @@ class PeriodFacts:
     Attributes:
         contributable_hours: Hours worked and paid in the run that are
             subject to INPS contributions.  Required for domestic CCNLs.
+        ordinary_hours_worked: Ordinary hours actually worked in the month,
+            sickness and other paid absences left out: the base of the
+            Prevedi contractual contribution of an operaio of the building
+            CCNLs.  ``None`` is unknown: an operaio then has a
+            ``missing_fact`` blocker.
         events: Variable work events of the run (overtime, absences,
             bonuses, supplements), each one of the
             :data:`~ccnl_engine.payroll.domain.events.WorkEvent` types.  A
@@ -81,6 +86,7 @@ class PeriodFacts:
     """
 
     contributable_hours: ContributableHours | None = None
+    ordinary_hours_worked: ContributableHours | None = None
     events: tuple[WorkEvent, ...] = ()
     regione: str | None = None
     comune_belfiore: str | None = None
@@ -94,6 +100,12 @@ class PeriodFacts:
                 (
                     "contributable_hours",
                     self.contributable_hours,
+                    ContributableHours,
+                    True,
+                ),
+                (
+                    "ordinary_hours_worked",
+                    self.ordinary_hours_worked,
                     ContributableHours,
                     True,
                 ),
@@ -250,6 +262,7 @@ class PeriodInput:
             run=self.run,
             weekly_hours=employment.weekly_hours,
             contributable_hours=facts.contributable_hours,
+            ordinary_hours_worked=facts.ordinary_hours_worked,
             full_time_weekly_hours=employment.full_time_weekly_hours,
             employment_period=employment.employment_period,
             seniority=employment.seniority,

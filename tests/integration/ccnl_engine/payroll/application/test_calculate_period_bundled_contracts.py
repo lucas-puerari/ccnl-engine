@@ -70,6 +70,7 @@ _ACCEPTED = frozenset({
     _MINIMUM_UNDETERMINED,
     "contractual_fund_category_unknown",
     "contractual_fund_not_computed",
+    "contractual_fund_hours_unknown",
 })
 _INPS = frozenset({"inps_employee", "inps_employer"})
 

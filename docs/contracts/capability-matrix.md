@@ -104,7 +104,7 @@ formulas or caller-declared amounts.
 | `rinnovo_substitute_tax` | Imposta sostitutiva aumenti da rinnovo L. 199/2025 art. 1 c. 7 | net | native | decided | decision | `prior_year` | — | implemented | 0 / 1 / 0 / 0 |
 | `notte_festivi_turni_substitute_tax` | Imposta sostitutiva notturno, festivo e turni L. 199/2025 art. 1 cc. 10-11 | net | native | decided | decision | `prior_year` | — | implemented | 0 / 1 / 0 / 0 |
 | `bilateral_funds` | Fondi bilaterali (importi dal chiamante) | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
-| `pension_fund_contribution` | Previdenza complementare CCNL su adesione e contributo contrattuale | net | partial | decided | decision | `employment.pension_fund` | ccnl_fund_on_enrolment, ccnl_contractual_contribution | simplified | 0 / 40 / 23 / 0 |
+| `pension_fund_contribution` | Previdenza complementare CCNL su adesione e contributo contrattuale | net | partial | decided | decision | `employment.pension_fund` | ccnl_fund_on_enrolment, ccnl_contractual_contribution | simplified | 0 / 51 / 23 / 0 |
 | `assistance_contribution` | Contributi di assistenza contrattuale per ora retribuita (Cas.Sa.Colf, lavoro domestico) | net | native | decided | decision | `facts.contributable_hours` | — | implemented | 0 / 3 / 0 / 0 |
 
 ## CCNL coverage
@@ -168,9 +168,9 @@ never grow.
 | 39 | [CCNL Dipendenti delle Farmacie Private](farmacie-private-h121.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 37 / 1 / 1 |
 | 40 | [CCNL Distribuzione Cooperativa (ANCC-Coop / Confcooperative Consumo)](distribuzione-cooperativa-ancc.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 62 / 2 / 0 |
 | 41 | [CCNL Edilizia PMI CONFAPI ANIEM](edilizia-pmi-confapi-aniem.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 35 / 2 / 0 |
-| 42 | [CCNL Edilizia e Affini Artigianato](edilizia-artigianato-cna.md) | 🔲 | 🔲 | 🔲 | bilateral_funds, pension_fund_contribution, seniority | 0 / 65 / 1 / 1 |
+| 42 | [CCNL Edilizia e Affini Artigianato](edilizia-artigianato-cna.md) | 🔲 | 🔲 | 🔲 | bilateral_funds, pension_fund_contribution, seniority | 0 / 71 / 1 / 1 |
 | 43 | [CCNL Edilizia — Cooperative (ANCPL/Legacoop/Confcooperative/AGCI)](edilizia-cooperative-ancpl.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 57 / 1 / 1 |
-| 44 | [CCNL Edilizia — Industria (ANCE)](edilizia-ance.md) | 🔲 | 🔲 | 🔲 | pension_fund_contribution, seniority | 0 / 38 / 2 / 0 |
+| 44 | [CCNL Edilizia — Industria (ANCE)](edilizia-ance.md) | 🔲 | 🔲 | 🔲 | pension_fund_contribution, seniority | 0 / 43 / 2 / 0 |
 | 45 | [CCNL Energia e Petrolio (Confindustria Energia)](energia-petrolio-confindustria.md) | 🔲 | 🔲 | 🔲 | — | 0 / 170 / 1 / 1 |
 | 46 | [CCNL Esercizi Cinematografici e Cinema-Teatrali (ANEC)](esercizi-cinematografici-anec.md) | 🔲 | 🔲 | 🔲 | inps_employer, seniority | 0 / 52 / 2 / 0 |
 | 47 | [CCNL Fiori Freschi Recisi, Verde e Piante Ornamentali (ANCEF)](fiori-recisi-ancef.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 38 / 1 / 1 |

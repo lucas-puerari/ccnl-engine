@@ -326,6 +326,11 @@ def _contractual_rules(file: str, spec: object) -> Iterator[PayableRule]:
     by_key = dict(amounts if isinstance(amounts, dict) else {})
     if spec.get("apprentice_monthly") is not None:
         by_key["apprentice"] = spec["apprentice_monthly"]
+    hourly = spec.get("hourly_by_level")
+    for level, series in (hourly if isinstance(hourly, dict) else {}).items():
+        by_key[f"hourly[{level}]"] = series
+    if spec.get("apprentice_hourly") is not None:
+        by_key["hourly[apprentice]"] = spec["apprentice_hourly"]
     for level, series in by_key.items():
         for period in _periods(series):
             path = f"contractual_fund_contribution[{level}][{period.get('valid_from')}]"
