@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Prevedi on the building CCNLs
+
+| Before | After |
+|---|---|
+| No fund on `edilizia-ance` and `edilizia-artigianato-cna`: an enrolment raised `InvalidInputError` | `"PREVEDI"`: employer 1% and employee at least 1% of the TFR base (Scheda 'I destinatari e i contributi', option A); the contributo contrattuale owed for every worker is a separate change |
+
 ## Days without pay leave the days of the deductions
 
 | Before | After |

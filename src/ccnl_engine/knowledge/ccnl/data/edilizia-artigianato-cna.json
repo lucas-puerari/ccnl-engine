@@ -249,7 +249,47 @@
           "effective_from": "2020-01-01"
         }
       }
-    }
+    },
+    "employer_funds": [
+      {
+        "code": "PREVEDI",
+        "description": "Prevedi - Fondo pensione complementare per i lavoratori delle imprese industriali ed artigiane edili ed affini",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0100"
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0100"
+            }
+          ]
+        },
+        "contribution_base": "tfr_base",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "prevedi-nota-informativa-2026",
+              "title": "Prevedi Nota informativa, Parte I, scheda 'I destinatari e i contributi' (in vigore dal 31/07/2026)",
+              "kind": "altro",
+              "url": "https://www.prevedi.it/wp-content/uploads/2026/09/3722_Nota_Informativa_-_Informazioni_chiave_per_laderente_-_Scheda_I_destinatari_e_i_contributi.pdf"
+            },
+            "section": "Contribuzione, opzione A) e nota (2)",
+            "quote": "Contributo del lavoratore = Min. 1% retribuzione lorda mensile + Contributo dell'azienda = 1% retribuzione lorda mensile; (2) Il contributo percentuale a carico del lavoratore ha una misura minima pari all'1% della retribuzione lorda mensile su cui viene calcolato il TFR: attivando questo contributo, il lavoratore beneficia di un contributo aggiuntivo del datore di lavoro anch'esso pari all'1% [...] il contributo percentuale a carico del datore di lavoro rimarra invariato e pari all'1%"
+          },
+          "transformation": "Employer 1% and worker minimum 1% of the retribuzione lorda mensile su cui viene calcolato il TFR, the voluntary contributions of a worker of the CCNL Edili-artigianato enrolled in Prevedi. The quota of TFR (18% or 100%) is the worker's choice in PensionFundEnrolment.tfr_to_fund.",
+          "note": "Read from the PDF the url serves (sha256 195f6e83abef137bc3ad9ad832af61b633e1c923f202623d6bc16fdef2900de6), text layer. The contributo contrattuale the employer owes for every worker, enrolled or not, is not part of this rate. Workers of cooperative firms belong to Cooperlavoro, not in the bundle. valid_from is the first day of the bundled tax year. No human review recorded."
+        }
+      }
+    ]
   },
   "levels": [
     {
@@ -1983,7 +2023,7 @@
     "effective_until": "2028-09-30",
     "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
     "verification_status": "unverified",
-    "source_hash": "adc3b5c51e464d45052915651b5a9303619f733ca67ce7a3614d5c54a14b9af8",
+    "source_hash": "58385361541687f32da13f94e0b08247c8dbbe5ead1ae7bc8102c99e06ab97e4",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
