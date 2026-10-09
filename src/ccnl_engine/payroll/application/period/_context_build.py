@@ -6,8 +6,6 @@ are invalid the same error is raised first on every call.
 
 from __future__ import annotations
 
-from dataclasses import replace
-from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application._period_utils import (
@@ -22,6 +20,7 @@ from ccnl_engine.payroll.application.period._contract import load_contract
 from ccnl_engine.payroll.application.period._proration import run_proration
 from ccnl_engine.payroll.application.period._seniority import seniority_months_at
 from ccnl_engine.payroll.application.period._seniority_conversion import (
+    kept_seniority_months,
     seniority_conversion,
 )
 from ccnl_engine.payroll.application.period._termination_ratei import (
@@ -65,28 +64,27 @@ def _base_chain(
     """Return the pay chain of a regular month for the worker.
 
     A worker who converted the seniority increments into fund
-    contributions is paid none (:mod:`._seniority_conversion`).
+    contributions is paid only those matured by the request, frozen
+    (:mod:`._seniority_conversion`).
 
     Returns:
         The chain before any extra-month adjustment, and the apprenticeship
         scaling applied to it.
     """
-    chain, scaling = _resolve_chain(
+    months = seniority_months_at(request.seniority, contract.tctx.competence)
+    if months is not None and seniority_conversion(contract.ccnl, request):
+        months = kept_seniority_months(request)
+    return _resolve_chain(
         contract.ccnl,
         contract.level,
         request.contract_type,
         contract.tctx.competence,
-        seniority_months=seniority_months_at(
-            request.seniority, contract.tctx.competence
-        ),
+        seniority_months=months,
         roles=request.roles or frozenset(),
         worker_category=worker_category,
         weekly_hours=_int_value(request.weekly_hours),
         full_time_weekly_hours=_int_value(request.full_time_weekly_hours),
     )
-    if seniority_conversion(contract.ccnl, request) is not None:
-        chain = replace(chain, seniority=Decimal(0))
-    return chain, scaling
 
 
 def build_context(

@@ -3,11 +3,13 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from datetime import date
 from decimal import Decimal
 
 from ccnl_engine.shared.domain.errors import InvalidInputError
 from ccnl_engine.shared.domain.validation import (
     require_bool,
+    require_date,
     require_decimal,
     require_str,
 )
@@ -56,6 +58,10 @@ class PensionFundEnrolment:
             seniority increments into fund contributions, read only by a
             fund with a ``seniority_conversion`` (Previambiente art. 65
             lett. A) bis): not unless stated.
+        seniority_converted_on: Date of the request of a worker already in
+            service (lett. A) bis c. 6): the increments matured by then stay
+            in the pay, frozen, and only the later ones are converted;
+            ``None`` for a new hire who opted at the hire (c. 1).
 
     Raises:
         InvalidInputError: When a field is not of its type, ``fund_code``
@@ -69,6 +75,7 @@ class PensionFundEnrolment:
     young_member: bool | None = None
     conventional_base: Decimal | None = None
     seniority_to_fund: bool = False
+    seniority_converted_on: date | None = None
 
     @property
     def tfr_only(self) -> bool:
@@ -106,6 +113,15 @@ class PensionFundEnrolment:
             f"{owner}.seniority_to_fund",
             feature=PENSION_FEATURE,
         )
+        if self.seniority_converted_on is not None:
+            require_date(
+                self.seniority_converted_on,
+                f"{owner}.seniority_converted_on",
+                feature=PENSION_FEATURE,
+            )
+            if not self.seniority_to_fund:
+                msg = f"{owner}.seniority_converted_on needs seniority_to_fund"
+                raise InvalidInputError(msg, feature=PENSION_FEATURE)
         require_decimal(
             self.conventional_base,
             f"{owner}.conventional_base",

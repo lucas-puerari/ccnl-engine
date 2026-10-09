@@ -433,7 +433,9 @@ contributions (lett. A) bis, `PensionFundEnrolment.seniority_to_fund`): the
 pay holds no increment, and the employer pays the fund the amount of each
 increment matured, at most 10 (`EmployerFund.seniority_conversion`: the
 increment x 1.10 x 14 / 12, 50.27 EUR for a quadro), on 12 monthly
-payments.
+payments. A worker already in service states the date of the request in
+`PensionFundEnrolment.seniority_converted_on`: the increments matured by
+then stay in the pay, frozen, and only the later ones are converted (c. 6).
 
 A worker who confers the TFR alone states `employee_rate` zero (with
 `tfr_to_fund`): neither side contributes, the TFR goes to the fund, and a

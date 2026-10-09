@@ -113,6 +113,10 @@ FACT_DEFAULTS: Mapping[str, FieldDefault] = {
         "is an option of the worker (Previambiente art. 65 lett. A) bis): "
         "not exercised unless stated"
     ),
+    "PensionFundEnrolment.seniority_converted_on": absence_is_fact(
+        "a new hire converts the seniority increments from the hire "
+        "(Previambiente art. 65 lett. A) bis c. 1): none stays in the pay"
+    ),
     "EmploymentSpell.unpaid_days": absence_is_fact(
         "every day of the spell was paid; the days without any pay are listed"
     ),

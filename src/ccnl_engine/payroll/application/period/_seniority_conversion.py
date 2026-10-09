@@ -5,7 +5,10 @@ del trattamento degli aumenti periodici di anzianità [...] in misure
 contributive"; the increments are no longer paid, and the employer pays the
 fund "l'importo mensile corrispondente all'aumento periodico [...]
 maggiorato del 10% e riproporzionato su 12 mensilità", which is "non [...]
-computat[o] ad alcun effetto [...] ivi compreso il TFR".
+computat[o] ad alcun effetto [...] ivi compreso il TFR".  A worker already
+in service may ask for it on the increments still to mature (c. 6): those
+"maturati alla data di presentazione della richiesta" stay in the pay
+"in cifra fissa non assorbibile", and c. 7 converts none of them.
 """
 
 from __future__ import annotations
@@ -19,6 +22,7 @@ from ccnl_engine.payroll.domain.pension_fund import (
     PensionFundEnrolment,
 )
 from ccnl_engine.payroll.service.pension_fund_lookup import fund_of
+from ccnl_engine.payroll.service.seniority import seniority_maximum
 from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
@@ -27,7 +31,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.application.period._context import RunContext
     from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 
-__all__ = ["converted_seniority", "seniority_conversion"]
+__all__ = ["converted_seniority", "kept_seniority_months", "seniority_conversion"]
 
 _ZERO = Decimal(0)
 
@@ -59,13 +63,32 @@ def seniority_conversion(
     return conversion
 
 
+def kept_seniority_months(request: PeriodCalculationRequest) -> int:
+    """Return the months of service whose increments stay in the pay.
+
+    Returns:
+        The months completed on the date of the request of a worker already
+        in service; zero for a new hire or an unknown seniority.
+    """
+    enrolment = request.pension_fund
+    day = (
+        enrolment.seniority_converted_on
+        if isinstance(enrolment, PensionFundEnrolment)
+        else None
+    )
+    if day is None or request.seniority is None:
+        return 0
+    return request.seniority.months_at(day)
+
+
 def converted_seniority(ctx: RunContext) -> Decimal:
     """Return the monthly amount the converted increments pay the fund.
 
     Returns:
-        The increments matured (months of service over the cadence of the
-        CCNL, at most the maximum of the conversion) times the amount of the
-        level; zero without a conversion or a known seniority.
+        The increments matured after the request (months of service over
+        the cadence of the CCNL, within the maximum of the CCNL, less those
+        kept in the pay, at most the maximum of the conversion) times the
+        amount of the level; zero without a conversion or a known seniority.
     """
     contract = ctx.contract
     conversion = seniority_conversion(contract.ccnl, ctx.request)
@@ -76,6 +99,9 @@ def converted_seniority(ctx: RunContext) -> Decimal:
     )
     if conversion is None or months is None or series is None:
         return _ZERO
-    cadence = contract.ccnl.parameters.seniority_increments.cadence_months
-    count = min(months // cadence, conversion.maximum_count)
+    rules = contract.ccnl.parameters.seniority_increments
+    most = seniority_maximum(rules, contract.level.code, ctx.worker_category)
+    kept = min(kept_seniority_months(ctx.request) // rules.cadence_months, most)
+    matured = min(months // rules.cadence_months, most)
+    count = min(max(matured - kept, 0), conversion.maximum_count)
     return series.value_at(day) * count

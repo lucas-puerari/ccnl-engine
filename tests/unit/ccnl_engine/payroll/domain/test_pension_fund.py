@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from datetime import date
 from decimal import Decimal
 
 import pytest
@@ -53,4 +54,15 @@ def test_employment_rejects_another_type() -> None:
             level_code="1",
             pension_fund="ALIFOND",  # type: ignore[arg-type]
             contract_type=Permanent(),
+        )
+
+
+def test_conversion_date_needs_the_conversion() -> None:
+    """A request date without the option states nothing to convert."""
+    with pytest.raises(InvalidInputError, match="needs seniority_to_fund"):
+        PensionFundEnrolment(
+            "PREVIAMBIENTE",
+            Decimal("0.013"),
+            tfr_to_fund=True,
+            seniority_converted_on=date(2024, 3, 1),
         )
