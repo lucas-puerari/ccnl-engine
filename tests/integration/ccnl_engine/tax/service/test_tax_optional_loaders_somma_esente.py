@@ -60,9 +60,9 @@ class TestChecks:
     """A missing, mislabelled or malformed file never yields rules."""
 
     def test_unbundled_year_raises(self) -> None:
-        """No file for 2027: the year is not supported."""
+        """No file for 2028: the year is not supported."""
         with pytest.raises(UnsupportedTaxYearError):
-            load_somma_esente_rules(2027)
+            load_somma_esente_rules(2028)
 
     def test_year_mismatch_raises(self) -> None:
         """A file of another year under the 2026 name is rejected."""

@@ -108,12 +108,18 @@ never does it.
 The bundle ships the tax and INPS tables of the years
 `ccnl_engine.catalog.supported_tax_years()` returns; a payment of another
 tax year raises `UnsupportedTaxYearError` naming them.  Rules of one year are
-never copied into the next: each year is sourced on its own.
+never applied to another as final: a year whose sources are not published
+yet ships as a provisional copy of the year before.  Its rulesets set
+`provisional: true`, `source_type: estimated` and `assumed` records, and
+every run that reads them traverses the open engine limitation
+`provisional_ruleset` and is not payable.  The 2027 tables are provisional
+(October 2026); the TFR revaluation of 2027 is not shipped, because its
+substitute tax rule changes (table below).
 
 | When | Task |
 |---|---|
 | Mid-January | Insert the ISTAT FOI index (without tobacco) of December of the previous year in `tax/data/tfr-revaluation-<year>.json` (`december` is `null` until then): every December run with a TFR fund to revalue is blocked without it (art. 2120 c. 4 c.c.). |
-| After the budget law and the INPS circulars of the year | Build the `<year>-<sector>.json` tax and INPS files, the somma esente, family deductions, surtax and TFR revaluation files of the year, each record with its own source. |
+| After the budget law and the INPS circulars of the year | Build the `<year>-<sector>.json` tax and INPS files, the somma esente, family deductions, variable pay, surtax and TFR revaluation files of the year, each record with its own source; drop the `provisional` flag of each, and resolve `provisional_ruleset` when no provisional ruleset is left. |
 
 Provisions of 2026 that change or end in 2027, to settle when the 2027
 rulesets are built (sources on Normattiva, read in October 2026):
@@ -121,7 +127,8 @@ rulesets are built (sources on Normattiva, read in October 2026):
 | Provision | Status in 2027 | Engine use |
 |---|---|---|
 | Art. 23 DPR 600/1973 (withholding by the sostituto) | Repealed from 1 January 2027, replaced by D.Lgs. 33/2025 (Testo unico versamenti e riscossione) | Per-run withholding and conguaglio |
-| Art. 17 TUIR (separate taxation) and the text of art. 21 TUIR | Art. 17 repealed from 1 January 2027 by D.Lgs. 19 giugno 2026 n. 117; the art. 21 text in force ends on 31 December 2026 | Arrears of earlier years |
+| Art. 17 TUIR (separate taxation) and the text of art. 21 TUIR | Replaced from 1 January 2027 by arts. 19 and 23 of the testo unico of D.Lgs. 19 giugno 2026 n. 117, same rules: the engine cites them from tax year 2027 | Arrears of earlier years |
+| Art. 11 c. 1 TUIR (IRPEF brackets) | Art. 11 c. 1 of the testo unico of D.Lgs. 117/2026: 23%, 33%, 43% at 28,000 and 50,000 EUR, as in 2026 | IRPEF of the provisional 2027 tables |
 | L. 207/2024 art. 1 c. 6 (ulteriore detrazione) | Repealed from 2027 by D.Lgs. 117/2026 | Ulteriore detrazione and its recovery |
 | D.Lgs. 47/2000 art. 11 cc. 3-4 (substitute tax on the TFR revaluation) | Repealed from 1 January 2027 by D.Lgs. 33/2025, as amended by D.L. 200/2025 | TFR revaluation tax |
 

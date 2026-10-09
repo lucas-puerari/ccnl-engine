@@ -75,15 +75,14 @@ def _provenance_of(block: dict[str, Any]) -> RuleProvenance | None:
 def load_variable_pay_rules(year: int) -> VariablePayRules:
     """Load statutory variable-pay rules for *year*.
 
-    The file ``knowledge/tax/data/variable-pay-rules.json`` is not
+    The file ``knowledge/tax/data/variable-pay-rules-<year>.json`` is not
     sector-specific.  It carries Art. 51 c. 3 TUIR thresholds, PdR flat-tax
     parameters and the L. 199/2025 substitute-tax regimes, which vary by
     fiscal year but not by sector or CCNL.
 
     Args:
-        year: Fiscal year (e.g. ``2026``).  The filename is looked up as
-            ``variable-pay-rules.json``; the ``year`` field inside the file
-            is validated to match.
+        year: Fiscal year (e.g. ``2026``); the ``year`` field inside the
+            file is validated to match.
 
     Returns:
         A :class:`~ccnl_engine.tax.domain.variable_pay.VariablePayRules`
@@ -91,12 +90,16 @@ def load_variable_pay_rules(year: int) -> VariablePayRules:
 
     Raises:
         DataIntegrityError: If the file's ``year`` field does not match *year*.
+
+    A year without a file raises
+    :class:`~ccnl_engine.shared.domain.errors.UnsupportedTaxYearError`.
     """
     pkg = importlib.resources.files("ccnl_engine.knowledge.tax.data")
-    raw = _read_json(pkg, "variable-pay-rules.json")
+    filename = f"variable-pay-rules-{year}.json"
+    raw = read_year_json(pkg, filename, year)
     if raw.get("year") != year:
         msg = (
-            f"variable-pay-rules.json year={raw.get('year')!r} "
+            f"{filename} year={raw.get('year')!r} "
             f"does not match requested year={year!r}"
         )
         raise DataIntegrityError(msg)

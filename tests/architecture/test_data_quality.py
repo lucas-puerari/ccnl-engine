@@ -198,9 +198,9 @@ def test_level_record_covers_its_periods_and_allowances() -> None:
         ("tax/data/2026-x.json", {"irpef_brackets": []}, "irpef_brackets"),
         ("inps/data/2026-x.json", {"inps": {"provenance": None}}, "inps"),
         ("surtax/data/regionale-2026.json", {"rates": {}}, "rates"),
-        ("tax/data/variable-pay-rules.json", {"pdr": {}}, "pdr"),
+        ("tax/data/variable-pay-rules-2026.json", {"pdr": {}}, "pdr"),
         (
-            "tax/data/variable-pay-rules.json",
+            "tax/data/variable-pay-rules-2026.json",
             {"rinnovo": {"source_status": "derived"}},
             "rinnovo",
         ),

@@ -1139,8 +1139,70 @@
       "inps.employee_additional": "assumed",
       "inps.minimum_base": "assumed"
     },
+    "inps/data/2027-agricoltura.json": {
+      "apprentice": "assumed",
+      "inps": "assumed",
+      "inps.employee_additional": "assumed",
+      "inps.minimum_base": "assumed"
+    },
+    "inps/data/2027-artigianato.json": {
+      "apprentice": "assumed",
+      "inps": "assumed",
+      "inps.employee_additional": "assumed",
+      "inps.minimum_base": "assumed"
+    },
+    "inps/data/2027-credito.json": {
+      "apprentice": "assumed",
+      "inps": "assumed",
+      "inps.employee_additional": "assumed",
+      "inps.minimum_base": "assumed"
+    },
+    "inps/data/2027-edilizia.json": {
+      "apprentice": "assumed",
+      "inps": "assumed",
+      "inps.employee_additional": "assumed",
+      "inps.minimum_base": "assumed"
+    },
+    "inps/data/2027-industria.json": {
+      "apprentice": "assumed",
+      "inps": "assumed",
+      "inps.employee_additional": "assumed",
+      "inps.minimum_base": "assumed"
+    },
+    "inps/data/2027-lavoro-domestico.json": {
+      "domestic_contributions": "assumed"
+    },
+    "inps/data/2027-pubblica-amministrazione.json": {
+      "apprentice": "assumed",
+      "inps": "assumed",
+      "inps.end_of_service": "assumed",
+      "inps.minimum_base": "assumed",
+      "inps.public_credit": "assumed",
+      "inps.public_enam": "assumed",
+      "inps.public_funds.cpdel": "assumed",
+      "inps.public_funds.cpdel.end_of_service": "assumed",
+      "inps.public_funds.cpi": "assumed",
+      "inps.public_funds.cpi.end_of_service": "assumed",
+      "inps.public_funds.cps": "assumed",
+      "inps.public_funds.cps.end_of_service": "assumed",
+      "inps.public_funds.cpug": "assumed",
+      "inps.public_funds.cpug.end_of_service": "assumed",
+      "inps.public_life_insurance": "assumed"
+    },
+    "inps/data/2027-terziario.json": {
+      "apprentice": "assumed",
+      "inps": "assumed",
+      "inps.employee_additional": "assumed",
+      "inps.minimum_base": "assumed"
+    },
     "inps/data/sick-pay-rates.json": {
       "bands": "assumed"
+    },
+    "surtax/data/comunale-2027.json": {
+      "rates": "assumed"
+    },
+    "surtax/data/regionale-2027.json": {
+      "rates": "assumed"
     },
     "tax/data/2026-agricoltura.json": {
       "complementary_pension": "assumed",
@@ -1227,8 +1289,108 @@
       "work_deduction": "assumed",
       "work_deduction.minimum": "assumed"
     },
-    "tax/data/variable-pay-rules.json": {
+    "tax/data/2027-agricoltura.json": {
+      "complementary_pension": "assumed",
+      "fixed_term_additional_rate": "assumed",
+      "irpef_brackets": "assumed",
+      "tfr": "assumed",
+      "trattamento_integrativo": "assumed",
+      "ulteriore_detrazione": "assumed",
+      "work_deduction": "assumed",
+      "work_deduction.minimum": "assumed"
+    },
+    "tax/data/2027-artigianato.json": {
+      "complementary_pension": "assumed",
+      "fixed_term_additional_rate": "assumed",
+      "irpef_brackets": "assumed",
+      "tfr": "assumed",
+      "tfr.additional_ivs": "assumed",
+      "trattamento_integrativo": "assumed",
+      "ulteriore_detrazione": "assumed",
+      "work_deduction": "assumed",
+      "work_deduction.minimum": "assumed"
+    },
+    "tax/data/2027-credito.json": {
+      "complementary_pension": "assumed",
+      "fixed_term_additional_rate": "assumed",
+      "irpef_brackets": "assumed",
+      "tfr": "assumed",
+      "tfr.additional_ivs": "assumed",
+      "trattamento_integrativo": "assumed",
+      "ulteriore_detrazione": "assumed",
+      "work_deduction": "assumed",
+      "work_deduction.minimum": "assumed"
+    },
+    "tax/data/2027-edilizia.json": {
+      "complementary_pension": "assumed",
+      "fixed_term_additional_rate": "assumed",
+      "irpef_brackets": "assumed",
+      "tfr": "assumed",
+      "tfr.additional_ivs": "assumed",
+      "trattamento_integrativo": "assumed",
+      "ulteriore_detrazione": "assumed",
+      "work_deduction": "assumed",
+      "work_deduction.minimum": "assumed"
+    },
+    "tax/data/2027-industria.json": {
+      "complementary_pension": "assumed",
+      "fixed_term_additional_rate": "assumed",
+      "irpef_brackets": "assumed",
+      "tfr": "assumed",
+      "tfr.additional_ivs": "assumed",
+      "trattamento_integrativo": "assumed",
+      "ulteriore_detrazione": "assumed",
+      "work_deduction": "assumed",
+      "work_deduction.minimum": "assumed"
+    },
+    "tax/data/2027-lavoro-domestico.json": {
+      "complementary_pension": "assumed",
+      "fixed_term_additional_rate": "assumed",
+      "irpef_brackets": "assumed",
+      "tfr": "assumed",
+      "trattamento_integrativo": "assumed",
+      "ulteriore_detrazione": "assumed",
+      "work_deduction": "assumed",
+      "work_deduction.minimum": "assumed"
+    },
+    "tax/data/2027-pubblica-amministrazione.json": {
+      "complementary_pension": "assumed",
+      "fixed_term_additional_rate": "assumed",
+      "irpef_brackets": "assumed",
+      "tfr": "assumed",
+      "trattamento_integrativo": "assumed",
+      "ulteriore_detrazione": "assumed",
+      "work_deduction": "assumed",
+      "work_deduction.minimum": "assumed"
+    },
+    "tax/data/2027-terziario.json": {
+      "complementary_pension": "assumed",
+      "fixed_term_additional_rate": "assumed",
+      "irpef_brackets": "assumed",
+      "tfr": "assumed",
+      "tfr.additional_ivs": "assumed",
+      "trattamento_integrativo": "assumed",
+      "ulteriore_detrazione": "assumed",
+      "work_deduction": "assumed",
+      "work_deduction.minimum": "assumed"
+    },
+    "tax/data/family-deductions-2027.json": {
+      "children": "assumed",
+      "other_dependents": "assumed",
+      "spouse": "assumed",
+      "spouse_increases": "assumed"
+    },
+    "tax/data/somma-esente-2027.json": {
+      "somma_esente": "assumed"
+    },
+    "tax/data/variable-pay-rules-2026.json": {
       "pdr": "assumed"
+    },
+    "tax/data/variable-pay-rules-2027.json": {
+      "fringe_benefit": "assumed",
+      "notte_festivi_turni": "assumed",
+      "pdr": "assumed",
+      "rinnovo": "assumed"
     }
   },
   "open_limitations": {
@@ -1720,6 +1882,7 @@
     ],
     "limitations/data/engine.json": [
       "apprenticeship_pct_undeclared_components",
+      "provisional_ruleset",
       "sickness_cumulation_window",
       "sickness_inps_daily_base"
     ]

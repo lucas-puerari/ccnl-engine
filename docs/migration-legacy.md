@@ -3,6 +3,63 @@
 Continues [Migration guide: earlier releases](migration-earlier.md); the
 newest changes are on the [Migration guide](migration.md).
 
+## Credit offsets split from the IRPEF withholding
+
+The ledger now keeps IRPEF withheld, credits paid, credits recovered and
+IRPEF refunded on separate accounts, every entry non-negative, and tags
+each tax and credit entry with its F24 codice tributo when verified (see
+[Ledger accounts and F24 remittance](engine/payroll-state.md#ledger-accounts-and-f24-remittance)).
+
+| Change | What to do |
+|---|---|
+| `AccountKind.CREDIT_RECOVERIES` added: credits taken back (somma esente, trattamento integrativo, carried installments), positive | Read recoveries there; they are no longer negative `CREDITS` entries |
+| `AccountKind.CREDIT_RECOVERY_SHORTFALL` added: recovery the pay could not cover, given back | Read the positive `credit_recovery_shortfall_{run}` line there; a part carried in and withheld is on `CREDIT_RECOVERIES` |
+| `AccountKind.TAX_REFUNDS` added: IRPEF refunded by the conguaglio | Move reads of `tax_refund_item` entries from `CREDITS` to `TAX_REFUNDS` |
+| `CREDITS` holds only credits paid, never negative | Net = ... + `CREDITS` + `TAX_REFUNDS` + `CREDIT_RECOVERY_SHORTFALL` - `CREDIT_RECOVERIES`; update custom net formulas |
+| A trattamento integrativo recovery posts the entry `tratt_integ_recovery_{run}` | The pay item keeps the id `tratt_integ_{run}` and its negative amount |
+| The surtax posts `surtax_regional_{run}` and `surtax_municipal_{run}` (pay items too); `surtax_{run}` remains only for a surtax carried in when no annual surtax is left to split on | Match the three ids, or read the `SURTAX` account total, which is unchanged |
+| `LedgerEntry.remittance_code` and `PostingIntent.remittance_code` added | Optional, default `None` |
+| `PeriodResult.remittance_summary()`, `YearResult.remittance_summary()`, `RemittanceLine`, `RemittanceColumn` added | Use them to fill the F24 of each month of payment |
+| Invariants `credit_non_negative` and `remittance_code_consistent` added | Handle them where invariant codes are matched |
+
+Net pay and employer cost are unchanged.
+
+## Household employers withhold no tax
+
+A household employer is not a withholding agent (art. 23 c. 1 DPR 600/1973;
+art. 33 c. 1 D.Lgs. 33/2025 from 2027). The domestic CCNLs now withhold no
+IRPEF or surtax and pay no tax credit: see
+[Domestic work](engine/domestic-work.md#no-withholding-on-the-payslip).
+
+| Change | What to do |
+|---|---|
+| `CCNLMeta.withholding_exempt` removed | Read `CCNLMeta.withholding_agent`, derived from `tax_sector`; drop `"withholding_exempt"` from custom CCNL JSON, which now rejects it |
+| Domestic payslips: no `ordinary_tax`, `surtax`, `substitute_tax` or `credits` entries, empty `tax_computation` | Net is gross less employee contributions; do not expect IRPEF lines |
+| Reason code `not_withholding_agent` on the skipped capabilities | Handle it where reason codes are matched; the traces are `not_applicable` |
+| Invariant `non_agent_untaxed` | Handle it where invariant codes are matched |
+| Opening state with recoveries, shortfall or tax withheld rejected for a domestic CCNL | Start household employments from a zero tax state |
+
+Amounts change only for the two domestic CCNLs.
+
+## Provenance status required on every rule record
+
+Every `provenance` record now declares a `status`: `verified`, `derived`,
+`assumed` or `missing` (see [Provenance](trust/provenance.md)). Bundled data
+is migrated; caller-supplied data must add it.
+
+| Change | What to do |
+|---|---|
+| `RuleProvenance.status` is required | Add `"status"` to each `provenance` object; `uv run python scripts/data/assign_rule_provenance.py` shows the mapping |
+| `RuleProvenance.location` and `extraction` are optional | Guard `record.location` and `record.extraction` against `None` |
+| `verified` needs `extraction.verified_by` and `verified_at` | Records claiming a check without both are rejected |
+| Non-gap `additional_months` periods need a record at load | Add a `provenance` to each period |
+| `PreferentialTaxRegime.source_status` is required | Add `"source_status": "derived"` (or `"assumed"`) next to `source` |
+| `CapabilityReport.rule_sources` added | Read the weakest status per executed capability |
+| `SourceKind.DLGS`, `SourceKind.AMMINISTRAZIONE` added | Match them where kinds are enumerated |
+| New issues `rule_source_missing` (incomplete) and `employer_rate_category_assumed` (provisional) | Handle them where issue codes are matched |
+
+Amounts are unchanged.
+
 ## Oversized domain and service modules split
 
 Seven modules were split by responsibility. Only internal module paths

@@ -1,0 +1,56 @@
+{
+  "year": 2027,
+  "sector": "lavoro-domestico",
+  "domestic_contributions": {
+    "weekly_hours_threshold": 24,
+    "hours_bracket": {
+      "employee_per_hour": "0.31",
+      "employer_per_hour": "0.93",
+      "employer_per_hour_fixed_term": "1.01"
+    },
+    "wage_brackets": [
+      {
+        "hourly_rate_up_to": "9.61",
+        "employee_per_hour": "0.43",
+        "employer_per_hour": "1.27",
+        "employer_per_hour_fixed_term": "1.39"
+      },
+      {
+        "hourly_rate_up_to": "11.70",
+        "employee_per_hour": "0.48",
+        "employer_per_hour": "1.44",
+        "employer_per_hour_fixed_term": "1.57"
+      },
+      {
+        "hourly_rate_up_to": null,
+        "employee_per_hour": "0.59",
+        "employer_per_hour": "1.75",
+        "employer_per_hour_fixed_term": "1.91"
+      }
+    ],
+    "provenance": {
+      "status": "assumed",
+      "location": {
+        "source_document": {
+          "document_id": "inps-circolare-9-2026",
+          "title": "INPS Circolare n. 9 del 3 febbraio 2026, contributi lavoro domestico 2026",
+          "kind": "inps_circolare"
+        },
+        "section": "contribution table 2026"
+      },
+      "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Assumed, not derived: its ruleset declares source_type 'estimated'; no citation (http(s) url and section or page)."
+    }
+  },
+  "ruleset": {
+    "id": "inps/2027/lavoro-domestico",
+    "version": "2026.1",
+    "effective_from": "2027-01-01",
+    "effective_until": "2027-12-31",
+    "published_at": "2026-10-09",
+    "source": "unavailable",
+    "verification_status": "unverified",
+    "source_hash": "233a9e8427483136b9595df86f7ba4d6fd3011c248a94c6e77dcb0bd59adf695",
+    "source_type": "estimated",
+    "provisional": true
+  }
+}

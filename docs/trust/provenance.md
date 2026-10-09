@@ -31,8 +31,8 @@ posted amount.
 | INPS rates, 1% additional IVS | `inps/data/<year>-<sector>.json`: `inps`, `inps.employee_additional`, `apprentice`, `domestic_contributions` | Per block |
 | Regional and municipal surtax | `surtax/data/regionale-<year>.json`, `comunale-<year>.json` | Per table (file-level `provenance`); an entry may override it |
 | Art. 12 family deductions | `tax/data/family-deductions-<year>.json`: `spouse`, `children`, `other_dependents` | Per block |
-| Fringe-benefit thresholds, PdR limits | `tax/data/variable-pay-rules.json`: `fringe_benefit`, `pdr` | Per block |
-| Substitute-tax regimes | `tax/data/variable-pay-rules.json`: `rinnovo`, `notte_festivi_turni` | Their `source` location with `source_status` |
+| Fringe-benefit thresholds, PdR limits | `tax/data/variable-pay-rules-2026.json`: `fringe_benefit`, `pdr` | Per block |
+| Substitute-tax regimes | `tax/data/variable-pay-rules-2026.json`: `rinnovo`, `notte_festivi_turni` | Their `source` location with `source_status` |
 
 CCNL rules carry one record per rule, because each salary tranche and
 allowance is read from its own row of a table. Fiscal values are statutory
@@ -177,7 +177,7 @@ when they drift.
 |---|---:|---:|---:|
 | `verified` | 0 | 0 | 0 |
 | `derived` | 5 782 | 26 | 5 808 |
-| `assumed` | 758 | 98 | 856 |
+| `assumed` | 758 | 218 | 976 |
 | `missing` | 86 | 0 | 86 |
 
 <!-- /trust:provenance-table -->

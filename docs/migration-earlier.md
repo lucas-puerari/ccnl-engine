@@ -3,6 +3,74 @@
 Continues the [Migration guide](migration.md); the oldest changes are on
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Additional 1% IVS charged month by month and settled in December
+
+The additional 1% IVS of D.L. 384/1992 art. 3-ter was charged only once the
+year-to-date INPS base passed the annual band. It is now charged each month
+on the pay of the month above the monthly threshold and settled on the year
+in December, in the month the employment ends and on a termination run
+(INPS circ. 6/2026 par. 5; msg. 5327/2015 par. 2.3). Amounts change: a
+month above EUR 4,685 pays the 1% even early in the year, a month below it
+pays none even past EUR 56,224, and December settles the difference.
+
+| Before | After |
+|---|---|
+| `InpsRates.employee_additional_rate`, `employee_additional_threshold` (and the same keys in the INPS data files) | `InpsRates.employee_additional`, an `AdditionalIvsRule` with `rate`, `annual_threshold`, `monthly_threshold` and `provenance` |
+| Component `addizionale_1pct` on the excess of the YTD base | `addizionale_1pct` on the excess of the month; `addizionale_1pct_conguaglio` on the settling runs, negative for a credit |
+| `InpsBaseYtd(year, own, other_employers)` | Also `additional_ivs`, `other_employers_additional_ivs`, `month`, `month_base`; `plus(amount, month, additional_ivs)` |
+| An imported base of other employers needed nothing else | A run settling the 1% with `other_employers > 0` needs `other_employers_additional_ivs` (from their CU, `Decimal(0)` if they withheld none); left `None` it has a `missing_fact` blocker |
+| Every `employee_contributions` entry was at least zero | An entry may go down to the credit of `addizionale_1pct_conguaglio`; `EarningsYtd.inps_employee` may be negative when a December paid in the next tax year gives back more than that year withheld |
+
+## Minimum of the art. 13 deduction
+
+Up to €15,000 of income the art. 13 TUIR deduction is at least €690, or
+€1,380 for a `FixedTerm` contract (c. 1 lett. a), and the minimum is not
+proportioned to the days. Short employments now withhold less IRPEF, and the
+trattamento integrativo test up to €15,000 compares the gross tax with the
+deduction after the minimum.
+
+| Before | After |
+|---|---|
+| Metalmeccanico C3, 10 July to 20 September 2026 (73 days), open-ended: deduction €391.00, net IRPEF €821.88 | Deduction €690.00, net IRPEF €522.88 |
+| Same, `FixedTerm()`: deduction €391.00, trattamento €240.00 | Deduction €1,380.00, net IRPEF €0.00; gross tax €1,212.88 is not above €1,380 − €15, so no trattamento |
+| `WorkDeductionRules` without a minimum | `WorkDeductionRules.minimum`, a `WorkDeductionMinimum` (`open_ended`, `fixed_term`, `provenance`), read from `work_deduction.minimum` of the tax rulesets |
+| `net_irpef(taxable, rules, family_deductions=..., eligible_work_days=...)` | Also `fixed_term=` (required); `compute_tax(..., fixed_term=False)` and `work_income_deduction(..., fixed_term=False)` |
+
+## A month of sickness deducts at most its pay
+
+| Before | After |
+|---|---|
+| Each INPS band of a `SicknessEpisode` was rounded on its own: a whole month of sickness, or a month crossing the 180-day INPS cap, deducted one cent more than the pay and raised `InvalidInputError` | The pay of the sick days is rounded once on the days of the month counted so far; the sick days of a month never deduct more than its pay. The `absence_deduction` and the INPS share of an episode can move by one cent |
+| Two episodes in the same month each counted up to a monthly pay: 1-15 and 16-31 July 2026 (27 working days by 26) raised `InvalidInputError` | The episodes of a run are taken by first day, whatever their order in the facts; the days past the pay left by the earlier ones are dropped, and the month deducts at most its pay |
+
+## Payability is fail-closed on unknown residence and family
+
+A capability the registry declares required (`applicability_facts`) must be
+ruled out by a decision of the run or decided on the supplied facts; a
+default no longer rules it out. Amounts are unchanged.
+
+| Before | After |
+|---|---|
+| `PeriodFacts.regione` or `comune_belfiore` left `None` skipped the surtax as not applicable, without a blocker | A `requirement_unresolved` blocker on `addizionale_regionale` (`facts.regione`) or `addizionale_comunale` (`facts.comune_belfiore`) when the employer withholds; coverage `incomplete` |
+| `PeriodFacts.family_composition` left `None` skipped the art. 12 TUIR deductions without a blocker | A `requirement_unresolved` blocker on `family_deductions` (`facts.family_composition`); pass `FamilyComposition()` for a worker with no dependant |
+| `CapabilityReport` had gaps only | `CapabilityReport.unresolved`, a tuple of `UnresolvedRequirement` (exported by `ccnl_engine.results`) |
+| `BlockerCode` without a requirement member | `BlockerCode.REQUIREMENT_UNRESOLVED` (`"requirement_unresolved"`) |
+
+A household employer, not a withholding agent, decides that no surtax and no
+deduction is due: its runs need neither fact.
+
+## Surtax table entries and ulteriore settlement moved
+
+Two internal modules were split. Names exported from `ccnl_engine` and its
+namespaces are unchanged, and so are amounts.
+
+| Before | After |
+|---|---|
+| `ccnl_engine.tax.domain.surtax_rules.RegionaleEntry`, `ComunaleEntry`, `RegionalDeduction`, `ComunaleDeduction`, `WholeIncomeRate`, `WithholdingCalendar`, `SurtaxBracket` | `ccnl_engine.tax.domain.surtax_tables` |
+| `ccnl_engine.payroll.service.ulteriore_recovery.UlterioreSettlement`, `settle_ulteriore` | `ccnl_engine.payroll.service.ulteriore_settlement` |
+
+`SurtaxRules`, `RegionaleRaw` and `ComunaleRaw` stay in `surtax_rules`.
+
 ## Public names grouped in four namespaces
 
 The root `ccnl_engine` keeps the common path only; every other public name
@@ -489,60 +557,3 @@ the municipal surtax and never its saldo.
 | Surtax reason codes: `advance_applied` removed; `determined_at_conguaglio` on every run before the conguaglio; `prior_year_rates_applied` (provisional, issue `municipal_surtax_prior_year_rates`) while the bundled municipal table holds the rates of the year before; component decisions `deferred_to_installments`, `withheld_at_termination`, `surtax_refunded` and installment reasons | Handle them where reason codes are matched; select the annual decision as the one without `inputs["component"]` |
 | The conguaglio of 2026 is `provisional` for a municipality: the bundled table has the 2025 rates | Check the municipal amounts against the 2026 deliberation |
 | `PeriodState.SCHEMA_VERSION` is 4 | A persisted state of version 3 has no surtax obligations and no acconto withheld; add them before reuse |
-
-## Credit offsets split from the IRPEF withholding
-
-The ledger now keeps IRPEF withheld, credits paid, credits recovered and
-IRPEF refunded on separate accounts, every entry non-negative, and tags
-each tax and credit entry with its F24 codice tributo when verified (see
-[Ledger accounts and F24 remittance](engine/payroll-state.md#ledger-accounts-and-f24-remittance)).
-
-| Change | What to do |
-|---|---|
-| `AccountKind.CREDIT_RECOVERIES` added: credits taken back (somma esente, trattamento integrativo, carried installments), positive | Read recoveries there; they are no longer negative `CREDITS` entries |
-| `AccountKind.CREDIT_RECOVERY_SHORTFALL` added: recovery the pay could not cover, given back | Read the positive `credit_recovery_shortfall_{run}` line there; a part carried in and withheld is on `CREDIT_RECOVERIES` |
-| `AccountKind.TAX_REFUNDS` added: IRPEF refunded by the conguaglio | Move reads of `tax_refund_item` entries from `CREDITS` to `TAX_REFUNDS` |
-| `CREDITS` holds only credits paid, never negative | Net = ... + `CREDITS` + `TAX_REFUNDS` + `CREDIT_RECOVERY_SHORTFALL` - `CREDIT_RECOVERIES`; update custom net formulas |
-| A trattamento integrativo recovery posts the entry `tratt_integ_recovery_{run}` | The pay item keeps the id `tratt_integ_{run}` and its negative amount |
-| The surtax posts `surtax_regional_{run}` and `surtax_municipal_{run}` (pay items too); `surtax_{run}` remains only for a surtax carried in when no annual surtax is left to split on | Match the three ids, or read the `SURTAX` account total, which is unchanged |
-| `LedgerEntry.remittance_code` and `PostingIntent.remittance_code` added | Optional, default `None` |
-| `PeriodResult.remittance_summary()`, `YearResult.remittance_summary()`, `RemittanceLine`, `RemittanceColumn` added | Use them to fill the F24 of each month of payment |
-| Invariants `credit_non_negative` and `remittance_code_consistent` added | Handle them where invariant codes are matched |
-
-Net pay and employer cost are unchanged.
-
-## Household employers withhold no tax
-
-A household employer is not a withholding agent (art. 23 c. 1 DPR 600/1973;
-art. 33 c. 1 D.Lgs. 33/2025 from 2027). The domestic CCNLs now withhold no
-IRPEF or surtax and pay no tax credit: see
-[Domestic work](engine/domestic-work.md#no-withholding-on-the-payslip).
-
-| Change | What to do |
-|---|---|
-| `CCNLMeta.withholding_exempt` removed | Read `CCNLMeta.withholding_agent`, derived from `tax_sector`; drop `"withholding_exempt"` from custom CCNL JSON, which now rejects it |
-| Domestic payslips: no `ordinary_tax`, `surtax`, `substitute_tax` or `credits` entries, empty `tax_computation` | Net is gross less employee contributions; do not expect IRPEF lines |
-| Reason code `not_withholding_agent` on the skipped capabilities | Handle it where reason codes are matched; the traces are `not_applicable` |
-| Invariant `non_agent_untaxed` | Handle it where invariant codes are matched |
-| Opening state with recoveries, shortfall or tax withheld rejected for a domestic CCNL | Start household employments from a zero tax state |
-
-Amounts change only for the two domestic CCNLs.
-
-## Provenance status required on every rule record
-
-Every `provenance` record now declares a `status`: `verified`, `derived`,
-`assumed` or `missing` (see [Provenance](trust/provenance.md)). Bundled data
-is migrated; caller-supplied data must add it.
-
-| Change | What to do |
-|---|---|
-| `RuleProvenance.status` is required | Add `"status"` to each `provenance` object; `uv run python scripts/data/assign_rule_provenance.py` shows the mapping |
-| `RuleProvenance.location` and `extraction` are optional | Guard `record.location` and `record.extraction` against `None` |
-| `verified` needs `extraction.verified_by` and `verified_at` | Records claiming a check without both are rejected |
-| Non-gap `additional_months` periods need a record at load | Add a `provenance` to each period |
-| `PreferentialTaxRegime.source_status` is required | Add `"source_status": "derived"` (or `"assumed"`) next to `source` |
-| `CapabilityReport.rule_sources` added | Read the weakest status per executed capability |
-| `SourceKind.DLGS`, `SourceKind.AMMINISTRAZIONE` added | Match them where kinds are enumerated |
-| New issues `rule_source_missing` (incomplete) and `employer_rate_category_assumed` (provisional) | Handle them where issue codes are matched |
-
-Amounts are unchanged.

@@ -4,6 +4,13 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Provisional 2027 tax, INPS and surtax tables
+
+| Before | After |
+|---|---|
+| `supported_tax_years()` was `(2026,)`; a payment of tax year 2027 (a December 2026 paid after 12 January included) raised `UnsupportedTaxYearError` | `(2026, 2027)`: the 2027 tables carry the 2026 values over, flagged `RulesetIdentity.provisional`; a run that reads them is computed and not payable, with the open limitation `provisional_ruleset`. A payment of 2028 still raises `UnsupportedTaxYearError` |
+| `tax/data/variable-pay-rules.json` | `tax/data/variable-pay-rules-<year>.json`, one file per year; `load_variable_pay_rules` of a year without a file raises `UnsupportedTaxYearError` |
+
 ## ENAM of the teachers and a level for the diplomati of the secondaria
 
 | Before | After |
@@ -526,71 +533,3 @@ payable. Amounts are unchanged
 | `ContractSummary` told nothing about the dates the bundle covers | `ContractSummary.validity`, a `ValidityWindow` (exported by `ccnl_engine.catalog`): the dates on which every rule of the CCNL has a value |
 | `calculate_competence_year` and `calculate_tax_year` raised `MissingRuleError` when a run of the year had no base salary (ANAS, Igiene ambientale Utilitalia, Lavanderie industriali Assosistema and Metalmeccanico Confimi from January 2026) | The run is left out and listed in `uncovered_runs` (`UncoveredRun`, exported by `ccnl_engine.results`) with a `run_not_computed` blocker; the other runs are computed and the year is not payable. A year with no run in force still raises `MissingRuleError` |
 | `BlockerCode` without a member for a run left out | `BlockerCode.RUN_NOT_COMPUTED` (`"run_not_computed"`) |
-
-## Additional 1% IVS charged month by month and settled in December
-
-The additional 1% IVS of D.L. 384/1992 art. 3-ter was charged only once the
-year-to-date INPS base passed the annual band. It is now charged each month
-on the pay of the month above the monthly threshold and settled on the year
-in December, in the month the employment ends and on a termination run
-(INPS circ. 6/2026 par. 5; msg. 5327/2015 par. 2.3). Amounts change: a
-month above EUR 4,685 pays the 1% even early in the year, a month below it
-pays none even past EUR 56,224, and December settles the difference.
-
-| Before | After |
-|---|---|
-| `InpsRates.employee_additional_rate`, `employee_additional_threshold` (and the same keys in the INPS data files) | `InpsRates.employee_additional`, an `AdditionalIvsRule` with `rate`, `annual_threshold`, `monthly_threshold` and `provenance` |
-| Component `addizionale_1pct` on the excess of the YTD base | `addizionale_1pct` on the excess of the month; `addizionale_1pct_conguaglio` on the settling runs, negative for a credit |
-| `InpsBaseYtd(year, own, other_employers)` | Also `additional_ivs`, `other_employers_additional_ivs`, `month`, `month_base`; `plus(amount, month, additional_ivs)` |
-| An imported base of other employers needed nothing else | A run settling the 1% with `other_employers > 0` needs `other_employers_additional_ivs` (from their CU, `Decimal(0)` if they withheld none); left `None` it has a `missing_fact` blocker |
-| Every `employee_contributions` entry was at least zero | An entry may go down to the credit of `addizionale_1pct_conguaglio`; `EarningsYtd.inps_employee` may be negative when a December paid in the next tax year gives back more than that year withheld |
-
-## Minimum of the art. 13 deduction
-
-Up to €15,000 of income the art. 13 TUIR deduction is at least €690, or
-€1,380 for a `FixedTerm` contract (c. 1 lett. a), and the minimum is not
-proportioned to the days. Short employments now withhold less IRPEF, and the
-trattamento integrativo test up to €15,000 compares the gross tax with the
-deduction after the minimum.
-
-| Before | After |
-|---|---|
-| Metalmeccanico C3, 10 July to 20 September 2026 (73 days), open-ended: deduction €391.00, net IRPEF €821.88 | Deduction €690.00, net IRPEF €522.88 |
-| Same, `FixedTerm()`: deduction €391.00, trattamento €240.00 | Deduction €1,380.00, net IRPEF €0.00; gross tax €1,212.88 is not above €1,380 − €15, so no trattamento |
-| `WorkDeductionRules` without a minimum | `WorkDeductionRules.minimum`, a `WorkDeductionMinimum` (`open_ended`, `fixed_term`, `provenance`), read from `work_deduction.minimum` of the tax rulesets |
-| `net_irpef(taxable, rules, family_deductions=..., eligible_work_days=...)` | Also `fixed_term=` (required); `compute_tax(..., fixed_term=False)` and `work_income_deduction(..., fixed_term=False)` |
-
-## A month of sickness deducts at most its pay
-
-| Before | After |
-|---|---|
-| Each INPS band of a `SicknessEpisode` was rounded on its own: a whole month of sickness, or a month crossing the 180-day INPS cap, deducted one cent more than the pay and raised `InvalidInputError` | The pay of the sick days is rounded once on the days of the month counted so far; the sick days of a month never deduct more than its pay. The `absence_deduction` and the INPS share of an episode can move by one cent |
-| Two episodes in the same month each counted up to a monthly pay: 1-15 and 16-31 July 2026 (27 working days by 26) raised `InvalidInputError` | The episodes of a run are taken by first day, whatever their order in the facts; the days past the pay left by the earlier ones are dropped, and the month deducts at most its pay |
-
-## Payability is fail-closed on unknown residence and family
-
-A capability the registry declares required (`applicability_facts`) must be
-ruled out by a decision of the run or decided on the supplied facts; a
-default no longer rules it out. Amounts are unchanged.
-
-| Before | After |
-|---|---|
-| `PeriodFacts.regione` or `comune_belfiore` left `None` skipped the surtax as not applicable, without a blocker | A `requirement_unresolved` blocker on `addizionale_regionale` (`facts.regione`) or `addizionale_comunale` (`facts.comune_belfiore`) when the employer withholds; coverage `incomplete` |
-| `PeriodFacts.family_composition` left `None` skipped the art. 12 TUIR deductions without a blocker | A `requirement_unresolved` blocker on `family_deductions` (`facts.family_composition`); pass `FamilyComposition()` for a worker with no dependant |
-| `CapabilityReport` had gaps only | `CapabilityReport.unresolved`, a tuple of `UnresolvedRequirement` (exported by `ccnl_engine.results`) |
-| `BlockerCode` without a requirement member | `BlockerCode.REQUIREMENT_UNRESOLVED` (`"requirement_unresolved"`) |
-
-A household employer, not a withholding agent, decides that no surtax and no
-deduction is due: its runs need neither fact.
-
-## Surtax table entries and ulteriore settlement moved
-
-Two internal modules were split. Names exported from `ccnl_engine` and its
-namespaces are unchanged, and so are amounts.
-
-| Before | After |
-|---|---|
-| `ccnl_engine.tax.domain.surtax_rules.RegionaleEntry`, `ComunaleEntry`, `RegionalDeduction`, `ComunaleDeduction`, `WholeIncomeRate`, `WithholdingCalendar`, `SurtaxBracket` | `ccnl_engine.tax.domain.surtax_tables` |
-| `ccnl_engine.payroll.service.ulteriore_recovery.UlterioreSettlement`, `settle_ulteriore` | `ccnl_engine.payroll.service.ulteriore_settlement` |
-
-`SurtaxRules`, `RegionaleRaw` and `ComunaleRaw` stay in `surtax_rules`.

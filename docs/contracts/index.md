@@ -17,7 +17,7 @@ No percentage blends them: a contract can be fully covered and still rest
 on unverified sources, or be well sourced and not cleared for production.
 
 - **Coverage (L1, L2, L3):** what the engine computes, derived from the
-  capability registry of 2026. A layer shows its weakest capability; the
+  capability registry of 2027. A layer shows its weakest capability; the
   [capability matrix](capability-matrix.md) lists each one. **Limits**
   names the capabilities this contract's data leaves partial: a `missing`
   note, or a model limitation with a monetary impact.
