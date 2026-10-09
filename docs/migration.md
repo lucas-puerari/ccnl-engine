@@ -4,6 +4,13 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## ENAM of the teachers and a level for the diplomati of the secondaria
+
+| Before | After |
+|---|---|
+| `istruzione-ricerca-aran` level `DOCENTE_INFANZIA_PRIMARIA` also held the docenti diplomati of the secondaria di II grado | They have their own level `DOCENTE_DIPLOMATO_SECONDARIA` (same minimum); `DOCENTE_INFANZIA_PRIMARIA` keeps the infanzia and primaria |
+| No ENAM | A permanent worker on a level of the new `CCNLParameters.enam_levels` pays 1% of 80% of the minimum (component `enam_employee`, `InpsRates.public_enam`), with the open limitation `enam_base` |
+
 ## Assicurazione Sociale Vita of public employees
 
 | Before | After |

@@ -203,6 +203,8 @@ class CCNLParameters(BaseModel):
     ``flat_pay_max_weekly_hours``: the ceiling up to which a regime pays its
     minimum in full whatever the hours (lavoro domestico art. 14 c. 2: 30).
     ``raccordo_element``: the ERC the CCNL pays with the tredicesima.
+    ``enam_levels``: the levels whose permanent workers owe the contribution
+    of the Gestione Assistenza Magistrale (ex ENAM, L. 93/1957 art. 3).
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -218,6 +220,7 @@ class CCNLParameters(BaseModel):
     flat_pay_max_weekly_hours: int | None = Field(default=None, ge=1)
     contractual_fund_contribution: ContractualFundContribution | None = None
     raccordo_element: RaccordoElement | None = None
+    enam_levels: tuple[str, ...] = ()
 
     @model_validator(mode="after")
     def _check_positive_params(self) -> Self:

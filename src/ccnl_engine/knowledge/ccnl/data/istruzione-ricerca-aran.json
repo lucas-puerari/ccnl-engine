@@ -129,6 +129,9 @@
           "note": "Read from the PDF the url serves (sha256 1c1edd47165239d4faf3cd1c2689091392d73a0716e070e939110d8f764c2e8a); the footnotes are images, read by OCR. No human review recorded."
         }
       }
+    ],
+    "enam_levels": [
+      "DOCENTE_INFANZIA_PRIMARIA"
     ]
   },
   "levels": [
@@ -360,7 +363,82 @@
     {
       "code": "DOCENTE_INFANZIA_PRIMARIA",
       "order": 4,
-      "description": "Docente scuola dell'infanzia e primaria; docente secondaria II (diploma)",
+      "description": "Docente scuola dell'infanzia e primaria",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-01-01",
+            "valid_until": "2024-01-01",
+            "value": "1614.53",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ann1",
+                  "title": "ann1",
+                  "kind": "rivista",
+                  "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "1724.65",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ann1",
+                  "title": "ann1",
+                  "kind": "rivista",
+                  "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ann1",
+            "title": "ann1",
+            "kind": "rivista",
+            "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "DOCENTE_DIPLOMATO_SECONDARIA",
+      "order": 5,
+      "description": "Docente diplomato degli istituti secondari di II grado",
       "category": "impiegato",
       "base_salary": {
         "periods": [
@@ -434,7 +512,7 @@
     },
     {
       "code": "DOCENTE_SECONDARIA",
-      "order": 5,
+      "order": 6,
       "description": "Docente secondaria I grado (PE/Ed.Fisica) e secondaria II (laurea)",
       "category": "impiegato",
       "base_salary": {
@@ -509,7 +587,7 @@
     },
     {
       "code": "FUNZIONARIO_ED_ESPERTO",
-      "order": 6,
+      "order": 7,
       "description": "ATA: Funzionario ed esperto (ex dsga, direttori servizi generali)",
       "category": "quadro",
       "base_salary": {
@@ -701,6 +779,23 @@
       {
         "kind": "info",
         "text": "ASSICURAZIONE SOCIALE VITA. The employers of this CCNL are Amministrazioni dello Stato (the State schools; the forze di polizia), which INPS circ. 104/2014 leaves out of the Assicurazione Sociale Vita (ex ENPDEP): meta.public_life_insurance is false."
+      },
+      {
+        "kind": "info",
+        "text": "LEVELS. The Tabelle A1 and A2 of the CCNL 2022-2024 (from 1.1.2024) list 'Docente scuola dell'infanzia ed elementare' and 'Docente diplomato istituti sec. II grado' as two rows with the same amounts (22,420.48 a year in the first band): two levels with the same minimum, DOCENTE_INFANZIA_PRIMARIA and DOCENTE_DIPLOMATO_SECONDARIA, since only the first owes the ENAM."
+      },
+      {
+        "kind": "simplification",
+        "text": "The ENAM of a permanent teacher of the scuola dell'infanzia and primaria (L. 93/1957 art. 3: 1% of 80% of the stipendio) is computed on the whole minimum of the level; the stipendio it counts leaves out the IIS conglobata the retribuzione tabellare holds, which the bundle does not give apart: the contribution is overstated.",
+        "capability": "inps_employee",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "enam_base",
+          "applies_when": {
+            "trigger": "path"
+          },
+          "remediation": "Source the IIS conglobata of the profile, leave it out of the ENAM base, then remove this note."
+        }
       }
     ]
   },
@@ -711,7 +806,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1",
     "verification_status": "unverified",
-    "source_hash": "01e780227fe23133ea5133d3af207293ba189c4db6d88d9c5bd5c202a1a1d053",
+    "source_hash": "6cb4306a4e7285290f415940addd2a30c59d103a9cffd8c748274b910a32603b",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

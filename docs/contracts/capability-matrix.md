@@ -58,11 +58,11 @@ formulas or caller-declared amounts.
 
 | Capability | Description | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|
-| `base_salary` | Paga base contrattuale | gross | native | always | pipeline | — | — | simplified | 0 / 5052 / 713 / 86 |
+| `base_salary` | Paga base contrattuale | gross | native | always | pipeline | — | — | simplified | 0 / 5054 / 713 / 86 |
 | `seniority` | Scatti di anzianità | gross | native | decided | decision | `employment.seniority` | — | simplified | 0 / 112 / 14 / 0 |
 | `worker_category` | Categoria lavoratore (dichiarata o fissata dal livello) | gross | native | decided | decision | `employment.category` | — | implemented | none bundled |
-| `inps_employee` | Contributi INPS a carico dipendente | net | native | always | pipeline | — | — | simplified | 0 / 12 / 27 / 0 |
-| `inps_employer` | Contributi INPS a carico azienda | net | native | always | pipeline | — | — | simplified | 0 / 12 / 35 / 0 |
+| `inps_employee` | Contributi INPS a carico dipendente | net | native | always | pipeline | — | — | simplified | 0 / 13 / 27 / 0 |
+| `inps_employer` | Contributi INPS a carico azienda | net | native | always | pipeline | — | — | simplified | 0 / 13 / 35 / 0 |
 | `inail` | Premio INAIL a carico azienda | net | unsupported | outside_input | — | `employer.inail_tariff_rate` | — | unavailable | none bundled |
 | `contribution_exemption` | Esonero contributivo | net | unsupported | outside_input | — | `employer.contribution_exemption` | — | unavailable | none bundled |
 | `fiscal_adjustment` | Conguaglio IRPEF da assistenza fiscale o periodo precedente | net | unsupported | outside_input | — | `facts.fiscal_adjustment` | — | unavailable | none bundled |
@@ -154,7 +154,7 @@ never grow.
 | 25 | [CCNL Chimica e Affini PMI — Unionchimica Confapi](chimica-affini-pmi-unionchimica.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 21 / 1 / 1 |
 | 26 | [CCNL Comparto Funzioni Centrali — Triennio 2022-2024](funzioni-centrali-aran.md) | 🔲 | 🔲 | 🔲 | inps_employer | 0 / 29 / 1 / 1 |
 | 27 | [CCNL Comparto Funzioni Locali 2022-2024 — ARAN](funzioni-locali-aran.md) | 🔲 | 🔲 | 🔲 | base_salary, company_supplement | 0 / 21 / 1 / 1 |
-| 28 | [CCNL Comparto Istruzione e Ricerca 2022-2024 — ARAN](istruzione-ricerca-aran.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 21 / 1 / 1 |
+| 28 | [CCNL Comparto Istruzione e Ricerca 2022-2024 — ARAN](istruzione-ricerca-aran.md) | 🔲 | 🔲 | 🔲 | base_salary, inps_employee, seniority | 0 / 23 / 1 / 1 |
 | 29 | [CCNL Comparto Sanità 2022-2024 — ARAN](sanita-aran.md) | 🔲 | 🔲 | 🔲 | base_salary | 0 / 19 / 1 / 1 |
 | 30 | [CCNL Comunicazione, Informatica e Servizi Innovativi PMI — Settore Informatico](informatica-pmi-unimatica.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 40 / 2 / 0 |
 | 31 | [CCNL Consorzi Agrari (ASSOCAP-FLAI-FAI-UILA)](consorzi-agrari-assocap.md) | 🔲 | 🔲 | 🔲 | base_salary, health_fund_employer | 0 / 36 / 1 / 1 |

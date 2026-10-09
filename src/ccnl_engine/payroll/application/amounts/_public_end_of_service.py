@@ -40,6 +40,7 @@ __all__ = [
     "end_of_service_employee_rate",
     "end_of_service_issue",
     "life_insurance_issue",
+    "with_enam",
     "with_end_of_service",
     "with_life_insurance",
     "with_public_credit",
@@ -81,7 +82,7 @@ def end_of_service_issue(inp: _AmountsInput) -> CalculationIssue | None:
         rates for the CCNL and the regime is not stated, else ``None``.
     """
     rates = None if inp.rules.inps is None else inp.rules.inps.end_of_service
-    if rates is None or inp.public_end_of_service is not None:
+    if rates is None or inp.public.end_of_service is not None:
         return None
     return END_OF_SERVICE_UNKNOWN
 
@@ -100,7 +101,7 @@ def _components(
         Gestione, or on a tredicesima the fund leaves out of the base.
     """
     rates = None if inp.rules.inps is None else inp.rules.inps.end_of_service
-    regime = inp.public_end_of_service
+    regime = inp.public.end_of_service
     pay = inp.tfr_pay
     base = end_of_service_base(rates, regime, pay, extra=inp.additional_month)
     if rates is None or base is None:
@@ -187,7 +188,7 @@ def end_of_service_employee_rate(inp: _AmountsInput) -> Decimal:
     """
     rates = None if inp.rules.inps is None else inp.rules.inps.end_of_service
     pay = inp.tfr_pay
-    base = end_of_service_base(rates, inp.public_end_of_service, pay, extra=False)
+    base = end_of_service_base(rates, inp.public.end_of_service, pay, extra=False)
     if rates is None or base is None:
         return _ZERO
     return rates.tfs_employee_rate * rates.base_share
@@ -220,7 +221,7 @@ def life_insurance_issue(inp: _AmountsInput) -> CalculationIssue | None:
         CCNL and neither the employer nor the CCNL decides it.
     """
     rates = None if inp.rules.inps is None else inp.rules.inps.public_life_insurance
-    if rates is None or inp.public_life_insurance is not None:
+    if rates is None or inp.public.life_insurance is not None:
         return None
     return LIFE_INSURANCE_UNKNOWN
 
@@ -238,8 +239,27 @@ def with_life_insurance(
         employee rate; ``breakdown`` and zero when no ASV is owed.
     """
     rates = None if inp.rules.inps is None else inp.rules.inps.public_life_insurance
-    if rates is None or not inp.public_life_insurance:
+    if rates is None or not inp.public.life_insurance:
         return breakdown, _ZERO
     employee = _component("life_insurance_employee", pension_base, rates.employee_rate)
     employer = _component("life_insurance_employer", pension_base, rates.employer_rate)
     return _added(breakdown, (employee,), (employer,)), rates.employee_rate
+
+
+def with_enam(
+    inp: _AmountsInput, breakdown: ContributionBreakdown
+) -> tuple[ContributionBreakdown, Decimal]:
+    """Return ``breakdown`` with the ENAM of a permanent teacher.
+
+    L. 93/1957 art. 3 c. 1 lett. a: 1% of 80% of the stipendio.
+
+    Returns:
+        The breakdown with the ``enam_employee`` component and its rate on
+        the gross; ``breakdown`` and zero when no ENAM is owed.
+    """
+    rates = None if inp.rules.inps is None else inp.rules.inps.public_enam
+    if rates is None or inp.public.enam_stipendio is None:
+        return breakdown, _ZERO
+    base = money(inp.public.enam_stipendio * rates.base_share)
+    component = _component("enam_employee", base, rates.employee_rate)
+    return _added(breakdown, (component,)), rates.employee_rate * rates.base_share

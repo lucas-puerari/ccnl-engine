@@ -11,6 +11,7 @@ from ccnl_engine.payroll.application.amounts._domestic import (
 )
 from ccnl_engine.payroll.application.amounts._public_end_of_service import (
     end_of_service_employee_rate,
+    with_enam,
     with_end_of_service,
     with_life_insurance,
     with_public_credit,
@@ -73,8 +74,9 @@ def run_contributions(inp: _AmountsInput) -> tuple[ContributionBreakdown, Decima
         breakdown = with_end_of_service(inp, _ordinary_breakdown(inp, base))
         breakdown, credit = with_public_credit(inp, breakdown, base)
         breakdown, life = with_life_insurance(inp, breakdown, base)
+        breakdown, enam = with_enam(inp, breakdown)
         rates = resolve_rates(inp.rules, inp.contract_type, inp.category)
-        public = end_of_service_employee_rate(inp) + credit + life
+        public = end_of_service_employee_rate(inp) + credit + life + enam
         employee = rates.employee_rate + public
         return breakdown, employee
     breakdown = compute_domestic_breakdown(
@@ -226,7 +228,7 @@ def tfr_accrual(inp: _AmountsInput, breakdown: ContributionBreakdown) -> TfrAccr
     tfr = inp.rules.tfr
     base = inp.tfr_pay
     quota = money(base / tfr.accrual_divisor)
-    public = inp.public_end_of_service
+    public = inp.public.end_of_service
     accrual = TfrAccrual(
         quota=_ZERO if public is PublicEndOfService.TFS else quota,
         to_pension_fund=_tfr_paid_to_fund(inp),

@@ -89,15 +89,16 @@ class TestLoadIstruzioneRicercaAran:
         assert ccnl.meta.ccnl_id == "istruzione-ricerca-aran"
         assert ccnl.meta.cnel_code == "S305"
 
-    def test_istruzione_ricerca_aran_has_6_levels(self) -> None:
-        """Contract has exactly 6 levels (4 ATA + 2 docente groups)."""
+    def test_istruzione_ricerca_aran_has_7_levels(self) -> None:
+        """Contract has exactly 7 levels (4 ATA + 3 docente groups)."""
         ccnl = load_ccnl("istruzione-ricerca-aran.json")
-        assert len(ccnl.levels) == 6
+        assert len(ccnl.levels) == 7
         assert {lv.code for lv in ccnl.levels} == {
             "COLLABORATORE_SCOLASTICO",
             "OPERATORE",
             "ASSISTENTE",
             "DOCENTE_INFANZIA_PRIMARIA",
+            "DOCENTE_DIPLOMATO_SECONDARIA",
             "DOCENTE_SECONDARIA",
             "FUNZIONARIO_ED_ESPERTO",
         }

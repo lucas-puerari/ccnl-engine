@@ -282,6 +282,25 @@
         "transformation": "0.027% of the worker and 0.093% of the employer on the pension base of the run, when the employer owes the ASV (EmployerProfile.public_life_insurance or the CCNL).",
         "note": "Read on 2026-10-09 from the page the url serves (sha256 9a98ccdd6149c9df7f7d1a62d31a9695b1b4146b98331b41b546692e77279956). No human review recorded."
       }
+    },
+    "public_enam": {
+      "employee_rate": "0.01",
+      "base_share": "0.80",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "l-93-1957-art3",
+            "title": "Legge 7 marzo 1957, n. 93, art. 3",
+            "kind": "legge",
+            "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1957-03-07;93~art3"
+          },
+          "section": "art. 3, primo comma, lettera a)",
+          "quote": "L'Ente provvede al raggiungimento dei suoi fini: a) con un contributo mensile a carico degli iscritti pari all'1 per cento dell'ammontare lordo dello stipendio"
+        },
+        "transformation": "1% of the worker on 80% of the stipendio: the INPS page 'I contributi dei dipendenti pubblici' lists 'ENAM 1 -- 1' on the contribution base of the Gestione (80% of the pay). The stipendio excludes the IIS conglobata the retribuzione tabellare holds: the CCNL declares the open limitation enam_base.",
+        "note": "Read on 2026-10-09 from the page the url serves (sha256 1ee846e8202f19f073eeca4bb3a2195f7e1863baeb27e0061e26431391301956). The 80% share is read from the INPS table and the article's reference to DPR 19/1956 art. 10, not quoted here. No human review recorded."
+      }
     }
   },
   "apprentice": {
@@ -308,7 +327,7 @@
     "published_at": "2026-09-07",
     "source": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html",
     "verification_status": "unverified",
-    "source_hash": "e2efdc59924e821f27221602fbecd6b00b054c2246cabc39d2e7c71036058304",
+    "source_hash": "ab761e5c3d885d5b2952ade3e7230955f5bcdca6cf5fed4f3c18ec3abc33bd5a",
     "source_type": "institutional_secondary"
   }
 }

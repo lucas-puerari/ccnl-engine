@@ -231,7 +231,11 @@ Comuni also pay the Assicurazione Sociale Vita, ex ENPDEP (INPS circ. 104/2014):
 0.027% of the worker and 0.093% of the employer on the pension base. State it in
 `EmployerProfile.public_life_insurance`; the CCNL of the State school and of the
 forze di polizia fix it as not owed, the others leave the run incomplete with the
-issue `public_life_insurance_unknown` until it is stated.
+issue `public_life_insurance_unknown` until it is stated. The permanent teachers of
+the scuola dell'infanzia and primaria (`CCNLParameters.enam_levels`) pay the ENAM:
+1% of 80% of the stipendio (L. 93/1957 art. 3), the component `enam_employee`; the
+stipendio leaves out the IIS conglobata, which the bundle does not give apart, so the
+run has the open limitation `enam_base`.
 
 ### Flat hourly rate (domestic work)
 

@@ -23,6 +23,7 @@ from ccnl_engine.tax.domain.additional_ivs import AdditionalIvsRule
 from ccnl_engine.tax.domain.contribution_rules import (
     EndOfServiceRates,
     PublicCreditRate,
+    PublicEnamRate,
     PublicFundRates,
     PublicLifeInsuranceRates,
 )
@@ -108,6 +109,7 @@ class InpsRawRates(BaseModel):
     end_of_service: EndOfServiceRates | None = None
     public_credit: PublicCreditRate | None = None
     public_life_insurance: PublicLifeInsuranceRates | None = None
+    public_enam: PublicEnamRate | None = None
 
 
 class ApprenticeRawRates(BaseModel):

@@ -45,6 +45,24 @@ if TYPE_CHECKING:
 
 
 @dataclass(frozen=True)
+class PublicTerms:
+    """What the contributions of a public employee to INPS depend on.
+
+    Attributes:
+        end_of_service: End-of-service regime (TFS, TFR at INPS or at the
+            employer), ``None`` when not stated.
+        life_insurance: Whether the Assicurazione Sociale Vita is owed,
+            ``None`` when neither the employer nor the CCNL states it.
+        enam_stipendio: Stipendio of a teacher who owes the ENAM, ``None``
+            when none is owed.
+    """
+
+    end_of_service: PublicEndOfService | None = None
+    life_insurance: bool | None = None
+    enam_stipendio: Decimal | None = None
+
+
+@dataclass(frozen=True)
 class _AmountsInput:
     """Everything the amounts of one run are computed from.
 
@@ -132,9 +150,8 @@ class _AmountsInput:
     additional_ivs: AdditionalIvsPosition = field(default_factory=AdditionalIvsPosition)
     tfr_treasury_fund: bool | None = None
     assistance: AssistanceTerms | None = None
-    public_end_of_service: PublicEndOfService | None = None
     tfr_excluded: Decimal = Decimal(0)
-    public_life_insurance: bool | None = None
+    public: PublicTerms = field(default_factory=PublicTerms)
 
     @property
     def tfr_pay(self) -> Decimal:
