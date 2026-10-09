@@ -12,6 +12,7 @@ from ccnl_engine.payroll.application.handlers._overtime_rate import (
 from ccnl_engine.payroll.application.period._accrual_decisions import accrual_rules
 from ccnl_engine.payroll.application.period._additional_ivs import additional_ivs_rules
 from ccnl_engine.payroll.application.period._assistance import assistance_rules
+from ccnl_engine.payroll.application.period._contractual_fund import contractual_rules
 from ccnl_engine.payroll.application.period._sickness import sickness_rules
 from ccnl_engine.payroll.application.period._tfr_rules import (
     revaluation_rules,
@@ -234,24 +235,23 @@ def _family_rules(ctx: RunContext) -> tuple[Rule, ...]:
 def _pension_rules(ctx: RunContext) -> tuple[Rule, ...]:
     """Return the fund rates and the statutory pension rules of the run.
 
-    Only called when the worker is enrolled: the fund was resolved by the
-    run.  A rate period without its own record takes the one of its fund.
-
     Returns:
-        The employer rate and employee minimum in force, then the deduction
-        cap and solidarity rate of the tax year.
+        The rates of the enrolment, the contractual amount, then the
+        deduction cap and solidarity rate of the tax year.
     """
     ccnl = ctx.contract.ccnl
     enrolment = ctx.request.pension_fund
     code = enrolment.fund_code if isinstance(enrolment, PensionFundEnrolment) else ""
-    fund = next(f for f in ccnl.parameters.employer_funds if f.code == code)
+    funds = [f for f in ccnl.parameters.employer_funds if f.code == code]
     day = ctx.contract.tctx.competence
-    prefix = f"{_name(ccnl.ruleset, f'ccnl/{ccnl.meta.ccnl_id}')}:employer_funds"
+    ccnl_name = _name(ccnl.ruleset, f"ccnl/{ccnl.meta.ccnl_id}")
+    prefix = f"{ccnl_name}:employer_funds"
     rules: list[Rule] = [
         (
             f"{prefix}[{code}].{key}[{period.valid_from}]",
             period.provenance or fund.provenance,
         )
+        for fund in funds
         for key, series in (
             ("rate", fund.rate),
             ("employee_min_rate", fund.employee_min_rate),
@@ -259,6 +259,7 @@ def _pension_rules(ctx: RunContext) -> tuple[Rule, ...]:
         if series is not None
         for period in _in_force(series.period_at(day))
     ]
+    rules.extend(contractual_rules(ctx, ccnl_name))
     year_rules = ctx.contract.year_rules
     tax_name = _name(year_rules.ruleset, f"tax/{year_rules.year}")
     rules.append((

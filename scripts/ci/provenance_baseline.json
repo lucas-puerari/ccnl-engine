@@ -430,6 +430,16 @@
     "ccnl/data/materiali-costruzione-lapidei-confapi.json": {
       "accrual_rule": "assumed",
       "additional_months[2019-04-01]": "assumed",
+      "contractual_fund_contribution[1][2026-01-01]": "assumed",
+      "contractual_fund_contribution[2][2026-01-01]": "assumed",
+      "contractual_fund_contribution[3][2026-01-01]": "assumed",
+      "contractual_fund_contribution[4][2026-01-01]": "assumed",
+      "contractual_fund_contribution[5][2026-01-01]": "assumed",
+      "contractual_fund_contribution[6][2026-01-01]": "assumed",
+      "contractual_fund_contribution[7][2026-01-01]": "assumed",
+      "contractual_fund_contribution[8][2026-01-01]": "assumed",
+      "employer_funds[FONDAPI].employee_min_rate[2026-01-01]": "assumed",
+      "employer_funds[FONDAPI].rate[2026-01-01]": "assumed",
       "levels[1].base_salary[2019-04-01]": "assumed",
       "levels[1].base_salary[2020-09-01]": "assumed",
       "levels[1].base_salary[2021-02-01]": "assumed",
@@ -1503,6 +1513,9 @@
     ],
     "ccnl/data/marittimi-industria-armatoriale.json": [
       "marittimi-industria-armatoriale/apprentice_seniority"
+    ],
+    "ccnl/data/materiali-costruzione-lapidei-confapi.json": [
+      "materiali-costruzione-lapidei-confapi/contractual_fund_partial"
     ],
     "ccnl/data/metalmeccanica-cooperative.json": [
       "metalmeccanica-cooperative/apprentice_seniority",

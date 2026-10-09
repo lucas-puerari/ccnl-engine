@@ -74,21 +74,26 @@ class PensionContribution:
     """Contributions of one run to the fund.
 
     Attributes:
-        terms: Rates they were computed with.
+        terms: Rates they were computed with, ``None`` for the contractual
+            contribution of a worker not enrolled voluntarily.
         base: Base of the fund for the run.
-        employer: Employer contribution.
+        employer: Employer contribution, the contractual one included.
         employee: Employee contribution, withheld from the pay.
         solidarity: INPS solidarity contribution on ``employer``.
         deductible: Part of ``employer + employee`` deducted from the
             taxable income of the run, within the cap left.
+        contractual: Fixed contribution the CCNL owes the fund for every
+            worker (:class:`~ccnl_engine.contract.domain.fund_contribution\
+.ContractualFundContribution`), part of ``employer``.
     """
 
-    terms: PensionFundTerms
+    terms: PensionFundTerms | None
     base: Decimal
     employer: Decimal
     employee: Decimal
     solidarity: Decimal
     deductible: Decimal
+    contractual: Decimal = _ZERO
 
     @property
     def taxable_adjustment(self) -> Decimal:
@@ -205,29 +210,67 @@ def resolve_terms(
 
 
 def contribute(
-    terms: PensionFundTerms, base: Decimal, deducted_ytd: Decimal
+    terms: PensionFundTerms,
+    base: Decimal,
+    deducted_ytd: Decimal,
+    contractual: Decimal = _ZERO,
 ) -> PensionContribution:
-    """Return the contributions of a run with INPS base ``base``.
+    """Return the contributions of a run on the base ``base`` of the fund.
 
     Args:
         terms: Rates of the enrolment.
-        base: INPS contribution base of the run.
+        base: Base of the fund for the run.
         deducted_ytd: Contributions already deducted this tax year.
+        contractual: Contractual contribution of the CCNL, added to the
+            employer part.
 
     Returns:
         Employer, employee and solidarity contributions and the part
         deducted within the cap left.
     """
-    employer = money(base * terms.employer_rate)
+    employer = money(base * terms.employer_rate) + contractual
     employee = money(base * terms.employee_rate)
-    headroom = max(_ZERO, terms.rules.deduction_cap - deducted_ytd)
+    return _contribution(
+        terms, terms.rules, base, (employer, employee, contractual), deducted_ytd
+    )
+
+
+def contractual_only(
+    amount: Decimal, rules: ComplementaryPensionRules | None, deducted_ytd: Decimal
+) -> PensionContribution:
+    """Return the contractual contribution of a worker not enrolled voluntarily.
+
+    Returns:
+        The contractual contribution as employer part, its solidarity and
+        the part deducted within the cap left.
+
+    Raises:
+        InvalidInputError: When the tax year has no complementary pension
+            rules.
+    """
+    if rules is None:
+        msg = "no complementary pension rules for the tax year of the run"
+        raise InvalidInputError(msg, feature=PENSION_FEATURE)
+    return _contribution(None, rules, _ZERO, (amount, _ZERO, amount), deducted_ytd)
+
+
+def _contribution(
+    terms: PensionFundTerms | None,
+    rules: ComplementaryPensionRules,
+    base: Decimal,
+    amounts: tuple[Decimal, Decimal, Decimal],
+    deducted_ytd: Decimal,
+) -> PensionContribution:
+    employer, employee, contractual = amounts
+    headroom = max(_ZERO, rules.deduction_cap - deducted_ytd)
     return PensionContribution(
         terms=terms,
         base=base,
         employer=employer,
         employee=employee,
-        solidarity=money(employer * terms.rules.solidarity_rate),
+        solidarity=money(employer * rules.solidarity_rate),
         deductible=min(employer + employee, headroom),
+        contractual=contractual,
     )
 
 

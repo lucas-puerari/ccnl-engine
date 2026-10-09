@@ -38,7 +38,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | pension_fund_contribution |
 
 ### Verifica
 
@@ -58,7 +58,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 
 ### Semplificazioni note
 
-2 semplificazioni documentate.
+3 semplificazioni documentate.
 Vedi [Known simplifications](#known-simplifications) per i dettagli.
 
 ## Salary table
@@ -95,6 +95,13 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "materiali-costruzione-lapidei-confapi/contractual_fund_partial · pension_fund_contribution · impact unknown · open"
+    The Fondapi contractual contribution (5 EUR riparametrati a month) is owed on every run that pays the month, in full. The Scheda and the circolare operativa of Fondapi state no rule for a partly employed month, a part-time worker or the extra months: a partial month or part time pays the full amount, an extra-month run none.
+
+    **Applies when:** `pension_fund_contribution` applies; the run takes the engine code path.
+
+    **Remediation:** Source the rule of the accordo of 10 November 2020 for a partial month and part time and model it, then remove this note.
 
 ### Without monetary impact
 

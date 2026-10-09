@@ -69,6 +69,19 @@
         "text": "SIMPLIFICATION: Work rules (overtime, leave, sickness) not modelled. Discipline lapidei spans multiple articles; scope deferred.",
         "capability": "overtime",
         "monetary_impact": "no"
+      },
+      {
+        "kind": "simplification",
+        "text": "The Fondapi contractual contribution (5 EUR riparametrati a month) is owed on every run that pays the month, in full. The Scheda and the circolare operativa of Fondapi state no rule for a partly employed month, a part-time worker or the extra months: a partial month or part time pays the full amount, an extra-month run none.",
+        "capability": "pension_fund_contribution",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "contractual_fund_partial",
+          "applies_when": {
+            "trigger": "path"
+          },
+          "remediation": "Source the rule of the accordo of 10 November 2020 for a partial month and part time and model it, then remove this note."
+        }
       }
     ]
   },
@@ -219,7 +232,140 @@
         },
         "note": "Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
       }
-    }
+    },
+    "contractual_fund_contribution": {
+      "code": "FONDAPI",
+      "description": "Fondapi - contributo contrattuale del CCNL Materiali da costruzione",
+      "monthly_by_level": {
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "10.50"
+            }
+          ]
+        },
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "9.45"
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "7.70"
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "7.30"
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "6.80"
+            }
+          ]
+        },
+        "6": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "6.40"
+            }
+          ]
+        },
+        "7": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "5.90"
+            }
+          ]
+        },
+        "8": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "5.00"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "fondapi-nota-informativa-2026",
+            "title": "Fondapi Nota informativa, Parte I, scheda 'I destinatari e i contributi' (29 luglio 2026)",
+            "kind": "altro",
+            "url": "https://www.fondapi.it/documenti/i-destinatari-e-i-contributi"
+          },
+          "section": "CCNL MATERIALI DA COSTRUZIONE (LAPIDEI) CONTRIBUZIONE ORDINARIA, Contributo mensile Lapidei",
+          "quote": "a partire dal 1/01/2022, a carico del datore di lavoro, è istituito un contributo mensile di euro 5,00 (riparametrati su base 100) da versare a Fondapi per ogni lavoratore [...] Sul contributo di cui sopra è dovuta esclusivamente la contribuzione INPS di solidarietà. Livello 1 parametro 210 10,50 €; 2 189 9,45 €; 3 154 7,70 €; 4 146 7,30 €; 5 136 6,80 €; 6 128 6,40 €; 7 118 5,90 €; 8 100 5,00 €"
+        },
+        "transformation": "5.00 x parametro / 100 for each level, the amounts of the table of the Scheda: 1: 5.00 x 210 / 100 = 10.50, 2: 5.00 x 189 / 100 = 9.45, 3: 5.00 x 154 / 100 = 7.70, 4: 5.00 x 146 / 100 = 7.30, 5: 5.00 x 136 / 100 = 6.80, 6: 5.00 x 128 / 100 = 6.40, 7: 5.00 x 118 / 100 = 5.90, 8: 5.00 x 100 / 100 = 5.00",
+        "note": "Read from the PDF the url serves (sha256 7e9b29394505b6cd14125c88c6f0cc4ba78c14f026b546bb387636e40e42ee15). The Fondapi circolare operativa (https://fondapi.it/documenti/circolare-operativa-per-le-aziende-ccnl-materiali-da-costruzione, sha256 ac2edc6785ea1666af370263aff9499daf4bdeb8180d3196c97280dc4c4b8a88) quotes the accordo of 10 November 2020 and has the date of hire entered 'per tutti i lavoratori che verranno assunti successivamente al 01/01/2022': the contribution is owed for every worker, enrolled or not. The sources state no rule for a partial month, part time or the extra months: the engine owes it on the runs that pay the month, in full, and records a limitation. Assumed, not derived: its ruleset declares source_type 'estimated'."
+      }
+    },
+    "employer_funds": [
+      {
+        "code": "FONDAPI",
+        "description": "Fondapi - Fondo pensione complementare per i lavoratori delle piccole e medie imprese",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0240"
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0140"
+            }
+          ]
+        },
+        "contribution_base": "tfr_base",
+        "provenance": {
+          "status": "assumed",
+          "location": {
+            "source_document": {
+              "document_id": "fondapi-nota-informativa-2026",
+              "title": "Fondapi Nota informativa, Parte I, scheda 'I destinatari e i contributi' (29 luglio 2026)",
+              "kind": "altro",
+              "url": "https://www.fondapi.it/documenti/i-destinatari-e-i-contributi"
+            },
+            "section": "CCNL MATERIALI DA COSTRUZIONE (LAPIDEI) CONTRIBUZIONE ORDINARIA",
+            "quote": "a partire dal 1° gennaio 2019 la base di calcolo sarà la 'Retribuzione utile al calcolo del Tfr'. Minima stabilita dal CCNL: 1,40% calcolata su 'Retribuzione Tfr' [...] Contributo lavoratore 1,40% o superiore, Contributo azienda dal 01/01/2022 2,40%"
+          },
+          "transformation": "Employer 2.40% and worker minimum 1.40% of the retribuzione utile al calcolo del TFR, the ordinary contributions of a worker enrolled in Fondapi, beside the contractual contribution.",
+          "note": "Read from the PDF the url serves (sha256 7e9b29394505b6cd14125c88c6f0cc4ba78c14f026b546bb387636e40e42ee15), text layer. Assumed, not derived: its ruleset declares source_type 'estimated'."
+        }
+      }
+    ]
   },
   "levels": [
     {
@@ -1922,6 +2068,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "547b9d341a018f5c2d6de2e49934454ee9bbbb795abf28819f071137befd9981"
+    "source_hash": "7480cd62e09f9daa3c116b062191d8741afbcbe691769aa10c3e1234022def7a"
   }
 }
