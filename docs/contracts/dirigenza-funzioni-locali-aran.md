@@ -123,6 +123,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13-18, comporto max 18 mesi (540 gg) — CCNL Area FL 2022-2024 (stessa disciplina delle altre aree ARAN). Modellato con SicknessTier; periodi a cavallo di soglia ricevono un unico tasso (engine limitation accettabile).
     
+    PENSION FUND. Perseo Sirio (1% + 1% of the retribuzione utile ai fini del TFR). Enrolment is a fact: the silenzio-assenso of the hires from 2 January 2019 (accordo ARAN 16/09/2021) is not inferred, nor the three months a fixed term needs to enrol. The TFR conferred stays a notional INPS accrual.
+    
     Stipendio tabellare da fonte secondaria (truenumbers.it, logospa.it): valore a regime dall'1.1.2024 = 50.005,77€/anno per 13 mensilità = 3.846,60€/mese. Incremento +230€/mese per dirigenti e segretari comunali fascia A e B.
     
     Tabellare pre-2024 (47.015,77€/anno = 3.616,60€/mese) back-calcolato: 50.005,77 - 230×13 = 47.015,77. Stesso valore base del CCNL Area Sanità e Area Funzioni Centrali (ARAN allinea tabellari tra aree dirigenziali).

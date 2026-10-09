@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Espero and Perseo Sirio on every CCNL of the public administrations
+
+| Before | After |
+|---|---|
+| No fund on the other CCNLs of the public administrations | `"PERSEO_SIRIO"` (1% + 1% of the TFR base) on `funzioni-locali-aran`, `sanita-aran` and the dirigenza areas; `"ESPERO"` on `istruzione-ricerca-aran`; both on `dirigenza-istruzione-ricerca-aran`. Their TFR conferred stays notional |
+
 ## Perseo Sirio and the notional TFR of public employees
 
 | Before | After |

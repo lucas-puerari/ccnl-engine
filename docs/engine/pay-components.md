@@ -435,7 +435,10 @@ and at least 1% employee of the TFR base. The TFR a public employee confers
 is not paid to the fund: INPS Gestione Dipendenti Pubblici accrues it
 notionally and pays it at the termination, so the run keeps it where it
 accrues it and the decision records `tfr_to_fund` as `notional`. The 1.5%
-of an optant is notional too and not computed.
+of an optant is notional too and not computed. Fondo Scuola Espero, on the
+school CCNL and for the dirigenti scolastici, works the same way (1% + 1%,
+the 1.2% of an optant notional); the dirigenza Istruzione e Ricerca holds
+both funds and the enrolment names one.
 
 Cometa computes on the contractual minimum of the level
 (`contribution_base` `contractual_minimum`, the base salary of the pay

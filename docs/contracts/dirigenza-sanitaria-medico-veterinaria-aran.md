@@ -148,6 +148,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     Rinnovo 2025-2027: ARAN ha convocato primo tavolo il 22/07/2026 presentando quantificazione economica con risorse ordinarie pari al 5,40%. Trattativa in corso al 2026-09-09; nessun accordo firmato. Fonte: consulentidellavoro.vi.it, vet33.it.
     
+    PENSION FUND. Perseo Sirio (1% + 1% of the retribuzione utile ai fini del TFR). Enrolment is a fact: the silenzio-assenso of the hires from 2 January 2019 (accordo ARAN 16/09/2021) is not inferred, nor the three months a fixed term needs to enrol. The TFR conferred stays a notional INPS accrual.
+    
     Stipendio tabellare da Art. 11 CCNL 27.02.2026: incremento +230€/mese da 1/1/2024, valore a regime 50.005,77€/anno per 13 mensilità = 3.846,60€/mese. Art. 11 riferisce Art. 61 comma 3 CCNL 23.1.2024 come base preesistente.
     
     Indennità specificità medico-veterinaria dal 31/12/2024: Art. 15 comma 1 CCNL 27.02.2026, rideterminata in 9.466,00€/anno per 13 mensilità = 728,15€/mese. Applicazione: dirigenti medici e veterinari.
