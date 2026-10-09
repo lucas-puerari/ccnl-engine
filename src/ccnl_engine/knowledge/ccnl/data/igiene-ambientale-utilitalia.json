@@ -98,7 +98,7 @@
       },
       {
         "kind": "info",
-        "text": "BILATERAL FUNDS. FASDA healthcare (Fondo Assistenza Sanitaria Dipendenti Aziende di Servizi Ambientali) contributions are not modelled. Previambiente is (art. 65 lett. A, with the TFR alone of c. 12, and the conversion of the seniority increments of a new hire of lett. A) bis); the partial conversion of a worker already in service (lett. A) bis c. 6) is not."
+        "text": "BILATERAL FUNDS. FASDA healthcare (Fondo Assistenza Sanitaria Dipendenti Aziende di Servizi Ambientali) contributions are not modelled. Previambiente is (art. 65 lett. A, with the TFR alone of c. 12, and the conversion of the seniority increments of lett. A) bis, of a new hire and of a worker already in service from the date of the request)."
       },
       {
         "kind": "simplification",
@@ -605,7 +605,7 @@
               "quote": "2. Nei confronti di tali lavoratori verrà versato esclusivamente al Fondo Previambiente l'importo mensile corrispondente all'aumento periodico, calcolato in trentaseiesimi [...] maggiorato del 10% e riproporzionato su 12 mensilità, come da importi unitari mensili di seguito indicati. Livello J 11,29 €; 1 19,56 €; 2 22,66 €; 3 24,52 €; 4 26,85 €; 5 28,02 €; 6 31,63 €; 7 33,42 €; 8 37,28 €; Q 50,27 € 3. [...] fino al raggiungimento dell'importo massimo [...] 1 195,60 € [...] Q 502,70 € [...] 5. Tali importi costituiscono contribuzione aggiuntiva corrisposta per 12 mensilità a carico dell'azienda [...] non costituiscono base di calcolo [...] ivi compreso il TFR."
             },
             "transformation": "The amount of the old level each level of this file takes its seniority increment from (the increments of art. 30 these levels carry: 15.24 -> 19.56, 17.66 -> 22.66, 19.11 -> 24.52, 20.92 -> 26.85, 21.83 -> 28.02, 24.65 -> 31.63, 26.04 -> 33.42, 29.05 -> 37.28, 39.17 -> 50.27), each the increment x 1.10 x 14 / 12; the maxima of c. 3 are 10 amounts for every level. On the 12 monthly payments of an enrolled worker, outside the TFR base.",
-            "note": "Read from the PDF the url serves (sha256 57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756), text layer. The increments of a worker already in service (c. 6) are not converted. No human review recorded."
+            "note": "Read from the PDF the url serves (sha256 57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756), text layer. A worker already in service keeps the increments matured on the date of the request (c. 6). No human review recorded."
           }
         }
       }
@@ -4210,7 +4210,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "2b5d6ed3c66fe17d354843295020a92cd09c275a489af04d02b6adfc36db621b",
+    "source_hash": "012b37648d32c347137b83daa1b757487dae1dfbb3014c115b069d309d84aa8a",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

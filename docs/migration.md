@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Seniority conversion of a worker already in service
+
+| Before | After |
+|---|---|
+| `seniority_to_fund` dropped every increment from the pay | A new hire (`seniority_converted_on` `None`) converts from the hire; a worker in service states the date of the request in the new `PensionFundEnrolment.seniority_converted_on`, and the increments matured by then stay in the pay (Previambiente art. 65 lett. A) bis c. 6) |
+
 ## Seniority increments converted into Previambiente contributions
 
 | Before | After |
