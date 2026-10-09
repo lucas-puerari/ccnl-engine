@@ -216,3 +216,11 @@ def test_byblos_employer_rate_of_the_paper_ccnl(on: date, rate: str) -> None:
     (fund,) = ccnl.parameters.employer_funds
     assert fund.code == "BYBLOS"
     assert fund.rate.value_at(on) == Decimal(rate)
+
+
+def test_previambiente_enrolled_amount_from_2027() -> None:
+    """Ipotesi 09/12/2025: 22 + 8.50 = 30.50 EUR from January 2027."""
+    (fund,) = load_ccnl("igiene-ambientale-utilitalia.json").parameters.employer_funds
+    assert fund.enrolled_monthly is not None
+    assert fund.enrolled_monthly.value_at(date(2026, 12, 31)) == Decimal("22.00")
+    assert fund.enrolled_monthly.value_at(date(2027, 1, 1)) == Decimal("30.50")

@@ -303,6 +303,7 @@ _FUND_SERIES = (
     "apprentice_rate",
     "young_member_rate",
     "erc_holder_rate",
+    "enrolled_monthly",
 )
 
 
@@ -333,8 +334,8 @@ def _contractual_rules(file: str, spec: object) -> Iterator[PayableRule]:
     """Yield the monthly amounts of the contractual fund contribution.
 
     Yields:
-        One rule per non-gap period of the amount of each level and of the
-        apprentices.
+        One rule per non-gap period of the amount of each level, of the
+        apprentices and of a worker not enrolled voluntarily.
     """
     if not isinstance(spec, dict):
         return
@@ -347,6 +348,8 @@ def _contractual_rules(file: str, spec: object) -> Iterator[PayableRule]:
         by_key[f"hourly[{level}]"] = series
     if spec.get("apprentice_hourly") is not None:
         by_key["hourly[apprentice]"] = spec["apprentice_hourly"]
+    if spec.get("not_enrolled_monthly") is not None:
+        by_key["not_enrolled"] = spec["not_enrolled_monthly"]
     for level, series in by_key.items():
         for period in _periods(series):
             path = f"contractual_fund_contribution[{level}][{period.get('valid_from')}]"

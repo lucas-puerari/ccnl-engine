@@ -3,6 +3,90 @@
 Continues [Migration guide: earlier releases](migration-earlier.md); the
 newest changes are on the [Migration guide](migration.md).
 
+## Oversized domain and service modules split
+
+Seven modules were split by responsibility. Only internal module paths
+change: names exported from `ccnl_engine` are unchanged, and so are amounts.
+Names not listed stay where they were.
+
+| Name | Before | After |
+|---|---|---|
+| `WeeklyHours`, `SeniorityMonths` (since replaced by `SeniorityFact`), `ContributableHours`, `EmploymentPeriod`, `check_within_full_time` | `payroll.domain.employment` | `payroll.domain.employment_facts` |
+| `PeriodState` | `payroll.domain.period` | `payroll.domain.period_state` |
+| `PeriodCalculationRequest` | `payroll.domain.period` | `payroll.domain.period_request` |
+| `YearInput` | `payroll.domain.inputs` | `payroll.domain.year_input` |
+| `ExtraMonthEntitlement` | `payroll.domain.calendar` | `payroll.domain.extra_month_entitlement` |
+| `AccrualWindow`, `ExtraMonthKind`, `ExtraMonthSchedule` | `payroll.domain.calendar` | `payroll.domain.extra_month_schedule` |
+| `CreditAccount`, `TrattamentoAccount`, `SommaEsenteAccount`, `UlterioreDetrazioneAccount` | `payroll.domain.ytd_accounts` | `payroll.domain.credit_accounts` |
+| `InpsEmployeeTier`, `InpsEmployerTier`, `InpsRawRates`, `ApprenticeRawRates` | `tax.domain.contribution_rules` | `tax.domain.contribution_tiers` |
+| `DomesticInpsRates`, `DomesticInpsHoursBracket`, `DomesticInpsWageBracket` | `tax.domain.contribution_rules` | `tax.domain.domestic_contribution_rules` |
+| `work_income_deduction`, `for_days`, `apply_sterilizzazione_detrazioni` | `payroll.service.irpef` | `payroll.service.irpef_deductions` |
+| `somma_esente` | `payroll.service.irpef` | `payroll.service.irpef_credits` |
+
+Every path is relative to `ccnl_engine`.
+
+## Rounding and bundled repository moved to their layers
+
+Two internal modules moved so that the layers import in one direction only.
+Names exported from `ccnl_engine` and amounts are unchanged.
+
+| Before | After |
+|---|---|
+| `ccnl_engine.payroll.service.rounding` | `ccnl_engine.payroll.domain.rounding` |
+| `ccnl_engine.knowledge.service.bundled_knowledge_repository` | `ccnl_engine.payroll.service.bundled_knowledge_repository` |
+
+## Engine package flattened into capabilities
+
+The `ccnl_engine.engine` wrapper is removed. Its subpackages are now
+capabilities directly under `ccnl_engine`. Only internal module paths change:
+names exported from `ccnl_engine` are unchanged, and so are amounts.
+
+| Before | After |
+|---|---|
+| `ccnl_engine.engine.contract.*` | `ccnl_engine.contract.*` |
+| `ccnl_engine.engine.tax.*` | `ccnl_engine.tax.*` |
+| `ccnl_engine.engine.surtax.domain.rules` | `ccnl_engine.tax.domain.surtax_rules` |
+| `ccnl_engine.engine.surtax.service.loaders` | `ccnl_engine.tax.service.surtax_loaders` |
+| `ccnl_engine.engine.provenance.*` | `ccnl_engine.provenance.*` |
+| `ccnl_engine.engine.metadata.domain.rules` | `ccnl_engine.provenance.domain.ruleset_identity` |
+| `ccnl_engine.engine.diff.*` | `ccnl_engine.diff.*` |
+| `ccnl_engine.engine.errors` | `ccnl_engine.shared.domain.errors` |
+| `ccnl_engine.engine.primitives.domain.primitives` | `ccnl_engine.shared.domain.primitives` |
+| `ccnl_engine.engine.io.service.*` | `ccnl_engine.knowledge.service.*` |
+| `ccnl_engine.engine.capability_catalog` | `ccnl_engine.payroll.domain.capability_catalog` |
+| `ccnl_engine.engine.knowledge_repository` | `ccnl_engine.payroll.application.knowledge_repository` |
+| `PolicyResolver.load()` | `ccnl_engine.payroll.service.policy_loader.load_policy_resolver()` |
+
+The paths in the "After" column of the next section predate this change: read
+them through the table above.
+
+## Legacy modules and aliases removed
+
+Every public name is now imported from `ccnl_engine`; internal modules are
+imported from the module that defines them. The re-export modules, the empty
+`serialization` stubs and the alias names are removed without a compatibility
+layer. Amounts are unchanged.
+
+| Before | After |
+|---|---|
+| `from ccnl_engine.events import OvertimeEvent` (any work event) | `from ccnl_engine import OvertimeEvent` |
+| `PayrollState` | `PeriodState` |
+| `PayrollCalendar` | `WorkCalendar` |
+| `ccnl_engine.api.PeriodInput` (any name of `ccnl_engine.api`) | `ccnl_engine.PeriodInput` |
+| `ccnl_engine.engine.contract.domain.ccnl.CCNL` | `ccnl_engine.engine.contract.domain.identity.CCNL` (identity, coverage, metadata and enums); other names from their own module: `compensation`, `absence`, `category`, `seniority`, `sickness`, `working_time` |
+| `ccnl_engine.engine.tax.domain.rules.YearRules` | `ccnl_engine.engine.tax.domain.ruleset.YearRules`; other names from `contribution_rules`, `credit_rules`, `irpef_rules`, `tfr_rules` |
+| `ccnl_engine.engine.tax.service.loaders.load_year_rules` | `ccnl_engine.engine.tax.service.tax_annual_assembler.load_year_rules`; the other loaders from `tax_optional_loaders`, `tax_resource_reader`, `tax_tier_resolver` |
+| `from ccnl_engine.engine.tax import load_year_rules` (and the same for `contract`, `surtax`, `diff`, `io`, `metadata`, `primitives`, `provenance`) | import from the defining module, e.g. `ccnl_engine.engine.surtax.service.loaders.load_surtax_rules` |
+| `ccnl_engine.knowledge.version.__version__` | `ccnl_engine.knowledge.__version__` |
+| `ccnl_engine.engine.serialization` | removed: it held no code |
+
+Unused internals are removed as well: the `Ledger` and `Posting` classes and
+the `AccountPolicy` alias of `payroll.domain.ledger`, `AnnualisedPay`,
+`MonthlyPayChain.scaled_selective()`, `resolve_tax_computation` (use `compute_tax(...).computation`),
+`RulesetIdentity.as_dict()`, and the contribution helpers
+`inps_contribution`, `inps_employee_additional`, `tfr` and `fund_applies_to`
+(the payroll uses `resolve_contributions`).
+
 ## PeriodInput and YearInput
 
 The facade no longer takes a flat request. `calculate_period()` takes a

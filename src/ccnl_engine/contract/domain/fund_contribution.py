@@ -23,11 +23,16 @@ class FundContributionBase(StrEnum):
         CONTRACTUAL_MINIMUM: The contractual minimum of the level the run
             pays (*minimi contrattuali*, e.g. of Cometa): the base salary of
             the pay chain, prorated and scaled as the run pays it.
+        CONVENTIONAL: A fixed monthly base the fund applies to the worker,
+            stated by ``PensionFundEnrolment.conventional_base``
+            (Previambiente: the base pay of the level at 1 January 1997,
+            its contingenza and one scatto).
     """
 
     INPS_BASE = "inps_base"
     TFR_BASE = "tfr_base"
     CONTRACTUAL_MINIMUM = "contractual_minimum"
+    CONVENTIONAL = "conventional"
 
 
 class EmployerRateTier(BaseModel):
@@ -70,6 +75,13 @@ class EmployerFund(BaseModel):
     ``Employment.erc_amount``.  ``extra_months`` is false when the contributions are
     due on the twelve monthly payments alone (Byblos on the CCNL Esercizi
     cinematografici, art. 43: "per 12 mensilità annue").
+    ``enrolled_monthly`` is a fixed employer amount a month for a worker
+    enrolled voluntarily, on the monthly payments the rates are due on
+    (Previambiente: 22 EUR, 30.50 EUR from January 2027).  ``paid_month_only``
+    is true when the rates and that amount are due only on the pay of the
+    month: none for a month without pay; a month paid in part (an unpaid
+    absence, sickness, a partial month) traverses the open limitation
+    ``fund_paid_month`` the CCNL declares (Previambiente art. 65 c. 8).
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -87,6 +99,23 @@ class EmployerFund(BaseModel):
     employer_rate_tiers: tuple[EmployerRateTier, ...] = ()
     extra_months: bool = True
     erc_holder_rate: TimeSeries | None = None
+    enrolled_monthly: TimeSeries | None = None
+    paid_month_only: bool = False
+
+    def rate_series(self) -> tuple[tuple[str, TimeSeries | None], ...]:
+        """Return the series of the fund a run may read, by key.
+
+        Returns:
+            The employer and employee rates, the rates of a young member
+            and of an ERC holder, and the fixed amount of an enrolled one.
+        """
+        return (
+            ("rate", self.rate),
+            ("employee_min_rate", self.employee_min_rate),
+            ("young_member_rate", self.young_member_rate),
+            ("erc_holder_rate", self.erc_holder_rate),
+            ("enrolled_monthly", self.enrolled_monthly),
+        )
 
 
 class ContractualFundContribution(BaseModel):
@@ -116,7 +145,14 @@ class ContractualFundContribution(BaseModel):
         extra_months: Whether an extra-month run owes the amount in
             proportion to its ratei.
         part_time_proportional: Whether a part-time worker owes the amount
-            in proportion to the weekly hours.
+            in proportion to the weekly hours; ``None`` when the clause
+            gives no rule (the full amount, with an open limitation).
+        permanent_only: Whether a worker not enrolled voluntarily owes it
+            only on a permanent contract or an apprenticeship (Previambiente
+            art. 65 c. 11).
+        not_enrolled_monthly: Amount a month added for a worker not enrolled
+            voluntarily (Previambiente: the 10 EUR of c. 11, beside the 5
+            EUR insurance of c. 13 every member owes).
         minimum_fixed_term_months: A fixed-term employment that lasts no
             more than these months owes nothing; ``None`` when the clause
             sets no minimum.
@@ -138,11 +174,13 @@ class ContractualFundContribution(BaseModel):
     apprentice_monthly: TimeSeries | None = None
     minimum_days_in_month: int | None = Field(default=None, ge=1, le=31)
     extra_months: bool = False
-    part_time_proportional: bool = False
+    part_time_proportional: bool | None = None
     minimum_fixed_term_months: int | None = Field(default=None, ge=1)
     hourly_by_level: dict[str, TimeSeries] | None = None
     hourly_categories: tuple[WorkerCategory, ...] | None = None
     apprentice_hourly: TimeSeries | None = None
+    permanent_only: bool = False
+    not_enrolled_monthly: TimeSeries | None = None
 
     @model_validator(mode="after")
     def _check_non_negative(self) -> Self:

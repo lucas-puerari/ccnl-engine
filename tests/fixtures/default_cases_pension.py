@@ -6,7 +6,8 @@ whose employer rate is higher for a young member, moved to Edilizia
 industria as an operaio, whose Prevedi contractual contribution is an
 amount per ordinary hour worked, and moved to Grafica editoria C1, hired
 in 2019 and enrolled in Byblos, whose employer rate is lower for a holder
-of the ERC.
+of the ERC, and moved to Servizi ambientali Q and enrolled in
+Previambiente, whose rates go on a conventional base of the worker.
 """
 
 from __future__ import annotations
@@ -16,6 +17,7 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine import PayrollRun
 from ccnl_engine.inputs import (
     ContributableHours,
     EmploymentPeriod,
@@ -58,6 +60,29 @@ def _byblos(erc_amount: Decimal | None) -> Employment:
     )
 
 
+def _previambiente(
+    january: Callable[[Employment], PeriodInput], base: Decimal | None
+) -> PeriodInput:
+    """Return the March run: the CCNL tables start on 1 February 2026.
+
+    Returns:
+        The request of the March regular run.
+    """
+    enrolment = PensionFundEnrolment(
+        "PREVIAMBIENTE", Decimal("0.013"), tfr_to_fund=True, conventional_base=base
+    )
+    employment = replace(
+        CONCIA_D2,
+        ccnl_slug="igiene-ambientale-utilitalia.json",
+        level_code="Q",
+        pension_fund=enrolment,
+    )
+    request = january(employment)
+    return replace(
+        request, run=PayrollRun.regular(2026, 3), payment_date=date(2026, 3, 27)
+    )
+
+
 def _operaio(
     january: Callable[[Employment], PeriodInput], hours: Decimal | None
 ) -> PeriodInput:
@@ -94,6 +119,13 @@ def pension_cases[C](
         "Employment.erc_amount": (
             pair(_byblos(Decimal("412.50")), _byblos(None), "erc_amount"),
             pair(_byblos(Decimal(0)), _byblos(None), "erc_amount"),
+        ),
+        "PensionFundEnrolment.conventional_base": (
+            case(
+                _previambiente(january, Decimal("2077.84")),
+                _previambiente(january, None),
+                "conventional_base",
+            ),
         ),
         "PensionFundEnrolment.young_member": (
             pair(_cometa(True), _cometa(None), "young_member"),

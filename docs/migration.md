@@ -4,6 +4,14 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Previambiente on the CCNL Servizi Ambientali
+
+| Before | After |
+|---|---|
+| No fund on `igiene-ambientale-utilitalia` | `"PREVIAMBIENTE"`: 2.033% employer, employee at least 1.30%, on the new `contribution_base` `conventional` stated by the new `PensionFundEnrolment.conventional_base` (`None` gives the `missing_fact` issue `pension_fund_conventional_base_unknown`); 22 EUR (30.50 EUR from 2027) more for an enrolled worker (`EmployerFund.enrolled_monthly`); contractual 5 EUR, 15 EUR not enrolled (`ContractualFundContribution.not_enrolled_monthly`), none for a fixed term not enrolled (`permanent_only`) |
+| `ContractualFundContribution.part_time_proportional` `false` meant no rule | `None` (the default) means no rule; `false` now states the full amount for a part-time worker |
+| `EmployerFund` without a rule for the pay of the month | `paid_month_only`: nothing on a month without pay, the open limitation `fund_paid_month` on a month paid in part |
+
 ## No ERC for an employment started after December 2020
 
 | Before | After |
@@ -512,72 +520,3 @@ namespaces are unchanged, and so are amounts.
 | `ccnl_engine.payroll.service.ulteriore_recovery.UlterioreSettlement`, `settle_ulteriore` | `ccnl_engine.payroll.service.ulteriore_settlement` |
 
 `SurtaxRules`, `RegionaleRaw` and `ComunaleRaw` stay in `surtax_rules`.
-
-## Public names grouped in four namespaces
-
-The root `ccnl_engine` keeps the common path only; every other public name
-moved to one namespace. There is no alias: an import from the old place
-raises `ImportError`. Amounts are unchanged.
-
-| Module | Names |
-|---|---|
-| `ccnl_engine` (unchanged) | `CcnlEngineError`, `CompetenceYearPlan`, `CompetenceYearResult`, `DataIntegrityError`, `EmployerProfile`, `Employment`, `Headcount`, `InvalidInputError`, `MissingRequiredFactError`, `MissingRuleError`, `OutOfScopeError`, `PayrollEngine`, `PayrollRun`, `PeriodFacts`, `PeriodInput`, `PeriodResult`, `TaxYearPlan`, `TaxYearResult`, `UnknownCcnlError`, `UnknownLevelError`, `UnsupportedTaxYearError`, `engine_version` |
-| `ccnl_engine.inputs` | `Apprentice`, `CalendarOverride`, `CalendarOverrideReason`, `ContributableHours`, `ContributionHistory`, `CurrentYearTaxFacts`, `DeferredShortfall`, `Dependent`, `DependentRelationship`, `EmployerActivity`, `EmploymentPeriod`, `EmploymentSector`, `EngineMode`, `FamilyComposition`, `FixedTerm`, `ForeignTaxPaid`, `IncomeEstimateQuality`, `InpsBaseYtd`, `NoPensionFund`, `OpeningBalances`, `PaymentId`, `PayrollRunId`, `PensionFundEnrolment`, `PeriodState`, `Permanent`, `PriorYearTaxFacts`, `RecoveryObligation`, `RecoveryPlan`, `SeniorityFact`, `SenioritySource`, `ShortfallDeferralRequest`, `SubstituteTaxRegime`, `SurtaxComponent`, `SurtaxObligation`, `WeeklyHours`, `WorkCalendar`, `WorkerCategory` |
-| `ccnl_engine.events` | `AbsenceEvent`, `ArrearsEvent`, `BilateralFundEvent`, `BonusEvent`, `FringeEvent`, `HolidayWorkEvent`, `NightShiftEvent`, `OvertimeEvent`, `OvertimeKind`, `ShiftWorkEvent`, `SickLeaveEvent`, `SicknessEpisode`, `TerminationTFREvent`, `WelfareEvent`, `WorkEvent`, plus `PeriodId` (new) |
-| `ccnl_engine.results` | `BlockerCode`, `CalculationDecision`, `CalculationIssue`, `CalculationStatus`, `CapabilityGap`, `CapabilityScope`, `CoverageStatus`, `DecisionOrigin`, `EvidenceStatus`, `LimitationStatus`, `ModelLimitation`, `MonetaryImpact`, `Payability`, `RemittanceColumn`, `RemittanceLine`, `ResultAssurance`, `ResultBlocker`, plus `AccountKind` (new) |
-| `ccnl_engine.catalog` | `CapabilityCatalog`, `CapabilityEntry`, `CapabilityImplementation`, `CcnlId`, `ContractSummary`, `RulesetAssurance`, `RulesetIdentity`, `RulesetKind`, `RulesetReadiness`, `VerificationStatus`, `get_ccnl`, `search_ccnls` |
-
-| Before | After |
-|---|---|
-| `from ccnl_engine import Permanent, SeniorityFact, OvertimeEvent, ResultBlocker, get_ccnl` | `from ccnl_engine.inputs import Permanent, SeniorityFact`, `from ccnl_engine.events import OvertimeEvent`, `from ccnl_engine.results import ResultBlocker`, `from ccnl_engine.catalog import get_ccnl` |
-| `ccnl_engine.events` removed in favour of the root (see "Legacy modules and aliases removed") | `ccnl_engine.events` is again the one public home of the work events |
-| `ArrearsEvent.reference_period` built from `ccnl_engine.payroll.domain.period_payroll.PeriodId` | `from ccnl_engine.events import PeriodId` |
-| `RemittanceLine.account` and `LedgerEntry.account` typed by an internal enum | `from ccnl_engine.results import AccountKind` to name or compare an account |
-| `OpeningBalances(...).to_state()` | `PayrollEngine.import_opening_balances(OpeningBalances(...))`, which also checks the input; `to_state()` is removed |
-| `ccnl_engine.payroll.application.mode_input` (internal) | `ccnl_engine.payroll.application.facade_input` |
-
-To migrate, split each `from ccnl_engine import (...)` by the table above.
-Modules below the five public ones are internal.
-
-## Apprenticeship pay components
-
-Apprentice pay now follows the CCNL on every component it touches.
-
-| Before | After |
-|---|---|
-| A percentage track reduced the apprentice seniority amount by the percentage | The apprentice amount (`seniority_increments.apprentice_amount`) is paid in full: it is already the apprentice one. `apprenticeship_scaling` lists `seniority` under `unscaled` |
-| A `midpoint_to_destination` period averaged the base salary only; the allowances stayed those of the pay level | The period pays the mean of the whole monthly pay of the two levels: base salary and every active fixed allowance (one level's allowance counts as zero on the other). Each allowance is rounded to the cent; the base takes the rest, so the total is the rounded mean of the totals |
-| Engine limitations `apprenticeship_midpoint_allowances` and `apprentice_seniority_simplified` open, recorded on every affected run | Both `resolved`. A CCNL whose rule is unsourced carries its own open limitation, recorded on the same path: `<ccnl_id>/apprenticeship_midpoint_components` (Legno Federlegno) and `<ccnl_id>/apprentice_seniority` (CCNLs with level increments and no apprentice amount) |
-| A percentage track reduced every allowance whose `apprenticeship_pct_relevant` flag the data leaves at its default, silently | Same amounts, plus the open engine limitation `apprenticeship_pct_undeclared_components` (`monetary_impact` `unknown`), so the run is not payable until the CCNL flag is sourced. `Allowance.apprenticeship_pct_declared` tells a declared flag from a default |
-
-- Federterme L5 apprentices in the second half of the track now earn the
-  Art. 13 lett. g midpoint of the whole pay (March 2026: 1,405.31 instead of
-  1,404.10).
-- Percentage apprentices of the five Confartigianato CCNLs with an apprentice
-  seniority amount (acconciatura-estetica, comunicazione, legno-lapidei,
-  panificazione, tessile-moda) receive the full amount once increments
-  mature.
-
-## Sickness episodes computed by the engine
-
-Sickness is a native capability. The engine pays the sick days of an
-episode from the CCNL sickness and absence rules and the INPS rules of the
-bundle, over as many runs as the episode lasts.
-
-| Before | After |
-|---|---|
-| `SicknessCaseEvent(event_date, case=SicknessCase(...))` with caller `gross_daily`, `working_days`, `waiting_period_days`, `inps_daily_rate`, `integration_rate` | `SicknessEpisode(episode_id, started_on, ended_on, relapse_of=None)`: the engine derives the days, carenza, INPS band and CCNL tier |
-| `SicknessCase.cumulative_sick_days_ytd > 0` raised `OutOfScopeError` (`cumulative_tiers_not_implemented`) | Earlier days come from the episode dates and from `EmploymentAccrualState.sickness_episodes`; nothing to pre-compute |
-| INPS indemnity posted as `sickness_item`, inside the contribution base | `sickness_inps_item` (policy `it/indemnity/sickness_inps`), outside the contribution base; employer integration and carenza pay stay `sickness_item` |
-| `SickLeaveEvent` traced as capability `leave`, reason `caller_supplied_amount` | Capability `sickness`, reason `caller_override`: an explicit override, never payable |
-| Capability `sickness` `partial`, `leave` `caller_supplied` | `sickness` `native`; `leave` `unsupported` (`outside_input`: no event computes paid leave) |
-| `PeriodState.SCHEMA_VERSION` 7 | 8: the accrual state carries `sickness_episodes`; `OpeningBalances.sickness_episodes` imports them |
-
-- Pass the same `SicknessEpisode` (same id and start) to every regular run
-  whose month it touches. Adjustment and extra-month runs reject it.
-- A relapse needs `relapse_of` naming an episode an earlier run recorded.
-- A worker whose level does not fix the category gets a `provisional`
-  issue `sickness_inps_cover_unknown` with `fact="category"`: set
-  `Employment.category`. `"category"` is a new entry of `PUBLIC_FACTS`.
-- The INPS second-band rate in the bundle is now 0.6666 (66.66%), with the
-  source D.L. 663/1979, conv. L. 33/1980.

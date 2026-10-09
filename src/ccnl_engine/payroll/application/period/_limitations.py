@@ -13,11 +13,13 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application.period._contractual_fund import contractual_paths
+from ccnl_engine.payroll.application.period._pension_decision import paid_month_paths
 from ccnl_engine.payroll.application.period._seniority import seniority_months_at
 from ccnl_engine.payroll.domain.capability_report import CapabilityScope
 from ccnl_engine.shared.domain.limitation import LimitationFacts
 
 if TYPE_CHECKING:
+    from ccnl_engine.payroll.application.handlers._totals import _EventTotals
     from ccnl_engine.payroll.application.period._context import RunContext
     from ccnl_engine.payroll.domain.capability_report import CapabilityReport
     from ccnl_engine.shared.domain.limitation import ModelLimitation
@@ -57,21 +59,21 @@ def limitation_facts(
 
 
 def run_limitations(
-    ctx: RunContext,
-    report: CapabilityReport,
-    traversed: frozenset[str] = frozenset(),
+    ctx: RunContext, report: CapabilityReport, events: _EventTotals
 ) -> tuple[ModelLimitation, ...]:
     """Return the limitations that concern the run, engine ones first.
 
     Args:
         ctx: Context of the run.
         report: Capability report of the run.
-        traversed: Engine limitations whose path the events of the run
-            took, besides those of the pay chain.
+        events: Totals of the events of the run: the engine limitations
+            whose path they took, besides those of the pay chain, and the
+            INPS base they add (:func:`paid_month_paths`).
 
     Returns:
         The applicable limitations, each once.
     """
+    traversed = events.limitations | paid_month_paths(ctx, events.inps_base)
     facts = limitation_facts(ctx, report, traversed)
     candidates = (*ctx.repo.load_engine_limitations(), *ctx.contract.ccnl.limitations)
     return tuple(

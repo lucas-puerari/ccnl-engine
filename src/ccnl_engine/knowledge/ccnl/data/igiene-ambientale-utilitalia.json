@@ -81,10 +81,6 @@
         "text": "APPRENTICESHIP PERCENTAGE BASE. Art. 14 punto 8 (CCNL K540 testo consolidato 09/12/2025, fonte: utroppitu.eu) dispone che le indennità ex Art. 32 lett. D (indennità integrativa EUR 50.00) siano corrisposte per intero dal 1° periodo di formazione — pagamento a valore pieno, non soggetto alla percentuale. L'EDR (EUR 10.33, Art. 27 c.4 lett. d, Accordo interconfederale 31/07/1992) non è citato in Art. 14; per sua natura di elemento fisso interconfederale è trattato come esente dalla percentuale. Entrambi modellati con apprenticeship_pct_relevant=false."
       },
       {
-        "kind": "info",
-        "text": "BILATERAL FUNDS. FASDA healthcare (Fondo Assistenza Sanitaria Dipendenti Aziende di Servizi Ambientali) and Previambiente supplementary pension fund contributions are not modelled."
-      },
-      {
         "kind": "simplification",
         "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
         "capability": "seniority",
@@ -98,6 +94,36 @@
             ]
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
+      },
+      {
+        "kind": "info",
+        "text": "BILATERAL FUNDS. FASDA healthcare (Fondo Assistenza Sanitaria Dipendenti Aziende di Servizi Ambientali) contributions are not modelled. Previambiente is (art. 65 lett. A); the conversion of the scatti into fund contributions of lett. A) bis, an option of the new hires, and the contractual contribution of a worker who adheres with the TFR alone (c. 12) are not."
+      },
+      {
+        "kind": "simplification",
+        "text": "Previambiente is due on the pay of the month (art. 65 c. 8): none for a month without pay, and 'commisurato alla retribuzione corrisposta' for a month with a paid absence, a rule the engine does not compute. A month paid in part (an unpaid absence, sickness, a partial month) keeps the full contributions of an enrolled worker.",
+        "capability": "pension_fund_contribution",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "fund_paid_month",
+          "applies_when": {
+            "trigger": "path"
+          },
+          "remediation": "Source how the contributions are proportioned to the pay of a month paid in part, model it, then remove this note."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "The Previambiente contractual contribution (5 EUR, 15 EUR for a worker not enrolled voluntarily) is owed in full on a partly employed month; the CCNL states no rule for it.",
+        "capability": "pension_fund_contribution",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "contractual_fund_partial",
+          "applies_when": {
+            "trigger": "path"
+          },
+          "remediation": "Source the rule of art. 65 for a partly employed month, model it, then remove this note."
         }
       }
     ]
@@ -301,6 +327,554 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
+      }
+    },
+    "employer_funds": [
+      {
+        "code": "PREVIAMBIENTE",
+        "description": "Previambiente - Fondo nazionale pensione a favore dei lavoratori dell'igiene ambientale e settori affini",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.02033",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "servizi-ambientali-testo-consolidato-2026",
+                    "title": "CCNL Servizi Ambientali, testo consolidato 24/07/2025 con l'ipotesi di accordo 09/12/2025 (edizione 2026)",
+                    "kind": "altro",
+                    "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf"
+                  },
+                  "section": "Art. 65 - Previdenza complementare e assistenza sanitaria integrativa, Lett. A) Fondo Previambiente",
+                  "quote": "5. Le contribuzioni al Fondo sono dovute per 12 mesi e sono costituite da: a. il 2,033% a carico dell'azienda; b. l'1,30% a carico del dipendente; [...] e. per ogni lavoratore aderente al Fondo ai termini del precedente comma 4, l'azienda versa [...] un ulteriore contributo di importo complessivo pari a 15 euro al mese per dodici mensilità; a decorrere dal 1º gennaio 2024, l'azienda versa al Fondo Previambiente un contributo aggiuntivo di 7,00 euro al mese per complessivi 22,00 euro al mese per dodici mensilità. 6. [...] sono calcolate sulla base retributiva convenzionale costituita dalla retribuzione base parametrale mensile in atto al 1º gennaio 1997, dall'indennità di contingenza e da un aumento periodico di anzianità [...] 8. In caso di assenza non retribuita per il mese, non sussiste l'obbligo del versamento dei contributi di cui al comma 5; mentre, in caso di assenza retribuita, il contributo di cui al comma 5 è commisurato alla retribuzione corrisposta. 9. [...] In caso di variazione della contribuzione determinata percentualmente, la retribuzione assunta come base di riferimento è uguale a quella utilizzata per il calcolo del TFR."
+                },
+                "transformation": "Employer 2.033% of the conventional base. The percentages of c. 5 lett. a) and b) go on the conventional base of c. 6, which the tables of the text give for the levels of the classification before 1 February 2026 (Q 2077.84: 42.24 employer, 27.01 employee) and no source gives for the levels of this file: the enrolment states it (PensionFundEnrolment.conventional_base). A higher employee rate goes on the TFR base (c. 9). Due on the 12 monthly payments; none for a month without pay, an open limitation for a month paid in part (c. 8).",
+                "note": "Read from the PDF the url serves (sha256 57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756), text layer. No human review recorded."
+              }
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0130",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "servizi-ambientali-testo-consolidato-2026",
+                    "title": "CCNL Servizi Ambientali, testo consolidato 24/07/2025 con l'ipotesi di accordo 09/12/2025 (edizione 2026)",
+                    "kind": "altro",
+                    "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf"
+                  },
+                  "section": "Art. 65 - Previdenza complementare e assistenza sanitaria integrativa, Lett. A) Fondo Previambiente",
+                  "quote": "5. Le contribuzioni al Fondo sono dovute per 12 mesi e sono costituite da: a. il 2,033% a carico dell'azienda; b. l'1,30% a carico del dipendente; [...] e. per ogni lavoratore aderente al Fondo ai termini del precedente comma 4, l'azienda versa [...] un ulteriore contributo di importo complessivo pari a 15 euro al mese per dodici mensilità; a decorrere dal 1º gennaio 2024, l'azienda versa al Fondo Previambiente un contributo aggiuntivo di 7,00 euro al mese per complessivi 22,00 euro al mese per dodici mensilità. 6. [...] sono calcolate sulla base retributiva convenzionale costituita dalla retribuzione base parametrale mensile in atto al 1º gennaio 1997, dall'indennità di contingenza e da un aumento periodico di anzianità [...] 8. In caso di assenza non retribuita per il mese, non sussiste l'obbligo del versamento dei contributi di cui al comma 5; mentre, in caso di assenza retribuita, il contributo di cui al comma 5 è commisurato alla retribuzione corrisposta. 9. [...] In caso di variazione della contribuzione determinata percentualmente, la retribuzione assunta come base di riferimento è uguale a quella utilizzata per il calcolo del TFR."
+                },
+                "transformation": "Employee 1.30% of the conventional base, the minimum. The percentages of c. 5 lett. a) and b) go on the conventional base of c. 6, which the tables of the text give for the levels of the classification before 1 February 2026 (Q 2077.84: 42.24 employer, 27.01 employee) and no source gives for the levels of this file: the enrolment states it (PensionFundEnrolment.conventional_base). A higher employee rate goes on the TFR base (c. 9). Due on the 12 monthly payments; none for a month without pay, an open limitation for a month paid in part (c. 8).",
+                "note": "Read from the PDF the url serves (sha256 57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756), text layer. No human review recorded."
+              }
+            }
+          ]
+        },
+        "contribution_base": "conventional",
+        "employee_base_above_minimum": "tfr_base",
+        "extra_months": false,
+        "paid_month_only": true,
+        "enrolled_monthly": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": "2027-01-01",
+              "value": "22.00",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "servizi-ambientali-testo-consolidato-2026",
+                    "title": "CCNL Servizi Ambientali, testo consolidato 24/07/2025 con l'ipotesi di accordo 09/12/2025 (edizione 2026)",
+                    "kind": "altro",
+                    "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf"
+                  },
+                  "section": "Art. 65 - Previdenza complementare e assistenza sanitaria integrativa, Lett. A) Fondo Previambiente",
+                  "quote": "5. Le contribuzioni al Fondo sono dovute per 12 mesi e sono costituite da: a. il 2,033% a carico dell'azienda; b. l'1,30% a carico del dipendente; [...] e. per ogni lavoratore aderente al Fondo ai termini del precedente comma 4, l'azienda versa [...] un ulteriore contributo di importo complessivo pari a 15 euro al mese per dodici mensilità; a decorrere dal 1º gennaio 2024, l'azienda versa al Fondo Previambiente un contributo aggiuntivo di 7,00 euro al mese per complessivi 22,00 euro al mese per dodici mensilità. 6. [...] sono calcolate sulla base retributiva convenzionale costituita dalla retribuzione base parametrale mensile in atto al 1º gennaio 1997, dall'indennità di contingenza e da un aumento periodico di anzianità [...] 8. In caso di assenza non retribuita per il mese, non sussiste l'obbligo del versamento dei contributi di cui al comma 5; mentre, in caso di assenza retribuita, il contributo di cui al comma 5 è commisurato alla retribuzione corrisposta. 9. [...] In caso di variazione della contribuzione determinata percentualmente, la retribuzione assunta come base di riferimento è uguale a quella utilizzata per il calcolo del TFR."
+                },
+                "transformation": "The 15 EUR of c. 5 lett. e) and the 7 EUR from 1 January 2024: 22 EUR a month for a worker enrolled voluntarily, on the 12 monthly payments; the 5 EUR insurance of c. 13 is the contractual contribution.",
+                "note": "Read from the PDF the url serves (sha256 57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756), text layer. No human review recorded."
+              }
+            },
+            {
+              "valid_from": "2027-01-01",
+              "valid_until": null,
+              "value": "30.50",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "servizi-ambientali-testo-consolidato-2026",
+                    "title": "CCNL Servizi Ambientali, testo consolidato 24/07/2025 con l'ipotesi di accordo 09/12/2025 (edizione 2026)",
+                    "kind": "altro",
+                    "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf"
+                  },
+                  "section": "Parte economica, b. Welfare (ipotesi di accordo 09/12/2025)",
+                  "quote": "A decorrere dal 1º gennaio 2027, le aziende verseranno al Fondo Previambiente un contributo aggiuntivo di 8,50 euro al mese per tutti i lavoratori iscritti al Fondo ai sensi dell'art. 65, lett. A), comma 4 e 5, lett. e), per un importo complessivo di 30,50 euro al mese per 12 mensilità."
+                },
+                "transformation": "22 EUR + 8.50 EUR = 30.50 EUR a month from 1 January 2027 for a worker enrolled voluntarily (c. 4 and c. 5 lett. e)).",
+                "note": "Read from the PDF the url serves (sha256 57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756), text layer. No human review recorded."
+              }
+            }
+          ]
+        },
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "servizi-ambientali-testo-consolidato-2026",
+              "title": "CCNL Servizi Ambientali, testo consolidato 24/07/2025 con l'ipotesi di accordo 09/12/2025 (edizione 2026)",
+              "kind": "altro",
+              "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf"
+            },
+            "section": "Art. 65 - Previdenza complementare e assistenza sanitaria integrativa, Lett. A) Fondo Previambiente",
+            "quote": "5. Le contribuzioni al Fondo sono dovute per 12 mesi e sono costituite da: a. il 2,033% a carico dell'azienda; b. l'1,30% a carico del dipendente; [...] e. per ogni lavoratore aderente al Fondo ai termini del precedente comma 4, l'azienda versa [...] un ulteriore contributo di importo complessivo pari a 15 euro al mese per dodici mensilità; a decorrere dal 1º gennaio 2024, l'azienda versa al Fondo Previambiente un contributo aggiuntivo di 7,00 euro al mese per complessivi 22,00 euro al mese per dodici mensilità. 6. [...] sono calcolate sulla base retributiva convenzionale costituita dalla retribuzione base parametrale mensile in atto al 1º gennaio 1997, dall'indennità di contingenza e da un aumento periodico di anzianità [...] 8. In caso di assenza non retribuita per il mese, non sussiste l'obbligo del versamento dei contributi di cui al comma 5; mentre, in caso di assenza retribuita, il contributo di cui al comma 5 è commisurato alla retribuzione corrisposta. 9. [...] In caso di variazione della contribuzione determinata percentualmente, la retribuzione assunta come base di riferimento è uguale a quella utilizzata per il calcolo del TFR."
+          },
+          "transformation": "The percentages of c. 5 lett. a) and b) go on the conventional base of c. 6, which the tables of the text give for the levels of the classification before 1 February 2026 (Q 2077.84: 42.24 employer, 27.01 employee) and no source gives for the levels of this file: the enrolment states it (PensionFundEnrolment.conventional_base). A higher employee rate goes on the TFR base (c. 9). Due on the 12 monthly payments; none for a month without pay, an open limitation for a month paid in part (c. 8).",
+          "note": "Read from the PDF the url serves (sha256 57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756), text layer. No human review recorded."
+        }
+      }
+    ],
+    "contractual_fund_contribution": {
+      "code": "PREVIAMBIENTE",
+      "description": "Previambiente - contributo contrattuale e quota assicurativa del CCNL Servizi Ambientali",
+      "monthly_by_level": {
+        "D2": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "5.00",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "servizi-ambientali-testo-consolidato-2026",
+                    "title": "CCNL Servizi Ambientali, testo consolidato 24/07/2025 con l'ipotesi di accordo 09/12/2025 (edizione 2026)",
+                    "kind": "altro",
+                    "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf"
+                  },
+                  "section": "Art. 65 - Previdenza complementare e assistenza sanitaria integrativa, Lett. A) Fondo Previambiente",
+                  "quote": "11. L'azienda versa al Fondo Previambiente, per i dipendenti a tempo indeterminato, anche apprendisti, che non aderiscono volontariamente al Fondo, un contributo contrattuale pari a 10 euro al mese per dodici mensilità. [...] 13. A decorrere dal 1º gennaio 2023, le aziende versano al Fondo Previambiente, in favore di tutti i lavoratori aderenti al Fondo, inclusi i lavoratori con adesione contrattuale, una quota contributiva ulteriore in cifra fissa di 5,00 euro pro-capite per 12 mensilità [...] Dichiarazione a Verbale: Con riferimento ai contributi aggiuntivi di cui ai commi 5 lett. e), 11 e 12, [...] il relativo importo deve intendersi non parametrato e non riproporzionato alla minore durata dell'orario di lavoro dei lavoratori a tempo parziale."
+                },
+                "transformation": "The 5 EUR insurance of c. 13, owed for every member, voluntary or contractual; a worker not enrolled voluntarily adds the 10 EUR of c. 11 (not_enrolled_monthly) on a permanent contract or an apprenticeship (permanent_only). Not reproportioned for part time; on the 12 monthly payments.",
+                "note": "Read from the PDF the url serves (sha256 57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756), text layer. No human review recorded."
+              }
+            }
+          ]
+        },
+        "D2s": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "5.00",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "servizi-ambientali-testo-consolidato-2026",
+                    "title": "CCNL Servizi Ambientali, testo consolidato 24/07/2025 con l'ipotesi di accordo 09/12/2025 (edizione 2026)",
+                    "kind": "altro",
+                    "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf"
+                  },
+                  "section": "Art. 65 - Previdenza complementare e assistenza sanitaria integrativa, Lett. A) Fondo Previambiente",
+                  "quote": "11. L'azienda versa al Fondo Previambiente, per i dipendenti a tempo indeterminato, anche apprendisti, che non aderiscono volontariamente al Fondo, un contributo contrattuale pari a 10 euro al mese per dodici mensilità. [...] 13. A decorrere dal 1º gennaio 2023, le aziende versano al Fondo Previambiente, in favore di tutti i lavoratori aderenti al Fondo, inclusi i lavoratori con adesione contrattuale, una quota contributiva ulteriore in cifra fissa di 5,00 euro pro-capite per 12 mensilità [...] Dichiarazione a Verbale: Con riferimento ai contributi aggiuntivi di cui ai commi 5 lett. e), 11 e 12, [...] il relativo importo deve intendersi non parametrato e non riproporzionato alla minore durata dell'orario di lavoro dei lavoratori a tempo parziale."
+                },
+                "transformation": "The 5 EUR insurance of c. 13, owed for every member, voluntary or contractual; a worker not enrolled voluntarily adds the 10 EUR of c. 11 (not_enrolled_monthly) on a permanent contract or an apprenticeship (permanent_only). Not reproportioned for part time; on the 12 monthly payments.",
+                "note": "Read from the PDF the url serves (sha256 57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756), text layer. No human review recorded."
+              }
+            }
+          ]
+        },
+        "D1": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "5.00",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "servizi-ambientali-testo-consolidato-2026",
+                    "title": "CCNL Servizi Ambientali, testo consolidato 24/07/2025 con l'ipotesi di accordo 09/12/2025 (edizione 2026)",
+                    "kind": "altro",
+                    "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf"
+                  },
+                  "section": "Art. 65 - Previdenza complementare e assistenza sanitaria integrativa, Lett. A) Fondo Previambiente",
+                  "quote": "11. L'azienda versa al Fondo Previambiente, per i dipendenti a tempo indeterminato, anche apprendisti, che non aderiscono volontariamente al Fondo, un contributo contrattuale pari a 10 euro al mese per dodici mensilità. [...] 13. A decorrere dal 1º gennaio 2023, le aziende versano al Fondo Previambiente, in favore di tutti i lavoratori aderenti al Fondo, inclusi i lavoratori con adesione contrattuale, una quota contributiva ulteriore in cifra fissa di 5,00 euro pro-capite per 12 mensilità [...] Dichiarazione a Verbale: Con riferimento ai contributi aggiuntivi di cui ai commi 5 lett. e), 11 e 12, [...] il relativo importo deve intendersi non parametrato e non riproporzionato alla minore durata dell'orario di lavoro dei lavoratori a tempo parziale."
+                },
+                "transformation": "The 5 EUR insurance of c. 13, owed for every member, voluntary or contractual; a worker not enrolled voluntarily adds the 10 EUR of c. 11 (not_enrolled_monthly) on a permanent contract or an apprenticeship (permanent_only). Not reproportioned for part time; on the 12 monthly payments.",
+                "note": "Read from the PDF the url serves (sha256 57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756), text layer. No human review recorded."
+              }
+            }
+          ]
+        },
+        "D1s": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "5.00",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "servizi-ambientali-testo-consolidato-2026",
+                    "title": "CCNL Servizi Ambientali, testo consolidato 24/07/2025 con l'ipotesi di accordo 09/12/2025 (edizione 2026)",
+                    "kind": "altro",
+                    "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf"
+                  },
+                  "section": "Art. 65 - Previdenza complementare e assistenza sanitaria integrativa, Lett. A) Fondo Previambiente",
+                  "quote": "11. L'azienda versa al Fondo Previambiente, per i dipendenti a tempo indeterminato, anche apprendisti, che non aderiscono volontariamente al Fondo, un contributo contrattuale pari a 10 euro al mese per dodici mensilità. [...] 13. A decorrere dal 1º gennaio 2023, le aziende versano al Fondo Previambiente, in favore di tutti i lavoratori aderenti al Fondo, inclusi i lavoratori con adesione contrattuale, una quota contributiva ulteriore in cifra fissa di 5,00 euro pro-capite per 12 mensilità [...] Dichiarazione a Verbale: Con riferimento ai contributi aggiuntivi di cui ai commi 5 lett. e), 11 e 12, [...] il relativo importo deve intendersi non parametrato e non riproporzionato alla minore durata dell'orario di lavoro dei lavoratori a tempo parziale."
+                },
+                "transformation": "The 5 EUR insurance of c. 13, owed for every member, voluntary or contractual; a worker not enrolled voluntarily adds the 10 EUR of c. 11 (not_enrolled_monthly) on a permanent contract or an apprenticeship (permanent_only). Not reproportioned for part time; on the 12 monthly payments.",
+                "note": "Read from the PDF the url serves (sha256 57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756), text layer. No human review recorded."
+              }
+            }
+          ]
+        },
+        "C2": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "5.00",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "servizi-ambientali-testo-consolidato-2026",
+                    "title": "CCNL Servizi Ambientali, testo consolidato 24/07/2025 con l'ipotesi di accordo 09/12/2025 (edizione 2026)",
+                    "kind": "altro",
+                    "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf"
+                  },
+                  "section": "Art. 65 - Previdenza complementare e assistenza sanitaria integrativa, Lett. A) Fondo Previambiente",
+                  "quote": "11. L'azienda versa al Fondo Previambiente, per i dipendenti a tempo indeterminato, anche apprendisti, che non aderiscono volontariamente al Fondo, un contributo contrattuale pari a 10 euro al mese per dodici mensilità. [...] 13. A decorrere dal 1º gennaio 2023, le aziende versano al Fondo Previambiente, in favore di tutti i lavoratori aderenti al Fondo, inclusi i lavoratori con adesione contrattuale, una quota contributiva ulteriore in cifra fissa di 5,00 euro pro-capite per 12 mensilità [...] Dichiarazione a Verbale: Con riferimento ai contributi aggiuntivi di cui ai commi 5 lett. e), 11 e 12, [...] il relativo importo deve intendersi non parametrato e non riproporzionato alla minore durata dell'orario di lavoro dei lavoratori a tempo parziale."
+                },
+                "transformation": "The 5 EUR insurance of c. 13, owed for every member, voluntary or contractual; a worker not enrolled voluntarily adds the 10 EUR of c. 11 (not_enrolled_monthly) on a permanent contract or an apprenticeship (permanent_only). Not reproportioned for part time; on the 12 monthly payments.",
+                "note": "Read from the PDF the url serves (sha256 57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756), text layer. No human review recorded."
+              }
+            }
+          ]
+        },
+        "C2s": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "5.00",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "servizi-ambientali-testo-consolidato-2026",
+                    "title": "CCNL Servizi Ambientali, testo consolidato 24/07/2025 con l'ipotesi di accordo 09/12/2025 (edizione 2026)",
+                    "kind": "altro",
+                    "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf"
+                  },
+                  "section": "Art. 65 - Previdenza complementare e assistenza sanitaria integrativa, Lett. A) Fondo Previambiente",
+                  "quote": "11. L'azienda versa al Fondo Previambiente, per i dipendenti a tempo indeterminato, anche apprendisti, che non aderiscono volontariamente al Fondo, un contributo contrattuale pari a 10 euro al mese per dodici mensilità. [...] 13. A decorrere dal 1º gennaio 2023, le aziende versano al Fondo Previambiente, in favore di tutti i lavoratori aderenti al Fondo, inclusi i lavoratori con adesione contrattuale, una quota contributiva ulteriore in cifra fissa di 5,00 euro pro-capite per 12 mensilità [...] Dichiarazione a Verbale: Con riferimento ai contributi aggiuntivi di cui ai commi 5 lett. e), 11 e 12, [...] il relativo importo deve intendersi non parametrato e non riproporzionato alla minore durata dell'orario di lavoro dei lavoratori a tempo parziale."
+                },
+                "transformation": "The 5 EUR insurance of c. 13, owed for every member, voluntary or contractual; a worker not enrolled voluntarily adds the 10 EUR of c. 11 (not_enrolled_monthly) on a permanent contract or an apprenticeship (permanent_only). Not reproportioned for part time; on the 12 monthly payments.",
+                "note": "Read from the PDF the url serves (sha256 57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756), text layer. No human review recorded."
+              }
+            }
+          ]
+        },
+        "C1": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "5.00",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "servizi-ambientali-testo-consolidato-2026",
+                    "title": "CCNL Servizi Ambientali, testo consolidato 24/07/2025 con l'ipotesi di accordo 09/12/2025 (edizione 2026)",
+                    "kind": "altro",
+                    "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf"
+                  },
+                  "section": "Art. 65 - Previdenza complementare e assistenza sanitaria integrativa, Lett. A) Fondo Previambiente",
+                  "quote": "11. L'azienda versa al Fondo Previambiente, per i dipendenti a tempo indeterminato, anche apprendisti, che non aderiscono volontariamente al Fondo, un contributo contrattuale pari a 10 euro al mese per dodici mensilità. [...] 13. A decorrere dal 1º gennaio 2023, le aziende versano al Fondo Previambiente, in favore di tutti i lavoratori aderenti al Fondo, inclusi i lavoratori con adesione contrattuale, una quota contributiva ulteriore in cifra fissa di 5,00 euro pro-capite per 12 mensilità [...] Dichiarazione a Verbale: Con riferimento ai contributi aggiuntivi di cui ai commi 5 lett. e), 11 e 12, [...] il relativo importo deve intendersi non parametrato e non riproporzionato alla minore durata dell'orario di lavoro dei lavoratori a tempo parziale."
+                },
+                "transformation": "The 5 EUR insurance of c. 13, owed for every member, voluntary or contractual; a worker not enrolled voluntarily adds the 10 EUR of c. 11 (not_enrolled_monthly) on a permanent contract or an apprenticeship (permanent_only). Not reproportioned for part time; on the 12 monthly payments.",
+                "note": "Read from the PDF the url serves (sha256 57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756), text layer. No human review recorded."
+              }
+            }
+          ]
+        },
+        "C1s": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "5.00",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "servizi-ambientali-testo-consolidato-2026",
+                    "title": "CCNL Servizi Ambientali, testo consolidato 24/07/2025 con l'ipotesi di accordo 09/12/2025 (edizione 2026)",
+                    "kind": "altro",
+                    "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf"
+                  },
+                  "section": "Art. 65 - Previdenza complementare e assistenza sanitaria integrativa, Lett. A) Fondo Previambiente",
+                  "quote": "11. L'azienda versa al Fondo Previambiente, per i dipendenti a tempo indeterminato, anche apprendisti, che non aderiscono volontariamente al Fondo, un contributo contrattuale pari a 10 euro al mese per dodici mensilità. [...] 13. A decorrere dal 1º gennaio 2023, le aziende versano al Fondo Previambiente, in favore di tutti i lavoratori aderenti al Fondo, inclusi i lavoratori con adesione contrattuale, una quota contributiva ulteriore in cifra fissa di 5,00 euro pro-capite per 12 mensilità [...] Dichiarazione a Verbale: Con riferimento ai contributi aggiuntivi di cui ai commi 5 lett. e), 11 e 12, [...] il relativo importo deve intendersi non parametrato e non riproporzionato alla minore durata dell'orario di lavoro dei lavoratori a tempo parziale."
+                },
+                "transformation": "The 5 EUR insurance of c. 13, owed for every member, voluntary or contractual; a worker not enrolled voluntarily adds the 10 EUR of c. 11 (not_enrolled_monthly) on a permanent contract or an apprenticeship (permanent_only). Not reproportioned for part time; on the 12 monthly payments.",
+                "note": "Read from the PDF the url serves (sha256 57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756), text layer. No human review recorded."
+              }
+            }
+          ]
+        },
+        "B2": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "5.00",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "servizi-ambientali-testo-consolidato-2026",
+                    "title": "CCNL Servizi Ambientali, testo consolidato 24/07/2025 con l'ipotesi di accordo 09/12/2025 (edizione 2026)",
+                    "kind": "altro",
+                    "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf"
+                  },
+                  "section": "Art. 65 - Previdenza complementare e assistenza sanitaria integrativa, Lett. A) Fondo Previambiente",
+                  "quote": "11. L'azienda versa al Fondo Previambiente, per i dipendenti a tempo indeterminato, anche apprendisti, che non aderiscono volontariamente al Fondo, un contributo contrattuale pari a 10 euro al mese per dodici mensilità. [...] 13. A decorrere dal 1º gennaio 2023, le aziende versano al Fondo Previambiente, in favore di tutti i lavoratori aderenti al Fondo, inclusi i lavoratori con adesione contrattuale, una quota contributiva ulteriore in cifra fissa di 5,00 euro pro-capite per 12 mensilità [...] Dichiarazione a Verbale: Con riferimento ai contributi aggiuntivi di cui ai commi 5 lett. e), 11 e 12, [...] il relativo importo deve intendersi non parametrato e non riproporzionato alla minore durata dell'orario di lavoro dei lavoratori a tempo parziale."
+                },
+                "transformation": "The 5 EUR insurance of c. 13, owed for every member, voluntary or contractual; a worker not enrolled voluntarily adds the 10 EUR of c. 11 (not_enrolled_monthly) on a permanent contract or an apprenticeship (permanent_only). Not reproportioned for part time; on the 12 monthly payments.",
+                "note": "Read from the PDF the url serves (sha256 57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756), text layer. No human review recorded."
+              }
+            }
+          ]
+        },
+        "B2s": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "5.00",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "servizi-ambientali-testo-consolidato-2026",
+                    "title": "CCNL Servizi Ambientali, testo consolidato 24/07/2025 con l'ipotesi di accordo 09/12/2025 (edizione 2026)",
+                    "kind": "altro",
+                    "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf"
+                  },
+                  "section": "Art. 65 - Previdenza complementare e assistenza sanitaria integrativa, Lett. A) Fondo Previambiente",
+                  "quote": "11. L'azienda versa al Fondo Previambiente, per i dipendenti a tempo indeterminato, anche apprendisti, che non aderiscono volontariamente al Fondo, un contributo contrattuale pari a 10 euro al mese per dodici mensilità. [...] 13. A decorrere dal 1º gennaio 2023, le aziende versano al Fondo Previambiente, in favore di tutti i lavoratori aderenti al Fondo, inclusi i lavoratori con adesione contrattuale, una quota contributiva ulteriore in cifra fissa di 5,00 euro pro-capite per 12 mensilità [...] Dichiarazione a Verbale: Con riferimento ai contributi aggiuntivi di cui ai commi 5 lett. e), 11 e 12, [...] il relativo importo deve intendersi non parametrato e non riproporzionato alla minore durata dell'orario di lavoro dei lavoratori a tempo parziale."
+                },
+                "transformation": "The 5 EUR insurance of c. 13, owed for every member, voluntary or contractual; a worker not enrolled voluntarily adds the 10 EUR of c. 11 (not_enrolled_monthly) on a permanent contract or an apprenticeship (permanent_only). Not reproportioned for part time; on the 12 monthly payments.",
+                "note": "Read from the PDF the url serves (sha256 57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756), text layer. No human review recorded."
+              }
+            }
+          ]
+        },
+        "B1": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "5.00",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "servizi-ambientali-testo-consolidato-2026",
+                    "title": "CCNL Servizi Ambientali, testo consolidato 24/07/2025 con l'ipotesi di accordo 09/12/2025 (edizione 2026)",
+                    "kind": "altro",
+                    "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf"
+                  },
+                  "section": "Art. 65 - Previdenza complementare e assistenza sanitaria integrativa, Lett. A) Fondo Previambiente",
+                  "quote": "11. L'azienda versa al Fondo Previambiente, per i dipendenti a tempo indeterminato, anche apprendisti, che non aderiscono volontariamente al Fondo, un contributo contrattuale pari a 10 euro al mese per dodici mensilità. [...] 13. A decorrere dal 1º gennaio 2023, le aziende versano al Fondo Previambiente, in favore di tutti i lavoratori aderenti al Fondo, inclusi i lavoratori con adesione contrattuale, una quota contributiva ulteriore in cifra fissa di 5,00 euro pro-capite per 12 mensilità [...] Dichiarazione a Verbale: Con riferimento ai contributi aggiuntivi di cui ai commi 5 lett. e), 11 e 12, [...] il relativo importo deve intendersi non parametrato e non riproporzionato alla minore durata dell'orario di lavoro dei lavoratori a tempo parziale."
+                },
+                "transformation": "The 5 EUR insurance of c. 13, owed for every member, voluntary or contractual; a worker not enrolled voluntarily adds the 10 EUR of c. 11 (not_enrolled_monthly) on a permanent contract or an apprenticeship (permanent_only). Not reproportioned for part time; on the 12 monthly payments.",
+                "note": "Read from the PDF the url serves (sha256 57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756), text layer. No human review recorded."
+              }
+            }
+          ]
+        },
+        "B1s": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "5.00",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "servizi-ambientali-testo-consolidato-2026",
+                    "title": "CCNL Servizi Ambientali, testo consolidato 24/07/2025 con l'ipotesi di accordo 09/12/2025 (edizione 2026)",
+                    "kind": "altro",
+                    "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf"
+                  },
+                  "section": "Art. 65 - Previdenza complementare e assistenza sanitaria integrativa, Lett. A) Fondo Previambiente",
+                  "quote": "11. L'azienda versa al Fondo Previambiente, per i dipendenti a tempo indeterminato, anche apprendisti, che non aderiscono volontariamente al Fondo, un contributo contrattuale pari a 10 euro al mese per dodici mensilità. [...] 13. A decorrere dal 1º gennaio 2023, le aziende versano al Fondo Previambiente, in favore di tutti i lavoratori aderenti al Fondo, inclusi i lavoratori con adesione contrattuale, una quota contributiva ulteriore in cifra fissa di 5,00 euro pro-capite per 12 mensilità [...] Dichiarazione a Verbale: Con riferimento ai contributi aggiuntivi di cui ai commi 5 lett. e), 11 e 12, [...] il relativo importo deve intendersi non parametrato e non riproporzionato alla minore durata dell'orario di lavoro dei lavoratori a tempo parziale."
+                },
+                "transformation": "The 5 EUR insurance of c. 13, owed for every member, voluntary or contractual; a worker not enrolled voluntarily adds the 10 EUR of c. 11 (not_enrolled_monthly) on a permanent contract or an apprenticeship (permanent_only). Not reproportioned for part time; on the 12 monthly payments.",
+                "note": "Read from the PDF the url serves (sha256 57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756), text layer. No human review recorded."
+              }
+            }
+          ]
+        },
+        "A2": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "5.00",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "servizi-ambientali-testo-consolidato-2026",
+                    "title": "CCNL Servizi Ambientali, testo consolidato 24/07/2025 con l'ipotesi di accordo 09/12/2025 (edizione 2026)",
+                    "kind": "altro",
+                    "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf"
+                  },
+                  "section": "Art. 65 - Previdenza complementare e assistenza sanitaria integrativa, Lett. A) Fondo Previambiente",
+                  "quote": "11. L'azienda versa al Fondo Previambiente, per i dipendenti a tempo indeterminato, anche apprendisti, che non aderiscono volontariamente al Fondo, un contributo contrattuale pari a 10 euro al mese per dodici mensilità. [...] 13. A decorrere dal 1º gennaio 2023, le aziende versano al Fondo Previambiente, in favore di tutti i lavoratori aderenti al Fondo, inclusi i lavoratori con adesione contrattuale, una quota contributiva ulteriore in cifra fissa di 5,00 euro pro-capite per 12 mensilità [...] Dichiarazione a Verbale: Con riferimento ai contributi aggiuntivi di cui ai commi 5 lett. e), 11 e 12, [...] il relativo importo deve intendersi non parametrato e non riproporzionato alla minore durata dell'orario di lavoro dei lavoratori a tempo parziale."
+                },
+                "transformation": "The 5 EUR insurance of c. 13, owed for every member, voluntary or contractual; a worker not enrolled voluntarily adds the 10 EUR of c. 11 (not_enrolled_monthly) on a permanent contract or an apprenticeship (permanent_only). Not reproportioned for part time; on the 12 monthly payments.",
+                "note": "Read from the PDF the url serves (sha256 57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756), text layer. No human review recorded."
+              }
+            }
+          ]
+        },
+        "A2s": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "5.00",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "servizi-ambientali-testo-consolidato-2026",
+                    "title": "CCNL Servizi Ambientali, testo consolidato 24/07/2025 con l'ipotesi di accordo 09/12/2025 (edizione 2026)",
+                    "kind": "altro",
+                    "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf"
+                  },
+                  "section": "Art. 65 - Previdenza complementare e assistenza sanitaria integrativa, Lett. A) Fondo Previambiente",
+                  "quote": "11. L'azienda versa al Fondo Previambiente, per i dipendenti a tempo indeterminato, anche apprendisti, che non aderiscono volontariamente al Fondo, un contributo contrattuale pari a 10 euro al mese per dodici mensilità. [...] 13. A decorrere dal 1º gennaio 2023, le aziende versano al Fondo Previambiente, in favore di tutti i lavoratori aderenti al Fondo, inclusi i lavoratori con adesione contrattuale, una quota contributiva ulteriore in cifra fissa di 5,00 euro pro-capite per 12 mensilità [...] Dichiarazione a Verbale: Con riferimento ai contributi aggiuntivi di cui ai commi 5 lett. e), 11 e 12, [...] il relativo importo deve intendersi non parametrato e non riproporzionato alla minore durata dell'orario di lavoro dei lavoratori a tempo parziale."
+                },
+                "transformation": "The 5 EUR insurance of c. 13, owed for every member, voluntary or contractual; a worker not enrolled voluntarily adds the 10 EUR of c. 11 (not_enrolled_monthly) on a permanent contract or an apprenticeship (permanent_only). Not reproportioned for part time; on the 12 monthly payments.",
+                "note": "Read from the PDF the url serves (sha256 57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756), text layer. No human review recorded."
+              }
+            }
+          ]
+        },
+        "A1": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "5.00",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "servizi-ambientali-testo-consolidato-2026",
+                    "title": "CCNL Servizi Ambientali, testo consolidato 24/07/2025 con l'ipotesi di accordo 09/12/2025 (edizione 2026)",
+                    "kind": "altro",
+                    "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf"
+                  },
+                  "section": "Art. 65 - Previdenza complementare e assistenza sanitaria integrativa, Lett. A) Fondo Previambiente",
+                  "quote": "11. L'azienda versa al Fondo Previambiente, per i dipendenti a tempo indeterminato, anche apprendisti, che non aderiscono volontariamente al Fondo, un contributo contrattuale pari a 10 euro al mese per dodici mensilità. [...] 13. A decorrere dal 1º gennaio 2023, le aziende versano al Fondo Previambiente, in favore di tutti i lavoratori aderenti al Fondo, inclusi i lavoratori con adesione contrattuale, una quota contributiva ulteriore in cifra fissa di 5,00 euro pro-capite per 12 mensilità [...] Dichiarazione a Verbale: Con riferimento ai contributi aggiuntivi di cui ai commi 5 lett. e), 11 e 12, [...] il relativo importo deve intendersi non parametrato e non riproporzionato alla minore durata dell'orario di lavoro dei lavoratori a tempo parziale."
+                },
+                "transformation": "The 5 EUR insurance of c. 13, owed for every member, voluntary or contractual; a worker not enrolled voluntarily adds the 10 EUR of c. 11 (not_enrolled_monthly) on a permanent contract or an apprenticeship (permanent_only). Not reproportioned for part time; on the 12 monthly payments.",
+                "note": "Read from the PDF the url serves (sha256 57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756), text layer. No human review recorded."
+              }
+            }
+          ]
+        },
+        "Q": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "5.00",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "servizi-ambientali-testo-consolidato-2026",
+                    "title": "CCNL Servizi Ambientali, testo consolidato 24/07/2025 con l'ipotesi di accordo 09/12/2025 (edizione 2026)",
+                    "kind": "altro",
+                    "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf"
+                  },
+                  "section": "Art. 65 - Previdenza complementare e assistenza sanitaria integrativa, Lett. A) Fondo Previambiente",
+                  "quote": "11. L'azienda versa al Fondo Previambiente, per i dipendenti a tempo indeterminato, anche apprendisti, che non aderiscono volontariamente al Fondo, un contributo contrattuale pari a 10 euro al mese per dodici mensilità. [...] 13. A decorrere dal 1º gennaio 2023, le aziende versano al Fondo Previambiente, in favore di tutti i lavoratori aderenti al Fondo, inclusi i lavoratori con adesione contrattuale, una quota contributiva ulteriore in cifra fissa di 5,00 euro pro-capite per 12 mensilità [...] Dichiarazione a Verbale: Con riferimento ai contributi aggiuntivi di cui ai commi 5 lett. e), 11 e 12, [...] il relativo importo deve intendersi non parametrato e non riproporzionato alla minore durata dell'orario di lavoro dei lavoratori a tempo parziale."
+                },
+                "transformation": "The 5 EUR insurance of c. 13, owed for every member, voluntary or contractual; a worker not enrolled voluntarily adds the 10 EUR of c. 11 (not_enrolled_monthly) on a permanent contract or an apprenticeship (permanent_only). Not reproportioned for part time; on the 12 monthly payments.",
+                "note": "Read from the PDF the url serves (sha256 57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756), text layer. No human review recorded."
+              }
+            }
+          ]
+        }
+      },
+      "not_enrolled_monthly": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "10.00",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "servizi-ambientali-testo-consolidato-2026",
+                  "title": "CCNL Servizi Ambientali, testo consolidato 24/07/2025 con l'ipotesi di accordo 09/12/2025 (edizione 2026)",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf"
+                },
+                "section": "Art. 65 - Previdenza complementare e assistenza sanitaria integrativa, Lett. A) Fondo Previambiente",
+                "quote": "11. L'azienda versa al Fondo Previambiente, per i dipendenti a tempo indeterminato, anche apprendisti, che non aderiscono volontariamente al Fondo, un contributo contrattuale pari a 10 euro al mese per dodici mensilità. [...] 13. A decorrere dal 1º gennaio 2023, le aziende versano al Fondo Previambiente, in favore di tutti i lavoratori aderenti al Fondo, inclusi i lavoratori con adesione contrattuale, una quota contributiva ulteriore in cifra fissa di 5,00 euro pro-capite per 12 mensilità [...] Dichiarazione a Verbale: Con riferimento ai contributi aggiuntivi di cui ai commi 5 lett. e), 11 e 12, [...] il relativo importo deve intendersi non parametrato e non riproporzionato alla minore durata dell'orario di lavoro dei lavoratori a tempo parziale."
+              },
+              "transformation": "The 5 EUR insurance of c. 13, owed for every member, voluntary or contractual; a worker not enrolled voluntarily adds the 10 EUR of c. 11 (not_enrolled_monthly) on a permanent contract or an apprenticeship (permanent_only). Not reproportioned for part time; on the 12 monthly payments.",
+              "note": "Read from the PDF the url serves (sha256 57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756), text layer. No human review recorded."
+            }
+          }
+        ]
+      },
+      "permanent_only": true,
+      "part_time_proportional": false,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "servizi-ambientali-testo-consolidato-2026",
+            "title": "CCNL Servizi Ambientali, testo consolidato 24/07/2025 con l'ipotesi di accordo 09/12/2025 (edizione 2026)",
+            "kind": "altro",
+            "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf"
+          },
+          "section": "Art. 65 - Previdenza complementare e assistenza sanitaria integrativa, Lett. A) Fondo Previambiente",
+          "quote": "11. L'azienda versa al Fondo Previambiente, per i dipendenti a tempo indeterminato, anche apprendisti, che non aderiscono volontariamente al Fondo, un contributo contrattuale pari a 10 euro al mese per dodici mensilità. [...] 13. A decorrere dal 1º gennaio 2023, le aziende versano al Fondo Previambiente, in favore di tutti i lavoratori aderenti al Fondo, inclusi i lavoratori con adesione contrattuale, una quota contributiva ulteriore in cifra fissa di 5,00 euro pro-capite per 12 mensilità [...] Dichiarazione a Verbale: Con riferimento ai contributi aggiuntivi di cui ai commi 5 lett. e), 11 e 12, [...] il relativo importo deve intendersi non parametrato e non riproporzionato alla minore durata dell'orario di lavoro dei lavoratori a tempo parziale."
+        },
+        "transformation": "The 5 EUR insurance of c. 13, owed for every member, voluntary or contractual; a worker not enrolled voluntarily adds the 10 EUR of c. 11 (not_enrolled_monthly) on a permanent contract or an apprenticeship (permanent_only). Not reproportioned for part time; on the 12 monthly payments.",
+        "note": "Read from the PDF the url serves (sha256 57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756), text layer. No human review recorded."
       }
     }
   },
@@ -3472,7 +4046,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "c4710502681bb9c7f4946b51858c4e0f18ecea1eecfd0096ee5ec9ec6cc9a92b",
+    "source_hash": "9e690db4dace8cd8b91eaaab054f4158078464ebd4ca07c9abfbd5aaaf5116a4",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

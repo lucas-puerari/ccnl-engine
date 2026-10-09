@@ -15,7 +15,10 @@ from ccnl_engine.payroll.service.pension_fund import (
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.amounts._types import _AmountsInput
-    from ccnl_engine.payroll.service.pension_fund import PensionContribution
+    from ccnl_engine.payroll.service.pension_fund import (
+        PensionContribution,
+        PensionFundTerms,
+    )
 
 _ZERO = Decimal(0)
 #: A fund with a young member rate needs the enrolment to state it.
@@ -42,6 +45,33 @@ ERC_UNKNOWN = CalculationIssue(
     status=CalculationStatus.INCOMPLETE,
     fact="erc_amount",
 )
+#: A fund on a conventional base needs the enrolment to state it.
+CONVENTIONAL_BASE_UNKNOWN = CalculationIssue(
+    code="pension_fund_conventional_base_unknown",
+    message=(
+        "the fund computes its rates on a conventional base of the worker "
+        "(Previambiente: the 1997 base pay, contingenza and one scatto of the "
+        "level) and the enrolment does not state it: the amounts shown leave "
+        "the rates out; state PensionFundEnrolment.conventional_base"
+    ),
+    status=CalculationStatus.INCOMPLETE,
+    fact="conventional_base",
+)
+
+
+def conventional_base_unknown(terms: PensionFundTerms | None) -> bool:
+    """Return whether the fund is on a conventional base the enrolment omits.
+
+    Returns:
+        True when the worker is enrolled in a fund on a conventional base
+        and the enrolment does not state it.
+    """
+    conventional = FundContributionBase.CONVENTIONAL
+    return (
+        terms is not None
+        and terms.fund.contribution_base is conventional
+        and terms.conventional_base is None
+    )
 
 
 def run_pension(inp: _AmountsInput) -> PensionContribution | None:
@@ -52,7 +82,9 @@ def run_pension(inp: _AmountsInput) -> PensionContribution | None:
     the TFR, e.g. Fon.Te.) or the contractual minimum (Cometa).  An employee
     rate above the minimum is computed on the base the fund sets for it,
     when it sets one (Cometa: the TFR base).  A fund due on the twelve
-    monthly payments alone has a zero base on an extra-month run.
+    monthly payments alone has a zero base on an extra-month run, and a
+    fund due on the pay of the month (``paid_month_only``) on a run without
+    pay; neither owes its fixed amount of an enrolled worker there.
 
     The contractual contribution of the CCNL is added to the employer part,
     and is the whole contribution of a worker not enrolled voluntarily.
@@ -74,16 +106,20 @@ def run_pension(inp: _AmountsInput) -> PensionContribution | None:
         + inp.in_kind
         + inp.event_tfr_base,
         FundContributionBase.CONTRACTUAL_MINIMUM: terms.minimum_base,
+        FundContributionBase.CONVENTIONAL: terms.conventional_base or _ZERO,
     }
     fund = terms.fund
-    if inp.additional_month and not fund.extra_months:
-        bases = dict.fromkeys(bases, _ZERO)
+    fixed = terms.enrolled_monthly
+    unpaid = fund.paid_month_only and bases[FundContributionBase.INPS_BASE] <= 0
+    if (inp.additional_month and not fund.extra_months) or unpaid:
+        bases, fixed = dict.fromkeys(bases, _ZERO), _ZERO
     base = bases[fund.contribution_base]
     above = fund.employee_base_above_minimum
     minimum = terms.employee_min_rate
     chosen_more = minimum is not None and terms.employee_rate > minimum
     employee_base = bases[above] if above is not None and chosen_more else None
-    return contribute(terms, base, deducted, inp.contractual_fund.amount, employee_base)
+    contractual = inp.contractual_fund.amount + fixed
+    return contribute(terms, base, deducted, contractual, employee_base)
 
 
 def projected_adjustment(

@@ -25,6 +25,7 @@ from ccnl_engine.payroll.domain.decisions import (
     CalculationStatus,
 )
 from ccnl_engine.payroll.domain.employment import Apprentice
+from ccnl_engine.payroll.domain.events import SickLeaveEvent, SicknessEpisode
 from ccnl_engine.payroll.domain.pension_fund import PensionFundEnrolment
 from ccnl_engine.payroll.service.pension_fund import (
     CAPABILITY,
@@ -50,6 +51,9 @@ REQUIRED_FACT_MISSING = "required_fact_missing"
 #: Reason code of a run that owes only the contractual contribution.
 CONTRACTUAL_ONLY = "contractual_only"
 FACT = "pension_fund"
+#: Variant of the CCNL limitation a fund due on the pay of the month
+#: traverses on a month paid in part.
+PAID_MONTH_VARIANT = "fund_paid_month"
 
 
 def pension_terms(ctx: RunContext) -> PensionFundTerms | None:
@@ -114,6 +118,31 @@ def enrolment_unknown(ctx: RunContext) -> bool:
         bool(ccnl.parameters.employer_funds)
         or ccnl.meta.tax_sector not in _NO_NEGOTIATED_FUND
     )
+
+
+def paid_month_paths(ctx: RunContext, event_inps_base: Decimal) -> frozenset[str]:
+    """Return the limitation path of a fund due on the pay of the month.
+
+    Previambiente art. 65 c. 8: no contribution "in caso di assenza non
+    retribuita per il mese"; with a paid absence it "è commisurato alla
+    retribuzione corrisposta".  A month without pay owes none; a month
+    paid in part (an unpaid absence, sickness, a partial month) traverses
+    :data:`PAID_MONTH_VARIANT`, a rule the engine does not compute.
+
+    Returns:
+        The path when the worker is enrolled in such a fund and the regular
+        run pays part of its month, else nothing.
+    """
+    terms = pension_terms(ctx)
+    paid = ctx.monthly_gross + event_inps_base
+    if terms is None or not terms.fund.paid_month_only or paid <= 0:
+        return frozenset()
+    sick = any(
+        isinstance(e, (SickLeaveEvent, SicknessEpisode)) for e in ctx.request.events
+    )
+    if not (sick or event_inps_base < 0 or ctx.proration.partial):
+        return frozenset()
+    return frozenset({f"{ctx.contract.ccnl.meta.ccnl_id}/{PAID_MONTH_VARIANT}"})
 
 
 def pension_unresolved(ctx: RunContext) -> bool:
