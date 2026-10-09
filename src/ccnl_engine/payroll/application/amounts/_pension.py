@@ -39,7 +39,8 @@ def run_pension(inp: _AmountsInput) -> PensionContribution | None:
     base (the recurring gross, the benefits in kind and the events entering
     the TFR, e.g. Fon.Te.) or the contractual minimum (Cometa).  An employee
     rate above the minimum is computed on the base the fund sets for it,
-    when it sets one (Cometa: the TFR base).
+    when it sets one (Cometa: the TFR base).  A fund due on the twelve
+    monthly payments alone has a zero base on an extra-month run.
 
     The contractual contribution of the CCNL is added to the employer part,
     and is the whole contribution of a worker not enrolled voluntarily.
@@ -63,6 +64,8 @@ def run_pension(inp: _AmountsInput) -> PensionContribution | None:
         FundContributionBase.CONTRACTUAL_MINIMUM: terms.minimum_base,
     }
     fund = terms.fund
+    if inp.additional_month and not fund.extra_months:
+        bases = dict.fromkeys(bases, _ZERO)
     base = bases[fund.contribution_base]
     above = fund.employee_base_above_minimum
     minimum = terms.employee_min_rate

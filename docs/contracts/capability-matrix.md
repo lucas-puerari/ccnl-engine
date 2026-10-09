@@ -104,7 +104,7 @@ formulas or caller-declared amounts.
 | `rinnovo_substitute_tax` | Imposta sostitutiva aumenti da rinnovo L. 199/2025 art. 1 c. 7 | net | native | decided | decision | `prior_year` | — | implemented | 0 / 1 / 0 / 0 |
 | `notte_festivi_turni_substitute_tax` | Imposta sostitutiva notturno, festivo e turni L. 199/2025 art. 1 cc. 10-11 | net | native | decided | decision | `prior_year` | — | implemented | 0 / 1 / 0 / 0 |
 | `bilateral_funds` | Fondi bilaterali (importi dal chiamante) | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
-| `pension_fund_contribution` | Previdenza complementare CCNL su adesione e contributo contrattuale | net | partial | decided | decision | `employment.pension_fund` | ccnl_fund_on_enrolment, ccnl_contractual_contribution | simplified | 0 / 68 / 25 / 0 |
+| `pension_fund_contribution` | Previdenza complementare CCNL su adesione e contributo contrattuale | net | partial | decided | decision | `employment.pension_fund` | ccnl_fund_on_enrolment, ccnl_contractual_contribution | simplified | 0 / 70 / 25 / 0 |
 | `assistance_contribution` | Contributi di assistenza contrattuale per ora retribuita (Cas.Sa.Colf, lavoro domestico) | net | native | decided | decision | `facts.contributable_hours` | — | implemented | 0 / 3 / 0 / 0 |
 
 ## CCNL coverage
@@ -172,7 +172,7 @@ never grow.
 | 43 | [CCNL Edilizia — Cooperative (ANCPL/Legacoop/Confcooperative/AGCI)](edilizia-cooperative-ancpl.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 57 / 1 / 1 |
 | 44 | [CCNL Edilizia — Industria (ANCE)](edilizia-ance.md) | 🔲 | 🔲 | 🔲 | pension_fund_contribution, seniority | 0 / 43 / 2 / 0 |
 | 45 | [CCNL Energia e Petrolio (Confindustria Energia)](energia-petrolio-confindustria.md) | 🔲 | 🔲 | 🔲 | — | 0 / 170 / 1 / 1 |
-| 46 | [CCNL Esercizi Cinematografici e Cinema-Teatrali (ANEC)](esercizi-cinematografici-anec.md) | 🔲 | 🔲 | 🔲 | inps_employer, seniority | 0 / 52 / 2 / 0 |
+| 46 | [CCNL Esercizi Cinematografici e Cinema-Teatrali (ANEC)](esercizi-cinematografici-anec.md) | 🔲 | 🔲 | 🔲 | inps_employer, seniority | 0 / 54 / 2 / 0 |
 | 47 | [CCNL Fiori Freschi Recisi, Verde e Piante Ornamentali (ANCEF)](fiori-recisi-ancef.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 38 / 1 / 1 |
 | 48 | [CCNL Formazione Professionale (CNOS-FAP/CIOFS-FP/FORMA/CNF)](formazione-professionale.md) | 🔲 | 🔲 | 🔲 | — | 0 / 33 / 1 / 1 |
 | 49 | [CCNL Gas e Acqua — Utilitalia/Proxigas/Anfida/Assogas](gas-acqua-utilitalia.md) | 🔲 | 🔲 | 🔲 | inps_employer, seniority | 0 / 62 / 2 / 0 |

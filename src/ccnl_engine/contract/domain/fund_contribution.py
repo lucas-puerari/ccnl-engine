@@ -64,7 +64,9 @@ class EmployerFund(BaseModel):
     ``PensionFundEnrolment.young_member``.  ``employer_rate_tiers`` raise
     the employer rate when the worker chooses a higher rate (Fondapi on the
     chemical PMI: 2.00% from an employee 1.60%); the highest tier reached
-    replaces ``rate``.
+    replaces ``rate``.  ``extra_months`` is false when the contributions are
+    due on the twelve monthly payments alone (Byblos on the CCNL Esercizi
+    cinematografici, art. 43: "per 12 mensilità annue").
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -80,6 +82,7 @@ class EmployerFund(BaseModel):
     employee_base_above_minimum: FundContributionBase | None = None
     young_member_rate: TimeSeries | None = None
     employer_rate_tiers: tuple[EmployerRateTier, ...] = ()
+    extra_months: bool = True
 
 
 class ContractualFundContribution(BaseModel):
