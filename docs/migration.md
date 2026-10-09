@@ -4,6 +4,13 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Cometa on the contractual minimum
+
+| Before | After |
+|---|---|
+| No fund on `metalmeccanico-federmeccanica`; a fund base was the INPS or the TFR base | `"COMETA"` (2%, 2.2% for a young member, employee at least 1.2%) on the new base `FundContributionBase.CONTRACTUAL_MINIMUM`; `EmployerFund.employee_base_above_minimum` and `young_member_rate`; `PensionFundEnrolment.young_member` (`None`: missing fact on a fund with a young member rate) |
+| `EmployerFund`, `FundContributionBase` in `contract.domain.compensation` | In `contract.domain.fund_contribution` |
+
 ## Prevedi contractual contribution of the impiegati
 
 | Before | After |

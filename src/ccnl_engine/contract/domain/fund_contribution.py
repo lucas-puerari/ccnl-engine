@@ -1,5 +1,6 @@
-"""Fixed contribution a CCNL charges the employer for every worker to its fund."""
+"""Contributions a CCNL sets to its funds: rates of an enrolment, fixed amounts."""
 
+from enum import StrEnum
 from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
@@ -7,6 +8,59 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 from ccnl_engine.contract.domain.category import WorkerCategory
 from ccnl_engine.contract.domain.validity import TimeSeries
 from ccnl_engine.provenance.domain.chain import RuleProvenance
+
+
+class FundContributionBase(StrEnum):
+    """Pay the rates of a contractual fund are computed on.
+
+    Attributes:
+        INPS_BASE: The INPS contribution base of the run (gross minus the
+            allowances excluded from contributions).
+        TFR_BASE: The pay counted for the TFR of the run (*retribuzione
+            utile ai fini del TFR*, art. 2120 c.c.): the gross minus the
+            allowances excluded from the TFR, with the TFR-relevant events.
+        CONTRACTUAL_MINIMUM: The contractual minimum of the level the run
+            pays (*minimi contrattuali*, e.g. of Cometa): the base salary of
+            the pay chain, prorated and scaled as the run pays it.
+    """
+
+    INPS_BASE = "inps_base"
+    TFR_BASE = "tfr_base"
+    CONTRACTUAL_MINIMUM = "contractual_minimum"
+
+
+class EmployerFund(BaseModel):
+    """An employer-side contribution to a contractual fund (e.g. a pension fund).
+
+    ``rate`` is a fraction of the pay ``contribution_base`` names, as the
+    engine computes it: the INPS contribution base (the default) or the TFR
+    base.  A fund whose official rate is expressed on another base (e.g.
+    the *imponibile Cassa Edile* or the minimum wage alone) is not stored
+    with a rate.  ``employee_min_rate`` is the minimum employee contribution
+    the CCNL sets on the same base, when the bundle records one.
+    ``apprentice_rate`` is the employer rate for apprentices when the fund
+    sets one apart (``None`` = ``rate``).
+    ``applies_to_categories`` restricts the fund to levels of the given
+    categories (``None`` = all).  ``employee_base_above_minimum`` is the
+    base of an employee rate the worker chose above the minimum, when the
+    fund sets one apart (Cometa: the TFR base).  ``young_member_rate`` is
+    the employer rate of a member the CCNL favours for the age at enrolment
+    (Cometa: enrolled after 5 February 2021 before turning 35), stated by
+    ``PensionFundEnrolment.young_member``.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    code: str
+    description: str
+    rate: TimeSeries
+    employee_min_rate: TimeSeries | None = None
+    apprentice_rate: TimeSeries | None = None
+    contribution_base: FundContributionBase = FundContributionBase.INPS_BASE
+    applies_to_categories: tuple[WorkerCategory, ...] | None = None
+    provenance: RuleProvenance | None = None
+    employee_base_above_minimum: FundContributionBase | None = None
+    young_member_rate: TimeSeries | None = None
 
 
 class ContractualFundContribution(BaseModel):

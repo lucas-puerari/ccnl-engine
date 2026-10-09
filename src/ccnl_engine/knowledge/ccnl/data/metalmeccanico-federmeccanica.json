@@ -257,7 +257,57 @@
         },
         "note": "The 2025 renewal hypothesis, read by OCR, does not amend the article. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
       }
-    }
+    },
+    "employer_funds": [
+      {
+        "code": "COMETA",
+        "description": "Cometa - Fondo nazionale pensione complementare per i lavoratori dell'industria metalmeccanica, della installazione di impianti e dei settori affini",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0200"
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0120"
+            }
+          ]
+        },
+        "young_member_rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0220"
+            }
+          ]
+        },
+        "contribution_base": "contractual_minimum",
+        "employee_base_above_minimum": "tfr_base",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "cometa-nota-informativa-2026",
+              "title": "Cometa Nota informativa, Parte I, scheda 'I destinatari e i contributi' (depositata presso la COVIP il 31/07/2026, in vigore dal 31/07/2026)",
+              "kind": "altro",
+              "url": "https://www.cometafondo.it/parte-i-scheda-iii-i-destinatari-e-i-contributi"
+            },
+            "section": "Contribuzione, Lavoratori dipendenti del settore metalmeccanico e della installazione di impianti, note (1) e (2)",
+            "quote": "Lavoratori occupati dopo il 28.04.1993 100% 1,2% 2%; (1) Il contributo a carico datore di lavoro è calcolato percentualmente sul valore dei minimi contrattuali del livello di inquadramento del lavoratore aderente. [...] per i lavoratori di nuova adesione dopo il 5 febbraio 2021 e con età inferiore ai 35 anni compiuti, prevede che la contribuzione a carico del datore di lavoro, a decorrere dal 1° giugno 2022, è elevata al 2,2% dei minimi contrattuali. (2) Misura minima del contributo a carico del lavoratore [...] da calcolarsi sui minimi contrattuali del livello di inquadramento. Il lavoratore può fissare liberamente una misura maggiore di contribuzione che sarà rapportata percentualmente alla retribuzione utile per il calcolo del TFR."
+          },
+          "transformation": "Employer 2% (2.2% for a young member) and worker minimum 1.2% of the minimi contrattuali, the base salary of the level, which in the bundle is the consolidated minimum with contingenza and EDR; a worker rate above 1.2% on the TFR base. The 40% TFR quota of a worker employed before 28.04.1993 is not modelled (PensionFundEnrolment.tfr_to_fund is all or nothing).",
+          "note": "Read from the PDF the url serves (sha256 1a215801069378afde3a93d570d5a68089d2d9ec35bb686b5857cef5ddab37da), text layer. The UILM summary of the agreement of 5 February 2021 (https://www.uilmnazionale.it/federmeccanica-assistal-sintesi-dellipotesi-di-accordo-5-febbraio-2021/) reads 'per i lavoratori e le lavoratrici con età inferiore ai 35 anni che si iscriveranno al Fondo Cometa': the age is the one at enrolment, so the caller states PensionFundEnrolment.young_member and the engine applies 2.2% for the whole enrolment. The bundle holds neither the elemento retributivo of the 7th category nor the indennita di funzione of the quadri, which Cometa also counts. valid_from is the first day of the bundled tax year. No human review recorded."
+        }
+      }
+    ]
   },
   "levels": [
     {
@@ -1863,7 +1913,7 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "e99c7d9e9ae1d20f3149fbd66d408c6c059341722eff467a5b46d7033bb827b4",
+    "source_hash": "77246ee80877f03f225582d11333f356ca11ed60805592f62de964bb160bf78e",
     "published_at": "2026-09-08",
     "source_type": "commercial_secondary"
   },

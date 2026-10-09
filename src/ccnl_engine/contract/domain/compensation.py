@@ -8,7 +8,10 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.contract.domain.assistance import AssistanceContribution
 from ccnl_engine.contract.domain.category import WorkerCategory
-from ccnl_engine.contract.domain.fund_contribution import ContractualFundContribution
+from ccnl_engine.contract.domain.fund_contribution import (
+    ContractualFundContribution,
+    EmployerFund,
+)
 from ccnl_engine.contract.domain.seniority import SeniorityIncrements
 from ccnl_engine.contract.domain.validity import TimeSeries
 from ccnl_engine.provenance.domain.chain import ProvenanceStatus, RuleProvenance
@@ -71,48 +74,6 @@ class Allowance(BaseModel):
         the allowance for percentage apprentices was not sourced.
         """
         return "apprenticeship_pct_relevant" in self.model_fields_set
-
-
-class FundContributionBase(StrEnum):
-    """Pay the rates of a contractual fund are computed on.
-
-    Attributes:
-        INPS_BASE: The INPS contribution base of the run (gross minus the
-            allowances excluded from contributions).
-        TFR_BASE: The pay counted for the TFR of the run (*retribuzione
-            utile ai fini del TFR*, art. 2120 c.c.): the gross minus the
-            allowances excluded from the TFR, with the TFR-relevant events.
-    """
-
-    INPS_BASE = "inps_base"
-    TFR_BASE = "tfr_base"
-
-
-class EmployerFund(BaseModel):
-    """An employer-side contribution to a contractual fund (e.g. a pension fund).
-
-    ``rate`` is a fraction of the pay ``contribution_base`` names, as the
-    engine computes it: the INPS contribution base (the default) or the TFR
-    base.  A fund whose official rate is expressed on another base (e.g.
-    the *imponibile Cassa Edile* or the minimum wage alone) is not stored
-    with a rate.  ``employee_min_rate`` is the minimum employee contribution
-    the CCNL sets on the same base, when the bundle records one.
-    ``apprentice_rate`` is the employer rate for apprentices when the fund
-    sets one apart (``None`` = ``rate``).
-    ``applies_to_categories`` restricts the fund to levels of the given
-    categories (``None`` = all).
-    """
-
-    model_config = ConfigDict(extra="forbid", frozen=True)
-
-    code: str
-    description: str
-    rate: TimeSeries
-    employee_min_rate: TimeSeries | None = None
-    apprentice_rate: TimeSeries | None = None
-    contribution_base: FundContributionBase = FundContributionBase.INPS_BASE
-    applies_to_categories: tuple[WorkerCategory, ...] | None = None
-    provenance: RuleProvenance | None = None
 
 
 class AccrualComparison(StrEnum):

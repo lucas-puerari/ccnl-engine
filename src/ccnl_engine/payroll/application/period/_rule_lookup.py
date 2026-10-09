@@ -255,6 +255,7 @@ def _pension_rules(ctx: RunContext) -> tuple[Rule, ...]:
         for key, series in (
             ("rate", fund.rate),
             ("employee_min_rate", fund.employee_min_rate),
+            ("young_member_rate", fund.young_member_rate),
         )
         if series is not None
         for period in _in_force(series.period_at(day))

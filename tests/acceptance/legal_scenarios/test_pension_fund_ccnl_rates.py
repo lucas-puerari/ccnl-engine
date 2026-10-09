@@ -22,17 +22,31 @@ the pay that enters the TFR, as their Scheda 'I destinatari e i contributi'
   Prevedi, option A of its Scheda (note 2): employer 1% and employee at
   least 1% of the pay the TFR is computed on = 21.347 -> 21.35 each,
   solidarity 2.135 -> 2.14.
+- Metalmeccanico (Federmeccanica), level C3 in January 2026: 2158.26 a
+  month, the consolidated minimum.  Cometa computes the employer 2% (2.2%
+  for a member enrolled after 5 February 2021 before turning 35) and the
+  employee minimum 1.2% on the minimi contrattuali, a higher employee rate
+  on the TFR base (Scheda, notes 1 and 2): employer 43.1652 -> 43.17 or
+  47.48172 -> 47.48, employee 25.89912 -> 25.90.  With two seniority
+  increments of 29.64 the pay is 2217.54: a 2% employee rate takes
+  44.3508 -> 44.35, the employer still 43.17 on the minimum.
 """
 
 from __future__ import annotations
 
+from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
 import pytest
 
 from ccnl_engine import Employment
-from ccnl_engine.inputs import PensionFundEnrolment, Permanent
+from ccnl_engine.inputs import (
+    PensionFundEnrolment,
+    Permanent,
+    SeniorityFact,
+    SenioritySource,
+)
 from tests.acceptance.legal_scenarios._support import regular_period
 from tests.fixtures.seniority import new_hire
 
@@ -124,3 +138,55 @@ def test_prevedi_voluntary_contributions() -> None:
     assert _entry(result, "pension_fund_employer") == Decimal("21.35")
     assert _entry(result, "pension_fund_employee") == Decimal("21.35")
     assert decision.inputs["solidarity"] == Decimal("2.14")
+
+
+def _cometa(
+    rate: str, young_member: bool | None, seniority_months: int = 0
+) -> PeriodResult:
+    seniority = (
+        new_hire()
+        if seniority_months == 0
+        else SeniorityFact(seniority_months, date(2026, 1, 1), SenioritySource.PAYSLIP)
+    )
+    employment = Employment(
+        ccnl_slug="metalmeccanico-federmeccanica.json",
+        level_code="C3",
+        seniority=seniority,
+        pension_fund=PensionFundEnrolment(
+            "COMETA", Decimal(rate), tfr_to_fund=True, young_member=young_member
+        ),
+        contract_type=Permanent(),
+    )
+    return regular_period(employment=employment)
+
+
+@pytest.mark.parametrize(
+    ("young_member", "employer"),
+    [(False, Decimal("43.17")), (True, Decimal("47.48"))],
+    ids=["two_percent", "young_member"],
+)
+def test_cometa_on_the_contractual_minimum(
+    young_member: bool,
+    employer: Decimal,
+) -> None:
+    """2% or 2.2% and 1.2% of the 2158.26 minimum."""
+    result = _cometa("0.012", young_member)
+    assert _pension_decision(result).inputs["base"] == Decimal("2158.26")
+    assert _entry(result, "pension_fund_employer") == employer
+    assert _entry(result, "pension_fund_employee") == Decimal("25.90")
+
+
+def test_cometa_higher_employee_rate_on_the_tfr_base() -> None:
+    """2% chosen with two increments: 44.35 on 2217.54, employer 43.17."""
+    result = _cometa("0.02", young_member=False, seniority_months=60)
+    assert result.period_gross == Decimal("2217.54")
+    assert _entry(result, "pension_fund_employer") == Decimal("43.17")
+    assert _entry(result, "pension_fund_employee") == Decimal("44.35")
+
+
+def test_cometa_unknown_young_membership_is_a_missing_fact() -> None:
+    """The base rate is shown and the run names the fact."""
+    result = _cometa("0.012", None)
+    assert _entry(result, "pension_fund_employer") == Decimal("43.17")
+    codes = {i.code for i in result.issues}
+    assert "pension_fund_young_member_unknown" in codes

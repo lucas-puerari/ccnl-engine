@@ -10,6 +10,7 @@ from __future__ import annotations
 
 from datetime import date
 from decimal import Decimal
+from typing import TYPE_CHECKING
 
 import pytest
 
@@ -25,6 +26,9 @@ from ccnl_engine.payroll.service.pension_fund import (
 )
 from ccnl_engine.shared.domain.errors import InvalidInputError
 from ccnl_engine.tax.domain.pension_rules import ComplementaryPensionRules
+
+if TYPE_CHECKING:
+    from ccnl_engine.contract.domain.identity import CCNL
 
 _RULES = ComplementaryPensionRules(
     deduction_cap=Decimal("5300.00"), solidarity_rate=Decimal("0.10")
@@ -182,3 +186,56 @@ class TestContractual:
         """A tax year without complementary pension rules is rejected."""
         with pytest.raises(InvalidInputError, match="no complementary pension"):
             contractual_only(Decimal("6.80"), None, Decimal(0))
+
+
+class TestYoungMember:
+    """A fund with a young member rate reads PensionFundEnrolment.young_member."""
+
+    @staticmethod
+    def _ccnl() -> CCNL:
+        fund = _TABACCO.parameters.employer_funds[0]
+        young = fund.rate.model_copy(
+            update={
+                "periods": tuple(
+                    p.model_copy(update={"value": Decimal("0.0220")})
+                    for p in fund.rate.periods
+                )
+            }
+        )
+        params = _TABACCO.parameters.model_copy(
+            update={
+                "employer_funds": (
+                    fund.model_copy(update={"young_member_rate": young}),
+                )
+            }
+        )
+        return _TABACCO.model_copy(update={"parameters": params})
+
+    @pytest.mark.parametrize(
+        ("young", "rate", "unknown"),
+        [
+            (True, Decimal("0.0220"), False),
+            (False, Decimal("0.0150"), False),
+            (None, Decimal("0.0150"), True),
+        ],
+    )
+    def test_young_member_rate(
+        self,
+        young: bool | None,
+        rate: Decimal,
+        unknown: bool,
+    ) -> None:
+        """2.2% for a young member, the base rate otherwise, flagged unknown."""
+        enrolment = PensionFundEnrolment(
+            "ALIFOND", Decimal("0.01"), tfr_to_fund=True, young_member=young
+        )
+        terms = resolve_terms(
+            self._ccnl(),
+            enrolment,
+            None,
+            _DAY,
+            _RULES,
+            apprentice=False,
+        )
+        assert terms.employer_rate == rate
+        assert terms.young_member_unknown is unknown
