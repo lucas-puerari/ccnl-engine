@@ -409,7 +409,9 @@ Byblos on the CCNL grafici editoriali pays the employer 1.9% of the TFR base
 Raccordo Contrattuale (`EmployerFund.erc_holder_rate`), whose employer rate
 the renewal of 19 January 2021 did not raise. State the annual ERC in
 `Employment.erc_amount`, zero when the worker has none. Left `None`, an
-enrolled run uses 1.9% and has the issue `pension_fund_erc_unknown`.
+enrolled run uses 1.9% and has the issue `pension_fund_erc_unknown`. The
+same amount is paid with the tredicesima (see the extra months in the
+engine overview).
 
 Cometa computes on the contractual minimum of the level
 (`contribution_base` `contractual_minimum`, the base salary of the pay

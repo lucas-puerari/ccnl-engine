@@ -22,6 +22,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.payroll.application.period._erc import erc_decisions, erc_rules
 from ccnl_engine.payroll.application.period._run_decisions import _ccnl_rule
 from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
@@ -73,7 +74,8 @@ def accrual_decisions(ctx: RunContext) -> tuple[CalculationDecision, ...]:
 
     Returns:
         The decisions, in :func:`run_accruals` order; provisional with the
-        reason ``required_fact_missing`` for an undetermined accrual.
+        reason ``required_fact_missing`` for an undetermined accrual; then
+        the decision of the ERC paid with the tredicesima, if any.
     """
     contract = ctx.contract
     version = _ccnl_rule(contract.ccnl, contract.tctx.competence.year)[1]
@@ -106,7 +108,7 @@ def accrual_decisions(ctx: RunContext) -> tuple[CalculationDecision, ...]:
             ),
         )
         for accrual in run_accruals(ctx)
-    )
+    ) + erc_decisions(ctx)
 
 
 def accrual_issue(ctx: RunContext) -> CalculationIssue | None:
@@ -136,11 +138,12 @@ def accrual_rules(ctx: RunContext) -> tuple[Rule, ...]:
 
     Returns:
         One entry per distinct rule with a provenance record that counted
-        a window with a partly accrued month.
+        a window with a partly accrued month, then the ERC clause of a run
+        that pays the ERC.
     """
     rules: dict[str, Rule] = {}
     for accrual in run_accruals(ctx):
         rule = accrual.rule
         if accrual.partial_months and rule.provenance is not None:
             rules.setdefault(rule.rule, (rule.rule, rule.provenance))
-    return tuple(rules.values())
+    return tuple(rules.values()) + erc_rules(ctx)

@@ -279,7 +279,12 @@ employment dates and never from the runs already closed:
   accrued up to the termination are paid on the last regular run as
   `extra_month_earning` items (ordinary IRPEF, INPS and TFR base). A
   quattordicesima whose June run was already paid restarts in July, so an
-  end in September liquidates 3/12 of the next one.
+  end in September liquidates 3/12 of the next one;
+- on a CCNL with a `raccordo_element` (the ERC of the CCNL grafici
+  editoriali), the run that pays or liquidates the tredicesima also pays
+  `Employment.erc_amount` x its months / 12 as a `raccordo_element_earning`
+  (ordinary IRPEF and INPS, outside the TFR base). An unstated ERC leaves it
+  out with a `missing_fact` blocker `erc_unknown`.
 
 The work deduction (art. 13 TUIR), the ulteriore detrazione (L. 207/2024
 art. 1 c. 6) and the trattamento integrativo are proportioned to the days of

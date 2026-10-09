@@ -58,7 +58,7 @@ formulas or caller-declared amounts.
 
 | Capability | Description | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|
-| `base_salary` | Paga base contrattuale | gross | native | always | pipeline | — | — | simplified | 0 / 5051 / 713 / 86 |
+| `base_salary` | Paga base contrattuale | gross | native | always | pipeline | — | — | simplified | 0 / 5052 / 713 / 86 |
 | `seniority` | Scatti di anzianità | gross | native | decided | decision | `employment.seniority` | — | simplified | 0 / 112 / 14 / 0 |
 | `worker_category` | Categoria lavoratore (dichiarata o fissata dal livello) | gross | native | decided | decision | `employment.category` | — | implemented | none bundled |
 | `inps_employee` | Contributi INPS a carico dipendente | net | native | always | pipeline | — | — | simplified | 0 / 0 / 28 / 0 |
@@ -177,7 +177,7 @@ never grow.
 | 48 | [CCNL Formazione Professionale (CNOS-FAP/CIOFS-FP/FORMA/CNF)](formazione-professionale.md) | 🔲 | 🔲 | 🔲 | — | 0 / 33 / 1 / 1 |
 | 49 | [CCNL Gas e Acqua — Utilitalia/Proxigas/Anfida/Assogas](gas-acqua-utilitalia.md) | 🔲 | 🔲 | 🔲 | inps_employer, seniority | 0 / 62 / 2 / 0 |
 | 50 | [CCNL Gomma e Plastica Industria (Federazione Gomma Plastica)](gomma-plastica-federazione-gomma-plastica.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 77 / 1 / 1 |
-| 51 | [CCNL Grafica e Editoria Industria (AIEG-Acigraf)](grafica-editoria-aieg.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 70 / 1 / 1 |
+| 51 | [CCNL Grafica e Editoria Industria (AIEG-Acigraf)](grafica-editoria-aieg.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 71 / 1 / 1 |
 | 52 | [CCNL Gruppo ANAS](anas.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 42 / 2 / 0 |
 | 53 | [CCNL Igiene Ambientale — Servizi Ambientali e di Igiene Urbana](igiene-ambientale-utilitalia.md) | 🔲 | 🔲 | 🔲 | inps_employer, seniority | 0 / 106 / 1 / 1 |
 | 54 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | 🔲 | 🔲 | 🔲 | base_salary, overtime, sickness | 0 / 32 / 1 / 1 |

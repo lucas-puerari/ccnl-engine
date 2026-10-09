@@ -407,7 +407,24 @@
           "note": "Read from the PDF the url serves (sha256 4d60e5c0111f822c7ce37dd24fa2032fbfb4b64289f227df34dd38e04a0db58a), text layer. No human review recorded."
         }
       }
-    ]
+    ],
+    "raccordo_element": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "grafici-editori-ipotesi-2021-01-19",
+            "title": "Ipotesi di accordo CCNL grafici editori, 19/01/2021",
+            "kind": "altro",
+            "url": "https://farecontrattazione.adapt.it/wp-content/uploads/2021/01/729909-grafici20212022.pdf"
+          },
+          "section": "Gratifica natalizia e tredicesima, disciplina di raccordo contrattuale",
+          "quote": "Tale importo, denominato ERC (Elemento di Raccordo Contrattuale), viene congelato in cifra fissa non rivalutabile e non assorbibile, è omnicomprensivo e pertanto non avrà alcuna incidenza su alcun istituto contrattuale o di legge, e dall'anno 2021 maturerà progressivamente per mese/frazione di mese e verrà corrisposto (con voce ERC a cedolino paga) ai lavoratori di cui sopra nel mese di dicembre contestualmente alla gratifica natalizia"
+        },
+        "transformation": "The annual ERC of the worker (Employment.erc_amount, 27 hours of an operaio or 4/26 of an impiegato at December 2020) x the months of the tredicesima the run pays or liquidates / 12; ordinary pay for IRPEF and INPS, outside the TFR base (no incidence on any institute).",
+        "note": "Read from the PDF the url serves (sha256 c18e0b19490c3f0ad428d913ec50c95a09ab84d806e0a20f20aea3d795c9e244), text layer. No human review recorded."
+      }
+    }
   },
   "levels": [
     {
@@ -2233,7 +2250,7 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/",
     "verification_status": "unverified",
-    "source_hash": "24ca7091dbabdd0e95ee211e4faaa15037faf37d1c1def8adf98f955603887f4",
+    "source_hash": "3852496da4dfdebbd500ecbda0372889304a8d50145840c3ad076f75b8ce1b45",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

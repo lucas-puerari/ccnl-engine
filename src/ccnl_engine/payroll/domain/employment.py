@@ -176,10 +176,11 @@ class Employment:
             the company.
         erc_amount: Annual Elemento di Raccordo Contrattuale of the CCNL
             grafici editoriali (renewal of 19 January 2021), frozen in
-            December 2020; zero when the worker has none.  It sets the
-            Byblos employer rate (1.4% with one, 1.9% without).  ``None``
-            means not known: an enrolled run on that CCNL has a
-            ``missing_fact`` blocker.
+            December 2020; zero when the worker has none.  It is paid with
+            the tredicesima, by its months, and sets the Byblos employer
+            rate (1.4% with one, 1.9% without).  ``None`` means not known:
+            an enrolled run, or a run paying the tredicesima, on that CCNL
+            has a ``missing_fact`` blocker.
 
     Raises:
         InvalidInputError: When a field is not of its type, a role is not a

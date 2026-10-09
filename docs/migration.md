@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## ERC paid with the tredicesima of the CCNL grafici editoriali
+
+| Before | After |
+|---|---|
+| The Elemento di Raccordo Contrattuale was not paid | The run that pays or liquidates the tredicesima of `grafica-editoria-aieg` pays `Employment.erc_amount` x its months / 12 as the new pay item `raccordo_element_earning` (policy `it/earning/raccordo_element`: IRPEF and INPS, no TFR); `None` gives that run the `missing_fact` issue `erc_unknown`; new `CCNLParameters.raccordo_element` |
+
 ## Byblos on the CCNL grafici editoriali and the ERC
 
 | Before | After |

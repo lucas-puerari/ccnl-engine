@@ -29,6 +29,7 @@ if TYPE_CHECKING:
 
     from ccnl_engine.payroll.application.handlers._totals import _EventTotals
     from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
+    from ccnl_engine.payroll.domain.decisions import CalculationIssue
     from ccnl_engine.payroll.domain.pay_items import CompetencePeriod
     from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
     from ccnl_engine.payroll.service.types import MonthlyPayChain
@@ -48,6 +49,7 @@ class ExtraMonthSettlement:
         inps_base: Amount entering the INPS contribution base.
         tfr_base: Amount entering the TFR base.
         irpef_base: Amount entering the ordinary IRPEF base.
+        issues: Facts missing to settle an amount.
     """
 
     items: tuple[PayItem, ...] = ()
@@ -55,18 +57,21 @@ class ExtraMonthSettlement:
     inps_base: Decimal = _ZERO
     tfr_base: Decimal = _ZERO
     irpef_base: Decimal = _ZERO
+    issues: tuple[CalculationIssue, ...] = ()
 
     def added_to(self, totals: _EventTotals) -> _EventTotals:
         """Return ``totals`` with the settled amounts added to its bases.
 
         Returns:
-            A copy of ``totals`` with larger INPS, TFR and IRPEF bases.
+            A copy of ``totals`` with larger INPS, TFR and IRPEF bases and
+            the issues.
         """
         return replace(
             totals,
             inps_base=totals.inps_base + self.inps_base,
             tfr_base=totals.tfr_base + self.tfr_base,
             irpef_base=totals.irpef_base + self.irpef_base,
+            issues=totals.issues + self.issues,
         )
 
 
