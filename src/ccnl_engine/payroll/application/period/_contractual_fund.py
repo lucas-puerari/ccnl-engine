@@ -15,14 +15,18 @@ the clause gives no rule for pays the full amount and traverses
 from __future__ import annotations
 
 from dataclasses import dataclass, replace
-from datetime import date, timedelta
+from datetime import timedelta
 from decimal import ROUND_HALF_UP, Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.contract.domain.validity import rule_scope
+from ccnl_engine.payroll.application.period._contractual_eligibility import (
+    not_permanent,
+    short_fixed_term,
+    worked_days,
+)
 from ccnl_engine.payroll.domain.decisions import CalculationIssue, CalculationStatus
-from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm
-from ccnl_engine.payroll.domain.events import AbsenceEvent, SicknessEpisode
+from ccnl_engine.payroll.domain.employment import Apprentice
 from ccnl_engine.payroll.domain.pension_fund import PensionFundEnrolment
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.run import RunKind
@@ -94,6 +98,8 @@ class ContractualRun:
             ``hourly[2]``...).
         paths: Limitation paths the run traversed.
         issue: Missing fact that leaves the amount out, if any.
+        not_enrolled: Series of the amount added for a worker not enrolled
+            voluntarily, when the run read it.
     """
 
     amount: Decimal = _ZERO
@@ -101,6 +107,7 @@ class ContractualRun:
     paths: frozenset[str] = frozenset()
     key: str = ""
     issue: CalculationIssue | None = None
+    not_enrolled: TimeSeries | None = None
 
 
 _NONE = ContractualRun()
@@ -119,7 +126,7 @@ def contractual_run(ctx: RunContext) -> ContractualRun:
     category = ctx.worker_category
     if spec.categories is not None and category is None:
         return ContractualRun(issue=_CATEGORY_UNKNOWN)
-    if _short_fixed_term(spec, ctx):
+    if short_fixed_term(spec, ctx) or not_permanent(spec, ctx):
         return _NONE
     if category in (spec.hourly_categories or ()):
         return _NONE if extra else _hourly(spec, ctx)
@@ -139,12 +146,19 @@ def _by_month(
     key, series = _series(spec, ctx)
     if series is None:
         return ContractualRun(issue=_UNCOVERED)
+    added = spec.not_enrolled_monthly
+    if isinstance(ctx.request.pension_fund, PensionFundEnrolment):
+        added = None
     with rule_scope(ruleset=ctx.contract.ccnl.meta.ccnl_id, feature=_FEATURE):
-        monthly = series.value_at(ctx.contract.tctx.competence)
+        day = ctx.contract.tctx.competence
+        monthly = series.value_at(day)
+        monthly += _ZERO if added is None else added.value_at(day)
     if extra:
         months = _ZERO if ctx.accrual is None else Decimal(ctx.accrual.months)
-        return ContractualRun(money(monthly * months / _TWELVE), series, key=key)
-    return _monthly(spec, ctx, monthly, ContractualRun(series=series, key=key))
+        amount = money(monthly * months / _TWELVE)
+        return ContractualRun(amount, series, key=key, not_enrolled=added)
+    read = ContractualRun(series=series, key=key, not_enrolled=added)
+    return _monthly(spec, ctx, monthly, read)
 
 
 def _hourly(spec: ContractualFundContribution, ctx: RunContext) -> ContractualRun:
@@ -188,33 +202,6 @@ def _series(
     return level, spec.monthly_by_level.get(level)
 
 
-def _short_fixed_term(spec: ContractualFundContribution, ctx: RunContext) -> bool:
-    """Return whether a fixed term too short for the clause owes nothing.
-
-    A worker enrolled voluntarily owes it whatever the length; a fixed term
-    without a stated end has not ended (``EmploymentPeriod.ended_on``).
-
-    Returns:
-        True when the fixed term lasts no more than the minimum months.
-    """
-    request = ctx.request
-    period = request.employment_period
-    if (
-        spec.minimum_fixed_term_months is None
-        or not isinstance(request.contract_type, FixedTerm)
-        or isinstance(request.pension_fund, PensionFundEnrolment)
-        or period is None
-        or period.ended_on is None
-    ):
-        return False
-    start = period.started_on
-    year, month = divmod(start.month - 1 + spec.minimum_fixed_term_months, 12)
-    first = date(start.year + year, month + 1, 1)
-    month_end = date(first.year + first.month // 12, first.month % 12 + 1, 1) - _DAY
-    # "superiore a tre mesi": the end must reach the same day three months on.
-    return period.ended_on < first.replace(day=min(start.day, month_end.day))
-
-
 def _monthly(
     spec: ContractualFundContribution,
     ctx: RunContext,
@@ -225,42 +212,17 @@ def _monthly(
     hours, full = request.weekly_hours, request.full_time_weekly_hours
     part_time = hours is not None and full is not None and hours.value < full.value
     if spec.minimum_days_in_month is not None and (
-        _worked_days(ctx) < spec.minimum_days_in_month
+        worked_days(ctx) < spec.minimum_days_in_month
     ):
         return read
     partial = ctx.proration.partial and spec.minimum_days_in_month is None
-    unruled = partial or (part_time and not spec.part_time_proportional)
+    unruled = partial or (part_time and spec.part_time_proportional is None)
     paths = frozenset(
         {f"{ctx.contract.ccnl.meta.ccnl_id}/{PARTIAL_VARIANT}"} if unruled else ()
     )
     if part_time and spec.part_time_proportional and hours and full:
         monthly = money(monthly * hours.value / full.value)
     return replace(read, amount=monthly, paths=paths)
-
-
-def _worked_days(ctx: RunContext) -> int:
-    """Return the calendar days worked in the month of the run.
-
-    The days of employment in the month, less the sick days and the days of
-    an absence without any pay (CNCE vademecum: "non si considerano utili
-    [...] le giornate di assenza per malattia [...] e aspettativa non
-    retribuita").
-
-    Returns:
-        The number of days.
-    """
-    month = ctx.request.period_id
-    first = date(month.year, month.month, 1)
-    last = date(month.year + month.month // 12, month.month % 12 + 1, 1) - _DAY
-    span = ctx.proration.span or (first, last)
-    days = {span[0] + _DAY * n for n in range((span[1] - span[0]).days + 1)}
-    for event in ctx.request.events:
-        if isinstance(event, SicknessEpisode):
-            count = (event.ended_on - event.started_on).days + 1
-            days -= {event.started_on + _DAY * n for n in range(count)}
-        elif isinstance(event, AbsenceEvent) and event.no_pay_due:
-            days -= set(event.days)
-    return len(days)
 
 
 def contractual_paths(ctx: RunContext) -> frozenset[str]:
@@ -283,11 +245,11 @@ def contractual_rules(ctx: RunContext, prefix: str) -> tuple[Rule, ...]:
     series = run.series
     if spec is None or series is None:
         return ()
-    key = run.key
-    rule = f"{prefix}:contractual_fund_contribution[{key}]"
-    periods = (series.period_at(ctx.contract.tctx.competence),)
+    rule = f"{prefix}:contractual_fund_contribution"
+    day = ctx.contract.tctx.competence
+    read = ((run.key, series), ("not_enrolled", run.not_enrolled))
     return tuple(
-        (f"{rule}[{p.valid_from}]", p.provenance or spec.provenance)
-        for p in periods
-        if p is not None
+        (f"{rule}[{key}][{p.valid_from}]", p.provenance or spec.provenance)
+        for key, s in read
+        if s is not None and (p := s.period_at(day)) is not None
     )

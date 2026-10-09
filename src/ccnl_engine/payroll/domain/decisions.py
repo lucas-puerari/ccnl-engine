@@ -133,6 +133,7 @@ PUBLIC_FACTS: Mapping[str, str] = MappingProxyType({
     "tfr_treasury_fund": "Employment.tfr_treasury_fund",
     "young_member": "PensionFundEnrolment.young_member",
     "erc_amount": "Employment.erc_amount",
+    "conventional_base": "PensionFundEnrolment.conventional_base",
 })
 
 

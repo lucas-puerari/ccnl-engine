@@ -1442,6 +1442,8 @@
     ],
     "ccnl/data/igiene-ambientale-utilitalia.json": [
       "igiene-ambientale-utilitalia/apprentice_seniority",
+      "igiene-ambientale-utilitalia/contractual_fund_partial",
+      "igiene-ambientale-utilitalia/fund_paid_month",
       "igiene-ambientale-utilitalia/industria_rates_proxy"
     ],
     "ccnl/data/impianti-sportivi-sport.json": [

@@ -251,10 +251,7 @@ def _pension_rules(ctx: RunContext) -> tuple[Rule, ...]:
         )
         for fund in funds
         for key, series in (
-            ("rate", fund.rate),
-            ("employee_min_rate", fund.employee_min_rate),
-            ("young_member_rate", fund.young_member_rate),
-            ("erc_holder_rate", fund.erc_holder_rate),
+            *fund.rate_series(),
             *((f"tier[{t.employee_from}]", t.rate) for t in fund.employer_rate_tiers),
         )
         if series is not None

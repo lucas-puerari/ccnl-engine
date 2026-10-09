@@ -67,6 +67,9 @@ class PensionFundTerms:
             is used.
         erc_unknown: Whether the fund has an ERC holder rate and the
             employment does not state the ERC: the base rate is used.
+        conventional_base: Base of a fund on a conventional base, stated by
+            the enrolment; ``None`` when not stated.
+        enrolled_monthly: Fixed employer amount of an enrolled worker.
     """
 
     fund: EmployerFund
@@ -79,6 +82,8 @@ class PensionFundTerms:
     minimum_base: Decimal = _ZERO
     young_member_unknown: bool = False
     erc_unknown: bool = False
+    conventional_base: Decimal | None = None
+    enrolled_monthly: Decimal = _ZERO
 
 
 @dataclass(frozen=True)
@@ -184,6 +189,7 @@ def resolve_terms(
     if rules is None:
         msg = f"no complementary pension rules for the tax year of {day}"
         raise InvalidInputError(msg, feature=PENSION_FEATURE)
+    fixed = _in_force(fund.enrolled_monthly, day)
     return PensionFundTerms(
         fund=fund,
         rate_period=in_force[0],
@@ -196,6 +202,8 @@ def resolve_terms(
         young_member_unknown=fund.young_member_rate is not None
         and enrolment.young_member is None,
         erc_unknown=fund.erc_holder_rate is not None and erc_amount is None,
+        conventional_base=enrolment.conventional_base,
+        enrolled_monthly=_ZERO if fixed is None else fixed[1],
     )
 
 

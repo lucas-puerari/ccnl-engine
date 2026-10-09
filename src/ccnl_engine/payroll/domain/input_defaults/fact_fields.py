@@ -100,6 +100,14 @@ FACT_DEFAULTS: Mapping[str, FieldDefault] = {
         "uses its base rate and the run has a missing_fact young_member "
         "blocker",
     ),
+    "PensionFundEnrolment.conventional_base": requires_fact(
+        "pension_fund_contribution",
+        "employment.pension_fund.conventional_base",
+        _REPORTED,
+        "unknown conventional base: a fund on a conventional base "
+        "(Previambiente) leaves its rates out and the run has a missing_fact "
+        "conventional_base blocker",
+    ),
     "EmploymentSpell.unpaid_days": absence_is_fact(
         "every day of the spell was paid; the days without any pay are listed"
     ),

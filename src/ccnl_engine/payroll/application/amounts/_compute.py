@@ -15,8 +15,10 @@ from ccnl_engine.payroll.application.amounts._irpef import (
     withhold_irpef,
 )
 from ccnl_engine.payroll.application.amounts._pension import (
+    CONVENTIONAL_BASE_UNKNOWN,
     ERC_UNKNOWN,
     YOUNG_MEMBER_UNKNOWN,
+    conventional_base_unknown,
     run_pension,
 )
 from ccnl_engine.payroll.application.amounts._surtax import run_surtax
@@ -74,12 +76,14 @@ def _issues(inp: _AmountsInput, irpef: _Irpef) -> tuple[CalculationIssue, ...]:
     pension = inp.pension
     young = pension is not None and pension.young_member_unknown
     erc = pension is not None and pension.erc_unknown
+    conventional = conventional_base_unknown(pension)
     return (
         family
         + ulteriore_issues(inp, irpef)
         + (() if contractual is None else (contractual,))
         + ((YOUNG_MEMBER_UNKNOWN,) if young else ())
         + ((ERC_UNKNOWN,) if erc else ())
+        + ((CONVENTIONAL_BASE_UNKNOWN,) if conventional else ())
     )
 
 

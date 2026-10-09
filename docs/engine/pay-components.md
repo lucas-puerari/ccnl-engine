@@ -414,6 +414,22 @@ uses 1.9% and has the issue `pension_fund_erc_unknown`. The
 same amount is paid with the tredicesima (see the extra months in the
 engine overview).
 
+Previambiente, on the CCNL Servizi Ambientali (art. 65 lett. A), computes
+2.033% employer and at least 1.30% employee on a conventional base
+(`contribution_base` `conventional`): the base pay of the level at 1
+January 1997, its contingenza and one scatto. The CCNL tables give it for
+the levels before the classification of 1 February 2026 only, so the
+enrolment states it in `PensionFundEnrolment.conventional_base`; left
+`None`, the rates are left out with the issue
+`pension_fund_conventional_base_unknown`. A higher employee rate goes on the
+TFR base. An enrolled worker adds 22 EUR a month (30.50 EUR from January
+2027, `EmployerFund.enrolled_monthly`); every member owes the 5 EUR
+insurance, and a worker not enrolled on a permanent contract or an
+apprenticeship 10 EUR more (`ContractualFundContribution.not_enrolled_monthly`,
+`permanent_only`), on 12 monthly payments. A month without pay owes nothing
+of c. 5 (`paid_month_only`); a month paid in part has the open limitation
+`fund_paid_month`.
+
 Cometa computes on the contractual minimum of the level
 (`contribution_base` `contractual_minimum`, the base salary of the pay
 chain): employer 2%, employee at least 1.2%. A higher employee rate goes on

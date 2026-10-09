@@ -43,7 +43,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | inps_employer, seniority |
+| **Limits of this contract** | inps_employer, pension_fund_contribution, seniority |
 
 ### Verifica
 
@@ -63,7 +63,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 
 ### Semplificazioni note
 
-3 semplificazioni documentate.
+5 semplificazioni documentate.
 Vedi [Known simplifications](#known-simplifications) per i dettagli.
 
 ## Salary table
@@ -145,6 +145,20 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
+!!! warning "igiene-ambientale-utilitalia/fund_paid_month · pension_fund_contribution · impact yes · open"
+    Previambiente is due on the pay of the month (art. 65 c. 8): none for a month without pay, and 'commisurato alla retribuzione corrisposta' for a month with a paid absence, a rule the engine does not compute. A month paid in part (an unpaid absence, sickness, a partial month) keeps the full contributions of an enrolled worker.
+
+    **Applies when:** `pension_fund_contribution` applies; the run takes the engine code path.
+
+    **Remediation:** Source how the contributions are proportioned to the pay of a month paid in part, model it, then remove this note.
+
+!!! warning "igiene-ambientale-utilitalia/contractual_fund_partial · pension_fund_contribution · impact unknown · open"
+    The Previambiente contractual contribution (5 EUR, 15 EUR for a worker not enrolled voluntarily) is owed in full on a partly employed month; the CCNL states no rule for it.
+
+    **Applies when:** `pension_fund_contribution` applies; the run takes the engine code path.
+
+    **Remediation:** Source the rule of art. 65 for a partly employed month, model it, then remove this note.
+
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
 
@@ -186,7 +200,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     APPRENTICESHIP PERCENTAGE BASE. Art. 14 punto 8 (CCNL K540 testo consolidato 09/12/2025, fonte: utroppitu.eu) dispone che le indennità ex Art. 32 lett. D (indennità integrativa EUR 50.00) siano corrisposte per intero dal 1° periodo di formazione — pagamento a valore pieno, non soggetto alla percentuale. L'EDR (EUR 10.33, Art. 27 c.4 lett. d, Accordo interconfederale 31/07/1992) non è citato in Art. 14; per sua natura di elemento fisso interconfederale è trattato come esente dalla percentuale. Entrambi modellati con apprenticeship_pct_relevant=false.
     
-    BILATERAL FUNDS. FASDA healthcare (Fondo Assistenza Sanitaria Dipendenti Aziende di Servizi Ambientali) and Previambiente supplementary pension fund contributions are not modelled.
+    BILATERAL FUNDS. FASDA healthcare (Fondo Assistenza Sanitaria Dipendenti Aziende di Servizi Ambientali) contributions are not modelled. Previambiente is (art. 65 lett. A); the conversion of the scatti into fund contributions of lett. A) bis, an option of the new hires, and the contractual contribution of a worker who adheres with the TFR alone (c. 12) are not.
     
 
 ## Raw data

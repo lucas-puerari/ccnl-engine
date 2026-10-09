@@ -46,6 +46,10 @@ class PensionFundEnrolment:
             favours for the age at enrolment (Cometa: enrolled after 5
             February 2021 before turning 35), read only by a fund with a
             ``young_member_rate``; ``None`` when not stated.
+        conventional_base: Monthly base the fund applies to the worker, read
+            only by a fund on a conventional base (Previambiente: the base
+            pay of the level at 1 January 1997, its contingenza and one
+            scatto, e.g. 2077.84 for a quadro); ``None`` when not stated.
 
     Raises:
         InvalidInputError: When a field is not of its type, ``fund_code``
@@ -56,6 +60,7 @@ class PensionFundEnrolment:
     employee_rate: Decimal
     tfr_to_fund: bool
     young_member: bool | None = None
+    conventional_base: Decimal | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         owner = "PensionFundEnrolment"
@@ -77,6 +82,13 @@ class PensionFundEnrolment:
             require_bool(
                 self.young_member, f"{owner}.young_member", feature=PENSION_FEATURE
             )
+        require_decimal(
+            self.conventional_base,
+            f"{owner}.conventional_base",
+            feature=PENSION_FEATURE,
+            minimum=_ZERO,
+            optional=True,
+        )
 
 
 @dataclass(frozen=True, slots=True)
