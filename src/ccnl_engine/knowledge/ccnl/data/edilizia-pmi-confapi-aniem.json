@@ -114,6 +114,19 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "The Fondapi contractual contribution (10 EUR riparametrati a month) is owed on every run that pays the month, in full; the Scheda states no rule for a partly employed month, a part-time worker or the extra months: a partial month or part time pays the full amount, an extra-month run none.",
+        "capability": "pension_fund_contribution",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "contractual_fund_partial",
+          "applies_when": {
+            "trigger": "path"
+          },
+          "remediation": "Source the rule of the CCNL Confapi Aniem for a partial month and part time and model it, then remove this note."
+        }
       }
     ]
   },
@@ -253,6 +266,130 @@
           "effective_from": "2025-04-01"
         },
         "note": "Clause of the impiegati; operai receive the gratifica through the Cassa Edile accrual. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
+    },
+    "employer_funds": [
+      {
+        "code": "FONDAPI",
+        "description": "Fondapi - Fondo pensione complementare per i lavoratori delle piccole e medie imprese",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0110"
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0110"
+            }
+          ]
+        },
+        "contribution_base": "tfr_base",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "fondapi-nota-informativa-2026",
+              "title": "Fondapi Nota informativa, Parte I, scheda 'I destinatari e i contributi' (29 luglio 2026)",
+              "kind": "altro",
+              "url": "https://www.fondapi.it/documenti/i-destinatari-e-i-contributi"
+            },
+            "section": "CCNL PMI EDILI ED AFFINI",
+            "quote": "Minima stabilita dal CCNL: 1,10% calcolata su 'Retribuzione TFR' [...] Aliquota stabilita dal CCNL (cfr. tabella) calcolata su 'Retribuzione TFR'; Contributo mensile di euro 8 (riparametrati su base 100) per tutti i lavoratori in forza presso l'Azienda. [...] Per i lavoratori che alla stessa data non risultino iscritti a Fondapi, il suddetto contributo comporta l'adesione contrattuale degli stessi al Fondo medesimo. Il contributo mensile contrattuale viene aumentato di euro 2,00 a parametro 100 (operaio comune) a partire dal 1° ottobre 2019 (CCNL CONFAPI ANIEM Accordo di rinnovo del 29/07/2019). Contributo lavoratore iscritto 1,10% o superiore; Contributo azienda dal 1/10/2019 1,10% + 10 euro (riparametrati su base 100); Lavoratore non iscritto 10 euro (riparametrati su base 100)"
+          },
+          "transformation": "Employer 1.10% and worker minimum 1.10% of the retribuzione TFR, the ordinary contributions of an enrolled worker, beside the contractual 10 EUR riparametrati.",
+          "note": "Read from the PDF the url serves (sha256 7e9b29394505b6cd14125c88c6f0cc4ba78c14f026b546bb387636e40e42ee15), text layer. No human review recorded."
+        }
+      }
+    ],
+    "contractual_fund_contribution": {
+      "code": "FONDAPI",
+      "description": "Fondapi - contributo contrattuale del CCNL PMI edili Confapi Aniem",
+      "monthly_by_level": {
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "10.00"
+            }
+          ]
+        },
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "11.70"
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "13.00"
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "14.00"
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "15.00"
+            }
+          ]
+        },
+        "6": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "18.00"
+            }
+          ]
+        },
+        "7": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "20.00"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "fondapi-nota-informativa-2026",
+            "title": "Fondapi Nota informativa, Parte I, scheda 'I destinatari e i contributi' (29 luglio 2026)",
+            "kind": "altro",
+            "url": "https://www.fondapi.it/documenti/i-destinatari-e-i-contributi"
+          },
+          "section": "CCNL PMI EDILI ED AFFINI",
+          "quote": "Minima stabilita dal CCNL: 1,10% calcolata su 'Retribuzione TFR' [...] Aliquota stabilita dal CCNL (cfr. tabella) calcolata su 'Retribuzione TFR'; Contributo mensile di euro 8 (riparametrati su base 100) per tutti i lavoratori in forza presso l'Azienda. [...] Per i lavoratori che alla stessa data non risultino iscritti a Fondapi, il suddetto contributo comporta l'adesione contrattuale degli stessi al Fondo medesimo. Il contributo mensile contrattuale viene aumentato di euro 2,00 a parametro 100 (operaio comune) a partire dal 1° ottobre 2019 (CCNL CONFAPI ANIEM Accordo di rinnovo del 29/07/2019). Contributo lavoratore iscritto 1,10% o superiore; Contributo azienda dal 1/10/2019 1,10% + 10 euro (riparametrati su base 100); Lavoratore non iscritto 10 euro (riparametrati su base 100)"
+        },
+        "transformation": "10 EUR x parametro / 100 for each level: 1: 10 x 100 / 100 = 10.00, 2: 10 x 117 / 100 = 11.70, 3: 10 x 130 / 100 = 13.00, 4: 10 x 140 / 100 = 14.00, 5: 10 x 150 / 100 = 15.00, 6: 10 x 180 / 100 = 18.00, 7: 10 x 200 / 100 = 20.00. The parametri are inferred: the Scheda does not list them, and the minima of the table of 1 April 2025, in force in 2026, follow the scale exactly (1 1087.99, 2 1272.94, 3 1414.38, 4 1523.17, 5 1631.98, 6 1958.36, 7 2175.96, level I = 100, the operaio comune of the clause).",
+        "note": "Read from the PDF the url serves (sha256 7e9b29394505b6cd14125c88c6f0cc4ba78c14f026b546bb387636e40e42ee15). The Scheda states no rule for a partial month, part time or the extra months: the engine owes it in full on the runs that pay the month, with the open limitation contractual_fund_partial, and none on an extra-month run. No human review recorded."
       }
     }
   },
@@ -1453,7 +1590,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
     "verification_status": "verified",
-    "source_hash": "f07267d7d342e5091ae7dd4432fbc5c9d4bbb3f297cb8faccea7a87227714974",
+    "source_hash": "56cc20f0e2d694b7ddc25c44963d72cca6d39e37cf093c48bbe9ae8e93942e8e",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },

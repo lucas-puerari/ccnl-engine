@@ -3,6 +3,57 @@
 Continues the [Migration guide](migration.md); the oldest changes are on
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Partial hire and termination months prorated by the CCNL daily quota
+
+The regular run of a month the employment covers only in part pays the CCNL
+daily quotas of its employed days instead of the full monthly pay. The quota
+is `work_rules.absence_rules.daily_divisor_method` of the CCNL (`by_26`,
+`by_30` or `by_hourly`); see the engine guide for how days are counted.
+
+| Before | After |
+|---|---|
+| Full monthly pay with a provisional `partial_month_not_prorated` issue (year plans only; `calculate_period` paid the full month silently) | Prorated pay in `calculate_period` and in both year plans; the issue code is gone |
+| `base_salary` decision reason `pay_chain_applied` on every run | `pay_chain_prorated` on a prorated run, with `employed_from`, `employed_until`, `divisor_method`, `payable_days`, `divisor` inputs |
+| A CCNL without a daily quota paid the full month | No pay posted; `base_salary` decision `provisional`, reason `partial_month_rule_missing`, no amount; `incomplete` issue `partial_month_rule_missing`; not payable |
+
+- Termination and adjustment runs no longer repeat the monthly pay. A
+  termination run after the regular run of its month, and every adjustment
+  run, post only their own items (`base_salary` reason
+  `monthly_pay_posted_by_another_run`, amount 0.00); a termination run with
+  no regular run of its month before it pays the month, prorated. Callers
+  who relied on the termination or adjustment run carrying a month of pay
+  must declare those amounts as events.
+- A caller who prorated `period_gross` itself must stop: the engine now
+  prorates the pay chain, so the TFR, INPS and IRPEF of the run follow.
+- An unpaid absence that deducts more than the prorated pay is rejected
+  (`InvalidInputError`), as on a full month.
+
+## Art. 12 family deductions on the reddito complessivo
+
+The family deductions follow the text in force of art. 12 TUIR: the spouse
+increase bands of lett. b, the four-decimal ratios of c. 4, months of
+dependency counted from dated conditions (c. 3), and the reddito complessivo
+of the year instead of the income of this employment alone.
+
+| Before | After |
+|---|---|
+| `Dependent.months_dependent` (a count, 1-12) | `Dependent.dependent_from` / `dependent_until` (dates, `None` for open); the months are derived, both ends included |
+| `Dependent(relationship=CHILD)` without `birth_date` was treated as eligible | Rejected: a child needs its `birth_date`; the age band 21-29 is checked every month |
+| The employment income of the run stood for the reddito complessivo | `PeriodInput.current_year` (also `CompetenceYearPlan.current_year`, `TaxYearPlan.current_year`): `CurrentYearTaxFacts(tax_year, other_employment_income, other_income, main_dwelling_income, estimated_on, quality)`; `CurrentYearTaxFacts.employment_only(tax_year, estimated_on)` for no other income |
+| Spouse deduction 690 flat from 15,000 to 40,000 | 690 plus 10-30 in the five bands from 29,000 to 35,200 (lett. b) |
+| Ratios not truncated; spouse with no income 800 | Ratios truncated to four decimals; no deduction with no income (c. 4) |
+| Under-24 own-income limit of 4,000 for children under 24 | For children who turn at most 24 in the year |
+| `family_deductions` decision always `final`, rule `art12-tuir` | `final`, or `provisional` with `required_fact_missing` (no amount; incomplete issue `family_income_unknown`, `fact="current_year"`) or `estimated_income_at_conguaglio`; rule `tax/<year>/family-deductions` |
+| `family_deductions` capability `partial` (a `partial_implementation` gap) | `native` |
+| `compute_family_deductions(...)` returned a 4-tuple, from `payroll.service.family_deductions` | `payroll.service.family.deductions.compute_family_deductions` returns `FamilyDeductions` (one `DependentDeduction` per dependent); spouse, children and ascendants in `payroll.service.family.{spouse,children,ascendants}` |
+| `SpouseDeductionRules.breakpoints`, `DeductionBreakpoint` | Statutory parameters on `SpouseDeductionRules`, the bands in `FamilyDeductionRules.spouse_increases`, `ratio_decimals` |
+
+- New public names: `CurrentYearTaxFacts`, `IncomeEstimateQuality`;
+  `FamilyComposition.sole_parent`.
+- A run with a dependent entitled in some month and no `current_year` of its
+  tax year is not payable: state the other income, zero included.
+
+
 ## Competence and tax year plans, conguaglio by payment
 
 A year is now planned two ways: by competence (the runs of one year) and by

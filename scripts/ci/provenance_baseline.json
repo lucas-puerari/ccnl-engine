@@ -1394,6 +1394,7 @@
     "ccnl/data/edilizia-pmi-confapi-aniem.json": [
       "edilizia-pmi-confapi-aniem/apprentice_its_evr_missing",
       "edilizia-pmi-confapi-aniem/apprentice_seniority",
+      "edilizia-pmi-confapi-aniem/contractual_fund_partial",
       "edilizia-pmi-confapi-aniem/operai_gruppo_3_track_merged"
     ],
     "ccnl/data/elettrico-elettricita-futura.json": [
