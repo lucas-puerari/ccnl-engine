@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Level III minimum of the building PMI from March 2027
+
+| Before | After |
+|---|---|
+| Level 3 of `edilizia-pmi-confapi-aniem` from 1 March 2027: 1551.88 | 1511.88, the nuovo minimo of Allegati A and B of the CCNL armonizzato 15/04/2025 |
+
 ## Fondapi on the building PMI
 
 | Before | After |

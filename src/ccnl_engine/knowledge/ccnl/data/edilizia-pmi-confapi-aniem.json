@@ -388,7 +388,7 @@
           "section": "CCNL PMI EDILI ED AFFINI",
           "quote": "Minima stabilita dal CCNL: 1,10% calcolata su 'Retribuzione TFR' [...] Aliquota stabilita dal CCNL (cfr. tabella) calcolata su 'Retribuzione TFR'; Contributo mensile di euro 8 (riparametrati su base 100) per tutti i lavoratori in forza presso l'Azienda. [...] Per i lavoratori che alla stessa data non risultino iscritti a Fondapi, il suddetto contributo comporta l'adesione contrattuale degli stessi al Fondo medesimo. Il contributo mensile contrattuale viene aumentato di euro 2,00 a parametro 100 (operaio comune) a partire dal 1° ottobre 2019 (CCNL CONFAPI ANIEM Accordo di rinnovo del 29/07/2019). Contributo lavoratore iscritto 1,10% o superiore; Contributo azienda dal 1/10/2019 1,10% + 10 euro (riparametrati su base 100); Lavoratore non iscritto 10 euro (riparametrati su base 100)"
         },
-        "transformation": "10 EUR x parametro / 100 for each level: 1: 10 x 100 / 100 = 10.00, 2: 10 x 117 / 100 = 11.70, 3: 10 x 130 / 100 = 13.00, 4: 10 x 140 / 100 = 14.00, 5: 10 x 150 / 100 = 15.00, 6: 10 x 180 / 100 = 18.00, 7: 10 x 200 / 100 = 20.00. The parametri are inferred: the Scheda does not list them, and the minima of the table of 1 April 2025, in force in 2026, follow the scale exactly (1 1087.99, 2 1272.94, 3 1414.38, 4 1523.17, 5 1631.98, 6 1958.36, 7 2175.96, level I = 100, the operaio comune of the clause).",
+        "transformation": "10 EUR x parametro / 100 for each level: 1: 10 x 100 / 100 = 10.00, 2: 10 x 117 / 100 = 11.70, 3: 10 x 130 / 100 = 13.00, 4: 10 x 140 / 100 = 14.00, 5: 10 x 150 / 100 = 15.00, 6: 10 x 180 / 100 = 18.00, 7: 10 x 200 / 100 = 20.00. The parametri are those of the column Par. of Allegati A and B of the CCNL Confapi Aniem armonizzato 15/04/2025 (I 100 operaio comune, II 117, III 130, IV 140, V 150, impiegati di 1a 180, quadri 200), the source of the minima of this file.",
         "note": "Read from the PDF the url serves (sha256 7e9b29394505b6cd14125c88c6f0cc4ba78c14f026b546bb387636e40e42ee15). The Scheda states no rule for a partial month, part time or the extra months: the engine owes it in full on the runs that pay the month, with the open limitation contractual_fund_partial, and none on an extra-month run. No human review recorded."
       }
     }
@@ -929,7 +929,7 @@
           {
             "valid_from": "2027-03-01",
             "valid_until": null,
-            "value": "1551.88",
+            "value": "1511.88",
             "provenance": {
               "status": "derived",
               "location": {
@@ -1590,7 +1590,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
     "verification_status": "verified",
-    "source_hash": "56cc20f0e2d694b7ddc25c44963d72cca6d39e37cf093c48bbe9ae8e93942e8e",
+    "source_hash": "7a889cd2037d5ef7a09e4cc0d7cfea4611886a162f050930a8769fadac8a8c53",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },
