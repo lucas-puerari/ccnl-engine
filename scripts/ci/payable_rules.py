@@ -316,17 +316,29 @@ def _fund_rules(file: str, funds: object) -> Iterator[PayableRule]:
     for fund in funds if isinstance(funds, list) else []:
         inherited = fund.get("provenance")
         tiers = fund.get("employer_rate_tiers") or []
-        series = {key: fund.get(key) for key in _FUND_SERIES} | {
-            f"employer_rate_tiers[{tier.get('employee_from')}]": tier.get("rate")
-            for tier in tiers
-        }
+        conversion = fund.get("seniority_conversion") or {}
+        series = (
+            {key: fund.get(key) for key in _FUND_SERIES}
+            | {
+                f"employer_rate_tiers[{tier.get('employee_from')}]": tier.get("rate")
+                for tier in tiers
+            }
+            | {
+                f"seniority_conversion[{level}]": values
+                for level, values in (conversion.get("by_level") or {}).items()
+            }
+        )
         for key, values in series.items():
             for period in _periods(values):
                 path = (
                     f"employer_funds[{fund.get('code')}].{key}"
                     f"[{period.get('valid_from')}]"
                 )
-                record = period.get("provenance") or inherited
+                record = (
+                    period.get("provenance") or conversion.get("provenance")
+                    if key.startswith("seniority_conversion")
+                    else period.get("provenance") or inherited
+                )
                 yield _rule(file, path, ("pension_fund_contribution",), record)
 
 

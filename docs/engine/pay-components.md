@@ -428,7 +428,12 @@ insurance, and a worker not enrolled on a permanent contract or an
 apprenticeship 10 EUR more (`ContractualFundContribution.not_enrolled_monthly`,
 `permanent_only`), on 12 monthly payments. A month without pay owes nothing
 of c. 5 (`paid_month_only`); a month paid in part has the open limitation
-`fund_paid_month`.
+`fund_paid_month`. A new hire may convert the seniority increments into
+contributions (lett. A) bis, `PensionFundEnrolment.seniority_to_fund`): the
+pay holds no increment, and the employer pays the fund the amount of each
+increment matured, at most 10 (`EmployerFund.seniority_conversion`: the
+increment x 1.10 x 14 / 12, 50.27 EUR for a quadro), on 12 monthly
+payments.
 
 A worker who confers the TFR alone states `employee_rate` zero (with
 `tfr_to_fund`): neither side contributes, the TFR goes to the fund, and a

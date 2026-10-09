@@ -104,7 +104,7 @@ Capabilities of the registry by layer and implementation:
 | 50 | B371 | [CCNL Gomma e Plastica Industria (Federazione Gomma Plastica)](gomma-plastica-federazione-gomma-plastica.md) | gomma-plastica | ~90k | — | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 77 / 1 / 1 | 🧪 | 🤖 |
 | 51 | G011 | [CCNL Grafica e Editoria Industria (AIEG-Acigraf)](grafica-editoria-aieg.md) | grafica-editoria | ~70k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 71 / 1 / 1 | 🧪 | 🤖 |
 | 52 | T511 | [CCNL Gruppo ANAS](anas.md) | anas spa - personale non dirigente | ~7k | 2025 | 🔲 | 🔲 | 🔲 | seniority | 0 / 42 / 2 / 0 | 🧪 | 🤖 |
-| 53 | K540 | [CCNL Igiene Ambientale — Servizi Ambientali e di Igiene Urbana](igiene-ambientale-utilitalia.md) | servizi ambientali | ~65k | 2025 | 🔲 | 🔲 | 🔲 | inps_employer, pension_fund_contribution, seniority | 0 / 127 / 1 / 1 | 🧪 | 🤖 |
+| 53 | K540 | [CCNL Igiene Ambientale — Servizi Ambientali e di Igiene Urbana](igiene-ambientale-utilitalia.md) | servizi ambientali | ~65k | 2025 | 🔲 | 🔲 | 🔲 | inps_employer, pension_fund_contribution, seniority | 0 / 143 / 1 / 1 | 🧪 | 🤖 |
 | 54 | H077 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | impianti sportivi, palestre e attività sportive | 35533 | 2024 | 🔲 | 🔲 | 🔲 | base_salary, overtime, sickness | 0 / 32 / 1 / 1 | 🧪 | 🤖 |
 | 55 | A021 | [CCNL Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti](impiegati-tecnici-agricoli.md) | agricoltura | ~80k | 2024 | 🔲 | 🔲 | 🔲 | base_salary, bilateral_funds | 0 / 15 / 1 / 1 | 🧪 | 🤖 |
 | 56 | B011 | [CCNL Industria Chimica e Farmaceutica (Federchimica-Farmindustria-Assistal)](chimica-farmaceutica-federchimica.md) | chimica | ~210k | — | 🔲 | 🔲 | 🔲 | — | 0 / 98 / 1 / 1 | 🧪 | 🤖 |

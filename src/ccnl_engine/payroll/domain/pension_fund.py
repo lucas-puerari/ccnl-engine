@@ -52,6 +52,10 @@ class PensionFundEnrolment:
             only by a fund on a conventional base (Previambiente: the base
             pay of the level at 1 January 1997, its contingenza and one
             scatto, e.g. 2077.84 for a quadro); ``None`` when not stated.
+        seniority_to_fund: Whether the worker opted to convert the
+            seniority increments into fund contributions, read only by a
+            fund with a ``seniority_conversion`` (Previambiente art. 65
+            lett. A) bis): not unless stated.
 
     Raises:
         InvalidInputError: When a field is not of its type, ``fund_code``
@@ -64,6 +68,7 @@ class PensionFundEnrolment:
     tfr_to_fund: bool
     young_member: bool | None = None
     conventional_base: Decimal | None = None
+    seniority_to_fund: bool = False
 
     @property
     def tfr_only(self) -> bool:
@@ -96,6 +101,11 @@ class PensionFundEnrolment:
             require_bool(
                 self.young_member, f"{owner}.young_member", feature=PENSION_FEATURE
             )
+        require_bool(
+            self.seniority_to_fund,
+            f"{owner}.seniority_to_fund",
+            feature=PENSION_FEATURE,
+        )
         require_decimal(
             self.conventional_base,
             f"{owner}.conventional_base",

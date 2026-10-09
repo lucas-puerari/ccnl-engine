@@ -6,6 +6,8 @@ are invalid the same error is raised first on every call.
 
 from __future__ import annotations
 
+from dataclasses import replace
+from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application._period_utils import (
@@ -19,6 +21,9 @@ from ccnl_engine.payroll.application.period._context import RunContext
 from ccnl_engine.payroll.application.period._contract import load_contract
 from ccnl_engine.payroll.application.period._proration import run_proration
 from ccnl_engine.payroll.application.period._seniority import seniority_months_at
+from ccnl_engine.payroll.application.period._seniority_conversion import (
+    seniority_conversion,
+)
 from ccnl_engine.payroll.application.period._termination_ratei import (
     run_settlements,
 )
@@ -59,11 +64,14 @@ def _base_chain(
 ) -> tuple[MonthlyPayChain, ApprenticeshipScaling | None]:
     """Return the pay chain of a regular month for the worker.
 
+    A worker who converted the seniority increments into fund
+    contributions is paid none (:mod:`._seniority_conversion`).
+
     Returns:
         The chain before any extra-month adjustment, and the apprenticeship
         scaling applied to it.
     """
-    return _resolve_chain(
+    chain, scaling = _resolve_chain(
         contract.ccnl,
         contract.level,
         request.contract_type,
@@ -76,6 +84,9 @@ def _base_chain(
         weekly_hours=_int_value(request.weekly_hours),
         full_time_weekly_hours=_int_value(request.full_time_weekly_hours),
     )
+    if seniority_conversion(contract.ccnl, request) is not None:
+        chain = replace(chain, seniority=Decimal(0))
+    return chain, scaling
 
 
 def build_context(

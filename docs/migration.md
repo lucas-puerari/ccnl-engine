@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Seniority increments converted into Previambiente contributions
+
+| Before | After |
+|---|---|
+| The option of art. 65 lett. A) bis of the CCNL Servizi Ambientali could not be stated | `PensionFundEnrolment.seniority_to_fund` (default `False`): the pay chain holds no seniority increment and the employer pays the fund the increments matured, at most 10, at the amounts of the new `EmployerFund.seniority_conversion`; a fund without one rejects the option |
+
 ## Conferring the TFR alone to a pension fund
 
 | Before | After |

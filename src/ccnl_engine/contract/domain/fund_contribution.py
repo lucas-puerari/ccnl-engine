@@ -49,6 +49,27 @@ class EmployerRateTier(BaseModel):
     rate: TimeSeries
 
 
+class SeniorityConversion(BaseModel):
+    """Seniority increments a worker converts into fund contributions.
+
+    Previambiente art. 65 lett. A) bis: a new hire who opts for it is paid
+    no seniority increment; the employer pays the fund, on 12 monthly
+    payments, an amount per increment matured "maggiorato del 10% e
+    riproporzionato su 12 mensilità", up to ``maximum_count`` of them.
+
+    Attributes:
+        by_level: Amount a month per increment matured, for each level.
+        maximum_count: Increments the conversion counts at most.
+        provenance: Source of the clause.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    by_level: dict[str, TimeSeries]
+    maximum_count: int = Field(ge=1)
+    provenance: RuleProvenance
+
+
 class EmployerFund(BaseModel):
     """An employer-side contribution to a contractual fund (e.g. a pension fund).
 
@@ -82,6 +103,8 @@ class EmployerFund(BaseModel):
     month: none for a month without pay; a month paid in part (an unpaid
     absence, sickness, a partial month) traverses the open limitation
     ``fund_paid_month`` the CCNL declares (Previambiente art. 65 c. 8).
+    ``seniority_conversion`` is the conversion of the seniority increments
+    a worker may opt for (``PensionFundEnrolment.seniority_to_fund``).
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -101,6 +124,7 @@ class EmployerFund(BaseModel):
     erc_holder_rate: TimeSeries | None = None
     enrolled_monthly: TimeSeries | None = None
     paid_month_only: bool = False
+    seniority_conversion: SeniorityConversion | None = None
 
     def rate_series(self) -> tuple[tuple[str, TimeSeries | None], ...]:
         """Return the series of the fund a run may read, by key.
