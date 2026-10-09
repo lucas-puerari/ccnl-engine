@@ -29,7 +29,9 @@ sentence of the art. 23 rule), the carry-over of the excess foreign tax
 c. 4 TUIR).  The regional and municipal surtax are due only when the IRPEF
 net of this credit is due (D.Lgs. 446/1997 art. 50 c. 2, "crediti di cui
 agli articoli 14 e 15" of the TUIR in its former numbering; D.Lgs. 360/1998
-art. 1 c. 4, "credito di cui all'articolo 165").
+art. 1 c. 4, "credito di cui all'articolo 165").  From 1 January 2027 the
+testo unico of D.Lgs. 117/2026 carries art. 165 TUIR as its art. 185
+("Credito d'imposta per i redditi prodotti all'estero"), c. 1 unchanged.
 """
 
 from __future__ import annotations
@@ -46,12 +48,24 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.service.irpef_net import NetIrpef
     from ccnl_engine.tax.domain.ruleset import YearRules
 
-__all__ = ["CAPABILITY", "ForeignCredit", "foreign_tax_credit"]
+__all__ = ["CAPABILITY", "ForeignCredit", "foreign_credit_rule", "foreign_tax_credit"]
 
 CAPABILITY = "foreign_tax_credit"
-_RULE = "tuir-art165-c1"
+#: First tax year of the testo unico of D.Lgs. 117/2026.
+_TESTO_UNICO_FROM = 2027
 _ZERO = Decimal(0)
 _ONE = Decimal(1)
+
+
+def foreign_credit_rule(tax_year: int) -> tuple[str, str]:
+    """Return the rule id and the citation of the credit for ``tax_year``.
+
+    Returns:
+        Art. 185 c. 1 D.Lgs. 117/2026 from 2027, art. 165 c. 1 TUIR before.
+    """
+    if tax_year >= _TESTO_UNICO_FROM:
+        return "dlgs117-2026-art185-c1", "Art. 185 D.Lgs. 117/2026"
+    return "tuir-art165-c1", "Art. 165 TUIR"
 
 
 @dataclass(frozen=True, slots=True)
@@ -120,7 +134,7 @@ def foreign_tax_credit(
         capability=CAPABILITY,
         status=CalculationStatus.FINAL,
         reason_code="credit_applied" if amount == total else "limited_to_net_tax",
-        rule=_RULE,
+        rule=foreign_credit_rule(rules.year)[0],
         rule_version=(
             str(rules.year) if rules.ruleset is None else rules.ruleset.version
         ),

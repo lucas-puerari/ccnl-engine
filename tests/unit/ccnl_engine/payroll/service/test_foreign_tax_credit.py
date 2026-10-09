@@ -13,7 +13,10 @@ import pytest
 
 from ccnl_engine.contract.domain.identity import TaxSector
 from ccnl_engine.payroll.domain.foreign_tax import ForeignTaxPaid
-from ccnl_engine.payroll.service.foreign_tax_credit import foreign_tax_credit
+from ccnl_engine.payroll.service.foreign_tax_credit import (
+    foreign_credit_rule,
+    foreign_tax_credit,
+)
 from ccnl_engine.payroll.service.irpef_net import NetIrpef
 from ccnl_engine.tax.service.tax_annual_assembler import load_year_rules
 
@@ -95,3 +98,22 @@ def test_credit_lowers_the_net_irpef() -> None:
     )
     assert annual.net_before_credit == Decimal(7000)
     assert annual.net == Decimal(4500)
+
+
+@pytest.mark.parametrize(
+    ("tax_year", "rule", "citation"),
+    [
+        (2026, "tuir-art165-c1", "Art. 165 TUIR"),
+        (2027, "dlgs117-2026-art185-c1", "Art. 185 D.Lgs. 117/2026"),
+    ],
+)
+def test_rule_follows_the_norm_in_force(
+    tax_year: int, rule: str, citation: str
+) -> None:
+    """Art. 165 TUIR until 2026, art. 185 D.Lgs. 117/2026 from 2027.
+
+    Normattiva, accessed 2026-10-09: art. 185 of the testo unico, "Credito
+    d'imposta per i redditi prodotti all'estero (articolo 165 decreto del
+    Presidente della Repubblica 22 dicembre 1986, n. 917)", c. 1 unchanged.
+    """
+    assert foreign_credit_rule(tax_year) == (rule, citation)
