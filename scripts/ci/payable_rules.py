@@ -292,7 +292,13 @@ def _overtime_rules(file: str, work_rules: object) -> Iterator[PayableRule]:
 
 
 #: Rate series of an employer fund.
-_FUND_SERIES = ("rate", "employee_min_rate", "apprentice_rate", "young_member_rate")
+_FUND_SERIES = (
+    "rate",
+    "employee_min_rate",
+    "apprentice_rate",
+    "young_member_rate",
+    "erc_holder_rate",
+)
 
 
 def _fund_rules(file: str, funds: object) -> Iterator[PayableRule]:

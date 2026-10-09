@@ -2,9 +2,10 @@
 
 Part of :data:`tests.fixtures.default_cases.DEFAULT_CASES`: the explicit
 Concia D2 moved to Metalmeccanico Federmeccanica C3 and enrolled in Cometa,
-whose employer rate is higher for a young member, and moved to Edilizia
+whose employer rate is higher for a young member, moved to Edilizia
 industria as an operaio, whose Prevedi contractual contribution is an
-amount per ordinary hour worked.
+amount per ordinary hour worked, and moved to Grafica editoria C1 and
+enrolled in Byblos, whose employer rate is lower for a holder of the ERC.
 """
 
 from __future__ import annotations
@@ -20,6 +21,7 @@ from ccnl_engine.inputs import (
     WorkerCategory,
 )
 from tests.fixtures.explicit_facts import CONCIA_D2
+from tests.fixtures.seniority import new_hire
 
 if TYPE_CHECKING:
     from collections.abc import Callable, Mapping
@@ -38,6 +40,17 @@ def _cometa(young_member: bool | None) -> Employment:
         ccnl_slug="metalmeccanico-federmeccanica.json",
         level_code="C3",
         pension_fund=enrolment,
+    )
+
+
+def _byblos(erc_amount: Decimal | None) -> Employment:
+    return replace(
+        CONCIA_D2,
+        ccnl_slug="grafica-editoria-aieg.json",
+        level_code="C1",
+        seniority=new_hire(),
+        pension_fund=PensionFundEnrolment("BYBLOS", Decimal("0.01"), tfr_to_fund=True),
+        erc_amount=erc_amount,
     )
 
 
@@ -73,6 +86,10 @@ def pension_cases[C](
                 _operaio(january, None),
                 "ordinary_hours_worked",
             ),
+        ),
+        "Employment.erc_amount": (
+            pair(_byblos(Decimal("412.50")), _byblos(None), "erc_amount"),
+            pair(_byblos(Decimal(0)), _byblos(None), "erc_amount"),
         ),
         "PensionFundEnrolment.young_member": (
             pair(_cometa(True), _cometa(None), "young_member"),

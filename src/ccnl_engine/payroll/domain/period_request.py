@@ -4,16 +4,13 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field, replace
 from datetime import date
+from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.domain.current_year import CurrentYearTaxFacts
 from ccnl_engine.payroll.domain.eligibility import ContributionHistory
 from ccnl_engine.payroll.domain.employer import EmployerProfile
-from ccnl_engine.payroll.domain.employment import (
-    Apprentice,
-    FixedTerm,
-    Permanent,
-)
+from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm, Permanent
 from ccnl_engine.payroll.domain.employment_facts import (
     ContributableHours,
     EmploymentPeriod,
@@ -26,9 +23,7 @@ from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
 from ccnl_engine.payroll.domain.request_checks import employment_gap
-from ccnl_engine.payroll.domain.seniority_fact import (
-    SeniorityFact,
-)
+from ccnl_engine.payroll.domain.seniority_fact import SeniorityFact
 from ccnl_engine.payroll.domain.tax_year import TaxYearPolicy
 from ccnl_engine.payroll.domain.tfr_fund import TfrFundBalance
 from ccnl_engine.shared.domain.errors import InvalidInputError
@@ -145,6 +140,8 @@ class PeriodCalculationRequest:
             the revaluation; ``None`` when not known.
         tfr_treasury_fund: Whether the TFR not paid to a pension fund goes
             to the Fondo Tesoreria INPS; ``None`` when not known.
+        erc_amount: Annual Elemento di Raccordo Contrattuale of the CCNL
+            grafici editoriali, ``None`` when not known.
     """
 
     period_id: PeriodId
@@ -179,18 +176,15 @@ class PeriodCalculationRequest:
     uncovered_runs: tuple[PayrollRunId, ...] = ()
     tfr_fund: TfrFundBalance | None = None
     tfr_treasury_fund: bool | None = None
+    erc_amount: Decimal | None = None
 
     def __post_init__(self) -> None:
         """Guard dates, cross-year state or schedule and hours above full time.
 
         The tax year of the run is attributed from ``payment_date`` by
-        :class:`~ccnl_engine.payroll.domain.tax_year.TaxYearPolicy`.  When
-        ``opening_state.tax_year`` is set, it must match that tax year.
-        States produced by :func:`~ccnl_engine.payroll.application\
-.calculate_period.calculate_period` always carry ``tax_year``; manually
-        constructed states default to ``None`` and are not checked.
-        ``weekly_hours`` above ``full_time_weekly_hours`` raises
-        :class:`ValueError`.
+        :class:`~ccnl_engine.payroll.domain.tax_year.TaxYearPolicy`; a set
+        ``opening_state.tax_year`` (a calculated state always carries it)
+        must match it.
 
         Raises:
             InvalidInputError: When a field is not of its declared type (for
@@ -297,4 +291,5 @@ class PeriodCalculationRequest:
             ("pension_fund", self.pension_fund, PENSION_FUND_TYPES, True),
             ("tfr_fund", self.tfr_fund, TfrFundBalance, True),
             ("tfr_treasury_fund", self.tfr_treasury_fund, bool, True),
+            ("erc_amount", self.erc_amount, Decimal, True),
         )

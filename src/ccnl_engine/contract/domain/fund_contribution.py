@@ -64,7 +64,10 @@ class EmployerFund(BaseModel):
     ``PensionFundEnrolment.young_member``.  ``employer_rate_tiers`` raise
     the employer rate when the worker chooses a higher rate (Fondapi on the
     chemical PMI: 2.00% from an employee 1.60%); the highest tier reached
-    replaces ``rate``.  ``extra_months`` is false when the contributions are
+    replaces ``rate``.  ``erc_holder_rate`` is the employer rate of a worker
+    who holds the Elemento di Raccordo Contrattuale of the CCNL grafici
+    editoriali (Byblos: 1.4% instead of 1.9%), stated by
+    ``Employment.erc_amount``.  ``extra_months`` is false when the contributions are
     due on the twelve monthly payments alone (Byblos on the CCNL Esercizi
     cinematografici, art. 43: "per 12 mensilità annue").
     """
@@ -83,6 +86,7 @@ class EmployerFund(BaseModel):
     young_member_rate: TimeSeries | None = None
     employer_rate_tiers: tuple[EmployerRateTier, ...] = ()
     extra_months: bool = True
+    erc_holder_rate: TimeSeries | None = None
 
 
 class ContractualFundContribution(BaseModel):

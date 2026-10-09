@@ -313,7 +313,101 @@
           "effective_from": "2020-01-01"
         }
       }
-    }
+    },
+    "employer_funds": [
+      {
+        "code": "BYBLOS",
+        "description": "Byblos - Fondo nazionale pensione complementare per i lavoratori delle aziende della carta, grafiche ed editoriali",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0190",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "byblos-scheda-destinatari-contributi-2026-09-25",
+                    "title": "Fondo Byblos, Nota informativa, Parte I, Scheda 'I destinatari e i contributi' (in vigore dal 25/09/2026)",
+                    "kind": "altro",
+                    "url": "https://www.fondobyblos.it/cms/resource/open/1234/202609-sezione-i-scheda-i-destinatari-e-contributi-def.pdf"
+                  },
+                  "section": "Contribuzione SETTORE GRAFICO-EDITORIALE",
+                  "quote": "Lavoratori occupati dopo il 28.04.1993 (ai quali non si applica l'ERC): Quota TFR 100%, Lavoratore (1) 1%, Datore di lavoro (2) 1,9% (9) [...] Lavoratori occupati dopo il 28.04.1993 (ai quali si applica l'ERC): 100%, 1%, 1,4% (9) [...] (1) Misura minima del contributo da parte del lavoratore per avere diritto al contributo del datore di lavoro [...] (9) Percentuale in vigore dal 1.1.2024 sulla retribuzione contrattuale annua"
+                },
+                "transformation": "Employer 1.9% of the retribuzione contrattuale annua for a worker without the ERC, from 1.1.2024. The retribuzione contrattuale annua is the pay of the CCNL tables, the minimum (paga base, contingenza and EDR, the totals of this file) and the scatti, over the twelve months and the tredicesima: the TFR base of the engine, which on this CCNL (no allowance on any level) holds the pay chain, the tredicesima and the deductions of unpaid absences, not overtime or bonuses. The ERC itself 'non avrà alcuna incidenza su alcun istituto contrattuale o di legge' (ipotesi di accordo of 19/01/2021) and stays out of it.",
+                "note": "Read from the PDF the url serves (sha256 4d60e5c0111f822c7ce37dd24fa2032fbfb4b64289f227df34dd38e04a0db58a), text layer. No human review recorded."
+              }
+            }
+          ]
+        },
+        "erc_holder_rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0140",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "byblos-scheda-destinatari-contributi-2026-09-25",
+                    "title": "Fondo Byblos, Nota informativa, Parte I, Scheda 'I destinatari e i contributi' (in vigore dal 25/09/2026)",
+                    "kind": "altro",
+                    "url": "https://www.fondobyblos.it/cms/resource/open/1234/202609-sezione-i-scheda-i-destinatari-e-contributi-def.pdf"
+                  },
+                  "section": "Contribuzione SETTORE GRAFICO-EDITORIALE",
+                  "quote": "Lavoratori occupati dopo il 28.04.1993 (ai quali non si applica l'ERC): Quota TFR 100%, Lavoratore (1) 1%, Datore di lavoro (2) 1,9% (9) [...] Lavoratori occupati dopo il 28.04.1993 (ai quali si applica l'ERC): 100%, 1%, 1,4% (9) [...] (1) Misura minima del contributo da parte del lavoratore per avere diritto al contributo del datore di lavoro [...] (9) Percentuale in vigore dal 1.1.2024 sulla retribuzione contrattuale annua"
+                },
+                "transformation": "Employer 1.4% of the retribuzione contrattuale annua for a worker who holds the ERC, from 1.1.2024. Who holds the ERC: the ipotesi di accordo of 19/01/2021 (https://farecontrattazione.adapt.it/wp-content/uploads/2021/01/729909-grafici20212022.pdf, sha256 c18e0b19490c3f0ad428d913ec50c95a09ab84d806e0a20f20aea3d795c9e244), 'Per i lavoratori che a dicembre 2020 hanno una gratifica natalizia di 200 ore [...] l'importo di 27 ore [...] denominato ERC' and 'Per i lavoratori che a dicembre 2020 hanno una tredicesima di 30/26 [...] la misura di 4/26'; 'Byblos: aumento della contribuzione a carico aziende per i lavoratori aderenti che non hanno l'ERC'. The engine reads the holder from Employment.erc_amount (above zero).",
+                "note": "Read from the PDF the url serves (sha256 4d60e5c0111f822c7ce37dd24fa2032fbfb4b64289f227df34dd38e04a0db58a), text layer. No human review recorded."
+              }
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0100",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "byblos-scheda-destinatari-contributi-2026-09-25",
+                    "title": "Fondo Byblos, Nota informativa, Parte I, Scheda 'I destinatari e i contributi' (in vigore dal 25/09/2026)",
+                    "kind": "altro",
+                    "url": "https://www.fondobyblos.it/cms/resource/open/1234/202609-sezione-i-scheda-i-destinatari-e-contributi-def.pdf"
+                  },
+                  "section": "Contribuzione SETTORE GRAFICO-EDITORIALE",
+                  "quote": "Lavoratori occupati dopo il 28.04.1993 (ai quali non si applica l'ERC): Quota TFR 100%, Lavoratore (1) 1%, Datore di lavoro (2) 1,9% (9) [...] Lavoratori occupati dopo il 28.04.1993 (ai quali si applica l'ERC): 100%, 1%, 1,4% (9) [...] (1) Misura minima del contributo da parte del lavoratore per avere diritto al contributo del datore di lavoro [...] (9) Percentuale in vigore dal 1.1.2024 sulla retribuzione contrattuale annua"
+                },
+                "transformation": "Worker minimum 1% for the employer contribution to be due. The retribuzione contrattuale annua is the pay of the CCNL tables, the minimum (paga base, contingenza and EDR, the totals of this file) and the scatti, over the twelve months and the tredicesima: the TFR base of the engine, which on this CCNL (no allowance on any level) holds the pay chain, the tredicesima and the deductions of unpaid absences, not overtime or bonuses. The ERC itself 'non avrà alcuna incidenza su alcun istituto contrattuale o di legge' (ipotesi di accordo of 19/01/2021) and stays out of it.",
+                "note": "Read from the PDF the url serves (sha256 4d60e5c0111f822c7ce37dd24fa2032fbfb4b64289f227df34dd38e04a0db58a), text layer. No human review recorded."
+              }
+            }
+          ]
+        },
+        "contribution_base": "tfr_base",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "byblos-scheda-destinatari-contributi-2026-09-25",
+              "title": "Fondo Byblos, Nota informativa, Parte I, Scheda 'I destinatari e i contributi' (in vigore dal 25/09/2026)",
+              "kind": "altro",
+              "url": "https://www.fondobyblos.it/cms/resource/open/1234/202609-sezione-i-scheda-i-destinatari-e-contributi-def.pdf"
+            },
+            "section": "Contribuzione SETTORE GRAFICO-EDITORIALE",
+            "quote": "Lavoratori occupati dopo il 28.04.1993 (ai quali non si applica l'ERC): Quota TFR 100%, Lavoratore (1) 1%, Datore di lavoro (2) 1,9% (9) [...] Lavoratori occupati dopo il 28.04.1993 (ai quali si applica l'ERC): 100%, 1%, 1,4% (9) [...] (1) Misura minima del contributo da parte del lavoratore per avere diritto al contributo del datore di lavoro [...] (9) Percentuale in vigore dal 1.1.2024 sulla retribuzione contrattuale annua"
+          },
+          "transformation": "Byblos on the CCNL grafici editoriali (CNEL G011, the CCNL of the fonte istitutiva of Byblos). The retribuzione contrattuale annua is the pay of the CCNL tables, the minimum (paga base, contingenza and EDR, the totals of this file) and the scatti, over the twelve months and the tredicesima: the TFR base of the engine, which on this CCNL (no allowance on any level) holds the pay chain, the tredicesima and the deductions of unpaid absences, not overtime or bonuses. The ERC itself 'non avrà alcuna incidenza su alcun istituto contrattuale o di legge' (ipotesi di accordo of 19/01/2021) and stays out of it.",
+          "note": "Read from the PDF the url serves (sha256 4d60e5c0111f822c7ce37dd24fa2032fbfb4b64289f227df34dd38e04a0db58a), text layer. No human review recorded."
+        }
+      }
+    ]
   },
   "levels": [
     {
@@ -2139,7 +2233,7 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/",
     "verification_status": "unverified",
-    "source_hash": "7b18c5feca6a5f1008817e52b082cdceca5d772849dab168b168832cfd1762e9",
+    "source_hash": "24ca7091dbabdd0e95ee211e4faaa15037faf37d1c1def8adf98f955603887f4",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

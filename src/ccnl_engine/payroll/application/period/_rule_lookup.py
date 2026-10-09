@@ -236,8 +236,7 @@ def _pension_rules(ctx: RunContext) -> tuple[Rule, ...]:
     """Return the fund rates and the statutory pension rules of the run.
 
     Returns:
-        The rates of the enrolment, the contractual amount, then the
-        deduction cap and solidarity rate of the tax year.
+        The fund rates, the contractual amount, the cap and solidarity rate.
     """
     ccnl = ctx.contract.ccnl
     enrolment = ctx.request.pension_fund
@@ -255,6 +254,7 @@ def _pension_rules(ctx: RunContext) -> tuple[Rule, ...]:
             ("rate", fund.rate),
             ("employee_min_rate", fund.employee_min_rate),
             ("young_member_rate", fund.young_member_rate),
+            ("erc_holder_rate", fund.erc_holder_rate),
             *((f"tier[{t.employee_from}]", t.rate) for t in fund.employer_rate_tiers),
         )
         if series is not None
