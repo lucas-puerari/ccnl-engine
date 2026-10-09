@@ -106,6 +106,19 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "The Fondapi base ('retribuzione Fondapi' or 'elemento retributivo nazionale') counts the EDR, the indennita di funzione of the quadri and the elemento retributivo of the 8th and 9th categories besides the minimum; the bundle pay of this CCNL does not hold them, so the fund contributions of an enrolled worker are computed on the minimum alone and understated.",
+        "capability": "pension_fund_contribution",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "fondapi_base_elements",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Model the EDR, the indennita di funzione of the quadri and the elemento retributivo of the 8th and 9th categories in the pay of the CCNL and add them to the Fondapi base, then remove this note."
+        }
       }
     ]
   },
@@ -237,7 +250,48 @@
           "effective_from": "2020-01-01"
         }
       }
-    }
+    },
+    "employer_funds": [
+      {
+        "code": "FONDAPI",
+        "description": "Fondapi - Fondo pensione complementare per i lavoratori delle piccole e medie imprese",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0200"
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0120"
+            }
+          ]
+        },
+        "contribution_base": "contractual_minimum",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "fondapi-nota-informativa-2026",
+              "title": "Fondapi Nota informativa, Parte I, scheda 'I destinatari e i contributi' (29 luglio 2026)",
+              "kind": "altro",
+              "url": "https://www.fondapi.it/documenti/i-destinatari-e-i-contributi"
+            },
+            "section": "CCNL PMI INDUSTRIA METALMECCANICA E INSTALLAZIONE IMPIANTI",
+            "quote": "Minima stabilita dal CCNL: 1,20% calcolata su 'retribuzione Fondapi'. In alternativa il lavoratore può scegliere una aliquota superiore. In questo caso la percentuale viene calcolata sulla 'retribuzione TFR'. [...] Aliquota stabilita dal CCNL (cfr. tabella) calcolata sempre su 'retribuzione Fondapi' (valore cumulato dei minimi conglobati, EDR, indennità di funzione quadri ed elemento retributivo per la 8a e 9a categoria); Contributo lavoratore 1,20% o superiore, Contributo azienda dal 01/01/2020 2,00%"
+          },
+          "transformation": "Employer 2.00% and worker minimum 1.20% of the contractual minimum of the level, the consolidated minimum of the bundle. A worker rate above the minimum on the TFR base.",
+          "note": "Read from the PDF the url serves (sha256 7e9b29394505b6cd14125c88c6f0cc4ba78c14f026b546bb387636e40e42ee15), text layer. The Fondapi base also counts the EDR, the indennita di funzione of the quadri and the elemento retributivo of the 8th and 9th categories, which the bundle pay does not hold: an open limitation of the CCNL keeps an enrolled run from being paid. No human review recorded."
+        },
+        "employee_base_above_minimum": "tfr_base"
+      }
+    ]
   },
   "levels": [
     {
@@ -1361,7 +1415,7 @@
     "effective_until": null,
     "source": "https://www.studiotuscano.it/news/nuovi-minimi-retributivi-per-il-ccnl-metalmeccanica-piccola-industria-confapi",
     "verification_status": "unverified",
-    "source_hash": "233c2e329b96778b201b822bd18258f177a7f082c869ddc170d303dd4f928011",
+    "source_hash": "5421ad4c7b69c4c40429066d9bed614cd886b9b3d5bd1c0d5cd1dbc93f20ca9a",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

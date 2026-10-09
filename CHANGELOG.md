@@ -47,6 +47,7 @@ is known and computed, and nothing in the 2026 bundle is payable yet.
 - `PayrollEngine.list_levels()`, `ccnl_engine.catalog.supported_tax_years()`,
   `PeriodResult.paid_gross`, and the JSON form of a state
   (`period_state_to_json`, `period_state_from_json`); results pickle.
+- Fondapi on Metalmeccanico Confapi and Tessile PMI, on the minimum.
 - Cometa on Metalmeccanico Federmeccanica, on the contractual minimum,
   with the 2.2% of a young member (`PensionFundEnrolment.young_member`).
 - Prevedi on Edilizia industria and artigianato (voluntary 1% and 1%).

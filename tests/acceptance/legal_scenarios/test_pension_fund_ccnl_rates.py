@@ -31,6 +31,12 @@ the pay that enters the TFR, as their Scheda 'I destinatari e i contributi'
   47.48172 -> 47.48, employee 25.89912 -> 25.90.  With two seniority
   increments of 29.64 the pay is 2217.54: a 2% employee rate takes
   44.3508 -> 44.35, the employer still 43.17 on the minimum.
+- Fondapi on the PMI CCNLs whose base is the minimum (Scheda, sections
+  of the CCNL PMI metalmeccanica and tessile): metalmeccanico Confapi level
+  5, 2195.86, employer 2% = 43.9172 -> 43.92, employee 1.20% = 26.35032 ->
+  26.35; tessile Uniontessile level 4, 1962.56, employer 2% = 39.2512 ->
+  39.25, employee 1.60% = 31.40096 -> 31.40.  The Fondapi base also counts
+  the EDR, which the bundle pay lacks: an open limitation blocks the run.
 """
 
 from __future__ import annotations
@@ -193,3 +199,33 @@ def test_cometa_unknown_young_membership_is_a_missing_fact() -> None:
     assert _entry(result, "pension_fund_employer") == Decimal("43.17")
     codes = {i.code for i in result.issues}
     assert "pension_fund_young_member_unknown" in codes
+
+
+@pytest.mark.parametrize(
+    ("slug", "level", "rate", "employer", "employee"),
+    [
+        ("metalmeccanico-confapi.json", "5", "0.012", "43.92", "26.35"),
+        ("tessile-pmi-uniontessile.json", "4", "0.016", "39.25", "31.40"),
+    ],
+    ids=["metalmeccanico", "tessile"],
+)
+def test_fondapi_on_the_minimum(
+    slug: str, level: str, rate: str, employer: str, employee: str
+) -> None:
+    """Fondapi on the minimum, not payable while the EDR is missing."""
+    result = regular_period(
+        employment=Employment(
+            ccnl_slug=slug,
+            level_code=level,
+            seniority=new_hire(),
+            pension_fund=PensionFundEnrolment(
+                "FONDAPI", Decimal(rate), tfr_to_fund=True
+            ),
+            contract_type=Permanent(),
+        )
+    )
+    assert _entry(result, "pension_fund_employer") == Decimal(employer)
+    assert _entry(result, "pension_fund_employee") == Decimal(employee)
+    limitations = {limitation.id for limitation in result.assurance.limitations}
+    assert f"{slug.removesuffix('.json')}/fondapi_base_elements" in limitations
+    assert not result.is_payable

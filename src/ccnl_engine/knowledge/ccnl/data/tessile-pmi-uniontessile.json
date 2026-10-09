@@ -91,7 +91,20 @@
       },
       {
         "kind": "info",
-        "text": "FONDAPI: not in the bundle. The Fondapi Scheda 'I destinatari e i contributi' (29/07/2026, https://www.fondapi.it/documenti/i-destinatari-e-i-contributi) computes both contributions on the 'elemento retributivo nazionale' (minimo tabellare + elemento distinto della retribuzione): employee at least 1.60%, employer 2.00% from 01/01/2026. The engine computes a fund on the INPS or the TFR base only, so an enrolment raises InvalidInputError until the contractual minimum base is modelled."
+        "text": "FONDAPI: the contributions are computed on the contractual minimum of the level; the Fondapi base also counts the EDR, not in the bundle pay."
+      },
+      {
+        "kind": "simplification",
+        "text": "The Fondapi base ('retribuzione Fondapi' or 'elemento retributivo nazionale') counts the EDR besides the minimum; the bundle pay of this CCNL does not hold them, so the fund contributions of an enrolled worker are computed on the minimum alone and understated.",
+        "capability": "pension_fund_contribution",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "fondapi_base_elements",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Model the EDR in the pay of the CCNL and add them to the Fondapi base, then remove this note."
+        }
       }
     ]
   },
@@ -240,7 +253,46 @@
         }
       }
     },
-    "employer_funds": []
+    "employer_funds": [
+      {
+        "code": "FONDAPI",
+        "description": "Fondapi - Fondo pensione complementare per i lavoratori delle piccole e medie imprese",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0200"
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0160"
+            }
+          ]
+        },
+        "contribution_base": "contractual_minimum",
+        "provenance": {
+          "status": "assumed",
+          "location": {
+            "source_document": {
+              "document_id": "fondapi-nota-informativa-2026",
+              "title": "Fondapi Nota informativa, Parte I, scheda 'I destinatari e i contributi' (29 luglio 2026)",
+              "kind": "altro",
+              "url": "https://www.fondapi.it/documenti/i-destinatari-e-i-contributi"
+            },
+            "section": "CCNL PMI TESSILE, ABBIGLIAMENTO, MODA, CALZATURE, PELLI E CUOIO, PENNE, SPAZZOLE E PENNELLI, OCCHIALI, GIOCATTOLI",
+            "quote": "Minima stabilita dal CCNL: 1,60% calcolata su 'elemento retributivo nazionale' [...] Dal 1° gennaio 2026 le aliquote contributive a carico dell'Azienda vengono incrementate dello 0,10% (CCNL UNIONTESSILE accordo di rinnovo del 18/02/2025). Aliquota stabilita dal CCNL (cfr. tabella) calcolata su 'elemento retributivo nazionale'; Contributo lavoratore 1,60% o superiore, Contributo azienda dal 01/01/2026 2,00%; legenda: 'elemento retributivo nazionale' = minimo tabellare + elemento distinto della retribuzione"
+          },
+          "transformation": "Employer 2.00% and worker minimum 1.60% of the contractual minimum of the level, the consolidated minimum of the bundle.",
+          "note": "Read from the PDF the url serves (sha256 7e9b29394505b6cd14125c88c6f0cc4ba78c14f026b546bb387636e40e42ee15), text layer. The Fondapi base also counts the EDR, which the bundle pay does not hold: an open limitation of the CCNL keeps an enrolled run from being paid. Assumed, not derived: its ruleset declares source_type 'estimated'."
+        }
+      }
+    ]
   },
   "apprenticeship": [],
   "levels": [
@@ -1499,6 +1551,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "6b0f7853ea2c9e1fe4c32540d4f20bb5d1989356b83f52ec2fbfe7dc90a527a2"
+    "source_hash": "9e22804bbc2c02ba0091c5bdd0f5cd0af8c770f08d19dfff3c21c67a7e1c3b46"
   }
 }

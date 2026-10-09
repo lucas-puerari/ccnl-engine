@@ -974,6 +974,8 @@
     "ccnl/data/tessile-pmi-uniontessile.json": {
       "accrual_rule": "missing",
       "additional_months[2024-04-01]": "assumed",
+      "employer_funds[FONDAPI].employee_min_rate[2026-01-01]": "assumed",
+      "employer_funds[FONDAPI].rate[2026-01-01]": "assumed",
       "levels[1].base_salary[2024-04-01]": "assumed",
       "levels[1].base_salary[2025-01-01]": "assumed",
       "levels[2].base_salary[2024-04-01]": "assumed",
@@ -1528,7 +1530,8 @@
     ],
     "ccnl/data/metalmeccanico-confapi.json": [
       "metalmeccanico-confapi/apprentice_seniority",
-      "metalmeccanico-confapi/apprenticeship_36_months_assumed"
+      "metalmeccanico-confapi/apprenticeship_36_months_assumed",
+      "metalmeccanico-confapi/fondapi_base_elements"
     ],
     "ccnl/data/metalmeccanico-confimi-pmi.json": [
       "metalmeccanico-confimi-pmi/overtime_bands_from_confapi"
@@ -1669,6 +1672,7 @@
       "tessile-moda-artigianato-confartigianato/level_category_unconfirmed"
     ],
     "ccnl/data/tessile-pmi-uniontessile.json": [
+      "tessile-pmi-uniontessile/fondapi_base_elements",
       "tessile-pmi-uniontessile/other_subsectors_tables"
     ],
     "ccnl/data/tessile-smi.json": [
