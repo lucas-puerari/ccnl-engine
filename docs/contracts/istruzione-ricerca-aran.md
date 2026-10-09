@@ -40,7 +40,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | base_salary, seniority |
+| **Limits of this contract** | base_salary, inps_employee, seniority |
 
 ### Verifica
 
@@ -60,7 +60,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 
 ### Semplificazioni note
 
-6 semplificazioni documentate.
+7 semplificazioni documentate.
 Vedi [Known simplifications](#known-simplifications) per i dettagli.
 
 ## Salary table
@@ -71,7 +71,8 @@ Latest effective values per level (monthly gross, EUR).
 |---|---|---:|:---:|
 | `FUNZIONARIO_ED_ESPERTO` | ATA: Funzionario ed esperto (ex dsga, direttori servizi generali) | € 1,960.65 | 2024-01-01 |
 | `DOCENTE_SECONDARIA` | Docente secondaria I grado (PE/Ed.Fisica) e secondaria II (laurea) | € 1,866.79 | 2024-01-01 |
-| `DOCENTE_INFANZIA_PRIMARIA` | Docente scuola dell'infanzia e primaria; docente secondaria II (diploma) | € 1,724.65 | 2024-01-01 |
+| `DOCENTE_DIPLOMATO_SECONDARIA` | Docente diplomato degli istituti secondari di II grado | € 1,724.65 | 2024-01-01 |
+| `DOCENTE_INFANZIA_PRIMARIA` | Docente scuola dell'infanzia e primaria | € 1,724.65 | 2024-01-01 |
 | `ASSISTENTE` | ATA: Assistente amministrativo, assistente tecnico, cuoco, infermiere | € 1,496.85 | 2024-01-01 |
 | `OPERATORE` | ATA: Operatore scolastico (nuovo profilo dal 1/5/2024 CCNL 18/1/2024) | € 1,375.38 | 2024-01-01 |
 | `COLLABORATORE_SCOLASTICO` | ATA: Collaboratore scolastico (ex bidello, ex commesso) | € 1,342.82 | 2024-01-01 |
@@ -105,6 +106,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies; before 2024-01-01.
 
     **Remediation:** Source the signing date of the CCNL 2019-2021 for the start of period 1.
+
+!!! warning "istruzione-ricerca-aran/enam_base · inps_employee · impact yes · open"
+    The ENAM of a permanent teacher of the scuola dell'infanzia and primaria (L. 93/1957 art. 3: 1% of 80% of the stipendio) is computed on the whole minimum of the level; the stipendio it counts leaves out the IIS conglobata the retribuzione tabellare holds, which the bundle does not give apart: the contribution is overstated.
+
+    **Applies when:** `inps_employee` applies; the run takes the engine code path.
+
+    **Remediation:** Source the IIS conglobata of the profile, leave it out of the ENAM base, then remove this note.
 
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.
@@ -150,6 +158,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     PENSION FUND. Fondo Scuola Espero (1% + 1%); enrolment is a fact, the silenzio-assenso of the hires from 2019 is not inferred, nor the three months a fixed term needs to enrol. The TFR conferred stays a notional INPS accrual.
     
     ASSICURAZIONE SOCIALE VITA. The employers of this CCNL are Amministrazioni dello Stato (the State schools; the forze di polizia), which INPS circ. 104/2014 leaves out of the Assicurazione Sociale Vita (ex ENPDEP): meta.public_life_insurance is false.
+    
+    LEVELS. The Tabelle A1 and A2 of the CCNL 2022-2024 (from 1.1.2024) list 'Docente scuola dell'infanzia ed elementare' and 'Docente diplomato istituti sec. II grado' as two rows with the same amounts (22,420.48 a year in the first band): two levels with the same minimum, DOCENTE_INFANZIA_PRIMARIA and DOCENTE_DIPLOMATO_SECONDARIA, since only the first owes the ENAM.
     
     Stipendio tabellare annuo da Tabella A2 CCNL 23/12/2025 allegato ufficiale (notiziedellascuola.it). Valori fascia 0-8 anni da 1/1/2024.
     

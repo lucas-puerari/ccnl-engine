@@ -86,6 +86,21 @@ class PublicLifeInsuranceRates(BaseModel):
     provenance: RuleProvenance | None = None
 
 
+class PublicEnamRate(BaseModel):
+    """Contribution of a teacher to the Gestione Assistenza Magistrale (ex ENAM).
+
+    L. 93/1957 art. 3 c. 1 lett. a: the permanent teachers of the scuola
+    dell'infanzia and primaria pay 1% of 80% of the stipendio; the INPS
+    table lists "ENAM 1 -- 1".
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    employee_rate: NonNegativeRate
+    base_share: NonNegativeRate
+    provenance: RuleProvenance | None = None
+
+
 class PublicFundRates(BaseModel):
     """Pension contribution rates of a fund of INPS Gestione Dipendenti Pubblici.
 
@@ -149,6 +164,7 @@ class InpsRates(BaseModel):
     end_of_service: EndOfServiceRates | None = None
     public_credit: PublicCreditRate | None = None
     public_life_insurance: PublicLifeInsuranceRates | None = None
+    public_enam: PublicEnamRate | None = None
 
     def for_public_fund(self, fund: PublicPensionFund | None) -> InpsRates:
         """Return the rates of a fund of the Gestione Dipendenti Pubblici.

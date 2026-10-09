@@ -79,7 +79,7 @@ Capabilities of the registry by layer and implementation:
 | 25 | B018 | [CCNL Chimica e Affini PMI — Unionchimica Confapi](chimica-affini-pmi-unionchimica.md) | chimica | ~56k | 2026 | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 21 / 1 / 1 | 🧪 | 🤖 |
 | 26 | S005 | [CCNL Comparto Funzioni Centrali — Triennio 2022-2024](funzioni-centrali-aran.md) | Pubblica Amministrazione — Comparto Funzioni Centrali | ~250k | 2025 | 🔲 | 🔲 | 🔲 | inps_employer | 0 / 29 / 1 / 1 | 🧪 | 🤖 |
 | 27 | S105 | [CCNL Comparto Funzioni Locali 2022-2024 — ARAN](funzioni-locali-aran.md) | Pubblica Amministrazione | ~400k | 2026 | 🔲 | 🔲 | 🔲 | base_salary, company_supplement | 0 / 21 / 1 / 1 | 🧪 | 🤖 |
-| 28 | S305 | [CCNL Comparto Istruzione e Ricerca 2022-2024 — ARAN](istruzione-ricerca-aran.md) | Pubblica Amministrazione | ~1,2M | 2025 | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 21 / 1 / 1 | 🧪 | 🤖 |
+| 28 | S305 | [CCNL Comparto Istruzione e Ricerca 2022-2024 — ARAN](istruzione-ricerca-aran.md) | Pubblica Amministrazione | ~1,2M | 2025 | 🔲 | 🔲 | 🔲 | base_salary, inps_employee, seniority | 0 / 23 / 1 / 1 | 🧪 | 🤖 |
 | 29 | S205 | [CCNL Comparto Sanità 2022-2024 — ARAN](sanita-aran.md) | Pubblica Amministrazione | ~580k | 2025 | 🔲 | 🔲 | 🔲 | base_salary | 0 / 19 / 1 / 1 | 🧪 | 🤖 |
 | 30 | G029 | [CCNL Comunicazione, Informatica e Servizi Innovativi PMI — Settore Informatico](informatica-pmi-unimatica.md) | informatica-servizi-innovativi | ~20k | — | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 40 / 2 / 0 | 🧪 | 🤖 |
 | 31 | A141 | [CCNL Consorzi Agrari (ASSOCAP-FLAI-FAI-UILA)](consorzi-agrari-assocap.md) | Agricoltura | ~2k | 2023 | 🔲 | 🔲 | 🔲 | base_salary, health_fund_employer | 0 / 36 / 1 / 1 | 🧪 | 🤖 |

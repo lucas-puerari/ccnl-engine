@@ -13,6 +13,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application.period._contractual_fund import contractual_paths
+from ccnl_engine.payroll.application.period._enam import enam_paths
 from ccnl_engine.payroll.application.period._pension_decision import paid_month_paths
 from ccnl_engine.payroll.application.period._seniority import seniority_months_at
 from ccnl_engine.payroll.domain.capability_report import CapabilityScope
@@ -73,7 +74,9 @@ def run_limitations(
     Returns:
         The applicable limitations, each once.
     """
-    traversed = events.limitations | paid_month_paths(ctx, events.inps_base)
+    traversed = (
+        events.limitations | paid_month_paths(ctx, events.inps_base) | enam_paths(ctx)
+    )
     facts = limitation_facts(ctx, report, traversed)
     candidates = (*ctx.repo.load_engine_limitations(), *ctx.contract.ccnl.limitations)
     return tuple(

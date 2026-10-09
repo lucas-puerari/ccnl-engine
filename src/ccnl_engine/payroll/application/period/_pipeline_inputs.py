@@ -18,7 +18,7 @@ from ccnl_engine.payroll.application.allocate_events import (
     worker_facts_of,
 )
 from ccnl_engine.payroll.application.amounts._domestic import _domestic_hourly_rate
-from ccnl_engine.payroll.application.amounts._types import _AmountsInput
+from ccnl_engine.payroll.application.amounts._types import PublicTerms, _AmountsInput
 from ccnl_engine.payroll.application.handlers._overtime_rate import CCNLOvertimeBands
 from ccnl_engine.payroll.application.handlers.benefits import fringe_threshold_of
 from ccnl_engine.payroll.application.period._additional_ivs import (
@@ -26,6 +26,7 @@ from ccnl_engine.payroll.application.period._additional_ivs import (
 )
 from ccnl_engine.payroll.application.period._assistance import assistance_terms
 from ccnl_engine.payroll.application.period._contractual_fund import contractual_run
+from ccnl_engine.payroll.application.period._enam import enam_stipendio
 from ccnl_engine.payroll.application.period._pension_decision import pension_terms
 from ccnl_engine.payroll.application.period._sickness import sickness_terms
 from ccnl_engine.payroll.application.period._tfr_destination import (
@@ -122,14 +123,22 @@ def _children_within_limit(ctx: RunContext) -> bool | None:
     return children_within_income_limit(children, rules.children, year)
 
 
-def _life_insurance(ctx: RunContext) -> bool | None:
-    """Return whether the employer enrols the worker in the ASV.
+def _public_terms(ctx: RunContext) -> PublicTerms:
+    """Return what the contributions of a public employee depend on.
+
+    The Assicurazione Sociale Vita is the employer's statement, else the
+    value the CCNL fixes.
 
     Returns:
-        The employer's statement, else the value the CCNL fixes.
+        The regime, the ASV and the ENAM stipendio of the run.
     """
     stated = ctx.request.employer.public_life_insurance
-    return ctx.contract.ccnl.meta.public_life_insurance if stated is None else stated
+    fixed = ctx.contract.ccnl.meta.public_life_insurance
+    return PublicTerms(
+        end_of_service=ctx.request.public_end_of_service,
+        life_insurance=fixed if stated is None else stated,
+        enam_stipendio=enam_stipendio(ctx),
+    )
 
 
 def _recovery_plans(
@@ -208,8 +217,7 @@ def amounts_input(
         deferred_irpef=_deferred_irpef(ctx),
         additional_ivs=additional_ivs_position(ctx),
         tfr_treasury_fund=tfr_treasury_fund(ctx),
-        public_end_of_service=request.public_end_of_service,
-        public_life_insurance=_life_insurance(ctx),
+        public=_public_terms(ctx),
         assistance=assistance_terms(contract.ccnl, contract.tctx.competence),
     )
 

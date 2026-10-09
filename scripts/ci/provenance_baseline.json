@@ -1470,6 +1470,7 @@
       "istituzioni-servizi-socio-assistenziali-anaste/apprentice_seniority"
     ],
     "ccnl/data/istruzione-ricerca-aran.json": [
+      "istruzione-ricerca-aran/enam_base",
       "istruzione-ricerca-aran/higher_seniority_bands_missing",
       "istruzione-ricerca-aran/period_1_start_approximated",
       "istruzione-ricerca-aran/seniority_bands_not_increments"
