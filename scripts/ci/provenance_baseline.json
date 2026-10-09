@@ -1882,6 +1882,7 @@
     ],
     "limitations/data/engine.json": [
       "apprenticeship_pct_undeclared_components",
+      "provisional_inps_ruleset",
       "provisional_ruleset",
       "sickness_cumulation_window",
       "sickness_inps_daily_base"

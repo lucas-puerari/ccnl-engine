@@ -112,7 +112,8 @@ never applied to another as final: a year whose sources are not published
 yet ships as a provisional copy of the year before.  Its rulesets set
 `provisional: true`, `source_type: estimated` and `assumed` records, and
 every run that reads them traverses the open engine limitation
-`provisional_ruleset` and is not payable.  The 2027 tables are provisional
+`provisional_ruleset` (tax) or `provisional_inps_ruleset` (INPS) and is
+not payable.  The 2027 tables are provisional
 (October 2026); the TFR revaluation of 2027 is not shipped, because its
 substitute tax rule changes (table below).
 
@@ -129,7 +130,7 @@ rulesets are built (sources on Normattiva, read in October 2026):
 | Art. 23 DPR 600/1973 (withholding by the sostituto) | Repealed from 1 January 2027, replaced by D.Lgs. 33/2025 (Testo unico versamenti e riscossione) | Per-run withholding and conguaglio |
 | Art. 17 TUIR (separate taxation) and the text of art. 21 TUIR | Replaced from 1 January 2027 by arts. 19 and 23 of the testo unico of D.Lgs. 19 giugno 2026 n. 117, same rules: the engine cites them from tax year 2027 | Arrears of earlier years |
 | Art. 11 c. 1 TUIR (IRPEF brackets) | Art. 11 c. 1 of the testo unico of D.Lgs. 117/2026: 23%, 33%, 43% at 28,000 and 50,000 EUR, as in 2026 | IRPEF of the provisional 2027 tables |
-| L. 207/2024 art. 1 c. 6 (ulteriore detrazione) | Repealed from 2027 by D.Lgs. 117/2026 | Ulteriore detrazione and its recovery |
+| L. 207/2024 art. 1 c. 6 (ulteriore detrazione) | Carried into art. 13 of the testo unico of D.Lgs. 117/2026 (its heading cites "articolo 1, comma 6, legge 30 dicembre 2024, n. 207") | Ulteriore detrazione and its recovery |
 | D.Lgs. 47/2000 art. 11 cc. 3-4 (substitute tax on the TFR revaluation) | Repealed from 1 January 2027 by D.Lgs. 33/2025, as amended by D.L. 200/2025 | TFR revaluation tax |
 
 ## Changelog and economic diff

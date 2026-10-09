@@ -19,12 +19,15 @@ from ccnl_engine import (
 )
 from ccnl_engine.catalog import supported_tax_years
 from ccnl_engine.inputs import (
+    ContributableHours,
     InpsBaseYtd,
+    NoPensionFund,
     OpeningBalances,
     PeriodState,
     Permanent,
     RecoveryObligation,
     RecoveryPlan,
+    WeeklyHours,
 )
 from ccnl_engine.results import BlockerCode
 from tests.acceptance.legal_scenarios._support import (
@@ -34,6 +37,8 @@ from tests.acceptance.legal_scenarios._support import (
     regular_period,
 )
 from tests.fixtures.next_year_repository import NextYearRepository
+from tests.fixtures.seniority import new_hire
+from tests.fixtures.tfr import no_tfr_fund
 from tests.fixtures.withholding import paid_before
 
 if TYPE_CHECKING:
@@ -89,8 +94,41 @@ def test_december_paid_in_january_reads_provisional_2027_tax_rules() -> None:
     assert result.closing_state.tax_year == 2027
     assert {"tax/2027/terziario", "inps/2026/terziario"} <= rulesets
     assert "inps/2027/terziario" not in rulesets
-    assert "provisional_ruleset" in {lim.id for lim in result.assurance.limitations}
+    limitations = {lim.id for lim in result.assurance.limitations}
+    assert "provisional_ruleset" in limitations
+    assert "provisional_inps_ruleset" not in limitations
     assert (BlockerCode.OPEN_LIMITATION, "provisional_ruleset") in {
+        (b.code, b.detail) for b in result.blockers
+    }
+    assert not result.is_payable
+
+
+def test_domestic_run_of_2027_records_the_provisional_inps_rules() -> None:
+    """A household employer withholds no IRPEF but pays 2027 INPS.
+
+    January 2027 of a domestic worker reads the provisional 2027 INPS
+    hourly contributions: the run records ``provisional_inps_ruleset``
+    and is not payable, although the IRPEF limitation does not concern it.
+    """
+    employment = Employment(
+        ccnl_slug="lavoro-domestico-non-convivente.json",
+        level_code="A",
+        seniority=new_hire(2027),
+        tfr_fund=no_tfr_fund(2027),
+        tfr_treasury_fund=False,
+        contract_type=Permanent(),
+        pension_fund=NoPensionFund(),
+        weekly_hours=WeeklyHours(20),
+    )
+    result = regular_period(
+        employment=employment,
+        year=2027,
+        month=1,
+        contributable_hours=ContributableHours(Decimal(86)),
+    )
+
+    assert "inps/2027/lavoro-domestico" in {r.id for r in result.assurance.rulesets}
+    assert (BlockerCode.OPEN_LIMITATION, "provisional_inps_ruleset") in {
         (b.code, b.detail) for b in result.blockers
     }
     assert not result.is_payable

@@ -8,7 +8,7 @@ Changes are listed newest first. Older changes are on
 
 | Before | After |
 |---|---|
-| `supported_tax_years()` was `(2026,)`; a payment of tax year 2027 (a December 2026 paid after 12 January included) raised `UnsupportedTaxYearError` | `(2026, 2027)`: the 2027 tables carry the 2026 values over, flagged `RulesetIdentity.provisional`; a run that reads them is computed and not payable, with the open limitation `provisional_ruleset`. A payment of 2028 still raises `UnsupportedTaxYearError` |
+| `supported_tax_years()` was `(2026,)`; a payment of tax year 2027 (a December 2026 paid after 12 January included) raised `UnsupportedTaxYearError` | `(2026, 2027)`: the 2027 tables carry the 2026 values over, flagged `RulesetIdentity.provisional`; a run that reads them is computed and not payable, with the open limitation `provisional_ruleset` (tax) or `provisional_inps_ruleset` (INPS). A payment of 2028 still raises `UnsupportedTaxYearError` |
 | `tax/data/variable-pay-rules.json` | `tax/data/variable-pay-rules-<year>.json`, one file per year; `load_variable_pay_rules` of a year without a file raises `UnsupportedTaxYearError` |
 
 ## ENAM of the teachers and a level for the diplomati of the secondaria

@@ -207,7 +207,7 @@ provisional tables of 2027 (`ccnl_engine.catalog.supported_tax_years()`).
 yet, so they carry the 2026 values over (`RulesetIdentity.provisional`).
 Every run that reads them, a December 2026 paid after 12 January
 included, is computed and not payable, with the open limitation
-`provisional_ruleset`. A payment of any other tax year raises
+`provisional_ruleset` (tax) or `provisional_inps_ruleset` (INPS). A payment of any other tax year raises
 `UnsupportedTaxYearError`. A run opens with the history of the employment:
 `PeriodState.zero()` is the fact only for the first run of an employment
 whose start is stated, and a run without its history is not payable.

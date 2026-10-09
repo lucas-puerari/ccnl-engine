@@ -28,7 +28,10 @@ from ccnl_engine.payroll.application.handlers.sickness import (
     CUMULATION_LIMITATION,
     INPS_DAILY_BASE_LIMITATION,
 )
-from ccnl_engine.payroll.application.period._rulesets import PROVISIONAL_RULESET
+from ccnl_engine.payroll.application.period._rulesets import (
+    PROVISIONAL_INPS_RULESET,
+    PROVISIONAL_RULESET,
+)
 from ccnl_engine.payroll.service.apprenticeship import MIDPOINT_VARIANT, PCT_UNDECLARED
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
@@ -97,6 +100,7 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         INPS_DAILY_BASE_LIMITATION,
         CUMULATION_LIMITATION,
         PROVISIONAL_RULESET,
+        PROVISIONAL_INPS_RULESET,
     }
     assert by_status[LimitationStatus.RESOLVED] == {_MIDPOINT, _APPRENTICE_SENIORITY}
 
