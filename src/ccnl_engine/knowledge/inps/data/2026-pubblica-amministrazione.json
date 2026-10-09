@@ -76,6 +76,28 @@
           },
           "transformation": "CPDEL: employee 8.85%, employer 23.80%, all pension (IVS).",
           "note": "Read on 2026-10-09 from the page the url serves (sha256 576c808bac9fff92e7635be0922ffa46aa4742eb2b584e82cd094625ed9d2451, HTML). No human review recorded."
+        },
+        "end_of_service": {
+          "base_share": "0.80",
+          "tfs_employee_rate": "0.0250",
+          "tfs_employer_rate": "0.0360",
+          "tfr_employer_rate": "0.0610",
+          "thirteenth": true,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "inps-contributi-dipendenti-pubblici",
+                "title": "INPS, scheda informativa 'I contributi dei dipendenti pubblici'",
+                "kind": "inps_circolare",
+                "url": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html"
+              },
+              "section": "Le aliquote contributive della Gestione dipendenti pubblici; Contributo TFR",
+              "quote": "ENPAS (TFS) 9,6 7,1 2,5 ENPAS (TFR) 9,6 9,6 -- INADEL (TFS) 6,1 3,6 2,5 INADEL (TFR) 6,1 6,1 -- [...] il contributo per il TFR, a totale carico del datore di lavoro, è dovuto con le stesse aliquote e sulla stessa base contributiva prevista per il TFS, con un imponibile calcolato sull'80% delle voci utili."
+            },
+            "transformation": "INADEL, the end-of-service fund of the enti locali and of the health service: TFS 3.60% administration + 2.50% worker, TFR 6.10% administration, on 80% of the pay. L. 152/1968 art. 11 c. 5 (https://www.jurinote.it/doc/italia/legge/1968/152/11): 'Lo stipendio o salario comprensivo degli aumenti periodici, della tredicesima mensilità': the tredicesima is part of the base. The pay is the TFR base of the run.",
+            "note": "Read on 2026-10-09 from the page the url serves (sha256 576c808bac9fff92e7635be0922ffa46aa4742eb2b584e82cd094625ed9d2451). No human review recorded."
+          }
         }
       },
       "cps": {
@@ -95,6 +117,28 @@
           },
           "transformation": "CPS: employee 8.85%, employer 23.80%, all pension (IVS).",
           "note": "Read on 2026-10-09 from the page the url serves (sha256 576c808bac9fff92e7635be0922ffa46aa4742eb2b584e82cd094625ed9d2451, HTML). No human review recorded."
+        },
+        "end_of_service": {
+          "base_share": "0.80",
+          "tfs_employee_rate": "0.0250",
+          "tfs_employer_rate": "0.0360",
+          "tfr_employer_rate": "0.0610",
+          "thirteenth": true,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "inps-contributi-dipendenti-pubblici",
+                "title": "INPS, scheda informativa 'I contributi dei dipendenti pubblici'",
+                "kind": "inps_circolare",
+                "url": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html"
+              },
+              "section": "Le aliquote contributive della Gestione dipendenti pubblici; Contributo TFR",
+              "quote": "ENPAS (TFS) 9,6 7,1 2,5 ENPAS (TFR) 9,6 9,6 -- INADEL (TFS) 6,1 3,6 2,5 INADEL (TFR) 6,1 6,1 -- [...] il contributo per il TFR, a totale carico del datore di lavoro, è dovuto con le stesse aliquote e sulla stessa base contributiva prevista per il TFS, con un imponibile calcolato sull'80% delle voci utili."
+            },
+            "transformation": "INADEL, the end-of-service fund of the enti locali and of the health service: TFS 3.60% administration + 2.50% worker, TFR 6.10% administration, on 80% of the pay. L. 152/1968 art. 11 c. 5 (https://www.jurinote.it/doc/italia/legge/1968/152/11): 'Lo stipendio o salario comprensivo degli aumenti periodici, della tredicesima mensilità': the tredicesima is part of the base. The pay is the TFR base of the run.",
+            "note": "Read on 2026-10-09 from the page the url serves (sha256 576c808bac9fff92e7635be0922ffa46aa4742eb2b584e82cd094625ed9d2451). No human review recorded."
+          }
         }
       },
       "cpi": {
@@ -114,6 +158,28 @@
           },
           "transformation": "CPI: employee 8.85%, employer 23.80%, all pension (IVS).",
           "note": "Read on 2026-10-09 from the page the url serves (sha256 576c808bac9fff92e7635be0922ffa46aa4742eb2b584e82cd094625ed9d2451, HTML). No human review recorded."
+        },
+        "end_of_service": {
+          "base_share": "0.80",
+          "tfs_employee_rate": "0.0250",
+          "tfs_employer_rate": "0.0360",
+          "tfr_employer_rate": "0.0610",
+          "thirteenth": true,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "inps-contributi-dipendenti-pubblici",
+                "title": "INPS, scheda informativa 'I contributi dei dipendenti pubblici'",
+                "kind": "inps_circolare",
+                "url": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html"
+              },
+              "section": "Le aliquote contributive della Gestione dipendenti pubblici; Contributo TFR",
+              "quote": "ENPAS (TFS) 9,6 7,1 2,5 ENPAS (TFR) 9,6 9,6 -- INADEL (TFS) 6,1 3,6 2,5 INADEL (TFR) 6,1 6,1 -- [...] il contributo per il TFR, a totale carico del datore di lavoro, è dovuto con le stesse aliquote e sulla stessa base contributiva prevista per il TFS, con un imponibile calcolato sull'80% delle voci utili."
+            },
+            "transformation": "INADEL, the end-of-service fund of the enti locali and of the health service: TFS 3.60% administration + 2.50% worker, TFR 6.10% administration, on 80% of the pay. L. 152/1968 art. 11 c. 5 (https://www.jurinote.it/doc/italia/legge/1968/152/11): 'Lo stipendio o salario comprensivo degli aumenti periodici, della tredicesima mensilità': the tredicesima is part of the base. The pay is the TFR base of the run.",
+            "note": "Read on 2026-10-09 from the page the url serves (sha256 576c808bac9fff92e7635be0922ffa46aa4742eb2b584e82cd094625ed9d2451). No human review recorded."
+          }
         }
       },
       "cpug": {
@@ -133,7 +199,51 @@
           },
           "transformation": "CPUG: employee 8.85%, employer 23.80%, all pension (IVS).",
           "note": "Read on 2026-10-09 from the page the url serves (sha256 576c808bac9fff92e7635be0922ffa46aa4742eb2b584e82cd094625ed9d2451, HTML). No human review recorded."
+        },
+        "end_of_service": {
+          "base_share": "0.80",
+          "tfs_employee_rate": "0.0250",
+          "tfs_employer_rate": "0.0360",
+          "tfr_employer_rate": "0.0610",
+          "thirteenth": true,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "inps-contributi-dipendenti-pubblici",
+                "title": "INPS, scheda informativa 'I contributi dei dipendenti pubblici'",
+                "kind": "inps_circolare",
+                "url": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html"
+              },
+              "section": "Le aliquote contributive della Gestione dipendenti pubblici; Contributo TFR",
+              "quote": "ENPAS (TFS) 9,6 7,1 2,5 ENPAS (TFR) 9,6 9,6 -- INADEL (TFS) 6,1 3,6 2,5 INADEL (TFR) 6,1 6,1 -- [...] il contributo per il TFR, a totale carico del datore di lavoro, è dovuto con le stesse aliquote e sulla stessa base contributiva prevista per il TFS, con un imponibile calcolato sull'80% delle voci utili."
+            },
+            "transformation": "INADEL, the end-of-service fund of the enti locali and of the health service: TFS 3.60% administration + 2.50% worker, TFR 6.10% administration, on 80% of the pay. L. 152/1968 art. 11 c. 5 (https://www.jurinote.it/doc/italia/legge/1968/152/11): 'Lo stipendio o salario comprensivo degli aumenti periodici, della tredicesima mensilità': the tredicesima is part of the base. The pay is the TFR base of the run.",
+            "note": "Read on 2026-10-09 from the page the url serves (sha256 576c808bac9fff92e7635be0922ffa46aa4742eb2b584e82cd094625ed9d2451). No human review recorded."
+          }
         }
+      }
+    },
+    "end_of_service": {
+      "base_share": "0.80",
+      "tfs_employee_rate": "0.0250",
+      "tfs_employer_rate": "0.0710",
+      "tfr_employer_rate": "0.0960",
+      "thirteenth": false,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "inps-contributi-dipendenti-pubblici",
+            "title": "INPS, scheda informativa 'I contributi dei dipendenti pubblici'",
+            "kind": "inps_circolare",
+            "url": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html"
+          },
+          "section": "Le aliquote contributive della Gestione dipendenti pubblici; Contributo TFR",
+          "quote": "ENPAS (TFS) 9,6 7,1 2,5 ENPAS (TFR) 9,6 9,6 -- INADEL (TFS) 6,1 3,6 2,5 INADEL (TFR) 6,1 6,1 -- [...] il contributo per il TFR, a totale carico del datore di lavoro, è dovuto con le stesse aliquote e sulla stessa base contributiva prevista per il TFS, con un imponibile calcolato sull'80% delle voci utili."
+        },
+        "transformation": "ENPAS, the end-of-service fund of the employees of the State (the CTPS of the tiers): TFS 7.10% administration + 2.50% worker, TFR 9.60% administration, on 80% of the pay. DPR 1032/1973 art. 38 (https://www.rgs.mef.gov.it/_Documenti/VERSIONE-I/Selezione_normativa/D-P-R-/DPR29-12-1973_1032.pdf, sha256 b6c8f536875a82657c482ed4d074ceda77a82b9e923f63bf409ee6a6adf6133e): 'La base contributiva è costituita dall'80 per cento dello stipendio, paga o retribuzione annui': the tredicesima is left out. The pay is the TFR base of the run.",
+        "note": "Read on 2026-10-09 from the page the url serves (sha256 576c808bac9fff92e7635be0922ffa46aa4742eb2b584e82cd094625ed9d2451). No human review recorded."
       }
     }
   },
@@ -161,7 +271,7 @@
     "published_at": "2026-09-07",
     "source": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html",
     "verification_status": "unverified",
-    "source_hash": "ed58e94443f90d7637f8cb70f4d897f7fd480017cb2fa6eeab331e527a9821d0",
+    "source_hash": "0f0f93e319ad37d674ba09e8922ad174635dfc87f3539210cf9a9176c93bbbd6",
     "source_type": "institutional_secondary"
   }
 }

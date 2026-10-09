@@ -49,6 +49,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.ledger import LedgerEntry
     from ccnl_engine.payroll.domain.pay_items import PayItem
     from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
+    from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
     from ccnl_engine.tax.domain.family import FamilyDeductionRules
     from ccnl_engine.tax.domain.surtax_rules import SurtaxRules
 
@@ -121,6 +122,21 @@ def _children_within_limit(ctx: RunContext) -> bool | None:
     return children_within_income_limit(children, rules.children, year)
 
 
+def _recovery_plans(
+    ctx: RunContext, fiscal_year: int
+) -> tuple[RecoveryPlan | None, RecoveryPlan | None]:
+    """Return the recovery plans of the trattamento and the ulteriore.
+
+    Returns:
+        The plans of the tax year, the trattamento's first.
+    """
+    obligations = ctx.opening.cash.obligations
+    return (
+        obligations.recovery_of(fiscal_year, TRATTAMENTO_RECOVERY),
+        obligations.recovery_of(fiscal_year, ULTERIORE_RECOVERY),
+    )
+
+
 def amounts_input(
     ctx: RunContext,
     totals: _EventTotals,
@@ -136,6 +152,7 @@ def amounts_input(
         The input of the amounts computation.
     """
     request, contract, fiscal_year = ctx.request, ctx.contract, ctx.fiscal_year
+    trattamento, ulteriore = _recovery_plans(ctx, fiscal_year)
     return _AmountsInput(
         monthly_gross=ctx.monthly_gross,
         in_kind=ctx.chain.in_kind_total,
@@ -166,12 +183,8 @@ def amounts_input(
         eligible_work_days=spell_days(ctx.employment_spells),
         fixed_term_in_year=any(s.fixed_term for s in ctx.employment_spells),
         period_days=_period_days(ctx),
-        recovery_plan=ctx.opening.cash.obligations.recovery_of(
-            fiscal_year, TRATTAMENTO_RECOVERY
-        ),
-        ulteriore_plan=ctx.opening.cash.obligations.recovery_of(
-            fiscal_year, ULTERIORE_RECOVERY
-        ),
+        recovery_plan=trattamento,
+        ulteriore_plan=ulteriore,
         installment_run=ctx.installment_run,
         withholding_agent=ctx.withholding_agent,
         pension=pension_terms(ctx),
@@ -184,6 +197,7 @@ def amounts_input(
         deferred_irpef=_deferred_irpef(ctx),
         additional_ivs=additional_ivs_position(ctx),
         tfr_treasury_fund=tfr_treasury_fund(ctx),
+        public_end_of_service=request.public_end_of_service,
         assistance=assistance_terms(contract.ccnl, contract.tctx.competence),
     )
 

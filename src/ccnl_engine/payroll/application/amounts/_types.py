@@ -26,6 +26,7 @@ if TYPE_CHECKING:
         CalculationIssue,
     )
     from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm, Permanent
+    from ccnl_engine.payroll.domain.employment_facts import PublicEndOfService
     from ccnl_engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.payroll.domain.foreign_tax import ForeignTaxPaid
     from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
@@ -131,6 +132,7 @@ class _AmountsInput:
     additional_ivs: AdditionalIvsPosition = field(default_factory=AdditionalIvsPosition)
     tfr_treasury_fund: bool | None = None
     assistance: AssistanceTerms | None = None
+    public_end_of_service: PublicEndOfService | None = None
 
     @property
     def regular_run(self) -> bool:

@@ -9,8 +9,13 @@ from ccnl_engine.payroll.application._period_utils import _ZERO
 from ccnl_engine.payroll.application.amounts._domestic import (
     compute_domestic_breakdown,
 )
+from ccnl_engine.payroll.application.amounts._public_end_of_service import (
+    end_of_service_employee_rate,
+    with_end_of_service,
+)
 from ccnl_engine.payroll.domain.decisions import CalculationIssue, CalculationStatus
 from ccnl_engine.payroll.domain.employment import Apprentice
+from ccnl_engine.payroll.domain.employment_facts import PublicEndOfService
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.service._contributions_rates import resolve_rates
@@ -63,9 +68,9 @@ def run_contributions(inp: _AmountsInput) -> tuple[ContributionBreakdown, Decima
     """
     if inp.rules.inps is not None:
         base = _raised(inp, inp.monthly_gross + inp.event_inps_base)
-        breakdown = _ordinary_breakdown(inp, base)
+        breakdown = with_end_of_service(inp, _ordinary_breakdown(inp, base))
         rates = resolve_rates(inp.rules, inp.contract_type, inp.category)
-        return breakdown, rates.employee_rate
+        return breakdown, rates.employee_rate + end_of_service_employee_rate(inp)
     breakdown = compute_domestic_breakdown(
         inp.rules,
         inp.weekly_hours,
@@ -76,6 +81,8 @@ def run_contributions(inp: _AmountsInput) -> tuple[ContributionBreakdown, Decima
     return breakdown, _ZERO
 
 
+#: Regimes whose TFR the employer does not accrue.
+_AT_INPS = frozenset({PublicEndOfService.TFS, PublicEndOfService.TFR_INPS})
 #: Code of the issue of a TFR whose Fondo Tesoreria destination is unknown.
 TFR_TREASURY_FUND_CODE = "tfr_treasury_fund_unknown"
 
@@ -97,6 +104,9 @@ class TfrAccrual:
         treasury_fund: The TFR not paid to a pension fund is paid to the
             Fondo Tesoreria INPS (L. 296/2006 art. 1 c. 756); ``None`` when
             the request does not say.
+        public: End-of-service regime of a public employee: under the TFS
+            no TFR accrues, under the TFR at INPS it accrues notionally at
+            INPS (DPCM 20 dicembre 1999 art. 1 c. 6); neither is posted.
     """
 
     quota: Decimal
@@ -105,11 +115,24 @@ class TfrAccrual:
     deduction: Decimal = _ZERO
     to_pension_fund: bool = False
     treasury_fund: bool | None = False
+    public: PublicEndOfService | None = None
+
+    @property
+    def notional(self) -> bool:
+        """Whether INPS, not the employer, accrues the TFR of the run."""
+        return self.public in _AT_INPS
 
     @property
     def amount(self) -> Decimal:
         """TFR accrued on the run, in the company or paid to a fund."""
-        return self.quota - self.deduction
+        return _ZERO if self.notional else self.quota - self.deduction
+
+    @property
+    def destination(self) -> str:
+        """Where the TFR of the run goes: an account, or the INPS regime."""
+        if self.public is PublicEndOfService.TFS:
+            return "tfs"
+        return "inps_notional" if self.notional else self.account.value
 
     @property
     def account(self) -> AccountKind:
@@ -197,10 +220,12 @@ def tfr_accrual(inp: _AmountsInput, breakdown: ContributionBreakdown) -> TfrAccr
     tfr = inp.rules.tfr
     base = inp.monthly_gross + inp.in_kind + inp.event_tfr_base
     quota = money(base / tfr.accrual_divisor)
+    public = inp.public_end_of_service
     accrual = TfrAccrual(
-        quota=quota,
+        quota=_ZERO if public is PublicEndOfService.TFS else quota,
         to_pension_fund=_tfr_paid_to_fund(inp),
         treasury_fund=inp.tfr_treasury_fund,
+        public=public,
     )
     extra = tfr.additional_ivs
     if extra is None or isinstance(inp.contract_type, Apprentice):

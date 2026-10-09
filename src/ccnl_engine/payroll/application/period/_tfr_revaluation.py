@@ -26,6 +26,7 @@ from ccnl_engine.payroll.domain.decisions import (
     CalculationIssue,
     CalculationStatus,
 )
+from ccnl_engine.payroll.domain.employment_facts import PublicEndOfService
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.run import RunKind
 from ccnl_engine.provenance.domain.chain import RuleProvenance
@@ -50,6 +51,8 @@ NO_OPENING_FUND = "no_opening_fund"
 
 _YEAR_END = "year_end"
 _TERMINATION = "termination"
+#: Regimes of a public employee whose TFR the employer does not hold.
+_AT_INPS = frozenset({PublicEndOfService.TFS, PublicEndOfService.TFR_INPS})
 _UNKNOWN = "unknown"
 _ZERO = Decimal(0)
 _NO_FUND = Decimal("0.00")
@@ -81,12 +84,18 @@ class TfrRevaluation:
 def _moment(ctx: RunContext) -> str | None:
     """Return when the run revalues the fund, ``None`` when it does not.
 
+    A public employee under the TFS accrues no TFR, and the TFR at INPS
+    is revalued by INPS (DPCM 20 dicembre 1999 art. 1 c. 6): neither run
+    revalues a fund of the employer.
+
     Returns:
         ``termination`` on the run that closes the employment before 31
         December, ``year_end`` on the December regular run of an
         employment still in force at 31 December, ``None`` otherwise.
     """
     request, kind = ctx.request, ctx.run_kind
+    if request.public_end_of_service in _AT_INPS:
+        return None
     year, month = request.period_id.year, request.period_id.month
     period = request.employment_period
     ended = None if period is None else period.ended_on

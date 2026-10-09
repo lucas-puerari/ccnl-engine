@@ -159,6 +159,15 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "unknown Fondo Tesoreria destination: a run that accrues TFR outside "
         "a pension fund has a missing_fact tfr_treasury_fund blocker",
     ),
+    "Employment.public_end_of_service": requires_fact(
+        "inps_employee",
+        "employment.public_end_of_service",
+        _REPORTED,
+        "unknown end-of-service regime: a run on a CCNL of the public "
+        "administrations leaves out the contributions to INPS Gestione "
+        "Dipendenti Pubblici and has a missing_fact public_end_of_service "
+        "blocker",
+    ),
     "Employment.erc_amount": requires_fact(
         "pension_fund_contribution",
         "employment.erc_amount",

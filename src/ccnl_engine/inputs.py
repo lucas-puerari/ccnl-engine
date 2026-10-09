@@ -24,6 +24,7 @@ from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm, Permane
 from ccnl_engine.payroll.domain.employment_facts import (
     ContributableHours,
     EmploymentPeriod,
+    PublicEndOfService,
     WeeklyHours,
 )
 from ccnl_engine.payroll.domain.employment_spells import EmploymentSpell
@@ -89,6 +90,7 @@ __all__ = [
     "PeriodState",
     "Permanent",
     "PriorYearTaxFacts",
+    "PublicEndOfService",
     "RecoveryObligation",
     "RecoveryPlan",
     "SeniorityFact",

@@ -144,7 +144,7 @@ def _tfr(
             "additional_ivs_rate": tfr.ivs_rate,
             "additional_ivs_deduction": tfr.deduction,
             "treasury_fund": "unknown" if treasury is None else str(treasury).lower(),
-            "account": tfr.account.value,
+            "account": tfr.destination,
         },
         tfr.amount,
     )

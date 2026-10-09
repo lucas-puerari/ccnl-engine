@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## End-of-service contributions of public employees
+
+| Before | After |
+|---|---|
+| A public employee paid no TFS or TFR contribution to INPS and accrued a private TFR in the company | The new `Employment.public_end_of_service` (`PublicEndOfService`: `tfs`, `tfr_inps`, `tfr_employer`) sets the ENPAS or INADEL contributions (new components `tfs_employee`, `tfs_employer`, `tfr_reduction_employee`, `tfr_employer`) and whether the run accrues the TFR; `None` on a CCNL of the public administrations gives the `missing_fact` issue `public_end_of_service_unknown` |
+
 ## INPS rates of the public administrations by pension fund
 
 | Before | After |

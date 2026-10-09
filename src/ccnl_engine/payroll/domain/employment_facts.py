@@ -6,6 +6,7 @@ import calendar
 from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
+from enum import StrEnum
 
 from ccnl_engine.shared.domain.errors import InvalidInputError
 from ccnl_engine.shared.domain.validation import (
@@ -18,6 +19,26 @@ from ccnl_engine.shared.domain.validation import (
 FEATURE = "employment_facts"
 
 _ZERO = Decimal(0)
+
+
+class PublicEndOfService(StrEnum):
+    """End-of-service regime of a public employee (DPCM 20 dicembre 1999).
+
+    Values:
+        TFS: Trattamento di fine servizio (buonuscita or indennità premio
+            di servizio) of INPS Gestione Dipendenti Pubblici: the worker
+            pays 2.50% of the contribution base, the administration the rest.
+        TFR_INPS: Trattamento di fine rapporto accrued notionally by INPS
+            (art. 1 c. 6): the administration pays the whole contribution and
+            the gross is reduced by the 2.50% the worker no longer pays (c. 3).
+        TFR_EMPLOYER: Trattamento di fine rapporto the employer accrues and
+            pays (art. 1 c. 6 and 8: enti pubblici non economici, enti di
+            ricerca): no contribution to the Gestione, no reduction.
+    """
+
+    TFS = "tfs"
+    TFR_INPS = "tfr_inps"
+    TFR_EMPLOYER = "tfr_employer"
 
 
 @dataclass(frozen=True, slots=True)
