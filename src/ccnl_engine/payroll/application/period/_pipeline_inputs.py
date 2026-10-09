@@ -25,7 +25,7 @@ from ccnl_engine.payroll.application.period._additional_ivs import (
     additional_ivs_position,
 )
 from ccnl_engine.payroll.application.period._assistance import assistance_terms
-from ccnl_engine.payroll.application.period._contractual_fund import contractual_amount
+from ccnl_engine.payroll.application.period._contractual_fund import contractual_run
 from ccnl_engine.payroll.application.period._pension_decision import pension_terms
 from ccnl_engine.payroll.application.period._sickness import sickness_terms
 from ccnl_engine.payroll.application.period._tfr_destination import (
@@ -175,7 +175,7 @@ def amounts_input(
         installment_run=ctx.installment_run,
         withholding_agent=ctx.withholding_agent,
         pension=pension_terms(ctx),
-        contractual_fund=contractual_amount(ctx),
+        contractual_fund=contractual_run(ctx),
         conguaglio=ctx.conguaglio,
         surtax_obligations=ctx.opening.cash.obligations.surtax,
         run_month=request.period_id.month,

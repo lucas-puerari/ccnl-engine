@@ -313,12 +313,16 @@ def _contractual_rules(file: str, spec: object) -> Iterator[PayableRule]:
     """Yield the monthly amounts of the contractual fund contribution.
 
     Yields:
-        One rule per non-gap period of the amount of each level.
+        One rule per non-gap period of the amount of each level and of the
+        apprentices.
     """
     if not isinstance(spec, dict):
         return
     amounts = spec.get("monthly_by_level")
-    for level, series in (amounts if isinstance(amounts, dict) else {}).items():
+    by_key = dict(amounts if isinstance(amounts, dict) else {})
+    if spec.get("apprentice_monthly") is not None:
+        by_key["apprentice"] = spec["apprentice_monthly"]
+    for level, series in by_key.items():
         for period in _periods(series):
             path = f"contractual_fund_contribution[{level}][{period.get('valid_from')}]"
             record = period.get("provenance") or spec.get("provenance")

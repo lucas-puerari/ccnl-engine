@@ -64,6 +64,13 @@ _HIRED = EmploymentPeriod(date(2026, 9, 1))
 _ONLY_EMPLOYMENT = CurrentYearTaxFacts.employment_only(2026, date(2026, 9, 1))
 #: Issue of a run whose minimum INPS base the bundle cannot fix.
 _MINIMUM_UNDETERMINED = "inps_minimum_base_undetermined"
+#: Incomplete issues the scan accepts: the open minimum base, and the
+#: contractual fund contribution of a category the scan does not state.
+_ACCEPTED = frozenset({
+    _MINIMUM_UNDETERMINED,
+    "contractual_fund_category_unknown",
+    "contractual_fund_not_computed",
+})
 _INPS = frozenset({"inps_employee", "inps_employer"})
 
 
@@ -86,16 +93,16 @@ def _minimum_held(result: PeriodResult) -> bool:
 
 
 def _computed(result: PeriodResult) -> bool:
-    """Whether the run computed, or only its minimum INPS base is open.
+    """Whether the run computed, or only an accepted issue is open.
 
     Returns:
         True for a final or provisional result, or an incomplete one whose
-        incomplete issues are all the undetermined minimum base.
+        incomplete issues are all accepted (:data:`_ACCEPTED`).
     """
     if result.assurance.calculation in _COMPUTED:
         return True
     return all(
-        i.code == _MINIMUM_UNDETERMINED
+        i.code in _ACCEPTED
         for i in result.issues
         if i.status is CalculationStatus.INCOMPLETE
     )

@@ -367,6 +367,17 @@ input, on top of the ordinary rates. The sources give no rule for a partial
 month or part time: the run pays the full amount and has the open
 limitation `contractual_fund_partial`.
 
+The clause can carry the rules of its fund. Prevedi, on Edilizia industria
+and artigianato, pays the impiegati and quadri 10 to 20.50 EUR a month by
+level (apprentices 10), only for a month of at least 15 calendar days worked
+(sickness and days without pay left out), in proportion to part time, on
+the tredicesima and quattordicesima in proportion to their ratei, and not
+for a fixed term of three months or less unless the worker pays voluntary
+contributions (CNCE vademecum; accordo of 4 July 2025). The operai pay per
+hour worked, which the request does not state: their runs have the issue
+`contractual_fund_not_computed`; a level that leaves the category open has
+`contractual_fund_category_unknown`.
+
 Not modelled: the compensatory measures for employers whose TFR goes to a
 fund (D.Lgs. 252/2005 art. 10), the extra deduction of workers first
 employed from 2007 (art. 8 c. 6), a partial TFR conferment, and the eligibility

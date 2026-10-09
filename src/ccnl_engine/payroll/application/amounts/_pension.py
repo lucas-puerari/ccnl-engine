@@ -35,16 +35,16 @@ def run_pension(inp: _AmountsInput) -> PensionContribution | None:
     """
     deducted = inp.opening.earnings.pension_deducted
     if inp.pension is None:
-        if inp.contractual_fund == _ZERO:
+        if inp.contractual_fund.amount == _ZERO:
             return None
         rules = inp.rules.complementary_pension
-        return contractual_only(inp.contractual_fund, rules, deducted)
+        return contractual_only(inp.contractual_fund.amount, rules, deducted)
     base = fund_base(
         inp.pension.fund.contribution_base,
         inps_base=inp.monthly_gross + inp.event_inps_base,
         tfr_base=inp.monthly_gross + inp.in_kind + inp.event_tfr_base,
     )
-    return contribute(inp.pension, base, deducted, inp.contractual_fund)
+    return contribute(inp.pension, base, deducted, inp.contractual_fund.amount)
 
 
 def fund_base(
