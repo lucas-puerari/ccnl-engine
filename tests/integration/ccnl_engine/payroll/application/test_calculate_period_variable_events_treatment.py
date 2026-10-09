@@ -6,6 +6,7 @@ period and the arrears reference period.
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 
@@ -35,6 +36,7 @@ from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.shared.domain.errors import InvalidInputError
+from tests.fixtures.next_year_repository import NextYearRepository
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
@@ -79,11 +81,15 @@ def _account(result: PeriodResult, account: AccountKind) -> Decimal:
     )
 
 
+#: Art. 17 c. 1 lett. b TUIR until 2026, art. 19 D.Lgs. 117/2026 from 2027.
+_SEPARATE_RULES = frozenset({"tuir-art17-c1-b", "dlgs117-2026-art19-c1-b"})
+
+
 def _arrears_decision(result: PeriodResult) -> CalculationDecision:
     (decision,) = (
         d
         for d in result.decisions
-        if d.capability == "contract_renewal_arrears" and d.rule == "tuir-art17-c1-b"
+        if d.capability == "contract_renewal_arrears" and d.rule in _SEPARATE_RULES
     )
     return decision
 
@@ -108,7 +114,27 @@ class TestArrearsEventReferencePeriod:
         assert decision.status is CalculationStatus.FINAL
         assert decision.inputs["reference_period"] == "2025-06"
         assert decision.amount == Decimal("460.00")
+        assert decision.rule == "tuir-art17-c1-b"
         assert all(b.detail != "reference_period" for b in result.blockers)
+
+    def test_earlier_year_in_2027_follows_the_testo_unico(self) -> None:
+        """From tax year 2027 art. 19 c. 1 lett. b D.Lgs. 117/2026 applies.
+
+        December 2026 paid on 13 January 2027 is a payment of tax year 2027
+        (art. 51 c. 1 TUIR); 2025 arrears paid with it are taxed separately
+        under the testo unico of D.Lgs. 117/2026: 2,000.00 x 0.23 = 460.00.
+        """
+        request = replace(
+            _req(_arrears(PeriodId(year=2025, month=6))),
+            period_id=PeriodId(year=2026, month=12),
+            payment_date=date(2027, 1, 13),
+        )
+        result = calculate_period(request, repo=NextYearRepository())
+        decision = _arrears_decision(result)
+
+        assert _account(result, AccountKind.SEPARATE_TAX) == Decimal("460.00")
+        assert decision.rule == "dlgs117-2026-art19-c1-b"
+        assert decision.inputs["tax_year"] == "2027"
 
     def test_same_year_enters_the_ordinary_irpef_base(self) -> None:
         """January 2026 arrears paid in March 2026 are ordinary income.
