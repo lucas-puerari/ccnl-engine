@@ -24,6 +24,7 @@ from ccnl_engine.payroll.application.period._caller_rules import (
     caller_supplied_decisions,
 )
 from ccnl_engine.payroll.application.period._checks import check_absences_within_pay
+from ccnl_engine.payroll.application.period._erc import erc_settlement
 from ccnl_engine.payroll.application.period._ivs_ceiling import (
     IvsCeiling,
     ivs_ceiling_decision,
@@ -116,15 +117,16 @@ def run_events(ctx: RunContext) -> RunEvents:
         ctx.resolver,
         ctx.policy_context,
     )
+    erc = erc_settlement(ctx)
     check_absences_within_pay(
         events.entries,
         ctx.monthly_gross,
         with_sickness=any(i.code == WITH_UNPAID_ABSENCE for i in events.totals.issues),
     )
     return RunEvents(
-        settlement.added_to(events.totals),
-        events.items + settlement.items,
-        events.entries + settlement.entries,
+        erc.added_to(settlement.added_to(events.totals)),
+        events.items + settlement.items + erc.items,
+        events.entries + settlement.entries + erc.entries,
     )
 
 

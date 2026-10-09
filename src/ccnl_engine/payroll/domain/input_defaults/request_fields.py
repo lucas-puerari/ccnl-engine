@@ -164,8 +164,9 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "employment.erc_amount",
         _REPORTED,
         "unknown ERC of the CCNL grafici editoriali: an enrolment in Byblos "
-        "uses the 1.9% rate of a worker without it and the run has a "
-        "missing_fact erc_amount blocker",
+        "uses the 1.9% rate of a worker without it, a run paying the "
+        "tredicesima leaves the ERC out, and the run has a missing_fact "
+        "erc_amount blocker",
     ),
     "Employment.pension_fund": requires_fact(
         "pension_fund_contribution",

@@ -2,7 +2,8 @@
 
 A payable rule is a bundled value that the payroll run reads to compute a
 posted amount: CCNL salary tables, fixed allowances, seniority increments,
-extra-month entitlements, the extra-month accrual threshold, the first-tier
+extra-month entitlements, the extra-month accrual threshold, the ERC paid
+with the tredicesima, the first-tier
 overtime bands, the absence rule (daily quota of partial months and sick
 days), the sickness rule, employer pension fund rates and the assistance
 contribution charged per paid hour; the INPS sick-pay
@@ -233,6 +234,10 @@ def ccnl_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]:
         yield _rule(file, "accrual_rule", ("base_salary",), accrual.get("provenance"))
     else:
         yield PayableRule(file, "accrual_rule", ("base_salary",), "missing")
+    raccordo = params.get("raccordo_element")
+    if isinstance(raccordo, dict):
+        record = raccordo.get("provenance")
+        yield _rule(file, "raccordo_element", ("base_salary",), record)
     yield from _work_rules(file, data.get("work_rules"))
     yield from _overtime_rules(file, data.get("work_rules"))
     yield from _fund_rules(file, params.get("employer_funds"))

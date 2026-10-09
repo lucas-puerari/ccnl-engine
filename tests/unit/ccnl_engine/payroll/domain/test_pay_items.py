@@ -31,6 +31,7 @@ from ccnl_engine.payroll.domain.pay_items import (
     PayItemPolicy,
     PolicyDecision,
     ProductivityBonusEarning,
+    RaccordoElementEarning,
     SeniorityEarning,
     SicknessItem,
     TaxCreditItem,
@@ -85,7 +86,7 @@ def _base(kind: str = "x") -> Any:  # noqa: ANN401
     }
 
 
-# All 24 kind strings — used by parametrize tests below.
+# All 25 kind strings — used by parametrize tests below.
 _ALL_KINDS: list[tuple[str, dict[str, object]]] = [
     ("base_salary_earning", {}),
     ("fixed_allowance_earning", {}),
@@ -97,6 +98,7 @@ _ALL_KINDS: list[tuple[str, dict[str, object]]] = [
     ("contract_renewal_arrears", {}),
     ("one_off_earning", {}),
     ("extra_month_earning", {"month_number": 13}),
+    ("raccordo_element_earning", {}),
     ("fringe_benefit_item", {}),
     ("welfare_item", {}),
     ("absence_deduction", {"absence_days": "0"}),
@@ -279,13 +281,13 @@ class TestPayItemDiscriminatedUnion:
 
     @pytest.mark.parametrize(("kind_str", "extra"), _ALL_KINDS)
     def test_all_24_kinds_parse(self, kind_str: str, extra: dict[str, object]) -> None:
-        """Every one of the 24 documented kinds can be parsed through the union."""
+        """Every one of the 25 documented kinds can be parsed through the union."""
         parsed = _PAY_ITEM_ADAPTER.validate_python(_item(kind_str, **extra))
         assert parsed.kind == kind_str
 
-    def test_all_24_kinds_count(self) -> None:
-        """_ALL_KINDS contains exactly 24 entries."""
-        assert len(_ALL_KINDS) == 24
+    def test_all_25_kinds_count(self) -> None:
+        """_ALL_KINDS contains exactly 25 entries."""
+        assert len(_ALL_KINDS) == 25
 
 
 class TestPayItemSpecificConstruction:
@@ -304,6 +306,7 @@ class TestPayItemSpecificConstruction:
             (ContractRenewalArrears(**_base()), "contract_renewal_arrears"),
             (OneOffEarning(**_base()), "one_off_earning"),
             (ExtraMonthEarning(**_base(), month_number=13), "extra_month_earning"),
+            (RaccordoElementEarning(**_base()), "raccordo_element_earning"),
             (FringeBenefitItem(**_base()), "fringe_benefit_item"),
             (WelfareItem(**_base()), "welfare_item"),
             (AbsenceDeduction(**_base(), absence_days=_D(0)), "absence_deduction"),

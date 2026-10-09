@@ -163,6 +163,20 @@ class PaymentDay(BaseModel):
         return self
 
 
+class RaccordoElement(BaseModel):
+    """Frozen annual amount the CCNL pays with the tredicesima.
+
+    The Elemento di Raccordo Contrattuale of the CCNL grafici editoriali
+    (renewal of 19 January 2021): an amount per worker, stated by
+    ``Employment.erc_amount``, that accrues by month as the tredicesima
+    and has "alcuna incidenza su alcun istituto contrattuale o di legge".
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    provenance: RuleProvenance
+
+
 class CCNLParameters(BaseModel):
     """Contract-wide parameters.
 
@@ -176,6 +190,7 @@ class CCNLParameters(BaseModel):
     fund, ``None`` when it charges none.
     ``flat_pay_max_weekly_hours``: the ceiling up to which a regime pays its
     minimum in full whatever the hours (lavoro domestico art. 14 c. 2: 30).
+    ``raccordo_element``: the ERC the CCNL pays with the tredicesima.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -190,6 +205,7 @@ class CCNLParameters(BaseModel):
     assistance_contribution: AssistanceContribution | None = None
     flat_pay_max_weekly_hours: int | None = Field(default=None, ge=1)
     contractual_fund_contribution: ContractualFundContribution | None = None
+    raccordo_element: RaccordoElement | None = None
 
     @model_validator(mode="after")
     def _check_positive_params(self) -> Self:

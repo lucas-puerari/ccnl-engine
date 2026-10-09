@@ -30,6 +30,7 @@ __all__ = [
     "OvertimeEarning",
     "PayItem",
     "ProductivityBonusEarning",
+    "RaccordoElementEarning",
     "SeniorityEarning",
     "SicknessInpsItem",
     "SicknessItem",
@@ -121,6 +122,12 @@ class ExtraMonthEarning(_PayItemBase):
 
     kind: Literal["extra_month_earning"] = "extra_month_earning"
     month_number: int = Field(ge=13, le=14)
+
+
+class RaccordoElementEarning(_PayItemBase):
+    """Elemento di Raccordo Contrattuale paid with the tredicesima."""
+
+    kind: Literal["raccordo_element_earning"] = "raccordo_element_earning"
 
 
 class FringeBenefitItem(_PayItemBase):
@@ -241,6 +248,7 @@ PayItem = Annotated[
     | ContractRenewalArrears
     | OneOffEarning
     | ExtraMonthEarning
+    | RaccordoElementEarning
     | FringeBenefitItem
     | WelfareItem
     | AbsenceDeduction
