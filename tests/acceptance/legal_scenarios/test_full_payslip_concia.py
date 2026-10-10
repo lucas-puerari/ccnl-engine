@@ -227,16 +227,13 @@ class TestCandidateGroupEvidence:
     def test_the_only_blockers_are_the_assumed_rules_it_reads(self) -> None:
         """Only assumed rules block: none of the CCNL, family or surtax data.
 
-        The INPS and tax rules of ``industria`` sit in rulesets that declare
+        The INPS rates of ``industria`` sit in a ruleset that declares
         ``source_type`` ``estimated``, so the provenance label check labels
-        them assumed.  The somma esente, quoted from L. 207/2024 art. 1
-        cc. 4-5 in its own ruleset, blocks nothing.
+        them assumed.  The tax rules, quoted from the TUIR, D.L. 3/2020,
+        L. 207/2024 and the codice civile, and the somma esente block
+        nothing.
         """
         weak = {
-            "irpef",
-            "trattamento_integrativo",
-            "ulteriore_detrazione_lavoro",
-            "tfr",
             "inps_employee",
             "inps_employer",
             "ivs_ceiling_eligibility",
