@@ -7,7 +7,6 @@ boundary without type ambiguity (Decimal, date, etc.).
 
 from __future__ import annotations
 
-import importlib.resources
 import json
 import operator
 from datetime import UTC, date, datetime
@@ -34,7 +33,7 @@ from ccnl_engine.inputs import (
     WeeklyHours,
 )
 from ccnl_engine.contract.service.loaders import load_ccnl
-from ccnl_engine.knowledge.service.bundled import read_bundled
+from ccnl_engine.knowledge.service.manifest import read_resource
 from ccnl_engine.tax.service.surtax_loaders import load_surtax_rules
 from ccnl_engine.payroll.domain.jurisdiction import REGION_CODES
 
@@ -56,15 +55,12 @@ def _latest_bundled_year() -> int:
     Raises:
         RuntimeError: If no complete year is found >= 2020.
     """
-    tax_pkg = importlib.resources.files("ccnl_engine.knowledge.tax.data")
-    inps_pkg = importlib.resources.files("ccnl_engine.knowledge.inps.data")
-    surtax_pkg = importlib.resources.files("ccnl_engine.knowledge.surtax.data")
     year = datetime.now(UTC).year
     while True:
         try:
-            read_bundled(tax_pkg, f"{year}-industria.json")
-            read_bundled(inps_pkg, f"{year}-industria.json")
-            read_bundled(surtax_pkg, f"regionale-{year}.json")
+            read_resource(f"taxation/annual/{year}/industria.json")
+            read_resource(f"social_security/contribution/{year}/industria.json")
+            read_resource(f"surtax/regional/{year}.json")
         except FileNotFoundError:
             year -= 1
             if year < 2020:

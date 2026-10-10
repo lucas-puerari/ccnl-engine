@@ -7,9 +7,13 @@ It exercises the public API surface and exits non-zero on any failure.
 
 from __future__ import annotations
 
+import gzip
+import json
 import sys
 from datetime import date
 from decimal import Decimal
+from importlib.resources import files
+from pathlib import Path
 
 from ccnl_engine import (
     EmployerProfile,
@@ -72,6 +76,42 @@ def main() -> int:
         return 1
 
     print(f"OK: list_contracts()={len(ccnls)}, '{slug}' is {ruleset.readiness}")
+    return _knowledge_parity()
+
+
+_MANIFEST = "manifest.json"
+
+
+def _installed(path: str) -> object:
+    """Return the JSON of a knowledge resource as the wheel stores it.
+
+    Returns:
+        The decoded ``<path>.gz`` of the installed package.
+    """
+    packed = files("ccnl_engine.knowledge").joinpath(*f"{path}.gz".split("/"))
+    return json.loads(gzip.decompress(packed.read_bytes()).decode("utf-8"))
+
+
+def _knowledge_parity() -> int:
+    """Check that the wheel holds the source bundle, resource for resource.
+
+    The installed manifest must equal the source one, and every resource it
+    lists must decode to the JSON of the source file.
+
+    Returns:
+        0 when the list and the content match; 1 otherwise.
+    """
+    source = Path("src/ccnl_engine/knowledge")
+    expected = json.loads((source / _MANIFEST).read_text(encoding="utf-8"))
+    if _installed(_MANIFEST) != expected:
+        print("FAIL: the installed knowledge manifest differs from the source one")
+        return 1
+    for entry in expected["resources"]:
+        path = entry["path"]
+        if _installed(path) != json.loads((source / path).read_text("utf-8")):
+            print(f"FAIL: {path} in the wheel differs from the source file")
+            return 1
+    print(f"OK: {len(expected['resources'])} knowledge resources match the source")
     return 0
 
 

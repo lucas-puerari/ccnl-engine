@@ -73,7 +73,7 @@ def test_unreadable_file_is_a_data_error() -> None:
     _loader_mod._load_cached.cache_clear()
     try:
         with (
-            patch.object(_loader_mod, "read_bundled", side_effect=FileNotFoundError),
+            patch.object(_loader_mod, "read_resource", side_effect=FileNotFoundError),
             pytest.raises(DataIntegrityError, match="cannot read"),
         ):
             load_engine_limitations()

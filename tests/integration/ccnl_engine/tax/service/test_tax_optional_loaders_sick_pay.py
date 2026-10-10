@@ -15,11 +15,13 @@ from ccnl_engine.tax.service.tax_optional_loaders import (
     sick_pay_rates_from,
 )
 
-_FILE = "sick-pay-rates.json"
+_FILE = "rates.json"
 
 
 def _bundled() -> dict[str, Any]:
-    pkg = importlib.resources.files("ccnl_engine.knowledge.inps.data")
+    pkg = importlib.resources.files("ccnl_engine.knowledge").joinpath(
+        "social_security", "sickness"
+    )
     raw: dict[str, Any] = json.loads(pkg.joinpath(_FILE).read_text("utf-8"))
     return raw
 

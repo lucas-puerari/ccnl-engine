@@ -4,8 +4,8 @@ on:
   pull_request:
     branches: [main]
     paths:
-      - "src/ccnl_engine/knowledge/ccnl/**"
-      - "src/ccnl_engine/knowledge/inps/**"
+      - "src/ccnl_engine/knowledge/contract/**"
+      - "src/ccnl_engine/knowledge/social_security/**"
       - "scripts/docs/gen_contract_examples.py"
       - "docs/examples/contracts/**"
 

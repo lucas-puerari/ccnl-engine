@@ -107,7 +107,7 @@ class TestSurtaxLoaderIdentity:
         _load_surtax_rules_cached.cache_clear()
         with (
             patch(
-                "ccnl_engine.tax.service.surtax_loaders.read_bundled",
+                "ccnl_engine.tax.service.surtax_loaders.read_resource",
                 side_effect=[tampered_reg, valid_com],
             ),
             pytest.raises(DataIntegrityError, match="does not match requested year"),
@@ -122,7 +122,7 @@ class TestSurtaxLoaderIdentity:
         _load_surtax_rules_cached.cache_clear()
         with (
             patch(
-                "ccnl_engine.tax.service.surtax_loaders.read_bundled",
+                "ccnl_engine.tax.service.surtax_loaders.read_resource",
                 side_effect=[valid_reg, tampered_com],
             ),
             pytest.raises(DataIntegrityError, match="does not match requested year"),

@@ -2,18 +2,20 @@
 
 from __future__ import annotations
 
-import importlib.resources
 import json
 from functools import cache
 from typing import Any
 
 from ccnl_engine.contract.domain.identity import CCNL
-from ccnl_engine.knowledge.service.bundled import read_bundled
 from ccnl_engine.knowledge.service.loader_utils import (
     verify_provenance_labels,
     verify_ruleset_hash,
 )
+from ccnl_engine.knowledge.service.manifest import read_resource
 from ccnl_engine.shared.domain.errors import UnknownCcnlError
+
+#: Dataset of the CCNL files in the knowledge manifest.
+AGREEMENTS = "contract/agreement"
 
 
 @cache
@@ -29,7 +31,7 @@ def load_ccnl(filename: str) -> CCNL:
 
     Args:
         filename: Name of the JSON data file bundled under
-            ``ccnl_engine/knowledge/ccnl/data/``
+            ``ccnl_engine/knowledge/contract/agreement/``
             (e.g. ``"metalmeccanico-federmeccanica.json"``).
 
     Returns:
@@ -38,9 +40,8 @@ def load_ccnl(filename: str) -> CCNL:
     Raises:
         UnknownCcnlError: When the bundle has no file ``filename``.
     """
-    pkg = importlib.resources.files("ccnl_engine.knowledge.ccnl.data")
     try:
-        raw = read_bundled(pkg, filename)
+        raw = read_resource(f"{AGREEMENTS}/{filename}")
     except FileNotFoundError:
         raise UnknownCcnlError(filename.removesuffix(".json")) from None
     payload = json.loads(raw)

@@ -3,7 +3,7 @@
 A preferential regime replaces ordinary IRPEF and the regional and municipal
 surtaxes with a flat substitute tax (*imposta sostitutiva*) on the pay items it
 covers. The engine models each regime as data (`PreferentialTaxRegime`, read
-from `knowledge/tax/data/variable-pay-rules-2026.json`) and checks every covered pay
+from `knowledge/taxation/variable_pay/2026.json`) and checks every covered pay
 item against the worker facts declared on the input before applying it.
 
 ## The regime model

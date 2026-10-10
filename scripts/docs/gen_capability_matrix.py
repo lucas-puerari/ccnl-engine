@@ -70,7 +70,7 @@ _PREAMBLE = """\
 
 What the engine computes for fiscal year {year}, and how far the bundled
 data behind it is backed by sources. Generated from the capability registry
-(`knowledge/capabilities/data/{year}.json`), the provenance records of the
+(`knowledge/capability/{year}/catalog.json`), the provenance records of the
 payable rules, the `missing` notes and the model limitations of the {count}
 bundled CCNLs. The
 runtime capability report of every run, the [CCNL Coverage
@@ -216,7 +216,7 @@ def _ccnl_rows(
         cells = coverage_cells(catalog, ccnl)
         l1, l2, l3 = cells.layers
         link = f"[{ccnl.meta.name}]({ccnl.meta.ccnl_id}.md)"
-        rules = _rules(by_file.get(f"ccnl/data/{ccnl.meta.ccnl_id}.json", {}))
+        rules = _rules(by_file.get(f"contract/agreement/{ccnl.meta.ccnl_id}.json", {}))
         lines.append(
             f"| {i} | {link} | {l1} | {l2} | {l3} | {cells.limits} | {rules} |"
         )

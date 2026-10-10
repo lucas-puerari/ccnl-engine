@@ -24,7 +24,8 @@ def read_bundled(pkg: Traversable, filename: str) -> str:
     Args:
         pkg: A :class:`~importlib.resources.abc.Traversable` pointing to the
             package data directory (e.g. the result of
-            ``importlib.resources.files("ccnl_engine.knowledge.ccnl.data")``).
+            ``importlib.resources.files("ccnl_engine.knowledge")`` joined to
+            the directory of a manifest resource).
         filename: The uncompressed filename to look up (e.g. ``"foo.json"``).
             The ``.gz`` variant is tried first; ``filename`` itself is the
             fallback.

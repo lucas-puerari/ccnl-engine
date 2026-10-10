@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [main]
     paths:
-      - "src/ccnl_engine/knowledge/ccnl/**"
+      - "src/ccnl_engine/knowledge/contract/**"
       - "scripts/docs/coverage_report.py"
       - "scripts/docs/gen_coverage_matrix.py"
       - "docs/contracts/index.md"

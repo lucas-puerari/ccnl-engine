@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 from typing import Any
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 import pytest
 
@@ -94,11 +94,7 @@ class TestBundledRegistry:
 
 
 def _call_uncached(raw: str, year: int = 9999) -> CapabilityCatalog:
-    with (
-        patch.object(_catalog_mod, "importlib") as mock_importlib,
-        patch.object(_catalog_mod, "read_bundled", return_value=raw),
-    ):
-        mock_importlib.resources.files.return_value = MagicMock()
+    with patch.object(_catalog_mod, "read_resource", return_value=raw):
         return _catalog_mod._load_cached.__wrapped__(year)
 
 
@@ -106,14 +102,12 @@ class TestReadErrors:
     """A missing or unreadable file is a data integrity error."""
 
     def test_missing_file_raises(self) -> None:
-        """FileNotFoundError from read_bundled is wrapped in DataIntegrityError."""
+        """FileNotFoundError from read_resource is wrapped in DataIntegrityError."""
         with (
-            patch.object(_catalog_mod, "importlib") as mock_importlib,
-            patch.object(_catalog_mod, "read_bundled", side_effect=FileNotFoundError),
+            patch.object(_catalog_mod, "read_resource", side_effect=FileNotFoundError),
+            pytest.raises(DataIntegrityError, match="not found"),
         ):
-            mock_importlib.resources.files.return_value = MagicMock()
-            with pytest.raises(DataIntegrityError, match="not found"):
-                _catalog_mod._load_cached.__wrapped__(8888)
+            _catalog_mod._load_cached.__wrapped__(8888)
 
     def test_invalid_json_raises(self) -> None:
         """Invalid JSON content raises DataIntegrityError."""

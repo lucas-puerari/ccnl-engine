@@ -498,7 +498,13 @@ def _common_problems(target: str) -> list[str]:
     return problems
 
 
+#: The index of the knowledge bundle, at its root.
+KNOWLEDGE_MANIFEST = PurePosixPath("knowledge/manifest.json")
+
+
 def _resource_problems(pure: PurePosixPath) -> list[str]:
+    if pure == KNOWLEDGE_MANIFEST:
+        return []
     domain = pure.parts[1] if len(pure.parts) > 2 else ""
     if pure.parts[0] != "knowledge" or domain not in KNOWLEDGE_DOMAINS:
         return ["resource outside a knowledge dataset"]

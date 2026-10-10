@@ -52,6 +52,9 @@ jobs:
       - name: Layout inventory (every file has a target)
         run: uv run python scripts/ci/layout_inventory.py --check
 
+      - name: Knowledge manifest is up to date
+        run: uv run python scripts/data/build_manifest.py --check
+
       - name: Contract pages drift (check only)
         run: uv run python scripts/docs/gen_contract_pages.py --check
 

@@ -1,4 +1,4 @@
-r"""Build ``comunale-{year}.json`` from the MEF lists of the addizionale comunale.
+r"""Build ``surtax/municipal/{year}.json`` from the MEF addizionale comunale lists.
 
 The MEF Dipartimento delle Finanze publishes one CSV per tax year with the
 rates and exemption deliberated by every municipality, updated daily:
@@ -65,7 +65,7 @@ DATA_DIR: Final = (
     / "ccnl_engine"
     / "knowledge"
     / "surtax"
-    / "data"
+    / "municipal"
 )
 INDEX_URL: Final = (
     "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/"
@@ -639,7 +639,7 @@ def main(argv: list[str] | None = None) -> int:
     Returns:
         0 on success, 1 when a row cannot be read (nothing is written).
     """
-    parser = argparse.ArgumentParser(description="Build comunale-{year}.json")
+    parser = argparse.ArgumentParser(description="Build surtax/municipal/{year}.json")
     parser.add_argument("--year", type=int, required=True)
     parser.add_argument("--current", type=Path, required=True)
     parser.add_argument(
@@ -666,7 +666,7 @@ def main(argv: list[str] | None = None) -> int:
         return 1
     for municipality in result.tally.unresolved:
         print(f"WARNING: no rates for {municipality}; left out", file=sys.stderr)
-    out = args.out or DATA_DIR / f"comunale-{args.year}.json"
+    out = args.out or DATA_DIR / f"{args.year}.json"
     text = json.dumps(result.payload, ensure_ascii=False, indent=2) + "\n"
     out.write_text(text, encoding="utf-8")
     print(f"wrote {out}: {len(result.payload['rates'])} municipalities")

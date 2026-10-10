@@ -118,7 +118,7 @@ def main(root: Path = KNOWLEDGE) -> None:
         root: Knowledge directory to rewrite.
     """
     records = 0
-    for path in sorted(root.glob("*/data/*.json")):
+    for path in sorted(p for p in root.rglob("*.json") if p.name != "manifest.json"):
         text = path.read_text(encoding="utf-8")
         data = json.loads(text)
         changed = demote_records(data, estimated=provenance_labels.is_estimated(data))
@@ -127,7 +127,7 @@ def main(root: Path = KNOWLEDGE) -> None:
             records += changed
     weak = provenance_labels.weak_counts(payable_rules.inventory(root))
     demoted: list[str] = []
-    for path in sorted((root / "ccnl" / "data").glob("*.json")):
+    for path in sorted((root / "contract" / "agreement").glob("*.json")):
         text = path.read_text(encoding="utf-8")
         data = json.loads(text)
         file = path.relative_to(root).as_posix()

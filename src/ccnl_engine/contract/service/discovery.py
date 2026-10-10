@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import importlib.resources
 import json
 from dataclasses import dataclass
 from functools import cache
@@ -10,8 +9,8 @@ from typing import TYPE_CHECKING, NewType
 
 from ccnl_engine.contract.domain.identity import CCNLVerification
 from ccnl_engine.contract.domain.validity_window import ValidityWindow, model_window
-from ccnl_engine.contract.service.loaders import load_ccnl
-from ccnl_engine.knowledge.service.bundled_resources import BundledResourceStore
+from ccnl_engine.contract.service.loaders import AGREEMENTS, load_ccnl
+from ccnl_engine.knowledge.service.manifest import read_resource, resources
 from ccnl_engine.shared.domain.errors import UnknownCcnlError
 from ccnl_engine.shared.domain.validation import require_str
 
@@ -74,11 +73,10 @@ def _load_all() -> tuple[ContractSummary, ...]:
     Returns:
         Tuple of :class:`ContractSummary` sorted by ccnl_id.
     """
-    pkg = importlib.resources.files("ccnl_engine.knowledge.ccnl.data")
-    store = BundledResourceStore(pkg)
     items: list[ContractSummary] = []
-    for filename in store.list_json():
-        raw = json.loads(store.read_json(filename))
+    for resource in resources(AGREEMENTS):
+        filename = resource.name
+        raw = json.loads(read_resource(resource.path))
         meta = raw.get("meta", {})
         verification = CCNLVerification.model_validate(raw.get("verification", {}))
         items.append(

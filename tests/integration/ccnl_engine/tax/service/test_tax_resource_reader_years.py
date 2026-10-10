@@ -40,8 +40,8 @@ def test_a_year_needs_both_its_tax_and_its_inps_file(
 ) -> None:
     """A year with a tax file and no INPS file is not supported."""
     files = {
-        "ccnl_engine.knowledge.tax.data": {2026, 2027},
-        "ccnl_engine.knowledge.inps.data": {2026},
+        "taxation/annual": {2026, 2027},
+        "social_security/contribution": {2026},
     }
     monkeypatch.setattr(tax_resource_reader, "_years", files.__getitem__)
 

@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import importlib.resources
 from decimal import Decimal
 from typing import Any
 
@@ -30,13 +29,13 @@ from ccnl_engine.tax.service.tax_resource_reader import (
     read_year_json,
 )
 
-_SICK_PAY_FILE = "sick-pay-rates.json"
+_SICK_PAY_FILE = "social_security/sickness/rates.json"
 
 
 def load_sick_pay_rates() -> InpsSickPayRates:
     """Load INPS statutory sick-pay indemnity rates from the bundled data file.
 
-    The file ``knowledge/inps/data/sick-pay-rates.json`` is not year- or
+    The file ``knowledge/social_security/sickness/rates.json`` is not year- or
     sector-specific: statutory sick-pay rates change only by primary
     legislation (D.L. 663/1979, artt. 1-2, conv. L. 33/1980).
 
@@ -45,8 +44,7 @@ def load_sick_pay_rates() -> InpsSickPayRates:
         with the INPS carenza period, indemnity bands, annual maximum,
         coverage rules and provenance.
     """
-    pkg = importlib.resources.files("ccnl_engine.knowledge.inps.data")
-    return sick_pay_rates_from(_read_json(pkg, _SICK_PAY_FILE), _SICK_PAY_FILE)
+    return sick_pay_rates_from(_read_json(_SICK_PAY_FILE), _SICK_PAY_FILE)
 
 
 def sick_pay_rates_from(raw: dict[str, Any], filename: str) -> InpsSickPayRates:
@@ -96,7 +94,7 @@ def _provenance_of(block: dict[str, Any]) -> RuleProvenance | None:
 def load_variable_pay_rules(year: int) -> VariablePayRules:
     """Load statutory variable-pay rules for *year*.
 
-    The file ``knowledge/tax/data/variable-pay-rules-<year>.json`` is not
+    The file ``knowledge/taxation/variable_pay/<year>.json`` is not
     sector-specific.  It carries Art. 51 c. 3 TUIR thresholds, PdR flat-tax
     parameters and the L. 199/2025 substitute-tax regimes, which vary by
     fiscal year but not by sector or CCNL.
@@ -115,9 +113,8 @@ def load_variable_pay_rules(year: int) -> VariablePayRules:
     A year without a file raises
     :class:`~ccnl_engine.shared.domain.errors.UnsupportedTaxYearError`.
     """
-    pkg = importlib.resources.files("ccnl_engine.knowledge.tax.data")
-    filename = f"variable-pay-rules-{year}.json"
-    raw = read_year_json(pkg, filename, year)
+    filename = f"taxation/variable_pay/{year}.json"
+    raw = read_year_json(filename, year)
     if raw.get("year") != year:
         msg = (
             f"{filename} year={raw.get('year')!r} "
@@ -158,7 +155,7 @@ def load_variable_pay_rules(year: int) -> VariablePayRules:
 def load_family_deduction_rules(year: int) -> FamilyDeductionRules:
     """Load Art. 12 TUIR family deduction rules for *year*.
 
-    The file ``knowledge/tax/data/family-deductions-{year}.json`` carries
+    The file ``knowledge/taxation/family/{year}.json`` carries
     spouse, children and other-dependent deduction parameters.  These are
     pure law, not CCNL-specific.
 
@@ -172,9 +169,8 @@ def load_family_deduction_rules(year: int) -> FamilyDeductionRules:
     Raises:
         DataIntegrityError: If the file's ``year`` field does not match *year*.
     """
-    pkg = importlib.resources.files("ccnl_engine.knowledge.tax.data")
-    filename = f"family-deductions-{year}.json"
-    raw = read_year_json(pkg, filename, year)
+    filename = f"taxation/family/{year}.json"
+    raw = read_year_json(filename, year)
     if raw.get("year") != year:
         msg = (
             f"{filename} year={raw.get('year')!r} "
@@ -195,7 +191,7 @@ def load_family_deduction_rules(year: int) -> FamilyDeductionRules:
 def load_tfr_revaluation_rules(year: int) -> TfrRevaluationRules | None:
     """Load the TFR revaluation rules at 31 December of *year*.
 
-    The file ``knowledge/tax/data/tfr-revaluation-{year}.json`` carries the
+    The file ``knowledge/taxation/severance/{year}.json`` carries the
     rate of art. 2120 c. 4 c.c., the ISTAT FOI indexes it is computed from
     and the substitute tax of D.Lgs. 47/2000 art. 11.  These are pure law
     and statistics, not sector-specific.
@@ -211,10 +207,9 @@ def load_tfr_revaluation_rules(year: int) -> TfrRevaluationRules | None:
         DataIntegrityError: If the file's ``year`` does not match *year* or
             the file is not a valid revaluation table.
     """
-    pkg = importlib.resources.files("ccnl_engine.knowledge.tax.data")
-    filename = f"tfr-revaluation-{year}.json"
+    filename = f"taxation/severance/{year}.json"
     try:
-        raw = read_year_json(pkg, filename, year)
+        raw = read_year_json(filename, year)
     except UnsupportedTaxYearError:
         return None
     try:
@@ -234,7 +229,7 @@ def load_tfr_revaluation_rules(year: int) -> TfrRevaluationRules | None:
 def load_somma_esente_rules(year: int) -> SommaEsenteRules:
     """Load the somma esente of L. 207/2024 art. 1 cc. 4-5 for *year*.
 
-    The file ``knowledge/tax/data/somma-esente-{year}.json`` holds the
+    The file ``knowledge/taxation/exemption/{year}.json`` holds the
     bands of c. 4.  They are statutory and the same for every sector, so
     the file carries its own ruleset, apart from the sector tax files.
 
@@ -249,9 +244,8 @@ def load_somma_esente_rules(year: int) -> SommaEsenteRules:
         DataIntegrityError: If the file's ``year`` does not match *year* or
             the file is not a valid somma esente table.
     """
-    pkg = importlib.resources.files("ccnl_engine.knowledge.tax.data")
-    filename = f"somma-esente-{year}.json"
-    raw = read_year_json(pkg, filename, year)
+    filename = f"taxation/exemption/{year}.json"
+    raw = read_year_json(filename, year)
     if raw.get("year") != year:
         msg = (
             f"{filename} year={raw.get('year')!r} "

@@ -16,7 +16,6 @@ Regenerate output files with::
 
 from __future__ import annotations
 
-import importlib.resources
 from collections import Counter
 from dataclasses import dataclass
 from datetime import UTC, date, datetime
@@ -26,6 +25,7 @@ from ccnl_engine.contract.service.loaders import load_ccnl
 from ccnl_engine.knowledge.service.capability_catalog_loader import (
     load_capability_catalog,
 )
+from ccnl_engine.knowledge.service.manifest import resources
 from ccnl_engine.payroll.domain.capability_catalog import (
     CapabilityImplementation,
     CapabilityLayer,
@@ -128,14 +128,9 @@ def latest_catalog_year() -> int:
     """Return the latest fiscal year with a bundled capability registry.
 
     Returns:
-        The year of the newest ``capabilities/data/<year>.json``.
+        The year of the newest ``capability/<year>/catalog.json``.
     """
-    pkg = importlib.resources.files("ccnl_engine.knowledge.capabilities.data")
-    return max(
-        int(e.name.split(".")[0])
-        for e in pkg.iterdir()
-        if e.name.split(".")[0].isdigit()
-    )
+    return max(r.year for r in resources("capability") if r.year is not None)
 
 
 def bundled_ccnls() -> list[CCNL]:
@@ -144,8 +139,7 @@ def bundled_ccnls() -> list[CCNL]:
     Returns:
         The CCNL models.
     """
-    pkg = importlib.resources.files("ccnl_engine.knowledge.ccnl.data")
-    filenames = sorted(e.name for e in pkg.iterdir() if e.name.endswith(".json"))
+    filenames = [r.name for r in resources("contract/agreement")]
     return sorted((load_ccnl(fn) for fn in filenames), key=lambda c: c.meta.name)
 
 
@@ -214,7 +208,7 @@ def build_coverage_report(year: int) -> CoverageReport:
             workers_estimate=ccnl.meta.workers_estimate,
             agreement_year=(ccnl.meta.agreement_date or "")[:4],
             cells=coverage_cells(catalog, ccnl),
-            sources=sources.get(f"ccnl/data/{ccnl.meta.ccnl_id}.json", "—"),
+            sources=sources.get(f"contract/agreement/{ccnl.meta.ccnl_id}.json", "—"),
             verification_label=_verification_label(ccnl),
             readiness=ccnl.verification.readiness,
         )

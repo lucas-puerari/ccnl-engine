@@ -13,7 +13,7 @@ def _band(code: str, **extra: object) -> dict[str, object]:
 
 def test_ccnl_without_accrual_rule_lists_it_as_missing() -> None:
     """The engine default threshold has no CCNL source: status missing."""
-    (rule,) = ccnl_rules("ccnl/data/x.json", {"parameters": {}})
+    (rule,) = ccnl_rules("contract/agreement/x.json", {"parameters": {}})
     assert (rule.path, rule.status, rule.capabilities) == (
         "accrual_rule",
         "missing",
@@ -24,7 +24,7 @@ def test_ccnl_without_accrual_rule_lists_it_as_missing() -> None:
 def test_stored_accrual_rule_carries_its_record() -> None:
     """A stored clause takes the status of its own record."""
     data = {"parameters": {"accrual_rule": {"provenance": _RECORD}}}
-    (rule,) = ccnl_rules("ccnl/data/x.json", data)
+    (rule,) = ccnl_rules("contract/agreement/x.json", data)
     assert rule.status == "derived"
 
 
@@ -36,7 +36,7 @@ def test_assistance_contribution_is_payable() -> None:
             "assistance_contribution": {"provenance": _RECORD},
         }
     }
-    rules = ccnl_rules("ccnl/data/x.json", data)
+    rules = ccnl_rules("contract/agreement/x.json", data)
     assert [(r.path, r.status, r.capabilities) for r in rules][-1] == (
         "assistance_contribution",
         "derived",
@@ -59,7 +59,9 @@ def test_only_first_tier_overtime_bands_are_payable() -> None:
         "work_rules": {"time_supplements": {"overtime_bands": bands}},
     }
     overtime = [
-        r for r in ccnl_rules("ccnl/data/x.json", data) if r.path != "accrual_rule"
+        r
+        for r in ccnl_rules("contract/agreement/x.json", data)
+        if r.path != "accrual_rule"
     ]
     assert [(r.path, r.capabilities) for r in overtime] == [
         ("overtime_bands[OT_DIURNO]", ("overtime",))
@@ -78,7 +80,7 @@ def test_malformed_work_rules_yield_no_band() -> None:
             "parameters": {"accrual_rule": {}},
             "work_rules": work_rules,
         }
-        (rule,) = ccnl_rules("ccnl/data/x.json", data)
+        (rule,) = ccnl_rules("contract/agreement/x.json", data)
         assert rule.path == "accrual_rule"
 
 
@@ -94,7 +96,7 @@ def test_absence_and_sickness_rules_carry_their_records() -> None:
     }
     work = [
         (r.path, r.capabilities, r.status)
-        for r in ccnl_rules("ccnl/data/x.json", data)
+        for r in ccnl_rules("contract/agreement/x.json", data)
         if r.path.startswith("work_rules")
     ]
     assert work == [
@@ -106,7 +108,7 @@ def test_absence_and_sickness_rules_carry_their_records() -> None:
 def test_sick_pay_bands_read_their_sibling_record() -> None:
     """The INPS bands record sits in ``bands_provenance``."""
     data = {"bands": [], "bands_provenance": _RECORD}
-    (rule,) = fiscal_rules("inps/data/sick-pay-rates.json", data)
+    (rule,) = fiscal_rules("social_security/sickness/rates.json", data)
     assert (rule.path, rule.capabilities, rule.status) == (
         "bands",
         ("sickness",),
@@ -123,7 +125,7 @@ def test_nested_tfr_deduction_is_a_payable_rule() -> None:
             "additional_ivs": {"rate": "0.0050", "provenance": _RECORD},
         }
     }
-    rules = fiscal_rules("tax/data/2026-industria.json", data)
+    rules = fiscal_rules("taxation/annual/2026/industria.json", data)
     assert [(r.path, r.capabilities, r.status) for r in rules] == [
         ("tfr", ("tfr",), "derived"),
         ("tfr.additional_ivs", ("tfr",), "derived"),
@@ -132,7 +134,7 @@ def test_nested_tfr_deduction_is_a_payable_rule() -> None:
 
 def test_tax_file_without_tfr_has_no_nested_rule() -> None:
     """A missing parent block yields neither the block nor its child."""
-    assert list(fiscal_rules("tax/data/2026-industria.json", {})) == []
+    assert list(fiscal_rules("taxation/annual/2026/industria.json", {})) == []
 
 
 def test_every_nested_record_of_a_block_is_a_rule() -> None:
@@ -152,8 +154,8 @@ def test_every_nested_record_of_a_block_is_a_rule() -> None:
     employee_additional = {"provenance": _RECORD}
     inps = {"inps": {"provenance": _RECORD, "employee_additional": employee_additional}}
     found = [
-        *fiscal_rules("tax/data/2026-industria.json", tax),
-        *fiscal_rules("inps/data/2026-industria.json", inps),
+        *fiscal_rules("taxation/annual/2026/industria.json", tax),
+        *fiscal_rules("social_security/contribution/2026/industria.json", inps),
     ]
     both = ("inps_employee", "inps_employer")
     assert [(r.path, r.capabilities, r.status) for r in found] == [

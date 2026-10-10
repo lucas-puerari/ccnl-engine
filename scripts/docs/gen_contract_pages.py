@@ -44,7 +44,7 @@ from scripts.docs.coverage_report import (
 from scripts.docs.limitation_report import limitation_lines
 
 ROOT = Path(__file__).parent.parent.parent
-DATA_DIR = ROOT / "src" / "ccnl_engine" / "knowledge" / "ccnl" / "data"
+DATA_DIR = ROOT / "src" / "ccnl_engine" / "knowledge" / "contract" / "agreement"
 OUT_DIR = ROOT / "docs" / "contracts"
 
 VERIFICATION_BADGE: dict[str, str] = {
@@ -493,7 +493,7 @@ def _tail_section(ccnl_id: str, root: Path) -> list[str]:
         "",
         '??? note "Full JSON (provenance artifact)"',
         "    ```json",
-        f'    --8<-- "src/ccnl_engine/knowledge/ccnl/data/{ccnl_id}.json"',
+        f'    --8<-- "src/ccnl_engine/knowledge/contract/agreement/{ccnl_id}.json"',
         "    ```",
         "",
     ]

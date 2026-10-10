@@ -19,7 +19,10 @@ from ccnl_engine.contract.service.loaders import load_ccnl
 
 _FILES = sorted(
     entry.name
-    for entry in importlib.resources.files("ccnl_engine.knowledge.ccnl.data").iterdir()
+    for entry in importlib.resources
+    .files("ccnl_engine.knowledge")
+    .joinpath("contract", "agreement")
+    .iterdir()
     if entry.name.endswith(".json")
 )
 _WITH_RULE = [name for name in _FILES if load_ccnl(name).parameters.accrual_rule]

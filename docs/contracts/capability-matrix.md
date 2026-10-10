@@ -6,7 +6,7 @@
 
 What the engine computes for fiscal year 2027, and how far the bundled
 data behind it is backed by sources. Generated from the capability registry
-(`knowledge/capabilities/data/2027.json`), the provenance records of the
+(`knowledge/capability/2027/catalog.json`), the provenance records of the
 payable rules, the `missing` notes and the model limitations of the 126
 bundled CCNLs. The
 runtime capability report of every run, the [CCNL Coverage

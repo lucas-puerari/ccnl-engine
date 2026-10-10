@@ -6,56 +6,8 @@
       "target": "src/ccnl_engine/{name}"
     },
     {
-      "pattern": "^src/ccnl_engine/knowledge/ccnl/data/(?P<name>[a-z0-9-]+\\.json)$",
-      "target": "src/ccnl_engine/knowledge/contract/agreement/{name}"
-    },
-    {
-      "pattern": "^src/ccnl_engine/knowledge/inps/data/(?P<year>\\d{4})-(?P<scope>[a-z-]+)\\.json$",
-      "target": "src/ccnl_engine/knowledge/social_security/contribution/{year}/{scope}.json"
-    },
-    {
-      "pattern": "^src/ccnl_engine/knowledge/inps/data/sick-pay-rates\\.json$",
-      "target": "src/ccnl_engine/knowledge/social_security/sickness/rates.json"
-    },
-    {
-      "pattern": "^src/ccnl_engine/knowledge/tax/data/(?P<year>\\d{4})-(?P<scope>[a-z-]+)\\.json$",
-      "target": "src/ccnl_engine/knowledge/taxation/annual/{year}/{scope}.json"
-    },
-    {
-      "pattern": "^src/ccnl_engine/knowledge/tax/data/family-deductions-(?P<year>\\d{4})\\.json$",
-      "target": "src/ccnl_engine/knowledge/taxation/family/{year}.json"
-    },
-    {
-      "pattern": "^src/ccnl_engine/knowledge/tax/data/somma-esente-(?P<year>\\d{4})\\.json$",
-      "target": "src/ccnl_engine/knowledge/taxation/exemption/{year}.json"
-    },
-    {
-      "pattern": "^src/ccnl_engine/knowledge/tax/data/variable-pay-rules-(?P<year>\\d{4})\\.json$",
-      "target": "src/ccnl_engine/knowledge/taxation/variable_pay/{year}.json"
-    },
-    {
-      "pattern": "^src/ccnl_engine/knowledge/tax/data/tfr-revaluation-(?P<year>\\d{4})\\.json$",
-      "target": "src/ccnl_engine/knowledge/taxation/severance/{year}.json"
-    },
-    {
-      "pattern": "^src/ccnl_engine/knowledge/surtax/data/comunale-(?P<year>\\d{4})\\.json$",
-      "target": "src/ccnl_engine/knowledge/surtax/municipal/{year}.json"
-    },
-    {
-      "pattern": "^src/ccnl_engine/knowledge/surtax/data/regionale-(?P<year>\\d{4})\\.json$",
-      "target": "src/ccnl_engine/knowledge/surtax/regional/{year}.json"
-    },
-    {
-      "pattern": "^src/ccnl_engine/knowledge/capabilities/data/(?P<year>\\d{4})\\.json$",
-      "target": "src/ccnl_engine/knowledge/capability/{year}/catalog.json"
-    },
-    {
-      "pattern": "^src/ccnl_engine/knowledge/limitations/data/engine\\.json$",
-      "target": "src/ccnl_engine/knowledge/limitation/engine.json"
-    },
-    {
-      "pattern": "^src/ccnl_engine/knowledge/policies/data/it\\.json$",
-      "target": "src/ccnl_engine/knowledge/policy/italy.json"
+      "pattern": "^src/ccnl_engine/knowledge/(?P<path>manifest\\.json|(?:contract|social_security|taxation|surtax|capability|limitation|policy)/[a-z0-9_/-]+\\.json)$",
+      "target": "src/ccnl_engine/knowledge/{path}"
     },
     {
       "pattern": "^demo/i18n/(?P<name>[a-z]+\\.json)$",
@@ -231,6 +183,7 @@
     },
     "scripts/data/assign_rule_provenance.py": "scripts/provenance/assign.py",
     "scripts/data/build_comunale_surtax.py": "scripts/knowledge/build.py",
+    "scripts/data/build_manifest.py": "scripts/knowledge/manifest.py",
     "scripts/data/demote_weak_labels.py": "scripts/provenance/demote.py",
     "scripts/data/fiscal_provenance.py": "scripts/provenance/fiscal.py",
     "scripts/docs/__init__.py": {

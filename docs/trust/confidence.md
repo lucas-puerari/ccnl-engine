@@ -24,7 +24,7 @@ payable only when every run is.
 ## Fail-closed payability
 
 What a run must cover comes from the capability registry of the fiscal year
-(`knowledge/capabilities/data/<year>.json`) and from the run itself:
+(`knowledge/capability/<year>/catalog.json`) and from the run itself:
 
 - every capability that applies to the run (its predicate holds: a core
   stage, an event the request declares, the run that closes the employment)
@@ -195,7 +195,7 @@ A known simplification of the model is data, not a comment. The registry has
 entries: one per `simplification` note of a CCNL file that can move an
 amount, and <!-- trust:limitations-engine -->7<!-- /trust:limitations-engine -->
 engine limitations of code paths several CCNLs share
-(`knowledge/limitations/data/engine.json`: the apprenticeship midpoint and
+(`knowledge/limitation/engine.json`: the apprenticeship midpoint and
 the apprentice seniority increment, both resolved; a percentage
 apprenticeship reducing an allowance whose `apprenticeship_pct_relevant` flag
 the data leaves at its default; two sickness paths).

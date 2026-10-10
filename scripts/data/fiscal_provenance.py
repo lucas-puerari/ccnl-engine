@@ -153,16 +153,16 @@ _WORK_DEDUCTION_216 = _derived(
 )
 
 FISCAL_RECORDS: Final[dict[str, dict[str, dict[str, Any]]]] = {
-    "tax/data/2026-agricoltura.json": _tax(),
-    "tax/data/2026-artigianato.json": _tax(),
-    "tax/data/2026-credito.json": _tax(work_deduction=_WORK_DEDUCTION_216),
-    "tax/data/2026-edilizia.json": _tax(),
-    "tax/data/2026-industria.json": _tax(),
-    "tax/data/2026-lavoro-domestico.json": _tax(
+    "taxation/annual/2026/agricoltura.json": _tax(),
+    "taxation/annual/2026/artigianato.json": _tax(),
+    "taxation/annual/2026/credito.json": _tax(work_deduction=_WORK_DEDUCTION_216),
+    "taxation/annual/2026/edilizia.json": _tax(),
+    "taxation/annual/2026/industria.json": _tax(),
+    "taxation/annual/2026/lavoro-domestico.json": _tax(
         irpef_brackets=_derived(L_199_2025, "art. 1 c. 3", transformation=_SHARED),
         work_deduction=_derived(TUIR, "art. 13 c. 1", transformation=_SHARED),
     ),
-    "tax/data/2026-pubblica-amministrazione.json": _tax(
+    "taxation/annual/2026/pubblica-amministrazione.json": _tax(
         work_deduction=_WORK_DEDUCTION_216,
         fixed_term_additional_rate=_record(
             "assumed",
@@ -172,10 +172,10 @@ FISCAL_RECORDS: Final[dict[str, dict[str, dict[str, Any]]]] = {
             ),
         ),
     ),
-    "tax/data/2026-terziario.json": _tax(
+    "taxation/annual/2026/terziario.json": _tax(
         work_deduction=_derived(ADE_4E_2025, "p. 6"),
     ),
-    "inps/data/2026-agricoltura.json": {
+    "social_security/contribution/2026/agricoltura.json": {
         "inps": _derived(
             _doc(
                 "ciatreviso-contributi-2026",
@@ -189,7 +189,7 @@ FISCAL_RECORDS: Final[dict[str, dict[str, dict[str, Any]]]] = {
         ),
         "apprentice": _APPRENTICE,
     },
-    "inps/data/2026-artigianato.json": {
+    "social_security/contribution/2026/artigianato.json": {
         "inps": _record(
             "assumed",
             _kitech("1_1", "contributi previdenziali artigianato 2026"),
@@ -202,7 +202,7 @@ FISCAL_RECORDS: Final[dict[str, dict[str, dict[str, Any]]]] = {
         ),
         "apprentice": _APPRENTICE,
     },
-    "inps/data/2026-credito.json": {
+    "social_security/contribution/2026/credito.json": {
         "inps": _derived(
             _kitech("9_165", "contributi previdenziali credito 2026"),
             "Table 6.1",
@@ -213,7 +213,7 @@ FISCAL_RECORDS: Final[dict[str, dict[str, dict[str, Any]]]] = {
         ),
         "apprentice": _APPRENTICE,
     },
-    "inps/data/2026-edilizia.json": {
+    "social_security/contribution/2026/edilizia.json": {
         "inps": _record(
             "assumed",
             _kitech("5_152", "contributi previdenziali edilizia"),
@@ -222,7 +222,7 @@ FISCAL_RECORDS: Final[dict[str, dict[str, dict[str, Any]]]] = {
         ),
         "apprentice": _APPRENTICE,
     },
-    "inps/data/2026-industria.json": {
+    "social_security/contribution/2026/industria.json": {
         "inps": _derived(
             INPS_6_2026,
             "IVS rate and contribution ceiling 2026",
@@ -237,10 +237,10 @@ FISCAL_RECORDS: Final[dict[str, dict[str, dict[str, Any]]]] = {
         ),
         "apprentice": _APPRENTICE,
     },
-    "inps/data/2026-lavoro-domestico.json": {
+    "social_security/contribution/2026/lavoro-domestico.json": {
         "domestic_contributions": _derived(INPS_9_2026, "contribution table 2026"),
     },
-    "inps/data/2026-pubblica-amministrazione.json": {
+    "social_security/contribution/2026/pubblica-amministrazione.json": {
         "inps": _derived(
             _kitech("17_210", "contributi previdenziali dipendenti pubblici"),
             "CTPS",
@@ -254,7 +254,7 @@ FISCAL_RECORDS: Final[dict[str, dict[str, dict[str, Any]]]] = {
             ),
         ),
     },
-    "inps/data/2026-terziario.json": {
+    "social_security/contribution/2026/terziario.json": {
         "inps": _derived(
             _kitech("4_138", "contributi previdenziali terziario 2026"),
             "Table 7.1",
@@ -262,7 +262,7 @@ FISCAL_RECORDS: Final[dict[str, dict[str, dict[str, Any]]]] = {
         ),
         "apprentice": _APPRENTICE,
     },
-    "surtax/data/regionale-2026.json": {
+    "surtax/regional/2026.json": {
         "*": _derived(
             MEF_REGIONALE,
             "one page per region, anno 2026",
@@ -272,7 +272,7 @@ FISCAL_RECORDS: Final[dict[str, dict[str, dict[str, Any]]]] = {
             ),
         ),
     },
-    "surtax/data/comunale-2026.json": {
+    "surtax/municipal/2026.json": {
         "*": _derived(
             MEF_COMUNALE,
             "elenco generale 2026",
@@ -282,13 +282,13 @@ FISCAL_RECORDS: Final[dict[str, dict[str, dict[str, Any]]]] = {
             ),
         ),
     },
-    "tax/data/family-deductions-2026.json": {
+    "taxation/family/2026.json": {
         "spouse": _derived(TUIR, "art. 12 c. 1 lett. a; c. 4"),
         "spouse_increases": _derived(TUIR, "art. 12 c. 1 lett. b"),
         "children": _derived(TUIR, "art. 12 c. 1 lett. c"),
         "other_dependents": _derived(TUIR, "art. 12 c. 1 lett. d"),
     },
-    "tax/data/variable-pay-rules-2026.json": {
+    "taxation/variable_pay/2026.json": {
         "fringe_benefit": _derived(
             TUIR, "art. 51 c. 3", note="Thresholds per L. 207/2024 art. 1 c. 390."
         ),

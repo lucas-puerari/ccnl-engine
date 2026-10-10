@@ -60,7 +60,7 @@ class TestDemoDefaultYear:
         old_now.year = 2020
         with (
             patch.object(demo_app, "datetime") as mock_dt,
-            patch.object(demo_app, "read_bundled", side_effect=FileNotFoundError),
+            patch.object(demo_app, "read_resource", side_effect=FileNotFoundError),
         ):
             mock_dt.now.return_value = old_now
             with pytest.raises(RuntimeError, match="No complete bundled data"):

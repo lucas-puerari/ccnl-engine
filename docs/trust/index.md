@@ -164,7 +164,7 @@ gates; the `CI` workflow runs all of them on every pull request:
 Other workflows check the capability matrix, the contracts index, the
 contract examples and the cognitive complexity of `src/`.
 
-JSON changes in `knowledge/*/data/` are treated as code-level changes: they
+JSON changes in `knowledge/` (listed in `knowledge/manifest.json`) are treated as code-level changes: they
 alter engine behaviour and carry the same gates as Python source.
 
 ## No feature without provenance and reference cases

@@ -2,27 +2,26 @@
 
 The limitations a CCNL file declares travel with its notes; this loader
 reads the others, those of code paths several CCNLs share, from
-``knowledge/limitations/data/engine.json``.  A malformed file or entry, or
+``knowledge/limitation/engine.json``.  A malformed file or entry, or
 an id declared twice, raises
 :class:`~ccnl_engine.shared.domain.errors.DataIntegrityError`.
 """
 
 from __future__ import annotations
 
-import importlib.resources
 import json
 from functools import cache
 
 from pydantic import ValidationError
 
-from ccnl_engine.knowledge.service.bundled import read_bundled
+from ccnl_engine.knowledge.service.manifest import read_resource
 from ccnl_engine.shared.domain.errors import DataIntegrityError
 from ccnl_engine.shared.domain.limitation import ModelLimitation
 
 __all__ = ["load_engine_limitations", "parse_engine_limitations"]
 
 _SCHEMA_VERSION = 1
-_FILE = "engine.json"
+_FILE = "limitation/engine.json"
 
 
 def load_engine_limitations() -> tuple[ModelLimitation, ...]:
@@ -36,9 +35,8 @@ def load_engine_limitations() -> tuple[ModelLimitation, ...]:
 
 @cache
 def _load_cached() -> tuple[ModelLimitation, ...]:
-    pkg = importlib.resources.files("ccnl_engine.knowledge.limitations.data")
     try:
-        data = json.loads(read_bundled(pkg, _FILE))
+        data = json.loads(read_resource(_FILE))
     except (FileNotFoundError, json.JSONDecodeError) as exc:
         msg = f"Engine limitations: cannot read {_FILE}: {exc}"
         raise DataIntegrityError(msg) from exc

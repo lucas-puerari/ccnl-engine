@@ -48,8 +48,8 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 KNOWLEDGE = ROOT / "src" / "ccnl_engine" / "knowledge"
-CCNL_DIR = KNOWLEDGE / "ccnl" / "data"
-INPS_DIR = KNOWLEDGE / "inps" / "data"
+CCNL_DIR = KNOWLEDGE / "contract" / "agreement"
+INPS_DIR = KNOWLEDGE / "social_security" / "contribution"
 OUT_DIR = ROOT / "docs" / "examples" / "contracts"
 PACKAGE_INIT = "__init__.py"
 
@@ -118,7 +118,7 @@ def _rates_by_category(tax_sector: str) -> bool:
     Returns:
         ``True`` when an employer tier of the year sets ``rate_by_category``.
     """
-    path = INPS_DIR / f"{YEAR}-{tax_sector}.json"
+    path = INPS_DIR / str(YEAR) / f"{tax_sector}.json"
     if not path.exists():
         return False
     tiers = _read_json(path).get("inps", {}).get("employer_tiers", [])

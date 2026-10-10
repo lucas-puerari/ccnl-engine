@@ -9,12 +9,11 @@ run (:mod:`~ccnl_engine.payroll.application.period._capability_registry`).
 
 from __future__ import annotations
 
-import importlib.resources
 import json
 from functools import cache
 from typing import Any
 
-from ccnl_engine.knowledge.service.bundled import read_bundled
+from ccnl_engine.knowledge.service.manifest import read_resource
 from ccnl_engine.payroll.domain.assurance import EvidenceStatus
 from ccnl_engine.payroll.domain.capability_catalog import (
     CapabilityApplicability,
@@ -32,7 +31,7 @@ _SCHEMA_VERSION = 2
 def load_capability_catalog(year: int) -> CapabilityCatalog:
     """Load the capability registry for *year* from the bundled data files.
 
-    Reads ``{year}.json`` from ``ccnl_engine/knowledge/capabilities/data/``.
+    Reads ``capability/{year}/catalog.json`` of the knowledge manifest.
     In installed wheels the compressed ``.json.gz`` variant is preferred.
 
     Args:
@@ -50,8 +49,7 @@ def load_capability_catalog(year: int) -> CapabilityCatalog:
 @cache
 def _load_cached(year: int) -> CapabilityCatalog:
     try:
-        pkg = importlib.resources.files("ccnl_engine.knowledge.capabilities.data")
-        raw = read_bundled(pkg, f"{year}.json")
+        raw = read_resource(f"capability/{year}/catalog.json")
     except FileNotFoundError as exc:
         msg = f"Capability catalog for {year} not found in bundle"
         raise DataIntegrityError(msg) from exc
