@@ -215,7 +215,8 @@ def ccnl_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]:
         One rule per salary period, allowance, seniority block,
         additional-months period, the accrual rule, the absence and
         sickness rules, one per first-tier overtime band, one per
-        employer fund rate period and the assistance contribution.
+        employer fund rate period, the solidarity fund and the assistance
+        contribution.
     """
     levels = data.get("levels")
     for level in levels if isinstance(levels, list) else []:
@@ -242,6 +243,10 @@ def ccnl_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]:
     yield from _overtime_rules(file, data.get("work_rules"))
     yield from _fund_rules(file, params.get("employer_funds"))
     yield from _contractual_rules(file, params.get("contractual_fund_contribution"))
+    fund = params.get("solidarity_fund")
+    if isinstance(fund, dict):
+        record = fund.get("provenance")
+        yield _rule(file, "solidarity_fund", _INPS, record)
     assistance = params.get("assistance_contribution")
     if isinstance(assistance, dict):
         record = assistance.get("provenance")

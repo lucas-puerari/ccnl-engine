@@ -15,6 +15,7 @@ from ccnl_engine.payroll.withholding.models_recovery_plan import InstallmentRun
 
 if TYPE_CHECKING:
     from ccnl_engine.contract.employment.models_category import WorkerCategory
+    from ccnl_engine.contract.fund.models_solidarity import SolidarityFund
     from ccnl_engine.payroll.assurance.models_decision import (
         CalculationDecision,
         CalculationIssue,
@@ -154,6 +155,7 @@ class _AmountsInput:
     assistance: AssistanceTerms | None = None
     tfr_excluded: Decimal = Decimal(0)
     public: PublicTerms = field(default_factory=PublicTerms)
+    solidarity_fund: SolidarityFund | None = None
 
     @property
     def tfr_pay(self) -> Decimal:

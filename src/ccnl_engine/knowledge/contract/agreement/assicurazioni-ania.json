@@ -125,6 +125,36 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "SOLIDARITY FUND: the insurance companies have a bilateral solidarity fund of their own at INPS (Fondo di solidarietà del settore assicurativo, accord ANIA of 20 May 2013, D.I. 78459 of 17 January 2014, G.U. n. 88 of 15 April 2014). No source found gives its ordinary contribution rate in force in 2026, so the run charges none: the employer and worker contributions of a permanent worker are understated by the fund contribution.",
+        "capability": "inps_employer",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "solidarity_fund_unsourced",
+          "applies_when": {
+            "trigger": "run",
+            "contract_types": [
+              "permanent",
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the ordinary contribution of the insurance solidarity fund (its decree or an INPS circular), add it as parameters.solidarity_fund, then remove this note."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "INPS RATES: the employer and worker INPS rates of the sector (credito) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "inps_sector_rates_unsourced",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Source the credito rates of 2026 on an INPS or association table, mark the inps block of social_security/contribution/2026/credito.json derived, then remove this note."
+        }
       }
     ]
   },
@@ -1144,7 +1174,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/",
     "verification_status": "unverified",
-    "source_hash": "0fad22a54c38bdebeb60e91caec9bd8fc1c87b5cce062cbd87e5e0fbdef3ea71",
+    "source_hash": "fb6aec4b330dbc617f57044812fd25aa55ef976e44abc954194f3f3f3c3988e4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

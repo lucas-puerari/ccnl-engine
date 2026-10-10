@@ -60,7 +60,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 
 ### Semplificazioni note
 
-3 semplificazioni documentate. 1 feature mancanti.
+5 semplificazioni documentate. 1 feature mancanti.
 Vedi [Known simplifications](#known-simplifications) per i dettagli.
 
 ## Salary table
@@ -130,6 +130,20 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
+
+!!! warning "assicurazioni-ania/solidarity_fund_unsourced · inps_employer · impact yes · open"
+    SOLIDARITY FUND: the insurance companies have a bilateral solidarity fund of their own at INPS (Fondo di solidarietà del settore assicurativo, accord ANIA of 20 May 2013, D.I. 78459 of 17 January 2014, G.U. n. 88 of 15 April 2014). No source found gives its ordinary contribution rate in force in 2026, so the run charges none: the employer and worker contributions of a permanent worker are understated by the fund contribution.
+
+    **Applies when:** `inps_employer` applies; contract type in apprentice, permanent.
+
+    **Remediation:** Source the ordinary contribution of the insurance solidarity fund (its decree or an INPS circular), add it as parameters.solidarity_fund, then remove this note.
+
+!!! warning "assicurazioni-ania/inps_sector_rates_unsourced · inps_employer · impact unknown · open"
+    INPS RATES: the employer and worker INPS rates of the sector (credito) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.
+
+    **Applies when:** `inps_employer` applies.
+
+    **Remediation:** Source the credito rates of 2026 on an INPS or association table, mark the inps block of social_security/contribution/2026/credito.json derived, then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

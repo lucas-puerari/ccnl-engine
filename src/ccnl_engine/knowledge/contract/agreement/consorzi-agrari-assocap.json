@@ -105,6 +105,22 @@
           "variant": "filcoop_health_fund_missing",
           "remediation": "Model the FILCOOP SANITARIO contributions once health funds enter the engine input."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE INPS RATES: the apprentice rates of the sector (agricoltura) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles the disoccupazione and CISOA contributions of agricultural apprentices (INPS circ. 43/2026 gives no apprentice rates). The contributions of an apprentice may differ.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_inps_rates_unsourced",
+          "applies_when": {
+            "trigger": "run",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the apprentice rates of agricoltura (an INPS circular or an association table of 2026), mark the apprentice block of social_security/contribution/2026/agricoltura.json derived, then remove this note."
+        }
       }
     ]
   },
@@ -1295,7 +1311,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "08aa145d2dcd85f95949433b056da23d59003c6774c261a6b8e7cbedbe4f4a1e",
+    "source_hash": "ef1ebc2e1ee21164079b1f5d49260d45b05b8095d8c91f5816d0fbd601fa8ab0",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

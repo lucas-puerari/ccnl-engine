@@ -3,6 +3,24 @@
 Continues the [Migration guide](migration.md); the oldest changes are on
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## INPS base raised to the minimum
+
+The INPS base was the pay of the run even below the minimum daily pay of
+D.L. 463/1983 art. 7 c. 1 (EUR 58.13 a day for 2026, INPS circ. 6/2026). A
+full month of a full-time worker is now contributed on at least 26 x 58.13
+= EUR 1,511.38, a part-time one on the hourly minimum (EUR 8.72 for a
+40-hour week) times its hours; apprentices and operai agricoli are
+excluded (art. 7 c. 5). Where the bundle cannot fix the minimum and the
+base is below it, the INPS decisions are `incomplete`
+(`minimum_base_undetermined`) and the result is not payable.
+
+| Before | After |
+|---|---|
+| `inputs["base"]` of the INPS decisions was the pay chain plus the events | It is that amount raised to the minimum; the amount before is `actual_base`, with `minimum_base`, `minimum_base_bound`, `minimum_base_reason` |
+| Contributions, the TFR 0.50% IVS, the IRPEF taxable and the year-to-date INPS base read the pay | They read the raised base; the gross and the TFR quota do not change |
+| No issue for a base below the minimum | Issue `inps_minimum_base_undetermined` when the minimum cannot be fixed; with `fact="category"` for an agricultural level whose category is open, so state `Employment.category` |
+| `InpsRates` had no minimum | `InpsRates.minimum_base`, a `MinimumBaseRule` (`daily`, `week_days`, `monthly_days`, `hourly`, `exempt_categories`, `provenance`), from the `minimum_base` block of the INPS data files |
+
 ## Extra months at the termination on chained runs, adjustment sequence
 
 | Before | After |
@@ -546,53 +564,3 @@ and [Fiscal: foreign tax credit](engine/fiscal.md#foreign-tax-credit-at-the-cong
 | Tax computation component and capability `foreign_tax_credit`, reasons `credit_applied`, `limited_to_net_tax` | The net IRPEF of the conguaglio and the test of the surtax are after the credit |
 | The withholding shortfall decision cites `dpr600-1973-art23-c3` instead of `dlgs33-2025-art33-c4` | Art. 23 DPR 600/1973 is in force until 31 December 2026 |
 | `PeriodState.SCHEMA_VERSION` is 5 | A persisted state of version 4 has no deferred shortfall; it reads as none |
-
-## Surtax tables of 2026 rebuilt from the MEF data
-
-`regionale-2026.json` held rows under the wrong region (for example the
-Emilia-Romagna rates under Veneto and the Lombardia rates under Toscana).
-It is now taken row by row from the MEF 2026 pages, with the income-only
-provisions (exemptions, whole-income rates, detrazioni) computed; see
-[Fiscal: regional rates of 2026](engine/surtax.md#regional-rates-of-2026).
-**This changes the regional surtax of almost every region.** Annual
-regional surtax on a taxable income of 30,000 euro:
-
-| Row | Before | After |
-|---|---:|---:|
-| Abruzzo | 541.00 | 525.00 |
-| Basilicata | 369.00 | 369.00 |
-| Bolzano | 519.00 | 0.00 |
-| Calabria | 714.50 | 519.00 |
-| Campania | 369.00 | 708.30 |
-| Emilia-Romagna | 408.00 | 506.00 |
-| Friuli-Venezia Giulia | 289.50 | 369.00 |
-| Lazio | 657.60 | 699.00 |
-| Liguria | 759.00 | 408.00 |
-| Lombardia | 369.00 | 424.30 |
-| Marche | 667.00 | 417.40 |
-| Molise | 369.00 | 667.00 |
-| Piemonte | 525.00 | 657.60 |
-| Puglia | 465.30 | 541.00 |
-| Sardegna | 369.00 | 369.00 |
-| Sicilia | 369.00 | 369.00 |
-| Toscana | 424.30 | 465.30 |
-| Trento | 708.30 | 0.00 |
-| Umbria | 417.40 | 564.50 |
-| Valle d'Aosta | 369.00 | 369.00 |
-| Veneto | 506.00 | 369.00 |
-
-At exactly 30,000 euro Trento is still exempt and Lazio still grants its
-60 euro detrazione; both end above 30,000.
-
-`comunale-2026.json` now holds the 2026 rates where a delibera was
-published (3,339 municipalities) and the 2025 rates, `provisional`, for the
-others; it was the 2025 list for every municipality. It has a row for every
-municipality of the MEF list, a zero-rate row for those without a surtax,
-which were `table_unknown` before.
-
-New reason codes, all `provisional`: `dependent_provisions_not_applied`
-(regional, issue `regional_surtax_dependent_provisions_not_applied`) and
-`specific_exemptions_not_applied` (municipal, issue
-`municipal_surtax_specific_exemptions_not_applied`).
-`prior_year_rates_applied` is now decided per municipal row
-(`inputs["rates_year"]`). Handle them where reason codes are matched.

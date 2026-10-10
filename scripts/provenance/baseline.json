@@ -1030,7 +1030,6 @@
       "inps": "assumed"
     },
     "social_security/contribution/2026/credito.json": {
-      "apprentice": "assumed",
       "inps": "assumed"
     },
     "social_security/contribution/2026/lavoro-domestico.json": {
@@ -1217,8 +1216,10 @@
   },
   "open_limitations": {
     "contract/agreement/acconciatura-estetica-confartigianato.json": [
+      "acconciatura-estetica-confartigianato/apprentice_inps_rates_unsourced",
       "acconciatura-estetica-confartigianato/gruppo_1_reduced_duration",
-      "acconciatura-estetica-confartigianato/gruppo_2_semester_mapping"
+      "acconciatura-estetica-confartigianato/gruppo_2_semester_mapping",
+      "acconciatura-estetica-confartigianato/inps_sector_rates_unsourced"
     ],
     "contract/agreement/agenti-immobiliari-fiaip.json": [
       "agenti-immobiliari-fiaip/apprentice_seniority",
@@ -1254,7 +1255,9 @@
     "contract/agreement/assicurazioni-ania.json": [
       "assicurazioni-ania/apprentice_seniority",
       "assicurazioni-ania/inps_credit_rate_unverified",
-      "assicurazioni-ania/seniority_modal_class_difference"
+      "assicurazioni-ania/inps_sector_rates_unsourced",
+      "assicurazioni-ania/seniority_modal_class_difference",
+      "assicurazioni-ania/solidarity_fund_unsourced"
     ],
     "contract/agreement/attivita-minerarie-assorisorse.json": [
       "attivita-minerarie-assorisorse/ocr_salary_values",
@@ -1285,11 +1288,13 @@
     "contract/agreement/bancari-abi.json": [
       "bancari-abi/apprentice_seniority",
       "bancari-abi/apprenticeship_destination_levels",
-      "bancari-abi/inps_credit_rate_unverified"
+      "bancari-abi/inps_credit_rate_unverified",
+      "bancari-abi/inps_sector_rates_unsourced"
     ],
     "contract/agreement/bcc-credito-cooperativo.json": [
       "bcc-credito-cooperativo/apprentice_seniority",
-      "bcc-credito-cooperativo/art3_derogation_apprenticeship"
+      "bcc-credito-cooperativo/art3_derogation_apprenticeship",
+      "bcc-credito-cooperativo/inps_sector_rates_unsourced"
     ],
     "contract/agreement/calzaturiero-assocalzaturifici.json": [
       "calzaturiero-assocalzaturifici/apprentice_seniority",
@@ -1321,7 +1326,9 @@
       "commercio-confcommercio/sickness_net_basis"
     ],
     "contract/agreement/comunicazione-artigianato-confartigianato.json": [
+      "comunicazione-artigianato-confartigianato/apprentice_inps_rates_unsourced",
       "comunicazione-artigianato-confartigianato/function_allowance_constant",
+      "comunicazione-artigianato-confartigianato/inps_sector_rates_unsourced",
       "comunicazione-artigianato-confartigianato/level_category_not_declared",
       "comunicazione-artigianato-confartigianato/pmi_non_artigiane_tables",
       "comunicazione-artigianato-confartigianato/switchboard_apprenticeship_duration"
@@ -1332,15 +1339,21 @@
       "concia-unic/seniority_gated_sickness_tiers"
     ],
     "contract/agreement/consorzi-agrari-assocap.json": [
+      "consorzi-agrari-assocap/apprentice_inps_rates_unsourced",
       "consorzi-agrari-assocap/cashier_allowance_missing",
       "consorzi-agrari-assocap/filcoop_health_fund_missing",
       "consorzi-agrari-assocap/tranche_2027_01_missing"
     ],
     "contract/agreement/consorzi-di-bonifica-snebi.json": [
+      "consorzi-di-bonifica-snebi/apprentice_inps_rates_unsourced",
       "consorzi-di-bonifica-snebi/ex_sublevel_scatto_mapping",
       "consorzi-di-bonifica-snebi/pre_2000_cohort_table_missing"
     ],
+    "contract/agreement/contoterzismo-caiagromec.json": [
+      "contoterzismo-caiagromec/apprentice_inps_rates_unsourced"
+    ],
     "contract/agreement/cooperative-consorzi-agricoli.json": [
+      "cooperative-consorzi-agricoli/apprentice_inps_rates_unsourced",
       "cooperative-consorzi-agricoli/apprentice_seniority",
       "cooperative-consorzi-agricoli/apprenticeship_passthrough"
     ],
@@ -1367,9 +1380,11 @@
       "edilizia-ance/contractual_fund_uncovered"
     ],
     "contract/agreement/edilizia-artigianato-cna.json": [
+      "edilizia-artigianato-cna/apprentice_inps_rates_unsourced",
       "edilizia-artigianato-cna/apprentice_seniority",
       "edilizia-artigianato-cna/cassa_edile_accruals_missing",
       "edilizia-artigianato-cna/contractual_fund_uncovered",
+      "edilizia-artigianato-cna/inps_sector_rates_unsourced",
       "edilizia-artigianato-cna/seniority_cadence_unconfirmed"
     ],
     "contract/agreement/edilizia-cooperative-ancpl.json": [
@@ -1440,6 +1455,7 @@
       "impianti-sportivi-sport/pre_2015_superminimo_missing"
     ],
     "contract/agreement/impiegati-tecnici-agricoli.json": [
+      "impiegati-tecnici-agricoli/apprentice_inps_rates_unsourced",
       "impiegati-tecnici-agricoli/eban_agrifondo_missing",
       "impiegati-tecnici-agricoli/tranche_2025_01_missing"
     ],
@@ -1496,7 +1512,9 @@
       "legno-arredamento-federlegno/apprenticeship_midpoint_components"
     ],
     "contract/agreement/legno-lapidei-artigianato-confartigianato.json": [
+      "legno-lapidei-artigianato-confartigianato/apprentice_inps_rates_unsourced",
       "legno-lapidei-artigianato-confartigianato/impiegati_apprenticeship_duration",
+      "legno-lapidei-artigianato-confartigianato/inps_sector_rates_unsourced",
       "legno-lapidei-artigianato-confartigianato/lapidei_tables_not_modelled",
       "legno-lapidei-artigianato-confartigianato/null_category_operaio_rate"
     ],
@@ -1514,7 +1532,9 @@
       "metalmeccanica-cooperative/apprenticeship_from_federmeccanica"
     ],
     "contract/agreement/metalmeccanico-artigianato.json": [
-      "metalmeccanico-artigianato/apprentice_seniority"
+      "metalmeccanico-artigianato/apprentice_inps_rates_unsourced",
+      "metalmeccanico-artigianato/apprentice_seniority",
+      "metalmeccanico-artigianato/inps_sector_rates_unsourced"
     ],
     "contract/agreement/metalmeccanico-confapi.json": [
       "metalmeccanico-confapi/apprentice_seniority",
@@ -1549,6 +1569,7 @@
       "ooss-unsic-confsal/salary_2026_from_proxy"
     ],
     "contract/agreement/operai-agricoli-florovivaisti.json": [
+      "operai-agricoli-florovivaisti/apprentice_inps_rates_unsourced",
       "operai-agricoli-florovivaisti/apprentice_seniority",
       "operai-agricoli-florovivaisti/eban_fisa_agrifondo",
       "operai-agricoli-florovivaisti/florovivaisti_tables",
@@ -1563,6 +1584,7 @@
       "orafi-argentieri-industria-federorafi/apprentice_seniority"
     ],
     "contract/agreement/organizzazioni-allevatori-aia.json": [
+      "organizzazioni-allevatori-aia/apprentice_inps_rates_unsourced",
       "organizzazioni-allevatori-aia/quadri_function_allowance",
       "organizzazioni-allevatori-aia/third_tranche_sep_2026"
     ],
@@ -1573,7 +1595,9 @@
       "ortofrutticoli-agrumari/seniority_assumed_constant"
     ],
     "contract/agreement/panificazione-artigianato-confartigianato.json": [
-      "panificazione-artigianato-confartigianato/ert_veneto"
+      "panificazione-artigianato-confartigianato/apprentice_inps_rates_unsourced",
+      "panificazione-artigianato-confartigianato/ert_veneto",
+      "panificazione-artigianato-confartigianato/inps_sector_rates_unsourced"
     ],
     "contract/agreement/panificazione-assipan.json": [
       "panificazione-assipan/apprentice_seniority"
@@ -1630,12 +1654,14 @@
       "servizi-postali-appalto-fise/level_4s_seniority_amount"
     ],
     "contract/agreement/sistemazioni-idraulico-forestali-impiegati.json": [
+      "sistemazioni-idraulico-forestali-impiegati/apprentice_inps_rates_unsourced",
       "sistemazioni-idraulico-forestali-impiegati/apprentice_seniority",
       "sistemazioni-idraulico-forestali-impiegati/derived_tranche_rounding",
       "sistemazioni-idraulico-forestali-impiegati/ind_funzione_transition_date",
       "sistemazioni-idraulico-forestali-impiegati/structural_rules_from_2021_text"
     ],
     "contract/agreement/sistemazioni-idraulico-forestali-operai.json": [
+      "sistemazioni-idraulico-forestali-operai/apprentice_inps_rates_unsourced",
       "sistemazioni-idraulico-forestali-operai/apprentice_seniority",
       "sistemazioni-idraulico-forestali-operai/structural_rules_from_2021_text"
     ],
@@ -1656,8 +1682,10 @@
       "terziario-confesercenti/lump_sum_2024_2025"
     ],
     "contract/agreement/tessile-moda-artigianato-confartigianato.json": [
+      "tessile-moda-artigianato-confartigianato/apprentice_inps_rates_unsourced",
       "tessile-moda-artigianato-confartigianato/apprentice_seniority_hire_date",
       "tessile-moda-artigianato-confartigianato/chimica_ceramica_subsectors",
+      "tessile-moda-artigianato-confartigianato/inps_sector_rates_unsourced",
       "tessile-moda-artigianato-confartigianato/level_category_unconfirmed"
     ],
     "contract/agreement/tessile-pmi-uniontessile.json": [

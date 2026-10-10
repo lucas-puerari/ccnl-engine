@@ -61,8 +61,8 @@ formulas or caller-declared amounts.
 | `base_salary` | Paga base contrattuale | gross | native | always | pipeline | — | — | simplified | 0 / 5135 / 651 / 85 |
 | `seniority` | Scatti di anzianità | gross | native | decided | decision | `employment.seniority` | — | simplified | 0 / 113 / 13 / 0 |
 | `worker_category` | Categoria lavoratore (dichiarata o fissata dal livello) | gross | native | decided | decision | `employment.category` | — | implemented | none bundled |
-| `inps_employee` | Contributi INPS a carico dipendente | net | native | always | pipeline | — | — | simplified | 0 / 32 / 50 / 0 |
-| `inps_employer` | Contributi INPS a carico azienda | net | native | always | pipeline | — | — | simplified | 0 / 40 / 58 / 0 |
+| `inps_employee` | Contributi INPS a carico dipendente | net | native | always | pipeline | — | — | simplified | 0 / 35 / 49 / 0 |
+| `inps_employer` | Contributi INPS a carico azienda | net | native | always | pipeline | — | — | simplified | 0 / 43 / 57 / 0 |
 | `inail` | Premio INAIL a carico azienda | net | unsupported | outside_input | — | `employer.inail_tariff_rate` | — | unavailable | none bundled |
 | `contribution_exemption` | Esonero contributivo | net | unsupported | outside_input | — | `employer.contribution_exemption` | — | unavailable | none bundled |
 | `fiscal_adjustment` | Conguaglio IRPEF da assistenza fiscale o periodo precedente | net | unsupported | outside_input | — | `facts.fiscal_adjustment` | — | unavailable | none bundled |
@@ -127,12 +127,12 @@ never grow.
 
 | # | CCNL | L1 | L2 | L3 | Limits | Rules (v / d / a / m) |
 |---|---|:---:|:---:|:---:|---|---|
-| 1 | [CCNL Acconciatura ed Estetica — Confartigianato/CNA](acconciatura-estetica-confartigianato.md) | 🔲 | 🔲 | 🔲 | base_salary | 0 / 28 / 1 / 1 |
+| 1 | [CCNL Acconciatura ed Estetica — Confartigianato/CNA](acconciatura-estetica-confartigianato.md) | 🔲 | 🔲 | 🔲 | base_salary, inps_employer | 0 / 28 / 1 / 1 |
 | 2 | [CCNL Agenzie Marittime Raccomandatarie, Agenzie Aeree e Mediatori Marittimi](agenzie-marittime-i481.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 36 / 2 / 0 |
 | 3 | [CCNL Agenzie di Viaggio e Turismo — Fiavet/Confcommercio](agenzie-viaggio-fiavet.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 68 / 1 / 1 |
 | 4 | [CCNL Alimentaristi Cooperative (Fedagripesca/Legacoop Agroalimentare/AGCI-Agrital)](alimentaristi-cooperative-e016.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 70 / 1 / 1 |
-| 5 | [CCNL Area Alimentazione e Panificazione — Artigianato (Confartigianato/CNA)](panificazione-artigianato-confartigianato.md) | 🔲 | 🔲 | 🔲 | territorial_supplement | 0 / 46 / 1 / 1 |
-| 6 | [CCNL Area Comunicazione — Artigianato](comunicazione-artigianato-confartigianato.md) | 🔲 | 🔲 | 🔲 | base_salary, worker_category | 0 / 39 / 1 / 1 |
+| 5 | [CCNL Area Alimentazione e Panificazione — Artigianato (Confartigianato/CNA)](panificazione-artigianato-confartigianato.md) | 🔲 | 🔲 | 🔲 | inps_employer, territorial_supplement | 0 / 46 / 1 / 1 |
+| 6 | [CCNL Area Comunicazione — Artigianato](comunicazione-artigianato-confartigianato.md) | 🔲 | 🔲 | 🔲 | base_salary, inps_employer, worker_category | 0 / 39 / 1 / 1 |
 | 7 | [CCNL Area Dirigenza Funzioni Centrali 2022-2024 — ARAN](dirigenza-funzioni-centrali-aran.md) | 🔲 | 🔲 | 🔲 | — | 0 / 11 / 1 / 1 |
 | 8 | [CCNL Area Dirigenza Funzioni Locali 2022-2024 — ARAN](dirigenza-funzioni-locali-aran.md) | 🔲 | 🔲 | 🔲 | — | 0 / 7 / 1 / 1 |
 | 9 | [CCNL Area Dirigenza Istruzione e Ricerca 2022-2024 — ARAN](dirigenza-istruzione-ricerca-aran.md) | 🔲 | 🔲 | 🔲 | — | 0 / 11 / 1 / 1 |
@@ -140,7 +140,7 @@ never grow.
 | 11 | [CCNL Area Sanità 2022-2024 — ARAN (Dirigenti Medici e Veterinari SSN)](dirigenza-sanitaria-medico-veterinaria-aran.md) | 🔲 | 🔲 | 🔲 | base_salary | 0 / 8 / 1 / 1 |
 | 12 | [CCNL Area Sanità 2022-2024 — ARAN (Dirigenti Sanitari: psicologi, farmacisti, biologi, fisici, chimici)](dirigenza-sanitaria-area-sanita-aran.md) | 🔲 | 🔲 | 🔲 | base_salary | 0 / 8 / 1 / 1 |
 | 13 | [CCNL Area Tessile-Moda e Chimica-Ceramica — Artigianato](tessile-moda-artigianato-confartigianato.md) | 🔲 | 🔲 | 🔲 | base_salary, inps_employer, seniority | 0 / 35 / 1 / 1 |
-| 14 | [CCNL Attivita Agromeccaniche (Contoterzismo) CAI Agromec-FAI-FLAI-UILA](contoterzismo-caiagromec.md) | 🔲 | 🔲 | 🔲 | — | 0 / 48 / 1 / 1 |
+| 14 | [CCNL Attivita Agromeccaniche (Contoterzismo) CAI Agromec-FAI-FLAI-UILA](contoterzismo-caiagromec.md) | 🔲 | 🔲 | 🔲 | inps_employer | 0 / 48 / 1 / 1 |
 | 15 | [CCNL Attivita Minerarie (ASSORISORSE)](attivita-minerarie-assorisorse.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 0 / 38 / 1 |
 | 16 | [CCNL Attività Ferroviarie — AGENS](trasporto-ferroviario-agens.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 55 / 1 / 1 |
 | 17 | [CCNL Autoferrotranvieri e Internavigatori (Mobilita/TPL)](autoferrotranvieri-internavigatori.md) | 🔲 | 🔲 | 🔲 | inps_employer, seniority | 0 / 138 / 1 / 1 |
@@ -157,10 +157,10 @@ never grow.
 | 28 | [CCNL Comparto Istruzione e Ricerca 2022-2024 — ARAN](istruzione-ricerca-aran.md) | 🔲 | 🔲 | 🔲 | base_salary, inps_employee, seniority | 0 / 23 / 1 / 1 |
 | 29 | [CCNL Comparto Sanità 2022-2024 — ARAN](sanita-aran.md) | 🔲 | 🔲 | 🔲 | base_salary | 0 / 19 / 1 / 1 |
 | 30 | [CCNL Comunicazione, Informatica e Servizi Innovativi PMI — Settore Informatico](informatica-pmi-unimatica.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 40 / 2 / 0 |
-| 31 | [CCNL Consorzi Agrari (ASSOCAP-FLAI-FAI-UILA)](consorzi-agrari-assocap.md) | 🔲 | 🔲 | 🔲 | base_salary, health_fund_employer | 0 / 36 / 1 / 1 |
-| 32 | [CCNL Consorzi di Bonifica (SNEBI-FLAI-FAI-FILBI)](consorzi-di-bonifica-snebi.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 56 / 1 / 1 |
+| 31 | [CCNL Consorzi Agrari (ASSOCAP-FLAI-FAI-UILA)](consorzi-agrari-assocap.md) | 🔲 | 🔲 | 🔲 | base_salary, health_fund_employer, inps_employer | 0 / 36 / 1 / 1 |
+| 32 | [CCNL Consorzi di Bonifica (SNEBI-FLAI-FAI-FILBI)](consorzi-di-bonifica-snebi.md) | 🔲 | 🔲 | 🔲 | base_salary, inps_employer, seniority | 0 / 56 / 1 / 1 |
 | 33 | [CCNL Cooperative Sociali (Confcooperative/Legacoop/AGCI)](cooperative-sociali.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 58 / 2 / 1 |
-| 34 | [CCNL Cooperative e Consorzi Agricoli](cooperative-consorzi-agricoli.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 40 / 2 / 0 |
+| 34 | [CCNL Cooperative e Consorzi Agricoli](cooperative-consorzi-agricoli.md) | 🔲 | 🔲 | 🔲 | base_salary, inps_employer, seniority | 0 / 40 / 2 / 0 |
 | 35 | [CCNL Dipendenti Aziende Enti Pubblici Economici Federcasa](federcasa.md) | 🔲 | 🔲 | 🔲 | — | 0 / 23 / 2 / 0 |
 | 36 | [CCNL Dipendenti Piccola e Media Industria Alimentare (Unionalimentari-Confapi)](alimentari-pmi-unionalimentari.md) | 🔲 | 🔲 | 🔲 | base_salary | 0 / 44 / 1 / 1 |
 | 37 | [CCNL Dipendenti da Proprietari di Fabbricati (Confedilizia)](portieri-fabbricati-confedilizia.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 37 / 1 / 1 |
@@ -168,7 +168,7 @@ never grow.
 | 39 | [CCNL Dipendenti delle Farmacie Private](farmacie-private-h121.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 37 / 1 / 1 |
 | 40 | [CCNL Distribuzione Cooperativa (ANCC-Coop / Confcooperative Consumo)](distribuzione-cooperativa-ancc.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 62 / 2 / 0 |
 | 41 | [CCNL Edilizia PMI CONFAPI ANIEM](edilizia-pmi-confapi-aniem.md) | 🔲 | 🔲 | 🔲 | base_salary, pension_fund_contribution, seniority | 0 / 44 / 2 / 0 |
-| 42 | [CCNL Edilizia e Affini Artigianato](edilizia-artigianato-cna.md) | 🔲 | 🔲 | 🔲 | bilateral_funds, pension_fund_contribution, seniority | 0 / 71 / 1 / 1 |
+| 42 | [CCNL Edilizia e Affini Artigianato](edilizia-artigianato-cna.md) | 🔲 | 🔲 | 🔲 | bilateral_funds, inps_employer, pension_fund_contribution, seniority | 0 / 71 / 1 / 1 |
 | 43 | [CCNL Edilizia — Cooperative (ANCPL/Legacoop/Confcooperative/AGCI)](edilizia-cooperative-ancpl.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 57 / 1 / 1 |
 | 44 | [CCNL Edilizia — Industria (ANCE)](edilizia-ance.md) | 🔲 | 🔲 | 🔲 | pension_fund_contribution, seniority | 0 / 43 / 2 / 0 |
 | 45 | [CCNL Energia e Petrolio (Confindustria Energia)](energia-petrolio-confindustria.md) | 🔲 | 🔲 | 🔲 | — | 0 / 170 / 1 / 1 |
@@ -181,7 +181,7 @@ never grow.
 | 52 | [CCNL Gruppo ANAS](anas.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 42 / 2 / 0 |
 | 53 | [CCNL Igiene Ambientale — Servizi Ambientali e di Igiene Urbana](igiene-ambientale-utilitalia.md) | 🔲 | 🔲 | 🔲 | inps_employer, pension_fund_contribution, seniority | 0 / 143 / 1 / 1 |
 | 54 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | 🔲 | 🔲 | 🔲 | base_salary, overtime, sickness | 0 / 32 / 1 / 1 |
-| 55 | [CCNL Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti](impiegati-tecnici-agricoli.md) | 🔲 | 🔲 | 🔲 | base_salary, bilateral_funds | 0 / 15 / 1 / 1 |
+| 55 | [CCNL Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti](impiegati-tecnici-agricoli.md) | 🔲 | 🔲 | 🔲 | base_salary, bilateral_funds, inps_employer | 0 / 15 / 1 / 1 |
 | 56 | [CCNL Industria Chimica e Farmaceutica (Federchimica-Farmindustria-Assistal)](chimica-farmaceutica-federchimica.md) | 🔲 | 🔲 | 🔲 | — | 0 / 98 / 1 / 1 |
 | 57 | [CCNL Industria Turistica (Federturismo Confindustria)](industria-turistica-federturismo.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 45 / 1 / 1 |
 | 58 | [CCNL Industrie Cineaudiovisive (ANICA)](cinema-audiovisivi-industria.md) | 🔲 | 🔲 | 🔲 | bilateral_funds | 0 / 62 / 1 / 1 |
@@ -200,14 +200,14 @@ never grow.
 | 71 | [CCNL Marittimi — Industria Armatoriale (CONFITARMA)](marittimi-industria-armatoriale.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 40 / 2 / 0 |
 | 72 | [CCNL Materiali da Costruzione PMI — Lapidei (CONFAPI ANIEM)](materiali-costruzione-lapidei-confapi.md) | 🔲 | 🔲 | 🔲 | pension_fund_contribution | 0 / 0 / 70 / 0 |
 | 73 | [CCNL Metalmeccanica - Cooperative](metalmeccanica-cooperative.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 45 / 1 / 1 |
-| 74 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 79 / 1 / 1 |
+| 74 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | 🔲 | 🔲 | 🔲 | inps_employer, seniority | 0 / 79 / 1 / 1 |
 | 75 | [CCNL Metalmeccanici Piccola Industria (CONFIMI IMPRESA MECCANICA)](metalmeccanico-confimi-pmi.md) | 🔲 | 🔲 | 🔲 | overtime | 0 / 44 / 0 / 1 |
 | 76 | [CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Confapi)](metalmeccanico-confapi.md) | 🔲 | 🔲 | 🔲 | base_salary, pension_fund_contribution, seniority | 0 / 45 / 1 / 1 |
 | 77 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | 🔲 | 🔲 | 🔲 | overtime, seniority | 0 / 84 / 0 / 0 |
 | 78 | [CCNL Noleggio Autobus con Conducente (ANAV)](noleggio-autobus-conducente-anav.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority, una_tantum | 0 / 0 / 70 / 1 |
 | 79 | [CCNL Occhiali e Occhialeria — Industria (ANFAO)](occhiali-occhialeria-industria.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 88 / 1 / 1 |
 | 80 | [CCNL Operai Agricoli e Florovivaisti — Coldiretti/Confagricoltura/CIA](operai-agricoli-florovivaisti.md) | 🔲 | 🔲 | 🔲 | base_salary, bilateral_funds, inail, inps_employee, inps_employer, seniority, territorial_supplement | 0 / 18 / 1 / 1 |
-| 81 | [CCNL Organizzazioni Allevatori, Consorzi ed Enti Zootecnici (AIA-FLAI-FAI-UILA)](organizzazioni-allevatori-aia.md) | 🔲 | 🔲 | 🔲 | base_salary | 0 / 20 / 1 / 1 |
+| 81 | [CCNL Organizzazioni Allevatori, Consorzi ed Enti Zootecnici (AIA-FLAI-FAI-UILA)](organizzazioni-allevatori-aia.md) | 🔲 | 🔲 | 🔲 | base_salary, inps_employer | 0 / 20 / 1 / 1 |
 | 82 | [CCNL Ortofrutticoli ed Agrumari (Import-Export)](ortofrutticoli-agrumari.md) | 🔲 | 🔲 | 🔲 | base_salary, leave, seniority, sickness | 0 / 0 / 53 / 1 |
 | 83 | [CCNL Panificazione e Settori Affini — Industria (Assipan/Fiesa)](panificazione-assipan.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 48 / 1 / 1 |
 | 84 | [CCNL Poste Italiane S.p.A. (personale non dirigente)](poste-italiane-k700.md) | 🔲 | 🔲 | 🔲 | base_salary, inps_employer | 0 / 53 / 2 / 0 |
@@ -219,8 +219,8 @@ never grow.
 | 90 | [CCNL Scuole Private Laiche (ANINSEI-Assoscuola)](scuole-private-laiche-aninsei.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 43 / 2 / 0 |
 | 91 | [CCNL Servizi Postali in Appalto (FISE-ARE)](servizi-postali-appalto-fise.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 49 / 2 / 0 |
 | 92 | [CCNL Servizi di Pulizia e Servizi Integrati/Multiservizi (ANIP-Confindustria)](multiservizi-anip.md) | 🔲 | 🔲 | 🔲 | inps_employee, seniority | 0 / 148 / 2 / 0 |
-| 93 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Impiegati)](sistemazioni-idraulico-forestali-impiegati.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 27 / 2 / 1 |
-| 94 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Operai OTI)](sistemazioni-idraulico-forestali-operai.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 20 / 2 / 1 |
+| 93 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Impiegati)](sistemazioni-idraulico-forestali-impiegati.md) | 🔲 | 🔲 | 🔲 | base_salary, inps_employer, seniority | 0 / 27 / 2 / 1 |
+| 94 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Operai OTI)](sistemazioni-idraulico-forestali-operai.md) | 🔲 | 🔲 | 🔲 | base_salary, inps_employer, seniority | 0 / 20 / 2 / 1 |
 | 95 | [CCNL Telecomunicazioni — Assotelecomunicazioni (Asstel)](telecomunicazioni-asstel.md) | 🔲 | 🔲 | 🔲 | inps_employer, seniority | 0 / 45 / 2 / 0 |
 | 96 | [CCNL Terziario Distribuzione e Servizi — Confesercenti](terziario-confesercenti.md) | 🔲 | 🔲 | 🔲 | seniority, una_tantum | 0 / 62 / 2 / 0 |
 | 97 | [CCNL Terziario, Distribuzione e Servizi (Confcommercio)](commercio-confcommercio.md) | 🔲 | 🔲 | 🔲 | seniority, sickness | 0 / 69 / 0 / 0 |
@@ -246,9 +246,9 @@ never grow.
 | 117 | [CCNL per i lavoratori dell'industria conciaria (UNIC)](concia-unic.md) | 🔲 | 🔲 | 🔲 | overtime, seniority, sickness | 0 / 58 / 0 / 0 |
 | 118 | [CCNL per i lavoratori dell'industria del legno, del sughero, del mobile, dell'arredamento e delle industrie affini (Federlegno-Arredo)](legno-arredamento-federlegno.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 88 / 2 / 0 |
 | 119 | [CCNL per i lavoratori dell'industria tessile, abbigliamento, moda (SMI)](tessile-smi.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 47 / 1 / 1 |
-| 120 | [CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane](bcc-credito-cooperativo.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 40 / 1 / 1 |
+| 120 | [CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane](bcc-credito-cooperativo.md) | 🔲 | 🔲 | 🔲 | base_salary, inps_employer, seniority | 0 / 41 / 1 / 1 |
 | 121 | [CCNL per i lavoratori delle imprese produttrici, distributrici di energia elettrica (Elettricita Futura)](elettrico-elettricita-futura.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 77 / 1 / 1 |
-| 122 | [CCNL per i lavoratori dipendenti dalle aziende di credito (ABI)](bancari-abi.md) | 🔲 | 🔲 | 🔲 | base_salary, inps_employer, seniority | 0 / 42 / 1 / 1 |
+| 122 | [CCNL per i lavoratori dipendenti dalle aziende di credito (ABI)](bancari-abi.md) | 🔲 | 🔲 | 🔲 | base_salary, inps_employer, seniority | 0 / 43 / 1 / 1 |
 | 123 | [CCNL per i lavoratori dipendenti delle aziende termali](aziende-termali-federterme.md) | 🔲 | 🔲 | 🔲 | base_salary, bilateral_funds, inps_employer, seniority | 0 / 64 / 1 / 1 |
 | 124 | [CCNL per il personale dipendente non dirigente delle imprese di assicurazione (ANIA)](assicurazioni-ania.md) | 🔲 | 🔲 | 🔲 | base_salary, inps_employer, seniority | 0 / 29 / 1 / 1 |
 | 125 | [DPR 24 marzo 2025, n. 53 — Forze di Polizia ad ordinamento civile (Triennio 2022-2024)](forze-polizia-ordinamento-civile.md) | 🔲 | 🔲 | 🔲 | inps_employer | 0 / 70 / 1 / 1 |

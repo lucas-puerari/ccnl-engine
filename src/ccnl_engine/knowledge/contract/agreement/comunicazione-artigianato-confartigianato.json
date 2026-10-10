@@ -159,6 +159,35 @@
           },
           "remediation": "Confirm the level 1A function allowance amount for the December 2024 and July 2025 tranches."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "INPS RATES: the employer and worker INPS rates of the sector (artigianato) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "inps_sector_rates_unsourced",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Source the artigianato rates of 2026 on an INPS or association table, mark the inps block of social_security/contribution/2026/artigianato.json derived, then remove this note."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE INPS RATES: the apprentice rates of the sector (artigianato) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles whether the 0.91 NASpI reduction of the artisan employers also applies to apprentices, nor the wage-integration contribution they owe (the FSBA is paid outside INPS). The contributions of an apprentice may differ.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_inps_rates_unsourced",
+          "applies_when": {
+            "trigger": "run",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of social_security/contribution/2026/artigianato.json derived, then remove this note."
+        }
       }
     ]
   },
@@ -1380,7 +1409,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/ccnl/comunicazione-artigianato",
     "verification_status": "unverified",
-    "source_hash": "f1e1e7b8fc7b163d09f524272beee5b6a6e24a5328585772b31a348231110313",
+    "source_hash": "29addb6494d7d15ef4ff8f2c00645dd5a90e53ba3709b084bd25cf386c98227d",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

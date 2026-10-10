@@ -41,7 +41,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | territorial_supplement |
+| **Limits of this contract** | inps_employer, territorial_supplement |
 
 ### Verifica
 
@@ -61,7 +61,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 
 ### Semplificazioni note
 
-4 semplificazioni documentate.
+6 semplificazioni documentate.
 Vedi [Known simplifications](#known-simplifications) per i dettagli.
 
 ## Salary table
@@ -139,6 +139,20 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Add the Veneto ERT outside the engine for runs before 2026.
+
+!!! warning "panificazione-artigianato-confartigianato/inps_sector_rates_unsourced · inps_employer · impact unknown · open"
+    INPS RATES: the employer and worker INPS rates of the sector (artigianato) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.
+
+    **Applies when:** `inps_employer` applies.
+
+    **Remediation:** Source the artigianato rates of 2026 on an INPS or association table, mark the inps block of social_security/contribution/2026/artigianato.json derived, then remove this note.
+
+!!! warning "panificazione-artigianato-confartigianato/apprentice_inps_rates_unsourced · inps_employer · impact unknown · open"
+    APPRENTICE INPS RATES: the apprentice rates of the sector (artigianato) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles whether the 0.91 NASpI reduction of the artisan employers also applies to apprentices, nor the wage-integration contribution they owe (the FSBA is paid outside INPS). The contributions of an apprentice may differ.
+
+    **Applies when:** `inps_employer` applies; contract type in apprentice.
+
+    **Remediation:** Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of social_security/contribution/2026/artigianato.json derived, then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

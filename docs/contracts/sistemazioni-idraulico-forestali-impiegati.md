@@ -42,7 +42,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | base_salary, seniority |
+| **Limits of this contract** | base_salary, inps_employer, seniority |
 
 ### Verifica
 
@@ -62,7 +62,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 
 ### Semplificazioni note
 
-6 semplificazioni documentate.
+7 semplificazioni documentate.
 Vedi [Known simplifications](#known-simplifications) per i dettagli.
 
 ## Salary table
@@ -136,6 +136,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
+
+!!! warning "sistemazioni-idraulico-forestali-impiegati/apprentice_inps_rates_unsourced · inps_employer · impact unknown · open"
+    APPRENTICE INPS RATES: the apprentice rates of the sector (agricoltura) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles the disoccupazione and CISOA contributions of agricultural apprentices (INPS circ. 43/2026 gives no apprentice rates). The contributions of an apprentice may differ.
+
+    **Applies when:** `inps_employer` applies; contract type in apprentice.
+
+    **Remediation:** Source the apprentice rates of agricoltura (an INPS circular or an association table of 2026), mark the apprentice block of social_security/contribution/2026/agricoltura.json derived, then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

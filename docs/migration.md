@@ -4,6 +4,14 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Solidarity fund of the credito CCNLs
+
+| Before | After |
+|---|---|
+| No contribution to the solidarity funds of the credito | New `CCNLParameters.solidarity_fund` (`SolidarityFund`): bancari ABI 0.133% employer and 0.067% worker (INPS circ. 90/2015), BCC 0.24% and 0.12% (0.36%, INPS bilancio preventivo 2026), on the INPS base of every permanent worker and apprentice; components `solidarity_fund_employer` and `solidarity_fund_employee`. The worker's share is withheld and leaves the IRPEF taxable like the INPS employee rate |
+| Credito apprentice rates `assumed` | `derived`; ANIA declares `solidarity_fund_unsourced` (its fund has no sourced rate), and the credito and artigianato CCNLs `inps_sector_rates_unsourced`, the artigianato and agricoltura CCNLs `apprentice_inps_rates_unsourced`: those runs are not payable until the rates are sourced |
+
+
 ## Minimum INPS base by qualifica
 
 | Before | After |
@@ -575,21 +583,3 @@ decision records the part of the minimum left to the tax return (see
 | A run whose deductions other than IRPEF and surtax exceeded its pay without unpaid absences (e.g. a large fringe benefit on a part-time salary) raised `DataIntegrityError` (`net_pay_non_negative`) | `OutOfScopeError`, reason `negative_net`, feature `net_pay`, with or without absences; the reason was `withholding_shortfall` with absences |
 | `ArrearsEvent` was always taxed separately at `separate_tax_rate`; `reference_period` was not read | `reference_period` of an earlier tax year than the run: separate taxation at `separate_tax_rate` (art. 17 c. 1 lett. b TUIR); of the tax year of the run: ordinary IRPEF with the run, the rate is not used; `None`: separate taxation as before with a `missing_fact reference_period` blocker; a later year: `InvalidInputError`. Each arrears event records a `contract_renewal_arrears` decision with reason `separate_taxation`, `ordinary_taxation` or `reference_period_unknown` |
 | A conguaglio of a withholding run without `regione` or `comune_belfiore` closed a state that opened the next year without a blocker | Its `closing_state.history_known` is `False`: every later run, the next tax year included, has the `missing_fact opening_state` blocker until it is recomputed with the residence |
-
-## INPS base raised to the minimum
-
-The INPS base was the pay of the run even below the minimum daily pay of
-D.L. 463/1983 art. 7 c. 1 (EUR 58.13 a day for 2026, INPS circ. 6/2026). A
-full month of a full-time worker is now contributed on at least 26 x 58.13
-= EUR 1,511.38, a part-time one on the hourly minimum (EUR 8.72 for a
-40-hour week) times its hours; apprentices and operai agricoli are
-excluded (art. 7 c. 5). Where the bundle cannot fix the minimum and the
-base is below it, the INPS decisions are `incomplete`
-(`minimum_base_undetermined`) and the result is not payable.
-
-| Before | After |
-|---|---|
-| `inputs["base"]` of the INPS decisions was the pay chain plus the events | It is that amount raised to the minimum; the amount before is `actual_base`, with `minimum_base`, `minimum_base_bound`, `minimum_base_reason` |
-| Contributions, the TFR 0.50% IVS, the IRPEF taxable and the year-to-date INPS base read the pay | They read the raised base; the gross and the TFR quota do not change |
-| No issue for a base below the minimum | Issue `inps_minimum_base_undetermined` when the minimum cannot be fixed; with `fact="category"` for an agricultural level whose category is open, so state `Employment.category` |
-| `InpsRates` had no minimum | `InpsRates.minimum_base`, a `MinimumBaseRule` (`daily`, `week_days`, `monthly_days`, `hourly`, `exempt_categories`, `provenance`), from the `minimum_base` block of the INPS data files |
