@@ -44,11 +44,14 @@ class SicknessEpisode:
             certificate marks it as a relapse (*ricaduta*): the days of both
             count as one episode, so no new waiting period applies.
         short_absence_exempt: Whether the CCNL exempts the absence from the
-            lower pay of repeated short absences (for Federmeccanica: a
-            hospital stay or day hospital, sickness during a certified
-            pregnancy, or one of the diseases the CCNL lists); ``None``
+            lower pay of repeated absences (for Federmeccanica: a hospital
+            stay or day hospital, sickness during a certified pregnancy, or
+            one of the diseases the CCNL lists; for Commercio, Art. 187: a
+            hospital stay, day hospital or dialysis, an initial prognosis of
+            at least 12 days, the listed diseases, or a pregnancy); ``None``
             when not stated.  Read only by a CCNL that reduces short
-            absences, when the reduction could apply.
+            absences or the carenza by event, when the reduction could
+            apply.
 
     Raises:
         InvalidInputError: When the identifier is blank, a day is not a

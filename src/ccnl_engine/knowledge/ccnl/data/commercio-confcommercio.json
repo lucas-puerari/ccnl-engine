@@ -97,12 +97,12 @@
       },
       {
         "kind": "simplification",
-        "text": "SICKNESS (Arts. 186-187): the day bands (100% carenza, 75% days 4-20, 100% from day 21) are modelled on the gross daily pay; not modelled: the net daily pay the CCNL integrates to, the carenza at 66%, 50% and 0% from the third event of the calendar year, and the comporto of 180 days summed over the episodes of the calendar year (counted per episode).",
+        "text": "SICKNESS (Art. 187): the CCNL integrates up to a share of the net daily pay ('retribuzione giornaliera netta'); the engine integrates the gross daily pay. Day bands, carenza by event and the yearly comporto are modelled.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "sickness_net_basis_and_event_carenza",
-          "remediation": "Integrate to the net daily pay, reduce the carenza by event of the calendar year with its exclusions, and sum the comporto over the calendar year, then resolve this limitation."
+          "variant": "sickness_net_basis",
+          "remediation": "Integrate the share of the net daily pay the CCNL guarantees, then resolve this limitation."
         }
       }
     ]
@@ -2496,7 +2496,7 @@
     "effective_until": null,
     "source": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
     "verification_status": "unverified",
-    "source_hash": "e717f885f097dd3796a2be76200e0f0dc578edf041e791ac41539c13dc0258c2",
+    "source_hash": "ded8c77a960d599e1bbd25c4a6534fc348345386c1556f48d83152618c77d419",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2756,7 +2756,7 @@
           "verification_status": "unverified",
           "effective_from": "1993-11-01"
         },
-        "transformation": "Art. 187 b): 100% for the three days of carenza, 75% for days 4-20 and 100% from day 21, stored as day_bands of the episode; comporto 180 days (Art. 186) as max_duration_days."
+        "transformation": "Art. 187 b): 100% for the three days of carenza, 75% for days 4-20 and 100% from day 21, stored as day_bands of the episode; the carenza at 66%, 50% and 0% from the third event of the calendar year as carenza_by_event; comporto of 180 days in the calendar year (Art. 186) as max_duration_days counted over the year."
       },
       "day_bands": [
         {
@@ -2769,7 +2769,16 @@
           "day_until": null,
           "integration_rate": "1"
         }
-      ]
+      ],
+      "comporto_calendar_year": true,
+      "carenza_by_event": {
+        "from_event": 3,
+        "rates": [
+          "0.66",
+          "0.50",
+          "0"
+        ]
+      }
     }
   },
   "verification": {

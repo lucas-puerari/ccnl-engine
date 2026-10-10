@@ -1314,7 +1314,7 @@
     ],
     "ccnl/data/commercio-confcommercio.json": [
       "commercio-confcommercio/apprentice_seniority",
-      "commercio-confcommercio/sickness_net_basis_and_event_carenza"
+      "commercio-confcommercio/sickness_net_basis"
     ],
     "ccnl/data/comunicazione-artigianato-confartigianato.json": [
       "comunicazione-artigianato-confartigianato/function_allowance_constant",

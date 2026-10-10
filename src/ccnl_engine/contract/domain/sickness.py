@@ -116,6 +116,36 @@ class ShortAbsenceReduction(BaseModel):
         return self.rates[min(ordinal - self.from_event, len(self.rates) - 1)]
 
 
+class CarenzaByEvent(BaseModel):
+    """Carenza paid at a lower rate from the n-th sickness event of a year.
+
+    Commercio Art. 187: the carenza is integrated at 100% for the first two
+    events of the calendar year, 66% for the third, 50% for the fourth and
+    not from the fifth.  A relapse continues its event; an event the CCNL
+    exempts (``SicknessEpisode.short_absence_exempt``) is not counted.
+
+    Attributes:
+        from_event: First event of the calendar year paid less.
+        rates: Carenza rate of the ``from_event``-th event, then of each
+            later one; the last rate applies to every event after it.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    from_event: int = Field(ge=2)
+    rates: tuple[Decimal, ...] = Field(min_length=1)
+
+    def rate_of(self, ordinal: int) -> Decimal:
+        """Return the carenza rate of the ``ordinal``-th event of the year.
+
+        Returns:
+            ``1`` before :attr:`from_event`, the matching rate after.
+        """
+        if ordinal < self.from_event:
+            return _ONE
+        return self.rates[min(ordinal - self.from_event, len(self.rates) - 1)]
+
+
 class SicknessCumulation(BaseModel):
     """Sick pay and comporto counted over the sickness of several episodes.
 
@@ -201,6 +231,11 @@ class SicknessRules(BaseModel):
         day_bands: Day-gated integration bands, for CCNLs that set the rate
             by the day of the episode; a day in a band takes its rate
             before any tier.
+        comporto_calendar_year: Whether ``max_duration_days`` counts the
+            sick days of every episode of the calendar year of the day
+            (Commercio Art. 186: 180 days "in un anno solare") instead of
+            the days of one episode.
+        carenza_by_event: Lower carenza from the n-th event of the year.
         max_duration_days: Number of calendar days after which sick leave
             exceeds the comporto period.  Days beyond this limit are not
             modelled by the engine.
@@ -215,6 +250,8 @@ class SicknessRules(BaseModel):
     full_pay_integration_rate: Decimal = Field(ge=Decimal(0), le=Decimal(1))
     tiers: tuple[SicknessTier, ...] = Field(default=())
     day_bands: tuple[SicknessDayBand, ...] = Field(default=())
+    comporto_calendar_year: bool = False
+    carenza_by_event: CarenzaByEvent | None = None
     max_duration_days: int = Field(default=180, ge=1)
     cumulation: SicknessCumulation | None = None
     provenance: RuleProvenance | None = None
@@ -222,7 +259,11 @@ class SicknessRules(BaseModel):
     @model_validator(mode="after")
     def _one_model(self) -> Self:
         per_episode = (
-            self.tiers or self.day_bands or "max_duration_days" in self.model_fields_set
+            self.tiers
+            or self.day_bands
+            or self.comporto_calendar_year
+            or self.carenza_by_event is not None
+            or "max_duration_days" in self.model_fields_set
         )
         if self.cumulation is not None and per_episode:
             msg = (

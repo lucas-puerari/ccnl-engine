@@ -4,6 +4,13 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Carenza by event and yearly comporto
+
+| Before | After |
+|---|---|
+| A per-episode sickness rule counted its comporto on one episode and paid the same carenza to every event | New `SicknessRules.comporto_calendar_year` (the comporto sums the sick days of the calendar year) and `carenza_by_event` (`CarenzaByEvent`: lower carenza from the n-th event of the year); `SicknessEpisode.short_absence_exempt` also marks the events a CCNL leaves out of that count |
+| Commercio: 180-day comporto per episode, carenza always at 100% | Art. 186: 180 days in the calendar year; Art. 187: carenza at 100% for the first two events of the year, 66% for the third, 50% for the fourth, none from the fifth. An unstated exemption pays the higher carenza with a `sickness_short_absence_exemption_unknown` issue; a history known after 1 January raises `sickness_history_unknown`. The net daily pay remains an open limitation |
+
 ## Day-gated sick pay, Commercio reviewed
 
 | Before | After |
