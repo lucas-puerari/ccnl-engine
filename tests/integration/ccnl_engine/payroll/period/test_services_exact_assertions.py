@@ -45,7 +45,7 @@ from ccnl_engine.payroll.year.models_calendar import WorkCalendar
 from ccnl_engine.payroll.year.services_competence import (
     calculate_competence_year,
 )
-from tests.helpers import year_plan
+from tests.unit.ccnl_engine.builders import year_plan
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"

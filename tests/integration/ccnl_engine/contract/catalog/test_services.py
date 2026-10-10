@@ -14,7 +14,9 @@ from ccnl_engine.payroll.period.repositories import (
     BundledKnowledgeRepository,
 )
 from ccnl_engine.provenance.ruleset.models_assurance import RulesetKind
-from tests.fixtures.anonymous_ccnl_repository import AnonymousCcnlRepository
+from tests.integration.ccnl_engine.contract.catalog.builders_anonymous_repository import (  # noqa: E501
+    AnonymousCcnlRepository,
+)
 
 _METALMECCANICO = "metalmeccanico-federmeccanica"
 

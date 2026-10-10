@@ -25,8 +25,10 @@ from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.payroll.taxation.inputs_prior_year import PriorYearTaxFacts
 from ccnl_engine.tax.regime.models import EmploymentSector
-from tests.fixtures.next_year_repository import NextYearRepository
-from tests.fixtures.seniority import new_hire
+from tests.integration.ccnl_engine.payroll.year.builders_next_year_repository import (
+    NextYearRepository,
+)
+from tests.knowledge.ccnl_engine.payroll.employment.builders_seniority import new_hire
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.period.results import PeriodResult

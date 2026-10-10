@@ -19,7 +19,7 @@ from ccnl_engine.payroll.assurance.models import (
 from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
 from ccnl_engine.payroll.assurance.policies_engine_mode import EngineMode
 from ccnl_engine.provenance.ruleset.models import VerificationStatus
-from tests.fixtures.rulesets import tax_ruleset
+from tests.unit.ccnl_engine.provenance.ruleset.builders_rulesets import tax_ruleset
 
 if TYPE_CHECKING:
     from ccnl_engine.provenance.ruleset.models_assurance import RulesetAssurance

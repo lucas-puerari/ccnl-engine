@@ -11,7 +11,7 @@ from ccnl_engine.contract.working_time.models import (
     TimeSupplements,
     WorkKind,
 )
-from tests.helpers import _series
+from tests.unit.ccnl_engine.builders import _series
 
 
 def _time_series(value: str) -> TimeSeries:

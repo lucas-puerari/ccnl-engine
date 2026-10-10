@@ -43,7 +43,9 @@ from ccnl_engine.provenance.source.models import (
     SourceLocation,
 )
 from ccnl_engine.provenance.source.models_chain import ProvenanceStatus, RuleProvenance
-from tests.fixtures.withholding import calendar_schedule
+from tests.integration.ccnl_engine.payroll.withholding.builders_withholding import (
+    calendar_schedule,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.contract.identity.facade import CCNL

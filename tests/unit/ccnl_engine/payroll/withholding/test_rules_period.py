@@ -17,7 +17,7 @@ from ccnl_engine.payroll.withholding.rules_period import (
     PeriodTax,
     period_tax,
 )
-from tests.helpers import make_year_rules
+from tests.unit.ccnl_engine.builders import make_year_rules
 
 _ZERO = Decimal(0)
 _RULES = make_year_rules()

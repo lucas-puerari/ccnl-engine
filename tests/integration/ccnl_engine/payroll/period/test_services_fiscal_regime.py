@@ -38,7 +38,10 @@ from ccnl_engine.payroll.state.models_credit_account import TrattamentoAccount
 from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
 from ccnl_engine.payroll.state.models_ytd_account import EarningsYtd, TaxYtd
 from ccnl_engine.payroll.taxation.inputs_prior_year import PriorYearTaxFacts
-from tests.fixtures.withholding import identified, paid_before
+from tests.integration.ccnl_engine.payroll.withholding.builders_withholding import (
+    identified,
+    paid_before,
+)
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"

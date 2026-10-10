@@ -28,7 +28,9 @@ from ccnl_engine.payroll.state.models_ytd_account import (
 )
 from ccnl_engine.payroll.taxation.results import TaxComputation
 from ccnl_engine.payroll.year.models_calendar import WorkCalendar
-from tests.fixtures.withholding import calendar_schedule
+from tests.integration.ccnl_engine.payroll.withholding.builders_withholding import (
+    calendar_schedule,
+)
 
 _ZERO = Decimal(0)
 _PERIOD = PeriodId(year=2026, month=1)

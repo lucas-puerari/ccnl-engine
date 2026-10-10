@@ -30,7 +30,7 @@ from ccnl_engine.payroll.capability.results import (
 )
 from ccnl_engine.payroll.capability.rules_requirement import UnresolvedRequirement
 from ccnl_engine.provenance.source.models_chain import ProvenanceStatus
-from tests.fixtures.rulesets import tax_ruleset
+from tests.unit.ccnl_engine.provenance.ruleset.builders_rulesets import tax_ruleset
 
 if TYPE_CHECKING:
     from collections.abc import Mapping

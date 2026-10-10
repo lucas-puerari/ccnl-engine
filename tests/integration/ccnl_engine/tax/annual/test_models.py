@@ -26,7 +26,7 @@ from ccnl_engine.tax.contribution.rules_tier import (
     _resolve_tier,
 )
 from ccnl_engine.tax.severance.models import TfrRules
-from tests.helpers import (
+from tests.unit.ccnl_engine.builders import (
     DOMESTIC_CONTRIBUTIONS,
     IRPEF_BRACKETS_2026,
 )

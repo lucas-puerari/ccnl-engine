@@ -40,8 +40,8 @@ from ccnl_engine.payroll.withholding.models_recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.year.services_competence import (
     calculate_competence_year,
 )
-from tests.fixtures.normative_oracles.irpef_2026 import net_irpef
-from tests.helpers import EMPLOYER_50, year_plan
+from tests.knowledge.ccnl_engine.payroll.taxation.oracles_irpef_2026 import net_irpef
+from tests.unit.ccnl_engine.builders import EMPLOYER_50, year_plan
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.period.results import PeriodResult

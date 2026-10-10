@@ -17,7 +17,7 @@ tests to mirror directories without `__init__.py`, and then removed every
 | pytest | The default `prepend` import mode breaks: the root `conftest.py` cannot import `tests.*`, and the 25 test basenames used twice raise 31 `import file mismatch` errors. | Set `--import-mode=importlib` and `pythonpath = ["."]`; then 12660 tests pass. |
 | coverage | `source = src/ccnl_engine` silently drops a module in a namespace directory that no test imports, so the 100% gate cannot see it. | Set `include_namespace_packages = true` under `[tool.coverage.report]`; the unimported module then reports 0%. |
 | ruff | `INP001` (implicit namespace package) fires on every module of a directory without `__init__.py`; it is ignored only for `scripts`, `demo` and `docs` today. | Ignore `INP001` for `src` and `tests` in the same change. |
-| architecture tests | `test_every_module_fits_a_layer` and `test_every_source_directory_is_a_package` fail. | Classify modules by role file (`tests/architecture/_imports.py`, `ROLE_LAYERS`); keep every source directory a package (markers below). |
+| architecture tests | `test_every_module_fits_a_layer` and `test_every_source_directory_is_a_package` fail. | Classify modules by role file (`tests/integration/scripts/structure/support_imports.py`, `ROLE_LAYERS`); keep every source directory a package (markers below). |
 | docs (found in the domain migration) | griffe, behind mkdocstrings, does not load a namespace directory inside a regular package (its loader skips it on purpose), so every `:::` directive of a moved module fails and the Docs build and the Pages deploy break. | Keep a docstring-only `__init__.py` marker in every source directory; the structure guardrail and the inventory accept only such markers under `src`. |
 | `importlib.resources` | `files("ccnl_engine.knowledge.ccnl.data")` on a namespace package returns a `MultiplexedPath`; `iterdir()` and `joinpath()` work in the editable install and in the wheel (126 `.json.gz`). A namespace merges every portion on `sys.path`, so a stale copy would add files silently. | Resolve resources through the manifest and check the file list against it. |
 | wheel | `uv build --wheel` packs the namespace directories (`packages = ["src/ccnl_engine"]`) and the build hook still injects the `.json.gz` files; `scripts/quality/smoke_test.py` passes in a clean virtual environment. | Update the build hook directory list and the `exclude` globs, which are path-keyed. |
@@ -44,7 +44,7 @@ A move must update every place that names a path or a dotted module:
   selection.
 - **CI workflows**: the path filters of `capability-matrix.yml`,
   `contract-examples.yml` and `contracts-index.yml`, and the
-  `tests/fixtures/reference_tables/*.json` globs of `ci.yml`.
+  `tests/knowledge/ccnl_engine/payroll/period/reference_case/*.json` globs of `ci.yml`.
 - **Scripts**: the knowledge prefixes of `scripts/knowledge/diff.py`,
   the data paths of the documentation generators and of
   `scripts/knowledge/update.py`, and the reference case directory of
@@ -54,9 +54,9 @@ A move must update every place that names a path or a dotted module:
   `tests/integration/ccnl_engine/knowledge/service/`,
   `tests/integration/ccnl_engine/tax/service/` and
   `tests/integration/scripts/knowledge/test_diff.py`; the reference
-  case directory of `tests/architecture/_provenance.py`; the layer
-  allowlists of `tests/architecture/test_dependencies.py` and
-  `tests/architecture/_imports.py`.
+  case directory of `tests/knowledge/ccnl_engine/payroll/period/support_provenance.py`; the layer
+  allowlists of `tests/integration/scripts/structure/test_dependencies.py` and
+  `tests/integration/scripts/structure/support_imports.py`.
 - **Documentation**: the `--8<--` snippet includes of the agreement JSON in
   the generated pages under `docs/contracts`, the `docs/trust` tables
   generated from the bundle, the
@@ -64,7 +64,7 @@ A move must update every place that names a path or a dotted module:
   `docs/engine/architecture.md`, `docs/engine/payroll-state.md`,
   `docs/rules/index.md`, the migration guides, `tests/README.md` and
   `CLAUDE.md`.
-- **Mirror rules**: the mirror check of `tests/architecture/test_test_layout.py`
+- **Mirror rules**: the mirror check of `tests/integration/scripts/structure/test_test_layout.py`
   and the categories it allows.
 
 ## Amendments

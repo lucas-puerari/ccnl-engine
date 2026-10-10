@@ -126,7 +126,8 @@ Every field with a default in the public input types (the request and plan
 types of `ccnl_engine`, the facts of `ccnl_engine.inputs`, the events of
 `ccnl_engine.events`) is classified in
 `ccnl_engine.payroll.period.policies_default_registry`, and
-`tests/architecture/test_input_defaults.py` fails on a defaulted field
+`tests/integration/ccnl_engine/payroll/period/test_policies_default_registry_coverage.py`
+fails on a defaulted field
 without a classification, or on a classification without its field:
 
 - `absence_is_fact`: the default is the fact. No event happened, the
@@ -175,8 +176,8 @@ be told apart from a stated value (a field that defaults to `True` or `0`
 cannot) and the run blocks on it, or leaves the registry when its default
 is removed. For every `requires_fact` field, the run that states the fact
 has at most the blockers of the run that leaves it to its default
-(`tests/acceptance/public_api/test_default_facts.py`, on the request pairs
-of `tests/fixtures/default_cases.py`): a false default is never the one
+(`tests/integration/ccnl_engine/test_default_facts.py`, on the request pairs
+of `tests/integration/ccnl_engine/payroll/period/builders_default_cases.py`): a false default is never the one
 path that looks payable. `Dependent.dependent_from` and `dependent_until` have no
 default: `None` states an open end. `OpeningBalances.inps_bases`, `surtax_obligations` and
 `recoveries` have no default: an import states what the previous provider

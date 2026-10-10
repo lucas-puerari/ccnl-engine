@@ -44,7 +44,7 @@ from ccnl_engine.payroll.taxation.inputs_prior_year import (
 )
 from ccnl_engine.payroll.withholding.inputs_shortfall_deferral import DeferredShortfall
 from ccnl_engine.payroll.year.rules_close import close_tax_year
-from tests.fixtures.shortfall_deferral import (
+from tests.integration.ccnl_engine.payroll.withholding.builders_shortfall_deferral import (  # noqa: E501
     DEFERRAL_REQUEST,
     decision_amount,
     deferred_lines,
@@ -54,7 +54,7 @@ from tests.fixtures.shortfall_deferral import (
     year_n_with_request,
     year_n_without_request,
 )
-from tests.helpers import EMPLOYER_50
+from tests.unit.ccnl_engine.builders import EMPLOYER_50
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.period.results import PeriodResult

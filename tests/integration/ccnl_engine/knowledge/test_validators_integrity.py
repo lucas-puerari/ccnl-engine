@@ -31,7 +31,7 @@ from ccnl_engine.tax.annual.loaders import (
 )
 from ccnl_engine.tax.surtax import loaders as surtax_loaders
 from ccnl_engine.tax.surtax.loaders import _load_surtax_rules_cached
-from tests.helpers import make_ccnl_dict
+from tests.unit.ccnl_engine.builders import make_ccnl_dict
 
 LOADER_PATHS = (
     "ccnl_engine.contract.catalog.loaders",

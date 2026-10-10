@@ -8,7 +8,11 @@ import pytest
 
 from ccnl_engine.payroll.assurance.validators import reconcile
 from ccnl_engine.payroll.ledger.models import AccountKind
-from tests.fixtures.synthetic_period_result import OPENING, ResultBuilder, ledger_entry
+from tests.unit.ccnl_engine.payroll.period.builders_synthetic_result import (
+    OPENING,
+    ResultBuilder,
+    ledger_entry,
+)
 
 
 class TestGrossNonNegative:

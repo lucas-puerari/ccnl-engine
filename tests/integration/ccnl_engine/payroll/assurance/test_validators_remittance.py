@@ -14,7 +14,9 @@ from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period
-from tests.fixtures.imported_surtax import opening_with_2025_surtax
+from tests.integration.ccnl_engine.payroll.taxation.builders_imported_surtax import (
+    opening_with_2025_surtax,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.period.results import PeriodResult

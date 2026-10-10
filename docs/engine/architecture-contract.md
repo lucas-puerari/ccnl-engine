@@ -1,11 +1,13 @@
 # Architecture contract
 
-This page fixes the target layout of the repository and the names it uses.
-It is binding for the structural migrations that follow it: the knowledge
-layout, the domains outside `payroll`, the `payroll` domain, `demo` and
-`scripts`, and the test tree. Until a migration lands, the current layout
-described in [Architecture rules](architecture.md) stays in force; the
-guardrails below only stop the old layout from growing.
+This page fixes the layout of the repository and the names it uses. The
+structural migrations it drove have landed: the knowledge layout, the
+domains outside `payroll`, the `payroll` domain, `demo` and `scripts`, and
+the test tree. Every tracked file now sits at its target, so
+`scripts/structure/inventory.json` maps each path to itself, and the
+structure baseline holds no underscore file and no technical directory; the
+guardrails below keep it that way. [Architecture rules](architecture.md)
+states the import rules the layout is checked against.
 
 The contract has three pages:
 
@@ -47,7 +49,7 @@ The contract has three pages:
 | Topic | Decision |
 |---|---|
 | Package root | `src/ccnl_engine/__init__.py` stays, with its docstring and its re-exports. It is the only file whose name starts with an underscore. |
-| Public API | The public surface is the root and the namespaces `ccnl_engine.inputs`, `ccnl_engine.events`, `ccnl_engine.results` and `ccnl_engine.catalog`, as pinned by `tests/architecture/test_public_exports.py` and stated in the root docstring. These five modules keep their import paths. |
+| Public API | The public surface is the root and the namespaces `ccnl_engine.inputs`, `ccnl_engine.events`, `ccnl_engine.results` and `ccnl_engine.catalog`, as pinned by `tests/integration/ccnl_engine/test_public_exports.py` and stated in the root docstring. These five modules keep their import paths. |
 | Deep imports | Paths below the five public modules (`ccnl_engine.payroll.ledger.models` and the like) are not public. The migrations move them without compatibility shims and without deprecation aliases. |
 | `catalog.py` | Kept at the root next to `api.py`, `inputs.py`, `results.py` and `events.py`, because `ccnl_engine.catalog` is a public namespace. |
 | Root modules | `api`, `inputs`, `results`, `events`, `catalog`, `errors`, `primitives`, `validation` and `version`, each splittable as `<name>_<suffix>.py` (for example `validation_collection.py`). |
@@ -167,7 +169,7 @@ facade -> handlers / services -> ports / repositories / loaders / serializers
 - `provenance` imports nothing but the root modules.
 - The graph of `<domain>.<subdomain>` nodes has no cycle.
 
-`tests/architecture/test_dependencies.py` enforces the current layer
+`tests/integration/scripts/structure/test_dependencies.py` enforces the current layer
 direction (`api -> application -> service -> domain`). The role direction
 replaces it in the same change that moves the modules.
 

@@ -163,6 +163,9 @@ def test_repository_baseline_lists_the_current_layout() -> None:
     """The real baseline holds every underscore file and technical directory."""
     baseline = cs.load_baseline(cs.BASELINE)
     files, dirs = cs.layout_offenders(cs.ROOT)
-    assert set(baseline["underscore_files"]) == {path.as_posix() for path in files}
-    assert set(baseline["technical_directories"]) == {path.as_posix() for path in dirs}
-    assert "src/ccnl_engine/__init__.py" not in baseline["underscore_files"]
+    underscore = baseline.get("underscore_files", {})
+    assert set(underscore) == {path.as_posix() for path in files}
+    assert set(baseline.get("technical_directories", {})) == {
+        path.as_posix() for path in dirs
+    }
+    assert "src/ccnl_engine/__init__.py" not in underscore

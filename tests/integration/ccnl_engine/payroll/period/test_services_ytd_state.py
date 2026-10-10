@@ -20,8 +20,14 @@ from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
 from ccnl_engine.payroll.state.models_ytd_account import EarningsYtd, TaxYtd
-from tests.fixtures.period_requests import account_total, period_request
-from tests.fixtures.withholding import identified, paid_before
+from tests.integration.ccnl_engine.payroll.period.builders_period_requests import (
+    account_total,
+    period_request,
+)
+from tests.integration.ccnl_engine.payroll.withholding.builders_withholding import (
+    identified,
+    paid_before,
+)
 
 _YEAR = 2026
 _ZERO = Decimal(0)

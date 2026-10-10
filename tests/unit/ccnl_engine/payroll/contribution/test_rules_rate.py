@@ -12,8 +12,10 @@ from ccnl_engine.payroll.employment.inputs import (
     Permanent,
 )
 from ccnl_engine.payroll.employment.inputs_fixed_term import NaspiExclusion
-from tests.fixtures.contribution_rules import inps_year_rules
-from tests.helpers import make_domestic_year_rules
+from tests.unit.ccnl_engine.builders import make_domestic_year_rules
+from tests.unit.ccnl_engine.payroll.contribution.builders_contribution_rules import (
+    inps_year_rules,
+)
 
 _D = Decimal
 _ZERO = Decimal(0)

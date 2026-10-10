@@ -36,9 +36,13 @@ from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.provenance.source.models_chain import ProvenanceStatus, RuleProvenance
-from tests.fixtures.normative_oracles.contributions_2026 import contribution_base
-from tests.fixtures.seniority import new_hire
-from tests.fixtures.sickness_episode import sickness_episode
+from tests.integration.ccnl_engine.payroll.sickness.builders_sickness_episode import (
+    sickness_episode,
+)
+from tests.knowledge.ccnl_engine.payroll.contribution.oracles_2026 import (
+    contribution_base,
+)
+from tests.knowledge.ccnl_engine.payroll.employment.builders_seniority import new_hire
 
 if TYPE_CHECKING:
     from ccnl_engine.contract.identity.facade import CCNL

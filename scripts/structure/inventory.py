@@ -10,7 +10,7 @@ under those four roots, from ``inventory_rules.json``:
   applies. A rule with ``target`` formats it with the named groups of the
   match; a rule with ``mirror`` maps a unit or integration test through the
   module it mirrors (``test_z.py`` or ``test_z_<suffix>.py`` for module
-  ``z`` or ``_z``, as ``tests/architecture/test_test_layout.py`` reads it)
+  ``z`` or ``_z``, as ``test_test_layout.py`` reads it)
   into the ``mirror`` category, renamed after the target module.
 
 A target is a path, or ``{"dissolve": <dir>}`` for a package marker

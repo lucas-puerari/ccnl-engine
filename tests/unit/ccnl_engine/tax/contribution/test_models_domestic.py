@@ -9,7 +9,7 @@ from ccnl_engine.payroll.contribution.rules_domestic_rate import (
     resolve_domestic_inps_rate,
 )
 from ccnl_engine.tax.contribution.models_domestic import DomesticInpsRates
-from tests.helpers import (
+from tests.unit.ccnl_engine.builders import (
     DOMESTIC_CONTRIBUTIONS,
 )
 

@@ -30,12 +30,14 @@ from ccnl_engine.payroll.taxation.results import TaxComputation, TaxLineItem
 from ccnl_engine.payroll.year.services_competence import (
     calculate_competence_year,
 )
-from tests.fixtures.normative_oracles.irpef_2026 import net_irpef as oracle_net_irpef
-from tests.fixtures.normative_oracles.withholding_2026 import (
+from tests.knowledge.ccnl_engine.payroll.taxation.oracles_irpef_2026 import (
+    net_irpef as oracle_net_irpef,
+)
+from tests.knowledge.ccnl_engine.payroll.withholding.oracles_2026 import (
     extra_month_withholding,
     regular_month_withholding,
 )
-from tests.helpers import year_plan
+from tests.unit.ccnl_engine.builders import year_plan
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.period.results import PeriodResult

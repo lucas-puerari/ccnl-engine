@@ -37,8 +37,12 @@ from ccnl_engine.inputs import (
 )
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.state.models_accrual import EmploymentAccrualState
-from tests.fixtures.current_year import employment_only
-from tests.fixtures.dependents import declared_dependent
+from tests.integration.ccnl_engine.payroll.family.builders_dependents import (
+    declared_dependent,
+)
+from tests.knowledge.ccnl_engine.payroll.taxation.builders_current_year import (
+    employment_only,
+)
 
 _YEAR = 2026
 _METAL = "metalmeccanico-federmeccanica.json"

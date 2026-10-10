@@ -1,7 +1,8 @@
 """Children deduction of art. 12 c. 1 lett. c TUIR on the 2026 bundle.
 
 Expected values computed by hand from the text quoted in
-:mod:`tests.fixtures.normative_oracles.family_2026`.  At a reddito complessivo
+:mod:`tests.knowledge.ccnl_engine.payroll.family.oracles_2026`.  At a reddito
+complessivo
 of 50,000 one child gives (95,000 - 50,000) / 95,000 = 0.473684... -> 0.4736
 (c. 4), 950 x 0.4736 = 449.92 a year.
 """
@@ -19,8 +20,10 @@ from ccnl_engine.payroll.family.rules_child import (
     children_deductions,
 )
 from ccnl_engine.tax.annual.loaders_optional import load_family_deduction_rules
-from tests.fixtures.dependents import declared_dependent
-from tests.fixtures.normative_oracles import family_2026
+from tests.integration.ccnl_engine.payroll.family.builders_dependents import (
+    declared_dependent,
+)
+from tests.knowledge.ccnl_engine.payroll.family import oracles_2026 as family_2026
 
 _D = Decimal
 _RULES = load_family_deduction_rules(2026)

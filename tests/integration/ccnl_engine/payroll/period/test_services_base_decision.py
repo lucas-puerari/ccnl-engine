@@ -32,7 +32,9 @@ from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.provenance.source.models_chain import RuleProvenance
 from ccnl_engine.tax.annual.loaders import load_year_rules
-from tests.fixtures.normative_oracles.contributions_2026 import contribution_base
+from tests.knowledge.ccnl_engine.payroll.contribution.oracles_2026 import (
+    contribution_base,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.assurance.models_decision import CalculationDecision

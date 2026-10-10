@@ -1,22 +1,22 @@
 # Architecture rules
 
-The [Architecture contract](architecture-contract.md) fixes the target
-layout that replaces the layers below, migration by migration; until then
-the rules on this page stay in force.
+The [Architecture contract](architecture-contract.md) fixes the layout; the
+migration to it has landed.
 
-The package is organised by capability (`payroll`, `contract`, `tax`,
-`knowledge`, `provenance`, `diff`, `shared`) plus the `api` facade. Each
-capability holds only the layers it needs:
+The package is laid out by domain (`payroll`, `contract`, `tax`,
+`knowledge`, `provenance`, `comparison`), with the facade in `api.py` and the
+shared `errors`, `primitives` and `validation` modules at the root. Each file
+is named by its role, and the role places it on a layer:
 
-| Layer | Holds |
+| Layer | Roles |
 |---|---|
-| `application/` | use cases and orchestration |
-| `service/` | calculators, resolvers, loaders and repositories |
-| `domain/` | types, pure rules and invariants |
+| application | `services`, `handlers`: use cases and orchestration |
+| service | `ports`, `repositories`, `loaders`, `serializers` |
+| domain | `models`, `types`, `inputs`, `requests`, `results`, `policies`, `rules`, `validators`, `facade` |
 
-The rules below are enforced by `tests/architecture/`, which parses the
-sources without importing them. Imports under `if TYPE_CHECKING:` are not
-counted because they never run.
+The rules below are enforced by `tests/integration/scripts/structure/`, which
+parses the sources without importing them. Imports under `if TYPE_CHECKING:`
+are not counted because they never run.
 
 ## Import direction
 
@@ -25,21 +25,20 @@ api -> application -> service -> domain
        application -> domain
 ```
 
-- `domain` imports only `domain`: its own, `shared.domain`, and another
+- `domain` imports only `domain`: its own, the shared root modules, and another
   capability's domain only through a short allowlist in
-  `tests/architecture/test_dependencies.py`, where each entry states its
+  `tests/integration/scripts/structure/test_dependencies.py`, where each entry states its
   reason. An entry that no import uses any more fails the suite, so the list
   can only shrink.
 - `service` never imports `application`.
 - `api` imports `application`, plus metadata such as the bundle version; it
-  never reaches loaders such as `knowledge.service` directly.
+  never reaches a loader such as `knowledge.loaders` directly.
 - Only the root layer (the package root `ccnl_engine/__init__.py` and the
   public namespaces) may import `api`.
 - The graph of `<capability>.<layer>` nodes has no cycle.
-- Every module belongs to a layer. `ccnl_engine.version` and the
-  `knowledge` data bundle outside `knowledge/service` are metadata: any
-  layer except `domain` may import them. A capability `__init__.py` stays
-  import free.
+- Every module belongs to a layer. `ccnl_engine.version` and the bundle
+  version in `knowledge/facade.py` are metadata: any layer except `domain`
+  may import them. A package `__init__.py` holds a docstring only.
 
 ## Public API
 
@@ -60,7 +59,7 @@ the root layer.
   the one-request example of the root docstring or is an error.
 - A type reachable from a public type that a caller never builds, matches on
   or catches (state internals, pay item variants) stays internal.
-- `tests/architecture/test_public_exports.py` pins each `__all__`, keeps the
+- `tests/integration/ccnl_engine/test_public_exports.py` pins each `__all__`, keeps the
   modules disjoint and keeps README, `docs/examples` and the wheel smoke test
   on these five modules. Acceptance tests import nothing else.
 
@@ -83,7 +82,7 @@ Domain modules perform no I/O: no `importlib.resources`, no `pathlib`, no
 ## Structural limits
 
 `scripts/structure/check.py` measures the tree with `ast` and `tokenize`
-and runs in CI and in `tests/architecture/test_structure_limits.py`. Ruff
+and runs in CI and in `tests/integration/scripts/structure/test_structure_limits.py`. Ruff
 enforces statement count and public methods with the same ceilings.
 
 | Rule | Measured on | Target | Hard limit |
@@ -174,7 +173,7 @@ application layer only.
 
 ## Test layout
 
-`tests/architecture/test_test_layout.py` keeps the suite in five categories:
+`tests/integration/scripts/structure/test_test_layout.py` keeps the suite in five categories:
 `unit` (pure rules), `integration` (real bundle, loaders, wiring),
 `acceptance` (`public_api` and `legal_scenarios`, through `PayrollEngine`),
 `architecture` and `fixtures` (data only). Unit and integration paths mirror

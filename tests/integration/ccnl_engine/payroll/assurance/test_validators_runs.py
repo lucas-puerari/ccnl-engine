@@ -43,7 +43,9 @@ from ccnl_engine.payroll.state import services_closing as _closing_state
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.payroll.state.models_accrual import EmploymentAccrualState
 from ccnl_engine.payroll.state.models_credit_account import TrattamentoAccount
-from tests.fixtures.imported_surtax import opening_with_2025_surtax
+from tests.integration.ccnl_engine.payroll.taxation.builders_imported_surtax import (
+    opening_with_2025_surtax,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.period.results import PeriodResult

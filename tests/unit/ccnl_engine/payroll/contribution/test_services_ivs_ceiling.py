@@ -18,7 +18,7 @@ from ccnl_engine.payroll.contribution.services_ivs_ceiling import (
     IvsCeiling,
     resolve_ivs_ceiling,
 )
-from tests.helpers import make_domestic_year_rules, make_year_rules
+from tests.unit.ccnl_engine.builders import make_domestic_year_rules, make_year_rules
 
 _CEILING = Decimal("122295.00")
 _YTD = Decimal("120000.00")

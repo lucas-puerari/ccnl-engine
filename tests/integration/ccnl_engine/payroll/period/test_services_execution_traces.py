@@ -43,10 +43,14 @@ from ccnl_engine.payroll.year.services_competence import (
     calculate_competence_year,
 )
 from ccnl_engine.tax.annual.loaders_optional import load_variable_pay_rules
-from tests.fixtures.current_year import employment_only
-from tests.fixtures.dependents import declared_dependent
-from tests.fixtures.seniority import new_hire
-from tests.helpers import year_plan
+from tests.integration.ccnl_engine.payroll.family.builders_dependents import (
+    declared_dependent,
+)
+from tests.knowledge.ccnl_engine.payroll.employment.builders_seniority import new_hire
+from tests.knowledge.ccnl_engine.payroll.taxation.builders_current_year import (
+    employment_only,
+)
+from tests.unit.ccnl_engine.builders import year_plan
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.assurance.models_decision import CalculationDecision

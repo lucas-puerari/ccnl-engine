@@ -21,8 +21,10 @@ from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.period.services_shared import _require_resolution
 from ccnl_engine.payroll.state.models import PeriodState
-from tests.fixtures.period_requests import period_request
-from tests.helpers import EMPLOYER_50
+from tests.integration.ccnl_engine.payroll.period.builders_period_requests import (
+    period_request,
+)
+from tests.unit.ccnl_engine.builders import EMPLOYER_50
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"

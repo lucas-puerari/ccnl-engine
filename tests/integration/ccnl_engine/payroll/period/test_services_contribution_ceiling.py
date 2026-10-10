@@ -23,7 +23,9 @@ from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.payroll.state.models_accrual import EmploymentAccrualState
-from tests.fixtures.period_requests import period_request
+from tests.integration.ccnl_engine.payroll.period.builders_period_requests import (
+    period_request,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.contribution.results import ContributionComponent

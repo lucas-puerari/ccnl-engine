@@ -4,7 +4,7 @@ Metalmeccanico C3, June 2026, industrial employer with 50 employees.
 Sources, written by hand and not read from the engine:
 
 - gross of the run: minimo C3 from June 2026, 2,211.43
-  (``tests.fixtures.normative_oracles.payslips.metalmeccanico_c3_2026``);
+  (``tests.knowledge.ccnl_engine.payroll.period.oracles_payslip_metalmeccanico_c3_2026``);
 - employee INPS 9.49%, of which IVS 9.19% and CIGS 0.30%; employer IVS
   23.81%; 1% addizionale on the pay of the month above 4,685.00 (INPS
   circ. 6/2026 par. 5, mensilizzazione), whatever the YTD base: June is a

@@ -35,7 +35,7 @@ from ccnl_engine.tax.income.models_credit import (
     UlterioreDetrazioneRules,
 )
 from ccnl_engine.tax.surtax.models_table import SurtaxBracket
-from tests.helpers import make_year_rules
+from tests.unit.ccnl_engine.builders import make_year_rules
 
 # ---------------------------------------------------------------------------
 # 2026 IRPEF bracket schedule (Art. 11 TUIR as amended by D.Lgs. 216/2023)

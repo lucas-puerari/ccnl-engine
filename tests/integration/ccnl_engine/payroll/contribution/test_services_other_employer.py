@@ -16,7 +16,9 @@ from ccnl_engine.payroll.contribution.models_inps_base import InpsBaseYtd
 from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.payroll.state.models_accrual import EmploymentAccrualState
-from tests.fixtures.period_requests import period_request
+from tests.integration.ccnl_engine.payroll.period.builders_period_requests import (
+    period_request,
+)
 
 _CODE = "other_employment_inps_base_unknown"
 #: Enrolled in 1990: the massimale does not apply, the 1% threshold does.

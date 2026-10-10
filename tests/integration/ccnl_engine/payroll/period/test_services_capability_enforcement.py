@@ -29,10 +29,17 @@ from ccnl_engine.payroll.period.models_run import PayrollRun, RunKind
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
-from tests.fixtures.prior_year import RENEWAL_WAIVED
-from tests.fixtures.residence import COMUNE_BELFIORE, REGIONE
-from tests.fixtures.seniority import new_hire
-from tests.fixtures.sickness_episode import march_sickness_episode
+from tests.integration.ccnl_engine.payroll.sickness.builders_sickness_episode import (
+    march_sickness_episode,
+)
+from tests.integration.ccnl_engine.payroll.taxation.builders_prior_year import (
+    RENEWAL_WAIVED,
+)
+from tests.integration.ccnl_engine.payroll.taxation.builders_residence import (
+    COMUNE_BELFIORE,
+    REGIONE,
+)
+from tests.knowledge.ccnl_engine.payroll.employment.builders_seniority import new_hire
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
@@ -46,7 +53,8 @@ def _req(month: int = 1) -> PeriodCalculationRequest:
 
     Without a residence the surtaxes are unresolved gaps of every run, and
     without a fact that rules it out the renewal regime on the minimo is a
-    partial one (:mod:`tests.fixtures.prior_year`).
+    partial one
+    (:mod:`tests.integration.ccnl_engine.payroll.taxation.builders_prior_year`).
 
     Returns:
         The request of the regular run of ``month`` 2026.

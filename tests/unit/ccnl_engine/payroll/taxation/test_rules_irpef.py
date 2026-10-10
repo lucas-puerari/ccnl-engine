@@ -15,7 +15,7 @@ from ccnl_engine.payroll.taxation.rules_irpef_deduction import work_income_deduc
 from ccnl_engine.tax.annual.models import YearRules
 from ccnl_engine.tax.income.models import WorkDeductionRules
 from ccnl_engine.tax.surtax.models_table import SurtaxBracket
-from tests.helpers import make_year_rules
+from tests.unit.ccnl_engine.builders import make_year_rules
 
 # ---------------------------------------------------------------------------
 # Fixture helpers

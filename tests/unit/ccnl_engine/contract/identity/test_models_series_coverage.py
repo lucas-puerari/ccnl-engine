@@ -10,7 +10,7 @@ from pydantic import ValidationError
 
 from ccnl_engine.contract.identity.facade import CCNL
 from ccnl_engine.contract.identity.models_series_coverage import required_series
-from tests.helpers import TEST_PROV, make_ccnl_dict
+from tests.unit.ccnl_engine.builders import TEST_PROV, make_ccnl_dict
 
 _LATE = "2021-01-01"
 
