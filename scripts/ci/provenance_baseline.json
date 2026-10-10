@@ -1027,14 +1027,11 @@
     "inps/data/2026-agricoltura.json": {
       "apprentice": "assumed",
       "inps": "assumed",
-      "inps.employee_additional": "assumed",
       "inps.minimum_base": "assumed"
     },
     "inps/data/2026-artigianato.json": {
       "apprentice": "assumed",
-      "inps": "assumed",
-      "inps.employee_additional": "assumed",
-      "inps.minimum_base": "assumed"
+      "inps": "assumed"
     },
     "inps/data/2026-credito.json": {
       "apprentice": "assumed",
