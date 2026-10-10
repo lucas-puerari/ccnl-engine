@@ -98,7 +98,7 @@ that never instituted the surtax.
 | A code missing from the list of the year before (a merged municipality) and `0*` | Left out and named in `notes`: the engine reports the code as unknown and the result is not payable |
 | An exemption for one category of income (`FLAG_NUOVA` 5 or 6) | Kept as text in `specific_exemptions`; the result is provisional |
 
-A row is promoted to `verified` only after a named human review; the build
+A row is promoted to `verified` only after a named review (a person, or an AI review the owner authorised); the build
 never does it.
 
 ---

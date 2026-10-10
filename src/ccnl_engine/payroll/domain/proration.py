@@ -12,7 +12,9 @@ hire, a termination and an absence count the same payable days:
   span that reaches the last day of the month runs to day 30, and day 31
   counts as day 30;
 - ``by_hourly``: ``daily_hours / hourly_divisor`` per employed Monday to
-  Friday.
+  Friday;
+- ``by_25``: the CCNL states the quota but not which days of a month are
+  payable, so a partly employed month has no proration and is not paid.
 
 The share never exceeds one monthly pay: a month with more payable days
 than the divisor (27 Mondays to Saturdays) pays the full month.
@@ -118,9 +120,12 @@ class MonthProration:
             daily_hours: Hours of one day, read by ``by_hourly``.
 
         Returns:
-            The proration, ``None`` for ``by_hourly`` without both hour
-            figures: the rule is then incomplete.
+            The proration, ``None`` for ``by_25``, whose payable days are not
+            defined, and for ``by_hourly`` without both hour figures: the
+            rule is then incomplete.
         """
+        if method is DailyDivisorMethod.BY_25:
+            return None
         first, last = span
         divisor = _DIVISORS.get(method, hourly_divisor)
         hourly = method is DailyDivisorMethod.BY_HOURLY

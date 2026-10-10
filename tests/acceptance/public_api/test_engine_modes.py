@@ -27,6 +27,7 @@ from ccnl_engine import (
 from ccnl_engine.catalog import RulesetKind, RulesetReadiness
 from ccnl_engine.inputs import EngineMode, Permanent
 from ccnl_engine.results import BlockerCode
+from tests.fixtures.explicit_facts import competence_year
 
 _SIMULATION = PayrollEngine.bundled()
 _OPERATIONAL = PayrollEngine.bundled(mode="operational")
@@ -127,3 +128,20 @@ def test_the_levels_of_a_contract_are_listed_for_employment() -> None:
     (level, *_) = engine.list_levels("metalmeccanico-federmeccanica")
 
     assert level.code in {lv.code for lv in engine.list_levels("C011")}
+
+
+def test_a_reviewed_ccnl_is_payable_only_in_simulation() -> None:
+    """Concia UNIC is reviewed: its explicit D2 year pays in simulation only.
+
+    Operational mode adds the one readiness blocker of the CCNL ruleset.
+    """
+    simulated = _SIMULATION.calculate_competence_year(competence_year())
+    operational = _OPERATIONAL.calculate_competence_year(competence_year())
+
+    readiness = {r.readiness for r in simulated.rulesets if r.kind is RulesetKind.CCNL}
+    assert readiness == {RulesetReadiness.REVIEWED}
+    assert simulated.blockers == ()
+    assert simulated.is_payable
+    assert [(b.code, b.detail) for b in operational.blockers] == [
+        (BlockerCode.RULESET_NOT_PRODUCTION, "ccnl/concia-unic")
+    ]

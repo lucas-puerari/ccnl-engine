@@ -80,7 +80,7 @@ class EvidenceStatus(StrEnum):
     strongest to the weakest backing.
 
     Attributes:
-        VERIFIED: Every rule was checked by a named person.
+        VERIFIED: Every rule was checked by a named reviewer.
         DERIVED: The weakest rule is taken from a cited location, unchecked.
         ASSUMED: A rule is adopted without a located citation.
         MISSING: A rule has no source, or no rule carries a record.

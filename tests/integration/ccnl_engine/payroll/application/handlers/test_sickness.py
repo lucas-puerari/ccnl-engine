@@ -280,6 +280,14 @@ def test_hourly_quota_without_daily_hours_is_missing() -> None:
     assert _decision(result).reason_code == "sickness_daily_quota_missing"
 
 
+def test_a_quota_of_one_25th_sets_no_daily_quota() -> None:
+    """Concia states 1/25 but not which days are payable: no sick day is paid."""
+    request = _req(3, _MARCH, slug="concia-unic.json", level="D2")
+    result = calculate_period(request)
+    assert _decision(result).reason_code == "sickness_daily_quota_missing"
+    assert _sick(result) == {}
+
+
 def _after_january_and_february() -> PeriodState:
     january = sickness_episode("j", date(2026, 1, 12), date(2026, 1, 14))
     february = sickness_episode("f", date(2026, 2, 2), date(2026, 2, 4))

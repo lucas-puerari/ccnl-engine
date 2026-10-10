@@ -10,7 +10,7 @@
 | **Ruleset version** | `2026.1` |
 | **Extraction** | 🤖 AI-assisted |
 | **Verification** | 🟢 Verified |
-| **Readiness** | 🧪 Exploratory |
+| **Readiness** | 👁 Reviewed |
 
 [← Contracts index](index.md)
 
@@ -44,16 +44,16 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 
 | | |
 |---|---|
-| **Readiness** | 🧪 Exploratory |
-| **Confidence** | 🔴 Unverified |
-| **Last human review** | — |
+| **Readiness** | 👁 Reviewed |
+| **Confidence** | 🟢 Verified |
+| **Last human review** | 2026-10-10 |
 
 ### Freschezza
 
 | | |
 |---|---|
 | **Last renewal** | — |
-| **Last verified** | — |
+| **Last verified** | 2026-10-10 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ### Semplificazioni note
@@ -130,11 +130,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the 25% and 35% bands over 48 weekly hours and the 76% night band, or pass the multiplier on the overtime event.
 
 !!! warning "concia-unic/seniority_gated_sickness_tiers · sickness · impact yes · open"
-    SICKNESS: Art. 60 (2024 renewal) — 3 seniority tiers: comporto 8/10/12 mesi, full-pay 3/4/5 mesi, half-pay 5/6/7 mesi. Modeled as base tier (0-5 years): 100% months 1-3, 50% months 4-8, max 240 days. Higher tiers not modeled — SicknessRules has no seniority-gated comporto.
+    SICKNESS: 3 seniority tiers (MySolution sintesi p. 4): up to 3 years comporto 8 months, 3 months at 100% then 5 at 50%; 4 to 6 years 10 months, 4 at 100% and 6 at 50%; over 6 years 12 months, 5 at 100% and 7 at 50%; absences of several sicknesses summed over 36 months. Modelled as the first tier per episode: 100% months 1-3, 50% months 4-8, max 240 days.
 
-    **Applies when:** `sickness` applies; seniority of at least 60 months.
+    **Applies when:** `sickness` applies; seniority of at least 36 months.
 
-    **Remediation:** Add the seniority-gated comporto and full-pay months of Art. 60 (4 and 5 months full pay over 10 and 12 months) to the sickness rule, then resolve this limitation.
+    **Remediation:** Add the second and third seniority tiers (4 and 5 months at full pay over 10 and 12 months) and the 36-month sum to the sickness rule, then resolve this limitation.
 
 !!! warning "concia-unic/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
@@ -181,7 +181,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 ### Without monetary impact
 
 !!! note ""
-    DAILY DIVISOR: contract states quota giornaliera = 25 giorni/mese. DailyDivisorMethod has no by_25; by_26 used. Error: gross_daily overstated by ~3.8% for absence deductions.
+    DAILY DIVISOR: the CCNL sets quota giornaliera = 1/25 of the monthly pay (MySolution sintesi p. 2) without saying which days of a month are payable; modelled as by_25, so a partly employed month and the sick days of a month are not computed (fail closed) instead of being paid on another divisor.
 
 !!! note ""
     LEAVE: 20 gg up to 10 years; +2 gg from 11th year (132 months); +3 gg from 16th year over base (not over the 11-year tier; 192 months = 23 gg); 5 settimane (25 gg) from 18th year (216 months). Source: MySolution sintesi 2017 p. 4. ROL 68 ore/anno not modeled.

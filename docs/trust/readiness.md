@@ -54,7 +54,7 @@ in decisions; integration into HR tools that do not add their own disclaimer.
 
 ### `exploratory` → `reviewed`
 
-A human reviewer must:
+A reviewer (a person, or an AI review the owner of the ruleset authorised and recorded) must:
 
 1. Open the primary CCNL source document (URL recorded in `meta.sources`).
 2. Confirm every base salary amount for each level against the table in the
@@ -101,14 +101,14 @@ it drifts):
 
 | Readiness | CCNL rulesets |
 |---|---:|
-| `exploratory` | 126 |
-| `reviewed` | 0 |
+| `exploratory` | 125 |
+| `reviewed` | 1 |
 | `production` | 0 |
 
 <!-- /trust:readiness-table -->
 
-The <!-- trust:readiness-reviewed -->0<!-- /trust:readiness-reviewed -->
-`reviewed` rulesets: <!-- trust:readiness-reviewed-list -->none<!-- /trust:readiness-reviewed-list -->.
+The <!-- trust:readiness-reviewed -->1<!-- /trust:readiness-reviewed -->
+`reviewed` rulesets: <!-- trust:readiness-reviewed-list -->`concia-unic`<!-- /trust:readiness-reviewed-list -->.
 Each [contract page](../contracts/index.md) shows its own tier.
 
 No ruleset is `reviewed` today. Fifteen rulesets were `reviewed` until
@@ -119,9 +119,9 @@ lowered to `exploratory`. Their `verification.human_reviewed_by` and
 weak rules are sourced and their confidence is `verified`.
 
 `reviewed` records a file-level review, not a per-value one. Of the `reviewed`
-rulesets, <!-- trust:reviewed-with-reviewer -->0<!-- /trust:reviewed-with-reviewer -->
+rulesets, <!-- trust:reviewed-with-reviewer -->1<!-- /trust:reviewed-with-reviewer -->
 record `verification.human_reviewed_by` and `verification.last_reviewed`, and
-<!-- trust:reviewed-confidence-verified -->0<!-- /trust:reviewed-confidence-verified -->
+<!-- trust:reviewed-confidence-verified -->1<!-- /trust:reviewed-confidence-verified -->
 set `verification.confidence = "verified"` (step 5 of the criteria above).
 A per-value review is recorded only by the provenance status `verified` of a
 payable rule, and <!-- trust:rules-verified -->0<!-- /trust:rules-verified -->

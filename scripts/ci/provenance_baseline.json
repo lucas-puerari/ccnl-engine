@@ -234,9 +234,6 @@
       "accrual_rule": "missing",
       "additional_months[2024-12-01]": "assumed"
     },
-    "ccnl/data/concia-unic.json": {
-      "accrual_rule": "missing"
-    },
     "ccnl/data/consorzi-agrari-assocap.json": {
       "accrual_rule": "missing",
       "additional_months[2025-01-01]": "assumed"

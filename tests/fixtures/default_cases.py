@@ -296,10 +296,13 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
         _employment_pair(CONCIA_D2, _UNCATEGORISED, "employer_rate_category_assumed"),
     ),
     "Employment.employment_period": (
+        # Hired on the first of a month: Concia's quota of 1/25 leaves the
+        # payable days of a partly employed month undefined, so a hire in
+        # mid-month is not computed at all.
         DefaultCase(
             competence_year(
                 employment=replace(
-                    CONCIA_D2, employment_period=EmploymentPeriod(date(2026, 6, 15))
+                    CONCIA_D2, employment_period=EmploymentPeriod(date(2026, 6, 1))
                 )
             ),
             replace(

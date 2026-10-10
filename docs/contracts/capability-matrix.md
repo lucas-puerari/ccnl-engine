@@ -58,7 +58,7 @@ formulas or caller-declared amounts.
 
 | Capability | Description | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|
-| `base_salary` | Paga base contrattuale | gross | native | always | pipeline | — | — | simplified | 0 / 5054 / 713 / 86 |
+| `base_salary` | Paga base contrattuale | gross | native | always | pipeline | — | — | simplified | 0 / 5055 / 713 / 85 |
 | `seniority` | Scatti di anzianità | gross | native | decided | decision | `employment.seniority` | — | simplified | 0 / 112 / 14 / 0 |
 | `worker_category` | Categoria lavoratore (dichiarata o fissata dal livello) | gross | native | decided | decision | `employment.category` | — | implemented | none bundled |
 | `inps_employee` | Contributi INPS a carico dipendente | net | native | always | pipeline | — | — | simplified | 0 / 20 / 62 / 0 |
@@ -243,7 +243,7 @@ never grow.
 | 114 | [CCNL per i lavoratori addetti all'industria orafa, argentiera e della gioielleria (Federorafi)](orafi-argentieri-industria-federorafi.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 40 / 2 / 0 |
 | 115 | [CCNL per i lavoratori addetti alle industrie delle pelli e dei succedanei della pelle (Assopellettieri)](pelli-cuoio-industria-assopellettieri.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 35 / 1 / 1 |
 | 116 | [CCNL per i lavoratori dell'industria alimentare (Federalimentare)](alimentari-federalimentare.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 73 / 2 / 0 |
-| 117 | [CCNL per i lavoratori dell'industria conciaria (UNIC)](concia-unic.md) | 🔲 | 🔲 | 🔲 | overtime, seniority, sickness | 0 / 57 / 0 / 1 |
+| 117 | [CCNL per i lavoratori dell'industria conciaria (UNIC)](concia-unic.md) | 🔲 | 🔲 | 🔲 | overtime, seniority, sickness | 0 / 58 / 0 / 0 |
 | 118 | [CCNL per i lavoratori dell'industria del legno, del sughero, del mobile, dell'arredamento e delle industrie affini (Federlegno-Arredo)](legno-arredamento-federlegno.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 88 / 2 / 0 |
 | 119 | [CCNL per i lavoratori dell'industria tessile, abbigliamento, moda (SMI)](tessile-smi.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 47 / 1 / 1 |
 | 120 | [CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane](bcc-credito-cooperativo.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 40 / 1 / 1 |

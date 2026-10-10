@@ -122,3 +122,10 @@ def test_hourly_quota_without_its_figures_is_no_rule(
     )
 
     assert proration is None
+
+
+def test_a_quota_of_one_25th_has_no_proration() -> None:
+    """The CCNL states 1/25 but not which days are payable: no rule applies."""
+    span = (date(2026, 6, 15), date(2026, 6, 30))
+
+    assert MonthProration.of(DailyDivisorMethod.BY_25, span) is None
