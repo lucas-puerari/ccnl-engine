@@ -203,7 +203,6 @@ include = [
     "/src/",
     "/pyproject.toml",
     "/README.md",
-    "/CHANGELOG.md",
     "/LICENSE",
     "/Makefile",
     "/scripts/packaging/",

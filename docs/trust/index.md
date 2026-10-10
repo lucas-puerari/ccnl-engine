@@ -216,7 +216,7 @@ edit to the JSON file.
 See [Data operations](data-operations.md) for:
 
 - update targets after CCNL renewals and statutory rate changes
-- changelog format and economic diff per release
+- release notes format and economic diff per release
 - error reporting process
 - deprecation and version compatibility guarantees
 

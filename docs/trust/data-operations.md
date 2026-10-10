@@ -133,10 +133,10 @@ rulesets are built (sources on Normattiva, read in October 2026):
 | L. 207/2024 art. 1 c. 6 (ulteriore detrazione) | Carried into art. 13 of the testo unico of D.Lgs. 117/2026 (its heading cites "articolo 1, comma 6, legge 30 dicembre 2024, n. 207") | Ulteriore detrazione and its recovery |
 | D.Lgs. 47/2000 art. 11 cc. 3-4 (substitute tax on the TFR revaluation) | Repealed from 1 January 2027 by D.Lgs. 33/2025, as amended by D.L. 200/2025 | TFR revaluation tax |
 
-## Changelog and economic diff
+## Release notes and economic diff
 
-Every dataset release ships a `CHANGELOG.md` at the repository root.
-Entries follow the format:
+Every dataset release is published as a GitHub release whose notes list
+the changes in the format:
 
 ```
 ## [<version>] — <date>
@@ -152,8 +152,8 @@ as percentage points for rate changes (INPS, IRPEF). This makes it possible
 to assess the economic impact of a knowledge-base update without running
 simulations.
 
-Programmatic consumers can parse the changelog or watch GitHub releases,
-which carry the same information as release notes.
+Programmatic consumers can watch GitHub releases or compare two dates of a
+CCNL with the rules diff of the engine.
 
 ---
 
@@ -187,7 +187,7 @@ figure can be reproduced by pinning that version.
 - When a CCNL is removed (contract terminated or superseded), it is marked
   `effective_until` in its last dataset version and absent from the next.
 - No breaking changes to the JSON schema are introduced within a minor
-  knowledge-base release. Schema changes are announced in the changelog
+  knowledge-base release. Schema changes are announced in the release notes
   and in a GitHub discussion at least 30 days before they take effect.
 
 **Engine API compatibility:**
