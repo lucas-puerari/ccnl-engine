@@ -54,6 +54,7 @@ from ccnl_engine.payroll.application.period._tfr_revaluation import (
 from ccnl_engine.payroll.application.year._extra_month_settlement import (
     settle_extra_months,
 )
+from ccnl_engine.payroll.domain.rounding import contribution_base
 
 if TYPE_CHECKING:
     from decimal import Decimal
@@ -89,15 +90,18 @@ class RunAmounts:
     recovery_plan: RecoveryPlan | None
     ivs_ceiling: IvsCeiling | None
     minimum_base: MinimumBase | None
+    whole_euro: bool = True
 
     def inps_base(self, actual: Decimal) -> Decimal:
         """Return the INPS base of the run: ``actual`` raised to the minimum.
 
         Returns:
-            ``actual``, or the minimum base of the run when it is higher.
+            ``actual``, or the minimum base of the run when it is higher,
+            rounded to the whole euro (:func:`contribution_base`).
         """
         minimum = self.minimum_base
-        return actual if minimum is None else minimum.raise_to_minimum(actual)
+        raised = actual if minimum is None else minimum.raise_to_minimum(actual)
+        return contribution_base(raised, whole_euro=self.whole_euro)
 
 
 def run_events(ctx: RunContext) -> RunEvents:
@@ -158,8 +162,14 @@ def run_amounts(ctx: RunContext, totals: _EventTotals) -> RunAmounts:
     )
     minimum = run_minimum_base(ctx, totals.inps_base)
     actual = ctx.monthly_gross + totals.inps_base
+    inps = ctx.contract.year_rules.inps
+    whole_euro = inps is None or inps.base_whole_euro
     ivs = run_ivs_ceiling(
-        ctx, actual if minimum is None else minimum.raise_to_minimum(actual)
+        ctx,
+        contribution_base(
+            actual if minimum is None else minimum.raise_to_minimum(actual),
+            whole_euro=whole_euro,
+        ),
     )
     computed = _compute_amounts(
         amounts_input(
@@ -171,7 +181,9 @@ def run_amounts(ctx: RunContext, totals: _EventTotals) -> RunAmounts:
             inps_minimum=None if minimum is None else minimum.minimum,
         )
     )
-    return RunAmounts(*computed, ivs_ceiling=ivs, minimum_base=minimum)
+    return RunAmounts(
+        *computed, ivs_ceiling=ivs, minimum_base=minimum, whole_euro=whole_euro
+    )
 
 
 def run_decisions(

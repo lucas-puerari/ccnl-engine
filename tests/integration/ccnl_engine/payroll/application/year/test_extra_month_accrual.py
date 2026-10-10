@@ -67,8 +67,9 @@ class TestTerminationSettlement:
         }
         assert policies == {"it/earning/extra_month"}
         assert september.period_gross == Decimal("2675.65")
+        # 1,784 + 1,784 + 2,676: each month to the whole euro (INPS circ. 208/2001).
         assert september.closing_state.accrual.inps_base(_YEAR).own == Decimal(
-            "6243.15"
+            "6244.00"
         )
 
     def test_extra_run_in_the_termination_month_is_not_settled_again(self) -> None:

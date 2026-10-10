@@ -301,7 +301,8 @@
         "transformation": "1% of the worker on 80% of the stipendio: the INPS page 'I contributi dei dipendenti pubblici' lists 'ENAM 1 -- 1' on the contribution base of the Gestione (80% of the pay). The stipendio excludes the IIS conglobata the retribuzione tabellare holds: the CCNL declares the open limitation enam_base.",
         "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Read on 2026-10-09 from the page the url serves (sha256 1ee846e8202f19f073eeca4bb3a2195f7e1863baeb27e0061e26431391301956). The 80% share is read from the INPS table and the article's reference to DPR 19/1956 art. 10, not quoted here. No human review recorded."
       }
-    }
+    },
+    "base_whole_euro": false
   },
   "apprentice": {
     "employee_rate": "0.0880",
@@ -327,7 +328,7 @@
     "published_at": "2026-10-09",
     "source": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html",
     "verification_status": "unverified",
-    "source_hash": "46c4351320f6b9157e150b7417057fc910e64f0875b6db3b5d1a2f90646866a0",
+    "source_hash": "217d07c0b94b74e66ff36fc09160fc2657d9547eb5ebdc1a6be14ed4c888fccc",
     "source_type": "estimated",
     "provisional": true
   }

@@ -155,7 +155,7 @@ class TestEveryPayment:
         """The TFR posted is the quota less the 0.50% L. 297/1982 deducts."""
         result = _runs()[index]
         (decision,) = (d for d in result.decisions if d.capability == "tfr")
-        assert decision.inputs["additional_ivs_base"] == ORACLE.monthly_gross
+        assert decision.inputs["additional_ivs_base"] == ORACLE.inps_base
         assert decision.inputs["additional_ivs_deduction"] == ORACLE.tfr_deduction
         assert _posted(result, "tfr_accrual") == ORACLE.tfr_net_of_extra_ivs
 

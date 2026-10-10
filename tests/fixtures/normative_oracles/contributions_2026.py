@@ -1,4 +1,4 @@
-"""Independent oracle of five 2026 INPS rules on the contribution base.
+"""Independent oracle of six 2026 INPS rules on the contribution base.
 
 Written from the sources, deliberately without importing anything from
 ``ccnl_engine``.
@@ -43,6 +43,13 @@ Sources:
   sha256 4523ce7c22a7f5d8c51cfe4de8968642d1279ab7fc7209fc9a0e31e3ddb49449):
   "contratto originario: 1,4%; 1° rinnovo: 1.9% (1,4% + 0,5%); 2° rinnovo:
   2.4% (1,9% + 0,5%)".
+- INPS circolare n. 208 of 27 November 2001
+  (https://servizi2.inps.it/servizi/Bussola/visualizzadoc.aspx?sVirtuaLURL=%2Fcircolari%2Fcircolare+numero+208+del+27-11-2001.htm),
+  read on 10 October 2026: the rounding to the whole euro of the
+  deliberazione n. 1123 of 17 November 1998 "è riferito: alle retribuzioni
+  e compensi imponibili individuali ai fini contributivi [...] fino a 49
+  centesimi si arrotonda all'unità di Euro inferiore, da 50 centesimi in
+  poi si arrotonda all'unità di Euro superiore".
 """
 
 from __future__ import annotations
@@ -56,6 +63,7 @@ __all__ = [
     "HOURLY_FLOOR_40_HOURS",
     "HOURLY_FLOOR_PUBLIC_36_HOURS",
     "additional_ivs",
+    "contribution_base",
     "naspi_surcharge_rate",
 ]
 
@@ -77,6 +85,15 @@ _NASPI_RENEWAL_INCREASE = Decimal("0.005")
 _CENT = Decimal("0.01")
 _ADDITIONAL_RATE = Decimal("0.01")
 _ZERO = Decimal(0)
+
+
+def contribution_base(amount: Decimal) -> Decimal:
+    """Return the INPS base of a pay amount: the whole euro, half up.
+
+    Returns:
+        ``amount`` rounded to the unit, written with two decimals.
+    """
+    return amount.quantize(Decimal(1), rounding=ROUND_HALF_UP).quantize(_CENT)
 
 
 def additional_ivs(monthly_base: Decimal) -> Decimal:

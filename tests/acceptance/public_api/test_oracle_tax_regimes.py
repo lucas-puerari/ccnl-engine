@@ -63,9 +63,9 @@ def test_addizionali_emilia_romagna_modena() -> None:
     installments from January (D.Lgs. 446/1997 art. 50 c. 4, D.Lgs.
     360/1998 art. 1 c. 5): 30.00 + 10.00 = 40.00 in January.  The 2026
     acconto (45.00) starts in March, and the 2026 surtax is determined at
-    the conguaglio, so 1,777.08 - 40.00 = 1,737.08.  The net without surtax
+    the conguaglio, so 1,777.09 - 40.00 = 1,737.09.  The net without surtax
     is derived in ``test_oracle_period.test_irpef_ordinary_tax_metalmeccanico_c3``:
-    2,158.26 - 204.81 INPS - 176.37 IRPEF.  The renewal regime on the minimo
+    2,158.26 - 204.79 INPS - 176.38 IRPEF.  The renewal regime on the minimo
     is waived so that the status shows the surtax alone.
     """
     result_no_surtax = engine.calculate_period(
@@ -88,8 +88,8 @@ def test_addizionali_emilia_romagna_modena() -> None:
             current_year=employment_only(),
         )
     )
-    assert result_no_surtax.period_net == Decimal("1777.08")
-    assert result_surtax.period_net == Decimal("1737.08")
+    assert result_no_surtax.period_net == Decimal("1777.09")
+    assert result_surtax.period_net == Decimal("1737.09")
     assert result_surtax.assurance.calculation is CalculationStatus.FINAL
 
 
@@ -102,15 +102,16 @@ def test_pdr_productivity_bonus_separate_from_ordinary_irpef() -> None:
     """PdR bonus uses substitute-tax regime; net differs from ordinary-IRPEF path.
 
     The PdR of 1,000 pays INPS but stays out of the IRPEF base: the month
-    taxable is 2,158.26 - 299.71 (9.19% + 0.30% of 3,158.26, each rounded)
-    = 1,858.55, taxed 23% = 427.47 under art. 23 c. 2 lett. a) DPR 600/1973.
-    No opening state, so the year projects 12 more slots at 2,158.26 less
-    9.49% INPS: 1,858.55 + 25,899.12 - 2,457.83 = 25,299.84.  Art. 13:
+    taxable is 2,158.26 - 299.69 (9.19% + 0.30% of the 3,158 of base, the
+    3,158.26 to the whole euro, each rounded) = 1,858.57, taxed 23% = 427.47
+    under art. 23 c. 2 lett. a) DPR 600/1973.  No opening state, so the year
+    projects 12 more slots at 2,158.26 less 9.49% INPS: 1,858.57 +
+    25,899.12 - 2,457.83 = 25,299.86.  Art. 13:
     1,910 + 1,190 * 0.2077 + 65 = 2,222.16, times 31/365 = 188.73;
     ulteriore detrazione 1,000 * 31/365 = 84.93; IRPEF 427.47 - 188.73 -
     84.93 = 153.81.  Substitute tax 1% of 1,000 = 10.00 (L. 199/2025 art.
     1 c. 9, the 2026 rate of the bundle's PdR rule).  Net 3,158.26 -
-    299.71 - 153.81 - 10.00 = 2,694.74.
+    299.69 - 153.81 - 10.00 = 2,694.76.
     """
     result_pdr = engine.calculate_period(
         PeriodInput(
@@ -148,7 +149,7 @@ def test_pdr_productivity_bonus_separate_from_ordinary_irpef() -> None:
         )
     )
     assert result_pdr.period_gross == Decimal("3158.26")
-    assert result_pdr.period_net == Decimal("2694.74")
+    assert result_pdr.period_net == Decimal("2694.76")
     assert result_pdr.period_net > result_ordinary.period_net
 
 
@@ -161,12 +162,13 @@ def test_family_deductions_increase_net() -> None:
     """Dependent spouse + children (Art. 12 TUIR) reduce IRPEF and raise net pay.
 
     Single, January (art. 23 c. 2 lett. a) DPR 600/1973): gross 1,783.75;
-    with 50 employees INPS 9.19% = 163.93 plus FIS and CIGS 0.57% = 10.17,
-    taxable 1,609.65 taxed 23% = 370.22.  The year projects 13 more slots
-    net of 9.76% INPS: 1,609.65 + 23,188.75 x 0.9024 = 22,535.18.  Art. 13:
-    1,910 + 1,190 * 0.4203 = 2,410.16, times 31/365 = 204.70; ulteriore
-    detrazione 84.93; IRPEF 370.22 - 204.70 - 84.93 = 80.59, net 1,783.75 -
-    174.10 - 80.59 = 1,529.06.
+    with 50 employees, on the 1,784 of base (INPS circ. 208/2001), INPS
+    9.19% = 163.95 plus FIS and CIGS 0.57% = 10.17, taxable 1,609.63 taxed
+    23% = 370.21.  The year projects 13 more slots net of 9.76% INPS:
+    1,609.63 + 23,188.75 x 0.9024 = 22,535.16.  Art. 13: 1,910 + 1,190 *
+    0.4203 = 2,410.16, times 31/365 = 204.70; ulteriore detrazione 84.93;
+    IRPEF 370.21 - 204.70 - 84.93 = 80.58, net 1,783.75 - 174.12 - 80.58 =
+    1,529.05.
     """
     result_single = engine.calculate_period(
         PeriodInput(
@@ -210,8 +212,8 @@ def test_family_deductions_increase_net() -> None:
     )
     # The 2026 regional surtax is determined at the conguaglio and withheld
     # in 2027 (D.Lgs. 446/1997 art. 50 c. 4); with no 2025 surtax to carry,
-    # January withholds none: the net is the one without surtax, 1,529.06.
-    assert result_single.period_net == Decimal("1529.06")
+    # January withholds none: the net is the one without surtax, 1,529.05.
+    assert result_single.period_net == Decimal("1529.05")
     assert result_family.period_net > result_single.period_net
 
 

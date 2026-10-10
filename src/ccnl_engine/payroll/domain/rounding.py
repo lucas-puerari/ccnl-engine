@@ -64,3 +64,31 @@ def money(x: Decimal) -> Decimal:
         *x* rounded to two decimal places.
     """
     return MONETARY.apply(x)
+
+
+#: INPS contribution base: whole euro, "fino a 49 centesimi si arrotonda
+#: all'unità di Euro inferiore, da 50 centesimi in poi si arrotonda all'unità
+#: di Euro superiore" (INPS circ. 208/2001, deliberazione del Consiglio di
+#: Amministrazione n. 1123 of 17 November 1998).
+CONTRIBUTION_BASE = RoundingPolicy(
+    precision=Decimal(1),
+    mode=ROUND_HALF_UP,
+    stage="contribution_base",
+)
+
+
+def contribution_base(x: Decimal, *, whole_euro: bool = True) -> Decimal:
+    """Round the INPS contribution base *x* of a run to the whole euro.
+
+    Args:
+        x: Base of the run.
+        whole_euro: Whether the base is rounded to the unit; ``False`` keeps
+            it to the cent (the Gestione Dipendenti Pubblici).
+
+    Returns:
+        *x* rounded to the unit, half up, with two decimal places; *x*
+        unchanged when ``whole_euro`` is false.
+    """
+    if not whole_euro:
+        return x
+    return CONTRIBUTION_BASE.apply(x).quantize(MONETARY.precision)

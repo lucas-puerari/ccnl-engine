@@ -20,7 +20,7 @@ from ccnl_engine.payroll.domain.decisions import CalculationIssue, CalculationSt
 from ccnl_engine.payroll.domain.employment import Apprentice
 from ccnl_engine.payroll.domain.employment_facts import PublicEndOfService
 from ccnl_engine.payroll.domain.ledger import AccountKind
-from ccnl_engine.payroll.domain.rounding import money
+from ccnl_engine.payroll.domain.rounding import contribution_base, money
 from ccnl_engine.payroll.service._contributions_rates import resolve_rates
 from ccnl_engine.payroll.service.contributions import resolve_contributions
 
@@ -50,10 +50,14 @@ def _raised(inp: _AmountsInput, base: Decimal) -> Decimal:
     """Return ``base`` raised to the minimum INPS base of the run.
 
     Returns:
-        ``base``, or the minimum when one is determined and higher.
+        ``base``, or the minimum when one is determined and higher, rounded
+        to the whole euro (:func:`contribution_base`).
     """
     minimum = inp.inps_minimum
-    return base if minimum is None else max(base, minimum)
+    whole_euro = inp.rules.inps is None or inp.rules.inps.base_whole_euro
+    return contribution_base(
+        base if minimum is None else max(base, minimum), whole_euro=whole_euro
+    )
 
 
 def _ordinary_breakdown(inp: _AmountsInput, base: Decimal) -> ContributionBreakdown:

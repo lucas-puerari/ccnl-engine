@@ -21,7 +21,8 @@ the massimale, settled in December on the pay of the year above 56,224.00
   below 4,685.00: none.
 - Employee INPS: 119.01 + 6.63 = 125.64.
 
-Without the import the same run pays 2,211.43 x 9.49% = 209.86.
+Without the import the same run pays, on the base of 2,211 (INPS circ.
+208/2001), 203.19 of IVS and 6.63 of CIGS: 209.82.
 
 The same run in December settles the 1% of the year: 122,295.00 -
 56,224.00 = 66,071.00, x 1% = 660.71, less the 600.00 the earlier employer
@@ -56,6 +57,7 @@ from ccnl_engine.inputs import (
     Permanent,
 )
 from tests.fixtures.next_year_repository import NextYearRepository
+from tests.fixtures.normative_oracles.contributions_2026 import contribution_base
 from tests.fixtures.normative_oracles.payslips.metalmeccanico_c3_2026 import (
     C3_MINIMUM_FROM_JUNE_2026,
 )
@@ -117,7 +119,7 @@ class TestInpsBaseOfOtherEmployers:
         }
         assert result.contribution_breakdown.employee == Decimal("125.64")
         base = result.closing_state.accrual.inps_base(2026)
-        assert base.own == C3_MINIMUM_FROM_JUNE_2026
+        assert base.own == contribution_base(C3_MINIMUM_FROM_JUNE_2026)
         assert base.other_employers == Decimal("121000.00")
 
     def test_december_deducts_the_1pct_the_earlier_employer_withheld(self) -> None:
@@ -193,10 +195,10 @@ class TestInpsBaseOfOtherEmployers:
         assert other.contribution_breakdown == own.contribution_breakdown
 
     def test_without_the_import_the_run_is_uncapped(self) -> None:
-        """No other employment: 2,211.43 x 9.49% = 209.86."""
+        """No other employment: 203.19 + 6.63 = 209.82 on the 2,211 of base."""
         result = _september(PeriodState.zero())
 
-        assert result.contribution_breakdown.employee == Decimal("209.86")
+        assert result.contribution_breakdown.employee == Decimal("209.82")
 
     def test_the_import_is_the_only_entry_point_for_external_totals(self) -> None:
         """The command checks its argument like every facade method."""
@@ -241,7 +243,9 @@ class TestCompetence:
 
         accrual = result.closing_state.accrual
         assert result.closing_state.tax_year == 2027
-        assert accrual.inps_base(2026).own == Decimal("30000.00") + result.period_gross
+        assert accrual.inps_base(2026).own == Decimal("30000.00") + contribution_base(
+            result.period_gross
+        )
         assert accrual.inps_base(2027).total == 0
         assert accrual.regular_months(2026) == 12
 

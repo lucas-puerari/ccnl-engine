@@ -43,6 +43,7 @@ from ccnl_engine.inputs import (
 from ccnl_engine.results import BlockerCode, CalculationStatus
 from tests.fixtures.normative_oracles.contributions_2026 import (
     FULL_TIME_MONTHLY_CONTRIBUTION_FLOOR,
+    contribution_base,
 )
 from tests.fixtures.residence import resident
 from tests.fixtures.seniority import new_hire, pricing_category
@@ -81,7 +82,8 @@ def _minimum_held(result: PeriodResult) -> bool:
     """Whether the INPS base respects the minimum, or says it cannot.
 
     Returns:
-        True for a base at or above 26 daily floors, a worker
+        True for a base at or above 26 daily floors to the whole euro
+        (INPS circ. 208/2001), a worker
         art. 7 c. 5 excludes, or an undetermined minimum that blocks both
         INPS amounts.
     """
@@ -92,7 +94,8 @@ def _minimum_held(result: PeriodResult) -> bool:
         issues = BlockerCode.CALCULATION_ISSUE
         return {b.feature for b in result.blockers if b.code is issues} >= _INPS
     base = decision.inputs["base"]
-    return isinstance(base, Decimal) and base >= FULL_TIME_MONTHLY_CONTRIBUTION_FLOOR
+    floor = contribution_base(FULL_TIME_MONTHLY_CONTRIBUTION_FLOOR)
+    return isinstance(base, Decimal) and base >= floor
 
 
 def _computed(result: PeriodResult) -> bool:

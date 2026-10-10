@@ -5,7 +5,12 @@ from decimal import ROUND_HALF_UP, Decimal
 
 import pytest
 
-from ccnl_engine.payroll.domain.rounding import MONETARY, RoundingPolicy, money
+from ccnl_engine.payroll.domain.rounding import (
+    MONETARY,
+    RoundingPolicy,
+    contribution_base,
+    money,
+)
 
 
 class TestRoundingPolicy:
@@ -61,3 +66,28 @@ class TestMoney:
     def test_negative_value(self) -> None:
         """ROUND_HALF_UP rounds the half digit away from zero for negatives."""
         assert money(Decimal("-1.005")) == Decimal("-1.01")
+
+
+@pytest.mark.parametrize(
+    ("amount", "base"),
+    [
+        (Decimal("2005.67"), Decimal("2006.00")),
+        (Decimal("1667.47"), Decimal("1667.00")),
+        (Decimal("2052.50"), Decimal("2053.00")),
+        (Decimal("2052.49"), Decimal("2052.00")),
+    ],
+)
+def test_contribution_base_rounds_to_the_whole_euro(
+    amount: Decimal, base: Decimal
+) -> None:
+    """INPS circ. 208/2001: up to 49 cents down, from 50 cents up.
+
+    The observed payslips p04 (2,005.67 -> 2,006) and p05 (1,667.47 ->
+    1,667) print the base so.
+    """
+    assert contribution_base(amount) == base
+
+
+def test_contribution_base_of_the_public_sector_keeps_the_cents() -> None:
+    """The Gestione Dipendenti Pubblici keeps the cents (NoiPA payslip p07)."""
+    assert contribution_base(Decimal("2002.87"), whole_euro=False) == Decimal("2002.87")
