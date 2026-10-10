@@ -1123,6 +1123,7 @@
       "irpef_brackets": "assumed",
       "tfr": "assumed",
       "tfr.additional_ivs": "assumed",
+      "tfr.compensation": "assumed",
       "trattamento_integrativo": "assumed",
       "ulteriore_detrazione": "assumed",
       "work_deduction": "assumed",
@@ -1134,6 +1135,7 @@
       "irpef_brackets": "assumed",
       "tfr": "assumed",
       "tfr.additional_ivs": "assumed",
+      "tfr.compensation": "assumed",
       "trattamento_integrativo": "assumed",
       "ulteriore_detrazione": "assumed",
       "work_deduction": "assumed",
@@ -1145,6 +1147,7 @@
       "irpef_brackets": "assumed",
       "tfr": "assumed",
       "tfr.additional_ivs": "assumed",
+      "tfr.compensation": "assumed",
       "trattamento_integrativo": "assumed",
       "ulteriore_detrazione": "assumed",
       "work_deduction": "assumed",
@@ -1156,6 +1159,7 @@
       "irpef_brackets": "assumed",
       "tfr": "assumed",
       "tfr.additional_ivs": "assumed",
+      "tfr.compensation": "assumed",
       "trattamento_integrativo": "assumed",
       "ulteriore_detrazione": "assumed",
       "work_deduction": "assumed",
@@ -1187,19 +1191,20 @@
       "irpef_brackets": "assumed",
       "tfr": "assumed",
       "tfr.additional_ivs": "assumed",
+      "tfr.compensation": "assumed",
       "trattamento_integrativo": "assumed",
       "ulteriore_detrazione": "assumed",
       "work_deduction": "assumed",
       "work_deduction.minimum": "assumed"
+    },
+    "taxation/exemption/2027.json": {
+      "somma_esente": "assumed"
     },
     "taxation/family/2027.json": {
       "children": "assumed",
       "other_dependents": "assumed",
       "spouse": "assumed",
       "spouse_increases": "assumed"
-    },
-    "taxation/exemption/2027.json": {
-      "somma_esente": "assumed"
     },
     "taxation/variable_pay/2026.json": {
       "pdr": "assumed"
@@ -1705,7 +1710,8 @@
       "provisional_inps_ruleset",
       "provisional_ruleset",
       "sickness_cumulation_window",
-      "sickness_inps_daily_base"
+      "sickness_inps_daily_base",
+      "tfr_compensation_apprentice_guarantee_fund"
     ]
   }
 }

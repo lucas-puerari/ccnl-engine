@@ -4,6 +4,14 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Compensations of the TFR conferred
+
+| Before | After |
+|---|---|
+| The employer cost was the same whether the TFR stayed in the company or went to a pension fund or the Fondo Tesoreria | A TFR conferred cuts the employer contributions of the run (D.Lgs. 252/2005 art. 10): new components `tfr_guarantee_fund_exemption` (Fondo di garanzia 0.20%, 0.40% for a dirigente of industria or edilizia) and `tfr_relief_exemption` (0.28 points of D.L. 203/2005 art. 8), on the INPS base, in industria, terziario, artigianato, credito and edilizia. A Metalmeccanico C3 worker whose TFR goes to the Fondo Tesoreria costs about 0.48% of the INPS base less a month. New `TfrRules.compensation` (`TfrCompensation`) and `TfrAccrual.conferred` |
+| An apprentice whose TFR leaves the company | Takes the 0.28 points only, with the open limitation `tfr_compensation_apprentice_guarantee_fund`: the run is not payable until the Fondo di garanzia share of the apprentice rate is sourced |
+
+
 ## Test tree by category and mirror root
 
 | Before | After |

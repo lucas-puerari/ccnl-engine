@@ -16,6 +16,11 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.payroll.amount.policies_rounding import money
+from ccnl_engine.payroll.contribution.services_tfr_compensation import (
+    GUARANTEE_FUND_COMPONENT,
+    RELIEF_COMPONENT,
+)
 from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.employment.inputs_fact import ContributableHours, WeeklyHours
 from ccnl_engine.payroll.ledger.models import AccountKind
@@ -67,7 +72,12 @@ def _codes(result: PeriodResult) -> set[str]:
 
 
 def test_treasury_fund_takes_the_quota_net_of_the_deduction() -> None:
-    """The same amount as in the company, posted to the Fondo account."""
+    """The same amount as in the company, posted to the Fondo account.
+
+    The employer cost falls by the compensations of the TFR conferred
+    (D.Lgs. 252/2005 art. 10): the Fondo di garanzia 0.20% and the 0.28
+    points of D.L. 203/2005 art. 8, on the INPS base.
+    """
     company = _run(_METALMECCANICO, tfr_treasury_fund=False)
     treasury = _run(_METALMECCANICO, tfr_treasury_fund=True)
     decision = _tfr(treasury)
@@ -78,7 +88,23 @@ def test_treasury_fund_takes_the_quota_net_of_the_deduction() -> None:
     assert [(e.account, e.amount) for e in posted] == [
         (AccountKind.TFR_TREASURY_FUND, decision.amount)
     ]
-    assert treasury.period_employer_cost == company.period_employer_cost
+    credit = {
+        c.name: c.amount
+        for c in treasury.contribution_breakdown.components
+        if c.amount < 0
+    }
+    base = next(
+        c.base
+        for c in treasury.contribution_breakdown.components
+        if c.name == "non_ivs_employer"
+    )
+    assert credit == {
+        GUARANTEE_FUND_COMPONENT: -money(base * Decimal("0.0020")),
+        RELIEF_COMPONENT: -money(base * Decimal("0.0028")),
+    }
+    assert treasury.period_employer_cost == (
+        company.period_employer_cost + sum(credit.values())
+    )
 
 
 def test_unknown_destination_posts_to_the_company_with_a_missing_fact() -> None:

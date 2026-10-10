@@ -2599,7 +2599,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/artigianato",
       "ruleset_version": "2026.1",
-      "source_hash": "3b799a3049781d18837a80e7478f6649273774e1ad652432ac5f19ddb2afee3b",
+      "source_hash": "fa073722f3a2ed6cc2b19348f36ce2a3519bbd36144a10be5dff5dff84584d33",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "taxation/annual/2026/artigianato.json.gz"
@@ -2616,7 +2616,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/credito",
       "ruleset_version": "2026.1",
-      "source_hash": "f1b12fea060e39c393a5df707155db0a217e99dbace51f1b658037997b8eecb3",
+      "source_hash": "24b54fcddda8254755b5e5ef2ee69ac864484e1de470d763ea427f18d9dd8f26",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "taxation/annual/2026/credito.json.gz"
@@ -2633,7 +2633,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/edilizia",
       "ruleset_version": "2026.1",
-      "source_hash": "81ed1364906eaaabeebb270892fdd7088789c86c06b0755fbc40c5eb53c39818",
+      "source_hash": "21f8704452b889a65a194a59af12777868e2bacf3cee830362addbf92c0e7f70",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "taxation/annual/2026/edilizia.json.gz"
@@ -2650,7 +2650,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/industria",
       "ruleset_version": "2026.1",
-      "source_hash": "10ff41c4fcb9447d95e11696d5d9b32301be93baa170a0407298d380a098d8c7",
+      "source_hash": "6271777d3534107ffc7ccee03e070cf1de48e7d3661cb3e3e3f00b79646670f5",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "taxation/annual/2026/industria.json.gz"
@@ -2701,7 +2701,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/terziario",
       "ruleset_version": "2026.1",
-      "source_hash": "657820b0c8a961c479e84f2d2827d237e87f45c535da4b718da4318d1764b998",
+      "source_hash": "dfea96c50592b0b3417fb713f6bb5d26674687207329b9a87415843b1deddefa",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "taxation/annual/2026/terziario.json.gz"
@@ -2735,7 +2735,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "tax/2027/artigianato",
       "ruleset_version": "2026.1",
-      "source_hash": "f71ee152abdfc30c5ab5026254f69612fa2ae997e7a2552dbc46a57b5b34601f",
+      "source_hash": "f357a60a63ede3254da8b570408a527f4e206abbb274e0cc783f8a9c4a65a0e3",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "taxation/annual/2027/artigianato.json.gz"
@@ -2752,7 +2752,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "tax/2027/credito",
       "ruleset_version": "2026.1",
-      "source_hash": "6fa0dae3a41587127c2c93c3f4f5b3ff39ad8d9ee81bb94e4a8ee7a738cb4030",
+      "source_hash": "52ecb9f0196ed74545e33acc7b4e1fad18fb3d4c9d65adbed970d6a73ec0d1e8",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "taxation/annual/2027/credito.json.gz"
@@ -2769,7 +2769,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "tax/2027/edilizia",
       "ruleset_version": "2026.1",
-      "source_hash": "8410ee2125063f143067f5ac720ca472e6913be15a59ad2156e5083c72e47ba2",
+      "source_hash": "742f7517f713be5a8e5c9b1d7903a94fc96ab2d0bfe4a43e66d259cb76b68b6f",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "taxation/annual/2027/edilizia.json.gz"
@@ -2786,7 +2786,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "tax/2027/industria",
       "ruleset_version": "2026.1",
-      "source_hash": "262117e564b725c37548ec5c78d477950998bda6e51ac308e728ba581cb0f623",
+      "source_hash": "190e1db569b2d252b5bcae3456fa1fa6c62abbcca9258496af417e1c9f30ac97",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "taxation/annual/2027/industria.json.gz"
@@ -2837,7 +2837,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "tax/2027/terziario",
       "ruleset_version": "2026.1",
-      "source_hash": "fd822050f4595b70493cc794eb03fa44abfa291e13396e87ca467f557adbbb52",
+      "source_hash": "aafb2b260191011dfdf8795b711ff6df607f5543a5124e4e31ac944964ac2a47",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "taxation/annual/2027/terziario.json.gz"

@@ -18,6 +18,9 @@ from ccnl_engine.payroll.capability.results import CapabilityScope
 from ccnl_engine.payroll.contribution.rules_contractual_fund import contractual_paths
 from ccnl_engine.payroll.contribution.services_enam import enam_paths
 from ccnl_engine.payroll.contribution.services_pension_decision import paid_month_paths
+from ccnl_engine.payroll.contribution.services_tfr_compensation import (
+    tfr_compensation_paths,
+)
 from ccnl_engine.payroll.employment.services_seniority import seniority_months_at
 
 if TYPE_CHECKING:
@@ -80,6 +83,7 @@ def run_limitations(
         | paid_month_paths(ctx, events.inps_base)
         | enam_paths(ctx)
         | provisional_paths(ctx)
+        | tfr_compensation_paths(ctx)
     )
     facts = limitation_facts(ctx, report, traversed)
     candidates = (*ctx.repo.load_engine_limitations(), *ctx.contract.ccnl.limitations)

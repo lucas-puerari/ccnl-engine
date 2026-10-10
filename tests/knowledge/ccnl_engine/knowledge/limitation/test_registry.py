@@ -29,6 +29,9 @@ from ccnl_engine.payroll.assurance.services_ruleset import (
     PROVISIONAL_INPS_RULESET,
     PROVISIONAL_RULESET,
 )
+from ccnl_engine.payroll.contribution.services_tfr_compensation import (
+    APPRENTICE_GUARANTEE_FUND,
+)
 from ccnl_engine.payroll.employment.rules_apprenticeship import (
     MIDPOINT_VARIANT,
     PCT_UNDECLARED,
@@ -104,6 +107,7 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         CUMULATION_LIMITATION,
         PROVISIONAL_RULESET,
         PROVISIONAL_INPS_RULESET,
+        APPRENTICE_GUARANTEE_FUND,
     }
     assert by_status[LimitationStatus.RESOLVED] == {_MIDPOINT, _APPRENTICE_SENIORITY}
 
