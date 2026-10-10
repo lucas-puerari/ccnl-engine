@@ -1,0 +1,157 @@
+{
+  "id": "p61",
+  "period": "2020-03",
+  "period_printed": "03/2020 - Marzo",
+  "kind": "regular",
+  "ccnl_hint": null,
+  "level": "4",
+  "contract": {
+    "category_printed": "IMPIEGATO",
+    "hired": "2010-08"
+  },
+  "lines": [
+    {
+      "desc": "COMPETENZE MESE",
+      "code": "2",
+      "rate": "1616.79000",
+      "earning": "1616.79"
+    },
+    {
+      "desc": "PERM.EX.FEST.GODUTI",
+      "code": "35",
+      "qty": "8.00",
+      "rate": "9.62375",
+      "earning": "76.99"
+    },
+    {
+      "desc": "DETRAZ. ORE ASSENZA",
+      "code": "3",
+      "qty": "8.00",
+      "rate": "9.62375",
+      "deduction": "76.99"
+    },
+    {
+      "desc": "FERIE GODUTE",
+      "code": "31",
+      "qty": "18.00",
+      "rate": "62.18423",
+      "earning": "1119.32"
+    },
+    {
+      "desc": "DETRAZ.GG ASSENZA",
+      "code": "4",
+      "qty": "18.00",
+      "rate": "62.18423",
+      "deduction": "1119.32"
+    },
+    {
+      "desc": "TOT.LORDO SOGG.CONTR",
+      "code": "999",
+      "rate": "1616.79"
+    },
+    {
+      "desc": "CONTRIBUTO FAP",
+      "code": "1",
+      "rate": "1617.00",
+      "deduction": "148.60"
+    },
+    {
+      "desc": "CONTRIBUTO S.S.N.",
+      "code": "2",
+      "rate": "1617.00"
+    },
+    {
+      "desc": "CONT.SOLIDARIETA'SSN",
+      "code": "3",
+      "rate": "1617.00"
+    },
+    {
+      "desc": "SOLID.10 % M980",
+      "code": "910",
+      "rate": "15.10"
+    },
+    {
+      "desc": "EBTU TURISMO",
+      "code": "298",
+      "rate": "1550.69",
+      "deduction": "3.10"
+    },
+    {
+      "desc": "FIGURATIVO INAIL",
+      "code": "500",
+      "rate": "1617.00"
+    },
+    {
+      "desc": "INAIL Pat: 20214179/03 Tar: 0722",
+      "rate": "(1617.00)"
+    },
+    {
+      "desc": "Ctr.Ass.San. Progr.",
+      "rate": "(36.00)"
+    },
+    {
+      "desc": "Ctr.Ass.San. dedotti",
+      "rate": "(12.00)"
+    },
+    {
+      "desc": "Tot. rit. sociali",
+      "rate": "148.60"
+    },
+    {
+      "desc": "Imponibile Fiscale",
+      "rate": "1468.19"
+    },
+    {
+      "desc": "Impon. fiscale netto",
+      "rate": "1468.19"
+    },
+    {
+      "desc": "Rit. Fis. mese lorda",
+      "rate": "346.41"
+    },
+    {
+      "desc": "Imponibile detraz.",
+      "rate": "20620.50"
+    },
+    {
+      "desc": "Detrazioni fiscali",
+      "rate": "111.32"
+    },
+    {
+      "desc": "Rit. Fis. mese netta",
+      "deduction": "235.09"
+    },
+    {
+      "desc": "Credito Art.13 TUIR",
+      "earning": "81.53"
+    },
+    {
+      "desc": "Add.Reg. rata pagata (Cod.: PI)",
+      "deduction": "32.98"
+    },
+    {
+      "desc": "Add.Com. rata pagata (cod.: B041)",
+      "deduction": "10.34"
+    },
+    {
+      "desc": "Acconto Add.Comunale (cod.: B041)",
+      "deduction": "5.36"
+    }
+  ],
+  "inps": {
+    "base": "1616.79"
+  },
+  "irpef_month": {
+    "taxable": "1468.19",
+    "net": "235.09"
+  },
+  "totals": {
+    "earnings": "2894.63",
+    "deductions": "1631.78"
+  },
+  "net": "1263.00",
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "id": "p32",
+  "period": "2010-01",
+  "period_printed": "Gennaio 2010",
+  "kind": "regular",
+  "ccnl_hint": null,
+  "level": "PRIMA AREA A2 AG.FISCALI",
+  "contract": {
+    "category_printed": "ABC1"
+  },
+  "lines": [
+    {
+      "desc": "STIPENDIO TABELLARE",
+      "code": "ABC1",
+      "earning": "1155.27"
+    },
+    {
+      "desc": "RETRIBUZIONE INDIVIDUALE DI ANZIANITA'",
+      "code": "123/456",
+      "earning": "63.90"
+    },
+    {
+      "desc": "MAGGIORAZIONE R.I.A.",
+      "code": "789/345",
+      "earning": "32.52"
+    },
+    {
+      "desc": "CONGLOBATA ABC1",
+      "code": "123/321",
+      "earning": "507.28"
+    },
+    {
+      "desc": "ASS. AD PERSONAM",
+      "code": "121/543",
+      "earning": "11.25"
+    },
+    {
+      "desc": "IND. AMMINISTRAZIONE AGENZIE PRIMA AREA A3",
+      "code": "433/546",
+      "earning": "477.04"
+    },
+    {
+      "desc": "QWE - dal 123456 al 123456",
+      "code": "GF55/HG65",
+      "earning": "500.75"
+    },
+    {
+      "desc": "ACCESSORIO ESENTE PREV. FISC. - dal 123456 al 123456",
+      "code": "WE22/DC33",
+      "earning": "345.45"
+    },
+    {
+      "desc": "STRAORDINARIO DIURNO - Qta. 1 - Imp. 7.72 - Rif. 123456",
+      "code": "ED31/FD32",
+      "earning": "84.36"
+    },
+    {
+      "desc": "INPDAP",
+      "rate": "2832.37",
+      "deduction": "249.24"
+    },
+    {
+      "desc": "OP. DI PREV./TFR",
+      "rate": "2236.01",
+      "deduction": "44.73"
+    },
+    {
+      "desc": "FONDO CREDITO",
+      "rate": "2832.37",
+      "deduction": "9.91"
+    },
+    {
+      "desc": "Totale ritenute previdenziali",
+      "deduction": "303.88"
+    },
+    {
+      "desc": "IRPEF ad aliquota massima",
+      "deduction": "202.00"
+    },
+    {
+      "desc": "IRPEF ad aliquota media"
+    },
+    {
+      "desc": "IRPEF ad aliquota progressiva",
+      "rate": "1996.92",
+      "deduction": "489.19"
+    },
+    {
+      "desc": "Totale detrazioni"
+    },
+    {
+      "desc": "Totale ritenute fiscali al netto delle detrazioni",
+      "deduction": "608.19"
+    },
+    {
+      "desc": "RITENUTA SINDACALE",
+      "code": "800/SZ",
+      "deduction": "10.94"
+    },
+    {
+      "desc": "CONGUAGLIO IRPEF scad. 123456",
+      "code": "123/R45",
+      "deduction": "2000.00"
+    }
+  ],
+  "inps": {
+    "base": "2832.37"
+  },
+  "irpef_month": {
+    "taxable": "1996.92",
+    "net": "608.19"
+  },
+  "totals": {
+    "earnings": "3177.82",
+    "deductions": "2923.01"
+  },
+  "net": "254.81",
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

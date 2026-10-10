@@ -55,6 +55,7 @@ document a known wrong result: keep their reason and the error they raise.
 | `fixtures/reference_tables/` | reference cases: one regular period pinned to a signed salary table, checked by `scripts/ci/check_provenance.py` |
 | `fixtures/normative_oracles/` | hand-written calculators of the rules (IRPEF, family deductions, surtaxes), written from the sources without importing the engine |
 | `fixtures/normative_oracles/payslips/` | full-payslip oracles built on the rule oracles |
+| `fixtures/observed_payslips/` | anonymous transcriptions of real and teaching payslips (one JSON per payslip, amounts as printed): evidence of how payrolls apply the rules, never a signed source. Part of them is converted from the gold annotations of the BurocrazIA dataset (albertobarnabo/burocrazia on Hugging Face, Apache-2.0) |
 | `fixtures/synthetic_contracts/` | expected CCNL values the bundled-contract loader tests compare against |
 | `fixtures/*.py` | request, state and schedule builders shared by several tests |
 

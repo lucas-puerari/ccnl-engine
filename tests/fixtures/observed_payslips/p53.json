@@ -1,0 +1,141 @@
+{
+  "id": "p53",
+  "period": "2024-05",
+  "period_printed": "MAGGIO 2024",
+  "kind": "regular",
+  "ccnl_hint": null,
+  "level": "6",
+  "contract": {
+    "category_printed": "APPRENDISTA CONTABILE",
+    "hired": "2023-05"
+  },
+  "lines": [
+    {
+      "desc": "TOTALE ELEMENTI SU PART-TIME",
+      "code": "032",
+      "qty_printed": "60,00%",
+      "rate": "893.43"
+    },
+    {
+      "desc": "RETRIBUZIONE DEL MESE",
+      "code": "110",
+      "qty": "91.00",
+      "earning": "739.11"
+    },
+    {
+      "desc": "PERMESSI PER STUDIO USUFRUITI",
+      "code": "175",
+      "qty": "5.00",
+      "earning": "40.61"
+    },
+    {
+      "desc": "FRINGE BENEFIT AUTO",
+      "code": "063",
+      "rate": "139.73"
+    },
+    {
+      "desc": "ASSISTENZA SANITARIA  - DITTA",
+      "code": "57K",
+      "rate": "10.00"
+    },
+    {
+      "desc": "ASSISTENZA SANITARIA - C. DIP.",
+      "code": "57G",
+      "deduction": "2.00"
+    },
+    {
+      "desc": "ENTE BILATERALE - C. DIP.",
+      "code": "78B",
+      "deduction": "0.45"
+    },
+    {
+      "desc": "ENTI BILATERALI SOGGETTI IRPEF",
+      "code": "59N",
+      "rate": "0.89"
+    },
+    {
+      "desc": "ENTE BILATERALE - DITTA",
+      "code": "D50",
+      "rate": "0.89"
+    },
+    {
+      "desc": "CONTRIB. CONTRATTUALI - DITTA",
+      "code": "D51",
+      "rate": "11.95"
+    },
+    {
+      "desc": "TOTALE COMPETENZE LORDE",
+      "rate": "779.72"
+    },
+    {
+      "desc": "QUOTA TFR MATURATA",
+      "rate": "66.18"
+    },
+    {
+      "desc": "IMPONIBILE E CONTRIBUTO INPS",
+      "qty_printed": "5,84%",
+      "rate": "919.00",
+      "deduction": "53.67"
+    },
+    {
+      "desc": "RITENUTA FIS / FONDI SOL.",
+      "code": "51D",
+      "deduction": "1.53"
+    },
+    {
+      "desc": "RITENUTA CONTR COVELCO C/DIP",
+      "code": "56D",
+      "qty_printed": "0,10%",
+      "rate": "919.00",
+      "deduction": "0.92"
+    },
+    {
+      "desc": "ESONERO CONTRIB. 7% MENSILE",
+      "earning": "53.67"
+    },
+    {
+      "desc": "TOTALE CONTRIBUTI ESENTI IRPEF",
+      "rate": "2.45"
+    },
+    {
+      "desc": "IMPONIBILE IRPEF",
+      "rate": "1030.19"
+    },
+    {
+      "desc": "RITENUTA IRPEF LORDA",
+      "rate": "236.94"
+    },
+    {
+      "desc": "TOTALE DETRAZIONI",
+      "rate": "166.04"
+    },
+    {
+      "desc": "RITENUTA IRPEF NETTA",
+      "deduction": "70.90"
+    },
+    {
+      "desc": "RATA ADD. REGIONALE ANNO PREC.",
+      "deduction": "9.31"
+    },
+    {
+      "desc": "BONUS L. 21/20 EROGATO",
+      "earning": "101.64"
+    }
+  ],
+  "inps": {
+    "base": "919.00"
+  },
+  "irpef_month": {
+    "taxable": "1030.19",
+    "net": "70.90"
+  },
+  "totals": {
+    "earnings": "935.03",
+    "deductions": "138.78"
+  },
+  "net": "796.00",
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

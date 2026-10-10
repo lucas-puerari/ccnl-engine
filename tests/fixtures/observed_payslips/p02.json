@@ -1,0 +1,130 @@
+{
+  "id": "p02",
+  "period": "2025-12",
+  "payment_date": null,
+  "printed_on": "2026-01-08",
+  "kind": "regular_with_year_end_conguaglio_and_thirteenth_balance",
+  "ccnl_hint": "agency work (somministrazione), user company retail; pay elements of CCNL Terziario level 4",
+  "level": "4",
+  "contract": {
+    "type": "agency_fixed_term",
+    "category": "operaio",
+    "hired": "2025-07",
+    "hours_month": "160.50",
+    "paid_days": "26",
+    "detraction_days": "31"
+  },
+  "pay_elements": {
+    "minimo": "1257.46",
+    "contingenza": "524.22",
+    "terzo_elemento_ass_suppl": "11.36",
+    "total": "1793.04"
+  },
+  "lines": [
+    {
+      "desc": "retribuzione",
+      "qty_hours": "160.500",
+      "rate": "10.34466",
+      "earning": "1660.32"
+    },
+    {
+      "desc": "saldo tredicesima (ore)",
+      "qty_hours": "75.083",
+      "rate": "10.34469",
+      "earning": "776.71"
+    },
+    {
+      "desc": "recupero anticipo tredicesima (ore)",
+      "qty_hours": "61.708",
+      "rate": "10.34469",
+      "deduction": "638.35"
+    },
+    {
+      "desc": "maggiorazione 30%",
+      "qty_hours": "11.500",
+      "rate": "3.20186",
+      "earning": "36.82"
+    },
+    {
+      "desc": "versamento fondo tesoreria (TFR)",
+      "figurative": "137.03"
+    },
+    {
+      "desc": "ore riposo turno",
+      "qty_hours": "7.000",
+      "rate": "10.34466",
+      "figurative": "72.41"
+    },
+    {
+      "desc": "retribuzione utile TFR",
+      "figurative": "1973.86"
+    },
+    {
+      "desc": "conguaglio IRPEF a debito (L. 21/2020 trattamento integrativo)",
+      "deduction": "437.24"
+    },
+    {
+      "desc": "restituzione trattamento integrativo da rateizzare",
+      "earning": "437.24"
+    },
+    {
+      "desc": "prima rata recupero trattamento integrativo",
+      "deduction": "54.66"
+    },
+    {
+      "desc": "indennita L. 207/2024 conguaglio a debito",
+      "deduction": "387.52"
+    },
+    {
+      "desc": "restituzione indennita L. 207/2024 da rateizzare",
+      "earning": "387.52"
+    },
+    {
+      "desc": "prima rata recupero indennita L. 207/2024",
+      "deduction": "38.75"
+    }
+  ],
+  "inps": {
+    "base": "1836.00",
+    "employee_rate": "0.0919",
+    "employee": "168.73",
+    "fsbs_somministrati_rate": "0.0015",
+    "fsbs": "2.75",
+    "inail_base": "1836.00"
+  },
+  "irpef_month": {
+    "taxable": "1664.02",
+    "gross": "382.72",
+    "deductions": "0.00",
+    "net": "382.72"
+  },
+  "surtax": {
+    "year": 2025,
+    "taxable": "9737.67",
+    "regional": "162.62",
+    "municipal": "48.69"
+  },
+  "year_totals": {
+    "fiscal_taxable": "9737.67",
+    "irpef_withheld_with_conguaglio": "2239.66",
+    "irpef_paid_before": "1536.71",
+    "conguaglio_debit": "702.95"
+  },
+  "leave": {
+    "ferie_residual_hours": "76.240",
+    "rol_residual_hours": "13.862"
+  },
+  "rounding": {
+    "previous": "0.58",
+    "current": "0.64"
+  },
+  "totals": {
+    "earnings": "3299.25",
+    "deductions": "2814.25"
+  },
+  "net": "485.00",
+  "legibility": "full",
+  "notes": [
+    "Recovery of trattamento integrativo and L. 207/2024 indennita at the conguaglio, spread in installments (first installment withheld)."
+  ]
+}

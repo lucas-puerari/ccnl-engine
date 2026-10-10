@@ -1,0 +1,76 @@
+{
+  "id": "p36",
+  "period": "2024-05",
+  "period_printed": "MAGGIO 2024",
+  "kind": "regular",
+  "ccnl_hint": "Barbieri/parrucchieri/acconc.",
+  "level": "3",
+  "contract": {
+    "category_printed": "OPERAI P.TIME",
+    "hired": "2023-01"
+  },
+  "lines": [
+    {
+      "desc": "Retribuzione ordinaria",
+      "code": "0",
+      "qty": "25.000",
+      "rate": "25.17308",
+      "earning": "629.33"
+    },
+    {
+      "desc": "Ferie non godute",
+      "code": "201",
+      "qty": "11.666",
+      "rate": "25.17308",
+      "earning": "293.68"
+    },
+    {
+      "desc": "Perm. riduz. orario non goduti",
+      "code": "211",
+      "qty": "3.333",
+      "rate": "7.56647",
+      "earning": "25.22"
+    },
+    {
+      "desc": "Perm. ex-festivita' non goduti",
+      "code": "222",
+      "qty": "6.666",
+      "rate": "7.56647",
+      "earning": "50.44"
+    },
+    {
+      "desc": "Festivita'",
+      "code": "230",
+      "qty": "1.000",
+      "rate": "25.17308",
+      "earning": "25.17"
+    },
+    {
+      "desc": "13.ma mensilita'",
+      "code": "250",
+      "qty": "5.000",
+      "earning": "272.71"
+    },
+    {
+      "desc": "Trattamento integrativo DL 3/2020",
+      "code": "930",
+      "earning": "99.73"
+    }
+  ],
+  "inps": {
+    "base": "1296.55"
+  },
+  "irpef_month": {
+    "taxable": "1243.06",
+    "net": null
+  },
+  "totals": {
+    "earnings": "1396.28",
+    "deductions": "-62.31"
+  },
+  "net": "1459.37",
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

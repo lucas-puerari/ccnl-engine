@@ -1,0 +1,82 @@
+{
+  "id": "p03",
+  "period": "2026-??",
+  "kind": "regular",
+  "ccnl_hint": "unknown (173 hours divisor, rinnovo increment under L. 199/2025 5% substitute tax)",
+  "level": null,
+  "contract": {
+    "type": "full_time",
+    "hours_divisor": "173"
+  },
+  "pay_elements": {
+    "paga_base": "2064.88",
+    "superminimo_assorbibile": "397.00",
+    "total": "2461.88"
+  },
+  "lines": [
+    {
+      "desc": "lavoro ordinario ore",
+      "qty_hours": "173.00",
+      "rate": "14.23052",
+      "earning": "2461.88"
+    },
+    {
+      "desc": "assenze (ore)",
+      "qty_hours": "4.00",
+      "rate": "14.23052",
+      "earning": "-56.92"
+    },
+    {
+      "desc": "assenze (giorni)",
+      "qty_days": "5.00",
+      "rate": "94.68769",
+      "earning": "-473.44"
+    },
+    {
+      "desc": "permessi goduti",
+      "qty_hours": "4.00",
+      "rate": "14.23052",
+      "earning": "56.92"
+    },
+    {
+      "desc": "ferie godute",
+      "qty_days": "5.00",
+      "rate": "94.68769",
+      "earning": "473.44"
+    },
+    {
+      "desc": "fondo pensione c/dipendente",
+      "deduction": "24.78"
+    },
+    {
+      "desc": "fondo pensione c/azienda",
+      "figurative": "41.30"
+    },
+    {
+      "desc": "TFR al fondo",
+      "figurative": "170.05"
+    },
+    {
+      "desc": "incremento contrattuale assoggettato 5% L. 199/2025",
+      "figurative": "44.93"
+    },
+    {
+      "desc": "buoni pasto elettronici",
+      "qty": "15",
+      "rate": "7.20",
+      "figurative": "108.00"
+    }
+  ],
+  "inps": {
+    "employee": "233.65"
+  },
+  "irpef_month": {
+    "net": "345.71"
+  },
+  "rounding": {
+    "previous": "0.39",
+    "current": "0.65"
+  },
+  "net": null,
+  "legibility": "partial: body only, no header, no fiscal box, no net"
+}

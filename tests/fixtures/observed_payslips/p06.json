@@ -1,0 +1,146 @@
+{
+  "id": "p06",
+  "period": "2026-04",
+  "period_inferred_from": "calendar (day 1 Wednesday, 30 days) and arrears of March 2026",
+  "kind": "regular",
+  "ccnl_hint": "Terziario Confcommercio",
+  "level": "3",
+  "contract": {
+    "type": "permanent",
+    "category": "operaio",
+    "hired_conventional": "2025-11-03",
+    "next_seniority_step": "2028-12",
+    "hours_divisor": "168",
+    "days_divisor": "26",
+    "hourly_rate": "13.14923",
+    "daily_rate": "84.96"
+  },
+  "region": "Toscana",
+  "pay_elements": {
+    "paga_base": "1453.94",
+    "contingenza": "527.90",
+    "terzo_elemento": "7.23",
+    "superminimo_assorbibile": "220.00",
+    "total": "2209.07"
+  },
+  "lines": [
+    {
+      "desc": "lavoro ordinario ore",
+      "qty_hours": "169.00",
+      "rate": "13.14923",
+      "earning": "2222.22"
+    },
+    {
+      "desc": "assenze (ore)",
+      "qty_hours": "24.00",
+      "rate": "13.14923",
+      "earning": "-315.58"
+    },
+    {
+      "desc": "straordinario fino 48h 15%",
+      "qty_hours": "10.50",
+      "rate": "15.12161",
+      "earning": "158.78"
+    },
+    {
+      "desc": "ferie godute",
+      "qty_hours": "8.00",
+      "rate": "13.14923",
+      "earning": "105.19"
+    },
+    {
+      "desc": "carenza malattia (100% a carico azienda)",
+      "qty_hours": "16.00",
+      "earning": "210.39"
+    },
+    {
+      "desc": "quattordicesima mensilizzata",
+      "qty_hours": "14.00",
+      "rate": "13.14923",
+      "earning": "184.09"
+    },
+    {
+      "desc": "buoni pasto elettronici",
+      "qty": "18",
+      "rate": "4.00",
+      "figurative": "72.00"
+    },
+    {
+      "desc": "TFR maturato (comunicazione)",
+      "figurative": "174.92"
+    },
+    {
+      "desc": "ulteriore detrazione mese",
+      "figurative": "54.50"
+    },
+    {
+      "desc": "rata addizionale regionale anno precedente",
+      "residual_after": "45.39",
+      "deduction": "7.57"
+    },
+    {
+      "desc": "incremento contrattuale assoggettato 5% L. 199/2025",
+      "figurative": "39.90"
+    },
+    {
+      "desc": "retribuzione lorda",
+      "earning": "95.00"
+    },
+    {
+      "desc": "premio",
+      "earning": "200.00"
+    },
+    {
+      "desc": "arretrati mese precedente (marzo 2026)",
+      "earning": "57.00"
+    },
+    {
+      "desc": "fondo smobilizzo TFR",
+      "figurative": "1.09"
+    }
+  ],
+  "inps": {
+    "base": "2917.00",
+    "employee": "276.82",
+    "ente_bilaterale_ebilcom_ebter": "1.07",
+    "other_funds": "2.00"
+  },
+  "irpef_month": {
+    "taxable": "2637.20",
+    "gross": "654.89",
+    "work_deduction": "163.72",
+    "net": "491.17"
+  },
+  "year_totals": {
+    "irpef_taxable": "10675.24",
+    "irpef_gross": "2676.67",
+    "work_deduction": "698.31",
+    "irpef_net": "1978.36",
+    "inps_base": "11835.00",
+    "inps_contributions": "1147.23"
+  },
+  "inail": {
+    "base": "2917.00"
+  },
+  "tfr": {
+    "base": "2558.31",
+    "month_quota": "174.92"
+  },
+  "leave": {
+    "ferie_balance_hours": "46.68",
+    "ex_festivita_balance_hours": "7.98"
+  },
+  "rounding": {
+    "previous": "0.65",
+    "current": "0.19"
+  },
+  "totals": {
+    "earnings": "2917.28",
+    "deductions": "779.28"
+  },
+  "net": "2138.00",
+  "legibility": "full",
+  "notes": [
+    "IRPEF netta = lorda - detrazione lavoro: the 54.50 ulteriore detrazione is shown as a statistic line, not in the IRPEF box."
+  ]
+}

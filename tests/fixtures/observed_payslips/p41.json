@@ -1,0 +1,160 @@
+{
+  "id": "p41",
+  "period": null,
+  "period_printed": "Maggio",
+  "kind": "regular",
+  "ccnl_hint": null,
+  "level": "2",
+  "contract": {
+    "category_printed": "Impiegato",
+    "hired": "2019-06"
+  },
+  "lines": [
+    {
+      "desc": "Retribuzione",
+      "code": "000014",
+      "qty_printed": "26,00000 GG",
+      "rate": "95.62423",
+      "earning": "2486.23"
+    },
+    {
+      "desc": "Permessi ROL Goduti MP",
+      "code": "005221",
+      "qty_printed": "16,00000 ORE"
+    },
+    {
+      "desc": "Commissioni",
+      "code": "001248",
+      "earning": "353.33"
+    },
+    {
+      "desc": "Buoni pasto elettronici",
+      "code": "005965",
+      "qty_printed": "20,00000 GG",
+      "rate": "5.00000",
+      "earning": "(100.00)"
+    },
+    {
+      "desc": "Arrotond. mese pr.",
+      "code": "ZP9960",
+      "deduction": "0.13"
+    },
+    {
+      "desc": "Contributo IVS",
+      "code": "Z00000",
+      "qty_printed": "9,19000 %",
+      "rate": "2840.00",
+      "deduction": "261.00"
+    },
+    {
+      "desc": "CIGS >50 dipendenti",
+      "code": "Z00072",
+      "qty_printed": "0,30000 %",
+      "rate": "2840.00",
+      "deduction": "8.52"
+    },
+    {
+      "desc": "FIS D.Lgs.148/2015 >50 dip.",
+      "code": "Z00135",
+      "qty_printed": "0,26667 %",
+      "rate": "2840.00",
+      "deduction": "7.57"
+    },
+    {
+      "desc": "Contributo EST C/Dipendente",
+      "code": "003784",
+      "qty_printed": "100,00000 %",
+      "rate": "2.00",
+      "deduction": "2.00"
+    },
+    {
+      "desc": "Ente Bilaterale Commercio",
+      "code": "004157",
+      "qty_printed": "0,05000 %",
+      "rate": "2050.96",
+      "deduction": "1.03"
+    },
+    {
+      "desc": "Ente Bilaterale Commercio",
+      "code": "004157",
+      "qty_printed": "0,10000 %",
+      "rate_printed": "C/Ditta",
+      "earning": "(2.05)"
+    },
+    {
+      "desc": "Imponibile IRPEF",
+      "code": "F02000",
+      "rate": "2562.52"
+    },
+    {
+      "desc": "IRPEF lorda",
+      "code": "F02010",
+      "rate": "675.45"
+    },
+    {
+      "desc": "Detrazioni lav.dip.",
+      "code": "F02500",
+      "rate": "105.51"
+    },
+    {
+      "desc": "Detraz. Coniuge",
+      "code": "F02520",
+      "rate": "57.50"
+    },
+    {
+      "desc": "Ritenute IRPEF",
+      "code": "F03020",
+      "deduction": "512.44"
+    },
+    {
+      "desc": "Addizionale regionale 2022",
+      "code": "F09110",
+      "qty_printed": "Residuo 306,68",
+      "rate_printed": "CALABRIA",
+      "deduction": "51.11"
+    },
+    {
+      "desc": "Addizionale comunale 2022",
+      "code": "F09130",
+      "qty_printed": "Residuo 101,27",
+      "rate_printed": "REGGIO CALABRIA",
+      "deduction": "16.88"
+    },
+    {
+      "desc": "Acconto addiz. comunale 2023",
+      "code": "F09140",
+      "qty_printed": "Residuo 52,00",
+      "rate_printed": "REGGIO CALABRIA",
+      "deduction": "8.67"
+    },
+    {
+      "desc": "Retribuzione utile T.F.R.",
+      "rate": "2839.56"
+    },
+    {
+      "desc": "Quota T.F.R.",
+      "rate": "196.14"
+    },
+    {
+      "desc": "Imp. INAIL",
+      "qty_printed": "Voce Tariffa 0722",
+      "rate": "2840.00"
+    }
+  ],
+  "inps": {
+    "base": "2840.00"
+  },
+  "irpef_month": {
+    "taxable": "2562.52",
+    "net": "512.44"
+  },
+  "totals": {
+    "earnings": "2839.56",
+    "deductions": "869.35"
+  },
+  "net": "1971.00",
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

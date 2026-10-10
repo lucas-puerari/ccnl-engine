@@ -1,0 +1,69 @@
+{
+  "id": "p31",
+  "period": "2024-01",
+  "period_printed": "GENNAIO 2024",
+  "kind": "regular",
+  "ccnl_hint": "Commercio e terziario",
+  "level": "5",
+  "contract": {
+    "category_printed": "OPERAI",
+    "hired": "2023-10"
+  },
+  "lines": [
+    {
+      "desc": "Retribuzione ordinaria",
+      "code": "0",
+      "qty": "16.000",
+      "rate": "61.79654",
+      "earning": "988.74"
+    },
+    {
+      "desc": "Festivita'",
+      "code": "230",
+      "qty": "2.000",
+      "rate": "61.79654",
+      "earning": "123.59"
+    },
+    {
+      "desc": "Carenza malattia",
+      "code": "400",
+      "qty": "3.000",
+      "rate": "61.79654",
+      "earning": "185.39"
+    },
+    {
+      "desc": "Integraz.malattia c/ditta",
+      "code": "410",
+      "qty": "5.000",
+      "earning": "45.97"
+    },
+    {
+      "desc": "Indenn.malattia c/INPS 4-20",
+      "code": "500",
+      "qty": "5.000",
+      "rate": "36.34053",
+      "earning": "181.70"
+    },
+    {
+      "desc": "Rata Addizionale Regionale",
+      "code": "828",
+      "deduction": "6.72"
+    }
+  ],
+  "inps": {
+    "base": "1343.69"
+  },
+  "irpef_month": {
+    "taxable": "1495.96",
+    "net": "132.88"
+  },
+  "totals": {
+    "earnings": "1525.39",
+    "deductions": "169.03"
+  },
+  "net": "1357.00",
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

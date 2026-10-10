@@ -1,0 +1,94 @@
+{
+  "id": "p45",
+  "period": "2014-01",
+  "period_printed": "gennaio 2014",
+  "kind": "regular",
+  "ccnl_hint": null,
+  "level": null,
+  "contract": {
+    "category_printed": "operaio"
+  },
+  "lines": [
+    {
+      "desc": "Retribuzione mensile (65,94x 26gg.)",
+      "qty_printed": "26 gg",
+      "rate": "65.94115",
+      "earning": "1714.4700"
+    },
+    {
+      "desc": "Lavoro straordinario 30% (9,91023+30%)x4h",
+      "qty_printed": "4 ore",
+      "rate": "9.91023",
+      "earning": "51.5332"
+    },
+    {
+      "desc": "Lavoro notturno 35 % (9,91023 x 35%)x32h",
+      "qty_printed": "32 ore",
+      "rate": "9.91023",
+      "earning": "110.99458"
+    },
+    {
+      "desc": "Lavoro str.Notturno 50% (9,91+50) x 4h",
+      "qty_printed": "4 ore",
+      "rate": "9.91023",
+      "earning": "59.46138"
+    },
+    {
+      "desc": "Giorni assenza: ferie, 104,permesso non retribuito, sciopero (65,94115 x 5 gg)",
+      "qty_printed": "5 gg",
+      "rate": "65.94115",
+      "deduction": "329.70575"
+    },
+    {
+      "desc": "Ferie godute (65,94115x 1giorno)",
+      "qty_printed": "1 gg",
+      "rate": "65.94115",
+      "earning": "65.94115"
+    },
+    {
+      "desc": "Legge 104 (65,94115/12) + 65,94",
+      "qty_printed": "1 gg",
+      "rate": "71.4350",
+      "earning": "71.43625"
+    },
+    {
+      "desc": "Contributo lavoratore fondo pensione (1714,47 x 1% )",
+      "qty_printed": "1%",
+      "rate": "17.1400",
+      "deduction": "17.1400"
+    },
+    {
+      "desc": "Permesso non retribuito ( 65,94115x2)",
+      "qty_printed": "2 gg",
+      "rate": "65.94115"
+    },
+    {
+      "desc": "Sciopero ( 65,94115x1)",
+      "qty_printed": "1gg",
+      "rate": "65.94115"
+    },
+    {
+      "desc": "Giorni festivi non domenicali (1°gennaio,6 gennaio)65,94115x2",
+      "qty_printed": "2gg",
+      "rate": "65.94115"
+    }
+  ],
+  "inps": {
+    "base": "1672.691"
+  },
+  "irpef_month": {
+    "taxable": "1726.99085",
+    "net": null
+  },
+  "totals": {
+    "earnings": "2073.8366",
+    "deductions": "346.851"
+  },
+  "net": "1490.405",
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row.",
+    "Printed totals do not reconcile: earnings - deductions - net = 236.5806."
+  ],
+  "totals_reconcile": false
+}

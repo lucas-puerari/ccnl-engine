@@ -1,0 +1,236 @@
+{
+  "id": "p35",
+  "period": "2014-12",
+  "period_printed": "Dicembre 2014",
+  "kind": "regular",
+  "ccnl_hint": null,
+  "level": "2",
+  "contract": {
+    "category_printed": "Impie",
+    "hired": "2006-12"
+  },
+  "lines": [
+    {
+      "desc": "Anticipo retribuzione",
+      "code": "Z00010",
+      "qty_printed": "173,00000 ORE",
+      "rate": "10.17439",
+      "earning": "1760.17"
+    },
+    {
+      "desc": "Recupero Anticipo MP",
+      "code": "Z00015",
+      "deduction": "1760.17"
+    },
+    {
+      "desc": "Recupero anticipo fest.MP",
+      "code": "Z00016",
+      "deduction": "33.54"
+    },
+    {
+      "desc": "Retribuzione Ordinaria MP",
+      "code": "Z00020",
+      "qty_printed": "173,00000 ORE",
+      "rate": "10.17439",
+      "earning": "1760.17"
+    },
+    {
+      "desc": "Festività non godute Mp",
+      "code": "Z01139",
+      "qty_printed": "1,00000 GG",
+      "rate": "33.92250",
+      "earning": "33.92"
+    },
+    {
+      "desc": "Straordinario 45% MP",
+      "code": "008545",
+      "qty_printed": "5,00000 ORE",
+      "rate": "14.72600",
+      "earning": "73.63"
+    },
+    {
+      "desc": "13MA Mensilità",
+      "code": "008800",
+      "qty_printed": "173,00000 ORE",
+      "rate": "10.17439",
+      "earning": "1760.17"
+    },
+    {
+      "desc": "Retribuzione teorica",
+      "code": "ZP0086",
+      "qty": "173.00000",
+      "earning": "(1760.17)"
+    },
+    {
+      "desc": "Festivita' godute",
+      "code": "ZP0100",
+      "qty_printed": "48,00000 ORE"
+    },
+    {
+      "desc": "Assegno nucleo familiare",
+      "code": "ZP0160",
+      "qty": "26.00000",
+      "earning": "272.41"
+    },
+    {
+      "desc": "Tratt.Fondo Pens.Maturata",
+      "code": "ZP8024",
+      "deduction": "(35.91)"
+    },
+    {
+      "desc": "Arrotond. mese pr.",
+      "code": "ZP9960",
+      "deduction": "0.60"
+    },
+    {
+      "desc": "Trattenuta sindacale",
+      "code": "ZPS000",
+      "deduction": "10.44"
+    },
+    {
+      "desc": "Contributo IVS",
+      "code": "007000",
+      "qty_printed": "9,19000 %",
+      "rate": "7182.00",
+      "deduction": "660.02"
+    },
+    {
+      "desc": "Contributo I.V.S. agg.",
+      "code": "007010",
+      "qty_printed": "CNG",
+      "rate": "-7004.00",
+      "deduction": "-70.04"
+    },
+    {
+      "desc": "Imponibile IRPEF",
+      "code": "F02000",
+      "rate": "1405.94"
+    },
+    {
+      "desc": "Reddito rif. detrazioni",
+      "code": "F02003",
+      "rate": "20348.88"
+    },
+    {
+      "desc": "IRPEF lorda",
+      "code": "F02010",
+      "rate": "329.60"
+    },
+    {
+      "desc": "Detrazioni lav.dip.",
+      "code": "F02500",
+      "rate": "98.43"
+    },
+    {
+      "desc": "Detraz. Coniuge",
+      "code": "F02520",
+      "rate": "57.50"
+    },
+    {
+      "desc": "Detraz. Fam.a carico",
+      "code": "F02530",
+      "qty_printed": "Numero 1",
+      "rate": "46.60"
+    },
+    {
+      "desc": "Detraz. Figli < 3 anni",
+      "code": "F02560",
+      "qty_printed": "Numero 1",
+      "rate": "61.13"
+    },
+    {
+      "desc": "Detraz. Figli",
+      "code": "F02590",
+      "qty_printed": "Numero 1",
+      "rate": "54.33"
+    },
+    {
+      "desc": "Ritenute IRPEF",
+      "code": "F03020",
+      "deduction": "11.61"
+    },
+    {
+      "desc": "Imponibile Tass.aut.",
+      "code": "F06000",
+      "rate": "1598.43"
+    },
+    {
+      "desc": "IRPEF lorda Tass.aut.",
+      "code": "F06010",
+      "rate": "381.58"
+    },
+    {
+      "desc": "Ritenute IRPEF Tass.aut.",
+      "code": "F06020",
+      "deduction": "381.58"
+    },
+    {
+      "desc": "Redd.rif.Detr/Ded. Cong.",
+      "code": "F08993",
+      "rate": "20348.88"
+    },
+    {
+      "desc": "Detr. Lav. dipendente Cong.",
+      "code": "F09000",
+      "rate": "1158.98"
+    },
+    {
+      "desc": "Detr. coniuge Cong.",
+      "code": "F09010",
+      "rate": "690.00"
+    },
+    {
+      "desc": "Detr. Altri fam. Cong.",
+      "code": "F09015",
+      "rate": "559.20"
+    },
+    {
+      "desc": "Detr. Figli < 3 anni Cong.",
+      "code": "F09030",
+      "rate": "733.50"
+    },
+    {
+      "desc": "Detr. Figli Cong.",
+      "code": "F09034",
+      "rate": "652.00"
+    },
+    {
+      "desc": "IRPEF netta Cong.",
+      "code": "F09100",
+      "deduction": "-83.85"
+    },
+    {
+      "desc": "Retribuzione utile T.F.R.",
+      "rate": "5314.43"
+    },
+    {
+      "desc": "Quota T.F.R. a Fondi",
+      "rate": "143.10"
+    },
+    {
+      "desc": "Quota T.F.R.",
+      "rate": "214.66"
+    },
+    {
+      "desc": "Imp. INAIL",
+      "qty_printed": "Voce Tariffa 6557",
+      "rate": "7182.00"
+    }
+  ],
+  "inps": {
+    "base": "7182.00"
+  },
+  "irpef_month": {
+    "taxable": "1405.94",
+    "net": "11.61"
+  },
+  "totals": {
+    "earnings": "9771.43",
+    "deductions": "4276.42"
+  },
+  "net": "5496.00",
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

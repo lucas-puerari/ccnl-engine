@@ -1,0 +1,218 @@
+{
+  "id": "p18",
+  "period": "2026-01",
+  "payment_date": null,
+  "kind": "final",
+  "ccnl_hint": "Turismo / Pubblici esercizi likely (Sunday work 10%, part-time supplementary 30%, ente bilaterale and health fund), apprendista level 5; not printed",
+  "level": "5",
+  "contract": {
+    "type": "apprenticeship",
+    "category": "apprendista",
+    "hired": "2025-12",
+    "terminated": "2026-01",
+    "next_seniority_step": "2030-01",
+    "part_time_pct": "45.00",
+    "minimale_hours": "81.00",
+    "worked_days": "16",
+    "contribution_days": "24",
+    "deduction_days": "29",
+    "apprentice_rate_note": "apprendista con obbligo di versamento dell'aliquota del 10% (+1,61% NASpI)"
+  },
+  "pay_elements": {
+    "minimo_contrattuale": "817.19",
+    "contingenza": "417.90",
+    "terzo_elemento": "2.90",
+    "total": "1237.99"
+  },
+  "lines": [
+    {
+      "desc": "compenso ordinario",
+      "qty_days": "24.00",
+      "rate": "21.42675",
+      "earning": "514.24"
+    },
+    {
+      "desc": "lavoro domenicale 10%",
+      "qty_hours": "23.50",
+      "rate": "0.71976",
+      "earning": "16.91"
+    },
+    {
+      "desc": "prestazioni supplementari PT 30%",
+      "qty_hours": "13.00",
+      "rate": "9.35691",
+      "earning": "121.64"
+    },
+    {
+      "desc": "ore contribuite",
+      "qty_hours": "81.00"
+    },
+    {
+      "desc": "addizionale regionale 2026",
+      "deduction": "9.25"
+    },
+    {
+      "desc": "addizionale comunale 2026",
+      "deduction": "2.63"
+    },
+    {
+      "desc": "contributo assistenza sanitaria c/ditta",
+      "figurative": "12.00"
+    },
+    {
+      "desc": "ferie non godute",
+      "qty_hours": "6.50",
+      "rate": "7.19762",
+      "earning": "46.78"
+    },
+    {
+      "desc": "ROL non goduto",
+      "qty_hours": "0.30",
+      "rate": "7.19762",
+      "earning": "2.16"
+    },
+    {
+      "desc": "permessi retribuiti non goduti",
+      "qty_hours": "1.20",
+      "rate": "7.19762",
+      "earning": "8.64"
+    },
+    {
+      "desc": "gratifica natalizia",
+      "qty": "1.00",
+      "earning": "46.42"
+    },
+    {
+      "desc": "quattordicesima mensilita",
+      "qty": "1.00",
+      "earning": "46.42"
+    },
+    {
+      "desc": "trattamento fine rapporto",
+      "earning": "49.40",
+      "taxation": "A (altre tassazioni)"
+    },
+    {
+      "desc": "detrazione forfettaria TFR",
+      "figurative": "11.36"
+    },
+    {
+      "desc": "trattenuta ente bilaterale",
+      "deduction": "1.11"
+    },
+    {
+      "desc": "trattenuta ente bilaterale su 13ma",
+      "deduction": "0.09"
+    },
+    {
+      "desc": "trattenuta ente bilaterale su 14ma",
+      "deduction": "0.09"
+    },
+    {
+      "desc": "contributo fondo integrazione salariale",
+      "deduction": "2.14"
+    },
+    {
+      "desc": "reddito complessivo 2026",
+      "figurative": "751.76"
+    },
+    {
+      "desc": "trattamento integrativo DL 3/2020",
+      "earning": "95.34"
+    },
+    {
+      "desc": "somma integrativa L. 207/2024",
+      "qty": "5.30",
+      "earning": "39.84"
+    },
+    {
+      "desc": "voce tariffa INAIL 3-0210 incidenza 100%"
+    }
+  ],
+  "inps": {
+    "base": "803.00",
+    "employee": "46.90",
+    "minor_base": "803.00",
+    "minor_contributions": "2.41",
+    "apprentice_diff": "1.79942",
+    "total": "49.31"
+  },
+  "irpef_month": {
+    "taxable": "751.76",
+    "gross": "172.90",
+    "deductions": "155.33",
+    "other_deductions": "155.33",
+    "net": "17.57",
+    "deduction_days": "29"
+  },
+  "irpef_conguaglio": {
+    "trattamento_integrativo": {
+      "reddito_definitivo_2026": "751.76",
+      "credito_spettante": "95.34",
+      "credito_erogato": "95.34"
+    }
+  },
+  "surtax": [
+    {
+      "kind": "regional",
+      "year": 2026,
+      "installment": "9.25"
+    },
+    {
+      "kind": "municipal",
+      "year": 2026,
+      "installment": "2.63"
+    }
+  ],
+  "year_totals": {
+    "inps_base": "803.00",
+    "inps_contributions": "51.45",
+    "irpef_taxable": "751.76",
+    "irpef_gross": "172.90",
+    "deductions": "155.33",
+    "irpef_net": "17.57",
+    "deduction_days": "29",
+    "contribution_days": "24"
+  },
+  "inail": {
+    "base": null,
+    "tariff": "3-0210"
+  },
+  "tfr": {
+    "base": "666.85",
+    "paid_out": "49.40",
+    "flat_deduction": "11.36"
+  },
+  "leave": {
+    "ferie_hours": {
+      "accrued": "6.50",
+      "taken": "6.50"
+    },
+    "permessi_hours": {
+      "accrued": "1.20",
+      "taken": "1.20"
+    },
+    "rol_hours": {
+      "accrued": "0.30",
+      "taken": "0.30"
+    }
+  },
+  "rounding": {
+    "previous": "0.03",
+    "current": null
+  },
+  "totals": {
+    "earnings": "987.79",
+    "deductions": "82.22"
+  },
+  "net": "905.57",
+  "legibility": "full",
+  "notes": [
+    "Final payslip: termination date 2026-01-29 printed; untaken leave and TFR paid out.",
+    "Check: earnings 514.24 + 16.91 + 121.64 + 46.78 + 2.16 + 8.64 + 46.42 + 46.42 + 49.40 + 95.34 + 39.84 = 987.79 (matches); deductions 9.25 + 2.63 + 1.11 + 0.09 + 0.09 + 2.14 + 49.31 + 17.57 = 82.19, plus previous rounding 0.03 = 82.22 (matches); 987.79 - 82.22 = 905.57 = net. Exact.",
+    "IRPEF check: 172.90 - 155.33 = 17.57. No IRPEF line for TFR separate taxation is shown.",
+    "Progressive contributions 51.45 = 49.31 + FIS 2.14.",
+    "INPS employee rate 46.90 / 803.00 = 5.84% (apprentice); the 'leave' rows are liquidated (non goduti) amounts.",
+    "Comune code and mansione omitted per anonymization. Seniority field (anzianita 1 month, scatti) partially legible and not recorded."
+  ]
+}

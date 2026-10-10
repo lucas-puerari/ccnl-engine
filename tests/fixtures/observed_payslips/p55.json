@@ -1,0 +1,67 @@
+{
+  "id": "p55",
+  "period": null,
+  "period_printed": "GENNAIO",
+  "kind": "regular",
+  "ccnl_hint": null,
+  "level": "CS",
+  "contract": {
+    "category_printed": "COLF"
+  },
+  "lines": [
+    {
+      "desc": "RETRIBUZIONE DEL MESE",
+      "code": "110",
+      "qty": "176.00",
+      "rate": "8.30000",
+      "earning": "1460.80"
+    },
+    {
+      "desc": "TOTALE COMPETENZE LORDE",
+      "rate": "1460.80"
+    },
+    {
+      "desc": "QUOTA TFR MATURATA",
+      "rate": "108.21"
+    },
+    {
+      "desc": "RETRIBUZIONE ORARIA EFFETTIVA",
+      "code": "566",
+      "rate": "8.99"
+    },
+    {
+      "desc": "RETRIBUZIONE ORARIA CONVENZ.LE",
+      "code": "567",
+      "rate": "6.20"
+    },
+    {
+      "desc": "CONTRIBUTO ORARIO",
+      "code": "568",
+      "rate": "0.33"
+    },
+    {
+      "desc": "CONTRIBUTI ALTRI ENTI",
+      "deduction": "58.08"
+    },
+    {
+      "desc": "TOTALE CONTRIBUTI ESENTI IRPEF",
+      "rate": "58.08"
+    }
+  ],
+  "inps": {
+    "base": null
+  },
+  "irpef_month": {
+    "taxable": null,
+    "net": null
+  },
+  "totals": {
+    "earnings": "1460.80",
+    "deductions": "58.08"
+  },
+  "net": "1403.00",
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

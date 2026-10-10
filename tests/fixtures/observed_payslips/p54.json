@@ -1,0 +1,149 @@
+{
+  "id": "p54",
+  "period": null,
+  "period_printed": null,
+  "kind": "regular",
+  "ccnl_hint": null,
+  "level": null,
+  "contract": {},
+  "lines": [
+    {
+      "desc": "GIORNATE RETRIBUITE",
+      "code": "1",
+      "qty": "30.00"
+    },
+    {
+      "desc": "ONORARIO PROFESSIONALE",
+      "code": "3008",
+      "qty": "1192",
+      "rate": "3.3375",
+      "earning": "3978.30"
+    },
+    {
+      "desc": "ASSEGNO INDIVIDUALE",
+      "code": "3009",
+      "earning": "697.33"
+    },
+    {
+      "desc": "QUOTA FISSA PONDERAZIONE",
+      "code": "3010",
+      "qty": "1192",
+      "rate": "0.2566",
+      "earning": "305.95"
+    },
+    {
+      "desc": "RECUPERO COSTI CONT. ASS.LE",
+      "code": "3030",
+      "earning": "-32.23"
+    },
+    {
+      "desc": "QUOTA ULTRA 75ENNI",
+      "code": "3104",
+      "qty": "94.00",
+      "rate": "2.5908",
+      "earning": "243.54"
+    },
+    {
+      "desc": "QUOTA REGIONALE 100%",
+      "code": "3108",
+      "qty": "1192",
+      "rate": "0.2567",
+      "earning": "305.99"
+    },
+    {
+      "desc": "MEDICINA ASSOCIATA DI GRUPPO",
+      "code": "3110",
+      "qty": "1192",
+      "rate": "0.5833",
+      "earning": "695.33"
+    },
+    {
+      "desc": "COLLABORAZIONE INFORMATICA",
+      "code": "3116",
+      "qty": "1.00",
+      "rate": "77.4685",
+      "earning": "77.47"
+    },
+    {
+      "desc": "QUOTA ASS.<14 ANNI",
+      "code": "3121",
+      "qty": "19.00",
+      "rate": "1.5791",
+      "earning": "30.00"
+    },
+    {
+      "desc": "INDENNITA' FORME AGG. ASSIST.1",
+      "code": "3134",
+      "qty": "1192",
+      "rate": "0.2150",
+      "earning": "256.28"
+    },
+    {
+      "desc": "INC.AIR APP.ART.8 ACN 8LUG2011",
+      "code": "3211",
+      "qty": "1192",
+      "rate": "0.0675",
+      "earning": "80.46"
+    },
+    {
+      "desc": "QUOTE ARRETRATE (POS. o NEG.)",
+      "code": "3804",
+      "deduction": "18.00"
+    },
+    {
+      "desc": "BOLLO PER  LIBERA PROFESSIONE",
+      "code": "4050",
+      "deduction": "2.00"
+    },
+    {
+      "desc": "RIT.ENPAM-MED. BASE",
+      "code": "6900",
+      "qty": "6.12",
+      "rate": "6638.4200",
+      "deduction": "406.60"
+    },
+    {
+      "desc": "RIT.ENPAM-MED.BASE+5",
+      "code": "6900",
+      "qty": "5.00",
+      "rate": "6638.4200",
+      "deduction": "331.92"
+    },
+    {
+      "desc": "IMPOSTA FISCALE ORDINAR. LORDA",
+      "code": "8001",
+      "rate": "6638.4200",
+      "deduction": "1327.68"
+    },
+    {
+      "desc": "IMPOSTA NETTA",
+      "code": "8120",
+      "qty": "-1327.68"
+    },
+    {
+      "desc": "IMPONIBILE FISCALE",
+      "code": "8200",
+      "qty": "-20.00",
+      "rate": "6638.4200",
+      "deduction": "1327.68"
+    },
+    {
+      "desc": "IMPOSTA PAGATA",
+      "code": "8210",
+      "deduction": "1327.68"
+    }
+  ],
+  "inps": {
+    "base": "6638.4200"
+  },
+  "irpef_month": {
+    "taxable": "6638.4200",
+    "net": "-1327.68"
+  },
+  "totals": {},
+  "net": null,
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

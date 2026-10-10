@@ -1,0 +1,148 @@
+{
+  "id": "p56",
+  "period": "2024-05",
+  "period_printed": "MAGGIO 2024",
+  "kind": "regular",
+  "ccnl_hint": null,
+  "level": "1",
+  "contract": {
+    "category_printed": "ANALISTA",
+    "hired": "2014-07"
+  },
+  "lines": [
+    {
+      "desc": "TOTALE ELEMENTI SU PART-TIME",
+      "code": "032",
+      "qty_printed": "90,00%",
+      "rate": "3732.33"
+    },
+    {
+      "desc": "RETRIBUZIONE DEL MESE",
+      "code": "110",
+      "qty": "160.00",
+      "earning": "3641.30"
+    },
+    {
+      "desc": "PERMESSI USUFRUITI NEL MESE",
+      "code": "160",
+      "qty": "4.00",
+      "earning": "91.03"
+    },
+    {
+      "desc": "BUONI PASTO - VALORE ESENTE",
+      "code": "06H",
+      "qty": "22.00",
+      "rate": "154.00"
+    },
+    {
+      "desc": "ASSISTENZA SANITARIA - DITTA",
+      "code": "57K",
+      "rate": "21.00"
+    },
+    {
+      "desc": "ASSISTENZA SANITARIA - C. DIP.",
+      "code": "57G",
+      "deduction": "2.00"
+    },
+    {
+      "desc": "ENTE BILATERALE - C. DIP.",
+      "code": "78B",
+      "deduction": "1.08"
+    },
+    {
+      "desc": "ENTI BILATERALI SOGGETTI IRPEF",
+      "code": "59N",
+      "rate": "3.24"
+    },
+    {
+      "desc": "ENTE BILATERALE - DITTA",
+      "code": "D50",
+      "rate": "3.24"
+    },
+    {
+      "desc": "TOTALE COMPETENZE LORDE",
+      "rate": "3732.33"
+    },
+    {
+      "desc": "QUOTA TFR MATURATA",
+      "rate": "257.81"
+    },
+    {
+      "desc": "IMPONIBILE E CONTRIBUTO INPS",
+      "qty_printed": "9,19%",
+      "rate": "3732.00",
+      "deduction": "342.97"
+    },
+    {
+      "desc": "RITENUTA FIS / FONDI SOL.",
+      "code": "51D",
+      "deduction": "9.95"
+    },
+    {
+      "desc": "IMPONIBILE INAIL",
+      "rate": "2058.54"
+    },
+    {
+      "desc": "TOTALE CONTRIBUTI ESENTI IRPEF",
+      "rate": "352.92"
+    },
+    {
+      "desc": "IMPONIBILE IRPEF",
+      "rate": "3380.65"
+    },
+    {
+      "desc": "RITENUTA IRPEF LORDA",
+      "rate": "903.23"
+    },
+    {
+      "desc": "TOTALE DETRAZIONI",
+      "rate": "19.79"
+    },
+    {
+      "desc": "RITENUTA IRPEF NETTA",
+      "deduction": "883.44"
+    },
+    {
+      "desc": "RATA ACCONTO ADDIZ. COMUNALE",
+      "deduction": "15.54"
+    },
+    {
+      "desc": "RATA ADD. REGIONALE ANNO PREC.",
+      "deduction": "135.03"
+    },
+    {
+      "desc": "RATA ADD. COMUNALE ANNO PREC.",
+      "deduction": "30.13"
+    },
+    {
+      "desc": "TOT. IMP. INPS ANNUALE DIPEND."
+    },
+    {
+      "desc": "TOTALE IMPONIB. IRPEF ANNUALE",
+      "code": "98P"
+    },
+    {
+      "desc": "TOTALE RITENUTA IRPEF ANNUALE"
+    },
+    {
+      "desc": "ADD. COM. ANNO CORR TRATTENUTA",
+      "rate": "46.62"
+    }
+  ],
+  "inps": {
+    "base": "3732.00"
+  },
+  "irpef_month": {
+    "taxable": "3380.65",
+    "net": "883.44"
+  },
+  "totals": {
+    "earnings": "3732.33",
+    "deductions": "1420.14"
+  },
+  "net": "2312.00",
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

@@ -1,0 +1,199 @@
+{
+  "id": "p13",
+  "period": "2025-01",
+  "payment_date": "2025-01-31",
+  "kind": "regular",
+  "ccnl_hint": "Autoferrotranvieri (contract code 009, parametro 158, operatore di esercizio)",
+  "level": "158",
+  "contract": {
+    "type": "permanent",
+    "category": "operaio",
+    "hired": "2024",
+    "hired_conventional": "2024",
+    "next_seniority_step": "2026",
+    "worked_hours": "176.43",
+    "paid_days": "30.00",
+    "deduction_days": "31",
+    "variables_of": "2024-12"
+  },
+  "region": "Trentino-Alto Adige",
+  "region_inferred_from": "bilingualism allowance and German labels",
+  "pay_elements": {
+    "minimo_tabellare": "1081.43000",
+    "contingenza": "536.60000",
+    "premio_produzione": "237.57000",
+    "an_25_7_97": "46.63000",
+    "indennita_mensa": "19.03000",
+    "ai_8_10_93": "4.13000",
+    "superminimo_assorbibile": "55.15000",
+    "indennita_bilinguismo": "186.88000",
+    "total": "2167.42000"
+  },
+  "lines": [
+    {
+      "desc": "lavoro ordinario",
+      "qty_days": "30.0000",
+      "rate": "66.01800",
+      "earning": "1980.54"
+    },
+    {
+      "desc": "straordinario feriale",
+      "qty_hours": "7.4333",
+      "rate": "12.72810",
+      "earning": "94.61"
+    },
+    {
+      "desc": "lavoro festivo",
+      "qty_hours": "19.1666",
+      "rate": "13.88349",
+      "earning": "266.10"
+    },
+    {
+      "desc": "straordinario festivo",
+      "qty_hours": "0.7166",
+      "rate": "15.04086",
+      "earning": "10.78"
+    },
+    {
+      "desc": "maggiorazione notturna",
+      "qty_hours": "2.2333",
+      "rate": "2.31474",
+      "earning": "5.17"
+    },
+    {
+      "desc": "indennita bilinguismo",
+      "qty_days": "30.0000",
+      "rate": "6.22933",
+      "earning": "186.88"
+    },
+    {
+      "desc": "accordo aziendale 25.6.2001 p. 2",
+      "qty_days": "26.0000",
+      "rate": "2.21000",
+      "earning": "57.46"
+    },
+    {
+      "desc": "indennita di presenza",
+      "qty_days": "26.0000",
+      "rate": "2.07000",
+      "earning": "53.82"
+    },
+    {
+      "desc": "turni avvicendati",
+      "qty_days": "26.0000",
+      "rate": "0.52000",
+      "earning": "13.52"
+    },
+    {
+      "desc": "indennita domenicale",
+      "qty": "2.0000",
+      "rate": "5.81000",
+      "earning": "11.62"
+    },
+    {
+      "desc": "vendita biglietti",
+      "qty": "1.0000",
+      "rate": "2.79000",
+      "earning": "2.79"
+    },
+    {
+      "desc": "diaria urbana",
+      "qty": "17.0000",
+      "rate": "1.00000",
+      "earning": "17.00"
+    },
+    {
+      "desc": "diaria extraurbana",
+      "qty": "1.0000",
+      "rate": "2.00000",
+      "earning": "2.00"
+    },
+    {
+      "desc": "fondo incidenti",
+      "deduction": "2.00"
+    },
+    {
+      "desc": "ex festivita liquidate (giorni)",
+      "qty_days": "2.1600",
+      "rate": "66.01800",
+      "earning": "142.60"
+    },
+    {
+      "desc": "contributo FAP / fondo autoferrotranvieri",
+      "base": "2826.00",
+      "rate_pct": "9.1900",
+      "deduction": "259.71"
+    },
+    {
+      "desc": "fondo solidarieta trasporto pubblico",
+      "base": "2826.00",
+      "rate_pct": "0.1667",
+      "deduction": "4.71"
+    },
+    {
+      "desc": "quota TFR fondo tesoreria INPS",
+      "base": "163.26",
+      "rate_pct": "100.0000",
+      "figurative": "163.26"
+    },
+    {
+      "desc": "IRPEF cod. 1001",
+      "deduction": "405.19"
+    },
+    {
+      "desc": "ulteriore detrazione legge di bilancio 2025",
+      "figurative": "84.93"
+    }
+  ],
+  "inps": {
+    "base": "2826.00",
+    "ivs_rate": "0.0919",
+    "ivs": "259.71",
+    "solidarity_fund_rate": "0.001667",
+    "solidarity_fund": "4.71",
+    "total_social": "264.42"
+  },
+  "irpef_month": {
+    "taxable": "2561.47",
+    "gross": "656.51",
+    "deductions": "251.32",
+    "work_deduction": "166.39",
+    "ulteriore_detrazione": "84.93",
+    "net": "405.19",
+    "deduction_days": "31",
+    "top_rate_pct": "35.0000"
+  },
+  "year_totals": {
+    "irpef_taxable": "2561.47",
+    "irpef_gross": "656.51",
+    "deductions": "251.32",
+    "irpef_net": "405.19"
+  },
+  "tfr": {
+    "to_inps_treasury": "163.26"
+  },
+  "leave": {
+    "ferie_previous_year": "20.83",
+    "ferie_accrued": "2.08",
+    "ferie_balance": "22.91",
+    "ex_festivita_accrued": "0.41",
+    "ex_festivita_balance": "0.41"
+  },
+  "rounding": {
+    "previous": null,
+    "current": null
+  },
+  "totals": {
+    "earnings": "2844.89",
+    "deductions": "671.61"
+  },
+  "net": "2173.28",
+  "legibility": "full",
+  "notes": [
+    "Check: 2844.89 - 671.61 = 2173.28, matches the net.",
+    "Earnings 2844.89 include diaria extraurbana 2.00; the 'fondo incidenti 2.00-' row is counted in deductions: 259.71 + 4.71 + 405.19 + 2.00 = 671.61.",
+    "IRPEF net 405.19 = lorda 656.51 - total detrazioni 251.32 (166.39 + 84.93).",
+    "Variable items refer to the previous month (December 2024), as stated on the payslip.",
+    "Hire date and next seniority step show only the year in the visible fields."
+  ]
+}

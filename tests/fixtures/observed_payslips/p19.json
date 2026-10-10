@@ -1,0 +1,83 @@
+{
+  "id": "p19",
+  "period": "2026-??",
+  "period_inferred_from": "year only: imposta sostitutiva 5% on contractual increases (L. 199/2025) and ulteriore detrazione L. 207/2024 imply 2025 or later, most likely 2026",
+  "payment_date": null,
+  "kind": "regular",
+  "ccnl_hint": "Artigianato likely (E.B.A. ente bilaterale artigianato lines); INPS 9.49% = 9.19% + 0.30%",
+  "level": null,
+  "contract": null,
+  "pay_elements": null,
+  "lines": [
+    {
+      "desc": "retribuzione del mese",
+      "qty_hours": "173.00"
+    },
+    {
+      "desc": "contributo DL reddito fiscale",
+      "rate_pct": "0.00",
+      "qty": "0.00"
+    },
+    {
+      "desc": "ore lavorate ordinarie",
+      "rate_pct": "0.00",
+      "qty_hours": "172.00"
+    },
+    {
+      "desc": "festivita soppresse",
+      "rate_pct": "0.00",
+      "qty_hours": "4.00"
+    },
+    {
+      "desc": "INPS",
+      "rate_pct": "9.490",
+      "progressive_base": "17015.00"
+    },
+    {
+      "desc": "INAIL",
+      "rate_pct": "6.108",
+      "progressive_base": "17015.00"
+    },
+    {
+      "desc": "contributo assistenza sanitaria integrativa ctr. DL",
+      "rate_pct": "0.000"
+    },
+    {
+      "desc": "contributo assistenza sanitaria ctr. DL",
+      "rate_pct": "0.000"
+    },
+    {
+      "desc": "E.B.A. 1o livello esente 10% ctr. DL",
+      "rate_pct": "0.000"
+    },
+    {
+      "desc": "E.B.A. 1o livello soggetto 10% ctr. DL",
+      "rate_pct": "0.000"
+    },
+    {
+      "desc": "detrazione fiscale ulteriore L. 207/2024",
+      "rate_pct": "0.00",
+      "qty": "2.00"
+    },
+    {
+      "desc": "imposta sostitutiva aumenti contrattuali",
+      "rate_pct": "5.000",
+      "qty": "771.06"
+    }
+  ],
+  "inps": {
+    "rate_pct": "9.490"
+  },
+  "inail": {
+    "rate_pct": "6.108"
+  },
+  "totals": null,
+  "net": null,
+  "legibility": "partial",
+  "notes": [
+    "Cropped fragment: only the code, description, rate and 'unita o progressivo previdenziale' columns of the body are visible; the amount columns (valore unitario onwards), header and totals are cut off.",
+    "Net check not possible: no earnings, deductions or net visible.",
+    "17015.00 sits in the 'unita o pr. previd.' column, so it is probably a year-to-date base rather than the month base; uncertain.",
+    "INAIL 6.108 is printed in the rate column; meaning (rate per mille or other) unclear."
+  ]
+}

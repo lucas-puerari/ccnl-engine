@@ -1,0 +1,99 @@
+{
+  "id": "p21",
+  "period": "2025-03",
+  "payment_date": null,
+  "kind": "regular",
+  "ccnl_hint": "Alimentari Artigianato (apprendistato)",
+  "level": "5",
+  "contract": {
+    "type": "apprenticeship",
+    "hired": "2025-03",
+    "next_seniority_step": "2027-03",
+    "hours_divisor": "173.00",
+    "days_divisor": "26",
+    "worked_days": "21",
+    "worked_hours": "168.00",
+    "weeks": "4",
+    "deduction_days": "31",
+    "dm_days": "26",
+    "payslips_count": "1",
+    "daily_rate": "42.26064"
+  },
+  "pay_elements": {
+    "retribuzione_tabellare": "1098.77600",
+    "total": "1098.77600"
+  },
+  "lines": [
+    {
+      "desc": "retribuzione ordinaria",
+      "qty_days": "26.00",
+      "rate": "42.26064",
+      "earning": "1098.78"
+    },
+    {
+      "desc": "integrazione retribuzione ordinaria",
+      "earning": "633.76"
+    },
+    {
+      "desc": "contributo azienda SAN.ARTI (informativo)",
+      "figurative": "10.42"
+    }
+  ],
+  "inps": {
+    "base": "1733.00",
+    "fpld_apprentice": "101.21",
+    "ebna_fsba": "2.60",
+    "ebna_fsba_15dc": "1.73",
+    "total_social": "105.54"
+  },
+  "irpef_month": {
+    "taxable": "1627.00",
+    "taxable_net": "1627.00",
+    "gross": "374.21",
+    "other_deductions": "246.72",
+    "deductions": "246.72",
+    "net": "127.49"
+  },
+  "year_totals": {
+    "irpef_taxable": "1627.00",
+    "irpef_taxable_net": "1627.00",
+    "irpef_gross": "374.21",
+    "deductions": "246.72",
+    "irpef_paid": "127.49",
+    "inps_base": "1733.00",
+    "assistenziale_base": "1733.00",
+    "inps_contributions": "105.54"
+  },
+  "tfr": {
+    "base": "1098.78",
+    "month_quota": "81.39"
+  },
+  "leave": {
+    "ferie_accrued_hours": "14.42",
+    "ferie_taken_hours": "0.00",
+    "ferie_balance_hours": "14.42",
+    "ex_festivita_accrued_hours": "2.67",
+    "ex_festivita_balance_hours": "2.67",
+    "rol_accrued_hours": "1.33",
+    "rol_balance_hours": "1.33"
+  },
+  "rounding": {
+    "previous": null,
+    "current": "0.49"
+  },
+  "totals": {
+    "earnings": "1732.54",
+    "deductions": null,
+    "social": "105.54",
+    "fiscal": "127.49"
+  },
+  "net": "1500.00",
+  "legibility": "full",
+  "notes": [
+    "First payslip after hiring (hire month equals period). Calendar: 21 working days of 8 h, 168 ordinary hours.",
+    "TOT.TRATTENUTE box is blank; social and fiscal withholdings are shown separately.",
+    "Check: 1732.54 - 105.54 - 127.49 = 1499.51, + rounding 0.49 = 1500.00, matches the net.",
+    "IRPEF check: 374.21 - 246.72 = 127.49; taxable 1732.54 - 105.54 = 1627.00.",
+    "Apprentice FPLD contribution labelled 'F.P.L.D. appsti (10% az)'; the 'integrazione retrib. ordinaria' line has no base or rate printed."
+  ]
+}

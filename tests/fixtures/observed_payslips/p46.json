@@ -1,0 +1,91 @@
+{
+  "id": "p46",
+  "period": null,
+  "period_printed": null,
+  "kind": "regular",
+  "ccnl_hint": null,
+  "level": "1",
+  "contract": {
+    "category_printed": "IMPIEGA",
+    "hired": "2007-01"
+  },
+  "lines": [
+    {
+      "desc": "RETRIBUZ.MENSILE GG",
+      "code": "1",
+      "qty": "26.00",
+      "rate": "75.53697",
+      "earning": "1963.96"
+    },
+    {
+      "desc": "FERIE ORE",
+      "code": "7",
+      "qty": "8.00",
+      "rate": "11.69024",
+      "earning": "93.52"
+    },
+    {
+      "desc": "EX FEST.ROL.",
+      "code": "121",
+      "qty": "4.00",
+      "rate": "11.69024",
+      "earning": "46.76"
+    },
+    {
+      "desc": "STRAORDINARIO",
+      "code": "66",
+      "qty": "2.00",
+      "rate": "13.44378",
+      "earning": "26.89"
+    },
+    {
+      "desc": "DONAZIONE SANGUE OR",
+      "code": "54",
+      "qty": "8.00",
+      "rate": "11.69024",
+      "earning": "93.52"
+    },
+    {
+      "desc": "ORE NON LAVORATE",
+      "code": "50",
+      "qty": "20.00",
+      "rate": "11.69024",
+      "deduction": "233.80"
+    },
+    {
+      "desc": "ACCONTO",
+      "code": "46",
+      "deduction": "200.00"
+    },
+    {
+      "desc": "PREV.INTEG.CONTR.AZ",
+      "code": "TF1",
+      "rate": "1.55000",
+      "earning": "(30.44)"
+    },
+    {
+      "desc": "PREV.INTEG.CONTR.DI",
+      "code": "TF2",
+      "rate": "0.55000",
+      "deduction": "10.80"
+    }
+  ],
+  "inps": {
+    "base": "1897.00"
+  },
+  "irpef_month": {
+    "taxable": "1805.72",
+    "net": "305.47"
+  },
+  "totals": {
+    "earnings": "2224.65",
+    "deductions": "444.60"
+  },
+  "net": "1422.00",
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row.",
+    "Printed totals do not reconcile: earnings - deductions - net = 358.05."
+  ],
+  "totals_reconcile": false
+}

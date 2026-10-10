@@ -1,0 +1,78 @@
+{
+  "id": "p39",
+  "period": "2017-01",
+  "period_printed": "GENNAIO 2017",
+  "kind": "regular",
+  "ccnl_hint": "STUDI PROF. 5gg settimanali",
+  "level": "3",
+  "contract": {
+    "category_printed": "Addetta paghe",
+    "hired": "2005-01"
+  },
+  "lines": [
+    {
+      "desc": "Retribuzione ordinaria",
+      "code": "0",
+      "qty": "23.000",
+      "rate": "67.66808",
+      "earning": "1556.37"
+    },
+    {
+      "desc": "Ferie godute",
+      "code": "200",
+      "qty": "32.000"
+    },
+    {
+      "desc": "Permessi riduz. orario goduti",
+      "code": "210",
+      "qty": "4.000"
+    },
+    {
+      "desc": "Permessi ex-festivita' goduti",
+      "code": "221",
+      "qty": "4.000"
+    },
+    {
+      "desc": "Festivita'",
+      "code": "230",
+      "qty": "1.000",
+      "rate": "67.66808",
+      "earning": "67.67"
+    },
+    {
+      "desc": "Festivita' in domenica",
+      "code": "232",
+      "qty": "1.000",
+      "rate": "67.66808",
+      "earning": "67.67"
+    },
+    {
+      "desc": "Carenza malattia",
+      "code": "400",
+      "qty": "2.000",
+      "rate": "67.66808",
+      "earning": "135.34"
+    },
+    {
+      "desc": "Credito art.1 DL 66/2014",
+      "code": "978",
+      "earning": "80.00"
+    }
+  ],
+  "inps": {
+    "base": "1827.05"
+  },
+  "irpef_month": {
+    "taxable": "1659.15",
+    "net": "290.51"
+  },
+  "totals": {
+    "earnings": "1907.05",
+    "deductions": "460.41"
+  },
+  "net": "1447.00",
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

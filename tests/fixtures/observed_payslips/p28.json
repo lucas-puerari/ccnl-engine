@@ -1,0 +1,175 @@
+{
+  "id": "p28",
+  "period": "2026-??",
+  "period_hint": "possibly 2026-01: meal vouchers of 12/2025, prior-year surtax installments, print stamp partly legible as ../02/26, year progressivi close to the month values (not identical)",
+  "payment_date": null,
+  "kind": "regular",
+  "ccnl_hint": "Terziario (likely; level 2, III elemento 11.36, divisors 26/168 from 96.15385 and 14.88095 on a 2500.00 monthly base); not confirmed",
+  "level": "2",
+  "contract": {
+    "category": null,
+    "days_divisor_hint": "26",
+    "hours_divisor_hint": "168",
+    "daily_rate": "96.15385",
+    "hourly_rate": "14.88095"
+  },
+  "region": "Lazio",
+  "pay_elements": {
+    "terzo_elemento": "11.36",
+    "terzo_elemento_previous": "11.36",
+    "total": null
+  },
+  "lines": [
+    {
+      "desc": "lavoro ordinario (giorni)",
+      "qty_days": "6.00",
+      "rate": "96.15385",
+      "earning": "576.94"
+    },
+    {
+      "desc": "ferie godute (6 gg presenza)",
+      "qty_days": "-2.43",
+      "rate": "96.15385",
+      "earning": "192.31"
+    },
+    {
+      "desc": "ferie residue giorni",
+      "qty_days": "-5.43",
+      "rate": "96.15385",
+      "earning": "-522.12"
+    },
+    {
+      "desc": "ex festivita'/permessi residue (ore)",
+      "qty_hours": "34.94",
+      "rate": "14.88095",
+      "earning": "515.92"
+    },
+    {
+      "desc": "ente bilaterale",
+      "qty": "160.00",
+      "rate": "16.80000",
+      "figurative": "2233.58"
+    },
+    {
+      "desc": "ticket restaurant elettronici 12/2025",
+      "qty": "16.00",
+      "rate": "8.00000",
+      "figurative": "126.00"
+    },
+    {
+      "desc": "saldo credito welfare",
+      "earning": "10.49"
+    },
+    {
+      "desc": "rata addizionale regionale anno precedente",
+      "deduction": "290.07",
+      "residual_after": "459.92"
+    },
+    {
+      "desc": "rata addizionale comunale anno precedente",
+      "deduction": "283.67",
+      "residual_after": null
+    },
+    {
+      "desc": "TFR (automatico)",
+      "earning": "3.41"
+    },
+    {
+      "desc": "addizionale regionale manuale",
+      "figurative": "290.07"
+    },
+    {
+      "desc": "fondo c/dipendente",
+      "deduction": "0.06"
+    },
+    {
+      "desc": "fondo c/azienda",
+      "figurative": "0.16"
+    },
+    {
+      "desc": "comunicazione dipendente",
+      "figurative": "0.06"
+    }
+  ],
+  "work_data": {
+    "settimane_inps": "2",
+    "ore_inps": "56.00",
+    "gg_inps": "8.00",
+    "gg_minimale": "8",
+    "ore_inail": "24.00",
+    "gg_inail": "3"
+  },
+  "inps": {
+    "base": "774.00",
+    "contribution_1": "75.54",
+    "contribution_4": "2.00",
+    "contribution_4b": "1.12",
+    "total_social": "78.66"
+  },
+  "irpef_month": {
+    "taxable": "695.92",
+    "deductible_charges": "0.22",
+    "irpef_net": "0.70",
+    "work_deduction": "48.21"
+  },
+  "irpef_conguaglio": {
+    "label": "conguaglio fine anno / cessazione rapporto (box label garbled)",
+    "progressive_deductible_charges": "0.22",
+    "progressive_taxable": "695.92",
+    "annual_irpef": "160.06",
+    "progressive_deductions": "48.21",
+    "regional_surtax": "12.04",
+    "conguaglio": "123.89",
+    "irpef_erario": "111.85",
+    "regional_surtax_erario": "12.04"
+  },
+  "surtax": [
+    {
+      "kind": "regional",
+      "year": 2025,
+      "installment": "290.07",
+      "residual_after": "459.92"
+    },
+    {
+      "kind": "municipal",
+      "year": 2025,
+      "installment": "283.67",
+      "residual_after": null
+    }
+  ],
+  "year_totals": {
+    "inail_base": "774.00",
+    "inps_base": "774.00",
+    "inps_contributions": "78.64",
+    "deductible_charges": "0.22",
+    "irpef_taxable": "695.92",
+    "irpef_gross": "172.49",
+    "deductions": "12.04",
+    "irpef_paid": "123.99"
+  },
+  "inail": {
+    "base": "774.00"
+  },
+  "tfr": {
+    "paid_line": "3.41"
+  },
+  "rounding": {
+    "previous": "0.58"
+  },
+  "totals": {
+    "gross": "904.93",
+    "social": "78.66",
+    "body_deductions": "573.80",
+    "deductions": "776.93"
+  },
+  "net": null,
+  "legibility": "partial",
+  "notes": [
+    "The image looks digitally reconstructed or heavily upscaled: most box labels are garbled, so field meanings are partly inferred from position. Personal data redacted by the source with black boxes; mansione omitted.",
+    "Internal inconsistencies as printed: -2.43 x 96.15385 does not give 192.31 (2 x 96.15385 does); 34.94 x 14.88095 does not give 515.92 (34.67 would); ente bilaterale 160 x 16.80 does not give 2233.58; year contributions 78.64 vs month 78.66 and irpef_paid 123.99 vs conguaglio 123.89. Values copied as printed.",
+    "Ticket restaurant: 16 x 8.00 = 128.00, not the printed 126.00; 128.00 matches the ~127.98 lordo gap and the implied net, which supports the suspicion that digits were altered in the image.",
+    "Check: competenze lines sum to 776.95, not the printed Totale lordo 904.93 (gap 127.98, unexplained). Trattenute: 78.66 + 573.80 + 123.89 + 0.58 = 776.93 = printed total. Netto busta box is empty; 904.93 - 776.93 = 128.00 would be the implied net, not printed, so net is null.",
+    "Possibly a termination (conguaglio box filled, residual leave and ex festivita hours settled), but the cessation date is redacted; kind left as regular.",
+    "Region from the regional surtax line; comune name dropped."
+  ]
+}

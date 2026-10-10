@@ -1,0 +1,136 @@
+{
+  "id": "p59",
+  "period": null,
+  "period_printed": "luglio 20…",
+  "kind": "regular",
+  "ccnl_hint": null,
+  "level": null,
+  "contract": {
+    "category_printed": "Operaio qualificato"
+  },
+  "lines": [
+    {
+      "desc": "Retribuzione lorda",
+      "code": "a)"
+    },
+    {
+      "desc": "minimo tabellare",
+      "rate_printed": "1 455,15"
+    },
+    {
+      "desc": "scatti di anzianità",
+      "rate": "60.55"
+    },
+    {
+      "desc": "superminimo individuale",
+      "rate": "188.35"
+    },
+    {
+      "desc": "lavoro straordinario",
+      "rate": "171.39"
+    },
+    {
+      "desc": "Imponibile contributivo",
+      "rate_printed": "1 875,44"
+    },
+    {
+      "desc": "Ritenute previdenziali",
+      "code": "b)",
+      "rate": "177.94"
+    },
+    {
+      "desc": "Imponibile fiscale",
+      "code": "c)",
+      "rate_printed": "1 697,50"
+    },
+    {
+      "desc": "IRPEF lorda",
+      "code": "d)",
+      "rate": "408.33"
+    },
+    {
+      "desc": "Detrazioni d'imposta:",
+      "code": "e)"
+    },
+    {
+      "desc": "per reddito di lavoro dipendente",
+      "rate": "94.91"
+    },
+    {
+      "desc": "per carichi di famiglia",
+      "rate": "59.12"
+    },
+    {
+      "desc": "IRPEF netta (ritenuta fiscale erariale)",
+      "code": "f)",
+      "rate": "254.30"
+    },
+    {
+      "desc": "Rata addizionale regionale IRPEF",
+      "code": "g)",
+      "rate": "29.10"
+    },
+    {
+      "desc": "Rate addizionali comunali IRPEF (acconto e saldo)",
+      "code": "h)",
+      "rate": "7.15"
+    },
+    {
+      "desc": "Altre ritenute",
+      "code": "i)",
+      "rate": "9.90"
+    },
+    {
+      "desc": "Totale ritenute",
+      "code": "l)",
+      "rate_printed": "– 478,39"
+    },
+    {
+      "desc": "Retribuzione netta",
+      "code": "m)",
+      "rate_printed": "1 397,05"
+    },
+    {
+      "desc": "Acconti sulla retribuzione",
+      "code": "n)",
+      "rate": "0.00"
+    },
+    {
+      "desc": "Totale complessivo",
+      "code": "o)",
+      "rate_printed": "1 397,05"
+    },
+    {
+      "desc": "Assegno per il nucleo familiare",
+      "code": "p)",
+      "rate": "74.33"
+    },
+    {
+      "desc": "Recupero arrotondamento mese precedente",
+      "code": "q)",
+      "rate": "0.00"
+    },
+    {
+      "desc": "Arrotondamento mese in corso",
+      "code": "r)",
+      "rate_printed": "– 0,38"
+    },
+    {
+      "desc": "Somma netta da pagare",
+      "rate_printed": "1 471,00"
+    }
+  ],
+  "inps": {
+    "base": null
+  },
+  "irpef_month": {
+    "taxable": null,
+    "net": "254.30"
+  },
+  "totals": {},
+  "net": null,
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

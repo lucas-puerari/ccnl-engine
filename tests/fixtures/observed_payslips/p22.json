@@ -1,0 +1,132 @@
+{
+  "id": "p22",
+  "period": "2025-10",
+  "payment_date": null,
+  "kind": "regular",
+  "ccnl_hint": "unknown (paga base only, level 4 impiegato d'ordine, hourly rate = paga base / 170, 13th and 14th month accrued monthly)",
+  "level": "4",
+  "contract": {
+    "type": null,
+    "category": "impiegato d'ordine",
+    "part_time": {
+      "pct": "76.47"
+    },
+    "worked_hours": "117.00",
+    "worked_days": "21",
+    "paid_hours_days": "131",
+    "weeks": "4",
+    "deduction_days": "31",
+    "next_seniority_step": "2027-03",
+    "daily_rate": "45.70820",
+    "hourly_rate": "7.73529"
+  },
+  "pay_elements": {
+    "paga_base": "1315.00000",
+    "total": "1315.00000"
+  },
+  "lines": [
+    {
+      "desc": "ore ordinarie",
+      "qty_hours": "117.000",
+      "rate": "7.73529",
+      "earning": "905.03"
+    },
+    {
+      "desc": "rateo quattordicesima",
+      "qty_hours": "12.000",
+      "rate": "7.73529",
+      "earning": "92.82"
+    },
+    {
+      "desc": "rateo tredicesima",
+      "qty_hours": "12.000",
+      "rate": "7.73529",
+      "earning": "92.82"
+    },
+    {
+      "desc": "ferie godute (giorni)",
+      "qty_days": "2.000",
+      "rate": "45.70820",
+      "earning": "91.42"
+    },
+    {
+      "desc": "indennita L. 207/2024",
+      "earning": "47.33"
+    },
+    {
+      "desc": "reddito complessivo (informativo)",
+      "neutral": "10560.27"
+    },
+    {
+      "desc": "detrazione lavoro dipendente (dettaglio)",
+      "neutral": "166.04"
+    },
+    {
+      "desc": "addizionale regionale anno precedente (dettaglio)",
+      "neutral": "9.85"
+    }
+  ],
+  "inps": {
+    "base": "1126.34",
+    "base_arrotondata": "1126.00",
+    "employee": "103.48",
+    "total_social": "103.48"
+  },
+  "irpef_month": {
+    "taxable": "892.97",
+    "gross": "205.38",
+    "deductions": "166.04",
+    "work_deduction": "166.04",
+    "net": "39.34"
+  },
+  "surtax": [
+    {
+      "kind": "regional",
+      "year": 2024,
+      "installment": "9.85"
+    }
+  ],
+  "year_totals": {
+    "irpef_taxable": "8774.33",
+    "irpef_paid": "389.83",
+    "inps_base": "11240.00",
+    "tfr_base": "10084.38"
+  },
+  "inail": {
+    "base": "1126.34"
+  },
+  "tfr": {
+    "base": "996.45",
+    "month_quota": "68.18",
+    "fund_31_12": "675.91"
+  },
+  "leave": {
+    "unit": "days",
+    "ferie_prev_year_taken": "2.00",
+    "ferie_accrued": "19.31",
+    "ferie_taken": "16.00",
+    "ferie_balance": "3.31",
+    "ferie_total_taken": "18.00",
+    "permessi_accrued": "19.32",
+    "permessi_balance": "19.32"
+  },
+  "rounding": {
+    "previous": "0.39",
+    "current": "-0.14"
+  },
+  "totals": {
+    "earnings": "1229.42",
+    "social": "103.48",
+    "fiscal": "39.34",
+    "surtax": "9.85"
+  },
+  "net": "1077.00",
+  "legibility": "full",
+  "notes": [
+    "Check: 1229.42 - 103.48 - 39.34 - 9.85 = 1076.75, + previous rounding 0.39 = 1077.14, - current rounding 0.14 = 1077.00, matches the net.",
+    "IRPEF check: 205.38 - 166.04 = 39.34. The INPS base (1126.34) and IRPEF taxable (892.97) cannot be reconciled from the visible lines alone; no explanation is printed.",
+    "Surtax year 2024 assumed from 'Add. Reg. A.P.' on a 2025 payslip.",
+    "Calendar: two days of absence (7 h each) marked as ferie on 1-2 October; part-time vertical pattern of 4 and 7 hour days.",
+    "INAIL position number and names redacted/omitted."
+  ]
+}

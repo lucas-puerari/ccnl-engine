@@ -1,0 +1,154 @@
+{
+  "id": "p63",
+  "period": "2022-11",
+  "period_printed": "NOVEMBRE 2022",
+  "kind": "regular",
+  "ccnl_hint": null,
+  "level": "4",
+  "contract": {
+    "category_printed": "PROGETTISTA SOFTWARE JUNIOR",
+    "hired": "2020-04"
+  },
+  "lines": [
+    {
+      "desc": "RETRIBUZIONE DEL MESE",
+      "code": "110",
+      "qty": "164.00",
+      "earning": "2098.55"
+    },
+    {
+      "desc": "FERIE USUFRUITE NEL MESE",
+      "code": "140",
+      "qty": "8.00",
+      "earning": "102.37"
+    },
+    {
+      "desc": "PERMESSI USUFRUITI NEL MESE",
+      "code": "160",
+      "qty": "4.00",
+      "earning": "51.18"
+    },
+    {
+      "desc": "FESTIVITA'",
+      "code": "115",
+      "qty": "1.00",
+      "rate": "86.62",
+      "earning": "86.62"
+    },
+    {
+      "desc": "PREMIO SPECIALE",
+      "code": "053",
+      "earning": "100.00"
+    },
+    {
+      "desc": "BUONI PASTO - VALORE ESENTE",
+      "code": "06H",
+      "qty": "20.00",
+      "rate": "120.00"
+    },
+    {
+      "desc": "FRINGE BENEFIT",
+      "code": "063",
+      "rate": "141.19"
+    },
+    {
+      "desc": "ASSISTENZA SANITARIA - DITTA",
+      "code": "57K",
+      "rate": "8.00"
+    },
+    {
+      "desc": "ENTI BILATERALI SOGGETTI IRPEF",
+      "code": "59N",
+      "rate": "6.00"
+    },
+    {
+      "desc": "ENTE BILATERALE - DITTA",
+      "code": "D50",
+      "rate": "6.00"
+    },
+    {
+      "desc": "TOTALE COMPETENZE LORDE",
+      "rate": "2438.72"
+    },
+    {
+      "desc": "QUOTA TFR MATURATA",
+      "rate": "170.80"
+    },
+    {
+      "desc": "IMPONIBILE E CONTRIBUTO INPS",
+      "qty_printed": "9,19%",
+      "rate": "2580.00",
+      "deduction": "237.10"
+    },
+    {
+      "desc": "IMPONIBILE INAIL",
+      "rate": "2579.91"
+    },
+    {
+      "desc": "ESONERO CONTRIB. 2% MENSILE",
+      "earning": "51.60"
+    },
+    {
+      "desc": "TOTALE CONTRIBUTI ESENTI IRPEF",
+      "rate": "185.50"
+    },
+    {
+      "desc": "IMPONIBILE IRPEF",
+      "rate": "2400.41"
+    },
+    {
+      "desc": "RITENUTA IRPEF LORDA",
+      "rate": "581.81"
+    },
+    {
+      "desc": "TOTALE DETRAZIONI",
+      "qty": "30.00",
+      "rate": "133.60"
+    },
+    {
+      "desc": "RITENUTA IRPEF NETTA",
+      "deduction": "448.21"
+    },
+    {
+      "desc": "TOT. IMP. INPS ANNUALE DIPEND.",
+      "rate": "30260.00"
+    },
+    {
+      "desc": "TOTALE IMPONIB. IRPEF ANNUALE",
+      "code": "98P",
+      "rate": "27935.08"
+    },
+    {
+      "desc": "TOTALE RITENUTA IRPEF ANNUALE",
+      "rate": "5254.96"
+    },
+    {
+      "desc": "ADD. COM. ANNO CORR TRATTENUTA",
+      "rate": "59.34"
+    },
+    {
+      "desc": "RATE ADD.REG. ANNO PREC TRATT.",
+      "rate": "557.55"
+    },
+    {
+      "desc": "RATE ADD.COM. ANNO PREC TRATT.",
+      "rate": "163.82"
+    }
+  ],
+  "inps": {
+    "base": "2580.00"
+  },
+  "irpef_month": {
+    "taxable": "2400.41",
+    "net": "448.21"
+  },
+  "totals": {
+    "earnings": "2490.32",
+    "deductions": "685.31"
+  },
+  "net": "1805.00",
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

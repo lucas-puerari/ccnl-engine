@@ -1,0 +1,148 @@
+{
+  "id": "p08",
+  "period": "2025-02",
+  "period_inferred_from": "termination date 18/02/25 on the payslip; progressive totals and the L. 207/2024 line fit a February 2025 final payslip",
+  "payment_date": null,
+  "kind": "termination",
+  "ccnl_hint": "Turismo Pubblici Esercizi (level 5, 172 hours, EDR 10.33, elemento distinto sanitario 16.00)",
+  "level": "5",
+  "contract": {
+    "type": "permanent",
+    "category": null,
+    "hired": "2024-11",
+    "hired_conventional": "2024-11",
+    "terminated": "2025-02",
+    "part_time_pct": "60.00",
+    "hours_divisor": "172.00",
+    "days_divisor": "26",
+    "hourly_rate": "8.85831",
+    "next_seniority_step": "2027-12",
+    "inps_weeks": "4",
+    "inps_days": "15",
+    "inps_hours": "60.00",
+    "minimal_days": "60",
+    "inail_hours": "60.00",
+    "inail_days": "15"
+  },
+  "pay_elements": {
+    "paga_base": "985.26",
+    "contingenza": "512.04",
+    "edr": "10.33",
+    "elemento_distinto_sanitario": "16.00",
+    "total": "1523.63"
+  },
+  "lines": [
+    {
+      "desc": "lavoro ordinario (ore)",
+      "qty_hours": "60.00",
+      "rate": "8.85831",
+      "earning": "531.50"
+    },
+    {
+      "desc": "ferie non godute (ore)",
+      "qty_hours": "34.60",
+      "rate": "8.85831",
+      "earning": "306.50"
+    },
+    {
+      "desc": "permessi non goduti",
+      "qty_hours": "8.80",
+      "rate": "8.85831",
+      "earning": "77.95"
+    },
+    {
+      "desc": "tredicesima mensilita",
+      "qty": "0.60",
+      "rate": "126.96917",
+      "earning": "76.18"
+    },
+    {
+      "desc": "quattordicesima mensilita",
+      "qty": "0.60",
+      "rate": "126.96917",
+      "earning": "76.18"
+    },
+    {
+      "desc": "T.F.R. (automatico)",
+      "earning": "95.10"
+    },
+    {
+      "desc": "rata addizionale regionale anno precedente",
+      "deduction": "54.92"
+    },
+    {
+      "desc": "trattamento integrativo DL 3/2020",
+      "earning": "59.18"
+    },
+    {
+      "desc": "somma art. 1 c. 4 L. 207/2024",
+      "earning": "40.98"
+    }
+  ],
+  "inps": {
+    "base": "1068.00",
+    "contributo_1": "99.97",
+    "contributo_4": "2.14",
+    "total_social": "102.11"
+  },
+  "irpef_month": {
+    "taxable": "966.20",
+    "net": "53.58",
+    "already_paid": "53.58",
+    "work_deduction_due": "262.45"
+  },
+  "irpef_conguaglio": {
+    "progressive_taxable": "2046.15",
+    "annual_irpef": "470.61",
+    "progressive_deductions": "262.45",
+    "progressive_withheld": "82.35",
+    "addizionale": "41.54",
+    "conguaglio_irpef": "167.35",
+    "irpef_erario": "125.81",
+    "addizionale_regionale": "41.54"
+  },
+  "tfr_taxation": {
+    "taxable_from_2001": "327.84",
+    "rate_pct": "23.00",
+    "irpef_on_revaluation": "0.05"
+  },
+  "year_totals": {
+    "inail_base": "1444.80",
+    "inps_base": "2262.00",
+    "inps_contributions": "216.26",
+    "irpef_taxable": "2046.15",
+    "irpef_gross": "512.15",
+    "deductions": "262.45",
+    "irpef_paid": "249.70"
+  },
+  "inail": {
+    "base": "516.00",
+    "tariff": "0210"
+  },
+  "tfr": {
+    "month_quota": "45.32"
+  },
+  "leave": {
+    "ferie_accrued_hours": "34.60",
+    "ferie_col2_hours": "34.60",
+    "permessi_accrued_hours": "10.40",
+    "permessi_col2_hours": "10.40"
+  },
+  "rounding": {
+    "previous": "0.25",
+    "current": null
+  },
+  "totals": {
+    "gross": "1163.41",
+    "trattenute_corpo": "239.88",
+    "deductions": "509.59"
+  },
+  "net": "753.98",
+  "legibility": "full",
+  "notes": [
+    "Check: lines earnings 1163.41 (totale lordo, includes TFR 95.10) + 59.18 + 40.98 = 1263.57; 1263.57 - 509.59 = 753.98, matches the net exactly.",
+    "Total deductions 509.59 = social 102.11 + trattenute corpo 239.88 + conguaglio IRPEF 167.35 + previous rounding 0.25.",
+    "The second leave column header reads 'FERIE COD.'/'PERMESSI GOD.' (likely 'goduti' printed while the same hours are paid as non goduti); recorded as printed under neutral keys.",
+    "Hire and conventional hire dates 2024-11; payslip is the final one at termination, with year-end style IRPEF conguaglio."
+  ]
+}

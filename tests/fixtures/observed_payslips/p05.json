@@ -1,0 +1,115 @@
+{
+  "id": "p05",
+  "period": "2026-08",
+  "payment_date": null,
+  "kind": "regular",
+  "ccnl_hint": "Metalmeccanica Industria (CNEL C011)",
+  "cnel_code": "C011",
+  "level": "D2",
+  "contract": {
+    "type": "permanent",
+    "inps_weeks": "5",
+    "inps_days": "26",
+    "deduction_days": "31",
+    "next_seniority_step": "2027-12"
+  },
+  "pay_elements": {
+    "minimo": "1509.07",
+    "scatti": "50.10",
+    "superminimo": "108.30",
+    "total": "1667.47"
+  },
+  "lines": [
+    {
+      "desc": "retribuzione",
+      "qty_days": "6",
+      "rate": "64.13346",
+      "earning": "384.80"
+    },
+    {
+      "desc": "ferie godute",
+      "qty_days": "8",
+      "rate": "64.13346",
+      "earning": "513.07"
+    },
+    {
+      "desc": "permessi PAR goduti",
+      "qty_days": "12",
+      "rate": "64.13346",
+      "earning": "769.60"
+    },
+    {
+      "desc": "arrotondamento mese precedente",
+      "deduction": "0.79"
+    }
+  ],
+  "inps": {
+    "base": "1667.00",
+    "ivs_rate": "0.0919",
+    "ivs": "153.20",
+    "cigs_rate": "0.0030",
+    "cigs": "5.00"
+  },
+  "irpef_month": {
+    "taxable": "1509.27",
+    "gross": "347.13",
+    "work_deduction": "222.28",
+    "ulteriore_detrazione": "84.93",
+    "net": "39.92"
+  },
+  "surtax": [
+    {
+      "kind": "regional",
+      "year": 2025,
+      "residual_after": "82.10",
+      "installment": "27.37"
+    },
+    {
+      "kind": "municipal",
+      "year": 2025,
+      "residual_after": "22.92",
+      "installment": "7.64"
+    },
+    {
+      "kind": "municipal_advance",
+      "year": 2026,
+      "residual_after": "12.18",
+      "installment": "4.06"
+    }
+  ],
+  "inail": [
+    {
+      "base": "833.50",
+      "tariff": "0722"
+    },
+    {
+      "base": "833.50",
+      "tariff": "0723"
+    }
+  ],
+  "tfr": {
+    "base": "1667.47",
+    "month_quota": "115.18",
+    "fund_31_12": "8115.41",
+    "revaluation": "254.84",
+    "revaluation_tax": "43.32",
+    "year_quota": "953.77"
+  },
+  "year_totals": {
+    "inps_base": "14054.00",
+    "inail_base": "14054.00",
+    "irpef_taxable": "12727.55",
+    "irpef_paid": "795.86"
+  },
+  "leave": {
+    "ferie_balance_days": "9.66666",
+    "par_balance_hours": "138.66666"
+  },
+  "totals": {
+    "earnings": "1667.47",
+    "deductions": "237.98",
+    "rounding": "0.51"
+  },
+  "net": "1430.00",
+  "legibility": "full"
+}

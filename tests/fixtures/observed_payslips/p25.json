@@ -1,0 +1,289 @@
+{
+  "id": "p25",
+  "period": "2026-08",
+  "payment_date": null,
+  "print_date": "2026-09-04",
+  "kind": "termination",
+  "ccnl_hint": "Terziario Confcommercio (paga base 1453.94 + contingenza 527.90 = level 3, 13a and 14a)",
+  "level": "3",
+  "contract": {
+    "type": "permanent",
+    "category": "operaio",
+    "hired": "2017-10",
+    "terminated": "2026-08",
+    "scatti": "3",
+    "next_seniority_step": "2026-11",
+    "inail_tariff_voice": "116"
+  },
+  "region": "Veneto",
+  "pay_elements": {
+    "paga_base": "1453.94",
+    "contingenza": "527.90",
+    "scatti": "43.90",
+    "ad_personam": "643.02",
+    "terzo_elemento": "9.30",
+    "total": "2678.06"
+  },
+  "lines": [
+    {
+      "desc": "retribuzione giorni",
+      "qty_days": "25.00",
+      "rate": "103.00230",
+      "earning": "2575.06"
+    },
+    {
+      "desc": "straordinario 15%",
+      "qty_hours": "22.25",
+      "rate": "18.33195",
+      "earning": "407.89"
+    },
+    {
+      "desc": "straordinario 20%",
+      "qty_hours": "5.25",
+      "rate": "19.12899",
+      "earning": "100.43"
+    },
+    {
+      "desc": "diarie intere ridotte 2/3",
+      "qty": "7.00",
+      "rate": "15.49000",
+      "earning": "108.43"
+    },
+    {
+      "desc": "festivita' giorni (statistic)",
+      "qty_days": "1.00"
+    },
+    {
+      "desc": "ferie godute giorni (statistic)",
+      "qty_days": "7.00"
+    },
+    {
+      "desc": "indennita' di preavviso",
+      "qty_days": "45.00",
+      "rate": "104.14974",
+      "earning": "4686.74"
+    },
+    {
+      "desc": "rimborso spese esenti",
+      "earning": "175.50"
+    },
+    {
+      "desc": "13a normale/part-time percepita",
+      "qty": "8.00",
+      "rate": "223.17166",
+      "earning": "1785.37"
+    },
+    {
+      "desc": "14a normale/part-time percepita",
+      "qty": "2.00",
+      "rate": "223.17166",
+      "earning": "446.34"
+    },
+    {
+      "desc": "ferie non godute",
+      "qty_days": "9.70",
+      "rate": "103.00230",
+      "earning": "999.12"
+    },
+    {
+      "desc": "permessi/festivita' non goduti",
+      "qty_hours": "265.28",
+      "rate": "15.94083",
+      "earning": "4228.78"
+    },
+    {
+      "desc": "premio mensile",
+      "earning": "39.00"
+    },
+    {
+      "desc": "13a gia' corrisposta",
+      "deduction": "89.26"
+    },
+    {
+      "desc": "IRPEF tassazione separata su TFR",
+      "deduction": "978.69"
+    },
+    {
+      "desc": "trattenuta ente bilaterale",
+      "deduction": "1.82"
+    },
+    {
+      "desc": "contributo EST c/dipendente",
+      "deduction": "2.00"
+    },
+    {
+      "desc": "quota ordinaria EST terziario '07",
+      "earning": "13.00",
+      "deduction": "13.00"
+    },
+    {
+      "desc": "quota TFR previdenza complementare",
+      "earning": "634.97",
+      "deduction": "634.97"
+    },
+    {
+      "desc": "incremento retributivo detassato",
+      "earning": "336.07"
+    },
+    {
+      "desc": "diminuzione imponibile incremento detassato",
+      "deduction": "336.07"
+    },
+    {
+      "desc": "imposta sostitutiva incremento ordinario",
+      "earning": "303.28",
+      "deduction": "303.28"
+    },
+    {
+      "desc": "conguaglio contributi IVS",
+      "deduction": "-13.03"
+    },
+    {
+      "desc": "ulteriore detrazione annua",
+      "earning": "578.96",
+      "deduction": "578.96"
+    },
+    {
+      "desc": "ulteriore detrazione",
+      "earning": "544.46",
+      "deduction": "544.46"
+    },
+    {
+      "desc": "rata addizionale comunale 2025",
+      "deduction": "51.11"
+    },
+    {
+      "desc": "residuo acconto addizionale comunale 2026",
+      "deduction": "25.85"
+    },
+    {
+      "desc": "saldo addizionale comunale 2026",
+      "deduction": "170.07"
+    },
+    {
+      "desc": "rata addizionale regionale 2025 (21)",
+      "deduction": "127.16"
+    },
+    {
+      "desc": "saldo addizionale regionale 2026 (21)",
+      "deduction": "406.07"
+    }
+  ],
+  "work_data": {
+    "ore_lavorate": "131.50",
+    "gg_retribuiti": "25",
+    "gg_lavorati": "13",
+    "settimane_retribuite": "5",
+    "tfr_accrual_unit": "G",
+    "tfr_accrual_qty": "26.00",
+    "gg_detrazioni": "242"
+  },
+  "inps": {
+    "base": "15179.00",
+    "employee": "1481.02"
+  },
+  "irpef_month": {
+    "taxable": "9480.05",
+    "gross": "2195.11",
+    "deductions": "1067.83",
+    "net": "1127.28",
+    "other_deductions": "523.37"
+  },
+  "irpef_conguaglio": {
+    "previous_months": {
+      "taxable": "23534.08",
+      "gross": "5899.55",
+      "deductions": "553.75",
+      "net": "5345.80"
+    },
+    "annual": {
+      "taxable": "33014.13",
+      "gross": "8094.66",
+      "deductions": "1621.58",
+      "net": "6473.08",
+      "other_deductions": "1042.62"
+    }
+  },
+  "surtax": [
+    {
+      "kind": "municipal",
+      "year": 2025,
+      "installment": "51.11"
+    },
+    {
+      "kind": "municipal_advance",
+      "year": 2026,
+      "installment": "25.85",
+      "note": "residual advance collected at termination"
+    },
+    {
+      "kind": "municipal_balance",
+      "year": 2026,
+      "installment": "170.07"
+    },
+    {
+      "kind": "regional",
+      "year": 2025,
+      "installment": "127.16"
+    },
+    {
+      "kind": "regional_balance",
+      "year": 2026,
+      "installment": "406.07"
+    }
+  ],
+  "year_totals": {
+    "inps_base": "39753.00",
+    "inps_contributions": "3878.70",
+    "inail_base": "39753.00",
+    "irpef_taxable": "33014.13",
+    "irpef_gross": "8094.66",
+    "deductions": "1621.58",
+    "irpef_net": "6473.08"
+  },
+  "inail": {
+    "base": "15179.00"
+  },
+  "tfr": {
+    "base": "9596.61",
+    "separate_tax": "978.69",
+    "to_pension_fund": "634.97"
+  },
+  "leave": {
+    "banca_ore_hours": {
+      "previous": "0.00",
+      "accrued": "0.00",
+      "taken": "0.00",
+      "balance": "0.00"
+    },
+    "ferie_days": {
+      "previous": "15.34",
+      "accrued": "17.36",
+      "taken": "32.70",
+      "balance": "0.00"
+    },
+    "permessi_hours": {
+      "previous": "237.17",
+      "accrued": "69.36",
+      "taken": "306.53",
+      "balance": "0.00"
+    }
+  },
+  "rounding": {
+    "previous": "0.32"
+  },
+  "totals": {
+    "earnings": "16840.30",
+    "deductions": "5734.62",
+    "social": "1481.02",
+    "fiscal_net": "1127.28"
+  },
+  "net": "11105.68",
+  "legibility": "full",
+  "notes": [
+    "Region inferred from regional surtax code (21) and the payroll provider's province; no employer address recorded.",
+    "Check: sum of competenze lines 17963.40, sum of trattenute lines incl. INPS 1481.02 and IRPEF 1127.28 is 6858.04. Printed totals exclude the C72+C70 pair (578.96 + 544.46 = 1123.42) shown on both sides: 17963.40 - 1123.42 + 0.32 previous rounding = 16840.30 and 6858.04 - 1123.42 = 5734.62. 16840.30 - 5734.62 = 11105.68 = net. Reconciles exactly.",
+    "Lines 220 and 240 are statistic rows marked with '*', no amount.",
+    "131.50 printed between the ORE RETR. and ORE LAV. boxes; assigned to ore_lavorate."
+  ]
+}

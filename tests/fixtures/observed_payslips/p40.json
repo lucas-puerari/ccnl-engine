@@ -1,0 +1,219 @@
+{
+  "id": "p40",
+  "period": "2015-01",
+  "period_printed": "GENNAIO 2015",
+  "kind": "regular",
+  "ccnl_hint": null,
+  "level": "D",
+  "contract": {
+    "category_printed": "Collaboratore Prof.Le Sanitario Infermiere (ex C)"
+  },
+  "lines": [
+    {
+      "desc": "GIORNATE RETRIBUITE",
+      "code": "1",
+      "qty": "30.00"
+    },
+    {
+      "desc": "FASCIA RETRIBUTIVA DIRITTO V.",
+      "code": "61",
+      "qty": "1.00"
+    },
+    {
+      "desc": "FASCIA RETR.AGGIUNTIVA DV",
+      "code": "64",
+      "qty": "3.00"
+    },
+    {
+      "desc": "STIPENDIO BASE(Q)",
+      "code": "100",
+      "rate": "1769.6275",
+      "earning": "1769.63"
+    },
+    {
+      "desc": "IND.VAC.CONTR.SANITA`-2010",
+      "code": "122",
+      "rate": "15.6900",
+      "earning": "15.69"
+    },
+    {
+      "desc": "RETRIB. INDIVIDUALE ANZIANITA",
+      "code": "126",
+      "rate": "1.6139",
+      "earning": "1.61"
+    },
+    {
+      "desc": "IND.PROFESSIONALE SPECIFICA",
+      "code": "161",
+      "rate": "36.1516",
+      "earning": "36.15"
+    },
+    {
+      "desc": "TABELLARE DA IND. COMUNI",
+      "code": "169",
+      "rate": "71.5292",
+      "earning": "71.53"
+    },
+    {
+      "desc": "FASCIA RETRIBUTIVA C.N.L.99",
+      "code": "692",
+      "rate": "251.4033",
+      "earning": "251.40"
+    },
+    {
+      "desc": "TOTALE VOCI RETRIBUTIVE",
+      "code": "800",
+      "qty": "2146.01"
+    },
+    {
+      "desc": "IND.SERV.NOTT.ORARIA COMPARTO",
+      "code": "1481",
+      "qty": "48.00",
+      "rate": "2.7400",
+      "earning": "131.52"
+    },
+    {
+      "desc": "IND. SERVIZIO FESTIVO COMPARTO",
+      "code": "1490",
+      "qty": "4.00",
+      "rate": "17.8200",
+      "earning": "71.28"
+    },
+    {
+      "desc": "INCENTIVO PRESENZE TURNO 24 H",
+      "code": "1507",
+      "qty": "25.00",
+      "rate": "4.4900",
+      "earning": "112.25"
+    },
+    {
+      "desc": "MAGGIORAZIONE TURNO FESTIVO",
+      "code": "1533",
+      "qty": "4.00",
+      "rate": "5.4200",
+      "earning": "21.68"
+    },
+    {
+      "desc": "MAGGIORAZIONE ORE NOTTURNE",
+      "code": "1536",
+      "qty": "48.00",
+      "rate": "1.2137",
+      "earning": "58.26"
+    },
+    {
+      "desc": "IND.INF. ART.44-C.3 CNL95 24 H",
+      "code": "1600",
+      "qty": "10.00",
+      "rate": "4.4931",
+      "earning": "44.93"
+    },
+    {
+      "desc": "MAGG. IND. TUR. 24H",
+      "code": "1643",
+      "qty": "10.00",
+      "rate": "4.4900",
+      "earning": "44.90"
+    },
+    {
+      "desc": "REC.RATEALE ADD.REG.",
+      "code": "4252",
+      "rate": "408.1000",
+      "deduction": "37.10"
+    },
+    {
+      "desc": "REC.RATEALE ADD.COMUNALE",
+      "code": "4253",
+      "rate": "122.8900",
+      "deduction": "11.18"
+    },
+    {
+      "desc": "TOTALE RITENUTE INADEL/1",
+      "code": "6950",
+      "rate": "1716.8100",
+      "deduction": "42.92"
+    },
+    {
+      "desc": "TOTALE RITENUTE CPDEL/1",
+      "code": "6954",
+      "rate": "2869.0800",
+      "deduction": "253.92"
+    },
+    {
+      "desc": "TOTALE RITENUTE CPDEL/11",
+      "code": "6956",
+      "rate": "2869.0800",
+      "deduction": "10.04"
+    },
+    {
+      "desc": "TOTALE RITENUTE OBBLIGATORIE",
+      "code": "6999",
+      "qty": "-306.88"
+    },
+    {
+      "desc": "IMPOSTA FISCALE ORDINAR. LORDA",
+      "code": "8001",
+      "rate": "2562.2000",
+      "deduction": "666.97"
+    },
+    {
+      "desc": "DETRAZIONE FIGLI",
+      "code": "8102",
+      "qty": "110.38"
+    },
+    {
+      "desc": "DETRAZIONE LAV DIPENDENTE",
+      "code": "8104",
+      "qty": "66.72"
+    },
+    {
+      "desc": "TOTALE DETRAZIONI",
+      "code": "8110",
+      "deduction": "-177.10"
+    },
+    {
+      "desc": "IMPOSTA NETTA",
+      "code": "8120",
+      "qty": "-489.87"
+    },
+    {
+      "desc": "IMPONIBILE FISCALE",
+      "code": "8200",
+      "qty": "-23.00",
+      "rate": "2562.2000",
+      "deduction": "589.31"
+    },
+    {
+      "desc": "DETRAZIONI ANNUE TOTALI",
+      "code": "8201",
+      "qty": "177.10"
+    },
+    {
+      "desc": "REDDITO DI RIFERIMENTO",
+      "code": "8203",
+      "qty": "365.00",
+      "rate": "2562.2000",
+      "earning": "33308.60"
+    },
+    {
+      "desc": "IMPOSTA PAGATA",
+      "code": "8210",
+      "deduction": "489.87"
+    }
+  ],
+  "inps": {
+    "base": null
+  },
+  "irpef_month": {
+    "taxable": "2562.2000",
+    "net": "-489.87"
+  },
+  "totals": {
+    "earnings": "2956.02",
+    "deductions": "860.22"
+  },
+  "net": "2095.80",
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

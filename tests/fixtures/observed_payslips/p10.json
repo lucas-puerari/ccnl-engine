@@ -1,0 +1,148 @@
+{
+  "id": "p10",
+  "period": "2024-08",
+  "payment_date": null,
+  "kind": "regular",
+  "ccnl_hint": "Terziario Commercio (level 6, contingenza 519.76, terzo elemento 2.07, EDR ente bilaterale, FIS); Turismo not excluded",
+  "level": "6",
+  "contract": {
+    "type": "fixed_term",
+    "category": "operaio",
+    "hired": "2024-06",
+    "inps_weeks": "5",
+    "inps_days": "26",
+    "minimal_days": "26",
+    "worked_days": "26",
+    "ordinary_hours": "172.00",
+    "deduction_days": "31",
+    "decontribuzione": "Decontribuzione Sud DL 104/2020"
+  },
+  "region": "Sardegna",
+  "region_inferred_from": "province code in the employer address",
+  "pay_elements": {
+    "paga_base": "967.22000",
+    "contingenza": "519.76000",
+    "terzo_elemento": "2.07000",
+    "total": "1489.05000"
+  },
+  "lines": [
+    {
+      "desc": "EDR Ente Bilaterale",
+      "earning": "3.40"
+    },
+    {
+      "desc": "trattenuta differenze retributive",
+      "deduction": "83.76"
+    },
+    {
+      "desc": "maggiorazione festivo 30%",
+      "qty_hours": "15.50000",
+      "rate": "2.65902",
+      "earning": "41.21"
+    },
+    {
+      "desc": "retribuzione",
+      "qty_days": "26.00000",
+      "rate": "57.27115",
+      "earning": "1489.05"
+    },
+    {
+      "desc": "13ma mensilita",
+      "qty_hours": "14.00000",
+      "rate": "8.86339",
+      "earning": "124.09"
+    },
+    {
+      "desc": "14ma mensilita",
+      "qty_hours": "14.00000",
+      "rate": "8.86339",
+      "earning": "124.09"
+    },
+    {
+      "desc": "festivita godute",
+      "qty_days": "1.00000"
+    },
+    {
+      "desc": "arrotondamento mese precedente",
+      "deduction": "0.51"
+    },
+    {
+      "desc": "contributo IVS",
+      "base": "1698.00",
+      "rate_pct": "9.19000",
+      "deduction": "156.05"
+    },
+    {
+      "desc": "FIS D.Lgs. 148/2015 fino 15 dipendenti",
+      "base": "1698.00",
+      "rate_pct": "0.26667",
+      "deduction": "4.53"
+    },
+    {
+      "desc": "esonero IVS L. 197/2022",
+      "base": "1450.00",
+      "rate_pct": "7.00000",
+      "earning": "101.50"
+    },
+    {
+      "desc": "trattamento integrativo L. 21/2020",
+      "earning": "101.91"
+    },
+    {
+      "desc": "ritenute IRPEF",
+      "deduction": "259.76"
+    }
+  ],
+  "inps": {
+    "base": "1698.00",
+    "ivs_rate": "0.0919",
+    "ivs": "156.05",
+    "fis_rate": "0.0026667",
+    "fis": "4.53",
+    "esonero_base": "1450.00",
+    "esonero_rate": "0.07",
+    "esonero": "101.50"
+  },
+  "irpef_month": {
+    "taxable": "1639.00",
+    "gross": "376.97",
+    "work_deduction": "117.21",
+    "net": "259.76"
+  },
+  "year_totals": {
+    "inps_base": "4175.00",
+    "inail_base": "4225.00",
+    "irpef_taxable": "4025.62",
+    "irpef_paid": "653.66"
+  },
+  "inail": {
+    "base": "1698.00",
+    "tariff": "0114"
+  },
+  "tfr": {
+    "base": "1740.63",
+    "month_quota": "123.00"
+  },
+  "leave": {
+    "ferie_accrued_days": "4.33333",
+    "ferie_balance_days": "4.33333",
+    "ex_festivita_accrued_hours": "5.33333",
+    "ex_festivita_balance_hours": "5.33333"
+  },
+  "rounding": {
+    "previous": "0.51",
+    "current": "0.36"
+  },
+  "totals": {
+    "earnings": "1985.25",
+    "deductions": "504.61"
+  },
+  "net": "1481.00",
+  "legibility": "full",
+  "notes": [
+    "Check: 1985.25 - 504.61 = 1480.64, + rounding 0.36 = 1481.00, matches the net.",
+    "IVS exemption (L. 197/2022, 7% on 1450.00) is paid as an earning of 101.50.",
+    "IRPEF net 259.76 = lorda 376.97 - detrazioni 117.21.",
+    "CCNL not printed: contingenza 519.76 matches the Terziario level 6 value; the hint is inferred."
+  ]
+}
