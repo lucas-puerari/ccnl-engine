@@ -9,6 +9,10 @@ from __future__ import annotations
 
 from ccnl_engine.contract.domain.category import WorkerCategory
 from ccnl_engine.payroll.application.opening_balances import OpeningBalances
+from ccnl_engine.payroll.application.state_persistence import (
+    period_state_from_json,
+    period_state_to_json,
+)
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.calendar_override import (
     CalendarOverride,
@@ -50,10 +54,6 @@ from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.run import PayrollRunId
 from ccnl_engine.payroll.domain.seniority_fact import SeniorityFact, SenioritySource
 from ccnl_engine.payroll.domain.shortfall_deferral import DeferredShortfall
-from ccnl_engine.payroll.domain.state_codec import (
-    period_state_from_json,
-    period_state_to_json,
-)
 from ccnl_engine.payroll.domain.surtax_obligations import (
     SurtaxComponent,
     SurtaxObligation,

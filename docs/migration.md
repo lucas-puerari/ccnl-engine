@@ -4,6 +4,14 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Persisted state bound to the engine and bundle
+
+| Before | After |
+|---|---|
+| `period_state_to_json` wrote the schema version only; a state written by another engine or knowledge bundle of the same schema was read | The JSON also carries `engine_version` and `bundle_version`; `period_state_from_json` rejects a state of another engine or bundle with `InvalidInputError`: recompute the runs or import the totals with `OpeningBalances` |
+| Types were tagged with their module path and resolved by import | Types are tagged with their class name from the registry `STATE_TYPES`; `PeriodState.SCHEMA_VERSION` 14, a state of version 13 is not read |
+| A malformed tagged value could raise `KeyError` or `TypeError` | Every malformed payload raises `InvalidInputError` |
+
 ## INPS base to the whole euro
 
 | Before | After |

@@ -37,8 +37,8 @@ class TestPeriodState:
         assert state.tax_year is None
 
     def test_schema_version(self) -> None:
-        """SCHEMA_VERSION is 13 since the spells record their unpaid days."""
-        assert PeriodState.SCHEMA_VERSION == 13
+        """SCHEMA_VERSION is 14 since types are tagged by their registered name."""
+        assert PeriodState.SCHEMA_VERSION == 14
 
     def test_tax_year_is_that_of_the_cash_state(self) -> None:
         """The tax year is read from the cash state."""
