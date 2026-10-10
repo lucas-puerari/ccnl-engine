@@ -16,11 +16,7 @@ from ccnl_engine.shared.domain.errors import (
 from ccnl_engine.tax.domain.credit_rules import SommaEsenteRules
 from ccnl_engine.tax.domain.family import FamilyDeductionRules
 from ccnl_engine.tax.domain.preferential_regime import PreferentialTaxRegime
-from ccnl_engine.tax.domain.sick_pay import (
-    InpsSickPayRates,
-    SickPayBand,
-    SickPayCoverage,
-)
+from ccnl_engine.tax.domain.sick_pay import InpsSickPayRates
 from ccnl_engine.tax.domain.tfr_revaluation import TfrRevaluationRules
 from ccnl_engine.tax.domain.variable_pay import (
     FringeBenefitRules,
@@ -33,6 +29,8 @@ from ccnl_engine.tax.service.tax_resource_reader import (
     _try_ruleset,
     read_year_json,
 )
+
+_SICK_PAY_FILE = "sick-pay-rates.json"
 
 
 def load_sick_pay_rates() -> InpsSickPayRates:
@@ -48,18 +46,41 @@ def load_sick_pay_rates() -> InpsSickPayRates:
         coverage rules and provenance.
     """
     pkg = importlib.resources.files("ccnl_engine.knowledge.inps.data")
-    raw = _read_json(pkg, "sick-pay-rates.json")
-    return InpsSickPayRates(
-        description=raw.get("description", ""),
-        carenza_days=int(raw.get("carenza_days", 3)),
-        bands=[SickPayBand(**b) for b in raw.get("bands", [])],
-        annual_max_days=int(raw.get("annual_max_days", 180)),
-        coverage=tuple(
-            SickPayCoverage.model_validate(rule) for rule in raw.get("coverage", [])
-        ),
-        ruleset=_as_ruleset(raw),
-        bands_provenance=_provenance_of({"provenance": raw.get("bands_provenance")}),
-    )
+    return sick_pay_rates_from(_read_json(pkg, _SICK_PAY_FILE), _SICK_PAY_FILE)
+
+
+def sick_pay_rates_from(raw: dict[str, Any], filename: str) -> InpsSickPayRates:
+    """Return the sick-pay rates of the payload ``raw`` of ``filename``.
+
+    ``carenza_days``, ``bands``, ``annual_max_days`` and ``coverage`` are
+    required: a statutory table never takes a legal value it does not
+    state.
+
+    Returns:
+        The validated rates.
+
+    Raises:
+        DataIntegrityError: When a required field is missing or a value is
+            rejected, naming ``filename``.
+    """
+    try:
+        return InpsSickPayRates(
+            description=raw.get("description", ""),
+            carenza_days=raw["carenza_days"],
+            bands=raw["bands"],
+            annual_max_days=raw["annual_max_days"],
+            coverage=raw["coverage"],
+            ruleset=_as_ruleset(raw),
+            bands_provenance=_provenance_of({
+                "provenance": raw.get("bands_provenance")
+            }),
+        )
+    except KeyError as exc:
+        msg = f"{filename}: required field {exc.args[0]!r} is missing"
+        raise DataIntegrityError(msg) from exc
+    except ValidationError as exc:
+        msg = f"{filename}: invalid sick-pay rates: {exc}"
+        raise DataIntegrityError(msg) from exc
 
 
 def _provenance_of(block: dict[str, Any]) -> RuleProvenance | None:

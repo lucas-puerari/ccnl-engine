@@ -89,7 +89,10 @@ class InpsSickPayRates(BaseModel):
     ``bands`` list defines the INPS rate for successive day ranges.
 
     Bands must be ordered by ``day_from`` and must not overlap.  The first
-    band must start at ``carenza_days + 1``.
+    band must start at ``carenza_days + 1``.  Every statutory field is
+    required: the carenza, the bands, the annual maximum and the coverage
+    rules have no default, so an incomplete table is rejected instead of
+    taking a legal value it does not state.
 
     Attributes:
         carenza_days: Number of waiting days before INPS indemnity starts.
@@ -104,10 +107,10 @@ class InpsSickPayRates(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     description: str = ""
-    carenza_days: int = Field(default=3, ge=0)
-    bands: list[SickPayBand] = Field(default_factory=list)
-    annual_max_days: int = Field(default=180, ge=1)
-    coverage: tuple[SickPayCoverage, ...] = ()
+    carenza_days: int = Field(ge=0)
+    bands: list[SickPayBand] = Field(min_length=1)
+    annual_max_days: int = Field(ge=1)
+    coverage: tuple[SickPayCoverage, ...] = Field(min_length=1)
     ruleset: RulesetIdentity | None = None
     bands_provenance: RuleProvenance | None = None
 
@@ -139,8 +142,6 @@ class InpsSickPayRates(BaseModel):
 
     @model_validator(mode="after")
     def _check_bands(self) -> Self:
-        if not self.bands:
-            return self
         expected_start = self.carenza_days + 1
         first = self.bands[0]
         if first.day_from != expected_start:
