@@ -19,7 +19,11 @@ from ccnl_engine.contract.domain.sickness import (
 from ccnl_engine.payroll.domain.sick_cumulation import CcnlDay
 from ccnl_engine.payroll.domain.sick_pay_rules import SickPayRules
 from ccnl_engine.payroll.domain.sickness import SicknessEpisode, SicknessHistory
-from ccnl_engine.tax.domain.sick_pay import InpsSickPayRates, SickPayBand
+from ccnl_engine.tax.domain.sick_pay import (
+    InpsSickPayRates,
+    SickPayBand,
+    SickPayCoverage,
+)
 
 _ONE = Decimal(1)
 _HALF = Decimal("0.50")
@@ -27,6 +31,7 @@ _INPS = InpsSickPayRates(
     carenza_days=3,
     bands=[SickPayBand(day_from=4, day_to=180, rate=_HALF)],
     annual_max_days=180,
+    coverage=(SickPayCoverage(covered=True, source="test: every worker"),),
 )
 _PER_EPISODE = SicknessRules(
     carenza_integration_rate=_HALF,

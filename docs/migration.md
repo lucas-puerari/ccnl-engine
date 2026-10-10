@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Strict INPS sick-pay table
+
+| Before | After |
+|---|---|
+| `InpsSickPayRates` and its loader defaulted `carenza_days` to 3, `annual_max_days` to 180, `bands` and `coverage` to empty | All four are required (`bands` and `coverage` with at least one entry); a sick-pay file missing one, or with a value the model rejects, raises `DataIntegrityError` naming the file. A custom `KnowledgeRepository` building `InpsSickPayRates` must state every field |
+
 ## Conflicting rulesets in a year
 
 | Before | After |
