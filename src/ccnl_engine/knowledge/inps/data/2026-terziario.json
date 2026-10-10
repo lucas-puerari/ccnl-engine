@@ -4,25 +4,35 @@
   "inps": {
     "employee_tiers": [
       {
-        "max_employees": 50,
-        "rate": "0.0919",
+        "max_employees": 5,
+        "rate": "0.0936",
+        "ivs_rate": "0.0919"
+      },
+      {
+        "max_employees": 15,
+        "rate": "0.0946",
         "ivs_rate": "0.0919"
       },
       {
         "max_employees": null,
-        "rate": "0.0949",
+        "rate": "0.0976",
         "ivs_rate": "0.0919"
       }
     ],
     "employer_tiers": [
       {
-        "max_employees": 50,
-        "rate": "0.2898",
+        "max_employees": 5,
+        "rate": "0.2931",
+        "ivs_rate": "0.2381"
+      },
+      {
+        "max_employees": 15,
+        "rate": "0.2951",
         "ivs_rate": "0.2381"
       },
       {
         "max_employees": null,
-        "rate": "0.2958",
+        "rate": "0.3011",
         "ivs_rate": "0.2381"
       }
     ],
@@ -32,7 +42,7 @@
       "annual_threshold": "56224.00",
       "monthly_threshold": "4685.00",
       "provenance": {
-        "status": "assumed",
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "inps-circolare-6-2026",
@@ -44,7 +54,7 @@
           "quote": "Posto che la prima fascia di retribuzione pensionabile è stata determinata, per l'anno 2026, in 56.224,00 euro, l'aliquota aggiuntiva dell'1% deve essere applicata sulla quota di retribuzione eccedente il predetto tetto retributivo che, rapportato a dodici mesi, è pari a 4.685,00 euro. Si rammenta, infatti, che ai fini del versamento del contributo aggiuntivo in questione deve essere osservato il criterio della mensilizzazione."
         },
         "transformation": "rate: the 1% of art. 3-ter D.L. 384/1992; annual_threshold: the 'Prima fascia di retribuzione pensionabile annua' of the par. 5 table; monthly_threshold: its 'Importo mensilizzato', 4,685.00 as published (56,224 / 12 = 4,685.33 is not used).",
-        "note": "Mensilizzazione as INPS applies it: each month the 1% is charged on the pay of the month above the monthly threshold, without regard to the annual threshold, and settled on the annual pay at year end or in the month the employment ends. Circ. INPS 7/2010 par. 3 (https://servizi2.inps.it/CircolariZIP/Circolare%20numero%207%20del%2015-01-2010.pdf, sha256 33134c1e8cb884b6341c87d81dabe31a97938e84b99bbd0d262c5eb75a77d900): 'le aziende aventi alle proprie dipendenze lavoratori che, nel mese in cui si riferisce la denuncia, abbiano superato la retribuzione imponibile di € 3.506,00, hanno già versato sulla parte eccedente detto importo il contributo dell'1%'. Msg. INPS 5327/2015 par. 2.1 and 2.3 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%205327%20del%2014-08-2015.pdf, sha256 76fd73b0bb4b1eea71b38b706aae7faa4055c1b54d5b3cdb7e1eb714e4c9c5c3): 'l'applicazione dell'1% avviene senza tenere conto del superamento del tetto minimo su base annua, ma al superamento del medesimo tetto minimo rapportato su base mensile'; the conguaglio is made with the denuncia of December (or January) and, on an earlier termination, 'con la denuncia relativa al mese nel corso del quale è cessato il rapporto di lavoro'. Circ. 6/2026 par. 6: 'Il massimale opera anche ai fini dell'aliquota aggiuntiva dell'1%'. Circ. 6/2026 read on 2026-10-07 in the copy attached to circolare 23/26 of Ascom Bologna (https://ascom.bo.it/wp-content/uploads/2026/02/Allegato-1-CIRCO-23-26_Circolare-INPS-n.-6-del-30-01-2026.pdf, sha256 ec8fce75b98095d5b7de3d7ba725a403e1c487e1c75512567066650b88118992): the INPS page loads its text by script. Circ. INPS 156/2025 par. 5, read in a third-party copy (https://www.fiscoetasse.com/files/21068/circolare-numero-156-del-30-12-2025.pdf), repeats the mensilizzazione and the conguaglio 'a fine anno (o nel mese in cui si risolve il rapporto di lavoro)'. Not checked by a named reviewer. Assumed, not derived: its ruleset declares source_type 'estimated'."
+        "note": "Mensilizzazione as INPS applies it: each month the 1% is charged on the pay of the month above the monthly threshold, without regard to the annual threshold, and settled on the annual pay at year end or in the month the employment ends. Circ. INPS 7/2010 par. 3 (https://servizi2.inps.it/CircolariZIP/Circolare%20numero%207%20del%2015-01-2010.pdf, sha256 33134c1e8cb884b6341c87d81dabe31a97938e84b99bbd0d262c5eb75a77d900): 'le aziende aventi alle proprie dipendenze lavoratori che, nel mese in cui si riferisce la denuncia, abbiano superato la retribuzione imponibile di € 3.506,00, hanno già versato sulla parte eccedente detto importo il contributo dell'1%'. Msg. INPS 5327/2015 par. 2.1 and 2.3 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%205327%20del%2014-08-2015.pdf, sha256 76fd73b0bb4b1eea71b38b706aae7faa4055c1b54d5b3cdb7e1eb714e4c9c5c3): 'l'applicazione dell'1% avviene senza tenere conto del superamento del tetto minimo su base annua, ma al superamento del medesimo tetto minimo rapportato su base mensile'; the conguaglio is made with the denuncia of December (or January) and, on an earlier termination, 'con la denuncia relativa al mese nel corso del quale è cessato il rapporto di lavoro'. Circ. 6/2026 par. 6: 'Il massimale opera anche ai fini dell'aliquota aggiuntiva dell'1%'. Circ. 6/2026 read on 2026-10-07 in the copy attached to circolare 23/26 of Ascom Bologna (https://ascom.bo.it/wp-content/uploads/2026/02/Allegato-1-CIRCO-23-26_Circolare-INPS-n.-6-del-30-01-2026.pdf, sha256 ec8fce75b98095d5b7de3d7ba725a403e1c487e1c75512567066650b88118992): the INPS page loads its text by script. Circ. INPS 156/2025 par. 5, read in a third-party copy (https://www.fiscoetasse.com/files/21068/circolare-numero-156-del-30-12-2025.pdf), repeats the mensilizzazione and the conguaglio 'a fine anno (o nel mese in cui si risolve il rapporto di lavoro)'. Not checked by a named reviewer."
       }
     },
     "minimum_base": {
@@ -58,7 +68,7 @@
         }
       ],
       "provenance": {
-        "status": "assumed",
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "inps-circolare-6-2026",
@@ -70,21 +80,57 @@
           "quote": "Tali limiti, secondo quanto innanzi precisato, devono essere ragguagliati a 58,13 euro(9,5% dell'importo del trattamento minimo mensile di pensione a carico del Fondo pensioni lavoratori dipendenti in vigore al 1° gennaio 2026, pari a 611,85 euromensili) se di importo inferiore. [...] In linea generale, nell'ipotesi di orario di 40 ore settimanali (ipotesi che ricorre, di norma, per i lavoratori iscritti alle gestioni private), il procedimento del calcolo per determinare la retribuzione minima oraria è il seguente: 58,13 euro x 6/40 = 8,72 euro."
         },
         "transformation": "daily: the 'Minimale di retribuzione giornaliera (9,5%)' of the par. 1 table; week_days and hourly: the par. 4 formula of a 40-hour week, 8.72 as published; monthly_days: derived, see the note.",
-        "note": "monthly_days 26: six days of the normal week (par. 4) over 52 weeks and 12 months; INPS counts 26 paid days in a full month of a monthly-paid worker: Uniemens technical document, attachment 1 to circ. INPS 13/2011 (https://servizi2.inps.it/CircolariZIP/circolare%20numero%2013%20del%2028-01-2011_Allegato%20n%201.pdf, sha256 fa2b2894f3006eb388d72ee54c0291b9cf4ad5c4b418e943c239e77ccee25853), element <NumMensilita>: 'due mensilità aggiuntive determinate nella misura di 30 giorni a fronte di 26 normalmente retribuiti', and its example of a full month, '<GiorniRetribuiti>26</GiorniRetribuiti>'. The monthly comparison is not written in the circular; secondary reading: R. Camera, 'Lavoro part-time: il minimale ai fini contributivi', Guida alle Paghe 10/2014 p. 588 (https://www.dottrinalavoro.it/wp-content/uploads/2014/09/Lavoro-part-time-il-minimale-contributivo-Ipsoa.pdf, sha256 6167b070d7cfcff6dbf2e85eeeae7a092addbcd9c1c43fb28964faacd0b4866a): 'occorre moltiplicare il valore di minimale giornaliero per il coefficiente fisso 26' and the part-time hourly minimum times the hours of the month; the six days hold 'anche nei casi in cui l'orario di lavoro sia distribuito in 5 giorni settimanali'. D.L. 463/1983 art. 7 c. 1, second period, read on Normattiva on 2026-10-07 (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legge:1983-09-12;463~art7): 'il limite minimo di retribuzione giornaliera [...] per tutte le contribuzioni dovute in materia di previdenza e assistenza sociale non può essere inferiore al 7,50% dell'importo del trattamento minimo mensile di pensione', raised to 9,50 by D.L. 338/1989 art. 1 c. 2; c. 5: 'Le disposizioni di cui ai commi 1, 2, 3 e 4 del presente articolo non si applicano ai lavoratori addetti ai servizi domestici e familiari, agli operai agricoli, agli apprendisti'. D.Lgs. 81/2015 art. 11 c. 1 (Normattiva, same day): 'La retribuzione minima oraria, da assumere quale base per il calcolo dei contributi previdenziali dovuti per i lavoratori a tempo parziale, si determina rapportando alle giornate di lavoro settimanale ad orario normale il minimale giornaliero'. Circ. 6/2026 read on 2026-10-07 in the copy attached to circolare 23/26 of Ascom Bologna (https://ascom.bo.it/wp-content/uploads/2026/02/Allegato-1-CIRCO-23-26_Circolare-INPS-n.-6-del-30-01-2026.pdf, sha256 ec8fce75b98095d5b7de3d7ba725a403e1c487e1c75512567066650b88118992): the INPS page loads its text by script. Not checked by a named reviewer. Assumed, not derived: its ruleset declares source_type 'estimated'."
+        "note": "monthly_days 26: six days of the normal week (par. 4) over 52 weeks and 12 months; INPS counts 26 paid days in a full month of a monthly-paid worker: Uniemens technical document, attachment 1 to circ. INPS 13/2011 (https://servizi2.inps.it/CircolariZIP/circolare%20numero%2013%20del%2028-01-2011_Allegato%20n%201.pdf, sha256 fa2b2894f3006eb388d72ee54c0291b9cf4ad5c4b418e943c239e77ccee25853), element <NumMensilita>: 'due mensilità aggiuntive determinate nella misura di 30 giorni a fronte di 26 normalmente retribuiti', and its example of a full month, '<GiorniRetribuiti>26</GiorniRetribuiti>'. The monthly comparison is not written in the circular; secondary reading: R. Camera, 'Lavoro part-time: il minimale ai fini contributivi', Guida alle Paghe 10/2014 p. 588 (https://www.dottrinalavoro.it/wp-content/uploads/2014/09/Lavoro-part-time-il-minimale-contributivo-Ipsoa.pdf, sha256 6167b070d7cfcff6dbf2e85eeeae7a092addbcd9c1c43fb28964faacd0b4866a): 'occorre moltiplicare il valore di minimale giornaliero per il coefficiente fisso 26' and the part-time hourly minimum times the hours of the month; the six days hold 'anche nei casi in cui l'orario di lavoro sia distribuito in 5 giorni settimanali'. D.L. 463/1983 art. 7 c. 1, second period, read on Normattiva on 2026-10-07 (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legge:1983-09-12;463~art7): 'il limite minimo di retribuzione giornaliera [...] per tutte le contribuzioni dovute in materia di previdenza e assistenza sociale non può essere inferiore al 7,50% dell'importo del trattamento minimo mensile di pensione', raised to 9,50 by D.L. 338/1989 art. 1 c. 2; c. 5: 'Le disposizioni di cui ai commi 1, 2, 3 e 4 del presente articolo non si applicano ai lavoratori addetti ai servizi domestici e familiari, agli operai agricoli, agli apprendisti'. D.Lgs. 81/2015 art. 11 c. 1 (Normattiva, same day): 'La retribuzione minima oraria, da assumere quale base per il calcolo dei contributi previdenziali dovuti per i lavoratori a tempo parziale, si determina rapportando alle giornate di lavoro settimanale ad orario normale il minimale giornaliero'. Circ. 6/2026 read on 2026-10-07 in the copy attached to circolare 23/26 of Ascom Bologna (https://ascom.bo.it/wp-content/uploads/2026/02/Allegato-1-CIRCO-23-26_Circolare-INPS-n.-6-del-30-01-2026.pdf, sha256 ec8fce75b98095d5b7de3d7ba725a403e1c487e1c75512567066650b88118992): the INPS page loads its text by script. Not checked by a named reviewer."
       }
     },
     "provenance": {
-      "status": "assumed",
+      "status": "derived",
       "location": {
         "source_document": {
-          "document_id": "kitech-contributi-4_138",
-          "title": "kitech.it, contributi previdenziali terziario 2026",
-          "kind": "rivista",
-          "url": "https://www.kitech.it/Contributi-previdenziali.aspx?p=4_138"
+          "document_id": "inps-circolare-117-2022-allegato-1",
+          "title": "INPS Circolare n. 117 del 20 ottobre 2022, Allegato n. 1: tabelle aliquote contributive",
+          "kind": "inps_circolare",
+          "url": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2022/10/Circolare_13970/Allegati/13873_Circolare-numero-117-del-20-10-2022_Allegato-n-1.pdf"
         },
-        "section": "Table 7.1"
+        "section": "Tabelle aliquote contributive in assenza di esonero dal versamento della contribuzione CUAF",
+        "quote": "I.V.S. datore di lavoro 33,00 % (di cui 9,19 % a carico del lavoratore) NASpI (contr. ord.) 1,31 % NaSpI (contr. art. 25, l.845/1978) 0,30 % Fondo Garanzia TFR 0,20 % Cuaf* 0,68 % Maternità 0,24 % Malattia 2,44 % FIS ** – Datori di lavoro fino a 5 dipendenti 0,50 % (di cui 0,17 % a carico del dipendente) FIS ** - oltre 5 dipendenti 0,80 % (di cui 0,27 % a carico del dipendente) CIGS ** 0,90% (di cui 0,30 % a carico del dipendente)"
       },
-      "note": "Pages 4_136 and 4_134 for firms above 50 employees. Assumed, not derived: its ruleset declares source_type 'estimated'. Open question, not settled by a source the bundle holds: the tier up to 50 employees carries no FIS share (D.Lgs. 148/2015 art. 29 c. 3 and 8: 0.50% up to 5 employees, 0.80% above, art. 33 c. 1: one third paid by the worker) and no CIGS from 16 employees (art. 20 c. 3-bis, art. 23 c. 1-bis: 0.90%, of which 0.30% paid by the worker); the tier above 50 carries no FIS share. Settle the aggregate rate on the INPS circular of the sector before promoting."
+      "transformation": "Employer = 23.81 IVS + 1.31 + 0.30 NASpI + 0.20 Fondo Garanzia TFR + 0.68 CUAF + 0.24 maternita + 2.44 malattia = 28.98, plus the employer FIS share (0.33 up to 5 employees, 0.53 above) and, above 15 employees, the employer CIGS share 0.60: 29.31 up to 5, 29.51 from 6 to 15, 30.11 above 15. Employee = 9.19 IVS plus the FIS share (0.17 up to 5, 0.27 above) and, above 15 employees, the CIGS share 0.30: 9.36, 9.46, 9.76. Bands: FIS 0.50% up to five employees and 0.80% above (D.Lgs. 148/2015 art. 29 c. 8), one third to the worker (art. 33 c. 1); CIGS 0.90% for employers with on average more than fifteen employees not covered by a bilateral fund, 0.30% to the worker (art. 20 c. 3-bis, art. 23 c. 1-bis). The terziario has no CIGO (art. 10) nor a bilateral fund, so it pays the FIS (art. 29 c. 2-bis) at every size and the CIGS above 15.",
+      "note": "Quote checked on 2026-10-10 against the PDF at the url of the record; D.Lgs. 148/2015 artt. 20, 23, 29 and 33 checked on Normattiva (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-09-14;148) the same day. The table is the INPS rate table of a non-CIGO employer with the commerce malattia rate; the observed payslip p04 (up to five employees, 9.19% IVS plus a separate 0.10% fund line) matches the reduced FIS of art. 29 c. 8-bis, p06 (9.49%) charges no worker FIS share and does not match. Not checked by a named reviewer."
+    },
+    "fis_reduction": {
+      "max_employees": 5,
+      "employer_rate": "0.0013",
+      "employee_rate": "0.0007",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "dlgs-148-2015",
+            "title": "D.Lgs. 14 settembre 2015 n. 148",
+            "kind": "dlgs",
+            "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-09-14;148~art29"
+          },
+          "section": "art. 29 c. 8-bis",
+          "quote": "a favore dei datori di lavoro che, nel semestre precedente la data di presentazione della domanda, abbiano occupato mediamente fino a cinque dipendenti e che non abbiano presentato domanda di assegno di integrazione salariale ai sensi del presente articolo per almeno ventiquattro mesi, a far data dal termine del periodo di fruizione del trattamento, l'aliquota di cui al comma 8 si riduce in misura pari al 40 per cento."
+        },
+        "transformation": "0.50% x (1 - 40%) = 0.30%, two thirds to the employer and one third to the worker (art. 33 c. 1): 0.20% and 0.10%. Against the shares of the full rate in the INPS table (0.33% and 0.17%) the cut is 0.13% and 0.07%.",
+        "note": "Quote checked on 2026-10-10 on Normattiva, text in force. The observed payslip p04 charges a 0.10% worker line on top of the 9.19% IVS. Not checked by a named reviewer."
+      }
+    },
+    "ceiling_provenance": {
+      "status": "derived",
+      "location": {
+        "source_document": {
+          "document_id": "inps-circolare-6-2026",
+          "title": "INPS Circolare n. 6 del 30 gennaio 2026",
+          "kind": "inps_circolare",
+          "url": "https://www.inps.it/it/it/inps-comunica/atti/circolari-messaggi-e-normativa/dettaglio.circolari-e-messaggi.2026.01.circolare-numero-6-del-30-01-2026_15151.html"
+        },
+        "section": "Massimale annuo della base contributiva e pensionabile",
+        "quote": "Il massimale annuo della base contributiva e pensionabile previsto dall'art. 2, comma 18, secondo periodo, della L. n. 335/1995, per i lavoratori iscritti successivamente al 31 dicembre 1995 a forme pensionistiche obbligatorie e per coloro che optano per la pensione con il sistema contributivo, sulla base dell'indice dei prezzi al consumo per le famiglie di operai e impiegati calcolato dall'ISTAT, è pari, per l'anno 2026, a 122.295,40 euro, che arrotondato all'unità di euro è pari a 122.295,00 euro."
+      },
+      "note": "Quote checked on 2026-10-10 against the text of the circular reproduced in Confcommercio Ascom Bologna circolare 23/26 (https://ascom.bo.it/wp-content/uploads/2026/02/CIRCO-23-26_Minimi-retributivi-per-calcolo-contributi-2026.pdf); the INPS page renders its text through a script. Not checked by a named reviewer."
     }
   },
   "apprentice": {
@@ -117,9 +163,9 @@
     "effective_from": "2026-01-01",
     "effective_until": "2026-12-31",
     "published_at": "2026-09-07",
-    "source": "unavailable",
+    "source": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2022/10/Circolare_13970/Allegati/13873_Circolare-numero-117-del-20-10-2022_Allegato-n-1.pdf",
     "verification_status": "unverified",
-    "source_hash": "f5d229000259e2e75198de178e88bc276fa4a3087ad183931bd3fa384c2071e8",
-    "source_type": "estimated"
+    "source_hash": "6b09dd2aedfb2fbc9993b5fb2df96c64db2e800171873fc17143c4ecd3df321a",
+    "source_type": "institutional_secondary"
   }
 }

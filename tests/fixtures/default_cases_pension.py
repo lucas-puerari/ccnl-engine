@@ -7,8 +7,10 @@ industria as an operaio, whose Prevedi contractual contribution is an
 amount per ordinary hour worked, and moved to Grafica editoria C1, hired
 in 2019 and enrolled in Byblos, whose employer rate is lower for a holder
 of the ERC, moved to Servizi ambientali Q and enrolled in Previambiente,
-whose rates go on a conventional base of the worker, and moved to Funzioni
-Centrali, whose end-of-service regime sets the contributions to INPS.
+whose rates go on a conventional base of the worker, moved to Funzioni
+Centrali, whose end-of-service regime sets the contributions to INPS, and
+moved to Terziario 5 at an employer of five, whose FIS rate is cut when it
+has not applied for the assegno di integrazione salariale.
 """
 
 from __future__ import annotations
@@ -18,7 +20,7 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine import PayrollRun
+from ccnl_engine import Headcount, PayrollRun
 from ccnl_engine.inputs import (
     ContributableHours,
     EmploymentPeriod,
@@ -104,6 +106,17 @@ def _public_employer(
     return replace(request, employer=employer)
 
 
+def _small_terziario(
+    january: Callable[[Employment], PeriodInput], reduced: bool | None
+) -> PeriodInput:
+    terziario = replace(
+        CONCIA_D2, ccnl_slug="commercio-confcommercio.json", level_code="5"
+    )
+    request = january(terziario)
+    employer = replace(request.employer, headcount=Headcount(5), fis_reduction=reduced)
+    return replace(request, employer=employer)
+
+
 def _operaio(
     january: Callable[[Employment], PeriodInput], hours: Decimal | None
 ) -> PeriodInput:
@@ -151,6 +164,18 @@ def pension_cases[C](
         "Employment.public_end_of_service": (
             pair(
                 _public(PublicEndOfService.TFS), _public(None), "public_end_of_service"
+            ),
+        ),
+        "EmployerProfile.fis_reduction": (
+            case(
+                _small_terziario(january, True),
+                _small_terziario(january, None),
+                "fis_reduction",
+            ),
+            case(
+                _small_terziario(january, False),
+                _small_terziario(january, None),
+                "fis_reduction",
             ),
         ),
         "EmployerProfile.public_life_insurance": (

@@ -58,16 +58,23 @@ class EmployerProfile:
             (INPS circ. 104/2014).  ``None`` takes the value the CCNL fixes;
             when it fixes none, a run of the public administrations has a
             ``missing_fact`` blocker.
+        fis_reduction: Whether an employer of the fondo di integrazione
+            salariale with on average up to five employees has its rate cut
+            by 40% for not having applied for the assegno di integrazione
+            salariale in the last twenty-four months (D.Lgs. 148/2015 art. 29
+            c. 8-bis).  ``None`` means not known: a run of such an employer
+            has a ``missing_fact`` blocker and is charged the full rate.
 
     Raises:
         InvalidInputError: When ``headcount`` is not a :class:`Headcount`,
             ``activity`` is not an :class:`EmployerActivity` value or
-            ``public_life_insurance`` is not a bool.
+            ``public_life_insurance`` or ``fis_reduction`` is not a bool.
     """
 
     headcount: Headcount
     activity: EmployerActivity | None = None
     public_life_insurance: bool | None = None
+    fis_reduction: bool | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         require_instance(
@@ -86,4 +93,8 @@ class EmployerProfile:
                 self.public_life_insurance,
                 "EmployerProfile.public_life_insurance",
                 feature=_FEATURE,
+            )
+        if self.fis_reduction is not None:
+            require_bool(
+                self.fis_reduction, "EmployerProfile.fis_reduction", feature=_FEATURE
             )

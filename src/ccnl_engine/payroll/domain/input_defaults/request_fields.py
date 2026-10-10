@@ -91,6 +91,13 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "whose employers differ, the Assicurazione Sociale Vita is left out "
         "and the run has a missing_fact public_life_insurance blocker",
     ),
+    "EmployerProfile.fis_reduction": requires_fact(
+        "inps_employee",
+        "employer.fis_reduction",
+        _REPORTED,
+        "the full FIS rate; an employer of the fondo di integrazione salariale "
+        "with up to five employees has a missing_fact fis_reduction blocker",
+    ),
     "Employment.category": requires_fact(
         "worker_category",
         "employment.category",

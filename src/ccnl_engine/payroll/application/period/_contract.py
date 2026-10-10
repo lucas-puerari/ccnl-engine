@@ -16,6 +16,7 @@ from ccnl_engine.payroll.domain.employment_context import (
     TemporalContext,
 )
 from ccnl_engine.shared.domain.errors import UnknownLevelError
+from ccnl_engine.tax.domain.fis_reduction import with_fis_reduction
 
 if TYPE_CHECKING:
     from ccnl_engine.contract.domain.compensation import Level
@@ -92,7 +93,11 @@ def load_contract(
         headcount,
     )
     if year_rules.inps is not None:
-        inps = year_rules.inps.for_public_fund(ccnl.meta.public_pension_fund)
+        inps = with_fis_reduction(
+            year_rules.inps.for_public_fund(ccnl.meta.public_pension_fund),
+            request.employer.fis_reduction,
+            headcount,
+        )
         year_rules = year_rules.model_copy(update={"inps": inps})
     catalog = repo.load_capability_catalog(tctx.fiscal_year)
     return RunContract(ccnl, level, tctx, date_ctx, year_rules, catalog)

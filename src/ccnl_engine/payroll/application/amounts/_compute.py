@@ -7,6 +7,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application.amounts._assistance import run_assistance
 from ccnl_engine.payroll.application.amounts._contributions import (
+    FIS_REDUCTION_UNKNOWN,
     run_contributions,
     tfr_accrual,
 )
@@ -83,6 +84,7 @@ def _issues(inp: _AmountsInput, irpef: _Irpef) -> tuple[CalculationIssue, ...]:
     conventional = conventional_base_unknown(pension)
     public = end_of_service_issue(inp)
     life = life_insurance_issue(inp)
+    fis = inp.rules.inps is not None and inp.rules.inps.fis_reduction_open
     return (
         family
         + ulteriore_issues(inp, irpef)
@@ -92,6 +94,7 @@ def _issues(inp: _AmountsInput, irpef: _Irpef) -> tuple[CalculationIssue, ...]:
         + ((CONVENTIONAL_BASE_UNKNOWN,) if conventional else ())
         + (() if public is None else (public,))
         + (() if life is None else (life,))
+        + ((FIS_REDUCTION_UNKNOWN,) if fis else ())
     )
 
 

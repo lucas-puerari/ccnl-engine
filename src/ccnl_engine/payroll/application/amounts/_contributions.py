@@ -30,6 +30,21 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.application.amounts._types import _AmountsInput
     from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
 
+#: An employer of up to five employees in the FIS must say whether its rate
+#: is cut (D.Lgs. 148/2015 art. 29 c. 8-bis).
+FIS_REDUCTION_UNKNOWN = CalculationIssue(
+    code="fis_reduction_unknown",
+    message=(
+        "an employer of the fondo di integrazione salariale with up to five "
+        "employees pays 40% less FIS when it has not applied for the assegno "
+        "di integrazione salariale for twenty-four months (D.Lgs. 148/2015 "
+        "art. 29 c. 8-bis); the amounts shown charge the full rate; state "
+        "EmployerProfile.fis_reduction"
+    ),
+    status=CalculationStatus.INCOMPLETE,
+    fact="fis_reduction",
+)
+
 
 def _raised(inp: _AmountsInput, base: Decimal) -> Decimal:
     """Return ``base`` raised to the minimum INPS base of the run.
