@@ -158,12 +158,13 @@ def test_pdr_productivity_bonus_separate_from_ordinary_irpef() -> None:
 def test_family_deductions_increase_net() -> None:
     """Dependent spouse + children (Art. 12 TUIR) reduce IRPEF and raise net pay.
 
-    Single, January (art. 23 c. 2 lett. a) DPR 600/1973): gross 1,783.75,
-    INPS 9.19% = 163.93, taxable 1,619.82 taxed 23% = 372.56.  The year
-    projects 13 more slots: 1,619.82 + 23,188.75 - 2,131.05 = 22,677.52.
-    Art. 13: 1,910 + 1,190 * 0.4094 = 2,397.19, times 31/365 = 203.60;
-    ulteriore detrazione 84.93; IRPEF 372.56 - 203.60 - 84.93 = 84.03, net
-    1,783.75 - 163.93 - 84.03 = 1,535.79.
+    Single, January (art. 23 c. 2 lett. a) DPR 600/1973): gross 1,783.75;
+    with 50 employees INPS 9.19% = 163.93 plus FIS and CIGS 0.57% = 10.17,
+    taxable 1,609.65 taxed 23% = 370.22.  The year projects 13 more slots
+    net of 9.76% INPS: 1,609.65 + 23,188.75 x 0.9024 = 22,535.18.  Art. 13:
+    1,910 + 1,190 * 0.4203 = 2,410.16, times 31/365 = 204.70; ulteriore
+    detrazione 84.93; IRPEF 370.22 - 204.70 - 84.93 = 80.59, net 1,783.75 -
+    174.10 - 80.59 = 1,529.06.
     """
     result_single = engine.calculate_period(
         PeriodInput(
@@ -207,8 +208,8 @@ def test_family_deductions_increase_net() -> None:
     )
     # The 2026 regional surtax is determined at the conguaglio and withheld
     # in 2027 (D.Lgs. 446/1997 art. 50 c. 4); with no 2025 surtax to carry,
-    # January withholds none: the net is the one without surtax, 1,535.79.
-    assert result_single.period_net == Decimal("1535.79")
+    # January withholds none: the net is the one without surtax, 1,529.06.
+    assert result_single.period_net == Decimal("1529.06")
     assert result_family.period_net > result_single.period_net
 
 

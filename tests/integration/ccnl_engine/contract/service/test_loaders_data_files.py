@@ -137,8 +137,8 @@ class TestLoadYearRules:
 
     def test_employer_tier_boundary(self) -> None:
         """Firms exactly at tier boundary are included in the lower tier."""
-        yr_at = load_year_rules(2026, TaxSector.TERZIARIO, 50)
-        yr_above = load_year_rules(2026, TaxSector.TERZIARIO, 51)
+        yr_at = load_year_rules(2026, TaxSector.TERZIARIO, 15)
+        yr_above = load_year_rules(2026, TaxSector.TERZIARIO, 16)
         assert yr_at.inps is not None
         assert yr_above.inps is not None
         assert yr_at.inps.employer_rate < yr_above.inps.employer_rate

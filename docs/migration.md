@@ -4,6 +4,14 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## FIS and CIGS in the terziario INPS rates
+
+| Before | After |
+|---|---|
+| Terziario: two tiers, 9.19% / 28.98% up to 50 employees and 9.49% / 29.58% above, no FIS share | Three tiers from INPS circ. 117/2022 all. 1 and D.Lgs. 148/2015: up to 5 employees 9.36% / 29.31%, 6 to 15 9.46% / 29.51%, above 15 9.76% / 30.11% (FIS at every size, CIGS above 15) |
+| No FIS cut | New `EmployerProfile.fis_reduction`: an employer of up to five that has not applied for the assegno for 24 months pays the FIS cut by 40% (art. 29 c. 8-bis), 9.29% / 29.18%; unknown, the full rate and a `missing_fact fis_reduction` blocker |
+| The massimale shared the record of the rates | `InpsRates.ceiling_provenance` backs it on its own (INPS circ. 6/2026) |
+
 ## Provisional 2027 tax, INPS and surtax tables
 
 | Before | After |

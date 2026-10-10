@@ -27,6 +27,7 @@ from ccnl_engine.tax.domain.contribution_rules import (
     PublicFundRates,
     PublicLifeInsuranceRates,
 )
+from ccnl_engine.tax.domain.fis_reduction import FisReduction
 from ccnl_engine.tax.domain.minimum_base import MinimumBaseRule
 
 
@@ -91,6 +92,8 @@ class InpsRawRates(BaseModel):
     ``public_funds`` are the rates of the funds of the Gestione Dipendenti
     Pubblici other than the tiers, by fund (``CCNLMeta.public_pension_fund``);
     ``end_of_service`` the end-of-service fund of the tiers (ENPAS).
+    ``ceiling_provenance`` backs the massimale apart from the rates;
+    ``fis_reduction`` is the cut of the FIS rate of the smallest employers.
 
     ``employee_tiers`` and ``employer_tiers`` must be non-empty; an empty
     list would cause ``_resolve_tier`` to raise with no tier available for
@@ -110,6 +113,8 @@ class InpsRawRates(BaseModel):
     public_credit: PublicCreditRate | None = None
     public_life_insurance: PublicLifeInsuranceRates | None = None
     public_enam: PublicEnamRate | None = None
+    ceiling_provenance: RuleProvenance | None = None
+    fis_reduction: FisReduction | None = None
 
 
 class ApprenticeRawRates(BaseModel):

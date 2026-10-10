@@ -163,8 +163,8 @@ class TestYearRules2026Json:
         assert yr.irpef_brackets[1].rate == Decimal("0.33")
         assert yr.irpef_brackets[2].rate == Decimal("0.43")
         assert yr.inps is not None
-        assert yr.inps.employee_rate == Decimal("0.0919")
-        assert yr.inps.employer_rate == Decimal("0.2898")
+        assert yr.inps.employee_rate == Decimal("0.0976")
+        assert yr.inps.employer_rate == Decimal("0.3011")
         assert yr.inps.ceiling == Decimal("122295.00")
         assert yr.fixed_term_additional_rate == Decimal("0.014")
         assert yr.tfr.accrual_divisor == Decimal("13.5")
@@ -172,12 +172,27 @@ class TestYearRules2026Json:
         assert yr.apprentice.employer_rate_after == Decimal("0.1161")
         assert yr.apprentice.employer_rate_months_0_11 == Decimal("0.1161")
 
-    def test_employee_tier_above_threshold(self) -> None:
-        """Terziario above 50 employees: employee +0.30% CIGS, employer 29.58%."""
-        yr = load_year_rules(2026, TaxSector.TERZIARIO, 51)
+    @pytest.mark.parametrize(
+        ("headcount", "employee", "employer"),
+        [
+            (5, "0.0936", "0.2931"),
+            (15, "0.0946", "0.2951"),
+            (16, "0.0976", "0.3011"),
+        ],
+    )
+    def test_terziario_tiers_add_fis_and_cigs(
+        self, headcount: int, employee: str, employer: str
+    ) -> None:
+        """Terziario: FIS at every size, CIGS above 15 (INPS circ. 117/2022 all. 1).
+
+        Employee 9.19 IVS + FIS 0.17 up to 5, 0.27 above, + CIGS 0.30 above
+        15; employer 28.98 + FIS 0.33 up to 5, 0.53 above, + CIGS 0.60 above
+        15 (D.Lgs. 148/2015 artt. 23 c. 1-bis, 29 c. 8, 33 c. 1).
+        """
+        yr = load_year_rules(2026, TaxSector.TERZIARIO, headcount)
         assert yr.inps is not None
-        assert yr.inps.employee_rate == Decimal("0.0949")
-        assert yr.inps.employer_rate == Decimal("0.2958")
+        assert yr.inps.employee_rate == Decimal(employee)
+        assert yr.inps.employer_rate == Decimal(employer)
 
     def test_small_firm_apprentice_rates(self) -> None:
         """Firms with at most 9 employees get the reduced apprentice rates."""

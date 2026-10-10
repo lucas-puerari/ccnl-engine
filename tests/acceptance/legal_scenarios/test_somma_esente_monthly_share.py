@@ -6,11 +6,11 @@ dipendente [...] e riconosce la somma spettante applicando tale percentuale
 al reddito effettivamente corrisposto mensilmente"; the conguaglio settles
 the year (L. 207/2024 art. 1 c. 7).
 
-Commercio level 4 hired on 1 July 2026: 1783.75 a month, employee IVS
-9.19% = 163.93, taxable 1619.82.  The income of the year, annualised, is
-above 15,000 EUR: 4.8% (c. 4 lett. c).  July pays 4.8% x 1619.82 =
-77.75136 -> 77.75, not the annual amount divided by the seven payments
-left.
+Commercio level 4 hired on 1 July 2026 by an employer of 50: 1783.75 a
+month, employee IVS 9.19% = 163.93 plus FIS and CIGS 0.57% = 10.17,
+taxable 1609.65.  The income of the year, annualised, is above 15,000 EUR:
+4.8% (c. 4 lett. c).  July pays 4.8% x 1609.65 = 77.2632 -> 77.26, not the
+annual amount divided by the seven payments left.
 """
 
 from __future__ import annotations
@@ -40,7 +40,7 @@ _HIRED = date(2026, 7, 1)
 
 
 def test_july_pays_the_percentage_of_its_income() -> None:
-    """77.75 on the 1619.82 of July."""
+    """77.26 on the 1609.65 of July."""
     result = ENGINE.calculate_period(
         PeriodInput(
             run=PayrollRun.regular(2026, 7),
@@ -66,5 +66,5 @@ def test_july_pays_the_percentage_of_its_income() -> None:
             current_year=CurrentYearTaxFacts.employment_only(2026, _HIRED),
         )
     )
-    assert result.contribution_breakdown.employee == Decimal("163.93")
-    assert result.closing_state.cash.somma_esente.recognized == Decimal("77.75")
+    assert result.contribution_breakdown.employee == Decimal("174.10")
+    assert result.closing_state.cash.somma_esente.recognized == Decimal("77.26")

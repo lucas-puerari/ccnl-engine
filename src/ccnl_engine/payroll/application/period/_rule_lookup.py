@@ -128,7 +128,10 @@ def contract_rules(ctx: RunContext) -> dict[str, tuple[Rule, ...]]:
         "inps_employee": inps + additional_ivs_rules(inps_name, rules.inps),
         "inps_employer": inps + fixed_term,
         "ivs_ceiling_eligibility": (
-            (f"{inps_name}:inps.ceiling", _provenance(rules.inps)),
+            (
+                f"{inps_name}:inps.ceiling",
+                None if rules.inps is None else rules.inps.ceiling_record,
+            ),
         ),
         "assistance_contribution": assistance_rules(
             ccnl, ctx.contract.tctx.competence.year

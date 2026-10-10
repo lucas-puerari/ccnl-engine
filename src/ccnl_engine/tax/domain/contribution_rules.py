@@ -21,6 +21,7 @@ from ccnl_engine.shared.domain.primitives import (
     assert_ivs_le_total,
 )
 from ccnl_engine.tax.domain.additional_ivs import AdditionalIvsRule
+from ccnl_engine.tax.domain.fis_reduction import FisReduction
 from ccnl_engine.tax.domain.minimum_base import MinimumBaseRule
 
 
@@ -147,6 +148,12 @@ class InpsRates(BaseModel):
     ``minimum_base`` is the minimale the INPS base of a run is raised to,
     see :class:`~ccnl_engine.tax.domain.minimum_base.MinimumBaseRule`;
     ``None`` when the sector does not model it.
+
+    ``ceiling_provenance`` backs the massimale, read from another source
+    than the rates; ``fis_reduction`` is the cut of the FIS rate of the
+    smallest employers (:mod:`~ccnl_engine.tax.domain.fis_reduction`), and
+    ``fis_reduction_open`` flags rates resolved for an employer it may
+    apply to that does not say whether it does.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -165,6 +172,14 @@ class InpsRates(BaseModel):
     public_credit: PublicCreditRate | None = None
     public_life_insurance: PublicLifeInsuranceRates | None = None
     public_enam: PublicEnamRate | None = None
+    ceiling_provenance: RuleProvenance | None = None
+    fis_reduction: FisReduction | None = None
+    fis_reduction_open: bool = False
+
+    @property
+    def ceiling_record(self) -> RuleProvenance | None:
+        """The record of the massimale: its own, else that of the rates."""
+        return self.ceiling_provenance or self.provenance
 
     def for_public_fund(self, fund: PublicPensionFund | None) -> InpsRates:
         """Return the rates of a fund of the Gestione Dipendenti Pubblici.
