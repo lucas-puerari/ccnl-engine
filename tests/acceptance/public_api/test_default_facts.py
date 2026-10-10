@@ -126,11 +126,11 @@ class TestDefaultIsNotAFact:
     def test_explicit_scenario_is_blocked_only_by_weak_sources(self) -> None:
         """The premise: with every fact given, only assumed rules block.
 
-        The rules of the rulesets that declare ``source_type`` ``estimated``
-        are assumed; no blocker names a fact.
+        The rules of the INPS ruleset, which declares ``source_type``
+        ``estimated``, are assumed; no blocker names a fact.
         """
         blockers = _blocker_set(_june_with())
-        assert (BlockerCode.RULE_SOURCE_WEAK, "irpef") in blockers
+        assert (BlockerCode.RULE_SOURCE_WEAK, "inps_employer") in blockers
         assert {code for code, _ in blockers} == {BlockerCode.RULE_SOURCE_WEAK}
 
     def test_missing_opening_state_mid_year_is_not_a_zero_state(self) -> None:

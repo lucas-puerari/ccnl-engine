@@ -149,7 +149,7 @@ def test_ordinary_month_has_no_coverage_gap() -> None:
         b.code is BlockerCode.CAPABILITY_NOT_COMPUTED for b in result.blockers
     )
     keys = _blocker_keys(result)
-    assert (BlockerCode.RULE_SOURCE_WEAK, "irpef", "assumed") in keys
+    assert (BlockerCode.RULE_SOURCE_WEAK, "inps_employer", "assumed") in keys
     assert not any(feature == "somma_esente" for _code, feature, _d in keys)
 
 
