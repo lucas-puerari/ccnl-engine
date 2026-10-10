@@ -13,6 +13,7 @@ from decimal import Decimal
 
 from ccnl_engine.contract.domain.sickness import (
     SicknessCumulation,
+    SicknessDayBand,
     SicknessRules,
     SicknessSeniorityBand,
 )
@@ -70,3 +71,25 @@ def test_a_cumulated_ccnl_counts_the_days() -> None:
     treatment = rules.treatment(_EPISODE, SicknessHistory())
     assert rules.cumulative(_EPISODE, SicknessHistory()) is not None
     assert treatment(1, date(2026, 5, 3)).rate == Decimal("0.80")
+
+
+def test_day_bands_set_the_rate_by_the_day_of_the_episode() -> None:
+    """Commercio Art. 187: 75% from day 4 to day 20, 100% from day 21."""
+    ccnl = SicknessRules(
+        carenza_integration_rate=_ONE,
+        full_pay_integration_rate=_ONE,
+        day_bands=(
+            SicknessDayBand(day_from=4, day_until=21, integration_rate=Decimal("0.75")),
+            SicknessDayBand(day_from=21, integration_rate=_ONE),
+        ),
+        max_duration_days=180,
+    )
+    rules = SickPayRules(_INPS, inps_cover=True, ccnl=ccnl)
+
+    assert [rules.target_rate(i) for i in (2, 4, 20, 21, 180)] == [
+        _ONE,
+        Decimal("0.75"),
+        Decimal("0.75"),
+        _ONE,
+        _ONE,
+    ]

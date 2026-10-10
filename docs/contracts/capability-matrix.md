@@ -97,7 +97,7 @@ formulas or caller-declared amounts.
 | `shift_work` | Lavoro a turni | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
 | `absence` | Assenze ingiustificate | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
 | `leave` | Ferie e permessi ROL | work_rules | unsupported | outside_input | — | `facts.events[leave]` | — | unavailable | none bundled |
-| `sickness` | Malattia: episodi su più periodi, carenza, fasce INPS e integrazione CCNL | work_rules | native | event | event | — | multi_period_episode, inps_bands_and_carenza, ccnl_tiers | simplified | 0 / 223 / 6 / 0 |
+| `sickness` | Malattia: episodi su più periodi, carenza, fasce INPS e integrazione CCNL | work_rules | native | event | event | — | multi_period_episode, inps_bands_and_carenza, ccnl_tiers | simplified | 0 / 224 / 5 / 0 |
 | `fringe_benefit` | Fringe benefit (informativo) | work_rules | native | event | event | — | — | simplified | 0 / 1 / 1 / 0 |
 | `welfare` | Welfare aziendale (informativo) | work_rules | native | event | event | — | — | implemented | none bundled |
 | `bonus_pdr` | Premio di risultato PDR (informativo) | net | native | decided | decision | — | — | simplified | 0 / 0 / 2 / 0 |
@@ -223,7 +223,7 @@ never grow.
 | 94 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Operai OTI)](sistemazioni-idraulico-forestali-operai.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 20 / 2 / 1 |
 | 95 | [CCNL Telecomunicazioni — Assotelecomunicazioni (Asstel)](telecomunicazioni-asstel.md) | 🔲 | 🔲 | 🔲 | inps_employer, seniority | 0 / 45 / 2 / 0 |
 | 96 | [CCNL Terziario Distribuzione e Servizi — Confesercenti](terziario-confesercenti.md) | 🔲 | 🔲 | 🔲 | seniority, una_tantum | 0 / 62 / 2 / 0 |
-| 97 | [CCNL Terziario, Distribuzione e Servizi (Confcommercio)](commercio-confcommercio.md) | 🔲 | 🔲 | 🔲 | seniority, sickness | 0 / 68 / 1 / 0 |
+| 97 | [CCNL Terziario, Distribuzione e Servizi (Confcommercio)](commercio-confcommercio.md) | 🔲 | 🔲 | 🔲 | seniority, sickness | 0 / 69 / 0 / 0 |
 | 98 | [CCNL Tessile-Abbigliamento-Moda PMI (Uniontessile-Confapi)](tessile-pmi-uniontessile.md) | 🔲 | 🔲 | 🔲 | base_salary, pension_fund_contribution | 0 / 0 / 43 / 1 |
 | 99 | [CCNL Trasporto Aereo — Gestori Aeroportuali](trasporto-aereo-assaeroporti.md) | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 72 / 2 / 0 |
 | 100 | [CCNL Trasporto a Fune (Funivie Terrestri ed Aeree) - ANEF](funivie-anef.md) | 🔲 | 🔲 | 🔲 | seniority | 0 / 47 / 1 / 1 |

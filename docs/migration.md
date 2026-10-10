@@ -4,6 +4,13 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Day-gated sick pay, Commercio reviewed
+
+| Before | After |
+|---|---|
+| A sickness rule could gate its integration rate by month of sickness only | New `SicknessRules.day_bands` (`SicknessDayBand`: `day_from`, `day_until`, `integration_rate`), applied by the day of the episode before any month tier |
+| Commercio sickness paid 100% from day 4 (`assumed`) | Art. 187: 100% carenza, 75% for days 4-20, 100% from day 21, `derived`; the net daily pay, the carenza by event of the calendar year and the yearly comporto stay an open limitation, so a run with sickness is still not payable. Commercio becomes `reviewed` |
+
 ## Sourced 2026 INPS rates of edilizia, credito and apprentices
 
 | Before | After |
