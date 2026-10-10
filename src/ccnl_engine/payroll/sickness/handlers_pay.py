@@ -32,6 +32,7 @@ if TYPE_CHECKING:
 
     from ccnl_engine.payroll.amount.types_chain import MonthlyPayChain
     from ccnl_engine.payroll.sickness.models import SicknessEpisode
+    from ccnl_engine.payroll.sickness.models_pay_rule import SickPayRules
     from ccnl_engine.payroll.sickness.rules_terms import (
         SicknessTerms,
     )
@@ -126,6 +127,21 @@ def _within_month(
     return tuple(clipped)
 
 
+def _grossed(share: Decimal, rules: SickPayRules, terms: SicknessTerms) -> Decimal:
+    """Return the INPS share as gross pay, for a CCNL of the net daily pay.
+
+    The INPS indemnity bears no contributions, the company integration
+    does: on the net basis the share is divided by one less the worker's
+    INPS rate before the integration is taken from the target.
+
+    Returns:
+        ``share`` on the gross basis, grossed up on the net one.
+    """
+    if not rules.ccnl.net_basis:
+        return share
+    return money(share / (1 - terms.employee_rate))
+
+
 def episode_pay(
     episode: SicknessEpisode, span: tuple[date, date], terms: SicknessTerms
 ) -> EpisodePay | None:
@@ -151,6 +167,7 @@ def episode_pay(
         quota.divisor,
     )
     absence = inps = integration = carenza = _ZERO
+    excluded = rules.ccnl.apprentices_excluded and terms.apprentice
     counted = terms.counted
     before = _quota(chain, counted, quota.divisor)
     for segment, unit in zip(segments, units, strict=True):
@@ -160,13 +177,16 @@ def episode_pay(
         reached = _quota(chain, counted, quota.divisor)
         base, before = reached - before, reached
         absence += base
+        share = money(base * segment.inps_rate)
+        if segment.kind is not SickDayKind.CARENZA:
+            inps += share
+        if excluded:
+            continue
         worker = money(base * segment.worker_rate)
         if segment.kind is SickDayKind.CARENZA:
             carenza += worker
             continue
-        share = money(base * segment.inps_rate)
-        inps += share
-        integration += worker - share
+        integration += max(_ZERO, worker - _grossed(share, rules, terms))
     cumulative = rules.cumulative(episode, terms.history)
     report = None if cumulative is None else cumulation_report(cumulative, span)
     return EpisodePay(segments, units, absence, inps, integration, carenza, report)

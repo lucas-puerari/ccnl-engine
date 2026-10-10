@@ -59,6 +59,9 @@ class SicknessTerms:
             (``category``), ``None`` when cover is known or the bundle has
             no rule for the worker.
         fixed_term: Whether the contract is fixed-term.
+        apprentice: Whether the contract is an apprenticeship.
+        employee_rate: INPS rate of the worker, which grosses up the INPS
+            share of a CCNL integrating the net daily pay.
     """
 
     employed: tuple[date, date] | None = None
@@ -72,3 +75,5 @@ class SicknessTerms:
     source: SourceLocation | None = None
     cover_fact: str | None = None
     fixed_term: bool = False
+    apprentice: bool = False
+    employee_rate: Decimal = Decimal(0)

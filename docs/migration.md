@@ -4,6 +4,14 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Commercio sick pay on the net daily pay
+
+| Before | After |
+|---|---|
+| Commercio topped the INPS sick indemnity up to 75% or 100% of the gross daily quota | Art. 187 sets the measures on the "retribuzione giornaliera netta": new `SicknessRules.net_basis` grosses the INPS share, free of contributions, up by the worker's INPS rate before the company tops it up. Level 4 impiegato, 2-13 March 2026: integration 107.40 instead of 137.05. The open limitation `sickness_net_basis` stays: the CCNL does not define the net pay and the gross-up is payroll practice |
+| An apprentice of Commercio took the company integration and carenza | New `SicknessRules.apprentices_excluded`: "né agli apprendisti", the INPS share only |
+
+
 ## Agricultural INPS rates and zones
 
 | Before | After |
@@ -566,20 +574,3 @@ settled by the conguaglio, does not (see
 | The ulteriore detrazione was recognized on every slot, the tredicesima included | It is recognized on the regular months, for their days |
 | A bonus that lifted the income above the band of the ulteriore detrazione took back what earlier runs had recognized (`recovered_by_withholding`) | No run takes it back before the conguaglio, which recovers it under L. 207/2024 art. 1 c. 7, in ten installments above 60 EUR |
 | `compute_tax(..., net_without_one_off=, ulteriore_without_one_off=)` | `compute_tax(..., period=PayPeriod(...))`, from `payroll.service.period_withholding`; `child_months` is `child_due_months` and returns the months, `DependentDeduction.months` is a property of `due_months` (internal modules) |
-
-## Art. 13 minimum proportioned in the withholding
-
-The withholding agent proportions the minimum of the art. 13 TUIR deduction
-(€690, €1,380 for a fixed term) to the days of work, as the Certificazione
-Unica 2026 instructions require (punto 367); the tax return grants it
-whole. With the 2026 amounts the minimum for the days never exceeds €1,955
-for the days, so payroll deducts €1,955 × days / 365 again up to €15,000,
-and a short employment withholds more IRPEF than before. A new `irpef`
-decision records the part of the minimum left to the tax return (see
-[Fiscal rules](engine/fiscal.md)).
-
-| Before | After |
-|---|---|
-| Metalmeccanico C3, 10 July to 20 September 2026 (73 days), open-ended: deduction €690.00 | Deduction €391.00 (1,955 × 73 / 365); decision `minimum_proportioned_to_days`, `tax_return_balance` €299.00 |
-| Same, `FixedTerm()`: deduction €1,380.00, net IRPEF €0.00, no trattamento | Deduction €391.00; gross tax above €391.00 − €15.00, so trattamento €240.00 (1,200 × 73 / 365); `tax_return_balance` €989.00 |
-| `irpef` decisions of a run: one, `withheld`, `refunded` or `nothing_due` | Also `minimum_proportioned_to_days` (no amount) when the whole minimum exceeds the deduction of the withholding |

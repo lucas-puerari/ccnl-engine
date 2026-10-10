@@ -97,12 +97,12 @@
       },
       {
         "kind": "simplification",
-        "text": "SICKNESS (Art. 187): the CCNL integrates up to a share of the net daily pay ('retribuzione giornaliera netta'); the engine integrates the gross daily pay. Day bands, carenza by event and the yearly comporto are modelled.",
+        "text": "SICKNESS (Art. 187): the CCNL integrates up to a share of the net daily pay ('retribuzione giornaliera netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate (the 'lordizzazione' of payroll practice, Ordine dei Consulenti del Lavoro di Salerno) and tops it up to the measure of the gross daily quota; IRPEF is left out, as it falls on both. Day bands, carenza by event, the yearly comporto and the exclusion of apprentices are modelled.",
         "capability": "sickness",
-        "monetary_impact": "yes",
+        "monetary_impact": "unknown",
         "limitation": {
           "variant": "sickness_net_basis",
-          "remediation": "Integrate the share of the net daily pay the CCNL guarantees, then resolve this limitation."
+          "remediation": "Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 187, align the computation, then resolve this limitation."
         }
       }
     ]
@@ -2496,7 +2496,7 @@
     "effective_until": null,
     "source": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
     "verification_status": "unverified",
-    "source_hash": "ded8c77a960d599e1bbd25c4a6534fc348345386c1556f48d83152618c77d419",
+    "source_hash": "b5c7f62ddb3d2313e7934b99947321b99fc1a722a16fd0aa918f86d1830e701f",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2734,6 +2734,8 @@
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
+      "net_basis": true,
+      "apprentices_excluded": true,
       "provenance": {
         "status": "derived",
         "location": {
@@ -2756,7 +2758,8 @@
           "verification_status": "unverified",
           "effective_from": "1993-11-01"
         },
-        "transformation": "Art. 187 b): 100% for the three days of carenza, 75% for days 4-20 and 100% from day 21, stored as day_bands of the episode; the carenza at 66%, 50% and 0% from the third event of the calendar year as carenza_by_event; comporto of 180 days in the calendar year (Art. 186) as max_duration_days counted over the year."
+        "transformation": "Art. 187 b): 100% for the three days of carenza, 75% for days 4-20 and 100% from day 21, stored as day_bands of the episode; the carenza at 66%, 50% and 0% from the third event of the calendar year as carenza_by_event; comporto of 180 days in the calendar year (Art. 186) as max_duration_days counted over the year. The measures are of the 'retribuzione giornaliera netta' (net_basis): the INPS share, free of contributions, is grossed up by the worker's INPS rate before the company tops it up to the measure, so that the worker's pay net of contributions reaches it; the company owes apprentices no integration and no carenza (apprentices_excluded).",
+        "note": "Net basis, p. 177: '100% (cento per cento) per i giorni dal 21° in poi della retribuzione giornaliera netta cui il lavoratore avrebbe avuto diritto in caso di normale svolgimento del rapporto. Per retribuzione giornaliera si intende la quota giornaliera della retribuzione di fatto di cui all'art.208.' Apprentices, p. 178: 'Le indennità a carico del datore di lavoro non sono dovute nei casi di cui ai successivi artt. 189 e 195 né agli apprendisti.' The CCNL does not say how the net pay is computed: the gross-up of the INPS indemnity by the worker's contributions ('lordizzazione') is the payroll practice described by the Ordine dei Consulenti del Lavoro di Salerno (https://www.ordineconsulentilavorosalerno.it/files/2021/06/slides_zinno.pdf, 'la somma a carico dell'INAIL dev'essere aumentata dei contributi INPS'), not a norm; the open limitation sickness_net_basis records it. Quotes read on 2026-10-10."
       },
       "day_bands": [
         {

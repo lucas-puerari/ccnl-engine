@@ -241,6 +241,11 @@ class SicknessRules(BaseModel):
             modelled by the engine.
         cumulation: Treatment chain, comporto window and seniority bands of
             a CCNL that counts the sickness of several episodes.
+        net_basis: The rates are of the net daily pay (Commercio Art. 187):
+            the INPS share, free of contributions, is grossed up by the
+            worker's INPS rate before the company tops it up.
+        apprentices_excluded: The company owes apprentices no integration
+            and no carenza (Commercio Art. 187: "né agli apprendisti").
         provenance: Links this rule to its CCNL article.
     """
 
@@ -254,6 +259,8 @@ class SicknessRules(BaseModel):
     carenza_by_event: CarenzaByEvent | None = None
     max_duration_days: int = Field(default=180, ge=1)
     cumulation: SicknessCumulation | None = None
+    net_basis: bool = False
+    apprentices_excluded: bool = False
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")

@@ -212,8 +212,8 @@ limits, the `rulesets` and dates it affects, a `monetary_impact` (`yes`,
 The <!-- trust:simplification-notes -->354<!-- /trust:simplification-notes -->
 simplification notes of the bundle each state their impact on what the engine
 computes from the bundle:
-<!-- trust:simplification-yes -->82<!-- /trust:simplification-yes --> `yes`,
-<!-- trust:simplification-unknown -->204<!-- /trust:simplification-unknown --> `unknown`
+<!-- trust:simplification-yes -->81<!-- /trust:simplification-yes --> `yes`,
+<!-- trust:simplification-unknown -->205<!-- /trust:simplification-unknown --> `unknown`
 and <!-- trust:simplification-no -->68<!-- /trust:simplification-no --> `no` (the
 engine refuses the case, or takes the value from the caller). A file whose
 note can move an amount without declaring a limitation does not load, so the

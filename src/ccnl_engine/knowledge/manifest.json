@@ -472,7 +472,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/commercio-confcommercio",
       "ruleset_version": "2026.2",
-      "source_hash": "ded8c77a960d599e1bbd25c4a6534fc348345386c1556f48d83152618c77d419",
+      "source_hash": "b5c7f62ddb3d2313e7934b99947321b99fc1a722a16fd0aa918f86d1830e701f",
       "source_type": "commercial_secondary",
       "owner": "lucas-puerari",
       "wheel_resource": "contract/agreement/commercio-confcommercio.json.gz"
