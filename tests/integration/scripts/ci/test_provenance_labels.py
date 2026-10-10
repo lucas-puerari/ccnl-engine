@@ -50,10 +50,19 @@ def test_weak_record_has_no_reason() -> None:
 
 
 def _tree(root: Path, ccnl: dict[str, Any], fiscal: dict[str, Any]) -> Path:
-    for group in ("ccnl", "tax", "inps", "surtax"):
-        (root / group / "data").mkdir(parents=True)
-    (root / "ccnl" / "data" / "x.json").write_text(json.dumps(ccnl), "utf-8")
-    (root / "tax" / "data" / "2026-x.json").write_text(json.dumps(fiscal), "utf-8")
+    for group in (
+        "contract/agreement",
+        "taxation/annual",
+        "social_security/contribution",
+        "surtax/regional",
+        "limitation",
+    ):
+        (root / group).mkdir(parents=True)
+    (root / "contract" / "agreement" / "x.json").write_text(json.dumps(ccnl), "utf-8")
+    (root / "taxation" / "annual" / "2026").mkdir()
+    (root / "taxation" / "annual" / "2026" / "x.json").write_text(
+        json.dumps(fiscal), "utf-8"
+    )
     return root
 
 
@@ -67,7 +76,7 @@ def test_label_errors_name_the_file_of_each_record(tmp_path: Path) -> None:
     )
     estimated = "its ruleset declares source_type 'estimated'"
     assert label_errors(root) == [
-        f"tax/data/2026-x.json: tfr.provenance: derived: {estimated}"
+        f"taxation/annual/2026/x.json: tfr.provenance: derived: {estimated}"
     ]
 
 
@@ -75,7 +84,7 @@ def _ccnl(verification: dict[str, Any]) -> dict[str, Any]:
     return {"meta": {"ccnl_id": "x"}, "verification": verification}
 
 
-def _weak(file: str = "ccnl/data/x.json") -> PayableRule:
+def _weak(file: str = "contract/agreement/x.json") -> PayableRule:
     return PayableRule(file, "accrual_rule", ("base_salary",), "missing")
 
 
@@ -87,7 +96,7 @@ def _weak(file: str = "ccnl/data/x.json") -> PayableRule:
         ({"readiness": "reviewed", "confidence": "verified"}, (), []),
         (
             {"readiness": "reviewed", "confidence": "verified"},
-            (_weak(), _weak(), _weak("tax/data/2026-x.json")),
+            (_weak(), _weak(), _weak("taxation/annual/2026/x.json")),
             ["reviewed with 2 assumed or missing payable rule(s)"],
         ),
         (
@@ -105,13 +114,18 @@ def test_a_cleared_ccnl_needs_verified_confidence_and_no_weak_rule(
 ) -> None:
     """Only the payable rules of the CCNL file itself count."""
     root = _tree(tmp_path, _ccnl(verification), {})
-    assert readiness_errors(rules, root) == [f"ccnl/data/x.json: {e}" for e in expected]
+    assert readiness_errors(rules, root) == [
+        f"contract/agreement/x.json: {e}" for e in expected
+    ]
 
 
 def test_weak_counts_skip_sourced_rules() -> None:
     """Derived rules are not counted; files without a weak rule are left out."""
-    rules = (_weak(), PayableRule("ccnl/data/y.json", "r", ("tfr",), "derived"))
-    assert weak_counts(rules) == {"ccnl/data/x.json": 1}
+    rules = (
+        _weak(),
+        PayableRule("contract/agreement/y.json", "r", ("tfr",), "derived"),
+    )
+    assert weak_counts(rules) == {"contract/agreement/x.json": 1}
 
 
 def test_bundle_has_no_label_beyond_its_evidence() -> None:

@@ -12,7 +12,7 @@ Limitations come from two places, both in the knowledge bundle:
 - the ``simplification`` notes of a CCNL file, which carry an inline
   limitation (``ccnl_engine.contract.domain.identity.CoverageNote``);
 - the engine limitations of code paths shared by several CCNLs
-  (``knowledge/limitations/data/engine.json``), recorded when the run
+  (``knowledge/limitation/engine.json``), recorded when the run
   traverses the path.
 
 :meth:`ModelLimitation.applies_to` decides from :class:`LimitationFacts`

@@ -179,7 +179,7 @@ def write_rehashed(path: Path, data: dict[str, Any], original: str) -> None:
 def main() -> None:
     """Migrate every CCNL and fiscal data file and print the status counts."""
     ccnl_counts: Counter[str] = Counter()
-    for path in sorted((KNOWLEDGE / "ccnl" / "data").glob("*.json")):
+    for path in sorted((KNOWLEDGE / "contract" / "agreement").glob("*.json")):
         text = path.read_text(encoding="utf-8")
         write_rehashed(path, migrate_ccnl(json.loads(text), ccnl_counts), text)
     fiscal_counts: Counter[str] = Counter()

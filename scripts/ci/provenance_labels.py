@@ -138,13 +138,14 @@ def label_errors(root: Path = payable_rules.KNOWLEDGE_DIR) -> list[str]:
     """Return the records of the bundle labelled stronger than they are.
 
     Args:
-        root: Knowledge directory to scan; every ``*/data/*.json`` file.
+        root: Knowledge directory to scan; every JSON resource but the
+            manifest.
 
     Returns:
         ``"<file>: <path>: <reason>"`` messages, in file-name order.
     """
     errors: list[str] = []
-    for path in sorted(root.glob("*/data/*.json")):
+    for path in sorted(p for p in root.rglob("*.json") if p.name != "manifest.json"):
         file = path.relative_to(root).as_posix()
         data = json.loads(path.read_text(encoding="utf-8"))
         errors.extend(f"{file}: {error}" for error in file_label_errors(data))
@@ -179,7 +180,7 @@ def readiness_errors(
     """
     weak = weak_counts(rules)
     errors: list[str] = []
-    for path in sorted((root / "ccnl" / "data").glob("*.json")):
+    for path in sorted((root / "contract" / "agreement").glob("*.json")):
         file = path.relative_to(root).as_posix()
         data = json.loads(path.read_text(encoding="utf-8"))
         verification = data.get("verification") or {}

@@ -91,9 +91,15 @@ def test_main_rewrites_and_rehashes_only_what_it_demotes(
     tmp_path: Path, capsys: pytest.CaptureFixture[str]
 ) -> None:
     """Records first, then the readiness they no longer back; files rehashed."""
-    for group in ("ccnl", "tax", "inps", "surtax"):
-        (tmp_path / group / "data").mkdir(parents=True)
-    ccnl = tmp_path / "ccnl" / "data" / "x.json"
+    for group in (
+        "contract/agreement",
+        "taxation/annual",
+        "social_security/contribution",
+        "surtax/regional",
+        "limitation",
+    ):
+        (tmp_path / group).mkdir(parents=True)
+    ccnl = tmp_path / "contract" / "agreement" / "x.json"
     _write(
         ccnl,
         {
@@ -102,7 +108,7 @@ def test_main_rewrites_and_rehashes_only_what_it_demotes(
             "parameters": {"accrual_rule": {"provenance": _derived()}},
         },
     )
-    sourced = tmp_path / "tax" / "data" / "2026-x.json"
+    sourced = tmp_path / "taxation" / "annual" / "2026-x.json"
     _write(sourced, {"ruleset": {"source_type": "official_primary"}})
     untouched = sourced.read_text("utf-8")
     main(tmp_path)
@@ -113,4 +119,4 @@ def test_main_rewrites_and_rehashes_only_what_it_demotes(
     assert sourced.read_text("utf-8") == untouched
     out = capsys.readouterr().out
     assert "Records demoted to assumed: 1" in out
-    assert "  ccnl/data/x.json" in out
+    assert "  contract/agreement/x.json" in out

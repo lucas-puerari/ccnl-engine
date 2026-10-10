@@ -32,7 +32,7 @@ from ccnl_engine.tax.domain.tfr_rules import TfrRules
 
 
 class YearRulesRaw(BaseModel):
-    """Full deserialization model for a tax/data/<year>-<sector>.json file.
+    """Full deserialization model for a taxation/annual/<year>/<sector>.json file.
 
     Either ``inps`` + ``apprentice`` (standard percentage model) or
     ``domestic_contributions`` (flat per-hour domestic model) must be present.

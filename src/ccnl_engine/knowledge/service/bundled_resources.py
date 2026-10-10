@@ -19,7 +19,8 @@ class BundledResourceStore:
     Args:
         pkg: A :class:`~importlib.resources.abc.Traversable` pointing to the
             package data directory, e.g. the result of
-            ``importlib.resources.files("ccnl_engine.knowledge.ccnl.data")``.
+            a directory of the knowledge bundle, e.g.
+            ``importlib.resources.files("ccnl_engine.knowledge")``.
     """
 
     def __init__(self, pkg: Traversable) -> None:

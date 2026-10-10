@@ -91,9 +91,15 @@ def _knowledge(root: Path, ccnl: dict[str, object]) -> Path:
     Returns:
         The knowledge directory.
     """
-    for group in ("ccnl", "tax", "inps", "surtax", "limitations"):
-        (root / group / "data").mkdir(parents=True)
-    (root / "ccnl" / "data" / "x.json").write_text(json.dumps(ccnl), "utf-8")
+    for group in (
+        "contract/agreement",
+        "taxation/annual",
+        "social_security/contribution",
+        "surtax/regional",
+        "limitation",
+    ):
+        (root / group).mkdir(parents=True)
+    (root / "contract" / "agreement" / "x.json").write_text(json.dumps(ccnl), "utf-8")
     engine = {
         "limitations": [
             {"id": "engine_open"},
@@ -115,14 +121,14 @@ def test_snapshot_lists_weak_rules_and_limitations(tmp_path: Path) -> None:
     root = _knowledge(tmp_path, _ccnl(coverage={"notes": notes}))
     found = snapshot(root)
     assert found.weak_rules == {
-        "ccnl/data/x.json": {
+        "contract/agreement/x.json": {
             "levels[A].base_salary[2026-01-01]": "assumed",
             "accrual_rule": "missing",
         }
     }
     assert found.open_limitations == {
         ENGINE_LIMITATIONS: ("engine_open",),
-        "ccnl/data/x.json": ("x/open_one",),
+        "contract/agreement/x.json": ("x/open_one",),
     }
 
 
@@ -285,25 +291,27 @@ def test_production_ccnl_without_evidence_fails(
 ) -> None:
     """Each missing or inconsistent field of a production CCNL is listed."""
     root = _knowledge(tmp_path, _ccnl(verification=verification))
-    assert schema_errors((), root) == [f"ccnl/data/x.json: {e}" for e in expected]
+    assert schema_errors((), root) == [
+        f"contract/agreement/x.json: {e}" for e in expected
+    ]
 
 
 def test_ccnl_ruleset_id_carries_the_ccnl_prefix(tmp_path: Path) -> None:
     """A CCNL ruleset id is ``ccnl/<ccnl_id>``."""
     root = _knowledge(tmp_path, _ccnl(ruleset={"id": "x"}))
     assert schema_errors((), root) == [
-        "ccnl/data/x.json: ruleset.id 'x' is not 'ccnl/x'"
+        "contract/agreement/x.json: ruleset.id 'x' is not 'ccnl/x'"
     ]
 
 
 def test_report_ranks_ccnl_files_by_weak_rules() -> None:
     """Capabilities are listed by name, CCNL files weakest first."""
     rules = (
-        PayableRule("ccnl/data/a.json", "r1", ("seniority",), "assumed"),
-        PayableRule("ccnl/data/b.json", "r1", ("base_salary",), "missing"),
-        PayableRule("ccnl/data/b.json", "r2", ("base_salary",), "assumed"),
-        PayableRule("ccnl/data/c.json", "r1", ("base_salary",), "derived"),
-        PayableRule("tax/data/t.json", "r1", ("irpef",), "assumed"),
+        PayableRule("contract/agreement/a.json", "r1", ("seniority",), "assumed"),
+        PayableRule("contract/agreement/b.json", "r1", ("base_salary",), "missing"),
+        PayableRule("contract/agreement/b.json", "r2", ("base_salary",), "assumed"),
+        PayableRule("contract/agreement/c.json", "r1", ("base_salary",), "derived"),
+        PayableRule("taxation/annual/2026/t.json", "r1", ("irpef",), "assumed"),
     )
     assert report_lines(rules, top=1) == [
         "Rules per capability (verified / derived / assumed / missing):",
@@ -311,7 +319,7 @@ def test_report_ranks_ccnl_files_by_weak_rules() -> None:
         "  irpef: 0 / 0 / 1 / 0",
         "  seniority: 0 / 0 / 1 / 0",
         "CCNL files with weak rules: 2; top 1:",
-        "  ccnl/data/b.json: 0 / 0 / 1 / 1",
+        "  contract/agreement/b.json: 0 / 0 / 1 / 1",
     ]
 
 

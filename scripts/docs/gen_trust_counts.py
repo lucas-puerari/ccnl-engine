@@ -20,7 +20,6 @@ page quotes any more, so a deleted marker cannot hide a stale number.
 
 from __future__ import annotations
 
-import importlib.resources
 import re
 import sys
 from collections import Counter
@@ -33,6 +32,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from ccnl_engine.contract.domain.identity import NoteKind
 from ccnl_engine.contract.service.loaders import load_ccnl
 from ccnl_engine.knowledge.service.limitation_loader import load_engine_limitations
+from ccnl_engine.knowledge.service.manifest import resources
 from ccnl_engine.provenance.domain.ruleset_identity import (
     RulesetReadiness,
     VerificationStatus,
@@ -63,9 +63,7 @@ def _n(count: int) -> str:
 
 
 def _bundled_ccnls() -> list[CCNL]:
-    pkg = importlib.resources.files("ccnl_engine.knowledge.ccnl.data")
-    names = sorted(e.name for e in pkg.iterdir() if e.name.endswith(".json"))
-    return [load_ccnl(name) for name in names]
+    return [load_ccnl(r.name) for r in resources("contract/agreement")]
 
 
 def _readiness_counts(ccnls: list[CCNL]) -> dict[str, str]:

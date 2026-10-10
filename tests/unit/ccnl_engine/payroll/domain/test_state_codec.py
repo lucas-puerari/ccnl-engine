@@ -192,4 +192,9 @@ def _reachable(root: type, names: dict[str, type]) -> set[type]:
 
 def test_the_registry_holds_every_type_of_a_state() -> None:
     """Each dataclass and enum a PeriodState can hold has a tag, and only those."""
-    assert set(STATE_TYPES.values()) == _reachable(PeriodState, _domain_types())
+    registered = set(STATE_TYPES.values())
+    reachable = _reachable(PeriodState, _domain_types())
+    difference = sorted(
+        f"{c.__module__}.{c.__qualname__}" for c in registered ^ reachable
+    )
+    assert registered == reachable, difference

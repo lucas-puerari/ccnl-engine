@@ -189,13 +189,7 @@ packages = ["src/ccnl_engine"]
 # injects compressed .json.gz variants instead. Editable installs read .json
 # directly via the fallback path in read_bundled().
 exclude = [
-    "src/ccnl_engine/knowledge/ccnl/data/*.json",
-    "src/ccnl_engine/knowledge/tax/data/*.json",
-    "src/ccnl_engine/knowledge/inps/data/*.json",
-    "src/ccnl_engine/knowledge/surtax/data/*.json",
-    "src/ccnl_engine/knowledge/capabilities/data/*.json",
-    "src/ccnl_engine/knowledge/limitations/data/*.json",
-    "src/ccnl_engine/knowledge/policies/data/*.json",
+    "src/ccnl_engine/knowledge/**/*.json",
 ]
 
 [tool.hatch.build.targets.sdist]

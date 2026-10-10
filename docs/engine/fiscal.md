@@ -409,7 +409,7 @@ on 3 October 2026) are computed on the **reddito complessivo** of the year:
 the employment income the run projects for the year plus the income of
 `CurrentYearTaxFacts` (other employers, other income), less the income of the
 main dwelling (c. 4-bis). Amounts and limits are data of
-`tax/data/family-deductions-<year>.json`, each block with its provenance:
+`taxation/family/<year>.json`, each block with its provenance:
 
 | Dependent | Full-year amount, with R the reddito complessivo |
 |---|---|

@@ -13,12 +13,15 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-import ccnl_engine.knowledge.ccnl.data as ccnl_data_pkg
 from ccnl_engine.contract.domain.identity import CCNL
 from ccnl_engine.contract.domain.validity import TimeSeries, ValidityPeriod
 
 if TYPE_CHECKING:
     import types
+
+_AGREEMENTS = importlib.resources.files("ccnl_engine.knowledge").joinpath(
+    "contract", "agreement"
+)
 
 _PROJECT_ROOT = Path(__file__).resolve().parents[4]
 _SCRIPT = _PROJECT_ROOT / "scripts" / "ci" / "rules_diff_report.py"
@@ -47,7 +50,7 @@ def metalmeccanico_ccnl() -> CCNL:
     Returns:
         Validated CCNL object.
     """
-    files_pkg = importlib.resources.files(ccnl_data_pkg)
+    files_pkg = _AGREEMENTS
     raw = (files_pkg / "metalmeccanico-federmeccanica.json").read_text()
     return CCNL.model_validate(json.loads(raw))
 
@@ -110,7 +113,7 @@ class TestCompareCcnlVersionsHourlyDivisor:
         metalmeccanico_ccnl: CCNL,
     ) -> None:
         """A CCNL differing only in hourly_divisor is reported under Parameters."""
-        files_pkg = importlib.resources.files(ccnl_data_pkg)
+        files_pkg = _AGREEMENTS
         raw = (files_pkg / "metalmeccanico-federmeccanica.json").read_text()
         data_mod = json.loads(raw)
         data_mod["parameters"]["hourly_divisor"]["periods"][0]["value"] = "999"
@@ -162,7 +165,7 @@ def test_base_without_provenance_status_is_compared(
     report_mod: types.ModuleType, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     """A base file predating the required status still loads for the diff."""
-    pkg = importlib.resources.files(ccnl_data_pkg)
+    pkg = _AGREEMENTS
     head = json.loads(pkg.joinpath("commercio-confcommercio.json").read_text())
     base = json.dumps(_strip_statuses(head))
     monkeypatch.setattr(report_mod, "_git_show", lambda _ref, _path: base)
@@ -183,7 +186,7 @@ def test_base_with_retired_coverage_flags_is_compared(
     report_mod: types.ModuleType, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     """Aggregate coverage flags of an older schema do not hide the rules."""
-    pkg = importlib.resources.files(ccnl_data_pkg)
+    pkg = _AGREEMENTS
     head = json.loads(pkg.joinpath("commercio-confcommercio.json").read_text())
     head["coverage"] = {
         "gross": "implemented",

@@ -42,11 +42,11 @@ if TYPE_CHECKING:
 
 # Paths inside the repo used for git diff filtering.
 _KNOWLEDGE_ROOT = "src/ccnl_engine/knowledge"
-_CCNL_PREFIX = f"{_KNOWLEDGE_ROOT}/ccnl/data/"
+_CCNL_PREFIX = f"{_KNOWLEDGE_ROOT}/contract/agreement/"
 _OTHER_PREFIXES = (
-    f"{_KNOWLEDGE_ROOT}/tax/data/",
-    f"{_KNOWLEDGE_ROOT}/inps/data/",
-    f"{_KNOWLEDGE_ROOT}/surtax/data/",
+    f"{_KNOWLEDGE_ROOT}/taxation/",
+    f"{_KNOWLEDGE_ROOT}/social_security/",
+    f"{_KNOWLEDGE_ROOT}/surtax/",
 )
 
 

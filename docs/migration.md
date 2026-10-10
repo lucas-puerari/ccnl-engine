@@ -4,6 +4,14 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Knowledge bundle by dataset, with a manifest
+
+| Before | After |
+|---|---|
+| JSON resources under seven `knowledge/<x>/data/` packages (`ccnl`, `tax`, `inps`, `surtax`, `capabilities`, `limitations`, `policies`), found by globbing each directory | One tree `knowledge/<domain>/<dataset>/<year>/<scope>.json` (`contract/agreement/<slug>.json`, `taxation/annual/<year>/<sector>.json`, `social_security/contribution/<year>/<sector>.json`, `surtax/regional/<year>.json`, ...), indexed by `knowledge/manifest.json`. The 174 files are moved one to one, content unchanged |
+| A loader read any file present in its package directory | `ccnl_engine.knowledge.service.manifest`: a loader reads only a path the manifest lists (`read_resource`, `resources`); the wheel carries every listed resource as `<path>.gz`. `scripts/data/build_manifest.py --check` fails CI when the manifest drifts |
+| Code reading `importlib.resources.files("ccnl_engine.knowledge.ccnl.data")` | Those packages no longer exist; read `ccnl_engine.knowledge.service.manifest.read_resource("contract/agreement/<slug>.json")` or use the public loaders |
+
 ## Carenza by event and yearly comporto
 
 | Before | After |
@@ -577,24 +585,3 @@ Amounts are unchanged for a dependant whose conditions are all stated (see
 | `Dependent(relationship=SPOUSE, allocation_pct=50)` halved the spouse deduction | Rejected: the spouse deduction of lett. a is not shared; `None` or `100` |
 | `PeriodFacts.has_dependent_children` (and `PeriodCalculationRequest.has_dependent_children`) selected the 2,000 EUR fringe threshold | Removed: the threshold is 2,000 EUR when a child of `family_composition` is within the own-income limit of art. 12 c. 2 in the year. Unknown (no composition, or a child's `own_income` unknown) applies 1,000 EUR, and when the choice changes the taxable amount the decision is provisional with a `fringe_threshold_undetermined` issue |
 | `PUBLIC_FACTS` without these facts | `"own_income"`, `"residency_eligibility"`, `"cohabiting"`, `"allocation_pct"` |
-
-## Unknown residence recorded as an undetermined surtax
-
-Amounts are unchanged.
-
-| Before | After |
-|---|---|
-| A withholding run with `PeriodFacts.regione` or `comune_belfiore` left `None` took no decision on that surtax; only the `requirement_unresolved` blocker named the fact, and `assurance.calculation` could stay `final` | A `residence_unknown` decision on `addizionale_regionale` or `addizionale_comunale` (incomplete, amount `None`, `inputs["fact"]` = `facts.regione` or `facts.comune_belfiore`): `assurance.calculation` is `incomplete`, with a `calculation_issue` and a `capability_not_computed` blocker besides `requirement_unresolved` |
-
-## TFR revaluation and Fondo Tesoreria
-
-The December run decides the revaluation of the TFR fund at 31 December,
-and every run says where the TFR goes. Amounts posted to the ledger are
-unchanged.
-
-| Before | After |
-|---|---|
-| No revaluation: the `tfr` decision of December was `final` | A `tfr_revaluation` decision on the December regular run and on the run that ends the employment; state `Employment.tfr_fund`, a `TfrFundBalance` (exported by `ccnl_engine.inputs`), or the run has a `missing_fact` `tfr_fund` blocker unless the employment starts in the year |
-| The TFR outside a pension fund always posted to `tfr_accrual` | `Employment.tfr_treasury_fund`: `True` posts it to the new `tfr_treasury_fund` account (in the employer cost), `False` to `tfr_accrual`; `None` posts to `tfr_accrual` with a `missing_fact` `tfr_treasury_fund` blocker |
-| `AccountKind` had 21 members | 22, with `TFR_TREASURY_FUND` |
-| An apprentice's TFR was `provisional` with the `tfr_apprentice_additional_ivs_undetermined` issue | Final, with no deduction: the 0.50% is not due on an apprentice (INPS circ. 70/2007, note 5) |

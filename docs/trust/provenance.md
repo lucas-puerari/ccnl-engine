@@ -13,26 +13,26 @@ posted amount.
 
 | Rule | Where it lives | Record |
 |---|---|---|
-| Salary table | `ccnl/data/*.json`: `levels[].base_salary.periods[]` | Per period, or inherited from the level |
-| Fixed allowance | `ccnl/data/*.json`: `levels[].fixed_allowances[]` | Per allowance, or inherited from the level |
-| Seniority increments | `ccnl/data/*.json`: `parameters.seniority_increments` | Per block |
-| Extra-month entitlement | `ccnl/data/*.json`: `parameters.additional_months.periods[]` | Per period |
-| Extra-month accrual threshold | `ccnl/data/*.json`: `parameters.accrual_rule` | Per rule; a CCNL without the field is listed as `missing` (the engine default applies) |
-| First-tier overtime bands | `ccnl/data/*.json`: `work_rules.time_supplements.overtime_bands[]` with code `OT_*`, kind `percentage`, no hour threshold and no context condition | Per band |
-| Absence rule (daily quota of partial months and sick days) | `ccnl/data/*.json`: `work_rules.absence_rules` | Per rule |
-| Sickness rule | `ccnl/data/*.json`: `work_rules.sickness_rules` | Per rule |
-| INPS sick-pay indemnity bands | `inps/data/sick-pay-rates.json`: `bands` | Sibling `bands_provenance` |
-| IRPEF brackets | `tax/data/<year>-<sector>.json`: `irpef_brackets` | Sibling `irpef_brackets_provenance` |
-| Art. 13 work deduction, its minimum | `tax/data/<year>-<sector>.json`: `work_deduction`, `work_deduction.minimum` | Per block |
-| Trattamento integrativo, ulteriore detrazione | `tax/data/<year>-<sector>.json` | Per block |
-| Somma esente | `tax/data/somma-esente-<year>.json`: `somma_esente` | Per block |
-| TFR divisor, additional IVS deduction | `tax/data/<year>-<sector>.json`: `tfr`, `tfr.additional_ivs` | Per block |
-| Fixed-term addizionale NASpI | `tax/data/<year>-<sector>.json`: `fixed_term_additional_rate`, `fixed_term_renewal_increment`, `fixed_term_exempt_categories` | One sibling `fixed_term_additional_rate_provenance` for the three |
-| INPS rates, 1% additional IVS | `inps/data/<year>-<sector>.json`: `inps`, `inps.employee_additional`, `apprentice`, `domestic_contributions` | Per block |
-| Regional and municipal surtax | `surtax/data/regionale-<year>.json`, `comunale-<year>.json` | Per table (file-level `provenance`); an entry may override it |
-| Art. 12 family deductions | `tax/data/family-deductions-<year>.json`: `spouse`, `children`, `other_dependents` | Per block |
-| Fringe-benefit thresholds, PdR limits | `tax/data/variable-pay-rules-2026.json`: `fringe_benefit`, `pdr` | Per block |
-| Substitute-tax regimes | `tax/data/variable-pay-rules-2026.json`: `rinnovo`, `notte_festivi_turni` | Their `source` location with `source_status` |
+| Salary table | `contract/agreement/*.json`: `levels[].base_salary.periods[]` | Per period, or inherited from the level |
+| Fixed allowance | `contract/agreement/*.json`: `levels[].fixed_allowances[]` | Per allowance, or inherited from the level |
+| Seniority increments | `contract/agreement/*.json`: `parameters.seniority_increments` | Per block |
+| Extra-month entitlement | `contract/agreement/*.json`: `parameters.additional_months.periods[]` | Per period |
+| Extra-month accrual threshold | `contract/agreement/*.json`: `parameters.accrual_rule` | Per rule; a CCNL without the field is listed as `missing` (the engine default applies) |
+| First-tier overtime bands | `contract/agreement/*.json`: `work_rules.time_supplements.overtime_bands[]` with code `OT_*`, kind `percentage`, no hour threshold and no context condition | Per band |
+| Absence rule (daily quota of partial months and sick days) | `contract/agreement/*.json`: `work_rules.absence_rules` | Per rule |
+| Sickness rule | `contract/agreement/*.json`: `work_rules.sickness_rules` | Per rule |
+| INPS sick-pay indemnity bands | `social_security/sickness/rates.json`: `bands` | Sibling `bands_provenance` |
+| IRPEF brackets | `taxation/annual/<year>/<sector>.json`: `irpef_brackets` | Sibling `irpef_brackets_provenance` |
+| Art. 13 work deduction, its minimum | `taxation/annual/<year>/<sector>.json`: `work_deduction`, `work_deduction.minimum` | Per block |
+| Trattamento integrativo, ulteriore detrazione | `taxation/annual/<year>/<sector>.json` | Per block |
+| Somma esente | `taxation/exemption/<year>.json`: `somma_esente` | Per block |
+| TFR divisor, additional IVS deduction | `taxation/annual/<year>/<sector>.json`: `tfr`, `tfr.additional_ivs` | Per block |
+| Fixed-term addizionale NASpI | `taxation/annual/<year>/<sector>.json`: `fixed_term_additional_rate`, `fixed_term_renewal_increment`, `fixed_term_exempt_categories` | One sibling `fixed_term_additional_rate_provenance` for the three |
+| INPS rates, 1% additional IVS | `social_security/contribution/<year>/<sector>.json`: `inps`, `inps.employee_additional`, `apprentice`, `domestic_contributions` | Per block |
+| Regional and municipal surtax | `surtax/regional/<year>.json`, `comunale-<year>.json` | Per table (file-level `provenance`); an entry may override it |
+| Art. 12 family deductions | `taxation/family/<year>.json`: `spouse`, `children`, `other_dependents` | Per block |
+| Fringe-benefit thresholds, PdR limits | `taxation/variable_pay/2026.json`: `fringe_benefit`, `pdr` | Per block |
+| Substitute-tax regimes | `taxation/variable_pay/2026.json`: `rinnovo`, `notte_festivi_turni` | Their `source` location with `source_status` |
 
 CCNL rules carry one record per rule, because each salary tranche and
 allowance is read from its own row of a table. Fiscal values are statutory
@@ -156,7 +156,7 @@ whom, so such records are `derived`.
 A statutory block that is the same for every sector lives in a year file
 of its own, with an `official_primary` ruleset, rather than in the
 `estimated` sector files: the somma esente of L. 207/2024 art. 1 cc. 4-5
-(`tax/data/somma-esente-<year>.json`, ruleset `tax/<year>/somma-esente`)
+(`taxation/exemption/<year>.json`, ruleset `tax/<year>/somma-esente`)
 is `derived`, its record quoting the Gazzetta Ufficiale text of the two
 commi and saying in `transformation` how the bands store them. The loader
 merges it into the rules of every sector, and a sector file that carries
@@ -180,9 +180,9 @@ when they drift.
 | Status | CCNL rules | Fiscal blocks | Total |
 |---|---:|---:|---:|
 | `verified` | 0 | 0 | 0 |
-| `derived` | 5 869 | 113 | 5 982 |
-| `assumed` | 690 | 133 | 823 |
-| `missing` | 85 | 0 | 85 |
+| `derived` | 0 | 5 982 | 5 982 |
+| `assumed` | 0 | 823 | 823 |
+| `missing` | 0 | 85 | 85 |
 
 <!-- /trust:provenance-table -->
 

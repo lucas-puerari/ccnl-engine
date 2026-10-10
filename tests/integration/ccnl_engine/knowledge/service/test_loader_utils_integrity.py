@@ -10,7 +10,7 @@ import copy
 import importlib
 import importlib.resources
 import json
-from typing import TYPE_CHECKING, Any, cast
+from typing import Any, cast
 
 import pytest
 
@@ -22,7 +22,7 @@ from ccnl_engine.contract.service.loaders import (
 from ccnl_engine.contract.service.loaders import (
     load_ccnl as load_ccnl_from_bundle,
 )
-from ccnl_engine.knowledge.service.bundled import read_bundled
+from ccnl_engine.knowledge.service.manifest import read_resource
 from ccnl_engine.shared.domain.errors import DataIntegrityError
 from ccnl_engine.tax.service import surtax_loaders
 from ccnl_engine.tax.service import (
@@ -35,9 +35,6 @@ from ccnl_engine.tax.service.tax_annual_assembler import (
 )
 from tests.helpers import make_ccnl_dict
 
-if TYPE_CHECKING:
-    from importlib.abc import Traversable
-
 LOADER_PATHS = (
     "ccnl_engine.contract.service.loaders",
     "ccnl_engine.tax.service.tax_resource_reader",
@@ -49,7 +46,7 @@ LOADER_PATHS = (
 def _clear_loader_caches() -> None:
     """Clear all @cache-decorated loaders before each integrity test.
 
-    Integrity tests monkeypatch the underlying ``read_bundled`` helper to
+    Integrity tests monkeypatch the underlying ``read_resource`` helper to
     inject tampered payloads. Without cache invalidation, a cached real result
     is returned and the patch has no effect.
     """
@@ -58,9 +55,9 @@ def _clear_loader_caches() -> None:
     _load_surtax_rules_cached.cache_clear()
 
 
-def _load_bundled_text(pkg_name: str, filename: str) -> str:
-    pkg = importlib.resources.files(pkg_name)
-    return pkg.joinpath(filename).read_text(encoding="utf-8")
+def _load_bundled_text(path: str) -> str:
+    root = importlib.resources.files("ccnl_engine.knowledge")
+    return root.joinpath(*path.split("/")).read_text(encoding="utf-8")
 
 
 def _tamper(payload: dict[str, Any]) -> dict[str, Any]:
@@ -78,17 +75,11 @@ class TestContractLoaderIntegrity:
     """load_ccnl rejects stale source_hash, passes valid/missing blocks."""
 
     def _repatch(self, monkeypatch: pytest.MonkeyPatch, raw: str) -> None:
-        monkeypatch.setattr(
-            contract_loaders,
-            "read_bundled",
-            lambda pkg, filename: raw,
-        )
+        monkeypatch.setattr(contract_loaders, "read_resource", lambda _path: raw)
 
     def test_tampered_payload_raises(self, monkeypatch: pytest.MonkeyPatch) -> None:
         """A data change without a ruleset update must raise ValueError."""
-        raw = _load_bundled_text(
-            "ccnl_engine.knowledge.ccnl.data", "commercio-confcommercio.json"
-        )
+        raw = _load_bundled_text("contract/agreement/commercio-confcommercio.json")
         tampered = _tamper(json.loads(raw))
         self._repatch(monkeypatch, json.dumps(tampered))
 
@@ -154,11 +145,10 @@ class TestVerifyRulesetHash:
 class TestTaxLoaderIntegrity:
     """load_year_rules propagates ruleset blocks and rejects tampering."""
 
-    def _raw(self, kind: str, sector: str) -> dict[str, Any]:
-        pkg = f"ccnl_engine.knowledge.{kind}.data"
+    def _raw(self, dataset: str, sector: str) -> dict[str, Any]:
         return cast(
             "dict[str, Any]",
-            json.loads(_load_bundled_text(pkg, f"2026-{sector}.json")),
+            json.loads(_load_bundled_text(f"{dataset}/2026/{sector}.json")),
         )
 
     def test_tax_and_inps_rulesets_propagated(self) -> None:
@@ -171,35 +161,35 @@ class TestTaxLoaderIntegrity:
 
     def test_tampered_tax_raw_raises(self, monkeypatch: pytest.MonkeyPatch) -> None:
         """A tampered tax file must raise ValueError from load_year_rules."""
-        raw = self._raw("tax", "terziario")
+        raw = self._raw("taxation/annual", "terziario")
         tampered = json.loads(json.dumps(raw))
         tampered["irpef_brackets"][0]["rate"] = "0.90"
         monkeypatch.setattr(
-            tax_resource_reader_mod, "read_bundled", lambda pkg, f: json.dumps(tampered)
+            tax_resource_reader_mod, "read_resource", lambda _path: json.dumps(tampered)
         )
 
-        with pytest.raises(DataIntegrityError, match="source_hash mismatch in 2026"):
+        with pytest.raises(
+            DataIntegrityError, match="source_hash mismatch in taxation/annual/2026"
+        ):
             load_year_rules(2026, TaxSector.TERZIARIO, 50)
 
     def test_missing_ruleset_produces_none(
         self, monkeypatch: pytest.MonkeyPatch
     ) -> None:
         """Legacy tax/INPS files without a ruleset yield None identities."""
-        raw = self._raw("tax", "terziario")
+        raw = self._raw("taxation/annual", "terziario")
         raw.pop("ruleset", None)
-        inps_raw = self._raw("inps", "terziario")
+        inps_raw = self._raw("social_security/contribution", "terziario")
         inps_raw.pop("ruleset", None)
 
-        bundled = read_bundled
-
-        def fake_read(pkg: "Traversable", f: str) -> str:
-            if f.startswith(("tfr-revaluation-", "somma-esente-")):
-                return bundled(pkg, f)
-            if "tax" in str(pkg):
+        def fake_read(path: str) -> str:
+            if path.startswith("taxation/annual/"):
                 return json.dumps(raw)
-            return json.dumps(inps_raw)
+            if path.startswith("social_security/contribution/"):
+                return json.dumps(inps_raw)
+            return read_resource(path)
 
-        monkeypatch.setattr(tax_resource_reader_mod, "read_bundled", fake_read)
+        monkeypatch.setattr(tax_resource_reader_mod, "read_resource", fake_read)
 
         rules = load_year_rules(2026, TaxSector.TERZIARIO, 50)
         assert rules.ruleset is None
@@ -219,16 +209,15 @@ class TestSurtaxLoaderIntegrity:
 
     def test_tampered_comunale_raises(self, monkeypatch: pytest.MonkeyPatch) -> None:
         """Tampered comunale file must raise ValueError."""
-        pkg = "ccnl_engine.knowledge.surtax.data"
-        reg = json.loads(_load_bundled_text(pkg, "regionale-2026.json"))
-        com = json.loads(_load_bundled_text(pkg, "comunale-2026.json"))
+        reg = json.loads(_load_bundled_text("surtax/regional/2026.json"))
+        com = json.loads(_load_bundled_text("surtax/municipal/2026.json"))
         com["rates"]["A083"]["brackets"][0]["rate"] = "0.50"
 
-        def fake_read(pkg_: object, f: str) -> str:
-            if "comunale" in f:
+        def fake_read(path: str) -> str:
+            if "municipal" in path:
                 return json.dumps(com)
             return json.dumps(reg)
 
-        monkeypatch.setattr(surtax_loaders, "read_bundled", fake_read)
+        monkeypatch.setattr(surtax_loaders, "read_resource", fake_read)
         with pytest.raises(DataIntegrityError, match="source_hash mismatch"):
             surtax_loaders.load_surtax_rules(2026)

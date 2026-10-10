@@ -15,13 +15,15 @@ from ccnl_engine.tax.domain.ruleset import YearRules
 from ccnl_engine.tax.service.tax_annual_assembler import load_year_rules
 
 # ---------------------------------------------------------------------------
-# Parametrised: every JSON in ccnl_engine.knowledge.ccnl.data must validate
+# Parametrised: every JSON in ccnl_engine/knowledge/contract/agreement must validate
 # ---------------------------------------------------------------------------
 
 # Use importlib.resources so the path is correct for both editable installs
 # (plain .json) and installed wheels (.json.gz), and does not depend on the
 # number of parent directories from this test file.
-_DATA_PKG = importlib.resources.files("ccnl_engine.knowledge.ccnl.data")
+_DATA_PKG = importlib.resources.files("ccnl_engine.knowledge").joinpath(
+    "contract", "agreement"
+)
 _JSON_FILES = sorted(
     (entry for entry in _DATA_PKG.iterdir() if entry.name.endswith(".json")),
     key=lambda e: e.name,
@@ -40,7 +42,7 @@ class TestCCNLDataFilesValidate:
         catches that class of bug early.
         """
         assert len(_JSON_FILES) > 0, (
-            "No .json files found in ccnl_engine.knowledge.ccnl.data — "
+            "No .json files found in ccnl_engine/knowledge/contract/agreement — "
             "check the build hook data paths and the package structure."
         )
 
@@ -48,10 +50,7 @@ class TestCCNLDataFilesValidate:
     def test_file_validates(self, json_file: Path) -> None:
         """Each data file must deserialise into a valid CCNL without errors."""
         ccnl = CCNL.model_validate_json(
-            importlib.resources
-            .files("ccnl_engine.knowledge.ccnl.data")
-            .joinpath(json_file.name)
-            .read_text(encoding="utf-8")
+            _DATA_PKG.joinpath(json_file.name).read_text(encoding="utf-8")
         )
         assert ccnl.meta.ccnl_id
 

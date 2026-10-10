@@ -2,16 +2,15 @@
 
 from __future__ import annotations
 
-import importlib.resources
 import json
 from functools import cache
 from typing import Any
 
-from ccnl_engine.knowledge.service.bundled import read_bundled
 from ccnl_engine.knowledge.service.loader_utils import (
     verify_provenance_labels,
     verify_ruleset_hash,
 )
+from ccnl_engine.knowledge.service.manifest import read_resource
 from ccnl_engine.shared.domain.errors import DataIntegrityError, UnsupportedTaxYearError
 from ccnl_engine.tax.domain.surtax_rules import (
     ComunaleRaw,
@@ -24,8 +23,8 @@ from ccnl_engine.tax.service.tax_resource_reader import supported_tax_years
 def load_surtax_rules(year: int) -> SurtaxRules:
     """Load addizionale regionale and comunale rates for the given fiscal year.
 
-    Reads ``regionale-{year}.json`` and ``comunale-{year}.json`` from the
-    package bundle (``ccnl_engine/knowledge/surtax/data/``). In installed
+    Reads ``surtax/regional/{year}.json`` and ``surtax/municipal/{year}.json``
+    of the knowledge manifest. In installed
     wheels the compressed ``.json.gz`` variants are preferred; plain ``.json``
     files are used as fallback for editable installs (mirroring the behaviour
     of :func:`~ccnl_engine.tax.service.tax_annual_assembler.load_year_rules`).
@@ -70,25 +69,25 @@ def _load_surtax_rules_cached(year: int) -> SurtaxRules:
         DataIntegrityError: If a data file's year field doesn't match *year*.
         UnsupportedTaxYearError: If the bundle has no surtax file for *year*.
     """
-    pkg = importlib.resources.files("ccnl_engine.knowledge.surtax.data")
+    reg_file, com_file = f"surtax/regional/{year}.json", f"surtax/municipal/{year}.json"
     try:
-        reg_raw = read_bundled(pkg, f"regionale-{year}.json")
-        com_raw = read_bundled(pkg, f"comunale-{year}.json")
+        reg_raw = read_resource(reg_file)
+        com_raw = read_resource(com_file)
     except FileNotFoundError as exc:
         raise UnsupportedTaxYearError(year, supported=supported_tax_years()) from exc
     reg_payload = json.loads(reg_raw)
     com_payload = json.loads(com_raw)
-    _verify_payload(reg_payload, f"regionale-{year}.json")
-    _verify_payload(com_payload, f"comunale-{year}.json")
+    _verify_payload(reg_payload, reg_file)
+    _verify_payload(com_payload, com_file)
     if reg_payload.get("year") != year:
         msg = (
-            f"regionale-{year}.json year={reg_payload.get('year')!r} "
+            f"{reg_file} year={reg_payload.get('year')!r} "
             f"does not match requested year={year!r}"
         )
         raise DataIntegrityError(msg)
     if com_payload.get("year") != year:
         msg = (
-            f"comunale-{year}.json year={com_payload.get('year')!r} "
+            f"{com_file} year={com_payload.get('year')!r} "
             f"does not match requested year={year!r}"
         )
         raise DataIntegrityError(msg)

@@ -27,7 +27,9 @@ from ccnl_engine.payroll.service.capability_coverage import (
     layer_coverage,
 )
 
-_DATA = importlib.resources.files("ccnl_engine.knowledge.ccnl.data")
+_DATA = importlib.resources.files("ccnl_engine.knowledge").joinpath(
+    "contract", "agreement"
+)
 _FILENAMES = sorted(
     entry.name for entry in _DATA.iterdir() if entry.name.endswith(".json")
 )

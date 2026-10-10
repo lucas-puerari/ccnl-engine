@@ -71,7 +71,7 @@ _INPS = ("inps_employee", "inps_employer")
 #: of the block itself.
 type _Blocks = tuple[tuple[str, tuple[str, ...], bool], ...]
 
-#: Blocks of a ``tax/data/<year>-<sector>.json`` file.
+#: Blocks of a ``taxation/annual/<year>/<sector>.json`` file.
 _TAX_BLOCKS: Final[_Blocks] = (
     ("irpef_brackets", ("irpef",), True),
     ("work_deduction", ("irpef",), False),
@@ -87,23 +87,23 @@ _INPS_BLOCKS: Final[_Blocks] = (
     ("domestic_contributions", _INPS, False),
 )
 _NAMED_BLOCKS: Final[dict[str, _Blocks]] = {
-    "tax/data/family-deductions-": (
+    "taxation/family/": (
         ("spouse", ("family_deductions",), False),
         ("spouse_increases", ("family_deductions",), False),
         ("children", ("family_deductions",), False),
         ("other_dependents", ("family_deductions",), False),
     ),
-    "tax/data/variable-pay-rules": (
+    "taxation/variable_pay/": (
         ("fringe_benefit", ("fringe_benefit",), False),
         ("pdr", ("bonus_pdr",), False),
     ),
-    "tax/data/somma-esente-": (("somma_esente", ("somma_esente",), False),),
-    "tax/data/tfr-revaluation-": (
+    "taxation/exemption/": (("somma_esente", ("somma_esente",), False),),
+    "taxation/severance/": (
         ("rate", ("tfr_revaluation",), False),
         ("price_index", ("tfr_revaluation",), False),
         ("substitute_tax", ("tfr_revaluation",), False),
     ),
-    "inps/data/sick-pay-rates": (("bands", ("sickness",), True),),
+    "social_security/sickness/rates": (("bands", ("sickness",), True),),
 }
 #: CCNL work rules read by every run that needs them: key and capabilities.
 _WORK_RULES: Final = (
@@ -115,8 +115,8 @@ _REGIMES: Final = {
     "notte_festivi_turni": "notte_festivi_turni_substitute_tax",
 }
 _WHOLE_FILE: Final = {
-    "surtax/data/regionale-": ("rates", "addizionale_regionale"),
-    "surtax/data/comunale-": ("rates", "addizionale_comunale"),
+    "surtax/regional/": ("rates", "addizionale_regionale"),
+    "surtax/municipal/": ("rates", "addizionale_comunale"),
 }
 
 
@@ -437,9 +437,9 @@ def fiscal_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]
         key, capability = whole_file
         yield _rule(file, key, (capability,), data.get("provenance"))
         return
-    if file.startswith("tax/data/20"):
+    if file.startswith("taxation/annual/"):
         yield from _block_rules(file, data, _TAX_BLOCKS)
-    elif file.startswith("inps/data/20"):
+    elif file.startswith("social_security/contribution/"):
         yield from _block_rules(file, data, _INPS_BLOCKS)
     yield from _block_rules(file, data, _by_prefix(_NAMED_BLOCKS, file) or ())
     for key, capability in _REGIMES.items():
@@ -455,18 +455,18 @@ def inventory(root: Path = KNOWLEDGE_DIR) -> tuple[PayableRule, ...]:
     """Return every payable rule of the knowledge data under ``root``.
 
     Args:
-        root: Knowledge directory holding ``ccnl``, ``tax``, ``inps`` and
-            ``surtax`` data.
+        root: Knowledge directory holding the ``contract``, ``taxation``,
+            ``social_security`` and ``surtax`` datasets.
 
     Returns:
         The rules, CCNL files first, each group in file-name order.
     """
     rules: list[PayableRule] = []
-    for path in sorted((root / "ccnl" / "data").glob("*.json")):
+    for path in sorted((root / "contract" / "agreement").glob("*.json")):
         data = json.loads(path.read_text(encoding="utf-8"))
         rules.extend(ccnl_rules(path.relative_to(root).as_posix(), data))
-    for group in ("tax", "inps", "surtax"):
-        for path in sorted((root / group / "data").glob("*.json")):
+    for group in ("taxation", "social_security", "surtax"):
+        for path in sorted((root / group).rglob("*.json")):
             data = json.loads(path.read_text(encoding="utf-8"))
             rules.extend(fiscal_rules(path.relative_to(root).as_posix(), data))
     return tuple(rules)

@@ -192,7 +192,7 @@ class TestLoadCcnlErrorContracts:
         with (
             patch.object(
                 contract_loaders,
-                "read_bundled",
+                "read_resource",
                 return_value="not valid JSON {{{",
             ),
             pytest.raises(json.JSONDecodeError),

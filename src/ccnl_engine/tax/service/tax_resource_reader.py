@@ -2,24 +2,20 @@
 
 from __future__ import annotations
 
-import importlib.resources
 import json
-import re
 from functools import cache
 from typing import TYPE_CHECKING, Any
 
-from ccnl_engine.knowledge.service.bundled import read_bundled
 from ccnl_engine.knowledge.service.loader_utils import (
     as_ruleset,
     try_ruleset,
     verify_provenance_labels,
     verify_ruleset_hash,
 )
+from ccnl_engine.knowledge.service.manifest import read_resource, resources
 from ccnl_engine.shared.domain.errors import UnsupportedTaxYearError
 
 if TYPE_CHECKING:
-    from importlib.abc import Traversable
-
     from ccnl_engine.contract.domain.identity import TaxSector
     from ccnl_engine.provenance.domain.ruleset_identity import RulesetIdentity
 
@@ -57,13 +53,17 @@ def _verify_payload(payload: dict[str, Any], filename: str) -> None:
     verify_provenance_labels(payload, filename)
 
 
-#: A sector tax file of a year, as bundled (plain or compressed).
-_YEAR_FILE = re.compile(r"^(\d{4})-terziario\.json(\.gz)?$")
+#: Datasets of the sector tax and INPS files of a year.
+ANNUAL = "taxation/annual"
+CONTRIBUTION = "social_security/contribution"
 
 
-def _years(package: str) -> set[int]:
-    names = (path.name for path in importlib.resources.files(package).iterdir())
-    return {int(m.group(1)) for name in names if (m := _YEAR_FILE.match(name))}
+def _years(dataset: str) -> set[int]:
+    return {
+        r.year
+        for r in resources(dataset)
+        if r.year is not None and r.scope == "terziario"
+    }
 
 
 @cache
@@ -74,24 +74,20 @@ def supported_tax_years() -> tuple[int, ...]:
         The years, ascending, that have both a sector tax file and a sector
         INPS file.
     """
-    tax = _years("ccnl_engine.knowledge.tax.data")
-    return tuple(sorted(tax & _years("ccnl_engine.knowledge.inps.data")))
+    return tuple(sorted(_years(ANNUAL) & _years(CONTRIBUTION)))
 
 
-def _read_json(pkg: Traversable, filename: str) -> dict[str, Any]:
-    data: dict[str, Any] = json.loads(read_bundled(pkg, filename))
-    _verify_payload(data, filename)
+def _read_json(path: str) -> dict[str, Any]:
+    data: dict[str, Any] = json.loads(read_resource(path))
+    _verify_payload(data, path)
     return data
 
 
-def read_year_json(
-    pkg: Traversable, filename: str, year: int, sector: str | None = None
-) -> dict[str, Any]:
-    """Read the year-keyed data file *filename* from *pkg*.
+def read_year_json(path: str, year: int, sector: str | None = None) -> dict[str, Any]:
+    """Read the year-keyed resource at *path* of the knowledge manifest.
 
     Args:
-        pkg: Package data directory.
-        filename: File name for *year*.
+        path: Path of the resource, relative to the knowledge bundle.
         year: Tax year the file belongs to.
         sector: Tax sector of the file, or ``None`` when it covers all.
 
@@ -102,16 +98,16 @@ def read_year_json(
         UnsupportedTaxYearError: When the bundle has no such file.
     """
     try:
-        return _read_json(pkg, filename)
+        return _read_json(path)
     except FileNotFoundError as exc:
         raise UnsupportedTaxYearError(
             year, sector=sector, supported=supported_tax_years()
         ) from exc
 
 
-def _read_year_json(package: str, year: int, sector: TaxSector) -> dict[str, Any]:
-    pkg = importlib.resources.files(package)
-    return read_year_json(pkg, f"{year}-{sector.value}.json", year, sector.value)
+def _read_year_json(dataset: str, year: int, sector: TaxSector) -> dict[str, Any]:
+    path = f"{dataset}/{year}/{sector.value}.json"
+    return read_year_json(path, year, sector.value)
 
 
 def read_tax_rules_raw(year: int, sector: TaxSector) -> dict[str, Any]:
@@ -125,9 +121,9 @@ def read_tax_rules_raw(year: int, sector: TaxSector) -> dict[str, Any]:
     :class:`~ccnl_engine.shared.domain.errors.UnsupportedTaxYearError`.
 
     Returns:
-        The ``knowledge/tax/data/<year>-<sector>.json`` payload.
+        The ``knowledge/taxation/annual/<year>/<sector>.json`` payload.
     """
-    return _read_year_json("ccnl_engine.knowledge.tax.data", year, sector)
+    return _read_year_json(ANNUAL, year, sector)
 
 
 def read_inps_rules_raw(year: int, sector: TaxSector) -> dict[str, Any]:
@@ -138,6 +134,7 @@ def read_inps_rules_raw(year: int, sector: TaxSector) -> dict[str, Any]:
         sector: INPS sector classification.
 
     Returns:
-        The ``knowledge/inps/data/<year>-<sector>.json`` payload.
+        The ``knowledge/social_security/contribution/<year>/<sector>.json``
+        payload.
     """
-    return _read_year_json("ccnl_engine.knowledge.inps.data", year, sector)
+    return _read_year_json(CONTRIBUTION, year, sector)

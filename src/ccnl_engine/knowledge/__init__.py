@@ -1,16 +1,22 @@
 """ccnl_engine.knowledge — versioned dataset bundle (data only).
 
 Passive JSON resources consumed by the capability loaders (contract, tax,
-payroll). The ``*/data/`` directories carry no Python logic: every file there is
-data plus version metadata, so it can be upgraded or redistributed
-independently of the engine. The only code is :mod:`ccnl_engine.knowledge.service`,
-which reads those resources.
+payroll), ordered as ``domain/dataset/year/scope.json`` and indexed by
+``manifest.json``: every resource is listed there once, with its identity,
+model, validity, ruleset and wheel name.  The JSON carries no Python logic,
+so it can be upgraded or redistributed independently of the engine.  The
+only code is :mod:`ccnl_engine.knowledge.service`, which reads the resources
+through the manifest.
 
-Sub-packages:
-- ``ccnl_engine.knowledge.ccnl`` — one JSON file per CCNL contract.
-- ``ccnl_engine.knowledge.tax`` — IRPEF / detrazioni / TFR / trattamento integrativo.
-- ``ccnl_engine.knowledge.inps`` — INPS aliquote, apprendistato, lavoro domestico.
-- ``ccnl_engine.knowledge.surtax`` — addizionale regionale e comunale.
+Datasets:
+- ``contract/agreement/<slug>.json`` — one file per CCNL.
+- ``taxation/annual/<year>/<sector>.json`` and ``taxation/<dataset>/<year>.json``
+  — IRPEF, deductions, TFR, somma esente, variable pay, TFR revaluation.
+- ``social_security/contribution/<year>/<sector>.json`` and
+  ``social_security/sickness/rates.json`` — INPS rates and sick pay.
+- ``surtax/regional|municipal/<year>.json`` — addizionali.
+- ``capability/<year>/catalog.json``, ``limitation/engine.json``,
+  ``policy/italy.json``.
 
 Current data set version: :data:`__version__`.
 """

@@ -37,7 +37,7 @@ def _knowledge(root: Path, level: dict[str, object]) -> Path:
     Returns:
         The knowledge directory.
     """
-    ccnl_dir = root / "ccnl" / "data"
+    ccnl_dir = root / "contract" / "agreement"
     ccnl_dir.mkdir(parents=True)
     payload = {
         "levels": [level],
@@ -63,7 +63,7 @@ def test_rule_without_provenance_fails_the_check(
     """A salary period with no record, own or inherited, fails."""
     assert not check_rules(_knowledge(tmp_path, _level(None)))
     err = capsys.readouterr().err
-    assert "ccnl/data/x.json: levels[A].base_salary[2026-01-01]" in err
+    assert "contract/agreement/x.json: levels[A].base_salary[2026-01-01]" in err
     assert "no provenance record" in err
 
 
@@ -74,7 +74,7 @@ def test_missing_status_passes_but_is_listed(
     assert check_rules(_knowledge(tmp_path, _level({"status": "missing"})))
     out = capsys.readouterr().out
     assert "missing: 1" in out
-    assert "missing source: ccnl/data/x.json: levels[A].base_salary" in out
+    assert "missing source: contract/agreement/x.json: levels[A].base_salary" in out
 
 
 def test_derived_record_passes(tmp_path: Path) -> None:
@@ -92,7 +92,7 @@ def test_uncited_derived_record_fails_the_schema_gate(
     assert not check_rules(_knowledge(tmp_path, _level(uncited)))
     err = capsys.readouterr().err
     assert (
-        "ccnl/data/x.json: levels[0].provenance: derived: no citation "
+        "contract/agreement/x.json: levels[0].provenance: derived: no citation "
         "(http(s) url and section or page)"
     ) in err
 
@@ -125,7 +125,7 @@ def _evidence_tree(root: Path, status: str = "assumed") -> Path:
         The knowledge directory.
     """
     _knowledge(root, _level({"status": status}))
-    (root / "limitations" / "data").mkdir(parents=True)
+    (root / "limitation").mkdir(parents=True)
     (root / ENGINE_LIMITATIONS).write_text('{"limitations": []}', encoding="utf-8")
     return root
 

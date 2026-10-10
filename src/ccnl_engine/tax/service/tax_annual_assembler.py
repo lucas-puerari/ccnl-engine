@@ -38,11 +38,12 @@ def load_year_rules(
     the correct tier for ``num_employees`` and returns a flat ``YearRules``
     with the resolved rates -- callers do not need to handle tier logic.
 
-    The IRPEF/TFR block comes from ``ccnl_engine/knowledge/tax/data/``, with
-    the TFR revaluation and the somma esente of the year from their
-    national files; the
-    INPS contribution block (aliquote, apprentice, domestic) comes from
-    ``ccnl_engine/knowledge/inps/data/``. Both are merged and validated
+    The IRPEF/TFR block comes from
+    ``knowledge/taxation/annual/<year>/<sector>.json``, with the TFR
+    revaluation and the somma esente of the year from their national files;
+    the INPS contribution block (aliquote, apprentice, domestic) comes from
+    ``knowledge/social_security/contribution/<year>/<sector>.json``.  Both are
+    merged and validated
     against :class:`~ccnl_engine.tax.domain.ruleset.YearRulesRaw` before
     resolving tiers.
 

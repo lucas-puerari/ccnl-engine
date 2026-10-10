@@ -1,9 +1,9 @@
 """Tests that guard against silent packaging and demo startup failures.
 
-Build hook: scripts/packaging/build_hook.py lists source directories whose JSON
-files it compresses into .json.gz for the wheel.  A typo in any of those
-paths silently produces an empty wheel -- no data files are found, no error is
-raised -- which breaks all runtime data access without any test failure.
+Build hook: scripts/packaging/build_hook.py compresses into .json.gz for the
+wheel the knowledge manifest and every resource it lists.  A listed resource
+missing on disk would fail the build; one not listed would be left out of the
+wheel and unreadable at runtime.
 
 Demo glue: demo/app.py imports ccnl_engine modules that run inside Pyodide.
 An obsolete import path lets the wheel build succeed but crashes the browser at
@@ -32,7 +32,6 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     import types
 
-import pytest
 
 _PROJECT_ROOT = Path(__file__).resolve().parents[4]
 _BUILD_HOOK = _PROJECT_ROOT / "scripts" / "packaging" / "build_hook.py"
@@ -40,64 +39,38 @@ _APP_PY = _PROJECT_ROOT / "demo" / "app.py"
 _INDEX_HTML = _PROJECT_ROOT / "demo" / "index.html"
 
 
-def _extract_data_dirs() -> list[tuple[str, str]]:
-    """Parse _DATA_DIRS from build_hook.py without importing it.
+_KNOWLEDGE = _PROJECT_ROOT / "src" / "ccnl_engine" / "knowledge"
+
+
+def _hook_functions() -> set[str]:
+    """Return the names of the functions the build hook defines.
 
     Returns:
-        List of (dist_prefix, src_rel) tuples, same as _DATA_DIRS.
-
-    Raises:
-        AssertionError: If _DATA_DIRS cannot be found in the build hook.
+        Function names, read by AST so hatchling is not imported.
     """
     tree = ast.parse(_BUILD_HOOK.read_text(encoding="utf-8"))
-    for node in ast.walk(tree):
-        # _DATA_DIRS uses a type annotation so it is an AnnAssign, not Assign.
-        if not (
-            isinstance(node, ast.AnnAssign)
-            and isinstance(node.target, ast.Name)
-            and node.target.id == "_DATA_DIRS"
-            and isinstance(node.value, ast.List)
-        ):
-            continue
-        pairs: list[tuple[str, str]] = []
-        for elt in node.value.elts:
-            if not isinstance(elt, ast.Tuple) or len(elt.elts) != 2:
-                continue
-            a, b = elt.elts
-            if isinstance(a, ast.Constant) and isinstance(b, ast.Constant):
-                pairs.append((str(a.value), str(b.value)))
-        return pairs
-    msg = "_DATA_DIRS not found in build_hook.py"
-    raise AssertionError(msg)
+    return {node.name for node in ast.walk(tree) if isinstance(node, ast.FunctionDef)}
 
 
-_DATA_DIRS = _extract_data_dirs()
+class TestBuildHookKnowledge:
+    """The wheel carries the manifest and every resource it lists."""
 
+    def test_the_hook_reads_the_manifest(self) -> None:
+        """The hook compresses the files the manifest lists, not a directory glob."""
+        source = _BUILD_HOOK.read_text(encoding="utf-8")
+        assert "_knowledge_files" in _hook_functions()
+        assert '"manifest.json"' in source
 
-@pytest.mark.parametrize(
-    ("dist_prefix", "src_rel"),
-    _DATA_DIRS,
-    ids=[src for _, src in _DATA_DIRS],
-)
-class TestBuildHookDataDirs:
-    """Each entry in _DATA_DIRS must point to a real, populated directory."""
-
-    def test_source_dir_exists(self, dist_prefix: str, src_rel: str) -> None:
-        """The source directory listed in the build hook must exist."""
-        src_dir = _PROJECT_ROOT / src_rel
-        assert src_dir.is_dir(), (
-            f"Build hook source directory not found: {src_rel!r}. "
-            "Check the _DATA_DIRS entries in scripts/packaging/build_hook.py."
-        )
-
-    def test_source_dir_has_json_files(self, dist_prefix: str, src_rel: str) -> None:
-        """The source directory must contain at least one .json file."""
-        src_dir = _PROJECT_ROOT / src_rel
-        json_files = list(src_dir.glob("*.json"))
-        assert len(json_files) > 0, (
-            f"No .json files found in {src_rel!r}. "
-            "The wheel would be built without any data files."
-        )
+    def test_every_listed_resource_is_on_disk(self) -> None:
+        """A path the manifest lists must exist, or the wheel build fails."""
+        manifest = json.loads((_KNOWLEDGE / "manifest.json").read_text("utf-8"))
+        missing = [
+            entry["path"]
+            for entry in manifest["resources"]
+            if not (_KNOWLEDGE / entry["path"]).is_file()
+        ]
+        assert manifest["resources"]
+        assert missing == []
 
 
 def _ccnl_imports_in(source: str) -> list[str]:
