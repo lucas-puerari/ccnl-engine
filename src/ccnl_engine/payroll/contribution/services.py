@@ -22,6 +22,9 @@ from ccnl_engine.payroll.contribution.services_public_end_of_service import (
     with_life_insurance,
     with_public_credit,
 )
+from ccnl_engine.payroll.contribution.services_solidarity_fund import (
+    with_solidarity_fund,
+)
 from ccnl_engine.payroll.employment.inputs import Apprentice
 from ccnl_engine.payroll.employment.inputs_fact import PublicEndOfService
 from ccnl_engine.payroll.ledger.models import AccountKind
@@ -97,9 +100,10 @@ def run_contributions(inp: _AmountsInput) -> tuple[ContributionBreakdown, Decima
         breakdown, credit = with_public_credit(inp, breakdown, base)
         breakdown, life = with_life_insurance(inp, breakdown, base)
         breakdown, enam = with_enam(inp, breakdown)
+        breakdown, fund = with_solidarity_fund(inp, breakdown)
         rates = resolve_rates(inp.rules, inp.contract_type, inp.category)
         public = end_of_service_employee_rate(inp) + credit + life + enam
-        employee = rates.employee_rate + public
+        employee = rates.employee_rate + public + fund
         return breakdown, employee
     breakdown = compute_domestic_breakdown(
         inp.rules,

@@ -122,6 +122,35 @@
       {
         "kind": "info",
         "text": "APPRENTICESHIP Gruppo 3 (impiegati amministrativi, destination level 2, 3 anni / 6 semestri): 70/70/70/78/85/85 per semester. Source: consulenza.it circolare acconciatura 2024; lexplain.it tabella apprendistato acconciatori (medium-high confidence: two concordant secondary sources; primary accordo tables not online)."
+      },
+      {
+        "kind": "simplification",
+        "text": "INPS RATES: the employer and worker INPS rates of the sector (artigianato) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "inps_sector_rates_unsourced",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Source the artigianato rates of 2026 on an INPS or association table, mark the inps block of social_security/contribution/2026/artigianato.json derived, then remove this note."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE INPS RATES: the apprentice rates of the sector (artigianato) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles whether the 0.91 NASpI reduction of the artisan employers also applies to apprentices, nor the wage-integration contribution they owe (the FSBA is paid outside INPS). The contributions of an apprentice may differ.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_inps_rates_unsourced",
+          "applies_when": {
+            "trigger": "run",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of social_security/contribution/2026/artigianato.json derived, then remove this note."
+        }
       }
     ]
   },
@@ -979,7 +1008,7 @@
     "effective_until": null,
     "source": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf",
     "verification_status": "unverified",
-    "source_hash": "634ef718721b8d7555e64d4a6da0a8b2060cab2357e3998e95315d4139894e63",
+    "source_hash": "d88c91e4c2d948d06bb9919a97b0295c42977fe457a77ba7037cb001910e4e1a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

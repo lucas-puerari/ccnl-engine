@@ -3,6 +3,56 @@
 Continues [Migration guide: earlier releases](migration-earlier.md); the
 newest changes are on the [Migration guide](migration.md).
 
+## Surtax tables of 2026 rebuilt from the MEF data
+
+`regionale-2026.json` held rows under the wrong region (for example the
+Emilia-Romagna rates under Veneto and the Lombardia rates under Toscana).
+It is now taken row by row from the MEF 2026 pages, with the income-only
+provisions (exemptions, whole-income rates, detrazioni) computed; see
+[Fiscal: regional rates of 2026](engine/surtax.md#regional-rates-of-2026).
+**This changes the regional surtax of almost every region.** Annual
+regional surtax on a taxable income of 30,000 euro:
+
+| Row | Before | After |
+|---|---:|---:|
+| Abruzzo | 541.00 | 525.00 |
+| Basilicata | 369.00 | 369.00 |
+| Bolzano | 519.00 | 0.00 |
+| Calabria | 714.50 | 519.00 |
+| Campania | 369.00 | 708.30 |
+| Emilia-Romagna | 408.00 | 506.00 |
+| Friuli-Venezia Giulia | 289.50 | 369.00 |
+| Lazio | 657.60 | 699.00 |
+| Liguria | 759.00 | 408.00 |
+| Lombardia | 369.00 | 424.30 |
+| Marche | 667.00 | 417.40 |
+| Molise | 369.00 | 667.00 |
+| Piemonte | 525.00 | 657.60 |
+| Puglia | 465.30 | 541.00 |
+| Sardegna | 369.00 | 369.00 |
+| Sicilia | 369.00 | 369.00 |
+| Toscana | 424.30 | 465.30 |
+| Trento | 708.30 | 0.00 |
+| Umbria | 417.40 | 564.50 |
+| Valle d'Aosta | 369.00 | 369.00 |
+| Veneto | 506.00 | 369.00 |
+
+At exactly 30,000 euro Trento is still exempt and Lazio still grants its
+60 euro detrazione; both end above 30,000.
+
+`comunale-2026.json` now holds the 2026 rates where a delibera was
+published (3,339 municipalities) and the 2025 rates, `provisional`, for the
+others; it was the 2025 list for every municipality. It has a row for every
+municipality of the MEF list, a zero-rate row for those without a surtax,
+which were `table_unknown` before.
+
+New reason codes, all `provisional`: `dependent_provisions_not_applied`
+(regional, issue `regional_surtax_dependent_provisions_not_applied`) and
+`specific_exemptions_not_applied` (municipal, issue
+`municipal_surtax_specific_exemptions_not_applied`).
+`prior_year_rates_applied` is now decided per municipal row
+(`inputs["rates_year"]`). Handle them where reason codes are matched.
+
 ## Surtax withheld the year after the conguaglio
 
 The regional and municipal surtax of a tax year is now determined by its

@@ -102,6 +102,35 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "INPS RATES: the employer and worker INPS rates of the sector (artigianato) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "inps_sector_rates_unsourced",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Source the artigianato rates of 2026 on an INPS or association table, mark the inps block of social_security/contribution/2026/artigianato.json derived, then remove this note."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE INPS RATES: the apprentice rates of the sector (artigianato) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles whether the 0.91 NASpI reduction of the artisan employers also applies to apprentices, nor the wage-integration contribution they owe (the FSBA is paid outside INPS). The contributions of an apprentice may differ.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_inps_rates_unsourced",
+          "applies_when": {
+            "trigger": "run",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of social_security/contribution/2026/artigianato.json derived, then remove this note."
+        }
       }
     ]
   },
@@ -2201,7 +2230,7 @@
     "effective_until": null,
     "source": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "496f674f77c91ee0271ba7fb08d4499a139e4a3dc3c27215fb0ae6fc046d6749",
+    "source_hash": "27ec1cd380a8aca513ec389e47bb279f7e6490abadca0fa1b5c44874bdcc11ce",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

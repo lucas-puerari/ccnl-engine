@@ -106,6 +106,22 @@
           },
           "remediation": "Model the area 1 Quadri function allowance (minimum 13%)."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE INPS RATES: the apprentice rates of the sector (agricoltura) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles the disoccupazione and CISOA contributions of agricultural apprentices (INPS circ. 43/2026 gives no apprentice rates). The contributions of an apprentice may differ.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_inps_rates_unsourced",
+          "applies_when": {
+            "trigger": "run",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the apprentice rates of agricoltura (an INPS circular or an association table of 2026), mark the apprentice block of social_security/contribution/2026/agricoltura.json derived, then remove this note."
+        }
       }
     ]
   },
@@ -948,7 +964,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "1520278dc30fb0e8f12c7b249d9a27dbf95cc9e27e221c98e9bd21d0e7a263b0",
+    "source_hash": "a7aa964693404e552bc6fb93058608e9e9a1a8402b4c7d50116e6b7b6d11ed34",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

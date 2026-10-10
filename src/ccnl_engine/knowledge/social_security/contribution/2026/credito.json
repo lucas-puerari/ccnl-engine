@@ -82,7 +82,7 @@
         "quote": "Operai ... 38,50 9,19 33,00 1,31 0,30 0,20 0,68 ... 2,55 0,46 ... Impiegati ... 35,95 ... Dirigenti ... 35,95 ... (*) CUAF ……………… = 2,48 - 1,80 = 0,68%."
       },
       "transformation": "Employer = total - 9.19: impiegati and dirigenti 35.95 - 9.19 = 26.76 (IVS 23.81, NASpI 1.31 + 0.30, Fondo Garanzia TFR 0.20, CUAF 0.68, maternita 0.46); operai (salariati) 38.50 - 9.19 = 29.31, with malattia 2.55. rate is the impiegati rate, rate_by_category the operai rate.",
-      "note": "Assumed: the table is of 2012; the 2026 totals are confirmed only by Kitech table 6.1 (https://www.kitech.it/Contributi-previdenziali.aspx?p=9_165, sha256 a6d424e75a7fb383d758fc17d840f4b690c53e29cbb5168ee20ba8dd84c91fcf), 'DIRIGENTI | 35,95 | 9,19 | OPERAI E IMPIEGATI | 35,95 | 9,19 | SALARIATI | 38,50 | 9,19', a software house page that does not prove the year shown; promote on a 2026 INPS or association table. The Fondo di solidarietà del credito is not in these totals: 0.20% (0.133% employer, 0.067% worker) on 'tutti i lavoratori dipendenti con contratto a tempo indeterminato, compresi i dirigenti' (circ. INPS 90/2015 p. 11, https://servizi2.inps.it/CircolariZIP/Circolare%20numero%2090%20del%2006-05-2015.pdf, sha256 17165601e0b65710bd79220f09f88b184c320b0347a2662dedb276a26ff951f0; confirmed for 2026 by the INPS bilancio preventivo 2026, cap. 31, p. 7). Not modelled: this file serves bancari ABI (fund 0.20%), BCC (own fund, 0.36%) and assicurazioni ANIA (no credit fund found), and the fund applies to permanent contracts only."
+      "note": "Assumed: the table is of 2012; the 2026 totals are confirmed only by Kitech table 6.1 (https://www.kitech.it/Contributi-previdenziali.aspx?p=9_165, sha256 a6d424e75a7fb383d758fc17d840f4b690c53e29cbb5168ee20ba8dd84c91fcf), 'DIRIGENTI | 35,95 | 9,19 | OPERAI E IMPIEGATI | 35,95 | 9,19 | SALARIATI | 38,50 | 9,19', a software house page that does not prove the year shown; promote on a 2026 INPS or association table. The Fondo di solidarietà del credito is not in these totals: 0.20% (0.133% employer, 0.067% worker) on 'tutti i lavoratori dipendenti con contratto a tempo indeterminato, compresi i dirigenti' (circ. INPS 90/2015 p. 11, https://servizi2.inps.it/CircolariZIP/Circolare%20numero%2090%20del%2006-05-2015.pdf, sha256 17165601e0b65710bd79220f09f88b184c320b0347a2662dedb276a26ff951f0; confirmed for 2026 by the INPS bilancio preventivo 2026, cap. 31, p. 7). The fund belongs to the CCNL, not to this file, which also serves BCC (own fund, 0.36%) and assicurazioni ANIA (own fund, rate unsourced): it is modelled as parameters.solidarity_fund of bancari-abi and bcc-credito-cooperativo, and ANIA declares the solidarity_fund_unsourced limitation."
     }
   },
   "apprentice": {
@@ -96,17 +96,19 @@
     "small_firm_employer_rate_months_12_23": "0.0461",
     "small_firm_employer_ivs_rate_months_12_23": "0.0300",
     "provenance": {
-      "status": "assumed",
+      "status": "derived",
       "location": {
         "source_document": {
           "document_id": "l-296-2006",
-          "title": "L. 296/2006, legge finanziaria 2007",
-          "kind": "legge"
+          "title": "L. 27 dicembre 2006 n. 296 (legge finanziaria 2007)",
+          "kind": "legge",
+          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2006-12-27;296~art1!vig=2026-10-10"
         },
-        "section": "art. 1 c. 773; L. 92/2012 art. 2 cc. 36-37"
+        "section": "art. 1 c. 773",
+        "quote": "la contribuzione dovuta dai datori di lavoro per gli apprendisti artigiani e non artigiani è complessivamente rideterminata nel 10 per cento [...] Per i datori di lavoro che occupano alle dipendenze un numero di addetti pari o inferiore a nove la predetta complessiva aliquota del 10 per cento [...] è ridotta [...] di 8,5 punti percentuali per i periodi contributivi maturati nel primo anno di contratto e di 7 punti percentuali per i periodi contributivi maturati nel secondo anno"
       },
-      "transformation": "Employer rate 10% + NASpI 1.31% + 0.30% = 11.61%.",
-      "note": "Assumed: the record cites no http(s) url. 10% (L. 296/2006 art. 1 c. 773) + NASpI 1.61% (L. 92/2012 art. 2 c. 36 and the 0.30% of art. 25 L. 845/1978) gives the 11.61%; since 1 January 2022 apprentices pay the wage-integration contributions of their employer (INPS circ. 76/2022 par. 1). The credito owes no CIGO, CIGS or FIS to INPS: its workers are covered by the Fondo di solidarietà del credito, so the 11.61% matches the sourced composition. Open question: whether the fund's 0.20% (0.133% employer, 0.067% worker; circ. INPS 90/2015, on permanent contracts) applies to apprentices; no source found."
+      "transformation": "Employer 10% (1.5% in the first and 3% in the second year up to nine employees) + NASpI 1.61% = 11.61% (3.11%, 4.61%); worker 5.84%. No CIGO, CIGS or FIS share: the credito is covered by the solidarity funds of its CCNLs, whose ordinary contribution apprentices owe as permanent workers (parameters.solidarity_fund).",
+      "note": "NASpI 1.31% + 0.30%: L. 92/2012 art. 2 c. 36 (Normattiva, https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2012-06-28;92~art2!vig=2026-10-10): 'è dovuta dai datori di lavoro per gli apprendisti artigiani e non artigiani una contribuzione pari all'1,31 per cento della retribuzione imponibile ai fini previdenziali'. Wage-integration contributions of apprentices since 2022: INPS circ. 76/2022 par. 1. The credito funds charge 'tutti i lavoratori dipendenti con contratto a tempo indeterminato, compresi i dirigenti' (INPS circ. 90/2015 p. 11) and an apprenticeship is 'un contratto di lavoro a tempo indeterminato' (D.Lgs. 81/2015 art. 41 c. 1). Quotes read on 2026-10-10."
     }
   },
   "ruleset": {
@@ -117,7 +119,7 @@
     "published_at": "2026-09-07",
     "source": "https://servizi2.inps.it/Servizi/CircMessStd/maestro.ashx?idAllegato=966&flagOriginale=1",
     "verification_status": "unverified",
-    "source_hash": "5d2a1e7eaf961030b9b9c252e26aa2923c99852a0db290a4dc3646284cf41c35",
+    "source_hash": "25f6512a16525629cf5301239d95e1901b9447a444e50d385420b007956592a2",
     "source_type": "institutional_secondary"
   }
 }

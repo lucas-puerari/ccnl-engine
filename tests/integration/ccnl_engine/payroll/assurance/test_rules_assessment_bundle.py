@@ -230,7 +230,9 @@ def test_open_limitations_block_where_they_apply(
 
     An ordinary month executes no work-rule capability and no apprenticeship
     path, so only the limitations of every run of a CCNL (an unverified
-    INPS rate, a salary table from a proxy) are recorded: a minority.
+    INPS rate, a salary table from a proxy) are recorded: a minority, under
+    half of the bundle (the credito and artigianato CCNLs declare their
+    unsourced INPS sector rates).
     """
     limited = 0
     for result in results.values():
@@ -240,4 +242,4 @@ def test_open_limitations_block_where_they_apply(
         ]
         assert blocked == blocking
         limited += bool(blocking)
-    assert 0 < limited < len(results) // 3
+    assert 0 < limited < len(results) // 2

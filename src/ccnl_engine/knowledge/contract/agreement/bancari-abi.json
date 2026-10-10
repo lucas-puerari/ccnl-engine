@@ -93,6 +93,19 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "INPS RATES: the employer and worker INPS rates of the sector (credito) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "inps_sector_rates_unsourced",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Source the credito rates of 2026 on an INPS or association table, mark the inps block of social_security/contribution/2026/credito.json derived, then remove this note."
+        }
       }
     ]
   },
@@ -233,6 +246,28 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
+      }
+    },
+    "solidarity_fund": {
+      "code": "FONDO_SOLIDARIETA_CREDITO",
+      "employer_rate": "0.00133",
+      "employee_rate": "0.00067",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "inps-circolare-90-2015",
+            "title": "INPS Circolare n. 90 del 6 maggio 2015, Fondo di solidarietà del personale del credito (D.I. 83486/2014)",
+            "kind": "inps_circolare",
+            "url": "https://servizi2.inps.it/CircolariZIP/Circolare%20numero%2090%20del%2006-05-2015.pdf",
+            "published_on": "2015-05-06"
+          },
+          "page": "11",
+          "section": "C. Finanziamento, punto 1, lett. a",
+          "quote": "a) contributo ordinario dello 0,20% (di cui lo 0,133% a carico del datore di lavoro e lo 0,067% a carico dei lavoratori) calcolato sulla retribuzione imponibile ai fini previdenziali di tutti i lavoratori dipendenti con contratto a tempo indeterminato, compresi i dirigenti"
+        },
+        "transformation": "0.133% employer and 0.067% worker of the INPS taxable pay of every permanent worker.",
+        "note": "PDF sha256 17165601e0b65710bd79220f09f88b184c320b0347a2662dedb276a26ff951f0. Still in force in 2026: INPS bilancio preventivo 2026, cap. 31, p. 7 (https://servizi2.inps.it/servizi/ProvvedimentiFE/ProvvedimentiCDA/DownloadDocumentazioneAggiuntiva/326?nomefile=x.pdf, sha256 87277ac7102951e8ab702a24f08c30bec03c6e9538676c7b9156d37b5c787eb4): 'dal contributo ordinario (0,20 %) ripartito tra datore di lavoro e lavoratore nella misura rispettivamente, di due terzi (pari allo 0,133%) ed un terzo (pari allo 0,067%)'. Apprentices included: an apprenticeship is 'un contratto di lavoro a tempo indeterminato' (D.Lgs. 81/2015 art. 41 c. 1, Normattiva, read on 2026-10-10); fixed-term workers excluded. Only the ordinary contribution is modelled: the additional contribution due when the fund pays a benefit and the straordinario contribution of the employers that use the assegno straordinario are not."
       }
     }
   },
@@ -1357,7 +1392,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "27215abe800bf2455fde5bd5f000acc79897a117d95e1d71f9418680e6203976",
+    "source_hash": "69354606c0d46164e9eb89302afef0db255a004ba72b44199a5f3756d7badde8",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

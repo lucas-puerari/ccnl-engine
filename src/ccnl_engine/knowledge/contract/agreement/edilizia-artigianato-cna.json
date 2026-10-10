@@ -140,6 +140,35 @@
           },
           "remediation": "Source the Prevedi amount of the levels without a row and add it, then remove this note."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "INPS RATES: the employer and worker INPS rates of the sector (artigianato) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "inps_sector_rates_unsourced",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Source the artigianato rates of 2026 on an INPS or association table, mark the inps block of social_security/contribution/2026/artigianato.json derived, then remove this note."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE INPS RATES: the apprentice rates of the sector (artigianato) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles whether the 0.91 NASpI reduction of the artisan employers also applies to apprentices, nor the wage-integration contribution they owe (the FSBA is paid outside INPS). The contributions of an apprentice may differ.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_inps_rates_unsourced",
+          "applies_when": {
+            "trigger": "run",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of social_security/contribution/2026/artigianato.json derived, then remove this note."
+        }
       }
     ]
   },
@@ -2196,7 +2225,7 @@
     "effective_until": "2028-09-30",
     "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
     "verification_status": "unverified",
-    "source_hash": "5d5cce019e22b7bf542a9f5353f61827a226c00e091e18d00a395f2670b6e0ff",
+    "source_hash": "57e01f3edd5fc7124e28bfb5be08fb610600378a6193302b08634bc04af21e1f",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

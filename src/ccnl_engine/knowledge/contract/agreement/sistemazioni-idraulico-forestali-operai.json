@@ -94,6 +94,22 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE INPS RATES: the apprentice rates of the sector (agricoltura) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles the disoccupazione and CISOA contributions of agricultural apprentices (INPS circ. 43/2026 gives no apprentice rates). The contributions of an apprentice may differ.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_inps_rates_unsourced",
+          "applies_when": {
+            "trigger": "run",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the apprentice rates of agricoltura (an INPS circular or an association table of 2026), mark the apprentice block of social_security/contribution/2026/agricoltura.json derived, then remove this note."
+        }
       }
     ]
   },
@@ -761,7 +777,7 @@
     "source": "https://redigo.info/",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "0d92b8abba82089d6dd4a97c9a9dfdf70ce76f565f931ed11ba471eda5c4f9e7",
+    "source_hash": "0a667d199e3b7c4407abd2f956037375a354898ba7ae4c1b93cb6c97436c446e",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

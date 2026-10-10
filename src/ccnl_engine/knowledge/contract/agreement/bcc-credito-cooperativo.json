@@ -91,6 +91,19 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "INPS RATES: the employer and worker INPS rates of the sector (credito) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "inps_sector_rates_unsourced",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Source the credito rates of 2026 on an INPS or association table, mark the inps block of social_security/contribution/2026/credito.json derived, then remove this note."
+        }
       }
     ]
   },
@@ -246,6 +259,27 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
+      }
+    },
+    "solidarity_fund": {
+      "code": "FONDO_SOLIDARIETA_CREDITO_COOPERATIVO",
+      "employer_rate": "0.0024",
+      "employee_rate": "0.0012",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "inps-bilancio-preventivo-2026-cap-32",
+            "title": "INPS Bilancio preventivo 2026, cap. 32, Fondo di solidarietà del credito cooperativo",
+            "kind": "altro",
+            "url": "https://servizi2.inps.it/servizi/ProvvedimentiFE/ProvvedimentiCDA/DownloadDocumentazioneAggiuntiva/327?nomefile=x.pdf"
+          },
+          "page": "7",
+          "section": "Valore della produzione",
+          "quote": "per contributo ordinario (0,36 %) ripartito tra datore di lavoro e lavoratore nella misura rispettivamente, di due terzi ed un terzo, calcolato sulla retribuzione imponibile ai fini previdenziali di tutti i lavoratori dipendenti con contratto a tempo indeterminato, compresi i dirigenti"
+        },
+        "transformation": "0.36% split two thirds to the employer (0.24%) and one third to the worker (0.12%), on the INPS taxable pay of every permanent worker.",
+        "note": "PDF sha256 a29c19b47b45ea058a586f6094a9ad9557cd3bd606256d6576c6857f902f620b, read on 2026-10-10. Apprentices included: an apprenticeship is 'un contratto di lavoro a tempo indeterminato' (D.Lgs. 81/2015 art. 41 c. 1, Normattiva, read on 2026-10-10); fixed-term workers excluded. Only the ordinary contribution is modelled: the additional contribution due when the fund pays a benefit and the straordinario contribution of the employers that use the assegno straordinario are not."
       }
     }
   },
@@ -1360,7 +1394,7 @@
     "effective_until": null,
     "source": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "0c120a36f3872a0ca599d12bc170bf1cdad288524054fb99840d27df285acbf3",
+    "source_hash": "c5c07cc347ebc2c4efba2ef4dc29d2fbecf2e92166cf614f156b38463de10cdf",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

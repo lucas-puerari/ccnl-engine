@@ -67,6 +67,22 @@
       {
         "kind": "info",
         "text": "layer_2 out_of_scope: no apprenticeship tracks modeled. The 2024 CCNL text (Art. 13 and Allegati E/F per CAI Agromec contract structure) references apprendistato professionalizzante but no percentage or under-classification table was found in any primary source (ilccnl.it, redigo.info, lavoro-economia.it). If apprenticeship provisions exist, they require the full CCNL PDF to model correctly."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE INPS RATES: the apprentice rates of the sector (agricoltura) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles the disoccupazione and CISOA contributions of agricultural apprentices (INPS circ. 43/2026 gives no apprentice rates). The contributions of an apprentice may differ.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_inps_rates_unsourced",
+          "applies_when": {
+            "trigger": "run",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the apprentice rates of agricoltura (an INPS circular or an association table of 2026), mark the apprentice block of social_security/contribution/2026/agricoltura.json derived, then remove this note."
+        }
       }
     ]
   },
@@ -1454,7 +1470,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/",
     "verification_status": "unverified",
-    "source_hash": "13592796d8f9b6028c80db446e6f7f122ad8cabd8e288188161a52f7a6cc8175",
+    "source_hash": "976669a9f40a6caaa8860fd00ddd5241a689d740611146d1d06c76e8a4dbd7f6",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

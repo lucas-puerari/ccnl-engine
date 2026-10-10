@@ -47,7 +47,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/acconciatura-estetica-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "634ef718721b8d7555e64d4a6da0a8b2060cab2357e3998e95315d4139894e63",
+      "source_hash": "d88c91e4c2d948d06bb9919a97b0295c42977fe457a77ba7037cb001910e4e1a",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "contract/agreement/acconciatura-estetica-confartigianato.json.gz"
@@ -183,7 +183,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/assicurazioni-ania",
       "ruleset_version": "2026.2",
-      "source_hash": "0fad22a54c38bdebeb60e91caec9bd8fc1c87b5cce062cbd87e5e0fbdef3ea71",
+      "source_hash": "fb6aec4b330dbc617f57044812fd25aa55ef976e44abc954194f3f3f3c3988e4",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "contract/agreement/assicurazioni-ania.json.gz"
@@ -302,7 +302,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/bancari-abi",
       "ruleset_version": "2026.2",
-      "source_hash": "27215abe800bf2455fde5bd5f000acc79897a117d95e1d71f9418680e6203976",
+      "source_hash": "69354606c0d46164e9eb89302afef0db255a004ba72b44199a5f3756d7badde8",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "contract/agreement/bancari-abi.json.gz"
@@ -319,7 +319,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/bcc-credito-cooperativo",
       "ruleset_version": "2026.2",
-      "source_hash": "0c120a36f3872a0ca599d12bc170bf1cdad288524054fb99840d27df285acbf3",
+      "source_hash": "c5c07cc347ebc2c4efba2ef4dc29d2fbecf2e92166cf614f156b38463de10cdf",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "contract/agreement/bcc-credito-cooperativo.json.gz"
@@ -489,7 +489,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/comunicazione-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "f1e1e7b8fc7b163d09f524272beee5b6a6e24a5328585772b31a348231110313",
+      "source_hash": "29addb6494d7d15ef4ff8f2c00645dd5a90e53ba3709b084bd25cf386c98227d",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "contract/agreement/comunicazione-artigianato-confartigianato.json.gz"
@@ -523,7 +523,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/consorzi-agrari-assocap",
       "ruleset_version": "2026.2",
-      "source_hash": "08aa145d2dcd85f95949433b056da23d59003c6774c261a6b8e7cbedbe4f4a1e",
+      "source_hash": "ef1ebc2e1ee21164079b1f5d49260d45b05b8095d8c91f5816d0fbd601fa8ab0",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "contract/agreement/consorzi-agrari-assocap.json.gz"
@@ -540,7 +540,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/consorzi-di-bonifica-snebi",
       "ruleset_version": "2026.2",
-      "source_hash": "e1be51ce5e9e325063e17eba4d605790a500bbbfc381efe40fdfa5ee5c868352",
+      "source_hash": "b34ed72f7ab128085389623acd065b277f1877b9ae5284c6baa3469e76545286",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "contract/agreement/consorzi-di-bonifica-snebi.json.gz"
@@ -557,7 +557,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/contoterzismo-caiagromec",
       "ruleset_version": "2026.2",
-      "source_hash": "13592796d8f9b6028c80db446e6f7f122ad8cabd8e288188161a52f7a6cc8175",
+      "source_hash": "976669a9f40a6caaa8860fd00ddd5241a689d740611146d1d06c76e8a4dbd7f6",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "contract/agreement/contoterzismo-caiagromec.json.gz"
@@ -574,7 +574,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/cooperative-consorzi-agricoli",
       "ruleset_version": "2026.2",
-      "source_hash": "887d30e0435c7e25656f6d51fb5b11585c3c89412aa4dac1d8e0e7b01a4b8cfa",
+      "source_hash": "92cae2b573bb5092a0d32335e879e7adad684a480f6a6f80247a78e14bd6de14",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "contract/agreement/cooperative-consorzi-agricoli.json.gz"
@@ -744,7 +744,7 @@
       "valid_to": "2028-09-30",
       "ruleset_id": "ccnl/edilizia-artigianato-cna",
       "ruleset_version": "2026.2",
-      "source_hash": "5d5cce019e22b7bf542a9f5353f61827a226c00e091e18d00a395f2670b6e0ff",
+      "source_hash": "57e01f3edd5fc7124e28bfb5be08fb610600378a6193302b08634bc04af21e1f",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "contract/agreement/edilizia-artigianato-cna.json.gz"
@@ -1084,7 +1084,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/impiegati-tecnici-agricoli",
       "ruleset_version": "2026.2",
-      "source_hash": "4f7e49bd8d6e83b7d5ebd61ec2eaec5ae4c744392e8f82d1c55a8ebcb7d7f1d0",
+      "source_hash": "597a6766ce9a8c7965c9a46837be092a7fc6ce939949fc3b70ae58329e0c7768",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "contract/agreement/impiegati-tecnici-agricoli.json.gz"
@@ -1288,7 +1288,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/legno-lapidei-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "84a0258f2d9db4bd7e58011117168f661d5940602d5c80e7abd4da59ab9b3d62",
+      "source_hash": "7106c397e787f9a2f5de5bfc2f8e08f54b303f846d3ad872644b86f8377b67f7",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "contract/agreement/legno-lapidei-artigianato-confartigianato.json.gz"
@@ -1373,7 +1373,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-artigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "496f674f77c91ee0271ba7fb08d4499a139e4a3dc3c27215fb0ae6fc046d6749",
+      "source_hash": "27ec1cd380a8aca513ec389e47bb279f7e6490abadca0fa1b5c44874bdcc11ce",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "contract/agreement/metalmeccanico-artigianato.json.gz"
@@ -1509,7 +1509,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/operai-agricoli-florovivaisti",
       "ruleset_version": "2026.2",
-      "source_hash": "635dac0ab2a32b7b4e6d18a677211ef9e995eb6a4621832d610f187a10b39abe",
+      "source_hash": "05ee0c9a36ecdd4091fe2e943b1ec1da46c17c85cb1d8607e80f6dc06b9346b5",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "contract/agreement/operai-agricoli-florovivaisti.json.gz"
@@ -1543,7 +1543,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/organizzazioni-allevatori-aia",
       "ruleset_version": "2026.2",
-      "source_hash": "1520278dc30fb0e8f12c7b249d9a27dbf95cc9e27e221c98e9bd21d0e7a263b0",
+      "source_hash": "a7aa964693404e552bc6fb93058608e9e9a1a8402b4c7d50116e6b7b6d11ed34",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "contract/agreement/organizzazioni-allevatori-aia.json.gz"
@@ -1577,7 +1577,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/panificazione-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "447d0273dcf4f444acdc69c6ae1d1b7dc3db8ceffadc1b0d32d7c4c1078159f8",
+      "source_hash": "46366e05ff955cf931a51d2eff72f1034f1a999443586353de3cfc3c5e6b723e",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "contract/agreement/panificazione-artigianato-confartigianato.json.gz"
@@ -1866,7 +1866,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/sistemazioni-idraulico-forestali-impiegati",
       "ruleset_version": "2026.1",
-      "source_hash": "f785170d7501f642cf5c641af789d70b167da9b1cb937bffda05f33902bc18ee",
+      "source_hash": "6ca5ec1ac5f582305acd6b59f6a77ddcc024f3213b5d9efd29b67a43e19470cf",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "contract/agreement/sistemazioni-idraulico-forestali-impiegati.json.gz"
@@ -1883,7 +1883,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/sistemazioni-idraulico-forestali-operai",
       "ruleset_version": "2026.1",
-      "source_hash": "0d92b8abba82089d6dd4a97c9a9dfdf70ce76f565f931ed11ba471eda5c4f9e7",
+      "source_hash": "0a667d199e3b7c4407abd2f956037375a354898ba7ae4c1b93cb6c97436c446e",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "contract/agreement/sistemazioni-idraulico-forestali-operai.json.gz"
@@ -1968,7 +1968,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/tessile-moda-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "1a576aea4acb7ab356f3139cdb14d5be9486f85016e3a15545f83644bd617d90",
+      "source_hash": "e742770993e8fe06cb8ebce177617e8c7ab47b2c0b175bc3d772cf9e2a111c15",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "contract/agreement/tessile-moda-artigianato-confartigianato.json.gz"
@@ -2259,7 +2259,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "inps/2026/credito",
       "ruleset_version": "2026.1",
-      "source_hash": "5d2a1e7eaf961030b9b9c252e26aa2923c99852a0db290a4dc3646284cf41c35",
+      "source_hash": "25f6512a16525629cf5301239d95e1901b9447a444e50d385420b007956592a2",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "social_security/contribution/2026/credito.json.gz"

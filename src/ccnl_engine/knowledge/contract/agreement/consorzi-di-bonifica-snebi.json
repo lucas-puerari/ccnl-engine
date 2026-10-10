@@ -102,6 +102,22 @@
       {
         "kind": "info",
         "text": "layer_2 out_of_scope: no apprenticeship data found in available public sources. Full CCNL PDF required."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE INPS RATES: the apprentice rates of the sector (agricoltura) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles the disoccupazione and CISOA contributions of agricultural apprentices (INPS circ. 43/2026 gives no apprentice rates). The contributions of an apprentice may differ.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_inps_rates_unsourced",
+          "applies_when": {
+            "trigger": "run",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the apprentice rates of agricoltura (an INPS circular or an association table of 2026), mark the apprentice block of social_security/contribution/2026/agricoltura.json derived, then remove this note."
+        }
       }
     ]
   },
@@ -2733,7 +2749,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/",
     "verification_status": "unverified",
-    "source_hash": "e1be51ce5e9e325063e17eba4d605790a500bbbfc381efe40fdfa5ee5c868352",
+    "source_hash": "b34ed72f7ab128085389623acd065b277f1877b9ae5284c6baa3469e76545286",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

@@ -12,6 +12,7 @@ from ccnl_engine.contract.fund.models import (
     EmployerFund,
 )
 from ccnl_engine.contract.fund.models_assistance import AssistanceContribution
+from ccnl_engine.contract.fund.models_solidarity import SolidarityFund
 from ccnl_engine.contract.identity.rules_validity import TimeSeries
 from ccnl_engine.contract.seniority.models import SeniorityIncrements
 from ccnl_engine.provenance.source.models_chain import ProvenanceStatus, RuleProvenance
@@ -210,6 +211,7 @@ class CCNLParameters(BaseModel):
     ``raccordo_element``: the ERC the CCNL pays with the tredicesima.
     ``enam_levels``: the levels whose permanent workers owe the contribution
     of the Gestione Assistenza Magistrale (ex ENAM, L. 93/1957 art. 3).
+    ``solidarity_fund``: its fund of D.Lgs. 148/2015 art. 26, if modelled.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -226,6 +228,7 @@ class CCNLParameters(BaseModel):
     contractual_fund_contribution: ContractualFundContribution | None = None
     raccordo_element: RaccordoElement | None = None
     enam_levels: tuple[str, ...] = ()
+    solidarity_fund: SolidarityFund | None = None
 
     @model_validator(mode="after")
     def _check_positive_params(self) -> Self:

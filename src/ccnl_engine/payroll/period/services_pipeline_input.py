@@ -219,6 +219,7 @@ def amounts_input(
         tfr_treasury_fund=tfr_treasury_fund(ctx),
         public=_public_terms(ctx),
         assistance=assistance_terms(contract.ccnl, contract.tctx.competence),
+        solidarity_fund=contract.ccnl.parameters.solidarity_fund,
     )
 
 
