@@ -95,8 +95,15 @@ accrual, are not in the state (`termination_window_absences_unknown`); a
 
 A state is persisted between runs as JSON with
 `ccnl_engine.inputs.period_state_to_json` and read back with
-`period_state_from_json`, which checks `PeriodState.SCHEMA_VERSION` and
-rebuilds the state through its constructors.
+`period_state_from_json`. The JSON carries `PeriodState.SCHEMA_VERSION`, the
+engine version (`ccnl_engine.engine_version`) and the knowledge-bundle version
+that computed the state; reading accepts only the current three, because
+balances computed under other code or rules cannot continue a chain
+reproducibly. A state of another version is recomputed, or its totals are
+imported with `OpeningBalances`. Each value is tagged with the name of its
+type in an explicit registry (`STATE_TYPES`), never with a module path, and
+rebuilt through its constructor; any malformed or foreign payload raises
+`InvalidInputError`.
 
 Closing is idempotent by payment: the same request on the same opening
 state yields the same closing state, and a state that already closed the
