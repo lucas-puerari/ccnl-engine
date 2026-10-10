@@ -47,6 +47,10 @@ class Allowance(BaseModel):
     Italian CCNL explicitly exclude from proportional reduction). Defaults to
     ``True`` so all existing allowances remain proportionable.
 
+    ``replaced_by_provincial_element=True`` marks a national element paid
+    only where no provincial element replaces it (Commercio Art. 215, terzo
+    elemento): ``EmployerProfile.provincial_pay_element`` decides it.
+
     ``in_kind=True`` marks the conventional value of a benefit the employer
     provides in kind (the board and lodging of a live-in domestic worker,
     CCNL lavoro domestico art. 36): a regular run pays no cash for it but
@@ -65,6 +69,7 @@ class Allowance(BaseModel):
     apprenticeship_pct_relevant: bool = True
     part_time_proportionable: bool = True
     in_kind: bool = False
+    replaced_by_provincial_element: bool = False
     service_months_threshold: int | None = Field(default=None, ge=0)
     provenance: RuleProvenance | None = None
 

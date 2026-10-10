@@ -72,7 +72,11 @@ CONCIA_D2 = Employment(
     contract_type=Permanent(),
     pension_fund=NoPensionFund(),
 )
-EMPLOYER = EmployerProfile(headcount=Headcount(50), activity=EmployerActivity.OTHER)
+EMPLOYER = EmployerProfile(
+    headcount=Headcount(50),
+    activity=EmployerActivity.OTHER,
+    provincial_pay_element=False,
+)
 #: Resident in Alghero (Sardegna), no dependant.
 FACTS = PeriodFacts(
     regione="IT-88",

@@ -66,7 +66,9 @@ def _run(event: OvertimeEvent, slug: str = _METAL, level: str = "C3") -> PeriodR
     """
     return calculate_period(
         PeriodCalculationRequest(
-            employer=EmployerProfile(headcount=Headcount(50)),
+            employer=EmployerProfile(
+                provincial_pay_element=False, headcount=Headcount(50)
+            ),
             period_id=PeriodId(year=2026, month=3),
             payment_date=date(2026, 3, 27),
             ccnl_slug=slug,
@@ -112,7 +114,7 @@ def test_no_multiplier_takes_the_ccnl_band() -> None:
     )
     assert caller.inputs["fields"] == "hourly_rate"
     assert "caller_supplement" not in caller.inputs
-    assert result.capability_report.rule_sources["overtime"] is ProvenanceStatus.ASSUMED
+    assert result.capability_report.rule_sources["overtime"] is ProvenanceStatus.DERIVED
     assert result.issues == ()
 
 

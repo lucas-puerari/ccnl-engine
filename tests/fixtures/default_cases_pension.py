@@ -124,6 +124,25 @@ def _small_terziario(
     return replace(request, employer=employer)
 
 
+def _commercio_employer(
+    january: Callable[[Employment], PeriodInput], in_force: bool | None
+) -> PeriodInput:
+    """Return a Commercio run whose level pays the terzo elemento nazionale.
+
+    Returns:
+        The January request with ``provincial_pay_element`` set to ``in_force``.
+    """
+    commercio = replace(
+        CONCIA_D2,
+        category=None,
+        ccnl_slug="commercio-confcommercio.json",
+        level_code="4",
+    )
+    request = january(commercio)
+    employer = replace(request.employer, provincial_pay_element=in_force)
+    return replace(request, employer=employer)
+
+
 def _operaio(
     january: Callable[[Employment], PeriodInput], hours: Decimal | None
 ) -> PeriodInput:
@@ -200,5 +219,26 @@ def pension_cases[C](
         "PensionFundEnrolment.young_member": (
             pair(_cometa(True), _cometa(None), "young_member"),
             pair(_cometa(False), _cometa(None), "young_member"),
+        ),
+    }
+
+
+def employer_cases[C](
+    january: Callable[[Employment], PeriodInput],
+    case: Callable[[PeriodInput, PeriodInput, str], C],
+) -> Mapping[str, tuple[C, ...]]:
+    """Return the cases of the employer facts a CCNL level reads.
+
+    Returns:
+        The cases keyed ``Type.field``.
+    """
+    return {
+        "EmployerProfile.provincial_pay_element": tuple(
+            case(
+                _commercio_employer(january, stated),
+                _commercio_employer(january, None),
+                "provincial_pay_element",
+            )
+            for stated in (False, True)
         ),
     }

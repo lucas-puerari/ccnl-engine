@@ -4,6 +4,17 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Signed sources for Commercio and Metalmeccanico
+
+| Before | After |
+|---|---|
+| Commercio paid the terzo elemento nazionale (2.07) to every level | Paid only where no provincial third element is in force (Art. 215): new `EmployerProfile.provincial_pay_element`. `False` pays it, `True` leaves it out, `None` leaves it out with a `missing_fact provincial_pay_element` blocker. State it on every Commercio employer |
+| Commercio minimi, contingenza, terzo elemento, function allowances, extra months, accrual rule and overtime bands `assumed` from aggregators | `derived` from the signed accordo integrativo of 28/03/2024 and the Testo Unico 2019, each with page, quote and sha256. The level VII "Altri el." allowance is coded `ALTRI_ELEMENTI` instead of `IND_FUNZIONE` |
+| Commercio sickness paid 100% from day 4, labelled `derived` | `assumed`, with an open limitation: Art. 187 integrates to 75% of the net daily pay for days 4-20 and reduces the carenza by event; a run with sickness is not payable until the rule is modelled |
+| Metalmeccanico minimi stopped at the June 2026 tranche | Tranches of 1 June 2027 and 2028 from the agreement of 22/11/2025 (minimums the June IPCA check can raise); minimi, overtime bands, extra months, accrual rule, seniority, divisor and daily quota cited to the signed texts; readiness `reviewed` |
+| Metalmeccanico leave: 25 days from 36 months | Art. 10: 20 days, 21 over 10 years of service, 25 over 18 |
+| Metalmeccanico overtime without the 2025 exempt-quota supplement | Open limitation `overtime_exempt_quota_supplement`: a run with overtime is not payable |
+
 ## Concia UNIC reviewed, quota of 1/25
 
 | Before | After |
@@ -565,27 +576,3 @@ unchanged.
 | The TFR outside a pension fund always posted to `tfr_accrual` | `Employment.tfr_treasury_fund`: `True` posts it to the new `tfr_treasury_fund` account (in the employer cost), `False` to `tfr_accrual`; `None` posts to `tfr_accrual` with a `missing_fact` `tfr_treasury_fund` blocker |
 | `AccountKind` had 21 members | 22, with `TFR_TREASURY_FUND` |
 | An apprentice's TFR was `provisional` with the `tfr_apprentice_additional_ivs_undetermined` issue | Final, with no deduction: the 0.50% is not due on an apprentice (INPS circ. 70/2007, note 5) |
-
-## Opening state and other-employment bases are facts
-
-A run opened without the history of its employment, or whose contributions
-could depend on an unknown INPS base of other employments, is no longer
-payable. Amounts are unchanged
-(see [Opening state and imported balances](engine/opening-state.md)).
-
-| Before | After |
-|---|---|
-| `PeriodState.zero()` (the default of `PeriodInput.opening_state`, or `None` in a plan) opened any run without a blocker | The zero state is the fact only for the first run of an employment whose `employment_period` starts in the run month; otherwise a `missing_fact opening_state` blocker, on every run that descends from it too |
-| `PeriodState(accrual, cash)` | New field `history_known` (`True` unless the engine marks a state opened without its history); `SCHEMA_VERSION` 9 |
-| `InpsBaseYtd.other_employers` defaulted to `0` | `None` is unknown: a `missing_fact other_employers` blocker when the INPS rules carry a massimale the worker may be subject to or a 1% threshold; `Decimal(0)` states none |
-| `CurrentYearTaxFacts(tax_year, other_employment_income, other_income, ...)` | New required `other_employment_inps_base`, after `other_employment_income`; `employment_only()` states zero. It replaces the base the opening state carries for its competence year |
-| `OpeningBalances(tax_year=..., ...)` with `inps_bases`, `recoveries`, `surtax_obligations` defaulted to `()` | The three are required keyword arguments; every competence year of `payments` and `competence_runs` needs its `InpsBaseYtd` |
-| `PUBLIC_FACTS` without these facts | `"opening_state"` and `"other_employers"` |
-
-## Validity windows and partial years
-
-| Before | After |
-|---|---|
-| `ContractSummary` told nothing about the dates the bundle covers | `ContractSummary.validity`, a `ValidityWindow` (exported by `ccnl_engine.catalog`): the dates on which every rule of the CCNL has a value |
-| `calculate_competence_year` and `calculate_tax_year` raised `MissingRuleError` when a run of the year had no base salary (ANAS, Igiene ambientale Utilitalia, Lavanderie industriali Assosistema and Metalmeccanico Confimi from January 2026) | The run is left out and listed in `uncovered_runs` (`UncoveredRun`, exported by `ccnl_engine.results`) with a `run_not_computed` blocker; the other runs are computed and the year is not payable. A year with no run in force still raises `MissingRuleError` |
-| `BlockerCode` without a member for a run left out | `BlockerCode.RUN_NOT_COMPUTED` (`"run_not_computed"`) |

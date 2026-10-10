@@ -5,7 +5,8 @@
     "November 2025 tranche: minimo 1257.46.",
     "Contingenza 524.22 + terzo elemento 2.07 = allowances 526.29.",
     "The November 2026 tranche is not yet in effect in September.",
-    "Period gross = 1257.46 + 526.29 = 1783.75."
+    "Period gross = 1257.46 + 526.29 = 1783.75.",
+    "The terzo elemento nazionale (2.07) is due where no provincial third element is in force (Art. 215): the case states none is."
   ],
   "source": {
     "document": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
@@ -17,7 +18,8 @@
     "level_code": "4",
     "year": 2026,
     "month": 9,
-    "headcount": 50
+    "headcount": 50,
+    "provincial_pay_element": false
   },
   "expected": {
     "base_salary": "1257.46",

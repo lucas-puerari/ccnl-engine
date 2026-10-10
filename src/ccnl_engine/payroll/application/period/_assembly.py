@@ -20,11 +20,7 @@ from ccnl_engine.payroll.application.period._closing_state import (
     RunOutcome,
     closing_state,
 )
-from ccnl_engine.payroll.application.period._employment_facts import (
-    full_time_issue,
-    no_pay_issue,
-    roles_issue,
-)
+from ccnl_engine.payroll.application.period._employment_facts import fact_issues
 from ccnl_engine.payroll.application.period._limitations import run_limitations
 from ccnl_engine.payroll.application.period._minimum_base import minimum_base_issue
 from ccnl_engine.payroll.application.period._naspi import naspi_issue
@@ -184,9 +180,7 @@ def _input_issues(
             ctx.contract.year_rules, ctx.request.contract_type, ctx.worker_category
         ),
         run_seniority(ctx).issue(),
-        full_time_issue(ctx),
-        no_pay_issue(ctx),
-        roles_issue(ctx),
+        *fact_issues(ctx),
         pension_fund_issue(ctx),
         accrual_issue(ctx),
         ctx.proration.issue(),

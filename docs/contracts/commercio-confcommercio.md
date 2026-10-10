@@ -38,7 +38,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | seniority |
+| **Limits of this contract** | seniority, sickness |
 
 ### Verifica
 
@@ -58,7 +58,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 
 ### Semplificazioni note
 
-1 semplificazione documentata.
+2 semplificazioni documentate.
 Vedi [Known simplifications](#known-simplifications) per i dettagli.
 
 ## Salary table
@@ -111,6 +111,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
+!!! warning "commercio-confcommercio/sickness_day_bands_and_event_carenza · sickness · impact yes · open"
+    SICKNESS (Art. 187): integration up to 75% for days 4-20 and 100% from day 21 of the net daily pay, carenza at 100% for the first two events of the calendar year, 66% for the third, 50% for the fourth, none from the fifth. Modelled as 100% from the first day; the amounts of a run with sickness are not reliable.
+
+    **Applies when:** `sickness` applies.
+
+    **Remediation:** Extend the sickness rule with day-gated integration bands on the net daily pay and the carenza rate by event of the calendar year, then resolve this limitation.
+
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
 
@@ -161,6 +168,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     INPS: see tax/data/2026-terziario.json notes.
     
     CNEL code H011 confirmed by Il Sole 24 Ore / INPS UNIEMENS reference.
+    
+    TERZO ELEMENTO NAZIONALE (Art. 215): 2.07 EUR a month due only in the provinces where no provincial third element is in force; paid when EmployerProfile.provincial_pay_element is false, left out with a missing_fact blocker when it is not stated.
     
     Salary tables: five tranches of the rinnovo 22/03/2024 (paga base dal 1/4/2024, 1/3/2025, 1/11/2025, 1/11/2026, 1/2/2027) taken from the official tabelle retributive as perfected by the Accordo integrativo 28/03/2024 (rounding fixes on Q, I, II, VI vs the 22/03 ipotesi), consolidated text at comuneportofinomare.it (Eutekne) cross-checked with lexplain.it.
     

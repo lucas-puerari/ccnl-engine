@@ -8,7 +8,8 @@ gross carry provincial and individual items); net pay, taxes and employer
 cost depend on the engine's own rules and are owned by the oracle and legal
 scenario tests instead.  A case may state ``weekly_hours`` and
 ``contributable_hours`` among its inputs: a domestic CCNL needs both to
-select and charge its hourly contributions.
+select and charge its hourly contributions, and ``provincial_pay_element``
+when the table it cites holds a national element a provincial one replaces.
 """
 
 from __future__ import annotations
@@ -53,7 +54,10 @@ def _run(inputs: dict[str, Any]) -> PeriodResult:
                 contract_type=Permanent(),
                 weekly_hours=None if weekly is None else WeeklyHours(int(weekly)),
             ),
-            employer=EmployerProfile(headcount=Headcount(int(inputs["headcount"]))),
+            employer=EmployerProfile(
+                headcount=Headcount(int(inputs["headcount"])),
+                provincial_pay_element=inputs.get("provincial_pay_element"),
+            ),
             facts=PeriodFacts(
                 contributable_hours=(
                     None if hours is None else ContributableHours(Decimal(hours))

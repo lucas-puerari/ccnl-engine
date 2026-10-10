@@ -9,6 +9,9 @@
   whose weekly hours also select the INPS bracket: its monthly minimum is
   the pay of a full-time week (the bundle derives the non-convivente one
   from 40 hours, the convivente one from 54).
+- A national element a provincial element replaces is paid only when the
+  employer states that none is in force (:mod:`._provincial`); unknown,
+  the run leaves it out and names the missing fact.
 - An allowance the CCNL restricts to a role is paid only to a worker who
   holds it.  ``Employment.roles`` left ``None`` does not state that the
   worker holds none: when the level has a role-restricted allowance in
@@ -29,14 +32,17 @@ __all__ = [
     "FULL_TIME_FACT",
     "NO_PAY_FACT",
     "ROLES_FACT",
+    "fact_issues",
     "full_time_issue",
     "no_pay_issue",
+    "provincial_issue",
     "roles_issue",
 ]
 
 FULL_TIME_FACT = "full_time_weekly_hours"
 ROLES_FACT = "roles"
 NO_PAY_FACT = "no_pay_due"
+PROVINCIAL_FACT = "provincial_pay_element"
 
 
 def no_pay_issue(ctx: RunContext) -> CalculationIssue | None:
@@ -119,4 +125,43 @@ def roles_issue(ctx: RunContext) -> CalculationIssue | None:
         ),
         status=CalculationStatus.INCOMPLETE,
         fact=ROLES_FACT,
+    )
+
+
+def provincial_issue(ctx: RunContext) -> CalculationIssue | None:
+    """Return the missing-fact issue of a national element left out.
+
+    Returns:
+        An incomplete issue naming ``provincial_pay_element`` when the level
+        has an element a provincial one replaces and the employer does not
+        say whether one is in force, else ``None``.
+    """
+    unknown = ctx.contract.provincial_unknown
+    if not unknown:
+        return None
+    return CalculationIssue(
+        code="provincial_pay_element_unknown",
+        message=(
+            f"the level pays {', '.join(unknown)} only where no provincial "
+            "element replaces it, and the employer does not say whether one "
+            "is in force: the amounts shown leave it out; state "
+            "EmployerProfile.provincial_pay_element"
+        ),
+        status=CalculationStatus.INCOMPLETE,
+        fact=PROVINCIAL_FACT,
+    )
+
+
+def fact_issues(ctx: RunContext) -> tuple[CalculationIssue | None, ...]:
+    """Return the issues of the employment facts, in a fixed order.
+
+    Returns:
+        The full time, no-pay, roles and provincial element issues, each
+        ``None`` when not raised.
+    """
+    return (
+        full_time_issue(ctx),
+        no_pay_issue(ctx),
+        roles_issue(ctx),
+        provincial_issue(ctx),
     )

@@ -143,7 +143,9 @@ class TestStandaloneExtraRun:
     ) -> Decimal:
         calendar = WorkCalendar.from_additional_months(_YEAR, 14)
         request = PeriodCalculationRequest(
-            employer=EmployerProfile(headcount=Headcount(50)),
+            employer=EmployerProfile(
+                provincial_pay_element=False, headcount=Headcount(50)
+            ),
             period_id=PeriodId(year=_YEAR, month=run.month),
             payment_date=date(_YEAR, run.month, 28),
             ccnl_slug=ccnl,
