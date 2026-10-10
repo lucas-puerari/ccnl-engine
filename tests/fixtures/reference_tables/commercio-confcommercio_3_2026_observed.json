@@ -1,0 +1,22 @@
+{
+  "verification": "source_linked",
+  "_description": "Terziario level 3, April 2026: paga base 1.453,94 printed among the elementi della retribuzione.",
+  "_notes": [
+    "Base salary only: the payslip's allowances and gross include provincial and individual items (elemento provinciale, superminimo) outside the national table."
+  ],
+  "source": {
+    "document": "Observed payslip p06",
+    "path": "tests/fixtures/observed_payslips/p06.json",
+    "section": "pay_elements"
+  },
+  "inputs": {
+    "ccnl_slug": "commercio-confcommercio.json",
+    "level_code": "3",
+    "year": 2026,
+    "month": 4,
+    "headcount": 50
+  },
+  "expected": {
+    "base_salary": "1453.94"
+  }
+}

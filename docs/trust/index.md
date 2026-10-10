@@ -184,10 +184,10 @@ Reference cases live in `tests/fixtures/reference_tables/` and
 asserts only the values its source states (base salary, fixed allowances and
 period gross from the cited table), to the cent, and never net pay,
 contributions, taxes or employer cost. Of the
-<!-- trust:reference-cases -->7<!-- /trust:reference-cases --> cases,
+<!-- trust:reference-cases -->10<!-- /trust:reference-cases --> cases,
 <!-- trust:reference-cases-verified -->0<!-- /trust:reference-cases-verified -->
 are `verified` and
-<!-- trust:reference-cases-source-linked -->7<!-- /trust:reference-cases-source-linked -->
+<!-- trust:reference-cases-source-linked -->10<!-- /trust:reference-cases-source-linked -->
 are `source_linked`. Full-payslip oracles, computed by hand from primary
 sources for the whole payslip, are separate fixtures; see
 [Correctness](correctness.md).

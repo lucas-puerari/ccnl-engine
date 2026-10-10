@@ -114,14 +114,15 @@ def test_count_by_status_reports_zero_for_missing_buckets() -> None:
 
 @pytest.mark.parametrize("path", _ALL_CASES, ids=lambda p: p.stem)
 def test_case_declares_runnable_inputs(path: Path) -> None:
-    """Every case carries exactly the inputs and values the runner uses."""
+    """Every case carries the inputs the runner uses and pins some of its values."""
     case = load_case(path)
     inputs = case.get("inputs")
     expected = case.get("expected")
     assert isinstance(inputs, dict), path.name
     assert isinstance(expected, dict), path.name
     assert _INPUT_KEYS <= set(inputs) <= _INPUT_KEYS | _OPTIONAL_INPUT_KEYS, path.name
-    assert set(expected) == _EXPECTED_KEYS, path.name
+    assert expected, path.name
+    assert set(expected) <= _EXPECTED_KEYS, path.name
 
 
 _RULES = inventory()

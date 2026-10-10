@@ -2,7 +2,9 @@
 
 Each case pins the salary table components of one regular run to the signed
 table its ``source`` cites: base salary, fixed allowances and period gross.
-Only values read from that source are asserted; net pay, taxes and employer
+Only values read from that source are asserted, each case naming those it
+pins (an observed payslip pins the base salary only: its allowances and
+gross carry provincial and individual items); net pay, taxes and employer
 cost depend on the engine's own rules and are owned by the oracle and legal
 scenario tests instead.  A case may state ``weekly_hours`` and
 ``contributable_hours`` among its inputs: a domestic CCNL needs both to
@@ -69,7 +71,7 @@ def _sum_of(result: PeriodResult, kind: str) -> Decimal:
 
 @pytest.mark.parametrize("path", _CASE_FILES, ids=lambda p: p.stem)
 def test_reference_case_matches_cited_table(path: Path) -> None:
-    """Base salary, allowances and gross equal the values of the cited table."""
+    """The components a case pins equal the values of its cited source."""
     case = json.loads(path.read_text(encoding="utf-8"))
     expected = {key: Decimal(value) for key, value in case["expected"].items()}
 
@@ -80,4 +82,4 @@ def test_reference_case_matches_cited_table(path: Path) -> None:
         "fixed_allowances": _sum_of(result, "fixed_allowance_earning"),
         "period_gross": result.period_gross,
     }
-    assert actual == expected
+    assert {key: actual[key] for key in expected} == expected
