@@ -27,6 +27,7 @@ from ccnl_engine.shared.domain.collection_validation import (
     mapping_of,
 )
 from ccnl_engine.shared.domain.errors import InvalidInputError
+from ccnl_engine.shared.domain.primitives import FrozenDict
 from ccnl_engine.shared.domain.validation import (
     reject,
     require_instances,
@@ -77,7 +78,9 @@ class CompetenceYearPlan:
             ``None`` means not known.
         periods: Facts per run, keyed by run id (``"2026-12-thirteenth"``,
             any run kind) or by month number (1-12, the regular run of the
-            month).  :attr:`facts_by_run` holds them keyed by run id.  An
+            month).  :attr:`facts_by_run` holds them keyed by run id.  The
+            plan keeps a read-only copy: changing the mapping passed in, or
+            mutating this one, cannot change the runs it calculates.  An
             entry replaces :attr:`default_facts` for its run: repeat the
             jurisdiction and family in it, e.g. with
             ``dataclasses.replace(default_facts, events=...)``.
@@ -169,15 +172,14 @@ class CompetenceYearPlan:
         for name in ("periods", "payment_dates"):
             value = getattr(self, name)
             if isinstance(value, Mapping):
-                object.__setattr__(self, name, dict(value))
+                object.__setattr__(self, name, FrozenDict(value))
         facts = items_of_type(PeriodFacts, feature=_FEATURE)
-        object.__setattr__(
-            self, "_facts_by_run", self._by_run(self.periods, "periods", facts)
-        )
+        by_run = self._by_run(self.periods, "periods", facts)
+        object.__setattr__(self, "_facts_by_run", FrozenDict(by_run))
         dates = self._by_run(self.payment_dates, "payment_dates", _a_date)
         for run_id, paid_on in dates.items():
             PaymentId(PayrollRunId.parse(run_id), paid_on)
-        object.__setattr__(self, "_dates_by_run", dates)
+        object.__setattr__(self, "_dates_by_run", FrozenDict(dates))
         period = self.employment.employment_period
         if period is None or period.started_on.year < self.year:
             self.employment.check_seniority_in(self.year, 1)
