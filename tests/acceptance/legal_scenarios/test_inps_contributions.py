@@ -85,6 +85,7 @@ def test_additional_ivs_uses_the_monthly_threshold() -> None:
     """
     employment = replace(
         CONCIA_D2,
+        category=None,
         ccnl_slug="metalmeccanico-federmeccanica.json",
         level_code="C3",
         employment_period=EmploymentPeriod(date(2026, 6, 1)),
@@ -120,7 +121,9 @@ def test_monthly_base_reaches_the_daily_floor() -> None:
     assert not {"inps_employee", "inps_employer"} & blocked
 
 
-_AUTOSCUOLE_3 = replace(CONCIA_D2, ccnl_slug="autoscuole-unasca.json", level_code="3")
+_AUTOSCUOLE_3 = replace(
+    CONCIA_D2, category=None, ccnl_slug="autoscuole-unasca.json", level_code="3"
+)
 _CENT = Decimal("0.01")
 
 
@@ -311,6 +314,7 @@ def test_agricultural_fixed_term_without_category_blocks_the_run() -> None:
     """
     agricultural = replace(
         CONCIA_D2,
+        category=None,
         ccnl_slug="operai-agricoli-florovivaisti.json",
         level_code="Area3",
         contract_type=FixedTerm(renewals=0, naspi_exclusion=NaspiExclusion.NONE),
@@ -329,7 +333,10 @@ def _terziario_of_five(reduced: bool | None) -> PeriodResult:
     request = regular_run(
         2,
         employment=replace(
-            CONCIA_D2, ccnl_slug="commercio-confcommercio.json", level_code="5"
+            CONCIA_D2,
+            category=None,
+            ccnl_slug="commercio-confcommercio.json",
+            level_code="5",
         ),
     )
     employer = replace(request.employer, headcount=Headcount(5), fis_reduction=reduced)

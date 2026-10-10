@@ -2,7 +2,8 @@
 
 The scenario of :mod:`tests.fixtures.normative_oracles.payslips.concia_d2_2026`
 (an industrial tannery with 50 employees, level D2 hired on 1 January 2026,
-resident in Alghero, 2025 income of 40,000 EUR), with each field a caller
+resident in Alghero, 2025 income of 40,000 EUR), an operaio, whose
+employer INPS rate the industria sets by category, with each field a caller
 could leave to its default given its value: hours, contribution history,
 sector, no pension fund, the TFR kept in the company (not paid to the Fondo
 Tesoreria),
@@ -41,6 +42,7 @@ from ccnl_engine.inputs import (
     Permanent,
     PriorYearTaxFacts,
     WeeklyHours,
+    WorkerCategory,
 )
 from tests.fixtures.seniority import new_hire
 
@@ -59,6 +61,7 @@ __all__ = [
 CONCIA_D2 = Employment(
     ccnl_slug="concia-unic.json",
     level_code="D2",
+    category=WorkerCategory.OPERAIO,
     seniority=new_hire(),
     employment_period=EmploymentPeriod(date(2026, 1, 1)),
     weekly_hours=WeeklyHours(40),

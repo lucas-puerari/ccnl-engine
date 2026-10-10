@@ -14,8 +14,9 @@ Concia takes its salaries from a renewal published by the contracting
 parties.  It reads only the shared industria tax and INPS rulesets, the
 family deduction rules, the variable pay rules (the renewal regime on the
 minimo) and the bundled surtax tables.
-The employer contributions are not compared: the bundle holds them as one
-aggregate rate per headcount band, not as primary-sourced components.
+The employer contributions are not compared: the oracle does not compute
+them; the bundle sums them per headcount band and category from a rate
+table (INPS circ. 117/2022 all. 1 for the shared shares, D.Lgs. 148/2015).
 """
 
 from __future__ import annotations
@@ -44,6 +45,7 @@ from ccnl_engine.inputs import (
     Permanent,
     PriorYearTaxFacts,
     SurtaxComponent,
+    WorkerCategory,
 )
 from tests.fixtures.normative_oracles.payslips.concia_d2_2026 import (
     CONCIA_D2_2026 as ORACLE,
@@ -84,6 +86,7 @@ def _year() -> CompetenceYearResult:
             employment=Employment(
                 ccnl_slug="concia-unic.json",
                 level_code="D2",
+                category=WorkerCategory.OPERAIO,
                 seniority=new_hire(),
                 employment_period=EmploymentPeriod(date(2026, 1, 1)),
                 tfr_treasury_fund=False,
@@ -224,20 +227,15 @@ class TestCandidateGroupEvidence:
         for result in _runs():
             assert {r.identity.id for r in result.rulesets} == _GROUP
 
-    def test_the_only_blockers_are_the_assumed_rules_it_reads(self) -> None:
-        """Only assumed rules block: none of the CCNL, family or surtax data.
+    def test_no_rule_it_reads_blocks_it(self) -> None:
+        """No CCNL, tax, INPS, family or surtax rule of the year blocks a run.
 
-        The INPS rates of ``industria`` sit in a ruleset that declares
-        ``source_type`` ``estimated``, so the provenance label check labels
-        them assumed.  The tax rules, quoted from the TUIR, D.L. 3/2020,
-        L. 207/2024 and the codice civile, and the somma esente block
-        nothing.
+        The tax rules are quoted from the TUIR, D.L. 3/2020, L. 207/2024 and
+        the codice civile, the industria INPS rates from the rate table of
+        operai and impiegati with the CIGO and CIGS of D.Lgs. 148/2015, and
+        the operaio category picks the employer rate: every run of the year
+        is payable in simulation mode.
         """
-        weak = {
-            "inps_employee",
-            "inps_employer",
-            "ivs_ceiling_eligibility",
-        }
         for result in _runs():
-            blockers = {(b.code.value, b.feature, b.detail) for b in result.blockers}
-            assert blockers == {("rule_source_weak", f, "assumed") for f in weak}
+            assert result.blockers == ()
+            assert result.is_payable

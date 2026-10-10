@@ -282,11 +282,12 @@ class TestYearDecisions:
         assert year.decisions == tuple(d for r in runs for d in r.decisions)
         # Five base stages (pay chain, INPS worker and employer, TFR, IRPEF)
         # and three credits (ulteriore detrazione, trattamento, somma esente),
-        # the IVS massimale eligibility, the seniority, the two surtaxes left
+        # the IVS massimale eligibility, the seniority, the worker category
+        # that picks the industria employer rate, the two surtaxes left
         # undetermined by the residence the plan omits, the renewal regime on
         # the minimo (a 2024-2026 table, waived by the plan), the pension fund
         # (Cometa, the enrolment unknown in the plan), plus the ratei
         # counted by the tredicesima run and the TFR revaluation of the
         # December run (zero: a worker hired in the year has no fund to
         # revalue).
-        assert len(year.decisions) == 14 * len(runs) + 2
+        assert len(year.decisions) == 15 * len(runs) + 2

@@ -103,9 +103,11 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "employment.category",
         _REPORTED,
         "the category the level fixes; a level that leaves it open raises "
-        "when the seniority or the INPS rates differ by category, and has a "
-        "missing_fact category blocker when its sector excludes a category "
-        "from the INPS minimum base and the pay is below it",
+        "when the seniority differs by category, takes the general employer "
+        "rate with an employer_rate_category_assumed blocker when the INPS "
+        "rates differ by category, and has a missing_fact category blocker "
+        "when its sector excludes a category from the INPS minimum base and "
+        "the pay is below it",
     ),
     "Employment.employment_period": requires_fact(
         "base_salary",

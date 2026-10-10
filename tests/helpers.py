@@ -10,6 +10,7 @@ import copy
 from dataclasses import replace
 from typing import TYPE_CHECKING, Any
 
+from ccnl_engine.contract.domain.category import WorkerCategory
 from ccnl_engine.contract.domain.identity import CCNL
 from ccnl_engine.payroll.domain.competence_year_plan import CompetenceYearPlan
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
@@ -350,7 +351,9 @@ def year_plan(
     those events.  ``employment`` holds the :class:`Employment` fields other
     than the CCNL and the level; the contract defaults to
     :class:`~ccnl_engine.inputs.Permanent`, the seniority to
-    :func:`~tests.fixtures.seniority.new_hire` of ``year``, the TFR fund to
+    :func:`~tests.fixtures.seniority.new_hire` of ``year``, the category of a
+    Metalmeccanico Federmeccanica level, which fixes none, to impiegato (the
+    industria INPS employer rate depends on it), the TFR fund to
     :func:`~tests.fixtures.tfr.no_tfr_fund` of ``year`` and the TFR stays in
     the company (``tfr_treasury_fund=False``), not enrolled in a pension
     fund.  ``prior_year`` defaults to
@@ -360,6 +363,8 @@ def year_plan(
         The year input.
     """
     employment.setdefault("contract_type", Permanent())
+    if ccnl_slug == "metalmeccanico-federmeccanica.json":
+        employment.setdefault("category", WorkerCategory.IMPIEGATO)
     employment.setdefault("seniority", new_hire(year))
     employment.setdefault("tfr_fund", no_tfr_fund(year))
     employment.setdefault("tfr_treasury_fund", False)

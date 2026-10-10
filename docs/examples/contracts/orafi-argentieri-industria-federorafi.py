@@ -10,6 +10,9 @@ Level 5S (middle of the level list), regular run of September 2026,
 full-time permanent employment, 50 employees, worker resident in Milan
 (region IT-25, municipality F205), seniority recognised from 1 September
 2026.
+
+The worker category is declared (operaio): the INPS employer rate or the
+seniority increments depend on it.
 """
 
 from datetime import date
@@ -27,6 +30,7 @@ from ccnl_engine.inputs import (
     Permanent,
     SeniorityFact,
     SenioritySource,
+    WorkerCategory,
 )
 
 CCNL = "orafi-argentieri-industria-federorafi.json"
@@ -43,6 +47,7 @@ result = engine.calculate_period(
             level_code=LEVEL,
             contract_type=Permanent(),
             seniority=SENIORITY,
+            category=WorkerCategory.OPERAIO,
         ),
         employer=EmployerProfile(headcount=Headcount(50)),
         facts=PeriodFacts(

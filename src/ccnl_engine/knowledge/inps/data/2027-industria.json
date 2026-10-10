@@ -17,18 +17,30 @@
     "employer_tiers": [
       {
         "max_employees": 15,
-        "rate": "0.3013",
-        "ivs_rate": "0.2381"
+        "rate": "0.3068",
+        "ivs_rate": "0.2381",
+        "rate_by_category": {
+          "impiegato": "0.2846",
+          "quadro": "0.2846"
+        }
       },
       {
         "max_employees": 50,
-        "rate": "0.3020",
-        "ivs_rate": "0.2381"
+        "rate": "0.3128",
+        "ivs_rate": "0.2381",
+        "rate_by_category": {
+          "impiegato": "0.2906",
+          "quadro": "0.2906"
+        }
       },
       {
         "max_employees": null,
-        "rate": "0.3050",
-        "ivs_rate": "0.2381"
+        "rate": "0.3158",
+        "ivs_rate": "0.2381",
+        "rate_by_category": {
+          "impiegato": "0.2936",
+          "quadro": "0.2936"
+        }
       }
     ],
     "ceiling": "122295.00",
@@ -82,14 +94,30 @@
       "status": "assumed",
       "location": {
         "source_document": {
+          "document_id": "gia-parma-tabella-aliquote-inps-2023",
+          "title": "Tabella aliquote contributive percentuali INPS (in vigore a gennaio 2023), operai e impiegati",
+          "kind": "associazione",
+          "url": "https://www.gia.pr.it/download/29078/2023/02/All-2-INPS-TABELLE-CONTRIBUTI-OPERAI-E-IMPIEGATI-OP_IMP_CTB_23.pdf"
+        },
+        "section": "INDUSTRIA",
+        "quote": "Aziende fino a 15 dipendenti (2) (2a) Operai - Intermedi 33% 1,61 0,68 1,70 / 0,20 2,22 0,46 39,87 9,19 30,68 Impiegati - Quadri 33% 1,61 0,68 1,70 / 0,20 / 0,46 37,65 9,19 28,46 [...] Aziende con più di 15 (2) e fino a 50 dip. Operai - Intermedi 33% 1,61 0,68 1,70 0,90 0,20 2,22 0,46 40,77 9,49 31,28 Impiegati - Quadri 33% 1,61 0,68 1,70 0,90 0,20 / 0,46 38,55 9,49 29,06 [...] Aziende con più di 50 dipendenti (5) Operai - Intermedi 33% 1,61 0,68 2,00 0,90 0,20 2,22 0,46 41,07 9,49 31,58 Impiegati - Quadri 33% 1,61 0,68 2,00 0,90 0,20 / 0,46 38,85 9,49 29,36"
+      },
+      "transformation": "Columns: IVS 33 (9.19 by the worker), NASpI 1.61, CUAF 0.68, CIGO, CIGS, Fondo Garanzia TFR 0.20, malattia (operai only) 2.22, maternita 0.46, total, worker, employer. rate is the employer share of the operai, rate_by_category that of impiegati and quadri; the worker pays 9.19, plus the CIGS 0.30 above 15. Viaggiatori-piazzisti and lavoratori a domicilio are not modelled.",
+      "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Quote checked on 2026-10-10 against the PDF at the url of the record (table in force in January 2023). The components it sums are unchanged in 2026: CIGO 1.70% up to 50 employees and 2.00% above (D.Lgs. 148/2015 art. 13 c. 1 lett. a-b), CIGS 0.90% above 15, 0.30% by the worker (art. 23 c. 1-bis), checked on Normattiva (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-09-14;148) the same day; no FIS share, the industria being within the CIGO (art. 10 c. 1 lett. a, art. 29 c. 2-bis). The CUAF 0.68% is the 2.48% net of the reductions of L. 388/2000 art. 120 and L. 266/2005 art. 1 cc. 361-362. The observed payslips p01 (9.19%), p05, p11 and p23 (9.19% + 0.30% CIGS) match. The reductions of note (3) and (4) of the table for the TFR paid to a pension fund or the Fondo Tesoreria are not modelled. Not checked by a named reviewer."
+    },
+    "ceiling_provenance": {
+      "status": "assumed",
+      "location": {
+        "source_document": {
           "document_id": "inps-circolare-6-2026",
           "title": "INPS Circolare n. 6 del 30 gennaio 2026",
-          "kind": "inps_circolare"
+          "kind": "inps_circolare",
+          "url": "https://www.inps.it/it/it/inps-comunica/atti/circolari-messaggi-e-normativa/dettaglio.circolari-e-messaggi.2026.01.circolare-numero-6-del-30-01-2026_15151.html"
         },
-        "section": "IVS rate and contribution ceiling 2026"
+        "section": "Massimale annuo della base contributiva e pensionabile",
+        "quote": "Il massimale annuo della base contributiva e pensionabile previsto dall'art. 2, comma 18, secondo periodo, della L. n. 335/1995, per i lavoratori iscritti successivamente al 31 dicembre 1995 a forme pensionistiche obbligatorie e per coloro che optano per la pensione con il sistema contributivo, sulla base dell'indice dei prezzi al consumo per le famiglie di operai e impiegati calcolato dall'ISTAT, è pari, per l'anno 2026, a 122.295,40 euro, che arrotondato all'unità di euro è pari a 122.295,00 euro."
       },
-      "transformation": "Employer tiers are the sum of IVS, NASpI, CUAF, CIGO and FIS or CIGS listed in the file notes.",
-      "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: CIGO, CIGS and the employee CIGS share per D.Lgs. 148/2015 artt. 5 and 23, Circ. INPS 1/2026 and 5/2025. Assumed, not derived: its ruleset declares source_type 'estimated'; no citation (http(s) url and section or page). Open question, not settled by a source the bundle holds: the tier up to 15 employees adds a FIS share of 0.533% that D.Lgs. 148/2015 art. 29 c. 2-bis does not owe for employers within the CIGO of art. 10 c. 1 lett. a; the CUAF share of 2.48% is not located for industria. Settle the aggregate rate on the INPS circular of the sector before promoting."
+      "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Quote checked on 2026-10-10 against the text of the circular reproduced in Confcommercio Ascom Bologna circolare 23/26 (https://ascom.bo.it/wp-content/uploads/2026/02/CIRCO-23-26_Minimi-retributivi-per-calcolo-contributi-2026.pdf); the INPS page renders its text through a script. Not checked by a named reviewer."
     }
   },
   "apprentice": {
@@ -124,7 +152,7 @@
     "published_at": "2026-10-09",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "fcc171aa5b657a3e2bbd41fac312210c516d3c1bd21d05cd76e040e1d273fea0",
+    "source_hash": "d39029c9e3237b89f3cd8d0a8052f1c43235616938eb360e273a734079f265ee",
     "source_type": "estimated",
     "provisional": true
   }

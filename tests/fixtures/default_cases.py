@@ -44,7 +44,6 @@ from ccnl_engine.inputs import (
     PriorYearTaxFacts,
     TfrFundBalance,
     WeeklyHours,
-    WorkerCategory,
 )
 from tests.fixtures.default_cases_absence import absence_cases
 from tests.fixtures.default_cases_fixed_term import fixed_term_cases
@@ -156,14 +155,16 @@ _LARGE_BONUS = BonusEvent(event_date=date(2026, 1, 15), amount=Decimal(150_000))
 _ELIGIBLE_PRIOR = PriorYearTaxFacts(employment_income=Decimal(20_000))
 _EVENT_DAY = date(2026, 1, 15)
 _SIGNED_ON = date(2025, 3, 1)
+#: The explicit worker with no category, for a level that fixes another one.
+_UNCATEGORISED = replace(CONCIA_D2, category=None)
 _TABACCO_3A = replace(
-    CONCIA_D2, ccnl_slug="tabacco-apti.json", level_code="3A", pension_fund=None
+    _UNCATEGORISED, ccnl_slug="tabacco-apti.json", level_code="3A", pension_fund=None
 )
 _ALIFOND = PensionFundEnrolment("ALIFOND", Decimal("0.01"), tfr_to_fund=False)
 #: Alimentari 1S, a quadro level paying the IND_FUNZIONE_QUADRO allowance
 #: to the holders of the role ``quadro``.
 _ALIMENTARI_1S = replace(
-    CONCIA_D2, ccnl_slug="alimentari-federalimentare.json", level_code="1S"
+    _UNCATEGORISED, ccnl_slug="alimentari-federalimentare.json", level_code="1S"
 )
 _ASCENDANT = declared_dependent(DependentRelationship.ASCENDANT)
 _SPOUSE = declared_dependent(DependentRelationship.SPOUSE)
@@ -292,9 +293,7 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
         ),
     ),
     "Employment.category": (
-        _employment_pair(
-            replace(CONCIA_D2, category=WorkerCategory.OPERAIO), CONCIA_D2
-        ),
+        _employment_pair(CONCIA_D2, _UNCATEGORISED, "employer_rate_category_assumed"),
     ),
     "Employment.employment_period": (
         DefaultCase(
@@ -488,10 +487,6 @@ NOT_EXERCISED: Mapping[str, str] = {
 #: ``reported`` or ``requirement`` fields whose cases show no blocker naming
 #: the fact, and why.
 NAMES_NOT_SHOWN: Mapping[str, str] = {
-    "Employment.category": (
-        "a level that leaves the category open raises InvalidInputError when "
-        "the seniority or the INPS rates differ by category: no blocker to show"
-    ),
     "InpsBaseYtd.other_employers_additional_ivs": (
         "read by the December run settling the additional 1% IVS with a base "
         "of other employers; test_opening_balances_import shows its blocker"
