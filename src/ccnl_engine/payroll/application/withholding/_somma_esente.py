@@ -46,7 +46,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
     from ccnl_engine.payroll.domain.tax import TaxComputation
     from ccnl_engine.payroll.domain.withholding_schedule import WithholdingPosition
-    from ccnl_engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.annual.models import YearRules
 
 __all__ = ["SommaEsenteOutcome", "SommaEsentePosting", "resolve_somma_esente"]
 

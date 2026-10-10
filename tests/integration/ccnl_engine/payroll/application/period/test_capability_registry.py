@@ -11,7 +11,8 @@ from unittest.mock import patch
 
 import pytest
 
-from ccnl_engine.knowledge.service.capability_catalog_loader import (
+from ccnl_engine.errors import DataIntegrityError
+from ccnl_engine.knowledge.capability.loaders import (
     load_capability_catalog,
 )
 from ccnl_engine.payroll.application.handlers.registry import _HANDLER_REGISTRY
@@ -35,7 +36,6 @@ from ccnl_engine.payroll.domain.capability_catalog import (
     CapabilityImplementation,
 )
 from ccnl_engine.payroll.domain.capability_report import CaseFacts
-from ccnl_engine.shared.domain.errors import DataIntegrityError
 
 _BUNDLED = load_capability_catalog(2026)
 _IMPL = CapabilityImplementation

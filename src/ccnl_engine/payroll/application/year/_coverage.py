@@ -4,12 +4,12 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.domain.validity import rule_scope
+from ccnl_engine.contract.identity.rules_validity import rule_scope
+from ccnl_engine.errors import MissingRuleError, UnknownLevelError
 from ccnl_engine.payroll.domain.uncovered_run import UncoveredRun
-from ccnl_engine.shared.domain.errors import MissingRuleError, UnknownLevelError
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.domain.identity import CCNL
+    from ccnl_engine.contract.identity.facade import CCNL
     from ccnl_engine.payroll.application.year._payments import PlannedPayment
 
 __all__ = ["split_covered"]
@@ -32,7 +32,7 @@ def split_covered(
     states a seniority: a run whose competence date has no value of either
     cannot be computed.  Such a run is set aside, so that the year computes
     its other runs on a withholding schedule without it.  When no payment
-    is in force, the :class:`~ccnl_engine.shared.domain.errors\
+    is in force, the :class:`~ccnl_engine.errors\
 .MissingRuleError` of the first one is raised.
 
     Returns:

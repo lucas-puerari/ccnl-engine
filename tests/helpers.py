@@ -10,15 +10,15 @@ import copy
 from dataclasses import replace
 from typing import TYPE_CHECKING, Any
 
-from ccnl_engine.contract.domain.category import WorkerCategory
-from ccnl_engine.contract.domain.identity import CCNL
+from ccnl_engine.contract.employment.models_category import WorkerCategory
+from ccnl_engine.contract.identity.facade import CCNL
 from ccnl_engine.payroll.domain.competence_year_plan import CompetenceYearPlan
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment import Employment, Permanent
 from ccnl_engine.payroll.domain.inputs import PeriodFacts
 from ccnl_engine.payroll.domain.pension_fund import NoPensionFund
 from ccnl_engine.payroll.domain.tax_year import DEFAULT_PAYMENT_DAY
-from ccnl_engine.tax.domain.ruleset import YearRules
+from ccnl_engine.tax.annual.models import YearRules
 from tests.fixtures.prior_year import RENEWAL_WAIVED
 from tests.fixtures.seniority import new_hire
 from tests.fixtures.tfr import no_tfr_fund

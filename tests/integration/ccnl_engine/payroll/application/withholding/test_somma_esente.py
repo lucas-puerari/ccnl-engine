@@ -32,12 +32,12 @@ from ccnl_engine.payroll.domain.tax import TaxComputation, TaxLineItem
 from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.domain.withholding_schedule import WithholdingPosition
 from ccnl_engine.payroll.service.policy_loader import load_policy_resolver
-from ccnl_engine.tax.domain.credit_rules import SommaEsenteBand, SommaEsenteRules
+from ccnl_engine.tax.income.models_credit import SommaEsenteBand, SommaEsenteRules
 from tests.fixtures.period_requests import account_total, period_request
 from tests.helpers import make_year_rules
 
 if TYPE_CHECKING:
-    from ccnl_engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.annual.models import YearRules
 
 _ZERO = Decimal(0)
 _YEAR = 2026

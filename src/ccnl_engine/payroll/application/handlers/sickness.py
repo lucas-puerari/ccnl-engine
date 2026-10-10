@@ -23,6 +23,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.application._period_utils import (
     _ZERO,
     _require_resolution,
@@ -52,7 +53,6 @@ from ccnl_engine.payroll.domain.pay_items import (
     SicknessItem,
 )
 from ccnl_engine.payroll.domain.sick_days import SickDayKind
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
     from datetime import date

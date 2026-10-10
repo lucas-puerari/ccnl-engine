@@ -22,7 +22,7 @@ from ccnl_engine.payroll.domain.ledger import AccountKind, PostingIntent
 from ccnl_engine.payroll.domain.pay_items import FringeBenefitItem, WelfareItem
 
 if TYPE_CHECKING:
-    from ccnl_engine.tax.domain.variable_pay import FringeBenefitRules
+    from ccnl_engine.tax.regime.models_variable_pay import FringeBenefitRules
 
 _FRINGE = "fringe_benefit"
 

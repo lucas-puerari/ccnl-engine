@@ -1,6 +1,6 @@
 """Minimum INPS base of a run: what the run pays of its month, and the result.
 
-The rule is :class:`~ccnl_engine.tax.domain.minimum_base.MinimumBaseRule`;
+The rule is :class:`~ccnl_engine.tax.contribution.models_minimum_base.MinimumBaseRule`;
 the reading of it is :mod:`~ccnl_engine.payroll.service.minimum_base`.
 """
 
@@ -14,8 +14,8 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.contract.domain.category import WorkerCategory
-    from ccnl_engine.provenance.domain.source import SourceLocation
+    from ccnl_engine.contract.employment.models_category import WorkerCategory
+    from ccnl_engine.provenance.source.models import SourceLocation
 
 __all__ = ["UNDETERMINED", "MinimumBase", "MinimumBaseReason", "MonthPosition"]
 

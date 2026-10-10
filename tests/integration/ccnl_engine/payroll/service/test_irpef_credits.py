@@ -6,7 +6,7 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.contract.domain.identity import TaxSector
+from ccnl_engine.contract.identity.facade import TaxSector
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.recovery_plan import InstallmentRun, RecoveryPlan
 from ccnl_engine.payroll.service.irpef_credits import (
@@ -17,11 +17,11 @@ from ccnl_engine.payroll.service.irpef_credits import (
 from ccnl_engine.payroll.service.tax_computation import (
     compute_tax,
 )
-from ccnl_engine.tax.domain.credit_rules import (
+from ccnl_engine.tax.annual.loaders import load_year_rules
+from ccnl_engine.tax.income.models_credit import (
     TrattamentoIntegrativoRules,
     UlterioreDetrazioneRules,
 )
-from ccnl_engine.tax.service.tax_annual_assembler import load_year_rules
 from tests.helpers import make_year_rules
 
 _D = Decimal

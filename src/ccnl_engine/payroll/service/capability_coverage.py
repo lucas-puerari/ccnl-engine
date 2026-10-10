@@ -16,17 +16,17 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.domain.identity import NoteKind
+from ccnl_engine.contract.identity.facade import NoteKind
+from ccnl_engine.errors import DataIntegrityError
 from ccnl_engine.payroll.domain.capability_catalog import (
     CapabilityImplementation,
     CapabilityLayer,
 )
-from ccnl_engine.shared.domain.errors import DataIntegrityError
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
 
-    from ccnl_engine.contract.domain.identity import CCNL
+    from ccnl_engine.contract.identity.facade import CCNL
     from ccnl_engine.payroll.domain.capability_catalog import CapabilityCatalog
 
 __all__ = ["CcnlCapability", "ccnl_capabilities", "layer_coverage"]

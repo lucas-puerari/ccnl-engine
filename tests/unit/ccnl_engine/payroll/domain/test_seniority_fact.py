@@ -6,11 +6,11 @@ from datetime import date, datetime
 
 import pytest
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.seniority_fact import (
     SeniorityFact,
     SenioritySource,
 )
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _RECORDS = SenioritySource.EMPLOYER_RECORDS
 

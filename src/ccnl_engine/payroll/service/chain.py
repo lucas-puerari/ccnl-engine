@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.domain.validity import SeriesGapError, rule_scope
+from ccnl_engine.contract.identity.rules_validity import SeriesGapError, rule_scope
 from ccnl_engine.payroll.service.seniority import (
     APPRENTICE_SENIORITY_VARIANT,
     _seniority_amount,
@@ -15,9 +15,9 @@ if TYPE_CHECKING:
     from datetime import date
     from decimal import Decimal
 
-    from ccnl_engine.contract.domain.category import WorkerCategory
-    from ccnl_engine.contract.domain.compensation import Allowance, Level
-    from ccnl_engine.contract.domain.identity import CCNL
+    from ccnl_engine.contract.compensation.models import Allowance, Level
+    from ccnl_engine.contract.employment.models_category import WorkerCategory
+    from ccnl_engine.contract.identity.facade import CCNL
 
 
 def _allowance_active(

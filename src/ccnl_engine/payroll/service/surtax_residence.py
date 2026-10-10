@@ -21,7 +21,7 @@ from ccnl_engine.payroll.service.fiscal_surtax import (
     MUNICIPAL_SURTAX,
     REGIONAL_SURTAX,
 )
-from ccnl_engine.provenance.domain.source import (
+from ccnl_engine.provenance.source.models import (
     SourceDocument,
     SourceKind,
     SourceLocation,

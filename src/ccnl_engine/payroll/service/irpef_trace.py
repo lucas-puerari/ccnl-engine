@@ -24,7 +24,7 @@ from ccnl_engine.payroll.service.withholding_law import (
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
     from ccnl_engine.payroll.service.irpef_net import NetIrpef
-    from ccnl_engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.annual.models import YearRules
 
 __all__ = ["annual_items", "somma_esente_items"]
 

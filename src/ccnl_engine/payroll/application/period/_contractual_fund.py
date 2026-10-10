@@ -1,7 +1,7 @@
 """Contractual contribution a CCNL owes a fund for every worker.
 
-The amount is fixed per level and month (:class:`~ccnl_engine.contract.domain\
-.fund_contribution.ContractualFundContribution`): a run that posts the monthly
+The amount is fixed per level and month (:class:`~ccnl_engine.contract.fund.models\
+.ContractualFundContribution`): a run that posts the monthly
 pay of its month owes it, an extra-month run only when the clause says so, in
 proportion to its ratei.  The clause may set the categories it covers, a
 minimum of days worked in the month, a proportion for part time and a minimum
@@ -19,7 +19,7 @@ from datetime import timedelta
 from decimal import ROUND_HALF_UP, Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.domain.validity import rule_scope
+from ccnl_engine.contract.identity.rules_validity import rule_scope
 from ccnl_engine.payroll.application.period._contractual_eligibility import (
     contributing,
     not_permanent,
@@ -32,10 +32,10 @@ from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.run import RunKind
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.domain.fund_contribution import (
+    from ccnl_engine.contract.fund.models import (
         ContractualFundContribution,
     )
-    from ccnl_engine.contract.domain.validity import TimeSeries
+    from ccnl_engine.contract.identity.rules_validity import TimeSeries
     from ccnl_engine.payroll.application.period._context import RunContext
     from ccnl_engine.payroll.application.period._rule_lookup import Rule
 

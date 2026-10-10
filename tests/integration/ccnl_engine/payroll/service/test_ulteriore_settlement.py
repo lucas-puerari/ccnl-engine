@@ -8,11 +8,11 @@ from __future__ import annotations
 
 from decimal import Decimal
 
-from ccnl_engine.contract.domain.identity import TaxSector
+from ccnl_engine.contract.identity.facade import TaxSector
 from ccnl_engine.payroll.domain.credit_accounts import UlterioreDetrazioneAccount
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.service.ulteriore_settlement import settle_ulteriore
-from ccnl_engine.tax.service.tax_annual_assembler import load_year_rules
+from ccnl_engine.tax.annual.loaders import load_year_rules
 
 _ZERO = Decimal(0)
 _RULES = load_year_rules(2026, TaxSector.INDUSTRIA, 50)

@@ -10,17 +10,17 @@ from ccnl_engine.payroll.domain.foreign_tax import (
     check_one_per_state,
 )
 from ccnl_engine.payroll.domain.shortfall_deferral import ShortfallDeferralRequest
-from ccnl_engine.shared.domain.collection_validation import (
-    frozenset_of,
-    items_of_type,
-    tuple_of,
-)
-from ccnl_engine.shared.domain.validation import (
+from ccnl_engine.tax.regime.models import SubstituteTaxRegime
+from ccnl_engine.validation import (
     parse_enum,
     require_decimal,
     require_instance,
 )
-from ccnl_engine.tax.domain.preferential_regime import SubstituteTaxRegime
+from ccnl_engine.validation_collection import (
+    frozenset_of,
+    items_of_type,
+    tuple_of,
+)
 
 __all__ = [
     "ForeignTaxPaid",

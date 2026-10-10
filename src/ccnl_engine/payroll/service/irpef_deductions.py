@@ -17,7 +17,7 @@ from decimal import ROUND_FLOOR, Decimal
 
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
-from ccnl_engine.tax.domain.irpef_rules import WorkDeductionRules
+from ccnl_engine.tax.income.models import WorkDeductionRules
 
 _ZERO = Decimal(0)
 _TEN_THOUSAND = Decimal(10000)

@@ -6,6 +6,7 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.facade_input import (
     closing_state,
     competence_plan,
@@ -16,7 +17,6 @@ from ccnl_engine.payroll.application.facade_input import (
 )
 from ccnl_engine.payroll.domain.engine_mode import EngineMode
 from ccnl_engine.payroll.domain.period_state import PeriodState
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
     from collections.abc import Callable

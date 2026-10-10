@@ -10,7 +10,7 @@ Two checks back the schema gate of :mod:`scripts.ci.check_provenance`:
   ``location.page``.  Every record of every data file is checked, payable
   or not, nested or not; a substitute-tax regime records its status in
   ``source_status`` and its location in ``source``.  The loaders apply the
-  same rule (``ccnl_engine.knowledge.service.loader_utils``).
+  same rule (``ccnl_engine.knowledge.validators``).
 - :func:`readiness_errors`: a ``reviewed`` or ``production`` CCNL claims a
   review, so its ``confidence`` is ``verified`` and none of the payable
   rules of its own file is ``assumed`` or ``missing``.

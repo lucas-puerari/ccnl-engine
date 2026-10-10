@@ -13,8 +13,8 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.contract.domain.identity import CCNL
-from ccnl_engine.contract.domain.validity import TimeSeries, ValidityPeriod
+from ccnl_engine.contract.identity.facade import CCNL
+from ccnl_engine.contract.identity.rules_validity import TimeSeries, ValidityPeriod
 
 if TYPE_CHECKING:
     import types

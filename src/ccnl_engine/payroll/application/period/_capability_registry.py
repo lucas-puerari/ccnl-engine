@@ -20,6 +20,7 @@ from __future__ import annotations
 from functools import cache
 from typing import TYPE_CHECKING
 
+from ccnl_engine.errors import DataIntegrityError
 from ccnl_engine.payroll.application.handlers._totals import EVENT_FEATURES
 from ccnl_engine.payroll.application.handlers.registry import _HANDLER_REGISTRY
 from ccnl_engine.payroll.application.period._applicability_facts import (
@@ -46,7 +47,6 @@ from ccnl_engine.payroll.domain.events import BonusEvent
 from ccnl_engine.payroll.domain.requirements import unresolved_requirements
 from ccnl_engine.payroll.domain.run import RunKind
 from ccnl_engine.payroll.domain.trace import TraceState
-from ccnl_engine.shared.domain.errors import DataIntegrityError
 
 if TYPE_CHECKING:
     from collections.abc import Iterable, Mapping
@@ -57,7 +57,7 @@ if TYPE_CHECKING:
         CapabilityEntry,
     )
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
-    from ccnl_engine.provenance.domain.chain import ProvenanceStatus
+    from ccnl_engine.provenance.source.models_chain import ProvenanceStatus
 
 __all__ = ["capability_report", "case_facts", "registry_errors", "validate_registry"]
 

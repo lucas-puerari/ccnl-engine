@@ -12,8 +12,8 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.contract.domain.absence import DailyDivisorMethod
-from ccnl_engine.contract.domain.sickness import SicknessRules, SicknessTier
+from ccnl_engine.contract.absence.models import DailyDivisorMethod
+from ccnl_engine.contract.sickness.models import SicknessRules, SicknessTier
 from ccnl_engine.payroll.domain.sick_days import (
     SickDayKind,
     SickDaySegment,
@@ -22,7 +22,7 @@ from ccnl_engine.payroll.domain.sick_days import (
 )
 from ccnl_engine.payroll.domain.sick_pay_rules import SickPayRules
 from ccnl_engine.payroll.domain.sickness import SicknessEpisode, SicknessHistory
-from ccnl_engine.tax.domain.sick_pay import (
+from ccnl_engine.tax.sickness.models import (
     InpsSickPayRates,
     SickPayBand,
     SickPayCoverage,

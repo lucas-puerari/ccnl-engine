@@ -24,8 +24,8 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
     from ccnl_engine.payroll.domain.sickness import SicknessEpisode
     from ccnl_engine.payroll.domain.treatment import EventTreatment
-    from ccnl_engine.provenance.domain.source import SourceLocation
-    from ccnl_engine.tax.domain.preferential_regime import (
+    from ccnl_engine.provenance.source.models import SourceLocation
+    from ccnl_engine.tax.regime.models import (
         PreferentialTaxRegime,
     )
 

@@ -58,6 +58,7 @@ _TREES = {
         "src/ccnl_engine/payroll/ledger/models.py",
         "src/ccnl_engine/payroll/ledger/services_base_line.py",
         "src/ccnl_engine/knowledge/social_security/contribution/2026/industria.json",
+        "src/ccnl_engine/payroll/ledger/__init__.py",
         "tests/conftest.py",
         "tests/README.md",
         "tests/unit/ccnl_engine/payroll/ledger/test_models.py",
@@ -80,6 +81,10 @@ def test_conforming_targets_pass(target: str) -> None:
     ("target", "reason"),
     [
         ("src/ccnl_engine/payroll/_ledger.py", "basename starts with an underscore"),
+        (
+            "tests/unit/ccnl_engine/payroll/ledger/__init__.py",
+            "basename starts with an underscore",
+        ),
         ("src/ccnl_engine/payroll/domain/models.py", "technical directory 'domain'"),
         ("src/ccnl_engine/a/b/c/d/models.py", "4 directories under the package"),
         ("src/ccnl_engine/payroll/misc/models.py", "not in the target tree"),

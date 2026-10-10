@@ -265,7 +265,7 @@ python scripts/ci/check_provenance.py --update-baseline --allow-growth
 ## Reading provenance
 
 ```python
-from ccnl_engine.contract.service.loaders import load_ccnl
+from ccnl_engine.contract.catalog.loaders import load_ccnl
 
 ccnl = load_ccnl("commercio-confcommercio.json")
 

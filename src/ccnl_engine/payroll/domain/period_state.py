@@ -5,11 +5,11 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import ClassVar, final
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.accrual_state import EmploymentAccrualState
 from ccnl_engine.payroll.domain.payment import PaymentId
 from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
-from ccnl_engine.shared.domain.errors import InvalidInputError
-from ccnl_engine.shared.domain.validation import require_bool, require_instances
+from ccnl_engine.validation import require_bool, require_instances
 
 __all__ = ["PeriodState"]
 

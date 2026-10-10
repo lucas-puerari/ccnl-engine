@@ -6,7 +6,7 @@ from datetime import date
 
 import pytest
 
-from ccnl_engine.contract.domain.compensation import AccrualComparison
+from ccnl_engine.contract.compensation.models import AccrualComparison
 from ccnl_engine.payroll.domain.accrual import (
     DEFAULT_ACCRUAL_RULE_ID,
     DEFAULT_MONTH_ACCRUAL_RULE,

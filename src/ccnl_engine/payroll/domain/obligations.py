@@ -21,7 +21,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, final
 
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
-from ccnl_engine.shared.domain.validation import (
+from ccnl_engine.validation import (
     reject,
     require_instance,
     require_int,
@@ -103,7 +103,7 @@ class RecoveryObligation:
 
         A ``tax_year`` before 2020 or a ``plan.kind`` that is not a key of
         :data:`RECOVERY_RULES` raises
-        :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`.
+        :class:`~ccnl_engine.errors.InvalidInputError`.
         """
         feature = "recovery"
         require_int(

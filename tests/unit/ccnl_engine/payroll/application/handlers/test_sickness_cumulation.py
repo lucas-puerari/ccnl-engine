@@ -8,7 +8,7 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.contract.domain.sickness import SicknessSeniorityBand
+from ccnl_engine.contract.sickness.models import SicknessSeniorityBand
 from ccnl_engine.payroll.application.handlers._sickness_cumulation import (
     BAND_CHANGES,
     EXEMPTION_UNKNOWN,

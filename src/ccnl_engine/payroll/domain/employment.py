@@ -7,7 +7,7 @@ from dataclasses import dataclass, field
 from decimal import Decimal
 from typing import Literal
 
-from ccnl_engine.contract.domain.category import (
+from ccnl_engine.contract.employment.models_category import (
     WorkerCategory,
     parse_worker_category,
 )
@@ -27,8 +27,8 @@ from ccnl_engine.payroll.domain.pension_fund import (
 )
 from ccnl_engine.payroll.domain.seniority_fact import SeniorityFact
 from ccnl_engine.payroll.domain.tfr_fund import TfrFundBalance
-from ccnl_engine.shared.domain.collection_validation import frozenset_of
-from ccnl_engine.shared.domain.validation import (
+from ccnl_engine.tax.regime.models import EmploymentSector
+from ccnl_engine.validation import (
     FieldSpec,
     parse_enum,
     reject,
@@ -37,7 +37,7 @@ from ccnl_engine.shared.domain.validation import (
     require_int,
     require_str,
 )
-from ccnl_engine.tax.domain.preferential_regime import EmploymentSector
+from ccnl_engine.validation_collection import frozenset_of
 
 __all__ = ["Apprentice", "Contract", "Employment", "FixedTerm", "Permanent"]
 
@@ -106,14 +106,14 @@ class Employment:
 
     Facts are validated on construction: a value of the wrong type or an
     impossible combination raises
-    :class:`~ccnl_engine.shared.domain.errors.InvalidInputError` instead of
+    :class:`~ccnl_engine.errors.InvalidInputError` instead of
     producing a payslip.
 
     Attributes:
         ccnl_slug: Knowledge-bundle CCNL filename, e.g.
             ``"metalmeccanico-federmeccanica.json"``: lower-case letters,
             digits and hyphens, then ``.json``.  A name the bundle does not
-            hold raises :class:`~ccnl_engine.shared.domain.errors\
+            hold raises :class:`~ccnl_engine.errors\
 .UnknownCcnlError` when the run loads it.
         level_code: Contractual level code, e.g. ``"C3"``.
         contract_type: :class:`Permanent`, :class:`FixedTerm` or
@@ -261,7 +261,7 @@ class Employment:
         The run of the month ages :attr:`seniority` to it; checking on the
         input rejects a seniority that cannot be aged to the first run
         before any calculation, with
-        :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`.
+        :class:`~ccnl_engine.errors.InvalidInputError`.
 
         Args:
             year: Year of the competence month of the run.

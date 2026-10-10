@@ -2,7 +2,7 @@
 
 from decimal import Decimal
 
-from ccnl_engine.contract.domain.category import WorkerCategory
+from ccnl_engine.contract.employment.models_category import WorkerCategory
 from ccnl_engine.payroll.domain.contributions import (
     ContributionBreakdown,
     ContributionComponent,

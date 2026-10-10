@@ -24,7 +24,8 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.api.facade import PayrollEngine
+from ccnl_engine.api import PayrollEngine
+from ccnl_engine.errors import InvalidInputError, OutOfScopeError
 from ccnl_engine.payroll.application.close_tax_year import close_tax_year
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment import Employment, Permanent
@@ -43,7 +44,6 @@ from ccnl_engine.payroll.domain.prior_year import (
 from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
 from ccnl_engine.payroll.domain.shortfall_deferral import DeferredShortfall
 from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
-from ccnl_engine.shared.domain.errors import InvalidInputError, OutOfScopeError
 from tests.fixtures.shortfall_deferral import (
     DEFERRAL_REQUEST,
     decision_amount,

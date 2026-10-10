@@ -6,6 +6,7 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.close_tax_year import close_tax_year
 from ccnl_engine.payroll.application.withholding._plan import standard_payments
 from ccnl_engine.payroll.application.year._calendar import standard_calendar
@@ -23,7 +24,6 @@ from ccnl_engine.payroll.domain.withholding_schedule import WithholdingSlot
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.knowledge_repository import KnowledgeRepository
@@ -64,7 +64,7 @@ def calculate_competence_year(
     A run whose competence date has no base salary of the level in the
     bundle (the pay tables start later in the year, or a declared gap) is
     not computed: it is listed in ``uncovered_runs`` with its
-    :class:`~ccnl_engine.shared.domain.errors.MissingRuleError`, adds a
+    :class:`~ccnl_engine.errors.MissingRuleError`, adds a
     ``run_not_computed`` blocker, and the other runs are computed on a
     withholding schedule without it.  The extra months still accrue over
     the employed months the year left out, since the worker was employed
@@ -96,11 +96,11 @@ def calculate_competence_year(
         One result per run computed, in payment order, and the state that
         opens the next competence year (``next_opening_state``).
 
-    Errors: :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`
+    Errors: :class:`~ccnl_engine.errors.InvalidInputError`
     when the calendar override, the employment period or the payment dates
     are rejected, or the opening state is of another tax year, holds totals
     of unidentified payments or closed a run of the year with another
-    payment; :class:`~ccnl_engine.shared.domain.errors.MissingRuleError`
+    payment; :class:`~ccnl_engine.errors.MissingRuleError`
     when no run of the year has a base salary.
     """
     effective_repo = repo if repo is not None else BundledKnowledgeRepository()

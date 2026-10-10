@@ -18,7 +18,7 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.domain.working_time import TimeSupplementKind, WorkKind
+from ccnl_engine.contract.working_time.models import TimeSupplementKind, WorkKind
 from ccnl_engine.payroll.application.handlers._overtime_rate import (
     CCNLOvertimeBands,
     resolve_overtime_rate,
@@ -49,9 +49,9 @@ from ccnl_engine.payroll.domain.events import (
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.contract.domain.identity import CCNL
-    from ccnl_engine.contract.domain.validity import TimeSeries
-    from ccnl_engine.contract.domain.working_time import OvertimeBand
+    from ccnl_engine.contract.identity.facade import CCNL
+    from ccnl_engine.contract.identity.rules_validity import TimeSeries
+    from ccnl_engine.contract.working_time.models import OvertimeBand
     from ccnl_engine.payroll.domain.events import WorkEvent
 
 __all__ = [

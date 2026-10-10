@@ -8,6 +8,7 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.events import (
     AbsenceEvent,
     BonusEvent,
@@ -20,7 +21,6 @@ from ccnl_engine.payroll.domain.events import (
     SickLeaveEvent,
     WelfareEvent,
 )
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _DATE = date(2026, 1, 15)
 _YEAR = 2026

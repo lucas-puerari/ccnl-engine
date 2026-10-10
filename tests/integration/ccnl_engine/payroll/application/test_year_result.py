@@ -16,8 +16,8 @@ from ccnl_engine.payroll.service.bundled_knowledge_repository import (
 from tests.fixtures.explicit_facts import competence_year
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.domain.identity import TaxSector
-    from ccnl_engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.contract.identity.facade import TaxSector
+    from ccnl_engine.tax.annual.models import YearRules
 
 
 class _RehashingRepository(BundledKnowledgeRepository):

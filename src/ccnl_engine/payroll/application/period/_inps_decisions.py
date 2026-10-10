@@ -16,7 +16,7 @@ from ccnl_engine.payroll.application.period._naspi import with_naspi
 from ccnl_engine.payroll.application.period._rule_lookup import contract_rules
 from ccnl_engine.payroll.domain.decisions import CalculationDecision, CalculationStatus
 from ccnl_engine.payroll.service._contributions_rates import resolve_rates
-from ccnl_engine.provenance.domain.chain import RuleProvenance
+from ccnl_engine.provenance.source.models_chain import RuleProvenance
 
 if TYPE_CHECKING:
     from decimal import Decimal

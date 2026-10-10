@@ -6,8 +6,8 @@ from datetime import UTC, date, datetime
 
 import pytest
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.sickness import SicknessEpisode, SicknessHistory
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _A = SicknessEpisode("a", date(2026, 2, 2), date(2026, 2, 11))
 

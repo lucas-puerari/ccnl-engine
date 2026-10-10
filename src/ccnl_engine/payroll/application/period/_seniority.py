@@ -38,7 +38,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.seniority_fact import (
         SeniorityFact,
     )
-    from ccnl_engine.provenance.domain.source import SourceLocation
+    from ccnl_engine.provenance.source.models import SourceLocation
 
 __all__ = [
     "CAPABILITY",

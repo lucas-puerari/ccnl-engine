@@ -8,17 +8,17 @@ from typing import Any
 
 import pytest
 
-from ccnl_engine.contract.domain.category import WorkerCategory
-from ccnl_engine.contract.domain.seniority import (
+from ccnl_engine.contract.employment.models_category import WorkerCategory
+from ccnl_engine.contract.seniority.models import (
     SeniorityIncrements,
 )
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.service.seniority import (
     _resolve_seniority_count,
     _seniority_amount,
     seniority_first_cadence,
     seniority_maximum,
 )
-from ccnl_engine.shared.domain.errors import InvalidInputError
 from tests.helpers import TEST_PROV, _series
 
 _AS_OF = date(2026, 6, 1)

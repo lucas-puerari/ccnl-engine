@@ -22,7 +22,7 @@ from ccnl_engine.payroll.domain.opening_history import opening_state_issue
 if TYPE_CHECKING:
     from decimal import Decimal
 
-    from ccnl_engine.contract.domain.category import WorkerCategory
+    from ccnl_engine.contract.employment.models_category import WorkerCategory
     from ccnl_engine.payroll.application.knowledge_repository import KnowledgeRepository
     from ccnl_engine.payroll.application.period._contract import RunContract
     from ccnl_engine.payroll.application.period._proration import RunProration
@@ -43,7 +43,7 @@ if TYPE_CHECKING:
         ApprenticeshipScaling,
         MonthlyPayChain,
     )
-    from ccnl_engine.tax.domain.variable_pay import VariablePayRules
+    from ccnl_engine.tax.regime.models_variable_pay import VariablePayRules
 
 
 @dataclass(frozen=True)

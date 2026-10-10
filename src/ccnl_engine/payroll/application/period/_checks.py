@@ -16,19 +16,19 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.errors import InvalidInputError, OutOfScopeError
 from ccnl_engine.payroll.application._period_utils import _sum_ledger
 from ccnl_engine.payroll.application.invariants._types import RunFacts
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.payment import PaymentId
 from ccnl_engine.payroll.domain.run import run_identifier
-from ccnl_engine.shared.domain.errors import InvalidInputError, OutOfScopeError
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
     from ccnl_engine.payroll.domain.ledger import LedgerEntry
     from ccnl_engine.payroll.domain.period import PeriodResult
     from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
-    from ccnl_engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.annual.models import YearRules
 
 __all__ = [
     "check_absences_within_pay",
@@ -47,7 +47,7 @@ def resolve_payment(request: PeriodCalculationRequest) -> PaymentId:
     A run already closed in the opening state, before a closed run of its
     competence year, or whose payment cannot close in the tax year of the
     opening state raises
-    :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`.
+    :class:`~ccnl_engine.errors.InvalidInputError`.
 
     Returns:
         The payment of this period: its run and payment date.

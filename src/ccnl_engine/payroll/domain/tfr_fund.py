@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from decimal import Decimal
 
 from ccnl_engine.payroll.domain.employment_facts import FEATURE
-from ccnl_engine.shared.domain.validation import (
+from ccnl_engine.validation import (
     reject,
     require_decimal,
     require_int,

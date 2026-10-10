@@ -47,13 +47,13 @@ from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.engine_mode import EngineMode
 
 if TYPE_CHECKING:
+    from ccnl_engine.knowledge.limitation.models import ModelLimitation
     from ccnl_engine.payroll.domain.capability_report import CapabilityReport
     from ccnl_engine.payroll.domain.decisions import (
         CalculationDecision,
         CalculationIssue,
     )
-    from ccnl_engine.provenance.domain.ruleset_assurance import RulesetAssurance
-    from ccnl_engine.shared.domain.limitation import ModelLimitation
+    from ccnl_engine.provenance.ruleset.models_assurance import RulesetAssurance
 
 __all__ = ["assess", "assess_nothing_computed"]
 

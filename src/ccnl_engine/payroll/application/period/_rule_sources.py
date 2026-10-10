@@ -2,7 +2,7 @@
 
 A capability the run computed read one or more payable rules; each rule
 carries a provenance status (see
-:class:`~ccnl_engine.provenance.domain.chain.ProvenanceStatus`).  A rule
+:class:`~ccnl_engine.provenance.source.models_chain.ProvenanceStatus`).  A rule
 whose status is ``missing`` makes the result incomplete: an amount rests on
 a value no source backs.  The weakest status of each executed capability is
 reported in the capability report; an ``assumed`` or ``missing`` one blocks
@@ -28,14 +28,14 @@ from ccnl_engine.payroll.application.period._rule_lookup import (
 )
 from ccnl_engine.payroll.domain.decisions import CalculationIssue, CalculationStatus
 from ccnl_engine.payroll.domain.trace import TraceState
-from ccnl_engine.provenance.domain.chain import ProvenanceStatus
+from ccnl_engine.provenance.source.models_chain import ProvenanceStatus
 
 if TYPE_CHECKING:
     from collections.abc import Iterable, Mapping
 
     from ccnl_engine.payroll.application.period._context import RunContext
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
-    from ccnl_engine.provenance.domain.chain import RuleProvenance
+    from ccnl_engine.provenance.source.models_chain import RuleProvenance
 
 _EXECUTED = frozenset({TraceState.COMPUTED, TraceState.PARTIAL})
 MISSING_SOURCE_CODE = "rule_source_missing"

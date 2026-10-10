@@ -6,8 +6,8 @@ from datetime import date
 from types import SimpleNamespace
 from typing import TYPE_CHECKING, cast
 
-from ccnl_engine.contract.domain.identity import TaxSector
-from ccnl_engine.contract.service.loaders import load_ccnl
+from ccnl_engine.contract.catalog.loaders import load_ccnl
+from ccnl_engine.contract.identity.facade import TaxSector
 from ccnl_engine.payroll.application.period._proration import FULL_MONTH
 from ccnl_engine.payroll.application.period._rule_lookup import (
     LOADED,
@@ -19,13 +19,13 @@ from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm, Permane
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
-from ccnl_engine.provenance.domain.chain import ProvenanceStatus, RuleProvenance
-from ccnl_engine.tax.service.tax_annual_assembler import load_year_rules
-from ccnl_engine.tax.service.tax_optional_loaders import load_variable_pay_rules
+from ccnl_engine.provenance.source.models_chain import ProvenanceStatus, RuleProvenance
+from ccnl_engine.tax.annual.loaders import load_year_rules
+from ccnl_engine.tax.annual.loaders_optional import load_variable_pay_rules
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.period._context import RunContext
-    from ccnl_engine.tax.domain.surtax_rules import SurtaxRules
+    from ccnl_engine.tax.surtax.models import SurtaxRules
 
 _YEAR = 2026
 _CCNL = load_ccnl("metalmeccanico-federmeccanica.json")

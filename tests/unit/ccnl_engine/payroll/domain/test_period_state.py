@@ -6,12 +6,12 @@ from datetime import date
 
 import pytest
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.accrual_state import EmploymentAccrualState
 from ccnl_engine.payroll.domain.payment import PaymentId
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.run import PayrollRunId
 from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _JANUARY = PayrollRunId.parse("2026-01-regular")
 _PAID = PaymentId(_JANUARY, date(2026, 1, 27))

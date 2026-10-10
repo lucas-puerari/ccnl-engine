@@ -8,7 +8,7 @@ from datetime import date
 from decimal import Decimal
 from enum import Enum
 
-from ccnl_engine.shared.domain.validation import (
+from ccnl_engine.validation import (
     reject,
     require_decimal,
     require_int,

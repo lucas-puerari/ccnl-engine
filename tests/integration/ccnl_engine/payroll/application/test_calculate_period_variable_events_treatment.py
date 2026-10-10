@@ -12,6 +12,7 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.reconcile import reconcile
 from ccnl_engine.payroll.domain.assurance import BlockerCode
@@ -35,7 +36,6 @@ from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.rounding import money
-from ccnl_engine.shared.domain.errors import InvalidInputError
 from tests.fixtures.next_year_repository import NextYearRepository
 
 _CCNL = "metalmeccanico-federmeccanica.json"

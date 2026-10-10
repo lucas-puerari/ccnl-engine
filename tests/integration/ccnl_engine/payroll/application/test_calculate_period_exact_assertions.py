@@ -21,6 +21,7 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.calculate_competence_year import (
     calculate_competence_year,
 )
@@ -44,7 +45,6 @@ from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
-from ccnl_engine.shared.domain.errors import InvalidInputError
 from tests.helpers import year_plan
 
 _CCNL = "metalmeccanico-federmeccanica.json"

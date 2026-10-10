@@ -13,12 +13,12 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.competence_year_plan import CompetenceYearPlan
 from ccnl_engine.payroll.domain.current_year import CurrentYearTaxFacts
 from ccnl_engine.payroll.domain.period_state import PeriodState
-from ccnl_engine.shared.domain.collection_validation import items_of_type, tuple_of
-from ccnl_engine.shared.domain.errors import InvalidInputError
-from ccnl_engine.shared.domain.validation import require_instance, require_int
+from ccnl_engine.validation import require_instance, require_int
+from ccnl_engine.validation_collection import items_of_type, tuple_of
 
 __all__ = ["TaxYearPlan"]
 

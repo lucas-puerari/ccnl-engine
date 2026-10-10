@@ -16,14 +16,14 @@ from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
-from ccnl_engine.provenance.domain.ruleset_assurance import RulesetKind
-from ccnl_engine.provenance.domain.ruleset_identity import RulesetReadiness
+from ccnl_engine.provenance.ruleset.models import RulesetReadiness
+from ccnl_engine.provenance.ruleset.models_assurance import RulesetKind
 from tests.fixtures.anonymous_ccnl_repository import AnonymousCcnlRepository
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.domain.identity import TaxSector
+    from ccnl_engine.contract.identity.facade import TaxSector
     from ccnl_engine.payroll.domain.period import PeriodResult
-    from ccnl_engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.annual.models import YearRules
 
 _METALMECCANICO = "metalmeccanico-federmeccanica.json"
 

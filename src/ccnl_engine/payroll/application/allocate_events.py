@@ -6,6 +6,7 @@ from dataclasses import replace
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.application._period_utils import _ZERO
 from ccnl_engine.payroll.application._posting_service import post as _post
 from ccnl_engine.payroll.application.handlers._overtime_rate import CCNLOvertimeBands
@@ -34,7 +35,6 @@ from ccnl_engine.payroll.domain.pay_items import CompetencePeriod, PayItem
 from ccnl_engine.payroll.domain.sickness import SicknessEpisode
 from ccnl_engine.payroll.domain.ytd_accounts import RegimeCapAccount
 from ccnl_engine.payroll.service.regime_eligibility import RegimeFacts
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
     from datetime import date
@@ -42,7 +42,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.application.handlers._context import FringeThreshold
     from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
     from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
-    from ccnl_engine.tax.domain.preferential_regime import (
+    from ccnl_engine.tax.regime.models import (
         PreferentialTaxRegime,
     )
 

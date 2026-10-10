@@ -6,8 +6,8 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.domain.category import WorkerCategory
-from ccnl_engine.contract.service.loaders import load_ccnl
+from ccnl_engine.contract.catalog.loaders import load_ccnl
+from ccnl_engine.contract.employment.models_category import WorkerCategory
 from ccnl_engine.inputs import NoPensionFund
 from ccnl_engine.payroll.application.allocate_events import _process_events
 from ccnl_engine.payroll.application.calculate_competence_year import (
@@ -42,7 +42,7 @@ from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.domain.trace import TraceState
 from ccnl_engine.payroll.domain.ytd_accounts import FringeYtd
 from ccnl_engine.payroll.service.policy_loader import load_policy_resolver
-from ccnl_engine.tax.service.tax_optional_loaders import load_variable_pay_rules
+from ccnl_engine.tax.annual.loaders_optional import load_variable_pay_rules
 from tests.fixtures.current_year import employment_only
 from tests.fixtures.dependents import declared_dependent
 from tests.fixtures.seniority import new_hire

@@ -9,6 +9,11 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from ccnl_engine.errors import (
+    DataIntegrityError,
+    InvalidInputError,
+    OutOfScopeError,
+)
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.invariants._types import RunFacts
 from ccnl_engine.payroll.application.invariants.lifecycle import (
@@ -38,11 +43,6 @@ from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.run import PayrollRun
-from ccnl_engine.shared.domain.errors import (
-    DataIntegrityError,
-    InvalidInputError,
-    OutOfScopeError,
-)
 from tests.fixtures.imported_surtax import opening_with_2025_surtax
 
 if TYPE_CHECKING:

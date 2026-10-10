@@ -9,6 +9,7 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.withholding._plan import (
     resolve_withholding_schedule,
@@ -30,7 +31,6 @@ from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
 from ccnl_engine.payroll.service.types import MonthlyPayChain
-from ccnl_engine.shared.domain.errors import InvalidInputError
 from tests.fixtures.withholding import calendar_schedule, paid_before, paid_on_day
 
 if TYPE_CHECKING:

@@ -17,7 +17,7 @@ from ccnl_engine.payroll.domain.decisions import (
     CalculationStatus,
     DecisionOrigin,
 )
-from ccnl_engine.provenance.domain.source import (
+from ccnl_engine.provenance.source.models import (
     SourceDocument,
     SourceKind,
     SourceLocation,

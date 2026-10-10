@@ -22,7 +22,7 @@ from datetime import date, timedelta
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.domain.compensation import AccrualComparison
+from ccnl_engine.contract.compensation.models import AccrualComparison
 
 if TYPE_CHECKING:
     from collections.abc import Iterator
@@ -33,7 +33,7 @@ if TYPE_CHECKING:
         ExtraMonthKind,
         ExtraMonthSchedule,
     )
-    from ccnl_engine.provenance.domain.chain import RuleProvenance
+    from ccnl_engine.provenance.source.models_chain import RuleProvenance
 
 __all__ = [
     "DEFAULT_ACCRUAL_RULE_ID",

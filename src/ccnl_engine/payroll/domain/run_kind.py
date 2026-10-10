@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from enum import StrEnum
 
-from ccnl_engine.shared.domain.validation import parse_enum, require_int
+from ccnl_engine.validation import parse_enum, require_int
 
 __all__ = ["RunKind", "check_year_month", "run_kind"]
 

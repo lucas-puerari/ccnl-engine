@@ -23,15 +23,20 @@ The contract has three pages:
 - A domain name is singular or uncountable and appears in the glossary
   below. One concept uses one term in production code, public API, knowledge
   data, demo, scripts and tests.
-- No file name starts with an underscore. The single exception is the
-  package root `src/ccnl_engine/__init__.py`, which keeps
-  `from ccnl_engine import PayrollEngine` working.
+- No file name starts with an underscore. The exceptions are the package
+  root `src/ccnl_engine/__init__.py`, which keeps
+  `from ccnl_engine import PayrollEngine` working, and the docstring-only
+  package markers of the source directories (see below).
 - No directory is named after a technical layer: `domain`, `application`,
   `service`, `handlers`, `fixtures` and `data` disappear from the final
   tree. The role lives in the file name instead.
-- Packages below the root become namespace packages. A package marker that
-  holds only a docstring dissolves; one that holds code moves to a file with
-  a role name (usually `facade.py`), so no re-export is lost.
+- Every source directory keeps a package marker: an `__init__.py` holding
+  only a docstring, never code. The documentation tooling (griffe, behind
+  mkdocstrings) does not load a namespace directory inside a regular
+  package, so namespace packages below the root would drop every moved
+  module from the API reference. An `__init__.py` that holds code moves to a
+  file with a role name (usually `facade.py`), so no re-export is lost.
+  Test directories carry no marker: pytest imports them by path.
 - A leaf directory holds only the roles it needs. No empty file is created
   for symmetry.
 - Every move is listed in the inventory before it happens; nothing is
@@ -46,7 +51,7 @@ The contract has three pages:
 | Deep imports | Paths below the five public modules (`ccnl_engine.payroll.domain.ledger` and the like) are not public. The migrations move them without compatibility shims and without deprecation aliases. |
 | `catalog.py` | Kept at the root next to `api.py`, `inputs.py`, `results.py` and `events.py`, because `ccnl_engine.catalog` is a public namespace. |
 | Root modules | `api`, `inputs`, `results`, `events`, `catalog`, `errors`, `primitives`, `validation` and `version`, each splittable as `<name>_<suffix>.py` (for example `validation_collection.py`). |
-| New directories | A new source or test directory needs an `__init__.py` under the current rules (`tests/architecture/test_structure_limits.py`) and fails the `underscore_files` rule of the new guardrail. New directories are therefore frozen until the namespace migration flips both rules in the same change. New files in existing directories, such as a new CCNL JSON or a new test module, are not affected. |
+| New directories | A new source directory gets a docstring-only `__init__.py` marker, which the guardrail accepts. A new test directory needs none: pytest imports tests by path (`--import-mode=importlib`). |
 | Inventory upkeep | `scripts/ci/layout_inventory.json` is generated. A change that adds, renames or removes a tracked file under `src`, `tests`, `demo` or `scripts` regenerates it; CI fails on drift. |
 
 ## Production tree
@@ -185,7 +190,7 @@ of zero against its shrink-only baseline:
 
 | Rule | Measured on | Offender |
 |---|---|---|
-| `underscore_files` | `src`, `tests`, `scripts`, `demo` | a file whose name starts with `_`, except the package root `__init__.py` |
+| `underscore_files` | `src`, `tests`, `scripts`, `demo` | a file whose name starts with `_`, except the package root `__init__.py` and the docstring-only `__init__.py` markers under `src` |
 | `technical_directories` | `src`, `tests`, `scripts`, `demo` | a directory named `domain`, `application`, `service`, `handlers`, `fixtures` or `data` |
 
 Hidden directories, `__pycache__` and the gitignored `demo/_build` and

@@ -7,7 +7,7 @@ from decimal import Decimal
 from enum import StrEnum
 from typing import TYPE_CHECKING
 
-from ccnl_engine.shared.domain.validation import (
+from ccnl_engine.validation import (
     parse_enum,
     require_date,
     require_decimal,

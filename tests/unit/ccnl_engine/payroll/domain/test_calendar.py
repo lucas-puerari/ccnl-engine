@@ -4,12 +4,12 @@ from __future__ import annotations
 
 import pytest
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.extra_month_schedule import (
     ExtraMonthKind,
     ExtraMonthSchedule,
 )
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _YEAR = 2026
 

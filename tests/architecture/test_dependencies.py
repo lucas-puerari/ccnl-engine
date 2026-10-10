@@ -45,36 +45,44 @@ _SRC = Path(str(importlib.resources.files("ccnl_engine"))).parent
 DOMAIN_COUPLING: dict[tuple[str, str], str] = {
     (
         "contract",
-        "ccnl_engine.provenance.domain",
+        "ccnl_engine.provenance",
     ): "CCNL records carry the source and extraction provenance of their data.",
     (
         "tax",
-        "ccnl_engine.provenance.domain",
+        "ccnl_engine.provenance",
     ): "Tax rulesets carry their source chain and ruleset identity.",
     (
         "tax",
-        "ccnl_engine.contract.domain.category",
+        "ccnl_engine.contract.employment.models_category",
     ): "INPS contribution rules are selected by the CCNL worker category.",
     (
         "tax",
-        "ccnl_engine.contract.domain.identity",
+        "ccnl_engine.contract.identity",
     ): "Year rules are keyed by the tax sector a CCNL declares.",
     (
         "payroll",
-        "ccnl_engine.contract.domain.category",
+        "ccnl_engine.contract.employment.models_category",
     ): "The employment input validates the CCNL worker category.",
     (
         "payroll",
-        "ccnl_engine.contract.domain.compensation",
+        "ccnl_engine.contract.compensation.models",
     ): "Extra-month ratei compare accruing days as the CCNL accrual rule says.",
     (
         "payroll",
-        "ccnl_engine.contract.domain.absence",
+        "ccnl_engine.contract.absence.models",
     ): "A partly employed month counts payable days by the CCNL daily divisor.",
     (
         "payroll",
-        "ccnl_engine.tax.domain.preferential_regime",
+        "ccnl_engine.tax.regime.models",
     ): "Employment, employer, period and prior-year inputs declare regimes.",
+    (
+        "contract",
+        "ccnl_engine.knowledge.limitation",
+    ): "CCNL simplification notes declare model limitations of the registry.",
+    (
+        "knowledge",
+        "ccnl_engine.provenance",
+    ): "The loaders verify the ruleset identity and provenance of each file.",
 }
 
 
@@ -142,7 +150,7 @@ def test_layers_form_no_cycle(package: dict[str, Module]) -> None:
 
 def test_analysis_sees_the_package(package: dict[str, Module]) -> None:
     """The analysis reads real modules and real imports, not an empty tree."""
-    assert "ccnl_engine.api.facade" in package
+    assert "ccnl_engine.api" in package
     targets = {imp.target for imp in runtime_imports(package)}
     assert "ccnl_engine.payroll.application.calculate_period" in targets
 
@@ -158,10 +166,10 @@ def test_analysis_sees_the_package(package: dict[str, Module]) -> None:
         ("ccnl_engine.payroll.domain.x", "ccnl_engine.payroll.service.y"),
         ("ccnl_engine.payroll.domain.x", "ccnl_engine.payroll.application.y"),
         ("ccnl_engine.payroll.service.x", "ccnl_engine.payroll.application.y"),
-        ("ccnl_engine.tax.service.x", "ccnl_engine.api.facade"),
-        ("ccnl_engine.payroll.application.x", "ccnl_engine.api.facade"),
-        ("ccnl_engine.api.facade", "ccnl_engine.knowledge.service.bundled"),
-        ("ccnl_engine.api.facade", "ccnl_engine.payroll.domain.y"),
+        ("ccnl_engine.tax.service.x", "ccnl_engine.api"),
+        ("ccnl_engine.payroll.application.x", "ccnl_engine.api"),
+        ("ccnl_engine.api", "ccnl_engine.knowledge.loaders"),
+        ("ccnl_engine.api", "ccnl_engine.payroll.domain.y"),
         ("ccnl_engine.payroll.domain.x", "ccnl_engine.knowledge"),
         ("ccnl_engine.payroll.__init__", "ccnl_engine.payroll.domain.y"),
     ],
@@ -175,8 +183,8 @@ def test_upward_import_is_rejected(importer: str, target: str) -> None:
 def test_downward_imports_are_accepted() -> None:
     """Imports along the layer direction are not reported."""
     modules = _modules(**{
-        "ccnl_engine.__init__": "from ccnl_engine.api.facade import Engine\n",
-        "ccnl_engine.api.facade": (
+        "ccnl_engine.__init__": "from ccnl_engine.api import Engine\n",
+        "ccnl_engine.api": (
             "from ccnl_engine.payroll.application import run\n"
             "from ccnl_engine.knowledge import __version__\n"
         ),
@@ -267,7 +275,7 @@ def test_foreign_domain_import_needs_allowlist_entry() -> None:
     modules = _modules(**{
         "ccnl_engine.payroll.domain.x": (
             "from ccnl_engine.tax.domain.regime import Regime\n"
-            "from ccnl_engine.shared.domain.errors import Error\n"
+            "from ccnl_engine.errors import Error\n"
         ),
     })
     assert domain_coupling_violations(modules, {}) == [

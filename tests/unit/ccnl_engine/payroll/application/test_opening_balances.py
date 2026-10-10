@@ -7,6 +7,7 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.opening_balances import OpeningBalances
 from ccnl_engine.payroll.domain.inps_base import InpsBaseYtd
 from ccnl_engine.payroll.domain.obligations import (
@@ -20,7 +21,6 @@ from ccnl_engine.payroll.domain.surtax_obligations import (
     SurtaxComponent,
     SurtaxObligation,
 )
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _PLAN = RecoveryPlan(
     kind="trattamento_integrativo",

@@ -36,7 +36,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.current_year import CurrentYearTaxFacts
     from ccnl_engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.payroll.service.family.deductions import FamilyDeductions
-    from ccnl_engine.tax.domain.family import FamilyDeductionRules
+    from ccnl_engine.tax.family.models import FamilyDeductionRules
 
 __all__ = ["CAPABILITY", "FACT", "RunFamily", "resolve_family"]
 

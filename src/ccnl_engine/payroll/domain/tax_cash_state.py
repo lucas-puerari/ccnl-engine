@@ -15,6 +15,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, final
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.credit_accounts import (
     SommaEsenteAccount,
     TrattamentoAccount,
@@ -30,13 +31,12 @@ from ccnl_engine.payroll.domain.ytd_accounts import (
     TaxYtd,
     WithholdingShortfall,
 )
-from ccnl_engine.shared.domain.collection_validation import items_of_type, tuple_of
-from ccnl_engine.shared.domain.errors import InvalidInputError
-from ccnl_engine.shared.domain.validation import (
+from ccnl_engine.validation import (
     FieldSpec,
     require_instances,
     require_int,
 )
+from ccnl_engine.validation_collection import items_of_type, tuple_of
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.run import PayrollRunId

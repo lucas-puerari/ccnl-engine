@@ -6,8 +6,8 @@ from typing import Any
 
 import pytest
 
-from ccnl_engine.contract.domain.category import WorkerCategory
-from ccnl_engine.contract.domain.seniority import SeniorityIncrements
+from ccnl_engine.contract.employment.models_category import WorkerCategory
+from ccnl_engine.contract.seniority.models import SeniorityIncrements
 from ccnl_engine.payroll.service.seniority import increments_apply
 from tests.helpers import TEST_PROV, _series
 

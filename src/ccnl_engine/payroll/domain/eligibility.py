@@ -7,7 +7,7 @@ from datetime import date
 from decimal import Decimal
 from enum import StrEnum
 
-from ccnl_engine.shared.domain.validation import require_bool, require_date
+from ccnl_engine.validation import require_bool, require_date
 
 __all__ = [
     "CONTRIBUTORY_COHORT_START",

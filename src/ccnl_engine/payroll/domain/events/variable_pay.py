@@ -6,9 +6,9 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING, Literal
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
-from ccnl_engine.shared.domain.errors import InvalidInputError
-from ccnl_engine.shared.domain.validation import (
+from ccnl_engine.validation import (
     require_choice,
     require_date,
     require_decimal,

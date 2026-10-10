@@ -17,6 +17,7 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.year._accrual_rule import month_accrual_rule
 from ccnl_engine.payroll.application.year._calendar import effective_calendar
 from ccnl_engine.payroll.application.year._coverage import split_covered
@@ -30,12 +31,11 @@ from ccnl_engine.payroll.domain.withholding_schedule import (
     WithholdingSchedule,
     WithholdingSlot,
 )
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
 
-    from ccnl_engine.contract.domain.identity import CCNL
+    from ccnl_engine.contract.identity.facade import CCNL
     from ccnl_engine.payroll.application.knowledge_repository import KnowledgeRepository
     from ccnl_engine.payroll.application.year._runs import YearPlan
     from ccnl_engine.payroll.domain.calendar import WorkCalendar
@@ -111,10 +111,10 @@ def prepare_year(plan: CompetenceYearPlan, repo: KnowledgeRepository) -> Prepare
 
     A rejected calendar override, an employment with no day in the year
     or a payment date of a run the year does not compute raises
-    :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`.  A run
+    :class:`~ccnl_engine.errors.InvalidInputError`.  A run
     whose competence date has no base salary of the level is set aside in
     :attr:`PreparedYear.uncovered`; when every run is,
-    :class:`~ccnl_engine.shared.domain.errors.MissingRuleError` of the
+    :class:`~ccnl_engine.errors.MissingRuleError` of the
     first run is raised.
 
     Returns:

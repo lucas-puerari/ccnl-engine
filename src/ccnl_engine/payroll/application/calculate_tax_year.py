@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import replace
 from typing import TYPE_CHECKING
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.year._payments import (
     check_opening,
     prepare_year,
@@ -17,7 +18,6 @@ from ccnl_engine.payroll.domain.engine_mode import EngineMode
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.knowledge_repository import KnowledgeRepository
@@ -54,7 +54,7 @@ def calculate_tax_year(
     and is listed in ``uncovered_runs``, as in
     :func:`~ccnl_engine.payroll.application.calculate_competence_year\
 .calculate_competence_year`; when no run of a competence year has a base
-    salary, :class:`~ccnl_engine.shared.domain.errors.MissingRuleError` of
+    salary, :class:`~ccnl_engine.errors.MissingRuleError` of
     its first run is raised.
 
     Args:

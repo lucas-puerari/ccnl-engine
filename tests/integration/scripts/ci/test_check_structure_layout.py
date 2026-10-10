@@ -65,6 +65,7 @@ def _layout_tree(root: Path) -> None:
         "demo/wheels/_wheel.whl",
         "demo/app.py",
     )
+    (root / "src/ccnl_engine/payroll/__init__.py").write_text("X = 1\n", "utf-8")
     (root / "demo" / "service").mkdir(parents=True)
 
 
@@ -114,7 +115,10 @@ def test_layout_rules_have_a_zero_limit_and_target() -> None:
 def test_new_init_file_fails_against_the_baseline(
     tmp_path: Path, capsys: pytest.CaptureFixture[str]
 ) -> None:
-    """A baselined tree passes; a new ``__init__.py`` or directory fails."""
+    """A baselined tree passes; a new ``__init__.py`` with code or directory fails.
+
+    A docstring-only package marker under ``src`` is not an offender.
+    """
     _layout_tree(tmp_path)
     baseline = tmp_path / "baseline.json"
     assert _run(tmp_path, baseline, "--write-baseline") == 0
@@ -122,7 +126,13 @@ def test_new_init_file_fails_against_the_baseline(
     assert len(recorded["underscore_files"]) == 3
     assert len(recorded["technical_directories"]) == 4
     assert _run(tmp_path, baseline) == 0
-    _write(tmp_path, "src/ccnl_engine/payroll/period/__init__.py")
+    marker = tmp_path / "src" / "ccnl_engine" / "payroll" / "ledger" / "__init__.py"
+    marker.parent.mkdir(parents=True)
+    marker.write_text('"""The ledger domain (package marker)."""\n', encoding="utf-8")
+    assert _run(tmp_path, baseline) == 0
+    code = tmp_path / "src" / "ccnl_engine" / "payroll" / "period" / "__init__.py"
+    code.parent.mkdir(parents=True)
+    code.write_text("VALUE = 1\n", encoding="utf-8")
     (tmp_path / "tests" / "unit" / "application").mkdir(parents=True)
     assert _run(tmp_path, baseline) == 1
     err = capsys.readouterr().err

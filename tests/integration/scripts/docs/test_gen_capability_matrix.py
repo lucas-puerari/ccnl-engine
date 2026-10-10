@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from ccnl_engine.knowledge.service.capability_catalog_loader import (
+from ccnl_engine.knowledge.capability.loaders import (
     load_capability_catalog,
 )
 from ccnl_engine.payroll.domain.capability_catalog import (

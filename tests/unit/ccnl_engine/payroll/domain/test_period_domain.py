@@ -7,6 +7,7 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.capability_report import CapabilityReport
@@ -27,7 +28,6 @@ from ccnl_engine.payroll.domain.ytd_accounts import (
     EarningsYtd,
     TaxYtd,
 )
-from ccnl_engine.shared.domain.errors import InvalidInputError
 from tests.fixtures.withholding import calendar_schedule
 
 _ZERO = Decimal(0)

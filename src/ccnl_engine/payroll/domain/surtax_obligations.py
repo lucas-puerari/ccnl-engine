@@ -45,7 +45,7 @@ from ccnl_engine.payroll.domain.remittance import (
     MUNICIPAL_SURTAX_BALANCE,
     REGIONAL_SURTAX,
 )
-from ccnl_engine.shared.domain.validation import (
+from ccnl_engine.validation import (
     parse_enum,
     reject,
     require_instance,
@@ -180,7 +180,7 @@ class SurtaxObligation:
         A ``tax_year`` before 2020, an empty ``jurisdiction``, a
         ``plan.kind`` other than the component value or a plan with more
         installments than the window raises
-        :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`.
+        :class:`~ccnl_engine.errors.InvalidInputError`.
         """
         owner, feature = "SurtaxObligation", "surtax_recovery"
         component = parse_enum(

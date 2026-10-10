@@ -7,15 +7,15 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.contract.domain.seniority import (
+from ccnl_engine.contract.seniority.models import (
     SeniorityIncrements,
     SeniorityTier,
 )
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.service.seniority_tiers import (
     count_from_tiers,
     resolve_tier_amount,
 )
-from ccnl_engine.shared.domain.errors import InvalidInputError
 from tests.helpers import TEST_PROV, _series
 
 _AS_OF = date(2026, 6, 1)

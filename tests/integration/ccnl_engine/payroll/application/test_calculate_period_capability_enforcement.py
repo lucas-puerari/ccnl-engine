@@ -13,7 +13,7 @@ from datetime import date
 
 import pytest
 
-from ccnl_engine.contract.domain.category import WorkerCategory
+from ccnl_engine.contract.employment.models_category import WorkerCategory
 from ccnl_engine.inputs import NoPensionFund
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.domain.assurance import BlockerCode, CoverageStatus

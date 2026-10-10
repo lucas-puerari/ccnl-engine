@@ -16,8 +16,8 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.domain.identity import TaxSector
-from ccnl_engine.shared.domain.errors import InvalidInputError
+from ccnl_engine.contract.identity.facade import TaxSector
+from ccnl_engine.errors import InvalidInputError
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.period._context import RunContext

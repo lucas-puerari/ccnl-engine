@@ -11,6 +11,7 @@ from datetime import date
 
 import pytest
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
 from ccnl_engine.payroll.domain.employment_spells import (
     EmploymentSpell,
@@ -18,7 +19,6 @@ from ccnl_engine.payroll.domain.employment_spells import (
     spells_of,
     spells_with,
 )
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _PATH = "TaxCashState.employment_spells"
 

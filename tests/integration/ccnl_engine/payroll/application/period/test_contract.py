@@ -6,8 +6,8 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.domain.identity import TaxSector
-from ccnl_engine.contract.service.loaders import load_ccnl
+from ccnl_engine.contract.catalog.loaders import load_ccnl
+from ccnl_engine.contract.identity.facade import TaxSector
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.period._contract import (
     flat_pay_divisor,
@@ -21,7 +21,7 @@ from ccnl_engine.payroll.domain.run import PayrollRun
 from tests.fixtures.next_year_repository import NextYearRepository
 
 if TYPE_CHECKING:
-    from ccnl_engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.annual.models import YearRules
 
 _CEILING_2027 = Decimal("130000.00")
 

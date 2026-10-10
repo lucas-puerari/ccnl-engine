@@ -29,9 +29,9 @@ from dataclasses import dataclass
 from datetime import date, timedelta
 from typing import TYPE_CHECKING, final
 
-from ccnl_engine.shared.domain.collection_validation import items_of_type, tuple_of
-from ccnl_engine.shared.domain.errors import InvalidInputError
-from ccnl_engine.shared.domain.validation import require_bool, require_date
+from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.validation import require_bool, require_date
+from ccnl_engine.validation_collection import items_of_type, tuple_of
 
 if TYPE_CHECKING:
     from collections.abc import Iterable

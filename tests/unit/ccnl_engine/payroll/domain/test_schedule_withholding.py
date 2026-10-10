@@ -6,11 +6,11 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.extra_month_entitlement import ExtraMonthEntitlement
 from ccnl_engine.payroll.domain.extra_month_schedule import ExtraMonthKind
 from ccnl_engine.payroll.domain.schedule import PayrollRunCount, PayrollSchedule
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _YEAR = 2026
 

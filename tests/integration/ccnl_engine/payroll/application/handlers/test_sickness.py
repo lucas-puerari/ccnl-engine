@@ -20,8 +20,9 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.contract.domain.category import WorkerCategory
-from ccnl_engine.contract.service.loaders import load_ccnl
+from ccnl_engine.contract.catalog.loaders import load_ccnl
+from ccnl_engine.contract.employment.models_category import WorkerCategory
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.domain.assurance import BlockerCode
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
@@ -34,17 +35,16 @@ from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
-from ccnl_engine.provenance.domain.chain import ProvenanceStatus, RuleProvenance
-from ccnl_engine.shared.domain.errors import InvalidInputError
+from ccnl_engine.provenance.source.models_chain import ProvenanceStatus, RuleProvenance
 from tests.fixtures.normative_oracles.contributions_2026 import contribution_base
 from tests.fixtures.seniority import new_hire
 from tests.fixtures.sickness_episode import sickness_episode
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.domain.identity import CCNL
+    from ccnl_engine.contract.identity.facade import CCNL
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
     from ccnl_engine.payroll.domain.period import PeriodResult
-    from ccnl_engine.tax.domain.sick_pay import InpsSickPayRates
+    from ccnl_engine.tax.sickness.models import InpsSickPayRates
 
 _FEB_TO_MAR = sickness_episode("2026-02-20", date(2026, 2, 20), date(2026, 3, 13))
 _MARCH = sickness_episode("2026-03-09", date(2026, 3, 9), date(2026, 3, 13))

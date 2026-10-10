@@ -15,13 +15,13 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment_facts import ContributableHours, WeeklyHours
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
-from ccnl_engine.shared.domain.errors import InvalidInputError
 from tests.fixtures.seniority import new_hire
 
 if TYPE_CHECKING:

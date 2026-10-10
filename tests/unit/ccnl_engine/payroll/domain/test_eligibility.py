@@ -11,11 +11,11 @@ from datetime import date
 
 import pytest
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.eligibility import (
     ContributionHistory,
     IvsCeilingBasis,
 )
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 
 @pytest.mark.parametrize(

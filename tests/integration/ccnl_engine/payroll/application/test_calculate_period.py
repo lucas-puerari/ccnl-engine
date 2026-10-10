@@ -9,6 +9,7 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.domain.accrual_state import EmploymentAccrualState
 from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm
@@ -29,7 +30,6 @@ from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, TaxYtd
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
-from ccnl_engine.shared.domain.errors import InvalidInputError
 from tests.helpers import EMPLOYER_50
 
 if TYPE_CHECKING:

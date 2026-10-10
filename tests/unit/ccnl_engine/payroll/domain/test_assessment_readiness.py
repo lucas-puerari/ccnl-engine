@@ -10,16 +10,16 @@ from ccnl_engine.payroll.domain.assessment import NO_TRACKED_READINESS, assess
 from ccnl_engine.payroll.domain.assurance import BlockerCode
 from ccnl_engine.payroll.domain.capability_report import CapabilityReport
 from ccnl_engine.payroll.domain.engine_mode import EngineMode
-from ccnl_engine.provenance.domain.chain import ProvenanceStatus
-from ccnl_engine.provenance.domain.ruleset_identity import (
+from ccnl_engine.provenance.ruleset.models import (
     RulesetReadiness,
     VerificationStatus,
 )
+from ccnl_engine.provenance.source.models_chain import ProvenanceStatus
 from tests.fixtures.rulesets import ccnl_ruleset, tax_ruleset
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.assurance import ResultAssurance
-    from ccnl_engine.provenance.domain.ruleset_assurance import RulesetAssurance
+    from ccnl_engine.provenance.ruleset.models_assurance import RulesetAssurance
 
 _SIMULATION = EngineMode.SIMULATION
 _OPERATIONAL = EngineMode.OPERATIONAL

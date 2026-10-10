@@ -18,7 +18,7 @@ from ccnl_engine.payroll.service.family.children import (
     child_due_months,
     children_deductions,
 )
-from ccnl_engine.tax.service.tax_optional_loaders import load_family_deduction_rules
+from ccnl_engine.tax.annual.loaders_optional import load_family_deduction_rules
 from tests.fixtures.dependents import declared_dependent
 from tests.fixtures.normative_oracles import family_2026
 

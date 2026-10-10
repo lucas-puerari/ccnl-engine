@@ -10,7 +10,8 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.domain.validity import rule_scope
+from ccnl_engine.contract.identity.rules_validity import rule_scope
+from ccnl_engine.errors import UnknownLevelError
 from ccnl_engine.payroll.application.period._provincial import (
     without_replaced_elements,
 )
@@ -18,17 +19,16 @@ from ccnl_engine.payroll.domain.employment_context import (
     EffectiveDateContext,
     TemporalContext,
 )
-from ccnl_engine.shared.domain.errors import UnknownLevelError
-from ccnl_engine.tax.domain.fis_reduction import with_fis_reduction
+from ccnl_engine.tax.contribution.models_fis_reduction import with_fis_reduction
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.domain.compensation import Level
-    from ccnl_engine.contract.domain.identity import CCNL, TaxSector
+    from ccnl_engine.contract.compensation.models import Level
+    from ccnl_engine.contract.identity.facade import CCNL, TaxSector
     from ccnl_engine.payroll.application.knowledge_repository import KnowledgeRepository
     from ccnl_engine.payroll.domain.capability_catalog import CapabilityCatalog
     from ccnl_engine.payroll.domain.employment_facts import WeeklyHours
     from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
-    from ccnl_engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.annual.models import YearRules
 
 __all__ = ["RunContract", "load_contract", "with_competence_contributions"]
 
@@ -169,7 +169,7 @@ def with_competence_contributions(
         ``rules`` when they are of ``competence_year``; otherwise a copy
         whose contribution fields come from the rules of that year.  A
         competence year without bundled rules raises
-        :class:`~ccnl_engine.shared.domain.errors.UnsupportedTaxYearError`.
+        :class:`~ccnl_engine.errors.UnsupportedTaxYearError`.
     """
     if rules.year == competence_year:
         return rules

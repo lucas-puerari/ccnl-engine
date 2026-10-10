@@ -18,6 +18,7 @@ from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.remittance import remittance_summary
 
 if TYPE_CHECKING:
+    from ccnl_engine.knowledge.limitation.models import ModelLimitation
     from ccnl_engine.payroll.domain.assurance import ResultAssurance, ResultBlocker
     from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
     from ccnl_engine.payroll.domain.capability_report import CapabilityReport
@@ -27,8 +28,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.remittance import RemittanceLine
     from ccnl_engine.payroll.domain.run import PayrollRun
     from ccnl_engine.payroll.domain.tax import TaxComputation
-    from ccnl_engine.provenance.domain.ruleset_assurance import RulesetAssurance
-    from ccnl_engine.shared.domain.limitation import ModelLimitation
+    from ccnl_engine.provenance.ruleset.models_assurance import RulesetAssurance
 
 
 @dataclass(frozen=True)
@@ -77,7 +77,7 @@ class PeriodResult:
             ``operational`` adds a blocker for every ruleset short of
             ``production``.
         limitations: Model limitations that concern the run (see
-            :class:`~ccnl_engine.shared.domain.limitation.ModelLimitation`);
+            :class:`~ccnl_engine.knowledge.limitation.models.ModelLimitation`);
             an open one with a monetary impact blocks the amounts.
 
     Whether the amounts can be paid is :attr:`is_payable`; why not is

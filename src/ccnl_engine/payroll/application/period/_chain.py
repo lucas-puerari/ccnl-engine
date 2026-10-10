@@ -6,20 +6,20 @@ from dataclasses import replace
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.domain.validity import rule_scope
+from ccnl_engine.contract.identity.rules_validity import rule_scope
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm, Permanent
 from ccnl_engine.payroll.service.apprenticeship import _apprentice_chain
 from ccnl_engine.payroll.service.chain import _level_chain
 from ccnl_engine.payroll.service.seniority import _resolve_seniority_count
 from ccnl_engine.payroll.service.types import ApprenticeshipScaling
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.contract.domain.category import WorkerCategory
-    from ccnl_engine.contract.domain.compensation import Level
-    from ccnl_engine.contract.domain.identity import CCNL
+    from ccnl_engine.contract.compensation.models import Level
+    from ccnl_engine.contract.employment.models_category import WorkerCategory
+    from ccnl_engine.contract.identity.facade import CCNL
     from ccnl_engine.payroll.service.types import MonthlyPayChain
 
 

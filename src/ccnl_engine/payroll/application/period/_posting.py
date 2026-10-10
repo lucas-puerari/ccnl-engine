@@ -6,6 +6,7 @@ from dataclasses import dataclass, field
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.application._period_utils import (
     _make_entry,
     _require_resolution,
@@ -35,7 +36,6 @@ from ccnl_engine.payroll.service.withholding_law import (
     WithholdingTopic,
     withholding_rule,
 )
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.amounts._types import _PeriodAmounts

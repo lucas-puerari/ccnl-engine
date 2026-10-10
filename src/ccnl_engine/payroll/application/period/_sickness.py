@@ -20,7 +20,7 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.domain.absence import DailyDivisorMethod
+from ccnl_engine.contract.absence.models import DailyDivisorMethod
 from ccnl_engine.payroll.application.handlers._sickness_terms import (
     DailyQuota,
     SicknessTerms,
@@ -31,7 +31,7 @@ from ccnl_engine.payroll.domain.sick_pay_rules import SickPayRules
 from ccnl_engine.payroll.domain.sickness import SicknessHistory
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.domain.identity import CCNL
+    from ccnl_engine.contract.identity.facade import CCNL
     from ccnl_engine.payroll.application.period._context import RunContext
     from ccnl_engine.payroll.application.period._rule_lookup import Rule
 

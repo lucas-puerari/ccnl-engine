@@ -27,7 +27,7 @@ from ccnl_engine.payroll.service.irpef_credits import (
     trattamento_integrativo,
 )
 from ccnl_engine.payroll.service.irpef_deductions import work_income_deduction
-from ccnl_engine.tax.domain.credit_rules import TrattamentoIntegrativoRules
+from ccnl_engine.tax.income.models_credit import TrattamentoIntegrativoRules
 
 _ZERO = Decimal(0)
 

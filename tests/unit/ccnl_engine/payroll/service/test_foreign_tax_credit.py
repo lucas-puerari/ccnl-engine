@@ -11,14 +11,14 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.contract.domain.identity import TaxSector
+from ccnl_engine.contract.identity.facade import TaxSector
 from ccnl_engine.payroll.domain.foreign_tax import ForeignTaxPaid
 from ccnl_engine.payroll.service.foreign_tax_credit import (
     foreign_credit_rule,
     foreign_tax_credit,
 )
 from ccnl_engine.payroll.service.irpef_net import NetIrpef
-from ccnl_engine.tax.service.tax_annual_assembler import load_year_rules
+from ccnl_engine.tax.annual.loaders import load_year_rules
 
 _RULES = load_year_rules(2026, TaxSector.INDUSTRIA, 50)
 _TAXABLE = Decimal(40000)

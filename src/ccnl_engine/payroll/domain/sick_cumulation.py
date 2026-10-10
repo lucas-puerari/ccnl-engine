@@ -1,6 +1,6 @@
 """CCNL sick pay counted over the sickness of several episodes.
 
-A CCNL with a :class:`~ccnl_engine.contract.domain.sickness.SicknessCumulation`
+A CCNL with a :class:`~ccnl_engine.contract.sickness.models.SicknessCumulation`
 (Federmeccanica, Sez. IV Tit. VI Art. 2) counts, for each sick day:
 
 - the treatment chain: the sick days of the episode and of the earlier
@@ -29,7 +29,7 @@ from functools import cached_property
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.domain.sickness import (
+    from ccnl_engine.contract.sickness.models import (
         SicknessCumulation,
         SicknessRules,
         SicknessSeniorityBand,

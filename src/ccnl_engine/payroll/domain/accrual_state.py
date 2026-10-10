@@ -26,12 +26,12 @@ from datetime import date
 from decimal import Decimal
 from typing import final
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.inps_base import InpsBaseYtd
 from ccnl_engine.payroll.domain.run import PayrollRunId, RunKind
 from ccnl_engine.payroll.domain.sickness import SicknessEpisode
-from ccnl_engine.shared.domain.collection_validation import items_of_type, tuple_of
-from ccnl_engine.shared.domain.errors import InvalidInputError
-from ccnl_engine.shared.domain.validation import require_date
+from ccnl_engine.validation import require_date
+from ccnl_engine.validation_collection import items_of_type, tuple_of
 
 __all__ = ["EmploymentAccrualState"]
 

@@ -6,9 +6,9 @@ from datetime import date
 
 import pytest
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.payment import PaymentId
 from ccnl_engine.payroll.domain.run import PayrollRunId
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _DECEMBER = PayrollRunId.parse("2026-12-regular")
 

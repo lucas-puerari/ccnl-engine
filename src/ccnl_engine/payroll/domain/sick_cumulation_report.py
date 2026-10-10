@@ -27,7 +27,7 @@ from typing import TYPE_CHECKING
 from ccnl_engine.payroll.domain.sick_cumulation import window_start
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.domain.sickness import SicknessSeniorityBand
+    from ccnl_engine.contract.sickness.models import SicknessSeniorityBand
     from ccnl_engine.payroll.domain.sick_cumulation import CumulativeTreatment
 
 __all__ = ["CumulationReport", "cumulation_report"]

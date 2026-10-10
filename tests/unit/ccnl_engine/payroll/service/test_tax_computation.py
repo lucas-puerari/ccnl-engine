@@ -6,13 +6,13 @@ from decimal import Decimal
 
 from ccnl_engine.payroll.service.period_withholding import PayPeriod
 from ccnl_engine.payroll.service.tax_computation import compute_tax
-from ccnl_engine.tax.domain.credit_rules import (
+from ccnl_engine.tax.income.models import SterilizzazioneDetrazioniRules
+from ccnl_engine.tax.income.models_credit import (
     SommaEsenteBand,
     SommaEsenteRules,
     TrattamentoIntegrativoRules,
     UlterioreDetrazioneRules,
 )
-from ccnl_engine.tax.domain.irpef_rules import SterilizzazioneDetrazioniRules
 from tests.helpers import make_year_rules
 
 _ZERO = Decimal(0)

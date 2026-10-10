@@ -85,7 +85,7 @@ class TemporalContext:
         """Build from competence year, month and payment date.
 
         A payment before the first day of the competence period raises
-        :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`.
+        :class:`~ccnl_engine.errors.InvalidInputError`.
 
         Args:
             year: Competence year.

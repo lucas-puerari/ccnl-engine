@@ -29,8 +29,8 @@ from ccnl_engine import (
     PeriodInput,
     PeriodResult,
 )
-from ccnl_engine.contract.domain.identity import CCNL, TaxSector
-from ccnl_engine.contract.service.loaders import load_ccnl
+from ccnl_engine.contract.catalog.loaders import load_ccnl
+from ccnl_engine.contract.identity.facade import CCNL, TaxSector
 from ccnl_engine.inputs import (
     ContributableHours,
     CurrentYearTaxFacts,

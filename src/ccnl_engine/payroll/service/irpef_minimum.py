@@ -18,14 +18,14 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.domain.decisions import CalculationDecision, CalculationStatus
 from ccnl_engine.payroll.service.irpef_deductions import minimum_left_to_tax_return
-from ccnl_engine.provenance.domain.source import (
+from ccnl_engine.provenance.source.models import (
     SourceDocument,
     SourceKind,
     SourceLocation,
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.annual.models import YearRules
 
 __all__ = ["MINIMUM_PROPORTIONED", "minimum_decision"]
 

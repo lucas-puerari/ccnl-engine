@@ -14,7 +14,7 @@ from ccnl_engine.payroll.service.family.common import (
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.family import Dependent
-    from ccnl_engine.tax.domain.family import FamilyDeductionRules
+    from ccnl_engine.tax.family.models import FamilyDeductionRules
 
 __all__ = ["spouse_annual", "spouse_deduction"]
 

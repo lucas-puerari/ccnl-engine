@@ -17,8 +17,8 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import final
 
-from ccnl_engine.shared.domain.errors import InvalidInputError
-from ccnl_engine.shared.domain.validation import reject, require_decimal
+from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.validation import reject, require_decimal
 
 __all__ = ["ForeignTaxPaid", "check_one_per_state"]
 

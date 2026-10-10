@@ -3,7 +3,7 @@
 A worker hired or terminated during a month is paid the daily quotas of the
 days of that month the employment covers, never the full monthly pay.  The
 daily quota is the one the CCNL sets for its unpaid absences
-(:class:`~ccnl_engine.contract.domain.absence.DailyDivisorMethod`), so a
+(:class:`~ccnl_engine.contract.absence.models.DailyDivisorMethod`), so a
 hire, a termination and an absence count the same payable days:
 
 - ``by_26``: one twenty-sixth per employed Monday to Saturday; Sundays are
@@ -27,7 +27,7 @@ from dataclasses import dataclass
 from datetime import date, timedelta
 from decimal import Decimal
 
-from ccnl_engine.contract.domain.absence import DailyDivisorMethod
+from ccnl_engine.contract.absence.models import DailyDivisorMethod
 
 __all__ = ["MonthProration", "payable_days"]
 

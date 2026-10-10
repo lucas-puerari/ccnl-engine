@@ -4,13 +4,13 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from ccnl_engine.shared.domain.validation import (
+from ccnl_engine.tax.regime.models import EmployerActivity
+from ccnl_engine.validation import (
     parse_enum,
     require_bool,
     require_instance,
     require_int,
 )
-from ccnl_engine.tax.domain.preferential_regime import EmployerActivity
 
 __all__ = ["EmployerActivity", "EmployerProfile", "Headcount"]
 

@@ -20,6 +20,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.year._accrual_rule import month_accrual_rule
 from ccnl_engine.payroll.application.year._calendar import effective_calendar
 from ccnl_engine.payroll.application.year._extra_month_qualification import (
@@ -33,10 +34,9 @@ from ccnl_engine.payroll.domain.run import (
     RunKind,
     run_identifier,
 )
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.domain.identity import CCNL
+    from ccnl_engine.contract.identity.facade import CCNL
     from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
     from ccnl_engine.payroll.domain.extra_month_schedule import ExtraMonthKind
     from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
@@ -63,7 +63,7 @@ def run_settlements(
         ``extra_month_settlements`` is ``None``, an extra-month run at or
         after the termination month of an extra month the run of that month
         liquidates raises
-        :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`.
+        :class:`~ccnl_engine.errors.InvalidInputError`.
     """
     if request.extra_month_settlements is not None:
         return request.extra_month_settlements

@@ -5,7 +5,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.domain.fund_contribution import FundContributionBase
+from ccnl_engine.contract.fund.models import FundContributionBase
 from ccnl_engine.payroll.domain.decisions import CalculationIssue, CalculationStatus
 from ccnl_engine.payroll.service.pension_fund import (
     contractual_only,

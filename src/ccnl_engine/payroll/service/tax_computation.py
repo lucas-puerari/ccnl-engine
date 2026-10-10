@@ -33,7 +33,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.service.ulteriore_settlement import (
         UlterioreSettlement,
     )
-    from ccnl_engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.annual.models import YearRules
 
 _ZERO = Decimal(0)
 #: A run that is neither the last of the employment nor an adjustment.

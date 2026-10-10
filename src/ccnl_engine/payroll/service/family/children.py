@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from decimal import Decimal
 
     from ccnl_engine.payroll.domain.family import Dependent
-    from ccnl_engine.tax.domain.family import (
+    from ccnl_engine.tax.family.models import (
         ChildrenDeductionRules,
         FamilyDeductionRules,
     )

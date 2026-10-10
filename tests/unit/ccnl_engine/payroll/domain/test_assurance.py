@@ -18,11 +18,11 @@ from ccnl_engine.payroll.domain.assurance import (
 )
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.engine_mode import EngineMode
-from ccnl_engine.provenance.domain.ruleset_identity import VerificationStatus
+from ccnl_engine.provenance.ruleset.models import VerificationStatus
 from tests.fixtures.rulesets import tax_ruleset
 
 if TYPE_CHECKING:
-    from ccnl_engine.provenance.domain.ruleset_assurance import RulesetAssurance
+    from ccnl_engine.provenance.ruleset.models_assurance import RulesetAssurance
 
 _GAP = ResultBlocker(
     BlockerCode.CAPABILITY_NOT_COMPUTED, "inail", "unsupported", "compute it"

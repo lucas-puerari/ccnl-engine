@@ -4,13 +4,21 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Domains outside payroll laid out by domain
+
+| Before | After |
+|---|---|
+| `contract`, `tax`, `knowledge`, `provenance`, `diff`, `shared` and `api` organised by layer (`domain`, `service`, `application`) | Organised by domain, with role-named files: `contract/<subdomain>/models.py`, `tax/<subdomain>/loaders.py`, `comparison/ruleset/services.py`, `provenance/{ruleset,source}/models.py`, the shared `errors.py`, `primitives.py` and `validation.py` at the root, the facade in `api.py`. Moves are one to one; the public namespaces (`ccnl_engine`, `inputs`, `events`, `results`, `catalog`) keep every name |
+| `from ccnl_engine.knowledge import __version__` | `from ccnl_engine import bundle_version`; the value also lives in `ccnl_engine.knowledge.facade.__version__`. `ccnl_engine.knowledge` is now a package marker |
+| Code importing internal paths (`ccnl_engine.contract.domain...`, `ccnl_engine.tax.service...`, `ccnl_engine.shared.domain...`) | Internal paths are not public API and have no shim: import from the public namespaces, or from the new module the inventory `scripts/ci/layout_inventory.json` names |
+
 ## Knowledge bundle by dataset, with a manifest
 
 | Before | After |
 |---|---|
 | JSON resources under seven `knowledge/<x>/data/` packages (`ccnl`, `tax`, `inps`, `surtax`, `capabilities`, `limitations`, `policies`), found by globbing each directory | One tree `knowledge/<domain>/<dataset>/<year>/<scope>.json` (`contract/agreement/<slug>.json`, `taxation/annual/<year>/<sector>.json`, `social_security/contribution/<year>/<sector>.json`, `surtax/regional/<year>.json`, ...), indexed by `knowledge/manifest.json`. The 174 files are moved one to one, content unchanged |
-| A loader read any file present in its package directory | `ccnl_engine.knowledge.service.manifest`: a loader reads only a path the manifest lists (`read_resource`, `resources`); the wheel carries every listed resource as `<path>.gz`. `scripts/data/build_manifest.py --check` fails CI when the manifest drifts |
-| Code reading `importlib.resources.files("ccnl_engine.knowledge.ccnl.data")` | Those packages no longer exist; read `ccnl_engine.knowledge.service.manifest.read_resource("contract/agreement/<slug>.json")` or use the public loaders |
+| A loader read any file present in its package directory | `ccnl_engine.knowledge.loaders_manifest`: a loader reads only a path the manifest lists (`read_resource`, `resources`); the wheel carries every listed resource as `<path>.gz`. `scripts/data/build_manifest.py --check` fails CI when the manifest drifts |
+| Code reading `importlib.resources.files("ccnl_engine.knowledge.ccnl.data")` | Those packages no longer exist; read `ccnl_engine.knowledge.loaders_manifest.read_resource("contract/agreement/<slug>.json")` or use the public loaders |
 
 ## Carenza by event and yearly comporto
 

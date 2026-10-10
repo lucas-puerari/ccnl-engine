@@ -23,7 +23,7 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.api.facade import PayrollEngine
+from ccnl_engine.api import PayrollEngine
 from ccnl_engine.payroll.application.calculate_competence_year import (
     calculate_competence_year,
 )

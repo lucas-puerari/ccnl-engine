@@ -7,11 +7,11 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.current_year import (
     CurrentYearTaxFacts,
     IncomeEstimateQuality,
 )
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _DAY = date(2026, 3, 1)
 

@@ -25,7 +25,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.period_state import PeriodState
     from ccnl_engine.payroll.domain.remittance import RemittanceLine
     from ccnl_engine.payroll.domain.uncovered_run import UncoveredRun
-    from ccnl_engine.provenance.domain.ruleset_assurance import RulesetAssurance
+    from ccnl_engine.provenance.ruleset.models_assurance import RulesetAssurance
 
 __all__ = ["CompetenceYearResult", "PaymentsResult", "TaxYearResult"]
 

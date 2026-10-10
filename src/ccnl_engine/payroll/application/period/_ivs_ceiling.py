@@ -35,8 +35,8 @@ from ccnl_engine.payroll.service.contributions import resolve_contributions
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.period._context import RunContext
     from ccnl_engine.payroll.domain.eligibility import ContributionHistory
-    from ccnl_engine.provenance.domain.source import SourceLocation
-    from ccnl_engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.provenance.source.models import SourceLocation
+    from ccnl_engine.tax.annual.models import YearRules
 
 __all__ = [
     "CAPABILITY",

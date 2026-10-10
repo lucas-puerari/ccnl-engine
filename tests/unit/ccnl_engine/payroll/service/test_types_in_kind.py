@@ -11,8 +11,8 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 
-from ccnl_engine.contract.domain.compensation import Allowance
-from ccnl_engine.contract.domain.validity import TimeSeries, ValidityPeriod
+from ccnl_engine.contract.compensation.models import Allowance
+from ccnl_engine.contract.identity.rules_validity import TimeSeries, ValidityPeriod
 from ccnl_engine.payroll.service.types import MonthlyPayChain
 
 _SERIES = TimeSeries(

@@ -29,7 +29,7 @@ from ccnl_engine.payroll.domain.recovery_plan import InstallmentRun, RecoveryPla
 from ccnl_engine.payroll.service.irpef_credits import CreditOutcome
 from ccnl_engine.payroll.service.irpef_net import NetIrpef
 from ccnl_engine.payroll.service.trattamento_credit import resolve_trattamento
-from ccnl_engine.tax.domain.credit_rules import TrattamentoIntegrativoRules
+from ccnl_engine.tax.income.models_credit import TrattamentoIntegrativoRules
 from tests.helpers import make_year_rules
 
 _D = Decimal

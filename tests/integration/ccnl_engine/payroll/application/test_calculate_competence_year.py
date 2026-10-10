@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.calculate_competence_year import (
     calculate_competence_year,
 )
@@ -24,7 +25,6 @@ from ccnl_engine.payroll.domain.employment import Permanent
 from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
 from ccnl_engine.payroll.domain.events import AbsenceEvent
 from ccnl_engine.payroll.domain.run import RunKind
-from ccnl_engine.shared.domain.errors import InvalidInputError
 from tests.fixtures.current_year import employment_only
 from tests.fixtures.opening_state import fresh_tax_year
 from tests.fixtures.residence import resident

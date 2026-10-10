@@ -14,7 +14,7 @@ from ccnl_engine.payroll.service.additional_ivs import AdditionalIvsPosition
 from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.domain.category import WorkerCategory
+    from ccnl_engine.contract.employment.models_category import WorkerCategory
     from ccnl_engine.payroll.application.amounts._assistance import (
         AssistanceContribution,
         AssistanceTerms,
@@ -38,10 +38,10 @@ if TYPE_CHECKING:
         PensionFundTerms,
     )
     from ccnl_engine.payroll.service.ulteriore_settlement import UlterioreSettlement
-    from ccnl_engine.tax.domain.family import FamilyDeductionRules
-    from ccnl_engine.tax.domain.ruleset import YearRules
-    from ccnl_engine.tax.domain.surtax_rules import SurtaxRules
-    from ccnl_engine.tax.domain.variable_pay import PdRRules
+    from ccnl_engine.tax.annual.models import YearRules
+    from ccnl_engine.tax.family.models import FamilyDeductionRules
+    from ccnl_engine.tax.regime.models_variable_pay import PdRRules
+    from ccnl_engine.tax.surtax.models import SurtaxRules
 
 
 @dataclass(frozen=True)

@@ -22,8 +22,8 @@ from ccnl_engine.payroll.domain.rounding import money
 if TYPE_CHECKING:
     from collections.abc import Sequence
 
-    from ccnl_engine.shared.domain.primitives import Bracket
-    from ccnl_engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.primitives import Bracket
+    from ccnl_engine.tax.annual.models import YearRules
 
 _ZERO = Decimal(0)
 DAYS_IN_YEAR = 365  # "365 per l'intero anno": 730/2026 istruzioni, quadro C
@@ -118,7 +118,7 @@ def surtax_from_brackets(
     Args:
         taxable_income: IRPEF taxable base (gross annual minus employee INPS).
         brackets: Ordered sequence of
-            :class:`~ccnl_engine.tax.domain.surtax_tables.SurtaxBracket`
+            :class:`~ccnl_engine.tax.surtax.models_table.SurtaxBracket`
             entries; the last entry must have ``up_to=None``.
         exemption_threshold: Full-exemption threshold: if
             ``taxable_income <= exemption_threshold`` the surtax is zero.

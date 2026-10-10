@@ -14,8 +14,9 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.contract.domain.category import WorkerCategory
-from ccnl_engine.contract.service.loaders import load_ccnl
+from ccnl_engine.contract.catalog.loaders import load_ccnl
+from ccnl_engine.contract.employment.models_category import WorkerCategory
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.pension_fund import PensionFundEnrolment
 from ccnl_engine.payroll.service.pension_fund import (
     PensionFundTerms,
@@ -24,11 +25,10 @@ from ccnl_engine.payroll.service.pension_fund import (
     resolve_terms,
     upcoming_adjustment,
 )
-from ccnl_engine.shared.domain.errors import InvalidInputError
-from ccnl_engine.tax.domain.pension_rules import ComplementaryPensionRules
+from ccnl_engine.tax.pension.models import ComplementaryPensionRules
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.domain.identity import CCNL
+    from ccnl_engine.contract.identity.facade import CCNL
 
 _RULES = ComplementaryPensionRules(
     deduction_cap=Decimal("5300.00"), solidarity_rate=Decimal("0.10")

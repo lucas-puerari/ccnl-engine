@@ -8,6 +8,7 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.opening_balances import OpeningBalances
 from ccnl_engine.payroll.application.opening_state import opening_state
 from ccnl_engine.payroll.domain.inps_base import InpsBaseYtd
@@ -23,7 +24,6 @@ from ccnl_engine.payroll.domain.surtax_obligations import (
     SurtaxComponent,
     SurtaxObligation,
 )
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _JUNE = (PaymentId.parse("2026-06-regular@2026-06-27"),)
 #: INPS base of 2026 up to June, with no other employment in the year.

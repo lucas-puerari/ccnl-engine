@@ -46,7 +46,7 @@ from ccnl_engine.payroll.domain.rounding import money
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.foreign_tax import ForeignTaxPaid
     from ccnl_engine.payroll.service.irpef_net import NetIrpef
-    from ccnl_engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.annual.models import YearRules
 
 __all__ = ["CAPABILITY", "ForeignCredit", "foreign_credit_rule", "foreign_tax_credit"]
 

@@ -16,6 +16,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.period._seniority import seniority_months_at
 from ccnl_engine.payroll.domain.pension_fund import (
     PENSION_FEATURE,
@@ -23,11 +24,10 @@ from ccnl_engine.payroll.domain.pension_fund import (
 )
 from ccnl_engine.payroll.service.pension_fund_lookup import fund_of
 from ccnl_engine.payroll.service.seniority import seniority_maximum
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.domain.fund_contribution import SeniorityConversion
-    from ccnl_engine.contract.domain.identity import CCNL
+    from ccnl_engine.contract.fund.models import SeniorityConversion
+    from ccnl_engine.contract.identity.facade import CCNL
     from ccnl_engine.payroll.application.period._context import RunContext
     from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 

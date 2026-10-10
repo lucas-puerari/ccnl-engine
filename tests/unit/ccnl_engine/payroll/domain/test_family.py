@@ -8,12 +8,12 @@ from decimal import Decimal
 import pytest
 from pydantic import ValidationError
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.family import (
     Dependent,
     DependentRelationship,
     FamilyComposition,
 )
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _SPOUSE = DependentRelationship.SPOUSE
 _CHILD = DependentRelationship.CHILD

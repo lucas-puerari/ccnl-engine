@@ -6,8 +6,8 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.period._rule_lookup import Rule
-    from ccnl_engine.tax.domain.tfr_revaluation import TfrRevaluationRules
-    from ccnl_engine.tax.domain.tfr_rules import TfrRules
+    from ccnl_engine.tax.severance.models import TfrRules
+    from ccnl_engine.tax.severance.models_revaluation import TfrRevaluationRules
 
 __all__ = ["revaluation_rule_name", "revaluation_rules", "tfr_rules"]
 

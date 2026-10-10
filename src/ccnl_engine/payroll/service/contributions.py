@@ -28,9 +28,9 @@ from ccnl_engine.payroll.service.additional_ivs import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.domain.category import WorkerCategory
+    from ccnl_engine.contract.employment.models_category import WorkerCategory
     from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm, Permanent
-    from ccnl_engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.annual.models import YearRules
 
 _ZERO = Decimal(0)
 _NO_POSITION = AdditionalIvsPosition()

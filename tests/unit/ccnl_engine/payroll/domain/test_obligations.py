@@ -6,6 +6,7 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.obligations import (
     SOMMA_ESENTE_RECOVERY,
     TRATTAMENTO_RECOVERY,
@@ -13,7 +14,6 @@ from ccnl_engine.payroll.domain.obligations import (
     RecoveryObligation,
 )
 from ccnl_engine.payroll.domain.recovery_plan import InstallmentRun, RecoveryPlan
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 
 def _plan(posted: int = 0, kind: str = "trattamento_integrativo") -> RecoveryPlan:

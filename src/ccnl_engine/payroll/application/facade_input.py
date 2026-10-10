@@ -3,7 +3,7 @@
 A facade method may be called from an untyped caller (a JSON adapter, a
 notebook): what it receives is checked here before any calculation, so a
 value of the wrong type raises
-:class:`~ccnl_engine.shared.domain.errors.InvalidInputError`, never an
+:class:`~ccnl_engine.errors.InvalidInputError`, never an
 ``AttributeError``.
 """
 
@@ -17,7 +17,7 @@ from ccnl_engine.payroll.domain.engine_mode import EngineMode
 from ccnl_engine.payroll.domain.inputs import PeriodInput
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.tax_year_plan import TaxYearPlan
-from ccnl_engine.shared.domain.validation import parse_enum, reject
+from ccnl_engine.validation import parse_enum, reject
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest

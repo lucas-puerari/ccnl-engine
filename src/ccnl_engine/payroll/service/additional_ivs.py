@@ -22,7 +22,7 @@ from ccnl_engine.payroll.domain.contributions import ContributionComponent
 from ccnl_engine.payroll.domain.rounding import money
 
 if TYPE_CHECKING:
-    from ccnl_engine.tax.domain.additional_ivs import AdditionalIvsRule
+    from ccnl_engine.tax.contribution.models_additional_ivs import AdditionalIvsRule
 
 __all__ = [
     "MONTHLY_COMPONENT",

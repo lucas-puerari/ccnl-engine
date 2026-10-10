@@ -11,7 +11,7 @@ if TYPE_CHECKING:
     from decimal import Decimal
 
     from ccnl_engine.payroll.service.irpef_credits import CreditOutcome
-    from ccnl_engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.annual.models import YearRules
 
 
 def credit_decision(

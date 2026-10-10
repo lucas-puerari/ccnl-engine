@@ -12,11 +12,11 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.domain.compensation import (
+from ccnl_engine.contract.catalog.loaders import load_ccnl
+from ccnl_engine.contract.compensation.models import (
     AccrualComparison,
     ExtraMonthAccrualRule,
 )
-from ccnl_engine.contract.service.loaders import load_ccnl
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.period._accrual_decisions import REASON_CODE
 from ccnl_engine.payroll.application.period._rule_sources import MISSING_SOURCE_CODE
@@ -37,16 +37,16 @@ from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
-from ccnl_engine.provenance.domain.chain import ProvenanceStatus, RuleProvenance
-from ccnl_engine.provenance.domain.source import (
+from ccnl_engine.provenance.source.models import (
     SourceDocument,
     SourceKind,
     SourceLocation,
 )
+from ccnl_engine.provenance.source.models_chain import ProvenanceStatus, RuleProvenance
 from tests.fixtures.withholding import calendar_schedule
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.domain.identity import CCNL
+    from ccnl_engine.contract.identity.facade import CCNL
     from ccnl_engine.payroll.domain.period import PeriodResult
 
 _YEAR = 2026

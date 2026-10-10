@@ -17,8 +17,8 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.contract.domain.compensation import Level
-    from ccnl_engine.contract.domain.identity import CCNL
+    from ccnl_engine.contract.compensation.models import Level
+    from ccnl_engine.contract.identity.facade import CCNL
 
 __all__ = ["without_replaced_elements"]
 

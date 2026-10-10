@@ -12,6 +12,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.application._period_utils import _apply_extra_month_policy
 from ccnl_engine.payroll.application.year._calendar import standard_calendar
 from ccnl_engine.payroll.application.year._extra_month_accrual import run_schedule
@@ -26,12 +27,11 @@ from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.schedule import PayrollSchedule
 from ccnl_engine.payroll.domain.tax_year import LAST_PAYMENT_DAY, monthly_payment_date
 from ccnl_engine.payroll.domain.withholding_schedule import WithholdingSchedule
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.contract.domain.identity import CCNL
+    from ccnl_engine.contract.identity.facade import CCNL
     from ccnl_engine.payroll.domain.calendar import WorkCalendar
     from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
     from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
@@ -75,7 +75,7 @@ def resolve_withholding_schedule(
 
     A planned payment of another tax year, already paid, or of the run of
     this payment raises
-    :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`.
+    :class:`~ccnl_engine.errors.InvalidInputError`.
     """
     if request.withholding_schedule is not None:
         return request.withholding_schedule

@@ -3,7 +3,7 @@
 A regular run outside the employment is described here, so that the
 request raises ``InvalidInputError`` at construction instead of a silent
 result deep in the calculation.  Field types are checked with
-:mod:`ccnl_engine.shared.domain.validation`.
+:mod:`ccnl_engine.validation`.
 """
 
 from __future__ import annotations

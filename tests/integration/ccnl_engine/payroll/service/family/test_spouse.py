@@ -15,7 +15,7 @@ import pytest
 
 from ccnl_engine.payroll.domain.family import Dependent, DependentRelationship
 from ccnl_engine.payroll.service.family.spouse import spouse_annual, spouse_deduction
-from ccnl_engine.tax.service.tax_optional_loaders import load_family_deduction_rules
+from ccnl_engine.tax.annual.loaders_optional import load_family_deduction_rules
 from tests.fixtures.dependents import declared_dependent
 from tests.fixtures.normative_oracles import family_2026
 

@@ -128,8 +128,8 @@ def test_no_engine_wrapper_imports() -> None:
 #
 # A module whose body is only imports (plus docstring and __all__) is a shim.
 # The package root and its public namespaces are the public API; the other
-# exceptions are package interfaces over their own underscore-private
-# submodules.
+# exceptions are package interfaces over their own submodules (a ``facade.py``
+# in the layout by domain).
 # ---------------------------------------------------------------------------
 
 _ALLOWED_REEXPORT_MODULES: frozenset[str] = frozenset({
@@ -138,7 +138,7 @@ _ALLOWED_REEXPORT_MODULES: frozenset[str] = frozenset({
     "ccnl_engine/events.py",
     "ccnl_engine/inputs.py",
     "ccnl_engine/results.py",
-    "ccnl_engine/contract/domain/identity/__init__.py",
+    "ccnl_engine/contract/identity/facade.py",
     "ccnl_engine/payroll/domain/events/__init__.py",
     "ccnl_engine/payroll/domain/pay_items/__init__.py",
 })

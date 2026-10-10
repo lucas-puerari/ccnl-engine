@@ -7,8 +7,8 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.provenance.domain.ruleset_identity import source_hash
-from ccnl_engine.tax.domain.surtax_rules import ComunaleRaw
+from ccnl_engine.provenance.ruleset.models import source_hash
+from ccnl_engine.tax.surtax.models import ComunaleRaw
 from scripts.data.build_comunale_surtax import (
     BuildOptions,
     RowError,

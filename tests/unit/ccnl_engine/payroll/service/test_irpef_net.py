@@ -22,7 +22,7 @@ from __future__ import annotations
 from decimal import Decimal
 
 from ccnl_engine.payroll.service.irpef_net import net_irpef
-from ccnl_engine.tax.domain.irpef_rules import WorkDeductionMinimum, WorkDeductionRules
+from ccnl_engine.tax.income.models import WorkDeductionMinimum, WorkDeductionRules
 from tests.helpers import make_year_rules
 
 #: The rules carry the 16-ter block, so the test fails if the engine uses it.

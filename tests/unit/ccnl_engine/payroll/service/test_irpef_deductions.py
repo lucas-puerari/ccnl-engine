@@ -29,7 +29,7 @@ from ccnl_engine.payroll.service.irpef_deductions import (
     minimum_left_to_tax_return,
     work_income_deduction,
 )
-from ccnl_engine.tax.domain.irpef_rules import (
+from ccnl_engine.tax.income.models import (
     WorkDeductionMinimum,
     WorkDeductionRules,
 )

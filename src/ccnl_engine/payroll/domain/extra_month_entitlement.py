@@ -11,7 +11,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from decimal import Decimal
 
-from ccnl_engine.shared.domain.validation import reject, require_decimal
+from ccnl_engine.validation import reject, require_decimal
 
 __all__ = [
     "MAX_ADDITIONAL_MONTHS",

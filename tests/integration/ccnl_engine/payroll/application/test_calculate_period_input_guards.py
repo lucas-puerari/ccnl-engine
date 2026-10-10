@@ -7,6 +7,7 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.errors import DataIntegrityError, InvalidInputError
 from ccnl_engine.payroll.application import reconcile as _reconcile_mod
 from ccnl_engine.payroll.application._period_utils import _require_resolution
 from ccnl_engine.payroll.application.calculate_period import calculate_period
@@ -20,7 +21,6 @@ from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.policy import PolicyContext
 from ccnl_engine.payroll.service.policy_loader import load_policy_resolver
-from ccnl_engine.shared.domain.errors import DataIntegrityError, InvalidInputError
 from tests.fixtures.period_requests import period_request
 from tests.helpers import EMPLOYER_50
 

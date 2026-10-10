@@ -30,7 +30,7 @@ from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.service.irpef_net import NetIrpef
-    from ccnl_engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.annual.models import YearRules
 
 __all__ = ["resolve_trattamento"]
 

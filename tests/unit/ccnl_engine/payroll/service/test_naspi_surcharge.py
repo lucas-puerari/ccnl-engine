@@ -11,7 +11,7 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.contract.domain.category import WorkerCategory
+from ccnl_engine.contract.employment.models_category import WorkerCategory
 from ccnl_engine.payroll.domain.employment import Apprentice, Permanent
 from ccnl_engine.payroll.domain.fixed_term import FixedTerm, NaspiExclusion
 from ccnl_engine.payroll.service.naspi_surcharge import (
@@ -21,7 +21,7 @@ from ccnl_engine.payroll.service.naspi_surcharge import (
 from tests.helpers import make_year_rules
 
 if TYPE_CHECKING:
-    from ccnl_engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.annual.models import YearRules
 
 _RULES = make_year_rules()
 _AGRICULTURE = _RULES.model_copy(

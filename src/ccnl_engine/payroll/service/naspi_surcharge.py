@@ -30,9 +30,9 @@ from typing import TYPE_CHECKING
 from ccnl_engine.payroll.domain.fixed_term import FixedTerm
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.domain.category import WorkerCategory
+    from ccnl_engine.contract.employment.models_category import WorkerCategory
     from ccnl_engine.payroll.domain.employment import Contract
-    from ccnl_engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.annual.models import YearRules
 
 __all__ = ["NaspiSurcharge", "SurchargeReason", "naspi_surcharge"]
 

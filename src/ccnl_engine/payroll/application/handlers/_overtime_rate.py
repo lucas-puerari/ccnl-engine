@@ -9,7 +9,7 @@ sets no statutory rate, so the engine has no default multiplier:
 - without a multiplier the CCNL band of the event's kind gives it as
   ``1 + band``;
 - without a multiplier and without such a band the run is rejected with
-  :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`.
+  :class:`~ccnl_engine.errors.InvalidInputError`.
 
 The band of a kind is the single percentage overtime band (code ``OT_*``)
 that applies to it with no hour threshold and no context condition: the
@@ -26,17 +26,17 @@ from dataclasses import dataclass, replace
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.domain.working_time import TimeSupplementKind, WorkKind
+from ccnl_engine.contract.working_time.models import TimeSupplementKind, WorkKind
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
 )
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.domain.identity import CCNL
-    from ccnl_engine.contract.domain.working_time import OvertimeBand
+    from ccnl_engine.contract.identity.facade import CCNL
+    from ccnl_engine.contract.working_time.models import OvertimeBand
     from ccnl_engine.payroll.domain.events import OvertimeEvent
 
 __all__ = [

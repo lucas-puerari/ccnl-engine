@@ -22,7 +22,7 @@ from ccnl_engine.payroll.service.family.spouse import spouse_deduction
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.payroll.service.family.common import DependentDeduction
-    from ccnl_engine.tax.domain.family import FamilyDeductionRules
+    from ccnl_engine.tax.family.models import FamilyDeductionRules
 
 __all__ = ["FamilyDeductions", "compute_family_deductions"]
 

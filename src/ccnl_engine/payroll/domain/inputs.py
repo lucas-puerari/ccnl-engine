@@ -29,12 +29,12 @@ from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
 from ccnl_engine.payroll.domain.run import PayrollRun
-from ccnl_engine.shared.domain.collection_validation import items_of_type, tuple_of
-from ccnl_engine.shared.domain.validation import (
+from ccnl_engine.validation import (
     require_date,
     require_instances,
     require_str,
 )
+from ccnl_engine.validation_collection import items_of_type, tuple_of
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual

@@ -11,8 +11,8 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.domain.identity import TaxSector
-from ccnl_engine.contract.service.loaders import load_ccnl
+from ccnl_engine.contract.catalog.loaders import load_ccnl
+from ccnl_engine.contract.identity.facade import TaxSector
 from ccnl_engine.inputs import ContributableHours, WeeklyHours
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.period._capability_traces import build_traces
@@ -27,8 +27,8 @@ from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.trace import TraceState
-from ccnl_engine.provenance.domain.chain import RuleProvenance
-from ccnl_engine.tax.service.tax_annual_assembler import load_year_rules
+from ccnl_engine.provenance.source.models_chain import RuleProvenance
+from ccnl_engine.tax.annual.loaders import load_year_rules
 from tests.fixtures.normative_oracles.contributions_2026 import contribution_base
 
 if TYPE_CHECKING:

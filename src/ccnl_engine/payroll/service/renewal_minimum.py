@@ -35,9 +35,9 @@ from ccnl_engine.payroll.service.regime_requirements import (
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.contract.domain.validity import TimeSeries
+    from ccnl_engine.contract.identity.rules_validity import TimeSeries
     from ccnl_engine.payroll.service.regime_requirements import RegimeFacts
-    from ccnl_engine.tax.domain.preferential_regime import PreferentialTaxRegime
+    from ccnl_engine.tax.regime.models import PreferentialTaxRegime
 
 __all__ = [
     "INCREMENT_UNQUANTIFIED",

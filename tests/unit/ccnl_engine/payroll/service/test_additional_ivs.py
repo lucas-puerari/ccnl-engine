@@ -21,7 +21,7 @@ from ccnl_engine.payroll.service.additional_ivs import (
     AdditionalIvsPosition,
     additional_ivs,
 )
-from ccnl_engine.tax.domain.additional_ivs import AdditionalIvsRule
+from ccnl_engine.tax.contribution.models_additional_ivs import AdditionalIvsRule
 
 _D = Decimal
 _RULE = AdditionalIvsRule(

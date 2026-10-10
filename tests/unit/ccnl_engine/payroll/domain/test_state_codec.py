@@ -16,6 +16,7 @@ from types import UnionType
 import pytest
 
 import ccnl_engine.payroll.domain as payroll_domain
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.inps_base import InpsBaseYtd
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.run import PayrollRunId, RunKind
@@ -25,7 +26,6 @@ from ccnl_engine.payroll.domain.state_codec import (
     period_state_from_json,
     period_state_to_json,
 )
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _VERSIONS = {"engine_version": "1.0.0", "bundle_version": "2026.1"}
 

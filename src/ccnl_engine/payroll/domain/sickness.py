@@ -17,8 +17,8 @@ from __future__ import annotations
 from dataclasses import dataclass, replace
 from datetime import date, timedelta
 
-from ccnl_engine.shared.domain.errors import InvalidInputError
-from ccnl_engine.shared.domain.validation import (
+from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.validation import (
     require_bool,
     require_date,
     require_str,

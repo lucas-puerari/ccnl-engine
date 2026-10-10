@@ -4,28 +4,28 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.service.loaders import load_ccnl
-from ccnl_engine.knowledge.service.capability_catalog_loader import (
+from ccnl_engine.contract.catalog.loaders import load_ccnl
+from ccnl_engine.knowledge.capability.loaders import (
     load_capability_catalog,
 )
-from ccnl_engine.knowledge.service.limitation_loader import load_engine_limitations
-from ccnl_engine.tax.service.surtax_loaders import load_surtax_rules
-from ccnl_engine.tax.service.tax_annual_assembler import load_year_rules
-from ccnl_engine.tax.service.tax_optional_loaders import (
+from ccnl_engine.knowledge.limitation.loaders import load_engine_limitations
+from ccnl_engine.tax.annual.loaders import load_year_rules
+from ccnl_engine.tax.annual.loaders_optional import (
     load_family_deduction_rules,
     load_sick_pay_rates,
     load_variable_pay_rules,
 )
+from ccnl_engine.tax.surtax.loaders import load_surtax_rules
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.domain.identity import CCNL, TaxSector
+    from ccnl_engine.contract.identity.facade import CCNL, TaxSector
+    from ccnl_engine.knowledge.limitation.models import ModelLimitation
     from ccnl_engine.payroll.domain.capability_catalog import CapabilityCatalog
-    from ccnl_engine.shared.domain.limitation import ModelLimitation
-    from ccnl_engine.tax.domain.family import FamilyDeductionRules
-    from ccnl_engine.tax.domain.ruleset import YearRules
-    from ccnl_engine.tax.domain.sick_pay import InpsSickPayRates
-    from ccnl_engine.tax.domain.surtax_rules import SurtaxRules
-    from ccnl_engine.tax.domain.variable_pay import VariablePayRules
+    from ccnl_engine.tax.annual.models import YearRules
+    from ccnl_engine.tax.family.models import FamilyDeductionRules
+    from ccnl_engine.tax.regime.models_variable_pay import VariablePayRules
+    from ccnl_engine.tax.sickness.models import InpsSickPayRates
+    from ccnl_engine.tax.surtax.models import SurtaxRules
 
 
 class BundledKnowledgeRepository:
@@ -52,7 +52,7 @@ class BundledKnowledgeRepository:
         """Return resolved tax year rules for *year*, *sector*, *num_employees*.
 
         Returns:
-            A :class:`~ccnl_engine.tax.domain.ruleset.YearRules` with
+            A :class:`~ccnl_engine.tax.annual.models.YearRules` with
             INPS rates resolved for the given headcount.
         """
         return load_year_rules(year, sector, num_employees)
@@ -61,7 +61,7 @@ class BundledKnowledgeRepository:
         """Return surtax rules for *year*.
 
         Returns:
-            A :class:`~ccnl_engine.tax.domain.surtax_rules.SurtaxRules`
+            A :class:`~ccnl_engine.tax.surtax.models.SurtaxRules`
             with regionale and comunale rate tables.
         """
         return load_surtax_rules(year)
@@ -87,7 +87,7 @@ class BundledKnowledgeRepository:
         """Return the statutory variable-pay rules for *year*.
 
         Returns:
-            A :class:`~ccnl_engine.tax.domain.variable_pay.VariablePayRules`
+            A :class:`~ccnl_engine.tax.regime.models_variable_pay.VariablePayRules`
             with fringe thresholds, PdR and L. 199/2025 regimes.
         """
         return load_variable_pay_rules(year)
@@ -96,7 +96,7 @@ class BundledKnowledgeRepository:
         """Return the Art. 12 TUIR family deduction rules for *year*.
 
         Returns:
-            A :class:`~ccnl_engine.tax.domain.family.FamilyDeductionRules`.
+            A :class:`~ccnl_engine.tax.family.models.FamilyDeductionRules`.
         """
         return load_family_deduction_rules(year)
 

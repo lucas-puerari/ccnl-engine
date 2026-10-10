@@ -13,8 +13,8 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.domain.ruleset_readiness import ccnl_ruleset_assurance
-from ccnl_engine.provenance.domain.ruleset_assurance import (
+from ccnl_engine.contract.catalog.models_readiness import ccnl_ruleset_assurance
+from ccnl_engine.provenance.ruleset.models_assurance import (
     RulesetAssurance,
     RulesetKind,
 )
@@ -24,7 +24,7 @@ if TYPE_CHECKING:
 
     from ccnl_engine.payroll.application.period._context import RunContext
     from ccnl_engine.payroll.application.period._rule_sources import RuleSource
-    from ccnl_engine.provenance.domain.ruleset_identity import RulesetIdentity
+    from ccnl_engine.provenance.ruleset.models import RulesetIdentity
 
 _SURTAX = frozenset({"addizionale_regionale", "addizionale_comunale"})
 #: Engine limitation of a run that reads provisional tax rules.

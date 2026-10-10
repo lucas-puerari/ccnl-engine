@@ -10,12 +10,12 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.domain.identity import NoteKind
-from ccnl_engine.knowledge.service.limitation_loader import load_engine_limitations
+from ccnl_engine.contract.identity.facade import NoteKind
+from ccnl_engine.knowledge.limitation.loaders import load_engine_limitations
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.domain.identity import CCNL
-    from ccnl_engine.shared.domain.limitation import LimitationScope, ModelLimitation
+    from ccnl_engine.contract.identity.facade import CCNL
+    from ccnl_engine.knowledge.limitation.models import LimitationScope, ModelLimitation
 
 _INTRO = (
     "Each simplification below is a model limitation of the registry. An open "
