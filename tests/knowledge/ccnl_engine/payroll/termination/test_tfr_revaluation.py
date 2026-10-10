@@ -79,8 +79,14 @@ def test_fund_to_revalue_waits_for_the_december_index() -> None:
     assert not result.is_payable
 
 
-def test_fondo_tesoreria_changes_the_account_not_the_cost() -> None:
-    """Same quota and employer cost; the posting moves to the Fondo account."""
+def test_fondo_tesoreria_changes_the_account_and_cuts_contributions() -> None:
+    """Same quota; the posting moves to the Fondo account.
+
+    The employer cost falls by the compensations of the TFR paid to the
+    Fondo (D.Lgs. 252/2005 art. 10): Fondo di garanzia 0.20% and the 0.28
+    points of D.L. 203/2005 art. 8, on the 2211 INPS base of December
+    (4.42 and 6.19).
+    """
     fund = TfrFundBalance(2025, Decimal("0.00"))
     company = _december(60, tfr_fund=fund, tfr_treasury_fund=False)
     treasury = _december(60, tfr_fund=fund, tfr_treasury_fund=True)
@@ -95,5 +101,7 @@ def test_fondo_tesoreria_changes_the_account_not_the_cost() -> None:
     (accrued,) = tfr_postings(company).values()
     assert tfr_postings(company) == {"tfr_accrual": accrued}
     assert tfr_postings(treasury) == {"tfr_treasury_fund": accrued}
-    assert treasury.period_employer_cost == company.period_employer_cost
+    assert treasury.period_employer_cost == (
+        company.period_employer_cost - Decimal("4.42") - Decimal("6.19")
+    )
     assert _revaluation(treasury) == ("no_opening_fund", CalculationStatus.FINAL)

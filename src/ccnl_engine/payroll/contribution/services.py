@@ -153,6 +153,18 @@ class TfrAccrual:
         return self.public in _AT_INPS
 
     @property
+    def conferred(self) -> bool:
+        """Whether the TFR of the run leaves the company for a fund.
+
+        True when it goes to the pension fund or to the Fondo Tesoreria;
+        False when it stays in the company, when INPS accrues it and while
+        the Fondo Tesoreria destination is unknown.
+        """
+        return not self.notional and (
+            self.to_pension_fund or self.treasury_fund is True
+        )
+
+    @property
     def amount(self) -> Decimal:
         """TFR accrued on the run, in the company or paid to a fund."""
         return _ZERO if self.notional else self.quota - self.deduction

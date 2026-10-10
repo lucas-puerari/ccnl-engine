@@ -17,6 +17,7 @@ from ccnl_engine.payroll.contribution.services import (
     TFR_TREASURY_FUND_CODE,
     TfrAccrual,
 )
+from ccnl_engine.payroll.employment.inputs_fact import PublicEndOfService
 from ccnl_engine.payroll.ledger.models import AccountKind
 
 _QUOTA = Decimal("152.02")
@@ -67,3 +68,30 @@ def test_unknown_destination_of_a_tfr_is_a_missing_fact() -> None:
     assert issue.code == TFR_TREASURY_FUND_CODE
     assert issue.fact == "tfr_treasury_fund"
     assert issue.status is CalculationStatus.PROVISIONAL
+
+
+@pytest.mark.parametrize(
+    ("to_pension_fund", "treasury_fund", "public", "conferred"),
+    [
+        (True, None, None, True),
+        (False, True, None, True),
+        (False, False, None, False),
+        (False, None, None, False),
+        (True, None, PublicEndOfService.TFR_INPS, False),
+    ],
+)
+def test_conferred_when_the_tfr_leaves_the_company(
+    *,
+    to_pension_fund: bool,
+    treasury_fund: bool | None,
+    public: PublicEndOfService | None,
+    conferred: bool,
+) -> None:
+    """A pension fund or the Fondo Tesoreria; not an unknown or notional one."""
+    accrual = TfrAccrual(
+        quota=_QUOTA,
+        to_pension_fund=to_pension_fund,
+        treasury_fund=treasury_fund,
+        public=public,
+    )
+    assert accrual.conferred is conferred

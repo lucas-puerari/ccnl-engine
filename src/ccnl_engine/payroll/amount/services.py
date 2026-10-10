@@ -23,6 +23,9 @@ from ccnl_engine.payroll.contribution.services_public_end_of_service import (
     end_of_service_issue,
     life_insurance_issue,
 )
+from ccnl_engine.payroll.contribution.services_tfr_compensation import (
+    with_tfr_compensation,
+)
 from ccnl_engine.payroll.period.rules_run_decision import pdr_decision
 from ccnl_engine.payroll.taxation.rules_surtax import run_surtax
 from ccnl_engine.payroll.taxation.services_irpef import (
@@ -118,6 +121,7 @@ def _compute_amounts(
     """
     breakdown, employee_rate = run_contributions(inp)
     tfr = tfr_accrual(inp, breakdown)
+    breakdown = with_tfr_compensation(inp, breakdown, tfr)
     pension = run_pension(inp)
     assistance = run_assistance(inp.assistance, inp.contributable_hours)
     if not inp.withholding_agent:

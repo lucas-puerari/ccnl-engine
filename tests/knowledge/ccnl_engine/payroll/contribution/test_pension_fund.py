@@ -123,7 +123,12 @@ class TestTabaccoAlifond:
     """ALIFOND on tabacco level 4A, a full 2026 year."""
 
     def test_run_posts_the_fund_lines(self) -> None:
-        """Employer 26.46, employee 17.64, solidarity 2.65 on 1763.68."""
+        """Employer 26.46, employee 17.64, solidarity 2.65 on 1763.68.
+
+        The TFR paid to the fund also cuts the employer contributions on the
+        1764 INPS base (D.Lgs. 252/2005 art. 10): Fondo di garanzia 0.20%
+        (3.53) and the 0.28 points of D.L. 203/2005 art. 8 (4.94).
+        """
         result = regular_period(employment=_tabacco())
         assert _entry(result, "pension_fund_employer") == Decimal("26.46")
         assert _entry(result, "pension_fund_employee") == Decimal("17.64")
@@ -131,13 +136,17 @@ class TestTabaccoAlifond:
         solidarity = _entry(result, "employer_contributions") - _entry(
             inps_only, "employer_contributions"
         )
-        assert solidarity == Decimal("2.65")
+        assert solidarity == Decimal("2.65") - Decimal("3.53") - Decimal("4.94")
 
     def test_employer_cost_rises_by_fund_and_solidarity(self) -> None:
-        """14 x (26.46 + 2.65) = 407.54 a year; the gross does not move."""
+        """14 x (26.46 + 2.65 - 3.53 - 4.94) = 288.96; the gross does not move.
+
+        Fund and solidarity add 407.54 a year; the TFR paid to the fund
+        takes back 14 x (3.53 + 4.94) = 118.58 of contributions.
+        """
         enrolled, not_enrolled = _year(_tabacco()), _year(_tabacco(NoPensionFund()))
         delta = enrolled.annual_employer_cost - not_enrolled.annual_employer_cost
-        assert delta == Decimal("407.54")
+        assert delta == Decimal("288.96")
         assert enrolled.annual_gross == not_enrolled.annual_gross
 
     def test_employee_contribution_leaves_the_taxable(self) -> None:
@@ -187,7 +196,7 @@ class TestTabaccoAlifond:
 
 
 class TestTfrToFund:
-    """The TFR paid to the fund moves between accounts, not the cost."""
+    """The TFR paid to the fund moves between accounts and cuts contributions."""
 
     def test_tfr_moves_to_the_fund_account(self) -> None:
         """130.64 less the 0.50% additional IVS 8.82 goes to the fund."""
@@ -206,12 +215,18 @@ class TestTfrToFund:
         result = regular_period(employment=employment)
         assert _entry(result, "pension_fund_tfr") == Decimal("141.67")
 
-    def test_employer_cost_does_not_depend_on_tfr_choice(self) -> None:
-        """With or without the TFR to the fund the cost is the same."""
+    def test_employer_cost_falls_by_the_tfr_compensations(self) -> None:
+        """The TFR to the fund costs 3.53 + 4.94 less than in the company.
+
+        D.Lgs. 252/2005 art. 10: Fondo di garanzia 0.20% and the 0.28 points
+        of D.L. 203/2005 art. 8 on the 1764 INPS base, for the TFR conferred.
+        """
         kept = PensionFundEnrolment("ALIFOND", Decimal("0.01"), tfr_to_fund=False)
         to_fund = regular_period(employment=_tabacco())
         in_company = regular_period(employment=_tabacco(kept))
-        assert to_fund.period_employer_cost == in_company.period_employer_cost
+        assert to_fund.period_employer_cost == (
+            in_company.period_employer_cost - Decimal("3.53") - Decimal("4.94")
+        )
         assert _entry(in_company, "tfr_accrual") == Decimal("121.82")
         assert _entry(in_company, "pension_fund_tfr") == 0
 
@@ -220,7 +235,12 @@ class TestVetroFonchim:
     """FONCHIM on vetro level C: 1.75% in 2026, 2.25% only from 2027."""
 
     def test_employer_cost_rises_at_the_2026_rate(self) -> None:
-        """13 x (41.38 + 4.14) = 591.76 a year."""
+        """13 x (41.38 + 4.14 - 4.73 - 6.62) = 444.21 a year.
+
+        Fund and solidarity add 591.76; the TFR paid to the fund takes back,
+        on the 2364 INPS base, Fondo di garanzia 0.20% (4.73) and the 0.28
+        points of D.L. 203/2005 art. 8 (6.62) in each of the 13 runs.
+        """
         employment = Employment(
             ccnl_slug=_VETRO, level_code="C", contract_type=Permanent()
         )
@@ -233,7 +253,7 @@ class TestVetroFonchim:
             )
         )
         delta = enrolled.annual_employer_cost - _year(employment).annual_employer_cost
-        assert delta == Decimal("591.76")
+        assert delta == Decimal("444.21")
         first = enrolled.period_results[0]
         assert _entry(first, "pension_fund_employer") == Decimal("41.38")
         assert _entry(first, "pension_fund_employee") == Decimal("35.47")

@@ -140,11 +140,32 @@ white collars insured with ENPAIA). State the outcome:
 | `False` | `tfr_accrual` | none |
 | `None` | `tfr_accrual` | `missing_fact` `tfr_treasury_fund` on a run with a non-zero TFR outside a pension fund |
 
-The amount and the employer cost are the same on both accounts. Domestic
-employers and public administrations are outside the Fondo: `None` and
-`False` keep the TFR in the company, `True` raises `InvalidInputError`. The
-TFR a worker pays to a pension fund goes to `pension_fund_tfr` whatever the
-fact says.
+The amount is the same on both accounts. Domestic employers and public
+administrations are outside the Fondo: `None` and `False` keep the TFR in
+the company, `True` raises `InvalidInputError`. The TFR a worker pays to a
+pension fund goes to `pension_fund_tfr` whatever the fact says.
+
+### Compensations of the TFR conferred
+
+When the TFR of a run goes to a pension fund or to the Fondo Tesoreria, the
+employer contributions of the run fall by two exemptions on the INPS base,
+in the same percentage as the TFR conferred (the engine confers the TFR of
+a run whole, so 100%):
+
+| Component | Rate | Source |
+|---|---|---|
+| `tfr_guarantee_fund_exemption` | 0.20%, 0.40% for a dirigente of industria or edilizia | D.Lgs. 252/2005 art. 10 c. 2; INPS circ. 70/2007 par. 6 |
+| `tfr_relief_exemption` | 0.28 points | D.L. 203/2005 art. 8 and Tabella A; INPS circ. 4/2008 |
+
+Both are negative employer components of the contribution breakdown and
+never take the employer contributions below zero. They apply in industria,
+terziario, artigianato, credito and edilizia; domestic work and public
+administrations are outside the Fondo di garanzia, and agricoltura, whose
+rates by contract are not modelled, takes none. While the Fondo Tesoreria
+destination is unknown (`None`) no exemption applies. An apprentice takes
+the 0.28 points only: whether the apprentice rate holds a Fondo di garanzia
+share to exempt is not sourced, and the run records the open limitation
+`tfr_compensation_apprentice_guarantee_fund`.
 
 ### Revaluation at 31 December
 
