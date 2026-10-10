@@ -107,7 +107,7 @@ art. 1 cc. 4-5, and blocks no run by its label. Most also
 read an `assumed` base salary:
 <!-- trust:extra-months-assumed -->121 of 126<!-- /trust:extra-months-assumed -->
 CCNLs cite no clause for their number of monthly payments. The bundle holds
-<!-- trust:rules-missing -->86<!-- /trust:rules-missing --> `missing` rules
+<!-- trust:rules-missing -->85<!-- /trust:rules-missing --> `missing` rules
 (see [Provenance](provenance.md#current-counts)); a run that reads one also
 raises a `rule_source_missing` issue and is `incomplete`.
 

@@ -24,14 +24,14 @@ Evidence:
   tests of those modules must kill at least 93% of the mutants; 805 of 855
   (94.2%) on 8 October 2026.  The survivors are mostly the trace text of
   decisions (source labels, input names).
-- Reference table cases: <!-- trust:reference-cases -->10<!-- /trust:reference-cases -->
+- Reference table cases: <!-- trust:reference-cases -->11<!-- /trust:reference-cases -->
   cases in `tests/fixtures/reference_tables/`, each running one regular period through
   `PayrollEngine` and asserting, to the cent, the three values its cited
   salary table states: base salary, fixed allowances and period gross. They
   do not check net pay, contributions, taxes or employer cost.
   <!-- trust:reference-cases-source-linked -->10<!-- /trust:reference-cases-source-linked -->
   are `source_linked` (they cite the table they model) and
-  <!-- trust:reference-cases-verified -->0<!-- /trust:reference-cases-verified -->
+  <!-- trust:reference-cases-verified -->1<!-- /trust:reference-cases-verified -->
   are `verified` against an independent payslip or official worked example.
 - Legal scenario tests: selected rules (IRPEF, regional and municipal
   surtaxes, substitute-tax regimes, apprenticeship scaling, the withholding
@@ -93,7 +93,7 @@ enforced; in `operational` mode a CCNL that is not `production` adds a
 `ruleset_not_production` blocker.
 
 Bundled CCNL rulesets at `production`:
-<!-- trust:readiness-production -->0<!-- /trust:readiness-production -->.
+<!-- trust:readiness-production -->1<!-- /trust:readiness-production -->.
 Payable rules with provenance status `verified`:
 <!-- trust:rules-verified -->0<!-- /trust:rules-verified -->
 (see [Provenance](provenance.md#current-counts)).

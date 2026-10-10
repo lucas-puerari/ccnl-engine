@@ -168,7 +168,7 @@ Capabilities of the registry by layer and implementation:
 | 114 | C021 | [CCNL per i lavoratori addetti all'industria orafa, argentiera e della gioielleria (Federorafi)](orafi-argentieri-industria-federorafi.md) | industria | ~18k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 40 / 2 / 0 | 🧪 | 🤖 |
 | 115 | D111 | [CCNL per i lavoratori addetti alle industrie delle pelli e dei succedanei della pelle (Assopellettieri)](pelli-cuoio-industria-assopellettieri.md) | industria | ~17k | — | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 35 / 1 / 1 | 🧪 | 🤖 |
 | 116 | E012 | [CCNL per i lavoratori dell'industria alimentare (Federalimentare)](alimentari-federalimentare.md) | industria | ~145k | — | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 73 / 2 / 0 | 🧪 | 🤖 |
-| 117 | B101 | [CCNL per i lavoratori dell'industria conciaria (UNIC)](concia-unic.md) | industria | ~22.6k | — | 🔲 | 🔲 | 🔲 | overtime, seniority, sickness | 0 / 57 / 0 / 1 | 🧪 | 🤖 |
+| 117 | B101 | [CCNL per i lavoratori dell'industria conciaria (UNIC)](concia-unic.md) | industria | ~22.6k | — | 🔲 | 🔲 | 🔲 | overtime, seniority, sickness | 0 / 58 / 0 / 0 | 🏭 | 🧑 |
 | 118 | F051 | [CCNL per i lavoratori dell'industria del legno, del sughero, del mobile, dell'arredamento e delle industrie affini (Federlegno-Arredo)](legno-arredamento-federlegno.md) | industria | ~90k | — | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 88 / 2 / 0 | 🧪 | 🤖 |
 | 119 | D014 | [CCNL per i lavoratori dell'industria tessile, abbigliamento, moda (SMI)](tessile-smi.md) | industria | ~160k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 47 / 1 / 1 | 🧪 | 🤖 |
 | 120 | J271 | [CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane](bcc-credito-cooperativo.md) | credito | ~33k | — | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 40 / 1 / 1 | 🧪 | 🤖 |

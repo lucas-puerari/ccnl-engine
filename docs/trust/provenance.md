@@ -113,7 +113,7 @@ from a secondary document.
 
 | Status | Meaning | Record requirements |
 |---|---|---|
-| `verified` | A named person checked the value against the cited location on a recorded date | A citation (below), `extraction.verified_by` and `extraction.verified_at` |
+| `verified` | A named reviewer checked the value against the cited location on a recorded date: a person, or an AI review the owner of the ruleset authorised | A citation (below), `extraction.verified_by` and `extraction.verified_at` |
 | `derived` | Taken or computed from a cited document location, without a recorded check | A citation (below) |
 | `assumed` | Adopted without a located citation: an unchecked AI extraction, a reconstruction or estimate, or a value whose clause was never located | `location` optional |
 | `missing` | No source backs the value | no `location` |
@@ -144,7 +144,11 @@ transformation, and its note says why.
 changes; it only lowers labels. A record raised back to `derived` after
 its source is located must drop that note, which the gate reads as an
 estimate.
-Nothing becomes `verified` without a named reviewer and a date: the legacy
+Nothing becomes `verified` without a named reviewer and a date. The
+reviewer is a person, or an AI review the owner of the ruleset authorised:
+then `verified_by` (or `verification.human_reviewed_by`) names the model and
+the authorising owner, e.g. `claude-opus-5-5 (AI review authorised by the
+owner, lucas-puerari)`, and the owner stays accountable for it. The legacy
 `extraction.verification_status: "verified"` alone, or the file-level
 `verification.human_reviewed_by`, does not say which value was checked by
 whom, so such records are `derived`.
@@ -176,14 +180,14 @@ when they drift.
 | Status | CCNL rules | Fiscal blocks | Total |
 |---|---:|---:|---:|
 | `verified` | 0 | 0 | 0 |
-| `derived` | 5 782 | 102 | 5 884 |
+| `derived` | 5 783 | 102 | 5 885 |
 | `assumed` | 758 | 144 | 902 |
-| `missing` | 86 | 0 | 86 |
+| `missing` | 85 | 0 | 85 |
 
 <!-- /trust:provenance-table -->
 
-Of the <!-- trust:rules-missing -->86<!-- /trust:rules-missing --> `missing`
-rules, <!-- trust:accrual-missing -->86<!-- /trust:accrual-missing --> are
+Of the <!-- trust:rules-missing -->85<!-- /trust:rules-missing --> `missing`
+rules, <!-- trust:accrual-missing -->85<!-- /trust:accrual-missing --> are
 extra-month accrual thresholds of CCNLs whose signed clause is not in the
 bundle. `assumed` covers every rule of a ruleset that declares
 `source_type: "estimated"` (the 2026 sector tax and INPS files and a few

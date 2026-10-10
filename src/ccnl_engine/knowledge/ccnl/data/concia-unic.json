@@ -7,7 +7,7 @@
     "effective_until": null,
     "published_at": "2026-09-11",
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
-    "source_hash": "b386da408f0254ea0d805ec113ed79c9dbd8ccfc33ef9ea2e3dc26412d09b8f2",
+    "source_hash": "e77872c0112167574654469b7d9aa853938a1fd5170d63e59679082ce3d92b7d",
     "verification_status": "verified",
     "source_type": "contracting_party"
   },
@@ -222,6 +222,33 @@
           "method": "manual",
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verification_status": "verified",
+          "effective_from": "2024-03-01"
+        }
+      }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "mysolution-scheda-concia-industria-2017",
+            "title": "Scheda di sintesi CCNL Concia Industria (MySolution, aprile 2017)",
+            "kind": "rivista",
+            "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+            "published_on": "2017-04-01",
+            "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+          },
+          "page": "2",
+          "section": "Mensilità aggiuntive, tredicesima mensilità",
+          "quote": "Se il rapporto è iniziato/cessato in corso d’anno, la frazione di mese superiore a 15 giorni è considerata mese intero."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-10T00:00:00",
+          "verification_status": "unverified",
           "effective_from": "2024-03-01"
         }
       }
@@ -2798,5 +2825,14 @@
         }
       }
     ]
+  },
+  "verification": {
+    "confidence": "verified",
+    "readiness": "production",
+    "verified_cases": 1,
+    "last_reviewed": "2026-10-10",
+    "human_reviewed_by": "claude-opus-5-5 (AI review authorised by the owner, lucas-puerari)",
+    "owner": "lucas-puerari",
+    "review_due": "2027-01-31"
   }
 }

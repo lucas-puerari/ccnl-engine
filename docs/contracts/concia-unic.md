@@ -10,7 +10,7 @@
 | **Ruleset version** | `2026.1` |
 | **Extraction** | 🤖 AI-assisted |
 | **Verification** | 🟢 Verified |
-| **Readiness** | 🧪 Exploratory |
+| **Readiness** | 🏭 Production |
 
 [← Contracts index](index.md)
 
@@ -44,16 +44,16 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 
 | | |
 |---|---|
-| **Readiness** | 🧪 Exploratory |
-| **Confidence** | 🔴 Unverified |
-| **Last human review** | — |
+| **Readiness** | 🏭 Production |
+| **Confidence** | 🟢 Verified |
+| **Last human review** | 2026-10-10 |
 
 ### Freschezza
 
 | | |
 |---|---|
 | **Last renewal** | — |
-| **Last verified** | — |
+| **Last verified** | 2026-10-10 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ### Semplificazioni note

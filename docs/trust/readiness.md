@@ -54,7 +54,7 @@ in decisions; integration into HR tools that do not add their own disclaimer.
 
 ### `exploratory` → `reviewed`
 
-A human reviewer must:
+A reviewer (a person, or an AI review the owner of the ruleset authorised and recorded) must:
 
 1. Open the primary CCNL source document (URL recorded in `meta.sources`).
 2. Confirm every base salary amount for each level against the table in the
@@ -101,9 +101,9 @@ it drifts):
 
 | Readiness | CCNL rulesets |
 |---|---:|
-| `exploratory` | 126 |
+| `exploratory` | 125 |
 | `reviewed` | 0 |
-| `production` | 0 |
+| `production` | 1 |
 
 <!-- /trust:readiness-table -->
 
@@ -174,6 +174,6 @@ Both modes compute the same amounts.
 
 An operational engine returns the result with its blockers instead of
 refusing before the calculation, so the amounts and every other blocker stay
-inspectable. With <!-- trust:readiness-production -->0<!-- /trust:readiness-production -->
+inspectable. With <!-- trust:readiness-production -->1<!-- /trust:readiness-production -->
 `production` rulesets, no bundled CCNL is payable in operational mode: the
 gate opens one CCNL at a time, as each is promoted.
