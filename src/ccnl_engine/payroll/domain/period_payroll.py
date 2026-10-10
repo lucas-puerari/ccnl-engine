@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from ccnl_engine.shared.domain.validation import require_int
+from ccnl_engine.validation import require_int
 
 
 @dataclass(frozen=True)
@@ -29,7 +29,7 @@ class PeriodId:
         """Validate year and month ranges.
 
         A ``month`` outside 1-12 or a ``year`` below 1 raises
-        :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`.
+        :class:`~ccnl_engine.errors.InvalidInputError`.
         """
         require_int(
             self.month, "PeriodId.month", feature="payroll_run", minimum=1, maximum=12

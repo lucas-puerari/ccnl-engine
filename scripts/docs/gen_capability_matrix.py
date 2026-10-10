@@ -28,7 +28,7 @@ from typing import TYPE_CHECKING
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from ccnl_engine.knowledge.service.capability_catalog_loader import (
+from ccnl_engine.knowledge.capability.loaders import (
     load_capability_catalog,
 )
 from ccnl_engine.payroll.domain.capability_catalog import CapabilityImplementation

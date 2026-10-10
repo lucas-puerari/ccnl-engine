@@ -28,11 +28,11 @@ from datetime import date, timedelta
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.decisions import CalculationIssue, CalculationStatus
 from ccnl_engine.payroll.domain.events import AbsenceEvent
 from ccnl_engine.payroll.domain.proration import payable_days
 from ccnl_engine.payroll.domain.sickness import SicknessEpisode
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
     from collections.abc import Iterator

@@ -18,14 +18,14 @@ from ccnl_engine.payroll.service.bundled_knowledge_repository import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.domain.identity import CCNL, TaxSector
+    from ccnl_engine.contract.identity.facade import CCNL, TaxSector
+    from ccnl_engine.knowledge.limitation.models import ModelLimitation
     from ccnl_engine.payroll.domain.capability_catalog import CapabilityCatalog
-    from ccnl_engine.shared.domain.limitation import ModelLimitation
-    from ccnl_engine.tax.domain.family import FamilyDeductionRules
-    from ccnl_engine.tax.domain.ruleset import YearRules
-    from ccnl_engine.tax.domain.sick_pay import InpsSickPayRates
-    from ccnl_engine.tax.domain.surtax_rules import SurtaxRules
-    from ccnl_engine.tax.domain.variable_pay import VariablePayRules
+    from ccnl_engine.tax.annual.models import YearRules
+    from ccnl_engine.tax.family.models import FamilyDeductionRules
+    from ccnl_engine.tax.regime.models_variable_pay import VariablePayRules
+    from ccnl_engine.tax.sickness.models import InpsSickPayRates
+    from ccnl_engine.tax.surtax.models import SurtaxRules
 
 SOURCE_YEAR = 2026
 TARGET_YEAR = 2027

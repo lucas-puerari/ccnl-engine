@@ -13,6 +13,7 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.obligations import EmploymentObligations
 from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
 from ccnl_engine.payroll.domain.shortfall_deferral import (
@@ -20,7 +21,6 @@ from ccnl_engine.payroll.domain.shortfall_deferral import (
     DeferredShortfall,
     ShortfallDeferralRequest,
 )
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _DECEMBER = date(2025, 12, 1)
 

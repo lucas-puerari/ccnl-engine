@@ -7,14 +7,14 @@ from datetime import date
 from decimal import Decimal
 from enum import StrEnum
 
-from ccnl_engine.shared.domain.collection_validation import items_of_type, tuple_of
-from ccnl_engine.shared.domain.errors import InvalidInputError
-from ccnl_engine.shared.domain.validation import (
+from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.validation import (
     parse_enum,
     require_bool,
     require_date,
     require_decimal,
 )
+from ccnl_engine.validation_collection import items_of_type, tuple_of
 
 _FEATURE = "family_deductions"
 _ZERO = Decimal(0)

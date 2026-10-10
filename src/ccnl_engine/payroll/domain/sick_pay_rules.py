@@ -1,7 +1,7 @@
 """INPS and CCNL rules a sick day is classified with.
 
 The CCNL treatment of a day comes from one of two models of
-:class:`~ccnl_engine.contract.domain.sickness.SicknessRules`:
+:class:`~ccnl_engine.contract.sickness.models.SicknessRules`:
 
 - per episode: the index of the day in its episode and the relapses it
   continues selects the tier (months of 30 days) and ends the comporto
@@ -27,9 +27,9 @@ if TYPE_CHECKING:
     from datetime import date
     from decimal import Decimal
 
-    from ccnl_engine.contract.domain.sickness import SicknessRules
+    from ccnl_engine.contract.sickness.models import SicknessRules
     from ccnl_engine.payroll.domain.sickness import SicknessEpisode, SicknessHistory
-    from ccnl_engine.tax.domain.sick_pay import InpsSickPayRates
+    from ccnl_engine.tax.sickness.models import InpsSickPayRates
 
 __all__ = ["DayTreatment", "SickPayRules"]
 

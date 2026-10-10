@@ -5,7 +5,11 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.domain.validity import rule_scope
+from ccnl_engine.contract.identity.rules_validity import rule_scope
+from ccnl_engine.errors import (
+    DataIntegrityError,
+    MissingRequiredFactError,
+)
 from ccnl_engine.payroll.application._period_utils import _ZERO
 from ccnl_engine.payroll.domain.contributions import (
     ContributionBreakdown,
@@ -16,18 +20,14 @@ from ccnl_engine.payroll.service.naspi_surcharge import (
     SurchargeReason,
     naspi_surcharge,
 )
-from ccnl_engine.shared.domain.errors import (
-    DataIntegrityError,
-    MissingRequiredFactError,
-)
 
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.contract.domain.identity import CCNL
+    from ccnl_engine.contract.identity.facade import CCNL
     from ccnl_engine.payroll.domain.employment import Contract
-    from ccnl_engine.tax.domain.domestic_contribution_rules import DomesticInpsRates
-    from ccnl_engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.annual.models import YearRules
+    from ccnl_engine.tax.contribution.models_domestic import DomesticInpsRates
 
 
 def _pick_domestic_per_hour(

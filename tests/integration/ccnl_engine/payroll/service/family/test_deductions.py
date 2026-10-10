@@ -10,7 +10,7 @@ from ccnl_engine.payroll.domain.family import (
     FamilyComposition,
 )
 from ccnl_engine.payroll.service.family.deductions import compute_family_deductions
-from ccnl_engine.tax.service.tax_optional_loaders import load_family_deduction_rules
+from ccnl_engine.tax.annual.loaders_optional import load_family_deduction_rules
 from tests.fixtures.dependents import declared_dependent
 
 _D = Decimal

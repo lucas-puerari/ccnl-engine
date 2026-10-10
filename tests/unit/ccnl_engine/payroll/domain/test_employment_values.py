@@ -7,6 +7,7 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment import Employment, Permanent
 from ccnl_engine.payroll.domain.employment_facts import (
@@ -21,7 +22,6 @@ from ccnl_engine.payroll.domain.seniority_fact import (
     SeniorityFact,
     SenioritySource,
 )
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _START = date(2026, 3, 1)
 _SENIORITY = SeniorityFact(36, _START, SenioritySource.PAYSLIP)

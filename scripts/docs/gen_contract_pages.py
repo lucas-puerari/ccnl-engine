@@ -31,8 +31,8 @@ from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from ccnl_engine.contract.domain.identity import CCNL
-from ccnl_engine.knowledge.service.capability_catalog_loader import (
+from ccnl_engine.contract.identity.facade import CCNL
+from ccnl_engine.knowledge.capability.loaders import (
     load_capability_catalog,
 )
 from scripts.docs.coverage_report import (

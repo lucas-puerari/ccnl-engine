@@ -20,9 +20,9 @@ from ccnl_engine.payroll.service.surtax_table import (
     SPECIFIC_EXEMPTIONS_ISSUE,
     regional_surtax_amount,
 )
-from ccnl_engine.shared.domain.primitives import Bracket
-from ccnl_engine.tax.domain.surtax_rules import SurtaxRules
-from ccnl_engine.tax.domain.surtax_tables import (
+from ccnl_engine.primitives import Bracket
+from ccnl_engine.tax.surtax.models import SurtaxRules
+from ccnl_engine.tax.surtax.models_table import (
     ComunaleEntry,
     RegionalDeduction,
     RegionaleEntry,

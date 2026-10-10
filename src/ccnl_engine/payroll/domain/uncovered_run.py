@@ -5,8 +5,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from ccnl_engine.errors import MissingRuleError
 from ccnl_engine.payroll.domain.assurance import BlockerCode, ResultBlocker
-from ccnl_engine.shared.domain.errors import MissingRuleError
 
 if TYPE_CHECKING:
     from datetime import date
@@ -24,7 +24,7 @@ class UncoveredRun:
     date of the run: the pay tables start later, or the date falls in a
     gap the bundle declares.  The year computes its other runs and is not
     payable (see :attr:`blocker`).  The fields are those of the
-    :class:`~ccnl_engine.shared.domain.errors.MissingRuleError` a run of
+    :class:`~ccnl_engine.errors.MissingRuleError` a run of
     that date raises, rebuilt by :attr:`error`.
 
     Attributes:

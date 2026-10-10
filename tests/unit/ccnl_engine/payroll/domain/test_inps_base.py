@@ -6,8 +6,8 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.inps_base import InpsBaseYtd
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 
 def test_total_counts_every_employment_and_runs_add_to_own() -> None:

@@ -22,12 +22,12 @@ from ccnl_engine.payroll.service.irpef_deductions import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.tax.domain.credit_rules import (
+    from ccnl_engine.tax.income.models import WorkDeductionRules
+    from ccnl_engine.tax.income.models_credit import (
         SommaEsenteRules,
         TrattamentoIntegrativoRules,
         UlterioreDetrazioneRules,
     )
-    from ccnl_engine.tax.domain.irpef_rules import WorkDeductionRules
 
 _ZERO = Decimal(0)
 

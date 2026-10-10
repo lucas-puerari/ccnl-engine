@@ -14,8 +14,9 @@ Rules and hard limits:
   (3), ``data`` resource directories exempt;
 - ``underscore_files``: files under ``src``, ``tests``, ``scripts`` and
   ``demo`` whose name starts with an underscore (0), the package root
-  ``src/ccnl_engine/__init__.py`` exempt: every new ``__init__.py`` or
-  ``_module.py`` fails;
+  ``src/ccnl_engine/__init__.py`` and the docstring-only package markers
+  under ``src`` exempt: every other new ``__init__.py`` or ``_module.py``
+  fails;
 - ``technical_directories``: directories under the same roots named after a
   technical layer (``domain``, ``application``, ``service``, ``handlers``,
   ``fixtures``, ``data``) instead of a domain (0);
@@ -212,9 +213,29 @@ def layout_offenders(root: Path) -> tuple[list[Path], list[Path]]:
             if path.is_dir():
                 if path.name in TECHNICAL_DIRS:
                     dirs.append(rel)
-            elif path.name.startswith("_") and rel != ROOT_INIT:
+            elif path.name.startswith("_") and not _allowed_init(path, rel):
                 files.append(rel)
     return sorted(files), sorted(dirs)
+
+
+def _allowed_init(path: Path, rel: Path) -> bool:
+    """Return whether *rel* is the package root or a source package marker.
+
+    A package marker is an ``__init__.py`` under ``src`` holding at most a
+    docstring: the documentation tooling needs each domain directory to be a
+    regular package (docs/engine/architecture-contract-migration.md).
+
+    Returns:
+        True for :data:`ROOT_INIT` and for a marker.
+    """
+    if rel == ROOT_INIT:
+        return True
+    if path.name != "__init__.py" or rel.parts[0] != "src":
+        return False
+    body = ast.parse(path.read_text(encoding="utf-8")).body
+    return len(body) <= 1 and all(
+        isinstance(n, ast.Expr) and isinstance(n.value, ast.Constant) for n in body
+    )
 
 
 def markdown_files(root: Path) -> list[Path]:

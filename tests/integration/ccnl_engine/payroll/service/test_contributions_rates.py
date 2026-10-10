@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from datetime import date
 
-from ccnl_engine.contract.domain.category import WorkerCategory
-from ccnl_engine.contract.domain.identity import TaxSector
+from ccnl_engine.contract.employment.models_category import WorkerCategory
+from ccnl_engine.contract.identity.facade import TaxSector
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
@@ -17,7 +17,7 @@ from ccnl_engine.payroll.service._contributions_rates import (
     CATEGORY_RATE_ASSUMED_CODE,
     category_rate_issue,
 )
-from ccnl_engine.tax.service.tax_annual_assembler import load_year_rules
+from ccnl_engine.tax.annual.loaders import load_year_rules
 
 _ARTIGIANATO = load_year_rules(2026, TaxSector.ARTIGIANATO, 10)
 

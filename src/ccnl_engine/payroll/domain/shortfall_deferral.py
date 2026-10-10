@@ -39,9 +39,9 @@ from datetime import date, timedelta
 from decimal import ROUND_DOWN, Decimal
 from typing import final
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.rounding import money
-from ccnl_engine.shared.domain.errors import InvalidInputError
-from ccnl_engine.shared.domain.validation import (
+from ccnl_engine.validation import (
     reject,
     require_date,
     require_decimal,
@@ -166,7 +166,7 @@ class DeferredShortfall:
         A ``tax_year`` before 2020, a ``deferred_from`` outside ``tax_year``
         and January and February of the next year, or an ``irpef`` that is
         not a positive finite amount raises
-        :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`.
+        :class:`~ccnl_engine.errors.InvalidInputError`.
         """
         owner = "DeferredShortfall"
         require_int(

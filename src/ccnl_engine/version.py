@@ -2,7 +2,7 @@
 
 This mirrors the ``project.version`` in ``pyproject.toml`` and is kept in sync
 manually.  It is distinct from the *knowledge base* version exposed at
-``ccnl_engine.knowledge.__version__``: the library version changes when the
+``ccnl_engine.bundle_version``: the library version changes when the
 engine code changes, while the knowledge version changes when the bundled
 datasets change.  A payroll result records the knowledge version in
 ``bundle_version``; a persisted state records both, and is read back only by

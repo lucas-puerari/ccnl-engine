@@ -2,7 +2,7 @@
 
 An integration taking over an employment states the totals of the previous
 provider here and imports them with
-:meth:`~ccnl_engine.api.facade.PayrollEngine.import_opening_balances`, the
+:meth:`~ccnl_engine.api.PayrollEngine.import_opening_balances`, the
 one way to build a state the engine did not compute.  Each payment behind
 the totals is identified, so the engine never computes it again.
 """
@@ -14,6 +14,7 @@ from datetime import date
 from decimal import Decimal
 from typing import final
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.opening_balance_fields import (
     FEATURE,
     check_bases,
@@ -33,8 +34,7 @@ from ccnl_engine.payroll.domain.shortfall_deferral import DeferredShortfall
 from ccnl_engine.payroll.domain.sickness import SicknessEpisode
 from ccnl_engine.payroll.domain.surtax_obligations import SurtaxObligation
 from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
-from ccnl_engine.shared.domain.errors import InvalidInputError
-from ccnl_engine.shared.domain.validation import require_instance
+from ccnl_engine.validation import require_instance
 
 __all__ = ["OpeningBalances"]
 

@@ -5,13 +5,13 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from ccnl_engine.errors import MissingRequiredFactError
 from ccnl_engine.payroll.domain.rounding import money
-from ccnl_engine.shared.domain.errors import MissingRequiredFactError
 
 if TYPE_CHECKING:
     from decimal import Decimal
 
-    from ccnl_engine.provenance.domain.chain import RuleProvenance
+    from ccnl_engine.provenance.source.models_chain import RuleProvenance
 
 __all__ = ["CAPABILITY", "AssistanceContribution", "AssistanceTerms", "run_assistance"]
 

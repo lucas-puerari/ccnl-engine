@@ -7,7 +7,7 @@ facts, the calendar, the opening state and the balances imported from another pr
 
 from __future__ import annotations
 
-from ccnl_engine.contract.domain.category import WorkerCategory
+from ccnl_engine.contract.employment.models_category import WorkerCategory
 from ccnl_engine.payroll.application.opening_balances import OpeningBalances
 from ccnl_engine.payroll.application.state_persistence import (
     period_state_from_json,
@@ -59,7 +59,7 @@ from ccnl_engine.payroll.domain.surtax_obligations import (
     SurtaxObligation,
 )
 from ccnl_engine.payroll.domain.tfr_fund import TfrFundBalance
-from ccnl_engine.tax.domain.preferential_regime import EmploymentSector
+from ccnl_engine.tax.regime.models import EmploymentSector
 
 __all__ = [
     "Apprentice",

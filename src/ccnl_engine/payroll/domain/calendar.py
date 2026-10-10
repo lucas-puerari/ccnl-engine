@@ -19,6 +19,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from decimal import Decimal
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.extra_month_entitlement import (
     MAX_ADDITIONAL_MONTHS,
     MIN_ADDITIONAL_MONTHS,
@@ -28,9 +29,8 @@ from ccnl_engine.payroll.domain.extra_month_schedule import (
     ExtraMonthKind,
     ExtraMonthSchedule,
 )
-from ccnl_engine.shared.domain.collection_validation import items_of_type, tuple_of
-from ccnl_engine.shared.domain.errors import InvalidInputError
-from ccnl_engine.shared.domain.validation import require_int
+from ccnl_engine.validation import require_int
+from ccnl_engine.validation_collection import items_of_type, tuple_of
 
 _FEATURE = "calendar"
 

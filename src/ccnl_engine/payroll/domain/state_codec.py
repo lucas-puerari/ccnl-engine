@@ -21,6 +21,7 @@ from enum import Enum
 from types import MappingProxyType
 from typing import Any, NoReturn
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.accrual_state import EmploymentAccrualState
 from ccnl_engine.payroll.domain.credit_accounts import (
     SommaEsenteAccount,
@@ -52,7 +53,6 @@ from ccnl_engine.payroll.domain.ytd_accounts import (
     TaxYtd,
     WithholdingShortfall,
 )
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 __all__ = ["STATE_TYPES", "period_state_from_json", "period_state_to_json"]
 

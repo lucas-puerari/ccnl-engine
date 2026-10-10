@@ -31,7 +31,7 @@ from ccnl_engine.payroll.domain.proration import payable_days
 if TYPE_CHECKING:
     from collections.abc import Iterator
 
-    from ccnl_engine.contract.domain.absence import DailyDivisorMethod
+    from ccnl_engine.contract.absence.models import DailyDivisorMethod
     from ccnl_engine.payroll.domain.sick_cumulation import CcnlDay
     from ccnl_engine.payroll.domain.sick_pay_rules import DayTreatment, SickPayRules
     from ccnl_engine.payroll.domain.sickness import SicknessEpisode, SicknessHistory

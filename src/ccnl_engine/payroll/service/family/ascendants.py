@@ -15,7 +15,7 @@ if TYPE_CHECKING:
     from decimal import Decimal
 
     from ccnl_engine.payroll.domain.family import Dependent
-    from ccnl_engine.tax.domain.family import FamilyDeductionRules
+    from ccnl_engine.tax.family.models import FamilyDeductionRules
 
 __all__ = ["ascendant_deductions"]
 

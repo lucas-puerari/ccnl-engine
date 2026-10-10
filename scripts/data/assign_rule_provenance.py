@@ -41,7 +41,7 @@ from typing import Any, Final
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from ccnl_engine.provenance.domain.ruleset_identity import source_hash
+from ccnl_engine.provenance.ruleset.models import source_hash
 from scripts.ci.provenance_labels import has_citation
 from scripts.data.fiscal_provenance import FISCAL_RECORDS
 

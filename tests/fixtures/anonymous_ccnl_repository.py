@@ -13,7 +13,7 @@ from ccnl_engine.payroll.service.bundled_knowledge_repository import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.domain.identity import CCNL
+    from ccnl_engine.contract.identity.facade import CCNL
 
 __all__ = ["AnonymousCcnlRepository"]
 

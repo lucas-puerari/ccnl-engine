@@ -27,7 +27,7 @@ if TYPE_CHECKING:
         CalculationIssue,
     )
     from ccnl_engine.payroll.domain.ytd_accounts import RegimeCapAccount
-    from ccnl_engine.tax.domain.preferential_regime import (
+    from ccnl_engine.tax.regime.models import (
         PreferentialTaxRegime,
     )
 

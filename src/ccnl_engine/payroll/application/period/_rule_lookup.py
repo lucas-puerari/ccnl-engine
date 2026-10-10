@@ -26,13 +26,15 @@ from ccnl_engine.payroll.domain.pension_fund import PensionFundEnrolment
 if TYPE_CHECKING:
     from collections.abc import Callable
 
-    from ccnl_engine.contract.domain.validity import ValidityPeriod
+    from ccnl_engine.contract.identity.rules_validity import ValidityPeriod
     from ccnl_engine.payroll.application.period._context import RunContext
-    from ccnl_engine.provenance.domain.chain import ProvenanceStatus, RuleProvenance
-    from ccnl_engine.provenance.domain.ruleset_identity import RulesetIdentity
+    from ccnl_engine.provenance.ruleset.models import RulesetIdentity
+    from ccnl_engine.provenance.source import models_chain
 
 #: A rule the run read: its identifier and its provenance, if recorded.
-type Rule = tuple[str, RuleProvenance | ProvenanceStatus | None]
+type Rule = tuple[
+    str, models_chain.RuleProvenance | models_chain.ProvenanceStatus | None
+]
 
 
 def _name(ruleset: RulesetIdentity | None, fallback: str) -> str:
@@ -43,10 +45,9 @@ def _salary_rules(ctx: RunContext) -> tuple[Rule, ...]:
     """Return the salary, allowance and extra-month rules of the run.
 
     Returns:
-        The base salary period, each allowance of the pay chain, the
-        additional-months period in force on the competence date, the
-        accrual rule when its threshold decided a rateo of the run and the
-        partial-month rules when the run pays part of its month.
+        The base salary period, the allowances of the pay chain, the extra
+        months in force, the accrual rule that decided a rateo and the
+        partial-month rules.
     """
     ccnl, level = ctx.contract.ccnl, ctx.contract.level
     day = ctx.contract.tctx.competence
@@ -60,11 +61,8 @@ def _salary_rules(ctx: RunContext) -> tuple[Rule, ...]:
         for period in _in_force(level.base_salary.period_at(day))
     ]
     rules.extend(
-        (
-            f"{prefix}.fixed_allowances[{allowance.code}]",
-            allowance.provenance or level.provenance,
-        )
-        for allowance, _amount in ctx.chain.allowances
+        (f"{prefix}.fixed_allowances[{a.code}]", a.provenance or level.provenance)
+        for a, _amount in ctx.chain.allowances
     )
     rules.extend(
         (f"{name}:additional_months[{period.valid_from}]", period.provenance)
@@ -188,8 +186,8 @@ def tax_rules(ctx: RunContext) -> dict[str, tuple[Rule, ...]]:
     }
 
 
-def _provenance(block: object) -> RuleProvenance | None:
-    provenance: RuleProvenance | None = getattr(block, "provenance", None)
+def _provenance(block: object) -> models_chain.RuleProvenance | None:
+    provenance: models_chain.RuleProvenance | None = getattr(block, "provenance", None)
     return provenance
 
 

@@ -14,10 +14,10 @@ from ccnl_engine.payroll.service.fiscal_surtax import (
     SurtaxOutcome,
     compute_surtax,
 )
-from ccnl_engine.shared.domain.primitives import Bracket
-from ccnl_engine.tax.domain.surtax_rules import SurtaxRules
-from ccnl_engine.tax.domain.surtax_tables import ComunaleEntry, RegionaleEntry
-from ccnl_engine.tax.service.surtax_loaders import load_surtax_rules
+from ccnl_engine.primitives import Bracket
+from ccnl_engine.tax.surtax.loaders import load_surtax_rules
+from ccnl_engine.tax.surtax.models import SurtaxRules
+from ccnl_engine.tax.surtax.models_table import ComunaleEntry, RegionaleEntry
 
 _D = Decimal
 _TAXABLE = _D("30000")

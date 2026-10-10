@@ -26,6 +26,7 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.errors import OutOfScopeError
 from ccnl_engine.payroll.application.withholding._cap import unrecovered_issue
 from ccnl_engine.payroll.application.withholding._deferral_lines import (
     CAPABILITY,
@@ -40,7 +41,6 @@ from ccnl_engine.payroll.domain.shortfall_deferral import (
     FIRST_DEFERRAL_MONTH,
     DeferredShortfall,
 )
-from ccnl_engine.shared.domain.errors import OutOfScopeError
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.period._context import RunContext

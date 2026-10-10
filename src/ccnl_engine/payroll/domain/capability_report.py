@@ -28,7 +28,7 @@ from ccnl_engine.payroll.domain.capability_catalog import (
     CapabilityImplementation,
 )
 from ccnl_engine.payroll.domain.trace import TraceState
-from ccnl_engine.shared.domain.primitives import FrozenDict
+from ccnl_engine.primitives import FrozenDict
 
 if TYPE_CHECKING:
     from collections.abc import Mapping
@@ -38,7 +38,7 @@ if TYPE_CHECKING:
         CapabilityEntry,
     )
     from ccnl_engine.payroll.domain.requirements import UnresolvedRequirement
-    from ccnl_engine.provenance.domain.chain import ProvenanceStatus
+    from ccnl_engine.provenance.source.models_chain import ProvenanceStatus
 
 __all__ = [
     "CapabilityGap",

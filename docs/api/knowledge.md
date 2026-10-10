@@ -4,7 +4,7 @@ The versioned dataset bundle consumed by the loaders. Every file here is pure
 JSON data plus version metadata — the knowledge base carries no Python logic,
 so it can be updated or redistributed independently of the engine.
 
-`ccnl_engine.knowledge.__version__` identifies the bundled data set (e.g.
+`ccnl_engine.bundle_version` identifies the bundled data set (e.g.
 `"2026.3"`). It is independent of the library version in `pyproject.toml`.
 
 ## Layout
@@ -30,13 +30,13 @@ owner and the name of its compressed copy in the wheel.
 
 ## Version
 
-::: ccnl_engine.knowledge.__version__
+::: ccnl_engine.bundle_version
 
 ## Reading data
 
 Loaders in `ccnl_engine.contract.service`, `ccnl_engine.tax.service` and
 `ccnl_engine.knowledge.service` read these resources through the manifest
-(`ccnl_engine.knowledge.service.manifest`): a path the manifest does not list
+(`ccnl_engine.knowledge.loaders_manifest`): a path the manifest does not list
 is never read.  A wheel carries each resource compressed under the same path
 with `.gz`.  The loaders validate the JSON against the engine's pydantic
 schemas.

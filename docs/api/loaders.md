@@ -13,29 +13,29 @@ See [Get started](../getting-started/index.md) for the typical loading sequence 
 
 ## Contracts
 
-::: ccnl_engine.contract.service.loaders
+::: ccnl_engine.contract.catalog.loaders
     options:
       members:
         - load_ccnl
 
 ## Tax
 
-::: ccnl_engine.tax.service.tax_annual_assembler
+::: ccnl_engine.tax.annual.loaders
     options:
       members:
         - load_year_rules
 
-::: ccnl_engine.tax.domain.ruleset
+::: ccnl_engine.tax.annual.models
     options:
       members:
         - YearRules
 
-::: ccnl_engine.tax.domain.contribution_rules
+::: ccnl_engine.tax.contribution.models
     options:
       members:
         - InpsRates
 
-::: ccnl_engine.tax.domain.irpef_rules
+::: ccnl_engine.tax.income.models
     options:
       members:
         - IrpefBracket

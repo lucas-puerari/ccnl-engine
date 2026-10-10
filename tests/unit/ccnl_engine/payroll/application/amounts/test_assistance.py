@@ -10,12 +10,12 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.errors import MissingRequiredFactError
 from ccnl_engine.payroll.application.amounts._assistance import (
     AssistanceTerms,
     run_assistance,
 )
-from ccnl_engine.provenance.domain.chain import ProvenanceStatus, RuleProvenance
-from ccnl_engine.shared.domain.errors import MissingRequiredFactError
+from ccnl_engine.provenance.source.models_chain import ProvenanceStatus, RuleProvenance
 
 _TERMS = AssistanceTerms(
     employee_per_hour=Decimal("0.02"),

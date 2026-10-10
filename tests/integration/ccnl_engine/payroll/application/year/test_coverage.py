@@ -10,6 +10,7 @@ from datetime import date
 
 import pytest
 
+from ccnl_engine.errors import UnknownLevelError
 from ccnl_engine.payroll.application.calculate_tax_year import calculate_tax_year
 from ccnl_engine.payroll.application.year._payments import prepare_year
 from ccnl_engine.payroll.domain.competence_year_plan import CompetenceYearPlan
@@ -19,7 +20,6 @@ from ccnl_engine.payroll.domain.tax_year_plan import TaxYearPlan
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
-from ccnl_engine.shared.domain.errors import UnknownLevelError
 
 _REPO = BundledKnowledgeRepository()
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))

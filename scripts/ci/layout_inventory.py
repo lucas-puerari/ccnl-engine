@@ -493,9 +493,22 @@ def _common_problems(target: str) -> list[str]:
         for part in pure.parts[:-1]
         if part in TECHNICAL_DIRS
     ]
-    if pure.name.startswith("_") and target != ROOT_INIT:
+    if pure.name.startswith("_") and target != ROOT_INIT and not _is_marker(target):
         problems.append("basename starts with an underscore")
     return problems
+
+
+def _is_marker(target: str) -> bool:
+    """Return whether *target* is a package marker of a source directory.
+
+    Source directories keep a docstring-only ``__init__.py`` so that the
+    documentation tooling sees them as packages; check_structure.py checks
+    that a marker holds no code.
+
+    Returns:
+        True for an ``__init__.py`` under ``src/ccnl_engine``.
+    """
+    return target.startswith(f"{PACKAGE}/") and target.endswith("/__init__.py")
 
 
 #: The index of the knowledge bundle, at its root.
@@ -518,7 +531,9 @@ def _module_problems(pure: PurePosixPath) -> list[str]:
     if directory not in SOURCE_TREE:
         return [f"directory {directory!r} not in the target tree"]
     naming = ROLE_NAME if directory else ROOT_NAME
-    return [] if naming.match(pure.name) else ["name is not a technical role"]
+    if pure.name == "__init__.py" or naming.match(pure.name):
+        return []
+    return ["name is not a technical role"]
 
 
 def _source_problems(target: str) -> list[str]:

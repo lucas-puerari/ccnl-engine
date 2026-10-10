@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from ccnl_engine.contract.domain.identity import TaxSector
+from ccnl_engine.contract.identity.facade import TaxSector
 from ccnl_engine.payroll.application.knowledge_repository import KnowledgeRepository
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,

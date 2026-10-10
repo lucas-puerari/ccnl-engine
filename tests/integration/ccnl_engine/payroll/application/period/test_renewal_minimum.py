@@ -24,7 +24,7 @@ from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
-from ccnl_engine.tax.domain.preferential_regime import EmploymentSector
+from ccnl_engine.tax.regime.models import EmploymentSector
 from tests.fixtures.next_year_repository import NextYearRepository
 from tests.fixtures.seniority import new_hire
 

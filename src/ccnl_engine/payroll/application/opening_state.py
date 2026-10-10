@@ -1,6 +1,6 @@
 """The state that opens a run after balances imported from another provider.
 
-:meth:`~ccnl_engine.api.facade.PayrollEngine.import_opening_balances` checks
+:meth:`~ccnl_engine.api.PayrollEngine.import_opening_balances` checks
 the :class:`~ccnl_engine.payroll.application.opening_balances.OpeningBalances`
 and maps them here onto the competence and tax cash state.
 """

@@ -11,10 +11,10 @@ from ccnl_engine.payroll.domain.sickness import SicknessHistory
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.contract.domain.absence import DailyDivisorMethod
+    from ccnl_engine.contract.absence.models import DailyDivisorMethod
     from ccnl_engine.payroll.domain.sick_pay_rules import SickPayRules
     from ccnl_engine.payroll.service.types import MonthlyPayChain
-    from ccnl_engine.provenance.domain.source import SourceLocation
+    from ccnl_engine.provenance.source.models import SourceLocation
 
 __all__ = ["DailyQuota", "SicknessTerms"]
 

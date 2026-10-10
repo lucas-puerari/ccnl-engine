@@ -16,7 +16,7 @@ from dataclasses import dataclass
 from decimal import Decimal
 
 from ccnl_engine.payroll.domain.rounding import money
-from ccnl_engine.shared.domain.validation import (
+from ccnl_engine.validation import (
     reject,
     require_decimal,
     require_int,
@@ -101,7 +101,7 @@ class RecoveryPlan:
         """Validate field constraints on construction.
 
         A field that violates its invariant raises
-        :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`.
+        :class:`~ccnl_engine.errors.InvalidInputError`.
         """
         require_str(self.kind, "RecoveryPlan.kind", feature=_FEATURE, non_blank=True)
         for name in ("original_amount", "installment_amount"):

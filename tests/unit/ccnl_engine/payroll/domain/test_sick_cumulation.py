@@ -18,7 +18,7 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.contract.domain.sickness import (
+from ccnl_engine.contract.sickness.models import (
     ShortAbsenceReduction,
     SicknessCumulation,
     SicknessRules,

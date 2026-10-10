@@ -12,19 +12,19 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.knowledge.limitation.models import LimitationFacts
 from ccnl_engine.payroll.application.period._contractual_fund import contractual_paths
 from ccnl_engine.payroll.application.period._enam import enam_paths
 from ccnl_engine.payroll.application.period._pension_decision import paid_month_paths
 from ccnl_engine.payroll.application.period._rulesets import provisional_paths
 from ccnl_engine.payroll.application.period._seniority import seniority_months_at
 from ccnl_engine.payroll.domain.capability_report import CapabilityScope
-from ccnl_engine.shared.domain.limitation import LimitationFacts
 
 if TYPE_CHECKING:
+    from ccnl_engine.knowledge.limitation.models import ModelLimitation
     from ccnl_engine.payroll.application.handlers._totals import _EventTotals
     from ccnl_engine.payroll.application.period._context import RunContext
     from ccnl_engine.payroll.domain.capability_report import CapabilityReport
-    from ccnl_engine.shared.domain.limitation import ModelLimitation
 
 __all__ = ["limitation_facts", "run_limitations"]
 

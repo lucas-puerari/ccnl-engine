@@ -25,7 +25,7 @@ from pydantic import ValidationError
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from ccnl_engine.contract.domain.identity import CCNL
+from ccnl_engine.contract.identity.facade import CCNL
 from scripts.data.assign_rule_provenance import migrate_ccnl
 
 if TYPE_CHECKING:
@@ -33,12 +33,12 @@ if TYPE_CHECKING:
     from datetime import date
     from decimal import Decimal
 
-    from ccnl_engine.contract.domain.compensation import CCNLParameters, Level
-    from ccnl_engine.contract.domain.fund_contribution import (
+    from ccnl_engine.contract.compensation.models import CCNLParameters, Level
+    from ccnl_engine.contract.fund.models import (
         ContractualFundContribution,
     )
-    from ccnl_engine.contract.domain.seniority import SeniorityIncrements
-    from ccnl_engine.contract.domain.validity import TimeSeries
+    from ccnl_engine.contract.identity.rules_validity import TimeSeries
+    from ccnl_engine.contract.seniority.models import SeniorityIncrements
 
 # Paths inside the repo used for git diff filtering.
 _KNOWLEDGE_ROOT = "src/ccnl_engine/knowledge"

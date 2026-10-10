@@ -26,7 +26,7 @@ from ccnl_engine.payroll.domain.decisions import (
 )
 from ccnl_engine.payroll.domain.engine_mode import EngineMode
 from ccnl_engine.payroll.domain.requirements import UnresolvedRequirement
-from ccnl_engine.provenance.domain.chain import ProvenanceStatus
+from ccnl_engine.provenance.source.models_chain import ProvenanceStatus
 from tests.fixtures.rulesets import tax_ruleset
 
 if TYPE_CHECKING:

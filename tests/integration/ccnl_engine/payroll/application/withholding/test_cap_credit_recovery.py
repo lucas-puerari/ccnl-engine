@@ -14,7 +14,7 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 
-from ccnl_engine.contract.domain.identity import TaxSector
+from ccnl_engine.contract.identity.facade import TaxSector
 from ccnl_engine.payroll.application.amounts._contributions import TfrAccrual
 from ccnl_engine.payroll.application.amounts._types import _PeriodAmounts
 from ccnl_engine.payroll.application.withholding._cap import (
@@ -24,7 +24,7 @@ from ccnl_engine.payroll.application.withholding._cap import (
 from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
 from ccnl_engine.payroll.domain.pay_items import CompetencePeriod
 from ccnl_engine.payroll.domain.ytd_accounts import WithholdingShortfall
-from ccnl_engine.tax.service.tax_annual_assembler import load_year_rules
+from ccnl_engine.tax.annual.loaders import load_year_rules
 
 _YEAR = 2026
 _ZERO = Decimal(0)

@@ -31,7 +31,7 @@ from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
-from ccnl_engine.provenance.domain.chain import ProvenanceStatus, RuleProvenance
+from ccnl_engine.provenance.source.models_chain import ProvenanceStatus, RuleProvenance
 from tests.fixtures.current_year import employment_only
 from tests.fixtures.dependents import declared_dependent
 from tests.fixtures.prior_year import RENEWAL_WAIVED
@@ -39,9 +39,9 @@ from tests.fixtures.residence import COMUNE_BELFIORE, REGIONE
 from tests.fixtures.seniority import new_hire
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.domain.identity import TaxSector
+    from ccnl_engine.contract.identity.facade import TaxSector
     from ccnl_engine.payroll.domain.period import PeriodResult
-    from ccnl_engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.annual.models import YearRules
 
 _METALMECCANICO = "metalmeccanico-federmeccanica.json"
 #: A CCNL whose salary table still reads assumed rules.

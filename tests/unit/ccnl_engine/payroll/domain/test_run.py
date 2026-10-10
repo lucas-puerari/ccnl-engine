@@ -4,13 +4,13 @@ from __future__ import annotations
 
 import pytest
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.run import (
     PayrollRun,
     PayrollRunId,
     RunKind,
     run_identifier,
 )
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 
 class TestPayrollRun:

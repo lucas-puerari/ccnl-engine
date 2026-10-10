@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.year._extra_month_qualification import (
     non_accruing_days,
     termination_settlements,
@@ -17,7 +18,6 @@ from ccnl_engine.payroll.domain.accrual import (
 )
 from ccnl_engine.payroll.domain.inputs import PeriodInput
 from ccnl_engine.payroll.domain.schedule import PayrollSchedule
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
     from datetime import date

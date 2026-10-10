@@ -16,7 +16,8 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.contract.service.loaders import load_ccnl
+from ccnl_engine.contract.catalog.loaders import load_ccnl
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.inputs import NoPensionFund, WorkerCategory
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.handlers._overtime_rate import (
@@ -35,8 +36,7 @@ from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
 from ccnl_engine.payroll.domain.events import OvertimeEvent, OvertimeKind
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
-from ccnl_engine.provenance.domain.chain import ProvenanceStatus
-from ccnl_engine.shared.domain.errors import InvalidInputError
+from ccnl_engine.provenance.source.models_chain import ProvenanceStatus
 from tests.fixtures.current_year import employment_only
 from tests.fixtures.prior_year import RENEWAL_WAIVED
 from tests.fixtures.residence import COMUNE_BELFIORE, REGIONE

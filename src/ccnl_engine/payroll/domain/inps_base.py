@@ -25,8 +25,8 @@ from dataclasses import dataclass, replace
 from decimal import Decimal
 from typing import final
 
-from ccnl_engine.shared.domain.errors import InvalidInputError
-from ccnl_engine.shared.domain.validation import require_decimal, require_int
+from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.validation import require_decimal, require_int
 
 __all__ = ["InpsBaseYtd"]
 

@@ -6,8 +6,8 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.inputs import TfrFundBalance
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 
 def test_valid_balance_keeps_its_values() -> None:

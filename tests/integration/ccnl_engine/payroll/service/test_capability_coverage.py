@@ -4,9 +4,10 @@ from __future__ import annotations
 
 import pytest
 
-from ccnl_engine.contract.domain.identity import CCNL, CoverageNote, NoteKind
-from ccnl_engine.contract.service.loaders import load_ccnl
-from ccnl_engine.knowledge.service.capability_catalog_loader import (
+from ccnl_engine.contract.catalog.loaders import load_ccnl
+from ccnl_engine.contract.identity.facade import CCNL, CoverageNote, NoteKind
+from ccnl_engine.errors import DataIntegrityError
+from ccnl_engine.knowledge.capability.loaders import (
     load_capability_catalog,
 )
 from ccnl_engine.payroll.domain.capability_catalog import (
@@ -17,7 +18,6 @@ from ccnl_engine.payroll.service.capability_coverage import (
     ccnl_capabilities,
     layer_coverage,
 )
-from ccnl_engine.shared.domain.errors import DataIntegrityError
 
 _CATALOG = load_capability_catalog(2026)
 _IMPL = CapabilityImplementation

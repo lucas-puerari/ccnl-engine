@@ -29,11 +29,11 @@ from ccnl_engine.payroll.domain.decisions import (
 from ccnl_engine.payroll.domain.employment_facts import PublicEndOfService
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.run import RunKind
-from ccnl_engine.provenance.domain.chain import RuleProvenance
+from ccnl_engine.provenance.source.models_chain import RuleProvenance
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.period._context import RunContext
-    from ccnl_engine.tax.domain.tfr_revaluation import TfrRevaluationRules
+    from ccnl_engine.tax.severance.models_revaluation import TfrRevaluationRules
 
 __all__ = [
     "NO_OPENING_FUND",

@@ -12,9 +12,9 @@ from typing import Any
 
 from ccnl_engine.payroll.service.irpef import irpef_gross, surtax_from_brackets
 from ccnl_engine.payroll.service.irpef_deductions import work_income_deduction
-from ccnl_engine.tax.domain.irpef_rules import WorkDeductionRules
-from ccnl_engine.tax.domain.ruleset import YearRules
-from ccnl_engine.tax.domain.surtax_tables import SurtaxBracket
+from ccnl_engine.tax.annual.models import YearRules
+from ccnl_engine.tax.income.models import WorkDeductionRules
+from ccnl_engine.tax.surtax.models_table import SurtaxBracket
 from tests.helpers import make_year_rules
 
 # ---------------------------------------------------------------------------

@@ -9,7 +9,7 @@ from typing import TYPE_CHECKING, Protocol
 from ccnl_engine.payroll.domain.rounding import money
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.domain.compensation import Allowance
+    from ccnl_engine.contract.compensation.models import Allowance
 
 _ZERO = Decimal(0)
 
@@ -75,7 +75,7 @@ class MonthlyPayChain:
         is the CCNL apprentice amount, already set for apprentices, so it
         is paid in full: reducing it again would count the apprenticeship
         twice.  Allowances are reduced only when
-        :attr:`~ccnl_engine.contract.domain.compensation\
+        :attr:`~ccnl_engine.contract.compensation.models\
 .Allowance.apprenticeship_pct_relevant` is ``True``; the others are paid
         at their full contractual value.
 
@@ -96,7 +96,7 @@ class MonthlyPayChain:
         """Scale only proportionable components by ``factor``.
 
         Base salary and seniority are always proportionable.  Allowances are
-        scaled only when :attr:`~ccnl_engine.contract.domain.compensation\
+        scaled only when :attr:`~ccnl_engine.contract.compensation.models\
 .Allowance.part_time_proportionable` is ``True``; allowances with
         ``part_time_proportionable=False`` retain their full contractual value.
 

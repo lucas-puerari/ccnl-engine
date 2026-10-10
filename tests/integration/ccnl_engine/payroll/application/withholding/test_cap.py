@@ -32,7 +32,7 @@ from decimal import ROUND_HALF_UP, Decimal
 from functools import cache
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.domain.identity import TaxSector
+from ccnl_engine.contract.identity.facade import TaxSector
 from ccnl_engine.payroll.application.amounts._contributions import TfrAccrual
 from ccnl_engine.payroll.application.amounts._types import _PeriodAmounts
 from ccnl_engine.payroll.application.calculate_competence_year import (
@@ -52,7 +52,7 @@ from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.ytd_accounts import WithholdingShortfall
-from ccnl_engine.tax.service.tax_annual_assembler import load_year_rules
+from ccnl_engine.tax.annual.loaders import load_year_rules
 from tests.fixtures.normative_oracles.irpef_2026 import net_irpef
 from tests.fixtures.normative_oracles.withholding_2026 import (
     regular_month_withholding,

@@ -5,7 +5,7 @@ Rules, D.Lgs. 252/2005 unless stated:
 - the fund is financed by the worker, the employer and the TFR (art. 8
   c. 1); the CCNL sets the rates (art. 8 c. 2).  The bundle stores them as
   a fraction of the base the fund names, the INPS or the TFR base
-  (:class:`~ccnl_engine.contract.domain.compensation.EmployerFund`);
+  (:class:`~ccnl_engine.contract.compensation.models.EmployerFund`);
 - the employee and employer contributions are deductible from the income
   up to an annual cap (art. 8 c. 4; TUIR art. 10 c. 1 lett. e-bis): the
   employee part withheld and the employer part within the cap do not form
@@ -22,21 +22,21 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.domain.identity import TaxSector
+from ccnl_engine.contract.identity.facade import TaxSector
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.pension_fund import PENSION_FEATURE
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.service.pension_fund_lookup import check_category, fund_of
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.contract.domain.category import WorkerCategory
-    from ccnl_engine.contract.domain.fund_contribution import EmployerFund
-    from ccnl_engine.contract.domain.identity import CCNL
-    from ccnl_engine.contract.domain.validity import TimeSeries, ValidityPeriod
+    from ccnl_engine.contract.employment.models_category import WorkerCategory
+    from ccnl_engine.contract.fund.models import EmployerFund
+    from ccnl_engine.contract.identity.facade import CCNL
+    from ccnl_engine.contract.identity.rules_validity import TimeSeries, ValidityPeriod
     from ccnl_engine.payroll.domain.pension_fund import PensionFundEnrolment
-    from ccnl_engine.tax.domain.pension_rules import ComplementaryPensionRules
+    from ccnl_engine.tax.pension.models import ComplementaryPensionRules
 
 _ZERO = Decimal(0)
 
@@ -103,7 +103,7 @@ class PensionContribution:
         deductible: Part of ``employer + employee`` deducted from the
             taxable income of the run, within the cap left.
         contractual: Fixed contribution the CCNL owes the fund for every
-            worker (:class:`~ccnl_engine.contract.domain.fund_contribution\
+            worker (:class:`~ccnl_engine.contract.fund.models\
 .ContractualFundContribution`), part of ``employer``.
     """
 

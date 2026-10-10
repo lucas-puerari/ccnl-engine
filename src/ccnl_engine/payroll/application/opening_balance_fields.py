@@ -12,15 +12,15 @@ from dataclasses import fields
 from decimal import Decimal
 from typing import TYPE_CHECKING, cast
 
-from ccnl_engine.shared.domain.collection_validation import items_of_type, tuple_of
-from ccnl_engine.shared.domain.errors import InvalidInputError
-from ccnl_engine.shared.domain.validation import (
+from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.validation import (
     reject,
     require_code,
     require_date,
     require_decimal,
     require_int,
 )
+from ccnl_engine.validation_collection import items_of_type, tuple_of
 
 if TYPE_CHECKING:
     from _typeshed import DataclassInstance

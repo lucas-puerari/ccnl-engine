@@ -7,13 +7,13 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.calculate_competence_year import (
     calculate_competence_year,
 )
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.events import AbsenceEvent, BonusEvent, WorkEvent
 from ccnl_engine.payroll.domain.inputs import PeriodFacts
-from ccnl_engine.shared.domain.errors import InvalidInputError
 from tests.fixtures.current_year import employment_only
 from tests.fixtures.opening_state import fresh_tax_year
 from tests.helpers import year_plan

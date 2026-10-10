@@ -10,7 +10,7 @@ from ccnl_engine.payroll.domain.employment import (
 )
 from ccnl_engine.payroll.service.additional_ivs import AdditionalIvsPosition
 from ccnl_engine.payroll.service.contributions import resolve_contributions
-from ccnl_engine.tax.domain.ruleset import YearRules
+from ccnl_engine.tax.annual.models import YearRules
 from tests.fixtures.contribution_rules import first_run_contributions, inps_year_rules
 from tests.helpers import make_year_rules
 

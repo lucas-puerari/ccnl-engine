@@ -9,6 +9,7 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine import PayrollEngine
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.calculate_competence_year import (
     calculate_competence_year,
 )
@@ -32,7 +33,6 @@ from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.run import PayrollRunId
 from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd
-from ccnl_engine.shared.domain.errors import InvalidInputError
 from tests.fixtures.opening_state import fresh_tax_year
 from tests.fixtures.residence import resident
 from tests.helpers import year_plan

@@ -24,7 +24,8 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.domain.identity import TaxSector
+from ccnl_engine.contract.identity.facade import TaxSector
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.application._period_utils import (
     _make_entry,
     _require_resolution,
@@ -43,7 +44,6 @@ from ccnl_engine.payroll.domain.pay_items import PublicTfrReduction
 from ccnl_engine.payroll.domain.pension_fund import PensionFundEnrolment
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.run import RunKind
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.handlers._totals import _EventTotals

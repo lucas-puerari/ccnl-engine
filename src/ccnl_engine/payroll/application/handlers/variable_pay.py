@@ -20,6 +20,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.application._period_utils import _require_resolution
 from ccnl_engine.payroll.application.handlers._context import (
     EventEffect,
@@ -36,7 +37,6 @@ from ccnl_engine.payroll.domain.pay_items import ContractRenewalArrears
 from ccnl_engine.payroll.domain.remittance import ARREARS_WITHHOLDING
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.service.separate_tax_law import separate_tax_rule
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.period_payroll import PeriodId

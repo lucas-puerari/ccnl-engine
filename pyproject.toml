@@ -89,7 +89,7 @@ max-public-methods = 15
 [tool.ruff.lint.per-file-ignores]
 # PLR6301: pytest methods don't need self
 # pytest-fixture-autouse: autouse is intentional for per-test loader mocking
-"tests/**" = ["S", "ARG", "SLF001", "PLR6301", "pytest-fixture-autouse"]
+"tests/**" = ["S", "ARG", "SLF001", "PLR6301", "pytest-fixture-autouse", "INP001"]
 # Examples and demo: print is intentional, late imports are illustrative, line length is secondary.
 "docs/examples/**" = ["T201", "E402", "RUF100", "I001", "E501", "N999", "RUF010", "D100"]
 "demo/**" = ["T201", "E402", "RUF100", "I001", "E501", "N999", "RUF010", "INP001", "ARG", "F841", "C901", "TRY301", "SIM102", "PLR6201", "DOC501", "DOC502", "PLW0717"]
@@ -100,24 +100,24 @@ max-public-methods = 15
 # them to TYPE_CHECKING blocks, breaking model_validate and field resolution.
 # Applies to Pydantic model files and primitives.py (Bracket is a dataclass
 # whose field types Pydantic resolves at runtime via get_type_hints).
-"src/ccnl_engine/tax/domain/irpef_rules.py" = ["TCH"]
-"src/ccnl_engine/tax/domain/additional_ivs.py" = ["TCH"]
-"src/ccnl_engine/tax/domain/minimum_base.py" = ["TCH"]
-"src/ccnl_engine/tax/domain/contribution_rules.py" = ["TCH"]
-"src/ccnl_engine/tax/domain/contribution_tiers.py" = ["TCH"]
-"src/ccnl_engine/tax/domain/domestic_contribution_rules.py" = ["TCH"]
-"src/ccnl_engine/tax/domain/tfr_rules.py" = ["TCH"]
-"src/ccnl_engine/tax/domain/tfr_revaluation.py" = ["TCH"]
-"src/ccnl_engine/tax/domain/credit_rules.py" = ["TCH"]
-"src/ccnl_engine/tax/domain/ruleset.py" = ["TCH"]
-"src/ccnl_engine/tax/domain/family.py" = ["TCH"]
-"src/ccnl_engine/contract/domain/**" = ["TCH"]
+"src/ccnl_engine/tax/income/models.py" = ["TCH"]
+"src/ccnl_engine/tax/contribution/models_additional_ivs.py" = ["TCH"]
+"src/ccnl_engine/tax/contribution/models_minimum_base.py" = ["TCH"]
+"src/ccnl_engine/tax/contribution/models.py" = ["TCH"]
+"src/ccnl_engine/tax/contribution/models_tier.py" = ["TCH"]
+"src/ccnl_engine/tax/contribution/models_domestic.py" = ["TCH"]
+"src/ccnl_engine/tax/severance/models.py" = ["TCH"]
+"src/ccnl_engine/tax/severance/models_revaluation.py" = ["TCH"]
+"src/ccnl_engine/tax/income/models_credit.py" = ["TCH"]
+"src/ccnl_engine/tax/annual/models.py" = ["TCH"]
+"src/ccnl_engine/tax/family/models.py" = ["TCH"]
+"src/ccnl_engine/contract/**" = ["TCH"]
 "src/ccnl_engine/payroll/domain/**" = ["TCH"]
 "src/ccnl_engine/payroll/application/**" = ["TCH"]
-"src/ccnl_engine/tax/domain/surtax_rules.py" = ["TCH"]
-"src/ccnl_engine/tax/domain/surtax_tables.py" = ["TCH"]
-"src/ccnl_engine/provenance/domain/ruleset_identity.py" = ["TCH"]
-"src/ccnl_engine/shared/domain/primitives.py" = ["TCH"]
+"src/ccnl_engine/tax/surtax/models.py" = ["TCH"]
+"src/ccnl_engine/tax/surtax/models_table.py" = ["TCH"]
+"src/ccnl_engine/provenance/ruleset/models.py" = ["TCH"]
+"src/ccnl_engine/primitives.py" = ["TCH"]
 
 [tool.ruff.format]
 quote-style = "double"
@@ -132,7 +132,8 @@ exclude = ["*.md"]
 # ---------------------------------------------------------------------------
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "--cov=src/ccnl_engine --cov-report=term-missing --cov-report=xml --cov-fail-under=100 -q"
+pythonpath = ["."]
+addopts = "--import-mode=importlib --cov=src/ccnl_engine --cov-report=term-missing --cov-report=xml --cov-fail-under=100 -q"
 markers = [
     "legal_scenario: end-to-end scenario checked against an independent legal oracle",
 ]
@@ -148,6 +149,7 @@ source = ["src/ccnl_engine"]
 branch = true
 
 [tool.coverage.report]
+include_namespace_packages = true
 show_missing = true
 skip_covered = false
 exclude_also = [
@@ -174,6 +176,8 @@ warn_unused_ignores = true
 show_error_codes = true
 pretty = true
 plugins = ["pydantic.mypy"]
+explicit_package_bases = true
+mypy_path = ["src", "."]
 
 [tool.pydantic-mypy]
 init_forbid_extra = true

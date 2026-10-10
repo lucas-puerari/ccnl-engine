@@ -16,7 +16,7 @@ from ccnl_engine.payroll.domain.events import AbsenceEvent, SicknessEpisode
 from ccnl_engine.payroll.domain.pension_fund import PensionFundEnrolment
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.domain.fund_contribution import (
+    from ccnl_engine.contract.fund.models import (
         ContractualFundContribution,
     )
     from ccnl_engine.payroll.application.period._context import RunContext

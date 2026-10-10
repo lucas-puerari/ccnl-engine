@@ -19,13 +19,13 @@ from enum import StrEnum
 from types import MappingProxyType
 from typing import TYPE_CHECKING
 
-from ccnl_engine.shared.domain.primitives import FrozenDict
+from ccnl_engine.primitives import FrozenDict
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
     from decimal import Decimal
 
-    from ccnl_engine.provenance.domain.source import SourceLocation
+    from ccnl_engine.provenance.source.models import SourceLocation
 
 __all__ = [
     "PUBLIC_FACTS",

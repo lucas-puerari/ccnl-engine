@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from typing import TYPE_CHECKING, Any
 
-from ccnl_engine.provenance.domain.ruleset_identity import source_hash
+from ccnl_engine.provenance.ruleset.models import source_hash
 from scripts.ci.provenance_labels import file_label_errors
 from scripts.data.demote_weak_labels import (
     demote_readiness,

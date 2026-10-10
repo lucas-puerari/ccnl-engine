@@ -16,7 +16,7 @@ from typing import final
 
 from ccnl_engine.payroll.domain.run import PayrollRunId
 from ccnl_engine.payroll.domain.tax_year import TaxYearPolicy
-from ccnl_engine.shared.domain.validation import reject, require_date, require_instance
+from ccnl_engine.validation import reject, require_date, require_instance
 
 __all__ = ["PaymentId"]
 
@@ -78,7 +78,7 @@ class PaymentId:
         Returns:
             The typed identifier.  A ``text`` that is not a well-formed
             payment id raises
-            :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`.
+            :class:`~ccnl_engine.errors.InvalidInputError`.
         """
         match = _PAYMENT_ID_PATTERN.fullmatch(text) if isinstance(text, str) else None
         if match is None:

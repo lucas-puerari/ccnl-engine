@@ -1,0 +1,221 @@
+"""Fail-hard source_hash verification across the knowledge-base loaders.
+
+Every loader must raise ``ValueError`` when a bundled data file's recorded
+``ruleset.source_hash`` does not match the hash recomputed over the payload
+(a file edited without updating its provenance block). Files without a
+``ruleset`` block — or with a malformed one — must still load untouched.
+"""
+
+import copy
+import importlib
+import importlib.resources
+import json
+from typing import Any, cast
+
+import pytest
+
+from ccnl_engine.contract.catalog import loaders as contract_loaders
+from ccnl_engine.contract.catalog.loaders import (
+    _verify_payload as _verify_contract_hash,
+)
+from ccnl_engine.contract.catalog.loaders import (
+    load_ccnl as load_ccnl_from_bundle,
+)
+from ccnl_engine.contract.identity.facade import TaxSector
+from ccnl_engine.errors import DataIntegrityError
+from ccnl_engine.knowledge.loaders_manifest import read_resource
+from ccnl_engine.tax.annual import loaders_resource as tax_resource_reader_mod
+from ccnl_engine.tax.annual.loaders import (
+    _load_year_rules_cached,
+    load_year_rules,
+)
+from ccnl_engine.tax.surtax import loaders as surtax_loaders
+from ccnl_engine.tax.surtax.loaders import _load_surtax_rules_cached
+from tests.helpers import make_ccnl_dict
+
+LOADER_PATHS = (
+    "ccnl_engine.contract.catalog.loaders",
+    "ccnl_engine.tax.annual.loaders_resource",
+    "ccnl_engine.tax.surtax.loaders",
+)
+
+
+@pytest.fixture(autouse=True)
+def _clear_loader_caches() -> None:
+    """Clear all @cache-decorated loaders before each integrity test.
+
+    Integrity tests monkeypatch the underlying ``read_resource`` helper to
+    inject tampered payloads. Without cache invalidation, a cached real result
+    is returned and the patch has no effect.
+    """
+    load_ccnl_from_bundle.cache_clear()
+    _load_year_rules_cached.cache_clear()
+    _load_surtax_rules_cached.cache_clear()
+
+
+def _load_bundled_text(path: str) -> str:
+    root = importlib.resources.files("ccnl_engine.knowledge")
+    return root.joinpath(*path.split("/")).read_text(encoding="utf-8")
+
+
+def _tamper(payload: dict[str, Any]) -> dict[str, Any]:
+    """Return a deep-copied payload with a hidden data modification.
+
+    Returns:
+        A copy of *payload* with the first level's base salary rewritten.
+    """
+    tampered = copy.deepcopy(payload)
+    tampered["levels"][0]["base_salary"]["periods"][0]["value"] = "999.99"
+    return tampered
+
+
+class TestContractLoaderIntegrity:
+    """load_ccnl rejects stale source_hash, passes valid/missing blocks."""
+
+    def _repatch(self, monkeypatch: pytest.MonkeyPatch, raw: str) -> None:
+        monkeypatch.setattr(contract_loaders, "read_resource", lambda _path: raw)
+
+    def test_tampered_payload_raises(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        """A data change without a ruleset update must raise ValueError."""
+        raw = _load_bundled_text("contract/agreement/commercio-confcommercio.json")
+        tampered = _tamper(json.loads(raw))
+        self._repatch(monkeypatch, json.dumps(tampered))
+
+        with pytest.raises(DataIntegrityError, match="source_hash mismatch"):
+            load_ccnl_from_bundle("commercio-confcommercio.json")
+
+    def test_missing_ruleset_still_loads(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        """A legacy file without any ruleset block must load unchanged."""
+        payload = make_ccnl_dict()
+        payload.pop("ruleset", None)
+        assert "ruleset" not in payload
+        self._repatch(monkeypatch, json.dumps(payload))
+
+        ccnl = load_ccnl_from_bundle("whatever.json")
+        assert ccnl.meta.ccnl_id == "test"
+        assert ccnl.ruleset is None
+
+    def test_valid_file_loads(self) -> None:
+        """The real bundled file (hash intact) still validates."""
+        ccnl = load_ccnl_from_bundle("commercio-confcommercio.json")
+        assert ccnl.ruleset is not None
+        assert ccnl.ruleset.id == "ccnl/commercio-confcommercio"
+        assert ccnl.ruleset.version == "2026.2"
+
+
+class TestVerifyRulesetHash:
+    """Direct branch coverage of _verify_payload in each loader."""
+
+    @pytest.mark.parametrize("module_path", LOADER_PATHS)
+    def test_no_ruleset_is_skipped(self, module_path: str) -> None:
+        """A payload without a ruleset block is never verified."""
+        loader = importlib.import_module(module_path)
+        verify = loader._verify_payload
+        verify({"levels": []}, "file.json")
+
+    @pytest.mark.parametrize("module_path", LOADER_PATHS)
+    def test_malformed_source_hash_is_skipped(self, module_path: str) -> None:
+        """A non-string source_hash is ignored (no hash comparison)."""
+        loader = importlib.import_module(module_path)
+        verify = loader._verify_payload
+        payload = {"a": 1, "ruleset": {"source_hash": 123}}
+        verify(payload, "file.json")
+
+    def test_contract_mismatch_raises(self) -> None:
+        """Contract loader raises on a stale hash with a stable message."""
+        payload = {"a": 2, "ruleset": {"source_hash": "0" * 64}}
+        with pytest.raises(DataIntegrityError, match="source_hash mismatch"):
+            _verify_contract_hash(payload, "x.json")
+
+    def test_tax_mismatch_raises_with_filename(self) -> None:
+        """Tax loader includes the filename in the mismatch error."""
+        payload = {"a": 2, "ruleset": {"source_hash": "0" * 64}}
+        with pytest.raises(DataIntegrityError, match=r"in 2026-terziario\.json"):
+            tax_resource_reader_mod._verify_payload(payload, "2026-terziario.json")
+
+    def test_surtax_mismatch_raises_with_filename(self) -> None:
+        """Surtax loader includes the filename in the mismatch error."""
+        payload = {"a": 2, "ruleset": {"source_hash": "0" * 64}}
+        with pytest.raises(DataIntegrityError, match=r"in regionale-2026\.json"):
+            surtax_loaders._verify_payload(payload, "regionale-2026.json")
+
+
+class TestTaxLoaderIntegrity:
+    """load_year_rules propagates ruleset blocks and rejects tampering."""
+
+    def _raw(self, dataset: str, sector: str) -> dict[str, Any]:
+        return cast(
+            "dict[str, Any]",
+            json.loads(_load_bundled_text(f"{dataset}/2026/{sector}.json")),
+        )
+
+    def test_tax_and_inps_rulesets_propagated(self) -> None:
+        """Both ruleset blocks surface on the merged YearRules."""
+        rules = load_year_rules(2026, TaxSector.TERZIARIO, 50)
+        assert rules.ruleset is not None
+        assert rules.ruleset.id == "tax/2026/terziario"
+        assert rules.inps_ruleset is not None
+        assert rules.inps_ruleset.id == "inps/2026/terziario"
+
+    def test_tampered_tax_raw_raises(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        """A tampered tax file must raise ValueError from load_year_rules."""
+        raw = self._raw("taxation/annual", "terziario")
+        tampered = json.loads(json.dumps(raw))
+        tampered["irpef_brackets"][0]["rate"] = "0.90"
+        monkeypatch.setattr(
+            tax_resource_reader_mod, "read_resource", lambda _path: json.dumps(tampered)
+        )
+
+        with pytest.raises(
+            DataIntegrityError, match="source_hash mismatch in taxation/annual/2026"
+        ):
+            load_year_rules(2026, TaxSector.TERZIARIO, 50)
+
+    def test_missing_ruleset_produces_none(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """Legacy tax/INPS files without a ruleset yield None identities."""
+        raw = self._raw("taxation/annual", "terziario")
+        raw.pop("ruleset", None)
+        inps_raw = self._raw("social_security/contribution", "terziario")
+        inps_raw.pop("ruleset", None)
+
+        def fake_read(path: str) -> str:
+            if path.startswith("taxation/annual/"):
+                return json.dumps(raw)
+            if path.startswith("social_security/contribution/"):
+                return json.dumps(inps_raw)
+            return read_resource(path)
+
+        monkeypatch.setattr(tax_resource_reader_mod, "read_resource", fake_read)
+
+        rules = load_year_rules(2026, TaxSector.TERZIARIO, 50)
+        assert rules.ruleset is None
+        assert rules.inps_ruleset is None
+
+
+class TestSurtaxLoaderIntegrity:
+    """load_surtax_rules rejects tampering and maps the regionale identity."""
+
+    def test_ruleset_propagated(self) -> None:
+        """SurtaxRules carries separate regional and municipal identities."""
+        rules = surtax_loaders.load_surtax_rules(2026)
+        assert rules.regional_ruleset is not None
+        assert rules.regional_ruleset.id == "surtax/2026/regionale"
+        assert rules.municipal_ruleset is not None
+        assert rules.municipal_ruleset.id == "surtax/2026/comunale"
+
+    def test_tampered_comunale_raises(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        """Tampered comunale file must raise ValueError."""
+        reg = json.loads(_load_bundled_text("surtax/regional/2026.json"))
+        com = json.loads(_load_bundled_text("surtax/municipal/2026.json"))
+        com["rates"]["A083"]["brackets"][0]["rate"] = "0.50"
+
+        def fake_read(path: str) -> str:
+            if "municipal" in path:
+                return json.dumps(com)
+            return json.dumps(reg)
+
+        monkeypatch.setattr(surtax_loaders, "read_resource", fake_read)
+        with pytest.raises(DataIntegrityError, match="source_hash mismatch"):
+            surtax_loaders.load_surtax_rules(2026)

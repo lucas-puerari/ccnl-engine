@@ -19,8 +19,8 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.application.period._context import RunContext
     from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
     from ccnl_engine.payroll.domain.run import PayrollRunId
-    from ccnl_engine.provenance.domain.chain import RuleProvenance
-    from ccnl_engine.tax.domain.contribution_rules import InpsRates
+    from ccnl_engine.provenance.source.models_chain import RuleProvenance
+    from ccnl_engine.tax.contribution.models import InpsRates
 
 __all__ = [
     "FACT",

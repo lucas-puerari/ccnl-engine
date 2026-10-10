@@ -18,7 +18,7 @@ from typing import TYPE_CHECKING, Any
 
 import pytest
 
-from ccnl_engine.contract.domain.identity import TaxSector
+from ccnl_engine.contract.identity.facade import TaxSector
 from ccnl_engine.inputs import NoPensionFund, TfrFundBalance
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.domain.decisions import CalculationDecision, CalculationStatus
@@ -34,8 +34,8 @@ from tests.fixtures.seniority import new_hire
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.period import PeriodResult
-    from ccnl_engine.tax.domain.ruleset import YearRules
-    from ccnl_engine.tax.domain.tfr_revaluation import TfrRevaluationRules
+    from ccnl_engine.tax.annual.models import YearRules
+    from ccnl_engine.tax.severance.models_revaluation import TfrRevaluationRules
 
 _FUND = TfrFundBalance(2025, Decimal("10000.00"))
 _HIRED_2020 = EmploymentPeriod(date(2020, 1, 1))

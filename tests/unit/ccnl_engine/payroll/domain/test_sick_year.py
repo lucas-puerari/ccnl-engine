@@ -7,7 +7,7 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.contract.domain.sickness import CarenzaByEvent, SicknessRules
+from ccnl_engine.contract.sickness.models import CarenzaByEvent, SicknessRules
 from ccnl_engine.payroll.domain.sick_year import YearTreatment
 from ccnl_engine.payroll.domain.sickness import SicknessEpisode
 

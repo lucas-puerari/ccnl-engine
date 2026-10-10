@@ -8,8 +8,8 @@ from datetime import date
 from decimal import Decimal
 from enum import StrEnum
 
-from ccnl_engine.shared.domain.errors import InvalidInputError
-from ccnl_engine.shared.domain.validation import (
+from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.validation import (
     require_date,
     require_decimal,
     require_int,

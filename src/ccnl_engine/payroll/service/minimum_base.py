@@ -45,7 +45,7 @@ if TYPE_CHECKING:
     from datetime import date
     from decimal import Decimal
 
-    from ccnl_engine.tax.domain.minimum_base import MinimumBaseRule
+    from ccnl_engine.tax.contribution.models_minimum_base import MinimumBaseRule
 
 __all__ = ["resolve_minimum_base"]
 

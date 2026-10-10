@@ -10,9 +10,11 @@ Every module is placed on a layer:
   namespaces ``ccnl_engine.inputs``, ``.events``, ``.results`` and
   ``.catalog``: together, the public API;
 - ``api``: the ``ccnl_engine.api`` capability;
-- ``application``, ``service``, ``domain``: ``ccnl_engine.<capability>.<layer>``;
-- ``metadata``: ``ccnl_engine.version`` and the ``ccnl_engine.knowledge`` data
-  bundle outside its ``service`` layer (version strings and resource anchors);
+- ``application``, ``service``, ``domain``: ``ccnl_engine.<capability>.<layer>``,
+  or by file role in the layout by domain (:data:`ROLE_LAYERS`); the root
+  ``errors``, ``primitives`` and ``validation`` modules are the shared domain;
+- ``metadata``: ``ccnl_engine.version`` and ``ccnl_engine.knowledge.facade``
+  (version strings);
 - ``package``: a capability ``__init__.py``, which must stay import free.
 """
 
@@ -32,14 +34,7 @@ LAYERS: frozenset[str] = frozenset({"application", "service", "domain"})
 #: Layers each layer may import at runtime.  Same-layer imports inside one
 #: capability are always allowed; cross-capability rules are checked apart.
 ALLOWED_LAYERS: Mapping[str, frozenset[str]] = {
-    "root": frozenset({
-        "root",
-        "api",
-        "application",
-        "service",
-        "domain",
-        "metadata",
-    }),
+    "root": frozenset({"root", "api", "application", "service", "domain", "metadata"}),
     "api": frozenset({"api", "application", "metadata"}),
     "application": frozenset({"application", "service", "domain", "metadata"}),
     "service": frozenset({"service", "domain", "metadata"}),
@@ -57,8 +52,27 @@ PUBLIC_NAMESPACES: frozenset[str] = frozenset({
 })
 
 _SHARED_CAPABILITY = "shared"
-_METADATA_MODULES = frozenset({f"{ROOT_PACKAGE}.version"})
+_METADATA_MODULES = frozenset({
+    f"{ROOT_PACKAGE}.version",
+    f"{ROOT_PACKAGE}.knowledge.facade",
+})
 _DATA_CAPABILITY = "knowledge"
+#: Shared primitives and errors at the package root (architecture contract).
+_ROOT_SHARED = frozenset({
+    "errors",
+    "primitives",
+    "validation",
+    "validation_collection",
+})
+#: Layer of a role file (``models_state`` -> models) of the layout by domain.
+ROLE_LAYERS: Mapping[str, str] = {
+    **dict.fromkeys(
+        ("models", "types", "inputs", "requests", "results", "policies"), "domain"
+    ),
+    **dict.fromkeys(("rules", "validators", "facade"), "domain"),
+    **dict.fromkeys(("services", "handlers"), "application"),
+    **dict.fromkeys(("ports", "repositories", "loaders", "serializers"), "service"),
+}
 
 
 @dataclass(frozen=True)
@@ -66,7 +80,7 @@ class Module:
     """A parsed source module.
 
     Attributes:
-        name: Dotted module name, e.g. ``ccnl_engine.api.facade``.
+        name: Dotted module name, e.g. ``ccnl_engine.api``.
         path: Source path relative to the directory holding the package.
         is_package: True for an ``__init__.py``.
         tree: Parsed module body.
@@ -170,9 +184,22 @@ def locate(name: str) -> Location | None:
         return Location("", "metadata")
     capability, *rest = name.split(".")[1:]
     if capability == "api":
-        layer: str | None = "api"
-    elif rest and rest[0] in LAYERS:
-        layer = rest[0]
+        return Location("api", "api")
+    if capability in _ROOT_SHARED and not rest:
+        return Location(_SHARED_CAPABILITY, "domain")
+    return _capability_location(capability, rest)
+
+
+def _capability_location(capability: str, rest: list[str]) -> Location | None:
+    """Return the layer of a module of *capability*, by layer or by role.
+
+    Returns:
+        The location, or None when the module fits no layer.
+    """
+    if rest and rest[0] in LAYERS:
+        layer: str | None = rest[0]
+    elif rest and rest[-1].split("_")[0] in ROLE_LAYERS:
+        layer = ROLE_LAYERS[rest[-1].split("_")[0]]
     elif capability == _DATA_CAPABILITY:
         layer = "metadata"
     else:
@@ -251,13 +278,29 @@ def runtime_imports(modules: Mapping[str, Module]) -> list[Import]:
     return found
 
 
+def _is_marker(module: Module) -> bool:
+    """Return whether *module* is a package marker: a docstring and nothing else.
+
+    Returns:
+        True for an ``__init__.py`` that holds at most a docstring.
+    """
+    body = module.tree.body
+    return len(body) <= 1 and all(
+        isinstance(n, ast.Expr) and isinstance(n.value, ast.Constant) for n in body
+    )
+
+
 def unclassified(modules: Mapping[str, Module]) -> list[str]:
     """Return modules, and imported modules, that fit no layer.
 
     Returns:
         Sorted module paths or import descriptions.
     """
-    bad = {m.path for m in modules.values() if locate(m.name) is None}
+    bad = {
+        m.path
+        for m in modules.values()
+        if locate(m.name) is None and not (m.is_package and _is_marker(m))
+    }
     bad.update(
         imp.describe() for imp in runtime_imports(modules) if locate(imp.target) is None
     )

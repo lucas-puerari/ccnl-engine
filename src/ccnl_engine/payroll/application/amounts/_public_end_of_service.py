@@ -3,7 +3,7 @@
 INPS Gestione Dipendenti Pubblici finances the TFS and the TFR of the
 public employees with a contribution on 80% of the pay: ENPAS for the
 State, INADEL for the enti locali and the health service
-(:class:`~ccnl_engine.tax.domain.contribution_rules.EndOfServiceRates`).
+(:class:`~ccnl_engine.tax.contribution.models.EndOfServiceRates`).
 Under the TFS the worker pays 2.50% of the base and the administration the
 rest.  Under the TFR at INPS the administration pays the whole contribution
 and "la retribuzione lorda viene ridotta in misura pari al contributo
@@ -31,7 +31,7 @@ from ccnl_engine.payroll.domain.rounding import money
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.amounts._types import _AmountsInput
     from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
-    from ccnl_engine.tax.domain.contribution_rules import EndOfServiceRates
+    from ccnl_engine.tax.contribution.models import EndOfServiceRates
 
 __all__ = [
     "END_OF_SERVICE_UNKNOWN",

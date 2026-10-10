@@ -16,7 +16,7 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.contract.domain.validity import (
+from ccnl_engine.contract.identity.rules_validity import (
     SalaryGapKind,
     TimeSeries,
     ValidityPeriod,
@@ -29,8 +29,8 @@ from ccnl_engine.payroll.service.renewal_minimum import (
     assess_renewal_minimum,
     renewal_table_from,
 )
-from ccnl_engine.tax.domain.preferential_regime import EmploymentSector
-from ccnl_engine.tax.service.tax_optional_loaders import load_variable_pay_rules
+from ccnl_engine.tax.annual.loaders_optional import load_variable_pay_rules
+from ccnl_engine.tax.regime.models import EmploymentSector
 
 _RINNOVO = load_variable_pay_rules(2026).rinnovo
 _PRIVATE = EmploymentSector.PRIVATE

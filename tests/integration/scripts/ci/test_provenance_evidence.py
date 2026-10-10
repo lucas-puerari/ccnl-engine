@@ -7,10 +7,10 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.contract.domain.identity import CCNLVerification
-from ccnl_engine.knowledge.service.limitation_loader import load_engine_limitations
-from ccnl_engine.provenance.domain.chain import RuleProvenance
-from ccnl_engine.shared.domain.limitation import LimitationStatus
+from ccnl_engine.contract.identity.facade import CCNLVerification
+from ccnl_engine.knowledge.limitation.loaders import load_engine_limitations
+from ccnl_engine.knowledge.limitation.models import LimitationStatus
+from ccnl_engine.provenance.source.models_chain import RuleProvenance
 from scripts.ci.payable_rules import PayableRule, inventory
 from scripts.ci.provenance_evidence import (
     ENGINE_LIMITATIONS,

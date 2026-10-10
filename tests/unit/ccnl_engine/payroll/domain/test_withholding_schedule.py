@@ -9,6 +9,7 @@ import pytest
 from hypothesis import given
 from hypothesis import strategies as st
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.payment import PaymentId
 from ccnl_engine.payroll.domain.run import PayrollRun, PayrollRunId, RunKind
@@ -18,7 +19,6 @@ from ccnl_engine.payroll.domain.withholding_schedule import (
     WithholdingSlot,
 )
 from ccnl_engine.payroll.service.tax_computation import compute_tax
-from ccnl_engine.shared.domain.errors import InvalidInputError
 from tests.fixtures.withholding import calendar_schedule, paid_on_day
 from tests.helpers import make_year_rules
 

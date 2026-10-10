@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.shared.domain.validation import require_date, require_decimal
+from ccnl_engine.validation import require_date, require_decimal
 
 if TYPE_CHECKING:
     from datetime import date

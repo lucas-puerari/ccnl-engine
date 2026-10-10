@@ -13,7 +13,8 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.contract.domain.absence import DailyDivisorMethod
+from ccnl_engine.contract.absence.models import DailyDivisorMethod
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.handlers._sickness_month import (
     QUOTA_MISMATCH,
     WITH_UNPAID_ABSENCE,
@@ -26,7 +27,6 @@ from ccnl_engine.payroll.application.handlers._sickness_terms import (
 )
 from ccnl_engine.payroll.domain.events import AbsenceEvent
 from ccnl_engine.payroll.domain.sickness import SicknessEpisode
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _BY_26 = DailyQuota(DailyDivisorMethod.BY_26, Decimal(26))
 _BY_30 = DailyQuota(DailyDivisorMethod.BY_30, Decimal(30))

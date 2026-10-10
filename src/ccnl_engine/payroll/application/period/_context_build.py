@@ -43,7 +43,7 @@ from ccnl_engine.payroll.service.bundled_knowledge_repository import (
 from ccnl_engine.payroll.service.category import resolve_worker_category
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.domain.category import WorkerCategory
+    from ccnl_engine.contract.employment.models_category import WorkerCategory
     from ccnl_engine.payroll.application.knowledge_repository import KnowledgeRepository
     from ccnl_engine.payroll.application.period._contract import RunContract
     from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest

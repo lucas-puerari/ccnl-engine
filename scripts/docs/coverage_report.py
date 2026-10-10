@@ -21,11 +21,11 @@ from dataclasses import dataclass
 from datetime import UTC, date, datetime
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.service.loaders import load_ccnl
-from ccnl_engine.knowledge.service.capability_catalog_loader import (
+from ccnl_engine.contract.catalog.loaders import load_ccnl
+from ccnl_engine.knowledge.capability.loaders import (
     load_capability_catalog,
 )
-from ccnl_engine.knowledge.service.manifest import resources
+from ccnl_engine.knowledge.loaders_manifest import resources
 from ccnl_engine.payroll.domain.capability_catalog import (
     CapabilityImplementation,
     CapabilityLayer,
@@ -34,15 +34,15 @@ from ccnl_engine.payroll.service.capability_coverage import (
     ccnl_capabilities,
     layer_coverage,
 )
-from ccnl_engine.provenance.domain.extraction import ExtractionMethod
-from ccnl_engine.provenance.domain.ruleset_identity import (
+from ccnl_engine.provenance.ruleset.models import (
     RulesetReadiness,
     VerificationStatus,
 )
+from ccnl_engine.provenance.source.models_extraction import ExtractionMethod
 from scripts.ci.payable_rules import inventory
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.domain.identity import CCNL
+    from ccnl_engine.contract.identity.facade import CCNL
     from ccnl_engine.payroll.domain.capability_catalog import CapabilityCatalog
 
 #: Symbol of each implementation, shared by the index and the matrix.

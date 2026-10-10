@@ -7,6 +7,7 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.current_year import CurrentYearTaxFacts
 from ccnl_engine.payroll.domain.eligibility import ContributionHistory
 from ccnl_engine.payroll.domain.employer import EmployerProfile
@@ -27,12 +28,11 @@ from ccnl_engine.payroll.domain.request_checks import employment_gap
 from ccnl_engine.payroll.domain.seniority_fact import SeniorityFact
 from ccnl_engine.payroll.domain.tax_year import TaxYearPolicy
 from ccnl_engine.payroll.domain.tfr_fund import TfrFundBalance
-from ccnl_engine.shared.domain.errors import InvalidInputError
-from ccnl_engine.shared.domain.validation import FieldSpec, require_instances
-from ccnl_engine.tax.domain.preferential_regime import EmploymentSector
+from ccnl_engine.tax.regime.models import EmploymentSector
+from ccnl_engine.validation import FieldSpec, require_instances
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.domain.category import WorkerCategory
+    from ccnl_engine.contract.employment.models_category import WorkerCategory
     from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
     from ccnl_engine.payroll.domain.events import WorkEvent
     from ccnl_engine.payroll.domain.family import FamilyComposition

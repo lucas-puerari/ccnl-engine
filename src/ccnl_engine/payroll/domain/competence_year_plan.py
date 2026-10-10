@@ -7,6 +7,7 @@ from dataclasses import dataclass, field
 from datetime import date, datetime
 from types import MappingProxyType
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.calendar_override import CalendarOverride
 from ccnl_engine.payroll.domain.current_year import CurrentYearTaxFacts
 from ccnl_engine.payroll.domain.employer import EmployerProfile
@@ -21,17 +22,16 @@ from ccnl_engine.payroll.domain.tax_year import (
     LAST_PAYMENT_DAY,
     monthly_payment_date,
 )
-from ccnl_engine.shared.domain.collection_validation import (
-    Item,
-    items_of_type,
-    mapping_of,
-)
-from ccnl_engine.shared.domain.errors import InvalidInputError
-from ccnl_engine.shared.domain.primitives import FrozenDict
-from ccnl_engine.shared.domain.validation import (
+from ccnl_engine.primitives import FrozenDict
+from ccnl_engine.validation import (
     reject,
     require_instances,
     require_int,
+)
+from ccnl_engine.validation_collection import (
+    Item,
+    items_of_type,
+    mapping_of,
 )
 
 __all__ = ["CompetenceYearPlan"]

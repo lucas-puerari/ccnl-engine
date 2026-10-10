@@ -13,7 +13,7 @@ import re
 from dataclasses import dataclass, field
 
 from ccnl_engine.payroll.domain.run_kind import RunKind, check_year_month, run_kind
-from ccnl_engine.shared.domain.validation import reject, require_int
+from ccnl_engine.validation import reject, require_int
 
 __all__ = ["PayrollRun", "PayrollRunId", "RunKind", "run_identifier"]
 
@@ -65,7 +65,7 @@ class PayrollRunId:
         A kind that is not a run kind, a month outside 1-12, a year before
         1970, a sequence below 1 or a sequence above 1 on a kind other than
         an adjustment raises
-        :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`.
+        :class:`~ccnl_engine.errors.InvalidInputError`.
         """
         object.__setattr__(self, "kind", run_kind(self.kind, "PayrollRunId.kind"))
         check_year_month("PayrollRunId", self.year, self.month)
@@ -93,7 +93,7 @@ class PayrollRunId:
             The typed identifier.  A ``text`` that is not a well-formed run
             id, or not in its canonical form (a ``"-1"`` or ``"-02"``
             suffix), raises
-            :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`.
+            :class:`~ccnl_engine.errors.InvalidInputError`.
         """
         match = _RUN_ID_PATTERN.fullmatch(text) if isinstance(text, str) else None
         if match is None:

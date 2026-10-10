@@ -14,7 +14,7 @@ from dataclasses import dataclass, field
 from enum import StrEnum
 from typing import Literal
 
-from ccnl_engine.shared.domain.validation import parse_enum, require_int
+from ccnl_engine.validation import parse_enum, require_int
 
 __all__ = ["FixedTerm", "NaspiExclusion"]
 

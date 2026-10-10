@@ -12,7 +12,7 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.contract.domain.absence import DailyDivisorMethod
+from ccnl_engine.contract.absence.models import DailyDivisorMethod
 from ccnl_engine.payroll.domain.proration import MonthProration, payable_days
 
 _BY_26 = DailyDivisorMethod.BY_26

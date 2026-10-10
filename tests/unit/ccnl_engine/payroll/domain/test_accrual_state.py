@@ -7,11 +7,11 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.accrual_state import EmploymentAccrualState
 from ccnl_engine.payroll.domain.inps_base import InpsBaseYtd
 from ccnl_engine.payroll.domain.run import PayrollRunId, RunKind
 from ccnl_engine.payroll.domain.sickness import SicknessEpisode
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _FIELD = "EmploymentAccrualState.competence_runs"
 

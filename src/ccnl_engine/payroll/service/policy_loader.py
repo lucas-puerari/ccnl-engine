@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 
-from ccnl_engine.knowledge.service.manifest import read_resource
+from ccnl_engine.knowledge.loaders_manifest import read_resource
 from ccnl_engine.payroll.domain.policy import PolicyResolver, _Rule
 
 __all__ = ["load_policy_resolver"]

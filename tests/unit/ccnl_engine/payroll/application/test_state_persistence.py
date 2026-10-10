@@ -6,13 +6,13 @@ import json
 
 import pytest
 
-from ccnl_engine.knowledge import __version__ as bundle_version
+from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.knowledge.facade import __version__ as bundle_version
 from ccnl_engine.payroll.application.state_persistence import (
     period_state_from_json,
     period_state_to_json,
 )
 from ccnl_engine.payroll.domain.period_state import PeriodState
-from ccnl_engine.shared.domain.errors import InvalidInputError
 from ccnl_engine.version import __version__ as engine_version
 
 

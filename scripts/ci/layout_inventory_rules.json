@@ -2,6 +2,26 @@
   "description": "Ordered rules and per-file overrides that map every tracked file under src, tests, demo and scripts to its path in the architecture contract (docs/engine/architecture-contract.md). Overrides win over rules; the first matching rule applies.",
   "rules": [
     {
+      "pattern": "^(?P<path>src/ccnl_engine/(?:contract|tax|comparison|provenance|knowledge)(?:/[a-z_]+)*/__init__\\.py)$",
+      "target": "{path}"
+    },
+    {
+      "pattern": "^(?P<path>src/ccnl_engine/(?:api|errors|primitives|validation|validation_collection)\\.py)$",
+      "target": "{path}"
+    },
+    {
+      "pattern": "^(?P<path>src/ccnl_engine/(?:contract|tax|comparison|provenance)/[a-z_]+/[a-z_]+\\.py)$",
+      "target": "{path}"
+    },
+    {
+      "pattern": "^(?P<path>src/ccnl_engine/knowledge/(?:[a-z_]+/)?[a-z_]+\\.py)$",
+      "target": "{path}"
+    },
+    {
+      "pattern": "^(?P<path>tests/(?:unit|integration)/ccnl_engine/(?:contract|tax|comparison|provenance|knowledge)/(?:[a-z_]+/)?[a-z_]+\\.py)$",
+      "target": "{path}"
+    },
+    {
       "pattern": "^src/ccnl_engine/(?P<name>__init__\\.py|py\\.typed|catalog\\.py|events\\.py|inputs\\.py|results\\.py|version\\.py)$",
       "target": "src/ccnl_engine/{name}"
     },
@@ -221,7 +241,6 @@
     "src/ccnl_engine/contract/domain/category.py": "src/ccnl_engine/contract/employment/models_category.py",
     "src/ccnl_engine/contract/domain/compensation.py": "src/ccnl_engine/contract/compensation/models.py",
     "src/ccnl_engine/contract/domain/fund_contribution.py": "src/ccnl_engine/contract/fund/models.py",
-    "src/ccnl_engine/contract/domain/identity/__init__.py": "src/ccnl_engine/contract/identity/facade.py",
     "src/ccnl_engine/contract/domain/identity/_ccnl.py": "src/ccnl_engine/contract/identity/models.py",
     "src/ccnl_engine/contract/domain/identity/_coverage.py": "src/ccnl_engine/contract/identity/models_coverage.py",
     "src/ccnl_engine/contract/domain/identity/_enums.py": "src/ccnl_engine/contract/identity/types.py",
@@ -248,7 +267,6 @@
     "src/ccnl_engine/diff/service/compute.py": "src/ccnl_engine/comparison/ruleset/services.py",
     "src/ccnl_engine/diff/service/format.py": "src/ccnl_engine/comparison/ruleset/serializers.py",
     "src/ccnl_engine/diff/service/rule_walk.py": "src/ccnl_engine/comparison/ruleset/rules.py",
-    "src/ccnl_engine/knowledge/__init__.py": "src/ccnl_engine/knowledge/facade.py",
     "src/ccnl_engine/knowledge/capabilities/__init__.py": {
       "dissolve": "src/ccnl_engine/knowledge/capability"
     },

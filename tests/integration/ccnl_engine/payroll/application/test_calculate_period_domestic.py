@@ -11,10 +11,10 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.errors import MissingRequiredFactError
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.domain.employment import FixedTerm, Permanent
 from ccnl_engine.payroll.domain.fixed_term import NaspiExclusion
-from ccnl_engine.shared.domain.errors import MissingRequiredFactError
 from tests.fixtures.period_requests import period_request
 
 _ZERO = Decimal(0)

@@ -12,7 +12,8 @@ open the next tax year.
 
 The root holds the common path: the facade, the request and plan types and
 what they need, the results the facade returns, every public error and
-:data:`engine_version`.  Every other public name lives in exactly one of four
+:data:`engine_version` and :data:`bundle_version`, the version of the bundled
+knowledge.  Every other public name lives in exactly one of four
 namespaces:
 
 - :mod:`ccnl_engine.inputs`: facts beyond the common path (contract types,
@@ -52,7 +53,19 @@ ruleset that is not ``production``; :meth:`~PayrollEngine.list_contracts` and
 
 from __future__ import annotations
 
-from ccnl_engine.api.facade import PayrollEngine
+from ccnl_engine.api import PayrollEngine
+from ccnl_engine.errors import (
+    CcnlEngineError,
+    DataIntegrityError,
+    InvalidInputError,
+    MissingRequiredFactError,
+    MissingRuleError,
+    OutOfScopeError,
+    UnknownCcnlError,
+    UnknownLevelError,
+    UnsupportedTaxYearError,
+)
+from ccnl_engine.knowledge.facade import __version__ as bundle_version
 from ccnl_engine.payroll.application.year_result import (
     CompetenceYearResult,
     TaxYearResult,
@@ -64,17 +77,6 @@ from ccnl_engine.payroll.domain.inputs import PeriodFacts, PeriodInput
 from ccnl_engine.payroll.domain.period import PeriodResult
 from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.payroll.domain.tax_year_plan import TaxYearPlan
-from ccnl_engine.shared.domain.errors import (
-    CcnlEngineError,
-    DataIntegrityError,
-    InvalidInputError,
-    MissingRequiredFactError,
-    MissingRuleError,
-    OutOfScopeError,
-    UnknownCcnlError,
-    UnknownLevelError,
-    UnsupportedTaxYearError,
-)
 from ccnl_engine.version import __version__ as engine_version
 
 __all__ = [
@@ -99,5 +101,6 @@ __all__ = [
     "UnknownCcnlError",
     "UnknownLevelError",
     "UnsupportedTaxYearError",
+    "bundle_version",
     "engine_version",
 ]

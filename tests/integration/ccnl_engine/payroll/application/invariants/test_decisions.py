@@ -30,7 +30,7 @@ from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
 from ccnl_engine.payroll.domain.ytd_accounts import FringeYtd
-from ccnl_engine.tax.domain.preferential_regime import EmploymentSector
+from ccnl_engine.tax.regime.models import EmploymentSector
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.period import PeriodResult

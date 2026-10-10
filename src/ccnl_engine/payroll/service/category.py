@@ -4,13 +4,13 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.domain.category import parse_worker_category
-from ccnl_engine.shared.domain.errors import InvalidInputError
+from ccnl_engine.contract.employment.models_category import parse_worker_category
+from ccnl_engine.errors import InvalidInputError
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.domain.category import WorkerCategory
-    from ccnl_engine.contract.domain.compensation import Level
-    from ccnl_engine.contract.domain.identity import CCNL
+    from ccnl_engine.contract.compensation.models import Level
+    from ccnl_engine.contract.employment.models_category import WorkerCategory
+    from ccnl_engine.contract.identity.facade import CCNL
     from ccnl_engine.payroll.domain.seniority_fact import (
         SeniorityFact,
     )

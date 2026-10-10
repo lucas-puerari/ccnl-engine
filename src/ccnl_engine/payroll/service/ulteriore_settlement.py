@@ -22,7 +22,7 @@ from ccnl_engine.payroll.service.ulteriore_running_plan import AT_TERMINATION
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.credit_accounts import CreditAccount
     from ccnl_engine.payroll.domain.recovery_plan import PostedInstallment
-    from ccnl_engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.annual.models import YearRules
 
 __all__ = ["UlterioreSettlement", "settle_ulteriore"]
 

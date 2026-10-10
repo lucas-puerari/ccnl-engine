@@ -14,7 +14,7 @@ from typing import TYPE_CHECKING
 from ccnl_engine.inputs import SeniorityFact, SenioritySource
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.domain.seniority import SeniorityIncrements
+    from ccnl_engine.contract.seniority.models import SeniorityIncrements
     from ccnl_engine.inputs import WorkerCategory
 
 __all__ = ["new_hire", "pricing_category"]

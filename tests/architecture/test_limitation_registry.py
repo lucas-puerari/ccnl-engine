@@ -15,15 +15,16 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine import PayrollEngine
-from ccnl_engine.contract.domain.apprenticeship import (
+from ccnl_engine.contract.employment.models_apprenticeship import (
     ApprenticeshipPercentage,
     ApprenticeshipUnderClassification,
 )
-from ccnl_engine.contract.domain.identity import NoteKind
-from ccnl_engine.knowledge.service.capability_catalog_loader import (
+from ccnl_engine.contract.identity.facade import NoteKind
+from ccnl_engine.knowledge.capability.loaders import (
     load_capability_catalog,
 )
-from ccnl_engine.knowledge.service.limitation_loader import load_engine_limitations
+from ccnl_engine.knowledge.limitation.loaders import load_engine_limitations
+from ccnl_engine.knowledge.limitation.models import LimitationStatus, MonetaryImpact
 from ccnl_engine.payroll.application.handlers.sickness import (
     CUMULATION_LIMITATION,
     INPS_DAILY_BASE_LIMITATION,
@@ -37,10 +38,9 @@ from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
 from ccnl_engine.payroll.service.seniority import APPRENTICE_SENIORITY_VARIANT
-from ccnl_engine.shared.domain.limitation import LimitationStatus, MonetaryImpact
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.domain.identity import CCNL
+    from ccnl_engine.contract.identity.facade import CCNL
 
 
 @pytest.fixture(scope="module")

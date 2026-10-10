@@ -7,7 +7,7 @@ See [Guide: Employment types](../domain/employment-types.md) and
 
 ## Entry point
 
-::: ccnl_engine.api.facade
+::: ccnl_engine.api
     options:
       members:
         - PayrollEngine
@@ -56,7 +56,7 @@ if not ruleset.is_production:
       members:
         - EngineMode
 
-::: ccnl_engine.provenance.domain.ruleset_assurance
+::: ccnl_engine.provenance.ruleset.models_assurance
     options:
       members:
         - RulesetAssurance
@@ -78,12 +78,12 @@ on 1 June): a competence or tax year of theirs from January is partial (see
 anas.validity.first_day  # → datetime.date(2026, 3, 1)
 ```
 
-::: ccnl_engine.contract.service.discovery
+::: ccnl_engine.contract.catalog.loaders_discovery
     options:
       members:
         - ContractSummary
 
-::: ccnl_engine.contract.domain.validity_window
+::: ccnl_engine.contract.identity.models_validity_window
     options:
       members:
         - ValidityWindow
@@ -166,7 +166,7 @@ years. They group the facts by owner and are validated when built;
         - CurrentYearTaxFacts
         - IncomeEstimateQuality
 
-::: ccnl_engine.tax.domain.preferential_regime
+::: ccnl_engine.tax.regime.models
     options:
       members:
         - EmploymentSector
@@ -188,7 +188,7 @@ years. They group the facts by owner and are validated when built;
 
 Every error the engine raises for an input, a data gap or a bundle defect
 is a `CcnlEngineError` exported at the root, with a stable `code` (one of
-`ccnl_engine.shared.domain.errors.PUBLIC_ERROR_CODES`), the `feature` and the `ruleset` it concerns and a
+`ccnl_engine.errors.PUBLIC_ERROR_CODES`), the `feature` and the `ruleset` it concerns and a
 `remediation`. None of them is a `ValueError`: catch `CcnlEngineError`, or
 one of its subclasses.
 
@@ -212,7 +212,7 @@ lowers a result is a `CalculationIssue` whose `fact` is the name of the
 public field to set (`seniority`, `contribution_history`, `sector`,
 `activity`, `agreement_signed_on`, `employment_income`).
 
-::: ccnl_engine.shared.domain.errors
+::: ccnl_engine.errors
     options:
       members:
         - CcnlEngineError
@@ -232,7 +232,7 @@ omitted. A different calendar is accepted only as a validated
         - CalendarOverride
         - CalendarOverrideReason
 
-::: ccnl_engine.contract.domain.category
+::: ccnl_engine.contract.employment.models_category
     options:
       members:
         - WorkerCategory
@@ -383,7 +383,7 @@ run.
         - EvidenceStatus
         - Payability
 
-::: ccnl_engine.shared.domain.limitation
+::: ccnl_engine.knowledge.limitation.models
     options:
       members:
         - ModelLimitation

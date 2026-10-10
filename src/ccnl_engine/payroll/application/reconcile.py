@@ -41,6 +41,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from ccnl_engine.errors import DataIntegrityError
 from ccnl_engine.payroll.application.invariants._types import (
     InvariantCode,
     ReconciliationViolation,
@@ -84,7 +85,6 @@ from ccnl_engine.payroll.application.invariants.withholding import (
     check_contribution_ceiling,
     check_irpef_annual_reconciliation,
 )
-from ccnl_engine.shared.domain.errors import DataIntegrityError
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.period import PeriodResult

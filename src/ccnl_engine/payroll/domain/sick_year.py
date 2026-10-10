@@ -6,7 +6,7 @@ calendar year (Commercio Arts. 186-187):
 - the comporto: the sick days of every episode of the year, against
   ``max_duration_days``;
 - the carenza: paid at a lower rate from the n-th event of the year
-  (:class:`~ccnl_engine.contract.domain.sickness.CarenzaByEvent`).  A
+  (:class:`~ccnl_engine.contract.sickness.models.CarenzaByEvent`).  A
   relapse continues its event; an event the CCNL exempts is not counted.
 
 The count reads the recorded episodes.  When the history is known only from
@@ -29,7 +29,7 @@ from ccnl_engine.payroll.domain.sick_cumulation import CcnlDay
 if TYPE_CHECKING:
     from collections.abc import Callable
 
-    from ccnl_engine.contract.domain.sickness import SicknessRules
+    from ccnl_engine.contract.sickness.models import SicknessRules
     from ccnl_engine.payroll.domain.sickness import SicknessEpisode
 
 __all__ = ["YearTreatment"]

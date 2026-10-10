@@ -26,7 +26,7 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.domain.absence import DailyDivisorMethod
+from ccnl_engine.contract.absence.models import DailyDivisorMethod
 from ccnl_engine.payroll.domain.decisions import CalculationIssue, CalculationStatus
 from ccnl_engine.payroll.domain.proration import MonthProration
 from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
@@ -34,12 +34,12 @@ from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.contract.domain.identity import CCNL
+    from ccnl_engine.contract.identity.facade import CCNL
     from ccnl_engine.payroll.application.period._rule_lookup import Rule
     from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
     from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
     from ccnl_engine.payroll.service.types import MonthlyPayChain
-    from ccnl_engine.provenance.domain.source import SourceLocation
+    from ccnl_engine.provenance.source.models import SourceLocation
 
 __all__ = [
     "FULL_MONTH",

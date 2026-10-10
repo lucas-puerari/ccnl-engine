@@ -29,7 +29,7 @@ from ccnl_engine.payroll.domain.decisions import (
     CalculationIssue,
     CalculationStatus,
 )
-from ccnl_engine.provenance.domain.chain import ProvenanceStatus
+from ccnl_engine.provenance.source.models_chain import ProvenanceStatus
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.period._context import RunContext

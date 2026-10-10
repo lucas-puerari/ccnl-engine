@@ -12,7 +12,7 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.domain.category import WorkerCategory
+from ccnl_engine.contract.employment.models_category import WorkerCategory
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment import Permanent
 from ccnl_engine.payroll.domain.employment_facts import ContributableHours, WeeklyHours

@@ -115,7 +115,7 @@ def test_no_empty_layer_directory() -> None:
 
 def test_analysis_sees_the_package() -> None:
     """The layout checks walk real sources, not an empty tree."""
-    assert Path("api/facade.py") in _sources(_PACKAGE)
+    assert Path("api.py") in _sources(_PACKAGE)
 
 
 # ---------------------------------------------------------------------------

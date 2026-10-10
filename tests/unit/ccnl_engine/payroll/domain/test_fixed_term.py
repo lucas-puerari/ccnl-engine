@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import pytest
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.fixed_term import FixedTerm, NaspiExclusion
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 
 def test_facts_default_to_unknown() -> None:

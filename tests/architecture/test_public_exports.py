@@ -19,9 +19,9 @@ from pathlib import Path
 import pytest
 
 import ccnl_engine
+from ccnl_engine import errors as errors_module
+from ccnl_engine.errors import PUBLIC_ERROR_CODES, CcnlEngineError
 from ccnl_engine.payroll.domain.decisions import PUBLIC_FACTS
-from ccnl_engine.shared.domain import errors as errors_module
-from ccnl_engine.shared.domain.errors import PUBLIC_ERROR_CODES, CcnlEngineError
 from tests.architecture._imports import PUBLIC_NAMESPACES, ROOT_PACKAGE
 
 _REPO = Path(__file__).parents[2]
@@ -49,6 +49,7 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
         "UnknownCcnlError",
         "UnknownLevelError",
         "UnsupportedTaxYearError",
+        "bundle_version",
         "engine_version",
     }),
     "ccnl_engine.inputs": frozenset({

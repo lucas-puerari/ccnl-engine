@@ -17,16 +17,19 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.contract.domain.category import WorkerCategory
+from ccnl_engine.contract.employment.models_category import WorkerCategory
 from ccnl_engine.payroll.domain.minimum_base import MinimumBaseReason, MonthPosition
 from ccnl_engine.payroll.service.minimum_base import resolve_minimum_base
-from ccnl_engine.provenance.domain.chain import ProvenanceStatus, RuleProvenance
-from ccnl_engine.provenance.domain.source import (
+from ccnl_engine.provenance.source.models import (
     SourceDocument,
     SourceKind,
     SourceLocation,
 )
-from ccnl_engine.tax.domain.minimum_base import HourlyMinimum, MinimumBaseRule
+from ccnl_engine.provenance.source.models_chain import ProvenanceStatus, RuleProvenance
+from ccnl_engine.tax.contribution.models_minimum_base import (
+    HourlyMinimum,
+    MinimumBaseRule,
+)
 
 _D = Decimal
 _LOCATION = SourceLocation(

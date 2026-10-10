@@ -16,10 +16,10 @@ from ccnl_engine.payroll.service.naspi_surcharge import naspi_surcharge
 if TYPE_CHECKING:
     from decimal import Decimal
 
-    from ccnl_engine.contract.domain.category import WorkerCategory
+    from ccnl_engine.contract.employment.models_category import WorkerCategory
     from ccnl_engine.payroll.domain.employment import Contract as Employment
-    from ccnl_engine.tax.domain.contribution_rules import InpsRates
-    from ccnl_engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.annual.models import YearRules
+    from ccnl_engine.tax.contribution.models import InpsRates
 
 
 @dataclass(frozen=True)

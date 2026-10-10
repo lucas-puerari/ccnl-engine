@@ -5,13 +5,13 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.rounding import money
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.contract.domain.seniority import SeniorityTier
+    from ccnl_engine.contract.seniority.models import SeniorityTier
 
 __all__ = ["count_from_tiers", "resolve_tier_amount"]
 

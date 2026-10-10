@@ -12,7 +12,7 @@ from ccnl_engine.payroll.service.irpef_credits import (
     trattamento_integrativo,
     ulteriore_detrazione_lavoro,
 )
-from ccnl_engine.tax.domain.credit_rules import (
+from ccnl_engine.tax.income.models_credit import (
     SommaEsenteBand,
     SommaEsenteRules,
     TrattamentoIntegrativoRules,

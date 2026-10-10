@@ -51,8 +51,8 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.pay_items import PayItem
     from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
     from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
-    from ccnl_engine.tax.domain.family import FamilyDeductionRules
-    from ccnl_engine.tax.domain.surtax_rules import SurtaxRules
+    from ccnl_engine.tax.family.models import FamilyDeductionRules
+    from ccnl_engine.tax.surtax.models import SurtaxRules
 
 __all__ = ["amounts_input", "variable_events"]
 

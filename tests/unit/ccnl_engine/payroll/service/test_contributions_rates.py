@@ -4,7 +4,7 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.contract.domain.category import WorkerCategory
+from ccnl_engine.contract.employment.models_category import WorkerCategory
 from ccnl_engine.payroll.domain.employment import (
     Apprentice,
     FixedTerm,

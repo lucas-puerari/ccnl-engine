@@ -13,10 +13,10 @@ from dataclasses import dataclass
 from decimal import Decimal
 from enum import StrEnum
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.extra_month_schedule import ExtraMonthKind
-from ccnl_engine.shared.domain.errors import InvalidInputError
-from ccnl_engine.shared.domain.validation import (
+from ccnl_engine.validation import (
     parse_enum,
     require_instance,
     require_str,

@@ -9,14 +9,14 @@ from typing import Any
 
 import pytest
 
-from ccnl_engine.contract.domain.identity._ccnl import CCNL
+from ccnl_engine.contract.identity.models import CCNL
+from ccnl_engine.errors import OutOfScopeError
 from ccnl_engine.payroll.domain.employment import Apprentice
 from ccnl_engine.payroll.service.apprenticeship import (
     _apprentice_chain,
     _find_period_index,
     _select_track,
 )
-from ccnl_engine.shared.domain.errors import OutOfScopeError
 from tests.helpers import make_ccnl_dict, make_minimal_ccnl
 
 _AS_OF = date(2026, 6, 1)

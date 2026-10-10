@@ -7,7 +7,7 @@ and read back only by the same engine and bundle.
 
 from __future__ import annotations
 
-from ccnl_engine.knowledge import __version__ as bundle_version
+from ccnl_engine.knowledge.facade import __version__ as bundle_version
 from ccnl_engine.payroll.domain import state_codec
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.version import __version__ as engine_version
@@ -31,7 +31,7 @@ def period_state_from_json(text: str) -> PeriodState:
 
     A text that is not such JSON, written by another schema, engine or
     knowledge-bundle version, or that names a type outside the persisted
-    state raises :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`:
+    state raises :class:`~ccnl_engine.errors.InvalidInputError`:
     recompute the runs, or import the balances with
     :class:`~ccnl_engine.payroll.application.opening_balances.OpeningBalances`.
 

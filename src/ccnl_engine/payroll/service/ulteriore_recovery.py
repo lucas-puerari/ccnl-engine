@@ -53,7 +53,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.service.ulteriore_settlement import (
         UlterioreSettlement,
     )
-    from ccnl_engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.annual.models import YearRules
 
 __all__ = ["ulteriore_items", "withhold_with_ulteriore"]
 

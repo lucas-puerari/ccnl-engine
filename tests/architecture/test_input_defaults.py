@@ -18,7 +18,7 @@ import importlib
 import inspect
 
 import ccnl_engine
-from ccnl_engine.knowledge.service.capability_catalog_loader import (
+from ccnl_engine.knowledge.capability.loaders import (
     load_capability_catalog,
 )
 from ccnl_engine.payroll.domain.decisions import PUBLIC_FACTS

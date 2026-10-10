@@ -23,7 +23,7 @@ from ccnl_engine.payroll.domain.capability_report import (
     CaseFacts,
     compare_with_catalog,
 )
-from ccnl_engine.provenance.domain.chain import ProvenanceStatus
+from ccnl_engine.provenance.source.models_chain import ProvenanceStatus
 
 _APPLIES = CapabilityApplicability
 _HANDLER = CapabilityHandler

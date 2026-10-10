@@ -32,9 +32,9 @@ from ccnl_engine.inputs import (
     SenioritySource,
     WeeklyHours,
 )
-from ccnl_engine.contract.service.loaders import load_ccnl
-from ccnl_engine.knowledge.service.manifest import read_resource
-from ccnl_engine.tax.service.surtax_loaders import load_surtax_rules
+from ccnl_engine.contract.catalog.loaders import load_ccnl
+from ccnl_engine.knowledge.loaders_manifest import read_resource
+from ccnl_engine.tax.surtax.loaders import load_surtax_rules
 from ccnl_engine.payroll.domain.jurisdiction import REGION_CODES
 
 #: First day of the cohort the IVS massimale applies to (L. 335/1995 art. 2 c. 18).

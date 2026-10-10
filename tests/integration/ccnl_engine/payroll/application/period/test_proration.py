@@ -9,8 +9,8 @@ from typing import TYPE_CHECKING, cast
 
 import pytest
 
-from ccnl_engine.contract.domain.absence import DailyDivisorMethod
-from ccnl_engine.contract.service.loaders import load_ccnl
+from ccnl_engine.contract.absence.models import DailyDivisorMethod
+from ccnl_engine.contract.catalog.loaders import load_ccnl
 from ccnl_engine.payroll.application.period._proration import (
     FULL_MONTH,
     POSTED_BY_ANOTHER_RUN,

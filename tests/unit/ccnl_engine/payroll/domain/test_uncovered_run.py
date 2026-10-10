@@ -5,11 +5,11 @@ from __future__ import annotations
 import pickle
 from datetime import date
 
+from ccnl_engine.errors import MissingRuleError
 from ccnl_engine.payroll.domain.assurance import BlockerCode
 from ccnl_engine.payroll.domain.payment import PaymentId
 from ccnl_engine.payroll.domain.run import PayrollRunId, RunKind
 from ccnl_engine.payroll.domain.uncovered_run import UncoveredRun
-from ccnl_engine.shared.domain.errors import MissingRuleError
 
 _PAYMENT = PaymentId(
     PayrollRunId(year=2026, month=1, kind=RunKind.REGULAR), date(2026, 1, 27)

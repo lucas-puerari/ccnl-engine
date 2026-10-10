@@ -20,7 +20,7 @@ from ccnl_engine.payroll.application.period._rule_lookup import (
 )
 from ccnl_engine.payroll.application.period._run_decisions import _ccnl_rule
 from ccnl_engine.payroll.domain.decisions import CalculationDecision, CalculationStatus
-from ccnl_engine.provenance.domain.chain import RuleProvenance
+from ccnl_engine.provenance.source.models_chain import RuleProvenance
 
 if TYPE_CHECKING:
     from decimal import Decimal
@@ -29,7 +29,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.application.period._context import RunContext
     from ccnl_engine.payroll.application.period._pipeline import RunAmounts
     from ccnl_engine.payroll.application.period._rule_lookup import Rule
-    from ccnl_engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.annual.models import YearRules
 
 __all__ = ["base_stage_decisions"]
 

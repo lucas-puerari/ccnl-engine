@@ -5,18 +5,18 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.service.seniority_tiers import (
     count_from_tiers,
     resolve_tier_amount,
 )
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.contract.domain.category import WorkerCategory
-    from ccnl_engine.contract.domain.seniority import SeniorityIncrements
+    from ccnl_engine.contract.employment.models_category import WorkerCategory
+    from ccnl_engine.contract.seniority.models import SeniorityIncrements
 
 _ZERO = Decimal(0)
 

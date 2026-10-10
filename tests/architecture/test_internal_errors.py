@@ -1,9 +1,9 @@
 """Internal errors stay inside the engine.
 
-:class:`~ccnl_engine.contract.domain.validity.SeriesGapError` is the
+:class:`~ccnl_engine.contract.identity.rules_validity.SeriesGapError` is the
 internal signal of a rule series without a value on a date.  It is a
 ``ValueError`` on purpose: only the modules below catch it, and
-:func:`~ccnl_engine.contract.domain.validity.rule_scope` translates it into
+:func:`~ccnl_engine.contract.identity.rules_validity.rule_scope` translates it into
 the public :class:`~ccnl_engine.MissingRuleError`.  A new module that
 handles it must be added here, so that every place it can escape from is
 reviewed; a module that stops using it must be removed.
@@ -16,16 +16,16 @@ import importlib.resources
 from pathlib import Path
 
 import ccnl_engine
-from ccnl_engine.contract.domain.validity import SeriesGapError
-from ccnl_engine.shared.domain.errors import CcnlEngineError
+from ccnl_engine.contract.identity.rules_validity import SeriesGapError
+from ccnl_engine.errors import CcnlEngineError
 from tests.architecture._imports import read_package
 
 _SRC = Path(str(importlib.resources.files("ccnl_engine"))).parent
 
 #: Modules that define, raise or catch ``SeriesGapError``.
 SERIES_GAP_MODULES: frozenset[str] = frozenset({
-    "ccnl_engine.contract.domain.validity",
-    "ccnl_engine.contract.domain.validation",
+    "ccnl_engine.contract.identity.rules_validity",
+    "ccnl_engine.contract.identity.validators",
     "ccnl_engine.payroll.service.chain",
 })
 

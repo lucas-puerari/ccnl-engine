@@ -4,15 +4,15 @@ from __future__ import annotations
 
 from datetime import date
 
-from ccnl_engine.provenance.domain.ruleset_assurance import (
-    RulesetAssurance,
-    RulesetKind,
-)
-from ccnl_engine.provenance.domain.ruleset_identity import (
+from ccnl_engine.provenance.ruleset.models import (
     RulesetIdentity,
     RulesetReadiness,
     SourceType,
     VerificationStatus,
+)
+from ccnl_engine.provenance.ruleset.models_assurance import (
+    RulesetAssurance,
+    RulesetKind,
 )
 
 __all__ = ["ccnl_ruleset", "ruleset_identity", "tax_ruleset"]

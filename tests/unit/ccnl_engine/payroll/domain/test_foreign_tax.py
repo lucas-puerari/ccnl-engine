@@ -6,8 +6,8 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.prior_year import ForeignTaxPaid, PriorYearTaxFacts
-from ccnl_engine.shared.domain.errors import InvalidInputError
 
 
 def _paid(

@@ -17,7 +17,7 @@ from typing import TYPE_CHECKING
 from ccnl_engine.payroll.service.withholding_agent import NOT_WITHHOLDING_AGENT
 
 if TYPE_CHECKING:
-    from ccnl_engine.tax.domain.preferential_regime import (
+    from ccnl_engine.tax.regime.models import (
         EmployerActivity,
         EmploymentSector,
         PreferentialTaxRegime,
