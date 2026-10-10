@@ -127,6 +127,7 @@ def calculate_competence_year(
     return CompetenceYearResult(
         tuple(results),
         opening,
+        mode=mode,
         bundle_version=bundle_version,
         year=plan.year,
         calendar=prepared.calendar,

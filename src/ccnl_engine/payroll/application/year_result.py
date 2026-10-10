@@ -7,6 +7,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application.close_tax_year import close_tax_year
+from ccnl_engine.payroll.domain.assessment import assess_nothing_computed
 from ccnl_engine.payroll.domain.assurance import ResultAssurance
 from ccnl_engine.payroll.domain.remittance import remittance_summary
 
@@ -18,6 +19,7 @@ if TYPE_CHECKING:
         CalculationDecision,
         CalculationIssue,
     )
+    from ccnl_engine.payroll.domain.engine_mode import EngineMode
     from ccnl_engine.payroll.domain.payment import PaymentId
     from ccnl_engine.payroll.domain.period import PeriodResult
     from ccnl_engine.payroll.domain.period_state import PeriodState
@@ -34,11 +36,20 @@ _ZERO = Decimal(0)
 class PaymentsResult:
     """Results of payments computed one after the other, in payment order.
 
+    The result is incremental: :attr:`assurance`, :attr:`is_payable`,
+    :attr:`blockers` and :attr:`rulesets` assess the payments computed by
+    this call, :attr:`assessed_payments`, and nothing else.  A payment the
+    opening state already closed (a resumed or retried plan, or a late
+    December carried in from the previous competence year) is vouched for
+    by the result of the call that computed it.  A call that computed no
+    payment assessed nothing and is never payable.
+
     Attributes:
         period_results: One :class:`PeriodResult` per payment computed, in
             payment order.  Payments the opening state already closed are
             not computed again and have no result here.
         opening_state: State the first payment opened with.
+        mode: Payability policy every payment was computed under.
         bundle_version: Knowledge-bundle version of the calculation.
         uncovered_runs: Runs of the plans not computed because the bundle
             holds no base salary of their level on their competence date,
@@ -49,6 +60,7 @@ class PaymentsResult:
 
     period_results: tuple[PeriodResult, ...]
     opening_state: PeriodState
+    mode: EngineMode = field(kw_only=True)
     bundle_version: str | None = field(default=None, kw_only=True)
     uncovered_runs: tuple[UncoveredRun, ...] = field(default=(), kw_only=True)
 
@@ -68,30 +80,40 @@ class PaymentsResult:
         return sum((r.period_employer_cost for r in self.period_results), _ZERO)
 
     @property
+    def assessed_payments(self) -> tuple[PaymentId, ...]:
+        """Payments computed by this call, the only ones :attr:`assurance` covers."""
+        return tuple(r.closing_state.cash.payments[-1] for r in self.period_results)
+
+    @property
     def assurance(self) -> ResultAssurance:
-        """Assurance of every payment, combined.
+        """Assurance of the payments computed by this call, combined.
 
         Each axis is the worst of the runs; rulesets and blockers are
         listed once each, followed by one ``run_not_computed`` blocker per
         run of :attr:`uncovered_runs`.  The result is payable only when
-        every run is and none was left out.
+        every run computed is and none was left out; with no run computed
+        it is not payable (see
+        :func:`~ccnl_engine.payroll.domain.assessment.assess_nothing_computed`).
         """
-        combined = ResultAssurance.combine(r.assurance for r in self.period_results)
+        if self.period_results:
+            combined = ResultAssurance.combine(r.assurance for r in self.period_results)
+        else:
+            combined = assess_nothing_computed(self.mode)
         return combined.with_blockers(u.blocker for u in self.uncovered_runs)
 
     @property
     def is_payable(self) -> bool:
-        """Whether every payment computed is payable."""
+        """Whether every payment computed by this call is payable."""
         return self.assurance.is_payable
 
     @property
     def blockers(self) -> tuple[ResultBlocker, ...]:
-        """Blockers of every payment, each listed once."""
+        """Blockers of the payments computed by this call, each listed once."""
         return self.assurance.blockers
 
     @property
     def rulesets(self) -> tuple[RulesetAssurance, ...]:
-        """Rulesets read by any payment, each listed once."""
+        """Rulesets read by the payments computed by this call, each once."""
         return self.assurance.rulesets
 
     @property

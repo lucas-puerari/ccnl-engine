@@ -30,6 +30,7 @@ from ccnl_engine import (
     TaxYearPlan,
 )
 from ccnl_engine.inputs import Permanent
+from ccnl_engine.results import EvidenceStatus, ResultAssurance
 from tests.fixtures.next_year_repository import NextYearRepository
 from tests.fixtures.payment_sequence import Payment, PaymentSequence
 
@@ -185,6 +186,14 @@ def test_a_plan_resumed_on_an_interrupted_state_gives_the_same_year(
     assert resumed.closing_state == whole.closing_state
     assert resumed.period_results == whole.period_results[stopped_after:]
     assert resumed.payments == whole.closing_state.cash.payments
+    computed = whole.closing_state.cash.payments[stopped_after:]
+    assert resumed.assessed_payments == computed
+    assert (
+        resumed.blockers
+        == ResultAssurance.combine(
+            r.assurance for r in whole.period_results[stopped_after:]
+        ).blockers
+    )
 
 
 def test_a_plan_retried_on_its_closing_state_computes_nothing() -> None:
@@ -203,6 +212,9 @@ def test_a_plan_retried_on_its_closing_state_computes_nothing() -> None:
     assert retried.period_results == ()
     assert retried.closing_state == whole.closing_state
     assert retried.annual_gross == 0
+    assert retried.assessed_payments == ()
+    assert not retried.is_payable
+    assert retried.assurance.evidence is EvidenceStatus.MISSING
 
 
 def test_close_tax_year_is_rejected_twice() -> None:

@@ -37,6 +37,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.domain.assurance import (
     BlockerCode,
+    CoverageStatus,
     EvidenceStatus,
     ResultAssurance,
     ResultBlocker,
@@ -54,7 +55,7 @@ if TYPE_CHECKING:
     from ccnl_engine.provenance.domain.ruleset_assurance import RulesetAssurance
     from ccnl_engine.shared.domain.limitation import ModelLimitation
 
-__all__ = ["assess"]
+__all__ = ["assess", "assess_nothing_computed"]
 
 
 def assess(
@@ -110,6 +111,32 @@ def assess(
         payability=decide_payability(blockers),
         blockers=blockers,
         limitations=limitations,
+    )
+
+
+def assess_nothing_computed(mode: EngineMode) -> ResultAssurance:
+    """Derive the assurance of a sequence of payments that computed none.
+
+    Nothing was computed, so nothing was covered and no rule was read: the
+    policy of a run whose rules carry no provenance record applies, and in
+    ``operational`` mode no ruleset tracks a readiness tier.  The result is
+    never payable.
+
+    Returns:
+        The assurance, ``incomplete`` with ``missing`` evidence.
+    """
+    blockers = (
+        _blocker(BlockerCode.RULE_SOURCE_WEAK, None, EvidenceStatus.MISSING),
+        *_readiness_blockers((), mode),
+    )
+    return ResultAssurance(
+        calculation=CalculationStatus.FINAL,
+        coverage=CoverageStatus.INCOMPLETE,
+        evidence=EvidenceStatus.MISSING,
+        rulesets=(),
+        mode=mode,
+        payability=decide_payability(blockers),
+        blockers=blockers,
     )
 
 

@@ -4,6 +4,13 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Incremental assurance of a resumed year
+
+| Before | After |
+|---|---|
+| The assurance of a `CompetenceYearResult` or `TaxYearResult` combined the runs it computed, without saying so; with no run computed (a plan retried on its closing state) `is_payable`, `blockers` and `assurance` raised `ValueError` | The assurance is documented as incremental: it covers `assessed_payments`, the payments computed by the call, and not those the opening state already closed. With no run computed it is not payable (`missing` evidence, a `rule_source_weak` blocker, in `operational` mode also `ruleset_not_production`) |
+| `PaymentsResult` without the mode of its runs | New field `mode`, the `EngineMode` the payments were computed under |
+
 ## Strict INPS sick-pay table
 
 | Before | After |

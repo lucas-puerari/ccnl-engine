@@ -345,6 +345,15 @@ unresolved requirement, otherwise `partial` when every gap is partial and
         - CompetenceYearResult
         - TaxYearResult
 
+The assurance of a competence or tax year is incremental: `assurance`,
+`is_payable`, `blockers` and `rulesets` assess the payments computed by the
+call, listed in `assessed_payments`. A payment the opening state already
+closed (a resumed or retried plan, a late December carried in from the
+previous competence year) is vouched for by the result of the call that
+computed it. A call that computed no payment assessed nothing: it is not
+payable, with `missing` evidence and a `rule_source_weak` blocker (and in
+`operational` mode a `ruleset_not_production` blocker).
+
 A competence or tax year does not compute a run whose competence date has
 no base salary of the CCNL level in the bundle. The run is listed in
 `uncovered_runs` as an `UncoveredRun` (its `payment`, the fields of the

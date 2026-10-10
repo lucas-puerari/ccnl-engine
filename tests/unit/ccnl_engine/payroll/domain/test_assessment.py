@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.domain.assessment import assess
+from ccnl_engine.payroll.domain.assessment import assess, assess_nothing_computed
 from ccnl_engine.payroll.domain.assurance import (
     BlockerCode,
     CoverageStatus,
@@ -221,3 +221,19 @@ def test_caller_supplied_origin_is_not_a_decision_blocker() -> None:
     )
 
     assert assess((), (decision,), _report(), (), _SIMULATION).is_payable
+
+
+def test_nothing_computed_is_never_payable() -> None:
+    """No run read a rule; operational mode also finds no tracked readiness."""
+    simulation = assess_nothing_computed(EngineMode.SIMULATION)
+    operational = assess_nothing_computed(EngineMode.OPERATIONAL)
+
+    assert simulation.evidence is EvidenceStatus.MISSING
+    assert simulation.coverage is CoverageStatus.INCOMPLETE
+    assert [b.code for b in simulation.blockers] == [BlockerCode.RULE_SOURCE_WEAK]
+    assert [b.code for b in operational.blockers] == [
+        BlockerCode.RULE_SOURCE_WEAK,
+        BlockerCode.RULESET_NOT_PRODUCTION,
+    ]
+    assert not simulation.is_payable
+    assert operational.mode is EngineMode.OPERATIONAL

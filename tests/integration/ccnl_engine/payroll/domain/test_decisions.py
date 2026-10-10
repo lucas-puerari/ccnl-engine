@@ -277,14 +277,14 @@ class TestYearResultStatus:
         assert year_result.issues == ()
         assert year_result.assurance.calculation is _FINAL
 
-    def test_empty_year_has_no_assurance(
+    def test_empty_year_assessed_nothing_and_is_not_payable(
         self, year_result: CompetenceYearResult
     ) -> None:
-        """A year without periods has no issues and no assurance to combine."""
+        """A year without periods has no issues and is never payable."""
         empty = replace(year_result, period_results=())
         assert empty.issues == ()
-        with pytest.raises(ValueError, match="no run"):
-            _ = empty.assurance
+        assert empty.assurance.evidence == "missing"
+        assert not empty.is_payable
 
     def test_status_is_worst_period_status(
         self, year_result: CompetenceYearResult
