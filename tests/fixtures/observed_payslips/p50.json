@@ -1,0 +1,133 @@
+{
+  "id": "p50",
+  "period": "2024-05",
+  "period_printed": "MAGGIO 2024",
+  "kind": "regular",
+  "ccnl_hint": null,
+  "level": "D1",
+  "contract": {
+    "category_printed": "SALDATORE",
+    "hired": "2021-09"
+  },
+  "lines": [
+    {
+      "desc": "RETRIBUZIONE DEL MESE",
+      "code": "110",
+      "qty": "152.00",
+      "earning": "1346.74"
+    },
+    {
+      "desc": "FERIE USUFRUITE NEL MESE",
+      "code": "140",
+      "qty": "32.00",
+      "earning": "283.52"
+    },
+    {
+      "desc": "PAGAMENTO MENSILE RATEI",
+      "code": "477",
+      "earning": "135.86"
+    },
+    {
+      "desc": "ASSISTENZA SANITARIA  - DITTA",
+      "code": "57K",
+      "rate": "13.00"
+    },
+    {
+      "desc": "PIGNORAM. VS IFIS NPL INVESTIN",
+      "code": "78N",
+      "deduction": "598.82"
+    },
+    {
+      "desc": "PIGNORAMENTI - IMPORTO RESIDUO",
+      "code": "76N",
+      "rate": "13792.33"
+    },
+    {
+      "desc": "TOTALE COMPETENZE LORDE",
+      "rate": "1766.12"
+    },
+    {
+      "desc": "QUOTA TFR MATURATA",
+      "rate": "121.99"
+    },
+    {
+      "desc": "IMPONIBILE E CONTRIBUTO INPS",
+      "qty_printed": "9,19%",
+      "rate": "1766.00",
+      "deduction": "162.30"
+    },
+    {
+      "desc": "IMPONIBILE INAIL",
+      "rate": "1766.12"
+    },
+    {
+      "desc": "ESONERO CONTRIB. 7% MENSILE",
+      "earning": "114.10"
+    },
+    {
+      "desc": "TOTALE CONTRIBUTI ESENTI IRPEF",
+      "rate": "48.20"
+    },
+    {
+      "desc": "IMPONIBILE IRPEF",
+      "rate": "1717.92"
+    },
+    {
+      "desc": "RITENUTA IRPEF LORDA",
+      "rate": "395.12"
+    },
+    {
+      "desc": "TOTALE DETRAZIONI",
+      "rate": "220.43"
+    },
+    {
+      "desc": "RITENUTA IRPEF NETTA",
+      "deduction": "174.69"
+    },
+    {
+      "desc": "ANTICIPAZIONE T.F.R.",
+      "code": "722",
+      "earning": "1948.05"
+    },
+    {
+      "desc": "IMPONIBILE E ALIQUOTA SU TFR",
+      "rate": "1948.05"
+    },
+    {
+      "desc": "RITENUTA LORDA SU TFR",
+      "rate": "448.05"
+    },
+    {
+      "desc": "RITENUTA NETTA SU TFR",
+      "deduction": "448.05"
+    },
+    {
+      "desc": "RATA ACCONTO ADDIZ. COMUNALE",
+      "deduction": "5.47"
+    },
+    {
+      "desc": "RATA ADD. REGIONALE ANNO PREC.",
+      "deduction": "32.78"
+    },
+    {
+      "desc": "RATA ADD. COMUNALE ANNO PREC.",
+      "deduction": "10.87"
+    }
+  ],
+  "inps": {
+    "base": "1766.00"
+  },
+  "irpef_month": {
+    "taxable": "1717.92",
+    "net": "174.69"
+  },
+  "totals": {
+    "earnings": "3828.27",
+    "deductions": "1432.98"
+  },
+  "net": "2395.00",
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

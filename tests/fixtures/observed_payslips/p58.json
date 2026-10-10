@@ -1,0 +1,46 @@
+{
+  "id": "p58",
+  "period": "2024-03",
+  "period_printed": "MARZO 2024",
+  "kind": "regular",
+  "ccnl_hint": "Metalmeccanica Confind.",
+  "level": "C2",
+  "contract": {
+    "category_printed": "4F00-30C2/Installatore impianti",
+    "hired": "2024-03"
+  },
+  "lines": [
+    {
+      "desc": "Retribuzione ordinaria",
+      "code": "0001",
+      "qty": "26.00",
+      "rate": "60.83938",
+      "earning": "1581.82"
+    },
+    {
+      "desc": "Tredicesima mensilità",
+      "code": "2700",
+      "qty": "1.00",
+      "earning": "131.82"
+    },
+    {
+      "desc": "Contr.azienda METASALUTE",
+      "rate": "13.00"
+    }
+  ],
+  "inps": {
+    "base": "1714.00"
+  },
+  "irpef_month": {
+    "taxable": "1705.93",
+    "net": "145.60"
+  },
+  "totals": {
+    "earnings": "1713.64"
+  },
+  "net": "1561.00",
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

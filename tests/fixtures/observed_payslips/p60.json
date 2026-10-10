@@ -1,0 +1,124 @@
+{
+  "id": "p60",
+  "period": "2024-05",
+  "period_printed": "MAGGIO 2024",
+  "kind": "regular",
+  "ccnl_hint": null,
+  "level": "A3C",
+  "contract": {
+    "category_printed": "ATTVITA' AUSILIARIE ALLA PESCA",
+    "hired": "2024-04"
+  },
+  "lines": [
+    {
+      "desc": "TOTALE ELEMENTI SU PART-TIME",
+      "code": "032",
+      "qty_printed": "28,20%",
+      "rate": "515.18"
+    },
+    {
+      "desc": "RETRIBUZIONE DEL MESE",
+      "code": "110",
+      "qty": "48.00",
+      "rate": "10.81000",
+      "earning": "518.88"
+    },
+    {
+      "desc": "FESTIVITA'",
+      "code": "115",
+      "qty": "1.00",
+      "rate": "19.78",
+      "earning": "19.78"
+    },
+    {
+      "desc": "MAGGIORAZIONE AL 10%",
+      "code": "275",
+      "qty": "4.00",
+      "rate": "0.82900",
+      "earning": "3.32"
+    },
+    {
+      "desc": "RIMBORSO SPESE DOCUMENTATE",
+      "code": "05R",
+      "earning": "150.00"
+    },
+    {
+      "desc": "TOTALE COMPETENZE LORDE",
+      "rate": "541.98"
+    },
+    {
+      "desc": "QUOTA TFR MATURATA",
+      "rate": "39.87"
+    },
+    {
+      "desc": "IMPONIBILE E CONTRIBUTO INPS",
+      "qty_printed": "8,84%",
+      "rate": "542.00",
+      "deduction": "47.91"
+    },
+    {
+      "desc": "C.I.M.I.A.V. 0,63%",
+      "code": "56D",
+      "qty_printed": "0,63%",
+      "rate": "542.00",
+      "deduction": "3.41"
+    },
+    {
+      "desc": "CONTRIBUTI ALTRI ENTI",
+      "deduction": "1.08"
+    },
+    {
+      "desc": "IMPONIBILE INAIL",
+      "rate": "437.50"
+    },
+    {
+      "desc": "ESONERO CONTRIB. 7% MENSILE",
+      "earning": "37.94"
+    },
+    {
+      "desc": "TOTALE CONTRIBUTI ESENTI IRPEF",
+      "rate": "14.46"
+    },
+    {
+      "desc": "IMPONIBILE IRPEF",
+      "rate": "527.52"
+    },
+    {
+      "desc": "RITENUTA IRPEF LORDA",
+      "rate": "121.33"
+    },
+    {
+      "desc": "TOTALE DETRAZIONI",
+      "rate": "166.04"
+    },
+    {
+      "desc": "TOT. IMP. INPS ANNUALE DIPEND.",
+      "rate": "931.00"
+    },
+    {
+      "desc": "TOTALE IMPONIB. IRPEF ANNUALE",
+      "code": "98P",
+      "rate": "906.27"
+    },
+    {
+      "desc": "ORE EFFETTIVAMENTE LAVORATE",
+      "code": "D31"
+    }
+  ],
+  "inps": {
+    "base": "542.00"
+  },
+  "irpef_month": {
+    "taxable": "527.52",
+    "net": null
+  },
+  "totals": {
+    "earnings": "729.92",
+    "deductions": "52.40"
+  },
+  "net": "677.00",
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

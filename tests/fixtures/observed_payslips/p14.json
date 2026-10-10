@@ -1,0 +1,160 @@
+{
+  "id": "p14",
+  "period": "2026-01",
+  "period_inferred_from": "header cropped; source filename says gennaio 2026, progressives equal the month, surtax installments of tax year 2025",
+  "payment_date": null,
+  "kind": "regular",
+  "ccnl_hint": "Terziario Confcommercio (Ente Bilaterale Commercio, Fondo EST, Sanimpresa)",
+  "level": null,
+  "contract": {
+    "type": null,
+    "inail_tariff": "0722"
+  },
+  "region": "Lazio",
+  "pay_elements": null,
+  "lines": [
+    {
+      "desc": "retribuzione",
+      "qty_days": "26.00000",
+      "rate": "105.76923",
+      "earning": "2750.00"
+    },
+    {
+      "desc": "benefit assicurazioni",
+      "figurative": "1.32"
+    },
+    {
+      "desc": "ferie godute MP",
+      "qty_hours": "16.00000"
+    },
+    {
+      "desc": "benefit auto",
+      "figurative": "160.53"
+    },
+    {
+      "desc": "buoni pasto elettronici",
+      "qty_days": "18.00000",
+      "rate": "7.00000",
+      "figurative": "126.00"
+    },
+    {
+      "desc": "fringe benefit soggetto",
+      "figurative": "161.85"
+    },
+    {
+      "desc": "contributo Sanimpresa c/ditta",
+      "figurative": "14.00"
+    },
+    {
+      "desc": "contributo IVS",
+      "base": "2912.00",
+      "rate_pct": "9.19000",
+      "deduction": "267.61"
+    },
+    {
+      "desc": "fondo bilaterale attivita professionali >15",
+      "base": "2912.00",
+      "rate_pct": "0.33333",
+      "deduction": "9.71"
+    },
+    {
+      "desc": "contributo EST c/dipendente",
+      "base": "2.00",
+      "rate_pct": "100.00000",
+      "deduction": "2.00"
+    },
+    {
+      "desc": "ente bilaterale commercio c/dipendente",
+      "base": "2504.06",
+      "rate_pct": "0.05000",
+      "deduction": "1.25"
+    },
+    {
+      "desc": "ente bilaterale commercio c/ditta",
+      "rate_pct": "0.15000",
+      "figurative": "3.76"
+    },
+    {
+      "desc": "ritenute IRPEF",
+      "deduction": "540.65"
+    }
+  ],
+  "inps": {
+    "base": "2912.00",
+    "ivs_rate": "0.0919",
+    "ivs": "267.61",
+    "fis_rate": "0.0033333",
+    "fis": "9.71",
+    "fondo_est": "2.00",
+    "ente_bilaterale": "1.25"
+  },
+  "irpef_month": {
+    "taxable": "2636.29",
+    "gross": "669.98",
+    "work_deduction": "96.52",
+    "ulteriore_detrazione": "32.81",
+    "net": "540.65"
+  },
+  "surtax": [
+    {
+      "kind": "regional",
+      "year": 2025,
+      "residual_after": "862.94",
+      "installment": "86.29"
+    },
+    {
+      "kind": "municipal",
+      "year": 2025,
+      "residual_after": "292.19",
+      "installment": "29.22"
+    }
+  ],
+  "year_totals": {
+    "inps_base": "2912.00",
+    "inail_base": "2912.00",
+    "irpef_taxable": "2636.29",
+    "irpef_paid": "540.65"
+  },
+  "inail": {
+    "base": "2912.00",
+    "tariff": "0722"
+  },
+  "tfr": {
+    "base": "2911.85",
+    "month_quota": "201.13",
+    "fund_31_12": "3267.81",
+    "revaluation": "4.08",
+    "revaluation_tax": "0.69",
+    "year_quota": "201.13"
+  },
+  "leave": {
+    "ferie_hours": {
+      "previous_year": "100.00000",
+      "accrued": "14.66666",
+      "taken": "16.00000",
+      "balance": "98.66666"
+    },
+    "permessi_hours": {
+      "previous_year": "8.00000",
+      "accrued": "2.66666",
+      "taken": null,
+      "balance": "10.66666"
+    }
+  },
+  "rounding": {
+    "current": null
+  },
+  "totals": {
+    "earnings": "2750.00",
+    "deductions": "936.73"
+  },
+  "net": "1813.27",
+  "legibility": "partial",
+  "notes": [
+    "Header (level, contract, dates) cropped out of the image; only the body and footer are visible.",
+    "Check: deductions 267.61 + 9.71 + 2.00 + 1.25 + 540.65 + 86.29 + 29.22 = 936.73 (matches total); 2750.00 - 936.73 = 1813.27 = net. Exact.",
+    "IRPEF check: 669.98 - 96.52 - 32.81 = 540.65.",
+    "INPS base 2912 = 2750.00 + fringe benefit soggetto 161.85 (2911.85, rounded); fringe 161.85 = benefit assicurazioni 1.32 + benefit auto 160.53.",
+    "Comune name omitted per anonymization; Sanimpresa is the Lazio Confcommercio health fund."
+  ]
+}

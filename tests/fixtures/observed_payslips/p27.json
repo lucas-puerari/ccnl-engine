@@ -1,0 +1,232 @@
+{
+  "id": "p27",
+  "period": "2025-11",
+  "payment_date": null,
+  "kind": "termination",
+  "ccnl_hint": "Edilizia (Cassa Edile health fund, Prevedi pension fund; minimo + contingenza + EDR + premio provinciale); level not visible",
+  "level": null,
+  "contract": {
+    "terminated": "2025-11",
+    "daily_rate": "103.19714",
+    "days_divisor_hint": "25"
+  },
+  "region": "Veneto",
+  "pay_elements": {
+    "minimo": "1601.02",
+    "contingenza": "523.35",
+    "edr": "10.33",
+    "scatti": "10.46",
+    "superminimo_assorbibile": "155.00",
+    "premio_produzione_provinciale": "279.76",
+    "total": "2579.92"
+  },
+  "lines": [
+    {
+      "desc": "retribuzione ordinaria",
+      "qty_days": "25.00",
+      "earning": "2579.92"
+    },
+    {
+      "desc": "giorni non lavorati",
+      "qty_days": "14.00",
+      "rate": "103.19714",
+      "deduction": "1444.76"
+    },
+    {
+      "desc": "ferie non godute",
+      "qty_hours": "29.33",
+      "rate": "14.91272",
+      "earning": "437.39"
+    },
+    {
+      "desc": "ROL non goduto",
+      "qty_hours": "63.83",
+      "rate": "14.91289",
+      "earning": "951.89"
+    },
+    {
+      "desc": "festivita' godute",
+      "qty_days": "1.00",
+      "rate": "103.20000",
+      "earning": "103.20"
+    },
+    {
+      "desc": "festivita' abolite",
+      "qty_days": "1.00",
+      "rate": "103.20000",
+      "earning": "103.20"
+    },
+    {
+      "desc": "tredicesima mensilita'",
+      "qty": "10.00",
+      "earning": "2149.93"
+    },
+    {
+      "desc": "quattordicesima mensilita'",
+      "qty": "4.00",
+      "earning": "859.97"
+    },
+    {
+      "desc": "fondo sanitario Cassa Edile 0.26%",
+      "neutral": "6.28",
+      "rate": "0.07302"
+    },
+    {
+      "desc": "FPC Cassa Edile quota aggiuntiva azienda Prevedi",
+      "neutral": "17.50"
+    },
+    {
+      "desc": "straordinario forfait",
+      "earning": "216.00"
+    },
+    {
+      "desc": "buono pasto badge",
+      "qty": "1.00",
+      "rate": "14.00000",
+      "neutral": "14.00"
+    },
+    {
+      "desc": "fringe benefit polizza",
+      "earning": "0.70"
+    },
+    {
+      "desc": "trattamento di fine rapporto",
+      "earning": "6142.28"
+    },
+    {
+      "desc": "retribuzione teorica Emens",
+      "neutral": "1238.36"
+    },
+    {
+      "desc": "TFR a fondo tesoreria INPS",
+      "neutral": "193.17"
+    },
+    {
+      "desc": "indennita' TFR da fondo tesoreria INPS",
+      "neutral": "6142.28"
+    },
+    {
+      "desc": "rivalutazione TFR da fondo tesoreria",
+      "neutral": "115.99"
+    },
+    {
+      "desc": "IRPEF su TFR",
+      "rate": "6142.28000",
+      "deduction": "1361.55"
+    },
+    {
+      "desc": "rivalutazione TFR pagata",
+      "earning": "115.99"
+    },
+    {
+      "desc": "imposta su rivalutazione TFR",
+      "rate": "81.03000",
+      "deduction": "13.78"
+    },
+    {
+      "desc": "addizionale regionale IRPEF (21)",
+      "neutral": "134.24",
+      "deduction": "134.24"
+    },
+    {
+      "desc": "ulteriore detrazione 2025",
+      "qty_days": "318.00",
+      "neutral": "394.33",
+      "base": "10913.73"
+    },
+    {
+      "desc": "reddito teorico complessivo",
+      "neutral": "10913.73"
+    }
+  ],
+  "work_data": {
+    "ore_lavorate": "88.00",
+    "gg_lavorati": "10.00",
+    "ore_lavorabili": "160.00",
+    "tempo_minimale": "12",
+    "tempo_dm10": "12",
+    "giorni_inps": "12",
+    "settimane": "3",
+    "ore_lavorate_annue": "1735",
+    "gg_detrazioni_annui": "318"
+  },
+  "inps": {
+    "base": "5957.00",
+    "employee": "565.32",
+    "total_social": "565.32"
+  },
+  "irpef_month": {
+    "taxable": "1617.42",
+    "gross": "372.01",
+    "work_deduction": "74.99",
+    "deduction_days": "14",
+    "debit_credit": "-97.28"
+  },
+  "irpef_conguaglio": {
+    "annual_taxable": "10913.72",
+    "annual_gross": "2510.16",
+    "annual_deductions": "2097.59",
+    "irpef_paid": "412.57",
+    "conguaglio": "-97.28"
+  },
+  "surtax": [
+    {
+      "kind": "regional",
+      "region_code": "21",
+      "installment": "134.24"
+    }
+  ],
+  "year_totals": {
+    "inps_base": "40194.00",
+    "inps_contributions": "3814.42",
+    "inail_base": "40194.00",
+    "irpef_taxable": "10913.72",
+    "deductions": "2097.59",
+    "irpef_paid": "412.57",
+    "lordo": "12215.01"
+  },
+  "inail": {
+    "base": "5957.00"
+  },
+  "tfr": {
+    "tfr_tax_rate_pct": "23.00",
+    "retribuzione_tfr": "3009.90",
+    "retribuzione_tfr_annual": "31378.56",
+    "to_pension_fund": "29.79",
+    "pension_fund_employer_annual": "182.50",
+    "paid_from_fondo_tesoreria": "6142.28",
+    "revaluation": "115.99",
+    "revaluation_tax": "13.78",
+    "separate_tax": "1361.55"
+  },
+  "pension_fund": {
+    "name": "Prevedi",
+    "employer_extra": "17.50"
+  },
+  "leave": {
+    "ferie": {
+      "accrued": "133.33",
+      "taken": "133.33"
+    },
+    "rol_hours": {
+      "accrued": "73.33",
+      "taken": "73.33"
+    },
+    "total_taken": "104.00"
+  },
+  "rounding": {
+    "previous": "0.14"
+  },
+  "totals": {
+    "earnings": "13659.77",
+    "deductions": "3422.37"
+  },
+  "net": "10237.26",
+  "legibility": "full",
+  "notes": [
+    "Header (employer and employee data, hire date, level) redacted by the source with blue/black marker; the '25.00' days value is circled in red in the original.",
+    "Region inferred from regional surtax code 21 (Veneto); no address recorded.",
+    "Check: competenze lines sum to 13660.47; printed total 13659.77 excludes the 0.70 fringe benefit. Trattenute 1444.76 + 1361.55 + 13.78 + 134.24 + 565.32 - 97.28 (IRPEF credit) = 3422.37 = printed total. 13659.77 - 3422.37 - 0.14 previous rounding = 10237.26 = net. Reconciles exactly.",
+    "Retribuzione ordinaria rate column is blank; qty 25.00 read as days."
+  ]
+}

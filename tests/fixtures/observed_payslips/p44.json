@@ -1,0 +1,117 @@
+{
+  "id": "p44",
+  "period": null,
+  "period_printed": null,
+  "kind": "regular",
+  "ccnl_hint": null,
+  "level": null,
+  "contract": {},
+  "lines": [
+    {
+      "desc": "STIPENDIO TABELLARE",
+      "code": "KA08",
+      "earning": "1841.11"
+    },
+    {
+      "desc": "IIS CONGLOBATA KA08",
+      "code": "750/269",
+      "earning": "538.30"
+    },
+    {
+      "desc": "IND.VACANZA CONTRATTUALE",
+      "code": "119/K78",
+      "earning": "11.90"
+    },
+    {
+      "desc": "IND.VACANZA CONTRATTUALE",
+      "code": "129/KA8",
+      "earning": "23.79"
+    },
+    {
+      "desc": "RETRIBUZIONE PROFESSIONALE DOCENTI",
+      "code": "677/001",
+      "earning": "239.50"
+    },
+    {
+      "desc": "ANTICIPO RINNOVO CCNL 2022 - 2024 - 63,78 Euro",
+      "code": "975/K78",
+      "earning": "79.73"
+    },
+    {
+      "desc": "ARRETRATO RICOSTRUZIONE CARRIERA A.C.",
+      "code": "806/34B",
+      "earning": "131.06"
+    },
+    {
+      "desc": "INPDAP",
+      "rate": "2734.33",
+      "deduction": "240.63"
+    },
+    {
+      "desc": "FONDO CREDITO",
+      "rate": "2734.33",
+      "deduction": "9.56"
+    },
+    {
+      "desc": "TFR art.1 c.3 DPCM 20/12/1999",
+      "rate": "2494.83",
+      "deduction": "49.90"
+    },
+    {
+      "desc": "IRPEF ad aliquota massima",
+      "rate": "131.06",
+      "deduction": "30.14"
+    },
+    {
+      "desc": "IRPEF ad aliquota media"
+    },
+    {
+      "desc": "IRPEF ad aliquota progressiva",
+      "rate": "2347.78",
+      "deduction": "541.80"
+    },
+    {
+      "desc": "ESPERO - F.I.P.- AGGIUNTIVA LAV. -2%",
+      "code": "800/T04",
+      "deduction": "57.64"
+    },
+    {
+      "desc": "ESPERO - F.I.P.- QUOTA BASE LAVORATORE",
+      "code": "800/T02",
+      "deduction": "28.82"
+    },
+    {
+      "desc": "RITENUTA SINDACALE",
+      "code": "800/SAY",
+      "deduction": "12.17"
+    },
+    {
+      "desc": "ADDIZ.REG.IRPEF(COD.FIN.16 SICILIA)",
+      "code": "800/A18",
+      "deduction": "31.96"
+    },
+    {
+      "desc": "ADDIZIONALE COMUNALE - SALDO",
+      "code": "800/CC1",
+      "deduction": "13.12"
+    },
+    {
+      "desc": "ADDIZIONALE COMUNALE - ACCONTO",
+      "code": "800/CC0",
+      "deduction": "6.24"
+    }
+  ],
+  "inps": {
+    "base": "2734.33"
+  },
+  "irpef_month": {
+    "taxable": null,
+    "net": "294.94"
+  },
+  "totals": {},
+  "net": null,
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "id": "p37",
+  "period": "2023-08",
+  "period_printed": "Agosto 2023",
+  "kind": "regular",
+  "ccnl_hint": null,
+  "level": null,
+  "contract": {},
+  "lines": [
+    {
+      "desc": "Retribuzione",
+      "code": "Z00001"
+    },
+    {
+      "desc": "Ferie godute",
+      "code": "Z00250"
+    },
+    {
+      "desc": "Permessi P.A.R. goduti",
+      "code": "Z00258"
+    },
+    {
+      "desc": "Fest.Patrono non goduta",
+      "code": "Z01145"
+    },
+    {
+      "desc": "Straordinario 25%",
+      "code": "Z40025"
+    },
+    {
+      "desc": "Trasferta Italia",
+      "code": "000061"
+    },
+    {
+      "desc": "Arrotond. mese pr.",
+      "code": "ZP9960"
+    },
+    {
+      "desc": "FIM CISL IND",
+      "code": "ZPS000"
+    },
+    {
+      "desc": "Contributo MetaSalute c/ditta",
+      "code": "004400",
+      "earning": "(13.00)"
+    },
+    {
+      "desc": "Contributo IVS",
+      "code": "Z00000",
+      "qty_printed": "9,19000 %"
+    },
+    {
+      "desc": "Contributo CIGS",
+      "code": "Z00071",
+      "qty_printed": "0,30000 %"
+    },
+    {
+      "desc": "Imponibile IRPEF",
+      "code": "F02000"
+    },
+    {
+      "desc": "IRPEF lorda",
+      "code": "F02010"
+    },
+    {
+      "desc": "Detrazioni lav.dip.",
+      "code": "F02500"
+    },
+    {
+      "desc": "Ritenute IRPEF",
+      "code": "F03020"
+    },
+    {
+      "desc": "Addizionale regionale",
+      "code": "F09110",
+      "qty_printed": "Residuo"
+    },
+    {
+      "desc": "Addizionale comunale",
+      "code": "F09130",
+      "qty_printed": "Residuo"
+    },
+    {
+      "desc": "Acconto addiz. comunale",
+      "code": "F09140",
+      "qty_printed": "Residuo"
+    },
+    {
+      "desc": "Retribuzione utile T.F.R."
+    },
+    {
+      "desc": "Quota T.F.R."
+    },
+    {
+      "desc": "Imp. INAIL",
+      "qty_printed": "Voce Tariffa 3600"
+    }
+  ],
+  "inps": {
+    "base": null
+  },
+  "irpef_month": {
+    "taxable": null,
+    "net": null
+  },
+  "totals": {},
+  "net": null,
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

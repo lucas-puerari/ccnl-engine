@@ -1,0 +1,64 @@
+{
+  "id": "p49",
+  "period": "2019-02",
+  "period_printed": "FEBBRAIO 2019",
+  "kind": "regular",
+  "ccnl_hint": "STUDI PROFESSIONALI",
+  "level": "3",
+  "contract": {
+    "category_printed": "IMPIEGATI",
+    "hired": "2014-10"
+  },
+  "lines": [
+    {
+      "desc": "Retribuzione ordinaria",
+      "code": "0",
+      "qty": "26.000",
+      "rate": "66.20654",
+      "earning": "1721.37"
+    },
+    {
+      "desc": "Lavoro straordinario (15%)",
+      "code": "11",
+      "qty": "5.000",
+      "rate": "11.47691",
+      "earning": "57.38"
+    },
+    {
+      "desc": "Permessi riduz. orario goduti",
+      "code": "210",
+      "qty": "0.500"
+    },
+    {
+      "desc": "Rata addiz. Comunale aggiunt.",
+      "code": "826",
+      "deduction": "11.88"
+    },
+    {
+      "desc": "Rata Addizionale Regionale",
+      "code": "828",
+      "deduction": "36.59"
+    },
+    {
+      "desc": "Credito art.1 DL 66/2014",
+      "code": "918",
+      "earning": "80.00"
+    }
+  ],
+  "inps": {
+    "base": "1778.75"
+  },
+  "irpef_month": {
+    "taxable": "1615.26",
+    "net": "285.28"
+  },
+  "totals": {
+    "earnings": "1858.75",
+    "deductions": "499.24"
+  },
+  "net": "1359.00",
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

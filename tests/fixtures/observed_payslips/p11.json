@@ -1,0 +1,154 @@
+{
+  "id": "p11",
+  "period": "2025-12",
+  "payment_date": "2025-12-24",
+  "kind": "regular",
+  "ccnl_hint": "Metalmeccanica Industria (Cometa pension fund); not printed in the visible part",
+  "level": null,
+  "contract": {
+    "type": null,
+    "category": null,
+    "days": "26.00",
+    "daily_rate": "163.01808",
+    "massimale_contributivo_l335_1995": "S",
+    "variables_of": "2025-11"
+  },
+  "region": "Lombardia",
+  "pay_elements": {
+    "total": "4238.47"
+  },
+  "lines": [
+    {
+      "desc": "retribuzione",
+      "qty_days": "26.00",
+      "rate": "163.01808",
+      "earning": "4238.47"
+    },
+    {
+      "desc": "retribuzione in natura auto",
+      "figurative": "89.84"
+    },
+    {
+      "desc": "contatore fringe benefit",
+      "figurative": "1024.60"
+    },
+    {
+      "desc": "recupero imposta polizze",
+      "earning": "35.06"
+    },
+    {
+      "desc": "contributo infortuni extra professionali imponibile",
+      "figurative": "41.60"
+    },
+    {
+      "desc": "buono pasto esente",
+      "qty": "20.00",
+      "rate": "8.00000",
+      "figurative": "160.00"
+    },
+    {
+      "desc": "trattenuta auto",
+      "deduction": "95.00"
+    },
+    {
+      "desc": "fringe benefit assoggettato",
+      "figurative": "131.44"
+    },
+    {
+      "desc": "TFR a Cometa pensione complementare",
+      "rate_pct": "100.00000",
+      "figurative": "298.80"
+    },
+    {
+      "desc": "INPS FPLD/IVS c/dip",
+      "base": "4363.00",
+      "rate_pct": "9.190",
+      "deduction": "400.96"
+    },
+    {
+      "desc": "INPS IVS aggiuntivo c/dip",
+      "base": "3980.00",
+      "rate_pct": "1.000",
+      "deduction": "39.80"
+    },
+    {
+      "desc": "INPS CIG straordinaria c/dip",
+      "base": "4363.00",
+      "rate_pct": "0.300",
+      "deduction": "13.09"
+    },
+    {
+      "desc": "INPS IVS aggiuntivo conguaglio 2025 c/dip",
+      "base": "-3648.00",
+      "earning": "36.48"
+    },
+    {
+      "desc": "fondo sostitutivo sanitario, contributo deducibile",
+      "neutral": "22.86"
+    },
+    {
+      "desc": "addizionale regionale 2025 (annual)",
+      "base": "54096.27",
+      "figurative": "839.17"
+    },
+    {
+      "desc": "addizionale comunale 2025 (annual)",
+      "base": "54096.27",
+      "figurative": "309.79"
+    }
+  ],
+  "inps": {
+    "base": "4363.00",
+    "ivs_rate": "0.0919",
+    "ivs": "400.96",
+    "ivs_aggiuntivo_base": "3980.00",
+    "ivs_aggiuntivo": "39.80",
+    "ivs_aggiuntivo_conguaglio": "-36.48",
+    "cigs_rate": "0.0030",
+    "cigs": "13.09"
+  },
+  "irpef_month": {
+    "taxable": "3987.60",
+    "gross": "1115.66",
+    "work_deduction": null,
+    "net": null
+  },
+  "surtax": [
+    {
+      "kind": "regional",
+      "year": 2025,
+      "taxable": "54096.27",
+      "annual_amount": "839.17"
+    },
+    {
+      "kind": "municipal",
+      "year": 2025,
+      "taxable": "54096.27",
+      "annual_amount": "309.79"
+    }
+  ],
+  "tfr": {
+    "to_pension_fund_pct": "100",
+    "month_to_fund": "298.80",
+    "fund_31_12_prev": "1836.72",
+    "pension_fund_31_12_prev": "8565.29",
+    "year_accrual": "3798.81",
+    "pension_fund_year": "3798.81"
+  },
+  "pension_fund": {
+    "name_hint": "Cometa",
+    "tfr_month": "298.80"
+  },
+  "totals": {
+    "earnings": "4273.53",
+    "deductions": "1994.31"
+  },
+  "net": "2279.22",
+  "legibility": "partial",
+  "notes": [
+    "Check: 4273.53 - 1994.31 = 2279.22, matches the net.",
+    "Total earnings 4273.53 = 4238.47 + 35.06; the 36.48 IVS aggiuntivo conguaglio sits in the competenze column but is apparently netted in the deductions total.",
+    "Only part of the payslip is visible: the header and the IRPEF detail (detrazioni, net IRPEF, surtax installments, fund contributions) are cut, so the 1994.31 deductions cannot be fully itemised from the image.",
+    "Comune name dropped; region kept. IBAN visible in the image, not recorded."
+  ]
+}

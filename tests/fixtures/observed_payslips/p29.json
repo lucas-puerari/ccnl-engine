@@ -1,0 +1,115 @@
+{
+  "id": "p29",
+  "period": "2024-??",
+  "period_scope": "full year (Periodo: 'Intero anno', reference date 2024-01)",
+  "payment_date": null,
+  "kind": "employer_cost_simulation",
+  "ccnl_hint": "Lapidei Industria (INPS: industria lapidei fino a 15 dipendenti; Fondo Altea, assistenza sanitaria lapidei)",
+  "level": "D",
+  "contract": {
+    "category": "impiegato",
+    "hourly_rate": "10.93517",
+    "monthly_rate": "1902.72",
+    "mensilita": "13"
+  },
+  "funds": {
+    "health_fund": "Fondo Altea (ass. sanitaria lapidei)"
+  },
+  "annual_summary": {
+    "imponibile_ctr": "28114.00",
+    "reddito_imponibile": "27092.14",
+    "imponibile_irpef": "27092.14",
+    "altre_detrazioni": "2058.06",
+    "imposta_lorda": "6231.19",
+    "contributi_inps": "2583.68",
+    "competenze": "30314.82",
+    "contributi": "2583.68",
+    "irpef_netta": "4173.13",
+    "altre_trattenute": "6.94",
+    "netto_in_busta": "23559.00"
+  },
+  "cost_breakdown": [
+    {
+      "item": "retribuzione",
+      "amount": "23776.08",
+      "contributions": "7152.97",
+      "tfr": "1598.20",
+      "total": "32527.25",
+      "incidence_pct": "75.68"
+    },
+    {
+      "item": "premi",
+      "amount": "2940.00",
+      "contributions": "888.77",
+      "tfr": "203.04",
+      "total": "4031.81",
+      "incidence_pct": "9.38"
+    },
+    {
+      "item": "ferie",
+      "amount": "1749.24",
+      "contributions": "522.24",
+      "total": "2271.48",
+      "incidence_pct": "5.29"
+    },
+    {
+      "item": "permessi/ROL/ex festivita'",
+      "amount": "1049.76",
+      "contributions": "313.68",
+      "total": "1363.44",
+      "incidence_pct": "3.17"
+    },
+    {
+      "item": "tredicesima",
+      "amount": "1902.72",
+      "contributions": "568.21",
+      "tfr": "131.40",
+      "total": "2602.33",
+      "incidence_pct": "6.06"
+    },
+    {
+      "item": "quattordicesima",
+      "amount": "131.27",
+      "contributions": "39.11",
+      "tfr": "9.11",
+      "total": "179.49",
+      "incidence_pct": "0.42"
+    },
+    {
+      "item": "totale",
+      "amount": "31549.07",
+      "contributions": "9484.98",
+      "tfr": "1941.75",
+      "total": "42975.80",
+      "incidence_pct": "100.00"
+    }
+  ],
+  "cost_summary": {
+    "netto": "23559.00",
+    "lordo": "30314.82",
+    "costo_totale": "42975.80",
+    "costo_giornaliero": "169.19",
+    "costo_orario": "21.14"
+  },
+  "monthly_net": {
+    "01": "1810.00",
+    "02": "1791.00",
+    "03": "1861.00",
+    "04": "1798.00",
+    "05": "1808.00",
+    "06": "1854.00",
+    "07": "1809.00",
+    "08": "1805.00",
+    "09": "1801.00",
+    "10": "1809.00",
+    "11": "1856.00",
+    "12": "3557.00"
+  },
+  "net": "23559.00",
+  "legibility": "not_a_payslip",
+  "notes": [
+    "Not a payslip: an annual employer cost summary ('Costo dipendente', period 'Intero anno'). Transcribed for reference only; worker and company boxes are blank apart from a company code and a date in January 2024 (possibly a hire date, kept at month precision).",
+    "Check: competenze 30314.82 - contributi 2583.68 - IRPEF netta 4173.13 - altre trattenute 6.94 = 23551.07, vs printed netto 23559.00 (gap 7.93, consistent with monthly net rounding). The twelve monthly nets sum to 23559.00 = printed netto. Cost components sum to 31549.07 = printed total importo.",
+    "Quattordicesima 131.27 is far below one monthly rate; likely a partial or residual accrual. Copied as printed."
+  ]
+}

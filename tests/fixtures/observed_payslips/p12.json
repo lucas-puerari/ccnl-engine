@@ -1,0 +1,146 @@
+{
+  "id": "p12",
+  "period": null,
+  "period_inferred_from": "month and year are not printed; next seniority step 08/2028 suggests a period after 2025-08, and the surtax installments in progress suggest a month between March and November",
+  "payment_date": null,
+  "kind": "regular",
+  "ccnl_hint": "Terziario Commercio (quadro, divisors 168/26, ente bilaterale, assistenza sanitaria); not printed",
+  "level": "QU",
+  "contract": {
+    "type": "permanent",
+    "category": "quadro",
+    "pay_type": "fissa mensile",
+    "monthly_pay": "3528.57",
+    "hourly_rate": "21.00339",
+    "daily_rate": "135.71",
+    "hours_divisor": "168.00",
+    "days_divisor": "26",
+    "seniority_steps": "3",
+    "next_seniority_step": "2028-08",
+    "inps_days": "26.00",
+    "minimal_days": "26.00"
+  },
+  "lines": [
+    {
+      "desc": "stipendio (giorni)",
+      "qty_days": "26.00",
+      "rate": "135.71423",
+      "earning": "3528.57"
+    },
+    {
+      "desc": "tickets spettanti",
+      "figurative": "168.00"
+    },
+    {
+      "desc": "ferie godute (giorni)"
+    },
+    {
+      "desc": "trattenuta auto",
+      "deduction": "241.61"
+    },
+    {
+      "desc": "assistenza sanitaria c/dipendente",
+      "deduction": "29.17"
+    },
+    {
+      "desc": "fondo c/dipendente",
+      "deduction": "35.29"
+    },
+    {
+      "desc": "fondo c/azienda",
+      "figurative": "54.69"
+    },
+    {
+      "desc": "comunicazione TFR",
+      "figurative": "243.73"
+    },
+    {
+      "desc": "rata addizionale regionale anno precedente",
+      "residual_after": "177.25",
+      "deduction": "59.09"
+    },
+    {
+      "desc": "rata addizionale comunale anno precedente",
+      "residual_after": "86.80",
+      "deduction": "28.94"
+    },
+    {
+      "desc": "acconto addizionale comunale",
+      "residual_after": "42.28",
+      "deduction": "14.09"
+    },
+    {
+      "desc": "contributo c/azienda ente bilaterale F24",
+      "figurative": "3.11"
+    },
+    {
+      "desc": "contributi INPS",
+      "deduction": "344.44"
+    },
+    {
+      "desc": "contributo ente bilaterale F24 c/dipendente",
+      "deduction": "1.55"
+    },
+    {
+      "desc": "contributi c/dipendente non deducibili",
+      "figurative": "1.55"
+    },
+    {
+      "desc": "ritenute IRPEF",
+      "deduction": "786.90"
+    }
+  ],
+  "inps": {
+    "employee": "344.44",
+    "ente_bilaterale_employee": "1.55"
+  },
+  "irpef_month": {
+    "net": "786.90"
+  },
+  "surtax": [
+    {
+      "kind": "regional",
+      "year": null,
+      "residual_after": "177.25",
+      "installment": "59.09"
+    },
+    {
+      "kind": "municipal",
+      "year": null,
+      "residual_after": "86.80",
+      "installment": "28.94"
+    },
+    {
+      "kind": "municipal_advance",
+      "year": null,
+      "residual_after": "42.28",
+      "installment": "14.09"
+    }
+  ],
+  "inail": {
+    "tariff": "0722"
+  },
+  "tfr": {
+    "month_quota": "243.73"
+  },
+  "pension_fund": {
+    "employee": "35.29",
+    "employer": "54.69"
+  },
+  "rounding": {
+    "previous": "0.54",
+    "current": "0.05"
+  },
+  "totals": {
+    "gross": "3528.57",
+    "earnings": "3528.62",
+    "deductions": "1541.62"
+  },
+  "net": "1987.00",
+  "legibility": "partial",
+  "notes": [
+    "Check: 3528.62 - 1541.62 = 1987.00, matches the net. Deductions itemised sum to 1541.62 (including previous rounding 0.54).",
+    "Earnings total 3528.62 = stipendio 3528.57 + current rounding 0.05.",
+    "Header fields (month, dates) are blank or erased, and several rows above 'TOTALE RETRIBUZIONE' are blanked out; IRPEF taxable and gross are not shown."
+  ]
+}

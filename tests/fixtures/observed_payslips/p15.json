@@ -1,0 +1,214 @@
+{
+  "id": "p15",
+  "period": "2025-02",
+  "period_inferred_from": "print date 2025-03-13 and progressives equal to twice the monthly figures (second month of 2025)",
+  "payment_date": null,
+  "kind": "regular",
+  "ccnl_hint": "Servizi di Pulizia e Multiservizi (contract code 607 on payslip)",
+  "level": "6",
+  "contract": {
+    "type": "permanent",
+    "category": "impiegato",
+    "part_time": null,
+    "hours_month": "160.00",
+    "days_worked": "20.00",
+    "days_paid": "26.00",
+    "deduction_days": "28"
+  },
+  "pay_elements": {
+    "minimo_tabellare": "1227.90000",
+    "mancato_limite_or": "300.00000",
+    "contingenza": "524.77000",
+    "superminimo_assorbibile": "323.46000",
+    "edr": "10.33000",
+    "total": "2386.46000"
+  },
+  "lines": [
+    {
+      "desc": "retribuzione mese",
+      "earning": "2386.46"
+    },
+    {
+      "desc": "ticket elettronici",
+      "qty": "18.0000",
+      "rate": "5.29000",
+      "figurative": "95.22"
+    },
+    {
+      "desc": "previdenziale non arrotondato",
+      "neutral": "2386.46"
+    },
+    {
+      "desc": "INAIL azienda voce tariffa 0722",
+      "qty": "3.6000",
+      "neutral": "2386.00"
+    },
+    {
+      "desc": "imponibile TFR",
+      "neutral": "2386.46"
+    },
+    {
+      "desc": "contributo FAP",
+      "rate_pct": "9.1900",
+      "base": "2386.00",
+      "deduction": "219.27"
+    },
+    {
+      "desc": "contributo CIGS con FIS >15 dip",
+      "rate_pct": "0.3000",
+      "base": "2386.00",
+      "deduction": "7.16"
+    },
+    {
+      "desc": "FIS con max >15 dip",
+      "rate_pct": "0.2667",
+      "base": "2387.00",
+      "deduction": "6.37"
+    },
+    {
+      "desc": "fondo assistenza Multiservizi ASIM c/azienda",
+      "figurative": "-6.00"
+    },
+    {
+      "desc": "ente ONBSI dipendente (mensile)",
+      "deduction": "0.50"
+    },
+    {
+      "desc": "contributo fiscalmente deducibile assistenza integrativa",
+      "figurative": "-6.00"
+    },
+    {
+      "desc": "IRPEF cod. 1001",
+      "deduction": "291.15"
+    },
+    {
+      "desc": "reddito presunto annuo",
+      "neutral": "28809.67"
+    },
+    {
+      "desc": "ulteriore detrazione LdB 2025",
+      "figurative": "76.71"
+    },
+    {
+      "desc": "addizionale regionale compensativa rata",
+      "qty": "2.0000",
+      "deduction": "37.92"
+    },
+    {
+      "desc": "addizionale regionale aggiuntiva rata",
+      "qty": "2.0000",
+      "deduction": "21.85"
+    },
+    {
+      "desc": "acconto addizionale comunale rata",
+      "qty": "1.0000",
+      "deduction": "8.50"
+    },
+    {
+      "desc": "addizionale comunale rata",
+      "qty": "2.0000",
+      "deduction": "21.65"
+    },
+    {
+      "desc": "acconto addizionale comunale dovuto",
+      "qty": "1.1000",
+      "neutral": "76.54"
+    }
+  ],
+  "inps": {
+    "base": "2386.00",
+    "ivs_rate": "0.0919",
+    "ivs": "219.27",
+    "cigs_rate": "0.0030",
+    "cigs": "7.16",
+    "fis_rate": "0.002667",
+    "fis": "6.37",
+    "total_social": "233.30"
+  },
+  "irpef_month": {
+    "taxable": "2154.16",
+    "rate_pct": "35.0000",
+    "gross": "513.96",
+    "deductions": "222.81",
+    "other_deductions": "146.10",
+    "ulteriore_detrazione": "76.71",
+    "net": "291.15",
+    "deduction_days": "28"
+  },
+  "surtax": [
+    {
+      "kind": "regional",
+      "installment_no": "2",
+      "installment": "37.92"
+    },
+    {
+      "kind": "regional_aggiuntiva",
+      "installment_no": "2",
+      "installment": "21.85"
+    },
+    {
+      "kind": "municipal_advance",
+      "installment_no": "1",
+      "installment": "8.50",
+      "total_due": "76.54"
+    },
+    {
+      "kind": "municipal",
+      "installment_no": "2",
+      "installment": "21.65"
+    }
+  ],
+  "year_totals": {
+    "irpef_taxable": "4308.33",
+    "irpef_gross": "1027.92",
+    "deductions": "374.88",
+    "irpef_net": "568.11"
+  },
+  "inail": {
+    "base": "2386.00",
+    "tariff": "0722"
+  },
+  "tfr": {
+    "base": "2386.46",
+    "current_year": "329.68",
+    "previous_years": "3008.24"
+  },
+  "leave": {
+    "ferie": {
+      "previous_year": "57.73",
+      "accrued_year": "29.34",
+      "taken_year": null,
+      "balance": "87.07"
+    },
+    "ex_festivita": {
+      "previous_year": "42.73",
+      "accrued_year": "5.34",
+      "taken_year": null,
+      "balance": "48.07"
+    },
+    "rol": {
+      "previous_year": "51.27",
+      "accrued_year": "6.66",
+      "taken_year": null,
+      "balance": "57.93"
+    }
+  },
+  "rounding": {
+    "previous": "0.64",
+    "current": "0.55"
+  },
+  "totals": {
+    "earnings": "2386.46",
+    "deductions": "614.37"
+  },
+  "net": "1772.00",
+  "legibility": "partial",
+  "notes": [
+    "Low resolution image (720x643); figures readable but small; bottom line truncated.",
+    "Check: social 219.27 + 7.16 + 6.37 + 0.50 = 233.30; total deductions 233.30 + 291.15 + 37.92 + 21.85 + 8.50 + 21.65 = 614.37 (matches); 2386.46 - 614.37 = 1772.09; - 0.64 previous rounding + 0.55 current rounding = 1772.00 = net. Exact.",
+    "IRPEF check: 513.96 - 222.81 = 291.15; 222.81 = altre detrazioni 146.10 + ulteriore detrazione 76.71.",
+    "Labels of header fields 160.00 / 20.00 / 26.00 partly unreadable: interpreted as hours, worked days and paid days.",
+    "Pay element 'Mancato LimiteOr' transcribed as printed; meaning unclear.",
+    "Surtax qty column (2.0000, 1.0000, 1.1000) interpreted as installment number; uncertain. Leave units not printed."
+  ]
+}

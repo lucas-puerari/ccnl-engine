@@ -1,0 +1,147 @@
+{
+  "id": "p20",
+  "period": "2026-??",
+  "period_inferred_from": "header folded and hidden; 2026 municipal surtax advance already withheld and next seniority step 6-2026, so a month of 2026 before June (not verifiable)",
+  "payment_date": null,
+  "kind": "regular",
+  "ccnl_hint": "Terziario Commercio (contingenza 524.22 = level 4, hours divisor 168, terzo elemento)",
+  "level": null,
+  "contract": {
+    "type": null,
+    "category": "impiegato",
+    "inps_weeks": "4",
+    "inps_days": "26",
+    "minimale_days": "26",
+    "worked_days": "22",
+    "worked_hours": "176.00",
+    "deduction_days": "31",
+    "hours_divisor": "168",
+    "hourly_rate": "14.23815",
+    "next_seniority_step": "2026-06"
+  },
+  "region": "Lombardia",
+  "pay_elements": {
+    "paga_base": "1257.46000",
+    "contingenza": "524.22000",
+    "terzo_elemento": "10.33000",
+    "superminimo_assorbibile": "600.00000",
+    "total": "2392.01000"
+  },
+  "lines": [
+    {
+      "desc": "retribuzione",
+      "qty_hours": "168.00000",
+      "rate": "14.23815",
+      "earning": "2392.01"
+    },
+    {
+      "desc": "arrotondamento mese precedente",
+      "deduction": "0.89"
+    },
+    {
+      "desc": "contributo IVS",
+      "base": "2392.00",
+      "rate_pct": "9.19000",
+      "deduction": "219.83"
+    },
+    {
+      "desc": "ritenute IRPEF",
+      "deduction": "218.98"
+    },
+    {
+      "desc": "imponibile rinnovi L. 199/25 c.7",
+      "neutral": "122.59"
+    },
+    {
+      "desc": "imposta sostitutiva L. 199/25 c.7",
+      "deduction": "6.13"
+    },
+    {
+      "desc": "addizionale regionale 2025",
+      "residual_after": "234.33",
+      "deduction": "29.30"
+    },
+    {
+      "desc": "addizionale comunale 2025",
+      "residual_after": "95.11",
+      "deduction": "11.88"
+    },
+    {
+      "desc": "acconto addizionale comunale 2026",
+      "residual_after": "50.60",
+      "deduction": "6.32"
+    }
+  ],
+  "inps": {
+    "base": "2392.00",
+    "ivs_rate": "0.0919",
+    "ivs": "219.83"
+  },
+  "irpef_month": {
+    "taxable": "2049.59",
+    "gross": "471.41",
+    "work_deduction": "167.50",
+    "ulteriore_detrazione": "84.93",
+    "net": "218.98",
+    "deduction_days": "31"
+  },
+  "substitute_tax": {
+    "kind": "rinnovi contrattuali L. 199/2025 c.7",
+    "base": "122.59",
+    "tax": "6.13"
+  },
+  "surtax": [
+    {
+      "kind": "regional",
+      "year": 2025,
+      "residual_after": "234.33",
+      "installment": "29.30"
+    },
+    {
+      "kind": "municipal",
+      "year": 2025,
+      "residual_after": "95.11",
+      "installment": "11.88"
+    },
+    {
+      "kind": "municipal_advance",
+      "year": 2026,
+      "residual_after": "50.60",
+      "installment": "6.32"
+    }
+  ],
+  "year_totals": {
+    "inps_base": "6176.00",
+    "inail_base": "6176.03",
+    "irpef_taxable": "5485.87",
+    "irpef_paid": "480.56"
+  },
+  "inail": {
+    "base": "2392.01",
+    "tariff": "0722"
+  },
+  "tfr": {
+    "base": "2392.01",
+    "fund_31_12": "4506.54",
+    "revaluation": "38.88",
+    "revaluation_tax": "6.61",
+    "year_quota": "426.60"
+  },
+  "rounding": {
+    "previous": "0.89",
+    "current": "0.32"
+  },
+  "totals": {
+    "earnings": "2392.01",
+    "deductions": "493.33",
+    "rounding": "0.32"
+  },
+  "net": "1899.00",
+  "legibility": "partial",
+  "notes": [
+    "Top of the payslip (period, employer, employee, level) is covered by a folded sheet; the rest is fully legible.",
+    "Check: 2392.01 - 493.33 = 1898.68, + rounding 0.32 = 1899.00, matches the net. Deductions 0.89 + 219.83 + 218.98 + 6.13 + 29.30 + 11.88 + 6.32 = 493.33.",
+    "IRPEF check: 471.41 - 167.50 - 84.93 = 218.98.",
+    "Comune name dropped; only the region (Lombardia) is kept."
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "id": "p42",
+  "period": "2024-05",
+  "period_printed": "MAGGIO 2024",
+  "kind": "regular",
+  "ccnl_hint": null,
+  "level": "5",
+  "contract": {
+    "category_printed": "EDUCATRICE NIDO",
+    "hired": "2020-09"
+  },
+  "lines": [
+    {
+      "desc": "TOTALE ELEMENTI SU PART-TIME",
+      "code": "032",
+      "qty_printed": "71,43%",
+      "rate": "1128.50"
+    },
+    {
+      "desc": "ASPETTATIVA PER MATERN. OBBL.",
+      "code": "196",
+      "qty": "111.00"
+    },
+    {
+      "desc": "INTEGRAZIONE FESTIVITA' INFR.",
+      "code": "465",
+      "qty": "5.75",
+      "earning": "19.99"
+    },
+    {
+      "desc": "INPS : INDEN. MAT. POST-PARTO",
+      "code": "391",
+      "qty": "31.00",
+      "earning": "1010.60"
+    },
+    {
+      "desc": "TOTALE COMPETENZE LORDE",
+      "rate": "19.99"
+    },
+    {
+      "desc": "QUOTA TFR MATURATA",
+      "rate": "83.49"
+    },
+    {
+      "desc": "IMPONIBILE E CONTRIBUTO INPS",
+      "qty_printed": "9,19%",
+      "rate": "20.00",
+      "deduction": "1.84"
+    },
+    {
+      "desc": "RITENUTA FIS / FONDI SOL.",
+      "code": "51D",
+      "deduction": "0.05"
+    },
+    {
+      "desc": "ESONERO LAVORATRICI MADRI 2024",
+      "code": "52X",
+      "earning": "1.84"
+    },
+    {
+      "desc": "IMPONIBILE INAIL",
+      "rate": "64.27"
+    },
+    {
+      "desc": "TOTALE CONTRIBUTI ESENTI IRPEF",
+      "rate": "0.05"
+    },
+    {
+      "desc": "IMPONIBILE IRPEF",
+      "rate": "1030.54"
+    },
+    {
+      "desc": "RITENUTA IRPEF LORDA",
+      "rate": "237.02"
+    },
+    {
+      "desc": "TOTALE DETRAZIONI",
+      "qty": "31.00",
+      "rate": "166.04"
+    },
+    {
+      "desc": "RITENUTA IRPEF NETTA",
+      "deduction": "70.98"
+    },
+    {
+      "desc": "RATA ADD. REGIONALE ANNO PREC.",
+      "deduction": "10.55"
+    },
+    {
+      "desc": "BONUS L. 21/20 EROGATO",
+      "earning": "101.64"
+    },
+    {
+      "desc": "TOT. IMP. INPS ANNUALE DIPEND.",
+      "rate": "31.00"
+    },
+    {
+      "desc": "TOTALE IMPONIB. IRPEF ANNUALE",
+      "code": "98P",
+      "rate": "4986.10"
+    },
+    {
+      "desc": "TOTALE RITENUTA IRPEF ANNUALE",
+      "rate": "332.67"
+    },
+    {
+      "desc": "TOTALE BONUS FISCALE EROGATO",
+      "rate": "498.36"
+    },
+    {
+      "desc": "RATE ADD.REG. ANNO PREC TRATT.",
+      "rate": "52.75"
+    }
+  ],
+  "inps": {
+    "base": "20.00"
+  },
+  "irpef_month": {
+    "taxable": "1030.54",
+    "net": "70.98"
+  },
+  "totals": {
+    "earnings": "1134.07",
+    "deductions": "83.42"
+  },
+  "net": "1051.00",
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

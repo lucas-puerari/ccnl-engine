@@ -1,0 +1,159 @@
+{
+  "id": "p16",
+  "period": "2026-05",
+  "payment_date": null,
+  "print_date": "2026-06-05",
+  "kind": "regular",
+  "ccnl_hint": "Terziario or Turismo (paga base 1136.07 and contingenza 521.94 match Terziario level 5; terzo elemento 2.07; reception role); likely first payslip after hire",
+  "level": "V",
+  "contract": {
+    "type": null,
+    "hired": "2026-05",
+    "next_seniority_step": "2029-06",
+    "part_time_hint": "90,00 printed next to level (unlabelled); daily rate 57.46431 = 90% of 1660.08 / 26",
+    "hours_worked": "109.00",
+    "days_worked": "22",
+    "hours_days_paid": "121",
+    "weeks_paid": "4",
+    "deduction_days": "28",
+    "daily_rate": "57.46431",
+    "hourly_rate": "9.88143"
+  },
+  "pay_elements": {
+    "paga_base": "1136.07000",
+    "contingenza": "521.94000",
+    "terzo_elemento": "2.07000",
+    "total": "1660.08000"
+  },
+  "lines": [
+    {
+      "desc": "ore ordinarie",
+      "qty_hours": "109.000",
+      "rate": "9.88143",
+      "earning": "1077.08"
+    },
+    {
+      "desc": "ferie godute (giorni)",
+      "qty_days": "2.000",
+      "rate": "57.46431",
+      "earning": "114.93"
+    },
+    {
+      "desc": "bonus D.L. 3/2020",
+      "earning": "92.05"
+    },
+    {
+      "desc": "indennita L. 207/2024",
+      "earning": "59.89"
+    },
+    {
+      "desc": "ratei 13ma mensilita",
+      "qty": "1.000",
+      "rate": "124.50600",
+      "earning": "124.51"
+    },
+    {
+      "desc": "ratei 14ma",
+      "qty": "1.000",
+      "rate": "124.50600",
+      "earning": "124.51"
+    },
+    {
+      "desc": "ex festivita godute (ore)",
+      "qty_hours": "2.400",
+      "rate": "9.88143",
+      "earning": "23.72"
+    },
+    {
+      "desc": "incremento retributivo rinnovi corrisposto",
+      "qty": "1.000",
+      "figurative": "121.96"
+    },
+    {
+      "desc": "imposta sostitutiva 5% rinnovi",
+      "figurative": "4.05",
+      "calculated_on": "81.02"
+    },
+    {
+      "desc": "reddito complessivo",
+      "figurative": "4750.70"
+    },
+    {
+      "desc": "detrazione lavoro dipendente (dettaglio)",
+      "figurative": "104.97"
+    },
+    {
+      "desc": "EFEI c/dipendente",
+      "figurative": "2.00"
+    },
+    {
+      "desc": "EFEI c/azienda",
+      "figurative": "10.00"
+    }
+  ],
+  "inps": {
+    "base": "1464.75",
+    "base_rounded": "1465.00",
+    "employee": "136.10",
+    "other": "2.00",
+    "total_social": "138.10"
+  },
+  "irpef_month": {
+    "taxable": "1247.63",
+    "gross": "286.96",
+    "deductions": "104.97",
+    "net": "186.04"
+  },
+  "substitute_tax_renewals": {
+    "rate_pct": "5",
+    "base": "81.02",
+    "tax": "4.05"
+  },
+  "year_totals": {
+    "irpef_taxable": "1247.63",
+    "irpef_net": "181.99",
+    "inps_base": "1465.00",
+    "tfr_base": "1464.75"
+  },
+  "inail": {
+    "base": "1040.36"
+  },
+  "tfr": {
+    "base": "1464.75",
+    "month_quota": "101.17"
+  },
+  "leave": {
+    "ferie_days": {
+      "accrued": "2.17",
+      "taken": "2.00",
+      "balance": "0.17"
+    },
+    "other_hours": {
+      "accrued": "2.40",
+      "taken": "2.40"
+    }
+  },
+  "attendance": {
+    "hours_by_day_sum": "109",
+    "absence_days": [
+      "13",
+      "20"
+    ],
+    "absence_reason": "ferie"
+  },
+  "rounding": null,
+  "totals": {
+    "earnings": "1616.69",
+    "social": "138.10",
+    "fiscal": "186.04"
+  },
+  "net": "1292.55",
+  "legibility": "full",
+  "notes": [
+    "Check: earnings 1077.08 + 114.93 + 92.05 + 59.89 + 124.51 + 124.51 + 23.72 = 1616.69 (matches); 1616.69 - 138.10 - 186.04 = 1292.55 = net. Exact.",
+    "IRPEF box: 286.96 - 104.97 = 181.99 (progressive imposta); imposta netta 186.04 = 181.99 + imposta sostitutiva 5% 4.05.",
+    "INAIL base 1040.36 printed, lower than the INPS base; transcribed as printed.",
+    "Field labels at the top left are cut; level 'V' and '90,00' are unlabelled.",
+    "Mansione omitted per anonymization."
+  ]
+}

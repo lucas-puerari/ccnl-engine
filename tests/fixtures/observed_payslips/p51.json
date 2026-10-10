@@ -1,0 +1,91 @@
+{
+  "id": "p51",
+  "period": "2014-01",
+  "period_printed": "Gennaio 2014",
+  "kind": "regular",
+  "ccnl_hint": null,
+  "level": null,
+  "contract": {
+    "category_printed": "COLL.PROF.SANITARIO INFERMIERE"
+  },
+  "lines": [
+    {
+      "desc": "STIPENDIO BASE",
+      "code": "1",
+      "earning": "1769.63"
+    },
+    {
+      "desc": "VALORE COMUNE IND. Q.PROF. ccnl 7.4.99",
+      "code": "132",
+      "earning": "71.53"
+    },
+    {
+      "desc": "FASCIA RETRIBUTIVA SUPERIORE",
+      "code": "136",
+      "earning": "128.91"
+    },
+    {
+      "desc": "IND.PROFESSIONALE SPECIFICA",
+      "code": "137",
+      "earning": "36.15"
+    },
+    {
+      "desc": "IND.VACANZA CONTRATTUALE COMPARTO",
+      "code": "602",
+      "earning": "14.78"
+    },
+    {
+      "desc": "INPDAP Cassa Pensione AA.CC",
+      "rate": "2021.00",
+      "deduction": "178.86"
+    },
+    {
+      "desc": "INPDAP Cassa CreditoAA.CC.",
+      "rate": "2021.00",
+      "deduction": "7.07"
+    },
+    {
+      "desc": "Totale ritenute previdenziali",
+      "deduction": "185.93"
+    },
+    {
+      "desc": "I.R.P.E.F.",
+      "rate": "1794.65",
+      "deduction": "337.45"
+    },
+    {
+      "desc": "Totale detrazioni",
+      "deduction": "100.95"
+    },
+    {
+      "desc": "Totale ritenute fiscali al netto delle detrazioni",
+      "deduction": "337.45"
+    },
+    {
+      "desc": "STERILIZZAZIONE EFFETTI T.F.R.",
+      "code": "5014",
+      "deduction": "40.42"
+    },
+    {
+      "desc": "INPDAP PICCOLI PRESTITI Cpdel GG/AAAA",
+      "code": "8644",
+      "deduction": "181.24"
+    }
+  ],
+  "inps": {
+    "base": "2021.00"
+  },
+  "irpef_month": {
+    "taxable": "1794.65",
+    "net": "337.45"
+  },
+  "totals": {
+    "earnings": "2021.00",
+    "deductions": "745.04"
+  },
+  "net": "1275.96",
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

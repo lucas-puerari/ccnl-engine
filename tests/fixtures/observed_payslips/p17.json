@@ -1,0 +1,187 @@
+{
+  "id": "p17",
+  "period": "2026-01",
+  "payment_date": null,
+  "kind": "regular",
+  "ccnl_hint": "Terziario Confcommercio (Bologna provincial, 'Terziario BO')",
+  "level": "3",
+  "contract": {
+    "type": null,
+    "category": "impiegato",
+    "hired": "2024-10",
+    "next_seniority_step": "2027-11",
+    "inps_weeks": "5",
+    "inps_days": "26",
+    "minimale_days": "26",
+    "worked_days": "17",
+    "worked_hours": "130.00",
+    "deduction_days": "31",
+    "hourly_rate": "12.25446"
+  },
+  "region": "Emilia-Romagna",
+  "pay_elements": {
+    "paga_base": "1453.94000",
+    "contingenza": "527.90000",
+    "terzo_elemento": "2.07000",
+    "superminimo_assorbibile": "74.84000",
+    "total": "2058.75000"
+  },
+  "lines": [
+    {
+      "desc": "retribuzione",
+      "qty_hours": "138.00000",
+      "rate": "12.25446",
+      "earning": "1691.12"
+    },
+    {
+      "desc": "ferie godute",
+      "qty_hours": "16.00000",
+      "rate": "12.25446",
+      "earning": "196.07"
+    },
+    {
+      "desc": "permessi ex festivita goduti",
+      "qty_hours": "14.00000",
+      "rate": "12.25446",
+      "earning": "171.56"
+    },
+    {
+      "desc": "14ma mensilita",
+      "qty_hours": "14.00000",
+      "rate": "12.25446",
+      "earning": "171.56"
+    },
+    {
+      "desc": "straordinario forfait",
+      "earning": "200.00"
+    },
+    {
+      "desc": "retribuzione ente bilaterale commercio/turismo",
+      "qty": "1.00000",
+      "rate": "1981.84000",
+      "figurative": "1981.84"
+    },
+    {
+      "desc": "buoni pasto elettronici",
+      "qty_days": "16.00000",
+      "rate": "5.29000",
+      "figurative": "84.64"
+    },
+    {
+      "desc": "contributo fondo EST",
+      "deduction": "2.00"
+    },
+    {
+      "desc": "contributo fondo EST c/ditta",
+      "figurative": "13.00"
+    },
+    {
+      "desc": "contributo IVS",
+      "base": "2430.00",
+      "rate_pct": "9.19000",
+      "deduction": "223.32"
+    },
+    {
+      "desc": "fondo bilaterale attivita professionali <15",
+      "base": "2430.00",
+      "rate_pct": "0.26667",
+      "deduction": "6.48"
+    },
+    {
+      "desc": "ente bilaterale commercio",
+      "base": "1981.84",
+      "rate_pct": "0.05000",
+      "deduction": "0.99"
+    },
+    {
+      "desc": "ritenute IRPEF",
+      "deduction": "505.66"
+    },
+    {
+      "desc": "rata ulteriore detrazione L. 207/24 anno 2025 (recupero)",
+      "residual_after": "67.95",
+      "deduction": "8.49"
+    }
+  ],
+  "inps": {
+    "base": "2430.00",
+    "ivs_rate": "0.0919",
+    "ivs": "223.32",
+    "fis_rate": "0.0026667",
+    "fis": "6.48",
+    "fondo_est": "2.00",
+    "ente_bilaterale": "0.99"
+  },
+  "irpef_month": {
+    "taxable": "2198.51",
+    "gross": "505.66",
+    "deductions": null,
+    "net": "505.66"
+  },
+  "irpef_conguaglio": {
+    "ulteriore_detrazione_recovery": {
+      "year": 2025,
+      "residual_after": "67.95",
+      "installment": "8.49"
+    }
+  },
+  "surtax": [
+    {
+      "kind": "regional",
+      "year": 2025,
+      "residual_after": "413.74",
+      "installment": "45.97"
+    },
+    {
+      "kind": "municipal",
+      "year": 2025,
+      "residual_after": "189.85",
+      "installment": "21.09"
+    }
+  ],
+  "year_totals": {
+    "inps_base": "2430.00",
+    "inail_base": "2430.00",
+    "irpef_taxable": "2198.51",
+    "irpef_paid": "505.66"
+  },
+  "inail": {
+    "base": "2430.00",
+    "tariff": "0722"
+  },
+  "tfr": {
+    "base": "2514.95",
+    "month_quota": "174.14",
+    "fund_31_12": "2770.96",
+    "revaluation": "15.57",
+    "revaluation_tax": "2.65",
+    "year_quota": "174.14"
+  },
+  "leave": {
+    "ferie_hours": {
+      "previous_year": "4.00000",
+      "accrued": "14.66666",
+      "taken": "16.00000",
+      "balance": "2.66666"
+    },
+    "ex_festivita_hours": {
+      "previous_year": "24.00000",
+      "accrued": "2.66666",
+      "taken": "14.00000",
+      "balance": "12.66666"
+    }
+  },
+  "rounding": null,
+  "totals": {
+    "earnings": "2430.31",
+    "deductions": "814.00"
+  },
+  "net": "1616.31",
+  "legibility": "full",
+  "notes": [
+    "Check: earnings 1691.12 + 196.07 + 171.56 + 171.56 + 200.00 = 2430.31 (matches); deductions 2.00 + 223.32 + 6.48 + 0.99 + 505.66 + 45.97 + 21.09 + 8.49 = 814.00 (matches); 2430.31 - 814.00 = 1616.31 = net. Exact.",
+    "IRPEF ritenuta equals IRPEF lorda: no work deduction applied in the month (none printed).",
+    "Hours: 138 + 16 + 14 = 168 for the month.",
+    "Comune name omitted; only region kept."
+  ]
+}

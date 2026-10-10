@@ -1,0 +1,120 @@
+{
+  "id": "p52",
+  "period": null,
+  "period_printed": "Febbraio 20…",
+  "kind": "regular",
+  "ccnl_hint": null,
+  "level": "II",
+  "contract": {
+    "category_printed": "Impiegato"
+  },
+  "lines": [
+    {
+      "desc": "Minimo tabellare",
+      "earning_printed": "1 218,37"
+    },
+    {
+      "desc": "Superminimo",
+      "earning": "350.00"
+    },
+    {
+      "desc": "Edr",
+      "earning": "10.33"
+    },
+    {
+      "desc": "Scatti di anzianità",
+      "earning": "36.89"
+    },
+    {
+      "desc": "Imponibile contributivo",
+      "rate_printed": "1 616,00"
+    },
+    {
+      "desc": "Totale retribuzione lorda",
+      "earning_printed": "1 615,59"
+    },
+    {
+      "desc": "Ritenute previdenziali",
+      "deduction_printed": "– 153,36"
+    },
+    {
+      "desc": "Imponibile fiscale",
+      "rate_printed": "1 462,23"
+    },
+    {
+      "desc": "IRPEF lorda",
+      "deduction": "344.80"
+    },
+    {
+      "desc": "Detrazione per lavoro dipendente"
+    },
+    {
+      "desc": "– coniuge"
+    },
+    {
+      "desc": "– figli"
+    },
+    {
+      "desc": "– figli < 3 anni"
+    },
+    {
+      "desc": "– altri familiari"
+    },
+    {
+      "desc": "Totale detrazioni d’imposta"
+    },
+    {
+      "desc": "IRPEF netta (ritenuta fiscale erariale)",
+      "deduction": "147.16"
+    },
+    {
+      "desc": "Addizionale regionale IRPEF",
+      "deduction": "22.60"
+    },
+    {
+      "desc": "Addizionale comunale IRPEF (acconto e saldo)",
+      "deduction": "16.15"
+    },
+    {
+      "desc": "Totale ritenute fiscali",
+      "deduction_printed": "– 185,91"
+    },
+    {
+      "desc": "Altre ritenute",
+      "deduction": "0.00"
+    },
+    {
+      "desc": "Retribuzione netta",
+      "earning_printed": "1 276,32"
+    },
+    {
+      "desc": "Acconti sulla retribuzione",
+      "deduction": "0.00"
+    },
+    {
+      "desc": "Assegno per il nucleo familiare",
+      "earning": "65.39"
+    },
+    {
+      "desc": "Arrotondamenti precedenti",
+      "deduction_printed": "– 0,35"
+    },
+    {
+      "desc": "Arrotondamento mese in corso",
+      "deduction_printed": "– 0,36"
+    }
+  ],
+  "inps": {
+    "base": null
+  },
+  "irpef_month": {
+    "taxable": null,
+    "net": "147.16"
+  },
+  "totals": {},
+  "net": null,
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

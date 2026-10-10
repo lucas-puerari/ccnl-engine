@@ -1,0 +1,70 @@
+{
+  "id": "p48",
+  "period": "2012-04",
+  "period_printed": "APRILE 2012",
+  "kind": "regular",
+  "ccnl_hint": "COMMERCIO E TERZIARIO",
+  "level": null,
+  "contract": {
+    "hired": "2003-10"
+  },
+  "lines": [
+    {
+      "desc": "RETRIBUZIONE ORDINARIA",
+      "code": "0",
+      "qty": "6.000",
+      "rate": "58.73306",
+      "earning": "352.40"
+    },
+    {
+      "desc": "TICKETS MENSA",
+      "code": "102",
+      "qty": "20.000",
+      "rate": "3.09874",
+      "earning": "61.97"
+    },
+    {
+      "desc": "FESTIVITA'",
+      "code": "230",
+      "qty": "1.000",
+      "rate": "58.73306",
+      "earning": "58.73"
+    },
+    {
+      "desc": "MATERNITA' OBBLIGATORIA C/INPS",
+      "code": "505",
+      "qty": "22.000",
+      "rate": "48.59254",
+      "earning": "1069.04"
+    },
+    {
+      "desc": "Rata acconto addiz. comunale",
+      "code": "815",
+      "deduction": "5.92"
+    },
+    {
+      "desc": "Rata addiz. Comunale aggiunt.",
+      "deduction": "11.26"
+    },
+    {
+      "desc": "Rata Addizionale Regionale",
+      "deduction": "31.02"
+    }
+  ],
+  "inps": {
+    "base": "411.13"
+  },
+  "irpef_month": {
+    "taxable": "1442.40",
+    "net": "241.82"
+  },
+  "totals": {
+    "earnings": "1480.17",
+    "deductions": "327.79"
+  },
+  "net": "1153.00",
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

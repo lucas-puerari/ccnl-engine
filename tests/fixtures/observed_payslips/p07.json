@@ -1,0 +1,69 @@
+{
+  "id": "p07",
+  "period": "2025-11",
+  "payment_date": "2025-11-27",
+  "kind": "regular",
+  "ccnl_hint": "Funzioni Locali (public, CPDEL), area Assistenti, profilo assistente amministrativo",
+  "level": "Assistenti",
+  "contract": {
+    "type": "permanent",
+    "full_time": true,
+    "hired": "2025-11-01"
+  },
+  "pay_elements": {
+    "stipendio_base_daily": "63.7827",
+    "indennita_qualifica_professionale_daily": "2.3843",
+    "ivc_2025_2027_daily": "0.5953"
+  },
+  "lines": [
+    {
+      "desc": "stipendio base",
+      "qty_days": "30",
+      "rate": "63.7827",
+      "earning": "1913.48"
+    },
+    {
+      "desc": "indennita qualifica professionale comune",
+      "qty_days": "30",
+      "rate": "2.3843",
+      "earning": "71.53"
+    },
+    {
+      "desc": "indennita vacanza contrattuale 2025-2027",
+      "qty_days": "30",
+      "rate": "0.5953",
+      "earning": "17.86"
+    }
+  ],
+  "inps": {
+    "cpdel_base": "2002.87",
+    "cpdel_rate": "0.0885",
+    "cpdel": "177.25",
+    "tfr_base": "1602.2960",
+    "tfr_rate": "-0.0250",
+    "tfr_reduction": "-40.06",
+    "credit_fund_base": "2002.87",
+    "credit_fund_rate": "0.0035",
+    "credit_fund": "7.01"
+  },
+  "irpef_month": {
+    "taxable": "1778.55",
+    "net": "409.07",
+    "deductions": "0.00",
+    "top_rate": "0.23"
+  },
+  "year_totals": {
+    "irpef_taxable": "1778.55",
+    "irpef_net": "409.07"
+  },
+  "totals": {
+    "earnings": "1962.81",
+    "deductions": "593.33"
+  },
+  "net": "1369.48",
+  "legibility": "full",
+  "notes": [
+    "No art. 13 deduction applied (no detrazione field filled): IRPEF netta = 23% of the taxable.",
+    "The TFR reduction (-2.50% of 80% of the base) is booked as a negative earning and lowers the taxable."
+  ]
+}

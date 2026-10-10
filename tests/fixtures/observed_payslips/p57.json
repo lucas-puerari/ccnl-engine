@@ -1,0 +1,73 @@
+{
+  "id": "p57",
+  "period": "2018-01",
+  "period_printed": "Gennaio 2018",
+  "kind": "regular",
+  "ccnl_hint": null,
+  "level": null,
+  "contract": {},
+  "lines": [
+    {
+      "desc": "Retribuzione complessiva",
+      "code": "00003",
+      "earning": "2320.60000"
+    },
+    {
+      "desc": "Ind. Vacanza Contrattuale",
+      "code": "00265",
+      "qty": "29",
+      "rate": "0.58000",
+      "earning": "16.82000"
+    },
+    {
+      "desc": "I.V.C. - assegni ass.100%",
+      "code": "00266",
+      "qty": "1",
+      "rate": "0.58000",
+      "earning": "0.58000"
+    },
+    {
+      "desc": "R.I.A.",
+      "code": "00350",
+      "qty": "29",
+      "rate": "0.49633",
+      "earning": "14.39000"
+    },
+    {
+      "desc": "R.I.A.  assenze- assegni 100%",
+      "code": "00351",
+      "earning": "0.50000"
+    },
+    {
+      "desc": "Ritenute previd. ed assist.",
+      "code": "00990",
+      "deduction": "265.63000"
+    },
+    {
+      "desc": "Ritenute fiscali",
+      "code": "00991",
+      "deduction": "395.98000"
+    },
+    {
+      "desc": "Trattenute extraerariali",
+      "code": "00994",
+      "deduction": "15.44000"
+    }
+  ],
+  "inps": {
+    "base": null
+  },
+  "irpef_month": {
+    "taxable": null,
+    "net": "395.98000"
+  },
+  "totals": {
+    "earnings": "2352.89000",
+    "deductions": "677.05000"
+  },
+  "net": "1675.84000",
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

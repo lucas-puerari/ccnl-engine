@@ -1,0 +1,122 @@
+{
+  "id": "p30",
+  "period": "2014-01",
+  "period_printed": "Gennaio 2014",
+  "kind": "regular",
+  "ccnl_hint": null,
+  "level": "MINISTERI AREA III F4",
+  "contract": {
+    "category_printed": "XXC3"
+  },
+  "lines": [
+    {
+      "desc": "STIPENDIO TABELLARE",
+      "code": "XXC3",
+      "earning": "1562.25"
+    },
+    {
+      "desc": "IIS CONGLOBATA XXC3",
+      "code": "750/326",
+      "earning": "553.45"
+    },
+    {
+      "desc": "IND.VACANZA CONTRATTUALE",
+      "code": "888/X13",
+      "earning": "15.87"
+    },
+    {
+      "desc": "IND. AMM. MEF AREA III F4-F5-F6-F7",
+      "code": "667/B09",
+      "earning": "327.50"
+    },
+    {
+      "desc": "STRAORDINARIO DIURNO - Qta. 20,00 - Imp. 16,90 - Rif. 123456",
+      "code": "AA01/ST01",
+      "earning": "338.00"
+    },
+    {
+      "desc": "FONDO CREDITO",
+      "qty_printed": "0,350 su 100",
+      "rate": "2797.07",
+      "deduction": "9.80"
+    },
+    {
+      "desc": "OPERA DI PREVIDENZA",
+      "qty_printed": "2,500 su 80",
+      "rate": "2459.07",
+      "deduction": "49.19"
+    },
+    {
+      "desc": "INPDAP",
+      "qty_printed": "8,800 su 100",
+      "rate": "2797.07",
+      "deduction": "246.14"
+    },
+    {
+      "desc": "Totale ritenute previdenziali",
+      "deduction": "305.13"
+    },
+    {
+      "desc": "IRPEF ad aliquota massima",
+      "qty": "38.000"
+    },
+    {
+      "desc": "IRPEF ad aliquota media",
+      "qty": "24.660",
+      "rate": "307.08",
+      "deduction": "75.73"
+    },
+    {
+      "desc": "IRPEF ad aliquota progressiva",
+      "rate": "2184.86",
+      "deduction": "539.95"
+    },
+    {
+      "desc": "Totale detrazioni",
+      "deduction": "80.00"
+    },
+    {
+      "desc": "Totale ritenute fiscali al netto delle detrazioni",
+      "deduction": "535.68"
+    },
+    {
+      "desc": "RITENUTA SINDACALE",
+      "code": "800/S2",
+      "deduction": "15.04"
+    },
+    {
+      "desc": "ADDIZ.REG.IRPEF(COD.FIN.08 LAZIO)",
+      "code": "800/A11",
+      "qty_printed": "scad. 11/2014",
+      "deduction": "52.96"
+    },
+    {
+      "desc": "ADDIZIONALE COMUNALE - SALDO",
+      "code": "800/CC1",
+      "qty_printed": "scad. 11/2014",
+      "deduction": "20.41"
+    },
+    {
+      "desc": "ADDIZIONALE COMUNALE - ACCONTO",
+      "code": "800/CC0",
+      "qty_printed": "scad. 11/2014",
+      "deduction": "8.27"
+    }
+  ],
+  "inps": {
+    "base": "2797.07"
+  },
+  "irpef_month": {
+    "taxable": null,
+    "net": "535.68"
+  },
+  "totals": {
+    "earnings": "2797.07",
+    "deductions": "937.49"
+  },
+  "net": "1859.58",
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

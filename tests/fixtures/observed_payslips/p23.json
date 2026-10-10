@@ -1,0 +1,137 @@
+{
+  "id": "p23",
+  "period": "2026-08",
+  "payment_date": null,
+  "printed_on": "2026-09-08",
+  "kind": "regular",
+  "ccnl_hint": "Metalmeccanica Industria (CNEL C011)",
+  "cnel_code": "C011",
+  "level": "C3",
+  "contract": {
+    "type": null,
+    "category": "impiegato",
+    "hired": "2026-06",
+    "inps_weeks": "5",
+    "inps_days": "26",
+    "minimale_days": "26",
+    "worked_days": "11",
+    "worked_hours": "81.00",
+    "overtime_hours": "0.50",
+    "deduction_days": "31",
+    "hourly_rate": "15.56254",
+    "next_seniority_step": "2028-07"
+  },
+  "region": "Emilia-Romagna",
+  "pay_elements": {
+    "minimo": "2211.43000",
+    "superminimo_assorbibile": "476.00000",
+    "premio_produzione": "4.62000",
+    "mensa": "0.27000",
+    "total": "2692.32000"
+  },
+  "lines": [
+    {
+      "desc": "retribuzione",
+      "qty_hours": "86.00000",
+      "rate": "15.56254",
+      "earning": "1338.38"
+    },
+    {
+      "desc": "ferie godute",
+      "qty_hours": "64.00000",
+      "rate": "15.56254",
+      "earning": "996.00"
+    },
+    {
+      "desc": "permessi PAR goduti",
+      "qty_hours": "23.00000",
+      "rate": "15.56254",
+      "earning": "357.94"
+    },
+    {
+      "desc": "straordinario 25%",
+      "qty_hours": "0.50000",
+      "rate": "19.45318",
+      "earning": "9.73"
+    },
+    {
+      "desc": "arrotondamento mese precedente",
+      "deduction": "0.68"
+    },
+    {
+      "desc": "contributo IVS",
+      "base": "2702.00",
+      "rate_pct": "9.19000",
+      "deduction": "248.31"
+    },
+    {
+      "desc": "contributo CIGS",
+      "base": "2702.00",
+      "rate_pct": "0.30000",
+      "deduction": "8.11"
+    },
+    {
+      "desc": "indennita L. 207/24",
+      "earning": "117.39"
+    },
+    {
+      "desc": "ritenute IRPEF",
+      "deduction": "336.11"
+    }
+  ],
+  "inps": {
+    "base": "2702.00",
+    "ivs_rate": "0.0919",
+    "ivs": "248.31",
+    "cigs_rate": "0.0030",
+    "cigs": "8.11"
+  },
+  "irpef_month": {
+    "taxable": "2445.63",
+    "gross": "573.72",
+    "work_deduction": "237.61",
+    "net": "336.11",
+    "deduction_days": "31"
+  },
+  "year_totals": {
+    "inps_base": "7837.00",
+    "inail_base": "7837.69",
+    "irpef_taxable": "7093.96",
+    "irpef_paid": "952.23"
+  },
+  "inail": {
+    "base": "2702.05",
+    "tariff": "6530"
+  },
+  "tfr": {
+    "base": "2692.32",
+    "month_quota": "185.92",
+    "year_quota": "540.66"
+  },
+  "leave": {
+    "unit": "hours",
+    "ferie_accrued": "40.00000",
+    "ferie_taken": "64.00000",
+    "ferie_balance": "-24.00000",
+    "par_accrued": "26.00000",
+    "par_taken": "23.00000",
+    "par_balance": "3.00000"
+  },
+  "rounding": {
+    "previous": "0.68",
+    "current": "0.77"
+  },
+  "totals": {
+    "earnings": "2819.44",
+    "deductions": "593.21",
+    "rounding": "0.77"
+  },
+  "net": "2227.00",
+  "legibility": "full",
+  "notes": [
+    "Check: 2819.44 - 593.21 = 2226.23, + rounding 0.77 = 2227.00, matches the net. Earnings 1338.38 + 996.00 + 357.94 + 9.73 + 117.39 = 2819.44; deductions 0.68 + 248.31 + 8.11 + 336.11 = 593.21.",
+    "IRPEF check: 573.72 - 237.61 = 336.11. No ulteriore detrazione line; the L. 207/24 indemnity (117.39) is paid instead.",
+    "Region from the province code (BO) in the employer address; address itself omitted. Date 08-09-2026 printed in the INAIL box is the processing date, not necessarily the payment date.",
+    "Ferie balance is negative (-24 hours): more leave taken than accrued since hiring in June 2026."
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "id": "p24",
+  "period": "2025-??",
+  "period_inferred_from": "header cropped out; year-end tax adjustment for tax year 2025 ('Ult.Detr.LdB2025'), so likely December 2025 or an early-2026 conguaglio (not verifiable)",
+  "payment_date": null,
+  "kind": "conguaglio",
+  "ccnl_hint": null,
+  "level": null,
+  "pay_elements": {
+    "total": "4538.46"
+  },
+  "lines": [
+    {
+      "desc": "ulteriore detrazione LdB 2025 rate restituite",
+      "figurative": "54.24"
+    },
+    {
+      "desc": "detrazioni altra azienda",
+      "neutral": "1170.78"
+    },
+    {
+      "desc": "IRPEF trattenuta azienda",
+      "neutral": "15969.04"
+    },
+    {
+      "desc": "IRPEF altra azienda",
+      "neutral": "2452.98"
+    },
+    {
+      "desc": "IRPEF cod. 1001 conguaglio +",
+      "deduction": "4681.77"
+    },
+    {
+      "desc": "conguaglio fiscale premi",
+      "rate_pct": "5.00",
+      "figurative": "103.92"
+    },
+    {
+      "desc": "imponibile addizionali",
+      "neutral": "70846.02"
+    },
+    {
+      "desc": "addizionale regionale componente dovuta",
+      "rate_pct": "1.23",
+      "neutral": "871.41"
+    },
+    {
+      "desc": "addizionale regionale componente altro datore",
+      "neutral": "214.08"
+    },
+    {
+      "desc": "addizionale regionale componente da trattenere",
+      "neutral": "657.33"
+    },
+    {
+      "desc": "addizionale regionale aggiuntiva dovuta",
+      "neutral": "917.77"
+    },
+    {
+      "desc": "addizionale regionale aggiuntiva da trattenere",
+      "neutral": "917.77"
+    },
+    {
+      "desc": "addizionale comunale aggiuntiva dovuta",
+      "rate_pct": "0.80",
+      "neutral": "566.77"
+    },
+    {
+      "desc": "acconto addizionale comunale altro datore",
+      "neutral": "92.31"
+    },
+    {
+      "desc": "addizionale comunale aggiuntiva altro datore",
+      "neutral": "33.73"
+    },
+    {
+      "desc": "addizionale comunale aggiuntiva da trattenere",
+      "neutral": "440.73"
+    }
+  ],
+  "irpef_conguaglio": {
+    "year": 2025,
+    "irpef_withheld_this_employer": "15969.04",
+    "irpef_other_employer": "2452.98",
+    "deductions_other_employer": "1170.78",
+    "balance_withheld": "4681.77",
+    "ulteriore_detrazione_returned": "54.24",
+    "premi_substitute_rate_pct": "5.00",
+    "premi_substitute_figurative": "103.92"
+  },
+  "surtax": [
+    {
+      "kind": "regional",
+      "year": 2025,
+      "taxable": "70846.02",
+      "rate_pct": "1.23",
+      "due": "871.41",
+      "other_employer": "214.08",
+      "to_withhold": "657.33",
+      "label": "Add.Reg.Comp."
+    },
+    {
+      "kind": "regional",
+      "year": 2025,
+      "due": "917.77",
+      "to_withhold": "917.77",
+      "label": "Add.Reg.Agg."
+    },
+    {
+      "kind": "municipal",
+      "year": 2025,
+      "rate_pct": "0.80",
+      "due": "566.77",
+      "advance_other_employer": "92.31",
+      "other_employer": "33.73",
+      "to_withhold": "440.73",
+      "label": "Add.Com.Agg."
+    }
+  ],
+  "totals": {
+    "earnings": "7006.44",
+    "deductions": "5686.23"
+  },
+  "net": "1320.21",
+  "legibility": "partial",
+  "notes": [
+    "Crop of the bottom half only: header, pay elements, earnings lines and most deduction lines are not visible; leave table redacted by the uploader.",
+    "Check: 7006.44 - 5686.23 = 1320.21, matches the net exactly (no rounding shown). Only one deduction line (4681.77) is visible; the remaining 1004.46 of deductions are not on the visible part.",
+    "Surtax year 2025 assumed from the LdB2025 reference. 'Comp.' and 'Agg.' labels transcribed as printed; their exact meaning (component vs additional/regional surcharge) is not stated on the slip.",
+    "Region not inferable from the visible part."
+  ]
+}

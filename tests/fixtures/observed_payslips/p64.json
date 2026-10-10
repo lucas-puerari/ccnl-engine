@@ -1,0 +1,34 @@
+{
+  "id": "p64",
+  "period": "2022-04",
+  "period_printed": "Aprile 2022",
+  "kind": "regular",
+  "ccnl_hint": null,
+  "level": "E-LV 108",
+  "contract": {
+    "category_printed": "ADDETTO JUNIOR"
+  },
+  "lines": [
+    {
+      "desc": "Retrib. Lorda Mensile",
+      "code": "0RLM"
+    },
+    {
+      "desc": "Indenn. Portalettere",
+      "code": "5260"
+    }
+  ],
+  "inps": {
+    "base": null
+  },
+  "irpef_month": {
+    "taxable": null,
+    "net": null
+  },
+  "totals": {},
+  "net": null,
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

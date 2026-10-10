@@ -1,0 +1,115 @@
+{
+  "id": "p62",
+  "period": null,
+  "period_printed": null,
+  "kind": "regular",
+  "ccnl_hint": null,
+  "level": null,
+  "contract": {
+    "category_printed": "O2  OPERAIO 2° LIV."
+  },
+  "lines": [
+    {
+      "desc": "Importo Ordinario",
+      "code": "a)",
+      "qty": "176",
+      "rate": "10.94116",
+      "earning": "1925.64"
+    },
+    {
+      "desc": "Festività",
+      "code": "b)",
+      "qty": "8",
+      "rate": "10.94116",
+      "earning": "87.53"
+    },
+    {
+      "desc": "Ferie",
+      "code": "c)",
+      "qty_printed": "176 + 8",
+      "earning": "171.12"
+    },
+    {
+      "desc": "Gratifica Natalizia",
+      "code": "d)",
+      "qty_printed": "176 + 8",
+      "earning": "201.32"
+    },
+    {
+      "desc": "Permessi",
+      "code": "e)",
+      "qty_printed": "176 + 8",
+      "earning": "99.65"
+    },
+    {
+      "desc": "Retribuzione figurativa C/Edile INPS",
+      "code": "f)",
+      "qty_printed": "176 + 8",
+      "earning": "12.28"
+    },
+    {
+      "desc": "Indennità di mensa",
+      "code": "g)",
+      "qty": "22",
+      "rate": "3.20",
+      "earning": "70.40"
+    },
+    {
+      "desc": "Indennità di trasporto",
+      "code": "h)",
+      "qty": "22",
+      "rate": "0.93",
+      "earning": "20.46"
+    },
+    {
+      "desc": "Contributi FAP 9,19% su  i) - g)",
+      "rate": "2518.00",
+      "deduction": "231.40"
+    },
+    {
+      "desc": "Retribuzione figurativa C/Edile INPS su a) + b)",
+      "rate": "2013.17",
+      "deduction": "12.28"
+    },
+    {
+      "desc": "Contributo Cassa Edile carico LAVORATORE su a) + b)",
+      "rate": "2013.17",
+      "deduction": "7.55"
+    },
+    {
+      "desc": "IMPOSTA LORDA",
+      "deduction": "521.36"
+    },
+    {
+      "desc": "DETRAZIONI FISCALI (lav.dipendente)",
+      "deduction": "-187.22"
+    },
+    {
+      "desc": "Accantonamento NETTO Cassa Edile su a) + b)",
+      "code": "o)",
+      "rate": "2013.17",
+      "deduction": "285.87"
+    },
+    {
+      "desc": "Contributi Cassa Edile carico LAVORATORE non fiscalmente detraibili su a) + b) Quote Ades.contratt.Terr. 0,50%  +  Quote Ades.Contr.Naz. 0,22%",
+      "code": "p)",
+      "rate": "2013.17",
+      "deduction": "14.49"
+    }
+  ],
+  "inps": {
+    "base": "2518.00"
+  },
+  "irpef_month": {
+    "taxable": "2266.77",
+    "net": "334.14"
+  },
+  "totals": {
+    "earnings": "2588.40"
+  },
+  "net": "1702.67",
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

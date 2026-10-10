@@ -1,0 +1,185 @@
+{
+  "id": "p09",
+  "period": "2026-08",
+  "payment_date": null,
+  "kind": "regular",
+  "ccnl_hint": "Turismo (Ente Bilaterale Turismo, FIS, aiuto cameriere, hourly pay)",
+  "level": null,
+  "contract": {
+    "type": null,
+    "category": "operaio",
+    "inps_weeks": "5",
+    "inps_days": "14",
+    "inps_hours": "88",
+    "minimal_days": "88",
+    "worked_days": "14",
+    "ordinary_hours": "88.50",
+    "deduction_days": "14",
+    "hourly_rate": "8.70739",
+    "next_seniority_step": "2030-09"
+  },
+  "pay_elements": {
+    "paga_base": "5.64570",
+    "contingenza": "3.02622",
+    "terzo_elemento": "0.03547",
+    "total": "8.70739",
+    "unit": "hourly"
+  },
+  "lines": [
+    {
+      "desc": "retribuzione",
+      "qty_hours": "88.50000",
+      "rate": "8.70739",
+      "earning": "770.60"
+    },
+    {
+      "desc": "maggiorazione 20%",
+      "qty_hours": "8.00000",
+      "rate": "1.74148",
+      "earning": "13.93"
+    },
+    {
+      "desc": "13ma mensilita",
+      "qty_hours": "7.37500",
+      "rate": "8.70739",
+      "earning": "64.22"
+    },
+    {
+      "desc": "14ma mensilita",
+      "qty_hours": "7.37500",
+      "rate": "8.70739",
+      "earning": "64.22"
+    },
+    {
+      "desc": "ferie non godute",
+      "qty_hours": "7.54667",
+      "rate": "8.70739",
+      "earning": "65.71"
+    },
+    {
+      "desc": "permessi ROL non goduti",
+      "qty_hours": "1.37250",
+      "rate": "8.70739",
+      "earning": "11.95"
+    },
+    {
+      "desc": "lavoro domenicale 10%",
+      "qty_hours": "29.00000",
+      "rate": "0.87074",
+      "earning": "25.25"
+    },
+    {
+      "desc": "arrotondamento mese precedente",
+      "deduction": "0.15"
+    },
+    {
+      "desc": "contributo IVS",
+      "base": "1016.00",
+      "rate_pct": "9.19000",
+      "deduction": "93.38"
+    },
+    {
+      "desc": "FIS D.Lgs. 148/2015 fino 15 dipendenti",
+      "base": "1016.00",
+      "rate_pct": "0.26667",
+      "deduction": "2.71"
+    },
+    {
+      "desc": "Ente Bilaterale Turismo",
+      "base": "767.46",
+      "rate_pct": "0.20000",
+      "deduction": "1.53"
+    },
+    {
+      "desc": "trattamento integrativo L. 21/2020",
+      "earning": "46.02"
+    },
+    {
+      "desc": "indennita L. 207/2024",
+      "earning": "45.63"
+    },
+    {
+      "desc": "ritenute IRPEF",
+      "deduction": "120.29"
+    },
+    {
+      "desc": "imponibile rinnovi L. 199/2025 c. 7",
+      "neutral": "58.75"
+    },
+    {
+      "desc": "imposta sostitutiva L. 199/2025 c. 7",
+      "deduction": "2.94"
+    },
+    {
+      "desc": "imponibile tassazione autonoma",
+      "neutral": "107.90"
+    },
+    {
+      "desc": "IRPEF lorda tassazione autonoma",
+      "neutral": "24.82"
+    },
+    {
+      "desc": "ritenute IRPEF tassazione autonoma",
+      "deduction": "24.82"
+    }
+  ],
+  "inps": {
+    "base": "1016.00",
+    "ivs_rate": "0.0919",
+    "ivs": "93.38",
+    "fis_rate": "0.0026667",
+    "fis": "2.71",
+    "ente_bilaterale": "1.53"
+  },
+  "irpef_month": {
+    "taxable": "753.14",
+    "gross": "173.22",
+    "work_deduction": "52.93",
+    "net": "120.29"
+  },
+  "separate_taxation": {
+    "taxable": "107.90",
+    "gross": "24.82",
+    "withheld": "24.82"
+  },
+  "renewal_substitute_tax": {
+    "taxable": "58.75",
+    "tax": "2.94"
+  },
+  "year_totals": {
+    "inps_base": "2426.00",
+    "inail_base": "2426.00",
+    "irpef_taxable": "2064.76",
+    "irpef_paid": "338.79"
+  },
+  "inail": {
+    "base": "1016.00",
+    "tariff": "0221"
+  },
+  "tfr": {
+    "base": "990.00",
+    "month_quota": "68.25"
+  },
+  "leave": {
+    "ferie_accrued_hours": "18.71833",
+    "ferie_used_hours": "18.71833",
+    "rol_accrued_hours": "3.29083",
+    "rol_used_hours": "3.29083"
+  },
+  "rounding": {
+    "previous": "0.15",
+    "current": "0.29"
+  },
+  "totals": {
+    "earnings": "1107.53",
+    "deductions": "245.82"
+  },
+  "net": "862.00",
+  "legibility": "full",
+  "notes": [
+    "Check: 1107.53 - 245.82 = 861.71, + rounding 0.29 = 862.00, matches the net.",
+    "Level and contract type are redacted in the image.",
+    "IRPEF net 120.29 = lorda 173.22 - detrazioni 52.93.",
+    "Leave 'Goduto' equals 'Maturato' while the same hours are paid as non goduti (ferie/ROL paid out monthly)."
+  ]
+}

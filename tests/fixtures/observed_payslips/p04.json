@@ -1,0 +1,96 @@
+{
+  "id": "p04",
+  "period": "2026-02",
+  "payment_date": "2026-03-05",
+  "kind": "regular",
+  "ccnl_hint": "Terziario Commercio (minimo + contingenza level 5, divisors 26/168)",
+  "level": "5",
+  "contract": {
+    "type": "permanent",
+    "category": "impiegato",
+    "hired": "2026-01-07",
+    "days_divisor": "26",
+    "hours_divisor": "168",
+    "part_time": null,
+    "next_seniority_step": "2029-02"
+  },
+  "pay_elements": {
+    "minimo": "1136.07",
+    "contingenza": "521.94",
+    "elemento_provinciale": "11.36",
+    "pnc": "182.33",
+    "edr_bilaterale": "4.97",
+    "straordinario_forfettario": "149.00",
+    "total": "2005.67"
+  },
+  "lines": [
+    {
+      "desc": "retribuzione ordinaria",
+      "qty_days": "26",
+      "rate": "77.14115",
+      "earning": "2005.67"
+    },
+    {
+      "desc": "ulteriore detrazione L. 207/2024",
+      "neutral": "76.71"
+    },
+    {
+      "desc": "ferie godute",
+      "qty_days": "1"
+    },
+    {
+      "desc": "ROL goduti",
+      "qty_hours": "4"
+    },
+    {
+      "desc": "storno TFR a fondo pensione 100%",
+      "neutral": "138.54"
+    }
+  ],
+  "inps": {
+    "base": "2006.00",
+    "employee": "184.35",
+    "fondo_est": "2.00",
+    "other_fund": "2.01",
+    "total_social": "188.36"
+  },
+  "irpef_month": {
+    "taxable": "1817.31",
+    "gross": "417.98",
+    "deductions": "246.97",
+    "work_deduction": "170.26",
+    "ulteriore_detrazione": "76.71",
+    "net": "171.01",
+    "deduction_days": "28"
+  },
+  "year_totals": {
+    "irpef_taxable": "3284.77",
+    "irpef_gross": "755.50",
+    "deductions": "474.00",
+    "irpef_paid": "281.50",
+    "inps_base": "3626.00",
+    "inps_contributions": "340.86",
+    "work_deduction": "328.80",
+    "inail_base": "3626.00",
+    "months_paid": "2"
+  },
+  "inail": {
+    "base": "2006.00",
+    "hours": "155.00"
+  },
+  "tfr": {
+    "base": "2005.67",
+    "to_pension_fund_pct": "100"
+  },
+  "rounding": {
+    "previous": "0.03",
+    "current": "0.73"
+  },
+  "totals": {
+    "earnings": "2005.67",
+    "social": "188.36",
+    "fiscal": "171.01"
+  },
+  "net": "1647.00",
+  "legibility": "full"
+}

@@ -1,0 +1,133 @@
+{
+  "id": "p33",
+  "period": "2024-05",
+  "period_printed": "MAGGIO 2024",
+  "kind": "regular",
+  "ccnl_hint": null,
+  "level": "4",
+  "contract": {
+    "category_printed": "IMPIEGATA AMMINISTRATIVA",
+    "hired": "2021-11"
+  },
+  "lines": [
+    {
+      "desc": "RETRIBUZIONE DEL MESE",
+      "code": "110",
+      "qty": "112.00",
+      "earning": "1049.33"
+    },
+    {
+      "desc": "CARENZA DI MALATTIA AL 100%",
+      "code": "430",
+      "qty": "24.00",
+      "earning": "224.86"
+    },
+    {
+      "desc": "INTEGR. MALAT. 4'-20' GG 75%",
+      "code": "435",
+      "qty": "48.00",
+      "earning": "40.83"
+    },
+    {
+      "desc": "INPS : INDEN. MAL. 4'-20' GG",
+      "code": "350",
+      "qty": "5.00",
+      "earning": "167.60"
+    },
+    {
+      "desc": "INPS : INDEN. RIC. 4'-20' GG",
+      "code": "352",
+      "qty": "3.00",
+      "earning": "40.22"
+    },
+    {
+      "desc": "ASSISTENZA SANITARIA  - DITTA",
+      "code": "57K",
+      "rate": "10.00"
+    },
+    {
+      "desc": "ASSISTENZA SANITARIA - C. DIP.",
+      "code": "57G",
+      "deduction": "2.00"
+    },
+    {
+      "desc": "TOTALE COMPETENZE LORDE",
+      "rate": "1315.02"
+    },
+    {
+      "desc": "QUOTA TFR MATURATA",
+      "rate": "121.12"
+    },
+    {
+      "desc": "IMPONIBILE E CONTRIBUTO INPS",
+      "qty_printed": "9,19%",
+      "rate": "1315.00",
+      "deduction": "120.85"
+    },
+    {
+      "desc": "RITENUTA FIS / FONDI SOL.",
+      "code": "51D",
+      "deduction": "3.51"
+    },
+    {
+      "desc": "IMPONIBILE INAIL",
+      "rate": "1315.02"
+    },
+    {
+      "desc": "ESONERO CONTRIB. 7% MENSILE",
+      "earning": "92.05"
+    },
+    {
+      "desc": "TOTALE CONTRIBUTI ESENTI IRPEF",
+      "rate": "32.31"
+    },
+    {
+      "desc": "IMPONIBILE IRPEF",
+      "rate": "1488.53"
+    },
+    {
+      "desc": "RITENUTA IRPEF LORDA",
+      "rate": "342.36"
+    },
+    {
+      "desc": "TOTALE DETRAZIONI",
+      "rate": "207.43"
+    },
+    {
+      "desc": "RITENUTA IRPEF NETTA",
+      "deduction": "134.93"
+    },
+    {
+      "desc": "RATA ACCONTO ADDIZ. COMUNALE",
+      "deduction": "5.97"
+    },
+    {
+      "desc": "RATA ADD. REGIONALE ANNO PREC.",
+      "deduction": "36.44"
+    },
+    {
+      "desc": "RATA ADD. COMUNALE ANNO PREC.",
+      "deduction": "12.65"
+    },
+    {
+      "desc": "TOT. IMP. INPS ANNUALE DIPEND.",
+      "rate": "8103.00"
+    }
+  ],
+  "inps": {
+    "base": "1315.00"
+  },
+  "irpef_month": {
+    "taxable": "1488.53",
+    "net": "134.93"
+  },
+  "totals": {
+    "earnings": "1614.89",
+    "deductions": "316.35"
+  },
+  "net": "1298.00",
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

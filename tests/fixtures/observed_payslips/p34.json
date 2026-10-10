@@ -1,0 +1,188 @@
+{
+  "id": "p34",
+  "period": "2022-11",
+  "period_printed": "NOVEMBRE 2022",
+  "kind": "regular",
+  "ccnl_hint": null,
+  "level": "3",
+  "contract": {
+    "category_printed": "MURATORE",
+    "hired": "2014-06"
+  },
+  "lines": [
+    {
+      "desc": "RETRIBUZIONE DEL MESE",
+      "code": "110",
+      "qty": "168.00",
+      "rate": "12.04000",
+      "earning": "2022.72"
+    },
+    {
+      "desc": "FESTIVITA'",
+      "code": "115",
+      "qty": "2.00",
+      "rate": "96.32",
+      "earning": "192.64"
+    },
+    {
+      "desc": "E.V.R.",
+      "code": "08F",
+      "qty": "168.00",
+      "rate": "0.25",
+      "earning": "42.00"
+    },
+    {
+      "desc": "DIARIA ZONA A",
+      "code": "037",
+      "qty": "168.00",
+      "rate": "0.68",
+      "earning": "114.24"
+    },
+    {
+      "desc": "MAGGIORAZIONE SOST. PERMESSI",
+      "code": "132",
+      "qty_printed": "4,95%",
+      "earning": "104.89"
+    },
+    {
+      "desc": "ACCANTONAMENTO SUL LORDO",
+      "code": "467",
+      "earning": "392.02"
+    },
+    {
+      "desc": "TOTALE ALTRE SOMME IMPONIBILI",
+      "code": "497",
+      "rate": "3.60"
+    },
+    {
+      "desc": "ASSISTENZA SANITARIA - DITTA",
+      "code": "57K",
+      "rate": "11.79"
+    },
+    {
+      "desc": "ACCANTONAMENTO SUL NETTO",
+      "code": "787",
+      "deduction": "301.00"
+    },
+    {
+      "desc": "TOTALE COMPETENZE LORDE",
+      "rate": "2868.51"
+    },
+    {
+      "desc": "QUOTA TFR MATURATA",
+      "rate": "179.41"
+    },
+    {
+      "desc": "IMPONIBILE E CONTRIBUTO INPS",
+      "qty_printed": "9,49%",
+      "rate": "2872.00",
+      "deduction": "272.55"
+    },
+    {
+      "desc": "CONTRIBUTO CASSA EDILE DIPEN.",
+      "code": "567",
+      "rate": "22.11"
+    },
+    {
+      "desc": "CONTRIBUTI ALTRI ENTI",
+      "deduction": "30.16"
+    },
+    {
+      "desc": "IMPONIBILE INAIL",
+      "rate": "2872.11"
+    },
+    {
+      "desc": "TFR A CASSA EDILE",
+      "code": "706",
+      "qty_printed": "100,00%",
+      "rate": "179.41"
+    },
+    {
+      "desc": "CONTRIB. CONTR. PREV. COMPL.",
+      "code": "58F",
+      "rate": "15.00"
+    },
+    {
+      "desc": "ESONERO CONTRIB. 2% MENSILE",
+      "earning": "53.20"
+    },
+    {
+      "desc": "ESONERO CONTRIB. 2% TREDIC.",
+      "earning": "4.24"
+    },
+    {
+      "desc": "TOTALE CONTRIBUTI ESENTI IRPEF",
+      "rate": "245.27"
+    },
+    {
+      "desc": "IMPONIBILE IRPEF",
+      "rate": "2623.24"
+    },
+    {
+      "desc": "RITENUTA IRPEF LORDA",
+      "rate": "659.80"
+    },
+    {
+      "desc": "TOTALE DETRAZIONI",
+      "qty": "30.00",
+      "rate": "161.31"
+    },
+    {
+      "desc": "RITENUTA IRPEF NETTA",
+      "deduction": "498.49"
+    },
+    {
+      "desc": "RATA ACCONTO ADDIZ. COMUNALE",
+      "deduction": "6.46"
+    },
+    {
+      "desc": "RATA ADD. REGIONALE ANNO PREC.",
+      "deduction": "39.95"
+    },
+    {
+      "desc": "RATA ADD. COMUNALE ANNO PREC.",
+      "deduction": "12.99"
+    },
+    {
+      "desc": "TOT. IMP. INPS ANNUALE DIPEND.",
+      "rate": "26678.00"
+    },
+    {
+      "desc": "TOTALE IMPONIB. IRPEF ANNUALE",
+      "code": "98P",
+      "rate": "24371.78"
+    },
+    {
+      "desc": "TOTALE RITENUTA IRPEF ANNUALE",
+      "rate": "4030.87"
+    },
+    {
+      "desc": "ADD. COM. ANNO CORR TRATTENUTA",
+      "rate": "58.14"
+    },
+    {
+      "desc": "RATE ADD.REG. ANNO PREC TRATT.",
+      "rate": "439.48"
+    },
+    {
+      "desc": "RATE ADD.COM. ANNO PREC TRATT.",
+      "rate": "142.89"
+    }
+  ],
+  "inps": {
+    "base": "2872.00"
+  },
+  "irpef_month": {
+    "taxable": "2623.24",
+    "net": "498.49"
+  },
+  "totals": {
+    "earnings": "2925.95",
+    "deductions": "1161.60"
+  },
+  "net": "1764.00",
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

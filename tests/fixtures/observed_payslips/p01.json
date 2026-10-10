@@ -1,0 +1,134 @@
+{
+  "id": "p01",
+  "period": "2025-12",
+  "payment_date": "2026-01-07",
+  "kind": "regular_with_year_end_conguaglio",
+  "ccnl_hint": "metalmeccanico industria (welfare CCNL metal, Cometa, Metasalute)",
+  "level": "B3",
+  "contract": {
+    "type": "permanent",
+    "hours_divisor": "173",
+    "days_divisor": "26"
+  },
+  "pay_elements": {
+    "minimo": "2770.74",
+    "scatti": "40.96",
+    "superminimo_assorbibile": "133.37",
+    "total": "2945.07"
+  },
+  "lines": [
+    {
+      "desc": "retribuzione ordinaria",
+      "qty": "26",
+      "rate": "113.27192",
+      "earning": "2945.07"
+    },
+    {
+      "desc": "assenze (ore)",
+      "qty": "10",
+      "rate": "17.02353",
+      "deduction": "170.24"
+    },
+    {
+      "desc": "assenze (giorni)",
+      "qty": "3",
+      "rate": "113.27192",
+      "deduction": "339.82"
+    },
+    {
+      "desc": "festivita",
+      "qty": "3",
+      "rate": "113.27192",
+      "earning": "339.82"
+    },
+    {
+      "desc": "permessi goduti",
+      "qty": "10",
+      "rate": "17.02353",
+      "earning": "170.24"
+    },
+    {
+      "desc": "buoni pasto elettronici",
+      "qty": "18",
+      "rate": "8.00",
+      "figurative": "144.00"
+    },
+    {
+      "desc": "welfare CCNL metalmeccanici",
+      "figurative": "200.00"
+    },
+    {
+      "desc": "welfare art. 51 c. 3 TUIR",
+      "figurative": "1800.00"
+    },
+    {
+      "desc": "premio",
+      "earning": "200.00"
+    },
+    {
+      "desc": "ulteriore detrazione DL 3/2020 a rate (recupero)",
+      "deduction": "6.42"
+    },
+    {
+      "desc": "Metasalute quota azienda",
+      "figurative": "13.00"
+    }
+  ],
+  "totals": {
+    "earnings": "3655.13",
+    "deductions": "516.48"
+  },
+  "inps": {
+    "base": "5145.00",
+    "employee": "472.83"
+  },
+  "irpef_month": {
+    "income": "4727.65",
+    "deductible": "88.66",
+    "taxable": "4638.99",
+    "gross": "1428.61",
+    "deductions": "151.18",
+    "net": "1277.43"
+  },
+  "irpef_conguaglio": {
+    "taxable": "35694.24",
+    "gross": "9132.98",
+    "deductions": "1780.08",
+    "already_withheld": "7250.77",
+    "due": "102.13"
+  },
+  "surtax": {
+    "regional_year": "731.49",
+    "municipal_advance_balance": "223.29",
+    "withheld_month": "40.62"
+  },
+  "pension_fund": {
+    "employer": "55.41",
+    "employee": "33.25",
+    "tfr": "207.24"
+  },
+  "year_totals": {
+    "inps_base": "37325.00",
+    "inps_employee": "3430.19",
+    "fiscal_taxable": "37325.00",
+    "irpef_taxable": "35694.24",
+    "deductible": "1146.88",
+    "deductions": "1780.08",
+    "irpef_paid": "7352.90"
+  },
+  "tfr": {
+    "fund_in_company": "609.24",
+    "rivalsa_0_50": "25.73",
+    "month_due": "620.28"
+  },
+  "rounding": {
+    "previous": "0.95",
+    "current": "0.94"
+  },
+  "net": "1253.00",
+  "legibility": "full",
+  "totals_reconcile": false,
+  "notes": [
+    "Printed totals do not reconcile: earnings - deductions - net = 1885.65."
+  ]
+}

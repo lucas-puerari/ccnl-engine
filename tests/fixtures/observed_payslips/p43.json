@@ -1,0 +1,157 @@
+{
+  "id": "p43",
+  "period": "2023-12",
+  "period_printed": "DICEMBRE 2023",
+  "kind": "regular",
+  "ccnl_hint": null,
+  "level": "5",
+  "contract": {
+    "category_printed": "ADDETTO ALLE CONSEGNE",
+    "hired": "2019-10"
+  },
+  "lines": [
+    {
+      "desc": "TOTALE ELEMENTI SU PART-TIME",
+      "code": "032",
+      "qty_printed": "45,00%",
+      "rate": "703.33"
+    },
+    {
+      "desc": "RETRIBUZIONE DEL MESE",
+      "code": "110",
+      "qty": "6.00",
+      "earning": "54.10"
+    },
+    {
+      "desc": "FERIE USUFRUITE NEL MESE",
+      "code": "140",
+      "qty": "12.00",
+      "earning": "108.20"
+    },
+    {
+      "desc": "TOTALE RATEI DI 13' MATURATI",
+      "code": "478",
+      "qty_printed": "45,00%",
+      "rate": "12.00",
+      "earning": "703.33"
+    },
+    {
+      "desc": "CARENZA INFORTUNIO AL 60%",
+      "code": "450",
+      "qty": "6.00",
+      "earning": "32.46"
+    },
+    {
+      "desc": "INTEGR. INFORTUNIO 5'-20'GG",
+      "code": "455",
+      "qty": "36.00",
+      "earning": "50.92"
+    },
+    {
+      "desc": "INTEGR. INFORTUNIO DAL 21'GG",
+      "code": "460",
+      "qty": "12.00",
+      "earning": "27.64"
+    },
+    {
+      "desc": "INTEGRAZIONE FESTIVITA' INFR.",
+      "code": "465",
+      "qty": "6.00",
+      "earning": "21.86"
+    },
+    {
+      "desc": "A.N.F. MENSILE",
+      "earning": "46.48"
+    },
+    {
+      "desc": "ASSISTENZA SANITARIA - DITTA",
+      "code": "57K",
+      "rate": "10.00"
+    },
+    {
+      "desc": "ASSISTENZA SANITARIA - C. DIP.",
+      "code": "57G",
+      "deduction": "2.00"
+    },
+    {
+      "desc": "RECUPERO ULTERIORE MENSILITA'",
+      "code": "775",
+      "deduction": "507.00"
+    },
+    {
+      "desc": "TOTALE COMPETENZE LORDE",
+      "rate": "998.51"
+    },
+    {
+      "desc": "QUOTA TFR MATURATA",
+      "rate": "99.20"
+    },
+    {
+      "desc": "IMPONIBILE E CONTRIBUTO INPS",
+      "qty_printed": "9,19%",
+      "rate": "999.00",
+      "deduction": "91.81"
+    },
+    {
+      "desc": "RITENUTA FIS / FONDI SOL.",
+      "code": "51D",
+      "deduction": "1.67"
+    },
+    {
+      "desc": "IMPONIBILE INAIL",
+      "rate": "631.02"
+    },
+    {
+      "desc": "ESONERO CONTRIB. 7% MENSILE",
+      "earning": "20.72"
+    },
+    {
+      "desc": "ESONERO CONTRIB. 3% TREDIC.",
+      "earning": "21.09"
+    },
+    {
+      "desc": "TOTALE CONTRIBUTI ESENTI IRPEF",
+      "rate": "51.67"
+    },
+    {
+      "desc": "IMPONIBILE IRPEF",
+      "rate": "944.84"
+    },
+    {
+      "desc": "IMPONIBILE IRPEF ANNUALE",
+      "rate": "8988.32"
+    },
+    {
+      "desc": "RITENUTA IRPEF LORDA ANNUALE",
+      "rate": "2067.31"
+    },
+    {
+      "desc": "TOTALE DETRAZIONI ANNUALI",
+      "rate": "2430.56"
+    },
+    {
+      "desc": "TOTALE IRPEF GIA` TRATTENUTA",
+      "rate": "150.82"
+    },
+    {
+      "desc": "IRPEF DA CONGUAGLIO",
+      "earning": "150.82"
+    }
+  ],
+  "inps": {
+    "base": "999.00"
+  },
+  "irpef_month": {
+    "taxable": "944.84",
+    "net": null
+  },
+  "totals": {
+    "earnings": "1339.53",
+    "deductions": "602.48"
+  },
+  "net": "737.00",
+  "legibility": "full",
+  "notes": [
+    "Amounts as printed, normalised to a dot decimal separator; (x) marks a memo row."
+  ]
+}

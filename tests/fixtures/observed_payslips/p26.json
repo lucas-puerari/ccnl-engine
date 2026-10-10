@@ -1,0 +1,217 @@
+{
+  "id": "p26",
+  "period": "2025-06",
+  "payment_date": null,
+  "print_date": "2025-07-16",
+  "kind": "termination",
+  "ccnl_hint": "Logistica, Trasporto Merci e Spedizione (level 6J, operaio)",
+  "level": "6J",
+  "contract": {
+    "category": "operaio",
+    "terminated": "2025-06",
+    "days_divisor": "26",
+    "hours_divisor": "168",
+    "daily_rate": "56.32808",
+    "hourly_rate": "8.71744"
+  },
+  "region": "Abruzzo",
+  "pay_elements": {
+    "minimo": "1464.53",
+    "total": "1464.53"
+  },
+  "lines": [
+    {
+      "desc": "retribuzione mensilizzata",
+      "earning": "1464.53"
+    },
+    {
+      "desc": "evidenza ferie (statistic)",
+      "qty_days": "2.17"
+    },
+    {
+      "desc": "evidenza permessi (statistic)",
+      "qty_hours": "6.00"
+    },
+    {
+      "desc": "carenza malattia 100%",
+      "qty_days": "2.00",
+      "earning": "112.66"
+    },
+    {
+      "desc": "assenze retribuite",
+      "qty_days": "2.00",
+      "rate": "56.32808",
+      "deduction": "112.66"
+    },
+    {
+      "desc": "maggiorazione lavoro notturno 25%",
+      "qty_hours": "4.00",
+      "rate": "2.17936",
+      "earning": "8.72"
+    },
+    {
+      "desc": "straordinario 30%",
+      "qty_hours": "14.00",
+      "rate": "11.33267",
+      "earning": "158.66"
+    },
+    {
+      "desc": "straordinario notturno 50%",
+      "qty_hours": "10.00",
+      "rate": "13.07616",
+      "earning": "130.76"
+    },
+    {
+      "desc": "festivita' goduta (statistic)",
+      "qty_days": "1.00"
+    },
+    {
+      "desc": "rateo mensile 13a",
+      "qty": "1.00",
+      "rate": "122.04417",
+      "earning": "122.04"
+    },
+    {
+      "desc": "rateo mensile 14a",
+      "qty": "1.00",
+      "rate": "122.04417",
+      "earning": "122.04"
+    },
+    {
+      "desc": "lordo",
+      "neutral": "2006.75"
+    },
+    {
+      "desc": "contributo FPLD 9.19%",
+      "rate": "0.09190",
+      "base": "2007.00",
+      "deduction": "184.44"
+    },
+    {
+      "desc": "contributo CIGS 0.30%",
+      "rate": "0.00300",
+      "base": "2007.00",
+      "deduction": "6.02"
+    },
+    {
+      "desc": "totale ritenute previdenziali",
+      "neutral": "190.46"
+    },
+    {
+      "desc": "IRPEF conguaglio fine rapporto",
+      "amount": "423.80",
+      "column": "rightmost"
+    },
+    {
+      "desc": "somma integrativa L. 207/2024 (spettante 0.00, erogato 181 gg)",
+      "figurative": "553.91",
+      "amount": "553.91",
+      "column": "rightmost"
+    },
+    {
+      "desc": "addizionale regionale 2025 (1.23 + reg.) dovuta, conguaglio",
+      "base": "187.58",
+      "amount": "187.58",
+      "column": "rightmost"
+    },
+    {
+      "desc": "addizionale comunale 2025 (0.80) dovuta 86.74, ritenuta 5.67, conguaglio",
+      "amount_a": "11.32",
+      "amount_b": "69.75",
+      "column": "rightmost"
+    },
+    {
+      "desc": "addizionale regionale 2024 saldo A.P. (1.23), residuo 0.00",
+      "amount": "66.79",
+      "column": "rightmost"
+    },
+    {
+      "desc": "addizionale comunale 2024 saldo A.P. (0.80), residuo 0.00",
+      "amount": "30.89",
+      "column": "rightmost"
+    }
+  ],
+  "work_data": {
+    "gg_lavorati": "18",
+    "gg_retribuiti": "26",
+    "settimane": "5"
+  },
+  "inps": {
+    "base": "2007.00",
+    "ivs_rate": "0.0919",
+    "ivs": "184.44",
+    "cigs_rate": "0.0030",
+    "cigs": "6.02",
+    "total_social": "190.46"
+  },
+  "irpef_month": {
+    "taxable": "1816.29"
+  },
+  "irpef_conguaglio": {
+    "annual_taxable": "10842.92",
+    "gross": "2493.87",
+    "deductions": "969.47",
+    "net_due": "1524.40",
+    "withheld": "1100.60",
+    "conguaglio": "423.80"
+  },
+  "somma_integrativa_l207_2024": {
+    "due": "0.00",
+    "paid_days": "181",
+    "paid": "553.91"
+  },
+  "surtax": [
+    {
+      "kind": "regional",
+      "year": 2025,
+      "rate": "1.23+reg",
+      "due": "187.58",
+      "installment": "187.58"
+    },
+    {
+      "kind": "municipal",
+      "year": 2025,
+      "rate": "0.80",
+      "due": "86.74",
+      "withheld": "5.67",
+      "installment_values": [
+        "11.32",
+        "69.75"
+      ]
+    },
+    {
+      "kind": "regional",
+      "year": 2024,
+      "rate": "1.23",
+      "installment": "66.79",
+      "residual_after": "0.00"
+    },
+    {
+      "kind": "municipal",
+      "year": 2024,
+      "rate": "0.80",
+      "installment": "30.89",
+      "residual_after": "0.00"
+    }
+  ],
+  "tfr": {
+    "base": "1717.33",
+    "month_quota": "117.17",
+    "month_quota_fondo_tesoreria": "117.17",
+    "year_base": "10286.54",
+    "year_quota": "702.07",
+    "year_quota_fondo_tesoreria": "702.03",
+    "fund_31_12_2024": "375.77",
+    "fund_31_12_2024_fondo_tesoreria": "375.77"
+  },
+  "totals": null,
+  "net": null,
+  "legibility": "partial",
+  "notes": [
+    "Page 1 of a multi-page payslip: footer says 'SEGUE'; totals, rounding and net are on a following page not provided.",
+    "Gross check: 1464.53 + 112.66 - 112.66 + 8.72 + 158.66 + 130.76 + 122.04 + 122.04 = 2006.75 = printed Lordo. INPS 184.44 + 6.02 = 190.46 = printed total. IRPEF: 2493.87 - 969.47 = 1524.40 net due; 1524.40 - 1100.60 = 423.80 conguaglio. Net cannot be verified.",
+    "The fiscal amounts (423.80, 553.91, 187.58, 11.32, 69.75, 66.79, 30.89) are printed in the rightmost column, whose header reads 'Competenze'; by meaning they look like deductions (IRPEF balance due, recovery of the L. 207/2024 bonus with 0.00 due, surtax balances at termination). Recorded with 'column' instead of a sign.",
+    "Comune name and cadastral code omitted; region from the 'Abruzzo' surtax line.",
+    "Mansione omitted. Level 6J and divisors 26/168 suggest CCNL Logistica Trasporto Merci e Spedizione; not confirmed by the image."
+  ]
+}
