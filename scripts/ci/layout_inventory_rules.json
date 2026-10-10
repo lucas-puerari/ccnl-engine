@@ -568,6 +568,7 @@
     "src/ccnl_engine/payroll/domain/sick_cumulation_report.py": "src/ccnl_engine/payroll/sickness/results_cumulation.py",
     "src/ccnl_engine/payroll/domain/sick_days.py": "src/ccnl_engine/payroll/sickness/rules_day.py",
     "src/ccnl_engine/payroll/domain/sick_pay_rules.py": "src/ccnl_engine/payroll/sickness/models_pay_rule.py",
+    "src/ccnl_engine/payroll/domain/sick_year.py": "src/ccnl_engine/payroll/sickness/rules_year.py",
     "src/ccnl_engine/payroll/domain/sickness.py": "src/ccnl_engine/payroll/sickness/models.py",
     "src/ccnl_engine/payroll/domain/state_codec.py": "src/ccnl_engine/payroll/state/serializers.py",
     "src/ccnl_engine/payroll/domain/surtax_obligations.py": "src/ccnl_engine/payroll/state/models_surtax_obligation.py",
