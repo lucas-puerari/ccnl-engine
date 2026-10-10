@@ -19,8 +19,11 @@ from ccnl_engine.payroll.withholding.models_schedule import (
 from ccnl_engine.payroll.year.models_calendar import WorkCalendar
 from ccnl_engine.payroll.year.models_payment import PaymentId
 from ccnl_engine.payroll.year.models_schedule import PayrollRunCount, PayrollSchedule
-from tests.fixtures.withholding import calendar_schedule, paid_on_day
-from tests.helpers import make_year_rules
+from tests.integration.ccnl_engine.payroll.withholding.builders_withholding import (
+    calendar_schedule,
+    paid_on_day,
+)
+from tests.unit.ccnl_engine.builders import make_year_rules
 
 _YEAR = 2026
 _FRACTIONAL = st.decimals(

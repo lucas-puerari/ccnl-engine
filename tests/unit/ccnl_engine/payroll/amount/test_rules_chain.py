@@ -12,7 +12,7 @@ from ccnl_engine.contract.identity.rules_validity import (
     ValidityPeriod,
 )
 from ccnl_engine.payroll.amount.rules_chain import _allowance_active
-from tests.helpers import _series
+from tests.unit.ccnl_engine.builders import _series
 
 _DAY = date(2026, 6, 1)
 

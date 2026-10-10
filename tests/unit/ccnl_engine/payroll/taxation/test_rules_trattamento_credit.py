@@ -33,7 +33,7 @@ from ccnl_engine.payroll.withholding.models_recovery_plan import (
     RecoveryPlan,
 )
 from ccnl_engine.tax.income.models_credit import TrattamentoIntegrativoRules
-from tests.helpers import make_year_rules
+from tests.unit.ccnl_engine.builders import make_year_rules
 
 _D = Decimal
 _INCOME = _D(20_000)

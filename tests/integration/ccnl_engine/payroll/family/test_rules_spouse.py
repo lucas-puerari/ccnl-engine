@@ -1,7 +1,8 @@
 """Spouse deduction of art. 12 c. 1 lett. a and b TUIR on the 2026 bundle.
 
 Every expected value is computed by hand from the text quoted in
-:mod:`tests.fixtures.normative_oracles.family_2026`, twelve months, full share:
+:mod:`tests.knowledge.ccnl_engine.payroll.family.oracles_2026`, twelve months, full
+share:
 each frontier of lett. a and of the five bands of lett. b is checked one
 cent below, on and one cent above.
 """
@@ -16,8 +17,10 @@ import pytest
 from ccnl_engine.payroll.family.inputs import Dependent, DependentRelationship
 from ccnl_engine.payroll.family.rules_spouse import spouse_annual, spouse_deduction
 from ccnl_engine.tax.annual.loaders_optional import load_family_deduction_rules
-from tests.fixtures.dependents import declared_dependent
-from tests.fixtures.normative_oracles import family_2026
+from tests.integration.ccnl_engine.payroll.family.builders_dependents import (
+    declared_dependent,
+)
+from tests.knowledge.ccnl_engine.payroll.family import oracles_2026 as family_2026
 
 _D = Decimal
 _RULES = load_family_deduction_rules(2026)

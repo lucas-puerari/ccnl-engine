@@ -18,7 +18,9 @@ from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.provenance.ruleset.models import RulesetReadiness
 from ccnl_engine.provenance.ruleset.models_assurance import RulesetKind
-from tests.fixtures.anonymous_ccnl_repository import AnonymousCcnlRepository
+from tests.integration.ccnl_engine.contract.catalog.builders_anonymous_repository import (  # noqa: E501
+    AnonymousCcnlRepository,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.contract.identity.facade import TaxSector

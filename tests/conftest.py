@@ -6,7 +6,11 @@ from typing import TYPE_CHECKING
 
 from hypothesis import HealthCheck, settings
 
-from tests.architecture._provenance import CASES_DIR, count_by_status, load_case
+from tests.knowledge.ccnl_engine.payroll.period.support_provenance import (
+    CASES_DIR,
+    count_by_status,
+    load_case,
+)
 
 if TYPE_CHECKING:
     import pytest

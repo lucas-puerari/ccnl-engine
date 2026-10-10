@@ -25,8 +25,12 @@ from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.results import PeriodResult
 from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
-from tests.fixtures.dependents import declared_dependent
-from tests.fixtures.imported_surtax import opening_with_2025_surtax
+from tests.integration.ccnl_engine.payroll.family.builders_dependents import (
+    declared_dependent,
+)
+from tests.integration.ccnl_engine.payroll.taxation.builders_imported_surtax import (
+    opening_with_2025_surtax,
+)
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"

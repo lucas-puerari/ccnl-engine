@@ -21,8 +21,10 @@ from ccnl_engine.payroll.year.models_calendar import WorkCalendar
 from ccnl_engine.payroll.year.services_competence import (
     calculate_competence_year,
 )
-from tests.fixtures.withholding import calendar_schedule
-from tests.helpers import make_year_rules, year_plan
+from tests.integration.ccnl_engine.payroll.withholding.builders_withholding import (
+    calendar_schedule,
+)
+from tests.unit.ccnl_engine.builders import make_year_rules, year_plan
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.year.results import CompetenceYearResult

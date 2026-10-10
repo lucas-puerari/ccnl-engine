@@ -19,7 +19,7 @@ from ccnl_engine.payroll.employment.rules_seniority import (
     seniority_first_cadence,
     seniority_maximum,
 )
-from tests.helpers import TEST_PROV, _series_with_prov, make_ccnl_dict
+from tests.unit.ccnl_engine.builders import TEST_PROV, _series_with_prov, make_ccnl_dict
 
 _SERIES = {"periods": [{"valid_from": "2020-01-01", "valid_until": None, "value": "1"}]}
 

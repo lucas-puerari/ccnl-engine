@@ -4,6 +4,15 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Test tree by category and mirror root
+
+| Before | After |
+|---|---|
+| `tests/unit`, `tests/integration`, `tests/acceptance/{public_api,legal_scenarios}`, `tests/architecture`, `tests/fixtures` | Three categories, each mirroring the code: `tests/knowledge/ccnl_engine/` (legal scenarios, oracles, reference cases, observed payslips), `tests/unit/ccnl_engine/`, `tests/integration/{ccnl_engine,demo,scripts}/`. Public API tests sit at the root of `tests/integration/ccnl_engine/`, repository rules under `tests/integration/scripts/structure/`. No test is removed: 12996 are collected, as before |
+| `tests/fixtures/*.py`, `tests/helpers.py` | `builders_*.py` next to their main consumer, for example `tests/integration/ccnl_engine/payroll/period/builders_period_requests.py`; `tests/helpers.py` is `tests/unit/ccnl_engine/builders.py` |
+| `tests/fixtures/reference_tables/`, `observed_payslips/`, `normative_oracles/`, `synthetic_contracts/` | `tests/knowledge/ccnl_engine/payroll/period/reference_case/` and `observed_payslip/`, `oracles_*.py` in the subdomain of the rule, `tests/integration/ccnl_engine/contract/catalog/synthetic_contract/`. `scripts/provenance/check.py` and `ci.yml` read the new reference case directory |
+
+
 ## Scripts and demo laid out by operational domain
 
 | Before | After |
@@ -579,17 +588,3 @@ base is below it, the INPS decisions are `incomplete`
 | `PayrollRunId.order_key` and `payment_key` of three items | Four: the sequence is the last |
 | `PeriodState.SCHEMA_VERSION` 10 | 11: a run id carries its `sequence`; a persisted state of version 10 reads 1 for every run |
 | The Commercio quattordicesima of a competence year was paid on `payment_day` of June | Paid on 1 July (CCNL Terziario art. 221, new `parameters.fourteenth_payment_day`), unless `payment_dates` names its date or the plan overrides the calendar; the run stays `2026-06-fourteenth` |
-
-## Days of a same-year rehire
-
-The art. 13 deduction, the ulteriore detrazione and the trattamento
-integrativo count the days of every employment whose income the
-withholding projects (see [Fiscal rules](engine/fiscal.md)).
-
-| Before | After |
-|---|---|
-| Metalmeccanico C3 from 1 January to 31 March 2026, rehired on 1 June with the state March closed: 214 days | 90 + 214 = 304 days; a run's lett. a) minimum is €1,380 when any employment of the year is `FixedTerm`, not only the run's |
-| `TaxCashState(...)` | New field `employment_spells`, a tuple of `EmploymentSpell` (`first_day`, `last_day`, `fixed_term`, exported by `ccnl_engine.inputs`) of its tax year; `PeriodState.SCHEMA_VERSION` 10 |
-| `OpeningBalances(...)` | New field `employment_spells`, `()` by default: the spells of an earlier employment of the year the imported totals hold |
-| `EmploymentPeriod.days_in_year(year)` | Removed: `spell_days()` counts the union of the spells of the year |
-| A regular run after a termination run of its competence year: `InvalidInputError` "run ... is out of order" | `InvalidInputError` naming the termination run that ended the employment; open a rehire with `PeriodState.zero()` |

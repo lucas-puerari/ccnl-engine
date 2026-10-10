@@ -11,8 +11,11 @@ from ccnl_engine.payroll.employment.inputs import (
     Permanent,
 )
 from ccnl_engine.tax.annual.models import YearRules
-from tests.fixtures.contribution_rules import first_run_contributions, inps_year_rules
-from tests.helpers import make_year_rules
+from tests.unit.ccnl_engine.builders import make_year_rules
+from tests.unit.ccnl_engine.payroll.contribution.builders_contribution_rules import (
+    first_run_contributions,
+    inps_year_rules,
+)
 
 _D = Decimal
 _ZERO = Decimal(0)

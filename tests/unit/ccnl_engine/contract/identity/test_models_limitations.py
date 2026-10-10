@@ -9,7 +9,7 @@ from pydantic import ValidationError
 
 from ccnl_engine.contract.identity.facade import CCNL, CoverageNote
 from ccnl_engine.knowledge.limitation.models import MonetaryImpact
-from tests.helpers import make_ccnl_dict
+from tests.unit.ccnl_engine.builders import make_ccnl_dict
 
 _SPEC: dict[str, Any] = {
     "variant": "missing_band",

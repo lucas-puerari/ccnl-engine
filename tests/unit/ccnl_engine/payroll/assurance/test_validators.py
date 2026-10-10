@@ -14,7 +14,7 @@ from ccnl_engine.payroll.assurance.validators import (
 )
 from ccnl_engine.payroll.ledger.models import AccountKind, LedgerEntry
 from ccnl_engine.payroll.state.models import PeriodState
-from tests.fixtures.synthetic_period_result import (
+from tests.unit.ccnl_engine.payroll.period.builders_synthetic_result import (
     COMPETENCE,
     OPENING,
     PAYMENT_DATE,

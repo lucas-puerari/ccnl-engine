@@ -36,8 +36,11 @@ from ccnl_engine.payroll.withholding.services_somma_esente import (
     resolve_somma_esente,
 )
 from ccnl_engine.tax.income.models_credit import SommaEsenteBand, SommaEsenteRules
-from tests.fixtures.period_requests import account_total, period_request
-from tests.helpers import make_year_rules
+from tests.integration.ccnl_engine.payroll.period.builders_period_requests import (
+    account_total,
+    period_request,
+)
+from tests.unit.ccnl_engine.builders import make_year_rules
 
 if TYPE_CHECKING:
     from ccnl_engine.tax.annual.models import YearRules

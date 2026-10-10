@@ -216,7 +216,7 @@ fixed-term exemption and the regional surtax table.
   `assumed` or `missing` payable rule in its own file or a `confidence`
   other than `verified`, or when a CCNL ruleset id is not `ccnl/<ccnl_id>`.
   These errors have no baseline: the gate rejects every one.
-  `tests/architecture/test_data_quality.py` runs the same inventory.
+  `tests/knowledge/ccnl_engine/knowledge/test_data_quality.py` runs the same inventory.
 - **CI, evidence gate.** `scripts/provenance/check.py --evidence`
   compares the bundle with the shrink-only baseline
   `scripts/provenance/baseline.json`, which lists every `assumed` or

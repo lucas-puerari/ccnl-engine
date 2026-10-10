@@ -40,10 +40,17 @@ from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.provenance.source.models_chain import ProvenanceStatus
-from tests.fixtures.current_year import employment_only
-from tests.fixtures.prior_year import RENEWAL_WAIVED
-from tests.fixtures.residence import COMUNE_BELFIORE, REGIONE
-from tests.fixtures.seniority import new_hire
+from tests.integration.ccnl_engine.payroll.taxation.builders_prior_year import (
+    RENEWAL_WAIVED,
+)
+from tests.integration.ccnl_engine.payroll.taxation.builders_residence import (
+    COMUNE_BELFIORE,
+    REGIONE,
+)
+from tests.knowledge.ccnl_engine.payroll.employment.builders_seniority import new_hire
+from tests.knowledge.ccnl_engine.payroll.taxation.builders_current_year import (
+    employment_only,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.period.results import PeriodResult

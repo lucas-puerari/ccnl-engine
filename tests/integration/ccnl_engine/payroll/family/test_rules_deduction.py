@@ -11,7 +11,9 @@ from ccnl_engine.payroll.family.inputs import (
 )
 from ccnl_engine.payroll.family.rules_deduction import compute_family_deductions
 from ccnl_engine.tax.annual.loaders_optional import load_family_deduction_rules
-from tests.fixtures.dependents import declared_dependent
+from tests.integration.ccnl_engine.payroll.family.builders_dependents import (
+    declared_dependent,
+)
 
 _D = Decimal
 _RULES = load_family_deduction_rules(2026)

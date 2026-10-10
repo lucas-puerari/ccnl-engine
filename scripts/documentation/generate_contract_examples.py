@@ -1,7 +1,7 @@
 """Generate one usage example per bundled CCNL in docs/examples/contracts/.
 
 Each contract page embeds its example (see ``gen_contract_pages.py``), and
-``tests/acceptance/public_api/test_docs_examples.py`` runs every one of them.
+``tests/integration/ccnl_engine/test_docs_examples.py`` runs every one of them.
 The examples are built from the CCNL and INPS data only, never from engine
 output, so the same data always yields the same files.
 

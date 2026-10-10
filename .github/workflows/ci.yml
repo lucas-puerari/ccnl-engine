@@ -151,13 +151,13 @@ jobs:
         run: python scripts/provenance/check.py --evidence
 
       - name: Validate all reference cases
-        run: python scripts/provenance/check.py tests/fixtures/reference_tables/*.json
+        run: python scripts/provenance/check.py tests/knowledge/ccnl_engine/payroll/period/reference_case/*.json
 
       - name: Reject new reference cases without source
         run: |
           ADDED=$(git diff --name-only --diff-filter=A HEAD~1 HEAD \
             -- tests/ 2>/dev/null \
-            | grep -E '^tests/fixtures/reference_tables/[^/]+\.json$' || true)
+            | grep -E '^tests/knowledge/ccnl_engine/payroll/period/reference_case/[^/]+\.json$' || true)
           if [ -z "$ADDED" ]; then
             echo "No new reference cases added."
           else
@@ -170,7 +170,7 @@ jobs:
         run: |
           MODIFIED=$(git diff --name-only --diff-filter=M HEAD~1 HEAD \
             -- tests/ 2>/dev/null \
-            | grep -E '^tests/fixtures/reference_tables/[^/]+\.json$' || true)
+            | grep -E '^tests/knowledge/ccnl_engine/payroll/period/reference_case/[^/]+\.json$' || true)
           if [ -z "$MODIFIED" ]; then
             echo "No reference cases modified."
             exit 0

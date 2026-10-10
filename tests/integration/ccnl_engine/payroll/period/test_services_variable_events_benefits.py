@@ -21,8 +21,13 @@ from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
 from ccnl_engine.payroll.state.models_ytd_account import FringeYtd
-from tests.fixtures.dependents import declared_dependent
-from tests.fixtures.period_requests import account_total, period_request
+from tests.integration.ccnl_engine.payroll.family.builders_dependents import (
+    declared_dependent,
+)
+from tests.integration.ccnl_engine.payroll.period.builders_period_requests import (
+    account_total,
+    period_request,
+)
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"

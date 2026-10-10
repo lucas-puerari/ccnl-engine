@@ -24,8 +24,11 @@ from ccnl_engine.payroll.taxation.inputs_prior_year import (
 from ccnl_engine.payroll.year.services_competence import (
     calculate_competence_year,
 )
-from tests.fixtures.normative_oracles.irpef_2026 import gross_irpef, net_irpef
-from tests.helpers import year_plan
+from tests.knowledge.ccnl_engine.payroll.taxation.oracles_irpef_2026 import (
+    gross_irpef,
+    net_irpef,
+)
+from tests.unit.ccnl_engine.builders import year_plan
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.year.results import CompetenceYearResult

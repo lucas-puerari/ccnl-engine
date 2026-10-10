@@ -1,6 +1,7 @@
 """NASpI surcharge of a fixed-term contract (L. 92/2012 art. 2 c. 3, 28, 29).
 
-The rules are the minimal ones of :func:`tests.helpers.make_year_rules`:
+The rules are the minimal ones of
+:func:`tests.unit.ccnl_engine.builders.make_year_rules`:
 1.4% and 0.5 points per renewal, the figures of c. 28.
 """
 
@@ -18,7 +19,7 @@ from ccnl_engine.payroll.contribution.rules_naspi import (
 )
 from ccnl_engine.payroll.employment.inputs import Apprentice, Permanent
 from ccnl_engine.payroll.employment.inputs_fixed_term import FixedTerm, NaspiExclusion
-from tests.helpers import make_year_rules
+from tests.unit.ccnl_engine.builders import make_year_rules
 
 if TYPE_CHECKING:
     from ccnl_engine.tax.annual.models import YearRules

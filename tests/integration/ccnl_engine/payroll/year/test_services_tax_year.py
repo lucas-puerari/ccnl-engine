@@ -24,9 +24,15 @@ from ccnl_engine.payroll.year.services_competence import (
     calculate_competence_year,
 )
 from ccnl_engine.payroll.year.services_tax_year import calculate_tax_year
-from tests.fixtures.current_year import employment_only
-from tests.fixtures.dependents import declared_dependent
-from tests.fixtures.next_year_repository import NextYearRepository
+from tests.integration.ccnl_engine.payroll.family.builders_dependents import (
+    declared_dependent,
+)
+from tests.integration.ccnl_engine.payroll.year.builders_next_year_repository import (
+    NextYearRepository,
+)
+from tests.knowledge.ccnl_engine.payroll.taxation.builders_current_year import (
+    employment_only,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.state.models import PeriodState

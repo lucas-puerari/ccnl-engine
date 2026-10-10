@@ -114,10 +114,10 @@ Where the current tests go:
 | `tests/architecture/` | `tests/integration/scripts/<domain>/` for repository rules, `tests/integration/ccnl_engine/` for the public API, errors and input defaults, `tests/knowledge/ccnl_engine/` for data quality, limitations and observed payslips |
 | `tests/fixtures/*.py` | `builders_*.py` next to their main consumer |
 | `tests/fixtures/normative_oracles/` | `oracles_*.py` in `tests/knowledge/ccnl_engine/payroll/<subdomain>/` |
-| `tests/fixtures/reference_tables/` | `tests/knowledge/ccnl_engine/payroll/period/reference_case/` |
-| `tests/fixtures/observed_payslips/` | `tests/knowledge/ccnl_engine/payroll/period/observed_payslip/` |
-| `tests/fixtures/synthetic_contracts/` | `tests/integration/ccnl_engine/contract/catalog/synthetic_contract/` |
-| `tests/helpers.py` | `tests/unit/ccnl_engine/builders.py` |
+| `tests/knowledge/ccnl_engine/payroll/period/reference_case/` | `tests/knowledge/ccnl_engine/payroll/period/reference_case/` |
+| `tests/knowledge/ccnl_engine/payroll/period/observed_payslip/` | `tests/knowledge/ccnl_engine/payroll/period/observed_payslip/` |
+| `tests/integration/ccnl_engine/contract/catalog/synthetic_contract/` | `tests/integration/ccnl_engine/contract/catalog/synthetic_contract/` |
+| `tests/unit/ccnl_engine/builders.py` | `tests/unit/ccnl_engine/builders.py` |
 
 ## Inventory
 

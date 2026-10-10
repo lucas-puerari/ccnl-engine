@@ -15,7 +15,10 @@ from ccnl_engine.provenance.ruleset.models import (
     VerificationStatus,
 )
 from ccnl_engine.provenance.source.models_chain import ProvenanceStatus
-from tests.fixtures.rulesets import ccnl_ruleset, tax_ruleset
+from tests.unit.ccnl_engine.provenance.ruleset.builders_rulesets import (
+    ccnl_ruleset,
+    tax_ruleset,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.assurance.models import ResultAssurance

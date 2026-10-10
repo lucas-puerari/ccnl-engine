@@ -39,7 +39,9 @@ from ccnl_engine.inputs import (
     SenioritySource,
     WeeklyHours,
 )
-from tests.fixtures.seniority import pricing_category
+from tests.knowledge.ccnl_engine.payroll.employment.builders_seniority import (
+    pricing_category,
+)
 
 if TYPE_CHECKING:
     from collections.abc import Iterator

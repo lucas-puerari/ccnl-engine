@@ -18,7 +18,7 @@
           "apprentice"
         ]
       },
-      "source": "ccnl_engine.payroll.employment.rules_apprenticeship._midpoint_chain; CCNL Aziende Termali Federterme 2024-2027 Art. 13 lett. g ('maggiorato di un importo pari al 50% del differenziale previsto tra il 5° e il 6° livello'); tests/acceptance/legal_scenarios/test_apprenticeship_midpoint.py",
+      "source": "ccnl_engine.payroll.employment.rules_apprenticeship._midpoint_chain; CCNL Aziende Termali Federterme 2024-2027 Art. 13 lett. g ('maggiorato di un importo pari al 50% del differenziale previsto tra il 5° e il 6° livello'); tests/knowledge/ccnl_engine/payroll/employment/test_apprenticeship_midpoint.py",
       "remediation": "Resolved: CCNLs whose midpoint components are unsourced are tracked by their own apprenticeship_midpoint_components limitation."
     },
     {
@@ -125,7 +125,7 @@
           "apprentice"
         ]
       },
-      "source": "ccnl_engine.payroll.amount.rules_chain and MonthlyPayChain.scaled_for_apprenticeship; apprentice amounts as sourced in the CCNL notes (acconciatura-estetica 2024 renewal Art. 25: 6 EUR; tessile-moda-artigianato 2024 renewal: 6 EUR; panificazione Art. 34-bis 'esclusi gli apprendisti' and 2024 renewal: 10 EUR; comunicazione-artigianato 2024 renewal: 10 EUR; legno-lapidei-artigianato 2024 renewal: 8 EUR); tests/acceptance/legal_scenarios/test_apprentice_seniority.py",
+      "source": "ccnl_engine.payroll.amount.rules_chain and MonthlyPayChain.scaled_for_apprenticeship; apprentice amounts as sourced in the CCNL notes (acconciatura-estetica 2024 renewal Art. 25: 6 EUR; tessile-moda-artigianato 2024 renewal: 6 EUR; panificazione Art. 34-bis 'esclusi gli apprendisti' and 2024 renewal: 10 EUR; comunicazione-artigianato 2024 renewal: 10 EUR; legno-lapidei-artigianato 2024 renewal: 8 EUR); tests/knowledge/ccnl_engine/payroll/employment/test_apprentice_seniority.py",
       "remediation": "Resolved: the remaining CCNLs are tracked by their own apprentice_seniority limitation."
     },
     {

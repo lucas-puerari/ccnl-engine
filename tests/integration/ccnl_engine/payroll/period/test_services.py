@@ -30,7 +30,7 @@ from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.payroll.state.models_accrual import EmploymentAccrualState
 from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
 from ccnl_engine.payroll.state.models_ytd_account import EarningsYtd, TaxYtd
-from tests.helpers import EMPLOYER_50
+from tests.unit.ccnl_engine.builders import EMPLOYER_50
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.year.models_payment import PaymentId

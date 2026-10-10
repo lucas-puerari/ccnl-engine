@@ -29,7 +29,7 @@ from ccnl_engine.payroll.employment.inputs_fact import (
 from ccnl_engine.payroll.event.facade import AbsenceEvent
 from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.ledger.models_remittance import remittance_summary
-from tests.fixtures.shortfall_deferral import (
+from tests.integration.ccnl_engine.payroll.withholding.builders_shortfall_deferral import (  # noqa: E501
     decision_amount,
     deferred_lines,
     opening_with_deferral,

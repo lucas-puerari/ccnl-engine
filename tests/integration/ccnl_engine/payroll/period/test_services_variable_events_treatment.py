@@ -36,7 +36,9 @@ from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.results import PeriodResult
 from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
-from tests.fixtures.next_year_repository import NextYearRepository
+from tests.integration.ccnl_engine.payroll.year.builders_next_year_repository import (
+    NextYearRepository,
+)
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"

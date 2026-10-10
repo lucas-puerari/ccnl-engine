@@ -19,7 +19,7 @@ from ccnl_engine.payroll.employment.rules_seniority import (
     seniority_first_cadence,
     seniority_maximum,
 )
-from tests.helpers import TEST_PROV, _series
+from tests.unit.ccnl_engine.builders import TEST_PROV, _series
 
 _AS_OF = date(2026, 6, 1)
 

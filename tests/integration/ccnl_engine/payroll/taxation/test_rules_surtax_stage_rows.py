@@ -31,7 +31,9 @@ from ccnl_engine.tax.surtax.models_table import (
     RegionaleEntry,
     WholeIncomeRate,
 )
-from tests.fixtures.dependents import declared_dependent
+from tests.integration.ccnl_engine.payroll.family.builders_dependents import (
+    declared_dependent,
+)
 
 _D = Decimal
 _FLAT = (Bracket(up_to=None, rate=_D("0.01")),)

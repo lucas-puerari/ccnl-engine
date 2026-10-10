@@ -13,7 +13,7 @@ from ccnl_engine.tax.income.models_credit import (
     TrattamentoIntegrativoRules,
     UlterioreDetrazioneRules,
 )
-from tests.helpers import make_year_rules
+from tests.unit.ccnl_engine.builders import make_year_rules
 
 _ZERO = Decimal(0)
 

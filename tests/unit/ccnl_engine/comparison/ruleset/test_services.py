@@ -16,7 +16,7 @@ from ccnl_engine.comparison.ruleset.services import diff_ccnl
 from ccnl_engine.contract.identity.facade import CCNL
 from ccnl_engine.contract.identity.rules_validity import TimeSeries, ValidityPeriod
 from ccnl_engine.errors import InvalidInputError
-from tests.helpers import TEST_PROV, make_ccnl_dict
+from tests.unit.ccnl_engine.builders import TEST_PROV, make_ccnl_dict
 
 # ---------------------------------------------------------------------------
 # Helpers

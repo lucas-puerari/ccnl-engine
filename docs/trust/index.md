@@ -157,7 +157,7 @@ gates; the `CI` workflow runs all of them on every pull request:
 | Structure | `uv run python scripts/structure/check.py` | File, function, class and Markdown page size limits |
 | Provenance schema | `python scripts/provenance/check.py --schema` | Every payable rule has a record with the evidence its status claims |
 | Provenance evidence | `python scripts/provenance/check.py --evidence` | No new `assumed` or `missing` rule, open limitation or readiness claim; the baseline only shrinks |
-| Reference cases | `python scripts/provenance/check.py tests/fixtures/reference_tables/*.json` | Every reference case has a verification status and a source |
+| Reference cases | `python scripts/provenance/check.py tests/knowledge/ccnl_engine/payroll/period/reference_case/*.json` | Every reference case has a verification status and a source |
 | Contract pages | `uv run python scripts/documentation/generate_contract_pages.py --check` | Every page matches its CCNL data |
 | Trust counts | `uv run python scripts/documentation/generate_trust_counts.py --check` | Every count in `docs/trust/` matches the bundle |
 
@@ -178,8 +178,8 @@ This is a hard rule:
 
 Expected values copied from engine output detect regressions only, never a
 systematic error, so they are not accepted as proof of correctness.
-Reference cases live in `tests/fixtures/reference_tables/` and
-`tests/acceptance/public_api/test_reference_cases.py` runs each one through
+Reference cases live in `tests/knowledge/ccnl_engine/payroll/period/reference_case/` and
+`tests/integration/ccnl_engine/test_reference_cases.py` runs each one through
 `PayrollEngine`. They are reference table cases, not full payslips: a case
 asserts only the values its source states (base salary, fixed allowances and
 period gross from the cited table), to the cent, and never net pay,
@@ -202,7 +202,7 @@ top-level `verification` field:
 | `verified` | Expected values checked against an independent source (a real payslip or an official worked example) | Required |
 | `source_linked` | The case cites the primary source it models; expected values are not checked against a payslip | Required |
 
-`tests/architecture/test_data_quality.py` rejects a missing or unknown
+`tests/knowledge/ccnl_engine/knowledge/test_data_quality.py` rejects a missing or unknown
 value, a case without a `source` object, and a case whose inputs or expected
 values differ from what the runner executes. In CI,
 `scripts/provenance/check.py` validates every case, prints the count per

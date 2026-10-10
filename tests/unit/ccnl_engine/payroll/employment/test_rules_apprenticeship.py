@@ -17,7 +17,7 @@ from ccnl_engine.payroll.employment.rules_apprenticeship import (
     _find_period_index,
     _select_track,
 )
-from tests.helpers import make_ccnl_dict, make_minimal_ccnl
+from tests.unit.ccnl_engine.builders import make_ccnl_dict, make_minimal_ccnl
 
 _AS_OF = date(2026, 6, 1)
 

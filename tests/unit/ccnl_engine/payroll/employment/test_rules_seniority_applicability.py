@@ -9,7 +9,7 @@ import pytest
 from ccnl_engine.contract.employment.models_category import WorkerCategory
 from ccnl_engine.contract.seniority.models import SeniorityIncrements
 from ccnl_engine.payroll.employment.rules_seniority import increments_apply
-from tests.helpers import TEST_PROV, _series
+from tests.unit.ccnl_engine.builders import TEST_PROV, _series
 
 _OPERAIO = WorkerCategory.OPERAIO
 _IMPIEGATO = WorkerCategory.IMPIEGATO

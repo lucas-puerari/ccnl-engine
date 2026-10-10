@@ -18,7 +18,9 @@ from ccnl_engine.payroll.period.services_contract import (
     flat_pay_divisor,
     with_competence_contributions,
 )
-from tests.fixtures.next_year_repository import NextYearRepository
+from tests.integration.ccnl_engine.payroll.year.builders_next_year_repository import (
+    NextYearRepository,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.tax.annual.models import YearRules

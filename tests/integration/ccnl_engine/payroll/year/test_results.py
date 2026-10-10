@@ -13,7 +13,9 @@ from ccnl_engine.payroll.period.repositories import (
 from ccnl_engine.payroll.year.services_competence import (
     calculate_competence_year,
 )
-from tests.fixtures.explicit_facts import competence_year
+from tests.knowledge.ccnl_engine.payroll.period.builders_explicit_facts import (
+    competence_year,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.contract.identity.facade import TaxSector

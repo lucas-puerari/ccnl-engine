@@ -9,8 +9,8 @@ from ccnl_engine.provenance.ruleset.models import (
     VerificationStatus,
 )
 from ccnl_engine.provenance.ruleset.models_assurance import RulesetKind
-from tests.fixtures.rulesets import ruleset_identity
-from tests.helpers import make_minimal_ccnl
+from tests.unit.ccnl_engine.builders import make_minimal_ccnl
+from tests.unit.ccnl_engine.provenance.ruleset.builders_rulesets import ruleset_identity
 
 
 def test_readiness_and_confidence_come_from_the_verification() -> None:

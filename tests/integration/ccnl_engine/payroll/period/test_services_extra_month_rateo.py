@@ -12,7 +12,7 @@ from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
-from tests.helpers import EMPLOYER_50
+from tests.unit.ccnl_engine.builders import EMPLOYER_50
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 

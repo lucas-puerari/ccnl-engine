@@ -33,9 +33,11 @@ from ccnl_engine.payroll.year.rules_close import close_tax_year
 from ccnl_engine.payroll.year.services_competence import (
     calculate_competence_year,
 )
-from tests.fixtures.opening_state import fresh_tax_year
-from tests.fixtures.residence import resident
-from tests.helpers import year_plan
+from tests.integration.ccnl_engine.payroll.taxation.builders_residence import resident
+from tests.knowledge.ccnl_engine.payroll.state.builders_opening_state import (
+    fresh_tax_year,
+)
+from tests.unit.ccnl_engine.builders import year_plan
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"

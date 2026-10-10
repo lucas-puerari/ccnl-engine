@@ -22,7 +22,7 @@ from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period
-from tests.fixtures.seniority import new_hire
+from tests.knowledge.ccnl_engine.payroll.employment.builders_seniority import new_hire
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.assurance.models_decision import CalculationDecision

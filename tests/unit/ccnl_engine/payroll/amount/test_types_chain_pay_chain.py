@@ -7,7 +7,7 @@ from decimal import Decimal
 from ccnl_engine.contract.compensation.models import Allowance
 from ccnl_engine.contract.identity.rules_validity import TimeSeries
 from ccnl_engine.payroll.amount.types_chain import MonthlyPayChain
-from tests.helpers import _series
+from tests.unit.ccnl_engine.builders import _series
 
 
 def _time_series(value: str) -> TimeSeries:

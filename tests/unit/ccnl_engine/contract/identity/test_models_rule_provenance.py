@@ -6,7 +6,7 @@ import pytest
 from pydantic import ValidationError
 
 from ccnl_engine.contract.identity.facade import CCNL
-from tests.helpers import make_ccnl_dict
+from tests.unit.ccnl_engine.builders import make_ccnl_dict
 
 
 def test_additional_months_period_requires_provenance() -> None:

@@ -9,7 +9,11 @@ from ccnl_engine.provenance.ruleset.models import (
     VerificationStatus,
 )
 from ccnl_engine.provenance.ruleset.models_assurance import RulesetKind
-from tests.fixtures.rulesets import ccnl_ruleset, ruleset_identity, tax_ruleset
+from tests.unit.ccnl_engine.provenance.ruleset.builders_rulesets import (
+    ccnl_ruleset,
+    ruleset_identity,
+    tax_ruleset,
+)
 
 _EXPLORATORY = RulesetReadiness.EXPLORATORY
 _REVIEWED = RulesetReadiness.REVIEWED

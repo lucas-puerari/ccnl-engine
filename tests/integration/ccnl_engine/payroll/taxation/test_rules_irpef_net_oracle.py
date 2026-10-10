@@ -1,7 +1,8 @@
 """Sanity checks of the independent 2026 IRPEF oracle against hand calculations.
 
 Every expected value below was computed by hand from the formulas cited in
-``tests/fixtures/normative_oracles/irpef_2026.py`` (26 September 2026).  The
+``tests/knowledge/ccnl_engine/payroll/taxation/oracles_irpef_2026.py`` (26 September
+2026).  The
 oracle is only trustworthy as an acceptance reference if these pass.
 """
 
@@ -14,7 +15,7 @@ import pytest
 from ccnl_engine.contract.identity.facade import TaxSector
 from ccnl_engine.payroll.taxation.rules_irpef_net import net_irpef as engine_net_irpef
 from ccnl_engine.tax.annual.loaders import load_year_rules
-from tests.fixtures.normative_oracles.irpef_2026 import (
+from tests.knowledge.ccnl_engine.payroll.taxation.oracles_irpef_2026 import (
     employment_deduction,
     further_deduction,
     gross_irpef,

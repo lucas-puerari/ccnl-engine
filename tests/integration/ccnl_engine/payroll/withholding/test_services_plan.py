@@ -31,7 +31,11 @@ from ccnl_engine.payroll.withholding.services_plan import (
 from ccnl_engine.payroll.year.models_calendar import WorkCalendar
 from ccnl_engine.payroll.year.models_payment import PaymentId
 from ccnl_engine.payroll.year.models_schedule import PayrollRunCount
-from tests.fixtures.withholding import calendar_schedule, paid_before, paid_on_day
+from tests.integration.ccnl_engine.payroll.withholding.builders_withholding import (
+    calendar_schedule,
+    paid_before,
+    paid_on_day,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.withholding.models_schedule import (

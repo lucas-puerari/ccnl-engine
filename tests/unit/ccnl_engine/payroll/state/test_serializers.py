@@ -178,12 +178,16 @@ def _is_state_type(hint: object) -> bool:
 def _reachable(root: type, names: dict[str, type]) -> set[type]:
     found: set[type] = set()
     seen: set[int] = set()
+    # Hints built on the fly are freed once popped; keeping each one alive
+    # stops a later hint from reusing its id and being skipped.
+    visited: list[object] = []
     pending: list[object] = [root]
     while pending:
         hint = pending.pop()
         if id(hint) in seen:
             continue
         seen.add(id(hint))
+        visited.append(hint)
         if _is_state_type(hint):
             found.add(typing.cast("type", hint))
         pending.extend(_inner(hint, names))

@@ -29,7 +29,7 @@ from ccnl_engine.payroll.year.models_payment import PaymentId
 from ccnl_engine.payroll.year.services_competence import (
     calculate_competence_year,
 )
-from tests.helpers import year_plan
+from tests.unit.ccnl_engine.builders import year_plan
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.period.results import PeriodResult

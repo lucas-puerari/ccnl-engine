@@ -15,7 +15,9 @@ from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.payroll.state.models_credit_account import TrattamentoAccount
-from tests.fixtures.period_requests import period_request
+from tests.integration.ccnl_engine.payroll.period.builders_period_requests import (
+    period_request,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.period.results import PeriodResult
