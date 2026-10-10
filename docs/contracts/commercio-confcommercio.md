@@ -111,12 +111,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
-!!! warning "commercio-confcommercio/sickness_net_basis_and_event_carenza · sickness · impact yes · open"
-    SICKNESS (Arts. 186-187): the day bands (100% carenza, 75% days 4-20, 100% from day 21) are modelled on the gross daily pay; not modelled: the net daily pay the CCNL integrates to, the carenza at 66%, 50% and 0% from the third event of the calendar year, and the comporto of 180 days summed over the episodes of the calendar year (counted per episode).
+!!! warning "commercio-confcommercio/sickness_net_basis · sickness · impact yes · open"
+    SICKNESS (Art. 187): the CCNL integrates up to a share of the net daily pay ('retribuzione giornaliera netta'); the engine integrates the gross daily pay. Day bands, carenza by event and the yearly comporto are modelled.
 
     **Applies when:** `sickness` applies.
 
-    **Remediation:** Integrate to the net daily pay, reduce the carenza by event of the calendar year with its exclusions, and sum the comporto over the calendar year, then resolve this limitation.
+    **Remediation:** Integrate the share of the net daily pay the CCNL guarantees, then resolve this limitation.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

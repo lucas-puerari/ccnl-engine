@@ -28,6 +28,7 @@ if TYPE_CHECKING:
         SicknessTerms,
     )
     from ccnl_engine.payroll.domain.sick_cumulation_report import CumulationReport
+    from ccnl_engine.payroll.domain.sick_year import YearTreatment
     from ccnl_engine.payroll.domain.sickness import SicknessEpisode
 
 __all__ = [
@@ -39,6 +40,7 @@ __all__ = [
     "SENIORITY_UNKNOWN",
     "cumulation_inputs",
     "cumulation_issues",
+    "year_issues",
 ]
 
 #: Sick days before the known history could change the treatment.
@@ -163,3 +165,43 @@ def cumulation_inputs(report: CumulationReport) -> dict[str, Decimal]:
         "window_days": report.window_days,
     }
     return {name: Decimal(count) for name, count in counts.items()}
+
+
+def year_issues(
+    episode: SicknessEpisode, year: YearTreatment
+) -> tuple[CalculationIssue, ...]:
+    """Return the issues of a treatment counted over the calendar year.
+
+    Returns:
+        A provisional issue when sick days before the known history, or an
+        unstated exemption, could change the comporto or the carenza.
+    """
+    name = f"sickness episode '{episode.episode_id}'"
+    conditions = (
+        (
+            year.history_reach,
+            HISTORY_UNKNOWN,
+            (
+                f"{name}: sick days of the year before the history the state "
+                "records could change the comporto or the carenza counted; state "
+                "from which day the imported episodes are complete "
+                "(OpeningBalances.sickness_known_from)"
+            ),
+            "sickness_known_from",
+        ),
+        (
+            year.exemption_reach,
+            EXEMPTION_UNKNOWN,
+            (
+                f"{name}: its carenza is paid less from the n-th event of the year "
+                "unless the CCNL exempts an event; an exemption is not stated, so "
+                "the higher carenza is paid"
+            ),
+            "short_absence_exempt",
+        ),
+    )
+    return tuple(
+        CalculationIssue(code=code, message=message, status=_PROVISIONAL, fact=fact)
+        for holds, code, message, fact in conditions
+        if holds
+    )

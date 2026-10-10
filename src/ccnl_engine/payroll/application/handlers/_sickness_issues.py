@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 from ccnl_engine.payroll.application.handlers._sickness_cumulation import (
     cumulation_inputs,
     cumulation_issues,
+    year_issues,
 )
 from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
@@ -131,6 +132,9 @@ def episode_issues(
         )
     if pay.report is not None:
         issues.extend(cumulation_issues(episode, pay.report, terms))
+    year = None if rules is None else rules.year(episode, terms.history)
+    if year is not None:
+        issues.extend(year_issues(episode, year))
     return tuple(issues)
 
 

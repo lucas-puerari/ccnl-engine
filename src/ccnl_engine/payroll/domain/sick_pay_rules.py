@@ -20,6 +20,7 @@ from ccnl_engine.payroll.domain.sick_cumulation import (
     CumulativeTreatment,
     SicknessWorker,
 )
+from ccnl_engine.payroll.domain.sick_year import YearTreatment
 
 if TYPE_CHECKING:
     from collections.abc import Callable
@@ -114,6 +115,26 @@ class SickPayRules:
             self.ccnl, cumulation, episode, history.earlier(episode), self.worker
         )
 
+    def year(
+        self, episode: SicknessEpisode, history: SicknessHistory
+    ) -> YearTreatment | None:
+        """Return the per-episode treatment counted over the calendar year.
+
+        Returns:
+            The treatment, ``None`` unless the CCNL counts its comporto over
+            the calendar year or lowers the carenza by event.
+        """
+        ccnl = self.ccnl
+        if not ccnl.comporto_calendar_year and ccnl.carenza_by_event is None:
+            return None
+        return YearTreatment(
+            ccnl,
+            episode,
+            history.earlier(episode),
+            self.worker.known_from,
+            self.target_rate,
+        )
+
     def treatment(
         self, episode: SicknessEpisode, history: SicknessHistory
     ) -> DayTreatment:
@@ -123,4 +144,7 @@ class SickPayRules:
             A function of the relapse-chain index and the date of a day.
         """
         cumulative = self.cumulative(episode, history)
-        return self._per_episode if cumulative is None else cumulative.day
+        if cumulative is not None:
+            return cumulative.day
+        year = self.year(episode, history)
+        return self._per_episode if year is None else year.day
