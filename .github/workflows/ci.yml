@@ -84,7 +84,7 @@ jobs:
           python-version-file: pyproject.toml
 
       - name: Install dependencies
-        run: uv pip install --system -e . "zensical>=0.0.11" "mkdocstrings[python]>=0.27"
+        run: uv sync --frozen --group docs
 
       - name: Generate coverage matrix
         run: uv run python scripts/docs/gen_coverage_matrix.py
