@@ -100,6 +100,7 @@ def calculate_tax_year(
     return TaxYearResult(
         results,
         opening,
+        mode=mode,
         bundle_version=bundle_version,
         tax_year=tax_year,
         payments=(*opening.cash.payments, *(p.payment for p in pending)),

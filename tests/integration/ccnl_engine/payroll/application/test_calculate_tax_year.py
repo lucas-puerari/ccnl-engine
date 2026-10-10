@@ -89,6 +89,7 @@ class TestCompetenceYearAcrossTaxYears:
 
         assert resumed.period_results == ()
         assert resumed.closing_state == closing
+        assert not resumed.is_payable
 
     def test_a_later_state_missing_a_run_of_the_year_is_rejected(self) -> None:
         """A 2027 state that never paid November 2026 cannot resume 2026."""
@@ -141,6 +142,8 @@ class TestTaxYear:
 
         assert year.period_results == ()
         assert year.closing_state == closing
+        assert year.assessed_payments == ()
+        assert not year.is_payable
         assert [str(p) for p in year.payments] == ["2026-12-regular@2027-01-13"]
         assert year.conguaglio is None
 

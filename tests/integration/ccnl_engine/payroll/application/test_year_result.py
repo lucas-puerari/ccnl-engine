@@ -1,13 +1,15 @@
-"""Assurance of a year whose repository changes a ruleset between runs."""
+"""Assurance of a year: conflicting rulesets, resumed and empty sequences."""
 
 from __future__ import annotations
 
+from dataclasses import replace
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application.calculate_competence_year import (
     calculate_competence_year,
 )
 from ccnl_engine.payroll.domain.assurance import BlockerCode
+from ccnl_engine.payroll.domain.engine_mode import EngineMode
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
@@ -62,3 +64,30 @@ def test_a_repository_that_does_not_change_reports_no_conflict() -> None:
     names = [str(r) for r in year.rulesets]
     assert len(names) == len(set(names))
     assert BlockerCode.RULESET_CONFLICT not in {b.code for b in year.blockers}
+
+
+def test_a_full_resume_is_not_payable_and_does_not_raise() -> None:
+    """A plan resumed on its own closing state computed nothing to assess."""
+    closing = calculate_competence_year(competence_year()).closing_state
+
+    for mode in EngineMode:
+        resumed = calculate_competence_year(
+            replace(competence_year(), opening_state=closing), mode=mode
+        )
+
+        assert resumed.period_results == ()
+        assert resumed.assessed_payments == ()
+        assert resumed.assurance.mode is mode
+        assert not resumed.is_payable
+        assert BlockerCode.RULE_SOURCE_WEAK in {b.code for b in resumed.blockers}
+
+
+def test_a_year_assesses_exactly_the_payments_it_computed() -> None:
+    """The assessed payments are those of the results, in payment order."""
+    year = calculate_competence_year(competence_year())
+
+    assert (
+        year.assessed_payments
+        == year.closing_state.cash.payments[-len(year.assessed_payments) :]
+    )
+    assert len(year.assessed_payments) == len(year.period_results)

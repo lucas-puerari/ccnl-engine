@@ -6,6 +6,7 @@ import dataclasses
 import importlib
 import json
 import pkgutil
+import sys
 import typing
 from datetime import date
 from decimal import Decimal
@@ -162,7 +163,8 @@ def _inner(hint: object, names: dict[str, type]) -> list[object]:
     if isinstance(hint, typing.TypeAliasType):
         return [hint.__value__]
     if isinstance(hint, type) and dataclasses.is_dataclass(hint):
-        hints = typing.get_type_hints(hint, localns=names)
+        own = vars(sys.modules[hint.__module__])
+        hints = typing.get_type_hints(hint, localns={**names, **own})
         return [hints[f.name] for f in dataclasses.fields(hint) if f.init]
     return []
 
