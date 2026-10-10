@@ -1424,7 +1424,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-federmeccanica",
       "ruleset_version": "2026.3",
-      "source_hash": "571d9fcc3ac97a7685fd0f84569578868ba6f614713fede12dd2b38b57565e29",
+      "source_hash": "eb0973cc32cfbc684bd039789a3d941aa34d7273698f71ba4bf91745e703e916",
       "source_type": "commercial_secondary",
       "owner": "lucas-puerari",
       "wheel_resource": "contract/agreement/metalmeccanico-federmeccanica.json.gz"
@@ -2293,7 +2293,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "inps/2026/industria",
       "ruleset_version": "2026.1",
-      "source_hash": "b5b61faeda5790fa919295ec8852c0ecd8090e81d1f644ffaee2141bce1851dc",
+      "source_hash": "a6c68fc627391a63fa83adfd95cdf7b540247bc76f5ca2206981864dcab5a3d0",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "social_security/contribution/2026/industria.json.gz"
@@ -2650,7 +2650,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/industria",
       "ruleset_version": "2026.1",
-      "source_hash": "6271777d3534107ffc7ccee03e070cf1de48e7d3661cb3e3e3f00b79646670f5",
+      "source_hash": "39ba3539cf3fc105cc7d488eea94e1547f2ec168ac1f203929d69fb9030e254a",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "taxation/annual/2026/industria.json.gz"

@@ -10,7 +10,7 @@
 | **Ruleset version** | `2026.3` |
 | **Extraction** | 🤖 AI-assisted |
 | **Verification** | 🔴 Unverified |
-| **Readiness** | 👁 Reviewed |
+| **Readiness** | 🏭 Production |
 
 [← Contracts index](index.md)
 
@@ -45,7 +45,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 
 | | |
 |---|---|
-| **Readiness** | 👁 Reviewed |
+| **Readiness** | 🏭 Production |
 | **Confidence** | 🟢 Verified |
 | **Last human review** | 2026-10-10 |
 

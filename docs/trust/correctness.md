@@ -29,9 +29,9 @@ Evidence:
   `PayrollEngine` and asserting, to the cent, the three values its cited
   salary table states: base salary, fixed allowances and period gross. They
   do not check net pay, contributions, taxes or employer cost.
-  <!-- trust:reference-cases-source-linked -->10<!-- /trust:reference-cases-source-linked -->
+  <!-- trust:reference-cases-source-linked -->9<!-- /trust:reference-cases-source-linked -->
   are `source_linked` (they cite the table they model) and
-  <!-- trust:reference-cases-verified -->1<!-- /trust:reference-cases-verified -->
+  <!-- trust:reference-cases-verified -->2<!-- /trust:reference-cases-verified -->
   are `verified` against an independent payslip or official worked example.
 - Legal scenario tests: selected rules (IRPEF, regional and municipal
   surtaxes, substitute-tax regimes, apprenticeship scaling, the withholding
@@ -94,9 +94,9 @@ enforced; in `operational` mode a CCNL that is not `production` adds a
 `ruleset_not_production` blocker.
 
 Bundled CCNL rulesets at `production`:
-<!-- trust:readiness-production -->0<!-- /trust:readiness-production -->.
+<!-- trust:readiness-production -->1<!-- /trust:readiness-production -->.
 Payable rules with provenance status `verified`:
-<!-- trust:rules-verified -->0<!-- /trust:rules-verified -->
+<!-- trust:rules-verified -->7<!-- /trust:rules-verified -->
 (see [Provenance](provenance.md#current-counts)).
 See [Readiness](readiness.md) for promotion criteria and the current
 distribution.

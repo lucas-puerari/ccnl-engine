@@ -104,11 +104,12 @@ class TestBundledRun:
         """Executed capabilities report the status of the rules they read."""
         result = _run()
         sources = result.capability_report.rule_sources
-        # The industria tax rules cite the law, its INPS rates a rate table;
-        # the metalmeccanico salary table cites the signed agreements.
+        # The industria tax rules cite the law; the metalmeccanico salary
+        # table cites the signed agreements.  The INPS and TFR rules of
+        # industria were re-checked for production: verified.
         assert sources["irpef"] is ProvenanceStatus.DERIVED
-        assert sources["tfr"] is ProvenanceStatus.DERIVED
-        assert sources["inps_employer"] is ProvenanceStatus.DERIVED
+        assert sources["tfr"] is ProvenanceStatus.VERIFIED
+        assert sources["inps_employer"] is ProvenanceStatus.VERIFIED
         assert sources["base_salary"] is ProvenanceStatus.DERIVED
         # The somma esente sits in its own ruleset, quoted from the law.
         assert sources["somma_esente"] is ProvenanceStatus.DERIVED

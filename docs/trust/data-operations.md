@@ -35,6 +35,16 @@ When a renewal is in progress but not yet modelled, the active ruleset's
 `effective_until` is left open and a `needs_review` flag is set on the
 affected salary table values.
 
+### Production rulesets
+
+Each `production` CCNL has an owner who monitors its renewals and the INPS
+and tax rules of its sector, within the windows above, and a next review
+date (`verification.review_due`).
+
+| CCNL | Owner | Monitors | Next review |
+|---|---|---|---|
+| Metalmeccanico Federmeccanica | lucas-puerari | renewals and the June IPCA check of the minimi (agreement of 22/11/2025); the INPS circular of the minimali and the rates of the industria | 2027-06-01 |
+
 ---
 
 ## Refreshing the municipal surtax table
