@@ -5,6 +5,7 @@ from decimal import Decimal
 import pytest
 from pydantic import ValidationError
 
+from ccnl_engine.contract.employment.models_category import WorkerCategory
 from ccnl_engine.tax.contribution.models_minimum_base import MinimumBaseRule
 
 #: Circ. INPS 6/2026 par. 1 (58.13 a day) and par. 4 (58.13 x 6/40 = 8.72).
@@ -65,3 +66,38 @@ def test_accepts_a_sector_without_a_monthly_day_count() -> None:
 
     assert rule.monthly_days is None
     assert rule.hourly_for(Decimal(36)) == Decimal("8.07")
+
+
+#: Tabella A of circ. 6/2026 allegato 1, Agricoltura: dirigente 128.65,
+#: impiegato 67.84; the operai are excluded by art. 7 c. 5.
+_AGRICULTURE = _RULE | {
+    "daily_by_category": {"dirigente": "128.65", "impiegato": "67.84"},
+    "exempt_categories": ["operaio"],
+}
+
+
+def test_category_minimum_overrides_the_daily_minimum() -> None:
+    """A qualifica of Tabella A takes its own amount; the others 58.13."""
+    rule = MinimumBaseRule.model_validate(_AGRICULTURE)
+
+    assert rule.daily_for(WorkerCategory.IMPIEGATO) == Decimal("67.84")
+    assert rule.daily_for(WorkerCategory.DIRIGENTE) == Decimal("128.65")
+    assert rule.daily_for(WorkerCategory.QUADRO) == Decimal("58.13")
+    assert rule.daily_for(None) == Decimal("58.13")
+
+
+def test_published_hourly_minimum_is_of_the_general_minimum() -> None:
+    """8.72 is 58.13 x 6/40: it says nothing of a qualifica of its own."""
+    rule = MinimumBaseRule.model_validate(_AGRICULTURE)
+
+    assert rule.publishes_hourly_for(None)
+    assert rule.publishes_hourly_for(WorkerCategory.QUADRO)
+    assert not rule.publishes_hourly_for(WorkerCategory.IMPIEGATO)
+
+
+def test_rejects_a_minimum_of_an_excluded_category() -> None:
+    """Art. 7 c. 5 excludes the category: it cannot have a minimum."""
+    with pytest.raises(ValidationError, match="exempt categories"):
+        MinimumBaseRule.model_validate(
+            _AGRICULTURE | {"daily_by_category": {"operaio": "51.70"}}
+        )

@@ -39,6 +39,9 @@
     },
     "minimum_base": {
       "daily": "58.13",
+      "daily_by_category": {
+        "dirigente": "160.77"
+      },
       "week_days": 6,
       "monthly_days": 26,
       "hourly": [
@@ -59,7 +62,7 @@
           "section": "par. 1, Minimali di retribuzione giornaliera; par. 4, Minimale ai fini contributivi per i rapporti di lavoro subordinato a tempo parziale",
           "quote": "Tali limiti, secondo quanto innanzi precisato, devono essere ragguagliati a 58,13 euro(9,5% dell'importo del trattamento minimo mensile di pensione a carico del Fondo pensioni lavoratori dipendenti in vigore al 1° gennaio 2026, pari a 611,85 euromensili) se di importo inferiore. [...] In linea generale, nell'ipotesi di orario di 40 ore settimanali (ipotesi che ricorre, di norma, per i lavoratori iscritti alle gestioni private), il procedimento del calcolo per determinare la retribuzione minima oraria è il seguente: 58,13 euro x 6/40 = 8,72 euro."
         },
-        "transformation": "daily: the 'Minimale di retribuzione giornaliera (9,5%)' of the par. 1 table; week_days and hourly: the par. 4 formula of a 40-hour week, 8.72 as published; monthly_days: derived, see the note.",
+        "transformation": "daily: the 'Minimale di retribuzione giornaliera (9,5%)' of the par. 1 table; week_days and hourly: the par. 4 formula of a 40-hour week, 8.72 as published; monthly_days: derived, see the note. daily_by_category: the qualifiche whose minimum is above the 58.13 of the 9.50%, without note (1): Tabella A - Anno 2026 of allegato n. 1 to INPS circ. 6/2026 (https://www.informazionefiscale.it/IMG/pdf/16547_circolare-numero-6-del-30-01-2026_allegato-n-1.pdf, sha256 d1490b33f43d908e510d035fd2b3488c4a4fdc219a9d9a0950fd1a0c93521f35, p. 1), columns Dirigente, Impiegato, Operaio, note (1) 'Da adeguare a euro 58,13 ai sensi dell'art. 7 della legge 11/11/1983, n. 638 e della legge 7/12/1989, n. 389': 'Credito assicurazioni e servizi Euro 160,77 Euro 55,01 Euro 51,73 (1) (1)'. A worker of no stated category takes the general minimum: no level of a bundled CCNL of the sector is a dirigente.",
         "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: monthly_days 26: six days of the normal week (par. 4) over 52 weeks and 12 months; INPS counts 26 paid days in a full month of a monthly-paid worker: Uniemens technical document, attachment 1 to circ. INPS 13/2011 (https://servizi2.inps.it/CircolariZIP/circolare%20numero%2013%20del%2028-01-2011_Allegato%20n%201.pdf, sha256 fa2b2894f3006eb388d72ee54c0291b9cf4ad5c4b418e943c239e77ccee25853), element <NumMensilita>: 'due mensilità aggiuntive determinate nella misura di 30 giorni a fronte di 26 normalmente retribuiti', and its example of a full month, '<GiorniRetribuiti>26</GiorniRetribuiti>'. The monthly comparison is not written in the circular; secondary reading: R. Camera, 'Lavoro part-time: il minimale ai fini contributivi', Guida alle Paghe 10/2014 p. 588 (https://www.dottrinalavoro.it/wp-content/uploads/2014/09/Lavoro-part-time-il-minimale-contributivo-Ipsoa.pdf, sha256 6167b070d7cfcff6dbf2e85eeeae7a092addbcd9c1c43fb28964faacd0b4866a): 'occorre moltiplicare il valore di minimale giornaliero per il coefficiente fisso 26' and the part-time hourly minimum times the hours of the month; the six days hold 'anche nei casi in cui l'orario di lavoro sia distribuito in 5 giorni settimanali'. D.L. 463/1983 art. 7 c. 1, second period, read on Normattiva on 2026-10-07 (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legge:1983-09-12;463~art7): 'il limite minimo di retribuzione giornaliera [...] per tutte le contribuzioni dovute in materia di previdenza e assistenza sociale non può essere inferiore al 7,50% dell'importo del trattamento minimo mensile di pensione', raised to 9,50 by D.L. 338/1989 art. 1 c. 2; c. 5: 'Le disposizioni di cui ai commi 1, 2, 3 e 4 del presente articolo non si applicano ai lavoratori addetti ai servizi domestici e familiari, agli operai agricoli, agli apprendisti'. D.Lgs. 81/2015 art. 11 c. 1 (Normattiva, same day): 'La retribuzione minima oraria, da assumere quale base per il calcolo dei contributi previdenziali dovuti per i lavoratori a tempo parziale, si determina rapportando alle giornate di lavoro settimanale ad orario normale il minimale giornaliero'. Circ. 6/2026 read on 2026-10-07 in the copy attached to circolare 23/26 of Ascom Bologna (https://ascom.bo.it/wp-content/uploads/2026/02/Allegato-1-CIRCO-23-26_Circolare-INPS-n.-6-del-30-01-2026.pdf, sha256 ec8fce75b98095d5b7de3d7ba725a403e1c487e1c75512567066650b88118992): the INPS page loads its text by script. Not checked by a named reviewer. Assumed, not derived: its ruleset declares source_type 'estimated'."
       }
     },
@@ -109,7 +112,7 @@
     "published_at": "2026-10-09",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "56c2a726f0fe5ede69f60fffe572e98688422f055c5546b8146e886347558273",
+    "source_hash": "2bc6a9c0797891e33124d20455ad73f4b3a4a791b051f8aaab47c885e6edd901",
     "source_type": "estimated",
     "provisional": true
   }

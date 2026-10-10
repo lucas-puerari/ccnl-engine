@@ -2225,7 +2225,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "inps/2026/agricoltura",
       "ruleset_version": "2026.1",
-      "source_hash": "b6d49878334648663abc6a566d392c41b0974ead21710ecbd7e74fb6cd79a8d0",
+      "source_hash": "c37cd8edb0de7dca188be1b2088b83e20e13219f25f3a14563d37bb82fb5ff53",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "social_security/contribution/2026/agricoltura.json.gz"
@@ -2259,7 +2259,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "inps/2026/credito",
       "ruleset_version": "2026.1",
-      "source_hash": "6a8f3f98891eb037b4b3b95530c94921e273db727479f99ca43f0e421b6c3815",
+      "source_hash": "5d2a1e7eaf961030b9b9c252e26aa2923c99852a0db290a4dc3646284cf41c35",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "social_security/contribution/2026/credito.json.gz"
@@ -2276,7 +2276,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "inps/2026/edilizia",
       "ruleset_version": "2026.1",
-      "source_hash": "e6c36e98be9b5b92aea8507d3d82e5b52589dcb0b65841b9b2a4a5fcc7f3d58b",
+      "source_hash": "38beb6e8363d59812cf677b69bb72821213d7297e964f68d092d7728913bc613",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "social_security/contribution/2026/edilizia.json.gz"
@@ -2293,7 +2293,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "inps/2026/industria",
       "ruleset_version": "2026.1",
-      "source_hash": "a1db05ea8d3539b4067d76e64657545eea8d9c19b80987d9043d5fd43230c15d",
+      "source_hash": "b5b61faeda5790fa919295ec8852c0ecd8090e81d1f644ffaee2141bce1851dc",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "social_security/contribution/2026/industria.json.gz"
@@ -2327,7 +2327,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "inps/2026/pubblica-amministrazione",
       "ruleset_version": "2026.1",
-      "source_hash": "e62fc6a82f6ca9a5779d623985a7a89bdcb9d432f737f63dc15768b16de53429",
+      "source_hash": "68a1400f90aca9da2dfa380a059e1e7406b7b3f049ba87f20f9f6ff6c9e2fd3a",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "social_security/contribution/2026/pubblica-amministrazione.json.gz"
@@ -2344,7 +2344,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "inps/2026/terziario",
       "ruleset_version": "2026.1",
-      "source_hash": "8c717aab8c16af41d13d1fc3df130e8f85bbbc7a911e9c9472c863c6e21aa015",
+      "source_hash": "bde97c079e6d2bf46faf0f21f505644fd9c750b153dc14735ad8dac0447cbcc1",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "social_security/contribution/2026/terziario.json.gz"
@@ -2361,7 +2361,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "inps/2027/agricoltura",
       "ruleset_version": "2026.1",
-      "source_hash": "272c6802db4ee7b5a195a1b58537eeda11531656b7cf41b85864b68b281ac585",
+      "source_hash": "3ce79160481c23774821a3b67e88d2f2022421c0b84f62efbb21702276a7244e",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "social_security/contribution/2027/agricoltura.json.gz"
@@ -2395,7 +2395,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "inps/2027/credito",
       "ruleset_version": "2026.1",
-      "source_hash": "56c2a726f0fe5ede69f60fffe572e98688422f055c5546b8146e886347558273",
+      "source_hash": "2bc6a9c0797891e33124d20455ad73f4b3a4a791b051f8aaab47c885e6edd901",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "social_security/contribution/2027/credito.json.gz"
@@ -2412,7 +2412,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "inps/2027/edilizia",
       "ruleset_version": "2026.1",
-      "source_hash": "97d1142825414fb220a8862f18ee17e7aa89b2ae8b473851663b630b68134fec",
+      "source_hash": "fa0918d7febe03df76634678aec73527873be778164cb7b4ddfa6ccb74f15831",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "social_security/contribution/2027/edilizia.json.gz"
@@ -2429,7 +2429,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "inps/2027/industria",
       "ruleset_version": "2026.1",
-      "source_hash": "d39029c9e3237b89f3cd8d0a8052f1c43235616938eb360e273a734079f265ee",
+      "source_hash": "047ec12bce5c869920794eb66bf7a789c952340d6cd5d018e93f78314cc32880",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "social_security/contribution/2027/industria.json.gz"
@@ -2463,7 +2463,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "inps/2027/pubblica-amministrazione",
       "ruleset_version": "2026.1",
-      "source_hash": "217d07c0b94b74e66ff36fc09160fc2657d9547eb5ebdc1a6be14ed4c888fccc",
+      "source_hash": "00ebab6a4d73c5d060363a9d51129bb6505dabcb4837a51caf2d03b570dadb45",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "social_security/contribution/2027/pubblica-amministrazione.json.gz"
@@ -2480,7 +2480,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "inps/2027/terziario",
       "ruleset_version": "2026.1",
-      "source_hash": "b97e60ac9b27325c43a03deae996435ada315ef93e6c27897b1e8f1082aecc3f",
+      "source_hash": "b9aeab77846ba5a3c59fa04e6e047124bb65bf5944f628614d29688c400d8fc3",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "social_security/contribution/2027/terziario.json.gz"

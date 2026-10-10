@@ -4,6 +4,14 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Minimum INPS base by qualifica
+
+| Before | After |
+|---|---|
+| Every qualifica of a sector had the 58.13 daily minimum | `MinimumBaseRule.daily_by_category` holds the higher amounts of Tabella A of INPS circ. 6/2026 allegato 1: dirigenti 160.77 in industria, edilizia, terziario and credito; agricoltura dirigenti 128.65, impiegati and quadri 67.84; public administrations dirigenti 122.25, impiegati 58.20. A dirigente below 26 x 160.77 = 4,180.02 a month is raised to it. A part-time worker of such a qualifica has no published hourly minimum: below its bound the run is undetermined |
+| The agricoltura minimum base `assumed` | `derived`; an operaio agricolo, excluded by art. 7 c. 5, records the open limitation `inps_minimum_base_exempt_category` (the 51.70 of Tabella A is unsettled), so the run is not payable |
+
+
 ## Compensations of the TFR conferred
 
 | Before | After |
@@ -585,14 +593,3 @@ base is below it, the INPS decisions are `incomplete`
 | Contributions, the TFR 0.50% IVS, the IRPEF taxable and the year-to-date INPS base read the pay | They read the raised base; the gross and the TFR quota do not change |
 | No issue for a base below the minimum | Issue `inps_minimum_base_undetermined` when the minimum cannot be fixed; with `fact="category"` for an agricultural level whose category is open, so state `Employment.category` |
 | `InpsRates` had no minimum | `InpsRates.minimum_base`, a `MinimumBaseRule` (`daily`, `week_days`, `monthly_days`, `hourly`, `exempt_categories`, `provenance`), from the `minimum_base` block of the INPS data files |
-
-## Extra months at the termination on chained runs, adjustment sequence
-
-| Before | After |
-|---|---|
-| `calculate_period` on the regular run of the termination month paid no ratei of the extra months due after the termination; `PayrollRun.fourteenth(2026, 11)` for a Commercio worker leaving in November was refused as already closed by June | The run that pays the termination month liquidates them, as `calculate_competence_year` does: extra-month earnings `ratei at termination: n/12` |
-| A tredicesima or quattordicesima run in or after the termination month paid the ratei of its own window | Refused with `InvalidInputError` when the run of the termination month liquidates that extra month: compute that run instead |
-| One adjustment run per month: a second correction was refused as already closed | `PayrollRun.adjustment(year, month, sequence=2)`, run id `"2026-12-adjustment-2"`; `PayrollRun` and `PayrollRunId` have a `sequence` field, 1 by default and above 1 only for an adjustment |
-| `PayrollRunId.order_key` and `payment_key` of three items | Four: the sequence is the last |
-| `PeriodState.SCHEMA_VERSION` 10 | 11: a run id carries its `sequence`; a persisted state of version 10 reads 1 for every run |
-| The Commercio quattordicesima of a competence year was paid on `payment_day` of June | Paid on 1 July (CCNL Terziario art. 221, new `parameters.fourteenth_payment_day`), unless `payment_dates` names its date or the plan overrides the calendar; the run stays `2026-06-fourteenth` |

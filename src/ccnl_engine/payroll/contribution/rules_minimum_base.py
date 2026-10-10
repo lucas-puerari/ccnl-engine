@@ -96,11 +96,15 @@ def _bound(rule: MinimumBaseRule, position: MonthPosition) -> Decimal:
         The bound, rounded to the cent.
     """
     days = _bound_days(rule, position.span)
+    daily = rule.daily_for(position.category)
     part_time = position.part_time
     if part_time is None:
-        return money(rule.daily * days)
+        return money(daily * days)
     hours, full = part_time
-    hourly = rule.hourly_for(full) or rule.daily * rule.week_days / full
+    published = (
+        rule.hourly_for(full) if rule.publishes_hourly_for(position.category) else None
+    )
+    hourly = published or daily * rule.week_days / full
     return money(hourly * hours * days / rule.week_days)
 
 
@@ -161,10 +165,10 @@ def _month_minimum(
         return reason or MinimumBaseReason.MONTHLY_DAYS_UNSOURCED
     part_time = position.part_time
     if part_time is None:
-        return money(rule.daily * days)
+        return money(rule.daily_for(position.category) * days)
     hours, full = part_time
     hourly = rule.hourly_for(full)
-    if hourly is None:
+    if hourly is None or not rule.publishes_hourly_for(position.category):
         return MinimumBaseReason.HOURLY_MINIMUM_UNSOURCED
     return money(hourly * hours * days / rule.week_days)
 

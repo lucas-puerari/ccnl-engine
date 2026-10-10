@@ -19,6 +19,10 @@
     "ceiling": null,
     "minimum_base": {
       "daily": "58.13",
+      "daily_by_category": {
+        "dirigente": "122.25",
+        "impiegato": "58.20"
+      },
       "week_days": 5,
       "monthly_days": null,
       "hourly": [
@@ -39,7 +43,7 @@
           "section": "par. 1, Minimali di retribuzione giornaliera; par. 4, Minimale ai fini contributivi per i rapporti di lavoro subordinato a tempo parziale",
           "quote": "Tali limiti, secondo quanto innanzi precisato, devono essere ragguagliati a 58,13 euro(9,5% dell'importo del trattamento minimo mensile di pensione a carico del Fondo pensioni lavoratori dipendenti in vigore al 1° gennaio 2026, pari a 611,85 euromensili) se di importo inferiore. [...] Qualora, invece, l'orario normale sia di 36 ore settimanali (ipotesi che ricorre, di norma, per i lavoratori iscritti alla Gestione pubblica), articolate su cinque giorni, il procedimento del calcolo è il seguente: 58,13 euro x 5/36 = 8,07 euro."
         },
-        "transformation": "daily: the 'Minimale di retribuzione giornaliera (9,5%)' of the par. 1 table; week_days and hourly: the par. 4 formula of the Gestione pubblica, 36 hours on five days, 8.07 as published.",
+        "transformation": "daily: the 'Minimale di retribuzione giornaliera (9,5%)' of the par. 1 table; week_days and hourly: the par. 4 formula of the Gestione pubblica, 36 hours on five days, 8.07 as published. daily_by_category: the qualifiche whose minimum is above the 58.13 of the 9.50%, without note (1): Tabella A - Anno 2026 of allegato n. 1 to INPS circ. 6/2026 (https://www.informazionefiscale.it/IMG/pdf/16547_circolare-numero-6-del-30-01-2026_allegato-n-1.pdf, sha256 d1490b33f43d908e510d035fd2b3488c4a4fdc219a9d9a0950fd1a0c93521f35, p. 1), columns Dirigente, Impiegato, Operaio, note (1) 'Da adeguare a euro 58,13 ai sensi dell'art. 7 della legge 11/11/1983, n. 638 e della legge 7/12/1989, n. 389': 'Amministrazioni dello Stato ed altre Pubbliche Amm.ni Euro 122,25 Euro 58,20 Euro 51,73 (1)'. A worker of no stated category takes the general minimum: no level of a bundled CCNL of the sector is a dirigente.",
         "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: monthly_days null: no bundled source gives the days of a fully paid month on a five-day week, so a run below the minimum is undetermined. D.L. 463/1983 art. 7 c. 1, second period, read on Normattiva on 2026-10-07 (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legge:1983-09-12;463~art7): 'il limite minimo di retribuzione giornaliera [...] per tutte le contribuzioni dovute in materia di previdenza e assistenza sociale non può essere inferiore al 7,50% dell'importo del trattamento minimo mensile di pensione', raised to 9,50 by D.L. 338/1989 art. 1 c. 2; c. 5: 'Le disposizioni di cui ai commi 1, 2, 3 e 4 del presente articolo non si applicano ai lavoratori addetti ai servizi domestici e familiari, agli operai agricoli, agli apprendisti'. D.Lgs. 81/2015 art. 11 c. 1 (Normattiva, same day): 'La retribuzione minima oraria, da assumere quale base per il calcolo dei contributi previdenziali dovuti per i lavoratori a tempo parziale, si determina rapportando alle giornate di lavoro settimanale ad orario normale il minimale giornaliero'. Circ. 6/2026 read on 2026-10-07 in the copy attached to circolare 23/26 of Ascom Bologna (https://ascom.bo.it/wp-content/uploads/2026/02/Allegato-1-CIRCO-23-26_Circolare-INPS-n.-6-del-30-01-2026.pdf, sha256 ec8fce75b98095d5b7de3d7ba725a403e1c487e1c75512567066650b88118992): the INPS page loads its text by script. Not checked by a named reviewer. Assumed, not derived: its ruleset declares source_type 'estimated'."
       }
     },
@@ -328,7 +332,7 @@
     "published_at": "2026-10-09",
     "source": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49902.i-contributi-dei-dipendenti-pubblici.html",
     "verification_status": "unverified",
-    "source_hash": "217d07c0b94b74e66ff36fc09160fc2657d9547eb5ebdc1a6be14ed4c888fccc",
+    "source_hash": "00ebab6a4d73c5d060363a9d51129bb6505dabcb4837a51caf2d03b570dadb45",
     "source_type": "estimated",
     "provisional": true
   }

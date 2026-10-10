@@ -30,7 +30,13 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.employment.inputs_fact import WeeklyHours
     from ccnl_engine.payroll.period.services_run_context import RunContext
 
-__all__ = ["ISSUE_CODE", "minimum_base_issue", "run_minimum_base"]
+__all__ = [
+    "EXEMPT_CATEGORY_FLOOR",
+    "ISSUE_CODE",
+    "minimum_base_issue",
+    "minimum_base_paths",
+    "run_minimum_base",
+]
 
 #: Code of the issue of a run whose minimum INPS base is undetermined.
 ISSUE_CODE = "inps_minimum_base_undetermined"
@@ -40,6 +46,8 @@ _PAYING_KINDS = frozenset({RunKind.REGULAR, RunKind.TERMINATION})
 _REDUCING_EVENTS = (AbsenceEvent, SickLeaveEvent)
 #: Fact of a sector that excludes a category the request leaves open.
 _CATEGORY = "category"
+#: Engine limitation of a worker whose category art. 7 c. 5 excludes.
+EXEMPT_CATEGORY_FLOOR = "inps_minimum_base_exempt_category"
 
 
 def _hours(fact: WeeklyHours | None) -> Decimal | None:
@@ -113,3 +121,26 @@ def minimum_base_issue(minimum: MinimumBase | None) -> CalculationIssue | None:
         source=minimum.source,
         fact=_CATEGORY if unknown else None,
     )
+
+
+def minimum_base_paths(ctx: RunContext) -> frozenset[str]:
+    """Return the limitation path of a worker of an excluded category.
+
+    D.L. 463/1983 art. 7 c. 5 keeps the operai agricoli out of the 9.50%
+    minimum, and the run applies none; Tabella A of INPS circ. 6/2026 still
+    lists 51.70 for them, "non soggetto all'adeguamento", and whether it is
+    a floor of their base is not settled.
+
+    Returns:
+        :data:`EXEMPT_CATEGORY_FLOOR` for a worker, not an apprentice, of a
+        category the minimum of the sector excludes; nothing otherwise.
+    """
+    inps = ctx.contract.year_rules.inps
+    rule = None if inps is None else inps.minimum_base
+    if (
+        rule is None
+        or isinstance(ctx.request.contract_type, Apprentice)
+        or ctx.worker_category not in rule.exempt_categories
+    ):
+        return frozenset()
+    return frozenset({EXEMPT_CATEGORY_FLOOR})

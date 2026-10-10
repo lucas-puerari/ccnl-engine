@@ -562,7 +562,9 @@ The base INPS contributions are computed on has two floors (INPS circ.
   month in the Uniemens technical document), EUR 1,511.38. A part-time
   worker has the hourly minimum of D.Lgs. 81/2015 art. 11 c. 1, EUR 8.72
   for a 40-hour week (circ. 6/2026 par. 4, "58,13 euro x 6/40"), times the
-  contracted weekly hours over the same 26 days.
+  contracted weekly hours over the same 26 days. A qualifica above EUR
+  58.13 in Tabella A of allegato 1 keeps its amount (`daily_by_category`,
+  with no published hourly minimum).
 
 The run that posts the monthly pay of a fully employed month without an
 unpaid absence or a sick leave raises its INPS base to that minimum
@@ -571,7 +573,9 @@ the TFR quota are unchanged, while the contributions, the 0.50% IVS taken
 from the TFR, the IRPEF taxable and the year-to-date base follow the raised
 base. Art. 7 c. 5 excludes apprentices and the operai agricoli
 (`apprentice_excluded`, `category_excluded`); domestic work has its own
-hourly contributions.
+hourly contributions. Whether the EUR 51.70 Tabella A lists for the operai
+agricoli is a floor is not settled (limitation
+`inps_minimum_base_exempt_category`).
 
 The bundle cannot fix the minimum of a partly employed month, of a month
 with an absence or a sick leave (whose reduced pay circ. 6/2026 par. 1 and
