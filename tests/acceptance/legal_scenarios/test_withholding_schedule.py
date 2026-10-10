@@ -228,7 +228,7 @@ def test_fourteenth_withholds_on_monthly_brackets() -> None:
     (lett. a): 83.88.  Observed on 6 October 2026 before this rule: 129.91
     on the fourteenth, the share of a regular month.
     """
-    employment = replace(CONCIA_D2, ccnl_slug=COMMERCIO, level_code="4")
+    employment = replace(CONCIA_D2, category=None, ccnl_slug=COMMERCIO, level_code="4")
     year = ENGINE.calculate_competence_year(competence_year(employment=employment))
     runs = {r.run: r for r in year.period_results}
     fourteenth = runs[PayrollRun.fourteenth(2026, 6)]

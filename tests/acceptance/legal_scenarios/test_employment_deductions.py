@@ -98,7 +98,7 @@ def _minimum_inputs(result: PeriodResult) -> Mapping[str, object]:
     return decision.inputs
 
 
-_C3 = replace(CONCIA_D2, ccnl_slug=_METALMECCANICO, level_code="C3")
+_C3 = replace(CONCIA_D2, category=None, ccnl_slug=_METALMECCANICO, level_code="C3")
 
 
 #: Metalmeccanico C3 for about three months, settled by the termination run:
@@ -376,7 +376,9 @@ def test_trattamento_integrativo_counts_the_family_deductions(
     tax, so the credit is their difference capped at 1,200, computed by
     :func:`~tests.fixtures.normative_oracles.withholding_2026.trattamento_integrativo_above_15000`.
     """
-    employment = replace(CONCIA_D2, ccnl_slug=COMMERCIO, level_code=level_code)
+    employment = replace(
+        CONCIA_D2, category=None, ccnl_slug=COMMERCIO, level_code=level_code
+    )
     year = _year(employment, replace(FACTS, family_composition=_FAMILY))
     cash = year.closing_state.cash
     income = cash.earnings.taxable

@@ -60,8 +60,8 @@ def test_apprentice_rates_need_no_category() -> None:
 
 def test_sector_without_category_rates_needs_no_issue() -> None:
     """A single rate for every category depends on no category."""
-    industria = load_year_rules(2026, TaxSector.INDUSTRIA, 10)
-    assert category_rate_issue(industria, Permanent(), None) is None
+    terziario = load_year_rules(2026, TaxSector.TERZIARIO, 10)
+    assert category_rate_issue(terziario, Permanent(), None) is None
 
 
 def test_domestic_sector_needs_no_issue() -> None:

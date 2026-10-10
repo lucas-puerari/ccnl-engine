@@ -1,7 +1,9 @@
 """Period requests for one worker of a 50-employee employer in 2026.
 
 Integration tests that run one period of a bundled CCNL build the request
-here: Metalmeccanico C3 by default, paid on the 28th of the month.
+here: Metalmeccanico C3 by default, an impiegato (the level fixes no
+category, the industria INPS employer rate depends on it), paid on the
+28th of the month.
 """
 
 from __future__ import annotations
@@ -10,6 +12,7 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.contract.domain.category import WorkerCategory
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment import Permanent
 from ccnl_engine.payroll.domain.employment_facts import ContributableHours, WeeklyHours
@@ -63,6 +66,7 @@ def period_request(
         ),
         contract_type=ct,  # type: ignore[arg-type]
         contribution_history=contribution_history,
+        category=WorkerCategory.IMPIEGATO if ccnl == METALMECCANICO else None,
     )
 
 

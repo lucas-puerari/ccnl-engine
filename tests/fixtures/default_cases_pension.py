@@ -47,6 +47,7 @@ def _cometa(young_member: bool | None) -> Employment:
     )
     return replace(
         CONCIA_D2,
+        category=None,
         ccnl_slug="metalmeccanico-federmeccanica.json",
         level_code="C3",
         pension_fund=enrolment,
@@ -56,6 +57,7 @@ def _cometa(young_member: bool | None) -> Employment:
 def _byblos(erc_amount: Decimal | None) -> Employment:
     return replace(
         CONCIA_D2,
+        category=None,
         ccnl_slug="grafica-editoria-aieg.json",
         level_code="C1",
         seniority=new_hire(),
@@ -78,6 +80,7 @@ def _previambiente(
     )
     employment = replace(
         CONCIA_D2,
+        category=None,
         ccnl_slug="igiene-ambientale-utilitalia.json",
         level_code="Q",
         pension_fund=enrolment,
@@ -91,6 +94,7 @@ def _previambiente(
 def _public(regime: PublicEndOfService | None) -> Employment:
     return replace(
         CONCIA_D2,
+        category=None,
         ccnl_slug="funzioni-centrali-aran.json",
         level_code="FUNZIONARI",
         sector=EmploymentSector.PUBLIC,
@@ -110,7 +114,10 @@ def _small_terziario(
     january: Callable[[Employment], PeriodInput], reduced: bool | None
 ) -> PeriodInput:
     terziario = replace(
-        CONCIA_D2, ccnl_slug="commercio-confcommercio.json", level_code="5"
+        CONCIA_D2,
+        category=None,
+        ccnl_slug="commercio-confcommercio.json",
+        level_code="5",
     )
     request = january(terziario)
     employer = replace(request.employer, headcount=Headcount(5), fis_reduction=reduced)

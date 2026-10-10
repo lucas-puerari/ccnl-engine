@@ -29,6 +29,7 @@ from ccnl_engine.inputs import (
     NaspiExclusion,
     Permanent,
     WeeklyHours,
+    WorkerCategory,
 )
 from tests.fixtures.normative_oracles.withholding_2026 import (
     regular_month_withholding,
@@ -39,6 +40,7 @@ engine = PayrollEngine.bundled()
 _C3 = Employment(
     ccnl_slug="metalmeccanico-federmeccanica.json",
     level_code="C3",
+    category=WorkerCategory.IMPIEGATO,
     seniority=new_hire(),
     contract_type=Permanent(),
 )
@@ -50,7 +52,13 @@ _C3 = Employment(
 
 
 def test_inps_contributions_metalmeccanico_c3() -> None:
-    """Employee and employer INPS for metalmeccanico C3, January 2026."""
+    """Employee and employer INPS for metalmeccanico C3, January 2026.
+
+    An impiegato of an industrial employer of 100: the worker pays 9.19%
+    IVS + 0.30% CIGS = 204.81; the employer 29.36%, 23.81% IVS = 513.88 and
+    5.55% (NASpI, CUAF, CIGO 2.00%, CIGS, Fondo Garanzia, maternita) =
+    119.78: 633.66.
+    """
     result = engine.calculate_period(
         PeriodInput(
             run=PayrollRun.regular(year=2026, month=1),
@@ -61,7 +69,7 @@ def test_inps_contributions_metalmeccanico_c3() -> None:
     )
     assert result.period_gross == Decimal("2158.26")
     assert result.contribution_breakdown.employee == Decimal("204.81")
-    assert result.contribution_breakdown.employer == Decimal("658.27")
+    assert result.contribution_breakdown.employer == Decimal("633.66")
 
 
 # ---------------------------------------------------------------------------
@@ -126,7 +134,7 @@ def test_tfr_accrual_metalmeccanico_c3() -> None:
 def test_employer_cost_counts_the_additional_ivs_once() -> None:
     """The 0.50% sits in the employer INPS; the TFR is net of it.
 
-    Employer INPS stays 658.27 (the 0.50% is inside the 23.81% IVS rate)
+    Employer INPS stays 633.66 (the 0.50% is inside the 23.81% IVS rate)
     and the TFR posted is 149.08, so the cost is the gross plus both, plus
     any other employer account the ledger holds.
     """
@@ -147,9 +155,9 @@ def test_employer_cost_counts_the_additional_ivs_once() -> None:
         ),
         Decimal(0),
     )
-    assert result.contribution_breakdown.employer == Decimal("658.27")
+    assert result.contribution_breakdown.employer == Decimal("633.66")
     assert result.period_employer_cost == (
-        Decimal("2158.26") + Decimal("658.27") + Decimal("149.08") + others
+        Decimal("2158.26") + Decimal("633.66") + Decimal("149.08") + others
     )
 
 

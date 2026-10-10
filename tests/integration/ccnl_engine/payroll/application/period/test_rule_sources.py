@@ -9,7 +9,7 @@ from __future__ import annotations
 from datetime import date
 from typing import TYPE_CHECKING
 
-from ccnl_engine.inputs import NoPensionFund
+from ccnl_engine.inputs import NoPensionFund, WorkerCategory
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.period._rule_sources import (
     MISSING_SOURCE_CODE,
@@ -71,6 +71,7 @@ def _run(
         payment_date=date(2026, 3, 27),
         ccnl_slug=_METALMECCANICO,
         level_code="C3",
+        category=WorkerCategory.IMPIEGATO,
         seniority=new_hire(),
         tfr_treasury_fund=False,
         pension_fund=NoPensionFund(),
@@ -89,10 +90,12 @@ class TestBundledRun:
         """Executed capabilities report the status of the rules they read."""
         result = _run()
         sources = result.capability_report.rule_sources
-        # The industria tax rules cite the law; its INPS rates do not.
+        # The industria tax rules cite the law, its INPS rates a rate table;
+        # the metalmeccanico salary table does not cite the signed one.
         assert sources["irpef"] is ProvenanceStatus.DERIVED
         assert sources["tfr"] is ProvenanceStatus.DERIVED
-        assert sources["inps_employer"] is ProvenanceStatus.ASSUMED
+        assert sources["inps_employer"] is ProvenanceStatus.DERIVED
+        assert sources["base_salary"] is ProvenanceStatus.ASSUMED
         # The somma esente sits in its own ruleset, quoted from the law.
         assert sources["somma_esente"] is ProvenanceStatus.DERIVED
         # A known seniority decides the increments, so their rule is read.
@@ -114,7 +117,7 @@ class TestBundledRun:
             if b.code is BlockerCode.RULE_SOURCE_WEAK
         }
         assert result.assurance.calculation is CalculationStatus.FINAL
-        assert ("inps_employer", "assumed") in weak
+        assert ("base_salary", "assumed") in weak
         assert all(detail != "derived" for _, detail in weak)
         assert not result.is_payable
 

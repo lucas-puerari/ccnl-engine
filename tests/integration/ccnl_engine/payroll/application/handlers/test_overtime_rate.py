@@ -17,7 +17,7 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine.contract.service.loaders import load_ccnl
-from ccnl_engine.inputs import NoPensionFund
+from ccnl_engine.inputs import NoPensionFund, WorkerCategory
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.handlers._overtime_rate import (
     CALLER_MULTIPLIER_DIFFERS,
@@ -71,6 +71,7 @@ def _run(event: OvertimeEvent, slug: str = _METAL, level: str = "C3") -> PeriodR
             payment_date=date(2026, 3, 27),
             ccnl_slug=slug,
             level_code=level,
+            category=WorkerCategory.IMPIEGATO if slug == _METAL else None,
             seniority=new_hire(),
             tfr_treasury_fund=False,
             pension_fund=NoPensionFund(),

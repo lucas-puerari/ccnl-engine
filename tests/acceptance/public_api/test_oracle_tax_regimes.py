@@ -29,6 +29,7 @@ from ccnl_engine.inputs import (
     NoPensionFund,
     Permanent,
     PriorYearTaxFacts,
+    WorkerCategory,
 )
 from ccnl_engine.results import CalculationStatus
 from tests.fixtures.current_year import employment_only
@@ -41,6 +42,7 @@ engine = PayrollEngine.bundled()
 _C3 = Employment(
     ccnl_slug="metalmeccanico-federmeccanica.json",
     level_code="C3",
+    category=WorkerCategory.IMPIEGATO,
     seniority=new_hire(),
     tfr_treasury_fund=False,
     pension_fund=NoPensionFund(),

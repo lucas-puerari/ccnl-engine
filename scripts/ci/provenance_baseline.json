@@ -1121,10 +1121,7 @@
       "inps.minimum_base": "assumed"
     },
     "inps/data/2026-industria.json": {
-      "apprentice": "assumed",
-      "inps": "assumed",
-      "inps.employee_additional": "assumed",
-      "inps.minimum_base": "assumed"
+      "apprentice": "assumed"
     },
     "inps/data/2026-lavoro-domestico.json": {
       "domestic_contributions": "assumed"

@@ -57,6 +57,7 @@ def _year(
         competence_year(
             employment=replace(
                 CONCIA_D2,
+                category=None,
                 ccnl_slug="metalmeccanico-federmeccanica.json",
                 level_code="C3",
                 employment_period=EmploymentPeriod(started_on, ended_on),

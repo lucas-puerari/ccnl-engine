@@ -23,7 +23,6 @@ open question beyond the missing citation are:
 
 | File | Block | Open question |
 |---|---|---|
-| `inps/data/2026-industria.json` | `inps` | A FIS share of 0.533% up to 15 employees that art. 29 c. 2-bis does not owe within the CIGO (art. 10 c. 1 lett. a); the CUAF share of 2.48% not located |
 | `inps/data/2026-*.json` (six sectors) | `apprentice` | A flat rate with no CIGO, CIGS or FIS share, owed by apprentices since 2022 (D.Lgs. 148/2015 art. 2 c. 1 and 3) |
 | `inps/data/2026-artigianato.json` | `inps` | Aggregator rates; INPS circular not retrieved |
 | `inps/data/2026-edilizia.json` | `inps` | Proxy values from a 1998 rate structure |

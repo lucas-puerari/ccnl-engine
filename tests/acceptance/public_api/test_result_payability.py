@@ -96,6 +96,7 @@ def test_incomplete_coverage_is_not_payable() -> None:
         Employment(
             ccnl_slug=_METALMECCANICO,
             level_code="C3",
+            category=WorkerCategory.IMPIEGATO,
             employment_period=period,
             seniority=new_hire(),
             tfr_fund=TfrFundBalance(2025, Decimal("8000.00")),
@@ -136,6 +137,7 @@ def test_ordinary_month_has_no_coverage_gap() -> None:
         Employment(
             ccnl_slug=_METALMECCANICO,
             level_code="C3",
+            category=WorkerCategory.IMPIEGATO,
             seniority=new_hire(),
             contract_type=Permanent(),
             pension_fund=NoPensionFund(),
@@ -149,7 +151,7 @@ def test_ordinary_month_has_no_coverage_gap() -> None:
         b.code is BlockerCode.CAPABILITY_NOT_COMPUTED for b in result.blockers
     )
     keys = _blocker_keys(result)
-    assert (BlockerCode.RULE_SOURCE_WEAK, "inps_employer", "assumed") in keys
+    assert (BlockerCode.RULE_SOURCE_WEAK, "base_salary", "assumed") in keys
     assert not any(feature == "somma_esente" for _code, feature, _d in keys)
 
 
@@ -166,6 +168,7 @@ def test_unknown_ivs_ceiling_eligibility_is_a_missing_fact() -> None:
     employment = Employment(
         ccnl_slug=_METALMECCANICO,
         level_code="C3",
+        category=WorkerCategory.IMPIEGATO,
         contract_type=Permanent(),
         pension_fund=NoPensionFund(),
     )
@@ -224,6 +227,7 @@ def _march(started_on: date) -> PeriodResult:
     employment = Employment(
         ccnl_slug=_METALMECCANICO,
         level_code="C3",
+        category=WorkerCategory.IMPIEGATO,
         employment_period=EmploymentPeriod(started_on=started_on),
         contract_type=Permanent(),
         pension_fund=NoPensionFund(),
@@ -263,6 +267,7 @@ def test_unknown_surtax_table_is_not_an_amount() -> None:
     employment = Employment(
         ccnl_slug=_METALMECCANICO,
         level_code="C3",
+        category=WorkerCategory.IMPIEGATO,
         contract_type=Permanent(),
         pension_fund=NoPensionFund(),
     )
@@ -291,6 +296,7 @@ def test_unknown_family_is_not_an_empty_family() -> None:
     employment = Employment(
         ccnl_slug=_METALMECCANICO,
         level_code="C3",
+        category=WorkerCategory.IMPIEGATO,
         seniority=new_hire(),
         contract_type=Permanent(),
         pension_fund=NoPensionFund(),

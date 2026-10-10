@@ -4,6 +4,13 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Industria INPS rates by category
+
+| Before | After |
+|---|---|
+| Industria employer: 30.13% up to 15 employees, 30.20% up to 50, 30.50% above, one rate for every category, with a FIS share and the gross CUAF | Operai 30.68% / 31.28% / 31.58%, impiegati and quadri 28.46% / 29.06% / 29.36% (IVS, NASpI, CUAF 0.68%, CIGO 1.70% or 2.00%, CIGS above 15, Fondo Garanzia TFR, maternita, malattia of the operai); no FIS (the industria is within the CIGO) |
+| A level with no category took the single rate | It takes the operai rate with an `employer_rate_category_assumed` blocker: declare `Employment.category` (Metalmeccanico Federmeccanica levels fix none) |
+
 ## FIS and CIGS in the terziario INPS rates
 
 | Before | After |
