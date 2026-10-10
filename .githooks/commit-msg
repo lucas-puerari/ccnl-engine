@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Enforce conventional commits: single-line, no co-author trailer.
+# Enforce conventional commits: single-line.
 # Format: <type>(<scope>): <description>
 # type: feat | fix | docs | style | refactor | perf | test | chore | ci | build | revert
 
@@ -14,13 +14,7 @@ if [ "$LINE_COUNT" -gt 1 ]; then
   exit 1
 fi
 
-# 2. Reject Co-authored-by trailer
-if echo "$MSG" | grep -qi '^Co-authored-by:'; then
-  echo "❌  Commit rejected: remove the 'Co-authored-by' trailer."
-  exit 1
-fi
-
-# 3. Enforce conventional commit format
+# 2. Enforce conventional commit format
 PATTERN='^(feat|fix|docs|style|refactor|perf|test|chore|ci|build|revert)(\([^)]+\))?!?: .{1,100}$'
 if ! echo "$FIRST_LINE" | grep -qE "$PATTERN"; then
   echo "❌  Commit rejected: invalid format."
