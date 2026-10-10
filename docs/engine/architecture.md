@@ -1,5 +1,9 @@
 # Architecture rules
 
+The [Architecture contract](architecture-contract.md) fixes the target
+layout that replaces the layers below, migration by migration; until then
+the rules on this page stay in force.
+
 The package is organised by capability (`payroll`, `contract`, `tax`,
 `knowledge`, `provenance`, `diff`, `shared`) plus the `api` facade. Each
 capability holds only the layers it needs:
@@ -90,6 +94,8 @@ enforces statement count and public methods with the same ceilings.
 | `class_lines` | classes in `src`, `tests`, `scripts` | 100 | 150 |
 | `public_methods` | classes, also Ruff `PLR0904` | 10 | 15 |
 | `source_depth` | directories under `src/ccnl_engine` | 3 | 3 |
+| `underscore_files` | files under `src`, `tests`, `scripts`, `demo` | 0 | 0 |
+| `technical_directories` | directories under `src`, `tests`, `scripts`, `demo` | 0 | 0 |
 | `markdown_lines` | hand-written Markdown pages | 450 | 600 |
 | statements per function | Ruff `PLR0915` | 30 | 40 |
 | cognitive complexity | complexipy | 10 | 15 |
@@ -99,6 +105,15 @@ lines: from the `def` or `class` line to the end of the body, without
 blank lines, comment-only lines and docstrings. A class whose only methods
 are pydantic validators or serializers is declarative and exempt from
 `class_lines`; `data/` directories are exempt from `source_depth`.
+
+`underscore_files` records every file whose name starts with an underscore,
+except the package root `src/ccnl_engine/__init__.py`, and
+`technical_directories` every directory named `domain`, `application`,
+`service`, `handlers`, `fixtures` or `data`. Each offender is one baseline
+entry: a new `__init__.py`, `_module.py` or layer directory fails, and the
+structural migrations remove the entries as they go. Hidden directories,
+`__pycache__` and the gitignored `demo/_build` and `demo/wheels` are
+skipped.
 
 `markdown_lines` counts the physical lines of the top-level pages and of the
 pages under `docs`. The audit notes `REVIEW.md` and `TODO.md` are excluded.

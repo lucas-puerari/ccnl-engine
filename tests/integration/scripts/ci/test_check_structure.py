@@ -240,6 +240,7 @@ def test_measure_tree(tmp_path: Path, tight: None) -> None:
         "source_depth": {"src/ccnl_engine/a/b/deep.py": 2},
         "test_file_lines": {"tests/test_big.py": 4},
         "function_lines": {"scripts/tool.py::f": 4},
+        "technical_directories": {"src/ccnl_engine/a/data": 1},
     }
 
 
@@ -313,7 +314,7 @@ def test_unchanged_and_improved_offenders_pass() -> None:
 def _long_test_tree(root: Path) -> None:
     _write(root, "src/ccnl_engine/__init__.py")
     _write(root, "tests/test_big.py", "a = 1\nb = 2\nc = 3\nd = 4\n")
-    _write(root, "scripts/__init__.py")
+    _write(root, "scripts/tool.py")
 
 
 def _run(root: Path, baseline: Path, *extra: str) -> int:

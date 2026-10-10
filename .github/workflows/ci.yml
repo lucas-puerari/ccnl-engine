@@ -49,6 +49,9 @@ jobs:
       - name: Structural limits (shrink-only baseline)
         run: uv run python scripts/ci/check_structure.py
 
+      - name: Layout inventory (every file has a target)
+        run: uv run python scripts/ci/layout_inventory.py --check
+
       - name: Contract pages drift (check only)
         run: uv run python scripts/docs/gen_contract_pages.py --check
 
