@@ -51,6 +51,19 @@ FIS_REDUCTION_UNKNOWN = CalculationIssue(
     fact="fis_reduction",
 )
 
+#: An agricultural employer must say the zone its contributions are cut in.
+AGRICULTURAL_ZONE_UNKNOWN = CalculationIssue(
+    code="agricultural_zone_unknown",
+    message=(
+        "an agricultural employer of a zona svantaggiata pays 68% less "
+        "employer contributions, of a zona particolarmente svantaggiata 75% "
+        "less (INPS circ. 43/2026 par. 7); the amounts shown charge the full "
+        "rates; state EmployerProfile.agricultural_zone"
+    ),
+    status=CalculationStatus.INCOMPLETE,
+    fact="agricultural_zone",
+)
+
 
 def _raised(inp: _AmountsInput, base: Decimal) -> Decimal:
     """Return ``base`` raised to the minimum INPS base of the run.

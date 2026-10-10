@@ -173,6 +173,11 @@ years. They group the facts by owner and are validated when built;
         - EmployerActivity
         - SubstituteTaxRegime
 
+::: ccnl_engine.tax.contribution.models_zone_reduction
+    options:
+      members:
+        - AgriculturalZone
+
 ::: ccnl_engine.payroll.period.models_run
     options:
       members:

@@ -16,7 +16,10 @@ from ccnl_engine.payroll.contribution.inputs_pension_fund import (
 )
 from ccnl_engine.payroll.contribution.models_inps_base import InpsBaseYtd
 from ccnl_engine.payroll.employment.inputs import Apprentice, FixedTerm, Permanent
-from ccnl_engine.payroll.employment.inputs_employer import EmployerActivity
+from ccnl_engine.payroll.employment.inputs_employer import (
+    AgriculturalZone,
+    EmployerActivity,
+)
 from ccnl_engine.payroll.employment.inputs_fact import (
     ContributableHours,
     EmploymentPeriod,
@@ -68,6 +71,7 @@ from ccnl_engine.payroll.year.models_payment import PaymentId
 from ccnl_engine.tax.regime.models import EmploymentSector
 
 __all__ = [
+    "AgriculturalZone",
     "Apprentice",
     "CalendarOverride",
     "CalendarOverrideReason",

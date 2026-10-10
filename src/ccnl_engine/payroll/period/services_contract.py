@@ -20,6 +20,7 @@ from ccnl_engine.payroll.employment.models_context import (
     TemporalContext,
 )
 from ccnl_engine.tax.contribution.models_fis_reduction import with_fis_reduction
+from ccnl_engine.tax.contribution.models_zone_reduction import with_zone_reduction
 
 if TYPE_CHECKING:
     from ccnl_engine.contract.compensation.models import Level
@@ -108,10 +109,13 @@ def load_contract(
         headcount,
     )
     if year_rules.inps is not None:
-        inps = with_fis_reduction(
-            year_rules.inps.for_public_fund(ccnl.meta.public_pension_fund),
-            request.employer.fis_reduction,
-            headcount,
+        inps = with_zone_reduction(
+            with_fis_reduction(
+                year_rules.inps.for_public_fund(ccnl.meta.public_pension_fund),
+                request.employer.fis_reduction,
+                headcount,
+            ),
+            request.employer.agricultural_zone,
         )
         year_rules = year_rules.model_copy(update={"inps": inps})
     catalog = repo.load_capability_catalog(tctx.fiscal_year)

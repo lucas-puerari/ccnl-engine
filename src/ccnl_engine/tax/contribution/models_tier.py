@@ -29,6 +29,7 @@ from ccnl_engine.tax.contribution.models import (
 from ccnl_engine.tax.contribution.models_additional_ivs import AdditionalIvsRule
 from ccnl_engine.tax.contribution.models_fis_reduction import FisReduction
 from ccnl_engine.tax.contribution.models_minimum_base import MinimumBaseRule
+from ccnl_engine.tax.contribution.models_zone_reduction import ZoneReduction
 
 
 class InpsEmployerTier(BaseModel):
@@ -46,12 +47,14 @@ class InpsEmployerTier(BaseModel):
     rate: NonNegativeRate
     ivs_rate: NonNegativeRate
     rate_by_category: dict[WorkerCategory, NonNegativeRate] = {}
+    fixed_term_rate_by_category: dict[WorkerCategory, NonNegativeRate] = {}
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
     def _check_ivs_rate(self) -> Self:
         assert_ivs_le_total("ivs_rate", self.ivs_rate, "rate", self.rate)
-        for cat, cat_rate in self.rate_by_category.items():
+        rates = {**self.rate_by_category, **self.fixed_term_rate_by_category}
+        for cat, cat_rate in rates.items():
             if cat_rate < self.ivs_rate:
                 msg = (
                     f"rate_by_category[{cat.value!r}] = {cat_rate} is below "
@@ -119,6 +122,7 @@ class InpsRawRates(BaseModel):
     ceiling_provenance: RuleProvenance | None = None
     fis_reduction: FisReduction | None = None
     base_whole_euro: bool = True
+    zone_reduction: ZoneReduction | None = None
 
 
 class ApprenticeHeadcountShare(BaseModel):

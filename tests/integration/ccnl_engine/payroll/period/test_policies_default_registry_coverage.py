@@ -44,6 +44,10 @@ _CATALOG = load_capability_catalog(2026)
 
 #: ``requires_fact`` fields without a case, and why.
 _NOT_EXERCISED: dict[str, str] = {
+    "EmployerProfile.agricultural_zone": (
+        "read by the agricoltura rates only, and the cases run the Concia D2 "
+        "of industria; test_services_contract_agricultural_zone shows its blocker"
+    ),
     "PeriodFacts.contributable_hours": (
         "a domestic CCNL raises MissingRequiredFactError without it: the "
         "default yields no result to compare; other CCNLs do not read it"

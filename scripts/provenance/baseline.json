@@ -1022,8 +1022,7 @@
       "additional_months[2024-01-01]": "assumed"
     },
     "social_security/contribution/2026/agricoltura.json": {
-      "apprentice": "assumed",
-      "inps": "assumed"
+      "apprentice": "assumed"
     },
     "social_security/contribution/2026/artigianato.json": {
       "apprentice": "assumed",
@@ -1043,7 +1042,8 @@
       "apprentice": "assumed",
       "inps": "assumed",
       "inps.employee_additional": "assumed",
-      "inps.minimum_base": "assumed"
+      "inps.minimum_base": "assumed",
+      "inps.zone_reduction": "assumed"
     },
     "social_security/contribution/2027/artigianato.json": {
       "apprentice": "assumed",

@@ -76,6 +76,10 @@ DOMAIN_COUPLING: dict[tuple[str, str], str] = {
         "ccnl_engine.tax.regime.models",
     ): "Employment, employer, period and prior-year inputs declare regimes.",
     (
+        "payroll",
+        "ccnl_engine.tax.contribution.models_zone_reduction",
+    ): "The employer profile declares the agricultural zone of its INPS cut.",
+    (
         "contract",
         "ccnl_engine.knowledge.limitation",
     ): "CCNL simplification notes declare model limitations of the registry.",

@@ -6,6 +6,7 @@ import pytest
 
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.employment.inputs_employer import (
+    AgriculturalZone,
     EmployerActivity,
     EmployerProfile,
     Headcount,
@@ -65,3 +66,17 @@ class TestEmployerProfile:
         """A raw value is not accepted in place of a Headcount."""
         with pytest.raises(InvalidInputError, match="must be a Headcount"):
             EmployerProfile(headcount=value)  # type: ignore[arg-type]
+
+
+def test_agricultural_zone_is_parsed_and_checked() -> None:
+    """A zone given by value is the enum; anything else is rejected."""
+    profile = EmployerProfile(
+        headcount=Headcount(5),
+        agricultural_zone="mountain",  # type: ignore[arg-type]
+    )
+    assert profile.agricultural_zone is AgriculturalZone.MOUNTAIN
+    with pytest.raises(InvalidInputError, match="agricultural_zone"):
+        EmployerProfile(
+            headcount=Headcount(5),
+            agricultural_zone="hilly",  # type: ignore[arg-type]
+        )

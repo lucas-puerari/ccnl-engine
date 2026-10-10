@@ -52,6 +52,36 @@ class TestResolveRates:
             inps_year_rules(), Permanent(), None
         )
 
+    def test_fixed_term_takes_the_fixed_term_rate_of_its_category(self) -> None:
+        """An operaio agricolo a tempo determinato owes no Fondo garanzia TFR.
+
+        INPS circ. 43/2026: OTI 25.453%, OTD 25.253% net of INAIL; the
+        operai agricoli are outside L. 92/2012 art. 2, so no surcharge.
+        """
+        rules = inps_year_rules()
+        assert rules.inps is not None
+        inps = rules.inps.model_copy(
+            update={
+                "employer_fixed_term_rate_by_category": {
+                    WorkerCategory.OPERAIO: _D("0.25253")
+                },
+                "employer_rate": _D("0.25453"),
+            }
+        )
+        agricoltura = rules.model_copy(
+            update={
+                "inps": inps,
+                "fixed_term_exempt_categories": frozenset({WorkerCategory.OPERAIO}),
+            }
+        )
+        contract = FixedTerm(naspi_exclusion=NaspiExclusion.NONE)
+        assert resolve_rates(
+            agricoltura, contract, WorkerCategory.OPERAIO
+        ).employer_rate == _D("0.25253")
+        assert resolve_rates(
+            agricoltura, Permanent(), WorkerCategory.OPERAIO
+        ).employer_rate == _D("0.25453")
+
     def test_apprentice_by_months(self) -> None:
         """Apprentice: statutory employee rate, employer rate stepping by months."""
         rules = inps_year_rules()

@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 from ccnl_engine.payroll.amount.types import _PeriodAmounts
 from ccnl_engine.payroll.contribution.rules_assistance import run_assistance
 from ccnl_engine.payroll.contribution.services import (
+    AGRICULTURAL_ZONE_UNKNOWN,
     FIS_REDUCTION_UNKNOWN,
     run_contributions,
     tfr_accrual,
@@ -88,6 +89,7 @@ def _issues(inp: _AmountsInput, irpef: _Irpef) -> tuple[CalculationIssue, ...]:
     public = end_of_service_issue(inp)
     life = life_insurance_issue(inp)
     fis = inp.rules.inps is not None and inp.rules.inps.fis_reduction_open
+    zone = inp.rules.inps is not None and inp.rules.inps.zone_reduction_open
     return (
         family
         + ulteriore_issues(inp, irpef)
@@ -98,6 +100,7 @@ def _issues(inp: _AmountsInput, irpef: _Irpef) -> tuple[CalculationIssue, ...]:
         + (() if public is None else (public,))
         + (() if life is None else (life,))
         + ((FIS_REDUCTION_UNKNOWN,) if fis else ())
+        + ((AGRICULTURAL_ZONE_UNKNOWN,) if zone else ())
     )
 
 

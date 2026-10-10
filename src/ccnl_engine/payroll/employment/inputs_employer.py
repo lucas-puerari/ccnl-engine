@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from ccnl_engine.tax.contribution.models_zone_reduction import AgriculturalZone
 from ccnl_engine.tax.regime.models import EmployerActivity
 from ccnl_engine.validation import (
     parse_enum,
@@ -12,7 +13,7 @@ from ccnl_engine.validation import (
     require_int,
 )
 
-__all__ = ["EmployerActivity", "EmployerProfile", "Headcount"]
+__all__ = ["AgriculturalZone", "EmployerActivity", "EmployerProfile", "Headcount"]
 
 _FEATURE = "employer"
 
@@ -70,10 +71,16 @@ class EmployerProfile:
             absence (Commercio Art. 215).  ``None`` means not known: a level
             with such a national element leaves it out and has a
             ``missing_fact`` blocker.
+        agricultural_zone: Zone of the land of an agricultural employer,
+            which cuts its INPS contributions by 68% in a zona svantaggiata
+            and 75% in a zona particolarmente svantaggiata (INPS circ.
+            43/2026 par. 7).  ``None`` means not known: an agricultural run
+            is charged the full rates and has a ``missing_fact`` blocker.
 
     Raises:
         InvalidInputError: When ``headcount`` is not a :class:`Headcount`,
-            ``activity`` is not an :class:`EmployerActivity` value or
+            ``activity`` is not an :class:`EmployerActivity` value,
+            ``agricultural_zone`` not an :class:`AgriculturalZone` value or
             ``public_life_insurance``, ``fis_reduction`` or
             ``provincial_pay_element`` is not a bool.
     """
@@ -83,6 +90,7 @@ class EmployerProfile:
     public_life_insurance: bool | None = None
     fis_reduction: bool | None = None
     provincial_pay_element: bool | None = None
+    agricultural_zone: AgriculturalZone | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         require_instance(
@@ -96,6 +104,14 @@ class EmployerProfile:
                 feature=_FEATURE,
             )
             object.__setattr__(self, "activity", activity)
+        if self.agricultural_zone is not None:
+            zone = parse_enum(
+                self.agricultural_zone,
+                AgriculturalZone,
+                "EmployerProfile.agricultural_zone",
+                feature=_FEATURE,
+            )
+            object.__setattr__(self, "agricultural_zone", zone)
         if self.public_life_insurance is not None:
             require_bool(
                 self.public_life_insurance,
