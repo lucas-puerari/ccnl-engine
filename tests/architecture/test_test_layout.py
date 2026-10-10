@@ -12,7 +12,7 @@
 - ``fixtures`` holds data and helpers, never tests;
 - at most five directories under ``tests`` before a file, ``fixtures`` aside.
 
-The test file line limit belongs to ``scripts/ci/check_structure.py``.
+The test file line limit belongs to ``scripts/structure/check.py``.
 """
 
 from __future__ import annotations

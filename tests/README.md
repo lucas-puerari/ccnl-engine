@@ -2,7 +2,7 @@
 
 The layout below is binding: `tests/architecture/test_test_layout.py`
 enforces the folders, the mirror rule and the depth, and
-`scripts/ci/check_structure.py` the size of each test file.
+`scripts/structure/check.py` the size of each test file.
 
 ## Levels
 
@@ -52,7 +52,7 @@ document a known wrong result: keep their reason and the error they raise.
 
 | Folder or module | Holds |
 |---|---|
-| `fixtures/reference_tables/` | reference cases: one regular period pinned to a signed salary table, checked by `scripts/ci/check_provenance.py` |
+| `fixtures/reference_tables/` | reference cases: one regular period pinned to a signed salary table, checked by `scripts/provenance/check.py` |
 | `fixtures/normative_oracles/` | hand-written calculators of the rules (IRPEF, family deductions, surtaxes), written from the sources without importing the engine |
 | `fixtures/normative_oracles/payslips/` | full-payslip oracles built on the rule oracles |
 | `fixtures/observed_payslips/` | anonymous transcriptions of real and teaching payslips (one JSON per payslip, amounts as printed): evidence of how payrolls apply the rules, never a signed source. Part of them is converted from the gold annotations of the BurocrazIA dataset (albertobarnabo/burocrazia on Hugging Face, Apache-2.0) |

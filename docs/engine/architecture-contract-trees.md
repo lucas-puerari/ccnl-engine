@@ -121,10 +121,10 @@ Where the current tests go:
 
 ## Inventory
 
-`scripts/ci/layout_inventory.py` maps every file `git ls-files` lists
+`scripts/structure/inventory.py` maps every file `git ls-files` lists
 under `src`, `tests`, `demo` and `scripts` to its target, from the ordered
-rules and per-file overrides of `scripts/ci/layout_inventory_rules.json`,
-and writes `scripts/ci/layout_inventory.json`. Overrides win; otherwise the
+rules and per-file overrides of `scripts/structure/inventory_rules.json`,
+and writes `scripts/structure/inventory.json`. Overrides win; otherwise the
 first matching rule applies. Data, demo, public API and legal scenario
 files map by pattern; every production module below the root and every
 script has an override;
@@ -141,9 +141,9 @@ nothing but a docstring may dissolve; the five markers with code (the root,
 `payroll/domain/pay_items`) map to a file.
 
 ```bash
-uv run python scripts/ci/layout_inventory.py            # regenerate the JSON
-uv run python scripts/ci/layout_inventory.py --check    # CI gate
-uv run python scripts/ci/layout_inventory.py --summary  # counts per area
+uv run python scripts/structure/inventory.py            # regenerate the JSON
+uv run python scripts/structure/inventory.py --check    # CI gate
+uv run python scripts/structure/inventory.py --summary  # counts per area
 ```
 
 `--check` fails on a path no rule maps, two paths with one target, an

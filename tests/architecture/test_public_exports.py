@@ -159,7 +159,7 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
 #: Public snippets a caller copies: they import from the public API only.
 _PUBLIC_SNIPPETS: tuple[Path, ...] = (
     _REPO / "README.md",
-    _REPO / "scripts" / "ci" / "smoke_wheel.py",
+    _REPO / "scripts" / "quality" / "smoke_test.py",
     *sorted((_REPO / "docs" / "examples").rglob("*.py")),
 )
 

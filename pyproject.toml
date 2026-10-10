@@ -202,12 +202,12 @@ include = [
     "/README.md",
     "/LICENSE",
     "/Makefile",
-    "/scripts/packaging/",
+    "/scripts/distribution/",
 ]
 exclude = [".complexipy_cache", "**/__pycache__"]
 
 [tool.hatch.build.hooks.custom]
-path = "scripts/packaging/build_hook.py"
+path = "scripts/distribution/build.py"
 
 # ---------------------------------------------------------------------------
 # mutmut — Mutation Testing

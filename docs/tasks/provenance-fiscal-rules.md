@@ -36,7 +36,7 @@ the rule shows it through the `rule_source_weak` blocker of its capability.
 The regional table is `derived` row by row from the MEF 2026 pages (URL and
 publication date per row, retrieved on 27 September 2026); the municipal
 table is `derived` from the MEF 2026 CSV list and is regenerated with
-`scripts/data/build_comunale_surtax.py`.
+`scripts/knowledge/build.py`.
 
 ---
 
@@ -51,7 +51,7 @@ For each block:
    `verified_at` and set `status` to `verified`. The model rejects
    `verified` without both.
 4. When a value changes, update it and run
-   `uv run python scripts/data/assign_rule_provenance.py` to rehash the file.
+   `uv run python scripts/provenance/assign.py` to rehash the file.
 
 Primary sources to check against:
 
@@ -69,7 +69,7 @@ Primary sources to check against:
 
 ## Acceptance criteria
 
-- `python scripts/ci/check_provenance.py --rules` passes and reports the
+- `python scripts/provenance/check.py --rules` passes and reports the
   block as `verified`.
 - No value changed without a recomputed `source_hash`.
 - `uv run pytest` still passes at 100% coverage.

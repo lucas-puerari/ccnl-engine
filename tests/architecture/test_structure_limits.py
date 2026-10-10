@@ -3,7 +3,7 @@
 - every directory holding Python sources is a package with ``__init__.py``;
 - a layer directory (``application``, ``service``, ``domain``) holds at least
   one module besides ``__init__.py``;
-- the size and depth limits of ``scripts/ci/check_structure.py`` hold
+- the size and depth limits of ``scripts/structure/check.py`` hold
   against its baseline.
 
 Hidden directories and ``__pycache__`` are skipped.
@@ -21,13 +21,13 @@ if TYPE_CHECKING:
     import types
 
 _PACKAGE = Path(str(importlib.resources.files("ccnl_engine")))
-_SCRIPT = Path(__file__).resolve().parents[2] / "scripts" / "ci" / "check_structure.py"
+_SCRIPT = Path(__file__).resolve().parents[2] / "scripts" / "structure" / "check.py"
 _MODULE = "_ci_check_structure"
 _LAYERS = frozenset({"application", "service", "domain"})
 
 
 def _check_structure() -> types.ModuleType:
-    """Load ``scripts/ci/check_structure.py``, the owner of the size rules.
+    """Load ``scripts/structure/check.py``, the owner of the size rules.
 
     Returns:
         The loaded module, shared with other tests through ``sys.modules``.

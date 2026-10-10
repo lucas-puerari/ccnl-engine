@@ -40,7 +40,7 @@ affected salary table values.
 ## Refreshing the municipal surtax table
 
 `surtax/municipal/<year>.json` is built by
-`scripts/data/build_comunale_surtax.py` from the MEF Dipartimento delle
+`scripts/knowledge/build.py` from the MEF Dipartimento delle
 Finanze lists of the addizionale comunale, one CSV per year, updated every
 day (index: `https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/nuova_addcomirpef/download/tabella.htm`).
 Municipalities publish their delibere through the year, so a table built in
@@ -70,7 +70,7 @@ that never instituted the surtax.
    bundled one, so a run records which table it used):
 
    ```bash
-   uv run python scripts/data/build_comunale_surtax.py --year 2026 \
+   uv run python scripts/knowledge/build.py --year 2026 \
        --current "$dl/2026.csv" --previous "$dl/2025.csv" "$dl/2024.csv" \
        --retrieved YYYY-MM-DD --version 2026.N
    ```

@@ -1,4 +1,4 @@
-<!-- auto-generated; run: uv run python scripts/docs/gen_capability_matrix.py -->
+<!-- auto-generated; run: uv run python scripts/documentation/generate_capability_matrix.py -->
 
 <!-- generated: 2026-10-10 -->
 
@@ -114,7 +114,7 @@ capabilities a `missing` note or a model limitation with a monetary impact
 of the contract file lowers to partial. **Rules** counts the payable rules
 of the contract file by provenance status: verified / derived / assumed /
 missing. The `assumed` and `missing` ones are listed in the shrink-only
-evidence baseline (`scripts/ci/provenance_baseline.json`), so these counts
+evidence baseline (`scripts/provenance/baseline.json`), so these counts
 never grow.
 
 | | Functional coverage of a layer: its weakest capability |

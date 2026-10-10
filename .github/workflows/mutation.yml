@@ -41,7 +41,7 @@ jobs:
         run: uv run mutmut export-cicd-stats
 
       - name: Check mutation score (minimum 93%)
-        run: uv run python scripts/ci/check_mutation_score.py --min-score 93.0
+        run: uv run python scripts/quality/mutation.py --min-score 93.0
 
       - name: Upload mutation results
         uses: actions/upload-artifact@v7
