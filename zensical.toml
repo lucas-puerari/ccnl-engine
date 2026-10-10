@@ -25,6 +25,9 @@ nav = [
     { "Substitute-tax regimes" = "engine/substitute-tax-regimes.md" },
     { "Domestic work"     = "engine/domestic-work.md" },
     { "Architecture rules" = "engine/architecture.md" },
+    { "Architecture contract" = "engine/architecture-contract.md" },
+    { "Architecture target trees" = "engine/architecture-contract-trees.md" },
+    { "Architecture migration notes" = "engine/architecture-contract-migration.md" },
   ]},
   { "Trust" = [
     { "Overview"          = "trust/index.md" },

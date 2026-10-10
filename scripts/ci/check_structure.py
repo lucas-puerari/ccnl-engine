@@ -12,6 +12,13 @@ Rules and hard limits:
   underscore (15);
 - ``source_depth``: directories under ``src/ccnl_engine`` before a module
   (3), ``data`` resource directories exempt;
+- ``underscore_files``: files under ``src``, ``tests``, ``scripts`` and
+  ``demo`` whose name starts with an underscore (0), the package root
+  ``src/ccnl_engine/__init__.py`` exempt: every new ``__init__.py`` or
+  ``_module.py`` fails;
+- ``technical_directories``: directories under the same roots named after a
+  technical layer (``domain``, ``application``, ``service``, ``handlers``,
+  ``fixtures``, ``data``) instead of a domain (0);
 - ``markdown_lines``: physical lines of a hand-written Markdown page (600):
   the top-level pages and those under ``docs``. The audit notes
   ``REVIEW.md`` and ``TODO.md`` are excluded, and so are the generated
@@ -22,6 +29,9 @@ Rules and hard limits:
 Effective lines are lines holding code, from the ``def`` or ``class`` line to
 the end of the body: blank lines, comment-only lines and docstrings do not
 count. Function and class rules apply to ``src``, ``tests`` and ``scripts``.
+The layout rules skip hidden directories, ``__pycache__`` and the gitignored
+demo build output (``demo/_build``, ``demo/wheels``); each offender is
+recorded with the value 1, so the baseline lists them one by one.
 
 A class is declarative when every method defined in its body is a pydantic
 validator or serializer, so models, dataclasses, enums and constant holders
@@ -72,6 +82,22 @@ PACKAGE: Final = Path("src") / "ccnl_engine"
 TESTS: Final = Path("tests")
 MEASURED: Final = (Path("src"), TESTS, Path("scripts"))
 RESOURCE_DIRS: Final = frozenset({"data"})
+#: Roots of the layout rules: underscore files and technical directories.
+LAYOUT_ROOTS: Final = (Path("src"), TESTS, Path("scripts"), Path("demo"))
+#: Gitignored build output of the demo, outside the layout rules.
+GENERATED_DIRS: Final = frozenset({Path("demo") / "_build", Path("demo") / "wheels"})
+#: The single file whose name may start with an underscore.
+ROOT_INIT: Final = PACKAGE / "__init__.py"
+#: Directory names of a technical layer; the contract names directories
+#: after domains only (docs/engine/architecture-contract.md).
+TECHNICAL_DIRS: Final = frozenset({
+    "domain",
+    "application",
+    "service",
+    "handlers",
+    "fixtures",
+    "data",
+})
 DOCS: Final = Path("docs")
 #: Top-level audit notes, outside the Markdown limit.
 EXCLUDED_MARKDOWN: Final = frozenset({"REVIEW.md", "TODO.md"})
@@ -103,6 +129,8 @@ LIMITS: Final[dict[str, int]] = {
     "class_lines": 150,
     "public_methods": 15,
     "source_depth": 3,
+    "underscore_files": 0,
+    "technical_directories": 0,
     "markdown_lines": 600,
 }
 
@@ -114,6 +142,8 @@ TARGETS: Final[dict[str, int]] = {
     "class_lines": 100,
     "public_methods": 10,
     "source_depth": 3,
+    "underscore_files": 0,
+    "technical_directories": 0,
     "markdown_lines": 450,
 }
 
@@ -154,6 +184,37 @@ def python_files(root: Path, top: Path) -> list[Path]:
         for path in base.rglob("*.py")
         if not any(_skipped(part) for part in path.relative_to(base).parts)
     )
+
+
+def _outside_layout(rel: Path) -> bool:
+    return any(_skipped(part) for part in rel.parts) or any(
+        generated == rel or generated in rel.parents for generated in GENERATED_DIRS
+    )
+
+
+def layout_offenders(root: Path) -> tuple[list[Path], list[Path]]:
+    """Return the underscore files and technical directories of *root*.
+
+    Hidden directories, ``__pycache__`` and :data:`GENERATED_DIRS` are
+    skipped; :data:`ROOT_INIT` is not an offender.
+
+    Returns:
+        Files whose name starts with an underscore and directories named in
+        :data:`TECHNICAL_DIRS`, both relative to *root* and sorted.
+    """
+    files: list[Path] = []
+    dirs: list[Path] = []
+    for top in LAYOUT_ROOTS:
+        for path in (root / top).rglob("*"):
+            rel = path.relative_to(root)
+            if _outside_layout(rel):
+                continue
+            if path.is_dir():
+                if path.name in TECHNICAL_DIRS:
+                    dirs.append(rel)
+            elif path.name.startswith("_") and rel != ROOT_INIT:
+                files.append(rel)
+    return sorted(files), sorted(dirs)
 
 
 def markdown_files(root: Path) -> list[Path]:
@@ -327,6 +388,11 @@ def measure_tree(root: Path, thresholds: Mapping[str, int] = LIMITS) -> Measurem
     for rel in python_files(root, TESTS):
         lines = _physical_lines(root / rel)
         _record(found, "test_file_lines", rel.as_posix(), lines, thresholds)
+    underscore, technical = layout_offenders(root)
+    for rel in underscore:
+        _record(found, "underscore_files", rel.as_posix(), 1, thresholds)
+    for rel in technical:
+        _record(found, "technical_directories", rel.as_posix(), 1, thresholds)
     for rel in markdown_files(root):
         lines = _physical_lines(root / rel)
         _record(found, "markdown_lines", rel.as_posix(), lines, thresholds)
