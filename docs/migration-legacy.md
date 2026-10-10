@@ -95,7 +95,7 @@ is migrated; caller-supplied data must add it.
 
 | Change | What to do |
 |---|---|
-| `RuleProvenance.status` is required | Add `"status"` to each `provenance` object; `uv run python scripts/data/assign_rule_provenance.py` shows the mapping |
+| `RuleProvenance.status` is required | Add `"status"` to each `provenance` object; `uv run python scripts/provenance/assign.py` shows the mapping |
 | `RuleProvenance.location` and `extraction` are optional | Guard `record.location` and `record.extraction` against `None` |
 | `verified` needs `extraction.verified_by` and `verified_at` | Records claiming a check without both are rejected |
 | Non-gap `additional_months` periods need a record at load | Add a `provenance` to each period |

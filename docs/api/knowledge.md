@@ -25,7 +25,7 @@ owner and the name of its compressed copy in the wheel.
 | `surtax/regional/<year>.json`, `surtax/municipal/<year>.json` | Addizionale regionale e comunale |
 | `capability/<year>/catalog.json`, `limitation/engine.json`, `policy/italy.json` | Capability catalog, engine limitations, policy ruleset |
 
-`scripts/data/build_manifest.py` rebuilds the manifest from the files;
+`scripts/knowledge/manifest.py` rebuilds the manifest from the files;
 `--check` fails in CI when it drifts.
 
 ## Version

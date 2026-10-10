@@ -138,7 +138,7 @@ and the schema gate reject it when:
 `derived` means, a value read from a cited location without a recorded
 check. A record that fails is `assumed`, keeping its location, quote and
 transformation, and its note says why.
-`scripts/data/demote_weak_labels.py` applies the rule to the whole bundle
+`scripts/provenance/demote.py` applies the rule to the whole bundle
 (every provenance record of every data file, payable or not, and the
 `source_status` of the substitute-tax regimes) and rehashes the files it
 changes; it only lowers labels. A record raised back to `derived` after
@@ -164,7 +164,7 @@ its own copy does not load. The IRPEF brackets, the Art. 13 deduction and
 the other credits stay in the sector files, `assumed`, until their text
 is quoted the same way.
 
-`scripts/data/assign_rule_provenance.py` assigns the status of existing
+`scripts/provenance/assign.py` assigns the status of existing
 records from what they record and fills the fiscal blocks from the citations
 in each file's notes and ruleset source (or, where the data records none,
 the rule model docstrings; the record then says so in `transformation`).
@@ -172,7 +172,7 @@ The script is idempotent and rehashes the files it changes.
 
 ### Current counts
 
-Generated from the bundle by `scripts/docs/gen_trust_counts.py`; CI fails
+Generated from the bundle by `scripts/documentation/generate_trust_counts.py`; CI fails
 when they drift.
 
 <!-- trust:provenance-table -->
@@ -199,7 +199,7 @@ thresholds read from signed texts, each with its article and quote),
 extra-month counts with no located clause, the
 artigianato and edilizia INPS proxies, the PA apprentice placeholder, the PA
 fixed-term exemption and the regional surtax table.
-`python scripts/ci/check_provenance.py --rules` prints the same counts.
+`python scripts/provenance/check.py --rules` prints the same counts.
 
 ## Enforcement
 
@@ -208,7 +208,7 @@ fixed-term exemption and the regional surtax table.
   load. No CCNL, tax, INPS or surtax file loads with a label that outruns
   its evidence (see [above](#a-label-never-outruns-its-evidence)): the
   loader raises `DataIntegrityError`.
-- **CI, schema gate.** `scripts/ci/check_provenance.py --schema` fails when
+- **CI, schema gate.** `scripts/provenance/check.py --schema` fails when
   any payable rule of the bundle has no record or an unknown status, and
   lists every `missing` record. It also fails when a record lacks the
   evidence its status or readiness claims (see below), when a label
@@ -217,9 +217,9 @@ fixed-term exemption and the regional surtax table.
   other than `verified`, or when a CCNL ruleset id is not `ccnl/<ccnl_id>`.
   These errors have no baseline: the gate rejects every one.
   `tests/architecture/test_data_quality.py` runs the same inventory.
-- **CI, evidence gate.** `scripts/ci/check_provenance.py --evidence`
+- **CI, evidence gate.** `scripts/provenance/check.py --evidence`
   compares the bundle with the shrink-only baseline
-  `scripts/ci/provenance_baseline.json`, which lists every `assumed` or
+  `scripts/provenance/baseline.json`, which lists every `assumed` or
   `missing` payable rule and every open model limitation. It judges each
   rule, never the weakest status of a capability, and fails on a rule or a
   limitation the baseline does not list, on a rule
@@ -250,7 +250,7 @@ human task: no script raises a status. The schema gate requires:
 After sourcing a rule or resolving a limitation, shrink the baseline and commit it with the data change:
 
 ```bash
-python scripts/ci/check_provenance.py --update-baseline
+python scripts/provenance/check.py --update-baseline
 ```
 
 The command refuses to add an entry. A new `assumed` or `missing` rule (for
@@ -259,7 +259,7 @@ example a new CCNL without `parameters.accrual_rule`, which is listed as
 must justify the baseline diff:
 
 ```bash
-python scripts/ci/check_provenance.py --update-baseline --allow-growth
+python scripts/provenance/check.py --update-baseline --allow-growth
 ```
 
 ## Reading provenance

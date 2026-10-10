@@ -47,19 +47,19 @@ jobs:
         run: uv run mypy scripts/ --explicit-package-bases
 
       - name: Structural limits (shrink-only baseline)
-        run: uv run python scripts/ci/check_structure.py
+        run: uv run python scripts/structure/check.py
 
       - name: Layout inventory (every file has a target)
-        run: uv run python scripts/ci/layout_inventory.py --check
+        run: uv run python scripts/structure/inventory.py --check
 
       - name: Knowledge manifest is up to date
-        run: uv run python scripts/data/build_manifest.py --check
+        run: uv run python scripts/knowledge/manifest.py --check
 
       - name: Contract pages drift (check only)
-        run: uv run python scripts/docs/gen_contract_pages.py --check
+        run: uv run python scripts/documentation/generate_contract_pages.py --check
 
       - name: Trust counts drift (check only)
-        run: uv run python scripts/docs/gen_trust_counts.py --check
+        run: uv run python scripts/documentation/generate_trust_counts.py --check
 
       - name: Test (pytest, coverage 100%)
         run: uv run pytest
@@ -93,10 +93,10 @@ jobs:
         run: uv sync --frozen --group docs
 
       - name: Generate coverage matrix
-        run: uv run python scripts/docs/gen_coverage_matrix.py
+        run: uv run python scripts/documentation/generate_coverage_matrix.py
 
       - name: Generate capability matrix
-        run: uv run python scripts/docs/gen_capability_matrix.py
+        run: uv run python scripts/documentation/generate_capability_matrix.py
 
       - name: Build docs (zensical)
         run: uv run zensical build
@@ -145,13 +145,13 @@ jobs:
           fetch-depth: 2
 
       - name: Schema gate (payable rule records and the evidence they claim)
-        run: python scripts/ci/check_provenance.py --schema
+        run: python scripts/provenance/check.py --schema
 
       - name: Evidence gate (no new assumed or missing rule, shrink-only baseline)
-        run: python scripts/ci/check_provenance.py --evidence
+        run: python scripts/provenance/check.py --evidence
 
       - name: Validate all reference cases
-        run: python scripts/ci/check_provenance.py tests/fixtures/reference_tables/*.json
+        run: python scripts/provenance/check.py tests/fixtures/reference_tables/*.json
 
       - name: Reject new reference cases without source
         run: |
@@ -163,7 +163,7 @@ jobs:
           else
             echo "New reference cases found:"
             echo "$ADDED"
-            python scripts/ci/check_provenance.py $ADDED
+            python scripts/provenance/check.py $ADDED
           fi
 
       - name: Reject modified reference cases that lost their source
@@ -177,7 +177,7 @@ jobs:
           fi
           echo "Modified reference cases found:"
           echo "$MODIFIED"
-          python scripts/ci/check_provenance.py --modified $MODIFIED
+          python scripts/provenance/check.py --modified $MODIFIED
 
   wheel-smoke:
     name: Wheel smoke test
@@ -205,7 +205,7 @@ jobs:
           .smokeenv/bin/pip install --quiet dist/*.whl
 
       - name: Smoke test — end-to-end scenario
-        run: .smokeenv/bin/python scripts/ci/smoke_wheel.py
+        run: .smokeenv/bin/python scripts/quality/smoke_test.py
 
   public-snippets:
     name: Public snippets smoke test

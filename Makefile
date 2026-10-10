@@ -8,9 +8,9 @@ setup:
 	@echo "Git hooks activated (.githooks)"
 
 docs:
-	uv run python scripts/docs/gen_coverage_matrix.py
-	uv run python scripts/docs/gen_contract_pages.py
-	uv run python scripts/docs/gen_trust_counts.py
+	uv run python scripts/documentation/generate_coverage_matrix.py
+	uv run python scripts/documentation/generate_contract_pages.py
+	uv run python scripts/documentation/generate_trust_counts.py
 	@echo "Serving docs at http://127.0.0.1:8000"
 	uv run zensical serve
 
@@ -25,7 +25,7 @@ demo:
 	  sed "s/WHEEL_VERSION/$${WHEEL_VERSION}/g" demo/ui.js \
 	    > demo/_build/ui.js && \
 	  cp demo/wheels/*.whl demo/_build/wheels/ && \
-	  cp demo/i18n/*.json demo/_build/i18n/
+	  cp demo/localization/*.json demo/_build/i18n/
 	@echo "Wheel built. Serving demo at http://127.0.0.1:8080"
 	python3 -m http.server 8080 --directory demo/_build --bind 127.0.0.1
 
@@ -51,10 +51,10 @@ cognitive-complexity:
 # Docs / data scripts
 
 coverage-matrix:
-	uv run python scripts/docs/gen_coverage_matrix.py
+	uv run python scripts/documentation/generate_coverage_matrix.py
 
 rehash:
-	uv run python scripts/docs/rehash_ccnl.py
+	uv run python scripts/knowledge/update.py
 
 contract-pages:
-	uv run python scripts/docs/gen_contract_pages.py
+	uv run python scripts/documentation/generate_contract_pages.py

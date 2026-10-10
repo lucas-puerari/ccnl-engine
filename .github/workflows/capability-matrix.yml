@@ -9,8 +9,8 @@ on:
       - "src/ccnl_engine/knowledge/social_security/**"
       - "src/ccnl_engine/knowledge/surtax/**"
       - "src/ccnl_engine/knowledge/capability/**"
-      - "scripts/ci/payable_rules.py"
-      - "scripts/docs/gen_capability_matrix.py"
+      - "scripts/provenance/rules.py"
+      - "scripts/documentation/generate_capability_matrix.py"
       - "docs/contracts/capability-matrix.md"
 
 concurrency:
@@ -42,4 +42,4 @@ jobs:
         run: uv pip install -e .
 
       - name: Check capability matrix is up to date
-        run: uv run python scripts/docs/gen_capability_matrix.py --check
+        run: uv run python scripts/documentation/generate_capability_matrix.py --check

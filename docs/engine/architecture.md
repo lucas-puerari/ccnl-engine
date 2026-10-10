@@ -82,7 +82,7 @@ Domain modules perform no I/O: no `importlib.resources`, no `pathlib`, no
 
 ## Structural limits
 
-`scripts/ci/check_structure.py` measures the tree with `ast` and `tokenize`
+`scripts/structure/check.py` measures the tree with `ast` and `tokenize`
 and runs in CI and in `tests/architecture/test_structure_limits.py`. Ruff
 enforces statement count and public methods with the same ceilings.
 
@@ -123,10 +123,10 @@ So are the pages generated under `docs/contracts` and the built site under
 
 The targets sit at about 80% of the hard limits and never fail the check.
 Every run prints how many entries sit above each target;
-`python scripts/ci/check_structure.py --targets` lists them. Bring a file
+`python scripts/structure/check.py --targets` lists them. Bring a file
 under its target when it is touched, before it reaches the hard limit.
 
-Current offenders are listed in `scripts/ci/structure_baseline.json` with
+Current offenders are listed in `scripts/structure/baseline.json` with
 their measured value. The check fails when:
 
 - a file, function or class above a hard limit is not in the baseline;
@@ -136,7 +136,7 @@ their measured value. The check fails when:
 The baseline only shrinks. To remove an entry, bring the offender under the
 hard limit and delete its line; an offender that shrinks but still offends
 passes with a note, and its value should be lowered in the same change.
-`python scripts/ci/check_structure.py --write-baseline` rewrites the file
+`python scripts/structure/check.py --write-baseline` rewrites the file
 from the tree: review the diff and reject any added entry.
 
 ## Payroll layout

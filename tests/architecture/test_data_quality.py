@@ -1,8 +1,8 @@
 """Validate provenance of the payable rules and of the expected-value fixtures.
 
 Every payable rule of the bundled knowledge data carries a provenance record
-with a known status; the inventory lives in :mod:`scripts.ci.payable_rules`,
-shared with ``scripts/ci/check_provenance.py``.
+with a known status; the inventory lives in :mod:`scripts.provenance.rules`,
+shared with ``scripts/provenance/check.py``.
 
 The JSON files in ``tests/fixtures/reference_tables/`` each declare a known
 ``verification`` status consistent with their ``source`` block, and carry the
@@ -17,7 +17,7 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from scripts.ci.payable_rules import (
+from scripts.provenance.rules import (
     STATUSES,
     ccnl_rules,
     count_by_status,

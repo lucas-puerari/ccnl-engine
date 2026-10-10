@@ -4,12 +4,20 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Scripts and demo laid out by operational domain
+
+| Before | After |
+|---|---|
+| `scripts/ci/`, `scripts/data/`, `scripts/docs/`, `scripts/packaging/` packages | `scripts/{structure,provenance,knowledge,documentation,quality,distribution}/`, namespace directories without `__init__.py`. For example `scripts/structure/check.py` (was `scripts/ci/check_structure.py`), `scripts/provenance/check.py` (`check_provenance.py`), `scripts/knowledge/manifest.py` (`build_manifest.py`), `scripts/knowledge/update.py` (`rehash_ccnl.py`), `scripts/documentation/generate_contract_pages.py` (`gen_contract_pages.py`), `scripts/quality/smoke_test.py` (`smoke_wheel.py`), `scripts/distribution/build.py` (the hatch build hook). The Makefile, the workflows and the docs call the new paths |
+| Baselines `scripts/ci/structure_baseline.json`, `scripts/ci/provenance_baseline.json`, `scripts/ci/layout_inventory*.json` | `scripts/structure/baseline.json`, `scripts/provenance/baseline.json`, `scripts/structure/inventory.json` and `inventory_rules.json` |
+| Demo translations in `demo/i18n/` | `demo/localization/`; the built demo still serves them under `i18n/` |
+
 ## Payroll laid out by domain
 
 | Before | After |
 |---|---|
 | `payroll` organised by layer (`domain`, `service`, `application` with `handlers`, `period`, `year`, `withholding`, `amounts`, `invariants`) | Organised in sixteen subdomains with role-named files: `payroll/{accrual,amount,assurance,capability,contribution,employment,event,family,ledger,period,sickness,state,taxation,termination,withholding,year}/`, for example `payroll/period/services.py` (`calculate_period`), `payroll/state/serializers.py` (the state codec), `payroll/taxation/rules_irpef.py`. Moves are one to one; the public namespaces (`ccnl_engine`, `inputs`, `events`, `results`, `catalog`) keep every name |
-| Code importing internal payroll paths (`ccnl_engine.payroll.domain...`, `ccnl_engine.payroll.service...`, `ccnl_engine.payroll.application...`) | Internal paths are not public API and have no shim: import from the public namespaces, or from the new module the inventory `scripts/ci/layout_inventory.json` names |
+| Code importing internal payroll paths (`ccnl_engine.payroll.domain...`, `ccnl_engine.payroll.service...`, `ccnl_engine.payroll.application...`) | Internal paths are not public API and have no shim: import from the public namespaces, or from the new module the inventory `scripts/structure/inventory.json` names |
 
 ## Domains outside payroll laid out by domain
 
@@ -17,14 +25,14 @@ Changes are listed newest first. Older changes are on
 |---|---|
 | `contract`, `tax`, `knowledge`, `provenance`, `diff`, `shared` and `api` organised by layer (`domain`, `service`, `application`) | Organised by domain, with role-named files: `contract/<subdomain>/models.py`, `tax/<subdomain>/loaders.py`, `comparison/ruleset/services.py`, `provenance/{ruleset,source}/models.py`, the shared `errors.py`, `primitives.py` and `validation.py` at the root, the facade in `api.py`. Moves are one to one; the public namespaces (`ccnl_engine`, `inputs`, `events`, `results`, `catalog`) keep every name |
 | `from ccnl_engine.knowledge import __version__` | `from ccnl_engine import bundle_version`; the value also lives in `ccnl_engine.knowledge.facade.__version__`. `ccnl_engine.knowledge` is now a package marker |
-| Code importing internal paths (`ccnl_engine.contract.domain...`, `ccnl_engine.tax.service...`, `ccnl_engine.shared.domain...`) | Internal paths are not public API and have no shim: import from the public namespaces, or from the new module the inventory `scripts/ci/layout_inventory.json` names |
+| Code importing internal paths (`ccnl_engine.contract.domain...`, `ccnl_engine.tax.service...`, `ccnl_engine.shared.domain...`) | Internal paths are not public API and have no shim: import from the public namespaces, or from the new module the inventory `scripts/structure/inventory.json` names |
 
 ## Knowledge bundle by dataset, with a manifest
 
 | Before | After |
 |---|---|
 | JSON resources under seven `knowledge/<x>/data/` packages (`ccnl`, `tax`, `inps`, `surtax`, `capabilities`, `limitations`, `policies`), found by globbing each directory | One tree `knowledge/<domain>/<dataset>/<year>/<scope>.json` (`contract/agreement/<slug>.json`, `taxation/annual/<year>/<sector>.json`, `social_security/contribution/<year>/<sector>.json`, `surtax/regional/<year>.json`, ...), indexed by `knowledge/manifest.json`. The 174 files are moved one to one, content unchanged |
-| A loader read any file present in its package directory | `ccnl_engine.knowledge.loaders_manifest`: a loader reads only a path the manifest lists (`read_resource`, `resources`); the wheel carries every listed resource as `<path>.gz`. `scripts/data/build_manifest.py --check` fails CI when the manifest drifts |
+| A loader read any file present in its package directory | `ccnl_engine.knowledge.loaders_manifest`: a loader reads only a path the manifest lists (`read_resource`, `resources`); the wheel carries every listed resource as `<path>.gz`. `scripts/knowledge/manifest.py --check` fails CI when the manifest drifts |
 | Code reading `importlib.resources.files("ccnl_engine.knowledge.ccnl.data")` | Those packages no longer exist; read `ccnl_engine.knowledge.loaders_manifest.read_resource("contract/agreement/<slug>.json")` or use the public loaders |
 
 ## Carenza by event and yearly comporto

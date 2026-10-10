@@ -52,7 +52,7 @@ The contract has three pages:
 | `catalog.py` | Kept at the root next to `api.py`, `inputs.py`, `results.py` and `events.py`, because `ccnl_engine.catalog` is a public namespace. |
 | Root modules | `api`, `inputs`, `results`, `events`, `catalog`, `errors`, `primitives`, `validation` and `version`, each splittable as `<name>_<suffix>.py` (for example `validation_collection.py`). |
 | New directories | A new source directory gets a docstring-only `__init__.py` marker, which the guardrail accepts. A new test directory needs none: pytest imports tests by path (`--import-mode=importlib`). |
-| Inventory upkeep | `scripts/ci/layout_inventory.json` is generated. A change that adds, renames or removes a tracked file under `src`, `tests`, `demo` or `scripts` regenerates it; CI fails on drift. |
+| Inventory upkeep | `scripts/structure/inventory.json` is generated. A change that adds, renames or removes a tracked file under `src`, `tests`, `demo` or `scripts` regenerates it; CI fails on drift. |
 
 ## Production tree
 
@@ -185,7 +185,7 @@ show (for example `close_tax_year.py` becomes `year/rules_close.py`,
 
 ## Guardrails
 
-`scripts/ci/check_structure.py` records two layout rules with a hard limit
+`scripts/structure/check.py` records two layout rules with a hard limit
 of zero against its shrink-only baseline:
 
 | Rule | Measured on | Offender |
@@ -195,9 +195,9 @@ of zero against its shrink-only baseline:
 
 Hidden directories, `__pycache__` and the gitignored `demo/_build` and
 `demo/wheels` are skipped. Every current offender is listed in
-`scripts/ci/structure_baseline.json`; a new one fails, and an entry whose
+`scripts/structure/baseline.json`; a new one fails, and an entry whose
 offender is gone must be removed. Each migration removes its entries.
 
-`scripts/ci/layout_inventory.py --check` keeps the inventory complete and
+`scripts/structure/inventory.py --check` keeps the inventory complete and
 conforming; see
 [Target trees](architecture-contract-trees.md#inventory).

@@ -20,7 +20,7 @@ tests to mirror directories without `__init__.py`, and then removed every
 | architecture tests | `test_every_module_fits_a_layer` and `test_every_source_directory_is_a_package` fail. | Classify modules by role file (`tests/architecture/_imports.py`, `ROLE_LAYERS`); keep every source directory a package (markers below). |
 | docs (found in the domain migration) | griffe, behind mkdocstrings, does not load a namespace directory inside a regular package (its loader skips it on purpose), so every `:::` directive of a moved module fails and the Docs build and the Pages deploy break. | Keep a docstring-only `__init__.py` marker in every source directory; the structure guardrail and the inventory accept only such markers under `src`. |
 | `importlib.resources` | `files("ccnl_engine.knowledge.ccnl.data")` on a namespace package returns a `MultiplexedPath`; `iterdir()` and `joinpath()` work in the editable install and in the wheel (126 `.json.gz`). A namespace merges every portion on `sys.path`, so a stale copy would add files silently. | Resolve resources through the manifest and check the file list against it. |
-| wheel | `uv build --wheel` packs the namespace directories (`packages = ["src/ccnl_engine"]`) and the build hook still injects the `.json.gz` files; `scripts/ci/smoke_wheel.py` passes in a clean virtual environment. | Update the build hook directory list and the `exclude` globs, which are path-keyed. |
+| wheel | `uv build --wheel` packs the namespace directories (`packages = ["src/ccnl_engine"]`) and the build hook still injects the `.json.gz` files; `scripts/quality/smoke_test.py` passes in a clean virtual environment. | Update the build hook directory list and the `exclude` globs, which are path-keyed. |
 
 ## Path-keyed data
 
@@ -33,11 +33,11 @@ A move must update every place that names a path or a dotted module:
   `payroll/service/policy_loader.py`, `tax/service/tax_resource_reader.py`,
   `tax/service/tax_optional_loaders.py`, `tax/service/surtax_loaders.py`
   and `tax/service/tax_annual_assembler.py`.
-- **Baselines**: the keys of `scripts/ci/provenance_baseline.json`
+- **Baselines**: the keys of `scripts/provenance/baseline.json`
   (`ccnl/data/<slug>.json`, relative to `knowledge`) and of
-  `scripts/ci/structure_baseline.json` (repository paths).
+  `scripts/structure/baseline.json` (repository paths).
 - **Build and packaging**: the seven directory pairs of
-  `scripts/packaging/build_hook.py`, the wheel `exclude` globs and the sdist
+  `scripts/distribution/build.py`, the wheel `exclude` globs and the sdist
   `include` of `pyproject.toml`.
 - **Tool configuration in `pyproject.toml`**: the Ruff `TCH`
   per-file-ignores of model modules, the mutmut `source_paths` and test
@@ -45,15 +45,15 @@ A move must update every place that names a path or a dotted module:
 - **CI workflows**: the path filters of `capability-matrix.yml`,
   `contract-examples.yml` and `contracts-index.yml`, and the
   `tests/fixtures/reference_tables/*.json` globs of `ci.yml`.
-- **Scripts**: the knowledge prefixes of `scripts/ci/rules_diff_report.py`,
+- **Scripts**: the knowledge prefixes of `scripts/knowledge/diff.py`,
   the data paths of the documentation generators and of
-  `scripts/docs/rehash_ccnl.py`, and the reference case directory of
-  `scripts/ci/check_provenance.py`.
+  `scripts/knowledge/update.py`, and the reference case directory of
+  `scripts/provenance/check.py`.
 - **Tests that hardcode data paths**: under
   `tests/integration/ccnl_engine/contract/service/`,
   `tests/integration/ccnl_engine/knowledge/service/`,
   `tests/integration/ccnl_engine/tax/service/` and
-  `tests/integration/scripts/ci/test_rules_diff_report.py`; the reference
+  `tests/integration/scripts/knowledge/test_diff.py`; the reference
   case directory of `tests/architecture/_provenance.py`; the layer
   allowlists of `tests/architecture/test_dependencies.py` and
   `tests/architecture/_imports.py`.

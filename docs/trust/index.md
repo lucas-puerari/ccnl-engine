@@ -154,12 +154,12 @@ gates; the `CI` workflow runs all of them on every pull request:
 | Lint | `uv run ruff check src/ tests/ scripts/` | Zero errors |
 | Format | `uv run ruff format --check src/ tests/ scripts/` | No changes |
 | Types | `uv run mypy src/ tests/` and `uv run mypy scripts/ --explicit-package-bases` | Zero errors, strict mode |
-| Structure | `uv run python scripts/ci/check_structure.py` | File, function, class and Markdown page size limits |
-| Provenance schema | `python scripts/ci/check_provenance.py --schema` | Every payable rule has a record with the evidence its status claims |
-| Provenance evidence | `python scripts/ci/check_provenance.py --evidence` | No new `assumed` or `missing` rule, open limitation or readiness claim; the baseline only shrinks |
-| Reference cases | `python scripts/ci/check_provenance.py tests/fixtures/reference_tables/*.json` | Every reference case has a verification status and a source |
-| Contract pages | `uv run python scripts/docs/gen_contract_pages.py --check` | Every page matches its CCNL data |
-| Trust counts | `uv run python scripts/docs/gen_trust_counts.py --check` | Every count in `docs/trust/` matches the bundle |
+| Structure | `uv run python scripts/structure/check.py` | File, function, class and Markdown page size limits |
+| Provenance schema | `python scripts/provenance/check.py --schema` | Every payable rule has a record with the evidence its status claims |
+| Provenance evidence | `python scripts/provenance/check.py --evidence` | No new `assumed` or `missing` rule, open limitation or readiness claim; the baseline only shrinks |
+| Reference cases | `python scripts/provenance/check.py tests/fixtures/reference_tables/*.json` | Every reference case has a verification status and a source |
+| Contract pages | `uv run python scripts/documentation/generate_contract_pages.py --check` | Every page matches its CCNL data |
+| Trust counts | `uv run python scripts/documentation/generate_trust_counts.py --check` | Every count in `docs/trust/` matches the bundle |
 
 Other workflows check the capability matrix, the contracts index, the
 contract examples and the cognitive complexity of `src/`.
@@ -205,7 +205,7 @@ top-level `verification` field:
 `tests/architecture/test_data_quality.py` rejects a missing or unknown
 value, a case without a `source` object, and a case whose inputs or expected
 values differ from what the runner executes. In CI,
-`scripts/ci/check_provenance.py` validates every case, prints the count per
+`scripts/provenance/check.py` validates every case, prints the count per
 status, and rejects a modified case that drops its `source`; the same script
 fails when a payable rule of the bundle has no provenance record. Expected values
 are never regenerated from the engine by a script: changing one is a reviewed

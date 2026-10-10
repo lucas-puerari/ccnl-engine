@@ -85,7 +85,7 @@ In addition to the `reviewed` criteria:
    `verification.last_reviewed`.
 5. Set `verification.readiness = "production"` in the CCNL JSON.
 
-The schema gate (`scripts/ci/check_provenance.py --schema`) rejects a
+The schema gate (`scripts/provenance/check.py --schema`) rejects a
 `reviewed` or `production` ruleset with an `assumed` or `missing` payable
 rule in its file or without `confidence` `verified`, and a `production`
 ruleset without the fields above. These errors have no baseline.
@@ -94,7 +94,7 @@ ruleset without the fields above. These errors have no baseline.
 
 Distribution across the
 <!-- trust:ccnl-total -->126<!-- /trust:ccnl-total --> bundled CCNL rulesets,
-generated from the data by `scripts/docs/gen_trust_counts.py` (CI fails when
+generated from the data by `scripts/documentation/generate_trust_counts.py` (CI fails when
 it drifts):
 
 <!-- trust:readiness-table -->

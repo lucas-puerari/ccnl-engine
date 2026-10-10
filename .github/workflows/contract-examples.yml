@@ -6,7 +6,7 @@ on:
     paths:
       - "src/ccnl_engine/knowledge/contract/**"
       - "src/ccnl_engine/knowledge/social_security/**"
-      - "scripts/docs/gen_contract_examples.py"
+      - "scripts/documentation/generate_contract_examples.py"
       - "docs/examples/contracts/**"
 
 concurrency:
@@ -38,4 +38,4 @@ jobs:
         run: uv pip install -e .
 
       - name: Check contract examples are up to date
-        run: uv run python scripts/docs/gen_contract_examples.py --check
+        run: uv run python scripts/documentation/generate_contract_examples.py --check
