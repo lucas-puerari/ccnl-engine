@@ -234,16 +234,17 @@ class TestAddizionale1Pct:
         assert _settlement(result) is None
 
     def test_december_settles_the_year_above_the_annual_band(self) -> None:
-        """YTD 55,900, nothing withheld: 55,900 + 2,211.43 = 58,111.43.
+        """YTD 55,900, nothing withheld: 55,900 + 2,211 = 58,111.
 
-        58,111.43 - 56,224 = 1,887.43; x 1% = 18.8743 -> 18.87 due.
+        The December base is 2,211.43 to the whole euro (INPS circ.
+        208/2001).  58,111 - 56,224 = 1,887; x 1% = 18.87 due.
         """
         result = calculate_period(
             _req(month=12, opening=_opening(Decimal(55900)), history=_POST_1995)
         )
         settlement = _settlement(result)
         assert settlement is not None
-        assert settlement.base == Decimal("1887.43")
+        assert settlement.base == Decimal("1887.00")
         assert settlement.amount == Decimal("18.87")
         assert _addizionale(result) == _ZERO
 
@@ -272,7 +273,7 @@ class TestAddizionale1Pct:
     def test_december_without_the_massimale_settles_the_whole_year(self) -> None:
         """Enrolled before 1996, YTD 125,000: no massimale caps the year.
 
-        125,000 + 2,211.43 - 56,224 = 70,987.43; x 1% = 709.8743 -> 709.87,
+        125,000 + 2,211 - 56,224 = 70,987; x 1% = 709.87,
         less the 660.71 withheld: 49.16.
         """
         opening = _opening(Decimal(125000), additional_ivs=Decimal("660.71"))

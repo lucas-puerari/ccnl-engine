@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## INPS base to the whole euro
+
+| Before | After |
+|---|---|
+| The INPS base of a run was the pay to the cent | Private sectors round it to the whole euro, half up (INPS circ. 208/2001), as the payslips print it, and charge each share on it; the Gestione Dipendenti Pubblici keeps the cents (`InpsRates.base_whole_euro`, false in the public administration file). The year-to-date base, the massimale, the minimale and the additional 1% read the rounded base |
+
 ## Industria INPS rates by category
 
 | Before | After |

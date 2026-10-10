@@ -153,7 +153,8 @@ class InpsRates(BaseModel):
     than the rates; ``fis_reduction`` is the cut of the FIS rate of the
     smallest employers (:mod:`~ccnl_engine.tax.domain.fis_reduction`), and
     ``fis_reduction_open`` flags rates resolved for an employer it may
-    apply to that does not say whether it does.
+    apply to that does not say whether it does.  ``base_whole_euro`` rounds
+    the INPS base of a run to the whole euro (INPS circ. 208/2001).
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -175,6 +176,7 @@ class InpsRates(BaseModel):
     ceiling_provenance: RuleProvenance | None = None
     fis_reduction: FisReduction | None = None
     fis_reduction_open: bool = False
+    base_whole_euro: bool = True
 
     @property
     def ceiling_record(self) -> RuleProvenance | None:

@@ -40,7 +40,11 @@ Sources, each with section and effective date:
   under the IVS massimale; neither the band nor the massimale enters a
   figure.  The 2026 values are in INPS circolare n. 6 of 30 January 2026
   (massimale 122,295 EUR), as secondary sources (ecnews.it, Ascom Bologna)
-  report it; the circular itself was not fetched.
+  report it; the circular itself was not fetched.  The base is the gross
+  rounded to the whole euro, "fino a 49 centesimi si arrotonda all'unità di
+  Euro inferiore, da 50 centesimi in poi si arrotonda all'unità di Euro
+  superiore" (INPS circ. 208/2001), and each share is rounded to the cent
+  on its own, as the payslips print them.
 - TFR quota: art. 2120 c. 1 c.c., the yearly pay divided by 13.5, accrued
   per month here; L. 297/1982 art. 3 (Normattiva, read on 4 October 2026)
   raises the employer IVS rate by 0.50% and has the employer deduct that
@@ -60,20 +64,23 @@ Sources, each with section and effective date:
 Worked example:
 
     monthly gross   2,041.99 + 10.33                    = 2,052.32
-    employee INPS   2,052.32 x 9.49% = 194.7652          ->  194.77
+    INPS base       2,052.32 to the whole euro           = 2,052
+    employee IVS    2,052 x 9.19% = 188.5788             ->  188.58
+    employee CIGS   2,052 x 0.30% = 6.156                ->    6.16
+    employee INPS   188.58 + 6.16                       =   194.74
     TFR quota       2,052.32 / 13.5  = 152.0237          ->  152.02
-    TFR deduction   2,052.32 x 0.50% = 10.2616           ->   10.26
+    TFR deduction   2,052 x 0.50%    = 10.26             ->   10.26
     TFR accrued     152.02 - 10.26                      =   141.76
     annual gross    2,052.32 x 13                       = 26,680.16
-    annual INPS     194.77 x 13                         =  2,532.01
-    annual taxable  26,680.16 - 2,532.01                = 24,148.15
-    gross IRPEF     23% of 24,148.15                     =  5,554.07
+    annual INPS     194.74 x 13                         =  2,531.62
+    annual taxable  26,680.16 - 2,531.62                = 24,148.54
+    gross IRPEF     23% of 24,148.54                     =  5,554.16
     art. 13         1,910 + 1,190 x 0.2962 (truncated)   =  2,262.48
     further         L. 207/2024 c. 6 lett. a             =  1,000.00
-    net IRPEF       5,554.07 - 2,262.48 - 1,000.00      =  2,291.59
-    net pay         26,680.16 - 2,532.01 - 2,291.59     = 21,856.56
-    Sardegna        24,148.15 x 1.23% = 297.0222         ->  297.02
-    Alghero         24,148.15 x 0.80% = 193.1852         ->  193.19
+    net IRPEF       5,554.16 - 2,262.48 - 1,000.00      =  2,291.68
+    net pay         26,680.16 - 2,531.62 - 2,291.68     = 21,856.86
+    Sardegna        24,148.54 x 1.23% = 297.0270         ->  297.03
+    Alghero         24,148.54 x 0.80% = 193.1883         ->  193.19
     acconto 2027    193.19 x 30%      = 57.957           ->   57.96
 """
 
@@ -102,7 +109,8 @@ _TABLE_MINIMUM_2026 = Decimal("2041.99")
 _EDR_LIRE = Decimal(20_000)
 _LIRE_PER_EURO = Decimal("1936.27")
 _MONTHS_PAID = 13
-_EMPLOYEE_INPS_RATE = Decimal("0.0919") + Decimal("0.0030")
+_EMPLOYEE_IVS_RATE = Decimal("0.0919")
+_EMPLOYEE_CIGS_RATE = Decimal("0.0030")
 _TFR_DIVISOR = Decimal("13.5")
 _TFR_EXTRA_IVS_RATE = Decimal("0.0050")
 
@@ -119,11 +127,12 @@ class ConciaYear:
         minimum: Minimo tabellare D2 of every 2026 payment.
         edr: Elemento distinto della retribuzione of every payment.
         monthly_gross: Gross of each of the thirteen payments.
+        inps_base: INPS base of each payment, the gross to the whole euro.
         monthly_inps: Employee INPS of each payment.
         tfr_divisor: Art. 2120 c.c. divisor of the yearly pay.
         tfr_quota: Art. 2120 c.c. TFR quota of each payment.
         tfr_deduction: The 0.50% additional IVS of the payment, on the
-            gross (well under the IVS massimale), that L. 297/1982 art. 3
+            INPS base (well under the IVS massimale), that L. 297/1982 art. 3
             c. 16 deducts from the quota.
         tfr_net_of_extra_ivs: The quota less ``tfr_deduction``.
         payments: Number of payments of the tax year.
@@ -140,6 +149,7 @@ class ConciaYear:
     minimum: Decimal
     edr: Decimal
     monthly_gross: Decimal
+    inps_base: Decimal
     monthly_inps: Decimal
     tfr_divisor: Decimal
     tfr_quota: Decimal
@@ -163,9 +173,12 @@ def _year() -> ConciaYear:
         raise ValueError(msg)
     edr = _cents(_EDR_LIRE / _LIRE_PER_EURO)
     monthly_gross = minimum + edr
-    monthly_inps = _cents(monthly_gross * _EMPLOYEE_INPS_RATE)
+    base = monthly_gross.quantize(Decimal(1), rounding=ROUND_HALF_UP)
+    monthly_inps = _cents(base * _EMPLOYEE_IVS_RATE) + _cents(
+        base * _EMPLOYEE_CIGS_RATE
+    )
     tfr_quota = _cents(monthly_gross / _TFR_DIVISOR)
-    tfr_deduction = _cents(monthly_gross * _TFR_EXTRA_IVS_RATE)
+    tfr_deduction = _cents(base * _TFR_EXTRA_IVS_RATE)
     gross = monthly_gross * _MONTHS_PAID
     inps = monthly_inps * _MONTHS_PAID
     taxable = gross - inps
@@ -175,6 +188,7 @@ def _year() -> ConciaYear:
         minimum=minimum,
         edr=edr,
         monthly_gross=monthly_gross,
+        inps_base=base,
         monthly_inps=monthly_inps,
         tfr_divisor=_TFR_DIVISOR,
         tfr_quota=tfr_quota,

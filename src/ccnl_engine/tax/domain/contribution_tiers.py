@@ -94,6 +94,9 @@ class InpsRawRates(BaseModel):
     ``end_of_service`` the end-of-service fund of the tiers (ENPAS).
     ``ceiling_provenance`` backs the massimale apart from the rates;
     ``fis_reduction`` is the cut of the FIS rate of the smallest employers.
+    ``base_whole_euro`` rounds the base of a run to the whole euro (INPS
+    circ. 208/2001, the denunce of private employers); the Gestione
+    Dipendenti Pubblici keeps it to the cent.
 
     ``employee_tiers`` and ``employer_tiers`` must be non-empty; an empty
     list would cause ``_resolve_tier`` to raise with no tier available for
@@ -115,6 +118,7 @@ class InpsRawRates(BaseModel):
     public_enam: PublicEnamRate | None = None
     ceiling_provenance: RuleProvenance | None = None
     fis_reduction: FisReduction | None = None
+    base_whole_euro: bool = True
 
 
 class ApprenticeRawRates(BaseModel):

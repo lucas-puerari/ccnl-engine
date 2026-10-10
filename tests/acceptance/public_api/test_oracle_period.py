@@ -54,10 +54,11 @@ _C3 = Employment(
 def test_inps_contributions_metalmeccanico_c3() -> None:
     """Employee and employer INPS for metalmeccanico C3, January 2026.
 
-    An impiegato of an industrial employer of 100: the worker pays 9.19%
-    IVS + 0.30% CIGS = 204.81; the employer 29.36%, 23.81% IVS = 513.88 and
-    5.55% (NASpI, CUAF, CIGO 2.00%, CIGS, Fondo Garanzia, maternita) =
-    119.78: 633.66.
+    An impiegato of an industrial employer of 100, on the base of 2,158 (the
+    2,158.26 of gross to the whole euro, INPS circ. 208/2001): the worker
+    pays 9.19% IVS 198.32 + 0.30% CIGS 6.47 = 204.79; the employer 29.36%,
+    23.81% IVS = 513.82 and 5.55% (NASpI, CUAF, CIGO 2.00%, CIGS, Fondo
+    Garanzia, maternita) = 119.77: 633.59.
     """
     result = engine.calculate_period(
         PeriodInput(
@@ -68,8 +69,8 @@ def test_inps_contributions_metalmeccanico_c3() -> None:
         )
     )
     assert result.period_gross == Decimal("2158.26")
-    assert result.contribution_breakdown.employee == Decimal("204.81")
-    assert result.contribution_breakdown.employer == Decimal("633.66")
+    assert result.contribution_breakdown.employee == Decimal("204.79")
+    assert result.contribution_breakdown.employer == Decimal("633.59")
 
 
 # ---------------------------------------------------------------------------
@@ -80,14 +81,14 @@ def test_inps_contributions_metalmeccanico_c3() -> None:
 def test_irpef_ordinary_tax_metalmeccanico_c3() -> None:
     """January IRPEF of metalmeccanico C3 under art. 23 c. 2 lett. a) DPR 600/1973.
 
-    Taxable of the month 2,158.26 - 204.81 = 1,953.45, below 28,000 / 12:
-    23% gives 449.29.  The deductions are measured on the projected year:
+    Taxable of the month 2,158.26 - 204.79 = 1,953.47, below 28,000 / 12:
+    23% gives 449.30.  The deductions are measured on the projected year:
     13 slots, the twelve still to come at 2,158.26 less 9.49% INPS,
-    1,953.45 + 25,899.12 - 2,457.83 = 25,394.74.  Art. 13: 1,910 + 1,190 *
+    1,953.47 + 25,899.12 - 2,457.83 = 25,394.76.  Art. 13: 1,910 + 1,190 *
     0.2004 + 65 = 2,213.48, times 31/365 = 187.99; ulteriore detrazione
-    1,000 * 31/365 = 84.93.  449.29 - 187.99 - 84.93 = 176.37
-    (``regular_month_withholding``).  Net: 2,158.26 - 204.81 - 176.37 =
-    1,777.08.
+    1,000 * 31/365 = 84.93.  449.30 - 187.99 - 84.93 = 176.38
+    (``regular_month_withholding``).  Net: 2,158.26 - 204.79 - 176.38 =
+    1,777.09.
     """
     result = engine.calculate_period(
         PeriodInput(
@@ -99,10 +100,10 @@ def test_irpef_ordinary_tax_metalmeccanico_c3() -> None:
     )
     tc = result.tax_computation
     assert tc.ordinary_tax == regular_month_withholding(
-        Decimal("1953.45"), Decimal("25394.74"), 31
+        Decimal("1953.47"), Decimal("25394.76"), 31
     )
-    assert tc.ordinary_tax == Decimal("176.37")
-    assert result.period_net == Decimal("1777.08")
+    assert tc.ordinary_tax == Decimal("176.38")
+    assert result.period_net == Decimal("1777.09")
 
 
 # ---------------------------------------------------------------------------
@@ -134,7 +135,7 @@ def test_tfr_accrual_metalmeccanico_c3() -> None:
 def test_employer_cost_counts_the_additional_ivs_once() -> None:
     """The 0.50% sits in the employer INPS; the TFR is net of it.
 
-    Employer INPS stays 633.66 (the 0.50% is inside the 23.81% IVS rate)
+    Employer INPS stays 633.59 (the 0.50% is inside the 23.81% IVS rate)
     and the TFR posted is 149.08, so the cost is the gross plus both, plus
     any other employer account the ledger holds.
     """
@@ -155,9 +156,9 @@ def test_employer_cost_counts_the_additional_ivs_once() -> None:
         ),
         Decimal(0),
     )
-    assert result.contribution_breakdown.employer == Decimal("633.66")
+    assert result.contribution_breakdown.employer == Decimal("633.59")
     assert result.period_employer_cost == (
-        Decimal("2158.26") + Decimal("633.66") + Decimal("149.08") + others
+        Decimal("2158.26") + Decimal("633.59") + Decimal("149.08") + others
     )
 
 

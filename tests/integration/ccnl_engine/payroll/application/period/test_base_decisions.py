@@ -29,6 +29,7 @@ from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.trace import TraceState
 from ccnl_engine.provenance.domain.chain import RuleProvenance
 from ccnl_engine.tax.service.tax_annual_assembler import load_year_rules
+from tests.fixtures.normative_oracles.contributions_2026 import contribution_base
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
@@ -119,7 +120,9 @@ class TestPermanentWorker:
         assert employee.reason_code == "rates_applied"
         assert employee.inputs["rate"] == self.rules.inps.employee_rate
         base = Decimal(employee.inputs["base"])
-        assert base == _decision(self.result, "base_salary").amount
+        salary = _decision(self.result, "base_salary").amount
+        assert salary is not None
+        assert base == contribution_base(salary)
         ivs = self.rules.inps.employee_ivs_rate
         rest = self.rules.inps.employee_rate - ivs
         assert employee.amount == money(base * ivs) + money(base * rest)
@@ -135,7 +138,8 @@ class TestPermanentWorker:
         """TFR is the base over 13.5 (art. 2120 c.c.), accrued in the company.
 
         L. 297/1982 art. 3 cc. 15-16 deduct the 0.50% additional IVS of the
-        INPS base (here the gross, under the massimale) from the quota.
+        INPS base (the gross to the whole euro, INPS circ. 208/2001, under the
+        massimale) from the quota.
         """
         assert self.rules.ruleset is not None
         decision = _decision(self.result, "tfr")
@@ -144,9 +148,9 @@ class TestPermanentWorker:
         assert decision.inputs["account"] == AccountKind.TFR_ACCRUAL.value
         base = Decimal(decision.inputs["base"])
         quota = money(base / Decimal("13.5"))
-        deduction = money(base * Decimal("0.0050"))
+        deduction = money(contribution_base(base) * Decimal("0.0050"))
         assert decision.inputs["quota"] == quota
-        assert decision.inputs["additional_ivs_base"] == base
+        assert decision.inputs["additional_ivs_base"] == contribution_base(base)
         assert decision.inputs["additional_ivs_rate"] == Decimal("0.0050")
         assert decision.inputs["additional_ivs_deduction"] == deduction
         assert decision.amount == quota - deduction

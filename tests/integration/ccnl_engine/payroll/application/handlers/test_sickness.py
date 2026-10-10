@@ -36,6 +36,7 @@ from ccnl_engine.payroll.service.bundled_knowledge_repository import (
 )
 from ccnl_engine.provenance.domain.chain import ProvenanceStatus, RuleProvenance
 from ccnl_engine.shared.domain.errors import InvalidInputError
+from tests.fixtures.normative_oracles.contributions_2026 import contribution_base
 from tests.fixtures.seniority import new_hire
 from tests.fixtures.sickness_episode import sickness_episode
 
@@ -124,7 +125,7 @@ class TestMultiPeriodEpisode:
     def test_inps_indemnity_stays_out_of_the_contribution_base(self) -> None:
         """The INPS base is the monthly pay less the INPS share."""
         result = calculate_period(_req(2, _FEB_TO_MAR))
-        assert result.closing_state.accrual.inps_base(2026).own == (
+        assert result.closing_state.accrual.inps_base(2026).own == contribution_base(
             Decimal("2158.26") - Decimal("249.03")
         )
 

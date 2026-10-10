@@ -9,18 +9,19 @@ of the 2,158.26 EUR January pay, and a 3,000 EUR fringe benefit in kind,
 above the 1,000 EUR threshold, is taxed in full.  The expectation is derived
 by hand:
 
-- INPS base 2,158.26 - 1,250 + 3,000 = 3,908.26; employee INPS 9.19% IVS
-  (359.17) plus 0.30% CIGS (11.72), rounded per component: 370.89; pay left
-  in cash 2,158.26 - 1,250 - 370.89 = 537.37;
-- taxable of the month 3,908.26 - 370.89 = 3,537.37, taxed on the brackets
+- INPS base 2,158.26 - 1,250 + 3,000 = 3,908.26, 3,908 to the whole euro
+  (INPS circ. 208/2001); employee INPS 9.19% IVS (359.15) plus 0.30% CIGS
+  (11.72), rounded per component: 370.87; pay left in cash 2,158.26 -
+  1,250 - 370.87 = 537.39;
+- taxable of the month 3,908.26 - 370.87 = 3,537.39, taxed on the brackets
   divided by twelve (art. 23 c. 2 lett. a) DPR 600/1973): 23% of 2,333.33
-  plus 33% of the rest = 934.00;
-- projected taxable: 3,537.37 plus twelve slots of 2,158.26 less 9.49% INPS
-  (2,457.83 on 25,899.12): 26,978.66; art. 13 deduction 1,910 + 1,190 *
+  plus 33% of the rest = 934.01;
+- projected taxable: 3,537.39 plus twelve slots of 2,158.26 less 9.49% INPS
+  (2,457.83 on 25,899.12): 26,978.68; art. 13 deduction 1,910 + 1,190 *
   0.0785 + 65 = 2,068.42, times 31/365 = 175.67; ulteriore detrazione
-  1,000 * 31/365 = 84.93; IRPEF of January 934.00 - 175.67 - 84.93 = 673.40
+  1,000 * 31/365 = 84.93; IRPEF of January 934.01 - 175.67 - 84.93 = 673.41
   (``regular_month_withholding``);
-- shortfall: 673.40 - 537.37 = 136.03, carried to February.
+- shortfall: 673.41 - 537.39 = 136.02, carried to February.
 """
 
 from __future__ import annotations
@@ -106,8 +107,8 @@ def _year() -> CompetenceYearResult:
 def _expected_january_irpef() -> Decimal:
     upcoming = 12 * _PAY
     inps = (upcoming * Decimal("0.0949")).quantize(Decimal("0.01"), ROUND_HALF_UP)
-    projected = Decimal("3537.37") + upcoming - inps
-    return regular_month_withholding(Decimal("3537.37"), projected, 31)
+    projected = Decimal("3537.39") + upcoming - inps
+    return regular_month_withholding(Decimal("3537.39"), projected, 31)
 
 
 def _ordinary_tax(result: PeriodResult) -> Decimal:
@@ -125,17 +126,17 @@ class TestAbsenceShortfall:
     """The C3 January absence withholds the pay left and carries the rest."""
 
     def test_january_net_is_zero(self) -> None:
-        """IRPEF takes the 537.37 EUR left and no more."""
+        """IRPEF takes the 537.39 EUR left and no more."""
         result = _january()
         assert result.period_net == Decimal("0.00")
-        assert _ordinary_tax(result) == Decimal("537.37")
+        assert _ordinary_tax(result) == Decimal("537.39")
 
     def test_shortfall_is_carried(self) -> None:
-        """The 136.03 EUR not withheld is carried in the tax year state."""
-        assert _expected_january_irpef() == Decimal("673.40")
+        """The 136.02 EUR not withheld is carried in the tax year state."""
+        assert _expected_january_irpef() == Decimal("673.41")
         shortfall = _january().closing_state.cash.shortfall
-        assert shortfall.irpef == _expected_january_irpef() - Decimal("537.37")
-        assert shortfall.irpef == Decimal("136.03")
+        assert shortfall.irpef == _expected_january_irpef() - Decimal("537.39")
+        assert shortfall.irpef == Decimal("136.02")
         assert shortfall.surtax == _ZERO
 
     def test_decision_records_the_cap(self) -> None:
@@ -144,8 +145,8 @@ class TestAbsenceShortfall:
             d for d in _january().decisions if d.capability == "withholding_shortfall"
         )
         assert decision.reason_code == "withholding_capped"
-        assert decision.amount == Decimal("136.03")
-        assert decision.inputs["pay_available"] == Decimal("537.37")
+        assert decision.amount == Decimal("136.02")
+        assert decision.inputs["pay_available"] == Decimal("537.39")
 
     def test_catalog_capabilities_have_no_gap(self) -> None:
         """The capabilities the catalog now declares are traced every run.
@@ -163,10 +164,10 @@ class TestAbsenceShortfall:
         assert gaps.isdisjoint(declared)
 
     def test_february_withholds_the_carried_amount(self) -> None:
-        """February withholds the 136.03 EUR in full on top of its own tax.
+        """February withholds the 136.02 EUR in full on top of its own tax.
 
         The IRPEF of February is the tax of its pay period, the same with or
-        without the carried amount, so February withholds exactly 136.03
+        without the carried amount, so February withholds exactly 136.02
         EUR more than a state that carried nothing.
         """
         opening = _january().closing_state
@@ -174,7 +175,7 @@ class TestAbsenceShortfall:
         plain_ytd = replace(opening.cash, shortfall=WithholdingShortfall())
         plain = _run(2, replace(opening, cash=plain_ytd))
         difference = _ordinary_tax(february) - _ordinary_tax(plain)
-        assert difference == Decimal("136.03")
+        assert difference == Decimal("136.02")
         assert february.closing_state.cash.shortfall.total == _ZERO
         (decision,) = (
             d for d in february.decisions if d.capability == "withholding_shortfall"
@@ -301,11 +302,11 @@ def test_absence_leaving_less_than_withholdings_caps_the_irpef() -> None:
 
     100 hours at 12.50 EUR deduct 1,250 EUR of 2,158.26 EUR of pay and a
     3,000 EUR fringe benefit in kind is taxed: the IRPEF of January (673.40
-    EUR) exceeds the 537.37 EUR left in cash after INPS.  The IRPEF is
-    withheld up to the pay left and the 136.03 EUR are carried to the next
+    EUR) exceeds the 537.39 EUR left in cash after INPS.  The IRPEF is
+    withheld up to the pay left and the 136.02 EUR are carried to the next
     run (art. 23 c. 3 DPR 600/1973); the derivation is in the module
     docstring.
     """
     result = calculate_period(period_request(events=(_ABSENCE, _FRINGE)))
     assert result.period_net == Decimal("0.00")
-    assert result.closing_state.cash.shortfall.irpef == Decimal("136.03")
+    assert result.closing_state.cash.shortfall.irpef == Decimal("136.02")

@@ -11,9 +11,10 @@ Sources, written by hand and not read from the engine:
   regular month, not a conguaglio, and 2,211.43 is below it;
 - massimale 2026: 122,295.00 (INPS, L. 335/1995 art. 2 c. 18).
 
-Employee INPS of the full month uncapped:
-IVS 2,211.43 x 0.0919 = 203.230417 -> 203.23; CIGS 2,211.43 x 0.0030 =
-6.63429 -> 6.63; no addizionale; total 209.86.
+Employee INPS of the full month uncapped, on the base of 2,211 (the
+2,211.43 to the whole euro, INPS circ. 208/2001): IVS 2,211 x 0.0919 =
+203.1909 -> 203.19; CIGS 2,211 x 0.0030 = 6.633 -> 6.63; no addizionale;
+total 209.82.
 """
 
 from __future__ import annotations
@@ -36,15 +37,14 @@ from ccnl_engine.payroll.domain.inps_base import InpsBaseYtd
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
-from tests.fixtures.normative_oracles.payslips.metalmeccanico_c3_2026 import (
-    C3_MINIMUM_FROM_JUNE_2026,
-)
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.period import PeriodResult
 
 _CEILING = Decimal("122295.00")
-_UNCAPPED_EMPLOYEE = Decimal("209.86")
+_UNCAPPED_EMPLOYEE = Decimal("209.82")
+#: The INPS base of the run, the June minimum to the whole euro.
+_BASE = Decimal("2211.00")
 _POST_1995 = ContributionHistory(first_enrolled_on=date(2001, 9, 1))
 _PRE_1996 = ContributionHistory(first_enrolled_on=date(1990, 3, 1))
 _OPTED_IN = ContributionHistory(
@@ -91,13 +91,15 @@ def _missing(result: PeriodResult) -> bool:
     ],
 )
 def test_missing_history_around_the_massimale(offset: str, *, missing: bool) -> None:
-    """YTD + 2,211.43 against 122,295.00, with no contribution history.
+    """YTD + 2,211 against 122,295.00, with no contribution history.
 
-    YTD = 122,295.00 - 2,211.43 + offset: 120,083.56 / .57 / .58.  Up to
-    the massimale both branches coincide and the run is final; one cent
-    beyond, the fact is missing and the INPS amounts are undetermined.
+    The base of the run is 2,211.43 to the whole euro (INPS circ.
+    208/2001).  YTD = 122,295.00 - 2,211 + offset: 120,083.99 / 84.00 /
+    84.01.  Up to the massimale both branches coincide and the run is final;
+    one cent beyond, the fact is missing and the INPS amounts are
+    undetermined.
     """
-    ytd = _CEILING - C3_MINIMUM_FROM_JUNE_2026 + Decimal(offset)
+    ytd = _CEILING - _BASE + Decimal(offset)
     result = _june(ytd, None)
 
     decision = _eligibility(result)
@@ -120,8 +122,8 @@ def test_missing_history_beyond_the_massimale_lists_both_branches() -> None:
     """YTD 130,000 is past the massimale: the two branches differ.
 
     Capped: no IVS, employee CIGS 6.63 only; employer IVS 0.  Uncapped:
-    employee 209.86; employer IVS 2,211.43 x 0.2381 =
-    526.541483 -> 526.54 more than capped.
+    employee 209.82; employer IVS 2,211 x 0.2381 = 526.4391 -> 526.44
+    more than capped.
     """
     result = _june(Decimal("130000.00"), None)
 
@@ -131,7 +133,7 @@ def test_missing_history_beyond_the_massimale_lists_both_branches() -> None:
     employer_gap = Decimal(inputs["employer_uncapped"]) - Decimal(
         inputs["employer_capped"]
     )
-    assert employer_gap == Decimal("526.54")
+    assert employer_gap == Decimal("526.44")
     assert _decision(result, "inps_employer").amount is None
     assert _missing(result)
     assert "inps/2026/industria" in {r.identity.id for r in result.rulesets}
@@ -140,7 +142,7 @@ def test_missing_history_beyond_the_massimale_lists_both_branches() -> None:
 @pytest.mark.parametrize(
     ("history", "reason", "employee"),
     [
-        pytest.param(_PRE_1996, "enrolled_before_1996", "209.86", id="pre-1996"),
+        pytest.param(_PRE_1996, "enrolled_before_1996", "209.82", id="pre-1996"),
         pytest.param(_POST_1995, "first_enrolment_after_1995", "6.63", id="post-1995"),
         pytest.param(_OPTED_IN, "contributory_option", "6.63", id="opt-in"),
     ],

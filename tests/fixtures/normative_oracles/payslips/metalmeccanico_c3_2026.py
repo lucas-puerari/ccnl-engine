@@ -13,13 +13,17 @@ Written from the sources, deliberately without importing anything from
   9.19% and CIGS 0.30%, 9.49% in all, on the whole gross below the IVS
   massimale (122,295 EUR for 2026, INPS news of February 2026).  The rates
   are not linked to a circolare; the test using them guards the resulting
-  annual income instead of trusting it.
+  annual income instead of trusting it.  The base is the gross to the whole
+  euro, "da 50 centesimi in poi si arrotonda all'unità di Euro superiore"
+  (INPS circ. 208/2001), and each share is rounded to the cent on its own.
 
 Worked example, the tredicesima of December 2026 (one minimo of the month):
 
     gross       2,211.43
-    INPS        2,211.43 x 9.49% = 209.8647 -> 209.86
-    taxable     2,211.43 - 209.86 = 2,001.57
+    INPS base   2,211
+    IVS         2,211 x 9.19% = 203.1909 -> 203.19
+    CIGS        2,211 x 0.30% = 6.633    ->   6.63
+    taxable     2,211.43 - 209.82 = 2,001.61
 """
 
 from __future__ import annotations
@@ -31,7 +35,7 @@ __all__ = ["C3_MINIMUM_FROM_JUNE_2026", "employee_taxable"]
 C3_MINIMUM_FROM_JUNE_2026 = Decimal("2211.43")
 
 _CENT = Decimal("0.01")
-_EMPLOYEE_INPS_RATE = Decimal("0.0919") + Decimal("0.0030")
+_EMPLOYEE_SHARES = (Decimal("0.0919"), Decimal("0.0030"))
 
 
 def employee_taxable(gross: Decimal) -> Decimal:
@@ -40,7 +44,14 @@ def employee_taxable(gross: Decimal) -> Decimal:
     Valid only for a gross below the IVS massimale and with no pension fund.
 
     Returns:
-        ``gross`` less 9.49% of it rounded to the cent.
+        ``gross`` less the IVS and CIGS shares of its whole-euro base.
     """
-    inps = (gross * _EMPLOYEE_INPS_RATE).quantize(_CENT, rounding=ROUND_HALF_UP)
+    base = gross.quantize(Decimal(1), rounding=ROUND_HALF_UP)
+    inps = sum(
+        (
+            (base * share).quantize(_CENT, rounding=ROUND_HALF_UP)
+            for share in _EMPLOYEE_SHARES
+        ),
+        Decimal(0),
+    )
     return gross - inps

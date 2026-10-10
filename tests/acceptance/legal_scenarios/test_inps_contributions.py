@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from dataclasses import replace
 from datetime import date
-from decimal import Decimal
+from decimal import ROUND_HALF_UP, Decimal
 from typing import TYPE_CHECKING
 
 import pytest
@@ -31,6 +31,7 @@ from tests.fixtures.normative_oracles.contributions_2026 import (
     FULL_TIME_MONTHLY_CONTRIBUTION_FLOOR,
     HOURLY_FLOOR_40_HOURS,
     additional_ivs,
+    contribution_base,
     naspi_surcharge_rate,
 )
 from tests.fixtures.normative_oracles.payslips.metalmeccanico_c3_2026 import (
@@ -44,7 +45,13 @@ pytestmark = pytest.mark.legal_scenario
 
 _ZERO = Decimal(0)
 #: Employee IVS 9.19% and CIGS 0.30% of an industrial employer of 50.
-_EMPLOYEE_RATE = Decimal("0.0949")
+_IVS_RATE = Decimal("0.0919")
+_CIGS_RATE = Decimal("0.0030")
+_CENT = Decimal("0.01")
+
+
+def _cents(amount: Decimal) -> Decimal:
+    return amount.quantize(_CENT, rounding=ROUND_HALF_UP)
 
 
 def _account(result: PeriodResult, account: str) -> Decimal:
@@ -77,9 +84,9 @@ def _inps_base(result: PeriodResult) -> Decimal:
 def test_additional_ivs_uses_the_monthly_threshold() -> None:
     """Metalmeccanico C3 hired 1 June 2026, June pay plus a 10,000 EUR bonus.
 
-    Gross 2,211.43 + 10,000 = 12,211.43.  Employee INPS: 9.49% of it,
-    1,158.8647, plus 1% of 12,211.43 - 4,685 = 7,526.43, that is 75.2643:
-    1,234.13 within the cents that rounding each component apart moves.
+    Gross 2,211.43 + 10,000 = 12,211.43, INPS base 12,211 (whole euro, INPS
+    circ. 208/2001).  Employee INPS: IVS 9.19% = 1,122.19, CIGS 0.30% =
+    36.63, plus 1% of 12,211 - 4,685 = 7,526, that is 75.26: 1,234.08.
     The year-to-date base stays far below 56,224 EUR: the monthly threshold
     alone charges the 1% (circolare 6/2026 section 5, mensilizzazione).
     """
@@ -95,11 +102,13 @@ def test_additional_ivs_uses_the_monthly_threshold() -> None:
         regular_run(employment=employment, events=(bonus,))
     )
     gross = C3_MINIMUM_FROM_JUNE_2026 + Decimal(10_000)
-    expected = gross * _EMPLOYEE_RATE + additional_ivs(gross)
+    base = contribution_base(gross)
+    expected = (
+        _cents(base * _IVS_RATE) + _cents(base * _CIGS_RATE) + additional_ivs(base)
+    )
 
     assert result.period_gross == gross
-    employee = _account(result, "employee_contributions")
-    assert abs(employee - expected) <= Decimal("0.02")
+    assert _account(result, "employee_contributions") == expected == Decimal("1234.08")
 
 
 def test_monthly_base_reaches_the_daily_floor() -> None:
@@ -108,7 +117,8 @@ def test_monthly_base_reaches_the_daily_floor() -> None:
     The signed table pays 987.04 + 439.83 + 10.33 = 1,437.20
     (``tests/fixtures/reference_tables/autoscuole-unasca_3_2026.json``),
     below 58.13 x 26 = 1,511.38.  The full month of a full-time worker
-    without absences is contributed on the floor, and no calculation issue
+    without absences is contributed on the floor, 1,511 to the whole euro
+    (INPS circ. 208/2001), and no calculation issue
     blocks the INPS amounts; the pay itself is not raised.  A weak rate
     source blocks INPS on every run and says nothing of the floor, so it
     does not count.
@@ -117,14 +127,13 @@ def test_monthly_base_reaches_the_daily_floor() -> None:
     blocked = _issue_blocked(result)
 
     assert result.period_gross == Decimal("1437.20")
-    assert _inps_base(result) == FULL_TIME_MONTHLY_CONTRIBUTION_FLOOR
+    assert _inps_base(result) == contribution_base(FULL_TIME_MONTHLY_CONTRIBUTION_FLOOR)
     assert not {"inps_employee", "inps_employer"} & blocked
 
 
 _AUTOSCUOLE_3 = replace(
     CONCIA_D2, category=None, ccnl_slug="autoscuole-unasca.json", level_code="3"
 )
-_CENT = Decimal("0.01")
 
 
 def test_part_time_base_reaches_the_hourly_floor() -> None:
@@ -133,7 +142,7 @@ def test_part_time_base_reaches_the_hourly_floor() -> None:
     Half of 1,437.20 is paid.  The hourly floor of a 40-hour week is 8.72
     (circolare 6/2026 section 4); 20 hours a week over a month of 26 days
     of a six-day week are 20 x 26 / 6 hours: 8.72 x 20 x 26 / 6 = 755.733,
-    so the base is 755.73.
+    so the base is 756 to the whole euro.
     """
     employment = replace(
         _AUTOSCUOLE_3,
@@ -144,7 +153,7 @@ def test_part_time_base_reaches_the_hourly_floor() -> None:
     floor = (HOURLY_FLOOR_40_HOURS * 20 * 26 / 6).quantize(_CENT)
 
     assert result.period_gross < floor
-    assert _inps_base(result) == floor
+    assert _inps_base(result) == contribution_base(floor)
 
 
 def test_part_time_of_an_unpublished_week_blocks_the_inps_amounts() -> None:
@@ -201,7 +210,7 @@ def test_operaio_agricolo_is_contributed_on_the_pay() -> None:
     result = ENGINE.calculate_period(regular_run(employment=employment))
 
     assert result.period_gross < FULL_TIME_MONTHLY_CONTRIBUTION_FLOOR
-    assert _inps_base(result) == result.period_gross
+    assert _inps_base(result) == contribution_base(result.period_gross)
 
 
 #: Facts the NASpI surcharge of a fixed term may miss.
@@ -346,10 +355,10 @@ def _terziario_of_five(reduced: bool | None) -> PeriodResult:
 @pytest.mark.parametrize(
     ("reduced", "employee"),
     [
-        # 1,660.08 x 9.19% = 152.56; x (9.29% - 9.19%) = 1.66.
-        (True, Decimal("154.22")),
-        # 1,660.08 x 9.19% = 152.56; x (9.36% - 9.19%) = 2.82.
-        (None, Decimal("155.38")),
+        # Base 1,660: x 9.19% = 152.55; x (9.29% - 9.19%) = 1.66.
+        (True, Decimal("154.21")),
+        # Base 1,660: x 9.19% = 152.55; x (9.36% - 9.19%) = 2.82.
+        (None, Decimal("155.37")),
     ],
     ids=["cut", "unknown"],
 )
@@ -364,7 +373,8 @@ def test_small_terziario_employer_pays_the_cut_fis(
     assegno for 24 months: 0.30%, 0.10% by the worker.  The observed
     payslip p04 (Terziario level 5, February 2026, 2,005.67 of gross)
     charges 9.19% IVS and a separate 2.01 line, 0.10% of the base.  The
-    gross of level 5 is 1,136.07 + 521.94 + 2.07 = 1,660.08.  Without the
+    gross of level 5 is 1,136.07 + 521.94 + 2.07 = 1,660.08, contributed on
+    1,660 (whole euro, INPS circ. 208/2001).  Without the
     fact the full 0.17% applies, with a ``missing_fact`` blocker.
     """
     result = _terziario_of_five(reduced)
