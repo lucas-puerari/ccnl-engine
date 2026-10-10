@@ -24,12 +24,12 @@ Evidence:
   tests of those modules must kill at least 93% of the mutants; 805 of 855
   (94.2%) on 8 October 2026.  The survivors are mostly the trace text of
   decisions (source labels, input names).
-- Reference table cases: <!-- trust:reference-cases -->7<!-- /trust:reference-cases -->
+- Reference table cases: <!-- trust:reference-cases -->10<!-- /trust:reference-cases -->
   cases in `tests/fixtures/reference_tables/`, each running one regular period through
   `PayrollEngine` and asserting, to the cent, the three values its cited
   salary table states: base salary, fixed allowances and period gross. They
   do not check net pay, contributions, taxes or employer cost.
-  <!-- trust:reference-cases-source-linked -->7<!-- /trust:reference-cases-source-linked -->
+  <!-- trust:reference-cases-source-linked -->10<!-- /trust:reference-cases-source-linked -->
   are `source_linked` (they cite the table they model) and
   <!-- trust:reference-cases-verified -->0<!-- /trust:reference-cases-verified -->
   are `verified` against an independent payslip or official worked example.
