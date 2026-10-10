@@ -123,6 +123,7 @@ from ccnl_engine.inputs import (
     PensionFundEnrolment,
     NoPensionFund,
     EmployerActivity,
+    AgriculturalZone,
     # Family and tax facts
     FamilyComposition,
     Dependent,

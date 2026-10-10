@@ -14,7 +14,7 @@ from ccnl_engine.payroll.contribution.rules_apprentice_rate import (
     apprentice_employer_rate,
 )
 from ccnl_engine.payroll.contribution.rules_naspi import naspi_surcharge
-from ccnl_engine.payroll.employment.inputs import Apprentice
+from ccnl_engine.payroll.employment.inputs import Apprentice, FixedTerm
 
 if TYPE_CHECKING:
     from decimal import Decimal
@@ -35,14 +35,20 @@ class ContributionRates:
     employer_ivs_rate: Decimal
 
 
-def inps_employer_rate(rates: InpsRates, category: WorkerCategory | None) -> Decimal:
+def inps_employer_rate(
+    rates: InpsRates, category: WorkerCategory | None, *, fixed_term: bool = False
+) -> Decimal:
     """Return the employer rate applicable to a worker category.
 
     Returns:
-        The employer contribution rate for the given worker category.
+        The fixed-term rate of the category for a fixed-term worker when the
+        sector gives one, else the rate of the category, else the general
+        employer rate.
     """
     if category is None:
         return rates.employer_rate
+    if fixed_term and category in rates.employer_fixed_term_rate_by_category:
+        return rates.employer_fixed_term_rate_by_category[category]
     return rates.employer_rate_by_category.get(category, rates.employer_rate)
 
 
@@ -124,6 +130,11 @@ def resolve_rates(
     return ContributionRates(
         employee_rate=rules.inps.employee_rate,
         employee_ivs_rate=rules.inps.employee_ivs_rate,
-        employer_rate=inps_employer_rate(rules.inps, category) + surcharge.rate,
+        employer_rate=(
+            inps_employer_rate(
+                rules.inps, category, fixed_term=isinstance(employment, FixedTerm)
+            )
+            + surcharge.rate
+        ),
         employer_ivs_rate=rules.inps.employer_ivs_rate,
     )

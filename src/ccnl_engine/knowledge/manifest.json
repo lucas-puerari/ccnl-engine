@@ -2225,7 +2225,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "inps/2026/agricoltura",
       "ruleset_version": "2026.1",
-      "source_hash": "c37cd8edb0de7dca188be1b2088b83e20e13219f25f3a14563d37bb82fb5ff53",
+      "source_hash": "b6d544f73610e5bab959328153f228b21dce9580cf53912d308b6314262944bd",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "social_security/contribution/2026/agricoltura.json.gz"
@@ -2361,7 +2361,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "inps/2027/agricoltura",
       "ruleset_version": "2026.1",
-      "source_hash": "3ce79160481c23774821a3b67e88d2f2022421c0b84f62efbb21702276a7244e",
+      "source_hash": "e5e037e3279fc3358a390ff3c2951ac853e9505453f6a5259d689deb33158824",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "social_security/contribution/2027/agricoltura.json.gz"

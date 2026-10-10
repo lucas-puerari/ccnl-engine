@@ -302,8 +302,10 @@ def test_agricultural_fixed_term_pays_no_naspi_surcharge() -> None:
 
     C. 3 excludes the operai agricoli a tempo determinato o indeterminato
     from the whole article, so from the surcharge of c. 28 and its renewal
-    increase: a fixed term renewed once posts the employer contributions of
-    a permanent contract.
+    increase.  A fixed term renewed once is an OTD: INPS circ. 43/2026
+    allegati 1-2 charge it 33.753% against 33.953% of an OTI, the 0.20%
+    Fondo di garanzia TFR the OTD does not owe, and no surcharge: within
+    the cent each rounded component may move.
     """
     agricultural = replace(
         CONCIA_D2,
@@ -315,7 +317,13 @@ def test_agricultural_fixed_term_pays_no_naspi_surcharge() -> None:
     permanent, _ = _employer(agricultural)
     fixed_term, result = _employer(replace(agricultural, contract_type=renewed))
 
-    assert fixed_term == permanent
+    base = next(
+        c.base
+        for c in result.contribution_breakdown.components
+        if c.name == "non_ivs_employer"
+    )
+    expected = (base * Decimal("0.0020")).quantize(Decimal("0.01"))
+    assert abs(permanent - fixed_term - expected) <= Decimal("0.01")
     assert not _missing_facts(result)
 
 

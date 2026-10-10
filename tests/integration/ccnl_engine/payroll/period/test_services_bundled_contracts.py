@@ -32,6 +32,7 @@ from ccnl_engine import (
 from ccnl_engine.contract.catalog.loaders import load_ccnl
 from ccnl_engine.contract.identity.facade import CCNL, TaxSector
 from ccnl_engine.inputs import (
+    AgriculturalZone,
     ContributableHours,
     CurrentYearTaxFacts,
     EmploymentPeriod,
@@ -164,6 +165,7 @@ def test_every_level_computes_sane_totals(slug: str) -> None:
                 employer=EmployerProfile(
                     headcount=Headcount(50),
                     provincial_pay_element=False,
+                    agricultural_zone=AgriculturalZone.ORDINARY,
                     public_life_insurance=False if _public_regime(ccnl) else None,
                 ),
                 facts=_DOMESTIC_FACTS if slug in _DOMESTIC else resident(),

@@ -23,6 +23,7 @@ from ccnl_engine.provenance.source.models_chain import RuleProvenance
 from ccnl_engine.tax.contribution.models_additional_ivs import AdditionalIvsRule
 from ccnl_engine.tax.contribution.models_fis_reduction import FisReduction
 from ccnl_engine.tax.contribution.models_minimum_base import MinimumBaseRule
+from ccnl_engine.tax.contribution.models_zone_reduction import ZoneReduction
 
 
 class EndOfServiceRates(BaseModel):
@@ -155,6 +156,11 @@ class InpsRates(BaseModel):
     ``fis_reduction_open`` flags rates resolved for an employer it may
     apply to that does not say whether it does.  ``base_whole_euro`` rounds
     the INPS base of a run to the whole euro (INPS circ. 208/2001).
+    ``employer_fixed_term_rate_by_category`` overrides the employer rate of
+    a fixed-term worker of a category (the operai agricoli a tempo
+    determinato owe no Fondo di garanzia TFR); ``zone_reduction`` is the cut
+    of the agricultural disadvantaged zones and ``zone_reduction_open``
+    flags rates of an employer that does not say its zone.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -177,6 +183,9 @@ class InpsRates(BaseModel):
     fis_reduction: FisReduction | None = None
     fis_reduction_open: bool = False
     base_whole_euro: bool = True
+    employer_fixed_term_rate_by_category: dict[WorkerCategory, NonNegativeRate] = {}
+    zone_reduction: ZoneReduction | None = None
+    zone_reduction_open: bool = False
 
     @property
     def ceiling_record(self) -> RuleProvenance | None:

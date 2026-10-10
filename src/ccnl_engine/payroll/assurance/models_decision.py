@@ -104,6 +104,7 @@ _SEVERITY: dict[CalculationStatus, int] = {
 #: field the caller sets to resolve the issue.
 PUBLIC_FACTS: Mapping[str, str] = MappingProxyType({
     "activity": "EmployerProfile.activity",
+    "agricultural_zone": "EmployerProfile.agricultural_zone",
     "agreement_signed_on": "BonusEvent.agreement_signed_on",
     "allocation_pct": "Dependent.allocation_pct",
     "category": "Employment.category",

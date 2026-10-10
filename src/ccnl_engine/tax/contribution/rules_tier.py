@@ -94,6 +94,8 @@ def _resolve_inps(raw: InpsRawRates | None, num_employees: int) -> InpsRates | N
         employer_ivs_rate=employer_tier.ivs_rate,
         ceiling=raw.ceiling,
         employer_rate_by_category=employer_tier.rate_by_category,
+        employer_fixed_term_rate_by_category=employer_tier.fixed_term_rate_by_category,
+        zone_reduction=raw.zone_reduction,
         employee_additional=raw.employee_additional,
         minimum_base=raw.minimum_base,
         provenance=raw.provenance,

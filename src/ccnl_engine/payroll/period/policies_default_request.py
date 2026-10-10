@@ -98,6 +98,13 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "the full FIS rate; an employer of the fondo di integrazione salariale "
         "with up to five employees has a missing_fact fis_reduction blocker",
     ),
+    "EmployerProfile.agricultural_zone": requires_fact(
+        "inps_employer",
+        "employer.agricultural_zone",
+        _REPORTED,
+        "the full employer rates; an agricultural run has a missing_fact "
+        "agricultural_zone blocker",
+    ),
     "EmployerProfile.provincial_pay_element": requires_fact(
         "base_salary",
         "employer.provincial_pay_element",

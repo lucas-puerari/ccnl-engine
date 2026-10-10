@@ -4,6 +4,14 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Agricultural INPS rates and zones
+
+| Before | After |
+|---|---|
+| Agricoltura employer rate 21.66% (the IVS only) for every worker | INPS circ. 43/2026 allegati 1-2, net of the INAIL the engine does not model: operai a tempo indeterminato 25.453%, a tempo determinato 25.253% (new `fixed_term_rate_by_category` of the employer tier); impiegati and quadri 25.63%, dirigenti 24.13% (Confagricoltura Siena 2026, INPS part, ENPAIA excluded). An agricultural employer's cost rises by about 3.8% of the INPS base |
+| No cut for the disadvantaged zones | New `EmployerProfile.agricultural_zone` (`AgriculturalZone`, in `ccnl_engine.inputs`): 68% less in a zona svantaggiata, 75% in a zona particolarmente svantaggiata, never on the 0.30% of art. 25 L. 845/1978 (circ. 43/2026 par. 7). `None` on an agricultural run charges the full rates with a `missing_fact` `agricultural_zone` blocker: state it, `ORDINARY` where no cut applies |
+
+
 ## Solidarity fund of the credito CCNLs
 
 | Before | After |
@@ -575,11 +583,3 @@ decision records the part of the minimum left to the tax return (see
 | Metalmeccanico C3, 10 July to 20 September 2026 (73 days), open-ended: deduction €690.00 | Deduction €391.00 (1,955 × 73 / 365); decision `minimum_proportioned_to_days`, `tax_return_balance` €299.00 |
 | Same, `FixedTerm()`: deduction €1,380.00, net IRPEF €0.00, no trattamento | Deduction €391.00; gross tax above €391.00 − €15.00, so trattamento €240.00 (1,200 × 73 / 365); `tax_return_balance` €989.00 |
 | `irpef` decisions of a run: one, `withheld`, `refunded` or `nothing_due` | Also `minimum_proportioned_to_days` (no amount) when the whole minimum exceeds the deduction of the withholding |
-
-## Negative net, arrears of the year and a conguaglio without residence
-
-| Before | After |
-|---|---|
-| A run whose deductions other than IRPEF and surtax exceeded its pay without unpaid absences (e.g. a large fringe benefit on a part-time salary) raised `DataIntegrityError` (`net_pay_non_negative`) | `OutOfScopeError`, reason `negative_net`, feature `net_pay`, with or without absences; the reason was `withholding_shortfall` with absences |
-| `ArrearsEvent` was always taxed separately at `separate_tax_rate`; `reference_period` was not read | `reference_period` of an earlier tax year than the run: separate taxation at `separate_tax_rate` (art. 17 c. 1 lett. b TUIR); of the tax year of the run: ordinary IRPEF with the run, the rate is not used; `None`: separate taxation as before with a `missing_fact reference_period` blocker; a later year: `InvalidInputError`. Each arrears event records a `contract_renewal_arrears` decision with reason `separate_taxation`, `ordinary_taxation` or `reference_period_unknown` |
-| A conguaglio of a withholding run without `regione` or `comune_belfiore` closed a state that opened the next year without a blocker | Its `closing_state.history_known` is `False`: every later run, the next tax year included, has the `missing_fact opening_state` blocker until it is recomputed with the residence |

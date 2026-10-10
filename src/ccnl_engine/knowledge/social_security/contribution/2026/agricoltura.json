@@ -12,8 +12,16 @@
     "employer_tiers": [
       {
         "max_employees": null,
-        "rate": "0.2166",
-        "ivs_rate": "0.2166"
+        "rate": "0.25453",
+        "ivs_rate": "0.2166",
+        "rate_by_category": {
+          "impiegato": "0.2563",
+          "quadro": "0.2563",
+          "dirigente": "0.2413"
+        },
+        "fixed_term_rate_by_category": {
+          "operaio": "0.25253"
+        }
       }
     ],
     "ceiling": "122295.00",
@@ -72,17 +80,42 @@
       }
     },
     "provenance": {
-      "status": "assumed",
+      "status": "derived",
       "location": {
         "source_document": {
-          "document_id": "ciatreviso-contributi-2026",
-          "title": "CIA Treviso, contributi INPS e INAIL 2026 agricoli",
-          "kind": "associazione",
-          "url": "https://ciatreviso.it/contributi-inps-inail-2026-agricoli-aliquote-e-le-scadenze-per-operai-otd-e-oti/"
+          "document_id": "inps-circolare-43-2026-allegato-1",
+          "title": "INPS Circolare n. 43/2026, allegato 1: aliquote OTI e OTD anno 2026",
+          "kind": "inps_circolare",
+          "url": "https://www.fiscoetasse.com/files/21591/circolare-n43-del-07-04-2026-allegato1.pdf",
+          "published_on": "2026-04-07"
         },
-        "section": "OTI rates 2026"
+        "page": "1-2",
+        "section": "Allegato 1, OTI anno 2026, col. A; Allegato 2, OTD anno 2026",
+        "quote": "Fondo pensioni lavoratori 21,5500 / Quota base 0,1100 / [...] Fondo garanzia trattamento di fine rapporto 0,2000 / Totale a carico azienda 33,9530 / Fondo pensioni lavoratori (quota a carico lavoratori) 8,8400 / Totale 42,7930 [...] Totale a carico azienda 33,7530 [...] 8,8400 [...] Totale 42,5930"
       },
-      "note": "Employee 8.84%, employer 21.66%; IVS ceiling from INPS Circ. 6/2026. The employer 21.66% is the IVS only (Fondo pensioni 21.55 + quota base 0.11). INPS circ. 43/2026 allegato 1 (https://www.fiscoetasse.com/files/21591/circolare-n43-del-07-04-2026-allegato1.pdf, sha256 39a526358cec2ec2bd75e468c07a5cd72dc2bade525aeb80ee4e605ba4f16194) gives for OTI of the generalità delle aziende agricole an employer total of 33.953%, 25.453% without the INAIL 8.50% (disoccupazione 2.75, esoneri -0.34 and -1.00, CIS 1.50, malattia 0.683, Fondo Garanzia TFR 0.20), and 33.753% for OTD; the rates change with the employer column (coltivatori diretti, cooperatives, industrial processes), the zone reductions (75% and 68%) and the category (impiegati agricoli). Not applied: this file serves every one of them with one rate."
+      "transformation": "Operai a tempo indeterminato (OTI, generalità): employer 33.953% less the INAIL 8.50% the engine does not model = 25.453%, of which IVS 21.66% (Fondo pensioni 21.55 + quota base 0.11); operai a tempo determinato (OTD): 33.753% - 8.50% = 25.253% (no Fondo garanzia TFR), as fixed_term_rate_by_category; worker 8.84%. Impiegati and quadri 25.63%, dirigenti 24.13% (INPS part, ENPAIA excluded), from the association table below; the quadri take the impiegati rate (the table has no quadri column). The fixed-term impiegati and dirigenti columns are 1.40 points higher: that is the L. 92/2012 contribution the engine adds apart. No size tiers in agriculture.",
+      "note": "Allegato sha256 39a526358cec2ec2bd75e468c07a5cd72dc2bade525aeb80ee4e605ba4f16194 (third-party copy of the INPS allegato), read on 2026-10-10. Impiegati and dirigenti: Confagricoltura Siena, 'Aliquote contributive dal 1 gennaio 2026 (riduzione inail)' (https://static.confagricolturasiena.it/uploads/2026/05/Aliquote-contributive-anno-2026-riduzione-inail-22.05.2026-1.pdf, sha256 6d1c47e67cf607577d09e1630f3e86b0d443082e6d4520f4a2fd0da6a15f106a): 'ORDINARIA 33,953% 8,84% 33,753% 8,84% 24,13% 8,84% 25,53% 8,84% 25,63% 8,84% 27,03% 8,84%' (OTI, OTD, dirigenti, dirigenti a termine, impiegati, impiegati a termine), note (1) 'PER GLI IMPIEGATI E I DIRIGENTI AGRICOLI, LE ALIQUOTE CONTRIBUTIVE SONO QUELLE RELATIVE ALL'INPS E NON COMPRENDONO QUELLE DOVUTE ALL'ENPAIA'. The IVS rate is one per sector (InpsRates): 21.66% of the operai is used for impiegati and dirigenti too, which only moves the split at the massimale. INAIL is outside the engine (capability inail unsupported)."
+    },
+    "zone_reduction": {
+      "disadvantaged": "0.68",
+      "mountain": "0.75",
+      "excluded_rate": "0.0030",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "inps-circolare-43-2026",
+            "title": "INPS Circolare n. 43 del 7 aprile 2026, aliquote contributive dei datori di lavoro agricoli 2026",
+            "kind": "inps_circolare",
+            "url": "https://www.informazionefiscale.it/IMG/pdf/16697_circolare-numero-43-del-07-04-2026.pdf",
+            "published_on": "2026-04-07"
+          },
+          "section": "par. 7, Riduzioni di aliquota per le zone tariffarie",
+          "quote": "Particolarmente svantaggiati (ex Montani) 75% / Svantaggiati 68% [...] Tali riduzioni non trovano applicazione rispetto al contributo previsto dall'articolo 25, comma quarto, della legge 21 dicembre 1978, n. 845."
+        },
+        "transformation": "Each employer rate r becomes r - share x (r - 0.30%); the Confagricoltura Siena table gives the same: (33.953 - 0.30) x 0.32 + 0.30 = 11.069 in a zona svantaggiata (printed 11,06896).",
+        "note": "Circular sha256 34b25b4d6a64e96becf723f548fd2f129e4ccb26026bccb0bba6e8077e8e575b (third-party copy), read on 2026-10-10. The 0.30% of art. 25 L. 845/1978 is inside the non-IVS employer rate."
+      }
     }
   },
   "apprentice": {
@@ -117,7 +150,7 @@
     "published_at": "2026-09-07",
     "source": "https://ciatreviso.it/contributi-inps-inail-2026-agricoli-aliquote-e-le-scadenze-per-operai-otd-e-oti/",
     "verification_status": "unverified",
-    "source_hash": "c37cd8edb0de7dca188be1b2088b83e20e13219f25f3a14563d37bb82fb5ff53",
+    "source_hash": "b6d544f73610e5bab959328153f228b21dce9580cf53912d308b6314262944bd",
     "source_type": "contracting_party"
   }
 }
