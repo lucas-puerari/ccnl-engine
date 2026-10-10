@@ -4,6 +4,14 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Concia UNIC reviewed, quota of 1/25
+
+| Before | After |
+|---|---|
+| Concia UNIC computed partly employed months and sick days on a quota of 1/26, though the CCNL states 1/25 | New `DailyDivisorMethod.BY_25`: the quota is 1/25 of the monthly pay, and since the CCNL does not say which days of a month are payable, a partly employed month and the sick days of a month are not computed (`sickness_daily_quota_missing`, partial month not payable) |
+| Concia UNIC `exploratory`, its accrual rule missing | `reviewed` with `confidence` `verified`: every minimum and IPO checked against Allegato n. 1 of the signed rinnovo, the accrual rule and the values the rinnovo does not hold (EDR, function allowance, divisors, tredicesima, sickness, seniority) cited to the page of the MySolution summary that holds them. `operational` mode still blocks it with `ruleset_not_production` |
+| The Concia sickness limitation applied from 60 months of seniority | From 36 months, where the CCNL's second seniority tier starts |
+
 ## Incremental assurance of a resumed year
 
 | Before | After |

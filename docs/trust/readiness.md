@@ -102,13 +102,13 @@ it drifts):
 | Readiness | CCNL rulesets |
 |---|---:|
 | `exploratory` | 125 |
-| `reviewed` | 0 |
-| `production` | 1 |
+| `reviewed` | 1 |
+| `production` | 0 |
 
 <!-- /trust:readiness-table -->
 
-The <!-- trust:readiness-reviewed -->0<!-- /trust:readiness-reviewed -->
-`reviewed` rulesets: <!-- trust:readiness-reviewed-list -->none<!-- /trust:readiness-reviewed-list -->.
+The <!-- trust:readiness-reviewed -->1<!-- /trust:readiness-reviewed -->
+`reviewed` rulesets: <!-- trust:readiness-reviewed-list -->`concia-unic`<!-- /trust:readiness-reviewed-list -->.
 Each [contract page](../contracts/index.md) shows its own tier.
 
 No ruleset is `reviewed` today. Fifteen rulesets were `reviewed` until
@@ -119,9 +119,9 @@ lowered to `exploratory`. Their `verification.human_reviewed_by` and
 weak rules are sourced and their confidence is `verified`.
 
 `reviewed` records a file-level review, not a per-value one. Of the `reviewed`
-rulesets, <!-- trust:reviewed-with-reviewer -->0<!-- /trust:reviewed-with-reviewer -->
+rulesets, <!-- trust:reviewed-with-reviewer -->1<!-- /trust:reviewed-with-reviewer -->
 record `verification.human_reviewed_by` and `verification.last_reviewed`, and
-<!-- trust:reviewed-confidence-verified -->0<!-- /trust:reviewed-confidence-verified -->
+<!-- trust:reviewed-confidence-verified -->1<!-- /trust:reviewed-confidence-verified -->
 set `verification.confidence = "verified"` (step 5 of the criteria above).
 A per-value review is recorded only by the provenance status `verified` of a
 payable rule, and <!-- trust:rules-verified -->0<!-- /trust:rules-verified -->
@@ -174,6 +174,6 @@ Both modes compute the same amounts.
 
 An operational engine returns the result with its blockers instead of
 refusing before the calculation, so the amounts and every other blocker stay
-inspectable. With <!-- trust:readiness-production -->1<!-- /trust:readiness-production -->
+inspectable. With <!-- trust:readiness-production -->0<!-- /trust:readiness-production -->
 `production` rulesets, no bundled CCNL is payable in operational mode: the
 gate opens one CCNL at a time, as each is promoted.

@@ -53,11 +53,12 @@ def _quota(ccnl: CCNL, day: date) -> DailyQuota | None:
     """Return the daily quota of the CCNL absence rule in force on ``day``.
 
     Returns:
-        The quota, ``None`` without an absence rule, or for ``by_hourly``
-        without the hourly divisor or the daily hours.
+        The quota, ``None`` without an absence rule, for ``by_25``, whose
+        payable days are not defined, or for ``by_hourly`` without the
+        hourly divisor or the daily hours.
     """
     rules = None if ccnl.work_rules is None else ccnl.work_rules.absence_rules
-    if rules is None:
+    if rules is None or rules.daily_divisor_method is DailyDivisorMethod.BY_25:
         return None
     method = rules.daily_divisor_method
     fixed = _FIXED_DIVISORS.get(method)

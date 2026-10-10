@@ -7,7 +7,7 @@
     "effective_until": null,
     "published_at": "2026-09-11",
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
-    "source_hash": "e77872c0112167574654469b7d9aa853938a1fd5170d63e59679082ce3d92b7d",
+    "source_hash": "b14129c86922d559b587a64ce7a07f30c688bacbabb96ac1af648c907a2c2b01",
     "verification_status": "verified",
     "source_type": "contracting_party"
   },
@@ -59,12 +59,16 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-rinnovo-2024",
-                "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
-                "kind": "associazione",
-                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                "document_id": "concia-unic-mysolution-2017",
+                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
+                "kind": "rivista",
+                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+                "published_on": "2017-04-01",
+                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
               },
-              "section": "Allegato n. 1 — quota oraria = retribuzione mensile / 173"
+              "section": "Parametri retributivi, divisori contrattuali",
+              "page": "2",
+              "quote": "Divisori contrattuali della retribuzione mensile: quota giornaliera 25; quota oraria 173."
             },
             "extraction": {
               "method": "manual",
@@ -86,12 +90,16 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-rinnovo-2024",
-                "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
-                "kind": "associazione",
-                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                "document_id": "concia-unic-mysolution-2017",
+                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
+                "kind": "rivista",
+                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+                "published_on": "2017-04-01",
+                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
               },
-              "section": "Tredicesima mensilita — 1 mensilita aggiuntiva"
+              "section": "Mensilità aggiuntive",
+              "page": "2",
+              "quote": "Nel settore è prevista l’erogazione nel mese di dicembre di una tredicesima mensilità pari a un dodicesimo della retribuzione"
             },
             "extraction": {
               "method": "manual",
@@ -213,10 +221,14 @@
           "source_document": {
             "document_id": "concia-unic-mysolution-2017",
             "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-            "kind": "associazione",
-            "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf"
+            "kind": "rivista",
+            "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+            "published_on": "2017-04-01",
+            "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
           },
-          "section": "Scatti di anzianità — tabella p. 3"
+          "section": "Scatti di anzianità",
+          "page": "2",
+          "quote": "fino a 5 scatti biennali"
         },
         "extraction": {
           "method": "manual",
@@ -233,8 +245,8 @@
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "mysolution-scheda-concia-industria-2017",
-            "title": "Scheda di sintesi CCNL Concia Industria (MySolution, aprile 2017)",
+            "document_id": "concia-unic-mysolution-2017",
+            "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
             "kind": "rivista",
             "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
             "published_on": "2017-04-01",
@@ -272,9 +284,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello A"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello A",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -295,9 +309,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello A"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello A",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -318,9 +334,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello A"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello A",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -346,12 +364,15 @@
                   "status": "derived",
                   "location": {
                     "source_document": {
-                      "document_id": "concia-unic-rinnovo-2024",
-                      "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
-                      "kind": "associazione",
-                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                      "document_id": "concia-unic-mysolution-2017",
+                      "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
+                      "kind": "rivista",
+                      "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+                      "published_on": "2017-04-01",
+                      "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
                     },
-                    "section": "Allegato n. 1 — tabella retributiva, colonna EDR"
+                    "section": "Dati retributivi, E.d.r. per categoria",
+                    "page": "1"
                   },
                   "extraction": {
                     "method": "manual",
@@ -367,12 +388,15 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-rinnovo-2024",
-                "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
-                "kind": "associazione",
-                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                "document_id": "concia-unic-mysolution-2017",
+                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
+                "kind": "rivista",
+                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+                "published_on": "2017-04-01",
+                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
               },
-              "section": "Allegato n. 1 — tabella retributiva, colonna EDR"
+              "section": "Dati retributivi, E.d.r. per categoria",
+              "page": "1"
             },
             "extraction": {
               "method": "manual",
@@ -395,12 +419,15 @@
                   "status": "derived",
                   "location": {
                     "source_document": {
-                      "document_id": "concia-unic-rinnovo-2024",
-                      "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
-                      "kind": "associazione",
-                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                      "document_id": "concia-unic-mysolution-2017",
+                      "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
+                      "kind": "rivista",
+                      "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+                      "published_on": "2017-04-01",
+                      "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
                     },
-                    "section": "Allegato n. 1 — tabella retributiva, colonna IND_FUNZIONE"
+                    "section": "Dati retributivi, Indennità di funzione, categoria A",
+                    "page": "1"
                   },
                   "extraction": {
                     "method": "manual",
@@ -416,12 +443,15 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-rinnovo-2024",
-                "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
-                "kind": "associazione",
-                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                "document_id": "concia-unic-mysolution-2017",
+                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
+                "kind": "rivista",
+                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+                "published_on": "2017-04-01",
+                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
               },
-              "section": "Allegato n. 1 — colonna Indennità di Funzione (livello A)"
+              "section": "Dati retributivi, Indennità di funzione, categoria A",
+              "page": "1"
             },
             "extraction": {
               "method": "manual",
@@ -439,9 +469,11 @@
             "document_id": "concia-unic-rinnovo-2024",
             "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
             "kind": "associazione",
-            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+            "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
           },
-          "section": "Allegato n. 1 — tabella retributiva"
+          "section": "Allegato n. 1 — tabella retributiva",
+          "page": "14"
         },
         "extraction": {
           "method": "manual",
@@ -468,9 +500,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello B1"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello B1",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -491,9 +525,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello B1"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello B1",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -514,9 +550,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello B1"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello B1",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -542,12 +580,15 @@
                   "status": "derived",
                   "location": {
                     "source_document": {
-                      "document_id": "concia-unic-rinnovo-2024",
-                      "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
-                      "kind": "associazione",
-                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                      "document_id": "concia-unic-mysolution-2017",
+                      "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
+                      "kind": "rivista",
+                      "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+                      "published_on": "2017-04-01",
+                      "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
                     },
-                    "section": "Allegato n. 1 — tabella retributiva, colonna EDR"
+                    "section": "Dati retributivi, E.d.r. per categoria",
+                    "page": "1"
                   },
                   "extraction": {
                     "method": "manual",
@@ -563,12 +604,15 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-rinnovo-2024",
-                "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
-                "kind": "associazione",
-                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                "document_id": "concia-unic-mysolution-2017",
+                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
+                "kind": "rivista",
+                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+                "published_on": "2017-04-01",
+                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
               },
-              "section": "Allegato n. 1 — tabella retributiva, colonna EDR"
+              "section": "Dati retributivi, E.d.r. per categoria",
+              "page": "1"
             },
             "extraction": {
               "method": "manual",
@@ -594,9 +638,11 @@
                       "document_id": "concia-unic-rinnovo-2024",
                       "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                       "kind": "associazione",
-                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                      "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                     },
-                    "section": "Allegato n. 1 — tabella retributiva, colonna IPO"
+                    "section": "Allegato n. 1 — tabella retributiva, colonna IPO",
+                    "page": "14"
                   },
                   "extraction": {
                     "method": "manual",
@@ -617,9 +663,11 @@
                       "document_id": "concia-unic-rinnovo-2024",
                       "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                       "kind": "associazione",
-                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                      "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                     },
-                    "section": "Allegato n. 1 — tabella retributiva, colonna IPO"
+                    "section": "Allegato n. 1 — tabella retributiva, colonna IPO",
+                    "page": "14"
                   },
                   "extraction": {
                     "method": "manual",
@@ -640,9 +688,11 @@
                       "document_id": "concia-unic-rinnovo-2024",
                       "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                       "kind": "associazione",
-                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                      "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                     },
-                    "section": "Allegato n. 1 — tabella retributiva, colonna IPO"
+                    "section": "Allegato n. 1 — tabella retributiva, colonna IPO",
+                    "page": "14"
                   },
                   "extraction": {
                     "method": "manual",
@@ -661,9 +711,11 @@
                 "document_id": "concia-unic-rinnovo-2024",
                 "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                 "kind": "associazione",
-                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
               },
-              "section": "Allegato n. 1 — colonna IPO (livello B1)"
+              "section": "Allegato n. 1 — colonna IPO (livello B1)",
+              "page": "14"
             },
             "extraction": {
               "method": "manual",
@@ -681,9 +733,11 @@
             "document_id": "concia-unic-rinnovo-2024",
             "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
             "kind": "associazione",
-            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+            "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
           },
-          "section": "Allegato n. 1 — tabella retributiva"
+          "section": "Allegato n. 1 — tabella retributiva",
+          "page": "14"
         },
         "extraction": {
           "method": "manual",
@@ -710,9 +764,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello B2"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello B2",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -733,9 +789,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello B2"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello B2",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -756,9 +814,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello B2"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello B2",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -784,12 +844,15 @@
                   "status": "derived",
                   "location": {
                     "source_document": {
-                      "document_id": "concia-unic-rinnovo-2024",
-                      "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
-                      "kind": "associazione",
-                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                      "document_id": "concia-unic-mysolution-2017",
+                      "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
+                      "kind": "rivista",
+                      "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+                      "published_on": "2017-04-01",
+                      "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
                     },
-                    "section": "Allegato n. 1 — tabella retributiva, colonna EDR"
+                    "section": "Dati retributivi, E.d.r. per categoria",
+                    "page": "1"
                   },
                   "extraction": {
                     "method": "manual",
@@ -805,12 +868,15 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-rinnovo-2024",
-                "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
-                "kind": "associazione",
-                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                "document_id": "concia-unic-mysolution-2017",
+                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
+                "kind": "rivista",
+                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+                "published_on": "2017-04-01",
+                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
               },
-              "section": "Allegato n. 1 — tabella retributiva, colonna EDR"
+              "section": "Dati retributivi, E.d.r. per categoria",
+              "page": "1"
             },
             "extraction": {
               "method": "manual",
@@ -828,9 +894,11 @@
             "document_id": "concia-unic-rinnovo-2024",
             "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
             "kind": "associazione",
-            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+            "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
           },
-          "section": "Allegato n. 1 — tabella retributiva"
+          "section": "Allegato n. 1 — tabella retributiva",
+          "page": "14"
         },
         "extraction": {
           "method": "manual",
@@ -857,9 +925,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello C1"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello C1",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -880,9 +950,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello C1"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello C1",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -903,9 +975,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello C1"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello C1",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -931,12 +1005,15 @@
                   "status": "derived",
                   "location": {
                     "source_document": {
-                      "document_id": "concia-unic-rinnovo-2024",
-                      "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
-                      "kind": "associazione",
-                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                      "document_id": "concia-unic-mysolution-2017",
+                      "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
+                      "kind": "rivista",
+                      "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+                      "published_on": "2017-04-01",
+                      "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
                     },
-                    "section": "Allegato n. 1 — tabella retributiva, colonna EDR"
+                    "section": "Dati retributivi, E.d.r. per categoria",
+                    "page": "1"
                   },
                   "extraction": {
                     "method": "manual",
@@ -952,12 +1029,15 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-rinnovo-2024",
-                "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
-                "kind": "associazione",
-                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                "document_id": "concia-unic-mysolution-2017",
+                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
+                "kind": "rivista",
+                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+                "published_on": "2017-04-01",
+                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
               },
-              "section": "Allegato n. 1 — tabella retributiva, colonna EDR"
+              "section": "Dati retributivi, E.d.r. per categoria",
+              "page": "1"
             },
             "extraction": {
               "method": "manual",
@@ -983,9 +1063,11 @@
                       "document_id": "concia-unic-rinnovo-2024",
                       "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                       "kind": "associazione",
-                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                      "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                     },
-                    "section": "Allegato n. 1 — tabella retributiva, colonna IPO"
+                    "section": "Allegato n. 1 — tabella retributiva, colonna IPO",
+                    "page": "14"
                   },
                   "extraction": {
                     "method": "manual",
@@ -1006,9 +1088,11 @@
                       "document_id": "concia-unic-rinnovo-2024",
                       "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                       "kind": "associazione",
-                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                      "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                     },
-                    "section": "Allegato n. 1 — tabella retributiva, colonna IPO"
+                    "section": "Allegato n. 1 — tabella retributiva, colonna IPO",
+                    "page": "14"
                   },
                   "extraction": {
                     "method": "manual",
@@ -1029,9 +1113,11 @@
                       "document_id": "concia-unic-rinnovo-2024",
                       "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                       "kind": "associazione",
-                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                      "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                     },
-                    "section": "Allegato n. 1 — tabella retributiva, colonna IPO"
+                    "section": "Allegato n. 1 — tabella retributiva, colonna IPO",
+                    "page": "14"
                   },
                   "extraction": {
                     "method": "manual",
@@ -1050,9 +1136,11 @@
                 "document_id": "concia-unic-rinnovo-2024",
                 "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                 "kind": "associazione",
-                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
               },
-              "section": "Allegato n. 1 — colonna IPO (livello C1)"
+              "section": "Allegato n. 1 — colonna IPO (livello C1)",
+              "page": "14"
             },
             "extraction": {
               "method": "manual",
@@ -1070,9 +1158,11 @@
             "document_id": "concia-unic-rinnovo-2024",
             "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
             "kind": "associazione",
-            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+            "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
           },
-          "section": "Allegato n. 1 — tabella retributiva"
+          "section": "Allegato n. 1 — tabella retributiva",
+          "page": "14"
         },
         "extraction": {
           "method": "manual",
@@ -1099,9 +1189,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello C2"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello C2",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -1122,9 +1214,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello C2"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello C2",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -1145,9 +1239,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello C2"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello C2",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -1173,12 +1269,15 @@
                   "status": "derived",
                   "location": {
                     "source_document": {
-                      "document_id": "concia-unic-rinnovo-2024",
-                      "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
-                      "kind": "associazione",
-                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                      "document_id": "concia-unic-mysolution-2017",
+                      "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
+                      "kind": "rivista",
+                      "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+                      "published_on": "2017-04-01",
+                      "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
                     },
-                    "section": "Allegato n. 1 — tabella retributiva, colonna EDR"
+                    "section": "Dati retributivi, E.d.r. per categoria",
+                    "page": "1"
                   },
                   "extraction": {
                     "method": "manual",
@@ -1194,12 +1293,15 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-rinnovo-2024",
-                "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
-                "kind": "associazione",
-                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                "document_id": "concia-unic-mysolution-2017",
+                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
+                "kind": "rivista",
+                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+                "published_on": "2017-04-01",
+                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
               },
-              "section": "Allegato n. 1 — tabella retributiva, colonna EDR"
+              "section": "Dati retributivi, E.d.r. per categoria",
+              "page": "1"
             },
             "extraction": {
               "method": "manual",
@@ -1217,9 +1319,11 @@
             "document_id": "concia-unic-rinnovo-2024",
             "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
             "kind": "associazione",
-            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+            "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
           },
-          "section": "Allegato n. 1 — tabella retributiva"
+          "section": "Allegato n. 1 — tabella retributiva",
+          "page": "14"
         },
         "extraction": {
           "method": "manual",
@@ -1246,9 +1350,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello D1"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello D1",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -1269,9 +1375,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello D1"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello D1",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -1292,9 +1400,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello D1"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello D1",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -1320,12 +1430,15 @@
                   "status": "derived",
                   "location": {
                     "source_document": {
-                      "document_id": "concia-unic-rinnovo-2024",
-                      "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
-                      "kind": "associazione",
-                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                      "document_id": "concia-unic-mysolution-2017",
+                      "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
+                      "kind": "rivista",
+                      "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+                      "published_on": "2017-04-01",
+                      "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
                     },
-                    "section": "Allegato n. 1 — tabella retributiva, colonna EDR"
+                    "section": "Dati retributivi, E.d.r. per categoria",
+                    "page": "1"
                   },
                   "extraction": {
                     "method": "manual",
@@ -1341,12 +1454,15 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-rinnovo-2024",
-                "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
-                "kind": "associazione",
-                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                "document_id": "concia-unic-mysolution-2017",
+                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
+                "kind": "rivista",
+                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+                "published_on": "2017-04-01",
+                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
               },
-              "section": "Allegato n. 1 — tabella retributiva, colonna EDR"
+              "section": "Dati retributivi, E.d.r. per categoria",
+              "page": "1"
             },
             "extraction": {
               "method": "manual",
@@ -1372,9 +1488,11 @@
                       "document_id": "concia-unic-rinnovo-2024",
                       "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                       "kind": "associazione",
-                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                      "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                     },
-                    "section": "Allegato n. 1 — tabella retributiva, colonna IPO"
+                    "section": "Allegato n. 1 — tabella retributiva, colonna IPO",
+                    "page": "14"
                   },
                   "extraction": {
                     "method": "manual",
@@ -1395,9 +1513,11 @@
                       "document_id": "concia-unic-rinnovo-2024",
                       "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                       "kind": "associazione",
-                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                      "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                     },
-                    "section": "Allegato n. 1 — tabella retributiva, colonna IPO"
+                    "section": "Allegato n. 1 — tabella retributiva, colonna IPO",
+                    "page": "14"
                   },
                   "extraction": {
                     "method": "manual",
@@ -1418,9 +1538,11 @@
                       "document_id": "concia-unic-rinnovo-2024",
                       "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                       "kind": "associazione",
-                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                      "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                     },
-                    "section": "Allegato n. 1 — tabella retributiva, colonna IPO"
+                    "section": "Allegato n. 1 — tabella retributiva, colonna IPO",
+                    "page": "14"
                   },
                   "extraction": {
                     "method": "manual",
@@ -1439,9 +1561,11 @@
                 "document_id": "concia-unic-rinnovo-2024",
                 "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                 "kind": "associazione",
-                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
               },
-              "section": "Allegato n. 1 — colonna IPO (livello D1)"
+              "section": "Allegato n. 1 — colonna IPO (livello D1)",
+              "page": "14"
             },
             "extraction": {
               "method": "manual",
@@ -1459,9 +1583,11 @@
             "document_id": "concia-unic-rinnovo-2024",
             "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
             "kind": "associazione",
-            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+            "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
           },
-          "section": "Allegato n. 1 — tabella retributiva"
+          "section": "Allegato n. 1 — tabella retributiva",
+          "page": "14"
         },
         "extraction": {
           "method": "manual",
@@ -1488,9 +1614,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello D2"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello D2",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -1511,9 +1639,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello D2"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello D2",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -1534,9 +1664,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello D2"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello D2",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -1562,12 +1694,15 @@
                   "status": "derived",
                   "location": {
                     "source_document": {
-                      "document_id": "concia-unic-rinnovo-2024",
-                      "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
-                      "kind": "associazione",
-                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                      "document_id": "concia-unic-mysolution-2017",
+                      "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
+                      "kind": "rivista",
+                      "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+                      "published_on": "2017-04-01",
+                      "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
                     },
-                    "section": "Allegato n. 1 — tabella retributiva, colonna EDR"
+                    "section": "Dati retributivi, E.d.r. per categoria",
+                    "page": "1"
                   },
                   "extraction": {
                     "method": "manual",
@@ -1583,12 +1718,15 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-rinnovo-2024",
-                "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
-                "kind": "associazione",
-                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                "document_id": "concia-unic-mysolution-2017",
+                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
+                "kind": "rivista",
+                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+                "published_on": "2017-04-01",
+                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
               },
-              "section": "Allegato n. 1 — tabella retributiva, colonna EDR"
+              "section": "Dati retributivi, E.d.r. per categoria",
+              "page": "1"
             },
             "extraction": {
               "method": "manual",
@@ -1606,9 +1744,11 @@
             "document_id": "concia-unic-rinnovo-2024",
             "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
             "kind": "associazione",
-            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+            "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
           },
-          "section": "Allegato n. 1 — tabella retributiva"
+          "section": "Allegato n. 1 — tabella retributiva",
+          "page": "14"
         },
         "extraction": {
           "method": "manual",
@@ -1635,9 +1775,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello E1"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello E1",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -1658,9 +1800,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello E1"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello E1",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -1681,9 +1825,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello E1"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello E1",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -1709,12 +1855,15 @@
                   "status": "derived",
                   "location": {
                     "source_document": {
-                      "document_id": "concia-unic-rinnovo-2024",
-                      "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
-                      "kind": "associazione",
-                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                      "document_id": "concia-unic-mysolution-2017",
+                      "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
+                      "kind": "rivista",
+                      "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+                      "published_on": "2017-04-01",
+                      "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
                     },
-                    "section": "Allegato n. 1 — tabella retributiva, colonna EDR"
+                    "section": "Dati retributivi, E.d.r. per categoria",
+                    "page": "1"
                   },
                   "extraction": {
                     "method": "manual",
@@ -1730,12 +1879,15 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-rinnovo-2024",
-                "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
-                "kind": "associazione",
-                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                "document_id": "concia-unic-mysolution-2017",
+                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
+                "kind": "rivista",
+                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+                "published_on": "2017-04-01",
+                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
               },
-              "section": "Allegato n. 1 — tabella retributiva, colonna EDR"
+              "section": "Dati retributivi, E.d.r. per categoria",
+              "page": "1"
             },
             "extraction": {
               "method": "manual",
@@ -1761,9 +1913,11 @@
                       "document_id": "concia-unic-rinnovo-2024",
                       "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                       "kind": "associazione",
-                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                      "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                     },
-                    "section": "Allegato n. 1 — tabella retributiva, colonna IPO"
+                    "section": "Allegato n. 1 — tabella retributiva, colonna IPO",
+                    "page": "14"
                   },
                   "extraction": {
                     "method": "manual",
@@ -1784,9 +1938,11 @@
                       "document_id": "concia-unic-rinnovo-2024",
                       "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                       "kind": "associazione",
-                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                      "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                     },
-                    "section": "Allegato n. 1 — tabella retributiva, colonna IPO"
+                    "section": "Allegato n. 1 — tabella retributiva, colonna IPO",
+                    "page": "14"
                   },
                   "extraction": {
                     "method": "manual",
@@ -1807,9 +1963,11 @@
                       "document_id": "concia-unic-rinnovo-2024",
                       "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                       "kind": "associazione",
-                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                      "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                     },
-                    "section": "Allegato n. 1 — tabella retributiva, colonna IPO"
+                    "section": "Allegato n. 1 — tabella retributiva, colonna IPO",
+                    "page": "14"
                   },
                   "extraction": {
                     "method": "manual",
@@ -1828,9 +1986,11 @@
                 "document_id": "concia-unic-rinnovo-2024",
                 "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                 "kind": "associazione",
-                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
               },
-              "section": "Allegato n. 1 — colonna IPO (livello E1)"
+              "section": "Allegato n. 1 — colonna IPO (livello E1)",
+              "page": "14"
             },
             "extraction": {
               "method": "manual",
@@ -1848,9 +2008,11 @@
             "document_id": "concia-unic-rinnovo-2024",
             "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
             "kind": "associazione",
-            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+            "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
           },
-          "section": "Allegato n. 1 — tabella retributiva"
+          "section": "Allegato n. 1 — tabella retributiva",
+          "page": "14"
         },
         "extraction": {
           "method": "manual",
@@ -1877,9 +2039,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello E2"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello E2",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -1900,9 +2064,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello E2"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello E2",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -1923,9 +2089,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello E2"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello E2",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -1951,12 +2119,15 @@
                   "status": "derived",
                   "location": {
                     "source_document": {
-                      "document_id": "concia-unic-rinnovo-2024",
-                      "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
-                      "kind": "associazione",
-                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                      "document_id": "concia-unic-mysolution-2017",
+                      "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
+                      "kind": "rivista",
+                      "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+                      "published_on": "2017-04-01",
+                      "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
                     },
-                    "section": "Allegato n. 1 — tabella retributiva, colonna EDR"
+                    "section": "Dati retributivi, E.d.r. per categoria",
+                    "page": "1"
                   },
                   "extraction": {
                     "method": "manual",
@@ -1972,12 +2143,15 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-rinnovo-2024",
-                "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
-                "kind": "associazione",
-                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                "document_id": "concia-unic-mysolution-2017",
+                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
+                "kind": "rivista",
+                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+                "published_on": "2017-04-01",
+                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
               },
-              "section": "Allegato n. 1 — tabella retributiva, colonna EDR"
+              "section": "Dati retributivi, E.d.r. per categoria",
+              "page": "1"
             },
             "extraction": {
               "method": "manual",
@@ -2003,9 +2177,11 @@
                       "document_id": "concia-unic-rinnovo-2024",
                       "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                       "kind": "associazione",
-                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                      "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                     },
-                    "section": "Allegato n. 1 — tabella retributiva, colonna IPO"
+                    "section": "Allegato n. 1 — tabella retributiva, colonna IPO",
+                    "page": "14"
                   },
                   "extraction": {
                     "method": "manual",
@@ -2026,9 +2202,11 @@
                       "document_id": "concia-unic-rinnovo-2024",
                       "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                       "kind": "associazione",
-                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                      "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                     },
-                    "section": "Allegato n. 1 — tabella retributiva, colonna IPO"
+                    "section": "Allegato n. 1 — tabella retributiva, colonna IPO",
+                    "page": "14"
                   },
                   "extraction": {
                     "method": "manual",
@@ -2049,9 +2227,11 @@
                       "document_id": "concia-unic-rinnovo-2024",
                       "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                       "kind": "associazione",
-                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                      "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                     },
-                    "section": "Allegato n. 1 — tabella retributiva, colonna IPO"
+                    "section": "Allegato n. 1 — tabella retributiva, colonna IPO",
+                    "page": "14"
                   },
                   "extraction": {
                     "method": "manual",
@@ -2070,9 +2250,11 @@
                 "document_id": "concia-unic-rinnovo-2024",
                 "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                 "kind": "associazione",
-                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
               },
-              "section": "Allegato n. 1 — colonna IPO (livello E2)"
+              "section": "Allegato n. 1 — colonna IPO (livello E2)",
+              "page": "14"
             },
             "extraction": {
               "method": "manual",
@@ -2090,9 +2272,11 @@
             "document_id": "concia-unic-rinnovo-2024",
             "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
             "kind": "associazione",
-            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+            "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
           },
-          "section": "Allegato n. 1 — tabella retributiva"
+          "section": "Allegato n. 1 — tabella retributiva",
+          "page": "14"
         },
         "extraction": {
           "method": "manual",
@@ -2119,9 +2303,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello E3"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello E3",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -2142,9 +2328,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello E3"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello E3",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -2165,9 +2353,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello E3"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello E3",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -2193,12 +2383,15 @@
                   "status": "derived",
                   "location": {
                     "source_document": {
-                      "document_id": "concia-unic-rinnovo-2024",
-                      "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
-                      "kind": "associazione",
-                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                      "document_id": "concia-unic-mysolution-2017",
+                      "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
+                      "kind": "rivista",
+                      "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+                      "published_on": "2017-04-01",
+                      "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
                     },
-                    "section": "Allegato n. 1 — tabella retributiva, colonna EDR"
+                    "section": "Dati retributivi, E.d.r. per categoria",
+                    "page": "1"
                   },
                   "extraction": {
                     "method": "manual",
@@ -2214,12 +2407,15 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-rinnovo-2024",
-                "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
-                "kind": "associazione",
-                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                "document_id": "concia-unic-mysolution-2017",
+                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
+                "kind": "rivista",
+                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+                "published_on": "2017-04-01",
+                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
               },
-              "section": "Allegato n. 1 — tabella retributiva, colonna EDR"
+              "section": "Dati retributivi, E.d.r. per categoria",
+              "page": "1"
             },
             "extraction": {
               "method": "manual",
@@ -2237,9 +2433,11 @@
             "document_id": "concia-unic-rinnovo-2024",
             "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
             "kind": "associazione",
-            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+            "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
           },
-          "section": "Allegato n. 1 — tabella retributiva"
+          "section": "Allegato n. 1 — tabella retributiva",
+          "page": "14"
         },
         "extraction": {
           "method": "manual",
@@ -2266,9 +2464,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello F1"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello F1",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -2289,9 +2489,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello F1"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello F1",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -2312,9 +2514,11 @@
                   "document_id": "concia-unic-rinnovo-2024",
                   "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
                   "kind": "associazione",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                  "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
-                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello F1"
+                "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello F1",
+                "page": "14"
               },
               "extraction": {
                 "method": "manual",
@@ -2340,12 +2544,15 @@
                   "status": "derived",
                   "location": {
                     "source_document": {
-                      "document_id": "concia-unic-rinnovo-2024",
-                      "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
-                      "kind": "associazione",
-                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                      "document_id": "concia-unic-mysolution-2017",
+                      "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
+                      "kind": "rivista",
+                      "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+                      "published_on": "2017-04-01",
+                      "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
                     },
-                    "section": "Allegato n. 1 — tabella retributiva, colonna EDR"
+                    "section": "Dati retributivi, E.d.r. per categoria",
+                    "page": "1"
                   },
                   "extraction": {
                     "method": "manual",
@@ -2361,12 +2568,15 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-rinnovo-2024",
-                "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
-                "kind": "associazione",
-                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+                "document_id": "concia-unic-mysolution-2017",
+                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
+                "kind": "rivista",
+                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+                "published_on": "2017-04-01",
+                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
               },
-              "section": "Allegato n. 1 — tabella retributiva, colonna EDR"
+              "section": "Dati retributivi, E.d.r. per categoria",
+              "page": "1"
             },
             "extraction": {
               "method": "manual",
@@ -2384,9 +2594,11 @@
             "document_id": "concia-unic-rinnovo-2024",
             "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
             "kind": "associazione",
-            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+            "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
           },
-          "section": "Allegato n. 1 — tabella retributiva"
+          "section": "Allegato n. 1 — tabella retributiva",
+          "page": "14"
         },
         "extraction": {
           "method": "manual",
@@ -2573,10 +2785,13 @@
               "source_document": {
                 "document_id": "concia-unic-mysolution-2017",
                 "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                "kind": "associazione",
-                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf"
+                "kind": "rivista",
+                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+                "published_on": "2017-04-01",
+                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
               },
-              "section": "Straordinario — diurno feriale fino a 48h 15%"
+              "section": "Straordinario — diurno feriale fino a 48h 15%",
+              "page": "2"
             },
             "extraction": {
               "method": "manual",
@@ -2609,10 +2824,13 @@
               "source_document": {
                 "document_id": "concia-unic-mysolution-2017",
                 "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                "kind": "associazione",
-                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf"
+                "kind": "rivista",
+                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+                "published_on": "2017-04-01",
+                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
               },
-              "section": "Straordinario — notturno prima ora 61%"
+              "section": "Straordinario — notturno prima ora 61%",
+              "page": "2"
             },
             "extraction": {
               "method": "manual",
@@ -2645,10 +2863,13 @@
               "source_document": {
                 "document_id": "concia-unic-mysolution-2017",
                 "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                "kind": "associazione",
-                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf"
+                "kind": "rivista",
+                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+                "published_on": "2017-04-01",
+                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
               },
-              "section": "Straordinario — festivo 71%"
+              "section": "Straordinario — festivo 71%",
+              "page": "2"
             },
             "extraction": {
               "method": "manual",
@@ -2661,17 +2882,21 @@
       ]
     },
     "absence_rules": {
-      "daily_divisor_method": "by_26",
+      "daily_divisor_method": "by_25",
       "provenance": {
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "concia-unic-rinnovo-2024",
-            "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
-            "kind": "associazione",
-            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+            "document_id": "concia-unic-mysolution-2017",
+            "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
+            "kind": "rivista",
+            "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+            "published_on": "2017-04-01",
+            "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
           },
-          "section": "Allegato n. 1 — quota giornaliera 25 (by_26 usato per approssimazione)"
+          "section": "Parametri retributivi, divisori contrattuali",
+          "page": "2",
+          "quote": "Divisori contrattuali della retribuzione mensile: quota giornaliera 25; quota oraria 173."
         },
         "extraction": {
           "method": "manual",
@@ -2703,10 +2928,13 @@
           "source_document": {
             "document_id": "concia-unic-mysolution-2017",
             "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-            "kind": "associazione",
-            "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf"
+            "kind": "rivista",
+            "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+            "published_on": "2017-04-01",
+            "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
           },
-          "section": "Ferie — 4 settimane fino 10 anni; +2gg 11°; +3gg 16°; 5 sett. 18°"
+          "section": "Ferie — 4 settimane fino 10 anni; +2gg 11°; +3gg 16°; 5 sett. 18°",
+          "page": "4"
         },
         "extraction": {
           "method": "manual",
@@ -2731,12 +2959,15 @@
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "concia-unic-rinnovo-2024",
-            "title": "CCNL Concia Industria UNIC — rinnovo 07/03/2024",
-            "kind": "associazione",
-            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf"
+            "document_id": "concia-unic-mysolution-2017",
+            "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
+            "kind": "rivista",
+            "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+            "published_on": "2017-04-01",
+            "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
           },
-          "section": "Art. 60 — malattia: conservazione posto 8 mesi; intera retribuzione 3 mesi poi metà"
+          "section": "Vicende del rapporto, Malattia: anzianità fino a 3 anni, comporto 8 mesi, primi 3 mesi 100%, 5 mesi successivi 50%",
+          "page": "4"
         },
         "extraction": {
           "method": "manual",
@@ -2785,21 +3016,21 @@
       },
       {
         "kind": "simplification",
-        "text": "DAILY DIVISOR: contract states quota giornaliera = 25 giorni/mese. DailyDivisorMethod has no by_25; by_26 used. Error: gross_daily overstated by ~3.8% for absence deductions.",
+        "text": "DAILY DIVISOR: the CCNL sets quota giornaliera = 1/25 of the monthly pay (MySolution sintesi p. 2) without saying which days of a month are payable; modelled as by_25, so a partly employed month and the sick days of a month are not computed (fail closed) instead of being paid on another divisor.",
         "capability": "absence",
         "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "SICKNESS: Art. 60 (2024 renewal) — 3 seniority tiers: comporto 8/10/12 mesi, full-pay 3/4/5 mesi, half-pay 5/6/7 mesi. Modeled as base tier (0-5 years): 100% months 1-3, 50% months 4-8, max 240 days. Higher tiers not modeled — SicknessRules has no seniority-gated comporto.",
+        "text": "SICKNESS: 3 seniority tiers (MySolution sintesi p. 4): up to 3 years comporto 8 months, 3 months at 100% then 5 at 50%; 4 to 6 years 10 months, 4 at 100% and 6 at 50%; over 6 years 12 months, 5 at 100% and 7 at 50%; absences of several sicknesses summed over 36 months. Modelled as the first tier per episode: 100% months 1-3, 50% months 4-8, max 240 days.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
           "variant": "seniority_gated_sickness_tiers",
           "applies_when": {
-            "seniority_months_from": 60
+            "seniority_months_from": 36
           },
-          "remediation": "Add the seniority-gated comporto and full-pay months of Art. 60 (4 and 5 months full pay over 10 and 12 months) to the sickness rule, then resolve this limitation."
+          "remediation": "Add the second and third seniority tiers (4 and 5 months at full pay over 10 and 12 months) and the 36-month sum to the sickness rule, then resolve this limitation."
         }
       },
       {
@@ -2828,7 +3059,7 @@
   },
   "verification": {
     "confidence": "verified",
-    "readiness": "production",
+    "readiness": "reviewed",
     "verified_cases": 1,
     "last_reviewed": "2026-10-10",
     "human_reviewed_by": "claude-opus-5-5 (AI review authorised by the owner, lucas-puerari)",
