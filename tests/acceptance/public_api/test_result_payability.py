@@ -42,7 +42,7 @@ from tests.fixtures.residence import resident
 from tests.fixtures.seniority import new_hire
 
 _ENGINE = PayrollEngine.bundled()
-_EMPLOYER = EmployerProfile(headcount=Headcount(50))
+_EMPLOYER = EmployerProfile(provincial_pay_element=False, headcount=Headcount(50))
 _METALMECCANICO = "metalmeccanico-federmeccanica.json"
 _POSTAL_FISE = "servizi-postali-appalto-fise.json"
 _MILAN_NO_DEPENDANT = PeriodFacts(
@@ -85,7 +85,7 @@ def test_incomplete_coverage_is_not_payable() -> None:
     ``unsupported`` gap and the result is not payable.  So must it revalue
     the TFR fund at 31 December 2025 for January (art. 2120 c. 5 c.c.),
     which the engine reports as not computed: an ``unresolved`` gap.
-    ``base_salary`` comes from ``assumed`` rules: a blocker too.  January
+    ``base_salary`` cites the signed tables: no evidence blocker.  January
     is the only payment of the employment, so the year's income is one
     month of pay and the somma esente is due on an assumed income, an
     issue that blocks on its own.  The worker resides in Alghero, so the
@@ -120,7 +120,7 @@ def test_incomplete_coverage_is_not_payable() -> None:
         "tfr_revaluation": "unresolved",
     }
     assert blocked == set(gaps)
-    assert (BlockerCode.RULE_SOURCE_WEAK, "base_salary", "assumed") in (
+    assert (BlockerCode.RULE_SOURCE_WEAK, "base_salary", "assumed") not in (
         _blocker_keys(result)
     )
 
@@ -151,7 +151,7 @@ def test_ordinary_month_has_no_coverage_gap() -> None:
         b.code is BlockerCode.CAPABILITY_NOT_COMPUTED for b in result.blockers
     )
     keys = _blocker_keys(result)
-    assert (BlockerCode.RULE_SOURCE_WEAK, "base_salary", "assumed") in keys
+    assert (BlockerCode.RULE_SOURCE_WEAK, "base_salary", "assumed") not in keys
     assert not any(feature == "somma_esente" for _code, feature, _d in keys)
 
 
@@ -331,7 +331,9 @@ def test_household_employer_needs_no_residence() -> None:
                 contract_type=Permanent(),
                 pension_fund=NoPensionFund(),
             ),
-            employer=EmployerProfile(headcount=Headcount(1)),
+            employer=EmployerProfile(
+                provincial_pay_element=False, headcount=Headcount(1)
+            ),
             facts=PeriodFacts(contributable_hours=ContributableHours(Decimal(108))),
         )
     )

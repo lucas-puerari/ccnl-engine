@@ -73,7 +73,9 @@ def test_addizionali_emilia_romagna_modena() -> None:
             run=PayrollRun.regular(year=2026, month=1),
             payment_date=date(2026, 1, 28),
             employment=_C3,
-            employer=EmployerProfile(headcount=Headcount(100)),
+            employer=EmployerProfile(
+                provincial_pay_element=False, headcount=Headcount(100)
+            ),
         )
     )
     result_surtax = engine.calculate_period(
@@ -81,7 +83,9 @@ def test_addizionali_emilia_romagna_modena() -> None:
             run=PayrollRun.regular(year=2026, month=1),
             payment_date=date(2026, 1, 28),
             employment=_C3,
-            employer=EmployerProfile(headcount=Headcount(100)),
+            employer=EmployerProfile(
+                provincial_pay_element=False, headcount=Headcount(100)
+            ),
             facts=PeriodFacts(regione="IT-45", comune_belfiore="F257"),
             opening_state=opening_with_2025_surtax("IT-45", "F257"),
             prior_year=RENEWAL_WAIVED,
@@ -118,7 +122,9 @@ def test_pdr_productivity_bonus_separate_from_ordinary_irpef() -> None:
             run=PayrollRun.regular(year=2026, month=3),
             payment_date=date(2026, 3, 27),
             employment=_C3,
-            employer=EmployerProfile(headcount=Headcount(100)),
+            employer=EmployerProfile(
+                provincial_pay_element=False, headcount=Headcount(100)
+            ),
             facts=PeriodFacts(
                 events=(
                     BonusEvent(
@@ -136,7 +142,9 @@ def test_pdr_productivity_bonus_separate_from_ordinary_irpef() -> None:
             run=PayrollRun.regular(year=2026, month=3),
             payment_date=date(2026, 3, 27),
             employment=_C3,
-            employer=EmployerProfile(headcount=Headcount(100)),
+            employer=EmployerProfile(
+                provincial_pay_element=False, headcount=Headcount(100)
+            ),
             facts=PeriodFacts(
                 events=(
                     BonusEvent(
@@ -180,7 +188,9 @@ def test_family_deductions_increase_net() -> None:
                 seniority=new_hire(),
                 contract_type=Permanent(),
             ),
-            employer=EmployerProfile(headcount=Headcount(50)),
+            employer=EmployerProfile(
+                provincial_pay_element=False, headcount=Headcount(50)
+            ),
             facts=PeriodFacts(regione="IT-45"),
         )
     )
@@ -194,7 +204,9 @@ def test_family_deductions_increase_net() -> None:
                 seniority=new_hire(),
                 contract_type=Permanent(),
             ),
-            employer=EmployerProfile(headcount=Headcount(50)),
+            employer=EmployerProfile(
+                provincial_pay_element=False, headcount=Headcount(50)
+            ),
             facts=PeriodFacts(
                 regione="IT-45",
                 family_composition=FamilyComposition(
@@ -235,7 +247,9 @@ def test_spouse_deduction_flat_band() -> None:
                 seniority=new_hire(),
                 contract_type=Permanent(),
             ),
-            employer=EmployerProfile(headcount=Headcount(50)),
+            employer=EmployerProfile(
+                provincial_pay_element=False, headcount=Headcount(50)
+            ),
             facts=PeriodFacts(
                 family_composition=FamilyComposition(
                     dependents=(

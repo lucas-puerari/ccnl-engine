@@ -11,6 +11,9 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.contract.domain.validity import rule_scope
+from ccnl_engine.payroll.application.period._provincial import (
+    without_replaced_elements,
+)
 from ccnl_engine.payroll.domain.employment_context import (
     EffectiveDateContext,
     TemporalContext,
@@ -48,7 +51,12 @@ _CONTRIBUTION_FIELDS = (
 
 @dataclass(frozen=True)
 class RunContract:
-    """CCNL, level, dates and yearly rules of a run."""
+    """CCNL, level, dates and yearly rules of a run.
+
+    ``provincial_unknown`` holds the national elements of the level left out
+    because the employer does not state whether a provincial element
+    replaces them (:mod:`._provincial`).
+    """
 
     ccnl: CCNL
     level: Level
@@ -56,6 +64,7 @@ class RunContract:
     date_ctx: EffectiveDateContext
     year_rules: YearRules
     catalog: CapabilityCatalog
+    provincial_unknown: tuple[str, ...] = ()
 
 
 def load_contract(
@@ -73,6 +82,12 @@ def load_contract(
     ccnl = flat_pay_divisor(repo.load_ccnl(request.ccnl_slug), request.weekly_hours)
     tctx = TemporalContext.from_period(
         period_id.year, period_id.month, request.payment_date
+    )
+    ccnl, provincial_unknown = without_replaced_elements(
+        ccnl,
+        request.level_code,
+        request.employer.provincial_pay_element,
+        tctx.competence,
     )
     try:
         level = ccnl.level_by_code(request.level_code)
@@ -100,7 +115,9 @@ def load_contract(
         )
         year_rules = year_rules.model_copy(update={"inps": inps})
     catalog = repo.load_capability_catalog(tctx.fiscal_year)
-    return RunContract(ccnl, level, tctx, date_ctx, year_rules, catalog)
+    return RunContract(
+        ccnl, level, tctx, date_ctx, year_rules, catalog, provincial_unknown
+    )
 
 
 #: Weeks of a month: a weekly schedule times 52 / 12 is its monthly hours.

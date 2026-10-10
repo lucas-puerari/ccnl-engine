@@ -44,6 +44,8 @@ if TYPE_CHECKING:
     from ccnl_engine.tax.domain.ruleset import YearRules
 
 _METALMECCANICO = "metalmeccanico-federmeccanica.json"
+#: A CCNL whose salary table still reads assumed rules.
+_AGENTI = "agenti-immobiliari-fiaip.json"
 _MISSING = RuleProvenance(status=ProvenanceStatus.MISSING, note="no source")
 
 
@@ -66,19 +68,22 @@ class _MissingTfrSource(BundledKnowledgeRepository):
 def _run(
     repo: BundledKnowledgeRepository | None = None, **kwargs: object
 ) -> PeriodResult:
+    fields: dict[str, object] = {
+        "ccnl_slug": _METALMECCANICO,
+        "level_code": "C3",
+        "category": WorkerCategory.IMPIEGATO,
+        "current_year": employment_only(),
+    } | kwargs
     request = PeriodCalculationRequest(
         period_id=PeriodId(year=2026, month=3),
         payment_date=date(2026, 3, 27),
-        ccnl_slug=_METALMECCANICO,
-        level_code="C3",
-        category=WorkerCategory.IMPIEGATO,
         seniority=new_hire(),
         tfr_treasury_fund=False,
         pension_fund=NoPensionFund(),
         employer=EmployerProfile(headcount=Headcount(50)),
         opening_state=PeriodState.zero(),
         employment_period=EmploymentPeriod(date(2026, 3, 1)),
-        **({"current_year": employment_only()} | kwargs),  # type: ignore[arg-type]
+        **fields,  # type: ignore[arg-type]
     )
     return calculate_period(request, repo=repo)
 
@@ -91,11 +96,11 @@ class TestBundledRun:
         result = _run()
         sources = result.capability_report.rule_sources
         # The industria tax rules cite the law, its INPS rates a rate table;
-        # the metalmeccanico salary table does not cite the signed one.
+        # the metalmeccanico salary table cites the signed agreements.
         assert sources["irpef"] is ProvenanceStatus.DERIVED
         assert sources["tfr"] is ProvenanceStatus.DERIVED
         assert sources["inps_employer"] is ProvenanceStatus.DERIVED
-        assert sources["base_salary"] is ProvenanceStatus.ASSUMED
+        assert sources["base_salary"] is ProvenanceStatus.DERIVED
         # The somma esente sits in its own ruleset, quoted from the law.
         assert sources["somma_esente"] is ProvenanceStatus.DERIVED
         # A known seniority decides the increments, so their rule is read.
@@ -109,7 +114,12 @@ class TestBundledRun:
         and waived the renewal regime on the minimo in writing.
         """
         result = _run(
-            regione=REGIONE, comune_belfiore=COMUNE_BELFIORE, prior_year=RENEWAL_WAIVED
+            ccnl_slug=_AGENTI,
+            level_code="IV",
+            category=None,
+            regione=REGIONE,
+            comune_belfiore=COMUNE_BELFIORE,
+            prior_year=RENEWAL_WAIVED,
         )
         weak = {
             (b.feature, b.detail)

@@ -90,6 +90,20 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
+      },
+      {
+        "kind": "info",
+        "text": "TERZO ELEMENTO NAZIONALE (Art. 215): 2.07 EUR a month due only in the provinces where no provincial third element is in force; paid when EmployerProfile.provincial_pay_element is false, left out with a missing_fact blocker when it is not stated."
+      },
+      {
+        "kind": "simplification",
+        "text": "SICKNESS (Art. 187): integration up to 75% for days 4-20 and 100% from day 21 of the net daily pay, carenza at 100% for the first two events of the calendar year, 66% for the third, 50% for the fourth, none from the fifth. Modelled as 100% from the first day; the amounts of a run with sickness are not reliable.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "sickness_day_bands_and_event_carenza",
+          "remediation": "Extend the sickness rule with day-gated integration bands on the net daily pay and the carenza rate by event of the calendar year, then resolve this limitation."
+        }
       }
     ]
   },
@@ -99,7 +113,30 @@
         {
           "valid_from": "2024-04-01",
           "valid_until": null,
-          "value": "168"
+          "value": "168",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "uiltucs-tu2019",
+                "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+                "published_on": "2019-07-30",
+                "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+              },
+              "page": "196",
+              "section": "Art. 211 - Quota oraria, lett. a)",
+              "quote": "168, per il personale la cui durata normale di lavoro è di 40 ore settimanali"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-10T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-04-01"
+            }
+          }
         }
       ]
     },
@@ -110,9 +147,27 @@
           "valid_until": null,
           "value": "14",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "uiltucs-tu2019",
+                "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+                "published_on": "2019-07-30",
+                "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+              },
+              "page": "200-201",
+              "section": "Capo XIV - Mensilita supplementari (13a e 14a): Art. 220 Tredicesima mensilita (p. 200), Art. 221 Quattordicesima Mensilita (p. 201)",
+              "quote": "Art. 221: 'sara corrisposto, il 1° luglio di ogni anno, un importo pari ad una mensilita della retribuzione di fatto ... (quattordicesima mensilita)'"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-10T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-04-01"
+            }
           }
         }
       ]
@@ -195,60 +250,54 @@
         }
       },
       "provenance": {
-        "status": "assumed",
+        "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "ccnl-commercio-confcommercio-2019",
-            "title": "CCNL Terziario Distribuzione e Servizi — Testo Unico 2019 (rinnovo 22/03/2024)",
+            "document_id": "uiltucs-tu2019",
+            "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
             "kind": "associazione",
-            "url": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
-            "pages": [],
-            "published_on": "2024-03-22",
-            "jurisdiction": "it"
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "published_on": "2019-07-30",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
           },
-          "page": null,
-          "section": "Art. 205 — Scatti di anzianità",
-          "quote": null
+          "page": "192-193",
+          "section": "Art. 205 - Scatti di anzianita",
+          "quote": "il personale ha diritto a dieci scatti triennali ... Quadri 25,46 I 24,84 II 22,83 III 21,95 IV 20,66 V 20,30 VI 19,73 VII 19,47 (dal 01.01.1990)"
         },
         "extraction": {
           "method": "ai",
-          "model": "claude-sonnet-4-6",
-          "extraction_timestamp": "2026-08-30T00:00:00",
-          "verified_by": null,
-          "verified_at": null,
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-10T00:00:00",
           "verification_status": "unverified",
-          "effective_from": "1990-01-01",
-          "effective_until": null,
-          "back_calculation": null
-        },
-        "note": "Dieci scatti triennali; importi vigenti dal 01/01/1990, invariati dal rinnovo 2024"
+          "effective_from": "1993-11-01"
+        }
       }
     },
     "accrual_rule": {
       "min_days": 15,
       "comparison": "at_least",
       "provenance": {
-        "status": "assumed",
+        "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "ccnl-terziario-confcommercio-testo-unico-2019",
-            "title": "Testo Unico 30 luglio 2019 CCNL Terziario, Distribuzione e Servizi",
-            "kind": "altro",
-            "url": "https://www.ebinter.it/ebinter-site/wp-content/uploads/2022/01/CCNL-Terziario-Distribuzione-e-Servizi_30-Luglio-2019.pdf",
-            "published_on": "2019-07-30"
+            "document_id": "uiltucs-tu2019",
+            "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "published_on": "2019-07-30",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
           },
           "page": "192",
-          "section": "Art. 204, Computo anzianità frazione annua, referred to by artt. 220 e 221",
+          "section": "Art. 204 - Computo anzianita frazione annua; referred to by footnotes 19 and 20 of Artt. 220 (p. 200) and 221 (p. 201)",
           "quote": "le frazioni di anno saranno computate, a tutti gli effetti contrattuali, per dodicesimi, computandosi come mese intero le frazioni di mese superiori o uguali a 15 giorni."
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-09-27T00:00:00",
+          "extraction_timestamp": "2026-10-10T00:00:00",
           "verification_status": "unverified",
           "effective_from": "1993-11-01"
-        },
-        "note": "Artt. 220 and 221 on tredicesima and quattordicesima refer to art. 204 in a footnote; months are those of the civil calendar. Copy of the bilateral body EBINTER; the signed scan (uiltucs.it, p. 129) and the 2024 renewal, read by OCR, agree. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+        }
       }
     },
     "thirteenth_payment_day": {
@@ -353,33 +402,27 @@
             "valid_until": "2025-03-01",
             "value": "2070.25",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello Q, tranche dal 2024-04-01",
-                "quote": null
+                "page": "64",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/4/2024'",
+                "quote": "Paga base dal 1/4/2024 ... Quadro 2070,25"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2024-04-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2024-04-01"
+              }
             }
           },
           {
@@ -387,33 +430,27 @@
             "valid_until": "2025-11-01",
             "value": "2122.33",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello Q, tranche dal 2025-03-01",
-                "quote": null
+                "page": "64",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/3/2025'",
+                "quote": "Paga base dal 1/3/2025 ... Quadro 2122,33"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2025-03-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2025-03-01"
+              }
             }
           },
           {
@@ -421,33 +458,27 @@
             "valid_until": "2026-11-01",
             "value": "2183.09",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello Q, tranche dal 2025-11-01",
-                "quote": null
+                "page": "65",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2025'",
+                "quote": "Paga base dal 1/11/2025 ... Quadro 2183,09"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2025-11-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2025-11-01"
+              }
             }
           },
           {
@@ -455,33 +486,27 @@
             "valid_until": "2027-02-01",
             "value": "2243.85",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello Q, tranche dal 2026-11-01",
-                "quote": null
+                "page": "65",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2026'",
+                "quote": "Paga base dal 1/11/2026 ... Quadro 2243,85"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2026-11-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2026-11-01"
+              }
             }
           },
           {
@@ -489,33 +514,27 @@
             "valid_until": null,
             "value": "2313.29",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello Q, tranche dal 2027-02-01",
-                "quote": null
+                "page": "65",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/2/2027'",
+                "quote": "Paga base dal 1/2/2027 ... Quadro 2313,29"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2027-02-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2027-02-01"
+              }
             }
           }
         ]
@@ -534,33 +553,27 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "tabelle-retributive-commercio-2024",
-                "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                "kind": "tabella_retributiva",
-                "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                "pages": [],
+                "document_id": "uiltucs-tds",
+                "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                 "published_on": "2024-03-28",
-                "jurisdiction": "it"
+                "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
               },
-              "page": null,
-              "section": "Contingenza + EDR — colonna tabella retributiva",
-              "quote": null
+              "page": "64",
+              "section": "Accordo integrativo 28/03/2024, column 'Contingenza + EDR' (same in all five 2024-2027 tranche tables, pp. 64-65)",
+              "quote": "Quadro ... 540,37"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-08-30T00:00:00",
-              "verified_by": null,
-              "verified_at": null,
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-10T00:00:00",
               "verification_status": "unverified",
-              "effective_from": "1993-11-01",
-              "effective_until": null,
-              "back_calculation": null
-            },
-            "note": "Contingenza conglobata e bloccata dal 01/11/1993 (L. 438/1992) + EDR 10,33 (Accordo 31/07/1992)"
+              "effective_from": "1993-11-01"
+            }
           }
         },
         {
@@ -576,34 +589,29 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "ccnl-commercio-confcommercio-2019",
-                "title": "CCNL Terziario Distribuzione e Servizi — Testo Unico 2019 (rinnovo 22/03/2024)",
+                "document_id": "uiltucs-tu2019",
+                "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
                 "kind": "associazione",
-                "url": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
-                "pages": [],
-                "published_on": "2024-03-22",
-                "jurisdiction": "it"
+                "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+                "published_on": "2019-07-30",
+                "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
               },
-              "page": null,
-              "section": "Art. 215 — Terzo elemento nazionale",
-              "quote": null
+              "page": "199",
+              "section": "Art. 215 - Terzo elemento nazionale",
+              "quote": "per i dipendenti di aziende operanti in provincie nelle quali non sono in atto terzi elementi retributivi provinciali comunque denominati, siano corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-08-30T00:00:00",
-              "verified_by": null,
-              "verified_at": null,
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-10T00:00:00",
               "verification_status": "unverified",
-              "effective_from": "1993-11-01",
-              "effective_until": null,
-              "back_calculation": null
-            },
-            "note": null
-          }
+              "effective_from": "1993-11-01"
+            }
+          },
+          "replaced_by_provincial_element": true
         },
         {
           "code": "IND_FUNZIONE",
@@ -618,65 +626,53 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "ccnl-commercio-confcommercio-2019",
-                "title": "CCNL Terziario Distribuzione e Servizi — Testo Unico 2019 (rinnovo 22/03/2024)",
+                "document_id": "uiltucs-tds",
+                "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
                 "kind": "associazione",
-                "url": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
-                "pages": [],
-                "published_on": "2024-03-22",
-                "jurisdiction": "it"
+                "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+                "published_on": "2024-03-28",
+                "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
               },
-              "page": null,
-              "section": "Art. 129 — Indennità di funzione Quadri",
-              "quote": null
+              "page": "64",
+              "section": "Accordo integrativo 28/03/2024, column 'Altri el.' (same in all tranche tables, pp. 64-65)",
+              "quote": "Quadro ... 260,76"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-08-30T00:00:00",
-              "verified_by": null,
-              "verified_at": null,
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-10T00:00:00",
               "verification_status": "unverified",
-              "effective_from": "2024-04-01",
-              "effective_until": null,
-              "back_calculation": null
-            },
-            "note": "260,76 EUR × 14 mensilità (la somma algebrica è 260,77; la tabella porta 260,76)"
+              "effective_from": "1993-11-01"
+            }
           }
         }
       ],
       "category": "quadro",
       "provenance": {
-        "status": "assumed",
+        "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "tabelle-retributive-commercio-2024",
-            "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-            "kind": "tabella_retributiva",
-            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-            "pages": [],
+            "document_id": "uiltucs-tds",
+            "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
             "published_on": "2024-03-28",
-            "jurisdiction": "it"
+            "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
           },
-          "page": null,
-          "section": "Tabella retributiva — livello Q",
+          "page": "65",
+          "section": "Accordo integrativo 28/03/2024, tabelle retributive",
           "quote": null
         },
         "extraction": {
           "method": "ai",
-          "model": "claude-sonnet-4-6",
-          "extraction_timestamp": "2026-08-30T00:00:00",
-          "verified_by": null,
-          "verified_at": null,
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-10T00:00:00",
           "verification_status": "unverified",
-          "effective_from": "2024-04-01",
-          "effective_until": null,
-          "back_calculation": null
-        },
-        "note": null
+          "effective_from": "2027-02-01"
+        }
       }
     },
     {
@@ -690,33 +686,27 @@
             "valid_until": "2025-03-01",
             "value": "1864.88",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 1, tranche dal 2024-04-01",
-                "quote": null
+                "page": "64",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/4/2024'",
+                "quote": "Paga base dal 1/4/2024 ... I 1864,88"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2024-04-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2024-04-01"
+              }
             }
           },
           {
@@ -724,33 +714,27 @@
             "valid_until": "2025-11-01",
             "value": "1911.80",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 1, tranche dal 2025-03-01",
-                "quote": null
+                "page": "64",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/3/2025'",
+                "quote": "Paga base dal 1/3/2025 ... I 1911,80"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2025-03-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2025-03-01"
+              }
             }
           },
           {
@@ -758,33 +742,27 @@
             "valid_until": "2026-11-01",
             "value": "1966.54",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 1, tranche dal 2025-11-01",
-                "quote": null
+                "page": "65",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2025'",
+                "quote": "Paga base dal 1/11/2025 ... I 1966,54"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2025-11-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2025-11-01"
+              }
             }
           },
           {
@@ -792,33 +770,27 @@
             "valid_until": "2027-02-01",
             "value": "2021.28",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 1, tranche dal 2026-11-01",
-                "quote": null
+                "page": "65",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2026'",
+                "quote": "Paga base dal 1/11/2026 ... I 2021,28"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2026-11-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2026-11-01"
+              }
             }
           },
           {
@@ -826,33 +798,27 @@
             "valid_until": null,
             "value": "2083.84",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 1, tranche dal 2027-02-01",
-                "quote": null
+                "page": "65",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/2/2027'",
+                "quote": "Paga base dal 1/2/2027 ... I 2083,84"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2027-02-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2027-02-01"
+              }
             }
           }
         ]
@@ -871,33 +837,27 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "tabelle-retributive-commercio-2024",
-                "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                "kind": "tabella_retributiva",
-                "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                "pages": [],
+                "document_id": "uiltucs-tds",
+                "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                 "published_on": "2024-03-28",
-                "jurisdiction": "it"
+                "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
               },
-              "page": null,
-              "section": "Contingenza + EDR — colonna tabella retributiva",
-              "quote": null
+              "page": "64",
+              "section": "Accordo integrativo 28/03/2024, column 'Contingenza + EDR' (same in all five 2024-2027 tranche tables, pp. 64-65)",
+              "quote": "I ... 537,52"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-08-30T00:00:00",
-              "verified_by": null,
-              "verified_at": null,
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-10T00:00:00",
               "verification_status": "unverified",
-              "effective_from": "1993-11-01",
-              "effective_until": null,
-              "back_calculation": null
-            },
-            "note": "Contingenza conglobata e bloccata dal 01/11/1993 (L. 438/1992) + EDR 10,33 (Accordo 31/07/1992)"
+              "effective_from": "1993-11-01"
+            }
           }
         },
         {
@@ -913,64 +873,53 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "ccnl-commercio-confcommercio-2019",
-                "title": "CCNL Terziario Distribuzione e Servizi — Testo Unico 2019 (rinnovo 22/03/2024)",
+                "document_id": "uiltucs-tu2019",
+                "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
                 "kind": "associazione",
-                "url": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
-                "pages": [],
-                "published_on": "2024-03-22",
-                "jurisdiction": "it"
+                "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+                "published_on": "2019-07-30",
+                "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
               },
-              "page": null,
-              "section": "Art. 215 — Terzo elemento nazionale",
-              "quote": null
+              "page": "199",
+              "section": "Art. 215 - Terzo elemento nazionale",
+              "quote": "per i dipendenti di aziende operanti in provincie nelle quali non sono in atto terzi elementi retributivi provinciali comunque denominati, siano corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-08-30T00:00:00",
-              "verified_by": null,
-              "verified_at": null,
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-10T00:00:00",
               "verification_status": "unverified",
-              "effective_from": "1993-11-01",
-              "effective_until": null,
-              "back_calculation": null
-            },
-            "note": null
-          }
+              "effective_from": "1993-11-01"
+            }
+          },
+          "replaced_by_provincial_element": true
         }
       ],
       "provenance": {
-        "status": "assumed",
+        "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "tabelle-retributive-commercio-2024",
-            "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-            "kind": "tabella_retributiva",
-            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-            "pages": [],
+            "document_id": "uiltucs-tds",
+            "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
             "published_on": "2024-03-28",
-            "jurisdiction": "it"
+            "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
           },
-          "page": null,
-          "section": "Tabella retributiva — livello 1",
+          "page": "65",
+          "section": "Accordo integrativo 28/03/2024, tabelle retributive",
           "quote": null
         },
         "extraction": {
           "method": "ai",
-          "model": "claude-sonnet-4-6",
-          "extraction_timestamp": "2026-08-30T00:00:00",
-          "verified_by": null,
-          "verified_at": null,
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-10T00:00:00",
           "verification_status": "unverified",
-          "effective_from": "2024-04-01",
-          "effective_until": null,
-          "back_calculation": null
-        },
-        "note": null
+          "effective_from": "2027-02-01"
+        }
       }
     },
     {
@@ -984,33 +933,27 @@
             "valid_until": "2025-03-01",
             "value": "1613.11",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 2, tranche dal 2024-04-01",
-                "quote": null
+                "page": "64",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/4/2024'",
+                "quote": "Paga base dal 1/4/2024 ... II 1613,11"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2024-04-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2024-04-01"
+              }
             }
           },
           {
@@ -1018,33 +961,27 @@
             "valid_until": "2025-11-01",
             "value": "1653.69",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 2, tranche dal 2025-03-01",
-                "quote": null
+                "page": "64",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/3/2025'",
+                "quote": "Paga base dal 1/3/2025 ... II 1653,69"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2025-03-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2025-03-01"
+              }
             }
           },
           {
@@ -1052,33 +989,27 @@
             "valid_until": "2026-11-01",
             "value": "1701.04",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 2, tranche dal 2025-11-01",
-                "quote": null
+                "page": "65",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2025'",
+                "quote": "Paga base dal 1/11/2025 ... II 1701,04"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2025-11-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2025-11-01"
+              }
             }
           },
           {
@@ -1086,33 +1017,27 @@
             "valid_until": "2027-02-01",
             "value": "1748.39",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 2, tranche dal 2026-11-01",
-                "quote": null
+                "page": "65",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2026'",
+                "quote": "Paga base dal 1/11/2026 ... II 1748,39"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2026-11-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2026-11-01"
+              }
             }
           },
           {
@@ -1120,33 +1045,27 @@
             "valid_until": null,
             "value": "1802.50",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 2, tranche dal 2027-02-01",
-                "quote": null
+                "page": "65",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/2/2027'",
+                "quote": "Paga base dal 1/2/2027 ... II 1802,50"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2027-02-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2027-02-01"
+              }
             }
           }
         ]
@@ -1165,33 +1084,27 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "tabelle-retributive-commercio-2024",
-                "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                "kind": "tabella_retributiva",
-                "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                "pages": [],
+                "document_id": "uiltucs-tds",
+                "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                 "published_on": "2024-03-28",
-                "jurisdiction": "it"
+                "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
               },
-              "page": null,
-              "section": "Contingenza + EDR — colonna tabella retributiva",
-              "quote": null
+              "page": "64",
+              "section": "Accordo integrativo 28/03/2024, column 'Contingenza + EDR' (same in all five 2024-2027 tranche tables, pp. 64-65)",
+              "quote": "II ... 532,54"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-08-30T00:00:00",
-              "verified_by": null,
-              "verified_at": null,
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-10T00:00:00",
               "verification_status": "unverified",
-              "effective_from": "1993-11-01",
-              "effective_until": null,
-              "back_calculation": null
-            },
-            "note": "Contingenza conglobata e bloccata dal 01/11/1993 (L. 438/1992) + EDR 10,33 (Accordo 31/07/1992)"
+              "effective_from": "1993-11-01"
+            }
           }
         },
         {
@@ -1207,64 +1120,53 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "ccnl-commercio-confcommercio-2019",
-                "title": "CCNL Terziario Distribuzione e Servizi — Testo Unico 2019 (rinnovo 22/03/2024)",
+                "document_id": "uiltucs-tu2019",
+                "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
                 "kind": "associazione",
-                "url": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
-                "pages": [],
-                "published_on": "2024-03-22",
-                "jurisdiction": "it"
+                "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+                "published_on": "2019-07-30",
+                "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
               },
-              "page": null,
-              "section": "Art. 215 — Terzo elemento nazionale",
-              "quote": null
+              "page": "199",
+              "section": "Art. 215 - Terzo elemento nazionale",
+              "quote": "per i dipendenti di aziende operanti in provincie nelle quali non sono in atto terzi elementi retributivi provinciali comunque denominati, siano corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-08-30T00:00:00",
-              "verified_by": null,
-              "verified_at": null,
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-10T00:00:00",
               "verification_status": "unverified",
-              "effective_from": "1993-11-01",
-              "effective_until": null,
-              "back_calculation": null
-            },
-            "note": null
-          }
+              "effective_from": "1993-11-01"
+            }
+          },
+          "replaced_by_provincial_element": true
         }
       ],
       "provenance": {
-        "status": "assumed",
+        "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "tabelle-retributive-commercio-2024",
-            "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-            "kind": "tabella_retributiva",
-            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-            "pages": [],
+            "document_id": "uiltucs-tds",
+            "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
             "published_on": "2024-03-28",
-            "jurisdiction": "it"
+            "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
           },
-          "page": null,
-          "section": "Tabella retributiva — livello 2",
+          "page": "65",
+          "section": "Accordo integrativo 28/03/2024, tabelle retributive",
           "quote": null
         },
         "extraction": {
           "method": "ai",
-          "model": "claude-sonnet-4-6",
-          "extraction_timestamp": "2026-08-30T00:00:00",
-          "verified_by": null,
-          "verified_at": null,
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-10T00:00:00",
           "verification_status": "unverified",
-          "effective_from": "2024-04-01",
-          "effective_until": null,
-          "back_calculation": null
-        },
-        "note": null
+          "effective_from": "2027-02-01"
+        }
       }
     },
     {
@@ -1278,33 +1180,27 @@
             "valid_until": "2025-03-01",
             "value": "1378.78",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 3, tranche dal 2024-04-01",
-                "quote": null
+                "page": "64",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/4/2024'",
+                "quote": "Paga base dal 1/4/2024 ... III 1378,78"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2024-04-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2024-04-01"
+              }
             }
           },
           {
@@ -1312,33 +1208,27 @@
             "valid_until": "2025-11-01",
             "value": "1413.47",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 3, tranche dal 2025-03-01",
-                "quote": null
+                "page": "64",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/3/2025'",
+                "quote": "Paga base dal 1/3/2025 ... III 1413,47"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2025-03-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2025-03-01"
+              }
             }
           },
           {
@@ -1346,33 +1236,27 @@
             "valid_until": "2026-11-01",
             "value": "1453.94",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 3, tranche dal 2025-11-01",
-                "quote": null
+                "page": "65",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2025'",
+                "quote": "Paga base dal 1/11/2025 ... III 1453,94"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2025-11-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2025-11-01"
+              }
             }
           },
           {
@@ -1380,33 +1264,27 @@
             "valid_until": "2027-02-01",
             "value": "1494.41",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 3, tranche dal 2026-11-01",
-                "quote": null
+                "page": "65",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2026'",
+                "quote": "Paga base dal 1/11/2026 ... III 1494,41"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2026-11-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2026-11-01"
+              }
             }
           },
           {
@@ -1414,33 +1292,27 @@
             "valid_until": null,
             "value": "1540.66",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 3, tranche dal 2027-02-01",
-                "quote": null
+                "page": "65",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/2/2027'",
+                "quote": "Paga base dal 1/2/2027 ... III 1540,66"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2027-02-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2027-02-01"
+              }
             }
           }
         ]
@@ -1459,33 +1331,27 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "tabelle-retributive-commercio-2024",
-                "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                "kind": "tabella_retributiva",
-                "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                "pages": [],
+                "document_id": "uiltucs-tds",
+                "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                 "published_on": "2024-03-28",
-                "jurisdiction": "it"
+                "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
               },
-              "page": null,
-              "section": "Contingenza + EDR — colonna tabella retributiva",
-              "quote": null
+              "page": "64",
+              "section": "Accordo integrativo 28/03/2024, column 'Contingenza + EDR' (same in all five 2024-2027 tranche tables, pp. 64-65)",
+              "quote": "III ... 527,90"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-08-30T00:00:00",
-              "verified_by": null,
-              "verified_at": null,
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-10T00:00:00",
               "verification_status": "unverified",
-              "effective_from": "1993-11-01",
-              "effective_until": null,
-              "back_calculation": null
-            },
-            "note": "Contingenza conglobata e bloccata dal 01/11/1993 (L. 438/1992) + EDR 10,33 (Accordo 31/07/1992)"
+              "effective_from": "1993-11-01"
+            }
           }
         },
         {
@@ -1501,64 +1367,53 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "ccnl-commercio-confcommercio-2019",
-                "title": "CCNL Terziario Distribuzione e Servizi — Testo Unico 2019 (rinnovo 22/03/2024)",
+                "document_id": "uiltucs-tu2019",
+                "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
                 "kind": "associazione",
-                "url": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
-                "pages": [],
-                "published_on": "2024-03-22",
-                "jurisdiction": "it"
+                "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+                "published_on": "2019-07-30",
+                "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
               },
-              "page": null,
-              "section": "Art. 215 — Terzo elemento nazionale",
-              "quote": null
+              "page": "199",
+              "section": "Art. 215 - Terzo elemento nazionale",
+              "quote": "per i dipendenti di aziende operanti in provincie nelle quali non sono in atto terzi elementi retributivi provinciali comunque denominati, siano corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-08-30T00:00:00",
-              "verified_by": null,
-              "verified_at": null,
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-10T00:00:00",
               "verification_status": "unverified",
-              "effective_from": "1993-11-01",
-              "effective_until": null,
-              "back_calculation": null
-            },
-            "note": null
-          }
+              "effective_from": "1993-11-01"
+            }
+          },
+          "replaced_by_provincial_element": true
         }
       ],
       "provenance": {
-        "status": "assumed",
+        "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "tabelle-retributive-commercio-2024",
-            "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-            "kind": "tabella_retributiva",
-            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-            "pages": [],
+            "document_id": "uiltucs-tds",
+            "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
             "published_on": "2024-03-28",
-            "jurisdiction": "it"
+            "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
           },
-          "page": null,
-          "section": "Tabella retributiva — livello 3",
+          "page": "65",
+          "section": "Accordo integrativo 28/03/2024, tabelle retributive",
           "quote": null
         },
         "extraction": {
           "method": "ai",
-          "model": "claude-sonnet-4-6",
-          "extraction_timestamp": "2026-08-30T00:00:00",
-          "verified_by": null,
-          "verified_at": null,
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-10T00:00:00",
           "verification_status": "unverified",
-          "effective_from": "2024-04-01",
-          "effective_until": null,
-          "back_calculation": null
-        },
-        "note": null
+          "effective_from": "2027-02-01"
+        }
       }
     },
     {
@@ -1572,33 +1427,27 @@
             "valid_until": "2025-03-01",
             "value": "1192.46",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 4, tranche dal 2024-04-01",
-                "quote": null
+                "page": "64",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/4/2024'",
+                "quote": "Paga base dal 1/4/2024 ... IV 1192,46"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2024-04-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2024-04-01"
+              }
             }
           },
           {
@@ -1606,33 +1455,27 @@
             "valid_until": "2025-11-01",
             "value": "1222.46",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 4, tranche dal 2025-03-01",
-                "quote": null
+                "page": "64",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/3/2025'",
+                "quote": "Paga base dal 1/3/2025 ... IV 1222,46"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2025-03-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2025-03-01"
+              }
             }
           },
           {
@@ -1640,33 +1483,27 @@
             "valid_until": "2026-11-01",
             "value": "1257.46",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 4, tranche dal 2025-11-01",
-                "quote": null
+                "page": "65",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2025'",
+                "quote": "Paga base dal 1/11/2025 ... IV 1257,46"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2025-11-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2025-11-01"
+              }
             }
           },
           {
@@ -1674,33 +1511,27 @@
             "valid_until": "2027-02-01",
             "value": "1292.46",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 4, tranche dal 2026-11-01",
-                "quote": null
+                "page": "65",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2026'",
+                "quote": "Paga base dal 1/11/2026 ... IV 1292,46"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2026-11-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2026-11-01"
+              }
             }
           },
           {
@@ -1708,33 +1539,27 @@
             "valid_until": null,
             "value": "1332.46",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 4, tranche dal 2027-02-01",
-                "quote": null
+                "page": "65",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/2/2027'",
+                "quote": "Paga base dal 1/2/2027 ... IV 1332,46"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2027-02-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2027-02-01"
+              }
             }
           }
         ]
@@ -1753,33 +1578,27 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "tabelle-retributive-commercio-2024",
-                "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                "kind": "tabella_retributiva",
-                "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                "pages": [],
+                "document_id": "uiltucs-tds",
+                "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                 "published_on": "2024-03-28",
-                "jurisdiction": "it"
+                "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
               },
-              "page": null,
-              "section": "Contingenza + EDR — colonna tabella retributiva",
-              "quote": null
+              "page": "64",
+              "section": "Accordo integrativo 28/03/2024, column 'Contingenza + EDR' (same in all five 2024-2027 tranche tables, pp. 64-65)",
+              "quote": "IV ... 524,22"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-08-30T00:00:00",
-              "verified_by": null,
-              "verified_at": null,
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-10T00:00:00",
               "verification_status": "unverified",
-              "effective_from": "1993-11-01",
-              "effective_until": null,
-              "back_calculation": null
-            },
-            "note": "Contingenza conglobata e bloccata dal 01/11/1993 (L. 438/1992) + EDR 10,33 (Accordo 31/07/1992)"
+              "effective_from": "1993-11-01"
+            }
           }
         },
         {
@@ -1795,64 +1614,53 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "ccnl-commercio-confcommercio-2019",
-                "title": "CCNL Terziario Distribuzione e Servizi — Testo Unico 2019 (rinnovo 22/03/2024)",
+                "document_id": "uiltucs-tu2019",
+                "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
                 "kind": "associazione",
-                "url": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
-                "pages": [],
-                "published_on": "2024-03-22",
-                "jurisdiction": "it"
+                "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+                "published_on": "2019-07-30",
+                "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
               },
-              "page": null,
-              "section": "Art. 215 — Terzo elemento nazionale",
-              "quote": null
+              "page": "199",
+              "section": "Art. 215 - Terzo elemento nazionale",
+              "quote": "per i dipendenti di aziende operanti in provincie nelle quali non sono in atto terzi elementi retributivi provinciali comunque denominati, siano corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-08-30T00:00:00",
-              "verified_by": null,
-              "verified_at": null,
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-10T00:00:00",
               "verification_status": "unverified",
-              "effective_from": "1993-11-01",
-              "effective_until": null,
-              "back_calculation": null
-            },
-            "note": null
-          }
+              "effective_from": "1993-11-01"
+            }
+          },
+          "replaced_by_provincial_element": true
         }
       ],
       "provenance": {
-        "status": "assumed",
+        "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "tabelle-retributive-commercio-2024",
-            "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-            "kind": "tabella_retributiva",
-            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-            "pages": [],
+            "document_id": "uiltucs-tds",
+            "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
             "published_on": "2024-03-28",
-            "jurisdiction": "it"
+            "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
           },
-          "page": null,
-          "section": "Tabella retributiva — livello 4",
+          "page": "65",
+          "section": "Accordo integrativo 28/03/2024, tabelle retributive",
           "quote": null
         },
         "extraction": {
           "method": "ai",
-          "model": "claude-sonnet-4-6",
-          "extraction_timestamp": "2026-08-30T00:00:00",
-          "verified_by": null,
-          "verified_at": null,
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-10T00:00:00",
           "verification_status": "unverified",
-          "effective_from": "2024-04-01",
-          "effective_until": null,
-          "back_calculation": null
-        },
-        "note": null
+          "effective_from": "2027-02-01"
+        }
       }
     },
     {
@@ -1866,33 +1674,27 @@
             "valid_until": "2025-03-01",
             "value": "1077.35",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 5, tranche dal 2024-04-01",
-                "quote": null
+                "page": "64",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/4/2024'",
+                "quote": "Paga base dal 1/4/2024 ... V 1077,35"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2024-04-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2024-04-01"
+              }
             }
           },
           {
@@ -1900,33 +1702,27 @@
             "valid_until": "2025-11-01",
             "value": "1104.45",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 5, tranche dal 2025-03-01",
-                "quote": null
+                "page": "64",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/3/2025'",
+                "quote": "Paga base dal 1/3/2025 ... V 1104,45"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2025-03-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2025-03-01"
+              }
             }
           },
           {
@@ -1934,33 +1730,27 @@
             "valid_until": "2026-11-01",
             "value": "1136.07",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 5, tranche dal 2025-11-01",
-                "quote": null
+                "page": "65",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2025'",
+                "quote": "Paga base dal 1/11/2025 ... V 1136,07"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2025-11-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2025-11-01"
+              }
             }
           },
           {
@@ -1968,33 +1758,27 @@
             "valid_until": "2027-02-01",
             "value": "1167.69",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 5, tranche dal 2026-11-01",
-                "quote": null
+                "page": "65",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2026'",
+                "quote": "Paga base dal 1/11/2026 ... V 1167,69"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2026-11-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2026-11-01"
+              }
             }
           },
           {
@@ -2002,33 +1786,27 @@
             "valid_until": null,
             "value": "1203.83",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 5, tranche dal 2027-02-01",
-                "quote": null
+                "page": "65",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/2/2027'",
+                "quote": "Paga base dal 1/2/2027 ... V 1203,83"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2027-02-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2027-02-01"
+              }
             }
           }
         ]
@@ -2047,33 +1825,27 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "tabelle-retributive-commercio-2024",
-                "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                "kind": "tabella_retributiva",
-                "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                "pages": [],
+                "document_id": "uiltucs-tds",
+                "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                 "published_on": "2024-03-28",
-                "jurisdiction": "it"
+                "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
               },
-              "page": null,
-              "section": "Contingenza + EDR — colonna tabella retributiva",
-              "quote": null
+              "page": "64",
+              "section": "Accordo integrativo 28/03/2024, column 'Contingenza + EDR' (same in all five 2024-2027 tranche tables, pp. 64-65)",
+              "quote": "V ... 521,94"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-08-30T00:00:00",
-              "verified_by": null,
-              "verified_at": null,
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-10T00:00:00",
               "verification_status": "unverified",
-              "effective_from": "1993-11-01",
-              "effective_until": null,
-              "back_calculation": null
-            },
-            "note": "Contingenza conglobata e bloccata dal 01/11/1993 (L. 438/1992) + EDR 10,33 (Accordo 31/07/1992)"
+              "effective_from": "1993-11-01"
+            }
           }
         },
         {
@@ -2089,64 +1861,53 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "ccnl-commercio-confcommercio-2019",
-                "title": "CCNL Terziario Distribuzione e Servizi — Testo Unico 2019 (rinnovo 22/03/2024)",
+                "document_id": "uiltucs-tu2019",
+                "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
                 "kind": "associazione",
-                "url": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
-                "pages": [],
-                "published_on": "2024-03-22",
-                "jurisdiction": "it"
+                "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+                "published_on": "2019-07-30",
+                "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
               },
-              "page": null,
-              "section": "Art. 215 — Terzo elemento nazionale",
-              "quote": null
+              "page": "199",
+              "section": "Art. 215 - Terzo elemento nazionale",
+              "quote": "per i dipendenti di aziende operanti in provincie nelle quali non sono in atto terzi elementi retributivi provinciali comunque denominati, siano corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-08-30T00:00:00",
-              "verified_by": null,
-              "verified_at": null,
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-10T00:00:00",
               "verification_status": "unverified",
-              "effective_from": "1993-11-01",
-              "effective_until": null,
-              "back_calculation": null
-            },
-            "note": null
-          }
+              "effective_from": "1993-11-01"
+            }
+          },
+          "replaced_by_provincial_element": true
         }
       ],
       "provenance": {
-        "status": "assumed",
+        "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "tabelle-retributive-commercio-2024",
-            "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-            "kind": "tabella_retributiva",
-            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-            "pages": [],
+            "document_id": "uiltucs-tds",
+            "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
             "published_on": "2024-03-28",
-            "jurisdiction": "it"
+            "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
           },
-          "page": null,
-          "section": "Tabella retributiva — livello 5",
+          "page": "65",
+          "section": "Accordo integrativo 28/03/2024, tabelle retributive",
           "quote": null
         },
         "extraction": {
           "method": "ai",
-          "model": "claude-sonnet-4-6",
-          "extraction_timestamp": "2026-08-30T00:00:00",
-          "verified_by": null,
-          "verified_at": null,
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-10T00:00:00",
           "verification_status": "unverified",
-          "effective_from": "2024-04-01",
-          "effective_until": null,
-          "back_calculation": null
-        },
-        "note": null
+          "effective_from": "2027-02-01"
+        }
       }
     },
     {
@@ -2160,33 +1921,27 @@
             "valid_until": "2025-03-01",
             "value": "967.22",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 6, tranche dal 2024-04-01",
-                "quote": null
+                "page": "64",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/4/2024'",
+                "quote": "Paga base dal 1/4/2024 ... VI 967,22"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2024-04-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2024-04-01"
+              }
             }
           },
           {
@@ -2194,33 +1949,27 @@
             "valid_until": "2025-11-01",
             "value": "991.55",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 6, tranche dal 2025-03-01",
-                "quote": null
+                "page": "64",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/3/2025'",
+                "quote": "Paga base dal 1/3/2025 ... VI 991,55"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2025-03-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2025-03-01"
+              }
             }
           },
           {
@@ -2228,33 +1977,27 @@
             "valid_until": "2026-11-01",
             "value": "1019.94",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 6, tranche dal 2025-11-01",
-                "quote": null
+                "page": "65",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2025'",
+                "quote": "Paga base dal 1/11/2025 ... VI 1019,94"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2025-11-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2025-11-01"
+              }
             }
           },
           {
@@ -2262,33 +2005,27 @@
             "valid_until": "2027-02-01",
             "value": "1048.33",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 6, tranche dal 2026-11-01",
-                "quote": null
+                "page": "65",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2026'",
+                "quote": "Paga base dal 1/11/2026 ... VI 1048,33"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2026-11-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2026-11-01"
+              }
             }
           },
           {
@@ -2296,33 +2033,27 @@
             "valid_until": null,
             "value": "1080.77",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 6, tranche dal 2027-02-01",
-                "quote": null
+                "page": "65",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/2/2027'",
+                "quote": "Paga base dal 1/2/2027 ... VI 1080,77"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2027-02-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2027-02-01"
+              }
             }
           }
         ]
@@ -2341,33 +2072,27 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "tabelle-retributive-commercio-2024",
-                "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                "kind": "tabella_retributiva",
-                "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                "pages": [],
+                "document_id": "uiltucs-tds",
+                "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                 "published_on": "2024-03-28",
-                "jurisdiction": "it"
+                "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
               },
-              "page": null,
-              "section": "Contingenza + EDR — colonna tabella retributiva",
-              "quote": null
+              "page": "64",
+              "section": "Accordo integrativo 28/03/2024, column 'Contingenza + EDR' (same in all five 2024-2027 tranche tables, pp. 64-65)",
+              "quote": "VI ... 519,76"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-08-30T00:00:00",
-              "verified_by": null,
-              "verified_at": null,
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-10T00:00:00",
               "verification_status": "unverified",
-              "effective_from": "1993-11-01",
-              "effective_until": null,
-              "back_calculation": null
-            },
-            "note": "Contingenza conglobata e bloccata dal 01/11/1993 (L. 438/1992) + EDR 10,33 (Accordo 31/07/1992)"
+              "effective_from": "1993-11-01"
+            }
           }
         },
         {
@@ -2383,64 +2108,53 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "ccnl-commercio-confcommercio-2019",
-                "title": "CCNL Terziario Distribuzione e Servizi — Testo Unico 2019 (rinnovo 22/03/2024)",
+                "document_id": "uiltucs-tu2019",
+                "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
                 "kind": "associazione",
-                "url": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
-                "pages": [],
-                "published_on": "2024-03-22",
-                "jurisdiction": "it"
+                "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+                "published_on": "2019-07-30",
+                "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
               },
-              "page": null,
-              "section": "Art. 215 — Terzo elemento nazionale",
-              "quote": null
+              "page": "199",
+              "section": "Art. 215 - Terzo elemento nazionale",
+              "quote": "per i dipendenti di aziende operanti in provincie nelle quali non sono in atto terzi elementi retributivi provinciali comunque denominati, siano corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-08-30T00:00:00",
-              "verified_by": null,
-              "verified_at": null,
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-10T00:00:00",
               "verification_status": "unverified",
-              "effective_from": "1993-11-01",
-              "effective_until": null,
-              "back_calculation": null
-            },
-            "note": null
-          }
+              "effective_from": "1993-11-01"
+            }
+          },
+          "replaced_by_provincial_element": true
         }
       ],
       "provenance": {
-        "status": "assumed",
+        "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "tabelle-retributive-commercio-2024",
-            "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-            "kind": "tabella_retributiva",
-            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-            "pages": [],
+            "document_id": "uiltucs-tds",
+            "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
             "published_on": "2024-03-28",
-            "jurisdiction": "it"
+            "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
           },
-          "page": null,
-          "section": "Tabella retributiva — livello 6",
+          "page": "65",
+          "section": "Accordo integrativo 28/03/2024, tabelle retributive",
           "quote": null
         },
         "extraction": {
           "method": "ai",
-          "model": "claude-sonnet-4-6",
-          "extraction_timestamp": "2026-08-30T00:00:00",
-          "verified_by": null,
-          "verified_at": null,
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-10T00:00:00",
           "verification_status": "unverified",
-          "effective_from": "2024-04-01",
-          "effective_until": null,
-          "back_calculation": null
-        },
-        "note": null
+          "effective_from": "2027-02-01"
+        }
       }
     },
     {
@@ -2454,33 +2168,27 @@
             "valid_until": "2025-03-01",
             "value": "828.08",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 7, tranche dal 2024-04-01",
-                "quote": null
+                "page": "64",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/4/2024'",
+                "quote": "Paga base dal 1/4/2024 ... VII 828,08"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2024-04-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2024-04-01"
+              }
             }
           },
           {
@@ -2488,33 +2196,27 @@
             "valid_until": "2025-11-01",
             "value": "848.91",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 7, tranche dal 2025-03-01",
-                "quote": null
+                "page": "64",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/3/2025'",
+                "quote": "Paga base dal 1/3/2025 ... VII 848,91"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2025-03-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2025-03-01"
+              }
             }
           },
           {
@@ -2522,33 +2224,27 @@
             "valid_until": "2026-11-01",
             "value": "873.22",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 7, tranche dal 2025-11-01",
-                "quote": null
+                "page": "65",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2025'",
+                "quote": "Paga base dal 1/11/2025 ... VII 873,22"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2025-11-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2025-11-01"
+              }
             }
           },
           {
@@ -2556,33 +2252,27 @@
             "valid_until": "2027-02-01",
             "value": "897.53",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 7, tranche dal 2026-11-01",
-                "quote": null
+                "page": "65",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2026'",
+                "quote": "Paga base dal 1/11/2026 ... VII 897,53"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2026-11-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2026-11-01"
+              }
             }
           },
           {
@@ -2590,33 +2280,27 @@
             "valid_until": null,
             "value": "925.31",
             "provenance": {
-              "status": "assumed",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-retributive-commercio-2024",
-                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                  "pages": [],
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                   "published_on": "2024-03-28",
-                  "jurisdiction": "it"
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
-                "page": null,
-                "section": "Tabella retributiva — livello 7, tranche dal 2027-02-01",
-                "quote": null
+                "page": "65",
+                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/2/2027'",
+                "quote": "Paga base dal 1/2/2027 ... VII 925,31"
               },
               "extraction": {
                 "method": "ai",
-                "model": "claude-sonnet-4-6",
-                "extraction_timestamp": "2026-08-30T00:00:00",
-                "verified_by": null,
-                "verified_at": null,
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2027-02-01",
-                "effective_until": null,
-                "back_calculation": null
-              },
-              "note": null
+                "effective_from": "2027-02-01"
+              }
             }
           }
         ]
@@ -2635,33 +2319,27 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "tabelle-retributive-commercio-2024",
-                "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                "kind": "tabella_retributiva",
-                "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                "pages": [],
+                "document_id": "uiltucs-tds",
+                "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                 "published_on": "2024-03-28",
-                "jurisdiction": "it"
+                "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
               },
-              "page": null,
-              "section": "Contingenza + EDR — colonna tabella retributiva",
-              "quote": null
+              "page": "64",
+              "section": "Accordo integrativo 28/03/2024, column 'Contingenza + EDR' (same in all five 2024-2027 tranche tables, pp. 64-65)",
+              "quote": "VII ... 517,51"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-08-30T00:00:00",
-              "verified_by": null,
-              "verified_at": null,
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-10T00:00:00",
               "verification_status": "unverified",
-              "effective_from": "1993-11-01",
-              "effective_until": null,
-              "back_calculation": null
-            },
-            "note": "Contingenza conglobata e bloccata dal 01/11/1993 (L. 438/1992) + EDR 10,33 (Accordo 31/07/1992)"
+              "effective_from": "1993-11-01"
+            }
           }
         },
         {
@@ -2677,38 +2355,33 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "ccnl-commercio-confcommercio-2019",
-                "title": "CCNL Terziario Distribuzione e Servizi — Testo Unico 2019 (rinnovo 22/03/2024)",
+                "document_id": "uiltucs-tu2019",
+                "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
                 "kind": "associazione",
-                "url": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
-                "pages": [],
-                "published_on": "2024-03-22",
-                "jurisdiction": "it"
+                "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+                "published_on": "2019-07-30",
+                "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
               },
-              "page": null,
-              "section": "Art. 215 — Terzo elemento nazionale",
-              "quote": null
+              "page": "199",
+              "section": "Art. 215 - Terzo elemento nazionale",
+              "quote": "per i dipendenti di aziende operanti in provincie nelle quali non sono in atto terzi elementi retributivi provinciali comunque denominati, siano corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-08-30T00:00:00",
-              "verified_by": null,
-              "verified_at": null,
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-10T00:00:00",
               "verification_status": "unverified",
-              "effective_from": "1993-11-01",
-              "effective_until": null,
-              "back_calculation": null
-            },
-            "note": null
-          }
+              "effective_from": "1993-11-01"
+            }
+          },
+          "replaced_by_provincial_element": true
         },
         {
-          "code": "IND_FUNZIONE",
-          "description": "Other elements (formerly ITL 10,000) for grade VII, EUR 5.16, 'Altri el.' column of the salary tables",
+          "code": "ALTRI_ELEMENTI",
+          "description": "Altri elementi of level VII, 'Altri el.' column of the salary tables of the accordo integrativo 28/03/2024",
           "monthly": {
             "periods": [
               {
@@ -2719,64 +2392,52 @@
             ]
           },
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "tabelle-retributive-commercio-2024",
-                "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-                "kind": "tabella_retributiva",
-                "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-                "pages": [],
+                "document_id": "uiltucs-tds",
+                "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
                 "published_on": "2024-03-28",
-                "jurisdiction": "it"
+                "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
               },
-              "page": null,
-              "section": "Altri el. — colonna tabella retributiva livello VII",
-              "quote": null
+              "page": "64",
+              "section": "Accordo integrativo 28/03/2024, column 'Altri el.' (same in all tranche tables, pp. 64-65)",
+              "quote": "VII ... 5,16"
             },
             "extraction": {
               "method": "ai",
-              "model": "claude-sonnet-4-6",
-              "extraction_timestamp": "2026-08-30T00:00:00",
-              "verified_by": null,
-              "verified_at": null,
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-10T00:00:00",
               "verification_status": "unverified",
-              "effective_from": "2024-04-01",
-              "effective_until": null,
-              "back_calculation": null
-            },
-            "note": "Già ITL 10.000; attuale importo EUR 5,16"
+              "effective_from": "1993-11-01"
+            }
           }
         }
       ],
       "provenance": {
-        "status": "assumed",
+        "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "tabelle-retributive-commercio-2024",
-            "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-            "kind": "tabella_retributiva",
-            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-            "pages": [],
+            "document_id": "uiltucs-tds",
+            "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
             "published_on": "2024-03-28",
-            "jurisdiction": "it"
+            "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
           },
-          "page": null,
-          "section": "Tabella retributiva — livello 7",
+          "page": "65",
+          "section": "Accordo integrativo 28/03/2024, tabelle retributive",
           "quote": null
         },
         "extraction": {
           "method": "ai",
-          "model": "claude-sonnet-4-6",
-          "extraction_timestamp": "2026-08-30T00:00:00",
-          "verified_by": null,
-          "verified_at": null,
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-10T00:00:00",
           "verification_status": "unverified",
-          "effective_from": "2024-04-01",
-          "effective_until": null,
-          "back_calculation": null
-        },
-        "note": null
+          "effective_from": "2027-02-01"
+        }
       }
     }
   ],
@@ -2835,7 +2496,7 @@
     "effective_until": null,
     "source": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
     "verification_status": "unverified",
-    "source_hash": "fe5bb3145eb6f31c00d9ae0b3826f113546bcc7d38e8abf530f158d5fc7c4636",
+    "source_hash": "cc4fb2f49d961719b33f4eb19b25df385d65a058f4351653e6b297cf7be6c58f",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2864,18 +2525,23 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "commercio-confcommercio",
-                "title": "CCNL Terziario Distribuzione e Servizi (Confcommercio)",
-                "kind": "tabella_retributiva",
-                "url": "https://ilccnl.it/contratto/ccnl/commercio---confcommercio"
+                "document_id": "uiltucs-tu2019",
+                "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+                "published_on": "2019-07-30",
+                "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
               },
-              "section": "Art. 172 — 15% diurno feriale fino alla 48a ora"
+              "page": "149",
+              "section": "Art. 149 - Maggiorazione lavoro straordinario",
+              "quote": "15% (quindici per cento) per le prestazioni di lavoro dalla 41a alla 48a ora settimanale"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-10T00:00:00",
               "verification_status": "unverified",
-              "effective_from": "2024-03-22"
+              "effective_from": "1993-11-01"
             }
           }
         },
@@ -2900,18 +2566,23 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "commercio-confcommercio",
-                "title": "CCNL Terziario Distribuzione e Servizi (Confcommercio)",
-                "kind": "tabella_retributiva",
-                "url": "https://ilccnl.it/contratto/ccnl/commercio---confcommercio"
+                "document_id": "uiltucs-tu2019",
+                "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+                "published_on": "2019-07-30",
+                "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
               },
-              "section": "Art. 172 — 20% oltre 48a ora"
+              "page": "149",
+              "section": "Art. 149 - Maggiorazione lavoro straordinario",
+              "quote": "20% (venti per cento) per le prestazioni di lavoro eccedenti la 48a ora settimanale"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-10T00:00:00",
               "verification_status": "unverified",
-              "effective_from": "2024-03-22"
+              "effective_from": "1993-11-01"
             }
           },
           "hour_threshold_per_week": 8
@@ -2934,27 +2605,27 @@
             "night"
           ],
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "ccnl-terziario-confcommercio-testo-unico-2019",
-                "title": "Testo Unico 30 luglio 2019 CCNL Terziario, Distribuzione e Servizi",
-                "kind": "altro",
-                "url": "https://www.ebinter.it/ebinter-site/wp-content/uploads/2022/01/CCNL-Terziario-Distribuzione-e-Servizi_30-Luglio-2019.pdf",
-                "published_on": "2019-07-30"
+                "document_id": "uiltucs-tu2019",
+                "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+                "published_on": "2019-07-30",
+                "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
               },
-              "page": "147",
-              "section": "Art. 149, Maggiorazione lavoro straordinario",
-              "quote": "Le ore straordinarie di lavoro prestate per la notte - intendendosi per tali quelle effettuate dalle ore 22 alle 6 del mattino, sempre che non si tratti di turni regolari di servizio - verranno retribuite con la quota oraria della retribuzione di fatto di cui all'art. 208 e con la maggiorazione del 50% (cinquanta per cento)"
+              "page": "149",
+              "section": "Art. 149 - Maggiorazione lavoro straordinario, comma 3",
+              "quote": "Le ore straordinarie di lavoro prestate per la notte - intendendosi per tali quelle effettuate dalle ore 22 alle 6 del mattino, sempre che non si tratti di turni regolari di servizio - verranno retribuite ... con la maggiorazione del 50%"
             },
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-09-27T00:00:00",
+              "extraction_timestamp": "2026-10-10T00:00:00",
               "verification_status": "unverified",
-              "effective_from": "2024-03-22"
-            },
-            "note": "The article sets no night-holiday overtime rate and its supplements are not cumulative. Quote taken verbatim from the text layer of the cited PDF; no human review recorded."
+              "effective_from": "1993-11-01"
+            }
           }
         },
         {
@@ -2978,18 +2649,23 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "commercio-confcommercio",
-                "title": "CCNL Terziario Distribuzione e Servizi (Confcommercio)",
-                "kind": "tabella_retributiva",
-                "url": "https://ilccnl.it/contratto/ccnl/commercio---confcommercio"
+                "document_id": "uiltucs-tu2019",
+                "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+                "published_on": "2019-07-30",
+                "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
               },
-              "section": "Art. 172 — 30% festivo"
+              "page": "149",
+              "section": "Art. 149 - Maggiorazione lavoro straordinario",
+              "quote": "con la maggiorazione del 30% (trenta per cento)"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-10T00:00:00",
               "verification_status": "unverified",
-              "effective_from": "2024-03-22"
+              "effective_from": "1993-11-01"
             }
           }
         }
@@ -3002,18 +2678,23 @@
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "commercio-confcommercio",
-            "title": "CCNL Terziario Distribuzione e Servizi (Confcommercio)",
-            "kind": "tabella_retributiva",
-            "url": "https://ilccnl.it/contratto/ccnl/commercio---confcommercio"
+            "document_id": "uiltucs-tu2019",
+            "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "published_on": "2019-07-30",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
           },
-          "section": "Divisore giornaliero 26 (terziario/confcommercio)"
+          "page": "196",
+          "section": "Art. 210 - Quota giornaliera",
+          "quote": "dividendo l'importo mensile per il divisore convenzionale 26"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-10T00:00:00",
           "verification_status": "unverified",
-          "effective_from": "2024-03-22"
+          "effective_from": "1993-11-01"
         }
       }
     },
@@ -3029,18 +2710,23 @@
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "commercio-confcommercio",
-            "title": "CCNL Terziario Distribuzione e Servizi (Confcommercio)",
-            "kind": "tabella_retributiva",
-            "url": "https://ilccnl.it/contratto/ccnl/commercio---confcommercio"
+            "document_id": "uiltucs-tu2019",
+            "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "published_on": "2019-07-30",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
           },
-          "section": "Ferie — 26 giorni lavorativi annui (base 6 gg/settimana)"
+          "page": "156",
+          "section": "Art. 159 - Ferie",
+          "quote": "misura di ventisei giorni lavorativi"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-10T00:00:00",
           "verification_status": "unverified",
-          "effective_from": "2024-03-22"
+          "effective_from": "1993-11-01"
         }
       }
     },
@@ -3049,22 +2735,28 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
-            "document_id": "commercio-confcommercio",
-            "title": "CCNL Terziario Distribuzione e Servizi (Confcommercio)",
-            "kind": "tabella_retributiva",
-            "url": "https://ilccnl.it/contratto/ccnl/commercio---confcommercio"
+            "document_id": "uiltucs-tu2019",
+            "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "published_on": "2019-07-30",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
           },
-          "section": "Malattia — integrazione al 100% per 180 giorni; comporto varia per anzianita'"
+          "page": "177",
+          "section": "Art. 187 - Trattamento economico di malattia",
+          "quote": "100% (cento per cento) per primi tre giorni (periodo di carenza); 75% (settantacinque per cento) per i giorni dal 4° al 20°; 100% (cento per cento) per i giorni dal 21° in poi"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-10T00:00:00",
           "verification_status": "unverified",
-          "effective_from": "2024-03-22"
-        }
+          "effective_from": "1993-11-01"
+        },
+        "note": "The rule pays 100% from day 4; Art. 187 integrates up to 75% of the net daily pay for days 4-20 and 100% from day 21, and pays the carenza at 100%, 66%, 50% and 0% from the third event of the calendar year. The sickness rule cannot express day bands or the event count yet."
       }
     }
   },

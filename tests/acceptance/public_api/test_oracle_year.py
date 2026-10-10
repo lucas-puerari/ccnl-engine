@@ -53,7 +53,9 @@ def test_tredicesima_commercio_level4() -> None:
                 seniority=new_hire(),
                 contract_type=Permanent(),
             ),
-            employer=EmployerProfile(headcount=Headcount(50)),
+            employer=EmployerProfile(
+                provincial_pay_element=False, headcount=Headcount(50)
+            ),
         )
     )
     tredicesima = next(
@@ -76,7 +78,7 @@ _LEAVER = Employment(
     employment_period=EmploymentPeriod(date(2026, 3, 15), date(2026, 11, 16)),
     contract_type=Permanent(),
 )
-_EMPLOYER = EmployerProfile(headcount=Headcount(50))
+_EMPLOYER = EmployerProfile(provincial_pay_element=False, headcount=Headcount(50))
 
 
 def _run(run: PayrollRun, opening: PeriodState) -> PeriodResult:

@@ -98,6 +98,14 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "the full FIS rate; an employer of the fondo di integrazione salariale "
         "with up to five employees has a missing_fact fis_reduction blocker",
     ),
+    "EmployerProfile.provincial_pay_element": requires_fact(
+        "base_salary",
+        "employer.provincial_pay_element",
+        _REPORTED,
+        "the national element a provincial one replaces is left out; a level "
+        "that pays one (Commercio terzo elemento) has a missing_fact "
+        "provincial_pay_element blocker",
+    ),
     "Employment.category": requires_fact(
         "worker_category",
         "employment.category",

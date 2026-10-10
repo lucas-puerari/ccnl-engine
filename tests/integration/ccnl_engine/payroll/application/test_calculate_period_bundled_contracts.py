@@ -160,6 +160,7 @@ def test_every_level_computes_sane_totals(slug: str) -> None:
                 ),
                 employer=EmployerProfile(
                     headcount=Headcount(50),
+                    provincial_pay_element=False,
                     public_life_insurance=False if _public_regime(ccnl) else None,
                 ),
                 facts=_DOMESTIC_FACTS if slug in _DOMESTIC else resident(),

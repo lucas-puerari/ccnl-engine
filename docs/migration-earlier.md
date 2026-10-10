@@ -3,6 +3,30 @@
 Continues the [Migration guide](migration.md); the oldest changes are on
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Opening state and other-employment bases are facts
+
+A run opened without the history of its employment, or whose contributions
+could depend on an unknown INPS base of other employments, is no longer
+payable. Amounts are unchanged
+(see [Opening state and imported balances](engine/opening-state.md)).
+
+| Before | After |
+|---|---|
+| `PeriodState.zero()` (the default of `PeriodInput.opening_state`, or `None` in a plan) opened any run without a blocker | The zero state is the fact only for the first run of an employment whose `employment_period` starts in the run month; otherwise a `missing_fact opening_state` blocker, on every run that descends from it too |
+| `PeriodState(accrual, cash)` | New field `history_known` (`True` unless the engine marks a state opened without its history); `SCHEMA_VERSION` 9 |
+| `InpsBaseYtd.other_employers` defaulted to `0` | `None` is unknown: a `missing_fact other_employers` blocker when the INPS rules carry a massimale the worker may be subject to or a 1% threshold; `Decimal(0)` states none |
+| `CurrentYearTaxFacts(tax_year, other_employment_income, other_income, ...)` | New required `other_employment_inps_base`, after `other_employment_income`; `employment_only()` states zero. It replaces the base the opening state carries for its competence year |
+| `OpeningBalances(tax_year=..., ...)` with `inps_bases`, `recoveries`, `surtax_obligations` defaulted to `()` | The three are required keyword arguments; every competence year of `payments` and `competence_runs` needs its `InpsBaseYtd` |
+| `PUBLIC_FACTS` without these facts | `"opening_state"` and `"other_employers"` |
+
+## Validity windows and partial years
+
+| Before | After |
+|---|---|
+| `ContractSummary` told nothing about the dates the bundle covers | `ContractSummary.validity`, a `ValidityWindow` (exported by `ccnl_engine.catalog`): the dates on which every rule of the CCNL has a value |
+| `calculate_competence_year` and `calculate_tax_year` raised `MissingRuleError` when a run of the year had no base salary (ANAS, Igiene ambientale Utilitalia, Lavanderie industriali Assosistema and Metalmeccanico Confimi from January 2026) | The run is left out and listed in `uncovered_runs` (`UncoveredRun`, exported by `ccnl_engine.results`) with a `run_not_computed` blocker; the other runs are computed and the year is not payable. A year with no run in force still raises `MissingRuleError` |
+| `BlockerCode` without a member for a run left out | `BlockerCode.RUN_NOT_COMPUTED` (`"run_not_computed"`) |
+
 ## Additional 1% IVS charged month by month and settled in December
 
 The additional 1% IVS of D.L. 384/1992 art. 3-ter was charged only once the

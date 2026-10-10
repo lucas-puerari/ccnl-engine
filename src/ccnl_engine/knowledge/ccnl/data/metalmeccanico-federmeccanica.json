@@ -99,6 +99,16 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "OVERTIME, QUOTE ESENTI: the 2025 ipotesi (p. 35) adds 8% to the overtime hours worked beyond the exempt quota of 40 or 48 hours a year; the engine does not count the overtime hours of the year, so it does not add it.",
+        "capability": "overtime",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "overtime_exempt_quota_supplement",
+          "remediation": "Count the overtime hours of the year and add 8% past the exempt quota, or pass the multiplier on the overtime event."
+        }
       }
     ]
   },
@@ -108,7 +118,30 @@
         {
           "valid_from": "2024-06-01",
           "valid_until": null,
-          "value": "173"
+          "value": "173",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "fiom-ccnl-2021",
+                "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                "kind": "associazione",
+                "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+                "published_on": "2021-02-05",
+                "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+              },
+              "page": "168",
+              "section": "Sez. Quarta, Titolo IV, Art. 5 - Minimi tabellari e determinazione della quota di retribuzione oraria",
+              "quote": "La retribuzione oraria viene determinata sulla base del divisore 173."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-10T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-06-01"
+            }
+          }
         }
       ]
     },
@@ -119,9 +152,27 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "fiom-ccnl-2021",
+                "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                "kind": "associazione",
+                "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+                "published_on": "2021-02-05",
+                "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+              },
+              "page": "178",
+              "section": "Sez. Quarta, Titolo IV, Art. 7 - Tredicesima mensilita",
+              "quote": "L'azienda e tenuta a corrispondere per ciascun anno al lavoratore, in occasione della ricorrenza natalizia, una tredicesima mensilita"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-10T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2021-06-01"
+            }
           }
         }
       ]
@@ -216,18 +267,23 @@
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "metalmeccanico-federmeccanica",
-            "title": "metalmeccanico-federmeccanica",
-            "kind": "tabella_retributiva",
-            "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+            "document_id": "fiom-ccnl-2021",
+            "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+            "kind": "associazione",
+            "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+            "published_on": "2021-02-05",
+            "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
           },
-          "section": "Scatti di anzianità"
+          "page": "168-169",
+          "section": "Sez. Quarta, Titolo IV, Art. 6 - Aumenti periodici di anzianità",
+          "quote": "per ogni biennio di anzianità di servizio ... Ai fini del computo degli aumenti periodici si considera un massimo di 5 bienni"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-10T00:00:00",
           "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "effective_from": "2021-06-01"
         }
       }
     },
@@ -235,27 +291,27 @@
       "min_days": 15,
       "comparison": "more_than",
       "provenance": {
-        "status": "assumed",
+        "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "ccnl-metalmeccanici-federmeccanica-2021-02-05",
-            "title": "CCNL 5 febbraio 2021 industria metalmeccanica privata e installazione di impianti",
+            "document_id": "fiom-ccnl-2021",
+            "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
             "kind": "associazione",
             "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
-            "published_on": "2021-02-05"
+            "published_on": "2021-02-05",
+            "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
           },
           "page": "178",
-          "section": "Sezione quarta, Titolo IV, Art. 7, Tredicesima mensilità",
+          "section": "Sez. Quarta, Titolo IV, Art. 7 - Tredicesima mensilita, comma 3",
           "quote": "La frazione di mese superiore a 15 giorni va considerata a questi effetti come mese intero."
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-09-27T00:00:00",
+          "extraction_timestamp": "2026-10-10T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2021-06-01"
-        },
-        "note": "The 2025 renewal hypothesis, read by OCR, does not amend the article. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+        }
       }
     },
     "employer_funds": [
@@ -324,18 +380,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "fiom-ccnl-2021",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+                  "published_on": "2021-02-05",
+                  "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
-                "section": "Tabella retributiva"
+                "page": "191",
+                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello' (table after 'Tabelle dei minimi contrattuali', p. 190)",
+                "quote": "D1 ... 1.488,89"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2021-06-01"
               }
             }
           },
@@ -347,18 +408,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "fiom-ccnl-2021",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+                  "published_on": "2021-02-05",
+                  "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
-                "section": "Tabella retributiva"
+                "page": "191",
+                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello', column 'dal 1° giugno 2022' (confirmed by verbale 8/6/2022, which only splits the IPCA quota inside the tranche)",
+                "quote": "D1 ... 1.509,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2022-06-01"
               }
             }
           },
@@ -370,18 +436,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-2023",
+                  "title": "Verbale di incontro 16 giugno 2023, Federmeccanica Assistal Fim Fiom Uilm (adeguamento IPCA)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2023/06/20230616-CCNL-Federmeccanica-Assistal-verbale-dincontro-ADEGUAMENTO-IPCA-allegato-4.pdf",
+                  "published_on": "2023-06-16",
+                  "sha256": "61a24a9688dcfd0fad3ac463ab948b23759f4da45b2fd220f0bf42965032d81f"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Verbale di incontro 16/06/2023, table 'Minimi tabellari per livello dal 1° giugno 2023'",
+                "quote": "D1 ... 1.608,67"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2023-06-01"
               }
             }
           },
@@ -393,18 +464,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-2024",
+                  "title": "Verbale di incontro 11 giugno 2024, Federmeccanica Assistal Fim Fiom Uilm (adeguamento IPCA 2023)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2024/06/20240611-CCNL-Federmeccanica-Assistal-adeguamento-IPCA-2023.pdf",
+                  "published_on": "2024-06-11",
+                  "sha256": "c25205963fe9cd701e4b2360f47257f6169074a84182782d4be4a743e66bac59"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Verbale di incontro 11/06/2024, table 'Minimi tabellari per livello dal 1° giugno 2024'",
+                "quote": "D1 ... 1.719,67"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2024-06-01"
               }
             }
           },
@@ -416,42 +492,110 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-2025",
+                  "title": "Verbale di incontro 12 giugno 2025, Federmeccanica Assistal Fim Fiom Uilm (minimi giugno 2025, trasferta e reperibilita)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+                  "published_on": "2025-06-12",
+                  "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Verbale di incontro 12/06/2025, table 'Minimi tabellari per livello dal 1° giugno 2025'",
+                "quote": "D1 ... 1.742,03"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2025-06-01"
               }
             }
           },
           {
             "valid_from": "2026-06-01",
-            "valid_until": null,
+            "valid_until": "2027-06-01",
             "value": "1784.94",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-ipotesi-2025",
+                  "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                  "published_on": "2025-11-22",
+                  "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2026'",
+                "quote": "D1 ... 1.784,94"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2026-06-01"
               }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2028-06-01",
+            "value": "1833.02",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "uilm-ipotesi-2025",
+                  "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                  "published_on": "2025-11-22",
+                  "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+                },
+                "page": "2",
+                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2027'",
+                "quote": "D1 ... 1833,02"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2027-06-01"
+              },
+              "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "1885.37",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "uilm-ipotesi-2025",
+                  "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                  "published_on": "2025-11-22",
+                  "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+                },
+                "page": "2",
+                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2028'",
+                "quote": "D1 ... 1885,37"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2028-06-01"
+              },
+              "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
             }
           }
         ]
@@ -461,18 +605,23 @@
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "metalmeccanico-federmeccanica",
-            "title": "metalmeccanico-federmeccanica",
-            "kind": "tabella_retributiva",
-            "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+            "document_id": "uilm-ipotesi-2025",
+            "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+            "kind": "associazione",
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+            "published_on": "2025-11-22",
+            "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
           },
-          "section": "Livelli contrattuali"
+          "page": "2",
+          "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali'",
+          "quote": null
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-10T00:00:00",
           "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "effective_from": "2028-06-01"
         }
       }
     },
@@ -490,18 +639,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "fiom-ccnl-2021",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+                  "published_on": "2021-02-05",
+                  "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
-                "section": "Tabella retributiva"
+                "page": "191",
+                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello' (table after 'Tabelle dei minimi contrattuali', p. 190)",
+                "quote": "D2 ... 1.651,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2021-06-01"
               }
             }
           },
@@ -513,18 +667,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "fiom-ccnl-2021",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+                  "published_on": "2021-02-05",
+                  "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
-                "section": "Tabella retributiva"
+                "page": "191",
+                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello', column 'dal 1° giugno 2022' (confirmed by verbale 8/6/2022, which only splits the IPCA quota inside the tranche)",
+                "quote": "D2 ... 1.673,45"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2022-06-01"
               }
             }
           },
@@ -536,18 +695,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-2023",
+                  "title": "Verbale di incontro 16 giugno 2023, Federmeccanica Assistal Fim Fiom Uilm (adeguamento IPCA)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2023/06/20230616-CCNL-Federmeccanica-Assistal-verbale-dincontro-ADEGUAMENTO-IPCA-allegato-4.pdf",
+                  "published_on": "2023-06-16",
+                  "sha256": "61a24a9688dcfd0fad3ac463ab948b23759f4da45b2fd220f0bf42965032d81f"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Verbale di incontro 16/06/2023, table 'Minimi tabellari per livello dal 1° giugno 2023'",
+                "quote": "D2 ... 1.783,90"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2023-06-01"
               }
             }
           },
@@ -559,18 +723,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-2024",
+                  "title": "Verbale di incontro 11 giugno 2024, Federmeccanica Assistal Fim Fiom Uilm (adeguamento IPCA 2023)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2024/06/20240611-CCNL-Federmeccanica-Assistal-adeguamento-IPCA-2023.pdf",
+                  "published_on": "2024-06-11",
+                  "sha256": "c25205963fe9cd701e4b2360f47257f6169074a84182782d4be4a743e66bac59"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Verbale di incontro 11/06/2024, table 'Minimi tabellari per livello dal 1° giugno 2024'",
+                "quote": "D2 ... 1.906,99"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2024-06-01"
               }
             }
           },
@@ -582,42 +751,110 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-2025",
+                  "title": "Verbale di incontro 12 giugno 2025, Federmeccanica Assistal Fim Fiom Uilm (minimi giugno 2025, trasferta e reperibilita)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+                  "published_on": "2025-06-12",
+                  "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Verbale di incontro 12/06/2025, table 'Minimi tabellari per livello dal 1° giugno 2025'",
+                "quote": "D2 ... 1.931,78"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2025-06-01"
               }
             }
           },
           {
             "valid_from": "2026-06-01",
-            "valid_until": null,
+            "valid_until": "2027-06-01",
             "value": "1979.37",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-ipotesi-2025",
+                  "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                  "published_on": "2025-11-22",
+                  "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2026'",
+                "quote": "D2 ... 1.979,37"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2026-06-01"
               }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2028-06-01",
+            "value": "2032.70",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "uilm-ipotesi-2025",
+                  "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                  "published_on": "2025-11-22",
+                  "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+                },
+                "page": "2",
+                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2027'",
+                "quote": "D2 ... 2032,70"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2027-06-01"
+              },
+              "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "2090.76",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "uilm-ipotesi-2025",
+                  "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                  "published_on": "2025-11-22",
+                  "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+                },
+                "page": "2",
+                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2028'",
+                "quote": "D2 ... 2090,76"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2028-06-01"
+              },
+              "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
             }
           }
         ]
@@ -627,18 +864,23 @@
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "metalmeccanico-federmeccanica",
-            "title": "metalmeccanico-federmeccanica",
-            "kind": "tabella_retributiva",
-            "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+            "document_id": "uilm-ipotesi-2025",
+            "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+            "kind": "associazione",
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+            "published_on": "2025-11-22",
+            "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
           },
-          "section": "Livelli contrattuali"
+          "page": "2",
+          "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali'",
+          "quote": null
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-10T00:00:00",
           "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "effective_from": "2028-06-01"
         }
       }
     },
@@ -656,18 +898,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "fiom-ccnl-2021",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+                  "published_on": "2021-02-05",
+                  "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
-                "section": "Tabella retributiva"
+                "page": "191",
+                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello' (table after 'Tabelle dei minimi contrattuali', p. 190)",
+                "quote": "C1 ... 1.686,74"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2021-06-01"
               }
             }
           },
@@ -679,18 +926,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "fiom-ccnl-2021",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+                  "published_on": "2021-02-05",
+                  "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
-                "section": "Tabella retributiva"
+                "page": "191",
+                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello', column 'dal 1° giugno 2022' (confirmed by verbale 8/6/2022, which only splits the IPCA quota inside the tranche)",
+                "quote": "C1 ... 1.709,60"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2022-06-01"
               }
             }
           },
@@ -702,18 +954,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-2023",
+                  "title": "Verbale di incontro 16 giugno 2023, Federmeccanica Assistal Fim Fiom Uilm (adeguamento IPCA)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2023/06/20230616-CCNL-Federmeccanica-Assistal-verbale-dincontro-ADEGUAMENTO-IPCA-allegato-4.pdf",
+                  "published_on": "2023-06-16",
+                  "sha256": "61a24a9688dcfd0fad3ac463ab948b23759f4da45b2fd220f0bf42965032d81f"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Verbale di incontro 16/06/2023, table 'Minimi tabellari per livello dal 1° giugno 2023'",
+                "quote": "C1 ... 1.822,43"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2023-06-01"
               }
             }
           },
@@ -725,18 +982,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-2024",
+                  "title": "Verbale di incontro 11 giugno 2024, Federmeccanica Assistal Fim Fiom Uilm (adeguamento IPCA 2023)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2024/06/20240611-CCNL-Federmeccanica-Assistal-adeguamento-IPCA-2023.pdf",
+                  "published_on": "2024-06-11",
+                  "sha256": "c25205963fe9cd701e4b2360f47257f6169074a84182782d4be4a743e66bac59"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Verbale di incontro 11/06/2024, table 'Minimi tabellari per livello dal 1° giugno 2024'",
+                "quote": "C1 ... 1.948,18"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2024-06-01"
               }
             }
           },
@@ -748,42 +1010,110 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-2025",
+                  "title": "Verbale di incontro 12 giugno 2025, Federmeccanica Assistal Fim Fiom Uilm (minimi giugno 2025, trasferta e reperibilita)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+                  "published_on": "2025-06-12",
+                  "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Verbale di incontro 12/06/2025, table 'Minimi tabellari per livello dal 1° giugno 2025'",
+                "quote": "C1 ... 1.973,51"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2025-06-01"
               }
             }
           },
           {
             "valid_from": "2026-06-01",
-            "valid_until": null,
+            "valid_until": "2027-06-01",
             "value": "2022.12",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-ipotesi-2025",
+                  "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                  "published_on": "2025-11-22",
+                  "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2026'",
+                "quote": "C1 ... 2.022,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2026-06-01"
               }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2028-06-01",
+            "value": "2076.59",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "uilm-ipotesi-2025",
+                  "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                  "published_on": "2025-11-22",
+                  "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+                },
+                "page": "2",
+                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2027'",
+                "quote": "C1 ... 2076,59"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2027-06-01"
+              },
+              "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "2135.89",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "uilm-ipotesi-2025",
+                  "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                  "published_on": "2025-11-22",
+                  "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+                },
+                "page": "2",
+                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2028'",
+                "quote": "C1 ... 2135,89"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2028-06-01"
+              },
+              "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
             }
           }
         ]
@@ -793,18 +1123,23 @@
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "metalmeccanico-federmeccanica",
-            "title": "metalmeccanico-federmeccanica",
-            "kind": "tabella_retributiva",
-            "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+            "document_id": "uilm-ipotesi-2025",
+            "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+            "kind": "associazione",
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+            "published_on": "2025-11-22",
+            "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
           },
-          "section": "Livelli contrattuali"
+          "page": "2",
+          "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali'",
+          "quote": null
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-10T00:00:00",
           "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "effective_from": "2028-06-01"
         }
       }
     },
@@ -822,18 +1157,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "fiom-ccnl-2021",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+                  "published_on": "2021-02-05",
+                  "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
-                "section": "Tabella retributiva"
+                "page": "191",
+                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello' (table after 'Tabelle dei minimi contrattuali', p. 190)",
+                "quote": "C2 ... 1.722,41"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2021-06-01"
               }
             }
           },
@@ -845,18 +1185,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "fiom-ccnl-2021",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+                  "published_on": "2021-02-05",
+                  "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
-                "section": "Tabella retributiva"
+                "page": "191",
+                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello', column 'dal 1° giugno 2022' (confirmed by verbale 8/6/2022, which only splits the IPCA quota inside the tranche)",
+                "quote": "C2 ... 1.745,75"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2022-06-01"
               }
             }
           },
@@ -868,18 +1213,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-2023",
+                  "title": "Verbale di incontro 16 giugno 2023, Federmeccanica Assistal Fim Fiom Uilm (adeguamento IPCA)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2023/06/20230616-CCNL-Federmeccanica-Assistal-verbale-dincontro-ADEGUAMENTO-IPCA-allegato-4.pdf",
+                  "published_on": "2023-06-16",
+                  "sha256": "61a24a9688dcfd0fad3ac463ab948b23759f4da45b2fd220f0bf42965032d81f"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Verbale di incontro 16/06/2023, table 'Minimi tabellari per livello dal 1° giugno 2023'",
+                "quote": "C2 ... 1.860,97"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2023-06-01"
               }
             }
           },
@@ -891,18 +1241,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-2024",
+                  "title": "Verbale di incontro 11 giugno 2024, Federmeccanica Assistal Fim Fiom Uilm (adeguamento IPCA 2023)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2024/06/20240611-CCNL-Federmeccanica-Assistal-adeguamento-IPCA-2023.pdf",
+                  "published_on": "2024-06-11",
+                  "sha256": "c25205963fe9cd701e4b2360f47257f6169074a84182782d4be4a743e66bac59"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Verbale di incontro 11/06/2024, table 'Minimi tabellari per livello dal 1° giugno 2024'",
+                "quote": "C2 ... 1.989,38"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2024-06-01"
               }
             }
           },
@@ -914,42 +1269,110 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-2025",
+                  "title": "Verbale di incontro 12 giugno 2025, Federmeccanica Assistal Fim Fiom Uilm (minimi giugno 2025, trasferta e reperibilita)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+                  "published_on": "2025-06-12",
+                  "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Verbale di incontro 12/06/2025, table 'Minimi tabellari per livello dal 1° giugno 2025'",
+                "quote": "C2 ... 2.015,24"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2025-06-01"
               }
             }
           },
           {
             "valid_from": "2026-06-01",
-            "valid_until": null,
+            "valid_until": "2027-06-01",
             "value": "2064.88",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-ipotesi-2025",
+                  "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                  "published_on": "2025-11-22",
+                  "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2026'",
+                "quote": "C2 ... 2.064,88"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2026-06-01"
               }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2028-06-01",
+            "value": "2120.52",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "uilm-ipotesi-2025",
+                  "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                  "published_on": "2025-11-22",
+                  "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+                },
+                "page": "2",
+                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2027'",
+                "quote": "C2 ... 2120,52"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2027-06-01"
+              },
+              "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "2181.09",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "uilm-ipotesi-2025",
+                  "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                  "published_on": "2025-11-22",
+                  "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+                },
+                "page": "2",
+                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2028'",
+                "quote": "C2 ... 2181,09"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2028-06-01"
+              },
+              "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
             }
           }
         ]
@@ -959,18 +1382,23 @@
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "metalmeccanico-federmeccanica",
-            "title": "metalmeccanico-federmeccanica",
-            "kind": "tabella_retributiva",
-            "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+            "document_id": "uilm-ipotesi-2025",
+            "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+            "kind": "associazione",
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+            "published_on": "2025-11-22",
+            "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
           },
-          "section": "Livelli contrattuali"
+          "page": "2",
+          "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali'",
+          "quote": null
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-10T00:00:00",
           "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "effective_from": "2028-06-01"
         }
       }
     },
@@ -988,18 +1416,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "fiom-ccnl-2021",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+                  "published_on": "2021-02-05",
+                  "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
-                "section": "Tabella retributiva"
+                "page": "191",
+                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello' (table after 'Tabelle dei minimi contrattuali', p. 190)",
+                "quote": "C3 ... 1.844,64"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2021-06-01"
               }
             }
           },
@@ -1011,18 +1444,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "fiom-ccnl-2021",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+                  "published_on": "2021-02-05",
+                  "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
-                "section": "Tabella retributiva"
+                "page": "191",
+                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello', column 'dal 1° giugno 2022' (confirmed by verbale 8/6/2022, which only splits the IPCA quota inside the tranche)",
+                "quote": "C3 ... 1.869,64"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2022-06-01"
               }
             }
           },
@@ -1034,18 +1472,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-2023",
+                  "title": "Verbale di incontro 16 giugno 2023, Federmeccanica Assistal Fim Fiom Uilm (adeguamento IPCA)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2023/06/20230616-CCNL-Federmeccanica-Assistal-verbale-dincontro-ADEGUAMENTO-IPCA-allegato-4.pdf",
+                  "published_on": "2023-06-16",
+                  "sha256": "61a24a9688dcfd0fad3ac463ab948b23759f4da45b2fd220f0bf42965032d81f"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Verbale di incontro 16/06/2023, table 'Minimi tabellari per livello dal 1° giugno 2023'",
+                "quote": "C3 ... 1.993,04"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2023-06-01"
               }
             }
           },
@@ -1057,18 +1500,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-2024",
+                  "title": "Verbale di incontro 11 giugno 2024, Federmeccanica Assistal Fim Fiom Uilm (adeguamento IPCA 2023)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2024/06/20240611-CCNL-Federmeccanica-Assistal-adeguamento-IPCA-2023.pdf",
+                  "published_on": "2024-06-11",
+                  "sha256": "c25205963fe9cd701e4b2360f47257f6169074a84182782d4be4a743e66bac59"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Verbale di incontro 11/06/2024, table 'Minimi tabellari per livello dal 1° giugno 2024'",
+                "quote": "C3 ... 2.130,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2024-06-01"
               }
             }
           },
@@ -1080,42 +1528,110 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-2025",
+                  "title": "Verbale di incontro 12 giugno 2025, Federmeccanica Assistal Fim Fiom Uilm (minimi giugno 2025, trasferta e reperibilita)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+                  "published_on": "2025-06-12",
+                  "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Verbale di incontro 12/06/2025, table 'Minimi tabellari per livello dal 1° giugno 2025'",
+                "quote": "C3 ... 2.158,26"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2025-06-01"
               }
             }
           },
           {
             "valid_from": "2026-06-01",
-            "valid_until": null,
+            "valid_until": "2027-06-01",
             "value": "2211.43",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-ipotesi-2025",
+                  "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                  "published_on": "2025-11-22",
+                  "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2026'",
+                "quote": "C3 ... 2.211,43"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2026-06-01"
               }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2028-06-01",
+            "value": "2271.01",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "uilm-ipotesi-2025",
+                  "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                  "published_on": "2025-11-22",
+                  "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+                },
+                "page": "2",
+                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2027'",
+                "quote": "C3 ... 2271,01"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2027-06-01"
+              },
+              "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "2335.88",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "uilm-ipotesi-2025",
+                  "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                  "published_on": "2025-11-22",
+                  "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+                },
+                "page": "2",
+                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2028'",
+                "quote": "C3 ... 2335,88"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2028-06-01"
+              },
+              "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
             }
           }
         ]
@@ -1125,18 +1641,23 @@
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "metalmeccanico-federmeccanica",
-            "title": "metalmeccanico-federmeccanica",
-            "kind": "tabella_retributiva",
-            "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+            "document_id": "uilm-ipotesi-2025",
+            "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+            "kind": "associazione",
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+            "published_on": "2025-11-22",
+            "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
           },
-          "section": "Livelli contrattuali"
+          "page": "2",
+          "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali'",
+          "quote": null
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-10T00:00:00",
           "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "effective_from": "2028-06-01"
         }
       }
     },
@@ -1154,18 +1675,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "fiom-ccnl-2021",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+                  "published_on": "2021-02-05",
+                  "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
-                "section": "Tabella retributiva"
+                "page": "191",
+                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello' (table after 'Tabelle dei minimi contrattuali', p. 190)",
+                "quote": "B1 ... 1.977,19"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2021-06-01"
               }
             }
           },
@@ -1177,18 +1703,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "fiom-ccnl-2021",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+                  "published_on": "2021-02-05",
+                  "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
-                "section": "Tabella retributiva"
+                "page": "191",
+                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello', column 'dal 1° giugno 2022' (confirmed by verbale 8/6/2022, which only splits the IPCA quota inside the tranche)",
+                "quote": "B1 ... 2.003,99"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2022-06-01"
               }
             }
           },
@@ -1200,18 +1731,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-2023",
+                  "title": "Verbale di incontro 16 giugno 2023, Federmeccanica Assistal Fim Fiom Uilm (adeguamento IPCA)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2023/06/20230616-CCNL-Federmeccanica-Assistal-verbale-dincontro-ADEGUAMENTO-IPCA-allegato-4.pdf",
+                  "published_on": "2023-06-16",
+                  "sha256": "61a24a9688dcfd0fad3ac463ab948b23759f4da45b2fd220f0bf42965032d81f"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Verbale di incontro 16/06/2023, table 'Minimi tabellari per livello dal 1° giugno 2023'",
+                "quote": "B1 ... 2.136,25"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2023-06-01"
               }
             }
           },
@@ -1223,18 +1759,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-2024",
+                  "title": "Verbale di incontro 11 giugno 2024, Federmeccanica Assistal Fim Fiom Uilm (adeguamento IPCA 2023)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2024/06/20240611-CCNL-Federmeccanica-Assistal-adeguamento-IPCA-2023.pdf",
+                  "published_on": "2024-06-11",
+                  "sha256": "c25205963fe9cd701e4b2360f47257f6169074a84182782d4be4a743e66bac59"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Verbale di incontro 11/06/2024, table 'Minimi tabellari per livello dal 1° giugno 2024'",
+                "quote": "B1 ... 2.283,65"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2024-06-01"
               }
             }
           },
@@ -1246,42 +1787,110 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-2025",
+                  "title": "Verbale di incontro 12 giugno 2025, Federmeccanica Assistal Fim Fiom Uilm (minimi giugno 2025, trasferta e reperibilita)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+                  "published_on": "2025-06-12",
+                  "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Verbale di incontro 12/06/2025, table 'Minimi tabellari per livello dal 1° giugno 2025'",
+                "quote": "B1 ... 2.313,34"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2025-06-01"
               }
             }
           },
           {
             "valid_from": "2026-06-01",
-            "valid_until": null,
+            "valid_until": "2027-06-01",
             "value": "2370.33",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-ipotesi-2025",
+                  "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                  "published_on": "2025-11-22",
+                  "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2026'",
+                "quote": "B1 ... 2.370,33"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2026-06-01"
               }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2028-06-01",
+            "value": "2434.19",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "uilm-ipotesi-2025",
+                  "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                  "published_on": "2025-11-22",
+                  "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+                },
+                "page": "2",
+                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2027'",
+                "quote": "B1 ... 2434,19"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2027-06-01"
+              },
+              "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "2503.72",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "uilm-ipotesi-2025",
+                  "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                  "published_on": "2025-11-22",
+                  "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+                },
+                "page": "2",
+                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2028'",
+                "quote": "B1 ... 2503,72"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2028-06-01"
+              },
+              "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
             }
           }
         ]
@@ -1291,18 +1900,23 @@
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "metalmeccanico-federmeccanica",
-            "title": "metalmeccanico-federmeccanica",
-            "kind": "tabella_retributiva",
-            "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+            "document_id": "uilm-ipotesi-2025",
+            "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+            "kind": "associazione",
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+            "published_on": "2025-11-22",
+            "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
           },
-          "section": "Livelli contrattuali"
+          "page": "2",
+          "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali'",
+          "quote": null
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-10T00:00:00",
           "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "effective_from": "2028-06-01"
         }
       }
     },
@@ -1320,18 +1934,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "fiom-ccnl-2021",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+                  "published_on": "2021-02-05",
+                  "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
-                "section": "Tabella retributiva"
+                "page": "191",
+                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello' (table after 'Tabelle dei minimi contrattuali', p. 190)",
+                "quote": "B2 ... 2.121,20"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2021-06-01"
               }
             }
           },
@@ -1343,18 +1962,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "fiom-ccnl-2021",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+                  "published_on": "2021-02-05",
+                  "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
-                "section": "Tabella retributiva"
+                "page": "191",
+                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello', column 'dal 1° giugno 2022' (confirmed by verbale 8/6/2022, which only splits the IPCA quota inside the tranche)",
+                "quote": "B2 ... 2.149,95"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2022-06-01"
               }
             }
           },
@@ -1366,18 +1990,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-2023",
+                  "title": "Verbale di incontro 16 giugno 2023, Federmeccanica Assistal Fim Fiom Uilm (adeguamento IPCA)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2023/06/20230616-CCNL-Federmeccanica-Assistal-verbale-dincontro-ADEGUAMENTO-IPCA-allegato-4.pdf",
+                  "published_on": "2023-06-16",
+                  "sha256": "61a24a9688dcfd0fad3ac463ab948b23759f4da45b2fd220f0bf42965032d81f"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Verbale di incontro 16/06/2023, table 'Minimi tabellari per livello dal 1° giugno 2023'",
+                "quote": "B2 ... 2.291,85"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2023-06-01"
               }
             }
           },
@@ -1389,18 +2018,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-2024",
+                  "title": "Verbale di incontro 11 giugno 2024, Federmeccanica Assistal Fim Fiom Uilm (adeguamento IPCA 2023)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2024/06/20240611-CCNL-Federmeccanica-Assistal-adeguamento-IPCA-2023.pdf",
+                  "published_on": "2024-06-11",
+                  "sha256": "c25205963fe9cd701e4b2360f47257f6169074a84182782d4be4a743e66bac59"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Verbale di incontro 11/06/2024, table 'Minimi tabellari per livello dal 1° giugno 2024'",
+                "quote": "B2 ... 2.449,99"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2024-06-01"
               }
             }
           },
@@ -1412,42 +2046,110 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-2025",
+                  "title": "Verbale di incontro 12 giugno 2025, Federmeccanica Assistal Fim Fiom Uilm (minimi giugno 2025, trasferta e reperibilita)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+                  "published_on": "2025-06-12",
+                  "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Verbale di incontro 12/06/2025, table 'Minimi tabellari per livello dal 1° giugno 2025'",
+                "quote": "B2 ... 2.481,84"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2025-06-01"
               }
             }
           },
           {
             "valid_from": "2026-06-01",
-            "valid_until": null,
+            "valid_until": "2027-06-01",
             "value": "2542.98",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-ipotesi-2025",
+                  "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                  "published_on": "2025-11-22",
+                  "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2026'",
+                "quote": "B2 ... 2.542,98"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2026-06-01"
               }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2028-06-01",
+            "value": "2611.49",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "uilm-ipotesi-2025",
+                  "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                  "published_on": "2025-11-22",
+                  "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+                },
+                "page": "2",
+                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2027'",
+                "quote": "B2 ... 2611,49"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2027-06-01"
+              },
+              "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "2686.08",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "uilm-ipotesi-2025",
+                  "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                  "published_on": "2025-11-22",
+                  "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+                },
+                "page": "2",
+                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2028'",
+                "quote": "B2 ... 2686,08"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2028-06-01"
+              },
+              "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
             }
           }
         ]
@@ -1457,18 +2159,23 @@
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "metalmeccanico-federmeccanica",
-            "title": "metalmeccanico-federmeccanica",
-            "kind": "tabella_retributiva",
-            "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+            "document_id": "uilm-ipotesi-2025",
+            "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+            "kind": "associazione",
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+            "published_on": "2025-11-22",
+            "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
           },
-          "section": "Livelli contrattuali"
+          "page": "2",
+          "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali'",
+          "quote": null
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-10T00:00:00",
           "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "effective_from": "2028-06-01"
         }
       }
     },
@@ -1486,18 +2193,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "fiom-ccnl-2021",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+                  "published_on": "2021-02-05",
+                  "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
-                "section": "Tabella retributiva"
+                "page": "191",
+                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello' (table after 'Tabelle dei minimi contrattuali', p. 190)",
+                "quote": "B3 ... 2.368,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2021-06-01"
               }
             }
           },
@@ -1509,18 +2221,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "fiom-ccnl-2021",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+                  "published_on": "2021-02-05",
+                  "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
-                "section": "Tabella retributiva"
+                "page": "191",
+                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello', column 'dal 1° giugno 2022' (confirmed by verbale 8/6/2022, which only splits the IPCA quota inside the tranche)",
+                "quote": "B3 ... 2.400,22"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2022-06-01"
               }
             }
           },
@@ -1532,18 +2249,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-2023",
+                  "title": "Verbale di incontro 16 giugno 2023, Federmeccanica Assistal Fim Fiom Uilm (adeguamento IPCA)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2023/06/20230616-CCNL-Federmeccanica-Assistal-verbale-dincontro-ADEGUAMENTO-IPCA-allegato-4.pdf",
+                  "published_on": "2023-06-16",
+                  "sha256": "61a24a9688dcfd0fad3ac463ab948b23759f4da45b2fd220f0bf42965032d81f"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Verbale di incontro 16/06/2023, table 'Minimi tabellari per livello dal 1° giugno 2023'",
+                "quote": "B3 ... 2.558,63"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2023-06-01"
               }
             }
           },
@@ -1555,18 +2277,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-2024",
+                  "title": "Verbale di incontro 11 giugno 2024, Federmeccanica Assistal Fim Fiom Uilm (adeguamento IPCA 2023)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2024/06/20240611-CCNL-Federmeccanica-Assistal-adeguamento-IPCA-2023.pdf",
+                  "published_on": "2024-06-11",
+                  "sha256": "c25205963fe9cd701e4b2360f47257f6169074a84182782d4be4a743e66bac59"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Verbale di incontro 11/06/2024, table 'Minimi tabellari per livello dal 1° giugno 2024'",
+                "quote": "B3 ... 2.735,18"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2024-06-01"
               }
             }
           },
@@ -1578,42 +2305,110 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-2025",
+                  "title": "Verbale di incontro 12 giugno 2025, Federmeccanica Assistal Fim Fiom Uilm (minimi giugno 2025, trasferta e reperibilita)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+                  "published_on": "2025-06-12",
+                  "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Verbale di incontro 12/06/2025, table 'Minimi tabellari per livello dal 1° giugno 2025'",
+                "quote": "B3 ... 2.770,74"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2025-06-01"
               }
             }
           },
           {
             "valid_from": "2026-06-01",
-            "valid_until": null,
+            "valid_until": "2027-06-01",
             "value": "2838.99",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-ipotesi-2025",
+                  "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                  "published_on": "2025-11-22",
+                  "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2026'",
+                "quote": "B3 ... 2.838,99"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2026-06-01"
               }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2028-06-01",
+            "value": "2915.48",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "uilm-ipotesi-2025",
+                  "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                  "published_on": "2025-11-22",
+                  "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+                },
+                "page": "2",
+                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2027'",
+                "quote": "B3 ... 2915,48"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2027-06-01"
+              },
+              "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "2998.76",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "uilm-ipotesi-2025",
+                  "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                  "published_on": "2025-11-22",
+                  "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+                },
+                "page": "2",
+                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2028'",
+                "quote": "B3 ... 2998,76"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2028-06-01"
+              },
+              "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
             }
           }
         ]
@@ -1623,18 +2418,23 @@
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "metalmeccanico-federmeccanica",
-            "title": "metalmeccanico-federmeccanica",
-            "kind": "tabella_retributiva",
-            "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+            "document_id": "uilm-ipotesi-2025",
+            "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+            "kind": "associazione",
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+            "published_on": "2025-11-22",
+            "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
           },
-          "section": "Livelli contrattuali"
+          "page": "2",
+          "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali'",
+          "quote": null
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-10T00:00:00",
           "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "effective_from": "2028-06-01"
         }
       }
     },
@@ -1652,18 +2452,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "fiom-ccnl-2021",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+                  "published_on": "2021-02-05",
+                  "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
-                "section": "Tabella retributiva"
+                "page": "191",
+                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello' (table after 'Tabelle dei minimi contrattuali', p. 190)",
+                "quote": "A1 ... 2.424,86"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2021-06-01"
               }
             }
           },
@@ -1675,18 +2480,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "fiom-ccnl-2021",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+                  "published_on": "2021-02-05",
+                  "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
-                "section": "Tabella retributiva"
+                "page": "191",
+                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello', column 'dal 1° giugno 2022' (confirmed by verbale 8/6/2022, which only splits the IPCA quota inside the tranche)",
+                "quote": "A1 ... 2.457,72"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2022-06-01"
               }
             }
           },
@@ -1698,18 +2508,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-2023",
+                  "title": "Verbale di incontro 16 giugno 2023, Federmeccanica Assistal Fim Fiom Uilm (adeguamento IPCA)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2023/06/20230616-CCNL-Federmeccanica-Assistal-verbale-dincontro-ADEGUAMENTO-IPCA-allegato-4.pdf",
+                  "published_on": "2023-06-16",
+                  "sha256": "61a24a9688dcfd0fad3ac463ab948b23759f4da45b2fd220f0bf42965032d81f"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Verbale di incontro 16/06/2023, table 'Minimi tabellari per livello dal 1° giugno 2023'",
+                "quote": "A1 ... 2.619,93"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2023-06-01"
               }
             }
           },
@@ -1721,18 +2536,23 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-2024",
+                  "title": "Verbale di incontro 11 giugno 2024, Federmeccanica Assistal Fim Fiom Uilm (adeguamento IPCA 2023)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2024/06/20240611-CCNL-Federmeccanica-Assistal-adeguamento-IPCA-2023.pdf",
+                  "published_on": "2024-06-11",
+                  "sha256": "c25205963fe9cd701e4b2360f47257f6169074a84182782d4be4a743e66bac59"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Verbale di incontro 11/06/2024, table 'Minimi tabellari per livello dal 1° giugno 2024'",
+                "quote": "A1 ... 2.800,71"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2024-06-01"
               }
             }
           },
@@ -1744,42 +2564,110 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-2025",
+                  "title": "Verbale di incontro 12 giugno 2025, Federmeccanica Assistal Fim Fiom Uilm (minimi giugno 2025, trasferta e reperibilita)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+                  "published_on": "2025-06-12",
+                  "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Verbale di incontro 12/06/2025, table 'Minimi tabellari per livello dal 1° giugno 2025'",
+                "quote": "A1 ... 2.837,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2025-06-01"
               }
             }
           },
           {
             "valid_from": "2026-06-01",
-            "valid_until": null,
+            "valid_until": "2027-06-01",
             "value": "2907.01",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanico-federmeccanica",
-                  "title": "metalmeccanico-federmeccanica",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+                  "document_id": "uilm-ipotesi-2025",
+                  "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                  "published_on": "2025-11-22",
+                  "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2026'",
+                "quote": "A1 ... 2.907,01"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "effective_from": "2026-06-01"
               }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2028-06-01",
+            "value": "2985.33",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "uilm-ipotesi-2025",
+                  "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                  "published_on": "2025-11-22",
+                  "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+                },
+                "page": "2",
+                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2027'",
+                "quote": "A1 ... 2985,33"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2027-06-01"
+              },
+              "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "3070.61",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "uilm-ipotesi-2025",
+                  "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                  "published_on": "2025-11-22",
+                  "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+                },
+                "page": "2",
+                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2028'",
+                "quote": "A1 ... 3070,61"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-10T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2028-06-01"
+              },
+              "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
             }
           }
         ]
@@ -1789,18 +2677,23 @@
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "metalmeccanico-federmeccanica",
-            "title": "metalmeccanico-federmeccanica",
-            "kind": "tabella_retributiva",
-            "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/"
+            "document_id": "uilm-ipotesi-2025",
+            "title": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+            "kind": "associazione",
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+            "published_on": "2025-11-22",
+            "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
           },
-          "section": "Livelli contrattuali"
+          "page": "2",
+          "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali'",
+          "quote": null
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-10T00:00:00",
           "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "effective_from": "2028-06-01"
         }
       }
     }
@@ -1913,7 +2806,7 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "77246ee80877f03f225582d11333f356ca11ed60805592f62de964bb160bf78e",
+    "source_hash": "571d9fcc3ac97a7685fd0f84569578868ba6f614713fede12dd2b38b57565e29",
     "published_at": "2026-09-08",
     "source_type": "commercial_secondary"
   },
@@ -1939,27 +2832,27 @@
             "weekday"
           ],
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "ccnl-metalmeccanici-federmeccanica-2021-02-05",
-                "title": "CCNL 5 febbraio 2021 industria metalmeccanica privata e installazione di impianti",
+                "document_id": "fiom-ccnl-2021",
+                "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
                 "kind": "associazione",
                 "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
-                "published_on": "2021-02-05"
+                "published_on": "2021-02-05",
+                "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
               },
-              "page": "160",
-              "section": "Sezione quarta, Titolo III, Art. 7, Lavoro straordinario, notturno e festivo",
-              "quote": "a) lavoro straordinario: prime due ore 25%"
+              "page": "161",
+              "section": "Sez. Quarta, Titolo III, Art. 7 - Lavoro straordinario, notturno e festivo, rate table, column 'per lavoro non a turni'",
+              "quote": "a) lavoro straordinario: prime due ore ... 25% (per lavoro non a turni)"
             },
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-09-27T00:00:00",
+              "extraction_timestamp": "2026-10-10T00:00:00",
               "verification_status": "unverified",
-              "effective_from": "2021-01-01"
-            },
-            "note": "The table does not say whether the first two hours are counted per day; read as per day. Quote condensed from the rate table of the cited PDF (dot leaders and the shift-work column left out); no human review recorded."
+              "effective_from": "2021-06-01"
+            }
           }
         },
         {
@@ -1981,27 +2874,27 @@
             "weekday"
           ],
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "ccnl-metalmeccanici-federmeccanica-2021-02-05",
-                "title": "CCNL 5 febbraio 2021 industria metalmeccanica privata e installazione di impianti",
+                "document_id": "fiom-ccnl-2021",
+                "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
                 "kind": "associazione",
                 "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
-                "published_on": "2021-02-05"
+                "published_on": "2021-02-05",
+                "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
               },
-              "page": "160",
-              "section": "Sezione quarta, Titolo III, Art. 7, Lavoro straordinario, notturno e festivo",
-              "quote": "ore successive 30%"
+              "page": "161",
+              "section": "Sez. Quarta, Titolo III, Art. 7 - Lavoro straordinario, notturno e festivo, rate table, column 'per lavoro non a turni'",
+              "quote": "ore successive ... 30%"
             },
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-09-27T00:00:00",
+              "extraction_timestamp": "2026-10-10T00:00:00",
               "verification_status": "unverified",
-              "effective_from": "2021-01-01"
-            },
-            "note": "Threshold of two hours read as per day. Quote condensed from the rate table of the cited PDF (dot leaders and the shift-work column left out); no human review recorded."
+              "effective_from": "2021-06-01"
+            }
           }
         },
         {
@@ -2022,27 +2915,27 @@
             "night"
           ],
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "ccnl-metalmeccanici-federmeccanica-2021-02-05",
-                "title": "CCNL 5 febbraio 2021 industria metalmeccanica privata e installazione di impianti",
+                "document_id": "fiom-ccnl-2021",
+                "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
                 "kind": "associazione",
                 "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
-                "published_on": "2021-02-05"
+                "published_on": "2021-02-05",
+                "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
               },
-              "page": "160",
-              "section": "Sezione quarta, Titolo III, Art. 7, Lavoro straordinario, notturno e festivo",
-              "quote": "g) straordinario notturno (prime 2 ore) 50% ... straordinario notturno (ore successive) 50%"
+              "page": "161",
+              "section": "Sez. Quarta, Titolo III, Art. 7 - Lavoro straordinario, notturno e festivo, rate table, column 'per lavoro non a turni'",
+              "quote": "g) straordinario notturno (prime 2 ore) ... 50% ... straordinario notturno (ore successive) ... 50% (non a turni; a turni 40%/45%)"
             },
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-09-27T00:00:00",
+              "extraction_timestamp": "2026-10-10T00:00:00",
               "verification_status": "unverified",
-              "effective_from": "2021-01-01"
-            },
-            "note": "Column 'per lavoro non a turni'; shift work has different rates. Quote condensed from the rate table of the cited PDF (dot leaders and the shift-work column left out); no human review recorded."
+              "effective_from": "2021-06-01"
+            }
           }
         },
         {
@@ -2063,27 +2956,27 @@
             "holiday"
           ],
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "ccnl-metalmeccanici-federmeccanica-2021-02-05",
-                "title": "CCNL 5 febbraio 2021 industria metalmeccanica privata e installazione di impianti",
+                "document_id": "fiom-ccnl-2021",
+                "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
                 "kind": "associazione",
                 "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
-                "published_on": "2021-02-05"
+                "published_on": "2021-02-05",
+                "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
               },
-              "page": "160",
-              "section": "Sezione quarta, Titolo III, Art. 7, Lavoro straordinario, notturno e festivo",
-              "quote": "e) straordinario festivo 55%"
+              "page": "161",
+              "section": "Sez. Quarta, Titolo III, Art. 7 - Lavoro straordinario, notturno e festivo, rate table, column 'per lavoro non a turni'",
+              "quote": "e) straordinario festivo ... 55% (f) con riposo compensativo 35%)"
             },
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-09-27T00:00:00",
+              "extraction_timestamp": "2026-10-10T00:00:00",
               "verification_status": "unverified",
-              "effective_from": "2021-01-01"
-            },
-            "note": "Column 'per lavoro non a turni'; shift work has different rates. With compensatory rest the rate is 35%. Quote condensed from the rate table of the cited PDF (dot leaders and the shift-work column left out); no human review recorded."
+              "effective_from": "2021-06-01"
+            }
           }
         },
         {
@@ -2104,27 +2997,27 @@
             "night_holiday"
           ],
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "ccnl-metalmeccanici-federmeccanica-2021-02-05",
-                "title": "CCNL 5 febbraio 2021 industria metalmeccanica privata e installazione di impianti",
+                "document_id": "fiom-ccnl-2021",
+                "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
                 "kind": "associazione",
                 "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
-                "published_on": "2021-02-05"
+                "published_on": "2021-02-05",
+                "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
               },
-              "page": "160",
-              "section": "Sezione quarta, Titolo III, Art. 7, Lavoro straordinario, notturno e festivo",
-              "quote": "l) straordinario notturno festivo 75%"
+              "page": "161",
+              "section": "Sez. Quarta, Titolo III, Art. 7 - Lavoro straordinario, notturno e festivo, rate table, column 'per lavoro non a turni'",
+              "quote": "l) straordinario notturno festivo ... 75% (a turni 65%; m) con riposo compensativo 55%)"
             },
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-09-27T00:00:00",
+              "extraction_timestamp": "2026-10-10T00:00:00",
               "verification_status": "unverified",
-              "effective_from": "2021-01-01"
-            },
-            "note": "Column 'per lavoro non a turni'; shift work has different rates. With compensatory rest the rate is 55%. Quote condensed from the rate table of the cited PDF (dot leaders and the shift-work column left out); no human review recorded."
+              "effective_from": "2021-06-01"
+            }
           }
         }
       ]
@@ -2136,19 +3029,25 @@
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "metalmeccanico-federmeccanica",
-            "title": "CCNL Industria Metalmeccanica e Installazione Impianti",
-            "kind": "tabella_retributiva",
-            "url": "https://www.contratticcnl.it/metalmeccanici/"
+            "document_id": "fiom-ccnl-2021",
+            "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+            "kind": "associazione",
+            "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+            "published_on": "2021-02-05",
+            "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
           },
-          "section": "Art. 7 -- Trattamento economico (divisore giornaliero 26)"
+          "page": "157",
+          "section": "Sez. Quarta, Titolo III, Art. 9 - Festività",
+          "quote": "l'importo di una quota giornaliera della retribuzione di fatto, pari a 1/26 della retribuzione mensile fissa"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-10T00:00:00",
           "verification_status": "unverified",
-          "effective_from": "2021-01-01"
-        }
+          "effective_from": "2021-06-01"
+        },
+        "note": "The only daily quota the CCNL defines; the run applies it to absences and partly employed months."
       }
     },
     "leave_rules": {
@@ -2159,7 +3058,11 @@
           "annual_days": "20"
         },
         {
-          "service_months_min": 36,
+          "service_months_min": 120,
+          "annual_days": "21"
+        },
+        {
+          "service_months_min": 216,
           "annual_days": "25"
         }
       ],
@@ -2167,19 +3070,25 @@
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "metalmeccanico-federmeccanica",
-            "title": "CCNL Industria Metalmeccanica e Installazione Impianti",
-            "kind": "tabella_retributiva",
-            "url": "https://www.contratticcnl.it/metalmeccanici/"
+            "document_id": "fiom-ccnl-2021",
+            "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+            "kind": "associazione",
+            "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+            "published_on": "2021-02-05",
+            "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
           },
-          "section": "Art. 12 -- Ferie (20 gg/anno < 36 mesi; 25 gg/anno >= 36 mesi)"
+          "page": "158",
+          "section": "Sez. Quarta, Titolo III, Art. 10 - Ferie",
+          "quote": "pari a 4 settimane ... oltre 10 anni e fino a 18 anni compiuti hanno diritto ad un giorno in più ... oltre i 18 anni compiuti hanno diritto ad una settimana in più"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-10T00:00:00",
           "verification_status": "unverified",
-          "effective_from": "2021-01-01"
-        }
+          "effective_from": "2021-06-01"
+        },
+        "note": "Weeks of five working days; the transitional norms for the workers of the former Disciplina speciale in force at 31 December 2007 (p. 160) are not modelled."
       }
     },
     "sickness_rules": {
@@ -2244,10 +3153,12 @@
     }
   },
   "verification": {
-    "confidence": "unverified",
-    "readiness": "exploratory",
+    "confidence": "verified",
+    "readiness": "reviewed",
     "verified_cases": 0,
-    "last_reviewed": "2026-09-18",
-    "human_reviewed_by": "lucas-puerari"
+    "last_reviewed": "2026-10-10",
+    "human_reviewed_by": "claude-opus-5-5 (AI review authorised by the owner, lucas-puerari)",
+    "owner": "lucas-puerari",
+    "review_due": "2027-06-01"
   }
 }

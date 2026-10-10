@@ -110,7 +110,9 @@ def _conguaglio(
                 tfr_fund=no_tfr_fund(2026),
                 tfr_treasury_fund=False,
             ),
-            employer=EmployerProfile(headcount=Headcount(50)),
+            employer=EmployerProfile(
+                provincial_pay_element=False, headcount=Headcount(50)
+            ),
             default_facts=PeriodFacts(
                 regione=regione,
                 comune_belfiore=comune_belfiore,

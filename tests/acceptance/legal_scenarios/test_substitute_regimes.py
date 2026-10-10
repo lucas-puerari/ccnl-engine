@@ -109,7 +109,9 @@ def _period(
         pension_fund=NoPensionFund(),
         contract_type=Permanent(),
     )
-    employer = EmployerProfile(headcount=Headcount(50), activity=worker.activity)
+    employer = EmployerProfile(
+        provincial_pay_element=False, headcount=Headcount(50), activity=worker.activity
+    )
     prior_year = PriorYearTaxFacts(
         employment_income=worker.income, waived_regimes=waived
     )

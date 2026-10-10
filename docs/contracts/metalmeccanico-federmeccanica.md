@@ -10,7 +10,7 @@
 | **Ruleset version** | `2026.3` |
 | **Extraction** | 🤖 AI-assisted |
 | **Verification** | 🔴 Unverified |
-| **Readiness** | 🧪 Exploratory |
+| **Readiness** | 👁 Reviewed |
 
 [← Contracts index](index.md)
 
@@ -39,27 +39,27 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | seniority |
+| **Limits of this contract** | overtime, seniority |
 
 ### Verifica
 
 | | |
 |---|---|
-| **Readiness** | 🧪 Exploratory |
-| **Confidence** | 🔴 Unverified |
-| **Last human review** | 2026-09-18 |
+| **Readiness** | 👁 Reviewed |
+| **Confidence** | 🟢 Verified |
+| **Last human review** | 2026-10-10 |
 
 ### Freschezza
 
 | | |
 |---|---|
 | **Last renewal** | — |
-| **Last verified** | 2026-09-18 |
-| **Latest salary tranche** | 2026-06-01 |
+| **Last verified** | 2026-10-10 |
+| **Latest salary tranche** | 2028-06-01 |
 
 ### Semplificazioni note
 
-1 semplificazione documentata.
+2 semplificazioni documentate.
 Vedi [Known simplifications](#known-simplifications) per i dettagli.
 
 ## Salary table
@@ -68,15 +68,15 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `A1` | Level 8 — quadro, maximum professional grade | € 2,907.01 | 2026-06-01 |
-| `B3` | Level 7 — high technical or managerial expertise | € 2,838.99 | 2026-06-01 |
-| `B2` | Level 6 — specialist technician, department head, technical employee | € 2,542.98 | 2026-06-01 |
-| `B1` | Level 5 Super — highly specialised worker, technician | € 2,370.33 | 2026-06-01 |
-| `C3` | Level 5 — specialist worker 2nd category, senior white-collar employee (CCNL reference level) | € 2,211.43 | 2026-06-01 |
-| `C2` | Level 4 — specialist worker 1st category, white-collar employee | € 2,064.88 | 2026-06-01 |
-| `C1` | Level 3 — skilled worker, clerical employee | € 2,022.12 | 2026-06-01 |
-| `D2` | Level 2 — standardised operations, simple white-collar duties | € 1,979.37 | 2026-06-01 |
-| `D1` | Level 1 — auxiliary duties, simple and repetitive operations | € 1,784.94 | 2026-06-01 |
+| `A1` | Level 8 — quadro, maximum professional grade | € 3,070.61 | 2028-06-01 |
+| `B3` | Level 7 — high technical or managerial expertise | € 2,998.76 | 2028-06-01 |
+| `B2` | Level 6 — specialist technician, department head, technical employee | € 2,686.08 | 2028-06-01 |
+| `B1` | Level 5 Super — highly specialised worker, technician | € 2,503.72 | 2028-06-01 |
+| `C3` | Level 5 — specialist worker 2nd category, senior white-collar employee (CCNL reference level) | € 2,335.88 | 2028-06-01 |
+| `C2` | Level 4 — specialist worker 1st category, white-collar employee | € 2,181.09 | 2028-06-01 |
+| `C1` | Level 3 — skilled worker, clerical employee | € 2,135.89 | 2028-06-01 |
+| `D2` | Level 2 — standardised operations, simple white-collar duties | € 2,090.76 | 2028-06-01 |
+| `D1` | Level 1 — auxiliary duties, simple and repetitive operations | € 1,885.37 | 2028-06-01 |
 
 ## Seniority increments
 
@@ -119,6 +119,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
+
+!!! warning "metalmeccanico-federmeccanica/overtime_exempt_quota_supplement · overtime · impact yes · open"
+    OVERTIME, QUOTE ESENTI: the 2025 ipotesi (p. 35) adds 8% to the overtime hours worked beyond the exempt quota of 40 or 48 hours a year; the engine does not count the overtime hours of the year, so it does not add it.
+
+    **Applies when:** `overtime` applies.
+
+    **Remediation:** Count the overtime hours of the year and add 8% past the exempt quota, or pass the multiplier on the overtime event.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

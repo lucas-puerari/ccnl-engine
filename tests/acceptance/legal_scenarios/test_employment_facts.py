@@ -213,7 +213,9 @@ def test_missing_required_worker_category_is_rejected() -> None:
 
 
 def _negative_headcount() -> None:
-    regular_period(employer=EmployerProfile(headcount=Headcount(-1)))
+    regular_period(
+        employer=EmployerProfile(provincial_pay_element=False, headcount=Headcount(-1))
+    )
 
 
 def _negative_seniority() -> None:
@@ -260,7 +262,7 @@ def _negative_contributable_hours() -> None:
             contract_type=Permanent(),
         ),
         contributable_hours=ContributableHours(Decimal(-160)),
-        employer=EmployerProfile(headcount=Headcount(1)),
+        employer=EmployerProfile(provincial_pay_element=False, headcount=Headcount(1)),
     )
 
 

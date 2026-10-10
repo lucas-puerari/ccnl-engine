@@ -64,17 +64,25 @@ class EmployerProfile:
             salariale in the last twenty-four months (D.Lgs. 148/2015 art. 29
             c. 8-bis).  ``None`` means not known: a run of such an employer
             has a ``missing_fact`` blocker and is charged the full rate.
+        provincial_pay_element: Whether a provincial pay element of the CCNL
+            (a terzo elemento provinciale) is in force where the worker
+            works, replacing the national element the CCNL pays only in its
+            absence (Commercio Art. 215).  ``None`` means not known: a level
+            with such a national element leaves it out and has a
+            ``missing_fact`` blocker.
 
     Raises:
         InvalidInputError: When ``headcount`` is not a :class:`Headcount`,
             ``activity`` is not an :class:`EmployerActivity` value or
-            ``public_life_insurance`` or ``fis_reduction`` is not a bool.
+            ``public_life_insurance``, ``fis_reduction`` or
+            ``provincial_pay_element`` is not a bool.
     """
 
     headcount: Headcount
     activity: EmployerActivity | None = None
     public_life_insurance: bool | None = None
     fis_reduction: bool | None = None
+    provincial_pay_element: bool | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         require_instance(
@@ -94,7 +102,7 @@ class EmployerProfile:
                 "EmployerProfile.public_life_insurance",
                 feature=_FEATURE,
             )
-        if self.fis_reduction is not None:
-            require_bool(
-                self.fis_reduction, "EmployerProfile.fis_reduction", feature=_FEATURE
-            )
+        for name in ("fis_reduction", "provincial_pay_element"):
+            value = getattr(self, name)
+            if value is not None:
+                require_bool(value, f"EmployerProfile.{name}", feature=_FEATURE)

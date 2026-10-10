@@ -180,8 +180,8 @@ when they drift.
 | Status | CCNL rules | Fiscal blocks | Total |
 |---|---:|---:|---:|
 | `verified` | 0 | 0 | 0 |
-| `derived` | 5 783 | 102 | 5 885 |
-| `assumed` | 758 | 144 | 902 |
+| `derived` | 5 868 | 102 | 5 970 |
+| `assumed` | 691 | 144 | 835 |
 | `missing` | 85 | 0 | 85 |
 
 <!-- /trust:provenance-table -->
@@ -194,7 +194,7 @@ bundle. `assumed` covers every rule of a ruleset that declares
 CCNLs), the
 records that cite no URL (the INPS sick-pay bands, the PdR limits), the
 AI-extracted CCNL values (including
-<!-- trust:accrual-assumed -->40<!-- /trust:accrual-assumed --> accrual
+<!-- trust:accrual-assumed -->38<!-- /trust:accrual-assumed --> accrual
 thresholds read from signed texts, each with its article and quote),
 extra-month counts with no located clause, the
 artigianato and edilizia INPS proxies, the PA apprentice placeholder, the PA

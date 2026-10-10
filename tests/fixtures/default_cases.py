@@ -47,7 +47,7 @@ from ccnl_engine.inputs import (
 )
 from tests.fixtures.default_cases_absence import absence_cases
 from tests.fixtures.default_cases_fixed_term import fixed_term_cases
-from tests.fixtures.default_cases_pension import pension_cases
+from tests.fixtures.default_cases_pension import employer_cases, pension_cases
 from tests.fixtures.default_cases_sickness import sickness_cases
 from tests.fixtures.dependents import declared_dependent
 from tests.fixtures.explicit_facts import (
@@ -467,6 +467,7 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
     **absence_cases(_event_pair),
     **fixed_term_cases(_employment_pair),
     **pension_cases(_employment_pair, _january, DefaultCase),
+    **employer_cases(_january, DefaultCase),
     **sickness_cases(DefaultCase),
 }
 

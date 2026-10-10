@@ -167,68 +167,7 @@
       "additional_months[2025-01-01]": "assumed"
     },
     "ccnl/data/commercio-confcommercio.json": {
-      "accrual_rule": "assumed",
-      "additional_months[2024-04-01]": "assumed",
-      "levels[1].base_salary[2024-04-01]": "assumed",
-      "levels[1].base_salary[2025-03-01]": "assumed",
-      "levels[1].base_salary[2025-11-01]": "assumed",
-      "levels[1].base_salary[2026-11-01]": "assumed",
-      "levels[1].base_salary[2027-02-01]": "assumed",
-      "levels[1].fixed_allowances[CONTINGENZA_EDR]": "assumed",
-      "levels[1].fixed_allowances[TERZO_ELEMENTO_NAZIONALE]": "assumed",
-      "levels[2].base_salary[2024-04-01]": "assumed",
-      "levels[2].base_salary[2025-03-01]": "assumed",
-      "levels[2].base_salary[2025-11-01]": "assumed",
-      "levels[2].base_salary[2026-11-01]": "assumed",
-      "levels[2].base_salary[2027-02-01]": "assumed",
-      "levels[2].fixed_allowances[CONTINGENZA_EDR]": "assumed",
-      "levels[2].fixed_allowances[TERZO_ELEMENTO_NAZIONALE]": "assumed",
-      "levels[3].base_salary[2024-04-01]": "assumed",
-      "levels[3].base_salary[2025-03-01]": "assumed",
-      "levels[3].base_salary[2025-11-01]": "assumed",
-      "levels[3].base_salary[2026-11-01]": "assumed",
-      "levels[3].base_salary[2027-02-01]": "assumed",
-      "levels[3].fixed_allowances[CONTINGENZA_EDR]": "assumed",
-      "levels[3].fixed_allowances[TERZO_ELEMENTO_NAZIONALE]": "assumed",
-      "levels[4].base_salary[2024-04-01]": "assumed",
-      "levels[4].base_salary[2025-03-01]": "assumed",
-      "levels[4].base_salary[2025-11-01]": "assumed",
-      "levels[4].base_salary[2026-11-01]": "assumed",
-      "levels[4].base_salary[2027-02-01]": "assumed",
-      "levels[4].fixed_allowances[CONTINGENZA_EDR]": "assumed",
-      "levels[4].fixed_allowances[TERZO_ELEMENTO_NAZIONALE]": "assumed",
-      "levels[5].base_salary[2024-04-01]": "assumed",
-      "levels[5].base_salary[2025-03-01]": "assumed",
-      "levels[5].base_salary[2025-11-01]": "assumed",
-      "levels[5].base_salary[2026-11-01]": "assumed",
-      "levels[5].base_salary[2027-02-01]": "assumed",
-      "levels[5].fixed_allowances[CONTINGENZA_EDR]": "assumed",
-      "levels[5].fixed_allowances[TERZO_ELEMENTO_NAZIONALE]": "assumed",
-      "levels[6].base_salary[2024-04-01]": "assumed",
-      "levels[6].base_salary[2025-03-01]": "assumed",
-      "levels[6].base_salary[2025-11-01]": "assumed",
-      "levels[6].base_salary[2026-11-01]": "assumed",
-      "levels[6].base_salary[2027-02-01]": "assumed",
-      "levels[6].fixed_allowances[CONTINGENZA_EDR]": "assumed",
-      "levels[6].fixed_allowances[TERZO_ELEMENTO_NAZIONALE]": "assumed",
-      "levels[7].base_salary[2024-04-01]": "assumed",
-      "levels[7].base_salary[2025-03-01]": "assumed",
-      "levels[7].base_salary[2025-11-01]": "assumed",
-      "levels[7].base_salary[2026-11-01]": "assumed",
-      "levels[7].base_salary[2027-02-01]": "assumed",
-      "levels[7].fixed_allowances[CONTINGENZA_EDR]": "assumed",
-      "levels[7].fixed_allowances[IND_FUNZIONE]": "assumed",
-      "levels[7].fixed_allowances[TERZO_ELEMENTO_NAZIONALE]": "assumed",
-      "levels[Q].base_salary[2024-04-01]": "assumed",
-      "levels[Q].base_salary[2025-03-01]": "assumed",
-      "levels[Q].base_salary[2025-11-01]": "assumed",
-      "levels[Q].base_salary[2026-11-01]": "assumed",
-      "levels[Q].base_salary[2027-02-01]": "assumed",
-      "levels[Q].fixed_allowances[CONTINGENZA_EDR]": "assumed",
-      "levels[Q].fixed_allowances[IND_FUNZIONE]": "assumed",
-      "levels[Q].fixed_allowances[TERZO_ELEMENTO_NAZIONALE]": "assumed",
-      "overtime_bands[OT_NOTTURNO]": "assumed",
-      "seniority_increments": "assumed"
+      "work_rules.sickness_rules": "assumed"
     },
     "ccnl/data/comunicazione-artigianato-confartigianato.json": {
       "accrual_rule": "missing",
@@ -510,14 +449,6 @@
     },
     "ccnl/data/metalmeccanico-confimi-pmi.json": {
       "accrual_rule": "missing"
-    },
-    "ccnl/data/metalmeccanico-federmeccanica.json": {
-      "accrual_rule": "assumed",
-      "additional_months[2021-06-01]": "assumed",
-      "overtime_bands[OT_DIURNO]": "assumed",
-      "overtime_bands[OT_FESTIVO]": "assumed",
-      "overtime_bands[OT_NOTTURNO]": "assumed",
-      "overtime_bands[OT_NOTTURNO_FESTIVO]": "assumed"
     },
     "ccnl/data/multiservizi-anip.json": {
       "accrual_rule": "assumed",
@@ -1402,7 +1333,8 @@
       "cinema-audiovisivi-industria/bilateral_funds_not_modelled"
     ],
     "ccnl/data/commercio-confcommercio.json": [
-      "commercio-confcommercio/apprentice_seniority"
+      "commercio-confcommercio/apprentice_seniority",
+      "commercio-confcommercio/sickness_day_bands_and_event_carenza"
     ],
     "ccnl/data/comunicazione-artigianato-confartigianato.json": [
       "comunicazione-artigianato-confartigianato/function_allowance_constant",
@@ -1609,7 +1541,8 @@
       "metalmeccanico-confimi-pmi/overtime_bands_from_confapi"
     ],
     "ccnl/data/metalmeccanico-federmeccanica.json": [
-      "metalmeccanico-federmeccanica/apprentice_seniority"
+      "metalmeccanico-federmeccanica/apprentice_seniority",
+      "metalmeccanico-federmeccanica/overtime_exempt_quota_supplement"
     ],
     "ccnl/data/multiservizi-anip.json": [
       "multiservizi-anip/apprentice_seniority",

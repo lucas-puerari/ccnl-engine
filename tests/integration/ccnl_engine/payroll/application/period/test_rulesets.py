@@ -49,7 +49,7 @@ def test_each_ruleset_is_tagged_by_the_loader_that_read_it() -> None:
 
     assert kinds["ccnl/metalmeccanico-federmeccanica"] == (
         RulesetKind.CCNL,
-        RulesetReadiness.EXPLORATORY,
+        RulesetReadiness.REVIEWED,
     )
     assert kinds["tax/2026/industria"] == (RulesetKind.TAX, None)
     assert kinds["inps/2026/industria"] == (RulesetKind.INPS, None)
