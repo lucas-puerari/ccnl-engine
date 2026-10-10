@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from dataclasses import replace
 from typing import TYPE_CHECKING
 
 import pytest
@@ -17,6 +18,7 @@ from ccnl_engine.payroll.domain.assurance import (
 )
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.engine_mode import EngineMode
+from ccnl_engine.provenance.domain.ruleset_identity import VerificationStatus
 from tests.fixtures.rulesets import tax_ruleset
 
 if TYPE_CHECKING:
@@ -71,6 +73,26 @@ class TestCombine:
         assert year.rulesets == (tax, ccnl)
         assert year.blockers == (_FACT, _GAP)
         assert year.payability is Payability.NOT_PAYABLE
+        assert not year.is_payable
+
+    def test_one_version_read_with_two_contents_blocks_the_year(self) -> None:
+        """Rulesets sharing ``id@version`` but not their hash are both kept."""
+        tax = tax_ruleset("tax/2026")
+        rehashed = replace(
+            tax, identity=tax.identity.model_copy(update={"source_hash": "1" * 64})
+        )
+        relabelled = replace(tax, confidence=VerificationStatus.VERIFIED)
+
+        year = ResultAssurance.combine((
+            _assurance(rulesets=(tax,)),
+            _assurance(rulesets=(rehashed, relabelled)),
+            _assurance(rulesets=(tax,)),
+        ))
+
+        assert year.rulesets == (tax, rehashed, relabelled)
+        assert [(b.code, b.detail) for b in year.blockers] == [
+            (BlockerCode.RULESET_CONFLICT, "tax/2026@2026.1")
+        ]
         assert not year.is_payable
 
     def test_payable_runs_give_a_payable_year(self) -> None:

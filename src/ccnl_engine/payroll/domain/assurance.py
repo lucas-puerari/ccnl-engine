@@ -142,6 +142,10 @@ class BlockerCode(StrEnum):
         RUN_NOT_COMPUTED: In a competence or tax year only: a run of the
             plan was skipped because the bundle holds no base salary of its
             CCNL level on its competence date; the year is partial.
+        RULESET_CONFLICT: In a combined result only: two runs read the
+            same ruleset ``id@version`` with a different hash, kind,
+            readiness or confidence, so the version does not name one
+            content.
     """
 
     CALCULATION_ISSUE = "calculation_issue"
@@ -153,6 +157,7 @@ class BlockerCode(StrEnum):
     RULESET_NOT_PRODUCTION = "ruleset_not_production"
     OPEN_LIMITATION = "open_limitation"
     RUN_NOT_COMPUTED = "run_not_computed"
+    RULESET_CONFLICT = "ruleset_conflict"
 
 
 @dataclass(frozen=True, slots=True)
@@ -227,7 +232,9 @@ class ResultAssurance:
         """Aggregate the assurance of several runs, e.g. those of a year.
 
         Each axis takes its worst value; rulesets, blockers and limitations
-        are listed once each, in the order they first appear.
+        are listed once each, in the order they first appear.  Rulesets
+        that share an ``id@version`` but differ in content are all kept,
+        and each such ``id@version`` adds a ``ruleset_conflict`` blocker.
 
         Returns:
             The aggregated assurance.
@@ -243,12 +250,18 @@ class ResultAssurance:
         if len(modes) > 1:
             msg = f"cannot combine runs of different modes: {sorted(modes)}"
             raise ValueError(msg)
-        blockers = tuple(dict.fromkeys(b for a in items for b in a.blockers))
+        rulesets = tuple(dict.fromkeys(r for a in items for r in a.rulesets))
+        blockers = tuple(
+            dict.fromkeys((
+                *(b for a in items for b in a.blockers),
+                *_conflicts(rulesets),
+            ))
+        )
         return cls(
             calculation=CalculationStatus.worst(a.calculation for a in items),
             coverage=CoverageStatus.worst(a.coverage for a in items),
             evidence=EvidenceStatus.weakest(a.evidence for a in items),
-            rulesets=_unique_rulesets(r for a in items for r in a.rulesets),
+            rulesets=rulesets,
             mode=items[0].mode,
             payability=decide_payability(blockers),
             blockers=blockers,
@@ -258,13 +271,16 @@ class ResultAssurance:
         )
 
 
-def _unique_rulesets(
-    rulesets: Iterable[RulesetAssurance],
-) -> tuple[RulesetAssurance, ...]:
-    seen: dict[str, RulesetAssurance] = {}
-    for ruleset in rulesets:
-        seen.setdefault(str(ruleset), ruleset)
-    return tuple(seen.values())
+def _conflicts(rulesets: tuple[RulesetAssurance, ...]) -> Iterable[ResultBlocker]:
+    names = [str(r) for r in rulesets]
+    for name in dict.fromkeys(n for n in names if names.count(n) > 1):
+        yield ResultBlocker(
+            BlockerCode.RULESET_CONFLICT,
+            None,
+            name,
+            f"the knowledge repository returned different contents for {name}: "
+            "give each content its own version, or read every run from one data set",
+        )
 
 
 def decide_payability(blockers: tuple[ResultBlocker, ...]) -> Payability:

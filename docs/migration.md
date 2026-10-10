@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Conflicting rulesets in a year
+
+| Before | After |
+|---|---|
+| A year listed each ruleset `id@version` once, keeping the first run's content even when a later run read a different hash, kind, readiness or confidence | Rulesets are listed once per distinct content; an `id@version` read with two contents adds a `ruleset_conflict` blocker (`BlockerCode.RULESET_CONFLICT`, detail `id@version`) and the year is not payable |
+
 ## Persisted state bound to the engine and bundle
 
 | Before | After |

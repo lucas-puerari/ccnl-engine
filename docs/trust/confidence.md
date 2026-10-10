@@ -76,6 +76,7 @@ one:
 | `caller_supplied_rule` | capability | field names | The caller supplied a rate or multiplier in place of a bundled rule |
 | `open_limitation` | capability | limitation id | An open [model limitation](#model-limitations) with monetary impact `yes` or `unknown` applies to the run |
 | `run_not_computed` | rule name (`base_salary`) | run id | Competence or tax year only: a run was left out because the bundle holds no base salary of its level on its competence date; see `ContractSummary.validity` |
+| `ruleset_conflict` | `None` | `id@version` | Competence or tax year only: two runs read the same ruleset version with a different hash, kind, readiness or confidence (a custom repository whose data changed between runs); both contents stay in `rulesets` |
 | `ruleset_not_production` | `None` | ruleset id | `operational` mode only: a ruleset that tracks readiness (today, the CCNL) is not `production` with a `verified` confidence; `no_ruleset_tracks_readiness` when the CCNL has no ruleset identity |
 
 A `derived` rule (taken from a cited document location, with no recorded
