@@ -131,18 +131,37 @@
     "small_firm_employer_rate_months_12_23": "0.0461",
     "small_firm_employer_ivs_rate_months_12_23": "0.0300",
     "provenance": {
-      "status": "assumed",
+      "status": "derived",
       "location": {
         "source_document": {
           "document_id": "l-296-2006",
-          "title": "L. 296/2006, legge finanziaria 2007",
-          "kind": "legge"
+          "title": "L. 27 dicembre 2006 n. 296 (legge finanziaria 2007)",
+          "kind": "legge",
+          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2006-12-27;296~art1!vig=2026-10-10"
         },
-        "section": "art. 1 c. 773; L. 92/2012 art. 2 cc. 36-37"
+        "section": "art. 1 c. 773",
+        "quote": "la contribuzione dovuta dai datori di lavoro per gli apprendisti artigiani e non artigiani è complessivamente rideterminata nel 10 per cento [...] Per i datori di lavoro che occupano alle dipendenze un numero di addetti pari o inferiore a nove la predetta complessiva aliquota del 10 per cento [...] è ridotta [...] di 8,5 punti percentuali per i periodi contributivi maturati nel primo anno di contratto e di 7 punti percentuali per i periodi contributivi maturati nel secondo anno"
       },
-      "transformation": "Employer rate 10% + NASpI 1.31% + 0.30% = 11.61%.",
-      "note": "Assumed, not derived: its ruleset declares source_type 'estimated'; no citation (http(s) url and section or page). Open question, not settled by a source the bundle holds: since 1 January 2022 apprentices are covered by the wage-integration schemes and pay their contributions (D.Lgs. 148/2015 art. 2 c. 1 and 3): CIGO, CIGS and FIS shares are not in this flat rate."
-    }
+      "transformation": "Employer 10% (1.5% in the first and 3% in the second year up to nine employees) + NASpI 1.61% = 11.61% (3.11%, 4.61%); worker 5.84%. headcount_shares add the wage-integration shares of the industria: CIGO 1.70% up to 50 employees and 2.00% above (D.Lgs. 148/2015 art. 13 c. 1 lett. a-b), CIGS 0.90% above 15, 0.60% employer and 0.30% worker. Result: up to 9 employees 4.81% / 6.31% / 13.31%, 10-15 13.31%, 16-50 13.91%, above 50 14.21%; worker 5.84% up to 15, 6.14% above.",
+      "note": "No published industria apprentice table found; the rates are the sum of the cited addends. D.Lgs. 148/2015 art. 13 c. 1 (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-09-14;148~art13!vig=2026-10-10): 'a) 1,70 per cento [...] per i dipendenti delle imprese industriali che occupano fino a 50 dipendenti; b) 2,00 per cento [...] oltre 50 dipendenti'. Worker CIGS 0.30% above 15: GIA Parma table (https://www.gia.pr.it/download/29078/2023/02/All-2-INPS-TABELLE-CONTRIBUTI-OPERAI-E-IMPIEGATI-OP_IMP_CTB_23.pdf, sha256 3cad3626a3bdbea84dbcde42143ad8170ccdc29407261befa809b9eeec5c373e, p. 4): 'fondo pensioni lavoratori dipendenti 9,19 9,19 C.I.G. straordinaria / 0,30'. Cross-check: the Assimpredil ANCE edile rows follow the same composition (10 + 1.61 + CIGO, + 0.60 CIGS above 15). L. 92/2012 art. 2 c. 36 (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2012-06-28;92~art2!vig=2026-10-10): 'è dovuta dai datori di lavoro per gli apprendisti artigiani e non artigiani una contribuzione pari all'1,31 per cento della retribuzione imponibile ai fini previdenziali'; with the 0.30% of art. 25 L. 845/1978 the NASpI share is 1.61%: Assimpredil ANCE table 1/2026 note (5) (https://portale.assimpredilance.it/uploads/allegati/misug20260219_106_019_minimali_di_retribuzione_inps_2026_allegato_1_6997426c09ebe.pdf, sha256 83508e4e61d305be578ecb224a00bdf4f7628214578999a02d4763d93f58756f): 'per i contratti di apprendistato [...] l'aliquota a carico del datore di lavoro è aumentata dell'1,61% quale contributo per il finanziamento della NASpI'. Circ. INPS 22/2007 par. 1 (https://servizi2.inps.it/CircolariZIP/Circolare%20numero%2022%20del%2023-1-2007.pdf, sha256 45fb77d63387fe8030698f0c7e34e832e436292c13b4eedca1b4c0e6b3f680ae, p. 2): 'va ad aggiungersi la quota dovuta dall'apprendista che [...] si attesterà nella misura del 5,84%'. Circ. INPS 76/2022 par. 1 (https://www.fiscoetasse.com/files/17306/circolare-76-del-30-06-2022.pdf, sha256 f181597163ae73a9918929b40186c69dffb92da5aebfe9653c41b5c1828bb952, p. 4): 'a decorrere dal 1° gennaio 2022, tutti i datori di lavoro [...] sono tenuti al versamento della contribuzione di finanziamento dei trattamenti di integrazione salariale di cui al Titolo I e/o al Titolo II del D.lgs n.148/2015, di cui sono destinatari i lavoratori assunti con contratto di apprendistato, di qualsiasi tipologia'. CIGS: Assimpredil ANCE table 2/2026 note (6), same file: 'Dal 1° gennaio 2022 è altresì dovuta l'aliquota dello 0,90% (0,60% a carico del datore di lavoro e 0,30% a carico del lavoratore) quale contributo per la Cassa Integrazione Straordinaria'. The IVS portions (10%, 1.5% and 3% of the employer, 5.84% of the worker) treat the whole statutory rate as IVS: the split of the 10% among the funds (D.M. 28 March 2007) is not sourced; it only bears on pay above the massimale. The year after qualification keeps the rate of the apprenticeship (circ. 76/2022 par. 1.1, D.Lgs. 81/2015 art. 47 c. 7); the engine charges the full rate of the tier after month 24, as before. Quotes checked on 2026-10-10 against the files. Not checked by a named reviewer."
+    },
+    "headcount_shares": [
+      {
+        "max_employees": 15,
+        "employer_rate": "0.0170",
+        "employee_rate": "0.0000"
+      },
+      {
+        "max_employees": 50,
+        "employer_rate": "0.0230",
+        "employee_rate": "0.0030"
+      },
+      {
+        "max_employees": null,
+        "employer_rate": "0.0260",
+        "employee_rate": "0.0030"
+      }
+    ]
   },
   "ruleset": {
     "id": "inps/2026/industria",
@@ -152,7 +171,7 @@
     "published_at": "2026-09-07",
     "source": "https://www.gia.pr.it/download/29078/2023/02/All-2-INPS-TABELLE-CONTRIBUTI-OPERAI-E-IMPIEGATI-OP_IMP_CTB_23.pdf",
     "verification_status": "unverified",
-    "source_hash": "2ec1547eaa90361a4761cdc5ecc12e015446a4ba19e29cb3ffbf966da620c110",
+    "source_hash": "a1db05ea8d3539b4067d76e64657545eea8d9c19b80987d9043d5fd43230c15d",
     "source_type": "contracting_party"
   }
 }

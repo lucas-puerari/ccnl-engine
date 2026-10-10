@@ -169,8 +169,8 @@ class TestYearRules2026Json:
         assert yr.fixed_term_additional_rate == Decimal("0.014")
         assert yr.tfr.accrual_divisor == Decimal("13.5")
         assert yr.apprentice is not None
-        assert yr.apprentice.employer_rate_after == Decimal("0.1161")
-        assert yr.apprentice.employer_rate_months_0_11 == Decimal("0.1161")
+        assert yr.apprentice.employer_rate_after == Decimal("0.1274")
+        assert yr.apprentice.employer_rate_months_0_11 == Decimal("0.1274")
 
     @pytest.mark.parametrize(
         ("headcount", "employee", "employer"),
@@ -195,12 +195,17 @@ class TestYearRules2026Json:
         assert yr.inps.employer_rate == Decimal(employer)
 
     def test_small_firm_apprentice_rates(self) -> None:
-        """Firms with at most 9 employees get the reduced apprentice rates."""
+        """Firms with at most 9 employees get the reduced apprentice rates.
+
+        10% less 8.5 and 7 points (L. 296/2006 art. 1 c. 773) + NASpI 1.61%
+        + the FIS employer share of an employer above five, 0.53% (INPS
+        circ. 117/2022 all. 1).
+        """
         yr = load_year_rules(2026, TaxSector.TERZIARIO, 9)
         assert yr.apprentice is not None
-        assert yr.apprentice.employer_rate_months_0_11 == Decimal("0.0311")
-        assert yr.apprentice.employer_rate_months_12_23 == Decimal("0.0461")
-        assert yr.apprentice.employer_rate_after == Decimal("0.1161")
+        assert yr.apprentice.employer_rate_months_0_11 == Decimal("0.0364")
+        assert yr.apprentice.employer_rate_months_12_23 == Decimal("0.0514")
+        assert yr.apprentice.employer_rate_after == Decimal("0.1214")
 
     def test_artigianato_category_rates(self) -> None:
         """Artigianato: lower employer rate for impiegati/quadri (kitech.it source)."""
@@ -410,3 +415,76 @@ class TestFixedTermAdditionalRate:
             _year_rules({"fixed_term_additional_rate": "0.000"})
         )
         assert r.fixed_term_additional_rate == Decimal(0)
+
+
+class TestYearRules2026SectorRates:
+    """Sector rates of the 2026 INPS files that differ by headcount or category."""
+
+    @pytest.mark.parametrize(
+        ("sector", "headcount", "first", "second", "after", "employee"),
+        [
+            # 10% + NASpI 1.61% + CIGO 1.70%, + CIGS 0.60% / 0.30% above 15,
+            # CIGO 2.00% above 50 (D.Lgs. 148/2015 art. 13 c. 1 lett. a-b).
+            (TaxSector.INDUSTRIA, 9, "0.0481", "0.0631", "0.1331", "0.0584"),
+            (TaxSector.INDUSTRIA, 15, "0.1331", "0.1331", "0.1331", "0.0584"),
+            (TaxSector.INDUSTRIA, 50, "0.1391", "0.1391", "0.1391", "0.0614"),
+            (TaxSector.INDUSTRIA, 51, "0.1421", "0.1421", "0.1421", "0.0614"),
+            # FIS 0.33% / 0.17% up to 5, 0.53% / 0.27% above (circ. 117/2022).
+            (TaxSector.TERZIARIO, 5, "0.0344", "0.0494", "0.1194", "0.0601"),
+            (TaxSector.TERZIARIO, 15, "0.1214", "0.1214", "0.1214", "0.0611"),
+            (TaxSector.TERZIARIO, 16, "0.1274", "0.1274", "0.1274", "0.0641"),
+            # Assimpredil ANCE tables 1/2026 and 2/2026: CIGO edile 4.70%.
+            (TaxSector.EDILIZIA, 9, "0.0781", "0.0931", "0.1631", "0.0584"),
+            (TaxSector.EDILIZIA, 15, "0.1631", "0.1631", "0.1631", "0.0584"),
+            (TaxSector.EDILIZIA, 16, "0.1691", "0.1691", "0.1691", "0.0614"),
+        ],
+    )
+    def test_apprentice_rates_add_the_wage_integration_shares(
+        self,
+        sector: TaxSector,
+        headcount: int,
+        first: str,
+        second: str,
+        after: str,
+        employee: str,
+    ) -> None:
+        """Apprentices pay CIGO, CIGS or FIS since 2022 (INPS circ. 76/2022).
+
+        The shares are not IVS: the IVS portions stay the statutory ones.
+        """
+        yr = load_year_rules(2026, sector, headcount)
+        assert yr.apprentice is not None
+        assert yr.apprentice.employer_rate_months_0_11 == Decimal(first)
+        assert yr.apprentice.employer_rate_months_12_23 == Decimal(second)
+        assert yr.apprentice.employer_rate_after == Decimal(after)
+        assert yr.apprentice.employee_rate == Decimal(employee)
+        assert yr.apprentice.employee_ivs_rate == Decimal("0.0584")
+        assert yr.apprentice.employer_ivs_rate_after == Decimal("0.1000")
+
+    @pytest.mark.parametrize(
+        ("headcount", "operai", "impiegati"),
+        [(15, "0.3368", "0.2846"), (50, "0.3428", "0.2906"), (51, "0.3428", "0.2936")],
+    )
+    def test_edilizia_rates_by_category(
+        self, headcount: int, operai: str, impiegati: str
+    ) -> None:
+        """Edilizia: Assimpredil ANCE tables 1/2026 and 2/2026.
+
+        Operai pay the CIGO edile 4.70% and malattia 2.22%; impiegati and
+        quadri the CIGO 1.70% (2.00% above 50); dirigenti no CIGO.
+        """
+        yr = load_year_rules(2026, TaxSector.EDILIZIA, headcount)
+        assert yr.inps is not None
+        assert yr.inps.employer_rate == Decimal(operai)
+        assert yr.inps.employer_rate_by_category == {
+            "impiegato": Decimal(impiegati),
+            "quadro": Decimal(impiegati),
+            "dirigente": Decimal("0.2696"),
+        }
+
+    def test_credito_operai_rate(self) -> None:
+        """Credito: operai (salariati) 38.50% - 9.19% = 29.31% with malattia."""
+        yr = load_year_rules(2026, TaxSector.CREDITO, 100)
+        assert yr.inps is not None
+        assert yr.inps.employer_rate == Decimal("0.2676")
+        assert yr.inps.employer_rate_by_category == {"operaio": Decimal("0.2931")}
