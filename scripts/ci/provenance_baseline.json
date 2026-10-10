@@ -1038,18 +1038,7 @@
     },
     "inps/data/2026-credito.json": {
       "apprentice": "assumed",
-      "inps": "assumed",
-      "inps.employee_additional": "assumed",
-      "inps.minimum_base": "assumed"
-    },
-    "inps/data/2026-edilizia.json": {
-      "apprentice": "assumed",
-      "inps": "assumed",
-      "inps.employee_additional": "assumed",
-      "inps.minimum_base": "assumed"
-    },
-    "inps/data/2026-industria.json": {
-      "apprentice": "assumed"
+      "inps": "assumed"
     },
     "inps/data/2026-lavoro-domestico.json": {
       "domestic_contributions": "assumed"
@@ -1057,9 +1046,6 @@
     "inps/data/2026-pubblica-amministrazione.json": {
       "apprentice": "assumed",
       "inps.minimum_base": "assumed"
-    },
-    "inps/data/2026-terziario.json": {
-      "apprentice": "assumed"
     },
     "inps/data/2027-agricoltura.json": {
       "apprentice": "assumed",

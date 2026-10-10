@@ -144,18 +144,37 @@
     "small_firm_employer_rate_months_12_23": "0.0461",
     "small_firm_employer_ivs_rate_months_12_23": "0.0300",
     "provenance": {
-      "status": "assumed",
+      "status": "derived",
       "location": {
         "source_document": {
           "document_id": "l-296-2006",
-          "title": "L. 296/2006, legge finanziaria 2007",
-          "kind": "legge"
+          "title": "L. 27 dicembre 2006 n. 296 (legge finanziaria 2007)",
+          "kind": "legge",
+          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2006-12-27;296~art1!vig=2026-10-10"
         },
-        "section": "art. 1 c. 773; L. 92/2012 art. 2 cc. 36-37"
+        "section": "art. 1 c. 773",
+        "quote": "la contribuzione dovuta dai datori di lavoro per gli apprendisti artigiani e non artigiani è complessivamente rideterminata nel 10 per cento [...] Per i datori di lavoro che occupano alle dipendenze un numero di addetti pari o inferiore a nove la predetta complessiva aliquota del 10 per cento [...] è ridotta [...] di 8,5 punti percentuali per i periodi contributivi maturati nel primo anno di contratto e di 7 punti percentuali per i periodi contributivi maturati nel secondo anno"
       },
-      "transformation": "Employer rate 10% + NASpI 1.31% + 0.30% = 11.61%.",
-      "note": "Assumed, not derived: its ruleset declares source_type 'estimated'; no citation (http(s) url and section or page). Open question, not settled by a source the bundle holds: since 1 January 2022 apprentices are covered by the wage-integration schemes and pay their contributions (D.Lgs. 148/2015 art. 2 c. 1 and 3): CIGO, CIGS and FIS shares are not in this flat rate."
-    }
+      "transformation": "Employer 10% (1.5% in the first and 3% in the second year up to nine employees) + NASpI 1.61% = 11.61% (3.11%, 4.61%); worker 5.84%. headcount_shares add the wage-integration shares of the terziario: FIS 0.50% up to 5 employees (0.33% employer, 0.17% worker) and 0.80% above (0.53%, 0.27%), CIGS 0.90% above 15 (0.60%, 0.30%). Result: up to 5 employees 11.94% / worker 6.01%, 6-15 12.14% / 6.11%, above 15 12.74% / 6.41%; up to 9 employees in the first two years 3.44% / 4.94% (up to 5) and 3.64% / 5.14% (6-9).",
+      "note": "No published terziario apprentice table found; the rates are the sum of the cited addends. FIS and CIGS shares: INPS circ. 117/2022 all. 1 (https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2022/10/Circolare_13970/Allegati/13873_Circolare-numero-117-del-20-10-2022_Allegato-n-1.pdf, sha256 28e59dd5733b1ea15bdea8225c85412ca9913a3c39279e5ec59d1fc5b1d156da, p. 1-2): 'FIS ** – Datori di lavoro fino a 5 dipendenti 0,50 % (di cui 0,17 % a carico del dipendente) FIS ** - oltre 5 dipendenti 0,80 % (di cui 0,27 % a carico del dipendente) CIGS ** 0,90% (di cui 0,30 % a carico del dipendente)'. L. 92/2012 art. 2 c. 36 (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2012-06-28;92~art2!vig=2026-10-10): 'è dovuta dai datori di lavoro per gli apprendisti artigiani e non artigiani una contribuzione pari all'1,31 per cento della retribuzione imponibile ai fini previdenziali'; with the 0.30% of art. 25 L. 845/1978 the NASpI share is 1.61%: Assimpredil ANCE table 1/2026 note (5) (https://portale.assimpredilance.it/uploads/allegati/misug20260219_106_019_minimali_di_retribuzione_inps_2026_allegato_1_6997426c09ebe.pdf, sha256 83508e4e61d305be578ecb224a00bdf4f7628214578999a02d4763d93f58756f): 'per i contratti di apprendistato [...] l'aliquota a carico del datore di lavoro è aumentata dell'1,61% quale contributo per il finanziamento della NASpI'. Circ. INPS 22/2007 par. 1 (https://servizi2.inps.it/CircolariZIP/Circolare%20numero%2022%20del%2023-1-2007.pdf, sha256 45fb77d63387fe8030698f0c7e34e832e436292c13b4eedca1b4c0e6b3f680ae, p. 2): 'va ad aggiungersi la quota dovuta dall'apprendista che [...] si attesterà nella misura del 5,84%'. Circ. INPS 76/2022 par. 1 (https://www.fiscoetasse.com/files/17306/circolare-76-del-30-06-2022.pdf, sha256 f181597163ae73a9918929b40186c69dffb92da5aebfe9653c41b5c1828bb952, p. 4): 'a decorrere dal 1° gennaio 2022, tutti i datori di lavoro [...] sono tenuti al versamento della contribuzione di finanziamento dei trattamenti di integrazione salariale di cui al Titolo I e/o al Titolo II del D.lgs n.148/2015, di cui sono destinatari i lavoratori assunti con contratto di apprendistato, di qualsiasi tipologia'. CIGS: Assimpredil ANCE table 2/2026 note (6), same file: 'Dal 1° gennaio 2022 è altresì dovuta l'aliquota dello 0,90% (0,60% a carico del datore di lavoro e 0,30% a carico del lavoratore) quale contributo per la Cassa Integrazione Straordinaria'. The IVS portions (10%, 1.5% and 3% of the employer, 5.84% of the worker) treat the whole statutory rate as IVS: the split of the 10% among the funds (D.M. 28 March 2007) is not sourced; it only bears on pay above the massimale. The year after qualification keeps the rate of the apprenticeship (circ. 76/2022 par. 1.1, D.Lgs. 81/2015 art. 47 c. 7); the engine charges the full rate of the tier after month 24, as before. Not modelled: the FIS cut of art. 29 c. 8-bis D.Lgs. 148/2015 (inps.fis_reduction) lowers the rates of the other workers only; an apprentice of an employer with the cut is charged 0.13% (employer) and 0.07% (worker) too much. Quotes checked on 2026-10-10 against the files. Not checked by a named reviewer."
+    },
+    "headcount_shares": [
+      {
+        "max_employees": 5,
+        "employer_rate": "0.0033",
+        "employee_rate": "0.0017"
+      },
+      {
+        "max_employees": 15,
+        "employer_rate": "0.0053",
+        "employee_rate": "0.0027"
+      },
+      {
+        "max_employees": null,
+        "employer_rate": "0.0113",
+        "employee_rate": "0.0057"
+      }
+    ]
   },
   "ruleset": {
     "id": "inps/2026/terziario",
@@ -165,7 +184,7 @@
     "published_at": "2026-09-07",
     "source": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2022/10/Circolare_13970/Allegati/13873_Circolare-numero-117-del-20-10-2022_Allegato-n-1.pdf",
     "verification_status": "unverified",
-    "source_hash": "6b09dd2aedfb2fbc9993b5fb2df96c64db2e800171873fc17143c4ecd3df321a",
+    "source_hash": "8c717aab8c16af41d13d1fc3df130e8f85bbbc7a911e9c9472c863c6e21aa015",
     "source_type": "institutional_secondary"
   }
 }

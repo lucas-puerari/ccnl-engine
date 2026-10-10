@@ -4,6 +4,14 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Sourced 2026 INPS rates of edilizia, credito and apprentices
+
+| Before | After |
+|---|---|
+| Edilizia employer: 28.46% up to 15 employees, 29.06% up to 50, 29.50% above, one rate for every category | Operai 33.68% / 34.28% / 34.28% (CIGO edile 4.70%, malattia 2.22%), impiegati and quadri 28.46% / 29.06% / 29.36%, dirigenti 26.96% (Assimpredil ANCE tables 1/2026 and 2/2026). A level with no category takes the operai rate with an `employer_rate_category_assumed` blocker: declare `Employment.category` |
+| Credito employer: 26.76% for every category | Operai 29.31% (malattia 2.55%); impiegati, quadri and dirigenti 26.76% |
+| Apprentices of every sector: employer 11.61% (3.11% / 4.61% in the first two years up to nine employees), worker 5.84%, at every headcount | New `headcount_shares` of the apprentice block: the CIGO, CIGS or FIS share by headcount, added to every employer period and to the worker rate (INPS circ. 76/2022). Industria 13.31% up to 15 (4.81% / 6.31% up to nine), 13.91% up to 50, 14.21% above, worker 6.14% above 15; terziario 11.94% up to 5, 12.14% up to 15, 12.74% above, worker 6.01% / 6.11% / 6.41%; edilizia 16.31% up to 15 (7.81% / 9.31% up to nine), 16.91% above, worker 6.14% above 15. Agricoltura, artigianato and credito unchanged |
+
 ## Signed sources for Commercio and Metalmeccanico
 
 | Before | After |

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from decimal import Decimal
 from typing import TYPE_CHECKING, Protocol
 
 from ccnl_engine.shared.domain.errors import DataIntegrityError
@@ -9,7 +10,6 @@ from ccnl_engine.tax.domain.contribution_rules import ApprenticeRates, InpsRates
 
 if TYPE_CHECKING:
     from collections.abc import Sequence
-    from decimal import Decimal
 
     from ccnl_engine.tax.domain.contribution_tiers import (
         ApprenticeRawRates,
@@ -19,8 +19,6 @@ if TYPE_CHECKING:
 
 class _Tier(Protocol):
     max_employees: int | None
-    rate: Decimal
-    ivs_rate: Decimal
 
 
 def _assert_tier_integrity(tiers: Sequence[_Tier], side: str) -> None:
@@ -110,17 +108,37 @@ def _resolve_inps(raw: InpsRawRates | None, num_employees: int) -> InpsRates | N
     )
 
 
+def _apprentice_shares(
+    raw: ApprenticeRawRates, num_employees: int
+) -> tuple[Decimal, Decimal]:
+    """Return the employer and employee wage-integration shares of the headcount.
+
+    Returns:
+        ``(employer, employee)`` of the tier that covers ``num_employees``;
+        zero when the block has no headcount shares.
+    """
+    if not raw.headcount_shares:
+        return Decimal(0), Decimal(0)
+    share = _resolve_tier(raw.headcount_shares, num_employees, "apprentice share")
+    return share.employer_rate, share.employee_rate
+
+
 def _resolve_apprentice(raw: ApprenticeRawRates, num_employees: int) -> ApprenticeRates:
     """Resolve apprentice rates by firm size.
+
+    The headcount share (CIGO, CIGS or FIS) is added to every employer
+    period and to the employee rate; the IVS portions are unchanged.
 
     Returns:
         ApprenticeRates with employer rates selected for small or large firm.
     """
     small_firm = num_employees <= raw.small_firm_max_employees
+    employer_share, employee_share = _apprentice_shares(raw, num_employees)
     return ApprenticeRates(
-        employee_rate=raw.employee_rate,
+        employee_rate=raw.employee_rate + employee_share,
         employee_ivs_rate=raw.employee_ivs_rate,
-        employer_rate_months_0_11=(
+        employer_rate_months_0_11=employer_share
+        + (
             raw.small_firm_employer_rate_months_0_11
             if small_firm
             else raw.employer_rate
@@ -130,7 +148,8 @@ def _resolve_apprentice(raw: ApprenticeRawRates, num_employees: int) -> Apprenti
             if small_firm
             else raw.employer_ivs_rate
         ),
-        employer_rate_months_12_23=(
+        employer_rate_months_12_23=employer_share
+        + (
             raw.small_firm_employer_rate_months_12_23
             if small_firm
             else raw.employer_rate
@@ -140,7 +159,7 @@ def _resolve_apprentice(raw: ApprenticeRawRates, num_employees: int) -> Apprenti
             if small_firm
             else raw.employer_ivs_rate
         ),
-        employer_rate_after=raw.employer_rate,
+        employer_rate_after=raw.employer_rate + employer_share,
         employer_ivs_rate_after=raw.employer_ivs_rate,
         provenance=raw.provenance,
     )

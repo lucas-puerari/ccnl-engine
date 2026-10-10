@@ -77,7 +77,7 @@
         },
         "section": "OTI rates 2026"
       },
-      "note": "Employee 8.84%, employer 21.66%; IVS ceiling from INPS Circ. 6/2026. Assumed, not derived: its ruleset declares source_type 'estimated'."
+      "note": "Employee 8.84%, employer 21.66%; IVS ceiling from INPS Circ. 6/2026. The employer 21.66% is the IVS only (Fondo pensioni 21.55 + quota base 0.11). INPS circ. 43/2026 allegato 1 (https://www.fiscoetasse.com/files/21591/circolare-n43-del-07-04-2026-allegato1.pdf, sha256 39a526358cec2ec2bd75e468c07a5cd72dc2bade525aeb80ee4e605ba4f16194) gives for OTI of the generalità delle aziende agricole an employer total of 33.953%, 25.453% without the INAIL 8.50% (disoccupazione 2.75, esoneri -0.34 and -1.00, CIS 1.50, malattia 0.683, Fondo Garanzia TFR 0.20), and 33.753% for OTD; the rates change with the employer column (coltivatori diretti, cooperatives, industrial processes), the zone reductions (75% and 68%) and the category (impiegati agricoli). Not applied: this file serves every one of them with one rate. Assumed, not derived: its ruleset declares source_type 'estimated'."
     }
   },
   "apprentice": {
@@ -112,7 +112,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "9b1fb082b2139e42c5493f45e5681c2652d2d884557dc96947f49be7e56efb3b",
+    "source_hash": "b50254f1ae13cbced619ecf987c79499396cf3315388fab1300c518a46b47d88",
     "source_type": "estimated"
   }
 }

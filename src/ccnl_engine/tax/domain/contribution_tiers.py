@@ -121,8 +121,35 @@ class InpsRawRates(BaseModel):
     base_whole_euro: bool = True
 
 
+class ApprenticeHeadcountShare(BaseModel):
+    """Non-IVS shares an apprentice owes on top of the statutory rates.
+
+    Since 1 January 2022 apprentices pay the wage-integration contributions
+    of their employer (D.Lgs. 148/2015 art. 2; INPS circ. 76/2022 par. 1):
+    CIGO, CIGS or FIS, whose rates depend on the headcount.  Each share is
+    added to every employer period (reduced small-firm years included) and
+    to the employee rate; none of it is IVS, so it is never capped.
+
+    Attributes:
+        max_employees: Largest headcount of the tier; ``None`` is the open
+            tier.
+        employer_rate: Employer share added to the apprentice employer rates.
+        employee_rate: Worker share added to the apprentice employee rate.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    max_employees: int | None
+    employer_rate: NonNegativeRate
+    employee_rate: NonNegativeRate
+
+
 class ApprenticeRawRates(BaseModel):
-    """Raw apprentice block from the tax JSON file, before headcount resolution."""
+    """Raw apprentice block from the tax JSON file, before headcount resolution.
+
+    ``headcount_shares`` are the wage-integration shares by headcount tier;
+    empty when the sector owes none to INPS.
+    """
 
     model_config = ConfigDict(extra="forbid")
 
@@ -135,6 +162,7 @@ class ApprenticeRawRates(BaseModel):
     small_firm_employer_ivs_rate_months_0_11: NonNegativeRate
     small_firm_employer_rate_months_12_23: NonNegativeRate
     small_firm_employer_ivs_rate_months_12_23: NonNegativeRate
+    headcount_shares: list[ApprenticeHeadcountShare] = []
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
