@@ -9,6 +9,7 @@ before any run.
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import date
 
 import pytest
@@ -25,18 +26,22 @@ from ccnl_engine import (
     PeriodResult,
 )
 from ccnl_engine.catalog import RulesetKind, RulesetReadiness
-from ccnl_engine.inputs import EngineMode, Permanent
+from ccnl_engine.inputs import EngineMode, Permanent, WorkerCategory
 from ccnl_engine.results import BlockerCode
 from tests.knowledge.ccnl_engine.payroll.period.builders_explicit_facts import (
+    CONCIA_D2,
     competence_year,
+    regular_run,
 )
 
 _SIMULATION = PayrollEngine.bundled()
 _OPERATIONAL = PayrollEngine.bundled(mode="operational")
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
 _METALMECCANICO = "metalmeccanico-federmeccanica"
+#: A reviewed CCNL, not production: operational mode blocks it.
+_COMMERCIO = "commercio-confcommercio"
 _EMPLOYMENT = Employment(
-    ccnl_slug=f"{_METALMECCANICO}.json", level_code="C3", contract_type=Permanent()
+    ccnl_slug=f"{_COMMERCIO}.json", level_code="4", contract_type=Permanent()
 )
 
 
@@ -70,7 +75,7 @@ def test_unknown_mode_is_invalid_input() -> None:
 def test_operational_adds_only_the_readiness_blocker() -> None:
     """Same amounts; one more blocker, naming the reviewed CCNL ruleset."""
     simulated, operational = _june(_SIMULATION), _june(_OPERATIONAL)
-    ccnl_id = f"ccnl/{_METALMECCANICO}"
+    ccnl_id = f"ccnl/{_COMMERCIO}"
 
     assert operational.period_net == simulated.period_net
     assert operational.period_gross == simulated.period_gross
@@ -89,11 +94,9 @@ def test_operational_adds_only_the_readiness_blocker() -> None:
 
 def test_run_reports_the_readiness_the_catalog_reports() -> None:
     """``inspect_ruleset`` before a run equals the CCNL entry of the run."""
-    inspected = _SIMULATION.inspect_ruleset(_METALMECCANICO)
+    inspected = _SIMULATION.inspect_ruleset(_COMMERCIO)
     (ccnl,) = [r for r in _june(_SIMULATION).rulesets if r.kind is RulesetKind.CCNL]
-    (summary,) = [
-        s for s in PayrollEngine.list_contracts() if s.ccnl_id == _METALMECCANICO
-    ]
+    (summary,) = [s for s in PayrollEngine.list_contracts() if s.ccnl_id == _COMMERCIO]
 
     assert ccnl == inspected
     assert inspected.readiness is summary.readiness is RulesetReadiness.REVIEWED
@@ -147,3 +150,23 @@ def test_a_reviewed_ccnl_is_payable_only_in_simulation() -> None:
     assert [(b.code, b.detail) for b in operational.blockers] == [
         (BlockerCode.RULESET_NOT_PRODUCTION, "ccnl/concia-unic")
     ]
+
+
+def test_a_production_ccnl_is_payable_in_operational_mode() -> None:
+    """Metalmeccanico C3 is production: with every fact stated, no blocker.
+
+    Its L2 rules (INPS of industria, apprentices, TFR) were verified for
+    2026 and a real payslip (p23) is its reference case.
+    """
+    employment = replace(
+        CONCIA_D2,
+        ccnl_slug=f"{_METALMECCANICO}.json",
+        level_code="C3",
+        category=WorkerCategory.OPERAIO,
+    )
+    result = _OPERATIONAL.calculate_period(regular_run(1, employment=employment))
+    (ccnl,) = [r for r in result.rulesets if r.kind is RulesetKind.CCNL]
+
+    assert ccnl.readiness is RulesetReadiness.PRODUCTION
+    assert result.blockers == ()
+    assert result.is_payable

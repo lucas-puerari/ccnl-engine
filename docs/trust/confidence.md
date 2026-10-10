@@ -117,7 +117,7 @@ reused from another sector, a salary table read from a proxy source).
 
 Use the amounts for simulation, with the blockers shown; do not pay them
 automatically. In `operational` mode every one of these runs also carries a
-`ruleset_not_production` blocker: no bundled CCNL is `production` (see
+`ruleset_not_production` blocker unless its CCNL is `production` (see
 [Readiness](readiness.md#simulation-and-operational-modes)).
 
 ## Defaults of the public inputs

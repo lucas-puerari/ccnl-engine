@@ -155,8 +155,8 @@ print(ruleset.readiness, ruleset.confidence)  # → exploratory unverified
 
 `simulation` reports readiness; `operational` also adds a
 `ruleset_not_production` blocker when the CCNL ruleset is not `production`.
-No bundled CCNL is `production` yet, so nothing is payable in operational
-mode. See [Readiness](https://github.com/lucas-puerari/ccnl-engine/blob/main/docs/trust/readiness.md). Known simplifications of the
+Only Metalmeccanico Federmeccanica is `production`, so only its runs can be
+payable in operational mode. See [Readiness](https://github.com/lucas-puerari/ccnl-engine/blob/main/docs/trust/readiness.md). Known simplifications of the
 model are typed limitations: `result.assurance.limitations` lists those that
 apply to the run, and an open one that can move an amount adds an
 `open_limitation` blocker (see [Assurance](https://github.com/lucas-puerari/ccnl-engine/blob/main/docs/trust/confidence.md#model-limitations)).

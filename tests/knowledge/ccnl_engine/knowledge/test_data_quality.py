@@ -149,9 +149,25 @@ def test_payable_statuses_cover_every_rule() -> None:
     assert sum(counts[status] for status in STATUSES) == len(_RULES)
 
 
-def test_nothing_is_verified_without_a_named_reviewer() -> None:
-    """The bundle records no reviewer, so no payable rule is verified."""
-    assert count_by_status(_RULES)["verified"] == 0
+def test_verified_rules_are_the_reviewed_l2_rules_of_industria() -> None:
+    """Only the L2 rules re-checked for the production CCNL are verified.
+
+    Each names its reviewer and date (``RuleProvenance`` rejects a verified
+    record without them, so the bundle would not load otherwise).
+    """
+    verified = {(r.file, r.path) for r in _RULES if r.status == "verified"}
+    inps = "social_security/contribution/2026/industria.json"
+    tax = "taxation/annual/2026/industria.json"
+    assert verified == {
+        (inps, "inps"),
+        (inps, "inps.employee_additional"),
+        (inps, "inps.minimum_base"),
+        (inps, "apprentice"),
+        (tax, "tfr"),
+        (tax, "tfr.additional_ivs"),
+        (tax, "tfr.compensation"),
+    }
+    assert count_by_status(_RULES)["verified"] == len(verified)
 
 
 def test_salary_period_without_provenance_fails() -> None:

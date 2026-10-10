@@ -85,6 +85,13 @@ In addition to the `reviewed` criteria:
    `verification.last_reviewed`.
 5. Set `verification.readiness = "production"` in the CCNL JSON.
 
+The INPS rates of a sector are verified against a table of the year when one
+exists. Where none exists, the owner accepted on 2026-10-10 a reconstruction
+by component from a table of the year of a sibling sector and the statutes of
+the components that differ: the INPS rates of the industria in genere for
+2026 are built from the 2026 table of the industria edile (Assimpredil ANCE)
+and the CIGO and CIGS of D.Lgs. 148/2015 arts. 13 and 23.
+
 The schema gate (`scripts/provenance/check.py --schema`) rejects a
 `reviewed` or `production` ruleset with an `assumed` or `missing` payable
 rule in its file or without `confidence` `verified`, and a `production`
@@ -102,13 +109,13 @@ it drifts):
 | Readiness | CCNL rulesets |
 |---|---:|
 | `exploratory` | 123 |
-| `reviewed` | 3 |
-| `production` | 0 |
+| `reviewed` | 2 |
+| `production` | 1 |
 
 <!-- /trust:readiness-table -->
 
-The <!-- trust:readiness-reviewed -->3<!-- /trust:readiness-reviewed -->
-`reviewed` rulesets: <!-- trust:readiness-reviewed-list -->`commercio-confcommercio`, `concia-unic`, `metalmeccanico-federmeccanica`<!-- /trust:readiness-reviewed-list -->.
+The <!-- trust:readiness-reviewed -->2<!-- /trust:readiness-reviewed -->
+`reviewed` rulesets: <!-- trust:readiness-reviewed-list -->`commercio-confcommercio`, `concia-unic`<!-- /trust:readiness-reviewed-list -->.
 Each [contract page](../contracts/index.md) shows its own tier.
 
 No ruleset is `reviewed` today. Fifteen rulesets were `reviewed` until
@@ -119,12 +126,12 @@ lowered to `exploratory`. Their `verification.human_reviewed_by` and
 weak rules are sourced and their confidence is `verified`.
 
 `reviewed` records a file-level review, not a per-value one. Of the `reviewed`
-rulesets, <!-- trust:reviewed-with-reviewer -->3<!-- /trust:reviewed-with-reviewer -->
+rulesets, <!-- trust:reviewed-with-reviewer -->2<!-- /trust:reviewed-with-reviewer -->
 record `verification.human_reviewed_by` and `verification.last_reviewed`, and
-<!-- trust:reviewed-confidence-verified -->3<!-- /trust:reviewed-confidence-verified -->
+<!-- trust:reviewed-confidence-verified -->2<!-- /trust:reviewed-confidence-verified -->
 set `verification.confidence = "verified"` (step 5 of the criteria above).
 A per-value review is recorded only by the provenance status `verified` of a
-payable rule, and <!-- trust:rules-verified -->0<!-- /trust:rules-verified -->
+payable rule, and <!-- trust:rules-verified -->7<!-- /trust:rules-verified -->
 payable rules of the bundle have it (see
 [Provenance](provenance.md#provenance-status)).
 
@@ -174,6 +181,6 @@ Both modes compute the same amounts.
 
 An operational engine returns the result with its blockers instead of
 refusing before the calculation, so the amounts and every other blocker stay
-inspectable. With <!-- trust:readiness-production -->0<!-- /trust:readiness-production -->
-`production` rulesets, no bundled CCNL is payable in operational mode: the
+inspectable. With <!-- trust:readiness-production -->1<!-- /trust:readiness-production -->
+`production` rulesets, only those CCNLs are payable in operational mode: the
 gate opens one CCNL at a time, as each is promoted.
