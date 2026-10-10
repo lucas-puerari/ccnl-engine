@@ -36,6 +36,36 @@ class SicknessTier(BaseModel):
     integration_rate: Decimal = Field(ge=Decimal(0), le=Decimal(1))
 
 
+class SicknessDayBand(BaseModel):
+    """One day-gated sick-pay integration band of an episode.
+
+    The days of an episode (relapses continuing it) from ``day_from`` up to
+    ``day_until`` (exclusive) take ``integration_rate``, e.g. Commercio
+    Art. 187: 75% from day 4 to day 20, 100% from day 21.
+
+    Attributes:
+        day_from: First episode day of the band (1-indexed).
+        day_until: First episode day past the band; ``None`` is open-ended.
+        integration_rate: Target fraction of the daily pay of the band.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    day_from: int = Field(ge=1)
+    day_until: int | None = Field(default=None, ge=2)
+    integration_rate: Decimal = Field(ge=Decimal(0), le=Decimal(1))
+
+    def holds(self, index: int) -> bool:
+        """Return whether episode day ``index`` falls in the band.
+
+        Returns:
+            ``True`` from :attr:`day_from` up to :attr:`day_until`.
+        """
+        return self.day_from <= index and (
+            self.day_until is None or index < self.day_until
+        )
+
+
 class SicknessSeniorityBand(BaseModel):
     """Sick-pay entitlement of the workers of one seniority band.
 
@@ -168,6 +198,9 @@ class SicknessRules(BaseModel):
         tiers: Optional list of month-gated integration tiers for CCNLs
             that reduce the integration rate after several months of
             sickness (e.g. 100% for months 1-9, 90% for months 10-12).
+        day_bands: Day-gated integration bands, for CCNLs that set the rate
+            by the day of the episode; a day in a band takes its rate
+            before any tier.
         max_duration_days: Number of calendar days after which sick leave
             exceeds the comporto period.  Days beyond this limit are not
             modelled by the engine.
@@ -181,13 +214,16 @@ class SicknessRules(BaseModel):
     carenza_integration_rate: Decimal = Field(ge=Decimal(0), le=Decimal(1))
     full_pay_integration_rate: Decimal = Field(ge=Decimal(0), le=Decimal(1))
     tiers: tuple[SicknessTier, ...] = Field(default=())
+    day_bands: tuple[SicknessDayBand, ...] = Field(default=())
     max_duration_days: int = Field(default=180, ge=1)
     cumulation: SicknessCumulation | None = None
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
     def _one_model(self) -> Self:
-        per_episode = self.tiers or "max_duration_days" in self.model_fields_set
+        per_episode = (
+            self.tiers or self.day_bands or "max_duration_days" in self.model_fields_set
+        )
         if self.cumulation is not None and per_episode:
             msg = (
                 "sickness rules with a cumulation count the tier and the "

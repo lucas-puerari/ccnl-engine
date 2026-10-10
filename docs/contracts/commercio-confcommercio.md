@@ -10,7 +10,7 @@
 | **Ruleset version** | `2026.2` |
 | **Extraction** | 🤖 AI-assisted |
 | **Verification** | 🔴 Unverified |
-| **Readiness** | 🧪 Exploratory |
+| **Readiness** | 👁 Reviewed |
 
 [← Contracts index](index.md)
 
@@ -44,16 +44,16 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 
 | | |
 |---|---|
-| **Readiness** | 🧪 Exploratory |
-| **Confidence** | 🔴 Unverified |
-| **Last human review** | 2026-09-18 |
+| **Readiness** | 👁 Reviewed |
+| **Confidence** | 🟢 Verified |
+| **Last human review** | 2026-10-10 |
 
 ### Freschezza
 
 | | |
 |---|---|
 | **Last renewal** | 2024-03-28 |
-| **Last verified** | 2026-09-18 |
+| **Last verified** | 2026-10-10 |
 | **Latest salary tranche** | 2027-02-01 |
 
 ### Semplificazioni note
@@ -111,12 +111,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
-!!! warning "commercio-confcommercio/sickness_day_bands_and_event_carenza · sickness · impact yes · open"
-    SICKNESS (Art. 187): integration up to 75% for days 4-20 and 100% from day 21 of the net daily pay, carenza at 100% for the first two events of the calendar year, 66% for the third, 50% for the fourth, none from the fifth. Modelled as 100% from the first day; the amounts of a run with sickness are not reliable.
+!!! warning "commercio-confcommercio/sickness_net_basis_and_event_carenza · sickness · impact yes · open"
+    SICKNESS (Arts. 186-187): the day bands (100% carenza, 75% days 4-20, 100% from day 21) are modelled on the gross daily pay; not modelled: the net daily pay the CCNL integrates to, the carenza at 66%, 50% and 0% from the third event of the calendar year, and the comporto of 180 days summed over the episodes of the calendar year (counted per episode).
 
     **Applies when:** `sickness` applies.
 
-    **Remediation:** Extend the sickness rule with day-gated integration bands on the net daily pay and the carenza rate by event of the calendar year, then resolve this limitation.
+    **Remediation:** Integrate to the net daily pay, reduce the carenza by event of the calendar year with its exclusions, and sum the comporto over the calendar year, then resolve this limitation.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

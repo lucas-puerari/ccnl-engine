@@ -97,12 +97,12 @@
       },
       {
         "kind": "simplification",
-        "text": "SICKNESS (Art. 187): integration up to 75% for days 4-20 and 100% from day 21 of the net daily pay, carenza at 100% for the first two events of the calendar year, 66% for the third, 50% for the fourth, none from the fifth. Modelled as 100% from the first day; the amounts of a run with sickness are not reliable.",
+        "text": "SICKNESS (Arts. 186-187): the day bands (100% carenza, 75% days 4-20, 100% from day 21) are modelled on the gross daily pay; not modelled: the net daily pay the CCNL integrates to, the carenza at 66%, 50% and 0% from the third event of the calendar year, and the comporto of 180 days summed over the episodes of the calendar year (counted per episode).",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "sickness_day_bands_and_event_carenza",
-          "remediation": "Extend the sickness rule with day-gated integration bands on the net daily pay and the carenza rate by event of the calendar year, then resolve this limitation."
+          "variant": "sickness_net_basis_and_event_carenza",
+          "remediation": "Integrate to the net daily pay, reduce the carenza by event of the calendar year with its exclusions, and sum the comporto over the calendar year, then resolve this limitation."
         }
       }
     ]
@@ -2496,7 +2496,7 @@
     "effective_until": null,
     "source": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
     "verification_status": "unverified",
-    "source_hash": "cc4fb2f49d961719b33f4eb19b25df385d65a058f4351653e6b297cf7be6c58f",
+    "source_hash": "e717f885f097dd3796a2be76200e0f0dc578edf041e791ac41539c13dc0258c2",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2735,7 +2735,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
-        "status": "assumed",
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "uiltucs-tu2019",
@@ -2756,15 +2756,29 @@
           "verification_status": "unverified",
           "effective_from": "1993-11-01"
         },
-        "note": "The rule pays 100% from day 4; Art. 187 integrates up to 75% of the net daily pay for days 4-20 and 100% from day 21, and pays the carenza at 100%, 66%, 50% and 0% from the third event of the calendar year. The sickness rule cannot express day bands or the event count yet."
-      }
+        "transformation": "Art. 187 b): 100% for the three days of carenza, 75% for days 4-20 and 100% from day 21, stored as day_bands of the episode; comporto 180 days (Art. 186) as max_duration_days."
+      },
+      "day_bands": [
+        {
+          "day_from": 4,
+          "day_until": 21,
+          "integration_rate": "0.75"
+        },
+        {
+          "day_from": 21,
+          "day_until": null,
+          "integration_rate": "1"
+        }
+      ]
     }
   },
   "verification": {
-    "confidence": "unverified",
-    "readiness": "exploratory",
+    "confidence": "verified",
+    "readiness": "reviewed",
     "verified_cases": 0,
-    "last_reviewed": "2026-09-18",
-    "human_reviewed_by": "lucas-puerari"
+    "last_reviewed": "2026-10-10",
+    "human_reviewed_by": "claude-opus-5-5 (AI review authorised by the owner, lucas-puerari)",
+    "owner": "lucas-puerari",
+    "review_due": "2027-03-31"
   }
 }

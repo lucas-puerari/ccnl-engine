@@ -61,9 +61,12 @@ class SickPayRules:
         """Return the CCNL integration target of episode day ``index``.
 
         Returns:
-            The rate of the tier of the month of sickness ``index`` falls
-            in, the flat rate when no tier matches.
+            The rate of the day band ``index`` falls in, else of the tier of
+            its month of sickness, the flat rate when none matches.
         """
+        band = next((b for b in self.ccnl.day_bands if b.holds(index)), None)
+        if band is not None:
+            return band.integration_rate
         month = (index - 1) // _TIER_MONTH_DAYS + 1
         tiers = sorted(self.ccnl.tiers, key=lambda t: t.month_from, reverse=True)
         tier = next(

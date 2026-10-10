@@ -166,9 +166,6 @@
       "accrual_rule": "missing",
       "additional_months[2025-01-01]": "assumed"
     },
-    "ccnl/data/commercio-confcommercio.json": {
-      "work_rules.sickness_rules": "assumed"
-    },
     "ccnl/data/comunicazione-artigianato-confartigianato.json": {
       "accrual_rule": "missing",
       "additional_months[2024-12-01]": "assumed"
@@ -1317,7 +1314,7 @@
     ],
     "ccnl/data/commercio-confcommercio.json": [
       "commercio-confcommercio/apprentice_seniority",
-      "commercio-confcommercio/sickness_day_bands_and_event_carenza"
+      "commercio-confcommercio/sickness_net_basis_and_event_carenza"
     ],
     "ccnl/data/comunicazione-artigianato-confartigianato.json": [
       "comunicazione-artigianato-confartigianato/function_allowance_constant",
