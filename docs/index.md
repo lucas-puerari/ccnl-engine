@@ -28,7 +28,7 @@ Built for technical teams in HR, payroll, and compensation.
 | [Rules](rules/index.md) | The versioned knowledge base: CCNL JSON schema, INPS, IRPEF, surtax |
 | [Engine](engine/index.md) | How to use `PayrollEngine` — pay components, fiscal, domestic work |
 | [Trust](trust/index.md) | Provenance, calculation status, capability report, versioning, quality gates |
-| [Data operations](trust/data-operations.md) | Update policy, changelog, error reporting, version compatibility |
+| [Data operations](trust/data-operations.md) | Update policy, release notes, error reporting, version compatibility |
 | [Correctness layers](trust/correctness.md) | Software, source, and case correctness — what each layer means and how to read them |
 | [Contracts](contracts/index.md) | All 126 supported contracts — salary tables, sources, coverage |
 | [API reference](api/index.md) | Full reference for every public type and function |
