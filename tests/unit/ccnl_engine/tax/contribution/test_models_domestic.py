@@ -5,7 +5,7 @@ from decimal import Decimal
 import pytest
 from pydantic import ValidationError
 
-from ccnl_engine.payroll.service._contributions_domestic import (
+from ccnl_engine.payroll.contribution.rules_domestic_rate import (
     resolve_domestic_inps_rate,
 )
 from ccnl_engine.tax.contribution.models_domestic import DomesticInpsRates

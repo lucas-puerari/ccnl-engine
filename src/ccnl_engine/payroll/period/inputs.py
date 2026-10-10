@@ -1,0 +1,286 @@
+"""Public inputs of one payroll run.
+
+:class:`PeriodInput` describes one payroll run; the year plans
+(:class:`~ccnl_engine.payroll.year.inputs_competence_plan.CompetenceYearPlan`,
+:class:`~ccnl_engine.payroll.year.inputs_tax_plan.TaxYearPlan`) every run of
+a tax year.  Both group
+the facts by owner: :class:`~ccnl_engine.payroll.employment.inputs.Employment`
+for the contract and the worker,
+:class:`~ccnl_engine.payroll.employment.inputs_employer.EmployerProfile` for the
+employer, :class:`~ccnl_engine.payroll.taxation.inputs_prior_year.PriorYearTaxFacts`
+for what the tax regimes read once a year, and :class:`PeriodFacts` for what
+holds in one run.  Every input is validated on construction.
+"""
+
+from __future__ import annotations
+
+from dataclasses import dataclass, field
+from datetime import date
+from typing import TYPE_CHECKING
+
+from ccnl_engine.payroll.employment.inputs import Employment
+from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile
+from ccnl_engine.payroll.employment.inputs_fact import ContributableHours
+from ccnl_engine.payroll.event.facade import WORK_EVENT_TYPES
+from ccnl_engine.payroll.family.inputs import FamilyComposition
+from ccnl_engine.payroll.period.models_payroll import PeriodId
+from ccnl_engine.payroll.period.models_run import PayrollRun
+from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
+from ccnl_engine.payroll.state.models import PeriodState
+from ccnl_engine.payroll.taxation.inputs_current_year import CurrentYearTaxFacts
+from ccnl_engine.payroll.taxation.inputs_prior_year import PriorYearTaxFacts
+from ccnl_engine.payroll.taxation.types_jurisdiction import check_surtax_codes
+from ccnl_engine.payroll.year.models_payment import PaymentId
+from ccnl_engine.validation import (
+    require_date,
+    require_instances,
+    require_str,
+)
+from ccnl_engine.validation_collection import items_of_type, tuple_of
+
+if TYPE_CHECKING:
+    from ccnl_engine.payroll.accrual.models import ExtraMonthAccrual
+    from ccnl_engine.payroll.event.facade import WorkEvent
+    from ccnl_engine.payroll.period.models_run import PayrollRunId
+    from ccnl_engine.payroll.withholding.models_schedule import WithholdingSchedule
+
+__all__ = ["PeriodFacts", "PeriodInput"]
+
+
+@dataclass(frozen=True)
+class PeriodFacts:
+    """Facts that hold in one payroll run.
+
+    Attributes:
+        contributable_hours: Hours worked and paid in the run that are
+            subject to INPS contributions.  Required for domestic CCNLs.
+        ordinary_hours_worked: Ordinary hours actually worked in the month,
+            sickness and other paid absences left out: the base of the
+            Prevedi contractual contribution of an operaio of the building
+            CCNLs.  ``None`` is unknown: an operaio then has a
+            ``missing_fact`` blocker.
+        events: Variable work events of the run (overtime, absences,
+            bonuses, supplements), each one of the
+            :data:`~ccnl_engine.payroll.event.types.WorkEvent` types.  A
+            list is accepted and stored as a tuple.
+        regione: ISO 3166-2:IT region code for the regional surtax, e.g.
+            ``"IT-45"``, ``"IT-BZ"`` / ``"IT-TN"`` for the autonomous
+            provinces.  ``None`` is unknown: when the employer
+            withholds, a ``residence_unknown`` decision and a
+            ``requirement_unresolved`` blocker on
+            ``addizionale_regionale``.
+        comune_belfiore: Belfiore code for the municipal surtax, e.g.
+            ``"F257"``.  ``None`` is unknown: when the employer
+            withholds, a ``residence_unknown`` decision and a
+            ``requirement_unresolved`` blocker on
+            ``addizionale_comunale``.
+        family_composition: Dependents for the Art. 12 TUIR deductions.
+            ``None`` is unknown: when the employer withholds, a
+            ``requirement_unresolved`` blocker on ``family_deductions``;
+            ``FamilyComposition()`` states that there is no dependant.  Its
+            children also select the fringe-benefit threshold: the higher
+            one when a child is within the own-income limit of art. 12
+            c. 2 TUIR (L. 207/2024 art. 1 c. 390).
+
+    Raises:
+        InvalidInputError: When a field is not of its type, an event is not
+            a work event, or a surtax code is malformed.
+    """
+
+    contributable_hours: ContributableHours | None = None
+    ordinary_hours_worked: ContributableHours | None = None
+    events: tuple[WorkEvent, ...] = ()
+    regione: str | None = None
+    comune_belfiore: str | None = None
+    family_composition: FamilyComposition | None = None
+
+    def __post_init__(self) -> None:  # noqa: D105
+        feature = "period_facts"
+        require_instances(
+            "PeriodFacts",
+            (
+                (
+                    "contributable_hours",
+                    self.contributable_hours,
+                    ContributableHours,
+                    True,
+                ),
+                (
+                    "ordinary_hours_worked",
+                    self.ordinary_hours_worked,
+                    ContributableHours,
+                    True,
+                ),
+                (
+                    "family_composition",
+                    self.family_composition,
+                    FamilyComposition,
+                    True,
+                ),
+            ),
+            feature=feature,
+        )
+        require_str(self.regione, "PeriodFacts.regione", feature=feature, optional=True)
+        require_str(
+            self.comune_belfiore,
+            "PeriodFacts.comune_belfiore",
+            feature=feature,
+            optional=True,
+        )
+        events = tuple_of(
+            self.events,
+            "PeriodFacts.events",
+            items_of_type(WORK_EVENT_TYPES, feature=feature, name="a WorkEvent"),
+            feature=feature,
+        )
+        object.__setattr__(self, "events", events)
+        check_surtax_codes(self.regione, self.comune_belfiore)
+
+
+@dataclass(frozen=True)
+class PeriodInput:
+    """Input of one payroll run.
+
+    Attributes:
+        run: The run: its month, year and kind.
+        payment_date: Date the run is paid.  Selects the tax year
+            (:class:`~ccnl_engine.payroll.year.rules_tax_year.TaxYearPolicy`).
+        employment: Contract, level and worker facts.
+        employer: The employer.  Required: its headcount selects the INPS
+            rate tier.
+        facts: Facts of the run.  Defaults to a run with no event and no
+            surtax jurisdiction.
+        prior_year: Prior-year income and waivers.  Defaults to unknown
+            income and no waiver.
+        current_year: Income of the tax year beyond this employment, which
+            the family deductions add to the employment income of the year
+            to get the reddito complessivo, and the INPS base of the other
+            employments of the year.  ``None`` means not known: with a
+            dependent that gives right to a deduction, or INPS rules with a
+            massimale or a 1% threshold and no base of other employments in
+            ``opening_state``, the result is not payable.
+        opening_state: State entering the run, with the history of the
+            employment.  The default
+            :meth:`~ccnl_engine.payroll.state.models.PeriodState.zero`
+            is the fact only for the first run of an employment whose
+            ``employment_period`` starts in the run month; pass the
+            ``closing_state`` of the previous run within a tax year,
+            ``close_tax_year()`` of the last run of the previous year, or
+            imported balances.  A state that misses the history gives a
+            ``missing_fact opening_state`` blocker.
+        planned_payments: Payments of the same tax year still planned after
+            this one, in payment order, when they differ from the CCNL
+            standard calendar.  ``()`` makes this payment the conguaglio:
+            pass it on the last payment of a tax year whose December is
+            paid after 12 January.  ``None`` (the default) projects the
+            standard runs that follow this run and are not yet paid.
+
+    Raises:
+        InvalidInputError: When a field is not of its type, a regular run
+            falls outside the employment, the payment precedes the run month,
+            or ``opening_state`` belongs to another tax year.
+    """
+
+    run: PayrollRun
+    payment_date: date
+    employment: Employment
+    employer: EmployerProfile
+    facts: PeriodFacts = field(default_factory=PeriodFacts)
+    prior_year: PriorYearTaxFacts = field(default_factory=PriorYearTaxFacts)
+    current_year: CurrentYearTaxFacts | None = None
+    opening_state: PeriodState = field(default_factory=PeriodState.zero)
+    planned_payments: tuple[PaymentId, ...] | None = None
+
+    def __post_init__(self) -> None:  # noqa: D105
+        require_instances(
+            "PeriodInput",
+            (
+                ("run", self.run, PayrollRun, False),
+                ("employment", self.employment, Employment, False),
+                ("employer", self.employer, EmployerProfile, False),
+                ("facts", self.facts, PeriodFacts, False),
+                ("prior_year", self.prior_year, PriorYearTaxFacts, False),
+                ("current_year", self.current_year, CurrentYearTaxFacts, True),
+                ("opening_state", self.opening_state, PeriodState, False),
+            ),
+            feature="period_input",
+        )
+        require_date(
+            self.payment_date, "PeriodInput.payment_date", feature="period_input"
+        )
+        if self.planned_payments is not None:
+            planned = tuple_of(
+                self.planned_payments,
+                "PeriodInput.planned_payments",
+                items_of_type(PaymentId, feature="period_input"),
+                feature="period_input",
+            )
+            object.__setattr__(self, "planned_payments", planned)
+        self.employment.check_seniority_in(self.run.year, self.run.month)
+        self.calculation_request()
+
+    def calculation_request(
+        self,
+        *,
+        extra_month_accrual: ExtraMonthAccrual | None = None,
+        extra_month_settlements: tuple[ExtraMonthAccrual, ...] | None = None,
+        withholding_schedule: WithholdingSchedule | None = None,
+        uncovered_runs: tuple[PayrollRunId, ...] = (),
+    ) -> PeriodCalculationRequest:
+        """Map this input to the request of the period calculation.
+
+        The only mapping from the public input to the internal request, used
+        by both the single-run and the year calculation.
+
+        Args:
+            extra_month_accrual: Rateo of an extra-month run, supplied by the
+                year calculation.
+            extra_month_settlements: Ratei liquidated on this run because the
+                employment ends before their payment month, supplied by the
+                year calculation.  ``None`` derives them from the CCNL
+                calendar.
+            withholding_schedule: Withholding slots of the tax year.
+                ``None`` uses the standard calendar of the CCNL.
+            uncovered_runs: Runs of the year the year calculation left out
+                because the bundle holds no pay rules on their date.
+
+        Returns:
+            The validated request.
+        """
+        employment, facts = self.employment, self.facts
+        return PeriodCalculationRequest(
+            period_id=PeriodId(year=self.run.year, month=self.run.month),
+            payment_date=self.payment_date,
+            ccnl_slug=employment.ccnl_slug,
+            level_code=employment.level_code,
+            employer=self.employer,
+            opening_state=self.opening_state,
+            contract_type=employment.contract_type,
+            contribution_history=employment.contribution_history,
+            events=facts.events,
+            regione=facts.regione,
+            comune_belfiore=facts.comune_belfiore,
+            family_composition=facts.family_composition,
+            run=self.run,
+            weekly_hours=employment.weekly_hours,
+            contributable_hours=facts.contributable_hours,
+            ordinary_hours_worked=facts.ordinary_hours_worked,
+            full_time_weekly_hours=employment.full_time_weekly_hours,
+            employment_period=employment.employment_period,
+            seniority=employment.seniority,
+            roles=employment.roles,
+            category=employment.category,
+            sector=employment.sector,
+            pension_fund=employment.pension_fund,
+            tfr_fund=employment.tfr_fund,
+            tfr_treasury_fund=employment.tfr_treasury_fund,
+            erc_amount=employment.erc_amount,
+            public_end_of_service=employment.public_end_of_service,
+            prior_year=self.prior_year,
+            current_year=self.current_year,
+            extra_month_accrual=extra_month_accrual,
+            extra_month_settlements=extra_month_settlements,
+            withholding_schedule=withholding_schedule,
+            uncovered_runs=uncovered_runs,
+            planned_payments=self.planned_payments,
+        )

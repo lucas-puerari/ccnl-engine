@@ -1,0 +1,240 @@
+"""Assurance of the bundled CCNLs: the first level of each, June 2026.
+
+Every CCNL of the bundle is run once, for its first level, on a regular run
+of June 2026 with no event, for a worker resident in Milan with no
+dependant, no role, not enrolled in a pension fund and who waived the
+renewal regime of L. 199/2025 art. 1 c. 7 in writing
+(:mod:`tests.fixtures.prior_year`).  A run the engine rejects before
+producing a result is left out: it exposes no amount to pay.
+"""
+
+from __future__ import annotations
+
+from datetime import date
+
+import pytest
+
+from ccnl_engine import (
+    CcnlEngineError,
+    EmployerProfile,
+    Employment,
+    Headcount,
+    PayrollEngine,
+    PayrollRun,
+    PeriodFacts,
+    PeriodInput,
+    PeriodResult,
+)
+from ccnl_engine.inputs import FamilyComposition, NoPensionFund, Permanent
+from ccnl_engine.payroll.period.repositories import (
+    BundledKnowledgeRepository,
+)
+from ccnl_engine.results import BlockerCode
+from tests.fixtures.prior_year import RENEWAL_WAIVED
+from tests.fixtures.seniority import new_hire
+
+_WEAK = frozenset({"assumed", "missing"})
+_MINIMUM_UNDETERMINED = "inps_minimum_base_undetermined"
+_INPS = frozenset({"inps_employee", "inps_employer"})
+_FACTS = PeriodFacts(
+    regione="IT-25", comune_belfiore="F205", family_composition=FamilyComposition()
+)
+
+
+def _june(engine: PayrollEngine, slug: str, level: str) -> PeriodResult | None:
+    try:
+        return engine.calculate_period(
+            PeriodInput(
+                run=PayrollRun.regular(2026, 6),
+                payment_date=date(2026, 6, 27),
+                employment=Employment(
+                    ccnl_slug=slug,
+                    level_code=level,
+                    seniority=new_hire(),
+                    roles=frozenset(),
+                    pension_fund=NoPensionFund(),
+                    contract_type=Permanent(),
+                ),
+                employer=EmployerProfile(headcount=Headcount(50)),
+                facts=_FACTS,
+                prior_year=RENEWAL_WAIVED,
+            )
+        )
+    except (CcnlEngineError, ValueError):
+        return None
+
+
+@pytest.fixture(scope="module")
+def results() -> dict[str, PeriodResult]:
+    """Return the June 2026 result of each CCNL that produces one.
+
+    Returns:
+        Results by CCNL id.
+    """
+    engine, repo = PayrollEngine.bundled(), BundledKnowledgeRepository()
+    computed: dict[str, PeriodResult] = {}
+    for info in PayrollEngine.list_contracts():
+        slug = f"{info.ccnl_id}.json"
+        result = _june(engine, slug, repo.load_ccnl(slug).levels[0].code)
+        if result is not None:
+            computed[info.ccnl_id] = result
+    return computed
+
+
+def test_most_contracts_produce_a_result(results: dict[str, PeriodResult]) -> None:
+    """The scan is not vacuous."""
+    assert len(results) >= 120
+
+
+def test_no_payable_result_has_an_open_coverage_or_weak_rule(
+    results: dict[str, PeriodResult],
+) -> None:
+    """Payability never contradicts the report, the issues or the sources."""
+    contradictions = [
+        ccnl_id
+        for ccnl_id, result in results.items()
+        if result.is_payable
+        and (
+            result.capability_report.gaps
+            or result.capability_report.unresolved
+            or result.issues
+            or result.capability_report.caller_supplied
+            or _WEAK & set(result.capability_report.rule_sources.values())
+        )
+    ]
+    assert contradictions == []
+
+
+def test_coverage_axis_is_the_report_status(
+    results: dict[str, PeriodResult],
+) -> None:
+    """Every gap of the report is a blocker of the same feature."""
+    for result in results.values():
+        gaps = [gap.feature for gap in result.capability_report.gaps]
+        blocked = [
+            b.feature
+            for b in result.blockers
+            if b.code is BlockerCode.CAPABILITY_NOT_COMPUTED
+        ]
+        assert result.assurance.coverage is result.capability_report.status
+        assert blocked == gaps
+
+
+_PENSION = "pension_fund_contribution"
+
+
+def _contractual(result: PeriodResult) -> bool:
+    """Whether the run owes the contractual contribution of its CCNL.
+
+    Returns:
+        True when the pension fund decision has reason ``contractual_only``
+        or a fact of the contractual contribution is missing.
+    """
+    return any(
+        d.capability == _PENSION and d.reason_code == "contractual_only"
+        for d in result.decisions
+    ) or any(i.code.startswith("contractual_fund_") for i in result.issues)
+
+
+def _open_gaps(result: PeriodResult) -> list[str]:
+    """Return the gaps of an ordinary run that no known reason explains.
+
+    Returns:
+        The features with a gap, less the INPS ones of an undetermined
+        minimum base and the pension fund of a contractual contribution.
+    """
+    explained = set(_INPS) if _minimum_open(result) else set()
+    if _contractual(result):
+        explained.add(_PENSION)
+    return [
+        gap.feature
+        for gap in result.capability_report.gaps
+        if gap.feature not in explained
+    ]
+
+
+def _minimum_open(result: PeriodResult) -> bool:
+    """Whether the run leaves its minimum INPS base undetermined.
+
+    Returns:
+        True when the run reports the undetermined minimum base issue.
+    """
+    return any(i.code == _MINIMUM_UNDETERMINED for i in result.issues)
+
+
+def test_ordinary_runs_have_no_coverage_gap(
+    results: dict[str, PeriodResult],
+) -> None:
+    """No unsupported capability applies to an ordinary month of any CCNL.
+
+    The INPS amounts of a run whose minimum base is undetermined are
+    unresolved, and blocked: an agricultural level that leaves the category
+    open (art. 7 c. 5 D.L. 463/1983 excludes the operai agricoli only),
+    a public level without a sourced day count.  A CCNL that owes its fund a
+    contribution for every worker applies the pension fund capability, which
+    the catalog marks partial, to a worker not enrolled too.
+    """
+    gapped = {ccnl_id: _open_gaps(result) for ccnl_id, result in results.items()}
+    open_minimum = [r for r in results.values() if _minimum_open(r)]
+    assert {k: v for k, v in gapped.items() if v} == {}
+    assert all(
+        r.assurance.coverage == "complete"
+        for r in results.values()
+        if not (_minimum_open(r) or _contractual(r))
+    )
+    issue = BlockerCode.CALCULATION_ISSUE
+    assert all(
+        {b.feature for b in r.blockers if b.code is issue} >= _INPS
+        for r in open_minimum
+    )
+
+
+def test_every_result_names_its_rulesets(results: dict[str, PeriodResult]) -> None:
+    """The CCNL, tax and INPS rulesets of the year are always read.
+
+    A run whose INPS amounts are unresolved (an undetermined minimum base)
+    reports them as a gap; it names the INPS ruleset only when another
+    executed capability, such as the IVS massimale, read it.
+    """
+    repo = BundledKnowledgeRepository()
+    for ccnl_id, result in results.items():
+        ids = {ruleset.id for ruleset in result.rulesets}
+        identities = [ruleset.identity for ruleset in result.rulesets]
+        assert repo.load_ccnl(f"{ccnl_id}.json").ruleset in identities
+        assert any(i.startswith("tax/2026/") for i in ids)
+        assert _minimum_open(result) or any(i.startswith("inps/2026/") for i in ids)
+
+
+def test_no_bundled_result_is_payable_today(
+    results: dict[str, PeriodResult],
+) -> None:
+    """Every run reads at least one assumed rule: it blocks them all.
+
+    Documented in the trust pages: amounts are for simulation until the
+    blocked rules are sourced.
+    """
+    assert not any(result.is_payable for result in results.values())
+    assert all(
+        any(b.code is BlockerCode.RULE_SOURCE_WEAK for b in result.blockers)
+        for result in results.values()
+    )
+
+
+def test_open_limitations_block_where_they_apply(
+    results: dict[str, PeriodResult],
+) -> None:
+    """Each blocking limitation of a run is one blocker; most runs have none.
+
+    An ordinary month executes no work-rule capability and no apprenticeship
+    path, so only the limitations of every run of a CCNL (an unverified
+    INPS rate, a salary table from a proxy) are recorded: a minority.
+    """
+    limited = 0
+    for result in results.values():
+        blocking = [lim.id for lim in result.assurance.limitations if lim.blocks]
+        blocked = [
+            b.detail for b in result.blockers if b.code is BlockerCode.OPEN_LIMITATION
+        ]
+        assert blocked == blocking
+        limited += bool(blocking)
+    assert 0 < limited < len(results) // 3

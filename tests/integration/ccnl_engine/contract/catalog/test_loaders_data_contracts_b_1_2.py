@@ -9,7 +9,7 @@ from decimal import Decimal
 
 from ccnl_engine.contract.catalog.loaders import load_ccnl
 from ccnl_engine.contract.identity.facade import TaxSector
-from ccnl_engine.payroll.service.seniority import seniority_maximum
+from ccnl_engine.payroll.employment.rules_seniority import seniority_maximum
 
 
 class TestLoadConsorziDiBonificaSnebi:

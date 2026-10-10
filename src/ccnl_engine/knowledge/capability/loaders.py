@@ -1,10 +1,10 @@
 """Capability registry loader: reads versioned JSON from the knowledge bundle.
 
 The loader rejects an entry whose fields contradict each other (see
-:class:`~ccnl_engine.payroll.domain.capability_catalog.CapabilityEntry`).
+:class:`~ccnl_engine.payroll.capability.models_catalog.CapabilityEntry`).
 That every implemented capability has a registered handler that the run
 traces is checked where the handlers live, before the first report of a
-run (:mod:`~ccnl_engine.payroll.application.period._capability_registry`).
+run (:mod:`~ccnl_engine.payroll.capability.services_registry`).
 """
 
 from __future__ import annotations
@@ -15,8 +15,8 @@ from typing import Any
 
 from ccnl_engine.errors import DataIntegrityError
 from ccnl_engine.knowledge.loaders_manifest import read_resource
-from ccnl_engine.payroll.domain.assurance import EvidenceStatus
-from ccnl_engine.payroll.domain.capability_catalog import (
+from ccnl_engine.payroll.assurance.models import EvidenceStatus
+from ccnl_engine.payroll.capability.models_catalog import (
     CapabilityApplicability,
     CapabilityCatalog,
     CapabilityEntry,
@@ -38,7 +38,7 @@ def load_capability_catalog(year: int) -> CapabilityCatalog:
         year: Fiscal year (e.g. ``2026``).
 
     Returns:
-        A :class:`~ccnl_engine.payroll.domain.capability_catalog.CapabilityCatalog`
+        A :class:`~ccnl_engine.payroll.capability.models_catalog.CapabilityCatalog`
         with all declared capabilities for the requested year; a missing,
         malformed or inconsistent file raises
         :class:`~ccnl_engine.errors.DataIntegrityError`.

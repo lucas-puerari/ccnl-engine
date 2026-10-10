@@ -26,7 +26,7 @@ _SRC = Path(str(importlib.resources.files("ccnl_engine"))).parent
 SERIES_GAP_MODULES: frozenset[str] = frozenset({
     "ccnl_engine.contract.identity.rules_validity",
     "ccnl_engine.contract.identity.validators",
-    "ccnl_engine.payroll.service.chain",
+    "ccnl_engine.payroll.amount.rules_chain",
 })
 
 

@@ -7,7 +7,7 @@ import pytest
 from ccnl_engine.knowledge.capability.loaders import (
     load_capability_catalog,
 )
-from ccnl_engine.payroll.domain.capability_catalog import (
+from ccnl_engine.payroll.capability.models_catalog import (
     CapabilityApplicability,
     CapabilityEntry,
     CapabilityHandler,

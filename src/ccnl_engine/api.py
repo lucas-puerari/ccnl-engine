@@ -6,52 +6,47 @@ from typing import TYPE_CHECKING, Literal
 
 from ccnl_engine.contract.catalog import services as _catalog
 from ccnl_engine.knowledge.facade import __version__
-from ccnl_engine.payroll.application.bundled_sources import (
-    bundled_policies,
-    bundled_repository,
-)
-from ccnl_engine.payroll.application.calculate_competence_year import (
-    calculate_competence_year as _calculate_competence_year,
-)
-from ccnl_engine.payroll.application.calculate_period import (
+from ccnl_engine.payroll.period.services import (
     calculate_period as _calculate_period,
 )
-from ccnl_engine.payroll.application.calculate_tax_year import (
-    calculate_tax_year as _calculate_tax_year,
-)
-from ccnl_engine.payroll.application.close_tax_year import (
-    close_tax_year as _close_tax_year,
-)
-from ccnl_engine.payroll.application.facade_input import (
-    closing_state as _closing_state,
-)
-from ccnl_engine.payroll.application.facade_input import (
+from ccnl_engine.payroll.period.services_facade_input import (
     competence_plan,
+    next_tax_year,
     opening_balances,
     parse_mode,
     period_request,
     tax_year_plan,
 )
-from ccnl_engine.payroll.application.opening_state import opening_state
+from ccnl_engine.payroll.period.services_sources import (
+    bundled_policies,
+    bundled_repository,
+)
+from ccnl_engine.payroll.state.services_opening import opening_state
+from ccnl_engine.payroll.year.services_competence import (
+    calculate_competence_year as _calculate_competence_year,
+)
+from ccnl_engine.payroll.year.services_tax_year import (
+    calculate_tax_year as _calculate_tax_year,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.contract.catalog.loaders_discovery import (
         ContractSummary,
         LevelSummary,
     )
-    from ccnl_engine.payroll.application.knowledge_repository import KnowledgeRepository
-    from ccnl_engine.payroll.application.opening_balances import OpeningBalances
-    from ccnl_engine.payroll.application.year_result import (
+    from ccnl_engine.payroll.amount.policies import PolicyResolver
+    from ccnl_engine.payroll.assurance.policies_engine_mode import EngineMode
+    from ccnl_engine.payroll.period.inputs import PeriodInput
+    from ccnl_engine.payroll.period.ports import KnowledgeRepository
+    from ccnl_engine.payroll.period.results import PeriodResult
+    from ccnl_engine.payroll.state.models import PeriodState
+    from ccnl_engine.payroll.state.services_opening_balance import OpeningBalances
+    from ccnl_engine.payroll.year.inputs_competence_plan import CompetenceYearPlan
+    from ccnl_engine.payroll.year.inputs_tax_plan import TaxYearPlan
+    from ccnl_engine.payroll.year.results import (
         CompetenceYearResult,
         TaxYearResult,
     )
-    from ccnl_engine.payroll.domain.competence_year_plan import CompetenceYearPlan
-    from ccnl_engine.payroll.domain.engine_mode import EngineMode
-    from ccnl_engine.payroll.domain.inputs import PeriodInput
-    from ccnl_engine.payroll.domain.period import PeriodResult
-    from ccnl_engine.payroll.domain.period_state import PeriodState
-    from ccnl_engine.payroll.domain.policy import PolicyResolver
-    from ccnl_engine.payroll.domain.tax_year_plan import TaxYearPlan
     from ccnl_engine.provenance.ruleset.models_assurance import RulesetAssurance
 
 __all__ = ["PayrollEngine"]
@@ -69,7 +64,7 @@ class PayrollEngine:
     data.
 
     The ``mode`` sets the payability policy of every result (see
-    :class:`~ccnl_engine.payroll.domain.engine_mode.EngineMode`):
+    :class:`~ccnl_engine.payroll.assurance.policies_engine_mode.EngineMode`):
     ``"simulation"`` (the default) reports ruleset readiness, while
     ``"operational"`` also blocks payment from any ruleset that is not
     ``production``.  Both modes compute the same amounts.
@@ -194,7 +189,7 @@ class PayrollEngine:
                 state.
 
         Returns:
-            The :class:`~ccnl_engine.payroll.domain.period.PeriodResult`:
+            The :class:`~ccnl_engine.payroll.period.results.PeriodResult`:
             assurance and payability, issues, decisions, amounts, closing
             state, pay items, ledger entries and capability report.
         """
@@ -215,7 +210,7 @@ class PayrollEngine:
         each paid on the plan's payment day or date.  The runs paid in the
         year settle its conguaglio on the last of them; a run paid in the
         next tax year (December paid after 12 January) opens it.  See
-        :func:`~ccnl_engine.payroll.application.calculate_competence_year\
+        :func:`~ccnl_engine.payroll.year.services_competence\
 .calculate_competence_year`.
 
         Args:
@@ -245,7 +240,7 @@ class PayrollEngine:
         The payments of the competence years of ``plan`` attributed to its
         tax year, late payments of an earlier competence year included; the
         conguaglio falls on the last one.  See
-        :func:`~ccnl_engine.payroll.application.calculate_tax_year\
+        :func:`~ccnl_engine.payroll.year.services_tax_year\
 .calculate_tax_year`.
 
         Args:
@@ -267,7 +262,7 @@ class PayrollEngine:
     def close_tax_year(closing_state: PeriodState) -> PeriodState:
         """Open the next tax year from the closing state of the last run.
 
-        See :func:`~ccnl_engine.payroll.application.close_tax_year\
+        See :func:`~ccnl_engine.payroll.year.rules_close\
 .close_tax_year`.
 
         Args:
@@ -277,7 +272,7 @@ class PayrollEngine:
             The opening state of the next tax year: a fresh tax year state
             and the obligations still running.
         """
-        return _close_tax_year(_closing_state(closing_state))
+        return next_tax_year(closing_state)
 
     @staticmethod
     def import_opening_balances(balances: OpeningBalances) -> PeriodState:

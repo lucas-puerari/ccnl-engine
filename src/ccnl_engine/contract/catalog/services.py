@@ -20,7 +20,7 @@ from ccnl_engine.validation import require_str
 
 if TYPE_CHECKING:
     from ccnl_engine.contract.catalog.loaders_discovery import ContractSummary
-    from ccnl_engine.payroll.application.knowledge_repository import KnowledgeRepository
+    from ccnl_engine.payroll.period.ports import KnowledgeRepository
     from ccnl_engine.provenance.ruleset.models_assurance import RulesetAssurance
 
 __all__ = ["inspect_ruleset", "list_contracts", "list_levels"]

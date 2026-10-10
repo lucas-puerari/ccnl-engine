@@ -2,7 +2,7 @@
 
 Every coverage cell comes from one derivation: the capability registry of
 the fiscal year, lowered for a CCNL by the ``missing`` notes of its file
-(``ccnl_engine.payroll.service.capability_coverage``).  The index and the
+(``ccnl_engine.payroll.capability.services_coverage``).  The index and the
 matrix render the same :func:`coverage_cells`, so they cannot disagree.
 
 Functional coverage, source quality and readiness are three separate axes;
@@ -26,11 +26,11 @@ from ccnl_engine.knowledge.capability.loaders import (
     load_capability_catalog,
 )
 from ccnl_engine.knowledge.loaders_manifest import resources
-from ccnl_engine.payroll.domain.capability_catalog import (
+from ccnl_engine.payroll.capability.models_catalog import (
     CapabilityImplementation,
     CapabilityLayer,
 )
-from ccnl_engine.payroll.service.capability_coverage import (
+from ccnl_engine.payroll.capability.services_coverage import (
     ccnl_capabilities,
     layer_coverage,
 )
@@ -43,7 +43,7 @@ from scripts.ci.payable_rules import inventory
 
 if TYPE_CHECKING:
     from ccnl_engine.contract.identity.facade import CCNL
-    from ccnl_engine.payroll.domain.capability_catalog import CapabilityCatalog
+    from ccnl_engine.payroll.capability.models_catalog import CapabilityCatalog
 
 #: Symbol of each implementation, shared by the index and the matrix.
 IMPLEMENTATION_SYMBOL: dict[CapabilityImplementation, str] = {

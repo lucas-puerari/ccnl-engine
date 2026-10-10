@@ -1,0 +1,119 @@
+"""The state that opens a run after balances imported from another provider.
+
+:meth:`~ccnl_engine.api.PayrollEngine.import_opening_balances` checks
+the :class:`~ccnl_engine.payroll.state.services_opening_balance.OpeningBalances`
+and maps them here onto the competence and tax cash state.
+"""
+
+from __future__ import annotations
+
+from datetime import date
+from typing import TYPE_CHECKING
+
+from ccnl_engine.payroll.state.models import PeriodState
+from ccnl_engine.payroll.state.models_accrual import EmploymentAccrualState
+from ccnl_engine.payroll.state.models_credit_account import (
+    SommaEsenteAccount,
+    TrattamentoAccount,
+    UlterioreDetrazioneAccount,
+)
+from ccnl_engine.payroll.state.models_obligation import EmploymentObligations
+from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
+from ccnl_engine.payroll.state.models_ytd_account import (
+    EarningsYtd,
+    FringeYtd,
+    RegimeCapAccount,
+    TaxYtd,
+    WithholdingShortfall,
+)
+
+if TYPE_CHECKING:
+    from ccnl_engine.payroll.state.services_opening_balance import OpeningBalances
+
+__all__ = ["opening_state"]
+
+
+def opening_state(balances: OpeningBalances) -> PeriodState:
+    """Return the state bound to ``balances.tax_year`` that opens the next run.
+
+    Returns:
+        The competence and cash state carrying the imported obligations.
+    """
+    cash = TaxCashState(
+        tax_year=balances.tax_year,
+        payments=balances.payments,
+        earnings=EarningsYtd(
+            gross=balances.gross,
+            taxable=balances.taxable,
+            inps_employee=balances.inps_employee,
+            pension_deducted=balances.pension_deducted,
+        ),
+        fringe=FringeYtd(
+            value=balances.fringe_value, taxed=balances.fringe_taxed, pdr=balances.pdr
+        ),
+        tax=TaxYtd(
+            irpef=balances.irpef_withheld,
+            surtax=balances.surtax_withheld,
+            municipal_advance=balances.municipal_advance_withheld,
+            regional_settled=balances.regional_settled,
+            municipal_settled=balances.municipal_settled,
+        ),
+        trattamento=TrattamentoAccount(
+            recognized=balances.trattamento_recognized,
+            recovered=balances.trattamento_recovered,
+            due=balances.trattamento_due,
+            reason=balances.trattamento_reason,
+        ),
+        somma_esente=SommaEsenteAccount(
+            recognized=balances.somma_esente_recognized,
+            recovered=balances.somma_esente_recovered,
+            due=balances.somma_esente_due,
+            reason=balances.somma_esente_reason,
+        ),
+        ulteriore_detrazione=UlterioreDetrazioneAccount(
+            recognized=balances.ulteriore_recognized,
+            recovered=balances.ulteriore_recovered,
+            due=balances.ulteriore_due,
+            reason=balances.ulteriore_reason,
+        ),
+        work_time_regime=RegimeCapAccount(used=balances.work_time_regime_used),
+        shortfall=WithholdingShortfall(
+            irpef=balances.irpef_shortfall,
+            surtax=balances.surtax_shortfall,
+            credit_recovery=balances.credit_recovery_shortfall,
+        ),
+        obligations=_obligations(balances),
+        employment_spells=balances.employment_spells,
+    )
+    return PeriodState(accrual=_accrual(balances), cash=cash)
+
+
+def _accrual(balances: OpeningBalances) -> EmploymentAccrualState:
+    """Return the competence state of ``balances``.
+
+    Returns:
+        The runs closed, the INPS bases and the sickness episodes, known
+        from 1 January of the tax year unless the balances state a day.
+    """
+    return EmploymentAccrualState(
+        competence_runs=(
+            *balances.competence_runs,
+            *(p.run_id for p in balances.payments),
+        ),
+        inps_bases=balances.inps_bases,
+        sickness_episodes=balances.sickness_episodes,
+        sickness_known_from=(
+            date(balances.tax_year, 1, 1)
+            if balances.sickness_known_from is None
+            else balances.sickness_known_from
+        ),
+    )
+
+
+def _obligations(balances: OpeningBalances) -> EmploymentObligations:
+    deferred = balances.deferred_shortfall
+    return EmploymentObligations(
+        recoveries=balances.recoveries,
+        surtax=balances.surtax_obligations,
+        deferred_shortfall=() if deferred is None else (deferred,),
+    )

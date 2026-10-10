@@ -31,7 +31,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from ccnl_engine.knowledge.capability.loaders import (
     load_capability_catalog,
 )
-from ccnl_engine.payroll.domain.capability_catalog import CapabilityImplementation
+from ccnl_engine.payroll.capability.models_catalog import CapabilityImplementation
 from scripts.ci.payable_rules import count_by_capability, count_by_file, inventory
 from scripts.docs.coverage_report import (
     IMPLEMENTATION_LEGEND,
@@ -44,7 +44,7 @@ from scripts.docs.coverage_report import (
 if TYPE_CHECKING:
     from collections.abc import Mapping
 
-    from ccnl_engine.payroll.domain.capability_catalog import (
+    from ccnl_engine.payroll.capability.models_catalog import (
         CapabilityCatalog,
         CapabilityEntry,
     )

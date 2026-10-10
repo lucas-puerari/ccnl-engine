@@ -279,11 +279,7 @@ def runtime_imports(modules: Mapping[str, Module]) -> list[Import]:
 
 
 def _is_marker(module: Module) -> bool:
-    """Return whether *module* is a package marker: a docstring and nothing else.
-
-    Returns:
-        True for an ``__init__.py`` that holds at most a docstring.
-    """
+    # A package marker: an ``__init__.py`` holding at most a docstring.
     body = module.tree.body
     return len(body) <= 1 and all(
         isinstance(n, ast.Expr) and isinstance(n.value, ast.Constant) for n in body
@@ -466,7 +462,9 @@ def _io_call(node: ast.AST) -> str | None:
     if isinstance(func, ast.Name) and func.id == "open":
         return "calls open()"
     if isinstance(func, ast.Attribute):
-        if func.attr in _IO_METHODS:
+        # ``Obligation.open()`` builds a value; ``Path`` needs pathlib, flagged.
+        cls = isinstance(func.value, ast.Name) and func.value.id[:1].isupper()
+        if func.attr in _IO_METHODS and not cls:
             return f"calls .{func.attr}()"
         if (
             func.attr == "load"

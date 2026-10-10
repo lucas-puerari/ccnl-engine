@@ -676,7 +676,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/dirigenza-sanitaria-medico-veterinaria-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "3e421893174f738c5e03045d0815bf947251e6979a08487b712cab6e36463d0e",
+      "source_hash": "f7b38155c0ed2c69a46694439afdad074a394103543675dee1f9ddf02dc61607",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "contract/agreement/dirigenza-sanitaria-medico-veterinaria-aran.json.gz"
@@ -2548,7 +2548,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "surtax/2026/regionale",
       "ruleset_version": "2026.2",
-      "source_hash": "25204e7c3c7196236dac7848e2351effb69d6988f752986fbe16c0469b627804",
+      "source_hash": "aa9279788389b446065ab65a79a091294f27bfc7bffeb6a94a142226e9de6aa9",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "surtax/regional/2026.json.gz"
@@ -2565,7 +2565,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "surtax/2027/regionale",
       "ruleset_version": "2026.2",
-      "source_hash": "0ec028ec03ac918dc6e0d923781621bf45b7cb8bae8545451fc43db39d9054ec",
+      "source_hash": "96a1bf22e6f7adc3980b2b627ff840f096f492b846f067b239933c2efce6011a",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "surtax/regional/2027.json.gz"

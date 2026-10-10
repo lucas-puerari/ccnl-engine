@@ -1,0 +1,164 @@
+"""Withholding invariants: contribution ceiling and annual IRPEF.
+
+Implemented invariants:
+    contribution_ceiling: when the IVS massimale applies to the worker, the
+        IVS base of the run fits in the headroom the INPS base of its
+        competence year leaves (``max(0, massimale - opening base)``, other
+        employers included).  That base itself is not capped: it measures
+        the headroom, so it can exceed the massimale.
+    irpef_annual_reconciliation: on the run that closes the last
+        withholding slot of the tax year, the IRPEF withheld YTD plus the
+        IRPEF the pay could not cover (still carried as a shortfall, or
+        deferred to the next year on written request) and the ulteriore
+        detrazione deferred to installments equals the net annual IRPEF of
+        the tax computation, rebuilt from its components (gross IRPEF less
+        the deductions, floored at zero, less the foreign tax credit),
+        within one cent;
+        and the taxable income that computation used equals the final
+        taxable income YTD, within two cents of rounding (the projection
+        rounds the employee INPS of the run on the total rate, the ledger
+        per component).
+"""
+
+from __future__ import annotations
+
+from decimal import Decimal
+from typing import TYPE_CHECKING
+
+from ccnl_engine.payroll.assurance.types import (
+    InvariantCode,
+    ReconciliationViolation,
+)
+from ccnl_engine.payroll.assurance.validators_state import run_id_of
+from ccnl_engine.payroll.state.models_obligation import ULTERIORE_RECOVERY
+
+if TYPE_CHECKING:
+    from ccnl_engine.payroll.assurance.types import RunFacts
+    from ccnl_engine.payroll.period.results import PeriodResult
+    from ccnl_engine.payroll.state.models import PeriodState
+    from ccnl_engine.payroll.taxation.results import TaxComputation
+
+__all__: list[str] = []
+
+_ZERO = Decimal(0)
+_CENT = Decimal("0.01")
+_TAXABLE_TOLERANCE = Decimal("0.02")
+_IVS_COMPONENTS = frozenset({"ivs_employee", "ivs_employer"})
+#: Tax computation components that lower the gross IRPEF.
+_DEDUCTIONS = frozenset({
+    "work_deduction",
+    "family_deductions",
+    "ulteriore_detrazione",
+})
+#: Component of the art. 165 TUIR credit, deducted from the net IRPEF.
+_FOREIGN_CREDIT = "foreign_tax_credit"
+
+
+def check_contribution_ceiling(
+    result: PeriodResult, opening: PeriodState, facts: RunFacts
+) -> list[ReconciliationViolation]:
+    """Check that the IVS base of the run stays within the massimale headroom.
+
+    Returns:
+        One violation per IVS component whose base exceeds the headroom;
+        nothing when the ceiling does not apply.
+    """
+    ceiling = facts.ivs_ceiling
+    if ceiling is None:
+        return []
+    ytd = opening.accrual.inps_base(result.period_id.year).total
+    headroom = max(_ZERO, ceiling - ytd)
+    return [
+        ReconciliationViolation(
+            invariant_id=InvariantCode.CONTRIBUTION_CEILING,
+            message=(
+                f"{c.name} base {c.base} exceeds the massimale headroom {headroom}"
+            ),
+            expected=headroom,
+            actual=c.base,
+        )
+        for c in result.contribution_breakdown.components
+        if c.name in _IVS_COMPONENTS and c.base > headroom
+    ]
+
+
+def net_annual_irpef(computation: TaxComputation) -> Decimal:
+    """Return the net annual IRPEF the components of ``computation`` give.
+
+    Returns:
+        ``max(0, irpef_gross - deductions) - foreign_tax_credit``, zero
+        without ``irpef_gross``.
+    """
+    gross = _ZERO
+    deductions = _ZERO
+    credit = _ZERO
+    for component in computation.components:
+        if component.name == "irpef_gross":
+            gross += component.amount
+        elif component.name in _DEDUCTIONS:
+            deductions += component.amount
+        elif component.name == _FOREIGN_CREDIT:
+            credit += component.amount
+    return max(_ZERO, gross - deductions) - credit
+
+
+def _closes_last_slot(result: PeriodResult) -> bool:
+    conguaglio = result.closing_state.cash.conguaglio
+    return conguaglio is not None and conguaglio.run_id == run_id_of(result)
+
+
+def check_irpef_annual_reconciliation(
+    result: PeriodResult, opening: PeriodState, facts: RunFacts
+) -> list[ReconciliationViolation]:
+    """Check that the payment settling the conguaglio settles the year's IRPEF.
+
+    A payment after an earlier conguaglio of the year settles it again; a
+    deferral of that conguaglio it drops (the last run of the employment)
+    is communicated to the worker and counts as settled.
+
+    Returns:
+        Violations when, on the payment that settles the conguaglio, the
+        IRPEF withheld YTD plus the IRPEF shortfall still carried differs
+        from the net annual IRPEF by more than a cent, or the taxable income
+        of the tax computation differs from the final taxable income YTD by
+        more than two cents.
+    """
+    if not _closes_last_slot(result):
+        return []
+    violations: list[ReconciliationViolation] = []
+    due = net_annual_irpef(result.tax_computation)
+    ytd = result.closing_state.cash
+    obligations = result.closing_state.cash.obligations
+    deferred = obligations.recovery_of(ytd.tax_year or 0, ULTERIORE_RECOVERY)
+    postponed = obligations.deferred_of(ytd.tax_year or 0)
+    if postponed is None:
+        postponed = opening.cash.obligations.deferred_of(ytd.tax_year or 0)
+    withheld = (
+        ytd.tax.irpef
+        + ytd.shortfall.irpef
+        + (_ZERO if deferred is None else deferred.residual)
+        + (_ZERO if postponed is None else postponed.irpef)
+    )
+    if abs(withheld - due) > _CENT:
+        violations.append(
+            ReconciliationViolation(
+                invariant_id=InvariantCode.IRPEF_ANNUAL_RECONCILIATION,
+                message=(
+                    "IRPEF withheld YTD and shortfall differ from the net annual IRPEF"
+                ),
+                expected=due,
+                actual=withheld,
+            )
+        )
+    projected = facts.projected_taxable
+    final = result.closing_state.cash.earnings.taxable
+    if projected is not None and abs(projected - final) > _TAXABLE_TOLERANCE:
+        violations.append(
+            ReconciliationViolation(
+                invariant_id=InvariantCode.IRPEF_ANNUAL_RECONCILIATION,
+                message="IRPEF settled on a taxable income other than the final one",
+                expected=final,
+                actual=projected,
+            )
+        )
+    return violations

@@ -1,1 +1,1 @@
-"""Period-first payroll engine."""
+"""The ``payroll`` domain (package marker, no code)."""

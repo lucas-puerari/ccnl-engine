@@ -18,7 +18,7 @@
           "apprentice"
         ]
       },
-      "source": "ccnl_engine.payroll.service.apprenticeship._midpoint_chain; CCNL Aziende Termali Federterme 2024-2027 Art. 13 lett. g ('maggiorato di un importo pari al 50% del differenziale previsto tra il 5° e il 6° livello'); tests/acceptance/legal_scenarios/test_apprenticeship_midpoint.py",
+      "source": "ccnl_engine.payroll.employment.rules_apprenticeship._midpoint_chain; CCNL Aziende Termali Federterme 2024-2027 Art. 13 lett. g ('maggiorato di un importo pari al 50% del differenziale previsto tra il 5° e il 6° livello'); tests/acceptance/legal_scenarios/test_apprenticeship_midpoint.py",
       "remediation": "Resolved: CCNLs whose midpoint components are unsourced are tracked by their own apprenticeship_midpoint_components limitation."
     },
     {
@@ -125,7 +125,7 @@
           "apprentice"
         ]
       },
-      "source": "ccnl_engine.payroll.service.chain and MonthlyPayChain.scaled_for_apprenticeship; apprentice amounts as sourced in the CCNL notes (acconciatura-estetica 2024 renewal Art. 25: 6 EUR; tessile-moda-artigianato 2024 renewal: 6 EUR; panificazione Art. 34-bis 'esclusi gli apprendisti' and 2024 renewal: 10 EUR; comunicazione-artigianato 2024 renewal: 10 EUR; legno-lapidei-artigianato 2024 renewal: 8 EUR); tests/acceptance/legal_scenarios/test_apprentice_seniority.py",
+      "source": "ccnl_engine.payroll.amount.rules_chain and MonthlyPayChain.scaled_for_apprenticeship; apprentice amounts as sourced in the CCNL notes (acconciatura-estetica 2024 renewal Art. 25: 6 EUR; tessile-moda-artigianato 2024 renewal: 6 EUR; panificazione Art. 34-bis 'esclusi gli apprendisti' and 2024 renewal: 10 EUR; comunicazione-artigianato 2024 renewal: 10 EUR; legno-lapidei-artigianato 2024 renewal: 8 EUR); tests/acceptance/legal_scenarios/test_apprentice_seniority.py",
       "remediation": "Resolved: the remaining CCNLs are tracked by their own apprentice_seniority limitation."
     },
     {
@@ -169,7 +169,7 @@
           "apprentice"
         ]
       },
-      "source": "ccnl_engine.payroll.service.apprenticeship (percentage track chain)",
+      "source": "ccnl_engine.payroll.employment.rules_apprenticeship (percentage track chain)",
       "remediation": "Source, for each CCNL, the elements the apprenticeship percentage applies to and set apprenticeship_pct_relevant on every allowance; the limitation then no longer applies to its runs."
     },
     {
@@ -297,7 +297,7 @@
       "applies_when": {
         "trigger": "path"
       },
-      "source": "ccnl_engine.payroll.application.handlers.sickness (INPS share of a sick day)",
+      "source": "ccnl_engine.payroll.sickness.handlers (INPS share of a sick day)",
       "remediation": "Compute the INPS indemnity on the INPS daily base and calendar days of the INPS rules, with the pay of the month before, then resolve this limitation."
     },
     {
@@ -424,7 +424,7 @@
       "applies_when": {
         "trigger": "path"
       },
-      "source": "ccnl_engine.payroll.domain.sick_days (CCNL tier of a sick day)",
+      "source": "ccnl_engine.payroll.sickness.rules_day (CCNL tier of a sick day)",
       "remediation": "Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it."
     },
     {
@@ -565,7 +565,7 @@
       "applies_when": {
         "trigger": "path"
       },
-      "source": "ccnl_engine.payroll.application.period._rulesets.provisional_paths (tax ruleset of the run)",
+      "source": "ccnl_engine.payroll.assurance.services_ruleset.provisional_paths (tax ruleset of the run)",
       "remediation": "Replace each provisional ruleset of the year with the values of its published sources, drop its provisional flag, then resolve this limitation."
     },
     {
@@ -706,7 +706,7 @@
       "applies_when": {
         "trigger": "path"
       },
-      "source": "ccnl_engine.payroll.application.period._rulesets.provisional_paths (INPS ruleset of the run)",
+      "source": "ccnl_engine.payroll.assurance.services_ruleset.provisional_paths (INPS ruleset of the run)",
       "remediation": "Replace each provisional INPS ruleset of the year with the values of the INPS circulars of the year, drop its provisional flag, then resolve this limitation."
     }
   ]

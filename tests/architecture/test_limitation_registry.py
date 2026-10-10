@@ -25,19 +25,22 @@ from ccnl_engine.knowledge.capability.loaders import (
 )
 from ccnl_engine.knowledge.limitation.loaders import load_engine_limitations
 from ccnl_engine.knowledge.limitation.models import LimitationStatus, MonetaryImpact
-from ccnl_engine.payroll.application.handlers.sickness import (
-    CUMULATION_LIMITATION,
-    INPS_DAILY_BASE_LIMITATION,
-)
-from ccnl_engine.payroll.application.period._rulesets import (
+from ccnl_engine.payroll.assurance.services_ruleset import (
     PROVISIONAL_INPS_RULESET,
     PROVISIONAL_RULESET,
 )
-from ccnl_engine.payroll.service.apprenticeship import MIDPOINT_VARIANT, PCT_UNDECLARED
-from ccnl_engine.payroll.service.bundled_knowledge_repository import (
+from ccnl_engine.payroll.employment.rules_apprenticeship import (
+    MIDPOINT_VARIANT,
+    PCT_UNDECLARED,
+)
+from ccnl_engine.payroll.employment.rules_seniority import APPRENTICE_SENIORITY_VARIANT
+from ccnl_engine.payroll.period.repositories import (
     BundledKnowledgeRepository,
 )
-from ccnl_engine.payroll.service.seniority import APPRENTICE_SENIORITY_VARIANT
+from ccnl_engine.payroll.sickness.handlers import (
+    CUMULATION_LIMITATION,
+    INPS_DAILY_BASE_LIMITATION,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.contract.identity.facade import CCNL

@@ -10,13 +10,13 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.service.contributions import resolve_contributions
+from ccnl_engine.payroll.contribution.rules import resolve_contributions
 from tests.helpers import make_year_rules
 
 if TYPE_CHECKING:
     from ccnl_engine.contract.employment.models_category import WorkerCategory
-    from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
-    from ccnl_engine.payroll.domain.employment import (
+    from ccnl_engine.payroll.contribution.results import ContributionBreakdown
+    from ccnl_engine.payroll.employment.inputs import (
         Apprentice,
         FixedTerm,
         Permanent,

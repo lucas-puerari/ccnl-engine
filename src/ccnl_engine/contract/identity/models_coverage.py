@@ -109,7 +109,7 @@ class CCNLCoverage(BaseModel):
     The coverage of each capability is not declared here: it derives from
     the capability registry of the fiscal year and from the ``missing``
     notes, which lower the capability they name to partial for this CCNL
-    (``ccnl_engine.payroll.service.capability_coverage``).  For human-review
+    (``ccnl_engine.payroll.capability.services_coverage``).  For human-review
     confidence and traceability use :class:`CCNLVerification`.
     """
 

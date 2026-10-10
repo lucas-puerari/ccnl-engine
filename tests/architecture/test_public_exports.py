@@ -21,7 +21,7 @@ import pytest
 import ccnl_engine
 from ccnl_engine import errors as errors_module
 from ccnl_engine.errors import PUBLIC_ERROR_CODES, CcnlEngineError
-from ccnl_engine.payroll.domain.decisions import PUBLIC_FACTS
+from ccnl_engine.payroll.assurance.models_decision import PUBLIC_FACTS
 from tests.architecture._imports import PUBLIC_NAMESPACES, ROOT_PACKAGE
 
 _REPO = Path(__file__).parents[2]

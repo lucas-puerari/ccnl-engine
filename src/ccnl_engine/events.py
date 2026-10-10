@@ -5,7 +5,7 @@ Each event goes in :attr:`ccnl_engine.PeriodFacts.events`.
 
 from __future__ import annotations
 
-from ccnl_engine.payroll.domain.events import (
+from ccnl_engine.payroll.event.facade import (
     AbsenceEvent,
     ArrearsEvent,
     BilateralFundEvent,
@@ -22,7 +22,7 @@ from ccnl_engine.payroll.domain.events import (
     WelfareEvent,
     WorkEvent,
 )
-from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.period.models_payroll import PeriodId
 
 __all__ = [
     "AbsenceEvent",

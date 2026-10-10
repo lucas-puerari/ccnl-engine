@@ -2,7 +2,7 @@
   "description": "Ordered rules and per-file overrides that map every tracked file under src, tests, demo and scripts to its path in the architecture contract (docs/engine/architecture-contract.md). Overrides win over rules; the first matching rule applies.",
   "rules": [
     {
-      "pattern": "^(?P<path>src/ccnl_engine/(?:contract|tax|comparison|provenance|knowledge)(?:/[a-z_]+)*/__init__\\.py)$",
+      "pattern": "^(?P<path>src/ccnl_engine/(?:contract|tax|comparison|provenance|knowledge|payroll)(?:/[a-z_]+)*/__init__\\.py)$",
       "target": "{path}"
     },
     {
@@ -10,7 +10,7 @@
       "target": "{path}"
     },
     {
-      "pattern": "^(?P<path>src/ccnl_engine/(?:contract|tax|comparison|provenance)/[a-z_]+/[a-z_]+\\.py)$",
+      "pattern": "^(?P<path>src/ccnl_engine/(?:contract|tax|comparison|provenance|payroll)/[a-z_]+/[a-z_]+\\.py)$",
       "target": "{path}"
     },
     {
@@ -18,7 +18,7 @@
       "target": "{path}"
     },
     {
-      "pattern": "^(?P<path>tests/(?:unit|integration)/ccnl_engine/(?:contract|tax|comparison|provenance|knowledge)/(?:[a-z_]+/)?[a-z_]+\\.py)$",
+      "pattern": "^(?P<path>tests/(?:unit|integration)/ccnl_engine/(?:contract|tax|comparison|provenance|knowledge|payroll)/(?:[a-z_]+/)?[a-z_]+\\.py)$",
       "target": "{path}"
     },
     {

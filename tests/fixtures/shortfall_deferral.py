@@ -13,26 +13,26 @@ from decimal import Decimal
 from functools import cache
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.application.calculate_competence_year import (
-    calculate_competence_year,
-)
-from ccnl_engine.payroll.domain.events import FringeEvent
-from ccnl_engine.payroll.domain.ledger import AccountKind
-from ccnl_engine.payroll.domain.obligations import EmploymentObligations
-from ccnl_engine.payroll.domain.period_state import PeriodState
-from ccnl_engine.payroll.domain.prior_year import (
+from ccnl_engine.payroll.event.facade import FringeEvent
+from ccnl_engine.payroll.ledger.models import AccountKind
+from ccnl_engine.payroll.state.models import PeriodState
+from ccnl_engine.payroll.state.models_obligation import EmploymentObligations
+from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
+from ccnl_engine.payroll.taxation.inputs_prior_year import (
     PriorYearTaxFacts,
     ShortfallDeferralRequest,
 )
-from ccnl_engine.payroll.domain.shortfall_deferral import DeferredShortfall
-from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
+from ccnl_engine.payroll.withholding.inputs_shortfall_deferral import DeferredShortfall
+from ccnl_engine.payroll.year.services_competence import (
+    calculate_competence_year,
+)
 from tests.helpers import year_plan
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.application.year_result import CompetenceYearResult
-    from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
-    from ccnl_engine.payroll.domain.events import AbsenceEvent
-    from ccnl_engine.payroll.domain.period import PeriodResult
+    from ccnl_engine.payroll.employment.inputs_fact import EmploymentPeriod
+    from ccnl_engine.payroll.event.facade import AbsenceEvent
+    from ccnl_engine.payroll.period.results import PeriodResult
+    from ccnl_engine.payroll.year.results import CompetenceYearResult
 
 __all__ = [
     "CCNL",
