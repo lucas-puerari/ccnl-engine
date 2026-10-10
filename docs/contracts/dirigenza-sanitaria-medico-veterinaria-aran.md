@@ -101,7 +101,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Applies when:** `sickness` applies.
 
-    **Remediation:** Resolved: sick days are classified one by one (ccnl_engine.payroll.domain.sick_days); tested with an episode crossing the threshold of a tier within one month.
+    **Remediation:** Resolved: sick days are classified one by one (ccnl_engine.payroll.sickness.rules_day); tested with an episode crossing the threshold of a tier within one month.
 
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.

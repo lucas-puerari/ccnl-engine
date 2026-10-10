@@ -1,7 +1,7 @@
 """Domain models for Art. 12 TUIR family deduction rules.
 
 Every amount and limit is a statutory parameter of the bundle; the formulas
-of art. 12 are applied by :mod:`ccnl_engine.payroll.service.family`.
+of art. 12 are applied by :mod:`ccnl_engine.payroll.family`.
 """
 
 from __future__ import annotations

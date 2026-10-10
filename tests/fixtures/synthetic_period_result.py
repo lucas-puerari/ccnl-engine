@@ -11,20 +11,20 @@ from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
 
-from ccnl_engine.payroll.domain.accrual_state import EmploymentAccrualState
-from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
-from ccnl_engine.payroll.domain.capability_report import CapabilityReport
-from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
-from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
-from ccnl_engine.payroll.domain.pay_items import BaseSalaryEarning, CompetencePeriod
-from ccnl_engine.payroll.domain.payment import PaymentId
-from ccnl_engine.payroll.domain.period import PeriodResult
-from ccnl_engine.payroll.domain.period_payroll import PeriodId
-from ccnl_engine.payroll.domain.period_state import PeriodState
-from ccnl_engine.payroll.domain.run import PayrollRunId, RunKind
-from ccnl_engine.payroll.domain.tax import TaxComputation
-from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
-from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, TaxYtd
+from ccnl_engine.payroll.amount.facade import BaseSalaryEarning, CompetencePeriod
+from ccnl_engine.payroll.capability.results import CapabilityReport
+from ccnl_engine.payroll.contribution.results import ContributionBreakdown
+from ccnl_engine.payroll.event.results_benefit import BenefitBreakdown
+from ccnl_engine.payroll.ledger.models import AccountKind, LedgerEntry
+from ccnl_engine.payroll.period.models_payroll import PeriodId
+from ccnl_engine.payroll.period.models_run import PayrollRunId, RunKind
+from ccnl_engine.payroll.period.results import PeriodResult
+from ccnl_engine.payroll.state.models import PeriodState
+from ccnl_engine.payroll.state.models_accrual import EmploymentAccrualState
+from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
+from ccnl_engine.payroll.state.models_ytd_account import EarningsYtd, TaxYtd
+from ccnl_engine.payroll.taxation.results import TaxComputation
+from ccnl_engine.payroll.year.models_payment import PaymentId
 
 YEAR = 2026
 COMPETENCE = CompetencePeriod(year=YEAR, month=1)

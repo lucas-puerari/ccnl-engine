@@ -11,7 +11,7 @@ from ccnl_engine.knowledge.limitation.models import (
     ModelLimitation,
     MonetaryImpact,
 )
-from ccnl_engine.payroll.domain.assurance import (
+from ccnl_engine.payroll.assurance.models import (
     BlockerCode,
     CoverageStatus,
     EvidenceStatus,
@@ -19,17 +19,20 @@ from ccnl_engine.payroll.domain.assurance import (
     ResultAssurance,
     ResultBlocker,
 )
-from ccnl_engine.payroll.domain.capability_report import CapabilityGap, CapabilityScope
-from ccnl_engine.payroll.domain.decisions import (
+from ccnl_engine.payroll.assurance.models_decision import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
     DecisionOrigin,
 )
-from ccnl_engine.payroll.domain.ledger import AccountKind
-from ccnl_engine.payroll.domain.remittance import RemittanceColumn, RemittanceLine
-from ccnl_engine.payroll.domain.requirements import UnresolvedRequirement
-from ccnl_engine.payroll.domain.uncovered_run import UncoveredRun
+from ccnl_engine.payroll.capability.results import CapabilityGap, CapabilityScope
+from ccnl_engine.payroll.capability.rules_requirement import UnresolvedRequirement
+from ccnl_engine.payroll.ledger.models import AccountKind
+from ccnl_engine.payroll.ledger.models_remittance import (
+    RemittanceColumn,
+    RemittanceLine,
+)
+from ccnl_engine.payroll.year.models_uncovered_run import UncoveredRun
 
 __all__ = [
     "AccountKind",

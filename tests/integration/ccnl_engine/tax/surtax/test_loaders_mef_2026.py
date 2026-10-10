@@ -16,9 +16,9 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.payroll.domain.decisions import CalculationStatus
-from ccnl_engine.payroll.domain.jurisdiction import REGION_CODES
-from ccnl_engine.payroll.service.fiscal_surtax import compute_surtax
+from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
+from ccnl_engine.payroll.taxation.rules_surtax_stage import compute_surtax
+from ccnl_engine.payroll.taxation.types_jurisdiction import REGION_CODES
 from ccnl_engine.provenance.source.models_chain import ProvenanceStatus
 from ccnl_engine.tax.surtax.loaders import load_surtax_rules
 

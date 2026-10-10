@@ -83,6 +83,26 @@ DOMAIN_COUPLING: dict[tuple[str, str], str] = {
         "knowledge",
         "ccnl_engine.provenance",
     ): "The loaders verify the ruleset identity and provenance of each file.",
+    (
+        "payroll",
+        "ccnl_engine.contract.identity",
+    ): "Payroll rules read CCNL time series and the tax sector a CCNL declares.",
+    (
+        "payroll",
+        "ccnl_engine.contract.employment.models_apprenticeship",
+    ): "Apprentice pay follows the CCNL apprenticeship percentages and tracks.",
+    (
+        "payroll",
+        "ccnl_engine.contract.working_time.models",
+    ): "Overtime pay applies the CCNL overtime bands.",
+    (
+        "payroll",
+        "ccnl_engine.tax.income.models",
+    ): "IRPEF deductions apply the yearly income tax rules.",
+    (
+        "payroll",
+        "ccnl_engine.provenance",
+    ): "Payroll decisions cite the legal source of the rule they apply.",
 }
 
 
@@ -152,7 +172,7 @@ def test_analysis_sees_the_package(package: dict[str, Module]) -> None:
     """The analysis reads real modules and real imports, not an empty tree."""
     assert "ccnl_engine.api" in package
     targets = {imp.target for imp in runtime_imports(package)}
-    assert "ccnl_engine.payroll.application.calculate_period" in targets
+    assert "ccnl_engine.payroll.period.services" in targets
 
 
 # ---------------------------------------------------------------------------
@@ -333,6 +353,7 @@ def test_io_outside_domain_and_pure_json_are_accepted() -> None:
             "    from pathlib import Path\n"
             "json.dumps({})\n"
             "json.loads('{}')\n"
+            "Obligation.open(1)\n"
             "f()\n"
             "from . import z\n"
         ),

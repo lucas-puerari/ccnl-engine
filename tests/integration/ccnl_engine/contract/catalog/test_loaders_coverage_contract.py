@@ -18,11 +18,11 @@ from ccnl_engine.contract.catalog.loaders import load_ccnl
 from ccnl_engine.knowledge.capability.loaders import (
     load_capability_catalog,
 )
-from ccnl_engine.payroll.domain.capability_catalog import (
+from ccnl_engine.payroll.capability.models_catalog import (
     CapabilityImplementation,
     CapabilityLayer,
 )
-from ccnl_engine.payroll.service.capability_coverage import (
+from ccnl_engine.payroll.capability.services_coverage import (
     ccnl_capabilities,
     layer_coverage,
 )

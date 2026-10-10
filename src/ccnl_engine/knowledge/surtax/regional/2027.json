@@ -4,7 +4,7 @@
     "PROVISIONAL 2027: the rates are those of the 2026 file. A region or comune that does not resolve new rates keeps those in force: the rates of local taxes not resolved by the deadline 'si intendono prorogate di anno in anno' (L. 296/2006 art. 1 c. 169); the 2027 resolutions are not read yet.",
     "Fonte: MEF, Dipartimento delle Finanze, addizionale regionale all'IRPEF, aliquote applicabili per l'anno d'imposta 2026 (una pagina per regione o provincia autonoma, consultate il 27 settembre 2026).",
     "Rate in forma decimale (es. 0.0123 = 1.23%). Aliquote marginali per scaglione di reddito.",
-    "Chiave: nome regione/provincia autonoma in italiano, come in payroll/domain/jurisdiction.py.",
+    "Chiave: nome regione/provincia autonoma in italiano, come in payroll/taxation/types_jurisdiction.py.",
     "Le agevolazioni che dipendono solo dal reddito sono modellate (exemption_threshold, whole_income_rate, deductions); quelle per figli o disabilita' sono descritte in dependent_provisions e non applicate."
   ],
   "rates": {
@@ -813,7 +813,7 @@
     "published_at": "2026-10-09",
     "source": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/sceltaregione.htm",
     "verification_status": "unverified",
-    "source_hash": "0ec028ec03ac918dc6e0d923781621bf45b7cb8bae8545451fc43db39d9054ec",
+    "source_hash": "96a1bf22e6f7adc3980b2b627ff840f096f492b846f067b239933c2efce6011a",
     "source_type": "estimated",
     "provisional": true
   },

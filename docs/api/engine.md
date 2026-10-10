@@ -51,7 +51,7 @@ if not ruleset.is_production:
 | `confidence_contradicts_readiness` | `True` when a `reviewed` or `production` tier lacks a `verified` confidence |
 | `is_production` | `production` and a confidence that agrees |
 
-::: ccnl_engine.payroll.domain.engine_mode
+::: ccnl_engine.payroll.assurance.policies_engine_mode
     options:
       members:
         - EngineMode
@@ -103,44 +103,44 @@ years. They group the facts by owner and are validated when built;
 | `CurrentYearTaxFacts` | income of the tax year beyond this employment, the main dwelling excluded, with its date and `IncomeEstimateQuality`; the Art. 12 family deductions add it to the employment income (`None` means unknown, a blocker when a dependent is entitled) |
 | `PeriodFacts` | events, contributable hours, region and Belfiore code, family composition, dependent children of one run |
 
-::: ccnl_engine.payroll.domain.inputs
+::: ccnl_engine.payroll.period.inputs
     options:
       members:
         - PeriodInput
         - PeriodFacts
 
-::: ccnl_engine.payroll.domain.competence_year_plan
+::: ccnl_engine.payroll.year.inputs_competence_plan
     options:
       members:
         - CompetenceYearPlan
 
-::: ccnl_engine.payroll.domain.tax_year_plan
+::: ccnl_engine.payroll.year.inputs_tax_plan
     options:
       members:
         - TaxYearPlan
 
-::: ccnl_engine.payroll.application.opening_balances
+::: ccnl_engine.payroll.state.services_opening_balance
     options:
       members:
         - OpeningBalances
 
-::: ccnl_engine.payroll.domain.inps_base
+::: ccnl_engine.payroll.contribution.models_inps_base
     options:
       members:
         - InpsBaseYtd
 
-::: ccnl_engine.payroll.domain.employment
+::: ccnl_engine.payroll.employment.inputs
     options:
       members:
         - Employment
 
-::: ccnl_engine.payroll.domain.pension_fund
+::: ccnl_engine.payroll.contribution.inputs_pension_fund
     options:
       members:
         - PensionFundEnrolment
         - NoPensionFund
 
-::: ccnl_engine.payroll.domain.employment_facts
+::: ccnl_engine.payroll.employment.inputs_fact
     options:
       members:
         - EmploymentPeriod
@@ -149,18 +149,18 @@ years. They group the facts by owner and are validated when built;
         - SenioritySource
         - ContributableHours
 
-::: ccnl_engine.payroll.domain.employer
+::: ccnl_engine.payroll.employment.inputs_employer
     options:
       members:
         - EmployerProfile
         - Headcount
 
-::: ccnl_engine.payroll.domain.prior_year
+::: ccnl_engine.payroll.taxation.inputs_prior_year
     options:
       members:
         - PriorYearTaxFacts
 
-::: ccnl_engine.payroll.domain.current_year
+::: ccnl_engine.payroll.taxation.inputs_current_year
     options:
       members:
         - CurrentYearTaxFacts
@@ -173,13 +173,13 @@ years. They group the facts by owner and are validated when built;
         - EmployerActivity
         - SubstituteTaxRegime
 
-::: ccnl_engine.payroll.domain.run
+::: ccnl_engine.payroll.period.models_run
     options:
       members:
         - PayrollRun
         - PayrollRunId
 
-::: ccnl_engine.payroll.domain.payment
+::: ccnl_engine.payroll.year.models_payment
     options:
       members:
         - PaymentId
@@ -226,7 +226,7 @@ public field to set (`seniority`, `contribution_history`, `sector`,
 omitted. A different calendar is accepted only as a validated
 `CalendarOverride`.
 
-::: ccnl_engine.payroll.domain.calendar_override
+::: ccnl_engine.payroll.year.inputs_calendar_override
     options:
       members:
         - CalendarOverride
@@ -333,12 +333,12 @@ report `status` is the coverage axis of the assurance: `incomplete` with an
 unresolved requirement, otherwise `partial` when every gap is partial and
 `incomplete` with any other gap.
 
-::: ccnl_engine.payroll.domain.period
+::: ccnl_engine.payroll.period.results
     options:
       members:
         - PeriodResult
 
-::: ccnl_engine.payroll.application.year_result
+::: ccnl_engine.payroll.year.results
     options:
       members:
         - PaymentsResult
@@ -363,17 +363,17 @@ schedule without it, so the year is partial and not payable. A year in
 which no run has a base salary raises the `MissingRuleError` of its first
 run.
 
-::: ccnl_engine.payroll.domain.requirements
+::: ccnl_engine.payroll.capability.rules_requirement
     options:
       members:
         - UnresolvedRequirement
 
-::: ccnl_engine.payroll.domain.uncovered_run
+::: ccnl_engine.payroll.year.models_uncovered_run
     options:
       members:
         - UncoveredRun
 
-::: ccnl_engine.payroll.domain.assurance
+::: ccnl_engine.payroll.assurance.models
     options:
       members:
         - ResultAssurance
@@ -390,14 +390,14 @@ run.
         - MonetaryImpact
         - LimitationStatus
 
-::: ccnl_engine.payroll.domain.remittance
+::: ccnl_engine.payroll.ledger.models_remittance
     options:
       members:
         - RemittanceLine
         - RemittanceColumn
         - remittance_summary
 
-::: ccnl_engine.payroll.domain.decisions
+::: ccnl_engine.payroll.assurance.models_decision
     options:
       members:
         - CalculationStatus

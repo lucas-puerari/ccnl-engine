@@ -348,7 +348,7 @@
         "limitation": {
           "variant": "single_rate_across_tier_threshold",
           "status": "resolved",
-          "remediation": "Resolved: sick days are classified one by one (ccnl_engine.payroll.domain.sick_days); tested with an episode crossing the threshold of a tier within one month."
+          "remediation": "Resolved: sick days are classified one by one (ccnl_engine.payroll.sickness.rules_day); tested with an episode crossing the threshold of a tier within one month."
         }
       },
       {
@@ -368,7 +368,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "3e421893174f738c5e03045d0815bf947251e6979a08487b712cab6e36463d0e",
+    "source_hash": "f7b38155c0ed2c69a46694439afdad074a394103543675dee1f9ddf02dc61607",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

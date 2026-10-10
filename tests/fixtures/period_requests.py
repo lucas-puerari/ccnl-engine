@@ -13,17 +13,17 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.contract.employment.models_category import WorkerCategory
-from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
-from ccnl_engine.payroll.domain.employment import Permanent
-from ccnl_engine.payroll.domain.employment_facts import ContributableHours, WeeklyHours
-from ccnl_engine.payroll.domain.period_payroll import PeriodId
-from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
-from ccnl_engine.payroll.domain.period_state import PeriodState
+from ccnl_engine.payroll.employment.inputs import Permanent
+from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
+from ccnl_engine.payroll.employment.inputs_fact import ContributableHours, WeeklyHours
+from ccnl_engine.payroll.period.models_payroll import PeriodId
+from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
+from ccnl_engine.payroll.state.models import PeriodState
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.domain.eligibility import ContributionHistory
-    from ccnl_engine.payroll.domain.ledger import AccountKind
-    from ccnl_engine.payroll.domain.period import PeriodResult
+    from ccnl_engine.payroll.contribution.inputs_eligibility import ContributionHistory
+    from ccnl_engine.payroll.ledger.models import AccountKind
+    from ccnl_engine.payroll.period.results import PeriodResult
 
 __all__ = ["METALMECCANICO", "YEAR", "account_total", "period_request"]
 

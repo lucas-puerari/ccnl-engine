@@ -4,6 +4,13 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Payroll laid out by domain
+
+| Before | After |
+|---|---|
+| `payroll` organised by layer (`domain`, `service`, `application` with `handlers`, `period`, `year`, `withholding`, `amounts`, `invariants`) | Organised in sixteen subdomains with role-named files: `payroll/{accrual,amount,assurance,capability,contribution,employment,event,family,ledger,period,sickness,state,taxation,termination,withholding,year}/`, for example `payroll/period/services.py` (`calculate_period`), `payroll/state/serializers.py` (the state codec), `payroll/taxation/rules_irpef.py`. Moves are one to one; the public namespaces (`ccnl_engine`, `inputs`, `events`, `results`, `catalog`) keep every name |
+| Code importing internal payroll paths (`ccnl_engine.payroll.domain...`, `ccnl_engine.payroll.service...`, `ccnl_engine.payroll.application...`) | Internal paths are not public API and have no shim: import from the public namespaces, or from the new module the inventory `scripts/ci/layout_inventory.json` names |
+
 ## Domains outside payroll laid out by domain
 
 | Before | After |
@@ -578,18 +585,3 @@ withholding projects (see [Fiscal rules](engine/fiscal.md)).
 | `OpeningBalances(...)` | New field `employment_spells`, `()` by default: the spells of an earlier employment of the year the imported totals hold |
 | `EmploymentPeriod.days_in_year(year)` | Removed: `spell_days()` counts the union of the spells of the year |
 | A regular run after a termination run of its competence year: `InvalidInputError` "run ... is out of order" | `InvalidInputError` naming the termination run that ended the employment; open a rehire with `PeriodState.zero()` |
-
-## Conditions of a dependant are facts
-
-A dependant whose art. 12 TUIR conditions are not stated no longer takes a
-deduction, and the fringe-benefit threshold follows the family composition.
-Amounts are unchanged for a dependant whose conditions are all stated (see
-[Family deductions](engine/fiscal.md#family-deductions-art-12-tuir)).
-
-| Before | After |
-|---|---|
-| `Dependent.own_income` defaulted to `0`, `residency_eligibility` and `cohabiting` to `True`, `allocation_pct` to `100` | Each defaults to `None`, unknown: a dependant that may qualify takes no deduction, the `family_deductions` decision is `required_fact_missing` and the run has a `missing_fact` blocker naming the field. Only the conditions art. 12 reads for the relationship count: `cohabiting` for an ascendant, `allocation_pct` for a child or an ascendant |
-| `Dependent.dependent_from` / `dependent_until` defaulted to `None` (open) | Required keyword arguments; `None` still states an open end |
-| `Dependent(relationship=SPOUSE, allocation_pct=50)` halved the spouse deduction | Rejected: the spouse deduction of lett. a is not shared; `None` or `100` |
-| `PeriodFacts.has_dependent_children` (and `PeriodCalculationRequest.has_dependent_children`) selected the 2,000 EUR fringe threshold | Removed: the threshold is 2,000 EUR when a child of `family_composition` is within the own-income limit of art. 12 c. 2 in the year. Unknown (no composition, or a child's `own_income` unknown) applies 1,000 EUR, and when the choice changes the taxable amount the decision is provisional with a `fringe_threshold_undetermined` issue |
-| `PUBLIC_FACTS` without these facts | `"own_income"`, `"residency_eligibility"`, `"cohabiting"`, `"allocation_pct"` |

@@ -1,7 +1,8 @@
 """Pairs of requests: a defaulted public field stated, and left to its default.
 
-Every ``requires_fact`` field of :mod:`ccnl_engine.payroll.domain.input_defaults`
-has a :class:`DefaultCase` in :data:`DEFAULT_CASES` or a reason in
+Every ``requires_fact`` field of
+:mod:`ccnl_engine.payroll.period.policies_default_registry` has a
+:class:`DefaultCase` in :data:`DEFAULT_CASES` or a reason in
 :data:`NOT_EXERCISED`, as ``tests/architecture/test_input_defaults.py`` checks.
 Each case is the explicit Concia D2 of 2026 (:mod:`tests.fixtures.explicit_facts`)
 with one field changed: ``true`` states the fact, ``default`` leaves the field

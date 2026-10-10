@@ -12,12 +12,12 @@ from typing import TYPE_CHECKING, Any
 
 from ccnl_engine.contract.employment.models_category import WorkerCategory
 from ccnl_engine.contract.identity.facade import CCNL
-from ccnl_engine.payroll.domain.competence_year_plan import CompetenceYearPlan
-from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
-from ccnl_engine.payroll.domain.employment import Employment, Permanent
-from ccnl_engine.payroll.domain.inputs import PeriodFacts
-from ccnl_engine.payroll.domain.pension_fund import NoPensionFund
-from ccnl_engine.payroll.domain.tax_year import DEFAULT_PAYMENT_DAY
+from ccnl_engine.payroll.contribution.inputs_pension_fund import NoPensionFund
+from ccnl_engine.payroll.employment.inputs import Employment, Permanent
+from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
+from ccnl_engine.payroll.period.inputs import PeriodFacts
+from ccnl_engine.payroll.year.inputs_competence_plan import CompetenceYearPlan
+from ccnl_engine.payroll.year.rules_tax_year import DEFAULT_PAYMENT_DAY
 from ccnl_engine.tax.annual.models import YearRules
 from tests.fixtures.prior_year import RENEWAL_WAIVED
 from tests.fixtures.seniority import new_hire
@@ -26,11 +26,11 @@ from tests.fixtures.tfr import no_tfr_fund
 if TYPE_CHECKING:
     from collections.abc import Mapping
 
-    from ccnl_engine.payroll.domain.calendar_override import CalendarOverride
-    from ccnl_engine.payroll.domain.current_year import CurrentYearTaxFacts
-    from ccnl_engine.payroll.domain.events import WorkEvent
-    from ccnl_engine.payroll.domain.period_state import PeriodState
-    from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
+    from ccnl_engine.payroll.event.facade import WorkEvent
+    from ccnl_engine.payroll.state.models import PeriodState
+    from ccnl_engine.payroll.taxation.inputs_current_year import CurrentYearTaxFacts
+    from ccnl_engine.payroll.taxation.inputs_prior_year import PriorYearTaxFacts
+    from ccnl_engine.payroll.year.inputs_calendar_override import CalendarOverride
 
 # ---------------------------------------------------------------------------
 # Shared raw data — canonical source for inline fixtures across the test suite

@@ -304,12 +304,12 @@ def test_internal_import_in_acceptance_is_rejected(tmp_path: Path) -> None:
         "import ccnl_engine.api\n"
         "from ccnl_engine import PayrollEngine\n"
         "from ccnl_engine.events import OvertimeEvent\n"
-        "from ccnl_engine.payroll.domain.run import RunKind\n",
+        "from ccnl_engine.payroll.period.models_run import RunKind\n",
         encoding="utf-8",
     )
     assert internal_import_violations(tmp_path) == [
         "acceptance/public_api/test_x.py: ccnl_engine.api",
-        "acceptance/public_api/test_x.py: ccnl_engine.payroll.domain.run",
+        "acceptance/public_api/test_x.py: ccnl_engine.payroll.period.models_run",
     ]
     assert internal_import_violations(tmp_path / "absent") == []
 

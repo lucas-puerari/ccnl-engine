@@ -48,7 +48,7 @@ The contract has three pages:
 |---|---|
 | Package root | `src/ccnl_engine/__init__.py` stays, with its docstring and its re-exports. It is the only file whose name starts with an underscore. |
 | Public API | The public surface is the root and the namespaces `ccnl_engine.inputs`, `ccnl_engine.events`, `ccnl_engine.results` and `ccnl_engine.catalog`, as pinned by `tests/architecture/test_public_exports.py` and stated in the root docstring. These five modules keep their import paths. |
-| Deep imports | Paths below the five public modules (`ccnl_engine.payroll.domain.ledger` and the like) are not public. The migrations move them without compatibility shims and without deprecation aliases. |
+| Deep imports | Paths below the five public modules (`ccnl_engine.payroll.ledger.models` and the like) are not public. The migrations move them without compatibility shims and without deprecation aliases. |
 | `catalog.py` | Kept at the root next to `api.py`, `inputs.py`, `results.py` and `events.py`, because `ccnl_engine.catalog` is a public namespace. |
 | Root modules | `api`, `inputs`, `results`, `events`, `catalog`, `errors`, `primitives`, `validation` and `version`, each splittable as `<name>_<suffix>.py` (for example `validation_collection.py`). |
 | New directories | A new source directory gets a docstring-only `__init__.py` marker, which the guardrail accepts. A new test directory needs none: pytest imports tests by path (`--import-mode=importlib`). |

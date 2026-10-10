@@ -182,4 +182,4 @@ run.
 
 An entry whose kind or account maps to no capability is a violation too, so
 a new posting has to name the capability that decides it. The mapping is in
-`ccnl_engine.payroll.application.invariants.attribution`.
+`ccnl_engine.payroll.assurance.validators_attribution`.

@@ -538,7 +538,7 @@ by ris. 368/E/2007), ris. 35/E/2020 (1701), ris. 6/E/2021 (1066), ris. 9/E/2025
 (1704, "importi a credito compensati" for the amount paid and "importi a
 debito versati" for the amount "già erogata e poi recuperata"), ris.
 3/E/2026 (1075) and 2/E/2026 (1076). The codes live in
-`ccnl_engine.payroll.domain.remittance`; each entry carries its code in
+`ccnl_engine.payroll.ledger.models_remittance`; each entry carries its code in
 `LedgerEntry.remittance_code`.
 
 A code that cannot be verified is left out rather than guessed:

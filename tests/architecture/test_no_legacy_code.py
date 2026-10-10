@@ -62,7 +62,7 @@ def _class_definitions(path: Path) -> list[str]:
 # Test: one employment model
 #
 # The employment relationship has a single public model,
-# payroll/domain/employment.py::Employment.  No EmploymentFacts remains.
+# payroll/employment/inputs.py::Employment.  No EmploymentFacts remains.
 # ---------------------------------------------------------------------------
 
 
@@ -73,7 +73,7 @@ def test_employment_defined_once() -> None:
         for name in set(_class_definitions(path)) & found.keys():
             found[name].append(str(path.relative_to(_SRC)))
     assert found == {
-        "Employment": ["ccnl_engine/payroll/domain/employment.py"],
+        "Employment": ["ccnl_engine/payroll/employment/inputs.py"],
         "EmploymentFacts": [],
     }
 
@@ -139,8 +139,8 @@ _ALLOWED_REEXPORT_MODULES: frozenset[str] = frozenset({
     "ccnl_engine/inputs.py",
     "ccnl_engine/results.py",
     "ccnl_engine/contract/identity/facade.py",
-    "ccnl_engine/payroll/domain/events/__init__.py",
-    "ccnl_engine/payroll/domain/pay_items/__init__.py",
+    "ccnl_engine/payroll/amount/facade.py",
+    "ccnl_engine/payroll/event/facade.py",
 })
 
 

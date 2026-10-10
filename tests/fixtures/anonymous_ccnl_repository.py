@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.service.bundled_knowledge_repository import (
+from ccnl_engine.payroll.period.repositories import (
     BundledKnowledgeRepository,
 )
 

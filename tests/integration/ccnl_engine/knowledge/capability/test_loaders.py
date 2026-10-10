@@ -14,8 +14,8 @@ from ccnl_engine.knowledge.capability.loaders import (
     load_capability_catalog,
     parse_capability_catalog,
 )
-from ccnl_engine.payroll.domain.assurance import EvidenceStatus
-from ccnl_engine.payroll.domain.capability_catalog import (
+from ccnl_engine.payroll.assurance.models import EvidenceStatus
+from ccnl_engine.payroll.capability.models_catalog import (
     CapabilityApplicability,
     CapabilityCatalog,
     CapabilityHandler,

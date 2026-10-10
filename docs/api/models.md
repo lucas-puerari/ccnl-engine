@@ -13,13 +13,13 @@ behind each model.
 
 ## Employment
 
-::: ccnl_engine.payroll.domain.employment
+::: ccnl_engine.payroll.employment.inputs
     options:
       members:
         - Permanent
         - Apprentice
 
-::: ccnl_engine.payroll.domain.fixed_term
+::: ccnl_engine.payroll.employment.inputs_fixed_term
     options:
       members:
         - FixedTerm
@@ -43,7 +43,7 @@ behind each model.
 
 ## Fiscal
 
-::: ccnl_engine.payroll.domain.jurisdiction
+::: ccnl_engine.payroll.taxation.types_jurisdiction
     options:
       members:
         - REGION_CODES

@@ -139,28 +139,38 @@ passes with a note, and its value should be lowered in the same change.
 `python scripts/ci/check_structure.py --write-baseline` rewrites the file
 from the tree: review the diff and reject any added entry.
 
-## Payroll application layout
+## Payroll layout
 
-`payroll/application/` keeps its entry modules at the top level:
-`calculate_period`, `calculate_competence_year`, `calculate_tax_year`,
-`year_result`, `close_tax_year`, `opening_balances`,
-`reconcile`, `allocate_events`, `post_ledger`, `knowledge_repository` and
-`bundled_sources`, plus the shared helpers `_period_utils` and
-`_posting_service`. The steps they call live in subfeature packages, each
-private to the application layer:
+`payroll/` is laid out by subdomain, each file named by its role
+(`inputs`, `models`, `types`, `rules`, `policies`, `validators`, `results`,
+`services`, `handlers`, `ports`, `repositories`, `loaders`, `serializers`,
+`facade`, optionally followed by a qualifier: `rules_irpef_net.py`):
 
-| Package | Holds |
+| Subdomain | Holds |
 |---|---|
-| `period/` | one run: context, pipeline steps, base lines, closing state, checks, result assembly |
-| `amounts/` | contributions and TFR, taxable income, IRPEF and surtax of a run |
-| `withholding/` | withholding plan and cap, somma esente, carried recoveries |
-| `year/` | calendar, run selection and requests, extra-month ratei |
-| `invariants/` | the reconciliation invariants that `reconcile` runs |
-| `handlers/` | one handler per event family, their registry and event totals |
+| `period/` | one run: request, inputs and defaults, context, pipeline, posting, checks, result assembly, the knowledge repository port and its bundled sources |
+| `year/` | competence and tax year plans, calendar, run selection, payments, year results, closing a tax year |
+| `amount/` | pay items and treatments, the CCNL pay chain, proration, renewal minimum, rounding, the amounts of a run |
+| `event/` | work, absence, variable pay and termination events, their handlers and totals |
+| `employment/` | employment, employer, seniority, apprenticeship and category |
+| `contribution/` | INPS rates and base, apprentices, domestic work, NASpI, pension and contractual funds |
+| `taxation/` | IRPEF, deductions and credits, regimes, regional and municipal surtax |
+| `family/` | art. 12 TUIR family deductions |
+| `withholding/` | withholding plan and cap, deferrals, somma esente, carried recoveries |
+| `sickness/` | sick pay rules, day classification, cumulation and comporto |
+| `accrual/` | extra-month (tredicesima, quattordicesima) accrual and settlement |
+| `termination/` | TFR, its revaluation and destination, ratei at termination |
+| `ledger/` | ledger entries, posting and remittance codes |
+| `state/` | period state, opening balances and its JSON serializer |
+| `assurance/` | decisions, assessment, ruleset assurance and the reconciliation invariants |
+| `capability/` | capability catalog, requirements, applicability and coverage |
 
-`calculate_period` reads as the pipeline: `build_context`, then
-`run_events`, `run_amounts`, `run_decisions`, `run_credits`, `post_run` and
-`assemble_result`.
+`period/services.py` (`calculate_period`) reads as the pipeline:
+`build_context`, then `run_events`, `run_amounts`, `run_decisions`,
+`run_credits`, `post_run` and `assemble_result`. A pure state transition is
+a rule (`year/rules_close.py`); the facade reaches it through an application
+service (`period/services_facade_input.py`), since `api` imports the
+application layer only.
 
 ## Test layout
 
@@ -168,7 +178,7 @@ private to the application layer:
 `unit` (pure rules), `integration` (real bundle, loaders, wiring),
 `acceptance` (`public_api` and `legal_scenarios`, through `PayrollEngine`),
 `architecture` and `fixtures` (data only). Unit and integration paths mirror
-the module under test, for example `src/ccnl_engine/payroll/domain/calendar.py`
-and `tests/unit/ccnl_engine/payroll/domain/test_calendar.py`. No file sits
+the module under test, for example `src/ccnl_engine/payroll/year/models_calendar.py`
+and `tests/unit/ccnl_engine/payroll/year/test_models_calendar.py`. No file sits
 deeper than five directories under `tests`, `fixtures` aside. `tests/README.md`
 holds the ownership of each level and the role of each fixture folder.

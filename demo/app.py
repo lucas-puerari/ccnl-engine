@@ -35,7 +35,7 @@ from ccnl_engine.inputs import (
 from ccnl_engine.contract.catalog.loaders import load_ccnl
 from ccnl_engine.knowledge.loaders_manifest import read_resource
 from ccnl_engine.tax.surtax.loaders import load_surtax_rules
-from ccnl_engine.payroll.domain.jurisdiction import REGION_CODES
+from ccnl_engine.payroll.taxation.types_jurisdiction import REGION_CODES
 
 #: First day of the cohort the IVS massimale applies to (L. 335/1995 art. 2 c. 18).
 _IVS_COHORT_START = date(1996, 1, 1)

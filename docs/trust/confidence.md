@@ -125,7 +125,7 @@ automatically. In `operational` mode every one of these runs also carries a
 Every field with a default in the public input types (the request and plan
 types of `ccnl_engine`, the facts of `ccnl_engine.inputs`, the events of
 `ccnl_engine.events`) is classified in
-`ccnl_engine.payroll.domain.input_defaults`, and
+`ccnl_engine.payroll.period.policies_default_registry`, and
 `tests/architecture/test_input_defaults.py` fails on a defaulted field
 without a classification, or on a classification without its field:
 

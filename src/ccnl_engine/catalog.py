@@ -13,7 +13,7 @@ from ccnl_engine.contract.catalog.loaders_discovery import (
     search_ccnls,
 )
 from ccnl_engine.contract.identity.models_validity_window import ValidityWindow
-from ccnl_engine.payroll.domain.capability_catalog import (
+from ccnl_engine.payroll.capability.models_catalog import (
     CapabilityCatalog,
     CapabilityEntry,
     CapabilityImplementation,

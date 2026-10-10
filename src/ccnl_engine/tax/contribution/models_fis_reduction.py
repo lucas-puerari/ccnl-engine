@@ -7,7 +7,7 @@ those who have not applied for the assegno di integrazione salariale for at
 least twenty-four months.  Art. 33 c. 1 splits the rate two thirds to the
 employer and one third to the worker, so the cut lowers both shares.
 Whether the employer has applied is known to it only:
-:attr:`~ccnl_engine.payroll.domain.employer.EmployerProfile.fis_reduction`
+:attr:`~ccnl_engine.payroll.employment.inputs_employer.EmployerProfile.fis_reduction`
 states it.
 """
 

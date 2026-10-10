@@ -10,15 +10,15 @@ from dataclasses import replace
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.domain.calendar import WorkCalendar
-from ccnl_engine.payroll.domain.payment import PaymentId
-from ccnl_engine.payroll.domain.schedule import PayrollSchedule
-from ccnl_engine.payroll.domain.tax_year import monthly_payment_date
-from ccnl_engine.payroll.domain.withholding_schedule import WithholdingSchedule
+from ccnl_engine.payroll.withholding.models_schedule import WithholdingSchedule
+from ccnl_engine.payroll.year.models_calendar import WorkCalendar
+from ccnl_engine.payroll.year.models_payment import PaymentId
+from ccnl_engine.payroll.year.models_schedule import PayrollSchedule
+from ccnl_engine.payroll.year.rules_tax_year import monthly_payment_date
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.domain.period_state import PeriodState
-    from ccnl_engine.payroll.domain.run import PayrollRun
+    from ccnl_engine.payroll.period.models_run import PayrollRun
+    from ccnl_engine.payroll.state.models import PeriodState
 
 __all__ = ["calendar_schedule", "identified", "paid_before", "paid_on_day"]
 

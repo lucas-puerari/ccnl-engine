@@ -363,7 +363,7 @@ over a missing fact.  Recorded as a calculation decision with a stable
 ## Reconciliation invariants
 
 These checks run after every period calculation (`reconcile()` in
-`payroll/application/reconcile.py`). A violation is an engine error:
+`payroll/assurance/validators.py`). A violation is an engine error:
 `calculate_period` raises `DataIntegrityError` listing each one as
 `[code] message`. Caller inputs that cannot produce a payslip are rejected
 before, with `InvalidInputError` (for example a field of the wrong type, a

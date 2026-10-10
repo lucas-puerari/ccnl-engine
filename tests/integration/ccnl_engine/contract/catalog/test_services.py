@@ -10,7 +10,7 @@ from ccnl_engine.contract.catalog.services import (
     list_levels,
 )
 from ccnl_engine.errors import DataIntegrityError, UnknownCcnlError
-from ccnl_engine.payroll.service.bundled_knowledge_repository import (
+from ccnl_engine.payroll.period.repositories import (
     BundledKnowledgeRepository,
 )
 from ccnl_engine.provenance.ruleset.models_assurance import RulesetKind

@@ -2,7 +2,7 @@
 
 A field of a public input type that has a default is either the fact
 (``absence_is_fact``) or stands for a fact the caller has not stated
-(``requires_fact``); see :mod:`ccnl_engine.payroll.domain.input_defaults`.
+(``requires_fact``); see :mod:`ccnl_engine.payroll.period.policies_default_registry`.
 A new defaulted field without a classification, or a classification of a
 field that no longer has a default, fails here.  The ``requires_fact``
 fields honoured by a requirement are exactly the applicability facts of the
@@ -21,12 +21,12 @@ import ccnl_engine
 from ccnl_engine.knowledge.capability.loaders import (
     load_capability_catalog,
 )
-from ccnl_engine.payroll.domain.decisions import PUBLIC_FACTS
-from ccnl_engine.payroll.domain.input_defaults.model import (
+from ccnl_engine.payroll.assurance.models_decision import PUBLIC_FACTS
+from ccnl_engine.payroll.period.models_default import (
     DefaultPolicy,
     FactEnforcement,
 )
-from ccnl_engine.payroll.domain.input_defaults.registry import INPUT_DEFAULTS
+from ccnl_engine.payroll.period.policies_default_registry import INPUT_DEFAULTS
 from tests.fixtures.default_cases import DEFAULT_CASES, NAMES_NOT_SHOWN, NOT_EXERCISED
 
 #: Namespaces whose types a caller builds a request from.

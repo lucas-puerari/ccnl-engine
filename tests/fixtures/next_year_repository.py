@@ -13,14 +13,14 @@ from __future__ import annotations
 from dataclasses import replace
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.service.bundled_knowledge_repository import (
+from ccnl_engine.payroll.period.repositories import (
     BundledKnowledgeRepository,
 )
 
 if TYPE_CHECKING:
     from ccnl_engine.contract.identity.facade import CCNL, TaxSector
     from ccnl_engine.knowledge.limitation.models import ModelLimitation
-    from ccnl_engine.payroll.domain.capability_catalog import CapabilityCatalog
+    from ccnl_engine.payroll.capability.models_catalog import CapabilityCatalog
     from ccnl_engine.tax.annual.models import YearRules
     from ccnl_engine.tax.family.models import FamilyDeductionRules
     from ccnl_engine.tax.regime.models_variable_pay import VariablePayRules

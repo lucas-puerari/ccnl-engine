@@ -7,10 +7,10 @@ import pytest
 from pydantic import ValidationError
 
 from ccnl_engine.contract.employment.models_category import WorkerCategory
-from ccnl_engine.payroll.service._contributions_apprentice import (
+from ccnl_engine.payroll.contribution.rules_apprentice_rate import (
     apprentice_employer_rate,
 )
-from ccnl_engine.payroll.service._contributions_rates import inps_employer_rate
+from ccnl_engine.payroll.contribution.rules_rate import inps_employer_rate
 from ccnl_engine.tax.contribution.models import ApprenticeRates, InpsRates
 from ccnl_engine.tax.contribution.models_tier import (
     ApprenticeRawRates,

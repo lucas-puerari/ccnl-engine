@@ -1,0 +1,301 @@
+"""Unit tests for the WorkEvent domain types."""
+
+from __future__ import annotations
+
+from dataclasses import FrozenInstanceError
+from datetime import date
+from decimal import Decimal
+
+import pytest
+
+from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.payroll.event.facade import (
+    AbsenceEvent,
+    BonusEvent,
+    FringeEvent,
+    HolidayWorkEvent,
+    NightShiftEvent,
+    OvertimeEvent,
+    OvertimeKind,
+    ShiftWorkEvent,
+    SickLeaveEvent,
+    WelfareEvent,
+)
+
+_DATE = date(2026, 1, 15)
+_YEAR = 2026
+
+
+class TestOvertimeEvent:
+    """OvertimeEvent stores hours, rate, multiplier and is frozen."""
+
+    def test_fields(self) -> None:
+        """All fields are stored and retrievable."""
+        evt = OvertimeEvent(
+            event_date=_DATE,
+            hours=Decimal(8),
+            hourly_rate=Decimal("12.50"),
+            multiplier=Decimal("1.25"),
+        )
+        assert evt.event_date == _DATE
+        assert evt.hours == Decimal(8)
+        assert evt.hourly_rate == Decimal("12.50")
+        assert evt.multiplier == Decimal("1.25")
+
+    def test_default_multiplier_is_left_to_the_ccnl(self) -> None:
+        """No multiplier by default: the run derives it from the CCNL band."""
+        evt = OvertimeEvent(event_date=_DATE, hours=Decimal(2), hourly_rate=Decimal(10))
+        assert evt.multiplier is None
+        assert evt.kind is OvertimeKind.WEEKDAY
+
+    @pytest.mark.parametrize(
+        ("hours", "accepted"), [(Decimal(744), True), (Decimal(745), False)]
+    )
+    def test_hours_fit_in_a_month(self, hours: Decimal, *, accepted: bool) -> None:
+        """At most the 744 hours of a month of 31 days."""
+        if accepted:
+            assert OvertimeEvent(_DATE, hours, Decimal(10)).hours == hours
+            return
+        with pytest.raises(InvalidInputError, match=r"OvertimeEvent\.hours"):
+            OvertimeEvent(_DATE, hours, Decimal(10))
+
+    def test_frozen(self) -> None:
+        """OvertimeEvent is immutable."""
+        evt = OvertimeEvent(event_date=_DATE, hours=Decimal(2), hourly_rate=Decimal(10))
+        with pytest.raises(FrozenInstanceError):
+            evt.hours = Decimal(4)  # type: ignore[misc]
+
+
+class TestNightShiftEvent:
+    """NightShiftEvent stores a flat supplement amount and is frozen."""
+
+    def test_fields(self) -> None:
+        """All fields are stored and retrievable."""
+        evt = NightShiftEvent(event_date=_DATE, supplement_amount=Decimal("50.00"))
+        assert evt.event_date == _DATE
+        assert evt.supplement_amount == Decimal("50.00")
+
+    def test_frozen(self) -> None:
+        """NightShiftEvent is immutable."""
+        evt = NightShiftEvent(event_date=_DATE, supplement_amount=Decimal(50))
+        with pytest.raises(FrozenInstanceError):
+            evt.supplement_amount = Decimal(100)  # type: ignore[misc]
+
+
+class TestHolidayWorkEvent:
+    """HolidayWorkEvent stores a flat supplement amount and is frozen."""
+
+    def test_fields(self) -> None:
+        """All fields are stored and retrievable."""
+        evt = HolidayWorkEvent(event_date=_DATE, supplement_amount=Decimal("75.00"))
+        assert evt.event_date == _DATE
+        assert evt.supplement_amount == Decimal("75.00")
+
+    def test_frozen(self) -> None:
+        """HolidayWorkEvent is immutable."""
+        evt = HolidayWorkEvent(event_date=_DATE, supplement_amount=Decimal(75))
+        with pytest.raises(FrozenInstanceError):
+            evt.supplement_amount = Decimal(100)  # type: ignore[misc]
+
+
+class TestShiftWorkEvent:
+    """ShiftWorkEvent carries a shift allowance and the regime facts."""
+
+    def test_defaults_leave_regime_facts_unknown(self) -> None:
+        """Prior income defaults to unknown and the waiver to not given."""
+        evt = ShiftWorkEvent(event_date=_DATE, supplement_amount=Decimal(40))
+        assert evt.supplement_amount == Decimal(40)
+
+    def test_negative_supplement_raises(self) -> None:
+        """A negative shift allowance is rejected."""
+        with pytest.raises(InvalidInputError, match="ShiftWorkEvent"):
+            ShiftWorkEvent(event_date=_DATE, supplement_amount=Decimal(-1))
+
+
+class TestRenewalSigningDate:
+    """A renewal increment carries the signing date of its agreement."""
+
+    def test_signing_date_is_stored_on_a_renewal(self) -> None:
+        """``agreement_signed_on`` is kept on a contract renewal."""
+        evt = BonusEvent(
+            event_date=_DATE,
+            amount=Decimal(100),
+            kind="contract_renewal",
+            agreement_signed_on=date(2025, 3, 1),
+        )
+        assert evt.agreement_signed_on == date(2025, 3, 1)
+
+    @pytest.mark.parametrize("kind", ["bonus", "productivity_bonus"])
+    def test_signing_date_rejected_on_other_kinds(self, kind: str) -> None:
+        """Only a contract renewal has a signing date."""
+        with pytest.raises(InvalidInputError, match="agreement_signed_on"):
+            BonusEvent(
+                event_date=_DATE,
+                amount=Decimal(100),
+                kind=kind,  # type: ignore[arg-type]
+                agreement_signed_on=date(2025, 3, 1),
+            )
+
+
+class TestAbsenceEvent:
+    """AbsenceEvent stores hours, hourly rate, optional end_date and is frozen."""
+
+    def test_fields(self) -> None:
+        """All fields are stored and retrievable."""
+        evt = AbsenceEvent(
+            event_date=_DATE, hours=Decimal(4), hourly_rate=Decimal("13.00")
+        )
+        assert evt.event_date == _DATE
+        assert evt.hours == Decimal(4)
+        assert evt.hourly_rate == Decimal("13.00")
+
+    def test_default_end_date_none(self) -> None:
+        """end_date defaults to None for single-day absences."""
+        evt = AbsenceEvent(event_date=_DATE, hours=Decimal(4), hourly_rate=Decimal(13))
+        assert evt.end_date is None
+
+    def test_end_date_stored(self) -> None:
+        """end_date is stored when supplied for a date-range absence."""
+        end = date(2026, 1, 17)
+        evt = AbsenceEvent(
+            event_date=_DATE,
+            hours=Decimal(16),
+            hourly_rate=Decimal(13),
+            end_date=end,
+        )
+        assert evt.end_date == end
+
+    def test_frozen(self) -> None:
+        """AbsenceEvent is immutable."""
+        evt = AbsenceEvent(event_date=_DATE, hours=Decimal(4), hourly_rate=Decimal(13))
+        with pytest.raises(FrozenInstanceError):
+            evt.hours = Decimal(8)  # type: ignore[misc]
+
+
+class TestSickLeaveEvent:
+    """SickLeaveEvent stores employer-paid gross, waiting period and is frozen."""
+
+    def test_fields(self) -> None:
+        """All fields are stored and retrievable."""
+        evt = SickLeaveEvent(event_date=_DATE, amount=Decimal("200.00"))
+        assert evt.event_date == _DATE
+        assert evt.amount == Decimal("200.00")
+
+    def test_default_sick_days_one(self) -> None:
+        """sick_days defaults to 1."""
+        evt = SickLeaveEvent(event_date=_DATE, amount=Decimal("200.00"))
+        assert evt.sick_days == 1
+
+    def test_sick_days_stored(self) -> None:
+        """sick_days is stored when supplied."""
+        evt = SickLeaveEvent(event_date=_DATE, amount=Decimal("200.00"), sick_days=5)
+        assert evt.sick_days == 5
+
+    def test_default_waiting_period_days_zero(self) -> None:
+        """waiting_period_days defaults to 0 (no carenza)."""
+        evt = SickLeaveEvent(event_date=_DATE, amount=Decimal("200.00"))
+        assert evt.waiting_period_days == 0
+
+    def test_waiting_period_days_stored(self) -> None:
+        """waiting_period_days is stored when supplied."""
+        evt = SickLeaveEvent(
+            event_date=_DATE,
+            amount=Decimal("200.00"),
+            sick_days=5,
+            waiting_period_days=3,
+        )
+        assert evt.waiting_period_days == 3
+
+    def test_frozen(self) -> None:
+        """SickLeaveEvent is immutable."""
+        evt = SickLeaveEvent(event_date=_DATE, amount=Decimal(200))
+        with pytest.raises(FrozenInstanceError):
+            evt.amount = Decimal(300)  # type: ignore[misc]
+
+    def test_sick_leave_zero_days_raises_invalid_input(self) -> None:
+        """SickLeaveEvent with sick_days=0 must raise InvalidInputError.
+
+        sick_days=0 is semantically invalid;
+        the engine must reject it with a structured error before the formula runs.
+        """
+        with pytest.raises(InvalidInputError):
+            SickLeaveEvent(
+                event_date=date(_YEAR, 1, 15),
+                amount=Decimal("500.00"),
+                sick_days=0,
+                waiting_period_days=1,
+            )
+
+    def test_waiting_period_exceeds_sick_days_raises_invalid_input(self) -> None:
+        """SickLeaveEvent with waiting_period_days > sick_days raises InvalidInputError.
+
+        The docstring states this is invalid; the
+        engine must enforce it with a structured domain error.
+        """
+        with pytest.raises(InvalidInputError):
+            SickLeaveEvent(
+                event_date=date(_YEAR, 1, 15),
+                amount=Decimal("500.00"),
+                sick_days=2,
+                waiting_period_days=3,
+            )
+
+
+class TestBonusEvent:
+    """BonusEvent stores a one-off gross amount and is frozen."""
+
+    def test_fields(self) -> None:
+        """All fields are stored and retrievable."""
+        evt = BonusEvent(event_date=_DATE, amount=Decimal("1000.00"))
+        assert evt.event_date == _DATE
+        assert evt.amount == Decimal("1000.00")
+
+    def test_frozen(self) -> None:
+        """BonusEvent is immutable."""
+        evt = BonusEvent(event_date=_DATE, amount=Decimal(1000))
+        with pytest.raises(FrozenInstanceError):
+            evt.amount = Decimal(2000)  # type: ignore[misc]
+
+    def test_negative_bonus_raises_invalid_input(self) -> None:
+        """BonusEvent with a negative amount must raise InvalidInputError.
+
+        A -100 EUR bonus reduces gross and taxable
+        income without any explicit deduction record.  Expected: InvalidInputError.
+        """
+        with pytest.raises(InvalidInputError):
+            BonusEvent(
+                event_date=date(_YEAR, 1, 15),
+                amount=Decimal("-100.00"),
+            )
+
+
+class TestFringeEvent:
+    """FringeEvent stores event_date and amount; threshold comes from year policy."""
+
+    def test_fields(self) -> None:
+        """event_date and amount are stored and retrievable."""
+        evt = FringeEvent(event_date=_DATE, amount=Decimal("500.00"))
+        assert evt.event_date == _DATE
+        assert evt.amount == Decimal("500.00")
+
+    def test_frozen(self) -> None:
+        """FringeEvent is immutable."""
+        evt = FringeEvent(event_date=_DATE, amount=Decimal(100))
+        with pytest.raises(FrozenInstanceError):
+            evt.amount = Decimal(200)  # type: ignore[misc]
+
+
+class TestWelfareEvent:
+    """WelfareEvent stores a gross amount and is frozen."""
+
+    def test_fields(self) -> None:
+        """All fields are stored and retrievable."""
+        evt = WelfareEvent(event_date=_DATE, amount=Decimal("250.00"))
+        assert evt.event_date == _DATE
+        assert evt.amount == Decimal("250.00")
+
+    def test_frozen(self) -> None:
+        """WelfareEvent is immutable."""
+        evt = WelfareEvent(event_date=_DATE, amount=Decimal(250))
+        with pytest.raises(FrozenInstanceError):
+            evt.amount = Decimal(500)  # type: ignore[misc]

@@ -15,7 +15,7 @@ from ccnl_engine.contract.employment.models_category import WorkerCategory
 from ccnl_engine.contract.identity.facade import CCNL
 from ccnl_engine.contract.identity.rules_validity import TimeSeries, ValidityPeriod
 from ccnl_engine.contract.seniority.models import SeniorityIncrements
-from ccnl_engine.payroll.service.seniority import (
+from ccnl_engine.payroll.employment.rules_seniority import (
     seniority_first_cadence,
     seniority_maximum,
 )

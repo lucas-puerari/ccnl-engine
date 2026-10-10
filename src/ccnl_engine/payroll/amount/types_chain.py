@@ -1,0 +1,210 @@
+"""Internal pay-chain value types for the computation engine."""
+
+from __future__ import annotations
+
+from dataclasses import dataclass
+from decimal import Decimal
+from typing import TYPE_CHECKING, Protocol
+
+from ccnl_engine.payroll.amount.policies_rounding import money
+
+if TYPE_CHECKING:
+    from ccnl_engine.contract.compensation.models import Allowance
+
+_ZERO = Decimal(0)
+
+
+class MonthPeriod(Protocol):
+    """Structural protocol for apprenticeship period objects."""
+
+    months_from: int
+    months_until: int | None
+
+
+@dataclass(frozen=True)
+class MonthlyPayChain:
+    """Full-time monthly pay components of one level on one date.
+
+    ``limitations`` holds the ids of the engine limitations whose code path
+    built the chain; every derived chain keeps them.  An allowance flagged
+    ``in_kind`` is the value of a benefit provided in kind: it stays out of
+    the cash gross (:attr:`allowances_total`) and counts in
+    :attr:`in_kind_total`, until :meth:`for_extra_month` pays it in cash.
+    """
+
+    base: Decimal
+    seniority: Decimal
+    allowances: tuple[tuple[Allowance, Decimal], ...]
+    limitations: tuple[str, ...] = ()
+
+    def scaled(self, factor: Decimal) -> MonthlyPayChain:
+        """Scale all components by ``factor``.
+
+        Returns:
+            A new chain with every component multiplied by ``factor``.
+        """
+        return MonthlyPayChain(
+            base=money(self.base * factor),
+            seniority=money(self.seniority * factor),
+            allowances=tuple((a, money(v * factor)) for a, v in self.allowances),
+            limitations=self.limitations,
+        )
+
+    def prorated(self, units: Decimal, divisor: Decimal) -> MonthlyPayChain:
+        """Pay ``units`` of the ``divisor`` units of a monthly pay.
+
+        Each component is multiplied by ``units`` before the division, so a
+        quota such as fourteen twenty-sixths is rounded once, to the cent.
+
+        Returns:
+            A new chain with every component worth ``units / divisor`` of it.
+        """
+        return MonthlyPayChain(
+            base=money(self.base * units / divisor),
+            seniority=money(self.seniority * units / divisor),
+            allowances=tuple(
+                (a, money(v * units / divisor)) for a, v in self.allowances
+            ),
+            limitations=self.limitations,
+        )
+
+    def scaled_for_apprenticeship(self, percentage: Decimal) -> MonthlyPayChain:
+        """Scale the components a percentage apprenticeship reduces.
+
+        The base salary is always reduced.  The seniority of an apprentice
+        is the CCNL apprentice amount, already set for apprentices, so it
+        is paid in full: reducing it again would count the apprenticeship
+        twice.  Allowances are reduced only when
+        :attr:`~ccnl_engine.contract.compensation.models\
+.Allowance.apprenticeship_pct_relevant` is ``True``; the others are paid
+        at their full contractual value.
+
+        Returns:
+            A new chain with selectively scaled components.
+        """
+        return MonthlyPayChain(
+            base=money(self.base * percentage),
+            seniority=self.seniority,
+            allowances=tuple(
+                (a, money(v * percentage) if a.apprenticeship_pct_relevant else v)
+                for a, v in self.allowances
+            ),
+            limitations=self.limitations,
+        )
+
+    def scaled_for_part_time(self, factor: Decimal) -> MonthlyPayChain:
+        """Scale only proportionable components by ``factor``.
+
+        Base salary and seniority are always proportionable.  Allowances are
+        scaled only when :attr:`~ccnl_engine.contract.compensation.models\
+.Allowance.part_time_proportionable` is ``True``; allowances with
+        ``part_time_proportionable=False`` retain their full contractual value.
+
+        Returns:
+            A new chain with selectively scaled components.
+        """
+        return MonthlyPayChain(
+            base=money(self.base * factor),
+            seniority=money(self.seniority * factor),
+            allowances=tuple(
+                (a, money(v * factor) if a.part_time_proportionable else v)
+                for a, v in self.allowances
+            ),
+            limitations=self.limitations,
+        )
+
+    def for_extra_month(self, months_threshold: int) -> MonthlyPayChain:
+        """Return a chain containing only allowances eligible for an extra-month run.
+
+        An allowance is included when its ``months_per_year`` is ``None``
+        (no restriction) or is at least ``months_threshold``.  Allowances
+        paid fewer than ``months_threshold`` times per year (e.g. an EDR paid
+        only 12 times in a 13-month contract) are excluded from the run.
+        Base salary and seniority are always included.  An allowance
+        provided in kind is paid in cash in the extra month (CCNL lavoro
+        domestico art. 39 c. 1: the tredicesima includes the indennità
+        sostitutiva of board and lodging).
+
+        Args:
+            months_threshold: Minimum ``months_per_year`` for inclusion.
+                Pass the CCNL ``additional_months`` value (13 for tredicesima,
+                14 for quattordicesima).
+
+        Returns:
+            A filtered :class:`MonthlyPayChain`.
+        """
+        eligible = tuple(
+            (a.model_copy(update={"in_kind": False}) if a.in_kind else a, v)
+            for a, v in self.allowances
+            if a.months_per_year is None or a.months_per_year >= months_threshold
+        )
+        return MonthlyPayChain(
+            base=self.base,
+            seniority=self.seniority,
+            allowances=eligible,
+            limitations=self.limitations,
+        )
+
+    @property
+    def allowances_total(self) -> Decimal:
+        """Rounded sum of the allowances paid in cash."""
+        return money(sum((v for a, v in self.allowances if not a.in_kind), _ZERO))
+
+    @property
+    def in_kind_total(self) -> Decimal:
+        """Rounded sum of the allowances provided in kind."""
+        return money(sum((v for a, v in self.allowances if a.in_kind), _ZERO))
+
+    @property
+    def tfr_excluded_total(self) -> Decimal:
+        """Rounded sum of the allowances the CCNL leaves out of the TFR.
+
+        Art. 2120 c. 2 c.c.: the TFR counts every sum paid "salvo diversa
+        previsione dei contratti collettivi"; the allowances flagged
+        ``tfr_relevant`` false are that provision.
+        """
+        return money(sum((v for a, v in self.allowances if not a.tfr_relevant), _ZERO))
+
+
+@dataclass(frozen=True)
+class ApprenticeshipScaling:
+    """Percentage applied to an apprentice's pay chain and what it reduced.
+
+    Attributes:
+        percentage: Share of the reference pay due in the current period.
+        scaled: Components reduced to ``percentage``: ``base_salary``,
+            then the codes of the allowances whose
+            ``apprenticeship_pct_relevant`` is true.
+        unscaled: Components paid at full value: ``seniority`` when due
+            (the apprentice amount), then the codes of the other allowances.
+    """
+
+    percentage: Decimal
+    scaled: tuple[str, ...]
+    unscaled: tuple[str, ...]
+
+    @classmethod
+    def of(cls, chain: MonthlyPayChain, percentage: Decimal) -> ApprenticeshipScaling:
+        """Describe which components of ``chain`` the percentage reduces.
+
+        Mirrors :meth:`MonthlyPayChain.scaled_for_apprenticeship`.
+
+        Args:
+            chain: Full-value pay chain of the reference level.
+            percentage: Apprenticeship percentage of the current period.
+
+        Returns:
+            The percentage with the scaled and unscaled component codes.
+        """
+        relevant = tuple(
+            a.code for a, _ in chain.allowances if a.apprenticeship_pct_relevant
+        )
+        seniority = ("seniority",) if chain.seniority else ()
+        exempt = tuple(
+            a.code for a, _ in chain.allowances if not a.apprenticeship_pct_relevant
+        )
+        return cls(
+            percentage=percentage,
+            scaled=("base_salary", *relevant),
+            unscaled=seniority + exempt,
+        )
