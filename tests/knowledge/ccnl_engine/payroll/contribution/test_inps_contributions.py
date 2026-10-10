@@ -398,8 +398,10 @@ def test_small_terziario_employer_pays_the_cut_fis(
         (WorkerCategory.OPERAIO, Decimal("535.85")),
         # Base 1,591 x 28.46% = 452.80.
         (WorkerCategory.IMPIEGATO, Decimal("452.80")),
-        # Base 1,591 x 26.96% = 428.94.
-        (WorkerCategory.DIRIGENTE, Decimal("428.94")),
+        # A dirigente is raised to the 160.77 daily minimum of industria
+        # (INPS circ. 6/2026 allegato 1, Tabella A): 26 x 160.77 = 4,180.02,
+        # base 4,180 (whole euro); 4,180 x 26.96% = 1,126.93.
+        (WorkerCategory.DIRIGENTE, Decimal("1126.93")),
     ],
 )
 def test_edilizia_employer_rate_follows_the_category(

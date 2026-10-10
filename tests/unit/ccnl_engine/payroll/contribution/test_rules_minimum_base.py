@@ -235,3 +235,40 @@ def test_sector_without_a_day_count_is_bounded_by_a_six_day_week(
     assert minimum.bound == _D("1569.51")
     assert minimum.reason is reason
     assert minimum.source is None
+
+
+#: Industria of Tabella A: the dirigenti have a daily minimum of 160.77.
+_INDUSTRY = _PRIVATE.model_copy(
+    update={"daily_by_category": {WorkerCategory.DIRIGENTE: _D("160.77")}}
+)
+
+
+def test_dirigente_is_raised_to_the_minimum_of_the_qualifica() -> None:
+    """2,500.00 < 26 x 160.77 = 4,180.02: contributed on 4,180.02."""
+    position = replace(_FULL_TIME, category=WorkerCategory.DIRIGENTE)
+    minimum = resolve_minimum_base(_INDUSTRY, _D("2500.00"), position)
+
+    assert minimum.reason is MinimumBaseReason.RAISED_TO_MINIMUM
+    assert (minimum.minimum, minimum.base, minimum.bound) == (_D("4180.02"),) * 3
+
+
+def test_other_qualifiche_keep_the_general_minimum() -> None:
+    """An impiegato of industria at 1,600.00 is above 1,511.38."""
+    position = replace(_FULL_TIME, category=WorkerCategory.IMPIEGATO)
+    minimum = resolve_minimum_base(_INDUSTRY, _D("1600.00"), position)
+
+    assert minimum.reason is MinimumBaseReason.ABOVE_MINIMUM
+    assert minimum.bound == _FULL_MONTH
+
+
+def test_part_time_dirigente_has_no_published_hourly_minimum() -> None:
+    """20 of 40 hours: up to 160.77 x 6/40 x 20 x 26/6 = 2,090.01.
+
+    The published 8.72 is the hourly minimum of 58.13: INPS publishes none
+    of the dirigenti, so 1,500.00 cannot be compared.
+    """
+    position = replace(_part_time(40), category=WorkerCategory.DIRIGENTE)
+    minimum = resolve_minimum_base(_INDUSTRY, _D("1500.00"), position)
+
+    assert minimum.reason is MinimumBaseReason.HOURLY_MINIMUM_UNSOURCED
+    assert minimum.bound == _D("2090.01")

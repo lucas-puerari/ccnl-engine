@@ -17,6 +17,9 @@ from ccnl_engine.payroll.assurance.services_ruleset import provisional_paths
 from ccnl_engine.payroll.capability.results import CapabilityScope
 from ccnl_engine.payroll.contribution.rules_contractual_fund import contractual_paths
 from ccnl_engine.payroll.contribution.services_enam import enam_paths
+from ccnl_engine.payroll.contribution.services_minimum_base import (
+    minimum_base_paths,
+)
 from ccnl_engine.payroll.contribution.services_pension_decision import paid_month_paths
 from ccnl_engine.payroll.contribution.services_tfr_compensation import (
     tfr_compensation_paths,
@@ -84,6 +87,7 @@ def run_limitations(
         | enam_paths(ctx)
         | provisional_paths(ctx)
         | tfr_compensation_paths(ctx)
+        | minimum_base_paths(ctx)
     )
     facts = limitation_facts(ctx, report, traversed)
     candidates = (*ctx.repo.load_engine_limitations(), *ctx.contract.ccnl.limitations)

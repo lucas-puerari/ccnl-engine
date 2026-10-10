@@ -1023,8 +1023,7 @@
     },
     "social_security/contribution/2026/agricoltura.json": {
       "apprentice": "assumed",
-      "inps": "assumed",
-      "inps.minimum_base": "assumed"
+      "inps": "assumed"
     },
     "social_security/contribution/2026/artigianato.json": {
       "apprentice": "assumed",
@@ -1707,6 +1706,7 @@
     ],
     "limitation/engine.json": [
       "apprenticeship_pct_undeclared_components",
+      "inps_minimum_base_exempt_category",
       "provisional_inps_ruleset",
       "provisional_ruleset",
       "sickness_cumulation_window",

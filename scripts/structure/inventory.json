@@ -765,6 +765,7 @@
     "tests/integration/ccnl_engine/payroll/capability/test_services_trace.py": "tests/integration/ccnl_engine/payroll/capability/test_services_trace.py",
     "tests/integration/ccnl_engine/payroll/contribution/test_rules_rate.py": "tests/integration/ccnl_engine/payroll/contribution/test_rules_rate.py",
     "tests/integration/ccnl_engine/payroll/contribution/test_services_ivs_ceiling.py": "tests/integration/ccnl_engine/payroll/contribution/test_services_ivs_ceiling.py",
+    "tests/integration/ccnl_engine/payroll/contribution/test_services_minimum_base.py": "tests/integration/ccnl_engine/payroll/contribution/test_services_minimum_base.py",
     "tests/integration/ccnl_engine/payroll/contribution/test_services_naspi.py": "tests/integration/ccnl_engine/payroll/contribution/test_services_naspi.py",
     "tests/integration/ccnl_engine/payroll/contribution/test_services_other_employer.py": "tests/integration/ccnl_engine/payroll/contribution/test_services_other_employer.py",
     "tests/integration/ccnl_engine/payroll/contribution/test_services_tfr_compensation.py": "tests/integration/ccnl_engine/payroll/contribution/test_services_tfr_compensation.py",

@@ -43,6 +43,7 @@ def test_bundled_engine_limitations_are_path_triggered() -> None:
         "provisional_ruleset",
         "provisional_inps_ruleset",
         "tfr_compensation_apprentice_guarantee_fund",
+        "inps_minimum_base_exempt_category",
     }
     assert {lim.id for lim in limitations} - blocking == {
         "apprenticeship_midpoint_allowances",

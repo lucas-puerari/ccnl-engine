@@ -29,6 +29,9 @@ from ccnl_engine.payroll.assurance.services_ruleset import (
     PROVISIONAL_INPS_RULESET,
     PROVISIONAL_RULESET,
 )
+from ccnl_engine.payroll.contribution.services_minimum_base import (
+    EXEMPT_CATEGORY_FLOOR,
+)
 from ccnl_engine.payroll.contribution.services_tfr_compensation import (
     APPRENTICE_GUARANTEE_FUND,
 )
@@ -108,6 +111,7 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         PROVISIONAL_RULESET,
         PROVISIONAL_INPS_RULESET,
         APPRENTICE_GUARANTEE_FUND,
+        EXEMPT_CATEGORY_FLOOR,
     }
     assert by_status[LimitationStatus.RESOLVED] == {_MIDPOINT, _APPRENTICE_SENIORITY}
 
