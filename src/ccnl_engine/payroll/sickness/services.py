@@ -21,6 +21,8 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.contract.absence.models import DailyDivisorMethod
+from ccnl_engine.payroll.contribution.rules_rate import resolve_rates
+from ccnl_engine.payroll.employment.inputs import Apprentice
 from ccnl_engine.payroll.period.models_run import RunKind
 from ccnl_engine.payroll.sickness.models import SicknessHistory
 from ccnl_engine.payroll.sickness.models_pay_rule import SickPayRules
@@ -140,7 +142,24 @@ def sickness_terms(ctx: RunContext) -> SicknessTerms:
         source=None if provenance is None else provenance.location,
         cover_fact=cover_fact,
         fixed_term=ctx.request.contract_type.type == "fixed_term",
+        apprentice=isinstance(ctx.request.contract_type, Apprentice),
+        employee_rate=_employee_rate(ctx),
     )
+
+
+def _employee_rate(ctx: RunContext) -> Decimal:
+    """Return the INPS rate of the worker of the run, zero without one.
+
+    Returns:
+        The employee rate of the contract and category; zero for domestic
+        work, which has no ordinary INPS rates.
+    """
+    rules = ctx.contract.year_rules
+    if rules.inps is None:
+        return Decimal(0)
+    return resolve_rates(
+        rules, ctx.request.contract_type, ctx.worker_category
+    ).employee_rate
 
 
 def sickness_rules(ctx: RunContext) -> tuple[Rule, ...]:

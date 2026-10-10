@@ -24,6 +24,7 @@ from ccnl_engine.contract.catalog.loaders import load_ccnl
 from ccnl_engine.contract.employment.models_category import WorkerCategory
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.assurance.models import BlockerCode
+from ccnl_engine.payroll.employment.inputs import Apprentice
 from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.employment.inputs_fact import EmploymentPeriod
 from ccnl_engine.payroll.event.facade import SickLeaveEvent
@@ -358,3 +359,45 @@ def test_indemnity_bands_report_their_provenance() -> None:
         bundled.capability_report.rule_sources["sickness"] is ProvenanceStatus.ASSUMED
     )
     assert sources["sickness"] is ProvenanceStatus.MISSING
+
+
+class TestCommercioNetBasis:
+    """Commercio level 4 impiegato, sick from Monday 2 to Friday 13 March 2026.
+
+    Art. 187: carenza 2-4 March at 100%, then 75% of the net daily pay.
+    The indemnified days are worth 548.21 (753.79 of sick pay less the
+    205.58 of carenza); INPS pays 50%, 274.11, free of contributions.  At an
+    employer of 50 the worker pays 9.76% to INPS, so the INPS share is worth
+    274.11 / 0.9024 = 303.76 of gross pay, and the company tops it up to
+    75% of 548.21 = 411.16: 411.16 - 303.76 = 107.40.
+    """
+
+    _EPISODE = sickness_episode("c", date(2026, 3, 2), date(2026, 3, 13))
+
+    def _run(self, **kwargs: object) -> PeriodResult:
+        request = _req(
+            3,
+            self._EPISODE,
+            slug="commercio-confcommercio.json",
+            level="4",
+            category=WorkerCategory.IMPIEGATO,
+        )
+        return calculate_period(replace(request, **kwargs))  # type: ignore[arg-type]
+
+    def test_integration_tops_up_the_grossed_up_indemnity(self) -> None:
+        """Carenza 205.58, INPS 274.11, company integration 107.40."""
+        assert _sick(self._run()) == {
+            "abs": Decimal("753.79"),
+            "crnz": Decimal("205.58"),
+            "inps": Decimal("274.11"),
+            "intg": Decimal("107.40"),
+        }
+
+    def test_apprentice_takes_the_inps_share_only(self) -> None:
+        """No carenza and no integration: Art. 187 excludes apprentices.
+
+        "Le indennità a carico del datore di lavoro non sono dovute [...] né
+        agli apprendisti".
+        """
+        result = self._run(contract_type=Apprentice(months_elapsed=6))
+        assert set(_sick(result)) == {"abs", "inps"}

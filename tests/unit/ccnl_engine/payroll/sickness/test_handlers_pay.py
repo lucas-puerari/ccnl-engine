@@ -11,13 +11,20 @@ from __future__ import annotations
 
 from datetime import date
 from decimal import Decimal
+from types import SimpleNamespace
+from typing import TYPE_CHECKING, cast
 
 from ccnl_engine.payroll.amount.types_chain import MonthlyPayChain
 from ccnl_engine.payroll.sickness.handlers_pay import (
+    _grossed,
     _quota,
     _within_month,
 )
 from ccnl_engine.payroll.sickness.rules_day import SickDayKind, SickDaySegment
+from ccnl_engine.payroll.sickness.rules_terms import SicknessTerms
+
+if TYPE_CHECKING:
+    from ccnl_engine.payroll.sickness.models_pay_rule import SickPayRules
 
 _CHAIN = MonthlyPayChain(base=Decimal("2211.43"), seniority=Decimal(0), allowances=())
 _DIVISOR = Decimal(26)
@@ -74,3 +81,17 @@ def test_days_past_the_comporto_keep_their_units() -> None:
         Decimal(6),
         Decimal(17),
     )
+
+
+def _rules(*, net_basis: bool) -> SickPayRules:
+    return cast(
+        "SickPayRules", SimpleNamespace(ccnl=SimpleNamespace(net_basis=net_basis))
+    )
+
+
+def test_net_basis_grosses_up_the_inps_share() -> None:
+    """274.11 / (1 - 0.0976) = 303.758..., 303.76; the gross basis keeps it."""
+    terms = SicknessTerms(employee_rate=Decimal("0.0976"))
+    share = Decimal("274.11")
+    assert _grossed(share, _rules(net_basis=True), terms) == Decimal("303.76")
+    assert _grossed(share, _rules(net_basis=False), terms) == share
