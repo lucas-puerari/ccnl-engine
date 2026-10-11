@@ -1,27 +1,33 @@
 # ruff: file-ignore[implicit-namespace-package]
-"""ccnl-engine Pyodide glue — runs in the browser via Pyodide.
+"""ccnl-engine Pyodide glue: runs in the browser via Pyodide.
 
-All public functions return JSON strings so that values cross the Python/JS
-boundary without type ambiguity (Decimal, date, etc.).
+Every public function returns a JSON string, so that values cross the
+Python/JS boundary without type ambiguity (Decimal, date, ...).  The demo
+computes a whole competence year: the annual figures are the sum of its runs,
+never a month multiplied by the number of monthly payments.
 """
 
 from __future__ import annotations
 
 import json
 import operator
+from collections import defaultdict
 from datetime import UTC, date, datetime
 from decimal import Decimal
+from typing import TYPE_CHECKING, Any
 
 from ccnl_engine import (
+    CompetenceYearPlan,
+    CompetenceYearResult,
     EmployerProfile,
     Employment,
     Headcount,
     PayrollEngine,
-    PayrollRun,
     PeriodFacts,
-    PeriodInput,
-    PeriodResult,
 )
+from ccnl_engine.bundle.loaders import read_resource
+from ccnl_engine.catalog import RulesetKind
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.inputs import (
     Apprentice,
     ContributableHours,
@@ -32,13 +38,36 @@ from ccnl_engine.inputs import (
     SenioritySource,
     WeeklyHours,
 )
-from ccnl_engine.catalog.loaders import load_ccnl
-from ccnl_engine.bundle.loaders import read_resource
-from ccnl_engine.surtax.loaders import load_surtax_rules
 from ccnl_engine.surtax.jurisdiction.types import REGION_CODES
+from ccnl_engine.surtax.loaders import load_surtax_rules
+
+if TYPE_CHECKING:
+    from ccnl_engine import PeriodResult
 
 #: First day of the cohort the IVS massimale applies to (L. 335/1995 art. 2 c. 18).
 _IVS_COHORT_START = date(1996, 1, 1)
+#: Weeks in a month, for the contributable hours of a domestic worker.
+_WEEKS_PER_MONTH = Decimal(52) / Decimal(12)
+_CENT = Decimal("0.01")
+#: Ledger accounts the breakdown sums over the year.
+_ACCOUNTS = (
+    "employee_contributions",
+    "ordinary_tax",
+    "surtax",
+    "credits",
+    "bilateral_fund_employee",
+    "pension_fund_employee",
+    "employer_contributions",
+    "bilateral_fund_employer",
+    "pension_fund_employer",
+    "tfr_accrual",
+)
+_EARNINGS = {
+    "base_salary_earning": "base_salary",
+    "seniority_earning": "seniority",
+    "fixed_allowance_earning": "allowance",
+    "conditional_allowance_earning": "allowance",
+}
 
 
 def _latest_bundled_year() -> int:
@@ -71,9 +100,6 @@ def _latest_bundled_year() -> int:
 
 
 _DEFAULT_YEAR = _latest_bundled_year()
-_CALC_DATE = date(_DEFAULT_YEAR, 12, 31)
-#: Month of the run the demo computes.
-_RUN_MONTH = 12
 _ENGINE = PayrollEngine.bundled()
 
 
@@ -115,503 +141,439 @@ def list_ccnls() -> str:
     """Return JSON list of all available CCNLs, sorted by name.
 
     Returns:
-        JSON-encoded list of ``{file, id, name, readiness}`` dicts, one per
+        JSON-encoded list of ``{id, name, readiness}`` dicts, one per
         bundled CCNL, from :meth:`PayrollEngine.list_contracts`.
     """
     result = [
-        {
-            "file": f"{c.ccnl_id}.json",
-            "id": c.ccnl_id,
-            "name": c.name,
-            "readiness": str(c.readiness),
-        }
+        {"id": c.ccnl_id, "name": c.name, "readiness": str(c.readiness)}
         for c in PayrollEngine.list_contracts()
     ]
     result.sort(key=operator.itemgetter("name"))
     return json.dumps(result)
 
 
-def load_ccnl_levels(filename: str) -> str:
+def load_ccnl_levels(ccnl_id: str) -> str:
     """Return JSON list of levels for a CCNL.
 
-    Includes ``max_seniority_count`` (the maximum number of seniority
-    increments allowed for that level) and ``seniority_cadence_months``
-    so the UI can constrain the seniority input and show a useful hint.
-
     Args:
-        filename: Bare filename (e.g. ``metalmeccanico-federmeccanica.json``).
+        ccnl_id: Slug of the CCNL (e.g. ``metalmeccanico-federmeccanica``).
 
     Returns:
-        JSON-encoded list of ``{code, description, order,
-        max_seniority_count, seniority_cadence_months}`` dicts ordered by
-        ``order``.
+        JSON-encoded list of ``{code, description}`` dicts in the order of
+        the CCNL.
     """
-    ccnl = load_ccnl(filename)
-    si = ccnl.parameters.seniority_increments
-    global_max = int(si.maximum_count) if si else 0
-    by_level: dict[str, int] = (
-        {
-            lvl: int(cnt)
-            for lvl, cnt in (getattr(si, "maximum_count_by_level", None) or {}).items()
-        }
-        if si
-        else {}
-    )
-    cadence = int(si.cadence_months) if si else 0
-    levels = sorted(ccnl.levels, key=lambda lv: lv.order)
     return json.dumps([
-        {
-            "code": lv.code,
-            "description": lv.description,
-            "order": lv.order,
-            "max_seniority_count": by_level.get(lv.code, global_max),
-            "seniority_cadence_months": cadence,
-        }
-        for lv in levels
+        {"code": level.code, "description": level.description}
+        for level in _ENGINE.list_levels(ccnl_id)
     ])
 
 
-def load_level_tracks(filename: str, level_code: str) -> str:
+def load_level_tracks(ccnl_id: str, level_code: str) -> str:
     """Return JSON list of apprenticeship tracks for a given level.
 
-    When no apprenticeship data is available, returns an empty list.
-
     Args:
-        filename: Bare CCNL filename.
+        ccnl_id: Slug of the CCNL.
         level_code: Level code within the CCNL.
 
     Returns:
-        JSON-encoded list of track name strings, or ``[]`` when none exist.
+        JSON-encoded list of track names, ``[]`` when none exist.
     """
-    try:
-        ccnl = load_ccnl(filename)
-        level = ccnl.level_by_code(level_code)
-        tracks = [
-            t.name
-            for t in (ccnl.apprenticeship or [])
-            if level.code in t.destination_levels
-            or (hasattr(t, "levels") and level.code in t.levels)
-        ]
-        return json.dumps(tracks)
-    except Exception:  # noqa: BLE001
-        return json.dumps([])
+    ccnl = load_ccnl(f"{ccnl_id}.json")
+    return json.dumps([
+        track.name
+        for track in ccnl.apprenticeship or []
+        if level_code in track.destination_levels
+    ])
 
 
-def _build_contract(
-    employment_type: str,
-    months_elapsed: int,
-    track: str = "",
-) -> tuple[Permanent | FixedTerm | Apprentice | None, str]:
-    """Construct a contract instance or return (None, error_message).
+def _contract(params: dict[str, Any]) -> Permanent | FixedTerm | Apprentice:
+    """Return the contract type the parameters name.
 
     Returns:
-        A ``(contract, "")`` pair on success or ``(None, error)`` on failure.
-    """
-    if employment_type == "permanent":
-        return Permanent(), ""
-    if employment_type == "fixed_term":
-        return FixedTerm(), ""
-    if employment_type == "apprentice":
-        return Apprentice(
-            months_elapsed=months_elapsed,
-            track=track or None,
-        ), ""
-    return None, f"Tipo di contratto non supportato: {employment_type!r}"
-
-
-def _resolve_ccnl_meta(
-    filename: str, part_time_ratio: float
-) -> tuple[str, Decimal | None]:
-    """Return (ccnl_name, weekly_hours_domestic).
-
-    Loads the CCNL once to resolve both the display name and, for domestic
-    contracts, the scaled weekly hours. Falls back to the filename when
-    loading fails. ``weekly_hours_domestic`` is None for non-domestic CCNLs.
-
-    Returns:
-        Tuple of (display name, weekly hours or None).
-    """
-    try:
-        ccnl = load_ccnl(filename)
-    except Exception:  # noqa: BLE001
-        return filename, None
-    is_domestic = getattr(ccnl.meta, "tax_sector", "") == "lavoro-domestico"
-    if not is_domestic:
-        return ccnl.meta.name, None
-    divisor = ccnl.parameters.hourly_divisor.value_at(_CALC_DATE)
-    weekly = (
-        divisor * Decimal(12) / Decimal(52) * Decimal(str(round(part_time_ratio, 4)))
-    )
-    return ccnl.meta.name, weekly
-
-
-def _validate_time_supplements(
-    weekday_hours: float,
-    night_hours: float,
-    holiday_hours: float,
-    night_holiday_hours: float,
-    weeks_json: str = "",
-) -> None:
-    """Validate overtime inputs, raising on any invalid value.
-
-    Args:
-        weekday_hours: Daytime weekday overtime hours (monthly total).
-        night_hours: Weekday night hours (monthly total).
-        holiday_hours: Daytime public-holiday hours (monthly total).
-        night_holiday_hours: Night hours on a public holiday (monthly total).
-        weeks_json: Optional JSON array of per-week hour objects.
+        The contract instance of ``params["contract"]``.
 
     Raises:
-        json.JSONDecodeError: When weeks_json is not valid JSON.
-        AttributeError: When a list element is not a dict.
-        ValueError: When any hour value is negative.
+        ValueError: When the contract type is not one the demo offers.
     """
-    if not weeks_json:
-        return
-    raw: list[dict[str, float]] = json.loads(weeks_json)
-    for w in raw:
-        for field in (
-            "weekday_hours",
-            "night_hours",
-            "holiday_hours",
-            "night_holiday_hours",
-            "supplementare_hours",
-        ):
-            val = Decimal(str(w.get(field, 0)))
-            if val < 0:
-                msg = f"{field} must be >= 0, got {val}"
-                raise ValueError(msg)
+    kind = params.get("contract", "permanent")
+    if kind == "permanent":
+        return Permanent()
+    if kind == "fixed_term":
+        return FixedTerm()
+    if kind == "apprentice":
+        return Apprentice(
+            months_elapsed=int(params.get("apprentice_months") or 0),
+            track=str(params.get("track") or "") or None,
+        )
+    msg = f"Tipo di contratto non supportato: {kind!r}"
+    raise ValueError(msg)
 
 
-def _build_employment(
-    filename: str,
-    level_code: str,
-    contract: Permanent | FixedTerm | Apprentice,
-    seniority_mode: str,
-    seniority_value: int,
-    first_enrolled_after_1995: bool,
-    weekly_hours_domestic: Decimal | None,
-) -> Employment:
-    """Build the Employment from component inputs.
+def _hours(params: dict[str, Any]) -> tuple[WeeklyHours | None, WeeklyHours | None]:
+    """Return the weekly and full-time weekly hours of the employment.
+
+    Full time with no stated hours is the full time of the CCNL: no hours are
+    passed, except for a domestic CCNL, which always needs them.
 
     Returns:
-        An :class:`Employment` instance.
+        ``(weekly_hours, full_time_weekly_hours)``, both ``None`` for a
+        full-time employment of a non-domestic CCNL.
     """
-    # Months of service are a fact as of the first day of the computed
-    # month; the deprecated count mode states no seniority, so a level with
-    # increments names the missing fact.
+    full_time = int(params.get("full_time_hours") or 40)
+    pct = int(params.get("part_time_pct") or 100)
+    if pct >= 100 and not params.get("domestic"):
+        return None, None
+    weekly = max(1, round(full_time * pct / 100))
+    return WeeklyHours(weekly), WeeklyHours(full_time)
+
+
+def _employment(params: dict[str, Any], ccnl_id: str) -> Employment:
+    """Build the employment from the parameters of the form.
+
+    Returns:
+        The :class:`Employment` of the scenario.
+    """
+    months = params.get("seniority_months")
     seniority = (
         SeniorityFact(
-            seniority_value,
-            date(_DEFAULT_YEAR, _RUN_MONTH, 1),
-            SenioritySource.EMPLOYER_RECORDS,
+            int(months), date(_DEFAULT_YEAR, 1, 1), SenioritySource.EMPLOYER_RECORDS
         )
-        if seniority_mode == "months"
+        if months not in {None, ""}
         else None
     )
-    # The demo asks one question: enrolled from 1996?  Unchecked means not
-    # stated, so a run crossing the massimale names the missing fact.
     history = (
         ContributionHistory(first_enrolled_on=_IVS_COHORT_START)
-        if first_enrolled_after_1995
+        if params.get("first_enrolled_after_1995")
         else None
     )
-    weekly_hours = (
-        WeeklyHours(int(weekly_hours_domestic))
-        if weekly_hours_domestic is not None
-        else None
-    )
+    weekly, full_time = _hours(params)
     return Employment(
-        ccnl_slug=filename,
-        level_code=level_code,
-        contract_type=contract,
+        ccnl_slug=ccnl_id,
+        level_code=str(params["level"]),
+        contract_type=_contract(params),
         seniority=seniority,
         contribution_history=history,
-        weekly_hours=weekly_hours,
+        weekly_hours=weekly,
+        full_time_weekly_hours=full_time,
     )
 
 
-def _tax_figures(result: PeriodResult) -> dict[str, float]:
-    """Return the annual IRPEF components the demo shows.
+def _accounts(year: CompetenceYearResult) -> dict[str, float]:
+    """Sum the ledger entries of the year per account.
 
     Returns:
-        ``irpef_gross``, ``work_deduction`` and ``ulteriore_detrazione``,
-        zero when the tax computation has no such component (e.g. a
-        household employer, which is not a withholding agent).
+        The annual amount of each account of :data:`_ACCOUNTS`.
     """
-    figures = dict.fromkeys(
-        ("irpef_gross", "work_deduction", "ulteriore_detrazione"), 0.0
+    totals: dict[str, Decimal] = defaultdict(Decimal)
+    for result in year.period_results:
+        for entry in result.ledger_entries:
+            totals[entry.account.value] += entry.amount
+    return {account: float(totals[account]) for account in _ACCOUNTS}
+
+
+def _irpef(year: CompetenceYearResult) -> dict[str, float]:
+    """Return the annual IRPEF figures the last run of the year settles on.
+
+    Returns:
+        ``taxable_income``, ``irpef_gross``, ``work_deduction`` and
+        ``ulteriore_detrazione``; empty when no run withholds IRPEF (a
+        household employer is not a withholding agent).
+    """
+    keys = {
+        "projected_taxable": "taxable_income",
+        "irpef_gross": "irpef_gross",
+        "work_deduction": "work_deduction",
+        "ulteriore_detrazione": "ulteriore_detrazione",
+    }
+    for result in reversed(year.period_results):
+        for decision in result.decisions:
+            if decision.capability == "irpef" and "irpef_gross" in decision.inputs:
+                return {
+                    name: float(Decimal(str(decision.inputs.get(key, 0))))
+                    for key, name in keys.items()
+                }
+    return {}
+
+
+def _reference_month(year: CompetenceYearResult) -> PeriodResult:
+    """Return the last regular run of the year: the monthly pay shown.
+
+    Returns:
+        The result of the last regular run, or the last run of the year.
+    """
+    regular = [
+        r
+        for r in year.period_results
+        if r.run is not None and r.run.run_kind == "regular"
+    ]
+    return (regular or list(year.period_results))[-1]
+
+
+def _trace(month: PeriodResult) -> list[dict[str, Any]]:
+    """Return the earnings of the reference month, in pay item order.
+
+    Returns:
+        One ``{category, code, amount}`` per earning, then the gross.
+    """
+    steps: list[dict[str, Any]] = [
+        {
+            "category": _EARNINGS[item.kind],
+            "code": getattr(item, "allowance_code", "") or "",
+            "amount": float(item.amount),
+        }
+        for item in month.pay_items
+        if item.kind in _EARNINGS and item.amount
+    ]
+    steps.append({"category": "gross", "code": "", "amount": float(month.period_gross)})
+    return steps
+
+
+def _ruleset(year: CompetenceYearResult) -> dict[str, Any]:
+    """Return readiness and confidence of the CCNL ruleset the year read.
+
+    Returns:
+        ``{readiness, confidence, production}``; ``readiness`` is ``None``
+        when the CCNL has no ruleset identity.
+    """
+    for ruleset in year.rulesets:
+        if ruleset.kind is RulesetKind.CCNL:
+            return {
+                "readiness": str(ruleset.readiness) if ruleset.readiness else None,
+                "confidence": str(ruleset.confidence),
+                "production": ruleset.is_production,
+            }
+    return {"readiness": None, "confidence": None, "production": False}
+
+
+def _sources(ccnl_id: str) -> list[dict[str, Any]]:
+    """Return the documents the CCNL file cites.
+
+    Returns:
+        One ``{title, url, kind, date}`` per source; ``url`` is ``None``
+        unless it is a public HTTP address.
+    """
+    meta = load_ccnl(f"{ccnl_id}.json").meta
+    return [
+        {
+            "title": source.title,
+            "url": source.url
+            if source.url.startswith(("http://", "https://"))
+            else None,
+            "kind": str(source.kind),
+            "date": source.published_on.isoformat() if source.published_on else None,
+        }
+        for source in meta.sources
+    ]
+
+
+def _facts(params: dict[str, Any], employment: Employment) -> PeriodFacts:
+    """Return the facts every run of the year shares.
+
+    A domestic worker is assumed to work and be paid the contractual weekly
+    hours in every month.
+
+    Returns:
+        The default :class:`PeriodFacts` of the plan.
+    """
+    hours = (
+        ContributableHours(
+            (Decimal(employment.weekly_hours.value) * _WEEKS_PER_MONTH).quantize(_CENT)
+        )
+        if params.get("domestic") and employment.weekly_hours is not None
+        else None
     )
-    for comp in result.tax_computation.components:
-        if comp.name in figures:
-            figures[comp.name] = float(comp.amount)
-    return figures
+    return PeriodFacts(
+        regione=str(params.get("regione") or "") or None,
+        comune_belfiore=str(params.get("comune") or "") or None,
+        contributable_hours=hours,
+    )
 
 
-def compute_salary(
-    filename: str,
-    level_code: str,
-    employment_type: str,
-    num_employees: int,
-    part_time_ratio: float = 1.0,
-    seniority_value: int = 0,
-    seniority_mode: str = "months",
-    months_elapsed: int = 0,
-    regione: str = "",
-    comune_belfiore: str = "",
-    first_enrolled_after_1995: bool = False,
-    ad_personam_monthly: float = 0.0,
-    ral_override: float = 0.0,
-    overtime_weekday_hours: float = 0.0,
-    overtime_night_hours: float = 0.0,
-    overtime_holiday_hours: float = 0.0,
-    overtime_night_holiday_hours: float = 0.0,
-    overtime_weeks: str = "",
-    absence_unpaid_days: float = 0.0,
-    leave_taken_days: float = 0.0,
-    sick_days: float = 0.0,
-    fringe_benefit_annual: float = 0.0,
-    welfare_annual: float = 0.0,
-    bonus_annual: float = 0.0,
-    bonus_pdr_eligible: bool = False,
-    track: str = "",
-) -> str:
-    """Compute gross-to-net and employer cost.
+def compute_salary(params_json: str) -> str:
+    """Compute the competence year of a scenario.
 
     Args:
-        filename: Bare CCNL filename.
-        level_code: Level code within the CCNL.
-        employment_type: ``"permanent"``, ``"fixed_term"``, or ``"apprentice"``.
-        num_employees: Employer headcount (drives INPS rate tier).
-        part_time_ratio: Part-time fraction in (0, 1], default full-time.
-        seniority_value: Months of service on the first day of the computed
-            month (seniority_mode="months"); zero is a new hire.
-        seniority_mode: ``"months"``, or ``"count"`` (deprecated), which
-            states no seniority.
-        months_elapsed: Months elapsed in apprenticeship (apprentice only).
-        regione: ISO 3166-2:IT region code (e.g. ``"IT-45"``) for the
-            addizionale regionale.
-            When empty, the surtax is not computed.
-        comune_belfiore: Belfiore code (codice catastale) of the worker's
-            municipality for addizionale comunale computation. When empty,
-            the surtax is not computed.
-        first_enrolled_after_1995: Set to True when the worker was first
-            enrolled in a mandatory pension scheme from 1 January 1996: the
-            IVS massimale then caps the contribution base.  False leaves the
-            history unstated.
-        ad_personam_monthly: Individual frozen monthly supplement in EUR
-            (reserved for future use; not currently applied).
-        ral_override: Custom agreed annual gross (RAL) in EUR
-            (reserved for future use; not currently applied).
-        overtime_weekday_hours: Daytime weekday overtime hours (L3).
-        overtime_night_hours: Weekday night hours (L3).
-        overtime_holiday_hours: Daytime public-holiday hours (L3).
-        overtime_night_holiday_hours: Night hours on a public holiday (L3).
-        overtime_weeks: Optional JSON array of per-week hour objects for
-            accurate tiered-band partitioning (L3).  When provided, the
-            four scalar overtime arguments above are ignored.
-        absence_unpaid_days: Days absent without pay in the period (L3).
-        leave_taken_days: Leave days consumed in the period (L3).
-        sick_days: Calendar days of illness in the period (L3).
-        fringe_benefit_annual: Total fringe-benefit value for the year (L3).
-        welfare_annual: Welfare annual amount (L3, always tax-exempt).
-        bonus_annual: Total annual bonus (L3).
-        bonus_pdr_eligible: Whether the bonus qualifies for PdR flat tax (L3).
-        track: Apprenticeship track name. Required when the CCNL defines
-            more than one track for the destination level; empty string
-            lets the engine pick the unique applicable track.
+        params_json: JSON object with ``ccnl`` (slug), ``level``,
+            ``contract`` (``permanent``, ``fixed_term`` or ``apprentice``),
+            ``headcount``, and optionally ``part_time_pct``,
+            ``full_time_hours``, ``seniority_months`` (months of service on
+            1 January; ``null`` when not stated), ``apprentice_months``,
+            ``track``, ``regione``, ``comune`` and
+            ``first_enrolled_after_1995``.
 
     Returns:
         JSON-encoded result dict or ``{"error": "..."}`` on failure.
     """
-    contract, err = _build_contract(employment_type, months_elapsed, track)
-    if contract is None:
-        return json.dumps({"error": err})
-
     try:
-        _validate_time_supplements(
-            overtime_weekday_hours,
-            overtime_night_hours,
-            overtime_holiday_hours,
-            overtime_night_holiday_hours,
-            overtime_weeks,
-        )
-    except Exception as exc:  # noqa: BLE001
-        return json.dumps({"error": f"overtime_weeks: {exc}"})
-
-    ccnl_name, weekly_hours_domestic = _resolve_ccnl_meta(filename, part_time_ratio)
-
-    try:
-        ccnl = load_ccnl(filename)
-        additional_months = float(
-            ccnl.parameters.additional_months.value_at(_CALC_DATE)
-        )
-
-        employment = _build_employment(
-            filename=filename,
-            level_code=level_code,
-            contract=contract,
-            seniority_mode=seniority_mode,
-            seniority_value=seniority_value,
-            first_enrolled_after_1995=first_enrolled_after_1995,
-            weekly_hours_domestic=weekly_hours_domestic,
-        )
-
-        # Domestic contributions are charged per hour: the demo assumes the
-        # contractual weekly hours were all worked and paid in the month.
-        contributable_hours = (
-            ContributableHours(
-                (Decimal(employment.weekly_hours.value) * 52 / 12).quantize(
-                    Decimal("0.01")
-                )
-            )
-            if employment.weekly_hours is not None
-            else None
-        )
-
-        result = _ENGINE.calculate_period(
-            PeriodInput(
-                run=PayrollRun.regular(_DEFAULT_YEAR, _RUN_MONTH),
-                payment_date=date(_DEFAULT_YEAR, _RUN_MONTH, 28),
+        params: dict[str, Any] = json.loads(params_json)
+        ccnl_id = str(params["ccnl"]).removesuffix(".json")
+        ccnl = load_ccnl(f"{ccnl_id}.json")
+        params["domestic"] = not ccnl.meta.withholding_agent
+        employment = _employment(params, ccnl_id)
+        year = _ENGINE.calculate_competence_year(
+            CompetenceYearPlan(
+                year=_DEFAULT_YEAR,
                 employment=employment,
-                employer=EmployerProfile(headcount=Headcount(num_employees)),
-                facts=PeriodFacts(
-                    regione=regione or None,
-                    comune_belfiore=comune_belfiore or None,
-                    contributable_hours=contributable_hours,
+                employer=EmployerProfile(
+                    headcount=Headcount(int(params.get("headcount") or 1))
                 ),
+                default_facts=_facts(params, employment),
             )
         )
-
-        base_monthly = float(
-            sum(
-                pi.amount
-                for pi in result.pay_items
-                if pi.kind == "base_salary_earning" and pi.amount
-            )
-        )
-        seniority_monthly_val = float(
-            sum(
-                pi.amount
-                for pi in result.pay_items
-                if pi.kind == "seniority_earning" and pi.amount
-            )
-        )
-        allowances_monthly = float(
-            sum(
-                pi.amount
-                for pi in result.pay_items
-                if pi.kind
-                in ("fixed_allowance_earning", "conditional_allowance_earning")
-                and pi.amount
-            )
-        )
-        gross_monthly = float(result.period_gross)
-        gross_annual = gross_monthly * additional_months
-        net_monthly = float(result.period_net)
-        net_annual = net_monthly * additional_months
-        employer_cost_monthly = float(result.period_employer_cost)
-
-        tax = _tax_figures(result)
-        inps_employee = float(result.contribution_breakdown.employee)
-        inps_employer = float(result.contribution_breakdown.employer)
-
-        return json.dumps({
-            "ccnl_name": ccnl_name,
-            "level_code": level_code,
-            "employment_type": employment_type,
-            "year": _DEFAULT_YEAR,
-            "as_of": _CALC_DATE.isoformat(),
-            "part_time_ratio": part_time_ratio,
-            "engine_version": result.bundle_version or "",
-            "ruleset_version": {
-                r.id: f"{r.identity.version} · {r.readiness or 'not tracked'}"
-                for r in result.rulesets
-            },
-            "base_monthly": base_monthly,
-            "seniority_monthly": seniority_monthly_val or None,
-            "allowances_monthly": allowances_monthly,
-            "ad_personam_monthly": float(ad_personam_monthly)
-            if ad_personam_monthly > 0
-            else None,
-            "gross_monthly": gross_monthly,
-            "gross_annual": gross_annual,
-            "hourly_rate": 0.0,
-            "seniority_count": None,
-            "apprenticeship_pct": None,
-            "apprenticeship_under_level_code": None,
-            "additional_months": additional_months,
-            "inps_employee_annual": inps_employee * additional_months,
-            "taxable_income": 0.0,
-            "irpef_gross": tax["irpef_gross"],
-            "work_income_deduction": tax["work_deduction"],
-            "ulteriore_detrazione_lavoro": tax["ulteriore_detrazione"],
-            "irpef_net": tax["irpef_gross"]
-            - tax["work_deduction"]
-            - tax["ulteriore_detrazione"],
-            "addizionale_regionale_annual": 0.0,
-            "addizionale_comunale_annual": 0.0,
-            "trattamento_integrativo": float(
-                result.tax_computation.trattamento_integrativo
-            ),
-            "somma_esente": 0.0,
-            "bilateral_employee_annual": 0.0,
-            "net_annual": net_annual,
-            "net_monthly": net_monthly,
-            "inps_employer_annual": inps_employer * additional_months,
-            "employer_funds_annual": 0.0,
-            "tfr_annual": float(
-                sum(
-                    pi.amount
-                    for pi in result.pay_items
-                    if pi.kind == "tfr_accrual_item" and pi.amount
-                )
-            )
-            * additional_months,
-            "bilateral_employer_annual": 0.0,
-            "employer_cost_annual": employer_cost_monthly * additional_months,
-            "overtime_supplement_monthly": 0.0,
-            "night_supplement_monthly": 0.0,
-            "holiday_supplement_monthly": 0.0,
-            "absence_deduction_monthly": 0.0,
-            "effective_gross_monthly": gross_monthly,
-            "leave_accrued_days_monthly": 0.0,
-            "leave_balance_days": 0.0,
-            "sick_inps_indemnity_monthly": 0.0,
-            "sick_company_integration_monthly": 0.0,
-            "fringe_benefit_annual": 0.0,
-            "welfare_annual": 0.0,
-            "bonus_annual": 0.0,
-            "bonus_pdr_flat_tax_annual": 0.0,
-            "employer_withholds_irpef": ccnl.meta.withholding_agent,
-            "fiscal_simplifications": [],
-            "trace": {},
-            "provenance": [],
-            "payability": str(result.assurance.payability),
-            "blockers": [
-                {
-                    "code": str(b.code),
-                    "feature": b.feature,
-                    "detail": b.detail,
-                }
-                for b in result.blockers
-            ],
-            "warnings": [issue.message for issue in result.issues],
-            "decisions": [
-                {
-                    "capability": d.capability,
-                    "status": str(d.status),
-                    "reason_code": d.reason_code,
-                    "origin": str(d.origin),
-                }
-                for d in result.decisions
-            ],
-            "ccnl_id": getattr(ccnl.meta, "ccnl_id", ""),
-            "weekly_hours": (
-                str(weekly_hours_domestic)
-                if weekly_hours_domestic is not None
-                else None
-            ),
-        })
     except Exception as exc:  # noqa: BLE001
         return json.dumps({"error": str(exc)})
+    return json.dumps(_payload(params, ccnl_id, ccnl.meta.name, year))
+
+
+def _payload(
+    params: dict[str, Any],
+    ccnl_id: str,
+    ccnl_name: str,
+    year: CompetenceYearResult,
+) -> dict[str, Any]:
+    """Return the figures the demo shows for a computed year.
+
+    Returns:
+        The JSON-ready result of :func:`compute_salary`.
+    """
+    month = _reference_month(year)
+    runs = len(year.period_results)
+    annual_net = float(year.annual_net)
+    return {
+        "ccnl_id": ccnl_id,
+        "ccnl_name": ccnl_name,
+        "level_code": params["level"],
+        "contract": params.get("contract", "permanent"),
+        "part_time_pct": int(params.get("part_time_pct") or 100),
+        "year": _DEFAULT_YEAR,
+        "engine_version": year.bundle_version or "",
+        "runs": runs,
+        "monthly_gross": float(month.period_gross),
+        "trace": _trace(month),
+        "annual_gross": float(year.annual_gross),
+        "annual_net": annual_net,
+        "net_average": annual_net / runs if runs else 0.0,
+        "annual_employer_cost": float(year.annual_employer_cost),
+        "accounts": _accounts(year),
+        "irpef": _irpef(year),
+        "withholding_agent": not params["domestic"],
+        "ruleset": _ruleset(year),
+        "rulesets": [
+            {
+                "id": r.identity.id,
+                "version": r.identity.version,
+                "readiness": str(r.readiness) if r.readiness else None,
+                "confidence": str(r.confidence),
+            }
+            for r in year.rulesets
+        ],
+        "sources": _sources(ccnl_id),
+        "payability": str(year.assurance.payability),
+        "blockers": [
+            {"code": str(b.code), "feature": b.feature, "detail": b.detail}
+            for b in year.blockers
+        ],
+        "issues": [{"code": i.code, "message": i.message} for i in year.issues],
+        "decisions": sorted({(d.capability, str(d.status)) for d in year.decisions}),
+    }
+
+
+def scenario_snippet(params_json: str) -> str:
+    """Return the Python code that computes the scenario with the public API.
+
+    Args:
+        params_json: The parameters of :func:`compute_salary`.
+
+    Returns:
+        JSON-encoded ``{"code": "..."}``: a script that prints the annual
+        gross, net and employer cost :func:`compute_salary` shows.
+    """
+    params: dict[str, Any] = json.loads(params_json)
+    ccnl_id = str(params["ccnl"]).removesuffix(".json")
+    params["domestic"] = not load_ccnl(f"{ccnl_id}.json").meta.withholding_agent
+    employment = _employment(params, ccnl_id)
+    facts = _facts(params, employment)
+    inputs = {"Permanent", "FixedTerm", "Apprentice"} & {
+        type(employment.contract_type).__name__
+    }
+    fields = [
+        f"ccnl_slug={json.dumps(ccnl_id)}",
+        f"level_code={json.dumps(employment.level_code)}",
+        f"contract_type={_contract_code(employment)}",
+    ]
+    if employment.seniority is not None:
+        inputs |= {"SeniorityFact", "SenioritySource"}
+        fields.append(
+            f"seniority=SeniorityFact({employment.seniority.months}, "
+            f"date({_DEFAULT_YEAR}, 1, 1), SenioritySource.EMPLOYER_RECORDS)"
+        )
+    if employment.contribution_history is not None:
+        inputs.add("ContributionHistory")
+        fields.append(
+            "contribution_history=ContributionHistory("
+            "first_enrolled_on=date(1996, 1, 1))"
+        )
+    if employment.weekly_hours is not None and employment.full_time_weekly_hours:
+        inputs.add("WeeklyHours")
+        fields.extend((
+            f"weekly_hours=WeeklyHours({employment.weekly_hours.value})",
+            f"full_time_weekly_hours=WeeklyHours({employment.full_time_weekly_hours.value})",
+        ))
+    fact_fields = []
+    if facts.regione:
+        fact_fields.append(f"regione={json.dumps(facts.regione)}")
+    if facts.comune_belfiore:
+        fact_fields.append(f"comune_belfiore={json.dumps(facts.comune_belfiore)}")
+    if facts.contributable_hours is not None:
+        inputs.add("ContributableHours")
+        fact_fields.append(
+            "contributable_hours=ContributableHours("
+            f"Decimal({json.dumps(str(facts.contributable_hours.value))}))"
+        )
+    lines = [
+        *(["from datetime import date"] if "date(" in "".join(fields) else []),
+        *(["from decimal import Decimal"] if facts.contributable_hours else []),
+        "",
+        "from ccnl_engine import (",
+        "    CompetenceYearPlan,",
+        "    EmployerProfile,",
+        "    Employment,",
+        "    Headcount,",
+        "    PayrollEngine,",
+        "    PeriodFacts,",
+        ")",
+        f"from ccnl_engine.inputs import {', '.join(sorted(inputs))}",
+        "",
+        "engine = PayrollEngine.bundled()",
+        "year = engine.calculate_competence_year(",
+        "    CompetenceYearPlan(",
+        f"        year={_DEFAULT_YEAR},",
+        "        employment=Employment(",
+        *(f"            {field}," for field in fields),
+        "        ),",
+        (
+            "        employer=EmployerProfile("
+            f"headcount=Headcount({int(params.get('headcount') or 1)})),"
+        ),
+        f"        default_facts=PeriodFacts({', '.join(fact_fields)}),",
+        "    )",
+        ")",
+        'print("Gross:", year.annual_gross)',
+        'print("Net:", year.annual_net)',
+        'print("Employer cost:", year.annual_employer_cost)',
+        'print("Payable:", year.is_payable)',
+    ]
+    return json.dumps({"code": "\n".join(lines).lstrip("\n") + "\n"})
+
+
+def _contract_code(employment: Employment) -> str:
+    """Return the constructor call of the contract type of ``employment``.
+
+    Returns:
+        ``Permanent()``, ``FixedTerm()`` or ``Apprentice(...)``.
+    """
+    contract = employment.contract_type
+    if isinstance(contract, Apprentice):
+        track = f", track={json.dumps(contract.track)}" if contract.track else ""
+        return f"Apprentice(months_elapsed={contract.months_elapsed}{track})"
+    return f"{type(contract).__name__}()"
