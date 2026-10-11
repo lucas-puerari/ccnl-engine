@@ -11,11 +11,11 @@ The page has two tables, both derived from the capability registry:
 
 Run with::
 
-    uv run python scripts/documentation/generate_capability_matrix.py
+    uv run python scripts/documentation/capability_matrix/generate.py
 
 Check for drift without writing (for CI)::
 
-    uv run python scripts/documentation/generate_capability_matrix.py --check
+    uv run python scripts/documentation/capability_matrix/generate.py --check
 """
 
 from __future__ import annotations
@@ -26,13 +26,13 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import TYPE_CHECKING
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
 from ccnl_engine.capability.loaders import (
     load_capability_catalog,
 )
 from ccnl_engine.capability.registry.models import CapabilityImplementation
-from scripts.documentation.coverage import (
+from scripts.documentation.coverage.loaders import (
     IMPLEMENTATION_LEGEND,
     bundled_ccnls,
     coverage_cells,
@@ -61,7 +61,7 @@ _WEAK_SOURCES = ("assumed", "missing")
 
 _AUTO_COMMENT = (
     "<!-- auto-generated; run: uv run python "
-    "scripts/documentation/generate_capability_matrix.py -->\n"
+    "scripts/documentation/capability_matrix/generate.py -->\n"
 )
 _DATE_LINE_RE = re.compile(r"<!-- generated: \d{4}-\d{2}-\d{2} -->\n?")
 
@@ -254,7 +254,7 @@ def _strip_date(text: str) -> str:
 
 def main() -> None:
     """Write the page, or check it for drift with ``--check``."""
-    root = Path(__file__).resolve().parents[2]
+    root = Path(__file__).resolve().parents[3]
     capability_matrix = root / "docs" / "contracts" / "capability-matrix.md"
     generated = build_page(latest_catalog_year())
     rows = generated.count("\n| ")
@@ -266,7 +266,7 @@ def main() -> None:
     if _strip_date(generated) != _strip_date(committed):
         print("docs/contracts/capability-matrix.md is out of date.", file=sys.stderr)
         print(
-            "Run: uv run python scripts/documentation/generate_capability_matrix.py",
+            "Run: uv run python scripts/documentation/capability_matrix/generate.py",
             file=sys.stderr,
         )
         print("and commit the result.", file=sys.stderr)

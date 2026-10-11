@@ -3,7 +3,7 @@
 Two labels are lowered, never raised:
 
 - a ``derived`` or ``verified`` provenance record that
-  :func:`scripts.provenance.labels.record_reasons` rejects (estimated
+  :func:`scripts.provenance.label.check.record_reasons` rejects (estimated
   ruleset, estimate wording, no citation) becomes ``assumed``.  Its
   location, quote and transformation are kept, and its ``note`` records
   why;
@@ -29,9 +29,9 @@ from typing import Any, Final
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from scripts.provenance import labels as provenance_labels
 from scripts.provenance import rules as payable_rules
 from scripts.provenance.assign import KNOWLEDGE, write_rehashed
+from scripts.provenance.label import check as provenance_labels
 
 _DEMOTED: Final = "Assumed, not derived: {reasons}."
 

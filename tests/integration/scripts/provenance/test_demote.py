@@ -11,7 +11,7 @@ from scripts.provenance.demote import (
     demote_records,
     main,
 )
-from scripts.provenance.labels import file_label_errors
+from scripts.provenance.label.check import file_label_errors
 
 if TYPE_CHECKING:
     from pathlib import Path

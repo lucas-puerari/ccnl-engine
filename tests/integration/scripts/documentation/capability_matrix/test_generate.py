@@ -14,13 +14,13 @@ from ccnl_engine.capability.registry.models import (
     CapabilityImplementation,
     CapabilityLayer,
 )
-from scripts.documentation.coverage import bundled_ccnls, coverage_cells
-from scripts.documentation.generate_capability_matrix import (
+from scripts.documentation.capability_matrix.generate import (
     build_page,
     capability_label,
     capability_rows,
     latest_catalog_year,
 )
+from scripts.documentation.coverage.loaders import bundled_ccnls, coverage_cells
 
 _IMPL = CapabilityImplementation
 

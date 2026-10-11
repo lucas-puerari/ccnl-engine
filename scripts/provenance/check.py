@@ -6,10 +6,10 @@ Two gates judge the payable rules of the bundled knowledge data (see
 - Schema gate: every payable rule carries a provenance record with a known
   status, ``verified``, ``derived``, ``assumed`` or ``missing``, and every
   record carries the fields its status or readiness requires (see
-  :func:`scripts.provenance.evidence.schema_errors`).  A ``missing``
+  :func:`scripts.provenance.evidence.check.schema_errors`).  A ``missing``
   record is allowed in the data but listed, because the engine marks any
   result that reads it incomplete.  No label may outrun its evidence (see
-  :mod:`scripts.provenance.labels`): a ``derived`` or ``verified``
+  :mod:`scripts.provenance.label.check`): a ``derived`` or ``verified``
   record that is estimated or cites no source, and a ``reviewed`` or
   ``production`` CCNL with weak rules or an unverified confidence, fail.
 - Evidence gate: a shrink-only ratchet against ``baseline.json``.
@@ -68,9 +68,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from scripts.provenance import evidence as provenance_evidence
-from scripts.provenance import labels as provenance_labels
 from scripts.provenance import rules as payable_rules
+from scripts.provenance.evidence import check as provenance_evidence
+from scripts.provenance.label import check as provenance_labels
 
 CASES_DIR = (
     Path(__file__).resolve().parents[2]

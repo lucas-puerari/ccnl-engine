@@ -2,24 +2,24 @@
 
 Run with::
 
-    uv run python scripts/documentation/generate_coverage_matrix.py
+    uv run python scripts/documentation/coverage_matrix/generate.py
 
 Check for drift without writing (for CI)::
 
-    uv run python scripts/documentation/generate_coverage_matrix.py --check
+    uv run python scripts/documentation/coverage_matrix/generate.py --check
 
 Or via Make::
 
-    make coverage-matrix
+    make generate
 """
 
 import re
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
-from scripts.documentation.coverage import (
+from scripts.documentation.coverage.loaders import (
     build_coverage_report,
     latest_catalog_year,
     render_contracts_index,
@@ -35,7 +35,7 @@ def _strip_date(text: str) -> str:
 check_mode = "--check" in sys.argv
 year = latest_catalog_year()
 report = build_coverage_report(year)
-root = Path(__file__).parent.parent.parent
+root = Path(__file__).resolve().parents[3]
 contracts_index = root / "docs" / "contracts" / "index.md"
 generated = render_contracts_index(report, year)
 
@@ -44,7 +44,7 @@ if check_mode:
     if _strip_date(generated) != _strip_date(committed):
         print("docs/contracts/index.md is out of date.", file=sys.stderr)
         print(
-            "Run: uv run python scripts/documentation/generate_coverage_matrix.py",
+            "Run: uv run python scripts/documentation/coverage_matrix/generate.py",
             file=sys.stderr,
         )
         print("and commit the result.", file=sys.stderr)

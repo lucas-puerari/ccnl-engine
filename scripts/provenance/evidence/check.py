@@ -12,7 +12,7 @@ Two checks back the two gates of :mod:`scripts.provenance.check`:
   ``confidence`` ``verified``.  A CCNL ruleset id is ``ccnl/<ccnl_id>``.
   Labels that outrun their evidence, an estimated or uncited rule labelled
   ``derived`` and a ``reviewed`` CCNL with weak rules, are checked by
-  :mod:`scripts.provenance.labels` and have no baseline.
+  :mod:`scripts.provenance.label.check` and have no baseline.
 - :func:`compare`: the evidence ratchet.  The weak evidence of the bundle,
   every ``assumed`` or ``missing`` payable rule and every open model
   limitation, is listed in ``baseline.json``.  A weak entry
@@ -41,7 +41,7 @@ if TYPE_CHECKING:
 
     from scripts.provenance.rules import PayableRule
 
-BASELINE: Final = Path(__file__).with_name("baseline.json")
+BASELINE: Final = Path(__file__).resolve().parents[1] / "baseline.json"
 WEAK: Final = ("assumed", "missing")
 ENGINE_LIMITATIONS: Final = "limitation/engine.json"
 _RANK: Final = {status: rank for rank, status in enumerate(payable_rules.STATUSES)}

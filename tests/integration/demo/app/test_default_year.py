@@ -14,7 +14,7 @@ import pytest
 if TYPE_CHECKING:
     import types
 
-_PROJECT_ROOT = Path(__file__).resolve().parents[3]
+_PROJECT_ROOT = Path(__file__).resolve().parents[4]
 _APP_PY = _PROJECT_ROOT / "demo" / "app.py"
 
 

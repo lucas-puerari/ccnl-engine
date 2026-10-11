@@ -8,11 +8,11 @@ rendered from the data, never written by hand::
 
 Run with::
 
-    uv run python scripts/documentation/generate_trust_counts.py
+    uv run python scripts/documentation/trust_count/generate.py
 
 Check for drift without writing (for CI)::
 
-    uv run python scripts/documentation/generate_trust_counts.py --check
+    uv run python scripts/documentation/trust_count/generate.py --check
 
 The check also fails on a marker with an unknown name and on a count that no
 page quotes any more, so a deleted marker cannot hide a stale number.
@@ -27,7 +27,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import TYPE_CHECKING
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
 from ccnl_engine.agreement.facade import NoteKind
 from ccnl_engine.bundle.loaders import resources
@@ -46,7 +46,7 @@ if TYPE_CHECKING:
 
     from ccnl_engine.agreement.facade import CCNL
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 TRUST_DIR = ROOT / "docs" / "trust"
 MARKER_RE = re.compile(
     r"<!-- trust:(?P<name>[a-z0-9-]+) -->(?P<body>.*?)<!-- /trust:(?P=name) -->",
@@ -285,7 +285,7 @@ def main(argv: list[str] | None = None, *, trust_dir: Path = TRUST_DIR) -> int:
         names = ", ".join(page.name for page in pages.changed)
         print(f"Trust counts out of date in: {names}", file=sys.stderr)
         print(
-            "Run: uv run python scripts/documentation/generate_trust_counts.py",
+            "Run: uv run python scripts/documentation/trust_count/generate.py",
             file=sys.stderr,
         )
         return 1

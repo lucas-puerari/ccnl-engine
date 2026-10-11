@@ -101,7 +101,7 @@ ruleset without the fields above. These errors have no baseline.
 
 Distribution across the
 <!-- trust:ccnl-total -->126<!-- /trust:ccnl-total --> bundled CCNL rulesets,
-generated from the data by `scripts/documentation/generate_trust_counts.py` (CI fails when
+generated from the data by `scripts/documentation/trust_count/generate.py` (CI fails when
 it drifts):
 
 <!-- trust:readiness-table -->

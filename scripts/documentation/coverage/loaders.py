@@ -11,7 +11,7 @@ no percentage blends them.
 Not part of the engine API -- documentation tooling only.
 Regenerate output files with::
 
-    uv run python scripts/documentation/generate_coverage_matrix.py
+    uv run python scripts/documentation/coverage_matrix/generate.py
 """
 
 from __future__ import annotations
@@ -284,7 +284,7 @@ def render_contracts_index(report: CoverageReport, year: int) -> str:
     """
     auto_header = (
         "<!-- auto-generated"
-        " -- run: uv run python scripts/documentation/generate_coverage_matrix.py -->\n"
+        " -- run: uv run python scripts/documentation/coverage_matrix/generate.py -->\n"
         f"<!-- generated: {report.generated_at} -->\n"
     )
     preamble = _CONTRACTS_PREAMBLE_TEMPLATE.format(

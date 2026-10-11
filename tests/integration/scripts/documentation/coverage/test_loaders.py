@@ -5,7 +5,7 @@ from __future__ import annotations
 from ccnl_engine.capability.loaders import (
     load_capability_catalog,
 )
-from scripts.documentation.coverage import (
+from scripts.documentation.coverage.loaders import (
     build_coverage_report,
     bundled_ccnls,
     coverage_cells,

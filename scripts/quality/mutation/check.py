@@ -5,7 +5,7 @@ and exits with code 1 when the kill rate falls below the configured minimum.
 
 Usage::
 
-    uv run python scripts/quality/mutation.py [--min-score FLOAT]
+    uv run python scripts/quality/mutation/check.py [--min-score FLOAT]
 
 Options:
     --min-score FLOAT   Minimum acceptable kill rate 0-100 (default: 90.0).

@@ -120,7 +120,7 @@ except the package root `src/ccnl_engine/__init__.py`, and
 `service`, `handlers`, `fixtures` or `data`. Each offender is one baseline
 entry: a new `__init__.py`, `_module.py` or layer directory fails, and the
 structural migrations remove the entries as they go. Hidden directories,
-`__pycache__` and the gitignored `demo/_build` and `demo/wheels` are
+`__pycache__` and the gitignored `demo/release` are
 skipped.
 
 `role_files` records every Python module whose name is not a role or root

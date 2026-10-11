@@ -545,9 +545,7 @@ def _mirror_problems(parts: tuple[str, ...], tree: set[str]) -> list[str]:
         if directory not in tree and "/".join(parts[:-2]) not in tree:
             return [f"resource directory {directory!r} sits under no code directory"]
         return []
-    module_dir = (
-        len(parts) > 1 and parts[-2] in naming.SOURCE_ROLES | naming.ROOT_MODULES
-    )
+    module_dir = len(parts) > 1 and parts[-2] in naming.TESTED_MODULES
     if directory not in tree and not (module_dir and "/".join(parts[:-2]) in tree):
         return [f"directory {directory!r} mirrors no code directory"]
     if not TEST_NAME.match(parts[-1]):
