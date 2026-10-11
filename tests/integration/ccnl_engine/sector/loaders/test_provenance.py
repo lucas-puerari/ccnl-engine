@@ -6,7 +6,7 @@ import pytest
 
 from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.family.loaders import load_family_deduction_rules
-from ccnl_engine.knowledge.sector.loaders import load_year_rules
+from ccnl_engine.sector.loaders import load_year_rules
 from ccnl_engine.surtax.loaders import load_surtax_rules
 from ccnl_engine.variable_pay.loaders import load_variable_pay_rules
 

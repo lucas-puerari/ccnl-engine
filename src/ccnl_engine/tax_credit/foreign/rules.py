@@ -48,7 +48,7 @@ from ccnl_engine.pay_item.rounding.policies import money
 
 if TYPE_CHECKING:
     from ccnl_engine.irpef.net.rules import NetIrpef
-    from ccnl_engine.knowledge.sector.models import YearRules
+    from ccnl_engine.sector.models import YearRules
     from ccnl_engine.tax_credit.foreign.inputs import ForeignTaxPaid
 
 __all__ = ["CAPABILITY", "ForeignCredit", "foreign_credit_rule", "foreign_tax_credit"]

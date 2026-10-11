@@ -12,12 +12,12 @@ from ccnl_engine.agreement.validity.models import (
     ValidityWindow,
     model_window,
 )
-from ccnl_engine.errors import UnknownCcnlError
-from ccnl_engine.knowledge.loaders import read_resource, resources
-from ccnl_engine.knowledge.validators import (
+from ccnl_engine.bundle.loaders import read_resource, resources
+from ccnl_engine.bundle.validators import (
     verify_provenance_labels,
     verify_ruleset_hash,
 )
+from ccnl_engine.errors import UnknownCcnlError
 from ccnl_engine.validators import require_str
 
 if TYPE_CHECKING:
@@ -63,8 +63,8 @@ def load_ccnl(filename: str) -> CCNL:
 def _verify_payload(payload: dict[str, Any], filename: str) -> None:
     """Verify the ``ruleset.source_hash`` and the provenance labels.
 
-    Delegates to :func:`~ccnl_engine.knowledge.validators.verify_ruleset_hash` and
-    :func:`~ccnl_engine.knowledge.validators.verify_provenance_labels`.
+    Delegates to :func:`~ccnl_engine.bundle.validators.verify_ruleset_hash` and
+    :func:`~ccnl_engine.bundle.validators.verify_provenance_labels`.
     """
     verify_ruleset_hash(payload, filename)
     verify_provenance_labels(payload, filename)

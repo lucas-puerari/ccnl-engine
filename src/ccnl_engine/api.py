@@ -5,8 +5,8 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Literal
 
 from ccnl_engine.balance.opening.services import opening_state
+from ccnl_engine.bundle.facade import __version__
 from ccnl_engine.catalog import services as _catalog
-from ccnl_engine.knowledge.facade import __version__
 from ccnl_engine.period.input.services import (
     competence_plan,
     next_tax_year,

@@ -7,9 +7,9 @@ pre-split tax files.
 """
 
 from ccnl_engine.agreement.facade import TaxSector
-from ccnl_engine.knowledge.sector.loaders import load_year_rules
-from ccnl_engine.knowledge.sector.models import YearRulesRaw
-from ccnl_engine.knowledge.sector.raw.loaders import (
+from ccnl_engine.sector.loaders import load_year_rules
+from ccnl_engine.sector.models import YearRulesRaw
+from ccnl_engine.sector.raw.loaders import (
     read_inps_rules_raw,
     read_tax_rules_raw,
 )

@@ -6,7 +6,7 @@ from pydantic import ValidationError
 
 from ccnl_engine.errors import DataIntegrityError
 from ccnl_engine.family.models import FamilyDeductionRules
-from ccnl_engine.knowledge.sector.raw.loaders import _try_ruleset, read_year_json
+from ccnl_engine.sector.raw.loaders import _try_ruleset, read_year_json
 
 
 def load_family_deduction_rules(year: int) -> FamilyDeductionRules:

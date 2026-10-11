@@ -40,12 +40,12 @@ from ccnl_engine.contribution.services import TfrAccrual
 from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.event.facade import AbsenceEvent, FringeEvent
-from ccnl_engine.knowledge.sector.loaders import load_year_rules
 from ccnl_engine.ledger.models import AccountKind, LedgerEntry
 from ccnl_engine.pay_item.facade import CompetencePeriod
 from ccnl_engine.period.requests import PeriodCalculationRequest
 from ccnl_engine.period.services import calculate_period
 from ccnl_engine.run.types import PeriodId
+from ccnl_engine.sector.loaders import load_year_rules
 from ccnl_engine.withholding.cap.services import (
     CappedWithholding,
     cap_withholding,

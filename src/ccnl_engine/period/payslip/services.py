@@ -25,10 +25,10 @@ from ccnl_engine.run.models import run_identifier
 
 if TYPE_CHECKING:
     from ccnl_engine.extra_month.models import ExtraMonthAccrual
-    from ccnl_engine.knowledge.sector.models import YearRules
     from ccnl_engine.ledger.models import LedgerEntry
     from ccnl_engine.period.requests import PeriodCalculationRequest
     from ccnl_engine.period.results import PeriodResult
+    from ccnl_engine.sector.models import YearRules
 
 __all__ = [
     "check_absences_within_pay",

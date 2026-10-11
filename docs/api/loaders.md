@@ -20,12 +20,12 @@ See [Get started](../getting-started/index.md) for the typical loading sequence 
 
 ## Tax
 
-::: ccnl_engine.knowledge.sector.loaders
+::: ccnl_engine.sector.loaders
     options:
       members:
         - load_year_rules
 
-::: ccnl_engine.knowledge.sector.models
+::: ccnl_engine.sector.models
     options:
       members:
         - YearRules

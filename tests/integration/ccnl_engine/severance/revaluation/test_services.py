@@ -36,8 +36,8 @@ from ccnl_engine.run.types import PeriodId
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 if TYPE_CHECKING:
-    from ccnl_engine.knowledge.sector.models import YearRules
     from ccnl_engine.period.results import PeriodResult
+    from ccnl_engine.sector.models import YearRules
     from ccnl_engine.severance.revaluation.models import TfrRevaluationRules
 
 _FUND = TfrFundBalance(2025, Decimal("10000.00"))

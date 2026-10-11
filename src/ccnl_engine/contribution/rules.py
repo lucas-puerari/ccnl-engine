@@ -30,7 +30,7 @@ from ccnl_engine.pay_item.rounding.policies import money
 if TYPE_CHECKING:
     from ccnl_engine.employment.category.models import WorkerCategory
     from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
-    from ccnl_engine.knowledge.sector.models import YearRules
+    from ccnl_engine.sector.models import YearRules
 
 _ZERO = Decimal(0)
 _NO_POSITION = AdditionalIvsPosition()

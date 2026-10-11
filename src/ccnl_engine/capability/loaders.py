@@ -14,6 +14,7 @@ from functools import cache
 from typing import Any
 
 from ccnl_engine.assurance.models import EvidenceStatus
+from ccnl_engine.bundle.loaders import read_resource
 from ccnl_engine.capability.registry.models import (
     CapabilityApplicability,
     CapabilityCatalog,
@@ -23,7 +24,6 @@ from ccnl_engine.capability.registry.models import (
     CapabilityLayer,
 )
 from ccnl_engine.errors import DataIntegrityError
-from ccnl_engine.knowledge.loaders import read_resource
 
 _SCHEMA_VERSION = 2
 

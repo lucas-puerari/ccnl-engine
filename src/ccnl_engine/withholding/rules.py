@@ -65,7 +65,7 @@ from ccnl_engine.provenance.source.models import (
 
 if TYPE_CHECKING:
     from ccnl_engine.irpef.net.rules import NetIrpef
-    from ccnl_engine.knowledge.sector.models import YearRules
+    from ccnl_engine.sector.models import YearRules
 
 
 __all__ = [

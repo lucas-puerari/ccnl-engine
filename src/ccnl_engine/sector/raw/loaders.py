@@ -6,14 +6,14 @@ import json
 from functools import cache
 from typing import TYPE_CHECKING, Any
 
-from ccnl_engine.errors import UnsupportedTaxYearError
-from ccnl_engine.knowledge.loaders import read_resource, resources
-from ccnl_engine.knowledge.validators import (
+from ccnl_engine.bundle.loaders import read_resource, resources
+from ccnl_engine.bundle.validators import (
     as_ruleset,
     try_ruleset,
     verify_provenance_labels,
     verify_ruleset_hash,
 )
+from ccnl_engine.errors import UnsupportedTaxYearError
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
 if TYPE_CHECKING:
@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 
 
 def _as_ruleset(raw: dict[str, Any]) -> RulesetIdentity | None:
-    """Delegate to :func:`~ccnl_engine.knowledge.validators.as_ruleset`.
+    """Delegate to :func:`~ccnl_engine.bundle.validators.as_ruleset`.
 
     Returns:
         The parsed :class:`~ccnl_engine.provenance.ruleset.models.RulesetIdentity`,
@@ -32,7 +32,7 @@ def _as_ruleset(raw: dict[str, Any]) -> RulesetIdentity | None:
 
 
 def _try_ruleset(raw: dict[str, Any]) -> RulesetIdentity | None:
-    """Delegate to :func:`~ccnl_engine.knowledge.validators.try_ruleset`.
+    """Delegate to :func:`~ccnl_engine.bundle.validators.try_ruleset`.
 
     Returns:
         The parsed :class:`~ccnl_engine.provenance.ruleset.models.RulesetIdentity`,

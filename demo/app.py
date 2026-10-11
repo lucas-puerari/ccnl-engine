@@ -33,7 +33,7 @@ from ccnl_engine.inputs import (
     WeeklyHours,
 )
 from ccnl_engine.catalog.loaders import load_ccnl
-from ccnl_engine.knowledge.loaders import read_resource
+from ccnl_engine.bundle.loaders import read_resource
 from ccnl_engine.surtax.loaders import load_surtax_rules
 from ccnl_engine.surtax.jurisdiction.types import REGION_CODES
 

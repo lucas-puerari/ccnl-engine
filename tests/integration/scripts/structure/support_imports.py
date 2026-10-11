@@ -13,7 +13,7 @@ Every module is placed on a layer:
 - ``application``, ``service``, ``domain``: ``ccnl_engine.<capability>.<layer>``,
   or by file role in the layout by domain (:data:`ROLE_LAYERS`); the root
   ``errors``, ``primitives`` and ``validation`` modules are the shared domain;
-- ``metadata``: ``ccnl_engine.version`` and ``ccnl_engine.knowledge.facade``
+- ``metadata``: ``ccnl_engine.version`` and ``ccnl_engine.bundle.facade``
   (version strings);
 - ``package``: a capability ``__init__.py``, which must stay import free.
 """
@@ -54,7 +54,7 @@ PUBLIC_NAMESPACES: frozenset[str] = frozenset({
 _SHARED_CAPABILITY = "shared"
 _METADATA_MODULES = frozenset({
     f"{ROOT_PACKAGE}.version",
-    f"{ROOT_PACKAGE}.knowledge.facade",
+    f"{ROOT_PACKAGE}.bundle.facade",
 })
 _DATA_CAPABILITY = "knowledge"
 #: Shared primitives and errors at the package root (architecture contract).

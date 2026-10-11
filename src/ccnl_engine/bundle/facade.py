@@ -5,7 +5,7 @@ payroll), ordered as ``domain/dataset/year/scope.json`` and indexed by
 ``manifest.json``: every resource is listed there once, with its identity,
 model, validity, ruleset and wheel name.  The JSON carries no Python logic,
 so it can be upgraded or redistributed independently of the engine.  The
-only code is :mod:`ccnl_engine.knowledge.loaders`, which reads the resources
+only code is :mod:`ccnl_engine.bundle.loaders`, which reads the resources
 through the manifest.
 
 Datasets:

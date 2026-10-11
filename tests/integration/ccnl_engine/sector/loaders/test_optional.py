@@ -11,11 +11,11 @@ from pydantic import ValidationError
 from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.errors import DataIntegrityError, UnsupportedTaxYearError
 from ccnl_engine.family.loaders import load_family_deduction_rules
-from ccnl_engine.knowledge.sector.loaders import (
+from ccnl_engine.sector.loaders import (
     _load_year_rules_cached,
     load_year_rules,
 )
-from ccnl_engine.knowledge.sector.raw.loaders import _try_ruleset
+from ccnl_engine.sector.raw.loaders import _try_ruleset
 from ccnl_engine.severance.loaders import load_tfr_revaluation_rules
 from ccnl_engine.variable_pay.loaders import load_variable_pay_rules
 
@@ -217,11 +217,11 @@ class TestResolveInpsAdditionalValidation:
         _load_year_rules_cached.cache_clear()
         with (
             patch(
-                "ccnl_engine.knowledge.sector.loaders.read_tax_rules_raw",
+                "ccnl_engine.sector.loaders.read_tax_rules_raw",
                 return_value=_BAD_TAX_RAW,
             ),
             patch(
-                "ccnl_engine.knowledge.sector.loaders.read_inps_rules_raw",
+                "ccnl_engine.sector.loaders.read_inps_rules_raw",
                 return_value=bad_inps_raw,
             ),
             pytest.raises(ValidationError, match="must not exceed"),
@@ -238,7 +238,7 @@ class TestLoadYearRulesIdentity:
         _load_year_rules_cached.cache_clear()
         with (
             patch(
-                "ccnl_engine.knowledge.sector.loaders.read_tax_rules_raw",
+                "ccnl_engine.sector.loaders.read_tax_rules_raw",
                 return_value={"year": 9999, "sector": "terziario"},
             ),
             pytest.raises(DataIntegrityError, match="does not match requested year"),
@@ -251,7 +251,7 @@ class TestLoadYearRulesIdentity:
         _load_year_rules_cached.cache_clear()
         with (
             patch(
-                "ccnl_engine.knowledge.sector.loaders.read_tax_rules_raw",
+                "ccnl_engine.sector.loaders.read_tax_rules_raw",
                 return_value={"year": 2026, "sector": "invalid"},
             ),
             pytest.raises(DataIntegrityError, match="does not match requested sector"),
@@ -264,11 +264,11 @@ class TestLoadYearRulesIdentity:
         _load_year_rules_cached.cache_clear()
         with (
             patch(
-                "ccnl_engine.knowledge.sector.loaders.read_tax_rules_raw",
+                "ccnl_engine.sector.loaders.read_tax_rules_raw",
                 return_value={"year": 2026, "sector": "terziario"},
             ),
             patch(
-                "ccnl_engine.knowledge.sector.loaders.read_inps_rules_raw",
+                "ccnl_engine.sector.loaders.read_inps_rules_raw",
                 return_value={"year": 9999, "sector": "terziario"},
             ),
             pytest.raises(DataIntegrityError, match="does not match requested year"),
@@ -281,11 +281,11 @@ class TestLoadYearRulesIdentity:
         _load_year_rules_cached.cache_clear()
         with (
             patch(
-                "ccnl_engine.knowledge.sector.loaders.read_tax_rules_raw",
+                "ccnl_engine.sector.loaders.read_tax_rules_raw",
                 return_value={"year": 2026, "sector": "terziario"},
             ),
             patch(
-                "ccnl_engine.knowledge.sector.loaders.read_inps_rules_raw",
+                "ccnl_engine.sector.loaders.read_inps_rules_raw",
                 return_value={"year": 2026, "sector": "invalid"},
             ),
             pytest.raises(DataIntegrityError, match="does not match requested sector"),
@@ -338,11 +338,11 @@ class TestWorkDeductionPassthrough:
         _load_year_rules_cached.cache_clear()
         with (
             patch(
-                "ccnl_engine.knowledge.sector.loaders.read_tax_rules_raw",
+                "ccnl_engine.sector.loaders.read_tax_rules_raw",
                 return_value=custom_tax_raw,
             ),
             patch(
-                "ccnl_engine.knowledge.sector.loaders.read_inps_rules_raw",
+                "ccnl_engine.sector.loaders.read_inps_rules_raw",
                 return_value=inps_raw,
             ),
         ):

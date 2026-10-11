@@ -13,7 +13,7 @@ import pytest
 
 from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.employment.category.models import WorkerCategory
-from ccnl_engine.knowledge.sector.loaders import load_year_rules
+from ccnl_engine.sector.loaders import load_year_rules
 
 _YEAR = 2026
 _PRIVATE = [

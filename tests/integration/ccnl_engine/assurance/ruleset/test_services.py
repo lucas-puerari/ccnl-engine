@@ -24,8 +24,8 @@ from tests.integration.ccnl_engine.catalog.builders import (
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import TaxSector
-    from ccnl_engine.knowledge.sector.models import YearRules
     from ccnl_engine.period.results import PeriodResult
+    from ccnl_engine.sector.models import YearRules
 
 _METALMECCANICO = "metalmeccanico-federmeccanica.json"
 

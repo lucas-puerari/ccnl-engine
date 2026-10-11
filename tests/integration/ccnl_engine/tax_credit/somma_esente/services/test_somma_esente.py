@@ -43,7 +43,7 @@ from tests.integration.ccnl_engine.period.builders import (
 from tests.unit.ccnl_engine.builders import make_year_rules
 
 if TYPE_CHECKING:
-    from ccnl_engine.knowledge.sector.models import YearRules
+    from ccnl_engine.sector.models import YearRules
 
 _ZERO = Decimal(0)
 _YEAR = 2026

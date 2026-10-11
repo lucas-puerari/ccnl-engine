@@ -7,7 +7,7 @@ from typing import Any
 from pydantic import ValidationError
 
 from ccnl_engine.errors import DataIntegrityError
-from ccnl_engine.knowledge.sector.raw.loaders import (
+from ccnl_engine.sector.raw.loaders import (
     _as_ruleset,
     _provenance_of,
     _read_json,

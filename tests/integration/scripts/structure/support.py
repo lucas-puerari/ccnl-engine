@@ -54,6 +54,7 @@ CONCEPT_TIERS: Mapping[str, int] = {
         (
             "agreement",
             "amount",
+            "bundle",
             "calendar",
             "decision",
             "knowledge",
@@ -75,6 +76,7 @@ CONCEPT_TIERS: Mapping[str, int] = {
             "pay_item",
             "pension_fund",
             "regime",
+            "sector",
             "seniority",
             "severance",
             "sickness",

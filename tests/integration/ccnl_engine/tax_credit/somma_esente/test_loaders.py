@@ -10,9 +10,9 @@ import pytest
 
 from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.errors import DataIntegrityError, UnsupportedTaxYearError
-from ccnl_engine.knowledge.sector.loaders import load_year_rules
 from ccnl_engine.provenance.ruleset.models import SourceType
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus
+from ccnl_engine.sector.loaders import load_year_rules
 from ccnl_engine.tax_credit.somma_esente.loaders import load_somma_esente_rules
 
 _READER = "ccnl_engine.tax_credit.somma_esente.loaders.read_year_json"

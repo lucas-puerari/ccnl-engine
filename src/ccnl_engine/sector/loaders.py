@@ -10,8 +10,8 @@ from ccnl_engine.contribution.headcount.rules import (
     _resolve_inps,
 )
 from ccnl_engine.errors import DataIntegrityError
-from ccnl_engine.knowledge.sector.models import YearRules, YearRulesRaw
-from ccnl_engine.knowledge.sector.raw.loaders import (
+from ccnl_engine.sector.models import YearRules, YearRulesRaw
+from ccnl_engine.sector.raw.loaders import (
     _as_ruleset,
     read_inps_rules_raw,
     read_tax_rules_raw,
@@ -42,7 +42,7 @@ def load_year_rules(
     the INPS contribution block (aliquote, apprentice, domestic) comes from
     ``knowledge/contribution/<year>/<sector>.json``.  Both are
     merged and validated
-    against :class:`~ccnl_engine.knowledge.sector.models.YearRulesRaw` before
+    against :class:`~ccnl_engine.sector.models.YearRulesRaw` before
     resolving tiers.
 
     Each call returns an independent deep copy of the cached rules object, so
@@ -78,7 +78,7 @@ def _load_year_rules_cached(
     ``DataIntegrityError``.
 
     Returns:
-        The shared :class:`~ccnl_engine.knowledge.sector.models.YearRules`
+        The shared :class:`~ccnl_engine.sector.models.YearRules`
         object stored in the cache.
     """
     tax_raw = read_tax_rules_raw(year, sector)

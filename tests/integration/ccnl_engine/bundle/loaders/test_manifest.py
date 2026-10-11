@@ -8,7 +8,7 @@ from pathlib import Path
 
 import pytest
 
-from ccnl_engine.knowledge.loaders import (
+from ccnl_engine.bundle.loaders import (
     MANIFEST,
     read_resource,
     resource_dir,

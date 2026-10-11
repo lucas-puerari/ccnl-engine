@@ -11,7 +11,7 @@ from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.irpef.computation.services import (
     compute_tax,
 )
-from ccnl_engine.knowledge.sector.loaders import load_year_rules
+from ccnl_engine.sector.loaders import load_year_rules
 from ccnl_engine.tax_credit.models import (
     TrattamentoIntegrativoRules,
     UlterioreDetrazioneRules,

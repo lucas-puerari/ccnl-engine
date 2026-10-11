@@ -34,9 +34,8 @@ owner and the name of its compressed copy in the wheel.
 
 ## Reading data
 
-Loaders in `ccnl_engine.contract.service`, `ccnl_engine.tax.service` and
-`ccnl_engine.knowledge.service` read these resources through the manifest
-(`ccnl_engine.knowledge.loaders`): a path the manifest does not list
+The loaders of each concept and the readers of `ccnl_engine.bundle` read
+these resources through the manifest (`ccnl_engine.bundle.loaders`): a path the manifest does not list
 is never read.  A wheel carries each resource compressed under the same path
 with `.gz`.  The loaders validate the JSON against the engine's pydantic
 schemas.

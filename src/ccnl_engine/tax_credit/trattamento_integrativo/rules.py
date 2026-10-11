@@ -36,7 +36,7 @@ from ccnl_engine.tax_credit.recovery.models import (
 
 if TYPE_CHECKING:
     from ccnl_engine.irpef.net.rules import NetIrpef
-    from ccnl_engine.knowledge.sector.models import YearRules
+    from ccnl_engine.sector.models import YearRules
 
 __all__ = ["resolve_trattamento"]
 

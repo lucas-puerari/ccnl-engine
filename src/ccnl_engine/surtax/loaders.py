@@ -6,13 +6,13 @@ import json
 from functools import cache
 from typing import Any
 
-from ccnl_engine.errors import DataIntegrityError, UnsupportedTaxYearError
-from ccnl_engine.knowledge.loaders import read_resource
-from ccnl_engine.knowledge.sector.raw.loaders import supported_tax_years
-from ccnl_engine.knowledge.validators import (
+from ccnl_engine.bundle.loaders import read_resource
+from ccnl_engine.bundle.validators import (
     verify_provenance_labels,
     verify_ruleset_hash,
 )
+from ccnl_engine.errors import DataIntegrityError, UnsupportedTaxYearError
+from ccnl_engine.sector.raw.loaders import supported_tax_years
 from ccnl_engine.surtax.models import (
     ComunaleRaw,
     RegionaleRaw,
@@ -27,7 +27,7 @@ def load_surtax_rules(year: int) -> SurtaxRules:
     of the knowledge manifest. In installed
     wheels the compressed ``.json.gz`` variants are preferred; plain ``.json``
     files are used as fallback for editable installs (mirroring the behaviour
-    of :func:`~ccnl_engine.knowledge.sector.loaders.load_year_rules`).
+    of :func:`~ccnl_engine.sector.loaders.load_year_rules`).
 
     Each call returns a new :class:`~ccnl_engine.surtax.models.SurtaxRules`
     whose ``regionale`` and ``comunale`` dicts are freshly allocated, so callers

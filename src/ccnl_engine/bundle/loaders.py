@@ -6,7 +6,7 @@ scope.  The loaders find a resource here, never by globbing directories, so
 a file the manifest does not list is not read, and a listed one that is
 missing fails loudly.  In a wheel each resource is stored compressed under
 the same path with ``.gz``
-(:func:`~ccnl_engine.knowledge.loaders.read_bundled`).
+(:func:`~ccnl_engine.bundle.loaders.read_bundled`).
 """
 
 from __future__ import annotations

@@ -7,7 +7,7 @@ from typing import TYPE_CHECKING, Any
 
 import pytest
 
-from ccnl_engine.knowledge.validators import provenance_label_errors
+from ccnl_engine.bundle.validators import provenance_label_errors
 from scripts.provenance.labels import (
     file_label_errors,
     label_errors,

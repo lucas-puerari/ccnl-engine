@@ -161,7 +161,7 @@ def test_analysis_sees_the_package(package: dict[str, Module]) -> None:
         ("ccnl_engine.payroll.service.x", "ccnl_engine.payroll.application.y"),
         ("ccnl_engine.tax.service.x", "ccnl_engine.api"),
         ("ccnl_engine.payroll.application.x", "ccnl_engine.api"),
-        ("ccnl_engine.api", "ccnl_engine.knowledge.loaders"),
+        ("ccnl_engine.api", "ccnl_engine.bundle.loaders"),
         ("ccnl_engine.api", "ccnl_engine.payroll.domain.y"),
         ("ccnl_engine.payroll.domain.x", "ccnl_engine.knowledge"),
         ("ccnl_engine.payroll.__init__", "ccnl_engine.payroll.domain.y"),

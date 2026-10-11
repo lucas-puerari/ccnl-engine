@@ -22,7 +22,7 @@ from ccnl_engine.employment.inputs import Apprentice, Permanent
 from tests.unit.ccnl_engine.builders import make_year_rules
 
 if TYPE_CHECKING:
-    from ccnl_engine.knowledge.sector.models import YearRules
+    from ccnl_engine.sector.models import YearRules
 
 _RULES = make_year_rules()
 _AGRICULTURE = _RULES.model_copy(

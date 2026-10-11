@@ -5,12 +5,12 @@ from __future__ import annotations
 from decimal import Decimal
 
 from ccnl_engine.errors import DataIntegrityError
-from ccnl_engine.knowledge.sector.raw.loaders import (
+from ccnl_engine.regime.models import PreferentialTaxRegime
+from ccnl_engine.sector.raw.loaders import (
     _as_ruleset,
     _provenance_of,
     read_year_json,
 )
-from ccnl_engine.regime.models import PreferentialTaxRegime
 from ccnl_engine.variable_pay.models import (
     FringeBenefitRules,
     PdRRules,

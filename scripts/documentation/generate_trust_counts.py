@@ -30,8 +30,8 @@ from typing import TYPE_CHECKING
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from ccnl_engine.agreement.facade import NoteKind
+from ccnl_engine.bundle.loaders import resources
 from ccnl_engine.catalog.loaders import load_ccnl
-from ccnl_engine.knowledge.loaders import resources
 from ccnl_engine.limitation.loaders import load_engine_limitations
 from ccnl_engine.limitation.models import LimitationTrigger
 from ccnl_engine.provenance.ruleset.models import (

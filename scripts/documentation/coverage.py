@@ -21,6 +21,7 @@ from dataclasses import dataclass
 from datetime import UTC, date, datetime
 from typing import TYPE_CHECKING
 
+from ccnl_engine.bundle.loaders import resources
 from ccnl_engine.capability.loaders import (
     load_capability_catalog,
 )
@@ -33,7 +34,6 @@ from ccnl_engine.capability.support.services import (
     layer_coverage,
 )
 from ccnl_engine.catalog.loaders import load_ccnl
-from ccnl_engine.knowledge.loaders import resources
 from ccnl_engine.provenance.ruleset.models import (
     RulesetReadiness,
     VerificationStatus,

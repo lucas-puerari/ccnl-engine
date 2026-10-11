@@ -16,11 +16,11 @@ from ccnl_engine.capability.rule.services import (
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.compensation.proration.services import FULL_MONTH
 from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
-from ccnl_engine.knowledge.sector.loaders import load_year_rules
 from ccnl_engine.period.repositories import (
     BundledKnowledgeRepository,
 )
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus, RuleProvenance
+from ccnl_engine.sector.loaders import load_year_rules
 from ccnl_engine.variable_pay.loaders import load_variable_pay_rules
 
 if TYPE_CHECKING:

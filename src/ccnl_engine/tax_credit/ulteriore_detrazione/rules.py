@@ -26,7 +26,7 @@ from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
 from ccnl_engine.tax_credit.ulteriore_detrazione.plan.rules import AT_TERMINATION
 
 if TYPE_CHECKING:
-    from ccnl_engine.knowledge.sector.models import YearRules
+    from ccnl_engine.sector.models import YearRules
     from ccnl_engine.tax_credit.account.models import CreditAccount
     from ccnl_engine.tax_credit.recovery.models import PostedInstallment
 

@@ -5,7 +5,7 @@ from __future__ import annotations
 import gzip
 from typing import TYPE_CHECKING
 
-from ccnl_engine.knowledge.loaders import BundledResourceStore
+from ccnl_engine.bundle.loaders import BundledResourceStore
 
 if TYPE_CHECKING:
     from pathlib import Path

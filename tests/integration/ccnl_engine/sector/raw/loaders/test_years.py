@@ -8,9 +8,9 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine.errors import UnsupportedTaxYearError
-from ccnl_engine.knowledge.sector.loaders import load_year_rules
-from ccnl_engine.knowledge.sector.raw import loaders as tax_resource_reader
-from ccnl_engine.knowledge.sector.raw.loaders import (
+from ccnl_engine.sector.loaders import load_year_rules
+from ccnl_engine.sector.raw import loaders as tax_resource_reader
+from ccnl_engine.sector.raw.loaders import (
     read_tax_rules_raw,
     supported_tax_years,
 )

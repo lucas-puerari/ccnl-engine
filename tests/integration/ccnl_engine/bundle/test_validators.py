@@ -15,6 +15,7 @@ from typing import Any, cast
 import pytest
 
 from ccnl_engine.agreement.facade import TaxSector
+from ccnl_engine.bundle.loaders import read_resource
 from ccnl_engine.catalog import loaders as contract_loaders
 from ccnl_engine.catalog.loaders import (
     _verify_payload as _verify_contract_hash,
@@ -23,19 +24,18 @@ from ccnl_engine.catalog.loaders import (
     load_ccnl as load_ccnl_from_bundle,
 )
 from ccnl_engine.errors import DataIntegrityError
-from ccnl_engine.knowledge.loaders import read_resource
-from ccnl_engine.knowledge.sector.loaders import (
+from ccnl_engine.sector.loaders import (
     _load_year_rules_cached,
     load_year_rules,
 )
-from ccnl_engine.knowledge.sector.raw import loaders as tax_resource_reader_mod
+from ccnl_engine.sector.raw import loaders as tax_resource_reader_mod
 from ccnl_engine.surtax import loaders as surtax_loaders
 from ccnl_engine.surtax.loaders import _load_surtax_rules_cached
 from tests.unit.ccnl_engine.builders import make_ccnl_dict
 
 LOADER_PATHS = (
     "ccnl_engine.catalog.loaders",
-    "ccnl_engine.knowledge.sector.raw.loaders",
+    "ccnl_engine.sector.raw.loaders",
     "ccnl_engine.surtax.loaders",
 )
 

@@ -1,6 +1,6 @@
 """Tests for the knowledge base version metadata."""
 
-from ccnl_engine.knowledge.facade import __version__
+from ccnl_engine.bundle.facade import __version__
 
 
 class TestKnowledgeVersion:

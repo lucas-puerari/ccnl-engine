@@ -32,7 +32,7 @@ from ccnl_engine.employment.fixed_term.inputs import FixedTerm
 if TYPE_CHECKING:
     from ccnl_engine.employment.category.models import WorkerCategory
     from ccnl_engine.employment.inputs import Contract
-    from ccnl_engine.knowledge.sector.models import YearRules
+    from ccnl_engine.sector.models import YearRules
 
 __all__ = ["NaspiSurcharge", "SurchargeReason", "naspi_surcharge"]
 

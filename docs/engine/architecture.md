@@ -45,7 +45,7 @@ api -> application -> service -> domain
   move yet is allowlisted with its reason; the allowlist and the legacy
   roots only shrink.
 - Every module belongs to a layer. `ccnl_engine.version` and the bundle
-  version in `knowledge/facade.py` are metadata: any layer except `domain`
+  version in `bundle/facade.py` are metadata: any layer except `domain`
   may import them. A package `__init__.py` holds a docstring only.
 
 ## Public API

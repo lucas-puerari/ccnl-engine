@@ -13,7 +13,7 @@ if TYPE_CHECKING:
     from collections.abc import Mapping
     from decimal import Decimal
 
-    from ccnl_engine.knowledge.sector.models import YearRules
+    from ccnl_engine.sector.models import YearRules
     from ccnl_engine.tax_credit.rules import CreditOutcome
 
 

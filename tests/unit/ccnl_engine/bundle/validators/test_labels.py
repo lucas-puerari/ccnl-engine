@@ -6,12 +6,12 @@ from typing import Any
 
 import pytest
 
-from ccnl_engine.errors import DataIntegrityError
-from ccnl_engine.knowledge.validators import (
+from ccnl_engine.bundle.validators import (
     has_citation,
     provenance_label_errors,
     verify_provenance_labels,
 )
+from ccnl_engine.errors import DataIntegrityError
 
 _CITED: dict[str, Any] = {
     "source_document": {"document_id": "d", "url": "https://example.org/d.pdf"},

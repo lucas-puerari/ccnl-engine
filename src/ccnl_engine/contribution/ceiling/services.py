@@ -36,9 +36,9 @@ from ccnl_engine.decision.models import (
 
 if TYPE_CHECKING:
     from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
-    from ccnl_engine.knowledge.sector.models import YearRules
     from ccnl_engine.period.context.services import RunContext
     from ccnl_engine.provenance.source.models import SourceLocation
+    from ccnl_engine.sector.models import YearRules
 
 __all__ = [
     "CAPABILITY",

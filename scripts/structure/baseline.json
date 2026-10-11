@@ -74,7 +74,6 @@
     "tests/integration/scripts/structure/test_test_layout.py": 1,
     "tests/knowledge/ccnl_engine/knowledge/test_data_quality.py": 1,
     "tests/unit/ccnl_engine/comparison/ruleset/test_services_models.py": 1,
-    "tests/unit/ccnl_engine/comparison/ruleset/test_services_rule_changes.py": 1,
-    "tests/unit/ccnl_engine/knowledge/test_validators_labels.py": 1
+    "tests/unit/ccnl_engine/comparison/ruleset/test_services_rule_changes.py": 1
   }
 }

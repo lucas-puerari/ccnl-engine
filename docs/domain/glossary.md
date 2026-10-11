@@ -415,12 +415,12 @@ technical role (`docs/engine/architecture.md`). The structure check reads
 this list: a name is added here before a directory uses it.
 
 **Concepts** (roots of `src/ccnl_engine`): `absence`, `agreement`, `amount`,
-`apprenticeship`, `assurance`, `balance`, `calendar`, `capability`, `catalog`,
+`apprenticeship`, `assurance`, `balance`, `bundle`, `calendar`, `capability`, `catalog`,
 `collection`, `comparison`, `compensation`, `contribution`, `decision`,
 `default`, `employer`, `employment`, `end_of_service`, `event`,
 `extra_month`, `family`, `fund`, `irpef`, `knowledge`, `ledger`,
 `limitation`, `pay_item`, `pension_fund`, `period`, `provenance`,
-`reconciliation`, `regime`, `run`, `seniority`, `severance`, `sickness`,
+`reconciliation`, `regime`, `run`, `sector`, `seniority`, `severance`, `sickness`,
 `surtax`, `tax_credit`, `termination`, `variable_pay`, `withholding`,
 `working_time`, `year`.
 

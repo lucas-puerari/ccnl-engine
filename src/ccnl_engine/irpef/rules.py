@@ -22,7 +22,7 @@ from ccnl_engine.pay_item.rounding.policies import money
 if TYPE_CHECKING:
     from collections.abc import Sequence
 
-    from ccnl_engine.knowledge.sector.models import YearRules
+    from ccnl_engine.sector.models import YearRules
     from ccnl_engine.types import Bracket
 
 _ZERO = Decimal(0)

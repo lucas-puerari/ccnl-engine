@@ -4,12 +4,12 @@ from __future__ import annotations
 
 import pytest
 
-from ccnl_engine.errors import DataIntegrityError
-from ccnl_engine.knowledge.validators import (
+from ccnl_engine.bundle.validators import (
     as_ruleset,
     try_ruleset,
     verify_ruleset_hash,
 )
+from ccnl_engine.errors import DataIntegrityError
 from ccnl_engine.provenance.ruleset.models import source_hash
 
 

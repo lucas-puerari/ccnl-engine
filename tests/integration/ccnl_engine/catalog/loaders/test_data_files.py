@@ -11,8 +11,8 @@ import pytest
 from ccnl_engine.agreement.facade import CCNL, TaxSector
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.errors import UnsupportedTaxYearError
-from ccnl_engine.knowledge.sector.loaders import load_year_rules
-from ccnl_engine.knowledge.sector.models import YearRules
+from ccnl_engine.sector.loaders import load_year_rules
+from ccnl_engine.sector.models import YearRules
 
 # ---------------------------------------------------------------------------
 # Parametrised: every JSON in ccnl_engine/knowledge/agreement must validate

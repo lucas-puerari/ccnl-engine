@@ -5,7 +5,7 @@ from __future__ import annotations
 from pydantic import ValidationError
 
 from ccnl_engine.errors import DataIntegrityError, UnsupportedTaxYearError
-from ccnl_engine.knowledge.sector.raw.loaders import _try_ruleset, read_year_json
+from ccnl_engine.sector.raw.loaders import _try_ruleset, read_year_json
 from ccnl_engine.severance.revaluation.models import TfrRevaluationRules
 
 

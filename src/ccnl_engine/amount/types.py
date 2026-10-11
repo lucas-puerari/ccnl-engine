@@ -31,11 +31,11 @@ if TYPE_CHECKING:
     )
     from ccnl_engine.fund.solidarity.models import SolidarityFund
     from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts
-    from ccnl_engine.knowledge.sector.models import YearRules
     from ccnl_engine.pension_fund.rules import (
         PensionContribution,
         PensionFundTerms,
     )
+    from ccnl_engine.sector.models import YearRules
     from ccnl_engine.surtax.models import SurtaxRules
     from ccnl_engine.surtax.obligation.models import SurtaxObligation
     from ccnl_engine.tax_credit.foreign.inputs import ForeignTaxPaid
