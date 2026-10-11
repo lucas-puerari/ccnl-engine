@@ -53,8 +53,16 @@ _PRODUCTION: dict[str, object] = {
     "confidence": "verified",
     "readiness": "production",
     "owner": "owner",
-    "human_reviewed_by": "reviewer",
-    "last_reviewed": "2026-09-02",
+    "reviews": [
+        {
+            "id": "r1",
+            "date": "2026-09-02",
+            "reviewer": "claude-opus-5-5",
+            "reviewer_kind": "ai",
+            "scope": "Whole file",
+            "outcome": "confirmed",
+        }
+    ],
     "review_due": "2027-03-02",
 }
 
@@ -252,6 +260,29 @@ def test_verified_rule_without_evidence_lists_each_gap(tmp_path: Path) -> None:
     ]
 
 
+def test_verified_ccnl_rule_names_an_entry_of_the_review_log(tmp_path: Path) -> None:
+    """In a CCNL file a verified rule points to the review that checked it."""
+    root = _knowledge(tmp_path, _ccnl(verification=_PRODUCTION))
+    extraction = _VERIFIED["extraction"]
+    assert isinstance(extraction, dict)
+    linked = {**_VERIFIED, "extraction": {**extraction, "review_id": "r1"}}
+    unknown = {**_VERIFIED, "extraction": {**extraction, "review_id": "r9"}}
+    rules = [
+        PayableRule("agreement/x.json", path, ("base_salary",), "verified", record)
+        for path, record in (
+            ("linked", linked),
+            ("unknown", unknown),
+            ("none", _VERIFIED),
+        )
+    ]
+    reason = "verified without an extraction.review_id in verification.reviews"
+    assert schema_errors(tuple(rules), root) == [
+        f"agreement/x.json: unknown: {reason}",
+        f"agreement/x.json: none: {reason}",
+    ]
+    assert RuleProvenance.model_validate(linked).location is not None
+
+
 def test_production_ccnl_with_full_evidence_passes(tmp_path: Path) -> None:
     """Owner, reviewer and review dates are present; the model accepts them."""
     root = _knowledge(tmp_path, _ccnl(verification=_PRODUCTION))
@@ -266,22 +297,21 @@ def test_production_ccnl_with_full_evidence_passes(tmp_path: Path) -> None:
             {"readiness": "production"},
             [
                 "production without verification.owner",
-                "production without verification.human_reviewed_by",
-                "production without verification.last_reviewed",
+                "production without verification.reviews",
                 "production without confidence 'verified'",
                 "production without a valid verification.review_due",
             ],
         ),
         (
             {**_PRODUCTION, "review_due": "2026-09-02"},
-            ["verification.review_due is not after last_reviewed"],
+            ["verification.review_due is not after the last review"],
         ),
         (
             {**_PRODUCTION, "review_due": "soon"},
             ["production without a valid verification.review_due"],
         ),
         (
-            {**_PRODUCTION, "last_reviewed": 20260902},
+            {**_PRODUCTION, "reviews": [{"id": "r1", "date": 20260902}]},
             [],
         ),
     ],

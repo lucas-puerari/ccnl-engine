@@ -54,15 +54,16 @@ in decisions; integration into HR tools that do not add their own disclaimer.
 
 ### `exploratory` → `reviewed`
 
-A reviewer (a person, or an AI review the owner of the ruleset authorised and recorded) must:
+A reviewer, a person or an AI model, must:
 
 1. Open the primary CCNL source document (URL recorded in `meta.sources`).
 2. Confirm every base salary amount for each level against the table in the
    document.
 3. Confirm the seniority table amounts and cadence.
 4. Confirm `additional_months`, `hourly_divisor`, and any fixed allowances.
-5. Record `verification.last_reviewed`, `verification.human_reviewed_by`, and
-   set `verification.confidence = "verified"` on the verified fields.
+5. Append an entry to the [review log](#review-log), mark each checked value
+   `verified` with the `review_id` of that entry, and set
+   `verification.confidence = "verified"`.
 6. Source every `assumed` or `missing` payable rule of the CCNL file: each
    must be `derived` or `verified` (see
    [Provenance](provenance.md#a-label-never-outruns-its-evidence)).
@@ -77,13 +78,36 @@ In addition to the `reviewed` criteria:
 2. At least one reference case must exist in `tests/knowledge/ccnl_engine/period/reference_case/`
    sourced from a real payslip (anonymised) or an official regulatory example,
    not a synthetic scenario.
-3. A named owner must be recorded in `verification.owner`, and the reviewer
-   in `verification.human_reviewed_by`.
+3. An owner must be recorded in `verification.owner`, and the review in the
+   [review log](#review-log).
 4. An update-policy entry must exist: who monitors CCNL renewals, and within
    what target window the ruleset is updated after a renewal. Record the
-   date the next review is due in `verification.review_due`, after
-   `verification.last_reviewed`.
+   date the next review is due in `verification.review_due`, after the date
+   of the last entry of the review log.
 5. Set `verification.readiness = "production"` in the CCNL JSON.
+
+### Review log
+
+`verification.reviews` lists the reviews of a CCNL file, oldest first. An
+entry is appended for each review and never rewritten, so the file keeps its
+whole history. A person and an AI model record a review with the same
+fields:
+
+| Field | Content |
+|---|---|
+| `id` | Identifier of the entry, unique in the file |
+| `date` | Day of the review |
+| `reviewer` | Role of the person (`maintainer`), or identifier of the model |
+| `reviewer_kind` | `human` or `ai` |
+| `scope` | What the review checked: the whole file, or which rules |
+| `outcome` | `confirmed`, `corrected`, `flagged` (values left to re-check) or `demoted` |
+| `sources` | URL and sha256 of each document the review read |
+| `findings` | The differences the review found, or notes on its scope |
+
+Each value the review checked is `verified` and points to the entry with
+`extraction.review_id`. An AI review is cleared by the owner when the pull
+request that records it is merged; the log does not repeat it. Each
+[contract page](../contracts/index.md) renders its log as a review history.
 
 The INPS rates of a sector are verified against a table of the year when one
 exists. Where none exists, the owner accepted on 2026-10-10 a reconstruction
@@ -120,14 +144,13 @@ Each [contract page](../contracts/index.md) shows its own tier.
 
 In October 2026 fifteen rulesets `reviewed` on a file-level review were
 lowered to `exploratory`: each still read `assumed` or `missing` payable rules
-and none recorded a `verified` confidence. Their
-`verification.human_reviewed_by` and `verification.last_reviewed` are kept; a
-ruleset returns to `reviewed` once its weak rules are sourced and its
+and none recorded a `verified` confidence. Their review log keeps the
+file-level review that promoted them; a ruleset returns to `reviewed` once its weak rules are sourced and its
 confidence is `verified`, as the ones listed above did.
 
 `reviewed` records a file-level review, not a per-value one. Of the `reviewed`
 rulesets, <!-- trust:reviewed-with-reviewer -->2<!-- /trust:reviewed-with-reviewer -->
-record `verification.human_reviewed_by` and `verification.last_reviewed`, and
+hold an entry in the review log, and
 <!-- trust:reviewed-confidence-verified -->2<!-- /trust:reviewed-confidence-verified -->
 set `verification.confidence = "verified"` (step 5 of the criteria above).
 A per-value review is recorded only by the provenance status `verified` of a

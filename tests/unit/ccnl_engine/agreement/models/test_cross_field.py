@@ -25,6 +25,25 @@ def _series(value: str, valid_from: str = "2020-01-01") -> dict[str, Any]:
     }
 
 
+def _review(
+    review_id: str,
+    day: str,
+    *,
+    reviewer: str = "claude-opus-5-5",
+    kind: str = "ai",
+    sources: list[dict[str, str]] | None = None,
+) -> dict[str, Any]:
+    return {
+        "id": review_id,
+        "date": day,
+        "reviewer": reviewer,
+        "reviewer_kind": kind,
+        "scope": "Whole file",
+        "outcome": "confirmed",
+        "sources": sources or [],
+    }
+
+
 def _validate(data: dict[str, Any]) -> CCNL:
     return CCNL.model_validate(data)
 
@@ -165,32 +184,50 @@ class TestVerification:
         result = _validate(data)
         assert result.verification.verified_cases == 3
 
-    def test_last_reviewed_defaults_to_none(self) -> None:
-        """last_reviewed defaults to None when not supplied."""
-        data = make_ccnl_dict()
-        result = _validate(data)
+    def test_review_log_defaults_to_empty(self) -> None:
+        """Without a review log there is no last review."""
+        result = _validate(make_ccnl_dict())
+        assert result.verification.reviews == ()
         assert result.verification.last_reviewed is None
 
-    def test_last_reviewed_accepted(self) -> None:
-        """An ISO date string is accepted for last_reviewed."""
+    def test_review_log_gives_the_last_review(self) -> None:
+        """A human and an AI review share the fields; the last one dates the log."""
         data = make_ccnl_dict()
-        data["verification"] = {"last_reviewed": "2025-06-01"}
-        result = _validate(data)
-        assert result.verification.last_reviewed is not None
-        assert str(result.verification.last_reviewed) == "2025-06-01"
+        data["verification"] = {
+            "reviews": [
+                _review("r1", "2026-09-18", reviewer="maintainer", kind="human"),
+                _review("r2", "2026-10-10", sources=[{"url": "u", "sha256": "0" * 64}]),
+            ]
+        }
+        verification = _validate(data).verification
+        assert [r.reviewer_kind for r in verification.reviews] == ["human", "ai"]
+        assert verification.reviews[1].sources[0].url == "u"
+        assert verification.last_reviewed == date(2026, 10, 10)
 
-    def test_human_reviewed_by_defaults_to_none(self) -> None:
-        """human_reviewed_by defaults to None when not supplied."""
+    @pytest.mark.parametrize(
+        ("reviews", "fragment"),
+        [
+            ([_review("r1", "2026-09-18"), _review("r1", "2026-10-10")], "unique"),
+            ([_review("r1", "2026-10-10"), _review("r2", "2026-09-18")], "oldest"),
+            ([_review("r1", "2026-10-10", kind="robot")], "reviewer_kind"),
+            ([{**_review("r1", "2026-10-10"), "authorised_by": "x"}], "authorised_by"),
+        ],
+    )
+    def test_invalid_review_log_is_rejected(
+        self, reviews: list[dict[str, Any]], fragment: str
+    ) -> None:
+        """Ids are unique, entries are oldest first, fields are closed."""
         data = make_ccnl_dict()
-        result = _validate(data)
-        assert result.verification.human_reviewed_by is None
+        data["verification"] = {"reviews": reviews}
+        with pytest.raises(ValidationError, match=fragment):
+            _validate(data)
 
-    def test_human_reviewed_by_accepted(self) -> None:
-        """A free-form string is accepted for human_reviewed_by."""
+    def test_legacy_reviewer_field_is_rejected(self) -> None:
+        """The file-level reviewer field gave way to the review log."""
         data = make_ccnl_dict()
-        data["verification"] = {"human_reviewed_by": "alice@example.com"}
-        result = _validate(data)
-        assert result.verification.human_reviewed_by == "alice@example.com"
+        data["verification"] = {"human_reviewed_by": "someone"}
+        with pytest.raises(ValidationError, match="human_reviewed_by"):
+            _validate(data)
 
 
 # ---------------------------------------------------------------------------

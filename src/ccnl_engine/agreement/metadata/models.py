@@ -1,9 +1,10 @@
-"""CCNLVerification, CCNLValidity, and CCNLMeta models."""
+"""CCNLReview, CCNLVerification, CCNLValidity, and CCNLMeta models."""
 
 from __future__ import annotations
 
-from datetime import date
-from typing import Any
+import datetime as dt
+from enum import StrEnum
+from typing import Any, Self
 
 from pydantic import BaseModel, ConfigDict, model_validator
 
@@ -20,8 +21,76 @@ from ccnl_engine.provenance.source.extraction.models import ExtractionTrace
 from ccnl_engine.provenance.source.models import SourceDocument
 
 
+class ReviewerKind(StrEnum):
+    """Who made a review: a person or an AI model."""
+
+    HUMAN = "human"
+    AI = "ai"
+
+
+class ReviewOutcome(StrEnum):
+    """What a review did to the ruleset.
+
+    Values:
+        confirmed: The checked values match their sources.
+        corrected: The review fixed values that did not match.
+        flagged: The review left values to correct or to re-check.
+        demoted: The review lowered the readiness of the ruleset.
+    """
+
+    CONFIRMED = "confirmed"
+    CORRECTED = "corrected"
+    FLAGGED = "flagged"
+    DEMOTED = "demoted"
+
+
+class ReviewSource(BaseModel):
+    """A document a review read, pinned by its hash.
+
+    Attributes:
+        url: Where the document was fetched.
+        sha256: Digest of the fetched document, so a later review can tell
+            whether it changed.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    url: str
+    sha256: str
+
+
+class CCNLReview(BaseModel):
+    """One entry of the review log of a CCNL data file.
+
+    The same fields record a review by a person and by an AI model. A rule
+    the review checked points to it with ``extraction.review_id``.
+
+    Attributes:
+        id: Identifier of the entry, unique in the file.
+        date: Day the review was made.
+        reviewer: Role of the person (``maintainer``), or identifier of
+            the model.
+        reviewer_kind: Whether the reviewer is a person or an AI model.
+        scope: What the review checked: the whole file, or which rules.
+        outcome: What the review did to the ruleset.
+        sources: Documents the review read; empty when none was recorded.
+        findings: Differences the review found, or notes on its scope.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    id: str
+    date: dt.date
+    reviewer: str
+    reviewer_kind: ReviewerKind
+    scope: str
+    outcome: ReviewOutcome
+    sources: tuple[ReviewSource, ...] = ()
+    findings: tuple[str, ...] = ()
+
+
 class CCNLVerification(BaseModel):
-    """Human-review confidence and traceability for a CCNL data file.
+    """Review confidence and traceability for a CCNL data file.
 
     Measures *how trustworthy* the values are, orthogonal to field completeness.
     See :class:`CCNLCoverage` for implementation-completeness flags.
@@ -37,8 +106,8 @@ class CCNLVerification(BaseModel):
             ``exploratory`` for all unclassified rulesets.
         verified_cases: Number of end-to-end payroll scenarios manually
             cross-checked against a reference payslip or official source.
-        last_reviewed: ISO date of the most recent human review.
-        human_reviewed_by: Identifier (name or email) of the reviewer.
+        reviews: Review log, oldest first. An entry is appended for each
+            review and never rewritten.
         owner: Identifier of the person accountable for keeping the
             ruleset current; required for ``production`` by the CI
             evidence gate.
@@ -51,10 +120,26 @@ class CCNLVerification(BaseModel):
     confidence: VerificationStatus = VerificationStatus.UNVERIFIED
     readiness: RulesetReadiness = RulesetReadiness.EXPLORATORY
     verified_cases: int = 0
-    last_reviewed: date | None = None
-    human_reviewed_by: str | None = None
+    reviews: tuple[CCNLReview, ...] = ()
     owner: str | None = None
-    review_due: date | None = None
+    review_due: dt.date | None = None
+
+    @property
+    def last_reviewed(self) -> dt.date | None:
+        """Day of the latest review, ``None`` when the log is empty."""
+        return self.reviews[-1].date if self.reviews else None
+
+    @model_validator(mode="after")
+    def _check_log(self) -> Self:
+        ids = [review.id for review in self.reviews]
+        if len(set(ids)) != len(ids):
+            msg = f"verification.reviews ids must be unique: {ids}"
+            raise ValueError(msg)
+        dates = [review.date for review in self.reviews]
+        if dates != sorted(dates):
+            msg = "verification.reviews must be ordered oldest first"
+            raise ValueError(msg)
+        return self
 
 
 class CCNLValidity(BaseModel):
@@ -62,8 +147,8 @@ class CCNLValidity(BaseModel):
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
-    valid_from: date
-    valid_until: date | None = None
+    valid_from: dt.date
+    valid_until: dt.date | None = None
 
 
 class CCNLMeta(BaseModel):

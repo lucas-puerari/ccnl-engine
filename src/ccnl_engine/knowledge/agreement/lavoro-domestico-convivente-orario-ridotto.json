@@ -562,7 +562,7 @@
     "effective_until": null,
     "source": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
     "verification_status": "unverified",
-    "source_hash": "6abaa857f5905b6a2f00bfb06249b2a9be5365f8826cfa068ea3c314e43e8874",
+    "source_hash": "a1dbcdbbd2b3510830f83d1caab30dc500a53c972f06a21e49951ab08ffb8a50",
     "published_at": "2026-10-08",
     "source_type": "commercial_secondary"
   },
@@ -721,7 +721,18 @@
     "confidence": "unverified",
     "readiness": "exploratory",
     "verified_cases": 0,
-    "last_reviewed": "2026-09-18",
-    "human_reviewed_by": "lucas-puerari"
+    "reviews": [
+      {
+        "id": "2026-09-18-human",
+        "date": "2026-09-18",
+        "reviewer": "maintainer",
+        "reviewer_kind": "human",
+        "scope": "Whole file. The values checked were not recorded.",
+        "outcome": "confirmed",
+        "findings": [
+          "The review recorded no list of the documents it read."
+        ]
+      }
+    ]
   }
 }

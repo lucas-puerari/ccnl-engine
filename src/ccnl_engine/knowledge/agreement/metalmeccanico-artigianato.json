@@ -2230,7 +2230,7 @@
     "effective_until": null,
     "source": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "8d55b8ba2f7586cc208b6509a5ae14629415aa83e0c1285e46115273aaa2f78c",
+    "source_hash": "5204f1667d618bf3ee373c1dc1fbebf8cc85e70d0aa00e56ede12a42f438712b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2461,7 +2461,18 @@
     "confidence": "unverified",
     "readiness": "exploratory",
     "verified_cases": 0,
-    "last_reviewed": "2026-09-18",
-    "human_reviewed_by": "lucas-puerari"
+    "reviews": [
+      {
+        "id": "2026-09-18-human",
+        "date": "2026-09-18",
+        "reviewer": "maintainer",
+        "reviewer_kind": "human",
+        "scope": "Whole file. The values checked were not recorded.",
+        "outcome": "confirmed",
+        "findings": [
+          "The review recorded no list of the documents it read."
+        ]
+      }
+    ]
   }
 }

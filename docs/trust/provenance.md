@@ -113,7 +113,7 @@ from a secondary document.
 
 | Status | Meaning | Record requirements |
 |---|---|---|
-| `verified` | A named reviewer checked the value against the cited location on a recorded date: a person, or an AI review the owner of the ruleset authorised | A citation (below), `extraction.verified_by` and `extraction.verified_at` |
+| `verified` | A named reviewer, a person or an AI model, checked the value against the cited location on a recorded date | A citation (below), `extraction.verified_by` and `extraction.verified_at`; in a CCNL file, `extraction.review_id` |
 | `derived` | Taken or computed from a cited document location, without a recorded check | A citation (below) |
 | `assumed` | Adopted without a located citation: an unchecked AI extraction, a reconstruction or estimate, or a value whose clause was never located | `location` optional |
 | `missing` | No source backs the value | no `location` |
@@ -145,13 +145,13 @@ changes; it only lowers labels. A record raised back to `derived` after
 its source is located must drop that note, which the gate reads as an
 estimate.
 Nothing becomes `verified` without a named reviewer and a date. The
-reviewer is a person, or an AI review the owner of the ruleset authorised:
-then `verified_by` (or `verification.human_reviewed_by`) names the model and
-the authorising owner, e.g. `claude-opus-5-5 (AI review authorised by the
-owner, lucas-puerari)`, and the owner stays accountable for it. The legacy
-`extraction.verification_status: "verified"` alone, or the file-level
-`verification.human_reviewed_by`, does not say which value was checked by
-whom, so such records are `derived`.
+reviewer is a person, named by role (`maintainer`), or an AI model, named by
+its identifier (e.g. `claude-opus-5-5`) in `verified_by`. In a CCNL file the
+record also names the entry of the
+[review log](readiness.md#review-log) that records the review
+(`extraction.review_id`). The legacy `extraction.verification_status:
+"verified"` alone, or an entry of the review log, does not say which value
+was checked by whom, so such records are `derived`.
 
 A statutory block that is the same for every sector lives in a year file
 of its own, with an `official_primary` ruleset, rather than in the
@@ -241,9 +241,9 @@ human task: no script raises a status. The schema gate requires:
 
 | Claim | Fields |
 |---|---|
-| Rule `verified` | A citation, `extraction.verified_by`, `extraction.verified_at`, an exact location (`location.page` or `location.section`), and `location.source_document.sha256`, the sha256 of the document file the value was read from |
-| CCNL readiness `reviewed` | `confidence` `verified` and no `assumed` or `missing` payable rule in the CCNL file |
-| CCNL readiness `production` | The `reviewed` evidence, `verification.owner`, `verification.human_reviewed_by`, `verification.last_reviewed` and `verification.review_due` after the last review |
+| Rule `verified` | A citation, `extraction.verified_by`, `extraction.verified_at`, an exact location (`location.page` or `location.section`), and `location.source_document.sha256`, the sha256 of the document file the value was read from; in a CCNL file, an `extraction.review_id` that names an entry of `verification.reviews` |
+| CCNL readiness `reviewed` | `confidence` `verified`, an entry in `verification.reviews` and no `assumed` or `missing` payable rule in the CCNL file |
+| CCNL readiness `production` | The `reviewed` evidence, `verification.owner` and `verification.review_due` after the last review |
 
 ## Updating the evidence baseline
 

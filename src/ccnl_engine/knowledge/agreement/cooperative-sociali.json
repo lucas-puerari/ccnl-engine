@@ -2025,7 +2025,7 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/",
     "verification_status": "unverified",
-    "source_hash": "90a51a2f00a6850c7069ce0fb9a4ee2030bc686b6fd5af0ebdd2747d14da487d",
+    "source_hash": "fac8c176c117f8d11813c2da49778270f2f563a20f2f3cb8e7af70e43a0a85a2",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2256,7 +2256,18 @@
     "confidence": "unverified",
     "readiness": "exploratory",
     "verified_cases": 0,
-    "last_reviewed": "2026-09-18",
-    "human_reviewed_by": "lucas-puerari"
+    "reviews": [
+      {
+        "id": "2026-09-18-human",
+        "date": "2026-09-18",
+        "reviewer": "maintainer",
+        "reviewer_kind": "human",
+        "scope": "Whole file. The values checked were not recorded.",
+        "outcome": "confirmed",
+        "findings": [
+          "The review recorded no list of the documents it read."
+        ]
+      }
+    ]
   }
 }

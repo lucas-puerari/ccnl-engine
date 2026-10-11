@@ -2,8 +2,8 @@
 
 An :class:`ExtractionTrace` records how a rule was turned into a domain-model
 value and who verified it.  ``verified_by``/``verified_at`` stay ``None``
-until a human curator reviews an extraction, mirroring the existing
-``human_reviewed: false`` convention on CCNL data files.
+until a reviewer checks the extraction; in a CCNL file ``review_id`` then
+points to the entry of ``verification.reviews`` that records the review.
 """
 
 from collections.abc import Mapping
@@ -59,9 +59,11 @@ class ExtractionTrace(BaseModel):
         method: How the value was extracted (see :class:`ExtractionMethod`).
         model: AI/LLM model used for ``ai`` extractions.
         extraction_timestamp: When the extraction was performed.
-        verified_by: Identifier of the human curator who reviewed the
-            extraction; ``None`` until reviewed.
-        verified_at: When the human curator approved it; ``None`` until then.
+        verified_by: Reviewer who checked the extraction: the role of a
+            person or the identifier of a model; ``None`` until reviewed.
+        verified_at: When the reviewer checked it; ``None`` until then.
+        review_id: Entry of the CCNL review log (``verification.reviews``)
+            that records the check; ``None`` outside CCNL files.
         verification_status: Confidence level (defaults to ``unverified``).
         effective_from: First date the extracted value applies.
         effective_until: Last date it applies; ``None`` when open-ended.
@@ -75,6 +77,7 @@ class ExtractionTrace(BaseModel):
     extraction_timestamp: datetime
     verified_by: str | None = None
     verified_at: datetime | None = None
+    review_id: str | None = None
     verification_status: VerificationStatus = VerificationStatus.UNVERIFIED
     effective_from: date
     effective_until: date | None = None

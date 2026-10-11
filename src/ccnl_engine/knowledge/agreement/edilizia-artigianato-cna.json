@@ -2225,7 +2225,7 @@
     "effective_until": "2028-09-30",
     "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
     "verification_status": "unverified",
-    "source_hash": "ce2e4b438bab08526c746802a4dc46f63cd9ed7c083eb87f7b3000fb8c2444bc",
+    "source_hash": "e9a19791233914e6b2f7ba1e48bd61e7118bd5376ca6bf203d544984c6958858",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2424,7 +2424,18 @@
     "confidence": "unverified",
     "readiness": "exploratory",
     "verified_cases": 0,
-    "last_reviewed": "2026-09-18",
-    "human_reviewed_by": "lucas-puerari"
+    "reviews": [
+      {
+        "id": "2026-09-18-human",
+        "date": "2026-09-18",
+        "reviewer": "maintainer",
+        "reviewer_kind": "human",
+        "scope": "Whole file. The values checked were not recorded.",
+        "outcome": "confirmed",
+        "findings": [
+          "The review recorded no list of the documents it read."
+        ]
+      }
+    ]
   }
 }

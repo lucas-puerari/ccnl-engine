@@ -189,6 +189,10 @@ def readiness_errors(
             continue
         if verification.get("confidence") != "verified":
             errors.append(f"{file}: {readiness} without confidence 'verified'")
+        if not verification.get("reviews"):
+            errors.append(
+                f"{file}: {readiness} without an entry in verification.reviews"
+            )
         if weak.get(file):
             errors.append(
                 f"{file}: {readiness} with {weak[file]} assumed or missing "

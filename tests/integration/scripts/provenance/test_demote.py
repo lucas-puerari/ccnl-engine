@@ -69,14 +69,14 @@ def test_cleared_readiness_needs_verified_confidence_and_no_weak_rule() -> None:
         "verification": {
             "readiness": "reviewed",
             "confidence": "verified",
-            "human_reviewed_by": "reviewer",
+            "owner": "owner",
         }
     }
     assert demote_readiness(weak, weak_rules=1)
     assert weak["verification"] == {
         "readiness": "exploratory",
         "confidence": "verified",
-        "human_reviewed_by": "reviewer",
+        "owner": "owner",
     }
     unverified = {"verification": {"readiness": "production", "confidence": "high"}}
     assert demote_readiness(unverified, weak_rules=0)

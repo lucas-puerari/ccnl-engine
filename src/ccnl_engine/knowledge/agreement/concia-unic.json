@@ -7,7 +7,7 @@
     "effective_until": null,
     "published_at": "2026-09-11",
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
-    "source_hash": "b14129c86922d559b587a64ce7a07f30c688bacbabb96ac1af648c907a2c2b01",
+    "source_hash": "b339ed554443acf056ee8731460eb8a70d7af38b0116bdaad95a1620c03782cd",
     "verification_status": "verified",
     "source_type": "contracting_party"
   },
@@ -3061,9 +3061,20 @@
     "confidence": "verified",
     "readiness": "reviewed",
     "verified_cases": 1,
-    "last_reviewed": "2026-10-10",
-    "human_reviewed_by": "claude-opus-5-5 (AI review authorised by the owner, lucas-puerari)",
-    "owner": "lucas-puerari",
+    "reviews": [
+      {
+        "id": "2026-10-10-ai",
+        "date": "2026-10-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Whole file. The values checked were not recorded; no value was marked verified.",
+        "outcome": "confirmed",
+        "findings": [
+          "The review recorded no list of the documents it read."
+        ]
+      }
+    ],
+    "owner": "maintainer",
     "review_due": "2027-01-31"
   }
 }

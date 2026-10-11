@@ -22,10 +22,8 @@ class VerificationStatus(StrEnum):
     """How confident we are in the data behind a ruleset.
 
     Attributes:
-        VERIFIED: A named reviewer checked the key values against the
-            sources and recorded it: a person, or an AI review the owner
-            of the ruleset authorised, recorded with the model and the
-            authorising owner.
+        VERIFIED: A named reviewer, a person or an AI model, checked the
+            key values against the sources and recorded it.
         UNVERIFIED: No review is recorded.
         NEEDS_REVIEW: A review found values to correct or to re-check.
     """

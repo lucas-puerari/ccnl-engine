@@ -2806,7 +2806,7 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "eb0973cc32cfbc684bd039789a3d941aa34d7273698f71ba4bf91745e703e916",
+    "source_hash": "e84554736a7e0d9a5d4df38d39f692490048ce12f36cebe71bad77f157548ee5",
     "published_at": "2026-09-08",
     "source_type": "commercial_secondary"
   },
@@ -3156,9 +3156,20 @@
     "confidence": "verified",
     "readiness": "production",
     "verified_cases": 1,
-    "last_reviewed": "2026-10-10",
-    "human_reviewed_by": "claude-opus-5-5 (AI review authorised by the owner, lucas-puerari)",
-    "owner": "lucas-puerari",
+    "reviews": [
+      {
+        "id": "2026-10-10-ai",
+        "date": "2026-10-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Whole file. The values checked were not recorded; no value was marked verified.",
+        "outcome": "confirmed",
+        "findings": [
+          "The review recorded no list of the documents it read."
+        ]
+      }
+    ],
+    "owner": "maintainer",
     "review_due": "2027-06-01"
   }
 }

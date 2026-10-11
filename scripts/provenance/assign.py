@@ -11,8 +11,8 @@ status follows from what they record:
 
 A legacy ``verified`` without reviewer and date becomes ``derived``: the
 record claims a check but does not say who made it or when.  The file-level
-``verification.human_reviewed_by`` is not used, because it does not say
-which values were checked.
+review log ``verification.reviews`` is not used, because an entry does not
+say which values were checked.
 
 Each additional-months period without a record receives an ``assumed``
 record: the contract documents are known, the clause is not located.

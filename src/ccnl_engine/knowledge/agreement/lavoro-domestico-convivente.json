@@ -1132,7 +1132,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "91af88f8fe0be4a24636105e592edf8131ffc573d5ba6f3d87b888af8c37fbdf",
+    "source_hash": "773f25afbde4cf839a3ca188e0e2ae6770f2c18728d6646eec516af2c95cb758",
     "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },
@@ -1291,7 +1291,18 @@
     "confidence": "unverified",
     "readiness": "exploratory",
     "verified_cases": 0,
-    "last_reviewed": "2026-09-18",
-    "human_reviewed_by": "lucas-puerari"
+    "reviews": [
+      {
+        "id": "2026-09-18-human",
+        "date": "2026-09-18",
+        "reviewer": "maintainer",
+        "reviewer_kind": "human",
+        "scope": "Whole file. The values checked were not recorded.",
+        "outcome": "confirmed",
+        "findings": [
+          "The review recorded no list of the documents it read."
+        ]
+      }
+    ]
   }
 }

@@ -43,7 +43,7 @@ date (`verification.review_due`).
 
 | CCNL | Owner | Monitors | Next review |
 |---|---|---|---|
-| Metalmeccanico Federmeccanica | lucas-puerari | renewals and the June IPCA check of the minimi (agreement of 22/11/2025); the INPS circular of the minimali and the rates of the industria | 2027-06-01 |
+| Metalmeccanico Federmeccanica | maintainer | renewals and the June IPCA check of the minimi (agreement of 22/11/2025); the INPS circular of the minimali and the rates of the industria | 2027-06-01 |
 
 ---
 
@@ -108,7 +108,7 @@ that never instituted the surtax.
 | A code missing from the list of the year before (a merged municipality) and `0*` | Left out and named in `notes`: the engine reports the code as unknown and the result is not payable |
 | An exemption for one category of income (`FLAG_NUOVA` 5 or 6) | Kept as text in `specific_exemptions`; the result is provisional |
 
-A row is promoted to `verified` only after a named review (a person, or an AI review the owner authorised); the build
+A row is promoted to `verified` only after a named review (a person or an AI model); the build
 never does it.
 
 ---

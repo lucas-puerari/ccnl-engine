@@ -49,8 +49,12 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2023-05-04 |
-| **Last human review** | — |
+| **Last review** | — |
 | **Latest salary tranche** | 2026-04-01 |
+
+## Review history
+
+No review is recorded.
 
 ## Salary table
 
