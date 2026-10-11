@@ -1,0 +1,26 @@
+{
+  "verification": "source_linked",
+  "_description": "Metalmeccanica Industria (CNEL C011) level D1, June 2026 regular run, permanent, full time: the first month of the tranche of 1 June 2026.",
+  "_notes": [
+    "Minimo D1 1,742.03 from 1 June 2025 (minutes of 12 June 2025) and 1,784.94 from 1 June 2026 (renewal of 22 November 2025, page 2, ratified by the referendum of 18-20 February 2026).",
+    "The minutes of 16 June 2026 absorb the IPCA share in the June 2026 tranche: the minimo stays 1,784.94.",
+    "Base salary only: the allowances and the gross depend on facts outside the national table."
+  ],
+  "source": {
+    "document": "Ipotesi di accordo per il rinnovo del CCNL industria metalmeccanica privata e installazione di impianti, 22 novembre 2025 (siglata)",
+    "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+    "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec",
+    "page": "2",
+    "section": "Minimi contrattuali dal 1 giugno 2026, row D1"
+  },
+  "inputs": {
+    "ccnl_slug": "metalmeccanico-federmeccanica.json",
+    "level_code": "D1",
+    "year": 2026,
+    "month": 6,
+    "headcount": 50
+  },
+  "expected": {
+    "base_salary": "1784.94"
+  }
+}

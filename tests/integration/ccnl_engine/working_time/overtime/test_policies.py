@@ -124,7 +124,9 @@ def test_no_multiplier_takes_the_ccnl_band() -> None:
     )
     assert caller.inputs["fields"] == "hourly_rate"
     assert "caller_supplement" not in caller.inputs
-    assert result.capability_report.rule_sources["overtime"] is ProvenanceStatus.DERIVED
+    assert (
+        result.capability_report.rule_sources["overtime"] is ProvenanceStatus.VERIFIED
+    )
     assert result.issues == ()
 
 
