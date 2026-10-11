@@ -1,12 +1,13 @@
 # Architecture rules
 
-The [Architecture contract](architecture-contract.md) fixes the layout; the
-migration to it has landed.
+The [Architecture contract](architecture-contract.md) fixes the layout: one
+root per concept, directories named after domains, files named after roles.
+The migration from the layout by source (`contract`, `tax`, `payroll`) lands
+one group of concepts at a time.
 
-The package is laid out by domain (`payroll`, `contract`, `tax`,
-`knowledge`, `provenance`, `comparison`), with the facade in `api.py` and the
-shared `errors`, `primitives` and `validation` modules at the root. Each file
-is named by its role, and the role places it on a layer:
+The facade sits in `api.py`, the shared `errors`, `primitives` and
+`validation` modules at the root. Each file is named by its role, and the
+role places it on a layer:
 
 | Layer | Roles |
 |---|---|
@@ -35,7 +36,16 @@ api -> application -> service -> domain
   never reaches a loader such as `knowledge.loaders` directly.
 - Only the root layer (the package root `ccnl_engine/__init__.py` and the
   public namespaces) may import `api`.
-- The graph of `<capability>.<layer>` nodes has no cycle.
+- The graph of `<capability>.<layer>` nodes of the legacy roots has no
+  cycle.
+- A concept imports only concepts of its own tier or of a lower one
+  (orchestration, computation, norms: see
+  [Dependency tiers](architecture-contract.md#dependency-tiers)); cycles
+  inside a tier are allowed. Every root of the package has a tier or is a
+  legacy root (`contract`, `tax`, `payroll` and the root modules being
+  renamed), which the rule skips until it empties. An import that cannot
+  move yet is allowlisted with its reason; the allowlist and the legacy
+  roots only shrink.
 - Every module belongs to a layer. `ccnl_engine.version` and the bundle
   version in `knowledge/facade.py` are metadata: any layer except `domain`
   may import them. A package `__init__.py` holds a docstring only.
@@ -71,13 +81,13 @@ Domain modules perform no I/O: no `importlib.resources`, no `pathlib`, no
 
 ## Source layout
 
-- At most three directories under `ccnl_engine` before a source file:
-  `ccnl_engine/<capability>/<layer>/<subfeature>/file.py`. `data/` resource
-  directories are exempt.
+- A directory is a plain domain name from the "Directory names" section of
+  the [glossary](../domain/glossary.md); right below the package root only a
+  concept. A file is exactly a technical role, or a root module (`api`,
+  `inputs`, `events`, `results`, `errors`, `version`). Depth is not limited.
 - Every directory holding Python sources has an `__init__.py`.
-- No layer directory exists without at least one module besides
-  `__init__.py`.
-- File length and source depth follow the structural limits below.
+- No directory exists without at least one module besides `__init__.py`.
+- File length follows the structural limits below.
 
 ## Structural limits
 
@@ -92,9 +102,10 @@ enforces statement count and public methods with the same ceilings.
 | `function_lines` | functions in `src`, `tests`, `scripts` | 40 | 60 |
 | `class_lines` | classes in `src`, `tests`, `scripts` | 100 | 150 |
 | `public_methods` | classes, also Ruff `PLR0904` | 10 | 15 |
-| `source_depth` | directories under `src/ccnl_engine` | 3 | 3 |
 | `underscore_files` | files under `src`, `tests`, `scripts`, `demo` | 0 | 0 |
 | `technical_directories` | directories under `src`, `tests`, `scripts`, `demo` | 0 | 0 |
+| `role_files` | Python modules under `src`, `tests`, `scripts`, `demo` | 0 | 0 |
+| `domain_directories` | directories above a Python module under the same roots | 0 | 0 |
 | `markdown_lines` | hand-written Markdown pages | 450 | 600 |
 | statements per function | Ruff `PLR0915` | 30 | 40 |
 | cognitive complexity | complexipy | 10 | 15 |
@@ -103,7 +114,7 @@ File lengths are physical lines. Function and class lengths are effective
 lines: from the `def` or `class` line to the end of the body, without
 blank lines, comment-only lines and docstrings. A class whose only methods
 are pydantic validators or serializers is declarative and exempt from
-`class_lines`; `data/` directories are exempt from `source_depth`.
+`class_lines`.
 
 `underscore_files` records every file whose name starts with an underscore,
 except the package root `src/ccnl_engine/__init__.py`, and
@@ -113,6 +124,15 @@ entry: a new `__init__.py`, `_module.py` or layer directory fails, and the
 structural migrations remove the entries as they go. Hidden directories,
 `__pycache__` and the gitignored `demo/_build` and `demo/wheels` are
 skipped.
+
+`role_files` records every Python module whose name is not a role or root
+module (under `src`), `test_<name>.py` of such a name or a helper
+(`conftest`, `builders`, `oracles`, `support`, under `tests`), an action or
+a role (under `scripts`), or `app.py` (under `demo`).
+`domain_directories` records every directory above a module whose name is
+not in the glossary list, or not a concept right below the package root.
+`scripts/structure/naming/rules.py` states both rules; the concept
+migrations empty their baseline entries.
 
 `markdown_lines` counts the physical lines of the top-level pages and of the
 pages under `docs`. The audit notes `REVIEW.md` and `TODO.md` are excluded.
@@ -140,10 +160,9 @@ from the tree: review the diff and reject any added entry.
 
 ## Payroll layout
 
-`payroll/` is laid out by subdomain, each file named by its role
-(`inputs`, `models`, `types`, `rules`, `policies`, `validators`, `results`,
-`services`, `handlers`, `ports`, `repositories`, `loaders`, `serializers`,
-`facade`, optionally followed by a qualifier: `rules_irpef_net.py`):
+Until its concepts move, `payroll/` keeps its layout by subdomain, each file
+named by its role optionally followed by a qualifier (`rules_irpef_net.py`),
+which the naming baseline records:
 
 | Subdomain | Holds |
 |---|---|
@@ -173,11 +192,11 @@ application layer only.
 
 ## Test layout
 
-`tests/integration/scripts/structure/test_test_layout.py` keeps the suite in five categories:
-`unit` (pure rules), `integration` (real bundle, loaders, wiring),
-`acceptance` (`public_api` and `legal_scenarios`, through `PayrollEngine`),
-`architecture` and `fixtures` (data only). Unit and integration paths mirror
-the module under test, for example `src/ccnl_engine/payroll/year/models_calendar.py`
-and `tests/unit/ccnl_engine/payroll/year/test_models_calendar.py`. No file sits
-deeper than five directories under `tests`, `fixtures` aside. `tests/README.md`
-holds the ownership of each level and the role of each fixture folder.
+`tests/integration/scripts/structure/test_test_layout.py` keeps the suite in
+three categories: `knowledge` (normative oracles, legal scenarios, reference
+and observed payslips), `unit` (one unit, no I/O) and `integration` (public
+API, loaders, wiring, scripts, demo). Paths mirror the module under test and
+a test file is named after its role: `src/ccnl_engine/contribution/naspi/services.py`
+and `tests/unit/ccnl_engine/contribution/naspi/test_services.py`; see
+[Target trees](architecture-contract-trees.md#test-tree). `tests/README.md`
+holds the ownership of each level and the role of each data folder.

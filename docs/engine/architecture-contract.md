@@ -1,124 +1,115 @@
 # Architecture contract
 
-This page fixes the layout of the repository and the names it uses. The
-structural migrations it drove have landed: the knowledge layout, the
-domains outside `payroll`, the `payroll` domain, `demo` and `scripts`, and
-the test tree. Every tracked file now sits at its target, so
-`scripts/structure/inventory.json` maps each path to itself, and the
-structure baseline holds no underscore file and no technical directory; the
-guardrails below keep it that way. [Architecture rules](architecture.md)
-states the import rules the layout is checked against.
+This page fixes the layout of the repository and the names it uses.
+[Architecture rules](architecture.md) states how the layout is checked.
 
-The contract has three pages:
+The package moves from a layout by source (`contract` for the CCNL,
+`tax` for the statutory tables, `payroll` for the computation) to a layout
+by concept: one root per concept (`sickness`, `contribution`, `irpef`), with
+the CCNL rules, the statutory tables and the computation of that concept
+below it. The moves land one group of concepts at a time; until a module
+moves, it keeps its current path and the checks below treat its root as
+legacy.
 
-- this page: principles, decisions, the production tree, the glossary of
-  domains and roles, and the dependency direction;
+The contract has four pages:
+
+- this page: principles, decisions, the production tree, the concepts, the
+  roles and the dependency tiers;
 - [Target trees](architecture-contract-trees.md): the data, `demo`,
-  `scripts` and test trees, and the inventory of every current file;
+  `scripts`, examples and test trees, and the inventory;
+- [Production map](architecture-contract-map.md): the target of every
+  current production module;
 - [Migration notes](architecture-contract-migration.md): the namespace
-  package spike, the path-keyed data a move must update, and where this
-  contract departs from the original proposal.
+  package spike, the path-keyed data a move must update, and the
+  amendments.
 
 ## Principles
 
-- Directories name domains or subdomains only. Files name technical roles.
-- A domain name is singular or uncountable and appears in the glossary
-  below. One concept uses one term in production code, public API, knowledge
-  data, demo, scripts and tests.
-- No file name starts with an underscore. The exceptions are the package
-  root `src/ccnl_engine/__init__.py`, which keeps
-  `from ccnl_engine import PayrollEngine` working, and the docstring-only
-  package markers of the source directories (see below).
-- No directory is named after a technical layer: `domain`, `application`,
-  `service`, `handlers`, `fixtures` and `data` disappear from the final
-  tree. The role lives in the file name instead.
+- A directory is a plain domain name: a concept, or a subdomain of one. A
+  file is exactly a technical role. No `<role>_<subject>.py`, no
+  `<subject>_<role>.py`: two files with one role in one domain go one domain
+  level deeper (`contribution/pension_fund/decision/services.py`).
+- Depth is not limited: it follows the domain.
+- Every directory name is listed in the "Directory names" section of the
+  [glossary](../domain/glossary.md); right below the package root only a
+  concept. One concept uses one term in production code, knowledge data,
+  scripts and tests; a name means one thing wherever it appears.
+- No file name starts with an underscore, except the package root
+  `src/ccnl_engine/__init__.py` and the docstring-only package markers.
 - Every source directory keeps a package marker: an `__init__.py` holding
-  only a docstring, never code. The documentation tooling (griffe, behind
+  only a docstring. The documentation tooling (griffe, behind
   mkdocstrings) does not load a namespace directory inside a regular
-  package, so namespace packages below the root would drop every moved
-  module from the API reference. An `__init__.py` that holds code moves to a
-  file with a role name (usually `facade.py`), so no re-export is lost.
-  Test directories carry no marker: pytest imports them by path.
+  package. Test directories carry no marker: pytest imports them by path.
 - A leaf directory holds only the roles it needs. No empty file is created
   for symmetry.
-- Every move is listed in the inventory before it happens; nothing is
-  deleted implicitly.
+- A move keeps the persisted identities: ruleset ids (`tax/2026/...`,
+  `inps/2026/...`), `ccnl_slug` values and the tags of the state codec do
+  not follow the directories.
 
 ## Decisions
 
 | Topic | Decision |
 |---|---|
-| Package root | `src/ccnl_engine/__init__.py` stays, with its docstring and its re-exports. It is the only file whose name starts with an underscore. |
-| Public API | The public surface is the root and the namespaces `ccnl_engine.inputs`, `ccnl_engine.events`, `ccnl_engine.results` and `ccnl_engine.catalog`, as pinned by `tests/integration/ccnl_engine/test_public_exports.py` and stated in the root docstring. These five modules keep their import paths. |
-| Deep imports | Paths below the five public modules (`ccnl_engine.payroll.ledger.models` and the like) are not public. The migrations move them without compatibility shims and without deprecation aliases. |
-| `catalog.py` | Kept at the root next to `api.py`, `inputs.py`, `results.py` and `events.py`, because `ccnl_engine.catalog` is a public namespace. |
-| Root modules | `api`, `inputs`, `results`, `events`, `catalog`, `errors`, `primitives`, `validation` and `version`, each splittable as `<name>_<suffix>.py` (for example `validation_collection.py`). |
-| New directories | A new source directory gets a docstring-only `__init__.py` marker, which the guardrail accepts. A new test directory needs none: pytest imports tests by path (`--import-mode=importlib`). |
-| Inventory upkeep | `scripts/structure/inventory.json` is generated. A change that adds, renames or removes a tracked file under `src`, `tests`, `demo` or `scripts` regenerates it; CI fails on drift. |
+| Package root | `src/ccnl_engine/__init__.py` stays, with its docstring and its re-exports. |
+| Public API | The root and the namespaces `ccnl_engine.inputs`, `ccnl_engine.events`, `ccnl_engine.results` and `ccnl_engine.catalog` keep their import paths, as pinned by `tests/integration/ccnl_engine/test_public_exports.py`. |
+| `catalog` | Becomes the package `catalog/`: its `__init__.py` re-exports the namespace from `catalog/facade.py`, the second marker allowed to hold code. |
+| Root modules | `api`, `inputs`, `results`, `events`, `errors`, `version`, plus the roles `types` (today `primitives`) and `validators` (today `validation`); `validation_collection` becomes `collection/validators.py`. No alias: nothing outside the package imports the old names. |
+| Deep imports | Paths below the five public modules are not public. Moves carry no shim and no deprecation alias. |
+| Knowledge data | The JSON bundle stays in one tree, `knowledge/`, with its datasets named after the concepts that read them. |
+| Inventory | Each concept migration maps its moves in `scripts/structure/inventory.json` in the same change; CI fails on drift. |
 
 ## Production tree
 
 ```text
 src/ccnl_engine/
-├── __init__.py            package root, the only underscore file
-├── api.py                 PayrollEngine facade
-├── inputs.py  events.py  results.py  catalog.py   public namespaces
-├── errors.py  primitives.py  validation.py  validation_collection.py
-├── version.py
-├── contract/
-│   ├── identity/  employment/  compensation/  working_time/  absence/
-│   └── sickness/  seniority/  fund/  catalog/
-├── payroll/
-│   ├── period/  year/  employment/  event/  amount/  contribution/
-│   ├── taxation/  withholding/  sickness/  family/  termination/
-│   └── accrual/  ledger/  assurance/  capability/  state/
-├── tax/
-│   ├── income/  surtax/  contribution/  pension/  sickness/
-│   └── severance/  family/  regime/  annual/
-├── knowledge/             loaders at the top, datasets below
-│   ├── contract/  taxation/  surtax/  social_security/
-│   └── policy/  capability/  limitation/
-├── provenance/
-│   ├── ruleset/
-│   └── source/
-└── comparison/
-    └── ruleset/
+├── __init__.py  api.py  inputs.py  events.py  results.py
+├── errors.py  types.py  validators.py  version.py
+├── catalog/  collection/
+├── agreement/        the CCNL document: identity, metadata, validity, coverage
+├── compensation/     levels, allowances, pay elements, proration, renewal minimum
+├── pay_item/         pay item variants, treatment, rounding, policy
+├── employment/  employer/  apprenticeship/  seniority/
+├── working_time/  absence/  sickness/  extra_month/  termination/
+├── contribution/     INPS: rates, bases, ceiling, NASpI, domestic, apprentices
+├── fund/  pension_fund/  severance/  end_of_service/
+├── irpef/  tax_credit/  surtax/  regime/  variable_pay/  family/
+├── withholding/  ledger/  event/  balance/
+├── decision/  assurance/  reconciliation/  limitation/  capability/
+├── run/  period/  year/  default/
+├── knowledge/        bundle readers and the JSON datasets
+├── provenance/  comparison/
 ```
 
-Two subdomains extend the proposal; see
-[Migration notes](architecture-contract-migration.md#amendments):
-`payroll/state/` and `tax/annual/`.
+The subdomains of each concept are in
+[Production map](architecture-contract-map.md).
 
-At most three directories sit between `ccnl_engine` and a module. Knowledge
-JSON is exempt, because its path carries the dataset, the year and the scope
-(`knowledge/social_security/contribution/2026/industria.json`).
+## Concepts
 
-## Glossary of domains
-
-| Domain | Holds |
+| Concept | Holds |
 |---|---|
-| `contract` | A CCNL as a document: identity, coverage, validity, levels, pay, working time, absences, sick pay, seniority, funds, the catalog of bundled agreements |
-| `contract/catalog` | Discovery and loading of bundled agreements, ruleset readiness |
-| `payroll/period` | One payroll run: request, context, pipeline, result, input defaults, the knowledge port |
-| `payroll/year` | Competence and tax years: plans, calendar, schedule, run selection, sequences, year results |
-| `payroll/employment` | The employment relationship: contract type, employer, hours, seniority, category, apprenticeship |
-| `payroll/event` | Work events and their handlers |
-| `payroll/amount` | Pay items, treatments, pay chain, proration, rounding, the pay item policy |
-| `payroll/contribution` | INPS, contractual, pension fund and end-of-service contributions |
-| `payroll/taxation` | IRPEF, credits, deductions, surtaxes, substitute regimes, tax facts |
-| `payroll/withholding` | What a run withholds: cap, plan, deferral, somma esente, recoveries, the withholding agent |
-| `payroll/sickness` | Sickness episodes, sick days, cumulation, sick pay |
-| `payroll/family` | Art. 12 TUIR family deductions |
-| `payroll/termination` | TFR fund, destination, revaluation, settlement and ratei at termination |
-| `payroll/accrual` | Extra-month accrual: qualifying months, ratei, settlement |
-| `payroll/ledger` | Ledger entries, posting, base and tax lines, remittance |
-| `payroll/assurance` | Assurance, decisions, invariants, limitations and rulesets a run read |
-| `payroll/capability` | Capability catalog, requirements, traces and reports of a run |
-| `payroll/state` | State carried between runs: accrual state, tax cash state, YTD accounts, obligations, opening balances, the state codec |
-| `tax/<area>` | Typed statutory rules per area: `income` (IRPEF), `surtax`, `contribution` (INPS), `pension`, `sickness`, `severance` (TFR), `family`, `regime` (substitute regimes, variable pay), `annual` (the assembled ruleset of a year and its readers) |
-| `knowledge/<dataset>` | Bundled JSON per dataset, see [Target trees](architecture-contract-trees.md#data-tree) |
-| `provenance/ruleset`, `provenance/source` | Ruleset identity and assurance; sources, extraction and evidence chains |
-| `comparison/ruleset` | The rules diff between two dates of a CCNL |
+| `agreement` | A CCNL as a document: root model, identity, metadata, validity and time series, coverage notes |
+| `catalog` | The public catalog: bundled contracts, discovery, ruleset readiness |
+| `compensation` | Levels and allowances, the pay elements of a level, proration, renewal minimum, raccordo and provincial elements |
+| `pay_item` | Pay item variants, their treatment, selection policy and rounding |
+| `employment`, `employer` | The employment relationship and its facts; the employer profile |
+| `apprenticeship`, `seniority` | Apprentice tracks and pay; seniority increments and their ladder |
+| `working_time`, `absence` | Working time, overtime and leave; absences |
+| `sickness` | Episodes, sick days, CCNL integration, INPS indemnity, cumulation |
+| `extra_month` | Tredicesima and quattordicesima: entitlement, schedule, ratei, settlement, liquidation |
+| `termination` | Termination events and their handlers |
+| `contribution` | INPS rates, bases, ceiling, minimum base, NASpI, domestic work, apprentices, ENAM |
+| `fund`, `pension_fund` | Contractual funds of the CCNL; the complementary pension fund |
+| `severance`, `end_of_service` | TFR: accrual, provision, revaluation, relief, public reduction; the public end-of-service fund |
+| `irpef`, `tax_credit`, `surtax` | IRPEF; credits paid on the payslip and their recovery; regional and municipal surtax |
+| `regime`, `variable_pay`, `family` | Substitute tax regimes; variable pay and benefits; art. 12 TUIR deductions |
+| `withholding`, `ledger`, `event` | What a run withholds; ledger entries and remittance; work events |
+| `balance` | What a run opens and closes with: competence, tax cash, YTD accounts, obligations, opening balances, the state codec |
+| `decision`, `assurance`, `reconciliation`, `limitation` | Calculation decisions; payability; result invariants; model limitations |
+| `capability` | Capability registry, requirements, traces and reports |
+| `run`, `period`, `year`, `default` | The run identity; one payroll run; competence and tax years; defaults of the public inputs |
+| `knowledge` | Readers of the bundle and the rules of a tax sector and year |
+| `provenance`, `comparison` | Ruleset and source provenance; the rules diff of a CCNL |
+| `collection` | Validators of the public collections |
 
 ## Technical roles
 
@@ -131,75 +122,36 @@ JSON is exempt, because its path carries the dataset, the year and the scope
 | `ports.py`, `repositories.py` | Abstract dependencies and the adapters that implement them |
 | `loaders.py`, `serializers.py` | Reading bundled data; persistence and textual forms |
 | `validators.py` | Invariants and validation |
-| `facade.py` | The single public entry of a domain, including former package re-exports |
+| `facade.py` | The single public entry of a domain |
 
-A role that outgrows the structural limits splits into
-`<role>_<suffix>.py`, for example `models_state.py` and `models_result.py`,
-never into a new technical directory. The suffix is a domain word in
-snake case. Tests, builders and oracles follow their own names; see
-[Target trees](architecture-contract-trees.md#test-tree).
+A role that outgrows the structural limits moves part of its content into a
+subdomain directory with the same role file; it never takes a suffix.
 
-## Dependency direction
+## Dependency tiers
 
-Roles form layers inside every domain and across domains:
+Every concept sits in one tier. A module imports at runtime only concepts of
+its own tier or of a lower one; cycles inside a tier are allowed.
+
+| Tier | Concepts |
+|---|---|
+| orchestration | `api`, `inputs`, `events`, `results`, `catalog`, `assurance`, `capability`, `comparison`, `default`, `period`, `reconciliation`, `year` |
+| computation | `agreement`, `knowledge`, `limitation`, `balance`, `absence`, `apprenticeship`, `compensation`, `contribution`, `employer`, `employment`, `end_of_service`, `event`, `extra_month`, `family`, `fund`, `irpef`, `ledger`, `pay_item`, `pension_fund`, `regime`, `seniority`, `severance`, `sickness`, `surtax`, `tax_credit`, `termination`, `variable_pay`, `withholding`, `working_time` |
+| norms | `types`, `validators`, `errors`, `version`, `collection`, `decision`, `provenance`, `run` |
+
+Mapping today's runtime imports onto the targets gives 52 imports from
+computation into orchestration, almost all of them shared helpers and types
+(`period/services.py`, `period/decision/rules.py`, `year/payment/models.py`,
+`capability/rule/services.py`). Each concept migration either moves the
+helper to the tier of its users or records the import, with its reason, in
+the allowlist of `tests/integration/scripts/structure/test_dependencies.py`,
+which only shrinks.
+
+Inside a concept the role direction holds:
 
 ```text
 facade -> handlers / services -> ports / repositories / loaders / serializers
                               -> policies / rules / validators -> models / types / inputs / requests / results
 ```
 
-- `models`, `types`, `inputs`, `requests`, `results`, `rules`, `policies`
-  and `validators` never import `services`, `handlers`, `loaders`,
-  `repositories`, `serializers` or `facade`. They perform no I/O.
-- `ports` declare protocols over models; `repositories` and `loaders`
-  implement them and may read bundled data through `importlib.resources`.
-- `services` and `handlers` may import any role except `facade`.
-- A `facade.py` is imported only by the package root and the public
-  namespaces. Every other importer names the role file that defines the
-  symbol: a model imports `contract/identity/models.py`, not
-  `contract/identity/facade.py`. The migrations rewrite today's imports
-  of the five re-exporting packages accordingly.
-- Only the package root and the four public namespaces import `api.py`.
-- Across domains, imports point from `payroll` and `comparison` towards
-  `contract`, `tax`, `knowledge` and `provenance`, never back. Two current
-  exceptions stay explicit and allowlisted: the capability catalog loader
-  of `knowledge` builds `payroll/capability` and `payroll/assurance` models,
-  and `contract/catalog` names the `payroll/period` port under
-  `TYPE_CHECKING` only.
-- `provenance` imports nothing but the root modules.
-- The graph of `<domain>.<subdomain>` nodes has no cycle.
-
-`tests/integration/scripts/structure/test_dependencies.py` enforces the current layer
-direction (`api -> application -> service -> domain`). The role direction
-replaces it in the same change that moves the modules.
-
-The roles of the inventory were checked against today's runtime imports
-(imports under `TYPE_CHECKING` skipped), mapping both ends of every
-import to its target. Apart from the facade imports that the rule above
-rewrites, one forbidden edge remains: `payroll/assurance/validators_state.py`
-(today `invariants/state.py`) calls `payroll/withholding/services_carried_recovery.py`.
-The `payroll` migration moves the pure computation it needs into
-`payroll/withholding/rules_carried_recovery.py`. Fourteen modules whose
-layer suggested a pure role but that depend on orchestration, or that are
-pure although they sit in `application`, carry the role their imports
-show (for example `close_tax_year.py` becomes `year/rules_close.py`,
-`_pipeline_inputs.py` becomes `period/services_pipeline_input.py`).
-
-## Guardrails
-
-`scripts/structure/check.py` records two layout rules with a hard limit
-of zero against its shrink-only baseline:
-
-| Rule | Measured on | Offender |
-|---|---|---|
-| `underscore_files` | `src`, `tests`, `scripts`, `demo` | a file whose name starts with `_`, except the package root `__init__.py` and the docstring-only `__init__.py` markers under `src` |
-| `technical_directories` | `src`, `tests`, `scripts`, `demo` | a directory named `domain`, `application`, `service`, `handlers`, `fixtures` or `data` |
-
-Hidden directories, `__pycache__` and the gitignored `demo/_build` and
-`demo/wheels` are skipped. Every current offender is listed in
-`scripts/structure/baseline.json`; a new one fails, and an entry whose
-offender is gone must be removed. Each migration removes its entries.
-
-`scripts/structure/inventory.py --check` keeps the inventory complete and
-conforming; see
-[Target trees](architecture-contract-trees.md#inventory).
+Pure roles perform no I/O, and only the package root and the public
+namespaces import `api.py` or a `facade.py`.

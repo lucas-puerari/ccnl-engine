@@ -102,12 +102,12 @@ def test_measure_tree_with_targets(
     monkeypatch.setitem(cs.TARGETS, "function_lines", 2)
     _markdown_tree(tmp_path)
     (tmp_path / "scripts").mkdir()
-    (tmp_path / "scripts" / "tool.py").write_text(
+    (tmp_path / "scripts" / "check.py").write_text(
         "def f() -> None:\n" + "    x = 1\n" * 2, encoding="utf-8"
     )
     assert cs.measure_tree(tmp_path, cs.TARGETS) == {
         "markdown_lines": {"README.md": 5, "docs/guide.md": 5},
-        "function_lines": {"scripts/tool.py::f": 3},
+        "function_lines": {"scripts/check.py::f": 3},
     }
     assert cs.measure_tree(tmp_path) == {}
 

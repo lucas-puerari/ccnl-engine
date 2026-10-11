@@ -46,8 +46,8 @@ _TIGHT = {
     "function_lines": 3,
     "class_lines": 4,
     "public_methods": 1,
-    "source_depth": 1,
 }
+_GLOSSARY = "## Directory names\n\n**Concepts**: `a`.\n\n`b`, `data`.\n"
 
 
 @pytest.fixture
@@ -226,21 +226,25 @@ def test_class_rules(tight: None) -> None:
 
 
 def test_measure_tree(tmp_path: Path, tight: None) -> None:
-    """File length, depth and definitions are measured per tree."""
+    """File length, layout, names and definitions are measured per tree.
+
+    Depth is not limited: a module may sit at any depth under a domain.
+    """
     long_text = "a = 1\nb = 2\nc = 3\nd = 4\n"
+    _write(tmp_path, "docs/domain/glossary.md", _GLOSSARY)
     _write(tmp_path, "src/ccnl_engine/__init__.py")
-    _write(tmp_path, "src/ccnl_engine/big.py", long_text)
-    _write(tmp_path, "src/ccnl_engine/a/b/deep.py")
-    _write(tmp_path, "src/ccnl_engine/a/data/b/resource.py")
+    _write(tmp_path, "src/ccnl_engine/models.py", long_text)
+    _write(tmp_path, "src/ccnl_engine/a/b/b/b/rules.py")
+    _write(tmp_path, "src/ccnl_engine/a/data/b/loaders.py")
     _write(tmp_path, "src/ccnl_engine/a/b/__pycache__/cached.py", long_text)
-    _write(tmp_path, "tests/test_big.py", long_text)
+    _write(tmp_path, "tests/test_models.py", long_text)
     _write(tmp_path, "scripts/tool.py", "def f() -> None:\n" + "    x = 1\n" * 3)
     assert cs.measure_tree(tmp_path) == {
-        "production_file_lines": {"src/ccnl_engine/big.py": 4},
-        "source_depth": {"src/ccnl_engine/a/b/deep.py": 2},
-        "test_file_lines": {"tests/test_big.py": 4},
+        "production_file_lines": {"src/ccnl_engine/models.py": 4},
+        "test_file_lines": {"tests/test_models.py": 4},
         "function_lines": {"scripts/tool.py::f": 4},
         "technical_directories": {"src/ccnl_engine/a/data": 1},
+        "role_files": {"scripts/tool.py": 1},
     }
 
 
@@ -290,9 +294,9 @@ def test_worsened_offender_fails() -> None:
 
 def test_stale_entry_fails() -> None:
     """A baseline entry that no longer offends must be removed."""
-    report = cs.compare({}, {"source_depth": {"k": 4}})
+    report = cs.compare({}, {"role_files": {"k": 1}})
     assert report.problems == [
-        "source_depth: k is within the limit, remove it from the baseline"
+        "role_files: k is within the limit, remove it from the baseline"
     ]
 
 
@@ -313,8 +317,8 @@ def test_unchanged_and_improved_offenders_pass() -> None:
 
 def _long_test_tree(root: Path) -> None:
     _write(root, "src/ccnl_engine/__init__.py")
-    _write(root, "tests/test_big.py", "a = 1\nb = 2\nc = 3\nd = 4\n")
-    _write(root, "scripts/tool.py")
+    _write(root, "tests/test_models.py", "a = 1\nb = 2\nc = 3\nd = 4\n")
+    _write(root, "scripts/check.py")
 
 
 def _run(root: Path, baseline: Path, *extra: str) -> int:
@@ -329,7 +333,7 @@ def test_write_baseline_then_check_passes(
     baseline = tmp_path / "baseline.json"
     assert _run(tmp_path, baseline, "--write-baseline") == 0
     assert json.loads(baseline.read_text(encoding="utf-8")) == {
-        "test_file_lines": {"tests/test_big.py": 4}
+        "test_file_lines": {"tests/test_models.py": 4}
     }
     assert _run(tmp_path, baseline) == 0
     assert "test_file_lines 1" in capsys.readouterr().out
@@ -342,15 +346,15 @@ def test_check_reports_improvement_and_problems(
     _long_test_tree(tmp_path)
     baseline = tmp_path / "baseline.json"
     baseline.write_text(
-        '{"test_file_lines": {"tests/test_big.py": 9}}', encoding="utf-8"
+        '{"test_file_lines": {"tests/test_models.py": 9}}', encoding="utf-8"
     )
     assert _run(tmp_path, baseline) == 0
-    assert "note: test_file_lines: tests/test_big.py improved to 4" in (
+    assert "note: test_file_lines: tests/test_models.py improved to 4" in (
         capsys.readouterr().out
     )
     baseline.write_text("{}", encoding="utf-8")
     assert _run(tmp_path, baseline) == 1
-    assert "FAIL: test_file_lines: tests/test_big.py is 4" in capsys.readouterr().err
+    assert "FAIL: test_file_lines: tests/test_models.py is 4" in capsys.readouterr().err
 
 
 def test_unreadable_input_exits_with_two(
@@ -361,7 +365,7 @@ def test_unreadable_input_exits_with_two(
     assert _run(tmp_path, tmp_path / "absent.json") == 2
     baseline = tmp_path / "baseline.json"
     baseline.write_text("{}", encoding="utf-8")
-    _write(tmp_path, "scripts/broken.py", "def (:\n")
+    _write(tmp_path, "scripts/build.py", "def (:\n")
     assert _run(tmp_path, baseline) == 2
     assert capsys.readouterr().err.startswith("ERROR:")
 
@@ -371,6 +375,6 @@ def test_check_uses_the_given_baseline(tmp_path: Path, tight: None) -> None:
     _long_test_tree(tmp_path)
     baseline = tmp_path / "baseline.json"
     baseline.write_text(
-        '{"test_file_lines": {"tests/test_big.py": 4}}', encoding="utf-8"
+        '{"test_file_lines": {"tests/test_models.py": 4}}', encoding="utf-8"
     )
     assert cs.check(tmp_path, baseline) == cs.Report()

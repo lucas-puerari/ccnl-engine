@@ -30,7 +30,7 @@
       "target": "src/ccnl_engine/knowledge/{path}"
     },
     {
-      "pattern": "^(?P<path>scripts/(?:distribution|documentation|knowledge|provenance|quality|structure)/[a-z_]+\\.(?:py|json))$",
+      "pattern": "^(?P<path>scripts/(?:distribution|documentation|knowledge|provenance|quality|structure)(?:/[a-z_]+)*/[a-z_]+\\.(?:py|json))$",
       "target": "{path}"
     },
     {
