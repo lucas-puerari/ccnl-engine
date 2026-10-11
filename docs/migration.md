@@ -4,6 +4,12 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Shared CNEL codes
+
+| Before | After |
+|---|---|
+| `get_ccnl`, `engine.list_levels` and `engine.inspect_ruleset` given a CNEL code shared by several bundled CCNLs (`H052`, `H501`, `A181`, `G091`, `HV17`, `S225`) returned the first in slug order | They raise `UnknownCcnlError` whose `suggestions` are the slugs sharing the code: pass the slug |
+
 ## Layout by concept
 
 | Before | After |

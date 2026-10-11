@@ -114,6 +114,12 @@ change gross, net and employer cost according to their treatment. See
 
 ---
 
+## Why this project
+
+I never really understood employment contracts or pay slips. The whole system strikes me as needlessly complicated. On top of that, finding reliable CCNL information online feels like an uphill battle: conflicting figures are everywhere, and identifying authoritative sources is harder than it should be. This project grew out of a desire to understand a little more. I make no claim to becoming an expert, but I hope to make this information more accessible and comprehensible for everyone.
+
+---
+
 ## Disclaimer
 
 Not legal or tax advice. Always verify results against official sources or a
