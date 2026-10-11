@@ -77,7 +77,7 @@ result = engine.calculate_period(
 
 `calculate_period()` returns a `PeriodResult` with its assurance, issues, decisions,
 gross, net, pay items, the closing state and a full ledger of every
-accounting entry. See [API: Engine](../api/engine.md).
+accounting entry. See [API: `ccnl_engine`](../api/ccnl_engine.md).
 
 ## Tax year and payment date
 
@@ -391,7 +391,7 @@ Steps 7–9 are fiscal and can be parameterised heavily. See
 | `WelfareEvent` | Welfare benefit annual amount |
 | `BonusEvent` | Bonus amount and kind (ordinary, PdR, contract renewal with its signing date) |
 
-Full type reference: [API: Engine](../api/engine.md).
+Full type reference: [API: `ccnl_engine`](../api/ccnl_engine.md).
 
 ## Output: `PeriodResult`
 

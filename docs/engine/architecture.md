@@ -57,6 +57,9 @@ next to it. They only re-export names defined in the concepts.
 - `tests/integration/ccnl_engine/api/test_public_exports.py` pins each
   `__all__`, keeps the modules disjoint and keeps README, `docs/examples` and
   the wheel smoke test on these five modules.
+- `tests/integration/ccnl_engine/api/test_reference.py` keeps `docs/api/`
+  on the same names: one directive per public name, none on an internal
+  module.
 
 ## Domain purity
 

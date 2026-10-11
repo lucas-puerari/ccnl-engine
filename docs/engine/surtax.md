@@ -8,7 +8,7 @@ for the jurisdictions the request names:
   Lombardia (source: [ISO Online Browsing Platform](https://www.iso.org/obp/ui/#iso:code:3166:IT)).
   The regional surtax is set separately by the autonomous provinces, so use
   `IT-BZ` (Bolzano) or `IT-TN` (Trento); `IT-32` (Trentino-Alto Adige) is
-  rejected.  The codes are listed in [`REGION_CODES`](../api/models.md#fiscal).
+  rejected.  The codes are listed in `REGION_CODES` (`ccnl_engine.surtax.jurisdiction.types`, internal).
 - `comune_belfiore`: the *codice catastale* (Belfiore code) of the
   municipality, one upper-case letter and three digits, for example `F257`
   for Modena.
