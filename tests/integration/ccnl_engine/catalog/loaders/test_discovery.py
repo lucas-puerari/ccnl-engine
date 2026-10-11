@@ -79,6 +79,30 @@ class TestGetCcnl:
             get_ccnl("zzz_no_match_at_all_xyz")
         assert isinstance(exc_info.value.suggestions, tuple)
 
+    def test_shared_cnel_code_names_no_contract(self) -> None:
+        """H052 covers three bundled CCNLs of the turismo sector.
+
+        A shared code raises with their slugs instead of returning the first.
+        """
+        with pytest.raises(UnknownCcnlError) as exc_info:
+            get_ccnl("H052")
+        assert set(exc_info.value.suggestions) == {
+            "agenzie-viaggio-fiavet",
+            "turismo-confcommercio",
+            "turismo-federalberghi",
+        }
+
+    def test_slug_of_a_shared_code_resolves(self) -> None:
+        """The slug still names the contract whose CNEL code is shared."""
+        assert get_ccnl("turismo-confcommercio").cnel_code == "H052"
+
+    def test_every_unique_cnel_code_resolves(self) -> None:
+        """A code held by one bundled CCNL resolves to it."""
+        codes = [info.cnel_code for info in list_contracts()]
+        for info in list_contracts():
+            if codes.count(info.cnel_code) == 1:
+                assert get_ccnl(info.cnel_code) == info
+
     def test_returns_contract_summary(self) -> None:
         """get_ccnl returns a ContractSummary with a str ccnl_id."""
         first = list_contracts()[0]

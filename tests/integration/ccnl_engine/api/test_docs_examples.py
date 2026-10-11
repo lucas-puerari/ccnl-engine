@@ -1,4 +1,4 @@
-"""Every script under ``docs/examples/`` runs against the public API.
+"""Every script under ``docs/examples/`` and the README example run.
 
 The theme examples (``docs/examples/<theme>/example.py``) are the ones the
 guides embed: each must run and print something. The per-contract examples in
@@ -21,6 +21,7 @@ from ccnl_engine.results import BlockerCode
 
 _ROOT = Path(__file__).parents[4]
 _EXAMPLES_DIR = _ROOT / "docs" / "examples"
+_README = _ROOT / "README.md"
 _CCNL_DATA_DIR = _ROOT / "src" / "ccnl_engine" / "knowledge" / "agreement"
 _GUIDE_EXAMPLES = sorted(_EXAMPLES_DIR.glob("*/example.py"))
 _CONTRACT_EXAMPLES = sorted((_EXAMPLES_DIR / "agreement").glob("*/example.py"))
@@ -92,3 +93,12 @@ def test_contract_example_prints_the_run(
         assert re.search(pattern, out, re.MULTILINE), (
             f"{example.parent.name} does not print {label!r} as {value!r}:\n{out}"
         )
+
+
+def test_readme_example_runs(capsys: pytest.CaptureFixture[str]) -> None:
+    """The README has one Python example, and it runs and prints."""
+    blocks = re.findall(r"```python\n(.*?)```", _README.read_text("utf-8"), re.DOTALL)
+
+    assert len(blocks) == 1
+    exec(compile(blocks[0], str(_README), "exec"), {"__name__": "__main__"})
+    assert capsys.readouterr().out.strip()

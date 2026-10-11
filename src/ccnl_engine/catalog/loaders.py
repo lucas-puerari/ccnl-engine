@@ -164,13 +164,21 @@ def get_ccnl(ccnl_id: str) -> ContractSummary:
 
     Raises:
         UnknownCcnlError: When no CCNL matches *ccnl_id*, with up to five
-            similar identifiers attached as suggestions.
+            similar identifiers attached as suggestions, or when *ccnl_id*
+            is a CNEL code shared by several bundled CCNLs, with their slugs
+            as suggestions: a shared code does not name one contract.
     """
     require_str(ccnl_id, "ccnl_id", feature="catalog")
     key = ccnl_id.removesuffix(".json")
-    for info in _load_all():
-        if key in {info.ccnl_id, info.cnel_code}:
+    contracts = _load_all()
+    for info in contracts:
+        if key == info.ccnl_id:
             return info
+    coded = tuple(info for info in contracts if key == info.cnel_code)
+    if len(coded) == 1:
+        return coded[0]
+    if coded:
+        raise UnknownCcnlError(ccnl_id, tuple(info.ccnl_id for info in coded))
     query = ccnl_id.lower()
     suggestions = tuple(
         info.ccnl_id
