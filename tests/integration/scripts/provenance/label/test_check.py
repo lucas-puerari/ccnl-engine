@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import json
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, Final
 
 import pytest
 
@@ -86,21 +86,29 @@ def _weak(file: str = "agreement/x.json") -> PayableRule:
     return PayableRule(file, "accrual_rule", ("base_salary",), "missing")
 
 
+_LOG: Final = {"reviews": [{"id": "r1", "date": "2026-10-10"}]}
+
+
 @pytest.mark.parametrize(
     ("verification", "rules", "expected"),
     [
         ({}, (_weak(),), []),
         ({"readiness": "exploratory"}, (_weak(),), []),
-        ({"readiness": "reviewed", "confidence": "verified"}, (), []),
+        ({"readiness": "reviewed", "confidence": "verified", **_LOG}, (), []),
         (
-            {"readiness": "reviewed", "confidence": "verified"},
+            {"readiness": "reviewed", "confidence": "verified", **_LOG},
             (_weak(), _weak(), _weak("sector/2026/x.json")),
             ["reviewed with 2 assumed or missing payable rule(s)"],
         ),
         (
-            {"readiness": "production", "confidence": "high"},
+            {"readiness": "production", "confidence": "high", **_LOG},
             (),
             ["production without confidence 'verified'"],
+        ),
+        (
+            {"readiness": "reviewed", "confidence": "verified"},
+            (),
+            ["reviewed without an entry in verification.reviews"],
         ),
     ],
 )
@@ -110,7 +118,7 @@ def test_a_cleared_ccnl_needs_verified_confidence_and_no_weak_rule(
     rules: tuple[PayableRule, ...],
     expected: list[str],
 ) -> None:
-    """Only the payable rules of the CCNL file itself count."""
+    """A review log is required; only the payable rules of the CCNL file count."""
     root = _tree(tmp_path, _ccnl(verification), {})
     assert readiness_errors(rules, root) == [f"agreement/x.json: {e}" for e in expected]
 

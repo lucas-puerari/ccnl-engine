@@ -438,9 +438,9 @@
       "valid_to": null,
       "ruleset_id": "ccnl/commercio-confcommercio",
       "ruleset_version": "2026.2",
-      "source_hash": "b5c7f62ddb3d2313e7934b99947321b99fc1a722a16fd0aa918f86d1830e701f",
+      "source_hash": "85359c4f31cb5856778c665a5df5bd59b2b0d63080515d883530c843d815147e",
       "source_type": "commercial_secondary",
-      "owner": "lucas-puerari",
+      "owner": "maintainer",
       "wheel_resource": "agreement/commercio-confcommercio.json.gz"
     },
     {
@@ -472,9 +472,9 @@
       "valid_to": null,
       "ruleset_id": "ccnl/concia-unic",
       "ruleset_version": "2026.1",
-      "source_hash": "b14129c86922d559b587a64ce7a07f30c688bacbabb96ac1af648c907a2c2b01",
+      "source_hash": "b339ed554443acf056ee8731460eb8a70d7af38b0116bdaad95a1620c03782cd",
       "source_type": "contracting_party",
-      "owner": "lucas-puerari",
+      "owner": "maintainer",
       "wheel_resource": "agreement/concia-unic.json.gz"
     },
     {
@@ -557,7 +557,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/cooperative-sociali",
       "ruleset_version": "2026.2",
-      "source_hash": "90a51a2f00a6850c7069ce0fb9a4ee2030bc686b6fd5af0ebdd2747d14da487d",
+      "source_hash": "fac8c176c117f8d11813c2da49778270f2f563a20f2f3cb8e7af70e43a0a85a2",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/cooperative-sociali.json.gz"
@@ -676,7 +676,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/dmo-federdistribuzione",
       "ruleset_version": "2026.2",
-      "source_hash": "daadab1c7f5b441df2125d223188ae4a025f39f57ec9f39e29c9a475b1db1fc3",
+      "source_hash": "c54823bdb828daa0f6c5f4713dac92562af668ec33450c09a5a7f660d603fbd7",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/dmo-federdistribuzione.json.gz"
@@ -693,7 +693,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/edilizia-ance",
       "ruleset_version": "2026.2",
-      "source_hash": "bcd84693b165619c4d1a3df65ef24fec96a261d53f5f95ca23c982eec7223792",
+      "source_hash": "2aa47cc72600555ead8ec04557a4299afd05948fcf967b1665fb2aae7ae263ee",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/edilizia-ance.json.gz"
@@ -710,7 +710,7 @@
       "valid_to": "2028-09-30",
       "ruleset_id": "ccnl/edilizia-artigianato-cna",
       "ruleset_version": "2026.2",
-      "source_hash": "ce2e4b438bab08526c746802a4dc46f63cd9ed7c083eb87f7b3000fb8c2444bc",
+      "source_hash": "e9a19791233914e6b2f7ba1e48bd61e7118bd5376ca6bf203d544984c6958858",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/edilizia-artigianato-cna.json.gz"
@@ -948,7 +948,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/funzioni-locali-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "7ff2f9d98239e98b19b1e7a68c81c03760f344b46ac01084a2428713f11c14d6",
+      "source_hash": "0288e41650b73983c34d035bc451d062fc7a2c23d534c09f1d4fcc6fcef1d4c4",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/funzioni-locali-aran.json.gz"
@@ -1118,7 +1118,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/istruzione-ricerca-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "6cb4306a4e7285290f415940addd2a30c59d103a9cffd8c748274b910a32603b",
+      "source_hash": "89d582b483f721506cba21210f3ab0a61a96e36e6a4e9468c7cedfb3ca8bb4ec",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/istruzione-ricerca-aran.json.gz"
@@ -1186,7 +1186,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/lavoro-domestico-convivente-orario-ridotto",
       "ruleset_version": "2026.3",
-      "source_hash": "6abaa857f5905b6a2f00bfb06249b2a9be5365f8826cfa068ea3c314e43e8874",
+      "source_hash": "a1dbcdbbd2b3510830f83d1caab30dc500a53c972f06a21e49951ab08ffb8a50",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/lavoro-domestico-convivente-orario-ridotto.json.gz"
@@ -1203,7 +1203,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/lavoro-domestico-convivente",
       "ruleset_version": "2026.3",
-      "source_hash": "91af88f8fe0be4a24636105e592edf8131ffc573d5ba6f3d87b888af8c37fbdf",
+      "source_hash": "773f25afbde4cf839a3ca188e0e2ae6770f2c18728d6646eec516af2c95cb758",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/lavoro-domestico-convivente.json.gz"
@@ -1220,7 +1220,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/lavoro-domestico-non-convivente",
       "ruleset_version": "2026.3",
-      "source_hash": "bbbd93da0c4bfb7795def7319c1a3a0bb07afff8b970b91018186b44ec55f443",
+      "source_hash": "7ad75a6360400acb25e4392614ecda739eeef49d1c642d58d984fc809c9349d9",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/lavoro-domestico-non-convivente.json.gz"
@@ -1271,7 +1271,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/logistica-trasporto-confetra",
       "ruleset_version": "2026.2",
-      "source_hash": "6e8aa9df26a05bbac95f70501609379feab3a2f027b6982c4cd4fbce5f0d66ce",
+      "source_hash": "8aab332899d24b1a5bf96b535d445f8c65c469bf4f59be2d45274447a2abc983",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/logistica-trasporto-confetra.json.gz"
@@ -1339,7 +1339,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-artigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "8d55b8ba2f7586cc208b6509a5ae14629415aa83e0c1285e46115273aaa2f78c",
+      "source_hash": "5204f1667d618bf3ee373c1dc1fbebf8cc85e70d0aa00e56ede12a42f438712b",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/metalmeccanico-artigianato.json.gz"
@@ -1390,9 +1390,9 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-federmeccanica",
       "ruleset_version": "2026.3",
-      "source_hash": "eb0973cc32cfbc684bd039789a3d941aa34d7273698f71ba4bf91745e703e916",
+      "source_hash": "e84554736a7e0d9a5d4df38d39f692490048ce12f36cebe71bad77f157548ee5",
       "source_type": "commercial_secondary",
-      "owner": "lucas-puerari",
+      "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-federmeccanica.json.gz"
     },
     {
@@ -1407,7 +1407,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/multiservizi-anip",
       "ruleset_version": "2026.2",
-      "source_hash": "0ae36bc951dc62f2c5f32572acf2a9f5a447ccfd302f123c61ef6f20d3105ded",
+      "source_hash": "41ef1cde346ba6651dba3682d4e7cdf3936d9c76cd40bc98f9f85a75c60ff2f6",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/multiservizi-anip.json.gz"
@@ -1475,7 +1475,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/operai-agricoli-florovivaisti",
       "ruleset_version": "2026.2",
-      "source_hash": "8126d5b24e435739747b1c4476ad7d7ef2a1476bc90417c7c481bb112602b5bb",
+      "source_hash": "ec85f61da3b0f159f32956f07ab4d17bbce2a465072090be929662c19bd4aa7d",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/operai-agricoli-florovivaisti.json.gz"
@@ -1730,7 +1730,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/sanita-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "715dc7a22af4028dd253656d57eb4043dde451f24b6a19ac6216a57153a99b08",
+      "source_hash": "d3f6aa2fa709396560a58c1e00a53b5cab04bcf836317d906efd515e7ca4d5bc",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/sanita-aran.json.gz"
@@ -1883,7 +1883,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/tabacco-apti",
       "ruleset_version": "2026.2",
-      "source_hash": "f3a558c1fca702d9f28e5942874fcf7595406d421a6f7500ca5e7f1a483edefb",
+      "source_hash": "ac44b9cbc86567e8732eb72770d516a6bce76ecfaa47f16ce407e9d7733b8ea0",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/tabacco-apti.json.gz"
@@ -1951,7 +1951,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/tessile-pmi-uniontessile",
       "ruleset_version": "2026.2",
-      "source_hash": "9e22804bbc2c02ba0091c5bdd0f5cd0af8c770f08d19dfff3c21c67a7e1c3b46",
+      "source_hash": "cb10bffe039e015dcafa873685047a4074962ee7fed97b89693cfe6058bd4fb7",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/tessile-pmi-uniontessile.json.gz"
@@ -2087,7 +2087,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/vetro-meccanizzato-assovetro",
       "ruleset_version": "2026.2",
-      "source_hash": "29d536027132aacfb33ba9386102183ecdca0728ff5f1b8bd5900a2109d30a33",
+      "source_hash": "fe4060679946db5aa71d37ee5f42be7db856502d5752438b4fb0a745eeaf15d8",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/vetro-meccanizzato-assovetro.json.gz"
@@ -2257,7 +2257,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "inps/2026/industria",
       "ruleset_version": "2026.1",
-      "source_hash": "a6c68fc627391a63fa83adfd95cdf7b540247bc76f5ca2206981864dcab5a3d0",
+      "source_hash": "7aa2df4fbabcbe1b08a977efc88f6effefb1e5ae853271c9c4051869f88919a8",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "contribution/2026/industria.json.gz"
@@ -2599,7 +2599,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/industria",
       "ruleset_version": "2026.1",
-      "source_hash": "39ba3539cf3fc105cc7d488eea94e1547f2ec168ac1f203929d69fb9030e254a",
+      "source_hash": "f5367743371857dbdf7afc1e788ae776f175e432931f740a8adc8f1d07057206",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/industria.json.gz"

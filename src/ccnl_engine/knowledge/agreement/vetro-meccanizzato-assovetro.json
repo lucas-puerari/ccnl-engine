@@ -1354,8 +1354,19 @@
   "verification": {
     "confidence": "verified",
     "verified_cases": 0,
-    "last_reviewed": "2026-09-17",
-    "human_reviewed_by": "lucas-puerari@intella.tech"
+    "reviews": [
+      {
+        "id": "2026-09-17-human",
+        "date": "2026-09-17",
+        "reviewer": "maintainer",
+        "reviewer_kind": "human",
+        "scope": "Whole file. The values checked were not recorded.",
+        "outcome": "confirmed",
+        "findings": [
+          "The review recorded no list of the documents it read."
+        ]
+      }
+    ]
   },
   "ruleset": {
     "id": "ccnl/vetro-meccanizzato-assovetro",
@@ -1366,6 +1377,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "29d536027132aacfb33ba9386102183ecdca0728ff5f1b8bd5900a2109d30a33"
+    "source_hash": "fe4060679946db5aa71d37ee5f42be7db856502d5752438b4fb0a745eeaf15d8"
   }
 }

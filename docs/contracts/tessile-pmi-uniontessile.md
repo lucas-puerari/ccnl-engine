@@ -49,8 +49,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-02-18 |
-| **Last human review** | 2026-09-17 |
+| **Last review** | 2026-09-17 |
 | **Latest salary tranche** | 2027-01-01 |
+
+## Review history
+
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-09-17 | maintainer (human) | Whole file. The values checked were not recorded. | flagged | The review recorded no list of the documents it read.<br>Confidence set to needs_review: values to re-check. |
 
 ## Salary table
 

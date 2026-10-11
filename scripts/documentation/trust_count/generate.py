@@ -102,7 +102,7 @@ def _review_record_counts(ccnls: list[CCNL]) -> dict[str, str]:
         for c in ccnls
         if c.verification.readiness is RulesetReadiness.REVIEWED
     ]
-    recorded = sum(1 for v in reviewed if v.human_reviewed_by and v.last_reviewed)
+    recorded = sum(1 for v in reviewed if v.reviews)
     confirmed = sum(1 for v in reviewed if v.confidence is VerificationStatus.VERIFIED)
     return {
         "reviewed-with-reviewer": str(recorded),

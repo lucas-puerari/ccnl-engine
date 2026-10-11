@@ -49,8 +49,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | — |
-| **Last human review** | 2026-10-10 |
+| **Last review** | 2026-10-10 |
 | **Latest salary tranche** | 2026-01-01 |
+
+## Review history
+
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-10-10 | claude-opus-5-5 (ai) | Whole file. The values checked were not recorded; no value was marked verified. | confirmed | The review recorded no list of the documents it read. |
 
 ## Salary table
 

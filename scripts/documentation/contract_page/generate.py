@@ -14,7 +14,7 @@ Each page replaces the raw JSON dump with a structured layout:
   - Header card: CNEL code, sector, renewal, workers, ruleset version
   - Coverage of the core payroll path and the contract's limits
   - Assurance: the five axes, each with its meaning
-  - Freshness and known simplifications
+  - Freshness, review history and known simplifications
   - Salary table (latest tranche per level)
   - Seniority rules
   - Apprenticeship tracks
@@ -421,7 +421,8 @@ def _freshness_lines(
     Returns:
         Markdown lines, from the section heading to a blank line.
     """
-    last_reviewed = verification.get("last_reviewed") or "—"
+    reviews = verification.get("reviews") or []
+    last_reviewed = reviews[-1]["date"] if reviews else "—"
     sources = meta.get("sources") or []
     agreement_date = (
         meta.get("agreement_date")
@@ -434,8 +435,32 @@ def _freshness_lines(
         "| | |",
         "|---|---|",
         f"| **Last renewal** | {agreement_date} |",
-        f"| **Last human review** | {last_reviewed} |",
+        f"| **Last review** | {last_reviewed} |",
         f"| **Latest salary tranche** | {_latest_salary_tranche(levels)} |",
+        "",
+    ]
+
+
+def _review_lines(verification: dict[str, Any]) -> list[str]:
+    """Build the review history table from the review log, oldest first.
+
+    Returns:
+        Markdown lines, from the section heading to a blank line.
+    """
+    reviews = verification.get("reviews") or []
+    if not reviews:
+        return ["## Review history", "", "No review is recorded.", ""]
+    rows = [
+        f"| {r['date']} | {r['reviewer']} ({r['reviewer_kind']}) | {r['scope']}"
+        f" | {r['outcome']} | {'<br>'.join(r.get('findings') or ()) or '—'} |"
+        for r in reviews
+    ]
+    return [
+        "## Review history",
+        "",
+        "| Date | Reviewer | Scope | Outcome | Findings |",
+        "|---|---|---|---|---|",
+        *rows,
         "",
     ]
 
@@ -474,6 +499,7 @@ def _coverage_section(
         *_simplification_summary(notes),
         *_assurance_lines(data, ccnl_id),
         *_freshness_lines(data.get("verification", {}), meta, data.get("levels", [])),
+        *_review_lines(data.get("verification", {})),
     ]
 
 

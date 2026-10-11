@@ -6,10 +6,12 @@ Two checks back the two gates of :mod:`scripts.provenance.check`:
   readiness it claims.  A ``verified`` payable rule names its reviewer
   (``extraction.verified_by``, ``extraction.verified_at``), its exact
   location (``location.page`` or ``location.section``) and the sha256 of
-  the cited document (``location.source_document.sha256``).  A
-  ``production`` CCNL names its owner, its reviewer, the date of the last
-  review and the date the next one is due, after the last, with
-  ``confidence`` ``verified``.  A CCNL ruleset id is ``ccnl/<ccnl_id>``.
+  the cited document (``location.source_document.sha256``); in a CCNL file
+  it also names the entry of the review log that records the check
+  (``extraction.review_id`` in ``verification.reviews``).  A
+  ``production`` CCNL names its owner, holds at least one review and the
+  date the next one is due, after the last review, with ``confidence``
+  ``verified``.  A CCNL ruleset id is ``ccnl/<ccnl_id>``.
   Labels that outrun their evidence, an estimated or uncited rule labelled
   ``derived`` and a ``reviewed`` CCNL with weak rules, are checked by
   :mod:`scripts.provenance.label.check` and have no baseline.
@@ -46,7 +48,7 @@ WEAK: Final = ("assumed", "missing")
 ENGINE_LIMITATIONS: Final = "limitation/engine.json"
 _RANK: Final = {status: rank for rank, status in enumerate(payable_rules.STATUSES)}
 _SHA256: Final = re.compile(r"^[0-9a-f]{64}$")
-_PRODUCTION_FIELDS: Final = ("owner", "human_reviewed_by", "last_reviewed")
+_PRODUCTION_FIELDS: Final = ("owner", "reviews")
 
 type Json = dict[str, object]
 
@@ -324,8 +326,15 @@ def write_baseline(current: Snapshot, path: Path = BASELINE) -> None:
     path.write_text(text + "\n", encoding="utf-8")
 
 
-def _verified_errors(rule: PayableRule) -> Iterator[str]:
+def _verified_errors(
+    rule: PayableRule, review_ids: frozenset[str] | None
+) -> Iterator[str]:
     """Yield the evidence a ``verified`` rule lacks.
+
+    Args:
+        rule: The ``verified`` rule.
+        review_ids: Entries of the review log of its CCNL file; ``None``
+            for a file that is not a CCNL, which keeps no log.
 
     Yields:
         One reason per missing field.
@@ -335,6 +344,8 @@ def _verified_errors(rule: PayableRule) -> Iterator[str]:
     for key in ("verified_by", "verified_at"):
         if not extraction.get(key):
             yield f"verified without extraction.{key}"
+    if review_ids is not None and extraction.get("review_id") not in review_ids:
+        yield "verified without an extraction.review_id in verification.reviews"
     location = _as_dict(record.get("location"))
     if not (location.get("page") or location.get("section")):
         yield "verified without an exact location (location.page or section)"
@@ -350,6 +361,25 @@ def _date(value: object) -> date | None:
         return None
 
 
+def _last_review(verification: Json) -> date | None:
+    """Return the day of the latest entry of the review log.
+
+    Returns:
+        The date of the last entry, ``None`` when the log is empty or the
+        date is not an ISO date.
+    """
+    reviews = verification.get("reviews")
+    if not isinstance(reviews, list) or not reviews:
+        return None
+    return _date(_as_dict(reviews[-1]).get("date"))
+
+
+def _review_ids(data: Json) -> frozenset[str]:
+    reviews = _as_dict(data.get("verification")).get("reviews")
+    entries = reviews if isinstance(reviews, list) else []
+    return frozenset(str(_as_dict(entry).get("id")) for entry in entries)
+
+
 def _production_errors(verification: Json) -> Iterator[str]:
     """Yield the evidence a ``production`` CCNL lacks.
 
@@ -361,12 +391,12 @@ def _production_errors(verification: Json) -> Iterator[str]:
             yield f"production without verification.{key}"
     if verification.get("confidence") != "verified":
         yield "production without confidence 'verified'"
-    last = _date(verification.get("last_reviewed"))
+    last = _last_review(verification)
     due = _date(verification.get("review_due"))
     if due is None:
         yield "production without a valid verification.review_due"
     elif last is not None and due <= last:
-        yield "verification.review_due is not after last_reviewed"
+        yield "verification.review_due is not after the last review"
 
 
 def _ccnl_errors(file: str, data: Json) -> Iterator[str]:
@@ -392,13 +422,15 @@ def schema_errors(
         ``"<file>: <path>: <reason>"`` messages; empty when every record
         carries the fields its status or readiness requires.
     """
+    ccnls = dict(_ccnl_files(root))
+    logs = {file: _review_ids(data) for file, data in ccnls.items()}
     errors = [
         f"{rule.file}: {rule.path}: {reason}"
         for rule in rules
         if rule.status == "verified"
-        for reason in _verified_errors(rule)
+        for reason in _verified_errors(rule, logs.get(rule.file))
     ]
-    for file, data in _ccnl_files(root):
+    for file, data in ccnls.items():
         errors.extend(_ccnl_errors(file, data))
     return errors
 

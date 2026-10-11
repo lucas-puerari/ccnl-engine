@@ -2496,7 +2496,7 @@
     "effective_until": null,
     "source": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
     "verification_status": "unverified",
-    "source_hash": "b5c7f62ddb3d2313e7934b99947321b99fc1a722a16fd0aa918f86d1830e701f",
+    "source_hash": "85359c4f31cb5856778c665a5df5bd59b2b0d63080515d883530c843d815147e",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2788,9 +2788,20 @@
     "confidence": "verified",
     "readiness": "reviewed",
     "verified_cases": 0,
-    "last_reviewed": "2026-10-10",
-    "human_reviewed_by": "claude-opus-5-5 (AI review authorised by the owner, lucas-puerari)",
-    "owner": "lucas-puerari",
+    "reviews": [
+      {
+        "id": "2026-10-10-ai",
+        "date": "2026-10-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Whole file. The values checked were not recorded; no value was marked verified.",
+        "outcome": "confirmed",
+        "findings": [
+          "The review recorded no list of the documents it read."
+        ]
+      }
+    ],
+    "owner": "maintainer",
     "review_due": "2027-03-31"
   }
 }

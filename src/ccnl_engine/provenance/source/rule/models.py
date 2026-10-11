@@ -30,10 +30,9 @@ class ProvenanceStatus(StrEnum):
     them with :attr:`rank` or combine them with :meth:`weakest`.
 
     Attributes:
-        VERIFIED: A named reviewer checked the value against the cited
-            location on a recorded date: a person, or an AI review the
-            owner of the ruleset authorised (``verified_by`` names the
-            model and the owner).
+        VERIFIED: A named reviewer, a person or an AI model, checked the
+            value against the cited location on a recorded date
+            (``verified_by``, ``verified_at``).
         DERIVED: The value is taken or computed from a cited document
             location, without a recorded human check.
         ASSUMED: The value is adopted without a located citation: an
