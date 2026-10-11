@@ -21,6 +21,7 @@ from ccnl_engine.contribution.rate.models import (
     PublicEnamRate,
     PublicFundRates,
     PublicLifeInsuranceRates,
+    SickPaySupplement,
 )
 from ccnl_engine.contribution.zone.models import ZoneReduction
 from ccnl_engine.employment.category.models import WorkerCategory
@@ -100,6 +101,8 @@ class InpsRawRates(BaseModel):
     ``base_whole_euro`` rounds the base of a run to the whole euro (INPS
     circ. 208/2001, the denunce of private employers); the Gestione
     Dipendenti Pubblici keeps it to the cent.
+    ``sick_pay_supplements`` are the additional sickness contributions of
+    the employers of an INPS sick-pay regime, by regime id.
 
     ``employee_tiers`` and ``employer_tiers`` must be non-empty; an empty
     list would cause ``_resolve_tier`` to raise with no tier available for
@@ -123,6 +126,7 @@ class InpsRawRates(BaseModel):
     fis_reduction: FisReduction | None = None
     base_whole_euro: bool = True
     zone_reduction: ZoneReduction | None = None
+    sick_pay_supplements: dict[str, SickPaySupplement] = {}
 
 
 class ApprenticeHeadcountShare(BaseModel):

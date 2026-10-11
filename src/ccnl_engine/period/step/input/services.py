@@ -156,6 +156,17 @@ def _recovery_plans(
     )
 
 
+def _sick_pay_regime(ctx: RunContext) -> str | None:
+    """Return the INPS sick-pay regime the CCNL names for its workers.
+
+    Returns:
+        ``work_rules.sickness_rules.inps_regime``; ``None`` without it.
+    """
+    work = ctx.contract.ccnl.work_rules
+    sickness = None if work is None else work.sickness_rules
+    return None if sickness is None else sickness.inps_regime
+
+
 def amounts_input(
     ctx: RunContext,
     totals: _EventTotals,
@@ -220,6 +231,7 @@ def amounts_input(
         public=_public_terms(ctx),
         assistance=assistance_terms(contract.ccnl, contract.tctx.competence),
         solidarity_fund=contract.ccnl.parameters.solidarity_fund,
+        sick_pay_regime=_sick_pay_regime(ctx),
     )
 
 

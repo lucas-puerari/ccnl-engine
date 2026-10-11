@@ -116,7 +116,12 @@ while the carenza, the 180-day maximum and the cover stay. The bundle holds
 one regime, `pubblici_esercizi`: 80% from day 4 to day 180 for the
 employees of pubblici esercizi and laboratori di pasticceria, whose
 employers pay the additional sickness contribution of 0.77% (INPS page and
-circ. 71/1985). A regime the table lacks is a data error.
+circ. 71/1985). A regime the table lacks is a data error. The employers of
+a regime also pay its additional contribution: the INPS table of the year
+lists it under `inps.sick_pay_supplements` (0.77% of the INPS taxable pay
+for `pubblici_esercizi`, in the terziario tables), and every run adds it to
+the employer contributions as the `sick_pay_supplement_employer` component.
+A year whose table has no supplement for the regime is a data error.
 
 INPS pays at most 180 days a calendar year, counted over every recorded
 episode. INPS covers the worker by the rules of

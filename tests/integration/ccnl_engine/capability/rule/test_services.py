@@ -157,3 +157,43 @@ def test_only_executed_capabilities_are_reported() -> None:
         "tfr",
         "irpef",
     }
+
+
+def _regime_ctx(sector: TaxSector) -> RunContext:
+    """Build a run of the CCNL with its workers in the pubblici esercizi regime.
+
+    Returns:
+        The context of the run.
+    """
+    ctx = _ctx(sector=sector)
+    assert _CCNL.work_rules is not None
+    assert _CCNL.work_rules.sickness_rules is not None
+    sickness = _CCNL.work_rules.sickness_rules.model_copy(
+        update={"inps_regime": "pubblici_esercizi"}
+    )
+    work = _CCNL.work_rules.model_copy(update={"sickness_rules": sickness})
+    ctx.contract.ccnl = _CCNL.model_copy(update={"work_rules": work})  # type: ignore[misc]
+    return ctx
+
+
+def test_a_regime_adds_its_supplement_to_the_employer_rules() -> None:
+    """The terziario table holds the 0.77% of the pubblici esercizi."""
+    rules = contract_rules(_regime_ctx(TaxSector.TERZIARIO))["inps_employer"]
+    name, record = rules[-1]
+    assert name.endswith(":inps.sick_pay_supplements[pubblici_esercizi]")
+    assert isinstance(record, RuleProvenance)
+    assert record.status is ProvenanceStatus.DERIVED
+
+
+def test_a_regime_without_a_supplement_reads_no_record() -> None:
+    """Industria holds none: the rule is named with no record."""
+    rules = contract_rules(_regime_ctx(TaxSector.INDUSTRIA))["inps_employer"]
+    name, record = rules[-1]
+    assert name.endswith(":inps.sick_pay_supplements[pubblici_esercizi]")
+    assert record is None
+
+
+def test_no_regime_reads_no_supplement() -> None:
+    """A CCNL that names no regime adds nothing to the employer rules."""
+    names = _names(contract_rules(_ctx())["inps_employer"])
+    assert not any("sick_pay_supplements" in name for name in names)

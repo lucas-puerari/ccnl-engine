@@ -10,6 +10,9 @@ from ccnl_engine.contribution.domestic.services import (
 )
 from ccnl_engine.contribution.rate.rules import resolve_rates
 from ccnl_engine.contribution.rules import resolve_contributions
+from ccnl_engine.contribution.sick_pay_supplement.services import (
+    with_sick_pay_supplement,
+)
 from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
@@ -114,6 +117,7 @@ def run_contributions(inp: _AmountsInput) -> tuple[ContributionBreakdown, Decima
         breakdown, life = with_life_insurance(inp, breakdown, base)
         breakdown, enam = with_enam(inp, breakdown)
         breakdown, fund = with_solidarity_fund(inp, breakdown)
+        breakdown = with_sick_pay_supplement(inp, breakdown, base)
         rates = resolve_rates(inp.rules, inp.contract_type, inp.category)
         public = end_of_service_employee_rate(inp) + credit + life + enam
         employee = rates.employee_rate + public + fund

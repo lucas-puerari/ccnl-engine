@@ -134,6 +134,27 @@
         "quote": "Il massimale annuo della base contributiva e pensionabile previsto dall'art. 2, comma 18, secondo periodo, della L. n. 335/1995, per i lavoratori iscritti successivamente al 31 dicembre 1995 a forme pensionistiche obbligatorie e per coloro che optano per la pensione con il sistema contributivo, sulla base dell'indice dei prezzi al consumo per le famiglie di operai e impiegati calcolato dall'ISTAT, è pari, per l'anno 2026, a 122.295,40 euro, che arrotondato all'unità di euro è pari a 122.295,00 euro."
       },
       "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Quote checked on 2026-10-10 against the text of the circular reproduced in Confcommercio Ascom Bologna circolare 23/26 (https://ascom.bo.it/wp-content/uploads/2026/02/CIRCO-23-26_Minimi-retributivi-per-calcolo-contributi-2026.pdf); the INPS page renders its text through a script. Not checked by a named reviewer."
+    },
+    "sick_pay_supplements": {
+      "pubblici_esercizi": {
+        "employer_rate": "0.0077",
+        "provenance": {
+          "status": "assumed",
+          "location": {
+            "source_document": {
+              "document_id": "inps-news-intermittenti-2024",
+              "title": "INPS, Lavoratori intermittenti: novità su contributi e codici Uniemens (notizia, giugno 2024, messaggio n. 2382/2024)",
+              "kind": "amministrazione",
+              "url": "https://www.inps.it/it/it/inps-comunica/notizie/dettaglio-news-page.news.2024.06.lavoratori-intermittenti-novit-su-contributi-e-codici-uniemens.html",
+              "sha256": "849c6c03eaf038d403b57b609ebad83c24cd295b659d813c2a185d2af4d219c8"
+            },
+            "section": "news body",
+            "quote": "per un'attività compresa tra quelle dei pubblici esercizi e in relazione alla quale è dovuto il versamento del contributo aggiuntivo di malattia, pari allo 0,77% della retribuzione imponibile."
+          },
+          "transformation": "The additional sickness contribution of the pubblici esercizi, introduced by D.M. 1 febbraio 1957 (INPS circ. 71/1985 punto 1, authorisation code 9P), charged by the employer on the INPS taxable pay on top of the sector rate; it funds the 80% indemnity of the pubblici_esercizi regime of sickness/indemnity/rates.json.",
+          "note": "The 2027 INPS table is not published: the ruleset is estimated, so the 2026 rate is carried forward as an assumption."
+        }
+      }
     }
   },
   "apprentice": {
@@ -168,7 +189,7 @@
     "published_at": "2026-10-09",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "b9aeab77846ba5a3c59fa04e6e047124bb65bf5944f628614d29688c400d8fc3",
+    "source_hash": "2e15010277883dc0c53273b3ef193ea13ff6950a2bdaf026b9c65c06582f64ed",
     "source_type": "estimated",
     "provisional": true
   }

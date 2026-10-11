@@ -79,6 +79,24 @@ def _in_force(period: ValidityPeriod | None) -> tuple[ValidityPeriod, ...]:
     return () if period is None else (period,)
 
 
+def _sick_pay_supplement(ctx: RunContext, inps_name: str) -> tuple[Rule, ...]:
+    """Return the additional sickness contribution of the regime of the CCNL.
+
+    Returns:
+        ``<inps>:inps.sick_pay_supplements[<regime>]`` with its record; empty
+        when the CCNL names no regime or the year has no ordinary rates.
+    """
+    work = ctx.contract.ccnl.work_rules
+    sickness = None if work is None else work.sickness_rules
+    regime = None if sickness is None else sickness.inps_regime
+    inps = ctx.contract.year_rules.inps
+    if regime is None or inps is None:
+        return ()
+    supplement = inps.sick_pay_supplements.get(regime)
+    record = None if supplement is None else supplement.provenance
+    return ((f"{inps_name}:inps.sick_pay_supplements[{regime}]", record),)
+
+
 def contract_rules(ctx: RunContext) -> dict[str, tuple[Rule, ...]]:
     """Return the CCNL and INPS rules of the run by capability.
 
@@ -126,7 +144,7 @@ def contract_rules(ctx: RunContext) -> dict[str, tuple[Rule, ...]]:
             ),
         ),
         "inps_employee": inps + additional_ivs_rules(inps_name, rules.inps),
-        "inps_employer": inps + fixed_term,
+        "inps_employer": inps + fixed_term + _sick_pay_supplement(ctx, inps_name),
         "ivs_ceiling_eligibility": (
             (
                 f"{inps_name}:inps.ceiling",
