@@ -48,7 +48,7 @@ if TYPE_CHECKING:
     from ccnl_engine.amount.types import _PeriodAmounts
     from ccnl_engine.employment.fact.inputs import EmploymentPeriod
     from ccnl_engine.ledger.models import LedgerEntry
-    from ccnl_engine.tax.annual.models import YearRules
+    from ccnl_engine.sector.models import YearRules
 
 __all__ = [
     "CappedWithholding",

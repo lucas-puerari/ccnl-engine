@@ -32,8 +32,8 @@ def split_covered(
     states a seniority: a run whose competence date has no value of either
     cannot be computed.  Such a run is set aside, so that the year computes
     its other runs on a withholding schedule without it.  When no payment
-    is in force, the :class:`~ccnl_engine.errors\
-.MissingRuleError` of the first one is raised.
+    is in force, the :class:`~ccnl_engine.errors.MissingRuleError` of the first one is
+    raised.
 
     Returns:
         The payments to compute, in their order, and the runs set aside.

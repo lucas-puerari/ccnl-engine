@@ -19,7 +19,7 @@ from ccnl_engine.family.child.rules import (
     children_deductions,
 )
 from ccnl_engine.family.inputs import Dependent, DependentRelationship
-from ccnl_engine.tax.annual.loaders_optional import load_family_deduction_rules
+from ccnl_engine.family.loaders import load_family_deduction_rules
 from tests.integration.ccnl_engine.family.builders import (
     declared_dependent,
 )

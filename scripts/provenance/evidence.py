@@ -143,7 +143,7 @@ def _ccnl_files(root: Path) -> Iterator[tuple[str, Json]]:
     Yields:
         ``(file, data)``, file relative to ``root``, in file-name order.
     """
-    for path in sorted((root / "contract" / "agreement").glob("*.json")):
+    for path in sorted((root / "agreement").glob("*.json")):
         yield path.relative_to(root).as_posix(), json.loads(path.read_text("utf-8"))
 
 
@@ -421,7 +421,7 @@ def report_lines(rules: tuple[PayableRule, ...], top: int = 10) -> list[str]:
     ccnl = {
         file: counts
         for file, counts in payable_rules.count_by_file(rules).items()
-        if file.startswith("contract/agreement/") and any(counts[s] for s in WEAK)
+        if file.startswith("agreement/") and any(counts[s] for s in WEAK)
     }
     ranked = sorted(ccnl.items(), key=lambda item: (-_weak(item[1]), item[0]))
     lines.append(f"CCNL files with weak rules: {len(ranked)}; top {top}:")

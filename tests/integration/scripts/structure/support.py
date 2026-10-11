@@ -54,6 +54,7 @@ CONCEPT_TIERS: Mapping[str, int] = {
         (
             "agreement",
             "amount",
+            "bundle",
             "calendar",
             "decision",
             "knowledge",
@@ -75,6 +76,7 @@ CONCEPT_TIERS: Mapping[str, int] = {
             "pay_item",
             "pension_fund",
             "regime",
+            "sector",
             "seniority",
             "severance",
             "sickness",
@@ -106,7 +108,7 @@ CONCEPT_TIERS: Mapping[str, int] = {
     ),
 }
 #: Roots of the layout by source, outside the tier rule until they empty.
-LEGACY_ROOTS: frozenset[str] = frozenset({"tax"})
+LEGACY_ROOTS: frozenset[str] = frozenset()
 
 
 def concept(name: str) -> str | None:

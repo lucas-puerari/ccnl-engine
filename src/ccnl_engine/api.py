@@ -5,8 +5,8 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Literal
 
 from ccnl_engine.balance.opening.services import opening_state
+from ccnl_engine.bundle.facade import __version__
 from ccnl_engine.catalog import services as _catalog
-from ccnl_engine.knowledge.facade import __version__
 from ccnl_engine.period.input.services import (
     competence_plan,
     next_tax_year,
@@ -210,8 +210,7 @@ class PayrollEngine:
         each paid on the plan's payment day or date.  The runs paid in the
         year settle its conguaglio on the last of them; a run paid in the
         next tax year (December paid after 12 January) opens it.  See
-        :func:`~ccnl_engine.year.competence.services\
-.calculate_competence_year`.
+        :func:`~ccnl_engine.year.competence.services.calculate_competence_year`.
 
         Args:
             plan: The year, the employment, the employer, the prior-year
@@ -240,8 +239,7 @@ class PayrollEngine:
         The payments of the competence years of ``plan`` attributed to its
         tax year, late payments of an earlier competence year included; the
         conguaglio falls on the last one.  See
-        :func:`~ccnl_engine.year.tax_year.services\
-.calculate_tax_year`.
+        :func:`~ccnl_engine.year.tax_year.services.calculate_tax_year`.
 
         Args:
             plan: The tax year, its competence years and its opening state.
@@ -262,8 +260,7 @@ class PayrollEngine:
     def close_tax_year(closing_state: PeriodState) -> PeriodState:
         """Open the next tax year from the closing state of the last run.
 
-        See :func:`~ccnl_engine.year.tax_year.closing.rules\
-.close_tax_year`.
+        See :func:`~ccnl_engine.year.tax_year.closing.rules.close_tax_year`.
 
         Args:
             closing_state: ``closing_state`` of the last run of the year.

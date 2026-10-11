@@ -32,7 +32,7 @@ if TYPE_CHECKING:
     from ccnl_engine.event.total.handlers import _EventTotals
     from ccnl_engine.period.context.services import RunContext
     from ccnl_engine.period.step.services import RunAmounts
-    from ccnl_engine.tax.annual.models import YearRules
+    from ccnl_engine.sector.models import YearRules
 
 __all__ = ["base_stage_decisions"]
 

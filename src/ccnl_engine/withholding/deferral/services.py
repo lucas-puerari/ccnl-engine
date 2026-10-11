@@ -4,8 +4,8 @@ The conguaglio of tax year N withholds what the pay covers
 (:mod:`~ccnl_engine.withholding.cap.services`).  When the
 worker asked in writing to defer the rest (art. 23 c. 3 DPR 600/1973, see
 :mod:`~ccnl_engine.withholding.deferral.inputs`), the IRPEF left
-becomes a :class:`~ccnl_engine.withholding.deferral.inputs\
-.DeferredShortfall` instead of the provisional issue, and the payslips of
+becomes a :class:`~ccnl_engine.withholding.deferral.inputs.DeferredShortfall` instead of
+the provisional issue, and the payslips of
 N+1 from March withhold it with its interest.  Only the IRPEF is deferred:
 the norm defers the "imposte dovute in sede di conguaglio", and the surtax
 and the credit recoveries carried for lack of pay keep the issue.
@@ -122,8 +122,7 @@ def defer_shortfall(
         only for what is left, a ``shortfall_deferred`` decision, and the
         deferred shortfall.  A request signed outside the tax year and the
         following January and February is rejected by
-        :meth:`~ccnl_engine.withholding.deferral.inputs\
-.ShortfallDeferralRequest.check_for`.
+        :meth:`~ccnl_engine.withholding.deferral.inputs.ShortfallDeferralRequest.check_for`.
     """
     _reject_refund_while_deferred(ctx, capped)
     request = ctx.request.prior_year.shortfall_deferral

@@ -18,15 +18,15 @@ record of a file whose ruleset is `estimated` (the eight sector tax files and
 the eight sector INPS files) is `assumed` under the label gate (see
 [Trust: Provenance](../trust/provenance.md)); the statutory blocks that do
 not depend on the sector live in their own files and are `derived` (the somma
-esente in `taxation/exemption/2026.json`).  The `assumed` blocks with an
+esente in `tax_credit/somma_esente/2026.json`).  The `assumed` blocks with an
 open question beyond the missing citation are:
 
 | File | Block | Open question |
 |---|---|---|
-| `social_security/contribution/2026/{agricoltura,artigianato,credito}.json` | `apprentice` | No apprentice table of the sector: the CISOA of agricoltura, the NASpI reduction of the artigiani and the Fondo di solidarietà del credito are not settled |
-| `social_security/contribution/2026/credito.json` | `inps` | Totals of a 2012 INPS table; the Fondo di solidarietà del credito (0.20%, BCC 0.36%) is not modelled |
-| `social_security/contribution/2026/artigianato.json` | `inps` | Aggregator rates; INPS circular not retrieved |
-| `social_security/contribution/2026/pubblica-amministrazione.json` | `apprentice` | Schema placeholder |
+| `contribution/2026/{agricoltura,artigianato,credito}.json` | `apprentice` | No apprentice table of the sector: the CISOA of agricoltura, the NASpI reduction of the artigiani and the Fondo di solidarietà del credito are not settled |
+| `contribution/2026/credito.json` | `inps` | Totals of a 2012 INPS table; the Fondo di solidarietà del credito (0.20%, BCC 0.36%) is not modelled |
+| `contribution/2026/artigianato.json` | `inps` | Aggregator rates; INPS circular not retrieved |
+| `contribution/2026/pubblica-amministrazione.json` | `apprentice` | Schema placeholder |
 | `surtax/municipal/2026.json` | rows carried from an earlier year | No applicable 2026 delibera in the MEF list; the rates in force are carried forward (L. 296/2006 art. 1 c. 169) |
 | `surtax/municipal/2026.json` | A112 Airuno, A785 Bentivoglio | Third band of the MEF list repeats the second; read as 28,000.01-50,000 |
 

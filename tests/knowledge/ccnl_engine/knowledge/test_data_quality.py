@@ -156,8 +156,8 @@ def test_verified_rules_are_the_reviewed_l2_rules_of_industria() -> None:
     record without them, so the bundle would not load otherwise).
     """
     verified = {(r.file, r.path) for r in _RULES if r.status == "verified"}
-    inps = "social_security/contribution/2026/industria.json"
-    tax = "taxation/annual/2026/industria.json"
+    inps = "contribution/2026/industria.json"
+    tax = "sector/2026/industria.json"
     assert verified == {
         (inps, "inps"),
         (inps, "inps.employee_additional"),
@@ -182,7 +182,7 @@ def test_salary_period_without_provenance_fails() -> None:
             }
         ]
     }
-    (error,) = rule_errors(tuple(ccnl_rules("contract/agreement/x.json", ccnl)))
+    (error,) = rule_errors(tuple(ccnl_rules("agreement/x.json", ccnl)))
     assert error.endswith("levels[Q].base_salary[2026-01-01]: no provenance record")
 
 
@@ -210,7 +210,7 @@ def test_level_record_covers_its_periods_and_allowances() -> None:
             "accrual_rule": {"provenance": _RECORD},
         },
     }
-    rules = tuple(ccnl_rules("contract/agreement/x.json", ccnl))
+    rules = tuple(ccnl_rules("agreement/x.json", ccnl))
     assert [rule.status for rule in rules] == ["derived"] * 5
     assert rule_errors(rules) == []
 
@@ -218,17 +218,17 @@ def test_level_record_covers_its_periods_and_allowances() -> None:
 @pytest.mark.parametrize(
     ("file", "data", "fragment"),
     [
-        ("taxation/annual/2026/x.json", {"tfr": {"accrual_divisor": "13.5"}}, "tfr"),
-        ("taxation/annual/2026/x.json", {"irpef_brackets": []}, "irpef_brackets"),
+        ("sector/2026/x.json", {"tfr": {"accrual_divisor": "13.5"}}, "tfr"),
+        ("sector/2026/x.json", {"irpef_brackets": []}, "irpef_brackets"),
         (
-            "social_security/contribution/2026/x.json",
+            "contribution/2026/x.json",
             {"inps": {"provenance": None}},
             "inps",
         ),
         ("surtax/regional/2026.json", {"rates": {}}, "rates"),
-        ("taxation/variable_pay/2026.json", {"pdr": {}}, "pdr"),
+        ("variable_pay/2026.json", {"pdr": {}}, "pdr"),
         (
-            "taxation/variable_pay/2026.json",
+            "variable_pay/2026.json",
             {"rinnovo": {"source_status": "derived"}},
             "rinnovo",
         ),
@@ -250,7 +250,7 @@ def test_missing_status_is_allowed_but_unknown_status_fails() -> None:
         "fixed_term_renewal_increment": "0.005",
         "fixed_term_additional_rate_provenance": {"status": "unknown"},
     }
-    rules = tuple(fiscal_rules("taxation/annual/2026/x.json", data))
+    rules = tuple(fiscal_rules("sector/2026/x.json", data))
     assert [rule.status for rule in rules] == ["unknown", "missing"]
     (error,) = rule_errors(rules)
     assert "unknown status 'unknown'" in error

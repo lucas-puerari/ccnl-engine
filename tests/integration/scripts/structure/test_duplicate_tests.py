@@ -62,7 +62,7 @@ def test_report_counts_each_capability_per_level() -> None:
     """The report has a row per capability and lists multi-level modules."""
     text = report()
     assert "| period |" in text
-    assert "| tax |" in text
+    assert "| sickness |" in text
     assert "Modules tested at more than one level:" in text
 
 

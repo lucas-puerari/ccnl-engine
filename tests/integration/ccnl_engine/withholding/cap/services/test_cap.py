@@ -45,7 +45,7 @@ from ccnl_engine.pay_item.facade import CompetencePeriod
 from ccnl_engine.period.requests import PeriodCalculationRequest
 from ccnl_engine.period.services import calculate_period
 from ccnl_engine.run.types import PeriodId
-from ccnl_engine.tax.annual.loaders import load_year_rules
+from ccnl_engine.sector.loaders import load_year_rules
 from ccnl_engine.withholding.cap.services import (
     CappedWithholding,
     cap_withholding,

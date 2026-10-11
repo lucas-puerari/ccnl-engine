@@ -109,8 +109,8 @@ class PensionContribution:
         deductible: Part of ``employer + employee`` deducted from the
             taxable income of the run, within the cap left.
         contractual: Fixed contribution the CCNL owes the fund for every
-            worker (:class:`~ccnl_engine.fund.models\
-.ContractualFundContribution`), part of ``employer``.
+            worker (:class:`~ccnl_engine.fund.models.ContractualFundContribution`), part
+            of ``employer``.
     """
 
     terms: PensionFundTerms | None

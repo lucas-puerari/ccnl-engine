@@ -19,9 +19,7 @@ from ccnl_engine.regime.models import (
     EmploymentSector,
     PreferentialTaxRegime,
 )
-from ccnl_engine.tax.annual.loaders_optional import (
-    load_variable_pay_rules,
-)
+from ccnl_engine.variable_pay.loaders import load_variable_pay_rules
 
 _SOURCE = SourceLocation(
     source_document=SourceDocument(

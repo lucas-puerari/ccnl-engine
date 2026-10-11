@@ -18,7 +18,7 @@
           "apprentice"
         ]
       },
-      "source": "ccnl_engine.payroll.employment.rules_apprenticeship._midpoint_chain; CCNL Aziende Termali Federterme 2024-2027 Art. 13 lett. g ('maggiorato di un importo pari al 50% del differenziale previsto tra il 5° e il 6° livello'); tests/knowledge/ccnl_engine/payroll/employment/test_apprenticeship_midpoint.py",
+      "source": "ccnl_engine.apprenticeship.rules._midpoint_chain; CCNL Aziende Termali Federterme 2024-2027 Art. 13 lett. g ('maggiorato di un importo pari al 50% del differenziale previsto tra il 5° e il 6° livello'); tests/knowledge/ccnl_engine/apprenticeship/rules/test_midpoint.py",
       "remediation": "Resolved: CCNLs whose midpoint components are unsourced are tracked by their own apprenticeship_midpoint_components limitation."
     },
     {
@@ -125,7 +125,7 @@
           "apprentice"
         ]
       },
-      "source": "ccnl_engine.payroll.amount.rules_chain and MonthlyPayChain.scaled_for_apprenticeship; apprentice amounts as sourced in the CCNL notes (acconciatura-estetica 2024 renewal Art. 25: 6 EUR; tessile-moda-artigianato 2024 renewal: 6 EUR; panificazione Art. 34-bis 'esclusi gli apprendisti' and 2024 renewal: 10 EUR; comunicazione-artigianato 2024 renewal: 10 EUR; legno-lapidei-artigianato 2024 renewal: 8 EUR); tests/knowledge/ccnl_engine/payroll/employment/test_apprentice_seniority.py",
+      "source": "ccnl_engine.compensation.element.rules and MonthlyPayChain.scaled_for_apprenticeship; apprentice amounts as sourced in the CCNL notes (acconciatura-estetica 2024 renewal Art. 25: 6 EUR; tessile-moda-artigianato 2024 renewal: 6 EUR; panificazione Art. 34-bis 'esclusi gli apprendisti' and 2024 renewal: 10 EUR; comunicazione-artigianato 2024 renewal: 10 EUR; legno-lapidei-artigianato 2024 renewal: 8 EUR); tests/knowledge/ccnl_engine/apprenticeship/rules/test_seniority.py",
       "remediation": "Resolved: the remaining CCNLs are tracked by their own apprentice_seniority limitation."
     },
     {
@@ -169,7 +169,7 @@
           "apprentice"
         ]
       },
-      "source": "ccnl_engine.payroll.employment.rules_apprenticeship (percentage track chain)",
+      "source": "ccnl_engine.apprenticeship.rules (percentage track chain)",
       "remediation": "Source, for each CCNL, the elements the apprenticeship percentage applies to and set apprenticeship_pct_relevant on every allowance; the limitation then no longer applies to its runs."
     },
     {
@@ -297,7 +297,7 @@
       "applies_when": {
         "trigger": "path"
       },
-      "source": "ccnl_engine.payroll.sickness.handlers (INPS share of a sick day)",
+      "source": "ccnl_engine.sickness.handlers (INPS share of a sick day)",
       "remediation": "Compute the INPS indemnity on the INPS daily base and calendar days of the INPS rules, with the pay of the month before, then resolve this limitation."
     },
     {
@@ -424,7 +424,7 @@
       "applies_when": {
         "trigger": "path"
       },
-      "source": "ccnl_engine.payroll.sickness.rules_day (CCNL tier of a sick day)",
+      "source": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
       "remediation": "Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it."
     },
     {
@@ -565,7 +565,7 @@
       "applies_when": {
         "trigger": "path"
       },
-      "source": "ccnl_engine.payroll.assurance.services_ruleset.provisional_paths (tax ruleset of the run)",
+      "source": "ccnl_engine.assurance.ruleset.services.provisional_paths (tax ruleset of the run)",
       "remediation": "Replace each provisional ruleset of the year with the values of its published sources, drop its provisional flag, then resolve this limitation."
     },
     {
@@ -706,7 +706,7 @@
       "applies_when": {
         "trigger": "path"
       },
-      "source": "ccnl_engine.payroll.assurance.services_ruleset.provisional_paths (INPS ruleset of the run)",
+      "source": "ccnl_engine.assurance.ruleset.services.provisional_paths (INPS ruleset of the run)",
       "remediation": "Replace each provisional INPS ruleset of the year with the values of the INPS circulars of the year, drop its provisional flag, then resolve this limitation."
     },
     {
@@ -828,7 +828,7 @@
           "apprentice"
         ]
       },
-      "source": "ccnl_engine.payroll.contribution.services_tfr_compensation; INPS messaggio n. 5859 of 7 March 2008, par. 3 (art. 8 relief of apprentices); INPS circ. 70/2007 par. 6 (Fondo di garanzia exemption, rates 0.20% and 0.40%)",
+      "source": "ccnl_engine.severance.relief.services; INPS messaggio n. 5859 of 7 March 2008, par. 3 (art. 8 relief of apprentices); INPS circ. 70/2007 par. 6 (Fondo di garanzia exemption, rates 0.20% and 0.40%)",
       "remediation": "Find an INPS source on the Fondo di garanzia share of the apprentice rate, then exempt it with the other workers or record that none is due."
     },
     {
@@ -852,7 +852,7 @@
       "applies_when": {
         "trigger": "path"
       },
-      "source": "ccnl_engine.payroll.contribution.services_minimum_base.minimum_base_paths; D.L. 463/1983 art. 7 cc. 1 and 5; INPS circ. 6/2026 allegato 1, Tabella A, note (2)",
+      "source": "ccnl_engine.contribution.minimum_base.services.minimum_base_paths; D.L. 463/1983 art. 7 cc. 1 and 5; INPS circ. 6/2026 allegato 1, Tabella A, note (2)",
       "remediation": "Source the role of the 51.70 of the operai agricoli (INPS circ. 43/2026 on the agricultural contributions, or the minimum daily wages of art. 1 L. 389/1989), then apply it as their minimum or record that none applies."
     }
   ]

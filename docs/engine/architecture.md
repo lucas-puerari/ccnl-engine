@@ -2,8 +2,7 @@
 
 The [Architecture contract](architecture-contract.md) fixes the layout: one
 root per concept, directories named after domains, files named after roles.
-The layout by source (`contract`, `tax`, `payroll`) has been migrated; only
-`tax/annual` waits for the knowledge move.
+The layout by source (`contract`, `tax`, `payroll`) has been fully migrated.
 
 The facade sits in `api.py`, the shared `errors`, `primitives` and
 `validation` modules at the root. Each file is named by its role, and the
@@ -46,7 +45,7 @@ api -> application -> service -> domain
   move yet is allowlisted with its reason; the allowlist and the legacy
   roots only shrink.
 - Every module belongs to a layer. `ccnl_engine.version` and the bundle
-  version in `knowledge/facade.py` are metadata: any layer except `domain`
+  version in `bundle/facade.py` are metadata: any layer except `domain`
   may import them. A package `__init__.py` holds a docstring only.
 
 ## Public API

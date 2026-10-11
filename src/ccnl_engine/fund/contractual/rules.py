@@ -1,7 +1,8 @@
 """Contractual contribution a CCNL owes a fund for every worker.
 
-The amount is fixed per level and month (:class:`~ccnl_engine.fund.models\
-.ContractualFundContribution`): a run that posts the monthly
+The amount is fixed per level and month
+(:class:`~ccnl_engine.fund.models.ContractualFundContribution`): a run that posts the
+monthly
 pay of its month owes it, an extra-month run only when the clause says so, in
 proportion to its ratei.  The clause may set the categories it covers, a
 minimum of days worked in the month, a proportion for part time and a minimum

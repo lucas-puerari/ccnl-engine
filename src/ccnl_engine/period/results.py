@@ -53,8 +53,8 @@ class PeriodResult:
         closing_state: State after closing this period: the tax year state
             and the obligations.  Pass as ``opening_state`` to the next
             run of the same tax year, or to
-            :func:`~ccnl_engine.year.tax_year.closing.rules\
-.close_tax_year` after the last run of the year.
+            :func:`~ccnl_engine.year.tax_year.closing.rules.close_tax_year` after the
+            last run of the year.
         pay_items: All pay items produced for this period.
         ledger_entries: All ledger entries posted for this period.
         contribution_breakdown: Per-component INPS breakdown for audit

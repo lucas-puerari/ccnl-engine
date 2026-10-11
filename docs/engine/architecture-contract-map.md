@@ -276,14 +276,14 @@ inventory.
 
 | Today | Target |
 |---|---|
-| `knowledge/facade.py` | `knowledge/facade.py` |
-| `knowledge/loaders.py` | `knowledge/loaders.py` |
-| `knowledge/loaders_manifest.py` | `knowledge/loaders.py` |
-| `knowledge/loaders_resource.py` | `knowledge/loaders.py` |
-| `tax/annual/loaders.py` | `knowledge/sector/loaders.py` |
-| `tax/annual/loaders_resource.py` | `knowledge/sector/loaders.py` |
-| `tax/annual/models.py` | `knowledge/sector/models.py` |
-| `knowledge/validators.py` | `knowledge/validators.py` |
+| `bundle/facade.py` | `bundle/facade.py` |
+| `bundle/loaders.py` | `bundle/loaders.py` |
+| `bundle/loaders.py` | `bundle/loaders.py` |
+| `bundle/loaders.py` | `bundle/loaders.py` |
+| `tax/annual/loaders.py` | `sector/loaders.py` |
+| `tax/annual/loaders_resource.py` | `sector/raw/loaders.py` |
+| `tax/annual/models.py` | `sector/models.py` |
+| `bundle/validators.py` | `bundle/validators.py` |
 
 ## ledger
 

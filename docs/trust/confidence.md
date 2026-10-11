@@ -24,7 +24,7 @@ payable only when every run is.
 ## Fail-closed payability
 
 What a run must cover comes from the capability registry of the fiscal year
-(`knowledge/capability/<year>/catalog.json`) and from the run itself:
+(`knowledge/capability/registry/<year>.json`) and from the run itself:
 
 - every capability that applies to the run (its predicate holds: a core
   stage, an event the request declares, the run that closes the employment)

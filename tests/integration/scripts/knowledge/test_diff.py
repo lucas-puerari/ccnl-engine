@@ -19,9 +19,7 @@ from ccnl_engine.agreement.validity.rules import TimeSeries, ValidityPeriod
 if TYPE_CHECKING:
     import types
 
-_AGREEMENTS = importlib.resources.files("ccnl_engine.knowledge").joinpath(
-    "contract", "agreement"
-)
+_AGREEMENTS = importlib.resources.files("ccnl_engine.knowledge").joinpath("agreement")
 
 _PROJECT_ROOT = Path(__file__).resolve().parents[4]
 _SCRIPT = _PROJECT_ROOT / "scripts" / "knowledge" / "diff.py"

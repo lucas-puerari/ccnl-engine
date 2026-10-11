@@ -158,7 +158,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 ??? note "Full JSON (provenance artifact)"
     ```json
-    --8<-- "src/ccnl_engine/knowledge/contract/agreement/materiali-costruzione-lapidei-confapi.json"
+    --8<-- "src/ccnl_engine/knowledge/agreement/materiali-costruzione-lapidei-confapi.json"
     ```
 
 ## Usage example

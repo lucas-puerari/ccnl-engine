@@ -1,10 +1,4 @@
 {
-  "domain_directories": {
-    "src/ccnl_engine/tax": 1,
-    "src/ccnl_engine/tax/annual": 1,
-    "tests/integration/ccnl_engine/tax": 1,
-    "tests/integration/ccnl_engine/tax/annual": 1
-  },
   "role_files": {
     "scripts/documentation/coverage.py": 1,
     "scripts/documentation/generate_capability_matrix.py": 1,
@@ -20,23 +14,7 @@
     "scripts/quality/mutation.py": 1,
     "scripts/quality/smoke_test.py": 1,
     "scripts/structure/inventory.py": 1,
-    "src/ccnl_engine/knowledge/loaders_manifest.py": 1,
-    "src/ccnl_engine/knowledge/loaders_resource.py": 1,
-    "src/ccnl_engine/tax/annual/loaders_optional.py": 1,
-    "src/ccnl_engine/tax/annual/loaders_resource.py": 1,
     "tests/integration/ccnl_engine/comparison/ruleset/test_services_bundled.py": 1,
-    "tests/integration/ccnl_engine/knowledge/test_loaders_ccnl_cases.py": 1,
-    "tests/integration/ccnl_engine/knowledge/test_loaders_manifest.py": 1,
-    "tests/integration/ccnl_engine/knowledge/test_loaders_resource.py": 1,
-    "tests/integration/ccnl_engine/knowledge/test_loaders_resource_contract.py": 1,
-    "tests/integration/ccnl_engine/knowledge/test_validators_integrity.py": 1,
-    "tests/integration/ccnl_engine/tax/annual/test_loaders_naspi.py": 1,
-    "tests/integration/ccnl_engine/tax/annual/test_loaders_optional.py": 1,
-    "tests/integration/ccnl_engine/tax/annual/test_loaders_optional_sick_pay.py": 1,
-    "tests/integration/ccnl_engine/tax/annual/test_loaders_optional_somma_esente.py": 1,
-    "tests/integration/ccnl_engine/tax/annual/test_loaders_provenance.py": 1,
-    "tests/integration/ccnl_engine/tax/annual/test_loaders_resource_inps_split.py": 1,
-    "tests/integration/ccnl_engine/tax/annual/test_loaders_resource_years.py": 1,
     "tests/integration/ccnl_engine/test_api_series_coverage.py": 1,
     "tests/integration/ccnl_engine/test_apprentice_partial_month.py": 1,
     "tests/integration/ccnl_engine/test_calendar_override.py": 1,
@@ -96,7 +74,6 @@
     "tests/integration/scripts/structure/test_test_layout.py": 1,
     "tests/knowledge/ccnl_engine/knowledge/test_data_quality.py": 1,
     "tests/unit/ccnl_engine/comparison/ruleset/test_services_models.py": 1,
-    "tests/unit/ccnl_engine/comparison/ruleset/test_services_rule_changes.py": 1,
-    "tests/unit/ccnl_engine/knowledge/test_validators_labels.py": 1
+    "tests/unit/ccnl_engine/comparison/ruleset/test_services_rule_changes.py": 1
   }
 }

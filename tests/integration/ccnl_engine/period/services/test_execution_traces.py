@@ -38,8 +38,8 @@ from ccnl_engine.pay_item.policies import PolicyContext
 from ccnl_engine.period.requests import PeriodCalculationRequest
 from ccnl_engine.period.services import calculate_period
 from ccnl_engine.run.types import PeriodId
-from ccnl_engine.tax.annual.loaders_optional import load_variable_pay_rules
 from ccnl_engine.variable_pay.benefit.handlers import fringe_threshold_of
+from ccnl_engine.variable_pay.loaders import load_variable_pay_rules
 from ccnl_engine.year.competence.services import (
     calculate_competence_year,
 )

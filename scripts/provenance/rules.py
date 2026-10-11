@@ -71,7 +71,7 @@ _INPS = ("inps_employee", "inps_employer")
 #: of the block itself.
 type _Blocks = tuple[tuple[str, tuple[str, ...], bool], ...]
 
-#: Blocks of a ``taxation/annual/<year>/<sector>.json`` file.
+#: Blocks of a ``sector/<year>/<sector>.json`` file.
 _TAX_BLOCKS: Final[_Blocks] = (
     ("irpef_brackets", ("irpef",), True),
     ("work_deduction", ("irpef",), False),
@@ -87,23 +87,23 @@ _INPS_BLOCKS: Final[_Blocks] = (
     ("domestic_contributions", _INPS, False),
 )
 _NAMED_BLOCKS: Final[dict[str, _Blocks]] = {
-    "taxation/family/": (
+    "family/": (
         ("spouse", ("family_deductions",), False),
         ("spouse_increases", ("family_deductions",), False),
         ("children", ("family_deductions",), False),
         ("other_dependents", ("family_deductions",), False),
     ),
-    "taxation/variable_pay/": (
+    "variable_pay/": (
         ("fringe_benefit", ("fringe_benefit",), False),
         ("pdr", ("bonus_pdr",), False),
     ),
-    "taxation/exemption/": (("somma_esente", ("somma_esente",), False),),
-    "taxation/severance/": (
+    "tax_credit/somma_esente/": (("somma_esente", ("somma_esente",), False),),
+    "severance/revaluation/": (
         ("rate", ("tfr_revaluation",), False),
         ("price_index", ("tfr_revaluation",), False),
         ("substitute_tax", ("tfr_revaluation",), False),
     ),
-    "social_security/sickness/rates": (("bands", ("sickness",), True),),
+    "sickness/indemnity/rates": (("bands", ("sickness",), True),),
 }
 #: CCNL work rules read by every run that needs them: key and capabilities.
 _WORK_RULES: Final = (
@@ -442,9 +442,9 @@ def fiscal_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]
         key, capability = whole_file
         yield _rule(file, key, (capability,), data.get("provenance"))
         return
-    if file.startswith("taxation/annual/"):
+    if file.startswith("sector/"):
         yield from _block_rules(file, data, _TAX_BLOCKS)
-    elif file.startswith("social_security/contribution/"):
+    elif file.startswith("contribution/"):
         yield from _block_rules(file, data, _INPS_BLOCKS)
     yield from _block_rules(file, data, _by_prefix(_NAMED_BLOCKS, file) or ())
     for key, capability in _REGIMES.items():
@@ -456,21 +456,34 @@ def fiscal_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]
             )
 
 
+#: Datasets of the fiscal rules, in the order the inventory lists them.
+FISCAL_DATASETS = (
+    "sector",
+    "tax_credit",
+    "family",
+    "severance",
+    "variable_pay",
+    "contribution",
+    "sickness",
+    "surtax",
+)
+
+
 def inventory(root: Path = KNOWLEDGE_DIR) -> tuple[PayableRule, ...]:
     """Return every payable rule of the knowledge data under ``root``.
 
     Args:
-        root: Knowledge directory holding the ``contract``, ``taxation``,
-            ``social_security`` and ``surtax`` datasets.
+        root: Knowledge directory holding the ``agreement`` dataset and the
+            fiscal datasets of :data:`FISCAL_DATASETS`.
 
     Returns:
         The rules, CCNL files first, each group in file-name order.
     """
     rules: list[PayableRule] = []
-    for path in sorted((root / "contract" / "agreement").glob("*.json")):
+    for path in sorted((root / "agreement").glob("*.json")):
         data = json.loads(path.read_text(encoding="utf-8"))
         rules.extend(ccnl_rules(path.relative_to(root).as_posix(), data))
-    for group in ("taxation", "social_security", "surtax"):
+    for group in FISCAL_DATASETS:
         for path in sorted((root / group).rglob("*.json")):
             data = json.loads(path.read_text(encoding="utf-8"))
             rules.extend(fiscal_rules(path.relative_to(root).as_posix(), data))

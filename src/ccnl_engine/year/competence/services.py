@@ -81,8 +81,8 @@ def calculate_competence_year(
     year after them.  A run the opening state already closed with the same
     payment is not computed again.  A run paid after the first payment of
     the next tax year belongs in
-    :func:`~ccnl_engine.year.tax_year.services\
-.calculate_tax_year`, which orders it among the runs of that year.
+    :func:`~ccnl_engine.year.tax_year.services.calculate_tax_year`, which orders it
+    among the runs of that year.
 
     Args:
         plan: Employment, employer, facts and payment dates of the runs, and

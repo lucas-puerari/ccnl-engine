@@ -31,7 +31,7 @@ if TYPE_CHECKING:
     from ccnl_engine.decision.models import CalculationDecision
     from ccnl_engine.irpef.net.rules import NetIrpef
     from ccnl_engine.irpef.results import TaxLineItem
-    from ccnl_engine.tax.annual.models import YearRules
+    from ccnl_engine.sector.models import YearRules
     from ccnl_engine.tax_credit.account.models import CreditAccount
     from ccnl_engine.tax_credit.foreign.inputs import ForeignTaxPaid
     from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
@@ -108,8 +108,8 @@ def compute_tax(
     The period withholding (``ordinary_tax``) is
     :func:`~ccnl_engine.irpef.net.rules.run_withholding`: before
     the last slot the IRPEF of the pay period under art. 23 c. 2 DPR
-    600/1973 (:func:`~ccnl_engine.withholding.rules\
-.period_tax`), the deductions of the period taken from the annual ones on
+    600/1973 (:func:`~ccnl_engine.withholding.rules.period_tax`), the deductions of the
+    period taken from the annual ones on
     the projection; the last slot settles the full balance, which can be
     negative (a refund).
 

@@ -17,7 +17,7 @@ from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.inputs import Employment, Permanent
 from ccnl_engine.pension_fund.inputs import NoPensionFund
 from ccnl_engine.period.inputs import PeriodFacts
-from ccnl_engine.tax.annual.models import YearRules
+from ccnl_engine.sector.models import YearRules
 from ccnl_engine.year.competence.inputs import CompetenceYearPlan
 from tests.integration.ccnl_engine.irpef.declaration.builders import (
     RENEWAL_WAIVED,

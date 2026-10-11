@@ -15,7 +15,7 @@ from pathlib import Path
 
 from ccnl_engine.provenance.ruleset.models import source_hash
 
-data_dir = Path("src/ccnl_engine/knowledge/contract/agreement")
+data_dir = Path("src/ccnl_engine/knowledge/agreement")
 updated = 0
 skipped = 0
 

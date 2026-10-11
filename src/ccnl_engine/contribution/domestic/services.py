@@ -27,7 +27,7 @@ if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.contribution.domestic.models import DomesticInpsRates
     from ccnl_engine.employment.inputs import Contract
-    from ccnl_engine.tax.annual.models import YearRules
+    from ccnl_engine.sector.models import YearRules
 
 
 def _pick_domestic_per_hour(

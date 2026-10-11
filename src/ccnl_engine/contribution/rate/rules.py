@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     from ccnl_engine.contribution.rate.models import InpsRates
     from ccnl_engine.employment.category.models import WorkerCategory
     from ccnl_engine.employment.inputs import Contract as Employment
-    from ccnl_engine.tax.annual.models import YearRules
+    from ccnl_engine.sector.models import YearRules
 
 
 @dataclass(frozen=True)
@@ -98,8 +98,8 @@ def resolve_rates(
     Apprentices use the statutory reduced rates (L. 296/2006 art. 1 c. 773,
     headcount already resolved in ``rules.apprentice``), without the NASpI
     surcharge (L. 92/2012 art. 2 c. 29 lett. c).  Other contracts add the
-    surcharge of :func:`~ccnl_engine.contribution.naspi.rules\
-.naspi_surcharge` to the employer rate only; the IVS rate is unchanged
+    surcharge of :func:`~ccnl_engine.contribution.naspi.rules.naspi_surcharge` to the
+    employer rate only; the IVS rate is unchanged
     because the surcharge is a non-IVS component (NASpI fund).
 
     Returns:

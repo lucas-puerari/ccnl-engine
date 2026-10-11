@@ -53,7 +53,7 @@ class ComunaleRaw(BaseModel):
 class SurtaxRules(BaseModel):
     """Bundled addizionale regionale and comunale rates for one fiscal year.
 
-    Loaded via :func:`~ccnl_engine.knowledge.load_surtax_rules`.
+    Loaded via :func:`~ccnl_engine.surtax.loaders.load_surtax_rules`.
 
     Attributes:
         year: Fiscal year these rates apply to.

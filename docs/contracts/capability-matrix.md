@@ -1,12 +1,12 @@
 <!-- auto-generated; run: uv run python scripts/documentation/generate_capability_matrix.py -->
 
-<!-- generated: 2026-10-10 -->
+<!-- generated: 2026-10-11 -->
 
 # Capability Matrix
 
 What the engine computes for fiscal year 2027, and how far the bundled
 data behind it is backed by sources. Generated from the capability registry
-(`knowledge/capability/2027/catalog.json`), the provenance records of the
+(`knowledge/capability/registry/2027.json`), the provenance records of the
 payable rules, the `missing` notes and the model limitations of the 126
 bundled CCNLs. The
 runtime capability report of every run, the [CCNL Coverage

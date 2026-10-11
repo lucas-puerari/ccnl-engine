@@ -21,6 +21,7 @@ from dataclasses import dataclass
 from datetime import UTC, date, datetime
 from typing import TYPE_CHECKING
 
+from ccnl_engine.bundle.loaders import resources
 from ccnl_engine.capability.loaders import (
     load_capability_catalog,
 )
@@ -33,7 +34,6 @@ from ccnl_engine.capability.support.services import (
     layer_coverage,
 )
 from ccnl_engine.catalog.loaders import load_ccnl
-from ccnl_engine.knowledge.loaders_manifest import resources
 from ccnl_engine.provenance.ruleset.models import (
     RulesetReadiness,
     VerificationStatus,
@@ -128,9 +128,9 @@ def latest_catalog_year() -> int:
     """Return the latest fiscal year with a bundled capability registry.
 
     Returns:
-        The year of the newest ``capability/<year>/catalog.json``.
+        The year of the newest ``capability/registry/<year>.json``.
     """
-    return max(r.year for r in resources("capability") if r.year is not None)
+    return max(r.year for r in resources("capability/registry") if r.year is not None)
 
 
 def bundled_ccnls() -> list[CCNL]:
@@ -139,7 +139,7 @@ def bundled_ccnls() -> list[CCNL]:
     Returns:
         The CCNL models.
     """
-    filenames = [r.name for r in resources("contract/agreement")]
+    filenames = [r.name for r in resources("agreement")]
     return sorted((load_ccnl(fn) for fn in filenames), key=lambda c: c.meta.name)
 
 
@@ -208,7 +208,7 @@ def build_coverage_report(year: int) -> CoverageReport:
             workers_estimate=ccnl.meta.workers_estimate,
             agreement_year=(ccnl.meta.agreement_date or "")[:4],
             cells=coverage_cells(catalog, ccnl),
-            sources=sources.get(f"contract/agreement/{ccnl.meta.ccnl_id}.json", "—"),
+            sources=sources.get(f"agreement/{ccnl.meta.ccnl_id}.json", "—"),
             verification_label=_verification_label(ccnl),
             readiness=ccnl.verification.readiness,
         )

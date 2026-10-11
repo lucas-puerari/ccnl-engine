@@ -3,8 +3,8 @@
 A year plan passes the ratei each run liquidates.  A run computed on its own
 (``PeriodCalculationRequest.extra_month_settlements`` left ``None``) derives
 them from the CCNL calendar with the same rule
-(:func:`~ccnl_engine.extra_month.qualification.services\
-.termination_settlements`): the run that pays the termination month
+(:func:`~ccnl_engine.extra_month.qualification.services.termination_settlements`): the
+run that pays the termination month
 liquidates every extra month whose next payment falls outside the
 employment, so chained runs pay what the year plan pays.  An extra-month run
 those ratei cover is refused: it would pay them a second time.

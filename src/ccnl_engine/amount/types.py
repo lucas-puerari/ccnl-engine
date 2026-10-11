@@ -35,9 +35,9 @@ if TYPE_CHECKING:
         PensionContribution,
         PensionFundTerms,
     )
+    from ccnl_engine.sector.models import YearRules
     from ccnl_engine.surtax.models import SurtaxRules
     from ccnl_engine.surtax.obligation.models import SurtaxObligation
-    from ccnl_engine.tax.annual.models import YearRules
     from ccnl_engine.tax_credit.foreign.inputs import ForeignTaxPaid
     from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
     from ccnl_engine.tax_credit.ulteriore_detrazione.rules import (

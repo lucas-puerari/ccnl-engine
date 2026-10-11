@@ -19,7 +19,7 @@ from ccnl_engine.irpef.minimum.rules import (
     MINIMUM_PROPORTIONED,
     minimum_decision,
 )
-from ccnl_engine.tax.annual.loaders import load_year_rules
+from ccnl_engine.sector.loaders import load_year_rules
 
 _RULES = load_year_rules(2026, TaxSector.INDUSTRIA, 50)
 _FLAT_BAND = Decimal(10_000)

@@ -29,7 +29,7 @@ if TYPE_CHECKING:
     from ccnl_engine.employment.fact.inputs import WeeklyHours
     from ccnl_engine.period.ports import KnowledgeRepository
     from ccnl_engine.period.requests import PeriodCalculationRequest
-    from ccnl_engine.tax.annual.models import YearRules
+    from ccnl_engine.sector.models import YearRules
 
 __all__ = ["RunContract", "load_contract", "with_competence_contributions"]
 

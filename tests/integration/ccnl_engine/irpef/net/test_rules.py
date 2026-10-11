@@ -14,7 +14,7 @@ import pytest
 
 from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.irpef.net.rules import net_irpef as engine_net_irpef
-from ccnl_engine.tax.annual.loaders import load_year_rules
+from ccnl_engine.sector.loaders import load_year_rules
 from tests.knowledge.ccnl_engine.irpef.oracles import (
     employment_deduction,
     further_deduction,

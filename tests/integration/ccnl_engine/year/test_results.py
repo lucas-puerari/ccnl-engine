@@ -19,7 +19,7 @@ from tests.knowledge.ccnl_engine.period.builders import (
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import TaxSector
-    from ccnl_engine.tax.annual.models import YearRules
+    from ccnl_engine.sector.models import YearRules
 
 
 class _RehashingRepository(BundledKnowledgeRepository):

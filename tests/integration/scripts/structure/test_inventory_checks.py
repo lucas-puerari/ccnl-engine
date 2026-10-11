@@ -57,7 +57,7 @@ _TREES = {
         "src/ccnl_engine/collection/validators.py",
         "src/ccnl_engine/payroll/period/models.py",
         "src/ccnl_engine/payroll/period/services_base_line.py",
-        "src/ccnl_engine/knowledge/social_security/contribution/2026/industria.json",
+        "src/ccnl_engine/knowledge/contribution/2026/industria.json",
         "src/ccnl_engine/payroll/period/__init__.py",
         "tests/conftest.py",
         "tests/README.md",

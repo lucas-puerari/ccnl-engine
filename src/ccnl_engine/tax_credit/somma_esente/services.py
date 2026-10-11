@@ -44,7 +44,7 @@ if TYPE_CHECKING:
     from ccnl_engine.irpef.results import TaxComputation
     from ccnl_engine.ledger.models import LedgerEntry
     from ccnl_engine.pay_item.facade import PayItem
-    from ccnl_engine.tax.annual.models import YearRules
+    from ccnl_engine.sector.models import YearRules
     from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
     from ccnl_engine.withholding.schedule.models import WithholdingPosition
 

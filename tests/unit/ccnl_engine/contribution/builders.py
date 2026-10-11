@@ -21,7 +21,7 @@ if TYPE_CHECKING:
         FixedTerm,
         Permanent,
     )
-    from ccnl_engine.tax.annual.models import YearRules
+    from ccnl_engine.sector.models import YearRules
 
 __all__ = ["first_run_contributions", "inps_year_rules"]
 

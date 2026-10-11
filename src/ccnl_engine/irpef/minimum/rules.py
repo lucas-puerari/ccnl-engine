@@ -30,7 +30,7 @@ from ccnl_engine.provenance.source.models import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.tax.annual.models import YearRules
+    from ccnl_engine.sector.models import YearRules
 
 __all__ = ["MINIMUM_PROPORTIONED", "minimum_decision"]
 

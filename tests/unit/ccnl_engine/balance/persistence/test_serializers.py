@@ -11,8 +11,8 @@ from ccnl_engine.balance.persistence.serializers import (
     period_state_from_json,
     period_state_to_json,
 )
+from ccnl_engine.bundle.facade import __version__ as bundle_version
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.knowledge.facade import __version__ as bundle_version
 from ccnl_engine.version import __version__ as engine_version
 
 

@@ -30,7 +30,7 @@ from ccnl_engine.compensation.renewal_minimum.rules import (
 from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.regime.models import EmploymentSector
 from ccnl_engine.regime.requirement.rules import RegimeFacts
-from ccnl_engine.tax.annual.loaders_optional import load_variable_pay_rules
+from ccnl_engine.variable_pay.loaders import load_variable_pay_rules
 
 _RINNOVO = load_variable_pay_rules(2026).rinnovo
 _PRIVATE = EmploymentSector.PRIVATE

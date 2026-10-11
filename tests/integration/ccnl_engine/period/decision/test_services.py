@@ -31,7 +31,7 @@ from ccnl_engine.period.requests import PeriodCalculationRequest
 from ccnl_engine.period.services import calculate_period
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from ccnl_engine.run.types import PeriodId
-from ccnl_engine.tax.annual.loaders import load_year_rules
+from ccnl_engine.sector.loaders import load_year_rules
 from tests.knowledge.ccnl_engine.contribution.oracles import (
     contribution_base,
 )

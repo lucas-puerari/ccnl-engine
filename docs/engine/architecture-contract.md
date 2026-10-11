@@ -76,7 +76,8 @@ src/ccnl_engine/
 ├── withholding/  ledger/  event/  balance/
 ├── decision/  assurance/  reconciliation/  limitation/  capability/
 ├── run/  period/  year/  default/  calendar/  amount/
-├── knowledge/        bundle readers and the JSON datasets
+├── knowledge/        the JSON datasets and their manifest, data only
+├── bundle/  sector/  readers of the bundle; the rules of a tax sector and year
 ├── provenance/  comparison/
 ```
 
@@ -108,7 +109,8 @@ The subdomains of each concept are in
 | `capability` | Capability registry, requirements, traces and reports |
 | `run`, `period`, `year`, `default` | The run identity and its month; one payroll run; competence and tax years; defaults of the public inputs |
 | `calendar`, `amount` | The payroll calendar: schedules, payment identity, tax year of a payment; the amounts of a run |
-| `knowledge` | Readers of the bundle and the rules of a tax sector and year |
+| `knowledge` | The JSON data bundle and its manifest, data only |
+| `bundle`, `sector` | Readers of the bundle: manifest, resources, hash and label checks; the rules of a tax sector and year |
 | `provenance`, `comparison` | Ruleset and source provenance; the rules diff of a CCNL |
 | `collection` | Validators of the public collections |
 
@@ -136,7 +138,7 @@ its own tier or of a lower one; cycles inside a tier are allowed.
 | Tier | Concepts |
 |---|---|
 | orchestration | `api`, `inputs`, `events`, `results`, `catalog`, `assurance`, `capability`, `comparison`, `default`, `period`, `reconciliation`, `year` |
-| computation | `agreement`, `amount`, `calendar`, `decision`, `knowledge`, `limitation`, `balance`, `absence`, `apprenticeship`, `compensation`, `contribution`, `employer`, `employment`, `end_of_service`, `event`, `extra_month`, `family`, `fund`, `irpef`, `ledger`, `pay_item`, `pension_fund`, `regime`, `seniority`, `severance`, `sickness`, `surtax`, `tax_credit`, `termination`, `variable_pay`, `withholding`, `working_time` |
+| computation | `agreement`, `amount`, `bundle`, `calendar`, `decision`, `knowledge`, `sector`, `limitation`, `balance`, `absence`, `apprenticeship`, `compensation`, `contribution`, `employer`, `employment`, `end_of_service`, `event`, `extra_month`, `family`, `fund`, `irpef`, `ledger`, `pay_item`, `pension_fund`, `regime`, `seniority`, `severance`, `sickness`, `surtax`, `tax_credit`, `termination`, `variable_pay`, `withholding`, `working_time` |
 | norms | `types`, `validators`, `errors`, `version`, `collection`, `provenance`, `run` |
 
 The migration resolved the imports from computation into orchestration by

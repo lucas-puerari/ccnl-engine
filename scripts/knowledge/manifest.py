@@ -28,25 +28,25 @@ DEFAULT_OWNER = "ccnl-engine maintainers"
 
 #: Dataset -> (model the loader validates it with, has a year directory).
 DATASETS: dict[str, tuple[str, bool]] = {
-    "contract/agreement": ("CCNL", False),
-    "social_security/contribution": ("InpsRates", True),
-    "social_security/sickness": ("InpsSickPayRates", False),
-    "taxation/annual": ("YearRulesRaw", True),
-    "taxation/family": ("FamilyDeductionRules", False),
-    "taxation/exemption": ("SommaEsenteRules", False),
-    "taxation/variable_pay": ("VariablePayRules", False),
-    "taxation/severance": ("TfrRevaluationRules", False),
+    "agreement": ("CCNL", False),
+    "contribution": ("InpsRates", True),
+    "sickness/indemnity": ("InpsSickPayRates", False),
+    "sector": ("YearRulesRaw", True),
+    "family": ("FamilyDeductionRules", False),
+    "tax_credit/somma_esente": ("SommaEsenteRules", False),
+    "variable_pay": ("VariablePayRules", False),
+    "severance/revaluation": ("TfrRevaluationRules", False),
     "surtax/regional": ("RegionalSurtaxTable", False),
     "surtax/municipal": ("MunicipalSurtaxTable", False),
-    "capability": ("CapabilityCatalog", True),
+    "capability/registry": ("CapabilityCatalog", False),
     "limitation": ("ModelLimitation", False),
-    "policy": ("PolicyRuleset", False),
+    "pay_item": ("PolicyRuleset", False),
 }
 #: Why a resource with no year and no ruleset validity has none.
 NO_VALIDITY = {
     "limitation": "engine limitations follow the engine, not a period",
-    "policy": "the policy ruleset applies to every year the bundle holds",
-    "social_security/sickness": (
+    "pay_item": "the pay item policy applies to every year the bundle holds",
+    "sickness/indemnity": (
         "statutory rates change only by primary legislation; the ruleset "
         "block carries the source"
     ),

@@ -75,8 +75,8 @@ class MonthlyPayChain:
         is the CCNL apprentice amount, already set for apprentices, so it
         is paid in full: reducing it again would count the apprenticeship
         twice.  Allowances are reduced only when
-        :attr:`~ccnl_engine.compensation.models\
-.Allowance.apprenticeship_pct_relevant` is ``True``; the others are paid
+        :attr:`~ccnl_engine.compensation.models.Allowance.apprenticeship_pct_relevant`
+        is ``True``; the others are paid
         at their full contractual value.
 
         Returns:
@@ -96,8 +96,9 @@ class MonthlyPayChain:
         """Scale only proportionable components by ``factor``.
 
         Base salary and seniority are always proportionable.  Allowances are
-        scaled only when :attr:`~ccnl_engine.compensation.models\
-.Allowance.part_time_proportionable` is ``True``; allowances with
+        scaled only when
+        :attr:`~ccnl_engine.compensation.models.Allowance.part_time_proportionable` is
+        ``True``; allowances with
         ``part_time_proportionable=False`` retain their full contractual value.
 
         Returns:

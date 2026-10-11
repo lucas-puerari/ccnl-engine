@@ -50,7 +50,7 @@ from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import TaxSector
     from ccnl_engine.period.results import PeriodResult
-    from ccnl_engine.tax.annual.models import YearRules
+    from ccnl_engine.sector.models import YearRules
 
 _METALMECCANICO = "metalmeccanico-federmeccanica.json"
 #: A CCNL whose salary table still reads assumed rules.

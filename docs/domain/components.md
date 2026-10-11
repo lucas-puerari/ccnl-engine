@@ -198,7 +198,7 @@ administration contracts (c. 29) nor for the operai agricoli (c. 3); see
 
 Both employee and employer contribute a percentage of gross salary, up to an annual
 ceiling (*massimale IVS*). Rates vary by sector, employer size, and contract type.
-The `taxation/annual/` files bundled with the library carry the precise rates for each year
+The `sector/` files bundled with the library carry the precise rates for each year
 and sector.
 
 Public employees contribute to the fund of INPS Gestione Dipendenti Pubblici their
@@ -257,7 +257,7 @@ the end-of-service base of a public employee.
 
 Italian personal income tax is progressive, computed on *reddito imponibile* (taxable
 income = gross − INPS employee contributions). Rates and brackets are set by law
-annually; values for each year are in the bundled `taxation/annual/` files.
+annually; values for each year are in the bundled `sector/` files.
 
 Workers earning from employment receive a **work income deduction** (*detrazione da
 lavoro dipendente*, Art. 13 TUIR): a credit that decreases as income rises and

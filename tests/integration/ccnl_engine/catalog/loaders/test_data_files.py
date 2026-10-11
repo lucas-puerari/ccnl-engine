@@ -11,19 +11,17 @@ import pytest
 from ccnl_engine.agreement.facade import CCNL, TaxSector
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.errors import UnsupportedTaxYearError
-from ccnl_engine.tax.annual.loaders import load_year_rules
-from ccnl_engine.tax.annual.models import YearRules
+from ccnl_engine.sector.loaders import load_year_rules
+from ccnl_engine.sector.models import YearRules
 
 # ---------------------------------------------------------------------------
-# Parametrised: every JSON in ccnl_engine/knowledge/contract/agreement must validate
+# Parametrised: every JSON in ccnl_engine/knowledge/agreement must validate
 # ---------------------------------------------------------------------------
 
 # Use importlib.resources so the path is correct for both editable installs
 # (plain .json) and installed wheels (.json.gz), and does not depend on the
 # number of parent directories from this test file.
-_DATA_PKG = importlib.resources.files("ccnl_engine.knowledge").joinpath(
-    "contract", "agreement"
-)
+_DATA_PKG = importlib.resources.files("ccnl_engine.knowledge").joinpath("agreement")
 _JSON_FILES = sorted(
     (entry for entry in _DATA_PKG.iterdir() if entry.name.endswith(".json")),
     key=lambda e: e.name,
@@ -42,7 +40,7 @@ class TestCCNLDataFilesValidate:
         catches that class of bug early.
         """
         assert len(_JSON_FILES) > 0, (
-            "No .json files found in ccnl_engine/knowledge/contract/agreement — "
+            "No .json files found in ccnl_engine/knowledge/agreement — "
             "check the build hook data paths and the package structure."
         )
 

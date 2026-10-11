@@ -20,7 +20,7 @@ from ccnl_engine.balance.cash.account.models import WithholdingShortfall
 from ccnl_engine.contribution.services import TfrAccrual
 from ccnl_engine.ledger.models import AccountKind, LedgerEntry
 from ccnl_engine.pay_item.facade import CompetencePeriod
-from ccnl_engine.tax.annual.loaders import load_year_rules
+from ccnl_engine.sector.loaders import load_year_rules
 from ccnl_engine.withholding.cap.services import (
     cap_withholding,
     run_net,

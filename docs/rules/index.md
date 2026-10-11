@@ -138,7 +138,7 @@ correct IRPEF bracket schedule:
 
 ```python
 from ccnl_engine.agreement.facade import TaxSector
-from ccnl_engine.tax.annual.loaders import load_year_rules
+from ccnl_engine.sector.loaders import load_year_rules
 
 rules = load_year_rules(2026, TaxSector.INDUSTRIA, num_employees=50)
 ```

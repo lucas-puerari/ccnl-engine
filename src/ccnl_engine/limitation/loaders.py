@@ -14,8 +14,8 @@ from functools import cache
 
 from pydantic import ValidationError
 
+from ccnl_engine.bundle.loaders import read_resource
 from ccnl_engine.errors import DataIntegrityError
-from ccnl_engine.knowledge.loaders_manifest import read_resource
 from ccnl_engine.limitation.models import ModelLimitation
 
 __all__ = ["load_engine_limitations", "parse_engine_limitations"]

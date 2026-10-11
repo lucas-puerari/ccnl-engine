@@ -113,8 +113,8 @@ class Employment:
         ccnl_slug: Knowledge-bundle CCNL filename, e.g.
             ``"metalmeccanico-federmeccanica.json"``: lower-case letters,
             digits and hyphens, then ``.json``.  A name the bundle does not
-            hold raises :class:`~ccnl_engine.errors\
-.UnknownCcnlError` when the run loads it.
+            hold raises :class:`~ccnl_engine.errors.UnknownCcnlError` when the run loads
+            it.
         level_code: Contractual level code, e.g. ``"C3"``.
         contract_type: :class:`Permanent`, :class:`FixedTerm` or
             :class:`Apprentice`, always stated: it selects the NASpI

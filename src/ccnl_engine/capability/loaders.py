@@ -14,6 +14,7 @@ from functools import cache
 from typing import Any
 
 from ccnl_engine.assurance.models import EvidenceStatus
+from ccnl_engine.bundle.loaders import read_resource
 from ccnl_engine.capability.registry.models import (
     CapabilityApplicability,
     CapabilityCatalog,
@@ -23,7 +24,6 @@ from ccnl_engine.capability.registry.models import (
     CapabilityLayer,
 )
 from ccnl_engine.errors import DataIntegrityError
-from ccnl_engine.knowledge.loaders_manifest import read_resource
 
 _SCHEMA_VERSION = 2
 
@@ -31,7 +31,7 @@ _SCHEMA_VERSION = 2
 def load_capability_catalog(year: int) -> CapabilityCatalog:
     """Load the capability registry for *year* from the bundled data files.
 
-    Reads ``capability/{year}/catalog.json`` of the knowledge manifest.
+    Reads ``capability/registry/{year}.json`` of the knowledge manifest.
     In installed wheels the compressed ``.json.gz`` variant is preferred.
 
     Args:
@@ -49,7 +49,7 @@ def load_capability_catalog(year: int) -> CapabilityCatalog:
 @cache
 def _load_cached(year: int) -> CapabilityCatalog:
     try:
-        raw = read_resource(f"capability/{year}/catalog.json")
+        raw = read_resource(f"capability/registry/{year}.json")
     except FileNotFoundError as exc:
         msg = f"Capability catalog for {year} not found in bundle"
         raise DataIntegrityError(msg) from exc

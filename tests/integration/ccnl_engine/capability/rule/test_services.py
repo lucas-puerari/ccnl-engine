@@ -20,8 +20,8 @@ from ccnl_engine.period.repositories import (
     BundledKnowledgeRepository,
 )
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus, RuleProvenance
-from ccnl_engine.tax.annual.loaders import load_year_rules
-from ccnl_engine.tax.annual.loaders_optional import load_variable_pay_rules
+from ccnl_engine.sector.loaders import load_year_rules
+from ccnl_engine.variable_pay.loaders import load_variable_pay_rules
 
 if TYPE_CHECKING:
     from ccnl_engine.period.context.services import RunContext
