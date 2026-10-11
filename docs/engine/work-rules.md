@@ -103,12 +103,20 @@ accepts an episode, so no day is paid twice.
 Each calendar day has an index in the episode, counted on from the episode
 it continues for a relapse. The index sets:
 
-| Days | INPS (D.L. 663/1979, conv. L. 33/1980) | Worker receives |
+| Days | INPS (INPS page on the sickness indemnity) | Worker receives |
 |---|---|---|
 | 1-3 (carenza) | nothing | CCNL `carenza_integration_rate` |
 | 4-20 | 50% | the higher of the CCNL tier rate and the INPS rate |
 | 21-180 | 66.66% | the same |
 | past the comporto | left out, `incomplete` issue | left out |
+
+A CCNL whose workers INPS indemnifies at other rates names the regime in
+`work_rules.sickness_rules.inps_regime`; its bands replace the ones above,
+while the carenza, the 180-day maximum and the cover stay. The bundle holds
+one regime, `pubblici_esercizi`: 80% from day 4 to day 180 for the
+employees of pubblici esercizi and laboratori di pasticceria, whose
+employers pay the additional sickness contribution of 0.77% (INPS page and
+circ. 71/1985). A regime the table lacks is a data error.
 
 INPS pays at most 180 days a calendar year, counted over every recorded
 episode. INPS covers the worker by the rules of

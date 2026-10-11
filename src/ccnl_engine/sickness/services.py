@@ -24,6 +24,7 @@ from ccnl_engine.absence.models import DailyDivisorMethod
 from ccnl_engine.compensation.proration.rules import month_working_days
 from ccnl_engine.contribution.rate.rules import resolve_rates
 from ccnl_engine.employment.inputs import Apprentice
+from ccnl_engine.errors import DataIntegrityError
 from ccnl_engine.run.models import RunKind
 from ccnl_engine.sickness.cumulation.rules import SicknessWorker
 from ccnl_engine.sickness.day.models import SickPayRules
@@ -37,6 +38,7 @@ if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.capability.rule.services import Rule
     from ccnl_engine.period.context.services import RunContext
+    from ccnl_engine.sickness.indemnity.models import InpsSickPayRates
 
 __all__ = ["sickness_rules", "sickness_terms"]
 
@@ -120,7 +122,7 @@ def sickness_terms(ctx: RunContext) -> SicknessTerms:
     rules = None
     cover_fact = None
     if ccnl_rules is not None:
-        inps = ctx.repo.load_sick_pay_rates()
+        inps = _inps_rates(ctx, ccnl_rules.inps_regime)
         category = ctx.worker_category
         cover = inps.covers(
             str(ccnl.meta.tax_sector),
@@ -148,6 +150,25 @@ def sickness_terms(ctx: RunContext) -> SicknessTerms:
         apprentice=isinstance(ctx.request.contract_type, Apprentice),
         employee_rate=_employee_rate(ctx),
     )
+
+
+def _inps_rates(ctx: RunContext, regime: str | None) -> InpsSickPayRates:
+    """Return the INPS indemnity table of the regime the CCNL names.
+
+    Returns:
+        The bundled table, with the bands of ``regime`` when one is named.
+
+    Raises:
+        DataIntegrityError: When the bundled table has no such regime.
+    """
+    try:
+        return ctx.repo.load_sick_pay_rates().for_regime(regime)
+    except KeyError:
+        msg = (
+            f"{_name(ctx.contract.ccnl)}: work_rules.sickness_rules.inps_regime "
+            f"{regime!r} is not a regime of the INPS sick-pay rates"
+        )
+        raise DataIntegrityError(msg) from None
 
 
 def _employee_rate(ctx: RunContext) -> Decimal:
@@ -185,5 +206,18 @@ def sickness_rules(ctx: RunContext) -> tuple[Rule, ...]:
             f"{name}:work_rules.absence_rules",
             None if absence is None else absence.provenance,
         ),
-        ("inps/sick-pay-rates:bands", ctx.repo.load_sick_pay_rates().bands_provenance),
+        _inps_rule(ctx, None if sickness is None else sickness.inps_regime),
+    )
+
+
+def _inps_rule(ctx: RunContext, regime: str | None) -> Rule:
+    """Return the INPS indemnity bands a sick day reads, with their provenance.
+
+    Returns:
+        ``inps/sick-pay-rates:bands``, or ``:regimes[<id>]`` for a regime.
+    """
+    name = "bands" if regime is None else f"regimes[{regime}]"
+    return (
+        f"inps/sick-pay-rates:{name}",
+        _inps_rates(ctx, regime).bands_provenance,
     )

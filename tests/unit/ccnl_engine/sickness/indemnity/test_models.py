@@ -9,6 +9,7 @@ from ccnl_engine.sickness.indemnity.models import (
     InpsSickPayRates,
     SickPayBand,
     SickPayCoverage,
+    SickPayRegime,
 )
 
 _COVERAGE = (SickPayCoverage(covered=True, source="test: every worker"),)
@@ -100,3 +101,48 @@ class TestSickPayBandInvariants:
                     SickPayBand(day_from=25, day_to=180, rate=Decimal("0.6667")),
                 ],
             )
+
+
+_GENERAL = [
+    SickPayBand(day_from=4, day_to=20, rate=Decimal("0.50")),
+    SickPayBand(day_from=21, day_to=180, rate=Decimal("0.6666")),
+]
+_EIGHTY = SickPayRegime(
+    id="pubblici_esercizi",
+    bands=[SickPayBand(day_from=4, day_to=180, rate=Decimal("0.80"))],
+)
+
+
+class TestSickPayRegimes:
+    """A regime replaces the general bands; carenza and maximum stay."""
+
+    def test_a_regime_replaces_the_bands(self) -> None:
+        """Pubblici esercizi: 80% on every indemnified day."""
+        rates = _rates(_GENERAL, regimes=(_EIGHTY,))
+        regime = rates.for_regime("pubblici_esercizi")
+        assert regime.band_rate(4) == Decimal("0.80")
+        assert regime.band_rate(180) == Decimal("0.80")
+        assert (regime.carenza_days, regime.annual_max_days) == (3, 180)
+
+    def test_no_regime_keeps_the_general_bands(self) -> None:
+        """A CCNL that names no regime reads the table as it is."""
+        rates = _rates(_GENERAL, regimes=(_EIGHTY,))
+        assert rates.for_regime(None) is rates
+
+    def test_an_unknown_regime_is_a_key_error(self) -> None:
+        """The caller turns it into a data error naming the CCNL."""
+        with pytest.raises(KeyError, match="spettacolo"):
+            _rates(_GENERAL, regimes=(_EIGHTY,)).for_regime("spettacolo")
+
+    def test_regime_ids_are_unique(self) -> None:
+        """Two regimes with one id would make the choice ambiguous."""
+        with pytest.raises(ValidationError, match="unique"):
+            _rates(_GENERAL, regimes=(_EIGHTY, _EIGHTY))
+
+    def test_regime_bands_start_after_the_carenza(self) -> None:
+        """The bands of a regime follow the carenza of the table."""
+        early = SickPayRegime(
+            id="early", bands=[SickPayBand(day_from=1, day_to=180, rate=Decimal(1))]
+        )
+        with pytest.raises(ValidationError, match=r"regimes\[early\]"):
+            _rates(_GENERAL, regimes=(early,))

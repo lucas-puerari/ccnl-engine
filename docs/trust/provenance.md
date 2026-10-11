@@ -21,7 +21,7 @@ posted amount.
 | First-tier overtime bands | `agreement/*.json`: `work_rules.time_supplements.overtime_bands[]` with code `OT_*`, kind `percentage`, no hour threshold and no context condition | Per band |
 | Absence rule (daily quota of partial months and sick days) | `agreement/*.json`: `work_rules.absence_rules` | Per rule |
 | Sickness rule | `agreement/*.json`: `work_rules.sickness_rules` | Per rule |
-| INPS sick-pay indemnity bands | `sickness/indemnity/rates.json`: `bands` | Sibling `bands_provenance` |
+| INPS sick-pay indemnity bands | `sickness/indemnity/rates.json`: `bands`, `regimes[<id>]` | Sibling `bands_provenance`; one `provenance` per regime |
 | IRPEF brackets | `sector/<year>/<sector>.json`: `irpef_brackets` | Sibling `irpef_brackets_provenance` |
 | Art. 13 work deduction, its minimum | `sector/<year>/<sector>.json`: `work_deduction`, `work_deduction.minimum` | Per block |
 | Trattamento integrativo, ulteriore detrazione | `sector/<year>/<sector>.json` | Per block |
@@ -180,8 +180,8 @@ when they drift.
 | Status | CCNL rules | Fiscal blocks | Total |
 |---|---:|---:|---:|
 | `verified` | 192 | 7 | 199 |
-| `derived` | 5 679 | 115 | 5 794 |
-| `assumed` | 690 | 136 | 826 |
+| `derived` | 5 679 | 117 | 5 796 |
+| `assumed` | 690 | 135 | 825 |
 | `missing` | 85 | 0 | 85 |
 
 <!-- /trust:provenance-table -->
@@ -192,7 +192,7 @@ extra-month accrual thresholds of CCNLs whose signed clause is not in the
 bundle. `assumed` covers every rule of a ruleset that declares
 `source_type: "estimated"` (the 2026 sector tax and INPS files and a few
 CCNLs), the
-records that cite no URL (the INPS sick-pay bands, the PdR limits), the
+records that cite no URL (the PdR limits), the
 AI-extracted CCNL values (including
 <!-- trust:accrual-assumed -->38<!-- /trust:accrual-assumed --> accrual
 thresholds read from signed texts, each with its article and quote),

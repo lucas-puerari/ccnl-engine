@@ -7,7 +7,7 @@ with the tredicesima, the first-tier
 overtime bands, the absence rule (daily quota of partial months and sick
 days), the sickness rule, employer pension fund rates and the assistance
 contribution charged per paid hour; the INPS sick-pay
-indemnity bands; INPS
+indemnity bands and their regimes; INPS
 contribution rates (ordinary, apprentice, domestic, fixed-term
 addizionale); IRPEF brackets, the Art. 13 work deduction and its
 sterilizzazione; the trattamento integrativo, the ulteriore detrazione and
@@ -447,6 +447,8 @@ def fiscal_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]
     elif file.startswith("contribution/"):
         yield from _block_rules(file, data, _INPS_BLOCKS)
     yield from _block_rules(file, data, _by_prefix(_NAMED_BLOCKS, file) or ())
+    if file.startswith("sickness/indemnity/rates"):
+        yield from _sick_pay_regimes(file, data)
     for key, capability in _REGIMES.items():
         regime = data.get(key)
         if isinstance(regime, dict):
@@ -454,6 +456,19 @@ def fiscal_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]
             yield PayableRule(
                 file, key, (capability,), status if isinstance(status, str) else None
             )
+
+
+def _sick_pay_regimes(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]:
+    """Yield the INPS indemnity regimes of the sick-pay rates, one rule each.
+
+    Yields:
+        ``regimes[<id>]`` with the record of the regime.
+    """
+    regimes = data.get("regimes")
+    for regime in regimes if isinstance(regimes, list) else []:
+        if isinstance(regime, dict):
+            path = f"regimes[{regime.get('id')}]"
+            yield _rule(file, path, ("sickness",), regime.get("provenance"))
 
 
 #: Datasets of the fiscal rules, in the order the inventory lists them.
