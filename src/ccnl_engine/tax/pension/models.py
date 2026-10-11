@@ -2,8 +2,8 @@
 
 from pydantic import BaseModel, ConfigDict
 
-from ccnl_engine.primitives import PercentageRate, PositiveCeiling
-from ccnl_engine.provenance.source.models_chain import RuleProvenance
+from ccnl_engine.provenance.source.rule.models import RuleProvenance
+from ccnl_engine.types import PercentageRate, PositiveCeiling
 
 
 class ComplementaryPensionRules(BaseModel):

@@ -11,7 +11,7 @@ from ccnl_engine.payroll.amount.policies_rounding import money
 if TYPE_CHECKING:
     from decimal import Decimal
 
-    from ccnl_engine.provenance.source.models_chain import RuleProvenance
+    from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
 __all__ = ["CAPABILITY", "AssistanceContribution", "AssistanceTerms", "run_assistance"]
 

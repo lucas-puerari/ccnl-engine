@@ -6,8 +6,8 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.catalog.loaders import load_ccnl
-from ccnl_engine.contract.identity.facade import TaxSector
+from ccnl_engine.agreement.facade import TaxSector
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.employment.inputs_fact import WeeklyHours
 from ccnl_engine.payroll.period.models_payroll import PeriodId

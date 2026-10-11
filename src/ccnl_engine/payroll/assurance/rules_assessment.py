@@ -53,7 +53,7 @@ if TYPE_CHECKING:
         CalculationIssue,
     )
     from ccnl_engine.payroll.capability.results import CapabilityReport
-    from ccnl_engine.provenance.ruleset.models_assurance import RulesetAssurance
+    from ccnl_engine.provenance.ruleset.assurance.models import RulesetAssurance
 
 __all__ = ["assess", "assess_nothing_computed"]
 

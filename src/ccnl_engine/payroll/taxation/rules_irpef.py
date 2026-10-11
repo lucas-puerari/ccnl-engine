@@ -22,8 +22,8 @@ from ccnl_engine.payroll.amount.policies_rounding import money
 if TYPE_CHECKING:
     from collections.abc import Sequence
 
-    from ccnl_engine.primitives import Bracket
     from ccnl_engine.tax.annual.models import YearRules
+    from ccnl_engine.types import Bracket
 
 _ZERO = Decimal(0)
 DAYS_IN_YEAR = 365  # "365 per l'intero anno": 730/2026 istruzioni, quadro C

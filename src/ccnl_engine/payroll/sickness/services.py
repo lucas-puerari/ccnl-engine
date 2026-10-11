@@ -33,7 +33,7 @@ from ccnl_engine.payroll.sickness.rules_terms import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.identity.facade import CCNL
+    from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.payroll.capability.services_rule_lookup import Rule
     from ccnl_engine.payroll.period.services_run_context import RunContext
 

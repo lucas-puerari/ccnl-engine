@@ -60,9 +60,8 @@ _DATA_CAPABILITY = "knowledge"
 #: Shared primitives and errors at the package root (architecture contract).
 _ROOT_SHARED = frozenset({
     "errors",
-    "primitives",
-    "validation",
-    "validation_collection",
+    "types",
+    "validators",
 })
 #: Layer of a role file (``models_state`` -> models) of the layout by domain.
 ROLE_LAYERS: Mapping[str, str] = {

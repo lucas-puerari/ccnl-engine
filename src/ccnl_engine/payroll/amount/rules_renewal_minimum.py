@@ -35,7 +35,7 @@ from ccnl_engine.payroll.taxation.rules_regime_requirement import (
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.contract.identity.rules_validity import TimeSeries
+    from ccnl_engine.agreement.validity.rules import TimeSeries
     from ccnl_engine.payroll.taxation.rules_regime_requirement import RegimeFacts
     from ccnl_engine.tax.regime.models import PreferentialTaxRegime
 

@@ -15,10 +15,10 @@ from ccnl_engine.payroll.accrual.models import (
     DEFAULT_MONTH_ACCRUAL_RULE,
     MonthAccrualRule,
 )
-from ccnl_engine.provenance.source.models_chain import ProvenanceStatus, RuleProvenance
+from ccnl_engine.provenance.source.rule.models import ProvenanceStatus, RuleProvenance
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.identity.facade import CCNL
+    from ccnl_engine.agreement.facade import CCNL
 
 __all__ = ["MISSING_ACCRUAL_PROVENANCE", "accrual_rule_id", "month_accrual_rule"]
 

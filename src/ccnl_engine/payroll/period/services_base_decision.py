@@ -23,7 +23,7 @@ from ccnl_engine.payroll.capability.services_rule_lookup import (
 )
 from ccnl_engine.payroll.contribution.services_decision import inps_decisions
 from ccnl_engine.payroll.period.rules_run_decision import _ccnl_rule
-from ccnl_engine.provenance.source.models_chain import RuleProvenance
+from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
 if TYPE_CHECKING:
     from decimal import Decimal

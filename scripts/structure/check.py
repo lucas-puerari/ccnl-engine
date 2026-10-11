@@ -12,8 +12,9 @@ Rules and hard limits:
   underscore (15);
 - ``underscore_files``: files under ``src``, ``tests``, ``scripts`` and
   ``demo`` whose name starts with an underscore (0), the package root
-  ``src/ccnl_engine/__init__.py`` and the docstring-only package markers
-  under ``src`` exempt: every other new ``__init__.py`` or ``_module.py``
+  ``src/ccnl_engine/__init__.py``, the public namespace
+  ``src/ccnl_engine/catalog/__init__.py`` and the docstring-only package
+  markers under ``src`` exempt: every other new ``__init__.py`` or ``_module.py``
   fails;
 - ``technical_directories``: directories under the same roots named after a
   technical layer (``domain``, ``application``, ``service``, ``handlers``,
@@ -94,8 +95,10 @@ MEASURED: Final = (Path("src"), TESTS, Path("scripts"))
 LAYOUT_ROOTS: Final = (Path("src"), TESTS, Path("scripts"), Path("demo"))
 #: Gitignored build output of the demo, outside the layout rules.
 GENERATED_DIRS: Final = frozenset({Path("demo") / "_build", Path("demo") / "wheels"})
-#: The single file whose name may start with an underscore.
+#: The package markers that may hold code: the package root and the public
+#: namespace package ``ccnl_engine.catalog``.
 ROOT_INIT: Final = PACKAGE / "__init__.py"
+PUBLIC_INITS: Final = frozenset({ROOT_INIT, PACKAGE / "catalog" / "__init__.py"})
 #: Directory names of a technical layer; the contract names directories
 #: after domains only (docs/engine/architecture-contract.md).
 TECHNICAL_DIRS: Final = frozenset({
@@ -237,7 +240,7 @@ def _allowed_init(path: Path, rel: Path) -> bool:
     Returns:
         True for :data:`ROOT_INIT` and for a marker.
     """
-    if rel == ROOT_INIT:
+    if rel in PUBLIC_INITS:
         return True
     if path.name != "__init__.py" or rel.parts[0] != "src":
         return False

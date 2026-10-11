@@ -22,7 +22,7 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.identity.facade import TaxSector
+from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.amount.policies_rounding import money
 from ccnl_engine.payroll.contribution.inputs_pension_fund import PENSION_FEATURE
@@ -35,10 +35,10 @@ from ccnl_engine.payroll.contribution.rules_pension_fund_lookup import (
 if TYPE_CHECKING:
     from datetime import date
 
+    from ccnl_engine.agreement.facade import CCNL
+    from ccnl_engine.agreement.validity.rules import ValidityPeriod
     from ccnl_engine.contract.employment.models_category import WorkerCategory
     from ccnl_engine.contract.fund.models import EmployerFund
-    from ccnl_engine.contract.identity.facade import CCNL
-    from ccnl_engine.contract.identity.rules_validity import ValidityPeriod
     from ccnl_engine.payroll.contribution.inputs_pension_fund import (
         PensionFundEnrolment,
     )

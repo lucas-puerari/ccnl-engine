@@ -32,7 +32,7 @@ from ccnl_engine.inputs import (
     SenioritySource,
     WeeklyHours,
 )
-from ccnl_engine.contract.catalog.loaders import load_ccnl
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.knowledge.loaders_manifest import read_resource
 from ccnl_engine.tax.surtax.loaders import load_surtax_rules
 from ccnl_engine.payroll.taxation.types_jurisdiction import REGION_CODES

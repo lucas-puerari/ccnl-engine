@@ -8,7 +8,7 @@ from unittest.mock import patch
 import pytest
 from pydantic import ValidationError
 
-from ccnl_engine.contract.identity.facade import TaxSector
+from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.errors import DataIntegrityError, UnsupportedTaxYearError
 from ccnl_engine.tax.annual.loaders import (
     _load_year_rules_cached,

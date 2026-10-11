@@ -18,6 +18,7 @@ from dataclasses import dataclass, field
 from datetime import date
 from typing import TYPE_CHECKING
 
+from ccnl_engine.collection.validators import items_of_type, tuple_of
 from ccnl_engine.payroll.employment.inputs import Employment
 from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile
 from ccnl_engine.payroll.employment.inputs_fact import ContributableHours
@@ -31,12 +32,11 @@ from ccnl_engine.payroll.taxation.inputs_current_year import CurrentYearTaxFacts
 from ccnl_engine.payroll.taxation.inputs_prior_year import PriorYearTaxFacts
 from ccnl_engine.payroll.taxation.types_jurisdiction import check_surtax_codes
 from ccnl_engine.payroll.year.models_payment import PaymentId
-from ccnl_engine.validation import (
+from ccnl_engine.validators import (
     require_date,
     require_instances,
     require_str,
 )
-from ccnl_engine.validation_collection import items_of_type, tuple_of
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.accrual.models import ExtraMonthAccrual

@@ -29,15 +29,14 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodInput,
 )
-from ccnl_engine.contract.catalog.loaders import load_ccnl
-from ccnl_engine.contract.catalog.loaders_discovery import list_contracts
-from ccnl_engine.contract.identity.rules_validity import SeriesGapError
+from ccnl_engine.agreement.validity.rules import SeriesGapError
+from ccnl_engine.catalog.loaders import list_contracts, load_ccnl
 from ccnl_engine.inputs import Permanent, SeniorityFact, SenioritySource
 
 if TYPE_CHECKING:
     from collections.abc import Callable
 
-    from ccnl_engine.contract.identity.facade import CCNL
+    from ccnl_engine.agreement.facade import CCNL
 
 _ENGINE = PayrollEngine.bundled()
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))

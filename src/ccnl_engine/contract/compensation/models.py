@@ -6,6 +6,7 @@ from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from ccnl_engine.agreement.validity.rules import TimeSeries
 from ccnl_engine.contract.employment.models_category import WorkerCategory
 from ccnl_engine.contract.fund.models import (
     ContractualFundContribution,
@@ -13,9 +14,8 @@ from ccnl_engine.contract.fund.models import (
 )
 from ccnl_engine.contract.fund.models_assistance import AssistanceContribution
 from ccnl_engine.contract.fund.models_solidarity import SolidarityFund
-from ccnl_engine.contract.identity.rules_validity import TimeSeries
 from ccnl_engine.contract.seniority.models import SeniorityIncrements
-from ccnl_engine.provenance.source.models_chain import ProvenanceStatus, RuleProvenance
+from ccnl_engine.provenance.source.rule.models import ProvenanceStatus, RuleProvenance
 
 
 class Allowance(BaseModel):

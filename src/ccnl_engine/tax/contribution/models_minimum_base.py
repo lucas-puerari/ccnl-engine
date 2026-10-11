@@ -21,8 +21,8 @@ from typing import Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.contract.employment.models_category import WorkerCategory
-from ccnl_engine.primitives import PositiveCeiling
-from ccnl_engine.provenance.source.models_chain import RuleProvenance
+from ccnl_engine.provenance.source.rule.models import RuleProvenance
+from ccnl_engine.types import PositiveCeiling
 
 __all__ = ["HourlyMinimum", "MinimumBaseRule"]
 

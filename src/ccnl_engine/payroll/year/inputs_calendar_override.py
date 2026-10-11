@@ -16,7 +16,7 @@ from enum import StrEnum
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.accrual.models_extra_month_schedule import ExtraMonthKind
 from ccnl_engine.payroll.year.models_calendar import WorkCalendar
-from ccnl_engine.validation import (
+from ccnl_engine.validators import (
     parse_enum,
     require_instance,
     require_str,

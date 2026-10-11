@@ -11,7 +11,7 @@ from ccnl_engine.errors import (
     DataIntegrityError,
     UnsupportedTaxYearError,
 )
-from ccnl_engine.provenance.source.models_chain import RuleProvenance
+from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from ccnl_engine.tax.annual.loaders_resource import (
     _as_ruleset,
     _read_json,

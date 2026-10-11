@@ -15,8 +15,8 @@ from typing import Self
 
 from pydantic import BaseModel, ConfigDict, model_validator
 
-from ccnl_engine.primitives import NonNegativeRate, PositiveCeiling
-from ccnl_engine.provenance.source.models_chain import RuleProvenance
+from ccnl_engine.provenance.source.rule.models import RuleProvenance
+from ccnl_engine.types import NonNegativeRate, PositiveCeiling
 
 __all__ = ["AdditionalIvsRule"]
 

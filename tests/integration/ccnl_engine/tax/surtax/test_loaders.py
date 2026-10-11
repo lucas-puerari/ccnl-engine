@@ -8,13 +8,13 @@ import pytest
 from pydantic import ValidationError
 
 from ccnl_engine.errors import DataIntegrityError, UnsupportedTaxYearError
-from ccnl_engine.primitives import Bracket
 from ccnl_engine.tax.surtax.loaders import (
     _load_surtax_rules_cached,
     load_surtax_rules,
 )
 from ccnl_engine.tax.surtax.models import SurtaxRules
 from ccnl_engine.tax.surtax.models_table import ComunaleEntry, RegionaleEntry
+from ccnl_engine.types import Bracket
 
 
 class TestLoadSurtaxRules:

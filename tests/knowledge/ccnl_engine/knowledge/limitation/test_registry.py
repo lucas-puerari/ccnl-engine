@@ -15,11 +15,11 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine import PayrollEngine
+from ccnl_engine.agreement.facade import NoteKind
 from ccnl_engine.contract.employment.models_apprenticeship import (
     ApprenticeshipPercentage,
     ApprenticeshipUnderClassification,
 )
-from ccnl_engine.contract.identity.facade import NoteKind
 from ccnl_engine.knowledge.capability.loaders import (
     load_capability_catalog,
 )
@@ -49,7 +49,7 @@ from ccnl_engine.payroll.sickness.handlers import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.identity.facade import CCNL
+    from ccnl_engine.agreement.facade import CCNL
 
 
 @pytest.fixture(scope="module")

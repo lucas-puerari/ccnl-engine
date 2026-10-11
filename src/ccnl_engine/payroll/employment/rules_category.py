@@ -8,9 +8,9 @@ from ccnl_engine.contract.employment.models_category import parse_worker_categor
 from ccnl_engine.errors import InvalidInputError
 
 if TYPE_CHECKING:
+    from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.contract.compensation.models import Level
     from ccnl_engine.contract.employment.models_category import WorkerCategory
-    from ccnl_engine.contract.identity.facade import CCNL
     from ccnl_engine.payroll.employment.inputs_seniority import (
         SeniorityFact,
     )

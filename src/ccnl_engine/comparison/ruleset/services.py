@@ -1,8 +1,8 @@
 """Rules Diff domain types and computation.
 
 :func:`diff_ccnl` walks every date-indexed
-:class:`~ccnl_engine.contract.identity.rules_validity.TimeSeries` in a
-:class:`~ccnl_engine.contract.identity.facade.CCNL` (see
+:class:`~ccnl_engine.agreement.validity.rules.TimeSeries` in a
+:class:`~ccnl_engine.agreement.facade.CCNL` (see
 :mod:`~ccnl_engine.comparison.ruleset.rules`) and reports which values
 changed between two calendar dates.  The function is pure: it performs no
 I/O and does not depend on the knowledge-base loader.
@@ -21,10 +21,10 @@ if TYPE_CHECKING:
     from datetime import datetime as _datetime
     from decimal import Decimal
 
+    from ccnl_engine.agreement.facade import CCNL
+    from ccnl_engine.agreement.validity.rules import ValidityPeriod
     from ccnl_engine.comparison.ruleset.rules import DatedRule
-    from ccnl_engine.contract.identity.facade import CCNL
-    from ccnl_engine.contract.identity.rules_validity import ValidityPeriod
-    from ccnl_engine.provenance.source.models_chain import RuleProvenance
+    from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
 RegressionStatus = Literal["passed", "failed", "not_run"]
 
@@ -61,7 +61,7 @@ def diff_ccnl(ccnl: CCNL, from_date: date, to_date: date) -> RulesDiff:
     """Return every rule that changed between *from_date* and *to_date*.
 
     The diff is purely data-driven: it compares
-    :meth:`~ccnl_engine.contract.identity.rules_validity.TimeSeries.period_at`
+    :meth:`~ccnl_engine.agreement.validity.rules.TimeSeries.period_at`
     for every date-indexed field in the CCNL tree.  Salary tranches,
     allowances, hourly divisor, additional months, seniority amounts, and
     employer-fund rates are all covered.

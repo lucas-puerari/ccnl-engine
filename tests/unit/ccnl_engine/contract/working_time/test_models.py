@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from ccnl_engine.contract.identity.rules_validity import TimeSeries
+from ccnl_engine.agreement.validity.rules import TimeSeries
 from ccnl_engine.contract.working_time.models import (
     OvertimeBand,
     TimeSupplementKind,

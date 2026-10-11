@@ -12,9 +12,9 @@ from typing import Any
 
 import pytest
 
+from ccnl_engine.agreement.facade import CCNL
+from ccnl_engine.agreement.validity.rules import TimeSeries, ValidityPeriod
 from ccnl_engine.comparison.ruleset.services import diff_ccnl
-from ccnl_engine.contract.identity.facade import CCNL
-from ccnl_engine.contract.identity.rules_validity import TimeSeries, ValidityPeriod
 from ccnl_engine.errors import InvalidInputError
 from tests.unit.ccnl_engine.builders import TEST_PROV, make_ccnl_dict
 

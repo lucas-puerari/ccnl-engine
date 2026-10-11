@@ -25,7 +25,7 @@ Under each category the path mirrors the code: a directory of
 `tests/<category>/ccnl_engine/` is a directory of `src/ccnl_engine/`, of
 `integration/scripts/` one of `scripts/`, of `integration/demo/` one of
 `demo/`. A dataset directory of JSON may sit right below one
-(`payroll/period/reference_case/`, `contract/catalog/synthetic_contract/`).
+(`payroll/period/reference_case/`, `catalog/synthetic_contract/`).
 
 A unit test, and an integration test below a mirror root directory, is
 named after the module it tests: `src/ccnl_engine/x/y/z.py` is tested by
@@ -78,7 +78,7 @@ document a known wrong result: keep their reason and the error they raise.
 | `period/oracles_payslip_*.py` | full-payslip oracles built on the rule oracles |
 | `period/observed_payslip/` | anonymous transcriptions of real and teaching payslips (one JSON per payslip, amounts as printed): evidence of how payrolls apply the rules, never a signed source. Part of them is converted from the gold annotations of the BurocrazIA dataset (albertobarnabo/burocrazia on Hugging Face, Apache-2.0) |
 
-`integration/ccnl_engine/contract/catalog/synthetic_contract/` holds the
+`integration/ccnl_engine/catalog/synthetic_contract/` holds the
 expected CCNL values the bundled-contract loader tests compare against.
 Name a dataset after its role, never `data`, `expected` or `samples`.
 

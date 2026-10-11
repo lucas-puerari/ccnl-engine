@@ -19,7 +19,7 @@ from ccnl_engine.tax.surtax.loaders import load_surtax_rules
 if TYPE_CHECKING:
     from collections.abc import Iterator
 
-from ccnl_engine.contract.identity.facade import TaxSector
+from ccnl_engine.agreement.facade import TaxSector
 
 
 @pytest.fixture

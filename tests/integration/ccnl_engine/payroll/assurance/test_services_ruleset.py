@@ -16,14 +16,14 @@ from ccnl_engine.payroll.period.repositories import (
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
+from ccnl_engine.provenance.ruleset.assurance.models import RulesetKind
 from ccnl_engine.provenance.ruleset.models import RulesetReadiness
-from ccnl_engine.provenance.ruleset.models_assurance import RulesetKind
-from tests.integration.ccnl_engine.contract.catalog.builders_anonymous_repository import (  # noqa: E501
+from tests.integration.ccnl_engine.catalog.builders import (
     AnonymousCcnlRepository,
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.identity.facade import TaxSector
+    from ccnl_engine.agreement.facade import TaxSector
     from ccnl_engine.payroll.period.results import PeriodResult
     from ccnl_engine.tax.annual.models import YearRules
 

@@ -24,7 +24,7 @@ from ccnl_engine.tax.contribution.rules_tier import (
 if TYPE_CHECKING:
     from collections.abc import Mapping
 
-    from ccnl_engine.contract.identity.facade import TaxSector
+    from ccnl_engine.agreement.facade import TaxSector
 
 
 def load_year_rules(

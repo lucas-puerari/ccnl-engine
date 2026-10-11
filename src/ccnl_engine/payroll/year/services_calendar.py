@@ -5,14 +5,14 @@ from __future__ import annotations
 from datetime import date
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.identity.rules_validity import rule_scope
+from ccnl_engine.agreement.validity.rules import rule_scope
 from ccnl_engine.payroll.accrual.models_extra_month_entitlement import (
     ExtraMonthEntitlement,
 )
 from ccnl_engine.payroll.year.models_calendar import WorkCalendar
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.identity.facade import CCNL
+    from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.payroll.year.inputs_calendar_override import CalendarOverride
 
 __all__ = ["effective_calendar", "standard_calendar"]

@@ -16,7 +16,7 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.contract.identity.rules_validity import (
+from ccnl_engine.agreement.validity.rules import (
     SalaryGapKind,
     TimeSeries,
     ValidityPeriod,

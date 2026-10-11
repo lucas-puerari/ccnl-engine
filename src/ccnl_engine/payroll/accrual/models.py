@@ -34,7 +34,7 @@ if TYPE_CHECKING:
         ExtraMonthSchedule,
     )
     from ccnl_engine.payroll.employment.inputs_fact import EmploymentPeriod
-    from ccnl_engine.provenance.source.models_chain import RuleProvenance
+    from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
 __all__ = [
     "DEFAULT_ACCRUAL_RULE_ID",

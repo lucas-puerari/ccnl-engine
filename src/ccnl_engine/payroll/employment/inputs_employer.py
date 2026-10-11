@@ -6,7 +6,7 @@ from dataclasses import dataclass
 
 from ccnl_engine.tax.contribution.models_zone_reduction import AgriculturalZone
 from ccnl_engine.tax.regime.models import EmployerActivity
-from ccnl_engine.validation import (
+from ccnl_engine.validators import (
     parse_enum,
     require_bool,
     require_instance,

@@ -19,7 +19,7 @@ from ccnl_engine.payroll.assurance.models_decision import (
 from ccnl_engine.payroll.capability.services_rule_lookup import contract_rules
 from ccnl_engine.payroll.contribution.rules_rate import resolve_rates
 from ccnl_engine.payroll.contribution.services_naspi import with_naspi
-from ccnl_engine.provenance.source.models_chain import RuleProvenance
+from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
 if TYPE_CHECKING:
     from decimal import Decimal

@@ -10,8 +10,8 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.comparison.ruleset.services import diff_ccnl
-from ccnl_engine.contract.catalog.loaders import load_ccnl
 
 
 class TestDiffRealMetalmeccanico:

@@ -29,7 +29,7 @@ from ccnl_engine.payroll.assurance.models_decision import (
     CalculationStatus,
 )
 from ccnl_engine.payroll.period.rules_run_decision import _ccnl_rule
-from ccnl_engine.provenance.source.models_chain import ProvenanceStatus
+from ccnl_engine.provenance.source.rule.models import ProvenanceStatus
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.accrual.models import ExtraMonthAccrual, MonthAccrualRule

@@ -15,7 +15,7 @@ from decimal import Decimal
 from enum import StrEnum
 
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.validation import (
+from ccnl_engine.validators import (
     parse_enum,
     require_date,
     require_decimal,

@@ -134,11 +134,11 @@ def test_no_engine_wrapper_imports() -> None:
 
 _ALLOWED_REEXPORT_MODULES: frozenset[str] = frozenset({
     "ccnl_engine/__init__.py",
-    "ccnl_engine/catalog.py",
+    "ccnl_engine/catalog/__init__.py",
     "ccnl_engine/events.py",
     "ccnl_engine/inputs.py",
     "ccnl_engine/results.py",
-    "ccnl_engine/contract/identity/facade.py",
+    "ccnl_engine/agreement/facade.py",
     "ccnl_engine/payroll/amount/facade.py",
     "ccnl_engine/payroll/event/facade.py",
 })

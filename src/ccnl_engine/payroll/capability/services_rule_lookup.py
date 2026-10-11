@@ -28,10 +28,10 @@ from ccnl_engine.payroll.termination.services_tfr_rule import (
 if TYPE_CHECKING:
     from collections.abc import Callable
 
-    from ccnl_engine.contract.identity.rules_validity import ValidityPeriod
+    from ccnl_engine.agreement.validity.rules import ValidityPeriod
     from ccnl_engine.payroll.period.services_run_context import RunContext
     from ccnl_engine.provenance.ruleset.models import RulesetIdentity
-    from ccnl_engine.provenance.source import models_chain
+    from ccnl_engine.provenance.source.rule import models as models_chain
 
 #: A rule the run read: its identifier and its provenance, if recorded.
 type Rule = tuple[

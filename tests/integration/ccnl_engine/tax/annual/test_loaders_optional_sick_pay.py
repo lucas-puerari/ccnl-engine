@@ -9,7 +9,7 @@ from typing import Any
 import pytest
 
 from ccnl_engine.errors import DataIntegrityError
-from ccnl_engine.provenance.source.models_chain import ProvenanceStatus
+from ccnl_engine.provenance.source.rule.models import ProvenanceStatus
 from ccnl_engine.tax.annual.loaders_optional import (
     load_sick_pay_rates,
     sick_pay_rates_from,

@@ -32,7 +32,7 @@ if TYPE_CHECKING:
 
     from ccnl_engine.knowledge.limitation.models import ModelLimitation
     from ccnl_engine.payroll.assurance.policies_engine_mode import EngineMode
-    from ccnl_engine.provenance.ruleset.models_assurance import RulesetAssurance
+    from ccnl_engine.provenance.ruleset.assurance.models import RulesetAssurance
 
 __all__ = [
     "BlockerCode",

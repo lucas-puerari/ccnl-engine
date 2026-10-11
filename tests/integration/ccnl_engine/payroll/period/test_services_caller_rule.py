@@ -13,8 +13,8 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.contract.catalog.loaders import load_ccnl
-from ccnl_engine.contract.identity.rules_validity import TimeSeries
+from ccnl_engine.agreement.validity.rules import TimeSeries
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.payroll.assurance.models_decision import DecisionOrigin
 from ccnl_engine.payroll.capability.models_trace import TraceState
 from ccnl_engine.payroll.capability.services_trace import (
@@ -53,7 +53,7 @@ from ccnl_engine.payroll.period.services_caller_rule import (
 from ccnl_engine.payroll.state.models import PeriodState
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.identity.facade import CCNL
+    from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.payroll.assurance.models_decision import CalculationDecision
     from ccnl_engine.payroll.event.facade import WorkEvent
 

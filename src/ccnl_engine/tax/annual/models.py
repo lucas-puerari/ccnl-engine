@@ -6,13 +6,12 @@ from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.contract.employment.models_category import WorkerCategory
-from ccnl_engine.contract.identity.facade import TaxSector
-from ccnl_engine.primitives import PercentageRate
 from ccnl_engine.provenance.ruleset.models import RulesetIdentity
+from ccnl_engine.provenance.source.extraction.models import ExtractionTrace
 from ccnl_engine.provenance.source.models import SourceDocument
-from ccnl_engine.provenance.source.models_chain import RuleProvenance
-from ccnl_engine.provenance.source.models_extraction import ExtractionTrace
+from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from ccnl_engine.tax.contribution.models import ApprenticeRates, InpsRates
 from ccnl_engine.tax.contribution.models_domestic import DomesticInpsRates
 from ccnl_engine.tax.contribution.models_tier import ApprenticeRawRates, InpsRawRates
@@ -29,6 +28,7 @@ from ccnl_engine.tax.income.models_credit import (
 from ccnl_engine.tax.pension.models import ComplementaryPensionRules
 from ccnl_engine.tax.severance.models import TfrRules
 from ccnl_engine.tax.severance.models_revaluation import TfrRevaluationRules
+from ccnl_engine.types import PercentageRate
 
 
 class YearRulesRaw(BaseModel):

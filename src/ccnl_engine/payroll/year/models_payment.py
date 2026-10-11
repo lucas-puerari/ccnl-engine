@@ -16,7 +16,7 @@ from typing import final
 
 from ccnl_engine.payroll.period.models_run import PayrollRunId
 from ccnl_engine.payroll.year.rules_tax_year import TaxYearPolicy
-from ccnl_engine.validation import reject, require_date, require_instance
+from ccnl_engine.validators import reject, require_date, require_instance
 
 __all__ = ["PaymentId"]
 

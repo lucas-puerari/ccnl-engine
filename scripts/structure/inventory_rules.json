@@ -50,6 +50,10 @@
       "target": "{path}"
     },
     {
+      "pattern": "^(?P<path>src/ccnl_engine/(?:[a-z_]+/)*[a-z_]+\\.py)$",
+      "target": "{path}"
+    },
+    {
       "pattern": "^src/ccnl_engine/payroll/application/(?P<sub>period|withholding|year)/_?(?P<n>[a-z0-9_]+)\\.py$",
       "target": "src/ccnl_engine/payroll/{sub}/services_{n}.py"
     },

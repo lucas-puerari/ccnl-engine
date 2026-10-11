@@ -16,7 +16,7 @@ from ccnl_engine.knowledge.validators import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.identity.facade import TaxSector
+    from ccnl_engine.agreement.facade import TaxSector
     from ccnl_engine.provenance.ruleset.models import RulesetIdentity
 
 

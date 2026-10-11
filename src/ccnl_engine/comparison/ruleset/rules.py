@@ -1,6 +1,6 @@
 """Walk every date-indexed rule of a CCNL, in the order the diff reports it.
 
-Each rule is a :class:`~ccnl_engine.contract.identity.rules_validity.TimeSeries`
+Each rule is a :class:`~ccnl_engine.agreement.validity.rules.TimeSeries`
 with the path, label and unit :func:`~ccnl_engine.comparison.ruleset.services\
 .diff_ccnl` reports a change of it under.
 """
@@ -13,9 +13,9 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from collections.abc import Iterator, Mapping
 
+    from ccnl_engine.agreement.facade import CCNL
+    from ccnl_engine.agreement.validity.rules import TimeSeries
     from ccnl_engine.contract.employment.models_category import WorkerCategory
-    from ccnl_engine.contract.identity.facade import CCNL
-    from ccnl_engine.contract.identity.rules_validity import TimeSeries
     from ccnl_engine.contract.seniority.models import (
         SeniorityIncrements,
         SeniorityTier,

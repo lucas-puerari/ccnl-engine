@@ -16,7 +16,7 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.contract.catalog.loaders import load_ccnl
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.inputs import NoPensionFund, WorkerCategory
 from ccnl_engine.payroll.assurance.models_decision import (
@@ -39,7 +39,7 @@ from ccnl_engine.payroll.event.policies_overtime_rate import (
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period
-from ccnl_engine.provenance.source.models_chain import ProvenanceStatus
+from ccnl_engine.provenance.source.rule.models import ProvenanceStatus
 from tests.integration.ccnl_engine.payroll.taxation.builders_prior_year import (
     RENEWAL_WAIVED,
 )

@@ -16,7 +16,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.identity.facade import NoteKind
+from ccnl_engine.agreement.facade import NoteKind
 from ccnl_engine.errors import DataIntegrityError
 from ccnl_engine.payroll.capability.models_catalog import (
     CapabilityImplementation,
@@ -26,7 +26,7 @@ from ccnl_engine.payroll.capability.models_catalog import (
 if TYPE_CHECKING:
     from collections.abc import Iterable
 
-    from ccnl_engine.contract.identity.facade import CCNL
+    from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.payroll.capability.models_catalog import CapabilityCatalog
 
 __all__ = ["CcnlCapability", "ccnl_capabilities", "layer_coverage"]

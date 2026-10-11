@@ -5,12 +5,12 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 
-from ccnl_engine.contract.compensation.models import Allowance
-from ccnl_engine.contract.identity.rules_validity import (
+from ccnl_engine.agreement.validity.rules import (
     SalaryGapKind,
     TimeSeries,
     ValidityPeriod,
 )
+from ccnl_engine.contract.compensation.models import Allowance
 from ccnl_engine.payroll.amount.rules_chain import _allowance_active
 from tests.unit.ccnl_engine.builders import _series
 

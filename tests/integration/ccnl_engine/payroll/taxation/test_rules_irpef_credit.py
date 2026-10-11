@@ -6,7 +6,7 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.contract.identity.facade import TaxSector
+from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
 from ccnl_engine.payroll.taxation.rules_irpef_credit import (
     CreditOutcome,

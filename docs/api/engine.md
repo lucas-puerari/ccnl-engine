@@ -56,7 +56,7 @@ if not ruleset.is_production:
       members:
         - EngineMode
 
-::: ccnl_engine.provenance.ruleset.models_assurance
+::: ccnl_engine.provenance.ruleset.assurance.models
     options:
       members:
         - RulesetAssurance
@@ -78,12 +78,12 @@ on 1 June): a competence or tax year of theirs from January is partial (see
 anas.validity.first_day  # → datetime.date(2026, 3, 1)
 ```
 
-::: ccnl_engine.contract.catalog.loaders_discovery
+::: ccnl_engine.catalog.loaders
     options:
       members:
         - ContractSummary
 
-::: ccnl_engine.contract.identity.models_validity_window
+::: ccnl_engine.agreement.validity.models
     options:
       members:
         - ValidityWindow

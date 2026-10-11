@@ -41,7 +41,7 @@ hash at load time and raise `ValueError` on mismatch — tampered or
 accidentally edited files are caught before any computation.
 
 ```python
-from ccnl_engine.contract.catalog.loaders import load_ccnl
+from ccnl_engine.catalog.loaders import load_ccnl
 
 ccnl = load_ccnl("metalmeccanico-federmeccanica.json")
 print(ccnl.ruleset.id)  # "ccnl/metalmeccanico-federmeccanica"
@@ -137,7 +137,7 @@ appropriate INPS rate tier (based on `num_employees`) and applies the
 correct IRPEF bracket schedule:
 
 ```python
-from ccnl_engine.contract.identity.facade import TaxSector
+from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.tax.annual.loaders import load_year_rules
 
 rules = load_year_rules(2026, TaxSector.INDUSTRIA, num_employees=50)

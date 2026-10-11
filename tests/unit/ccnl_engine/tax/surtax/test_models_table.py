@@ -4,12 +4,12 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.primitives import Bracket
 from ccnl_engine.tax.surtax.models_table import (
     ComunaleEntry,
     RegionaleEntry,
     _validate_surtax_brackets,
 )
+from ccnl_engine.types import Bracket
 
 
 def _b(up_to: float | None, rate: float) -> Bracket:

@@ -19,7 +19,7 @@ from datetime import timedelta
 from decimal import ROUND_HALF_UP, Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.identity.rules_validity import rule_scope
+from ccnl_engine.agreement.validity.rules import rule_scope
 from ccnl_engine.payroll.amount.policies_rounding import money
 from ccnl_engine.payroll.assurance.models_decision import (
     CalculationIssue,
@@ -35,10 +35,10 @@ from ccnl_engine.payroll.employment.inputs import Apprentice
 from ccnl_engine.payroll.period.models_run import RunKind
 
 if TYPE_CHECKING:
+    from ccnl_engine.agreement.validity.rules import TimeSeries
     from ccnl_engine.contract.fund.models import (
         ContractualFundContribution,
     )
-    from ccnl_engine.contract.identity.rules_validity import TimeSeries
     from ccnl_engine.payroll.capability.services_rule_lookup import Rule
     from ccnl_engine.payroll.period.services_run_context import RunContext
 

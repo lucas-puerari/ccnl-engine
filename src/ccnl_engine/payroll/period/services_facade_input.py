@@ -18,7 +18,7 @@ from ccnl_engine.payroll.state.services_opening_balance import OpeningBalances
 from ccnl_engine.payroll.year.inputs_competence_plan import CompetenceYearPlan
 from ccnl_engine.payroll.year.inputs_tax_plan import TaxYearPlan
 from ccnl_engine.payroll.year.rules_close import close_tax_year
-from ccnl_engine.validation import parse_enum, reject
+from ccnl_engine.validators import parse_enum, reject
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.period.requests import PeriodCalculationRequest

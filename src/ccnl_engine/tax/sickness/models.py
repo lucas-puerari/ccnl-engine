@@ -10,7 +10,7 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 from ccnl_engine.provenance.ruleset.models import (
     RulesetIdentity,  # noqa: TC001
 )
-from ccnl_engine.provenance.source.models_chain import RuleProvenance  # noqa: TC001
+from ccnl_engine.provenance.source.rule.models import RuleProvenance  # noqa: TC001
 
 
 class SickPayBand(BaseModel):

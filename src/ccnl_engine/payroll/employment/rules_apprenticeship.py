@@ -6,10 +6,10 @@ from dataclasses import replace
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.agreement.validity.rules import rule_scope
 from ccnl_engine.contract.employment.models_apprenticeship import (
     ApprenticeshipPercentage,
 )
-from ccnl_engine.contract.identity.rules_validity import rule_scope
 from ccnl_engine.errors import OutOfScopeError
 from ccnl_engine.payroll.amount.policies_rounding import money
 from ccnl_engine.payroll.amount.rules_chain import _allowance_active, _level_chain
@@ -18,13 +18,13 @@ if TYPE_CHECKING:
     from collections.abc import Sequence
     from datetime import date
 
+    from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.contract.compensation.models import Level
     from ccnl_engine.contract.employment.models_apprenticeship import (
         ApprenticeshipTrack,
         ApprenticeshipUnderClassification,
     )
     from ccnl_engine.contract.employment.models_category import WorkerCategory
-    from ccnl_engine.contract.identity.facade import CCNL
     from ccnl_engine.payroll.amount.types_chain import MonthlyPayChain, MonthPeriod
     from ccnl_engine.payroll.employment.inputs import Apprentice
 

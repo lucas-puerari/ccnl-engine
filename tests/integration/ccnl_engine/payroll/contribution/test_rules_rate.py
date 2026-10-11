@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from datetime import date
 
+from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.contract.employment.models_category import WorkerCategory
-from ccnl_engine.contract.identity.facade import TaxSector
 from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
 from ccnl_engine.payroll.contribution.rules_rate import (
     CATEGORY_RATE_ASSUMED_CODE,

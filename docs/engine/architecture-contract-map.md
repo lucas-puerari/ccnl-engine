@@ -93,7 +93,7 @@ inventory.
 
 | Today | Target |
 |---|---|
-| `catalog.py` | `catalog/facade.py` |
+| `catalog.py` | `catalog/__init__.py` |
 | `contract/catalog/loaders.py` | `catalog/loaders.py` |
 | `contract/catalog/loaders_discovery.py` | `catalog/loaders.py` |
 | `contract/catalog/models_readiness.py` | `catalog/models.py` |

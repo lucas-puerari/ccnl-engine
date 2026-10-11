@@ -30,7 +30,7 @@ from ccnl_engine.provenance.source.models import (
     SourceKind,
     SourceLocation,
 )
-from ccnl_engine.provenance.source.models_chain import ProvenanceStatus, RuleProvenance
+from ccnl_engine.provenance.source.rule.models import ProvenanceStatus, RuleProvenance
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.amount.types import _AmountsInput

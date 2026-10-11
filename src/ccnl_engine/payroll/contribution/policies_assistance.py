@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.identity.rules_validity import rule_scope
+from ccnl_engine.agreement.validity.rules import rule_scope
 from ccnl_engine.payroll.assurance.models_decision import (
     CalculationDecision,
     CalculationStatus,
@@ -18,7 +18,7 @@ from ccnl_engine.payroll.period.rules_run_decision import _ccnl_rule
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.contract.identity.facade import CCNL
+    from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.payroll.capability.services_rule_lookup import Rule
     from ccnl_engine.payroll.contribution.rules_assistance import (
         AssistanceContribution,

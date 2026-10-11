@@ -19,7 +19,7 @@ from ccnl_engine.provenance.ruleset.models import (
     RulesetIdentity,  # noqa: TC001
 )
 from ccnl_engine.provenance.source.models import SourceLocation  # noqa: TC001
-from ccnl_engine.provenance.source.models_chain import ProvenanceStatus
+from ccnl_engine.provenance.source.rule.models import ProvenanceStatus
 
 __all__ = [
     "EmployerActivity",

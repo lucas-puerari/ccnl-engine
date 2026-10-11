@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from decimal import Decimal
 
-from ccnl_engine.contract.identity.facade import TaxSector
+from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
 from ccnl_engine.payroll.state.models_credit_account import UlterioreDetrazioneAccount
 from ccnl_engine.payroll.taxation.rules_ulteriore_settlement import settle_ulteriore

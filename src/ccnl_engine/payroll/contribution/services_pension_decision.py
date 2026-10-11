@@ -17,7 +17,7 @@ from dataclasses import replace
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.identity.facade import TaxSector
+from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.payroll.amount.services_erc import erc_of
 from ccnl_engine.payroll.assurance.models_decision import (
     CalculationDecision,
@@ -40,7 +40,7 @@ from ccnl_engine.payroll.event.facade import SickLeaveEvent, SicknessEpisode
 from ccnl_engine.payroll.period.rules_run_decision import _ccnl_rule
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.identity.facade import CCNL
+    from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.payroll.contribution.rules_pension_fund import (
         PensionContribution,
         PensionFundTerms,

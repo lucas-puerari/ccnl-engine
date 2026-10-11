@@ -26,8 +26,8 @@ from ccnl_engine.payroll.employment.rules_seniority import seniority_maximum
 from ccnl_engine.payroll.employment.services_seniority import seniority_months_at
 
 if TYPE_CHECKING:
+    from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.contract.fund.models import SeniorityConversion
-    from ccnl_engine.contract.identity.facade import CCNL
     from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
     from ccnl_engine.payroll.period.services_run_context import RunContext
 

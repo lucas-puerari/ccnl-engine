@@ -15,6 +15,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, final
 
+from ccnl_engine.collection.validators import items_of_type, tuple_of
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.employment.models_spell import EmploymentSpell, spells_of
 from ccnl_engine.payroll.state.models_credit_account import (
@@ -31,12 +32,11 @@ from ccnl_engine.payroll.state.models_ytd_account import (
     WithholdingShortfall,
 )
 from ccnl_engine.payroll.year.models_payment import PaymentId
-from ccnl_engine.validation import (
+from ccnl_engine.validators import (
     FieldSpec,
     require_instances,
     require_int,
 )
-from ccnl_engine.validation_collection import items_of_type, tuple_of
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.period.models_run import PayrollRunId

@@ -6,7 +6,7 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.catalog.loaders import load_ccnl
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.contract.employment.models_category import WorkerCategory
 from ccnl_engine.inputs import NoPensionFund
 from ccnl_engine.payroll.amount.facade import CompetencePeriod

@@ -32,7 +32,7 @@ from decimal import ROUND_HALF_UP, Decimal
 from functools import cache
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.identity.facade import TaxSector
+from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.payroll.amount.facade import CompetencePeriod
 from ccnl_engine.payroll.amount.types import _PeriodAmounts
 from ccnl_engine.payroll.assurance.models_decision import CalculationStatus

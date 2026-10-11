@@ -64,6 +64,8 @@ def test_vocabulary_without_glossary_is_empty(tmp_path: Path) -> None:
         "tests/integration/ccnl_engine/test_api.py",
         "tests/integration/scripts/structure/test_check.py",
         "tests/integration/demo/test_app.py",
+        "tests/integration/ccnl_engine/catalog/loaders/test_discovery.py",
+        "tests/integration/ccnl_engine/api/test_engine_modes.py",
         "scripts/structure/check.py",
         "scripts/provenance/rules.py",
         "demo/app.py",
@@ -84,6 +86,8 @@ def test_role_names_are_accepted(path: str) -> None:
         "tests/unit/ccnl_engine/sickness/test_rules_day.py",
         "tests/unit/ccnl_engine/sickness/builders_day.py",
         "tests/unit/ccnl_engine/sickness/rules.py",
+        "tests/unit/ccnl_engine/sickness/day/test_classification.py",
+        "tests/unit/ccnl_engine/sickness/loaders/case.py",
         "tests/integration/ccnl_engine/test_engine_modes.py",
         "scripts/documentation/generate_trust_counts.py",
         "scripts/quality/smoke_test.py",
@@ -108,6 +112,9 @@ def test_mixed_and_descriptive_names_offend(path: str) -> None:
         ("tests/unit/ccnl_engine", False),
         ("tests/integration", False),
         ("scripts/structure", True),
+        ("tests/integration/ccnl_engine/catalog/loaders", False),
+        ("tests/integration/ccnl_engine/api", False),
+        ("src/ccnl_engine/sickness/loaders", True),
     ],
 )
 def test_directories_are_named_after_domains(path: str, offends: bool) -> None:

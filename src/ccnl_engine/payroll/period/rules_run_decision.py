@@ -19,9 +19,9 @@ from ccnl_engine.payroll.assurance.models_decision import (
 if TYPE_CHECKING:
     from decimal import Decimal
 
+    from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.contract.compensation.models import Level
     from ccnl_engine.contract.employment.models_category import WorkerCategory
-    from ccnl_engine.contract.identity.facade import CCNL
     from ccnl_engine.payroll.amount.types_chain import ApprenticeshipScaling
     from ccnl_engine.tax.regime.models_variable_pay import PdRRules
 

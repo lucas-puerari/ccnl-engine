@@ -11,14 +11,9 @@ from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from ccnl_engine.agreement.facade import PublicPensionFund
 from ccnl_engine.contract.employment.models_category import WorkerCategory
-from ccnl_engine.contract.identity.facade import PublicPensionFund
-from ccnl_engine.primitives import (
-    NonNegativeRate,
-    PositiveCeiling,
-    assert_ivs_le_total,
-)
-from ccnl_engine.provenance.source.models_chain import RuleProvenance
+from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from ccnl_engine.tax.contribution.models import (
     EndOfServiceRates,
     PublicCreditRate,
@@ -30,6 +25,11 @@ from ccnl_engine.tax.contribution.models_additional_ivs import AdditionalIvsRule
 from ccnl_engine.tax.contribution.models_fis_reduction import FisReduction
 from ccnl_engine.tax.contribution.models_minimum_base import MinimumBaseRule
 from ccnl_engine.tax.contribution.models_zone_reduction import ZoneReduction
+from ccnl_engine.types import (
+    NonNegativeRate,
+    PositiveCeiling,
+    assert_ivs_le_total,
+)
 
 
 class InpsEmployerTier(BaseModel):

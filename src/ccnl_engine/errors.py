@@ -225,7 +225,7 @@ class MissingRuleError(CcnlEngineError):
     """Raised when the knowledge bundle has no rule value on a date a run needs.
 
     The date precedes the first value of the rule, or falls in a gap the
-    bundle declares (see :class:`~ccnl_engine.contract.identity.rules_validity\
+    bundle declares (see :class:`~ccnl_engine.agreement.validity.rules\
 .SalaryGapKind`).
 
     Attributes:
