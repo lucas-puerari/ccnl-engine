@@ -27,11 +27,11 @@ from ccnl_engine.inputs import (
 from tests.integration.ccnl_engine.payroll.taxation.builders_prior_year import (
     RENEWAL_WAIVED,
 )
-from tests.knowledge.ccnl_engine.payroll.employment.builders_seniority import new_hire
 from tests.knowledge.ccnl_engine.payroll.state.builders_opening_state import (
     fresh_tax_year,
 )
-from tests.knowledge.ccnl_engine.payroll.termination.builders_tfr import no_tfr_fund
+from tests.knowledge.ccnl_engine.seniority.builders import new_hire
+from tests.knowledge.ccnl_engine.severance.builders import no_tfr_fund
 
 if TYPE_CHECKING:
     from ccnl_engine import PeriodResult
@@ -74,9 +74,9 @@ def regular_period(
 
     ``employment``, when given, replaces ``ccnl_slug`` and ``level_code``;
     otherwise the worker is a
-    :func:`~tests.knowledge.ccnl_engine.payroll.employment.builders_seniority.new_hire`
+    :func:`~tests.knowledge.ccnl_engine.seniority.builders.new_hire`
     with no TFR fund
-    (:func:`~tests.knowledge.ccnl_engine.payroll.termination.builders_tfr.no_tfr_fund`)
+    (:func:`~tests.knowledge.ccnl_engine.severance.builders.no_tfr_fund`)
     whose TFR
     accrues in the company, not enrolled in a pension fund.  ``prior_year`` defaults to
     :data:`~tests.integration.ccnl_engine.payroll.taxation.builders_prior_year.RENEWAL_WAIVED`.

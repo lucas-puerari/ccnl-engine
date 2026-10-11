@@ -23,16 +23,16 @@ from ccnl_engine.payroll.assurance.models_decision import (
 )
 from ccnl_engine.payroll.capability.models_trace import TraceState
 from ccnl_engine.payroll.capability.services_trace import build_traces
-from ccnl_engine.payroll.contribution.inputs_pension_fund import PensionFundEnrolment
 from ccnl_engine.payroll.event.facade import AbsenceEvent, BonusEvent
 from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
+from ccnl_engine.pension_fund.inputs import PensionFundEnrolment
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from ccnl_engine.tax.annual.loaders import load_year_rules
-from tests.knowledge.ccnl_engine.payroll.contribution.oracles_2026 import (
+from tests.knowledge.ccnl_engine.contribution.oracles import (
     contribution_base,
 )
 

@@ -14,13 +14,13 @@ from ccnl_engine.agreement.validity.rules import rule_scope
 from ccnl_engine.compensation.provincial_element.services import (
     without_replaced_elements,
 )
+from ccnl_engine.contribution.fis.models import with_fis_reduction
+from ccnl_engine.contribution.zone.models import with_zone_reduction
 from ccnl_engine.employment.context.models import (
     EffectiveDateContext,
     TemporalContext,
 )
 from ccnl_engine.errors import UnknownLevelError
-from ccnl_engine.tax.contribution.models_fis_reduction import with_fis_reduction
-from ccnl_engine.tax.contribution.models_zone_reduction import with_zone_reduction
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL, TaxSector

@@ -49,7 +49,7 @@ def unpaid_months_before(month: int, year: int = 2026, *, day: int = 27) -> Peri
     """Return the state of ``year`` whose regular runs before ``month`` paid nothing.
 
     The worker was employed from 1 January, as
-    :func:`~tests.knowledge.ccnl_engine.payroll.employment.builders_seniority.new_hire`
+    :func:`~tests.knowledge.ccnl_engine.seniority.builders.new_hire`
     states, and the earlier
     months of the year carried no pay (an unpaid leave), so the run of
     ``month`` opens with zero totals and with its history.  January opens

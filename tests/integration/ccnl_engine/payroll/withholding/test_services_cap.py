@@ -33,11 +33,11 @@ from functools import cache
 from typing import TYPE_CHECKING
 
 from ccnl_engine.agreement.facade import TaxSector
+from ccnl_engine.contribution.services import TfrAccrual
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.pay_item.facade import CompetencePeriod
 from ccnl_engine.payroll.amount.types import _PeriodAmounts
 from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
-from ccnl_engine.payroll.contribution.services import TfrAccrual
 from ccnl_engine.payroll.event.facade import AbsenceEvent, FringeEvent
 from ccnl_engine.payroll.ledger.models import AccountKind, LedgerEntry
 from ccnl_engine.payroll.period.models_payroll import PeriodId

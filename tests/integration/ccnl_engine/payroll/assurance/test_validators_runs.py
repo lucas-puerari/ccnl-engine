@@ -9,6 +9,8 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from ccnl_engine.contribution.base.models import InpsBaseYtd
+from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.errors import (
@@ -32,8 +34,6 @@ from ccnl_engine.payroll.assurance.validators_state import check_ytd_continuity
 from ccnl_engine.payroll.assurance.validators_withholding import (
     check_contribution_ceiling,
 )
-from ccnl_engine.payroll.contribution.inputs_eligibility import ContributionHistory
-from ccnl_engine.payroll.contribution.models_inps_base import InpsBaseYtd
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.models_run import PayrollRun
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest

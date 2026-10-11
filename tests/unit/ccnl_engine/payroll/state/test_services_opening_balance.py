@@ -7,8 +7,8 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.contribution.models_inps_base import InpsBaseYtd
 from ccnl_engine.payroll.period.models_run import PayrollRunId, RunKind
 from ccnl_engine.payroll.state.models_obligation import (
     RecoveryObligation,

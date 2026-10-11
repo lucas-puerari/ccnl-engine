@@ -13,7 +13,7 @@ The extra-month ratei maturati are counted from the employment dates
 (:class:`~ccnl_engine.payroll.accrual.models.ExtraMonthAccrual`); the
 ratei liquidati are the extra-month runs closed here.  The INPS base
 toward the IVS massimale follows competence too
-(:mod:`~ccnl_engine.payroll.contribution.models_inps_base`), so it is counted here per
+(:mod:`~ccnl_engine.contribution.base.models`), so it is counted here per
 competence year.  The sickness episodes are counted over the employment
 too: a waiting period, an INPS band or a CCNL tier depends on the sick days
 before the run, whatever tax year paid them.
@@ -27,8 +27,8 @@ from decimal import Decimal
 from typing import final
 
 from ccnl_engine.collection.validators import items_of_type, tuple_of
+from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.contribution.models_inps_base import InpsBaseYtd
 from ccnl_engine.payroll.period.models_run import PayrollRunId, RunKind
 from ccnl_engine.payroll.sickness.models import SicknessEpisode
 from ccnl_engine.validators import require_date

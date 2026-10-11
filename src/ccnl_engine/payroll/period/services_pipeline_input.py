@@ -12,16 +12,15 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.employment.spell.models import spell_days
-from ccnl_engine.payroll.amount.types import PublicTerms, _AmountsInput
-from ccnl_engine.payroll.contribution.policies_assistance import assistance_terms
-from ccnl_engine.payroll.contribution.rules_contractual_fund import contractual_run
-from ccnl_engine.payroll.contribution.services_additional_ivs import (
+from ccnl_engine.contribution.additional_ivs.services import (
     additional_ivs_position,
 )
-from ccnl_engine.payroll.contribution.services_domestic import _domestic_hourly_rate
-from ccnl_engine.payroll.contribution.services_enam import enam_stipendio
-from ccnl_engine.payroll.contribution.services_pension_decision import pension_terms
+from ccnl_engine.contribution.domestic.services import _domestic_hourly_rate
+from ccnl_engine.contribution.enam.services import enam_stipendio
+from ccnl_engine.employment.spell.models import spell_days
+from ccnl_engine.fund.assistance.policies import assistance_terms
+from ccnl_engine.fund.contractual.rules import contractual_run
+from ccnl_engine.payroll.amount.types import PublicTerms, _AmountsInput
 from ccnl_engine.payroll.event.facade import FringeEvent
 from ccnl_engine.payroll.event.handlers_benefit import fringe_threshold_of
 from ccnl_engine.payroll.event.services_allocation import (
@@ -39,7 +38,8 @@ from ccnl_engine.payroll.state.models_obligation import (
     TRATTAMENTO_RECOVERY,
     ULTERIORE_RECOVERY,
 )
-from ccnl_engine.payroll.termination.services_tfr_destination import (
+from ccnl_engine.pension_fund.decision.services import pension_terms
+from ccnl_engine.severance.provision.services import (
     tfr_treasury_fund,
 )
 from ccnl_engine.working_time.overtime.policies import CCNLOvertimeBands

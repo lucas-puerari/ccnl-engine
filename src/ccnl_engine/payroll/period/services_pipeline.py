@@ -13,23 +13,19 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.compensation.raccordo.services import erc_settlement
 from ccnl_engine.compensation.renewal_minimum.services import renewal_minimum
+from ccnl_engine.contribution.ceiling.services import (
+    IvsCeiling,
+    ivs_ceiling_decision,
+    run_ivs_ceiling,
+)
+from ccnl_engine.contribution.minimum_base.services import run_minimum_base
+from ccnl_engine.fund.assistance.policies import assistance_decision
 from ccnl_engine.pay_item.rounding.policies import contribution_base
 from ccnl_engine.payroll.accrual.services_decision import accrual_decisions
 from ccnl_engine.payroll.accrual.services_extra_month_settlement import (
     settle_extra_months,
 )
 from ccnl_engine.payroll.amount.services import _compute_amounts
-from ccnl_engine.payroll.contribution.policies_assistance import assistance_decision
-from ccnl_engine.payroll.contribution.services_ivs_ceiling import (
-    IvsCeiling,
-    ivs_ceiling_decision,
-    run_ivs_ceiling,
-)
-from ccnl_engine.payroll.contribution.services_minimum_base import run_minimum_base
-from ccnl_engine.payroll.contribution.services_pension_decision import (
-    pension_decision,
-    pension_unresolved,
-)
 from ccnl_engine.payroll.period.rules_run_decision import contract_decisions
 from ccnl_engine.payroll.period.services_base_decision import (
     base_stage_decisions,
@@ -45,25 +41,29 @@ from ccnl_engine.payroll.period.services_pipeline_input import (
 from ccnl_engine.payroll.sickness.validators_month import (
     WITH_UNPAID_ABSENCE,
 )
-from ccnl_engine.payroll.termination.services_public_tfr_reduction import (
-    public_tfr_reduction,
-)
-from ccnl_engine.payroll.termination.services_tfr_revaluation import (
-    tfr_revaluation_decisions,
+from ccnl_engine.pension_fund.decision.services import (
+    pension_decision,
+    pension_unresolved,
 )
 from ccnl_engine.seniority.services import (
     run_seniority,
     seniority_decision,
 )
+from ccnl_engine.severance.public.services import (
+    public_tfr_reduction,
+)
+from ccnl_engine.severance.revaluation.services import (
+    tfr_revaluation_decisions,
+)
 
 if TYPE_CHECKING:
     from decimal import Decimal
 
+    from ccnl_engine.contribution.minimum_base.models import MinimumBase
+    from ccnl_engine.contribution.results import ContributionBreakdown
     from ccnl_engine.pay_item.facade import PayItem
     from ccnl_engine.payroll.amount.types import _PeriodAmounts
     from ccnl_engine.payroll.assurance.models_decision import CalculationDecision
-    from ccnl_engine.payroll.contribution.models_minimum_base import MinimumBase
-    from ccnl_engine.payroll.contribution.results import ContributionBreakdown
     from ccnl_engine.payroll.event.handlers_totals import _EventTotals
     from ccnl_engine.payroll.ledger.models import LedgerEntry
     from ccnl_engine.payroll.period.services_run_context import RunContext

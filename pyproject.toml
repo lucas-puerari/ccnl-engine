@@ -101,19 +101,17 @@ max-public-methods = 15
 # Applies to Pydantic model files and types.py (Bracket is a dataclass
 # whose field types Pydantic resolves at runtime via get_type_hints).
 "src/ccnl_engine/tax/income/models.py" = ["TCH"]
-"src/ccnl_engine/tax/contribution/models_additional_ivs.py" = ["TCH"]
-"src/ccnl_engine/tax/contribution/models_minimum_base.py" = ["TCH"]
-"src/ccnl_engine/tax/contribution/models.py" = ["TCH"]
-"src/ccnl_engine/tax/contribution/models_tier.py" = ["TCH"]
-"src/ccnl_engine/tax/contribution/models_domestic.py" = ["TCH"]
-"src/ccnl_engine/tax/severance/models.py" = ["TCH"]
-"src/ccnl_engine/tax/severance/models_revaluation.py" = ["TCH"]
 "src/ccnl_engine/tax/income/models_credit.py" = ["TCH"]
 "src/ccnl_engine/tax/annual/models.py" = ["TCH"]
 "src/ccnl_engine/tax/family/models.py" = ["TCH"]
 "src/ccnl_engine/contract/**" = ["TCH"]
 "src/ccnl_engine/agreement/**" = ["TCH"]
 "src/ccnl_engine/catalog/**" = ["TCH"]
+"src/ccnl_engine/contribution/**" = ["TCH"]
+"src/ccnl_engine/end_of_service/**" = ["TCH"]
+"src/ccnl_engine/fund/**" = ["TCH"]
+"src/ccnl_engine/pension_fund/**" = ["TCH"]
+"src/ccnl_engine/severance/**" = ["TCH"]
 "src/ccnl_engine/absence/**" = ["TCH"]
 "src/ccnl_engine/apprenticeship/**" = ["TCH"]
 "src/ccnl_engine/compensation/**" = ["TCH"]
@@ -224,7 +222,7 @@ path = "scripts/distribution/build.py"
 # ---------------------------------------------------------------------------
 [tool.mutmut]
 source_paths = [
-    "src/ccnl_engine/payroll/contribution/rules.py",
+    "src/ccnl_engine/contribution/rules.py",
     "src/ccnl_engine/payroll/taxation/rules_irpef.py",
     "src/ccnl_engine/payroll/taxation/rules_irpef_deduction.py",
     "src/ccnl_engine/payroll/ledger/models.py",
@@ -233,8 +231,8 @@ source_paths = [
     "src/ccnl_engine/payroll/capability/rules_requirement.py",
     "src/ccnl_engine/payroll/taxation/rules_trattamento_credit.py",
     "src/ccnl_engine/payroll/taxation/rules_irpef_net.py",
-    "src/ccnl_engine/payroll/contribution/rules_additional_ivs.py",
-    "src/ccnl_engine/payroll/contribution/rules_minimum_base.py",
+    "src/ccnl_engine/contribution/additional_ivs/rules.py",
+    "src/ccnl_engine/contribution/minimum_base/rules.py",
     "src/ccnl_engine/payroll/withholding/rules_period.py",
 ]
 # Limit collection to the tests of the mutated payroll modules; copy full src
@@ -247,9 +245,9 @@ pytest_add_cli_args_test_selection = [
     "tests/unit/ccnl_engine/pay_item/facade/test_facade.py",
     "tests/unit/ccnl_engine/pay_item/rounding/test_policies.py",
     "tests/unit/ccnl_engine/pay_item/treatment/test_types.py",
-    "tests/unit/ccnl_engine/payroll/contribution/test_rules.py",
-    "tests/unit/ccnl_engine/payroll/contribution/test_rules_ceiling.py",
-    "tests/unit/ccnl_engine/payroll/contribution/test_rules_rate.py",
+    "tests/unit/ccnl_engine/contribution/rules/test_rules.py",
+    "tests/unit/ccnl_engine/contribution/rules/test_ceiling.py",
+    "tests/unit/ccnl_engine/contribution/rate/test_rules.py",
     "tests/unit/ccnl_engine/payroll/taxation/test_rules_irpef.py",
     "tests/unit/ccnl_engine/payroll/taxation/test_rules_irpef_credit_amounts.py",
     "tests/unit/ccnl_engine/payroll/taxation/test_rules_irpef_mutation_sentinels.py",
@@ -265,9 +263,10 @@ pytest_add_cli_args_test_selection = [
     "tests/unit/ccnl_engine/payroll/taxation/test_rules_trattamento_credit.py",
     "tests/unit/ccnl_engine/payroll/taxation/test_rules_irpef_net.py",
     "tests/integration/ccnl_engine/payroll/taxation/test_rules_irpef_net_oracle.py",
-    "tests/unit/ccnl_engine/payroll/contribution/test_rules_additional_ivs.py",
-    "tests/unit/ccnl_engine/payroll/contribution/test_rules_minimum_base.py",
-    "tests/unit/ccnl_engine/payroll/contribution/test_models_minimum_base.py",
+    "tests/unit/ccnl_engine/contribution/additional_ivs/test_rules.py",
+    "tests/unit/ccnl_engine/contribution/minimum_base/test_rules.py",
+    "tests/unit/ccnl_engine/contribution/minimum_base/models/test_run.py",
+    "tests/unit/ccnl_engine/contribution/minimum_base/models/test_rule.py",
     "tests/unit/ccnl_engine/payroll/withholding/test_rules_period.py",
     "tests/unit/ccnl_engine/payroll/taxation/test_services_tax_computation.py",
     "tests/unit/ccnl_engine/payroll/withholding/test_models_recovery_plan.py",

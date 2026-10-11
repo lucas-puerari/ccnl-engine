@@ -43,7 +43,7 @@ from tests.integration.ccnl_engine.payroll.sickness.builders_sickness_episode im
     metalmeccanico_c3,
     sickness_episode,
 )
-from tests.knowledge.ccnl_engine.payroll.employment.builders_seniority import new_hire
+from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 _ENGINE = PayrollEngine.bundled()
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))

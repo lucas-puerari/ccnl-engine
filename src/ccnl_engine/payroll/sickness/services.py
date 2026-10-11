@@ -21,8 +21,8 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.absence.models import DailyDivisorMethod
+from ccnl_engine.contribution.rate.rules import resolve_rates
 from ccnl_engine.employment.inputs import Apprentice
-from ccnl_engine.payroll.contribution.rules_rate import resolve_rates
 from ccnl_engine.payroll.period.models_run import RunKind
 from ccnl_engine.payroll.sickness.models import SicknessHistory
 from ccnl_engine.payroll.sickness.models_pay_rule import SickPayRules

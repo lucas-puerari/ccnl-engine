@@ -13,6 +13,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.contribution.decision.services import inps_decisions
 from ccnl_engine.payroll.assurance.models_decision import (
     CalculationDecision,
     CalculationStatus,
@@ -21,7 +22,6 @@ from ccnl_engine.payroll.capability.services_rule_lookup import (
     contract_rules,
     tax_rules,
 )
-from ccnl_engine.payroll.contribution.services_decision import inps_decisions
 from ccnl_engine.payroll.period.rules_run_decision import _ccnl_rule
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 

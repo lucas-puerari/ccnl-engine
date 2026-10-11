@@ -7,14 +7,17 @@ from typing import Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.agreement.facade import TaxSector
+from ccnl_engine.contribution.domestic.models import DomesticInpsRates
+from ccnl_engine.contribution.headcount.models import ApprenticeRawRates, InpsRawRates
+from ccnl_engine.contribution.rate.models import ApprenticeRates, InpsRates
 from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.pension_fund.models import ComplementaryPensionRules
 from ccnl_engine.provenance.ruleset.models import RulesetIdentity
 from ccnl_engine.provenance.source.extraction.models import ExtractionTrace
 from ccnl_engine.provenance.source.models import SourceDocument
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
-from ccnl_engine.tax.contribution.models import ApprenticeRates, InpsRates
-from ccnl_engine.tax.contribution.models_domestic import DomesticInpsRates
-from ccnl_engine.tax.contribution.models_tier import ApprenticeRawRates, InpsRawRates
+from ccnl_engine.severance.models import TfrRules
+from ccnl_engine.severance.revaluation.models import TfrRevaluationRules
 from ccnl_engine.tax.income.models import (
     IrpefBracket,
     SterilizzazioneDetrazioniRules,
@@ -25,9 +28,6 @@ from ccnl_engine.tax.income.models_credit import (
     TrattamentoIntegrativoRules,
     UlterioreDetrazioneRules,
 )
-from ccnl_engine.tax.pension.models import ComplementaryPensionRules
-from ccnl_engine.tax.severance.models import TfrRules
-from ccnl_engine.tax.severance.models_revaluation import TfrRevaluationRules
 from ccnl_engine.types import PercentageRate
 
 

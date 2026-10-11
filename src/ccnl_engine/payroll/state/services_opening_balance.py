@@ -14,9 +14,9 @@ from datetime import date
 from decimal import Decimal
 from typing import final
 
+from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.employment.spell.models import EmploymentSpell
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.contribution.models_inps_base import InpsBaseYtd
 from ccnl_engine.payroll.period.models_run import PayrollRunId
 from ccnl_engine.payroll.sickness.models import SicknessEpisode
 from ccnl_engine.payroll.state.models_obligation import (

@@ -45,7 +45,7 @@ from ccnl_engine.inputs import (
     WeeklyHours,
     WorkerCategory,
 )
-from tests.knowledge.ccnl_engine.payroll.employment.builders_seniority import new_hire
+from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 if TYPE_CHECKING:
     from ccnl_engine.events import WorkEvent

@@ -34,7 +34,7 @@ from ccnl_engine.inputs import Apprentice, EmploymentPeriod, WeeklyHours, Worker
 from tests.integration.ccnl_engine.payroll.sickness.builders_sickness_episode import (
     sickness_episode,
 )
-from tests.knowledge.ccnl_engine.payroll.employment.builders_seniority import new_hire
+from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 _ENGINE = PayrollEngine.bundled()
 _HIRED = date(2026, 3, 16)

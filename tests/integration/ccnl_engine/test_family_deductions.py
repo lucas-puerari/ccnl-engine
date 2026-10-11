@@ -46,11 +46,11 @@ from tests.integration.ccnl_engine.payroll.family.builders_dependents import (
 from tests.integration.ccnl_engine.payroll.withholding.builders_withholding import (
     paid_before,
 )
-from tests.knowledge.ccnl_engine.payroll.employment.builders_seniority import new_hire
 from tests.knowledge.ccnl_engine.payroll.period.oracles_payslip_metalmeccanico_c3_2026 import (  # noqa: E501
     C3_MINIMUM_FROM_JUNE_2026,
     employee_taxable,
 )
+from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 _D = Decimal
 _ENGINE = PayrollEngine.bundled()

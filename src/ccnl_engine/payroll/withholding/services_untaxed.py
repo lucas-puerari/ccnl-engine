@@ -21,11 +21,11 @@ from ccnl_engine.payroll.withholding.rules_agent import (
 if TYPE_CHECKING:
     from decimal import Decimal
 
+    from ccnl_engine.contribution.results import ContributionBreakdown
+    from ccnl_engine.contribution.services import TfrAccrual
     from ccnl_engine.payroll.amount.types import _AmountsInput
     from ccnl_engine.payroll.assurance.models_decision import CalculationDecision
-    from ccnl_engine.payroll.contribution.results import ContributionBreakdown
-    from ccnl_engine.payroll.contribution.rules_pension_fund import PensionContribution
-    from ccnl_engine.payroll.contribution.services import TfrAccrual
+    from ccnl_engine.pension_fund.rules import PensionContribution
 
 #: No IRPEF computed: no withholding, credit or conguaglio.
 _NO_TAX = TaxComputation(

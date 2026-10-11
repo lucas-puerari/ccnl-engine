@@ -39,7 +39,7 @@ from ccnl_engine.inputs import (
     SenioritySource,
     WeeklyHours,
 )
-from tests.knowledge.ccnl_engine.payroll.employment.builders_seniority import (
+from tests.knowledge.ccnl_engine.seniority.builders import (
     pricing_category,
 )
 

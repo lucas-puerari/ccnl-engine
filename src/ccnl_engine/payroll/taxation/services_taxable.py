@@ -6,14 +6,14 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.contribution.services_pension import projected_adjustment
 from ccnl_engine.payroll.period.services_shared import _ZERO
+from ccnl_engine.pension_fund.services import projected_adjustment
 
 if TYPE_CHECKING:
     from decimal import Decimal
 
     from ccnl_engine.payroll.amount.types import _AmountsInput
-    from ccnl_engine.payroll.contribution.rules_pension_fund import PensionContribution
+    from ccnl_engine.pension_fund.rules import PensionContribution
 
 
 @dataclass(frozen=True)
@@ -82,7 +82,7 @@ def taxable_income(
     addizionale included); only the slots still to come are projected at
     the current rate, so the last slot settles on the final taxable income.
     Pension fund contributions change the taxable of the run by their
-    :attr:`~ccnl_engine.payroll.contribution.rules_pension_fund.PensionContribution\
+    :attr:`~ccnl_engine.pension_fund.rules.PensionContribution\
 .taxable_adjustment`, and the projection by the same change on the slots
     still to come, within the deduction cap left.
 

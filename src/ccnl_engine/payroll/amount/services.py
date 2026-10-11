@@ -5,28 +5,18 @@ from __future__ import annotations
 from dataclasses import replace
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.amount.types import _PeriodAmounts
-from ccnl_engine.payroll.contribution.rules_assistance import run_assistance
-from ccnl_engine.payroll.contribution.services import (
+from ccnl_engine.contribution.services import (
     AGRICULTURAL_ZONE_UNKNOWN,
     FIS_REDUCTION_UNKNOWN,
     run_contributions,
     tfr_accrual,
 )
-from ccnl_engine.payroll.contribution.services_pension import (
-    CONVENTIONAL_BASE_UNKNOWN,
-    ERC_UNKNOWN,
-    YOUNG_MEMBER_UNKNOWN,
-    conventional_base_unknown,
-    run_pension,
-)
-from ccnl_engine.payroll.contribution.services_public_end_of_service import (
+from ccnl_engine.end_of_service.services import (
     end_of_service_issue,
     life_insurance_issue,
 )
-from ccnl_engine.payroll.contribution.services_tfr_compensation import (
-    with_tfr_compensation,
-)
+from ccnl_engine.fund.assistance.rules import run_assistance
+from ccnl_engine.payroll.amount.types import _PeriodAmounts
 from ccnl_engine.payroll.period.rules_run_decision import pdr_decision
 from ccnl_engine.payroll.taxation.rules_surtax import run_surtax
 from ccnl_engine.payroll.taxation.services_irpef import (
@@ -38,14 +28,24 @@ from ccnl_engine.payroll.taxation.services_taxable import (
     taxable_income,
 )
 from ccnl_engine.payroll.withholding.services_untaxed import untaxed_amounts
+from ccnl_engine.pension_fund.services import (
+    CONVENTIONAL_BASE_UNKNOWN,
+    ERC_UNKNOWN,
+    YOUNG_MEMBER_UNKNOWN,
+    conventional_base_unknown,
+    run_pension,
+)
+from ccnl_engine.severance.relief.services import (
+    with_tfr_compensation,
+)
 
 if TYPE_CHECKING:
+    from ccnl_engine.contribution.results import ContributionBreakdown
     from ccnl_engine.payroll.amount.types import _AmountsInput
     from ccnl_engine.payroll.assurance.models_decision import (
         CalculationDecision,
         CalculationIssue,
     )
-    from ccnl_engine.payroll.contribution.results import ContributionBreakdown
     from ccnl_engine.payroll.taxation.results import TaxComputation
     from ccnl_engine.payroll.taxation.rules_surtax import RunSurtax
     from ccnl_engine.payroll.taxation.services_irpef import _Irpef

@@ -15,9 +15,9 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.contribution.base.models import InpsBaseYtd
+from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
-from ccnl_engine.payroll.contribution.inputs_eligibility import ContributionHistory
-from ccnl_engine.payroll.contribution.models_inps_base import InpsBaseYtd
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period
@@ -28,7 +28,7 @@ from tests.integration.ccnl_engine.payroll.period.builders_period_requests impor
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.contribution.results import ContributionComponent
+    from ccnl_engine.contribution.results import ContributionComponent
     from ccnl_engine.payroll.period.results import PeriodResult
 
 _CCNL = "metalmeccanico-federmeccanica.json"

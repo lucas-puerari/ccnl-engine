@@ -12,19 +12,19 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.contribution.enam.services import enam_paths
+from ccnl_engine.contribution.minimum_base.services import (
+    minimum_base_paths,
+)
+from ccnl_engine.fund.contractual.rules import contractual_paths
 from ccnl_engine.knowledge.limitation.models import LimitationFacts
 from ccnl_engine.payroll.assurance.services_ruleset import provisional_paths
 from ccnl_engine.payroll.capability.results import CapabilityScope
-from ccnl_engine.payroll.contribution.rules_contractual_fund import contractual_paths
-from ccnl_engine.payroll.contribution.services_enam import enam_paths
-from ccnl_engine.payroll.contribution.services_minimum_base import (
-    minimum_base_paths,
-)
-from ccnl_engine.payroll.contribution.services_pension_decision import paid_month_paths
-from ccnl_engine.payroll.contribution.services_tfr_compensation import (
+from ccnl_engine.pension_fund.decision.services import paid_month_paths
+from ccnl_engine.seniority.services import seniority_months_at
+from ccnl_engine.severance.relief.services import (
     tfr_compensation_paths,
 )
-from ccnl_engine.seniority.services import seniority_months_at
 
 if TYPE_CHECKING:
     from ccnl_engine.knowledge.limitation.models import ModelLimitation

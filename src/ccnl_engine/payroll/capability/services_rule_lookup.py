@@ -5,18 +5,18 @@ from __future__ import annotations
 from functools import partial
 from typing import TYPE_CHECKING
 
-from ccnl_engine.employment.inputs import Apprentice, FixedTerm
-from ccnl_engine.payroll.accrual.services_decision import accrual_rules
-from ccnl_engine.payroll.contribution.inputs_pension_fund import PensionFundEnrolment
-from ccnl_engine.payroll.contribution.policies_assistance import assistance_rules
-from ccnl_engine.payroll.contribution.rules_contractual_fund import contractual_rules
-from ccnl_engine.payroll.contribution.services_additional_ivs import (
+from ccnl_engine.contribution.additional_ivs.services import (
     additional_ivs_rules,
 )
+from ccnl_engine.employment.inputs import Apprentice, FixedTerm
+from ccnl_engine.fund.assistance.policies import assistance_rules
+from ccnl_engine.fund.contractual.rules import contractual_rules
+from ccnl_engine.payroll.accrual.services_decision import accrual_rules
 from ccnl_engine.payroll.event.facade import OvertimeEvent
 from ccnl_engine.payroll.sickness.services import sickness_rules
 from ccnl_engine.payroll.taxation.types_jurisdiction import region_table_name
-from ccnl_engine.payroll.termination.services_tfr_rule import (
+from ccnl_engine.pension_fund.inputs import PensionFundEnrolment
+from ccnl_engine.severance.services import (
     revaluation_rules,
     tfr_rules,
 )

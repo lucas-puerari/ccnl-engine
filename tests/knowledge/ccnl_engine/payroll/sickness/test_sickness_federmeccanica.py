@@ -57,7 +57,7 @@ from ccnl_engine.results import BlockerCode
 from tests.integration.ccnl_engine.payroll.withholding.builders_withholding import (
     paid_before,
 )
-from tests.knowledge.ccnl_engine.payroll.employment.builders_seniority import new_hire
+from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 _ENGINE = PayrollEngine.bundled()
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))

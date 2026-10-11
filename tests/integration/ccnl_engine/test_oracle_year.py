@@ -28,7 +28,7 @@ from ccnl_engine import (
     PeriodResult,
 )
 from ccnl_engine.inputs import EmploymentPeriod, PeriodState, Permanent
-from tests.knowledge.ccnl_engine.payroll.employment.builders_seniority import new_hire
+from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 engine = PayrollEngine.bundled()
 

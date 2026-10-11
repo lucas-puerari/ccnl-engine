@@ -46,10 +46,10 @@ from ccnl_engine.tax.annual.loaders_optional import load_variable_pay_rules
 from tests.integration.ccnl_engine.payroll.family.builders_dependents import (
     declared_dependent,
 )
-from tests.knowledge.ccnl_engine.payroll.employment.builders_seniority import new_hire
 from tests.knowledge.ccnl_engine.payroll.taxation.builders_current_year import (
     employment_only,
 )
+from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 from tests.unit.ccnl_engine.builders import year_plan
 
 if TYPE_CHECKING:

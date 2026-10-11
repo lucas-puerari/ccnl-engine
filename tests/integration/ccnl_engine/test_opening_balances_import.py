@@ -59,13 +59,13 @@ from ccnl_engine.inputs import (
 from tests.integration.ccnl_engine.payroll.year.builders_next_year_repository import (
     NextYearRepository,
 )
-from tests.knowledge.ccnl_engine.payroll.contribution.oracles_2026 import (
+from tests.knowledge.ccnl_engine.contribution.oracles import (
     contribution_base,
 )
-from tests.knowledge.ccnl_engine.payroll.employment.builders_seniority import new_hire
 from tests.knowledge.ccnl_engine.payroll.period.oracles_payslip_metalmeccanico_c3_2026 import (  # noqa: E501
     C3_MINIMUM_FROM_JUNE_2026,
 )
+from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 _ENGINE = PayrollEngine.bundled()
 _C3 = Employment(

@@ -28,7 +28,7 @@ from ccnl_engine.tax.regime.models import EmploymentSector
 from tests.integration.ccnl_engine.payroll.year.builders_next_year_repository import (
     NextYearRepository,
 )
-from tests.knowledge.ccnl_engine.payroll.employment.builders_seniority import new_hire
+from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.period.results import PeriodResult

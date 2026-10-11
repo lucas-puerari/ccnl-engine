@@ -6,6 +6,19 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.compensation.renewal_minimum.services import renewal_minimum
+from ccnl_engine.contribution.additional_ivs.rules import (
+    MONTHLY_COMPONENT,
+    SETTLEMENT_COMPONENT,
+)
+from ccnl_engine.contribution.additional_ivs.services import (
+    additional_ivs_issue,
+)
+from ccnl_engine.contribution.base.other_employment.services import (
+    other_employers_issue,
+)
+from ccnl_engine.contribution.minimum_base.services import minimum_base_issue
+from ccnl_engine.contribution.naspi.services import naspi_issue
+from ccnl_engine.contribution.rate.rules import category_rate_issue
 from ccnl_engine.employment.fact.services import fact_issues
 from ccnl_engine.payroll.accrual.services_decision import (
     accrual_issue,
@@ -23,22 +36,6 @@ from ccnl_engine.payroll.capability.services_registry import (
     capability_report,
     case_facts,
 )
-from ccnl_engine.payroll.contribution.rules_additional_ivs import (
-    MONTHLY_COMPONENT,
-    SETTLEMENT_COMPONENT,
-)
-from ccnl_engine.payroll.contribution.rules_rate import category_rate_issue
-from ccnl_engine.payroll.contribution.services_additional_ivs import (
-    additional_ivs_issue,
-)
-from ccnl_engine.payroll.contribution.services_minimum_base import minimum_base_issue
-from ccnl_engine.payroll.contribution.services_naspi import naspi_issue
-from ccnl_engine.payroll.contribution.services_other_employer import (
-    other_employers_issue,
-)
-from ccnl_engine.payroll.contribution.services_pension_decision import (
-    pension_fund_issue,
-)
 from ccnl_engine.payroll.event.results_benefit import BenefitBreakdown
 from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.period.results import PeriodResult
@@ -49,11 +46,14 @@ from ccnl_engine.payroll.state.services_closing import (
     closing_state,
 )
 from ccnl_engine.payroll.termination.services_ratei import settlement_issues
-from ccnl_engine.payroll.termination.services_tfr_revaluation import (
+from ccnl_engine.payroll.withholding.services_cap import run_net
+from ccnl_engine.pension_fund.decision.services import (
+    pension_fund_issue,
+)
+from ccnl_engine.seniority.services import run_seniority
+from ccnl_engine.severance.revaluation.services import (
     tfr_revaluation_issues,
 )
-from ccnl_engine.payroll.withholding.services_cap import run_net
-from ccnl_engine.seniority.services import run_seniority
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.assurance.models_decision import (
