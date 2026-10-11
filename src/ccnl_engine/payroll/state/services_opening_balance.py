@@ -22,7 +22,6 @@ from ccnl_engine.payroll.sickness.models import SicknessEpisode
 from ccnl_engine.payroll.state.models_obligation import (
     RecoveryObligation,
 )
-from ccnl_engine.payroll.state.models_surtax_obligation import SurtaxObligation
 from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
 from ccnl_engine.payroll.state.services_opening import opening_state
 from ccnl_engine.payroll.state.validators_opening_balance import (
@@ -34,6 +33,7 @@ from ccnl_engine.payroll.state.validators_opening_balance import (
 )
 from ccnl_engine.payroll.withholding.inputs_shortfall_deferral import DeferredShortfall
 from ccnl_engine.payroll.year.models_payment import PaymentId
+from ccnl_engine.surtax.obligation.models import SurtaxObligation
 from ccnl_engine.validators import require_instance
 
 __all__ = ["OpeningBalances"]

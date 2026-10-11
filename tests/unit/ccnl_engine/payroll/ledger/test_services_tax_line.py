@@ -8,11 +8,11 @@ from ccnl_engine.contribution.services import TfrAccrual
 from ccnl_engine.payroll.amount.types import _PeriodAmounts
 from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.ledger.services_tax_line import tax_lines
-from ccnl_engine.payroll.state.models_surtax_obligation import (
+from ccnl_engine.surtax.obligation.models import (
     SurtaxComponent,
     SurtaxPart,
 )
-from ccnl_engine.payroll.taxation.rules_surtax import RunSurtax
+from ccnl_engine.surtax.rules import RunSurtax
 
 _ZERO = Decimal(0)
 

@@ -69,10 +69,10 @@ def test_report_counts_each_capability_per_level() -> None:
 def test_report_maps_mirrored_and_public_owners(tmp_path: Path) -> None:
     """A unit mirror and public imports of the same module share a frontier."""
     src = tmp_path / "src"
-    _write(src, "payroll/event/inputs_variable_pay.py", "")
+    _write(src, "variable_pay/inputs.py", "")
     _write(
         tmp_path,
-        "tests/unit/ccnl_engine/payroll/event/test_inputs_variable_pay_more.py",
+        "tests/unit/ccnl_engine/variable_pay/test_inputs.py",
         "def test_x():\n    assert True\n",
     )
     public = (
@@ -82,5 +82,5 @@ def test_report_maps_mirrored_and_public_owners(tmp_path: Path) -> None:
     _write(tmp_path, "tests/integration/ccnl_engine/test_events.py", public)
     _write(tmp_path, "tests/knowledge/ccnl_engine/payroll/test_bonus.py", public)
     text = report(tmp_path / "tests", src)
-    assert "| payroll | 1 | 1 | 1 |" in text
-    assert "- `payroll.event.inputs_variable_pay`: knowledge, unit, integration" in text
+    assert "| variable_pay | 1 | 1 | 1 |" in text
+    assert "- `variable_pay.inputs`: knowledge, unit, integration" in text

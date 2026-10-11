@@ -43,7 +43,7 @@ from __future__ import annotations
 
 from decimal import ROUND_HALF_UP, Decimal
 
-from tests.knowledge.ccnl_engine.payroll.taxation.oracles_irpef_2026 import (
+from tests.knowledge.ccnl_engine.irpef.oracles import (
     employment_deduction,
     further_deduction,
     gross_irpef,

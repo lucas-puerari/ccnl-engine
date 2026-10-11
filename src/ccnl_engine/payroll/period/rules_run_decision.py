@@ -23,7 +23,7 @@ if TYPE_CHECKING:
     from ccnl_engine.compensation.element.types import ApprenticeshipScaling
     from ccnl_engine.compensation.models import Level
     from ccnl_engine.employment.category.models import WorkerCategory
-    from ccnl_engine.tax.regime.models_variable_pay import PdRRules
+    from ccnl_engine.variable_pay.models import PdRRules
 
 _NONE = "none"
 

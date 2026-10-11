@@ -34,10 +34,11 @@ from ccnl_engine.inputs import (
     FamilyComposition,
     Permanent,
 )
-from tests.integration.ccnl_engine.payroll.family.builders_dependents import (
+from tests.integration.ccnl_engine.family.builders import (
     declared_dependent,
 )
-from tests.knowledge.ccnl_engine.payroll.family.oracles_2026 import spouse_deduction
+from tests.knowledge.ccnl_engine.family.oracles import spouse_deduction
+from tests.knowledge.ccnl_engine.irpef.oracles import net_irpef
 from tests.knowledge.ccnl_engine.payroll.period.builders_explicit_facts import (
     CONCIA_D2,
     FACTS,
@@ -49,7 +50,6 @@ from tests.knowledge.ccnl_engine.payroll.support import (
     EMPLOYER,
     ENGINE,
 )
-from tests.knowledge.ccnl_engine.payroll.taxation.oracles_irpef_2026 import net_irpef
 from tests.knowledge.ccnl_engine.payroll.withholding.oracles_2026 import (
     extra_month_withholding,
     regular_month_withholding,

@@ -12,6 +12,7 @@ from ccnl_engine.employer.inputs import (
     EmployerProfile,
     Headcount,
 )
+from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
 from ccnl_engine.payroll.assurance.models_decision import (
     CalculationDecision,
     CalculationStatus,
@@ -29,8 +30,7 @@ from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.payroll.state.models_ytd_account import FringeYtd
-from ccnl_engine.payroll.taxation.inputs_prior_year import PriorYearTaxFacts
-from ccnl_engine.tax.regime.models import EmploymentSector
+from ccnl_engine.regime.models import EmploymentSector
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.period.results import PeriodResult

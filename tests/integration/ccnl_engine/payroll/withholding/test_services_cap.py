@@ -53,13 +53,13 @@ from ccnl_engine.payroll.year.services_competence import (
     calculate_competence_year,
 )
 from ccnl_engine.tax.annual.loaders import load_year_rules
+from tests.integration.ccnl_engine.irpef.declaration.builders import (
+    RENEWAL_WAIVED,
+)
 from tests.integration.ccnl_engine.payroll.period.builders_period_requests import (
     period_request,
 )
-from tests.integration.ccnl_engine.payroll.taxation.builders_prior_year import (
-    RENEWAL_WAIVED,
-)
-from tests.knowledge.ccnl_engine.payroll.taxation.oracles_irpef_2026 import net_irpef
+from tests.knowledge.ccnl_engine.irpef.oracles import net_irpef
 from tests.knowledge.ccnl_engine.payroll.withholding.oracles_2026 import (
     regular_month_withholding,
 )

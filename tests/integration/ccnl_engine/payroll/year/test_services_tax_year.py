@@ -12,11 +12,11 @@ from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.employment.inputs import Employment, Permanent
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
-from ccnl_engine.payroll.family.inputs import (
+from ccnl_engine.family.inputs import (
     DependentRelationship,
     FamilyComposition,
 )
+from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
 from ccnl_engine.payroll.period.inputs import PeriodFacts
 from ccnl_engine.payroll.year.inputs_competence_plan import CompetenceYearPlan
 from ccnl_engine.payroll.year.inputs_tax_plan import TaxYearPlan
@@ -24,13 +24,13 @@ from ccnl_engine.payroll.year.services_competence import (
     calculate_competence_year,
 )
 from ccnl_engine.payroll.year.services_tax_year import calculate_tax_year
-from tests.integration.ccnl_engine.payroll.family.builders_dependents import (
+from tests.integration.ccnl_engine.family.builders import (
     declared_dependent,
 )
 from tests.integration.ccnl_engine.payroll.year.builders_next_year_repository import (
     NextYearRepository,
 )
-from tests.knowledge.ccnl_engine.payroll.taxation.builders_current_year import (
+from tests.knowledge.ccnl_engine.irpef.other_income.builders import (
     employment_only,
 )
 

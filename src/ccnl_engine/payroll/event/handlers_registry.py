@@ -24,21 +24,21 @@ from ccnl_engine.payroll.event.facade import (
     TerminationTFREvent,
     WelfareEvent,
 )
-from ccnl_engine.payroll.event.handlers_benefit import (
-    _handle_fringe,
-    _handle_welfare,
-)
 from ccnl_engine.payroll.event.handlers_context import (
     EventEffect,
     _EventHandlerCtx,
 )
-from ccnl_engine.payroll.event.handlers_variable_pay import _handle_arrears
 from ccnl_engine.payroll.sickness.handlers import (
     _handle_sickness_episode,
 )
 from ccnl_engine.payroll.termination.handlers import (
     _handle_bilateral_fund,
     _handle_termination_tfr,
+)
+from ccnl_engine.variable_pay.arrears.handlers import _handle_arrears
+from ccnl_engine.variable_pay.benefit.handlers import (
+    _handle_fringe,
+    _handle_welfare,
 )
 from ccnl_engine.working_time.handlers import _handle_standard
 

@@ -19,7 +19,7 @@ from ccnl_engine.payroll.year.inputs_competence_plan import CompetenceYearPlan
 from ccnl_engine.payroll.year.rules_tax_year import DEFAULT_PAYMENT_DAY
 from ccnl_engine.pension_fund.inputs import NoPensionFund
 from ccnl_engine.tax.annual.models import YearRules
-from tests.integration.ccnl_engine.payroll.taxation.builders_prior_year import (
+from tests.integration.ccnl_engine.irpef.declaration.builders import (
     RENEWAL_WAIVED,
 )
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire
@@ -28,10 +28,10 @@ from tests.knowledge.ccnl_engine.severance.builders import no_tfr_fund
 if TYPE_CHECKING:
     from collections.abc import Mapping
 
+    from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
+    from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts
     from ccnl_engine.payroll.event.facade import WorkEvent
     from ccnl_engine.payroll.state.models import PeriodState
-    from ccnl_engine.payroll.taxation.inputs_current_year import CurrentYearTaxFacts
-    from ccnl_engine.payroll.taxation.inputs_prior_year import PriorYearTaxFacts
     from ccnl_engine.payroll.year.inputs_calendar_override import CalendarOverride
 
 # ---------------------------------------------------------------------------
@@ -361,7 +361,7 @@ def year_plan(
     ``year`` and the TFR stays in
     the company (``tfr_treasury_fund=False``), not enrolled in a pension
     fund.  ``prior_year`` defaults to
-    :data:`~tests.integration.ccnl_engine.payroll.taxation.builders_prior_year.RENEWAL_WAIVED`.
+    :data:`~tests.integration.ccnl_engine.irpef.declaration.builders.RENEWAL_WAIVED`.
 
     Returns:
         The year input.

@@ -26,9 +26,9 @@ from ccnl_engine.pension_fund.inputs import (
     NoPensionFund,
     PensionFundEnrolment,
 )
+from ccnl_engine.regime.models import EmploymentSector
 from ccnl_engine.seniority.inputs import SeniorityFact
 from ccnl_engine.severance.provision.models import TfrFundBalance
-from ccnl_engine.tax.regime.models import EmploymentSector
 from ccnl_engine.validators import (
     FieldSpec,
     parse_enum,

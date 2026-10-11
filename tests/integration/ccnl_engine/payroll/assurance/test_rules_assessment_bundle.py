@@ -4,7 +4,7 @@ Every CCNL of the bundle is run once, for its first level, on a regular run
 of June 2026 with no event, for a worker resident in Milan with no
 dependant, no role, not enrolled in a pension fund and who waived the
 renewal regime of L. 199/2025 art. 1 c. 7 in writing
-(:mod:`tests.integration.ccnl_engine.payroll.taxation.builders_prior_year`).  A run the
+(:mod:`tests.integration.ccnl_engine.irpef.declaration.builders`).  A run the
 engine rejects before
 producing a result is left out: it exposes no amount to pay.
 """
@@ -31,7 +31,7 @@ from ccnl_engine.payroll.period.repositories import (
     BundledKnowledgeRepository,
 )
 from ccnl_engine.results import BlockerCode
-from tests.integration.ccnl_engine.payroll.taxation.builders_prior_year import (
+from tests.integration.ccnl_engine.irpef.declaration.builders import (
     RENEWAL_WAIVED,
 )
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire

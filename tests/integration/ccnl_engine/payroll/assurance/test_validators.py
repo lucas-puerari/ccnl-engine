@@ -14,7 +14,7 @@ from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
-from ccnl_engine.payroll.state.models_credit_account import TrattamentoAccount
+from ccnl_engine.tax_credit.account.models import TrattamentoAccount
 from tests.integration.ccnl_engine.payroll.period.builders_period_requests import (
     period_request,
 )

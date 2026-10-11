@@ -74,7 +74,7 @@ from ccnl_engine.inputs import (
     WeeklyHours,
     WorkCalendar,
 )
-from tests.integration.ccnl_engine.payroll.family.builders_dependents import (
+from tests.integration.ccnl_engine.family.builders import (
     declared_dependent,
 )
 

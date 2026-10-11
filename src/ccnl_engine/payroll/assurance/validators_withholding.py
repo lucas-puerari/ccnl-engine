@@ -33,10 +33,10 @@ from ccnl_engine.payroll.assurance.validators_state import run_id_of
 from ccnl_engine.payroll.state.models_obligation import ULTERIORE_RECOVERY
 
 if TYPE_CHECKING:
+    from ccnl_engine.irpef.results import TaxComputation
     from ccnl_engine.payroll.assurance.types import RunFacts
     from ccnl_engine.payroll.period.results import PeriodResult
     from ccnl_engine.payroll.state.models import PeriodState
-    from ccnl_engine.payroll.taxation.results import TaxComputation
 
 __all__: list[str] = []
 

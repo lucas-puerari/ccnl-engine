@@ -17,14 +17,14 @@ from ccnl_engine.employment.fact.inputs import (
     ContributableHours,
     WeeklyHours,
 )
+from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
 from ccnl_engine.payroll.assurance.models import BlockerCode
 from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
-from ccnl_engine.payroll.taxation.inputs_prior_year import PriorYearTaxFacts
-from ccnl_engine.tax.regime.models import EmploymentSector
+from ccnl_engine.regime.models import EmploymentSector
 from tests.integration.ccnl_engine.payroll.year.builders_next_year_repository import (
     NextYearRepository,
 )

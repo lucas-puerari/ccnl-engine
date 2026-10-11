@@ -37,10 +37,10 @@ from ccnl_engine.inputs import (
 )
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.state.models_accrual import EmploymentAccrualState
-from tests.integration.ccnl_engine.payroll.family.builders_dependents import (
+from tests.integration.ccnl_engine.family.builders import (
     declared_dependent,
 )
-from tests.knowledge.ccnl_engine.payroll.taxation.builders_current_year import (
+from tests.knowledge.ccnl_engine.irpef.other_income.builders import (
     employment_only,
 )
 

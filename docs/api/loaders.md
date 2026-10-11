@@ -35,7 +35,7 @@ See [Get started](../getting-started/index.md) for the typical loading sequence 
       members:
         - InpsRates
 
-::: ccnl_engine.tax.income.models
+::: ccnl_engine.irpef.models
     options:
       members:
         - IrpefBracket

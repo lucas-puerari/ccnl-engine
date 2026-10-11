@@ -23,36 +23,31 @@ from ccnl_engine.employment.fact.inputs import (
 from ccnl_engine.employment.fixed_term.inputs import NaspiExclusion
 from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
 from ccnl_engine.employment.spell.models import EmploymentSpell
-from ccnl_engine.payroll.assurance.policies_engine_mode import EngineMode
-from ccnl_engine.payroll.family.inputs import (
+from ccnl_engine.family.inputs import (
     Dependent,
     DependentRelationship,
     FamilyComposition,
 )
-from ccnl_engine.payroll.period.models_run import PayrollRunId
-from ccnl_engine.payroll.state.models import PeriodState
-from ccnl_engine.payroll.state.models_obligation import RecoveryObligation
-from ccnl_engine.payroll.state.models_surtax_obligation import (
-    SurtaxComponent,
-    SurtaxObligation,
-)
-from ccnl_engine.payroll.state.serializers_persistence import (
-    period_state_from_json,
-    period_state_to_json,
-)
-from ccnl_engine.payroll.state.services_opening_balance import OpeningBalances
-from ccnl_engine.payroll.taxation.inputs_current_year import (
-    CurrentYearTaxFacts,
-    IncomeEstimateQuality,
-)
-from ccnl_engine.payroll.taxation.inputs_prior_year import (
+from ccnl_engine.irpef.declaration.inputs import (
     ForeignTaxPaid,
     PriorYearTaxFacts,
     ShortfallDeferralRequest,
     SubstituteTaxRegime,
 )
+from ccnl_engine.irpef.other_income.inputs import (
+    CurrentYearTaxFacts,
+    IncomeEstimateQuality,
+)
+from ccnl_engine.payroll.assurance.policies_engine_mode import EngineMode
+from ccnl_engine.payroll.period.models_run import PayrollRunId
+from ccnl_engine.payroll.state.models import PeriodState
+from ccnl_engine.payroll.state.models_obligation import RecoveryObligation
+from ccnl_engine.payroll.state.serializers_persistence import (
+    period_state_from_json,
+    period_state_to_json,
+)
+from ccnl_engine.payroll.state.services_opening_balance import OpeningBalances
 from ccnl_engine.payroll.withholding.inputs_shortfall_deferral import DeferredShortfall
-from ccnl_engine.payroll.withholding.models_recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.year.inputs_calendar_override import (
     CalendarOverride,
     CalendarOverrideReason,
@@ -63,12 +58,17 @@ from ccnl_engine.pension_fund.inputs import (
     NoPensionFund,
     PensionFundEnrolment,
 )
+from ccnl_engine.regime.models import EmploymentSector
 from ccnl_engine.seniority.inputs import (
     SeniorityFact,
     SenioritySource,
 )
 from ccnl_engine.severance.provision.models import TfrFundBalance
-from ccnl_engine.tax.regime.models import EmploymentSector
+from ccnl_engine.surtax.obligation.models import (
+    SurtaxComponent,
+    SurtaxObligation,
+)
+from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
 
 __all__ = [
     "AgriculturalZone",

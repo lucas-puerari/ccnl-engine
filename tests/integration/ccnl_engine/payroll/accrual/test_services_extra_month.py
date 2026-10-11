@@ -10,13 +10,13 @@ import pytest
 
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.fact.inputs import EmploymentPeriod
+from ccnl_engine.irpef.computation.services import compute_tax
+from ccnl_engine.irpef.deduction.rules import work_income_deduction
 from ccnl_engine.payroll.event.facade import AbsenceEvent
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.models_run import PayrollRun, RunKind
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period
-from ccnl_engine.payroll.taxation.rules_irpef_deduction import work_income_deduction
-from ccnl_engine.payroll.taxation.services_tax_computation import compute_tax
 from ccnl_engine.payroll.year.models_calendar import WorkCalendar
 from ccnl_engine.payroll.year.services_competence import (
     calculate_competence_year,

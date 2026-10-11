@@ -24,7 +24,7 @@ from ccnl_engine.inputs import (
     Permanent,
     PriorYearTaxFacts,
 )
-from tests.integration.ccnl_engine.payroll.taxation.builders_prior_year import (
+from tests.integration.ccnl_engine.irpef.declaration.builders import (
     RENEWAL_WAIVED,
 )
 from tests.knowledge.ccnl_engine.payroll.state.builders_opening_state import (
@@ -79,7 +79,7 @@ def regular_period(
     (:func:`~tests.knowledge.ccnl_engine.severance.builders.no_tfr_fund`)
     whose TFR
     accrues in the company, not enrolled in a pension fund.  ``prior_year`` defaults to
-    :data:`~tests.integration.ccnl_engine.payroll.taxation.builders_prior_year.RENEWAL_WAIVED`.
+    :data:`~tests.integration.ccnl_engine.irpef.declaration.builders.RENEWAL_WAIVED`.
 
     Returns:
         The engine result for the requested run.

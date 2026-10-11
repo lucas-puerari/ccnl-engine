@@ -13,7 +13,7 @@ from ccnl_engine.payroll.state.models_obligation import (
     EmploymentObligations,
     RecoveryObligation,
 )
-from ccnl_engine.payroll.withholding.models_recovery_plan import (
+from ccnl_engine.tax_credit.recovery.models import (
     InstallmentRun,
     RecoveryPlan,
 )

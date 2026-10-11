@@ -47,7 +47,7 @@ from ccnl_engine.inputs import (
     TfrFundBalance,
     WeeklyHours,
 )
-from tests.integration.ccnl_engine.payroll.family.builders_dependents import (
+from tests.integration.ccnl_engine.family.builders import (
     declared_dependent,
 )
 from tests.integration.ccnl_engine.payroll.period.builders_default_cases_absence import (  # noqa: E501

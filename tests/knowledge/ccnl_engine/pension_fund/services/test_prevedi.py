@@ -34,10 +34,10 @@ from ccnl_engine.inputs import (
     WeeklyHours,
     WorkerCategory,
 )
-from tests.knowledge.ccnl_engine.payroll.support import EMPLOYER, ENGINE, regular_period
-from tests.knowledge.ccnl_engine.payroll.taxation.builders_current_year import (
+from tests.knowledge.ccnl_engine.irpef.other_income.builders import (
     employment_only,
 )
+from tests.knowledge.ccnl_engine.payroll.support import EMPLOYER, ENGINE, regular_period
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 if TYPE_CHECKING:

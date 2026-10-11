@@ -40,14 +40,14 @@ from ccnl_engine.working_time.overtime.policies import (
     CCNLOvertimeBands,
     resolve_overtime_rate,
 )
-from tests.integration.ccnl_engine.payroll.taxation.builders_prior_year import (
+from tests.integration.ccnl_engine.irpef.declaration.builders import (
     RENEWAL_WAIVED,
 )
-from tests.integration.ccnl_engine.payroll.taxation.builders_residence import (
+from tests.integration.ccnl_engine.surtax.residence.builders import (
     COMUNE_BELFIORE,
     REGIONE,
 )
-from tests.knowledge.ccnl_engine.payroll.taxation.builders_current_year import (
+from tests.knowledge.ccnl_engine.irpef.other_income.builders import (
     employment_only,
 )
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire

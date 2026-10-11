@@ -8,43 +8,43 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.contribution.additional_ivs.rules import AdditionalIvsPosition
 from ccnl_engine.fund.contractual.rules import ContractualRun
+from ccnl_engine.irpef.rules import DAYS_IN_YEAR
 from ccnl_engine.payroll.period.models_run import RunKind
-from ccnl_engine.payroll.taxation.rules_irpef import DAYS_IN_YEAR
-from ccnl_engine.payroll.taxation.rules_surtax import RunSurtax
-from ccnl_engine.payroll.withholding.models_recovery_plan import InstallmentRun
+from ccnl_engine.surtax.rules import RunSurtax
+from ccnl_engine.tax_credit.recovery.models import InstallmentRun
 
 if TYPE_CHECKING:
     from ccnl_engine.contribution.services import TfrAccrual
     from ccnl_engine.employment.category.models import WorkerCategory
     from ccnl_engine.employment.fact.inputs import PublicEndOfService
     from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
+    from ccnl_engine.family.inputs import FamilyComposition
+    from ccnl_engine.family.models import FamilyDeductionRules
     from ccnl_engine.fund.assistance.rules import (
         AssistanceContribution,
         AssistanceTerms,
     )
     from ccnl_engine.fund.solidarity.models import SolidarityFund
+    from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts
     from ccnl_engine.payroll.assurance.models_decision import (
         CalculationDecision,
         CalculationIssue,
     )
-    from ccnl_engine.payroll.family.inputs import FamilyComposition
-    from ccnl_engine.payroll.state.models_surtax_obligation import SurtaxObligation
     from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
-    from ccnl_engine.payroll.taxation.inputs_current_year import CurrentYearTaxFacts
-    from ccnl_engine.payroll.taxation.inputs_foreign_tax import ForeignTaxPaid
-    from ccnl_engine.payroll.taxation.rules_ulteriore_settlement import (
-        UlterioreSettlement,
-    )
-    from ccnl_engine.payroll.withholding.models_recovery_plan import RecoveryPlan
     from ccnl_engine.payroll.withholding.models_schedule import WithholdingPosition
     from ccnl_engine.pension_fund.rules import (
         PensionContribution,
         PensionFundTerms,
     )
+    from ccnl_engine.surtax.models import SurtaxRules
+    from ccnl_engine.surtax.obligation.models import SurtaxObligation
     from ccnl_engine.tax.annual.models import YearRules
-    from ccnl_engine.tax.family.models import FamilyDeductionRules
-    from ccnl_engine.tax.regime.models_variable_pay import PdRRules
-    from ccnl_engine.tax.surtax.models import SurtaxRules
+    from ccnl_engine.tax_credit.foreign.inputs import ForeignTaxPaid
+    from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
+    from ccnl_engine.tax_credit.ulteriore_detrazione.rules import (
+        UlterioreSettlement,
+    )
+    from ccnl_engine.variable_pay.models import PdRRules
 
 
 @dataclass(frozen=True)

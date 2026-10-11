@@ -15,11 +15,11 @@ from ccnl_engine.collection.validators import (
 from ccnl_engine.employer.inputs import EmployerProfile
 from ccnl_engine.employment.inputs import Employment
 from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
+from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts
 from ccnl_engine.payroll.period.inputs import PeriodFacts
 from ccnl_engine.payroll.period.models_run import PayrollRun, PayrollRunId, RunKind
 from ccnl_engine.payroll.state.models import PeriodState
-from ccnl_engine.payroll.taxation.inputs_current_year import CurrentYearTaxFacts
-from ccnl_engine.payroll.taxation.inputs_prior_year import PriorYearTaxFacts
 from ccnl_engine.payroll.year.inputs_calendar_override import CalendarOverride
 from ccnl_engine.payroll.year.models_payment import PaymentId
 from ccnl_engine.payroll.year.rules_tax_year import (

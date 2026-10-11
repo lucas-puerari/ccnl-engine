@@ -10,7 +10,12 @@ from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.context.models import EffectiveDateContext
+from ccnl_engine.family.inputs import (
+    DependentRelationship,
+    FamilyComposition,
+)
 from ccnl_engine.inputs import NoPensionFund
+from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
 from ccnl_engine.pay_item.facade import CompetencePeriod
 from ccnl_engine.pay_item.loaders import load_policy_resolver
 from ccnl_engine.pay_item.policies import PolicyContext
@@ -23,12 +28,7 @@ from ccnl_engine.payroll.event.facade import (
     WelfareEvent,
     WorkEvent,
 )
-from ccnl_engine.payroll.event.handlers_benefit import fringe_threshold_of
 from ccnl_engine.payroll.event.services_allocation import _process_events
-from ccnl_engine.payroll.family.inputs import (
-    DependentRelationship,
-    FamilyComposition,
-)
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.rules_run_decision import (
@@ -38,15 +38,15 @@ from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
 from ccnl_engine.payroll.state.models_ytd_account import FringeYtd
-from ccnl_engine.payroll.taxation.inputs_prior_year import PriorYearTaxFacts
 from ccnl_engine.payroll.year.services_competence import (
     calculate_competence_year,
 )
 from ccnl_engine.tax.annual.loaders_optional import load_variable_pay_rules
-from tests.integration.ccnl_engine.payroll.family.builders_dependents import (
+from ccnl_engine.variable_pay.benefit.handlers import fringe_threshold_of
+from tests.integration.ccnl_engine.family.builders import (
     declared_dependent,
 )
-from tests.knowledge.ccnl_engine.payroll.taxation.builders_current_year import (
+from tests.knowledge.ccnl_engine.irpef.other_income.builders import (
     employment_only,
 )
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire

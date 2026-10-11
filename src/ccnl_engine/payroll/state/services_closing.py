@@ -33,11 +33,11 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.withholding.inputs_shortfall_deferral import (
         DeferredShortfall,
     )
-    from ccnl_engine.payroll.withholding.models_recovery_plan import RecoveryPlan
-    from ccnl_engine.payroll.withholding.services_somma_esente import (
+    from ccnl_engine.payroll.year.models_payment import PaymentId
+    from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
+    from ccnl_engine.tax_credit.somma_esente.services import (
         SommaEsenteOutcome,
     )
-    from ccnl_engine.payroll.year.models_payment import PaymentId
 
 _ZERO = Decimal(0)
 _TRATTAMENTO = "trattamento_integrativo"

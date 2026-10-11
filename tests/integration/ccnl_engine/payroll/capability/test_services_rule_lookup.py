@@ -25,7 +25,7 @@ from ccnl_engine.tax.annual.loaders_optional import load_variable_pay_rules
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.period.services_run_context import RunContext
-    from ccnl_engine.tax.surtax.models import SurtaxRules
+    from ccnl_engine.surtax.models import SurtaxRules
 
 _YEAR = 2026
 _CCNL = load_ccnl("metalmeccanico-federmeccanica.json")

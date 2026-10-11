@@ -20,20 +20,20 @@ from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.payroll.state.models_accrual import EmploymentAccrualState
-from ccnl_engine.payroll.state.models_credit_account import TrattamentoAccount
 from ccnl_engine.payroll.state.models_obligation import (
     EmploymentObligations,
     RecoveryObligation,
 )
 from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
 from ccnl_engine.payroll.state.models_ytd_account import EarningsYtd
-from ccnl_engine.payroll.withholding.models_recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.year.models_payment import PaymentId
 from ccnl_engine.payroll.year.rules_close import close_tax_year
 from ccnl_engine.payroll.year.services_competence import (
     calculate_competence_year,
 )
-from tests.integration.ccnl_engine.payroll.taxation.builders_residence import resident
+from ccnl_engine.tax_credit.account.models import TrattamentoAccount
+from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
+from tests.integration.ccnl_engine.surtax.residence.builders import resident
 from tests.knowledge.ccnl_engine.payroll.state.builders_opening_state import (
     fresh_tax_year,
 )

@@ -9,7 +9,7 @@ is the opening taxable plus the tredicesima and nothing is projected:
 The reddito complessivo adds the income of
 :class:`~ccnl_engine.inputs.CurrentYearTaxFacts`.  Expected deductions are computed
 by hand from the text quoted in
-:mod:`tests.knowledge.ccnl_engine.payroll.family.oracles_2026`.
+:mod:`tests.knowledge.ccnl_engine.family.oracles`.
 """
 
 from __future__ import annotations
@@ -40,7 +40,7 @@ from ccnl_engine.inputs import (
     Permanent,
 )
 from ccnl_engine.results import BlockerCode, CalculationDecision, CalculationStatus
-from tests.integration.ccnl_engine.payroll.family.builders_dependents import (
+from tests.integration.ccnl_engine.family.builders import (
     declared_dependent,
 )
 from tests.integration.ccnl_engine.payroll.withholding.builders_withholding import (

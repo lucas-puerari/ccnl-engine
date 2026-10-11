@@ -37,13 +37,13 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
     from ccnl_engine.payroll.period.services_contract import RunContract
     from ccnl_engine.payroll.state.models import PeriodState
-    from ccnl_engine.payroll.withholding.models_recovery_plan import InstallmentRun
     from ccnl_engine.payroll.withholding.models_schedule import (
         WithholdingPosition,
         WithholdingSchedule,
     )
     from ccnl_engine.payroll.year.models_payment import PaymentId
-    from ccnl_engine.tax.regime.models_variable_pay import VariablePayRules
+    from ccnl_engine.tax_credit.recovery.models import InstallmentRun
+    from ccnl_engine.variable_pay.models import VariablePayRules
 
 
 @dataclass(frozen=True)

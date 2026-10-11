@@ -10,12 +10,12 @@ import pytest
 from ccnl_engine.contribution.results import ContributionBreakdown
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.irpef.results import TaxComputation
 from ccnl_engine.pay_item.facade import (
     BaseSalaryEarning,
     CompetencePeriod,
 )
 from ccnl_engine.payroll.capability.results import CapabilityReport
-from ccnl_engine.payroll.event.results_benefit import BenefitBreakdown
 from ccnl_engine.payroll.ledger.models import AccountKind, LedgerEntry
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
@@ -26,8 +26,8 @@ from ccnl_engine.payroll.state.models_ytd_account import (
     EarningsYtd,
     TaxYtd,
 )
-from ccnl_engine.payroll.taxation.results import TaxComputation
 from ccnl_engine.payroll.year.models_calendar import WorkCalendar
+from ccnl_engine.variable_pay.benefit.results import BenefitBreakdown
 from tests.integration.ccnl_engine.payroll.withholding.builders_withholding import (
     calendar_schedule,
 )

@@ -3,7 +3,7 @@
 Commercio L4, resident in Sassari (Sardegna), employed since 2020 and
 computed by the engine from January 2026, with no surtax imported from the
 previous provider.  The expected amounts come from the independent oracle
-:mod:`tests.knowledge.ccnl_engine.payroll.taxation.oracles_surtax_2026` on the annual
+:mod:`tests.knowledge.ccnl_engine.surtax.oracles` on the annual
 taxable
 income each conguaglio reports; the IRPEF oracle confirms that net IRPEF
 is due.
@@ -45,14 +45,16 @@ from ccnl_engine.results import CalculationStatus
 from tests.integration.ccnl_engine.payroll.year.builders_next_year_repository import (
     NextYearRepository,
 )
+from tests.knowledge.ccnl_engine.irpef.oracles import net_irpef
+from tests.knowledge.ccnl_engine.irpef.other_income.builders import (
+    employment_only,
+)
 from tests.knowledge.ccnl_engine.payroll.state.builders_opening_state import (
     fresh_tax_year,
 )
-from tests.knowledge.ccnl_engine.payroll.taxation.builders_current_year import (
-    employment_only,
-)
-from tests.knowledge.ccnl_engine.payroll.taxation.oracles_irpef_2026 import net_irpef
-from tests.knowledge.ccnl_engine.payroll.taxation.oracles_surtax_2026 import (
+from tests.knowledge.ccnl_engine.seniority.builders import new_hire
+from tests.knowledge.ccnl_engine.severance.builders import no_tfr_fund
+from tests.knowledge.ccnl_engine.surtax.oracles import (
     ADVANCE_MONTHS,
     BALANCE_MONTHS,
     installments,
@@ -60,8 +62,6 @@ from tests.knowledge.ccnl_engine.payroll.taxation.oracles_surtax_2026 import (
     municipal_sassari,
     regional_sardegna,
 )
-from tests.knowledge.ccnl_engine.seniority.builders import new_hire
-from tests.knowledge.ccnl_engine.severance.builders import no_tfr_fund
 
 if TYPE_CHECKING:
     from ccnl_engine import CompetenceYearResult, PeriodResult

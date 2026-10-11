@@ -24,19 +24,19 @@ from ccnl_engine.catalog.loaders import (
 )
 from ccnl_engine.errors import DataIntegrityError
 from ccnl_engine.knowledge.loaders_manifest import read_resource
+from ccnl_engine.surtax import loaders as surtax_loaders
+from ccnl_engine.surtax.loaders import _load_surtax_rules_cached
 from ccnl_engine.tax.annual import loaders_resource as tax_resource_reader_mod
 from ccnl_engine.tax.annual.loaders import (
     _load_year_rules_cached,
     load_year_rules,
 )
-from ccnl_engine.tax.surtax import loaders as surtax_loaders
-from ccnl_engine.tax.surtax.loaders import _load_surtax_rules_cached
 from tests.unit.ccnl_engine.builders import make_ccnl_dict
 
 LOADER_PATHS = (
     "ccnl_engine.catalog.loaders",
     "ccnl_engine.tax.annual.loaders_resource",
-    "ccnl_engine.tax.surtax.loaders",
+    "ccnl_engine.surtax.loaders",
 )
 
 

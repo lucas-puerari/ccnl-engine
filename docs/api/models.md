@@ -43,7 +43,7 @@ behind each model.
 
 ## Fiscal
 
-::: ccnl_engine.payroll.taxation.types_jurisdiction
+::: ccnl_engine.surtax.jurisdiction.types
     options:
       members:
         - REGION_CODES

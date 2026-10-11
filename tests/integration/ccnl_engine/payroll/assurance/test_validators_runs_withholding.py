@@ -13,6 +13,7 @@ from functools import cache
 from typing import TYPE_CHECKING
 
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
+from ccnl_engine.irpef.results import TaxComputation, TaxLineItem
 from ccnl_engine.payroll.assurance.types import RunFacts
 from ccnl_engine.payroll.assurance.validators_withholding import (
     check_irpef_annual_reconciliation,
@@ -26,11 +27,10 @@ from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.payroll.state.models_obligation import ULTERIORE_RECOVERY
 from ccnl_engine.payroll.state.models_ytd_account import WithholdingShortfall
-from ccnl_engine.payroll.taxation.results import TaxComputation, TaxLineItem
 from ccnl_engine.payroll.year.services_competence import (
     calculate_competence_year,
 )
-from tests.knowledge.ccnl_engine.payroll.taxation.oracles_irpef_2026 import (
+from tests.knowledge.ccnl_engine.irpef.oracles import (
     net_irpef as oracle_net_irpef,
 )
 from tests.knowledge.ccnl_engine.payroll.withholding.oracles_2026 import (

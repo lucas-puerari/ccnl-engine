@@ -18,11 +18,6 @@ from typing import TYPE_CHECKING, final
 from ccnl_engine.collection.validators import items_of_type, tuple_of
 from ccnl_engine.employment.spell.models import EmploymentSpell, spells_of
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.state.models_credit_account import (
-    SommaEsenteAccount,
-    TrattamentoAccount,
-    UlterioreDetrazioneAccount,
-)
 from ccnl_engine.payroll.state.models_obligation import EmploymentObligations
 from ccnl_engine.payroll.state.models_ytd_account import (
     EarningsYtd,
@@ -32,6 +27,11 @@ from ccnl_engine.payroll.state.models_ytd_account import (
     WithholdingShortfall,
 )
 from ccnl_engine.payroll.year.models_payment import PaymentId
+from ccnl_engine.tax_credit.account.models import (
+    SommaEsenteAccount,
+    TrattamentoAccount,
+    UlterioreDetrazioneAccount,
+)
 from ccnl_engine.validators import (
     FieldSpec,
     require_instances,

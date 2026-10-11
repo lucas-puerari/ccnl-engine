@@ -18,18 +18,17 @@ from ccnl_engine.contribution.additional_ivs.services import (
 from ccnl_engine.contribution.domestic.services import _domestic_hourly_rate
 from ccnl_engine.contribution.enam.services import enam_stipendio
 from ccnl_engine.employment.spell.models import spell_days
+from ccnl_engine.family.child.rules import (
+    children_within_income_limit,
+)
+from ccnl_engine.family.inputs import DependentRelationship
 from ccnl_engine.fund.assistance.policies import assistance_terms
 from ccnl_engine.fund.contractual.rules import contractual_run
 from ccnl_engine.payroll.amount.types import PublicTerms, _AmountsInput
 from ccnl_engine.payroll.event.facade import FringeEvent
-from ccnl_engine.payroll.event.handlers_benefit import fringe_threshold_of
 from ccnl_engine.payroll.event.services_allocation import (
     _process_events,
     worker_facts_of,
-)
-from ccnl_engine.payroll.family.inputs import DependentRelationship
-from ccnl_engine.payroll.family.rules_child import (
-    children_within_income_limit,
 )
 from ccnl_engine.payroll.period.models_run import RunKind
 from ccnl_engine.payroll.period.services_shared import _int_value
@@ -42,17 +41,18 @@ from ccnl_engine.pension_fund.decision.services import pension_terms
 from ccnl_engine.severance.provision.services import (
     tfr_treasury_fund,
 )
+from ccnl_engine.variable_pay.benefit.handlers import fringe_threshold_of
 from ccnl_engine.working_time.overtime.policies import CCNLOvertimeBands
 
 if TYPE_CHECKING:
+    from ccnl_engine.family.models import FamilyDeductionRules
     from ccnl_engine.pay_item.facade import PayItem
     from ccnl_engine.payroll.event.handlers_totals import _EventTotals
     from ccnl_engine.payroll.ledger.models import LedgerEntry
     from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
     from ccnl_engine.payroll.period.services_run_context import RunContext
-    from ccnl_engine.payroll.withholding.models_recovery_plan import RecoveryPlan
-    from ccnl_engine.tax.family.models import FamilyDeductionRules
-    from ccnl_engine.tax.surtax.models import SurtaxRules
+    from ccnl_engine.surtax.models import SurtaxRules
+    from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
 
 __all__ = ["amounts_input", "variable_events"]
 

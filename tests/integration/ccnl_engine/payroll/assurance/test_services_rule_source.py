@@ -11,6 +11,10 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.fact.inputs import EmploymentPeriod
+from ccnl_engine.family.inputs import (
+    DependentRelationship,
+    FamilyComposition,
+)
 from ccnl_engine.inputs import NoPensionFund, WorkerCategory
 from ccnl_engine.payroll.assurance.models import BlockerCode
 from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
@@ -20,10 +24,6 @@ from ccnl_engine.payroll.assurance.services_rule_source import (
     missing_source_issues,
     weakest_by_capability,
 )
-from ccnl_engine.payroll.family.inputs import (
-    DependentRelationship,
-    FamilyComposition,
-)
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.repositories import (
     BundledKnowledgeRepository,
@@ -32,17 +32,17 @@ from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus, RuleProvenance
-from tests.integration.ccnl_engine.payroll.family.builders_dependents import (
+from tests.integration.ccnl_engine.family.builders import (
     declared_dependent,
 )
-from tests.integration.ccnl_engine.payroll.taxation.builders_prior_year import (
+from tests.integration.ccnl_engine.irpef.declaration.builders import (
     RENEWAL_WAIVED,
 )
-from tests.integration.ccnl_engine.payroll.taxation.builders_residence import (
+from tests.integration.ccnl_engine.surtax.residence.builders import (
     COMUNE_BELFIORE,
     REGIONE,
 )
-from tests.knowledge.ccnl_engine.payroll.taxation.builders_current_year import (
+from tests.knowledge.ccnl_engine.irpef.other_income.builders import (
     employment_only,
 )
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire

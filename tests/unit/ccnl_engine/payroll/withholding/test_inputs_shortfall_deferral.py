@@ -14,8 +14,8 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
 from ccnl_engine.payroll.state.models_obligation import EmploymentObligations
-from ccnl_engine.payroll.taxation.inputs_prior_year import PriorYearTaxFacts
 from ccnl_engine.payroll.withholding.inputs_shortfall_deferral import (
     DeferredInstallment,
     DeferredShortfall,

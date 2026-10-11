@@ -10,8 +10,8 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.payroll.period.models_run import RunKind
-from ccnl_engine.payroll.withholding.models_recovery_plan import InstallmentRun
 from ccnl_engine.payroll.withholding.services_cap import ends_in_year
+from ccnl_engine.tax_credit.recovery.models import InstallmentRun
 
 if TYPE_CHECKING:
     from decimal import Decimal

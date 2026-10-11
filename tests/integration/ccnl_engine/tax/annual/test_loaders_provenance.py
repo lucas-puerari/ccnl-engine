@@ -5,12 +5,12 @@ from __future__ import annotations
 import pytest
 
 from ccnl_engine.agreement.facade import TaxSector
+from ccnl_engine.surtax.loaders import load_surtax_rules
 from ccnl_engine.tax.annual.loaders import load_year_rules
 from ccnl_engine.tax.annual.loaders_optional import (
     load_family_deduction_rules,
     load_variable_pay_rules,
 )
-from ccnl_engine.tax.surtax.loaders import load_surtax_rules
 
 _YEAR = 2026
 

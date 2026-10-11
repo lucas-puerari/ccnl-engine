@@ -20,7 +20,7 @@ from ccnl_engine.payroll.state.rules_opening_history import (
     opening_gap,
     opening_state_issue,
 )
-from ccnl_engine.payroll.withholding.models_recovery_plan import RecoveryPlan
+from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
 
 _JUNE = PayrollRunId(2026, 6, RunKind.REGULAR)
 _JANUARY = PayrollRunId(2026, 1, RunKind.REGULAR)

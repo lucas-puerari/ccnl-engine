@@ -15,8 +15,8 @@ from ccnl_engine.payroll.state.models_obligation import (
 )
 from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
 from ccnl_engine.payroll.state.models_ytd_account import EarningsYtd
-from ccnl_engine.payroll.withholding.models_recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.year.models_payment import PaymentId
+from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
 
 _PAYMENTS = "TaxCashState.payments"
 
