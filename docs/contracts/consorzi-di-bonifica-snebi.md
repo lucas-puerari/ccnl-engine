@@ -8,8 +8,6 @@
 | **Last renewal** | 2025-05-21 |
 | **Workers (est.)** | ~4k |
 | **Ruleset version** | `2026.2` |
-| **Extraction** | 🤖 AI-assisted |
-| **Verification** | 🔴 Unverified |
 | **Readiness** | 🧪 Exploratory |
 
 [← Contracts index](index.md)
@@ -21,8 +19,6 @@
     - FILBI-UIL
 
 ## Coverage
-
-### Features
 
 Derived from the capability registry. The scenario features and the ones outside the input are the same for every contract: see the [capability matrix](capability-matrix.md).
 
@@ -36,26 +32,25 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, inps_employer, seniority |
 
-### Verifica
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
-| | |
-|---|---|
-| **Readiness** | 🧪 Exploratory |
-| **Confidence** | 🔴 Unverified |
-| **Last human review** | — |
+## Assurance
 
-### Freschezza
+| Axis | Value | What it says |
+|---|---|---|
+| **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
+| **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
+| **Rule provenance** | 0 verified / 56 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
+| **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
+
+## Freshness
 
 | | |
 |---|---|
 | **Last renewal** | 2025-05-21 |
-| **Last verified** | — |
+| **Last human review** | — |
 | **Latest salary tranche** | 2026-01-01 |
-
-### Semplificazioni note
-
-3 semplificazioni documentate.
-Vedi [Known simplifications](#known-simplifications) per i dettagli.
 
 ## Salary table
 
@@ -182,10 +177,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 ## Raw data
 
-??? note "Full JSON (provenance artifact)"
-    ```json
-    --8<-- "src/ccnl_engine/knowledge/agreement/consorzi-di-bonifica-snebi.json"
-    ```
+The contract file this page is generated from: [`agreement/consorzi-di-bonifica-snebi.json`](https://github.com/lucas-puerari/ccnl-engine/blob/main/src/ccnl_engine/knowledge/agreement/consorzi-di-bonifica-snebi.json).
 
 ## Usage example
 

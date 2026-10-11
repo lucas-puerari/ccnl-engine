@@ -8,8 +8,6 @@
 | **Last renewal** | — |
 | **Workers (est.)** | ~25k |
 | **Ruleset version** | `2026.2` |
-| **Extraction** | 🤖 AI-assisted |
-| **Verification** | 🔴 Unverified |
 | **Readiness** | 🧪 Exploratory |
 
 [← Contracts index](index.md)
@@ -23,8 +21,6 @@
 
 ## Coverage
 
-### Features
-
 Derived from the capability registry. The scenario features and the ones outside the input are the same for every contract: see the [capability matrix](capability-matrix.md).
 
 | | Core payroll path of a contract |
@@ -37,26 +33,25 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | seniority |
 
-### Verifica
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
-| | |
-|---|---|
-| **Readiness** | 🧪 Exploratory |
-| **Confidence** | 🔴 Unverified |
-| **Last human review** | — |
+## Assurance
 
-### Freschezza
+| Axis | Value | What it says |
+|---|---|---|
+| **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
+| **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
+| **Rule provenance** | 0 verified / 43 derived / 2 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
+| **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
+
+## Freshness
 
 | | |
 |---|---|
 | **Last renewal** | — |
-| **Last verified** | — |
+| **Last human review** | — |
 | **Latest salary tranche** | 2027-01-01 |
-
-### Semplificazioni note
-
-1 semplificazione documentata.
-Vedi [Known simplifications](#known-simplifications) per i dettagli.
 
 ## Salary table
 
@@ -174,10 +169,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 ## Raw data
 
-??? note "Full JSON (provenance artifact)"
-    ```json
-    --8<-- "src/ccnl_engine/knowledge/agreement/scuole-private-laiche-aninsei.json"
-    ```
+The contract file this page is generated from: [`agreement/scuole-private-laiche-aninsei.json`](https://github.com/lucas-puerari/ccnl-engine/blob/main/src/ccnl_engine/knowledge/agreement/scuole-private-laiche-aninsei.json).
 
 ## Usage example
 
