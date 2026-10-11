@@ -1,7 +1,7 @@
-# Migration guide: inputs and legacy APIs
+# Migration: 0.5 to 0.6, inputs and legacy APIs
 
-Continues [Migration guide: earlier releases](migration-earlier.md); the
-newest changes are on the [Migration guide](migration.md).
+Continues the [earlier changes](earlier.md); the newest are on the
+[first page](index.md).
 
 ## Year-end shortfall deferral and foreign tax credit
 
@@ -9,8 +9,8 @@ newest changes are on the [Migration guide](migration.md).
 written request to defer the IRPEF the pay cannot cover (art. 23 c. 3 DPR
 600/1973) and the foreign taxes paid on employment income of the year
 (art. 165 TUIR). Without them every result is unchanged. See
-[Fiscal: written deferral](engine/fiscal.md#written-deferral-of-the-year-end-shortfall)
-and [Fiscal: foreign tax credit](engine/fiscal.md#foreign-tax-credit-at-the-conguaglio).
+[Fiscal: written deferral](../../engine/fiscal.md#written-deferral-of-the-year-end-shortfall)
+and [Fiscal: foreign tax credit](../../engine/fiscal.md#foreign-tax-credit-at-the-conguaglio).
 
 | Change | What to do |
 |---|---|
@@ -31,7 +31,7 @@ and [Fiscal: foreign tax credit](engine/fiscal.md#foreign-tax-credit-at-the-cong
 Emilia-Romagna rates under Veneto and the Lombardia rates under Toscana).
 It is now taken row by row from the MEF 2026 pages, with the income-only
 provisions (exemptions, whole-income rates, detrazioni) computed; see
-[Fiscal: regional rates of 2026](engine/surtax.md#regional-rates-of-2026).
+[Fiscal: regional rates of 2026](../../engine/surtax.md#regional-rates-of-2026).
 **This changes the regional surtax of almost every region.** Annual
 regional surtax on a taxable income of 30,000 euro:
 
@@ -85,7 +85,7 @@ March to November (D.Lgs. 446/1997 art. 50 c. 4; D.Lgs. 360/1998 art. 1
 cc. 4-5). The last run of the employment withholds everything at once. It
 replaces the equal split of the projected annual surtax over the slots of
 the same year. See
-[Fiscal: when the surtax is withheld](engine/surtax.md#when-the-surtax-is-withheld).
+[Fiscal: when the surtax is withheld](../../engine/surtax.md#when-the-surtax-is-withheld).
 
 **This changes net pay.** An employment the engine computes from January
 2026 withholds no surtax in 2026 unless the surtax the 2025 conguaglio
@@ -126,7 +126,7 @@ the municipal surtax and never its saldo.
 The ledger now keeps IRPEF withheld, credits paid, credits recovered and
 IRPEF refunded on separate accounts, every entry non-negative, and tags
 each tax and credit entry with its F24 codice tributo when verified (see
-[Ledger accounts and F24 remittance](engine/payroll-state.md#ledger-accounts-and-f24-remittance)).
+[Ledger accounts and F24 remittance](../../engine/payroll-state.md#ledger-accounts-and-f24-remittance)).
 
 | Change | What to do |
 |---|---|
@@ -147,7 +147,7 @@ Net pay and employer cost are unchanged.
 A household employer is not a withholding agent (art. 23 c. 1 DPR 600/1973;
 art. 33 c. 1 D.Lgs. 33/2025 from 2027). The domestic CCNLs now withhold no
 IRPEF or surtax and pay no tax credit: see
-[Domestic work](engine/domestic-work.md#no-withholding-on-the-payslip).
+[Domestic work](../../engine/domestic-work.md#no-withholding-on-the-payslip).
 
 | Change | What to do |
 |---|---|
@@ -162,7 +162,7 @@ Amounts change only for the two domestic CCNLs.
 ## Provenance status required on every rule record
 
 Every `provenance` record now declares a `status`: `verified`, `derived`,
-`assumed` or `missing` (see [Provenance](trust/provenance.md)). Bundled data
+`assumed` or `missing` (see [Provenance](../../trust/provenance.md)). Bundled data
 is migrated; caller-supplied data must add it.
 
 | Change | What to do |
@@ -497,7 +497,7 @@ the obligations that survive the year change.
 - The reconciliation invariants have descriptive codes instead of `I1` to
   `I19` and `L1` to `L4` (for example `net_identity` for `I9`,
   `employee_contribution_non_negative` for `L3`); see the
-  [glossary](domain/glossary.md#reconciliation-invariants). The code is the
+  [glossary](../../domain/glossary.md#reconciliation-invariants). The code is the
   `invariant_id` of a `ReconciliationViolation` and appears as `[code]` in
   the `DataIntegrityError` message.
 - `legal_invariants` is renamed `sign_invariants`; `reconcile()` takes an
@@ -519,7 +519,7 @@ the obligations that survive the year change.
   IRPEF and surtax due no longer raise `OutOfScopeError`: the taxes are
   withheld up to the pay left and the rest is carried in
   `state.ytd.shortfall` to the next runs (see
-  [Fiscal: shortfall](engine/fiscal.md#pay-that-does-not-cover-the-tax)).
+  [Fiscal: shortfall](../../engine/fiscal.md#pay-that-does-not-cover-the-tax)).
   Metalmeccanico C3 with 160 absence hours in January 2026 now nets
   0.00 EUR, withholding 143.25 of the 162.33 EUR of IRPEF due, and February
   withholds the 19.08 EUR carried. `OutOfScopeError` (reason

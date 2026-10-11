@@ -1,8 +1,8 @@
-# Migration guide
+# Migration: 0.5 to 0.6
 
-Changes are listed newest first. Older changes are on
-[Migration guide: earlier releases](migration-earlier.md) and
-[Migration guide: inputs and legacy APIs](migration-legacy.md).
+From 0.5.1, the latest published release, to 0.6.0, not released yet.
+Changes are listed newest first and continue on
+[earlier changes](earlier.md) and [inputs and legacy APIs](legacy.md).
 
 ## Shared CNEL codes
 
@@ -14,7 +14,7 @@ Changes are listed newest first. Older changes are on
 
 | Before | After |
 |---|---|
-| Modules under `ccnl_engine.contract`, `ccnl_engine.tax` and `ccnl_engine.payroll`, with `<role>_<subject>.py` names | One package per concept (`ccnl_engine.sickness`, `ccnl_engine.contribution`, `ccnl_engine.irpef`, ...), each file named after its role. Every old path and its target are in [Production map](engine/architecture-contract-map.md); there are no aliases. The root, `ccnl_engine.inputs`, `.events`, `.results` and `.catalog` keep their imports |
+| Modules under `ccnl_engine.contract`, `ccnl_engine.tax` and `ccnl_engine.payroll`, with `<role>_<subject>.py` names | One package per concept (`ccnl_engine.sickness`, `ccnl_engine.contribution`, `ccnl_engine.irpef`, ...), each file named after its role. Every old path and its target are in [Production map](../../engine/architecture-contract-map.md); there are no aliases. The root, `ccnl_engine.inputs`, `.events`, `.results` and `.catalog` keep their imports |
 | `ccnl_engine.primitives`, `ccnl_engine.validation`, `ccnl_engine.validation_collection` | `ccnl_engine.types`, `ccnl_engine.validators`, `ccnl_engine.collection.validators` |
 | Knowledge datasets `contract/agreement`, `social_security/contribution`, `social_security/sickness`, `taxation/annual`, `taxation/exemption`, `taxation/family`, `taxation/severance`, `taxation/variable_pay`, `capability/<year>/catalog.json`, `policy` | `agreement`, `contribution`, `sickness/indemnity`, `sector`, `tax_credit/somma_esente`, `family`, `severance/revaluation`, `variable_pay`, `capability/registry/<year>.json`, `pay_item`. The manifest `dataset_id` follows the path; content, ruleset ids and `ccnl_slug` values are unchanged |
 | `ccnl_engine.tax.annual` loaders; `ccnl_engine.knowledge.loaders_manifest`, `loaders_resource`, `validators` and `facade` | `ccnl_engine.sector` (the rules of a tax sector and year) and `ccnl_engine.bundle` (manifest, resources, hash and label checks, bundle version): `ccnl_engine.knowledge` holds data only. One loader per concept for the yearly tables (`sickness.indemnity.loaders`, `variable_pay.loaders`, `family.loaders`, `severance.loaders`, `tax_credit.somma_esente.loaders`) |
@@ -525,7 +525,7 @@ The surcharge of L. 92/2012 art. 2 c. 28 was a flat 1.4% on every
 `FixedTerm`. It now adds 0.5% per renewal, is not charged in the cases of
 c. 29 nor to the operai agricoli (c. 3), and blocks the run while a fact it
 depends on is unknown (see
-[Employment types](domain/employment-types.md#naspi-surcharge)).
+[Employment types](../../domain/employment-types.md#naspi-surcharge)).
 
 | Before | After |
 |---|---|
@@ -542,7 +542,7 @@ L. 199/2025 art. 1 c. 7 taxes at 5% the 2026 increments of renewals signed
 from 2024 to 2026, which a renewal usually pays inside the minimo. The
 engine assessed the regime only on a `BonusEvent` of kind
 `contract_renewal`; see
-[Substitute-tax regimes](engine/substitute-tax-regimes.md#increments-paid-inside-the-minimo).
+[Substitute-tax regimes](../../engine/substitute-tax-regimes.md#increments-paid-inside-the-minimo).
 
 | Before | After |
 |---|---|
@@ -554,7 +554,7 @@ engine assessed the regime only on a `BonusEvent` of kind
 Several defaults selected a branch without a blocker, so the true fact was the
 only path that blocked. Each default now means "not known" and blocks where
 the fact decides an amount (see
-[Defaults of the public inputs](trust/confidence.md)).
+[Defaults of the public inputs](../../trust/confidence.md)).
 
 | Before | After |
 |---|---|
