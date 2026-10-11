@@ -45,7 +45,7 @@ from ccnl_engine.payroll.withholding.models_recovery_plan import (
     PostedInstallment,
     RecoveryPlan,
 )
-from ccnl_engine.validation import (
+from ccnl_engine.validators import (
     parse_enum,
     reject,
     require_instance,

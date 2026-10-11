@@ -35,7 +35,7 @@ from ccnl_engine.payroll.year.services_run import plan_year
 if TYPE_CHECKING:
     from collections.abc import Iterable
 
-    from ccnl_engine.contract.identity.facade import CCNL
+    from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.payroll.period.models_run import PayrollRun, PayrollRunId
     from ccnl_engine.payroll.period.ports import KnowledgeRepository
     from ccnl_engine.payroll.year.inputs_competence_plan import CompetenceYearPlan

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Literal
 
-from ccnl_engine.contract.catalog import services as _catalog
+from ccnl_engine.catalog import services as _catalog
 from ccnl_engine.knowledge.facade import __version__
 from ccnl_engine.payroll.period.services import (
     calculate_period as _calculate_period,
@@ -30,7 +30,7 @@ from ccnl_engine.payroll.year.services_tax_year import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.catalog.loaders_discovery import (
+    from ccnl_engine.catalog.loaders import (
         ContractSummary,
         LevelSummary,
     )
@@ -47,7 +47,7 @@ if TYPE_CHECKING:
         CompetenceYearResult,
         TaxYearResult,
     )
-    from ccnl_engine.provenance.ruleset.models_assurance import RulesetAssurance
+    from ccnl_engine.provenance.ruleset.assurance.models import RulesetAssurance
 
 __all__ = ["PayrollEngine"]
 

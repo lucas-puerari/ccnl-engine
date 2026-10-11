@@ -9,7 +9,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from ccnl_engine.provenance.ruleset.models import (
     RulesetIdentity,  # noqa: TC001
 )
-from ccnl_engine.provenance.source.models_chain import RuleProvenance  # noqa: TC001
+from ccnl_engine.provenance.source.rule.models import RuleProvenance  # noqa: TC001
 from ccnl_engine.tax.regime.models import (
     PreferentialTaxRegime,  # noqa: TC001
 )

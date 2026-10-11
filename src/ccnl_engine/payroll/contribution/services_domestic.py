@@ -5,7 +5,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.identity.rules_validity import rule_scope
+from ccnl_engine.agreement.validity.rules import rule_scope
 from ccnl_engine.errors import (
     DataIntegrityError,
     MissingRequiredFactError,
@@ -24,7 +24,7 @@ from ccnl_engine.payroll.period.services_shared import _ZERO
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.contract.identity.facade import CCNL
+    from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.payroll.employment.inputs import Contract
     from ccnl_engine.tax.annual.models import YearRules
     from ccnl_engine.tax.contribution.models_domestic import DomesticInpsRates

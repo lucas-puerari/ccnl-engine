@@ -41,7 +41,7 @@ from typing import final
 
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.amount.policies_rounding import money
-from ccnl_engine.validation import (
+from ccnl_engine.validators import (
     reject,
     require_date,
     require_decimal,

@@ -4,8 +4,8 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.primitives import Bracket
 from ccnl_engine.tax.income.models import IrpefBracket
+from ccnl_engine.types import Bracket
 
 
 class TestBracketRateConstraint:

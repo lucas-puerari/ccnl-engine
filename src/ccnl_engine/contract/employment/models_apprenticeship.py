@@ -13,8 +13,8 @@ from typing import Annotated, Literal, Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from ccnl_engine.primitives import validate_open_sequence
-from ccnl_engine.provenance.source.models_chain import RuleProvenance
+from ccnl_engine.provenance.source.rule.models import RuleProvenance
+from ccnl_engine.types import validate_open_sequence
 
 _ONE: Decimal = Decimal(1)
 _ZERO: Decimal = Decimal(0)

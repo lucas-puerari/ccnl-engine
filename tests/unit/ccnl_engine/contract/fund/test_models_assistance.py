@@ -8,13 +8,13 @@ from decimal import Decimal
 import pytest
 from pydantic import ValidationError
 
-from ccnl_engine.contract.fund.models_assistance import AssistanceContribution
-from ccnl_engine.contract.identity.rules_validity import (
+from ccnl_engine.agreement.validity.rules import (
     SalaryGapKind,
     TimeSeries,
     ValidityPeriod,
 )
-from ccnl_engine.provenance.source.models_chain import ProvenanceStatus, RuleProvenance
+from ccnl_engine.contract.fund.models_assistance import AssistanceContribution
+from ccnl_engine.provenance.source.rule.models import ProvenanceStatus, RuleProvenance
 
 
 def _series(value: str) -> TimeSeries:

@@ -14,14 +14,14 @@ from typing import Any, cast
 
 import pytest
 
-from ccnl_engine.contract.catalog import loaders as contract_loaders
-from ccnl_engine.contract.catalog.loaders import (
+from ccnl_engine.agreement.facade import TaxSector
+from ccnl_engine.catalog import loaders as contract_loaders
+from ccnl_engine.catalog.loaders import (
     _verify_payload as _verify_contract_hash,
 )
-from ccnl_engine.contract.catalog.loaders import (
+from ccnl_engine.catalog.loaders import (
     load_ccnl as load_ccnl_from_bundle,
 )
-from ccnl_engine.contract.identity.facade import TaxSector
 from ccnl_engine.errors import DataIntegrityError
 from ccnl_engine.knowledge.loaders_manifest import read_resource
 from ccnl_engine.tax.annual import loaders_resource as tax_resource_reader_mod
@@ -34,7 +34,7 @@ from ccnl_engine.tax.surtax.loaders import _load_surtax_rules_cached
 from tests.unit.ccnl_engine.builders import make_ccnl_dict
 
 LOADER_PATHS = (
-    "ccnl_engine.contract.catalog.loaders",
+    "ccnl_engine.catalog.loaders",
     "ccnl_engine.tax.annual.loaders_resource",
     "ccnl_engine.tax.surtax.loaders",
 )

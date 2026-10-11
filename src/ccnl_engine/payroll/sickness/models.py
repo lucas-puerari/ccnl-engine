@@ -18,7 +18,7 @@ from dataclasses import dataclass, replace
 from datetime import date, timedelta
 
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.validation import (
+from ccnl_engine.validators import (
     require_bool,
     require_date,
     require_str,

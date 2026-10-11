@@ -29,7 +29,7 @@ from ccnl_engine.payroll.termination.services_tfr_rule import (
     revaluation_rule_name,
     revaluation_rules,
 )
-from ccnl_engine.provenance.source.models_chain import RuleProvenance
+from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.period.services_run_context import RunContext

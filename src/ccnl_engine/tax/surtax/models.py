@@ -12,9 +12,9 @@ from decimal import Decimal
 from pydantic import BaseModel, ConfigDict, Field
 
 from ccnl_engine.provenance.ruleset.models import RulesetIdentity
+from ccnl_engine.provenance.source.extraction.models import ExtractionTrace
 from ccnl_engine.provenance.source.models import SourceDocument
-from ccnl_engine.provenance.source.models_chain import RuleProvenance
-from ccnl_engine.provenance.source.models_extraction import ExtractionTrace
+from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from ccnl_engine.tax.surtax.models_table import ComunaleEntry, RegionaleEntry
 
 

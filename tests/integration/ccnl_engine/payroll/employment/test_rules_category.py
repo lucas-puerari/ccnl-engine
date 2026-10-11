@@ -6,7 +6,7 @@ from datetime import date
 
 import pytest
 
-from ccnl_engine.contract.catalog.loaders import load_ccnl
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.contract.employment.models_category import (
     WorkerCategory,
     parse_worker_category,

@@ -11,8 +11,8 @@ from datetime import date
 from decimal import Decimal
 from typing import Any
 
+from ccnl_engine.agreement.facade import CCNL
 from ccnl_engine.comparison.ruleset.services import diff_ccnl
-from ccnl_engine.contract.identity.facade import CCNL
 from tests.unit.ccnl_engine.builders import TEST_PROV, make_ccnl_dict
 
 # ---------------------------------------------------------------------------

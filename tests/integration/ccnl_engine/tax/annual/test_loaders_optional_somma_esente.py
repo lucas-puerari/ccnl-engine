@@ -8,10 +8,10 @@ from unittest.mock import patch
 
 import pytest
 
-from ccnl_engine.contract.identity.facade import TaxSector
+from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.errors import DataIntegrityError, UnsupportedTaxYearError
 from ccnl_engine.provenance.ruleset.models import SourceType
-from ccnl_engine.provenance.source.models_chain import ProvenanceStatus
+from ccnl_engine.provenance.source.rule.models import ProvenanceStatus
 from ccnl_engine.tax.annual.loaders import load_year_rules
 from ccnl_engine.tax.annual.loaders_optional import load_somma_esente_rules
 

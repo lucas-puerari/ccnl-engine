@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from ccnl_engine.contract.identity.facade import TaxSector
+from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.tax.annual.loaders import load_year_rules
 from ccnl_engine.tax.annual.loaders_optional import (
     load_family_deduction_rules,

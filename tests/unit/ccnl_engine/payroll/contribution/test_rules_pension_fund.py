@@ -14,7 +14,7 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.contract.catalog.loaders import load_ccnl
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.contract.employment.models_category import WorkerCategory
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.contribution.inputs_pension_fund import PensionFundEnrolment
@@ -28,7 +28,7 @@ from ccnl_engine.payroll.contribution.rules_pension_fund import (
 from ccnl_engine.tax.pension.models import ComplementaryPensionRules
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.identity.facade import CCNL
+    from ccnl_engine.agreement.facade import CCNL
 
 _RULES = ComplementaryPensionRules(
     deduction_cap=Decimal("5300.00"), solidarity_rate=Decimal("0.10")

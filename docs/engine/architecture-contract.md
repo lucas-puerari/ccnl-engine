@@ -52,7 +52,7 @@ The contract has four pages:
 |---|---|
 | Package root | `src/ccnl_engine/__init__.py` stays, with its docstring and its re-exports. |
 | Public API | The root and the namespaces `ccnl_engine.inputs`, `ccnl_engine.events`, `ccnl_engine.results` and `ccnl_engine.catalog` keep their import paths, as pinned by `tests/integration/ccnl_engine/test_public_exports.py`. |
-| `catalog` | Becomes the package `catalog/`: its `__init__.py` re-exports the namespace from `catalog/facade.py`, the second marker allowed to hold code. |
+| `catalog` | Becomes the package `catalog/`: its `__init__.py` holds the public namespace, like the package root, the only other `__init__.py` allowed to hold code; the catalog modules (`loaders`, `models`, `services`) sit next to it. |
 | Root modules | `api`, `inputs`, `results`, `events`, `errors`, `version`, plus the roles `types` (today `primitives`) and `validators` (today `validation`); `validation_collection` becomes `collection/validators.py`. No alias: nothing outside the package imports the old names. |
 | Deep imports | Paths below the five public modules are not public. Moves carry no shim and no deprecation alias. |
 | Knowledge data | The JSON bundle stays in one tree, `knowledge/`, with its datasets named after the concepts that read them. |

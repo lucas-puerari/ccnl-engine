@@ -21,7 +21,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, final
 
 from ccnl_engine.payroll.withholding.models_recovery_plan import RecoveryPlan
-from ccnl_engine.validation import (
+from ccnl_engine.validators import (
     reject,
     require_instance,
     require_int,

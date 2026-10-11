@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import pytest
 
-from ccnl_engine.contract.catalog.loaders import load_ccnl
-from ccnl_engine.contract.identity.facade import CCNL, CoverageNote, NoteKind
+from ccnl_engine.agreement.facade import CCNL, CoverageNote, NoteKind
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.errors import DataIntegrityError
 from ccnl_engine.knowledge.capability.loaders import (
     load_capability_catalog,

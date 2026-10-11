@@ -9,7 +9,7 @@ from typing import Any
 
 import pytest
 
-from ccnl_engine.contract.identity.models import CCNL
+from ccnl_engine.agreement.models import CCNL
 from ccnl_engine.errors import OutOfScopeError
 from ccnl_engine.payroll.employment.inputs import Apprentice
 from ccnl_engine.payroll.employment.rules_apprenticeship import (

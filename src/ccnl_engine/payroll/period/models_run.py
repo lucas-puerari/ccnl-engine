@@ -17,7 +17,7 @@ from ccnl_engine.payroll.period.types_run_kind import (
     check_year_month,
     run_kind,
 )
-from ccnl_engine.validation import reject, require_int
+from ccnl_engine.validators import reject, require_int
 
 __all__ = ["PayrollRun", "PayrollRunId", "RunKind", "run_identifier"]
 

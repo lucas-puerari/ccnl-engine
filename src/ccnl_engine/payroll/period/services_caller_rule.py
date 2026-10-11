@@ -49,8 +49,8 @@ from ccnl_engine.payroll.event.policies_overtime_rate import (
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.contract.identity.facade import CCNL
-    from ccnl_engine.contract.identity.rules_validity import TimeSeries
+    from ccnl_engine.agreement.facade import CCNL
+    from ccnl_engine.agreement.validity.rules import TimeSeries
     from ccnl_engine.contract.working_time.models import OvertimeBand
     from ccnl_engine.payroll.event.facade import WorkEvent
 

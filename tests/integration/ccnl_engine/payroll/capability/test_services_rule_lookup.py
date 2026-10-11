@@ -6,8 +6,8 @@ from datetime import date
 from types import SimpleNamespace
 from typing import TYPE_CHECKING, cast
 
-from ccnl_engine.contract.catalog.loaders import load_ccnl
-from ccnl_engine.contract.identity.facade import TaxSector
+from ccnl_engine.agreement.facade import TaxSector
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.payroll.amount.services_proration import FULL_MONTH
 from ccnl_engine.payroll.assurance.services_rule_source import run_rule_sources
 from ccnl_engine.payroll.capability.services_rule_lookup import (
@@ -19,7 +19,7 @@ from ccnl_engine.payroll.employment.inputs import Apprentice, FixedTerm, Permane
 from ccnl_engine.payroll.period.repositories import (
     BundledKnowledgeRepository,
 )
-from ccnl_engine.provenance.source.models_chain import ProvenanceStatus, RuleProvenance
+from ccnl_engine.provenance.source.rule.models import ProvenanceStatus, RuleProvenance
 from ccnl_engine.tax.annual.loaders import load_year_rules
 from ccnl_engine.tax.annual.loaders_optional import load_variable_pay_rules
 

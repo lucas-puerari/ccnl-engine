@@ -12,7 +12,7 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.catalog.loaders import load_ccnl
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.contract.compensation.models import (
     AccrualComparison,
     ExtraMonthAccrualRule,
@@ -42,13 +42,13 @@ from ccnl_engine.provenance.source.models import (
     SourceKind,
     SourceLocation,
 )
-from ccnl_engine.provenance.source.models_chain import ProvenanceStatus, RuleProvenance
+from ccnl_engine.provenance.source.rule.models import ProvenanceStatus, RuleProvenance
 from tests.integration.ccnl_engine.payroll.withholding.builders_withholding import (
     calendar_schedule,
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.identity.facade import CCNL
+    from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.payroll.period.results import PeriodResult
 
 _YEAR = 2026

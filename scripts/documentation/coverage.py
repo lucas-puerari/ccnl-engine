@@ -21,7 +21,7 @@ from dataclasses import dataclass
 from datetime import UTC, date, datetime
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.catalog.loaders import load_ccnl
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.knowledge.capability.loaders import (
     load_capability_catalog,
 )
@@ -38,11 +38,11 @@ from ccnl_engine.provenance.ruleset.models import (
     RulesetReadiness,
     VerificationStatus,
 )
-from ccnl_engine.provenance.source.models_extraction import ExtractionMethod
+from ccnl_engine.provenance.source.extraction.models import ExtractionMethod
 from scripts.provenance.rules import inventory
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.identity.facade import CCNL
+    from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.payroll.capability.models_catalog import CapabilityCatalog
 
 #: Symbol of each implementation, shared by the index and the matrix.

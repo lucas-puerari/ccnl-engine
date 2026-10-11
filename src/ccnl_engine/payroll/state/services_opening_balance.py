@@ -34,7 +34,7 @@ from ccnl_engine.payroll.state.validators_opening_balance import (
 )
 from ccnl_engine.payroll.withholding.inputs_shortfall_deferral import DeferredShortfall
 from ccnl_engine.payroll.year.models_payment import PaymentId
-from ccnl_engine.validation import require_instance
+from ccnl_engine.validators import require_instance
 
 __all__ = ["OpeningBalances"]
 

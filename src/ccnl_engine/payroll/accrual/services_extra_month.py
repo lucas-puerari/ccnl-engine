@@ -23,7 +23,7 @@ from ccnl_engine.payroll.year.services_calendar import standard_calendar
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.contract.identity.facade import CCNL
+    from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 
 __all__ = ["run_accrual", "run_fraction", "run_schedule"]

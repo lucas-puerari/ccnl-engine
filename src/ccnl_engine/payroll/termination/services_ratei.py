@@ -39,7 +39,7 @@ from ccnl_engine.payroll.period.models_run import (
 from ccnl_engine.payroll.year.services_calendar import effective_calendar
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.identity.facade import CCNL
+    from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.payroll.accrual.models import ExtraMonthAccrual
     from ccnl_engine.payroll.accrual.models_extra_month_schedule import ExtraMonthKind
     from ccnl_engine.payroll.period.requests import PeriodCalculationRequest

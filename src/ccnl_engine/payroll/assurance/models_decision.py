@@ -19,7 +19,7 @@ from enum import StrEnum
 from types import MappingProxyType
 from typing import TYPE_CHECKING
 
-from ccnl_engine.primitives import FrozenDict
+from ccnl_engine.types import FrozenDict
 
 if TYPE_CHECKING:
     from collections.abc import Iterable

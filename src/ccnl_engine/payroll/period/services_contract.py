@@ -10,7 +10,7 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.identity.rules_validity import rule_scope
+from ccnl_engine.agreement.validity.rules import rule_scope
 from ccnl_engine.errors import UnknownLevelError
 from ccnl_engine.payroll.amount.services_provincial import (
     without_replaced_elements,
@@ -23,8 +23,8 @@ from ccnl_engine.tax.contribution.models_fis_reduction import with_fis_reduction
 from ccnl_engine.tax.contribution.models_zone_reduction import with_zone_reduction
 
 if TYPE_CHECKING:
+    from ccnl_engine.agreement.facade import CCNL, TaxSector
     from ccnl_engine.contract.compensation.models import Level
-    from ccnl_engine.contract.identity.facade import CCNL, TaxSector
     from ccnl_engine.payroll.capability.models_catalog import CapabilityCatalog
     from ccnl_engine.payroll.employment.inputs_fact import WeeklyHours
     from ccnl_engine.payroll.period.ports import KnowledgeRepository

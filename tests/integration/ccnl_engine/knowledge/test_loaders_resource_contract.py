@@ -20,8 +20,8 @@ from unittest.mock import patch
 
 import pytest
 
-import ccnl_engine.contract.catalog.loaders as contract_loaders
-from ccnl_engine.contract.catalog.loaders import load_ccnl
+import ccnl_engine.catalog.loaders as contract_loaders
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.errors import UnknownCcnlError
 from ccnl_engine.knowledge.loaders import read_bundled
 from ccnl_engine.knowledge.loaders_resource import BundledResourceStore

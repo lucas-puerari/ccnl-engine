@@ -226,7 +226,7 @@ names exported from `ccnl_engine` are unchanged, and so are amounts.
 | `ccnl_engine.engine.metadata.domain.rules` | `ccnl_engine.provenance.ruleset.models` |
 | `ccnl_engine.engine.diff.*` | `ccnl_engine.diff.*` |
 | `ccnl_engine.engine.errors` | `ccnl_engine.errors` |
-| `ccnl_engine.engine.primitives.domain.primitives` | `ccnl_engine.primitives` |
+| `ccnl_engine.engine.primitives.domain.primitives` | `ccnl_engine.types` |
 | `ccnl_engine.engine.io.service.*` | `ccnl_engine.knowledge.service.*` |
 | `ccnl_engine.engine.capability_catalog` | `ccnl_engine.payroll.domain.capability_catalog` |
 | `ccnl_engine.engine.knowledge_repository` | `ccnl_engine.payroll.application.knowledge_repository` |

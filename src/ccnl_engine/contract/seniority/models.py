@@ -5,10 +5,10 @@ from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from ccnl_engine.agreement.validity.rules import TimeSeries
 from ccnl_engine.contract.employment.models_category import WorkerCategory
-from ccnl_engine.contract.identity.rules_validity import TimeSeries
-from ccnl_engine.primitives import FrozenDict
-from ccnl_engine.provenance.source.models_chain import RuleProvenance
+from ccnl_engine.provenance.source.rule.models import RuleProvenance
+from ccnl_engine.types import FrozenDict
 
 
 class SeniorityTier(BaseModel):

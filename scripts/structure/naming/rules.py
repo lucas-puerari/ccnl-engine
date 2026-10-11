@@ -5,14 +5,17 @@
   (:data:`ROOT_MODULES`); ``__init__.py`` is a package marker;
 - a test module is ``test_<name>.py`` where ``<name>`` is a name a mirrored
   module may have; its helpers are ``conftest.py``, ``builders.py``,
-  ``oracles.py`` and ``support.py``;
+  ``oracles.py`` and ``support.py``.  The tests of a module that need more
+  than one file sit in a directory named after the module
+  (``catalog/loaders/``), where a test takes the name of its behaviour;
 - a script is named after an action (:data:`SCRIPT_ACTIONS`) or a role;
 - the demo holds its entry point ``app.py`` only;
 - a directory holding Python modules is named after a domain listed in the
   "Directory names" section of ``docs/domain/glossary.md``, or after a root
   of the tree (:data:`STRUCTURAL_DIRECTORIES`); right below the package root
   (``src/ccnl_engine`` and its mirror under each test category) only a
-  concept of that section's "Concepts" paragraph.
+  concept of that section's "Concepts" paragraph.  Under ``tests`` a
+  directory may also be named after a module it tests.
 
 Directories without Python modules (knowledge data, test fixtures) are not
 named by this rule: their names identify resources.
@@ -25,7 +28,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, Final
 
 if TYPE_CHECKING:
-    from pathlib import Path
+    from pathlib import Path, PurePath
 
 #: Technical roles a module is named after.
 SOURCE_ROLES: Final = frozenset({
@@ -123,7 +126,7 @@ def vocabulary(root: Path) -> Vocabulary:
     return Vocabulary(frozenset(concepts), frozenset(names))
 
 
-def file_offends(rel: Path) -> bool:
+def file_offends(rel: PurePath) -> bool:
     """Return whether the Python module *rel* breaks the naming rule.
 
     Args:
@@ -135,21 +138,29 @@ def file_offends(rel: Path) -> bool:
     """
     stem, top = rel.stem, rel.parts[0]
     if top == "src":
-        if stem == "__init__":
-            return False
         at_root = len(rel.parts) == 3
         allowed = SOURCE_ROLES | ROOT_MODULES if at_root else SOURCE_ROLES
-        return stem not in allowed
+        return stem not in allowed | {"__init__"}
     if top == "tests":
-        return stem not in TEST_HELPERS and stem.removeprefix("test_") not in (
-            _TESTED if stem.startswith("test_") else frozenset()
-        )
+        return stem not in TEST_HELPERS and not _test_name(rel)
     if top == "scripts":
         return stem not in SCRIPT_ACTIONS | SOURCE_ROLES
     return stem not in DEMO_ENTRIES
 
 
-def directory_offends(rel: Path, words: Vocabulary) -> bool:
+def _test_name(rel: PurePath) -> bool:
+    """Return whether *rel* is a test the naming rule admits.
+
+    Returns:
+        True for ``test_<module name>.py``, or for any ``test_*.py`` in the
+        directory of the tests of one module.
+    """
+    if not rel.stem.startswith("test_"):
+        return False
+    return rel.parent.name in _TESTED or rel.stem[len("test_") :] in _TESTED
+
+
+def directory_offends(rel: PurePath, words: Vocabulary) -> bool:
     """Return whether a directory holding modules breaks the naming rule.
 
     Args:
@@ -160,6 +171,8 @@ def directory_offends(rel: Path, words: Vocabulary) -> bool:
         True when a directory right below a package root is not a concept,
         or another directory is neither an admitted name nor a root.
     """
+    if rel.parts[0] == "tests" and rel.name in _TESTED:
+        return False
     if rel.parent.name == _PACKAGE:
         return rel.name not in words.concepts
     return rel.name not in words.names | STRUCTURAL_DIRECTORIES

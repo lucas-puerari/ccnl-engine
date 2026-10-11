@@ -35,7 +35,7 @@ from ccnl_engine.payroll.assurance.models_decision import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.identity.facade import CCNL
+    from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.contract.working_time.models import OvertimeBand
     from ccnl_engine.payroll.event.facade import OvertimeEvent
 

@@ -23,6 +23,9 @@ from typing import TYPE_CHECKING
 import pytest
 
 from tests.integration.scripts.structure.support import (
+    legacy_coupling_violations,
+    legacy_layer_graph,
+    stale_legacy_coupling,
     stale_legacy_roots,
     stale_tier_entries,
     tier_violations,
@@ -54,21 +57,9 @@ _SRC = Path(str(importlib.resources.files("ccnl_engine"))).parent
 #: only be removed; an entry that no import uses fails the suite.
 DOMAIN_COUPLING: dict[tuple[str, str], str] = {
     (
-        "contract",
-        "ccnl_engine.provenance",
-    ): "CCNL records carry the source and extraction provenance of their data.",
-    (
-        "tax",
-        "ccnl_engine.provenance",
-    ): "Tax rulesets carry their source chain and ruleset identity.",
-    (
         "tax",
         "ccnl_engine.contract.employment.models_category",
     ): "INPS contribution rules are selected by the CCNL worker category.",
-    (
-        "tax",
-        "ccnl_engine.contract.identity",
-    ): "Year rules are keyed by the tax sector a CCNL declares.",
     (
         "payroll",
         "ccnl_engine.contract.employment.models_category",
@@ -90,18 +81,6 @@ DOMAIN_COUPLING: dict[tuple[str, str], str] = {
         "ccnl_engine.tax.contribution.models_zone_reduction",
     ): "The employer profile declares the agricultural zone of its INPS cut.",
     (
-        "contract",
-        "ccnl_engine.knowledge.limitation",
-    ): "CCNL simplification notes declare model limitations of the registry.",
-    (
-        "knowledge",
-        "ccnl_engine.provenance",
-    ): "The loaders verify the ruleset identity and provenance of each file.",
-    (
-        "payroll",
-        "ccnl_engine.contract.identity",
-    ): "Payroll rules read CCNL time series and the tax sector a CCNL declares.",
-    (
         "payroll",
         "ccnl_engine.contract.employment.models_apprenticeship",
     ): "Apprentice pay follows the CCNL apprenticeship percentages and tracks.",
@@ -113,10 +92,6 @@ DOMAIN_COUPLING: dict[tuple[str, str], str] = {
         "payroll",
         "ccnl_engine.tax.income.models",
     ): "IRPEF deductions apply the yearly income tax rules.",
-    (
-        "payroll",
-        "ccnl_engine.provenance",
-    ): "Payroll decisions cite the legal source of the rule they apply.",
 }
 
 
@@ -167,15 +142,15 @@ def test_layers_import_downwards(package: dict[str, Module]) -> None:
 def test_domain_imports_other_domains_only_through_allowlist(
     package: dict[str, Module],
 ) -> None:
-    """A domain reaches another capability's domain only when allowlisted."""
-    assert domain_coupling_violations(package, DOMAIN_COUPLING) == []
+    """A legacy domain reaches another legacy domain only when allowlisted."""
+    assert legacy_coupling_violations(package, DOMAIN_COUPLING) == []
 
 
 def test_domain_coupling_allowlist_has_no_stale_entry(
     package: dict[str, Module],
 ) -> None:
     """Every allowlist entry is still used, so the list can only shrink."""
-    assert stale_allowlist_entries(package, DOMAIN_COUPLING) == []
+    assert stale_legacy_coupling(package, DOMAIN_COUPLING) == []
 
 
 def test_domain_performs_no_io(package: dict[str, Module]) -> None:
@@ -184,8 +159,8 @@ def test_domain_performs_no_io(package: dict[str, Module]) -> None:
 
 
 def test_layers_form_no_cycle(package: dict[str, Module]) -> None:
-    """The ``<capability>.<layer>`` import graph is acyclic."""
-    assert cycles(layer_graph(package)) == []
+    """The ``<capability>.<layer>`` import graph of the legacy roots is acyclic."""
+    assert cycles(legacy_layer_graph(package)) == []
 
 
 def test_analysis_sees_the_package(package: dict[str, Module]) -> None:
@@ -454,13 +429,7 @@ def test_roots_without_tier_and_stale_legacy_are_reported() -> None:
     modules = _modules(**{
         "ccnl_engine.__init__": "",
         "ccnl_engine.misc.models": "",
-        "ccnl_engine.contract.identity.models": "",
+        "ccnl_engine.contract.fund.models": "",
     })
     assert unknown_concepts(modules) == ["misc"]
-    assert stale_legacy_roots(modules) == [
-        "payroll",
-        "primitives",
-        "tax",
-        "validation",
-        "validation_collection",
-    ]
+    assert stale_legacy_roots(modules) == ["payroll", "tax"]

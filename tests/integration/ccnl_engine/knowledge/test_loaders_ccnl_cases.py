@@ -1,7 +1,7 @@
 """Data tests: CCNL knowledge values must match the case files exactly.
 
 Level 2 of the three-level test architecture.  Each case file in
-``tests/integration/ccnl_engine/contract/catalog/synthetic_contract/`` is a JSON
+``tests/integration/ccnl_engine/catalog/synthetic_contract/`` is a JSON
 document that records the
 expected values for one CCNL's salary table, seniority increments, and
 apprenticeship percentages.  Tests here load the *real* bundled files via
@@ -22,16 +22,16 @@ from typing import TYPE_CHECKING, Any
 
 import pytest
 
-from ccnl_engine.contract.catalog.loaders import load_ccnl
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.contract.employment.models_apprenticeship import (
     ApprenticeshipPercentage,
     ApprenticeshipUnderClassification,
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.identity.facade import CCNL
+    from ccnl_engine.agreement.facade import CCNL
 
-_CASES_DIR = Path(__file__).parents[1] / "contract" / "catalog" / "synthetic_contract"
+_CASES_DIR = Path(__file__).parents[1] / "catalog" / "synthetic_contract"
 _CASE_FILES = sorted(_CASES_DIR.glob("*.json"))
 
 

@@ -6,7 +6,7 @@ Each ``<year>-<sector>.json`` pair in ``knowledge/tax/data`` and
 pre-split tax files.
 """
 
-from ccnl_engine.contract.identity.facade import TaxSector
+from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.tax.annual.loaders import load_year_rules
 from ccnl_engine.tax.annual.loaders_resource import (
     read_inps_rules_raw,

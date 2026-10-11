@@ -14,8 +14,8 @@ from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from ccnl_engine.primitives import Bracket
-from ccnl_engine.provenance.source.models_chain import RuleProvenance
+from ccnl_engine.provenance.source.rule.models import RuleProvenance
+from ccnl_engine.types import Bracket
 
 #: One marginal bracket in a surtax rate schedule.
 #: Shares the same structure as :class:`~ccnl_engine.tax.models.IrpefBracket`

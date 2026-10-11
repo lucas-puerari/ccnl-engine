@@ -7,7 +7,7 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.contract.catalog.loaders import load_ccnl
+from ccnl_engine.catalog.loaders import load_ccnl
 from scripts.documentation.generate_trust_counts import (
     TRUST_DIR,
     bundle_counts,

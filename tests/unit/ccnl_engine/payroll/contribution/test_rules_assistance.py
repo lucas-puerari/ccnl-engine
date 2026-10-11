@@ -15,7 +15,7 @@ from ccnl_engine.payroll.contribution.rules_assistance import (
     AssistanceTerms,
     run_assistance,
 )
-from ccnl_engine.provenance.source.models_chain import ProvenanceStatus, RuleProvenance
+from ccnl_engine.provenance.source.rule.models import ProvenanceStatus, RuleProvenance
 
 _TERMS = AssistanceTerms(
     employee_per_hour=Decimal("0.02"),

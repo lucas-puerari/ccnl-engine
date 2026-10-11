@@ -13,7 +13,7 @@ See [Get started](../getting-started/index.md) for the typical loading sequence 
 
 ## Contracts
 
-::: ccnl_engine.contract.catalog.loaders
+::: ccnl_engine.catalog.loaders
     options:
       members:
         - load_ccnl

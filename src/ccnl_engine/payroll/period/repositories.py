@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.catalog.loaders import load_ccnl
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.knowledge.capability.loaders import (
     load_capability_catalog,
 )
@@ -18,7 +18,7 @@ from ccnl_engine.tax.annual.loaders_optional import (
 from ccnl_engine.tax.surtax.loaders import load_surtax_rules
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.identity.facade import CCNL, TaxSector
+    from ccnl_engine.agreement.facade import CCNL, TaxSector
     from ccnl_engine.knowledge.limitation.models import ModelLimitation
     from ccnl_engine.payroll.capability.models_catalog import CapabilityCatalog
     from ccnl_engine.tax.annual.models import YearRules

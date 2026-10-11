@@ -28,7 +28,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.ledger.models_remittance import RemittanceLine
     from ccnl_engine.payroll.period.models_run import PayrollRun
     from ccnl_engine.payroll.taxation.results import TaxComputation
-    from ccnl_engine.provenance.ruleset.models_assurance import RulesetAssurance
+    from ccnl_engine.provenance.ruleset.assurance.models import RulesetAssurance
 
 
 @dataclass(frozen=True)

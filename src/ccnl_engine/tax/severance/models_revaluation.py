@@ -6,9 +6,9 @@ from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from ccnl_engine.primitives import PercentageRate
 from ccnl_engine.provenance.ruleset.models import RulesetIdentity
-from ccnl_engine.provenance.source.models_chain import RuleProvenance
+from ccnl_engine.provenance.source.rule.models import RuleProvenance
+from ccnl_engine.types import PercentageRate
 
 __all__ = [
     "TfrPriceIndex",

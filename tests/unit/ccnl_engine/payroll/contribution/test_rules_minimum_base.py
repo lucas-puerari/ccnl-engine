@@ -28,7 +28,7 @@ from ccnl_engine.provenance.source.models import (
     SourceKind,
     SourceLocation,
 )
-from ccnl_engine.provenance.source.models_chain import ProvenanceStatus, RuleProvenance
+from ccnl_engine.provenance.source.rule.models import ProvenanceStatus, RuleProvenance
 from ccnl_engine.tax.contribution.models_minimum_base import (
     HourlyMinimum,
     MinimumBaseRule,

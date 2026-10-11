@@ -9,7 +9,7 @@ from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.state.models_accrual import EmploymentAccrualState
 from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
 from ccnl_engine.payroll.year.models_payment import PaymentId
-from ccnl_engine.validation import require_bool, require_instances
+from ccnl_engine.validators import require_bool, require_instances
 
 __all__ = ["PeriodState"]
 

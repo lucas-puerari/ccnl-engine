@@ -37,7 +37,7 @@ from ccnl_engine.payroll.period.models_run import PayrollRun, RunKind
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.contract.identity.facade import CCNL
+    from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.payroll.amount.types_chain import MonthlyPayChain
     from ccnl_engine.payroll.capability.services_rule_lookup import Rule
     from ccnl_engine.payroll.employment.inputs_fact import EmploymentPeriod

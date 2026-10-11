@@ -29,8 +29,8 @@ from typing import TYPE_CHECKING
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from ccnl_engine.contract.catalog.loaders import load_ccnl
-from ccnl_engine.contract.identity.facade import NoteKind
+from ccnl_engine.agreement.facade import NoteKind
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.knowledge.limitation.loaders import load_engine_limitations
 from ccnl_engine.knowledge.limitation.models import LimitationTrigger
 from ccnl_engine.knowledge.loaders_manifest import resources
@@ -44,7 +44,7 @@ from scripts.provenance import rules as payable_rules
 if TYPE_CHECKING:
     from collections.abc import Mapping
 
-    from ccnl_engine.contract.identity.facade import CCNL
+    from ccnl_engine.agreement.facade import CCNL
 
 ROOT = Path(__file__).resolve().parents[2]
 TRUST_DIR = ROOT / "docs" / "trust"

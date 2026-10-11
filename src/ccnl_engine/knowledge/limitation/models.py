@@ -10,7 +10,7 @@ and what closes it.
 Limitations come from two places, both in the knowledge bundle:
 
 - the ``simplification`` notes of a CCNL file, which carry an inline
-  limitation (``ccnl_engine.contract.identity.facade.CoverageNote``);
+  limitation (``ccnl_engine.agreement.facade.CoverageNote``);
 - the engine limitations of code paths shared by several CCNLs
   (``knowledge/limitation/engine.json``), recorded when the run
   traverses the path.

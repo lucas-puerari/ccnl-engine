@@ -20,7 +20,7 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.contract.catalog.loaders import load_ccnl
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.contract.employment.models_category import WorkerCategory
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.assurance.models import BlockerCode
@@ -36,7 +36,7 @@ from ccnl_engine.payroll.period.repositories import (
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
-from ccnl_engine.provenance.source.models_chain import ProvenanceStatus, RuleProvenance
+from ccnl_engine.provenance.source.rule.models import ProvenanceStatus, RuleProvenance
 from tests.integration.ccnl_engine.payroll.sickness.builders_sickness_episode import (
     sickness_episode,
 )
@@ -46,7 +46,7 @@ from tests.knowledge.ccnl_engine.payroll.contribution.oracles_2026 import (
 from tests.knowledge.ccnl_engine.payroll.employment.builders_seniority import new_hire
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.identity.facade import CCNL
+    from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.payroll.assurance.models_decision import CalculationDecision
     from ccnl_engine.payroll.period.results import PeriodResult
     from ccnl_engine.tax.sickness.models import InpsSickPayRates

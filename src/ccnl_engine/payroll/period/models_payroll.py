@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from ccnl_engine.validation import require_int
+from ccnl_engine.validators import require_int
 
 
 @dataclass(frozen=True)

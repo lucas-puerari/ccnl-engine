@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.employment.inputs_fact import EmploymentPeriod
     from ccnl_engine.payroll.period.models_run import PayrollRunId
     from ccnl_engine.payroll.period.services_run_context import RunContext
-    from ccnl_engine.provenance.source.models_chain import RuleProvenance
+    from ccnl_engine.provenance.source.rule.models import RuleProvenance
     from ccnl_engine.tax.contribution.models import InpsRates
 
 __all__ = [

@@ -23,7 +23,6 @@ from ccnl_engine.payroll.taxation.rules_surtax_table import (
     SPECIFIC_EXEMPTIONS_ISSUE,
     regional_surtax_amount,
 )
-from ccnl_engine.primitives import Bracket
 from ccnl_engine.tax.surtax.models import SurtaxRules
 from ccnl_engine.tax.surtax.models_table import (
     ComunaleEntry,
@@ -31,6 +30,7 @@ from ccnl_engine.tax.surtax.models_table import (
     RegionaleEntry,
     WholeIncomeRate,
 )
+from ccnl_engine.types import Bracket
 from tests.integration.ccnl_engine.payroll.family.builders_dependents import (
     declared_dependent,
 )

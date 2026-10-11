@@ -31,7 +31,7 @@ from ccnl_engine.payroll.period.repositories import (
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
-from ccnl_engine.provenance.source.models_chain import ProvenanceStatus, RuleProvenance
+from ccnl_engine.provenance.source.rule.models import ProvenanceStatus, RuleProvenance
 from tests.integration.ccnl_engine.payroll.family.builders_dependents import (
     declared_dependent,
 )
@@ -48,7 +48,7 @@ from tests.knowledge.ccnl_engine.payroll.taxation.builders_current_year import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.identity.facade import TaxSector
+    from ccnl_engine.agreement.facade import TaxSector
     from ccnl_engine.payroll.period.results import PeriodResult
     from ccnl_engine.tax.annual.models import YearRules
 

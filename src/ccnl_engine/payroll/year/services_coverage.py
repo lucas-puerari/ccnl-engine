@@ -4,12 +4,12 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.identity.rules_validity import rule_scope
+from ccnl_engine.agreement.validity.rules import rule_scope
 from ccnl_engine.errors import MissingRuleError, UnknownLevelError
 from ccnl_engine.payroll.year.models_uncovered_run import UncoveredRun
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.identity.facade import CCNL
+    from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.payroll.year.services_payment import PlannedPayment
 
 __all__ = ["split_covered"]

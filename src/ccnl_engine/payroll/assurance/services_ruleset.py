@@ -13,8 +13,8 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.catalog.models_readiness import ccnl_ruleset_assurance
-from ccnl_engine.provenance.ruleset.models_assurance import (
+from ccnl_engine.catalog.models import ccnl_ruleset_assurance
+from ccnl_engine.provenance.ruleset.assurance.models import (
     RulesetAssurance,
     RulesetKind,
 )

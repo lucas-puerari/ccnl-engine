@@ -8,6 +8,11 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.provenance.ruleset.models import VerificationStatus
+from ccnl_engine.provenance.source.extraction.models import (
+    BackCalculationStep,
+    ExtractionMethod,
+    ExtractionTrace,
+)
 from ccnl_engine.provenance.source.models import (
     _KIND_TO_AUTHORITY,
     SourceAuthority,
@@ -15,12 +20,7 @@ from ccnl_engine.provenance.source.models import (
     SourceKind,
     SourceLocation,
 )
-from ccnl_engine.provenance.source.models_chain import ProvenanceStatus, RuleProvenance
-from ccnl_engine.provenance.source.models_extraction import (
-    BackCalculationStep,
-    ExtractionMethod,
-    ExtractionTrace,
-)
+from ccnl_engine.provenance.source.rule.models import ProvenanceStatus, RuleProvenance
 
 _TS = datetime(2026, 1, 1, 0, 0, tzinfo=UTC)
 _DATE = date(2026, 1, 1)

@@ -17,8 +17,8 @@ from typing import TYPE_CHECKING
 
 from pydantic import BaseModel, ConfigDict
 
-from ccnl_engine.primitives import NonNegativeRate, PercentageRate  # noqa: TC001
-from ccnl_engine.provenance.source.models_chain import RuleProvenance  # noqa: TC001
+from ccnl_engine.provenance.source.rule.models import RuleProvenance  # noqa: TC001
+from ccnl_engine.types import NonNegativeRate, PercentageRate  # noqa: TC001
 
 if TYPE_CHECKING:
     from ccnl_engine.tax.contribution.models import InpsRates

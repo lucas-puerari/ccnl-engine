@@ -29,7 +29,7 @@ from ccnl_engine.payroll.taxation.types_jurisdiction import check_surtax_codes
 from ccnl_engine.payroll.termination.models_tfr_fund import TfrFundBalance
 from ccnl_engine.payroll.year.rules_tax_year import TaxYearPolicy
 from ccnl_engine.tax.regime.models import EmploymentSector
-from ccnl_engine.validation import FieldSpec, require_instances
+from ccnl_engine.validators import FieldSpec, require_instances
 
 if TYPE_CHECKING:
     from ccnl_engine.contract.employment.models_category import WorkerCategory

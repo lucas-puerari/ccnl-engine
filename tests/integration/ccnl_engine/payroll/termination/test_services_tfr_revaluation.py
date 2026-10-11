@@ -18,7 +18,7 @@ from typing import TYPE_CHECKING, Any
 
 import pytest
 
-from ccnl_engine.contract.identity.facade import TaxSector
+from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.inputs import NoPensionFund, TfrFundBalance
 from ccnl_engine.payroll.assurance.models_decision import (
     CalculationDecision,

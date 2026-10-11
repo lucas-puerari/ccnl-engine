@@ -7,7 +7,8 @@
 - a unit test, and an integration test below a mirror root directory, mirrors
   the module it tests: ``tests/unit/ccnl_engine/x/y/test_z.py`` needs
   ``src/ccnl_engine/x/y/z.py`` (or a ``z`` package); ``test_z_<suffix>.py``
-  is accepted too.  Knowledge tests, the public API tests at the root of
+  is accepted too, and so is any test in ``x/y/z/``, the directory of the
+  tests of module ``z``.  Knowledge tests, the public API tests at the root of
   ``integration/ccnl_engine`` and the repository-rule tests of
   ``integration/scripts`` keep descriptive names;
 - a test that mirrors no module and sits in ``knowledge`` or at the root of
@@ -191,17 +192,31 @@ def mirror_violations(
         if not base.is_dir():
             continue
         for rel in _test_files(base):
-            shown = f"{category}/{rel.as_posix()}"
-            if len(rel.parts) < 2 or rel.parts[0] not in allowed:
-                violations.append(f"{shown}: outside {sorted(allowed)}")
-                continue
-            directory = roots[rel.parts[0]].joinpath(*rel.parts[1:-1])
-            stem = rel.stem.removeprefix("test_")
-            if not directory.is_dir():
-                violations.append(f"{shown}: no code directory {rel.parent}")
-            elif not _descriptive(category, rel) and not _mirrors(stem, directory):
-                violations.append(f"{shown}: no module for {stem!r}")
+            reason = _mirror_reason(category, rel, roots, allowed)
+            if reason is not None:
+                violations.append(f"{category}/{rel.as_posix()}: {reason}")
     return violations
+
+
+def _mirror_reason(
+    category: str, rel: Path, roots: dict[str, Path], allowed: frozenset[str]
+) -> str | None:
+    """Return why the test *rel* of *category* mirrors no code, if it does not.
+
+    Returns:
+        The reason, or None for a test that mirrors a directory or module.
+    """
+    if len(rel.parts) < 2 or rel.parts[0] not in allowed:
+        return f"outside {sorted(allowed)}"
+    directory = roots[rel.parts[0]].joinpath(*rel.parts[1:-1])
+    stem = rel.stem.removeprefix("test_")
+    if directory.with_suffix(".py").is_file():
+        return None
+    if not directory.is_dir():
+        return f"no code directory {rel.parent}"
+    if not _descriptive(category, rel) and not _mirrors(stem, directory):
+        return f"no module for {stem!r}"
+    return None
 
 
 def _imported_modules(tree: ast.Module) -> list[str]:
@@ -364,6 +379,7 @@ def test_deep_file_is_rejected(tmp_path: Path) -> None:
         ("unit/ccnl_engine/pkg/ledger/test_models.py", None),
         ("unit/ccnl_engine/pkg/ledger/test_models_posting.py", None),
         ("unit/ccnl_engine/pkg/ledger/test_events_union.py", None),
+        ("unit/ccnl_engine/pkg/ledger/models/test_posting.py", None),
         ("unit/ccnl_engine/test_api_facade.py", None),
         ("integration/ccnl_engine/test_payslip_scenario.py", None),
         ("integration/scripts/ci/test_report.py", None),

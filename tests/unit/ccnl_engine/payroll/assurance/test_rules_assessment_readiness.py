@@ -14,15 +14,15 @@ from ccnl_engine.provenance.ruleset.models import (
     RulesetReadiness,
     VerificationStatus,
 )
-from ccnl_engine.provenance.source.models_chain import ProvenanceStatus
-from tests.unit.ccnl_engine.provenance.ruleset.builders_rulesets import (
+from ccnl_engine.provenance.source.rule.models import ProvenanceStatus
+from tests.unit.ccnl_engine.provenance.ruleset.builders import (
     ccnl_ruleset,
     tax_ruleset,
 )
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.assurance.models import ResultAssurance
-    from ccnl_engine.provenance.ruleset.models_assurance import RulesetAssurance
+    from ccnl_engine.provenance.ruleset.assurance.models import RulesetAssurance
 
 _SIMULATION = EngineMode.SIMULATION
 _OPERATIONAL = EngineMode.OPERATIONAL

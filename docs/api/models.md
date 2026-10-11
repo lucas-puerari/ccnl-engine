@@ -27,7 +27,7 @@ behind each model.
 
 ## CCNL
 
-::: ccnl_engine.contract.identity.facade
+::: ccnl_engine.agreement.facade
     options:
       members:
         - CCNL

@@ -57,7 +57,7 @@ if TYPE_CHECKING:
         CapabilityEntry,
     )
     from ccnl_engine.payroll.period.services_run_context import RunContext
-    from ccnl_engine.provenance.source.models_chain import ProvenanceStatus
+    from ccnl_engine.provenance.source.rule.models import ProvenanceStatus
 
 __all__ = ["capability_report", "case_facts", "registry_errors", "validate_registry"]
 

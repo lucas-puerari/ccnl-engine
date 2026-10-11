@@ -10,8 +10,8 @@ import copy
 from dataclasses import replace
 from typing import TYPE_CHECKING, Any
 
+from ccnl_engine.agreement.facade import CCNL
 from ccnl_engine.contract.employment.models_category import WorkerCategory
-from ccnl_engine.contract.identity.facade import CCNL
 from ccnl_engine.payroll.contribution.inputs_pension_fund import NoPensionFund
 from ccnl_engine.payroll.employment.inputs import Employment, Permanent
 from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount

@@ -11,7 +11,7 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.contract.identity.facade import TaxSector
+from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.payroll.taxation.inputs_foreign_tax import ForeignTaxPaid
 from ccnl_engine.payroll.taxation.rules_foreign_tax_credit import (
     foreign_credit_rule,

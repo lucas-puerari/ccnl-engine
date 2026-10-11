@@ -25,7 +25,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.year.models_calendar import WorkCalendar
     from ccnl_engine.payroll.year.models_payment import PaymentId
     from ccnl_engine.payroll.year.models_uncovered_run import UncoveredRun
-    from ccnl_engine.provenance.ruleset.models_assurance import RulesetAssurance
+    from ccnl_engine.provenance.ruleset.assurance.models import RulesetAssurance
 
 __all__ = ["CompetenceYearResult", "PaymentsResult", "TaxYearResult"]
 

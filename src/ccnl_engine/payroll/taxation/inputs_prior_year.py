@@ -5,6 +5,11 @@ from __future__ import annotations
 from dataclasses import dataclass
 from decimal import Decimal
 
+from ccnl_engine.collection.validators import (
+    frozenset_of,
+    items_of_type,
+    tuple_of,
+)
 from ccnl_engine.payroll.taxation.inputs_foreign_tax import (
     ForeignTaxPaid,
     check_one_per_state,
@@ -13,15 +18,10 @@ from ccnl_engine.payroll.withholding.inputs_shortfall_deferral import (
     ShortfallDeferralRequest,
 )
 from ccnl_engine.tax.regime.models import SubstituteTaxRegime
-from ccnl_engine.validation import (
+from ccnl_engine.validators import (
     parse_enum,
     require_decimal,
     require_instance,
-)
-from ccnl_engine.validation_collection import (
-    frozenset_of,
-    items_of_type,
-    tuple_of,
 )
 
 __all__ = [

@@ -55,6 +55,10 @@ if TYPE_CHECKING:
 
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+
+from scripts.structure.naming import rules as naming
+
 ROOT: Final = Path(__file__).resolve().parents[2]
 RULES: Final = Path(__file__).with_name("inventory_rules.json")
 INVENTORY: Final = Path(__file__).with_name("inventory.json")
@@ -91,33 +95,21 @@ ROLES: Final = (
     "validators",
     "facade",
 )
-#: Modules of the package root; ``<name>_<suffix>.py`` splits one.
-ROOT_MODULES: Final = (
-    "api",
-    "inputs",
-    "results",
-    "events",
-    "catalog",
-    "errors",
-    "primitives",
-    "validation",
-    "version",
-)
 _SUFFIX: Final = "(?:_[a-z0-9]+)*"
+#: Role names of a module still in a legacy directory, suffix allowed.
 ROLE_NAME: Final = re.compile(rf"^(?:{'|'.join(ROLES)}){_SUFFIX}\.py$")
-ROOT_NAME: Final = re.compile(rf"^(?:{'|'.join(ROOT_MODULES)}){_SUFFIX}\.py$")
 #: Python modules a test tree may hold besides tests.
 TEST_NAME: Final = re.compile(
     rf"^(?:test_[a-z0-9_]+|conftest|(?:builders|oracles|support){_SUFFIX})\.py$"
 )
-#: Directories of the target production tree, relative to ``src/ccnl_engine``.
-SOURCE_TREE: Final = frozenset({
+#: Directories of the layout by source, relative to ``src/ccnl_engine``: they
+#: keep ``<role>_<suffix>.py`` names until their modules move into concepts.
+LEGACY_SOURCE_TREE: Final = frozenset({
     "",
     "contract",
     *(
         f"contract/{name}"
         for name in (
-            "identity",
             "employment",
             "compensation",
             "working_time",
@@ -125,7 +117,6 @@ SOURCE_TREE: Final = frozenset({
             "sickness",
             "seniority",
             "fund",
-            "catalog",
         )
     ),
     "payroll",
@@ -522,17 +513,33 @@ def _resource_problems(pure: PurePosixPath) -> list[str]:
     return []
 
 
-def _module_problems(pure: PurePosixPath) -> list[str]:
+def _module_problems(pure: PurePosixPath, words: naming.Vocabulary) -> list[str]:
     directory = "/".join(pure.parts[:-1])
-    if directory not in SOURCE_TREE:
+    if directory in LEGACY_SOURCE_TREE and directory:
+        legacy = pure.name == "__init__.py" or ROLE_NAME.match(pure.name)
+        return [] if legacy else ["name is not a technical role"]
+    if not _in_concept_tree(pure.parts[:-1], words):
         return [f"directory {directory!r} not in the target tree"]
-    naming = ROLE_NAME if directory else ROOT_NAME
-    if pure.name == "__init__.py" or naming.match(pure.name):
-        return []
-    return ["name is not a technical role"]
+    if naming.file_offends(PurePosixPath(PACKAGE) / pure):
+        return ["name is not a technical role"]
+    return []
 
 
-def _source_problems(target: str) -> list[str]:
+def _in_concept_tree(parts: tuple[str, ...], words: naming.Vocabulary) -> bool:
+    """Return whether every directory of *parts* passes the naming rule.
+
+    Returns:
+        True for the package root and for a concept with admitted
+        subdomains below it.
+    """
+    base = PurePosixPath(PACKAGE)
+    return not any(
+        naming.directory_offends(base.joinpath(*parts[: depth + 1]), words)
+        for depth in range(len(parts))
+    )
+
+
+def _source_problems(target: str, words: naming.Vocabulary) -> list[str]:
     below = _below(target, PACKAGE)
     if below is None:
         return ["outside src/ccnl_engine"]
@@ -543,7 +550,7 @@ def _source_problems(target: str) -> list[str]:
         return _resource_problems(pure)
     if pure.suffix != ".py":
         return ["unexpected file type in the package"]
-    return _module_problems(pure)
+    return _module_problems(pure, words)
 
 
 def _test_problems(target: str, trees: Mapping[str, set[str]]) -> list[str]:
@@ -573,7 +580,10 @@ def _mirror_problems(parts: tuple[str, ...], tree: set[str]) -> list[str]:
         if directory not in tree and "/".join(parts[:-2]) not in tree:
             return [f"resource directory {directory!r} sits under no code directory"]
         return []
-    if directory not in tree:
+    module_dir = (
+        len(parts) > 1 and parts[-2] in naming.SOURCE_ROLES | naming.ROOT_MODULES
+    )
+    if directory not in tree and not (module_dir and "/".join(parts[:-2]) in tree):
         return [f"directory {directory!r} mirrors no code directory"]
     if not TEST_NAME.match(parts[-1]):
         return ["not a test, conftest, builder, oracle or support module"]
@@ -592,8 +602,18 @@ def _tooling_problems(target: str) -> list[str]:
     return []
 
 
-def target_problems(target: str, trees: Mapping[str, set[str]]) -> list[str]:
+def target_problems(
+    target: str,
+    trees: Mapping[str, set[str]],
+    words: naming.Vocabulary | None = None,
+) -> list[str]:
     """Return how *target* breaks the contract.
+
+    Args:
+        target: Repository path of the target.
+        trees: Code directories each test mirror root mirrors.
+        words: Directory names the glossary admits; read from the
+            repository when omitted.
 
     Returns:
         One reason per broken rule; empty for a conforming target.
@@ -601,7 +621,7 @@ def target_problems(target: str, trees: Mapping[str, set[str]]) -> list[str]:
     problems = _common_problems(target)
     top = PurePosixPath(target).parts[0]
     if top == "src":
-        problems += _source_problems(target)
+        problems += _source_problems(target, words or naming.vocabulary(ROOT))
     elif top == "tests":
         problems += _test_problems(target, trees)
     elif top in {"scripts", "demo"}:
@@ -651,11 +671,12 @@ def check_mapping(mapping: Mapping[str, Entry], root: Path) -> list[str]:
         for target, count in Counter(files).items()
         if count > 1
     ]
+    words = naming.vocabulary(root)
     for path, entry in mapping.items():
         if isinstance(entry, dict):
             reasons = _dissolve_problems(path, entry["dissolve"], root, dirs)
         else:
-            reasons = target_problems(entry, trees)
+            reasons = target_problems(entry, trees, words)
         problems += [f"{path}: {reason}" for reason in reasons]
     return sorted(problems)
 
