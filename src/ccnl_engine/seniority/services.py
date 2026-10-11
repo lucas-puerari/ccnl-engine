@@ -17,14 +17,14 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from ccnl_engine.capability.rule.services import contract_rules
 from ccnl_engine.compensation.element.rules import service_gated_allowances
-from ccnl_engine.employment.inputs import Apprentice
-from ccnl_engine.payroll.assurance.models_decision import (
+from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
 )
-from ccnl_engine.payroll.capability.services_rule_lookup import contract_rules
+from ccnl_engine.employment.inputs import Apprentice
 from ccnl_engine.seniority.rules import (
     NOT_APPLICABLE_BY_CONTRACT,
     increments_apply,

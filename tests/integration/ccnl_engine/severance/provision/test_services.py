@@ -30,7 +30,7 @@ from ccnl_engine.severance.relief.services import (
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.assurance.models_decision import CalculationDecision
+    from ccnl_engine.decision.models import CalculationDecision
     from ccnl_engine.payroll.period.results import PeriodResult
 
 _DOMESTIC: dict[str, object] = {

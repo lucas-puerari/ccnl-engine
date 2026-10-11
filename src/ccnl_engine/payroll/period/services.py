@@ -14,7 +14,7 @@ from __future__ import annotations
 from dataclasses import replace
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.assurance.policies_engine_mode import EngineMode
+from ccnl_engine.assurance.policies import EngineMode
 from ccnl_engine.payroll.period.services_assembly import assemble_result
 from ccnl_engine.payroll.period.services_context import build_context
 from ccnl_engine.payroll.period.services_pipeline import (

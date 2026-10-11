@@ -20,6 +20,10 @@ from decimal import ROUND_HALF_UP, Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.agreement.validity.rules import rule_scope
+from ccnl_engine.decision.models import (
+    CalculationIssue,
+    CalculationStatus,
+)
 from ccnl_engine.employment.inputs import Apprentice
 from ccnl_engine.fund.contractual.policies import (
     contributing,
@@ -28,18 +32,14 @@ from ccnl_engine.fund.contractual.policies import (
     worked_days,
 )
 from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.assurance.models_decision import (
-    CalculationIssue,
-    CalculationStatus,
-)
 from ccnl_engine.payroll.period.models_run import RunKind
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.validity.rules import TimeSeries
+    from ccnl_engine.capability.rule.services import Rule
     from ccnl_engine.fund.models import (
         ContractualFundContribution,
     )
-    from ccnl_engine.payroll.capability.services_rule_lookup import Rule
     from ccnl_engine.payroll.period.services_run_context import RunContext
 
 __all__ = [

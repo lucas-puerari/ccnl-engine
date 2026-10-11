@@ -51,7 +51,7 @@ _INTERNAL_READERS: dict[str, str] = {
     "integration/ccnl_engine/test_public_exports.py": (
         "pins the public surface against the modules that define it"
     ),
-    "knowledge/ccnl_engine/knowledge/limitation/test_registry.py": (
+    "knowledge/ccnl_engine/limitation/models/test_registry.py": (
         "matches the limitation registry with the modules that raise each one"
     ),
 }

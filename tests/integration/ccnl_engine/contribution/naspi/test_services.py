@@ -6,16 +6,16 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.contribution.naspi.services import ISSUE_CODE
+from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.employment.fixed_term.inputs import NaspiExclusion
 from ccnl_engine.employment.inputs import FixedTerm, Permanent
-from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
 from ccnl_engine.payroll.period.services import calculate_period
 from tests.integration.ccnl_engine.payroll.period.builders_period_requests import (
     period_request,
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.assurance.models_decision import CalculationDecision
+    from ccnl_engine.decision.models import CalculationDecision
     from ccnl_engine.payroll.period.results import PeriodResult
 
 

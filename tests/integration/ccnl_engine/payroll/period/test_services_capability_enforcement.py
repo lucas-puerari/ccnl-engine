@@ -13,17 +13,17 @@ from datetime import date
 
 import pytest
 
+from ccnl_engine.assurance.models import BlockerCode, CoverageStatus
+from ccnl_engine.capability.results import (
+    CapabilityGapKind,
+    CapabilityReport,
+    CapabilityScope,
+)
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.family.inputs import FamilyComposition
 from ccnl_engine.inputs import NoPensionFund
-from ccnl_engine.payroll.assurance.models import BlockerCode, CoverageStatus
-from ccnl_engine.payroll.capability.results import (
-    CapabilityGapKind,
-    CapabilityReport,
-    CapabilityScope,
-)
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.models_run import PayrollRun, RunKind
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest

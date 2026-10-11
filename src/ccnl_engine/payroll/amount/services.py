@@ -41,14 +41,14 @@ from ccnl_engine.withholding.agent.services import untaxed_amounts
 
 if TYPE_CHECKING:
     from ccnl_engine.contribution.results import ContributionBreakdown
+    from ccnl_engine.decision.models import (
+        CalculationDecision,
+        CalculationIssue,
+    )
     from ccnl_engine.irpef.results import TaxComputation
     from ccnl_engine.irpef.services import _Irpef
     from ccnl_engine.irpef.taxable.services import _PdrSplit
     from ccnl_engine.payroll.amount.types import _AmountsInput
-    from ccnl_engine.payroll.assurance.models_decision import (
-        CalculationDecision,
-        CalculationIssue,
-    )
     from ccnl_engine.surtax.rules import RunSurtax
     from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
 

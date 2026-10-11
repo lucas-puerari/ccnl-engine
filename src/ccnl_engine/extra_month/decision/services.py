@@ -23,7 +23,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from ccnl_engine.compensation.raccordo.services import erc_decisions, erc_rules
-from ccnl_engine.payroll.assurance.models_decision import (
+from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
@@ -32,8 +32,8 @@ from ccnl_engine.payroll.period.rules_run_decision import _ccnl_rule
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus
 
 if TYPE_CHECKING:
+    from ccnl_engine.capability.rule.services import Rule
     from ccnl_engine.extra_month.models import ExtraMonthAccrual, MonthAccrualRule
-    from ccnl_engine.payroll.capability.services_rule_lookup import Rule
     from ccnl_engine.payroll.period.services_run_context import RunContext
 
 __all__ = ["accrual_decisions", "accrual_issue", "accrual_rules", "run_accruals"]

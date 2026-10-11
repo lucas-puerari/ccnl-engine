@@ -21,14 +21,14 @@ from dataclasses import dataclass
 from functools import cached_property
 from typing import TYPE_CHECKING
 
-from ccnl_engine.family.deduction.rules import compute_family_deductions
-from ccnl_engine.family.inputs import DependentRelationship
-from ccnl_engine.irpef.other_income.inputs import IncomeEstimateQuality
-from ccnl_engine.payroll.assurance.models_decision import (
+from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
 )
+from ccnl_engine.family.deduction.rules import compute_family_deductions
+from ccnl_engine.family.inputs import DependentRelationship
+from ccnl_engine.irpef.other_income.inputs import IncomeEstimateQuality
 
 if TYPE_CHECKING:
     from decimal import Decimal

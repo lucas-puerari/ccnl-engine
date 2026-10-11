@@ -5,8 +5,8 @@ from __future__ import annotations
 import pickle
 from datetime import date
 
+from ccnl_engine.assurance.models import BlockerCode
 from ccnl_engine.errors import MissingRuleError
-from ccnl_engine.payroll.assurance.models import BlockerCode
 from ccnl_engine.payroll.period.models_run import PayrollRunId, RunKind
 from ccnl_engine.payroll.year.models_payment import PaymentId
 from ccnl_engine.payroll.year.models_uncovered_run import UncoveredRun

@@ -6,14 +6,14 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.decision.models import (
+    CalculationIssue,
+    CalculationStatus,
+)
 from ccnl_engine.family.services import resolve_family
 from ccnl_engine.irpef.computation.services import (
     TaxResolution,
     compute_tax,
-)
-from ccnl_engine.payroll.assurance.models_decision import (
-    CalculationIssue,
-    CalculationStatus,
 )
 from ccnl_engine.payroll.period.services_shared import _ZERO
 from ccnl_engine.withholding.rules import PayPeriod

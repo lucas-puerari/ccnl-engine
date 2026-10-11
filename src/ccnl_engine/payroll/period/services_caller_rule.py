@@ -4,7 +4,7 @@ Some events carry a rate or an amount the engine applies as given: the
 overtime hourly rate and an explicit multiplier, the hourly rate of an
 absence, a flat supplement, a separate tax rate, a sick pay amount that
 overrides the engine.  Each such event records one decision with origin
-:attr:`~ccnl_engine.payroll.assurance.models_decision.DecisionOrigin.CALLER_SUPPLIED`:
+:attr:`~ccnl_engine.decision.models.DecisionOrigin.CALLER_SUPPLIED`:
 the fields it took from the caller, their values and, where the bundle has
 a comparable value (a CCNL band, the hourly divisor), that value for
 comparison.  The amounts do not change.  An
@@ -18,6 +18,11 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.decision.models import (
+    CalculationDecision,
+    CalculationStatus,
+    DecisionOrigin,
+)
 from ccnl_engine.event.facade import (
     AbsenceEvent,
     ArrearsEvent,
@@ -34,11 +39,6 @@ from ccnl_engine.event.facade import (
 )
 from ccnl_engine.event.standard.handlers import (
     _standard_event_gross,
-)
-from ccnl_engine.payroll.assurance.models_decision import (
-    CalculationDecision,
-    CalculationStatus,
-    DecisionOrigin,
 )
 from ccnl_engine.working_time.models import TimeSupplementKind, WorkKind
 from ccnl_engine.working_time.overtime.policies import (

@@ -11,16 +11,16 @@ from ccnl_engine.errors import DataIntegrityError, InvalidInputError
 from ccnl_engine.event.facade import AbsenceEvent, ArrearsEvent, OvertimeEvent
 from ccnl_engine.pay_item.loaders import load_policy_resolver
 from ccnl_engine.pay_item.policies import PolicyContext
-from ccnl_engine.payroll.assurance import validators as _reconcile_mod
-from ccnl_engine.payroll.assurance.validators import (
-    ReconciliationResult,
-    ReconciliationViolation,
-)
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.period.services_shared import _require_resolution
 from ccnl_engine.payroll.state.models import PeriodState
+from ccnl_engine.reconciliation import validators as _reconcile_mod
+from ccnl_engine.reconciliation.validators import (
+    ReconciliationResult,
+    ReconciliationViolation,
+)
 from tests.integration.ccnl_engine.payroll.period.builders_period_requests import (
     period_request,
 )

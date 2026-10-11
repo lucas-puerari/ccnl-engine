@@ -6,19 +6,19 @@ from dataclasses import dataclass, field
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.assurance.models import ResultAssurance
+from ccnl_engine.assurance.rules import assess_nothing_computed
 from ccnl_engine.ledger.remittance.models import remittance_summary
-from ccnl_engine.payroll.assurance.models import ResultAssurance
-from ccnl_engine.payroll.assurance.rules_assessment import assess_nothing_computed
 from ccnl_engine.payroll.year.rules_close import close_tax_year
 
 if TYPE_CHECKING:
-    from ccnl_engine.ledger.remittance.models import RemittanceLine
-    from ccnl_engine.payroll.assurance.models import ResultBlocker
-    from ccnl_engine.payroll.assurance.models_decision import (
+    from ccnl_engine.assurance.models import ResultBlocker
+    from ccnl_engine.assurance.policies import EngineMode
+    from ccnl_engine.decision.models import (
         CalculationDecision,
         CalculationIssue,
     )
-    from ccnl_engine.payroll.assurance.policies_engine_mode import EngineMode
+    from ccnl_engine.ledger.remittance.models import RemittanceLine
     from ccnl_engine.payroll.period.results import PeriodResult
     from ccnl_engine.payroll.state.models import PeriodState
     from ccnl_engine.payroll.year.inputs_calendar_override import CalendarOverride
@@ -93,7 +93,7 @@ class PaymentsResult:
         run of :attr:`uncovered_runs`.  The result is payable only when
         every run computed is and none was left out; with no run computed
         it is not payable (see
-        :func:`~ccnl_engine.payroll.assurance.rules_assessment.assess_nothing_computed`).
+        :func:`~ccnl_engine.assurance.rules.assess_nothing_computed`).
         """
         if self.period_results:
             combined = ResultAssurance.combine(r.assurance for r in self.period_results)

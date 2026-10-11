@@ -13,7 +13,7 @@ missing fact, in the notation of the
 
 from __future__ import annotations
 
-from ccnl_engine.payroll.assurance.models_decision import (
+from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationStatus,
 )

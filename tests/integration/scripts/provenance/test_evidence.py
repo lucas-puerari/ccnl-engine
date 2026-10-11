@@ -8,8 +8,8 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine.agreement.facade import CCNLVerification
-from ccnl_engine.knowledge.limitation.loaders import load_engine_limitations
-from ccnl_engine.knowledge.limitation.models import LimitationStatus
+from ccnl_engine.limitation.loaders import load_engine_limitations
+from ccnl_engine.limitation.models import LimitationStatus
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from scripts.documentation.coverage import bundled_ccnls
 from scripts.provenance.evidence import (

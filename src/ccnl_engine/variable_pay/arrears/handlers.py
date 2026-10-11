@@ -20,6 +20,11 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.decision.models import (
+    CalculationDecision,
+    CalculationIssue,
+    CalculationStatus,
+)
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.event.facade import ArrearsEvent
 from ccnl_engine.event.handlers import (
@@ -31,11 +36,6 @@ from ccnl_engine.ledger.models import AccountKind, PostingIntent
 from ccnl_engine.ledger.remittance.models import ARREARS_WITHHOLDING
 from ccnl_engine.pay_item.facade import ContractRenewalArrears
 from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.assurance.models_decision import (
-    CalculationDecision,
-    CalculationIssue,
-    CalculationStatus,
-)
 from ccnl_engine.payroll.period.services_shared import _require_resolution
 
 if TYPE_CHECKING:

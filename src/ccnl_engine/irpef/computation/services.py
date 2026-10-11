@@ -28,9 +28,9 @@ from ccnl_engine.tax_credit.ulteriore_detrazione.recovery.rules import (
 from ccnl_engine.withholding.rules import NO_PAY, period_tax
 
 if TYPE_CHECKING:
+    from ccnl_engine.decision.models import CalculationDecision
     from ccnl_engine.irpef.net.rules import NetIrpef
     from ccnl_engine.irpef.results import TaxLineItem
-    from ccnl_engine.payroll.assurance.models_decision import CalculationDecision
     from ccnl_engine.tax.annual.models import YearRules
     from ccnl_engine.tax_credit.account.models import CreditAccount
     from ccnl_engine.tax_credit.foreign.inputs import ForeignTaxPaid

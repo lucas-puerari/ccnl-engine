@@ -51,7 +51,7 @@ if not ruleset.is_production:
 | `confidence_contradicts_readiness` | `True` when a `reviewed` or `production` tier lacks a `verified` confidence |
 | `is_production` | `production` and a confidence that agrees |
 
-::: ccnl_engine.payroll.assurance.policies_engine_mode
+::: ccnl_engine.assurance.policies
     options:
       members:
         - EngineMode
@@ -368,7 +368,7 @@ schedule without it, so the year is partial and not payable. A year in
 which no run has a base salary raises the `MissingRuleError` of its first
 run.
 
-::: ccnl_engine.payroll.capability.rules_requirement
+::: ccnl_engine.capability.requirement.rules
     options:
       members:
         - UnresolvedRequirement
@@ -378,7 +378,7 @@ run.
       members:
         - UncoveredRun
 
-::: ccnl_engine.payroll.assurance.models
+::: ccnl_engine.assurance.models
     options:
       members:
         - ResultAssurance
@@ -388,7 +388,7 @@ run.
         - EvidenceStatus
         - Payability
 
-::: ccnl_engine.knowledge.limitation.models
+::: ccnl_engine.limitation.models
     options:
       members:
         - ModelLimitation
@@ -402,7 +402,7 @@ run.
         - RemittanceColumn
         - remittance_summary
 
-::: ccnl_engine.payroll.assurance.models_decision
+::: ccnl_engine.decision.models
     options:
       members:
         - CalculationStatus

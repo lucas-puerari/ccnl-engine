@@ -20,7 +20,7 @@ from pydantic import BaseModel, ConfigDict, model_validator
 
 from ccnl_engine.absence.models import AbsenceRules
 from ccnl_engine.agreement.types import NoteKind
-from ccnl_engine.knowledge.limitation.models import (
+from ccnl_engine.limitation.models import (
     ModelLimitation,
     MonetaryImpact,
     NoteLimitation,
@@ -47,7 +47,7 @@ class CoverageNote(BaseModel):
 
     A ``simplification`` note states its ``monetary_impact``.  When it can
     move an amount (``yes`` or ``unknown``) it must name its capability and
-    declare the :class:`~ccnl_engine.knowledge.limitation.models.NoteLimitation`
+    declare the :class:`~ccnl_engine.limitation.models.NoteLimitation`
     the engine records on the runs it concerns: no monetary simplification
     stays free text.
     """
@@ -129,7 +129,7 @@ class CCNLCoverage(BaseModel):
     The coverage of each capability is not declared here: it derives from
     the capability registry of the fiscal year and from the ``missing``
     notes, which lower the capability they name to partial for this CCNL
-    (``ccnl_engine.payroll.capability.services_coverage``).  For human-review
+    (``ccnl_engine.capability.support.services``).  For human-review
     confidence and traceability use :class:`CCNLVerification`.
     """
 

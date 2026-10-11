@@ -17,12 +17,12 @@ from ccnl_engine.working_time.overtime.policies import CCNLOvertimeBands
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.pay_item.policies import PolicyContext, PolicyResolver
-    from ccnl_engine.pay_item.treatment.models import EventTreatment
-    from ccnl_engine.payroll.assurance.models_decision import (
+    from ccnl_engine.decision.models import (
         CalculationDecision,
         CalculationIssue,
     )
+    from ccnl_engine.pay_item.policies import PolicyContext, PolicyResolver
+    from ccnl_engine.pay_item.treatment.models import EventTreatment
     from ccnl_engine.provenance.source.models import SourceLocation
     from ccnl_engine.regime.models import (
         PreferentialTaxRegime,

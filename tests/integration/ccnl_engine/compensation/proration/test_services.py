@@ -19,8 +19,8 @@ from ccnl_engine.compensation.proration.services import (
     RULE_MISSING,
     run_proration,
 )
+from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.employment.fact.inputs import EmploymentPeriod
-from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
 from ccnl_engine.payroll.period.models_run import PayrollRun, RunKind
 
 if TYPE_CHECKING:

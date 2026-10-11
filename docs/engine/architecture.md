@@ -170,8 +170,6 @@ which the naming baseline records:
 | `year/` | competence and tax year plans, calendar, run selection, payments, year results, closing a tax year |
 | `amount/` | the amounts of a run |
 | `state/` | period state, opening balances and its JSON serializer |
-| `assurance/` | decisions, assessment, ruleset assurance and the reconciliation invariants |
-| `capability/` | capability catalog, requirements, applicability and coverage |
 
 `period/services.py` (`calculate_period`) reads as the pipeline:
 `build_context`, then `run_events`, `run_amounts`, `run_decisions`,

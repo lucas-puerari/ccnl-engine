@@ -9,10 +9,10 @@ from ccnl_engine.contribution.rate.rules import (
     CATEGORY_RATE_ASSUMED_CODE,
     category_rate_issue,
 )
+from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.inputs import Apprentice, Permanent
-from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period

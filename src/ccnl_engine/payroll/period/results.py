@@ -7,25 +7,25 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.ledger.remittance.models import remittance_summary
-from ccnl_engine.payroll.assurance.models_decision import (
+from ccnl_engine.assurance.policies import EngineMode
+from ccnl_engine.assurance.rules import assess
+from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
 )
-from ccnl_engine.payroll.assurance.policies_engine_mode import EngineMode
-from ccnl_engine.payroll.assurance.rules_assessment import assess
+from ccnl_engine.ledger.remittance.models import remittance_summary
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.state.models import PeriodState
 
 if TYPE_CHECKING:
+    from ccnl_engine.assurance.models import ResultAssurance, ResultBlocker
+    from ccnl_engine.capability.results import CapabilityReport
     from ccnl_engine.contribution.results import ContributionBreakdown
     from ccnl_engine.irpef.results import TaxComputation
-    from ccnl_engine.knowledge.limitation.models import ModelLimitation
     from ccnl_engine.ledger.models import LedgerEntry
     from ccnl_engine.ledger.remittance.models import RemittanceLine
+    from ccnl_engine.limitation.models import ModelLimitation
     from ccnl_engine.pay_item.facade import PayItem
-    from ccnl_engine.payroll.assurance.models import ResultAssurance, ResultBlocker
-    from ccnl_engine.payroll.capability.results import CapabilityReport
     from ccnl_engine.payroll.period.models_run import PayrollRun
     from ccnl_engine.provenance.ruleset.assurance.models import RulesetAssurance
     from ccnl_engine.variable_pay.benefit.results import BenefitBreakdown
@@ -77,7 +77,7 @@ class PeriodResult:
             ``operational`` adds a blocker for every ruleset short of
             ``production``.
         limitations: Model limitations that concern the run (see
-            :class:`~ccnl_engine.knowledge.limitation.models.ModelLimitation`);
+            :class:`~ccnl_engine.limitation.models.ModelLimitation`);
             an open one with a monetary impact blocks the amounts.
 
     Whether the amounts can be paid is :attr:`is_payable`; why not is

@@ -19,13 +19,13 @@ from typing import TYPE_CHECKING, Any
 import pytest
 
 from ccnl_engine.agreement.facade import TaxSector
-from ccnl_engine.employer.inputs import EmployerProfile, Headcount
-from ccnl_engine.employment.fact.inputs import EmploymentPeriod
-from ccnl_engine.inputs import NoPensionFund, TfrFundBalance
-from ccnl_engine.payroll.assurance.models_decision import (
+from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationStatus,
 )
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
+from ccnl_engine.employment.fact.inputs import EmploymentPeriod
+from ccnl_engine.inputs import NoPensionFund, TfrFundBalance
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.models_run import PayrollRun, RunKind
 from ccnl_engine.payroll.period.repositories import (

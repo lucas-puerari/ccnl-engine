@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import pytest
 
-from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
+from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.surtax.residence.rules import (
     RESIDENCE_UNKNOWN,
     residence_unknown_decisions,

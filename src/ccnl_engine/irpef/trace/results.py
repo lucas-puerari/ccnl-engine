@@ -23,8 +23,8 @@ from ccnl_engine.withholding.rules import (
 )
 
 if TYPE_CHECKING:
+    from ccnl_engine.decision.models import CalculationDecision
     from ccnl_engine.irpef.net.rules import NetIrpef
-    from ccnl_engine.payroll.assurance.models_decision import CalculationDecision
     from ccnl_engine.tax.annual.models import YearRules
 
 __all__ = ["annual_items", "somma_esente_items"]

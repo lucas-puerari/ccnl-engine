@@ -24,9 +24,9 @@ from ccnl_engine.errors import UnknownLevelError
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL, TaxSector
+    from ccnl_engine.capability.registry.models import CapabilityCatalog
     from ccnl_engine.compensation.models import Level
     from ccnl_engine.employment.fact.inputs import WeeklyHours
-    from ccnl_engine.payroll.capability.models_catalog import CapabilityCatalog
     from ccnl_engine.payroll.period.ports import KnowledgeRepository
     from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
     from ccnl_engine.tax.annual.models import YearRules

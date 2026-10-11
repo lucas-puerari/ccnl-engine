@@ -16,7 +16,7 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
+from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus
 from ccnl_engine.surtax.jurisdiction.types import REGION_CODES
 from ccnl_engine.surtax.loaders import load_surtax_rules

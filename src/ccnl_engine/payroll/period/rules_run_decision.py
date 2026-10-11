@@ -10,11 +10,11 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.employment.category.models import parse_worker_category
-from ccnl_engine.payroll.assurance.models_decision import (
+from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationStatus,
 )
+from ccnl_engine.employment.category.models import parse_worker_category
 
 if TYPE_CHECKING:
     from decimal import Decimal

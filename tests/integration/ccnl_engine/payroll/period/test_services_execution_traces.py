@@ -6,6 +6,9 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.capability.results import CapabilityGapKind
+from ccnl_engine.capability.trace.models import TraceState
+from ccnl_engine.capability.trace.services import build_traces
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.category.models import WorkerCategory
@@ -26,9 +29,6 @@ from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
 from ccnl_engine.pay_item.facade import CompetencePeriod
 from ccnl_engine.pay_item.loaders import load_policy_resolver
 from ccnl_engine.pay_item.policies import PolicyContext
-from ccnl_engine.payroll.capability.models_trace import TraceState
-from ccnl_engine.payroll.capability.results import CapabilityGapKind
-from ccnl_engine.payroll.capability.services_trace import build_traces
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.rules_run_decision import (
@@ -53,7 +53,7 @@ from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 from tests.unit.ccnl_engine.builders import year_plan
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.assurance.models_decision import CalculationDecision
+    from ccnl_engine.decision.models import CalculationDecision
     from ccnl_engine.payroll.period.results import PeriodResult
 
 _D = Decimal

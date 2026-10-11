@@ -3,7 +3,7 @@
 :func:`ineligibility` names the known fact that excludes the worker from a
 regime; :func:`missing_fact` names the required fact that is not known,
 with the public input field that supplies it, so that
-:attr:`~ccnl_engine.payroll.assurance.models_decision.CalculationIssue.fact` is
+:attr:`~ccnl_engine.decision.models.CalculationIssue.fact` is
 always a field the caller can set.
 """
 
@@ -101,7 +101,7 @@ def missing_fact(
 
     Returns:
         The reason code and the public input field that supplies the fact
-        (:attr:`~ccnl_engine.payroll.assurance.models_decision.CalculationIssue.fact`),
+        (:attr:`~ccnl_engine.decision.models.CalculationIssue.fact`),
         or ``None`` when every required fact is known.
     """
     return next(iter(missing_facts(regime, facts)), None)

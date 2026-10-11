@@ -19,12 +19,12 @@ from ccnl_engine.family.inputs import (
     FamilyComposition,
 )
 from ccnl_engine.ledger.models import AccountKind
-from ccnl_engine.payroll.assurance.validators import reconcile
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.results import PeriodResult
 from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
+from ccnl_engine.reconciliation.validators import reconcile
 from tests.integration.ccnl_engine.family.builders import (
     declared_dependent,
 )

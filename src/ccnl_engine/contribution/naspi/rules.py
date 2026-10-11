@@ -37,7 +37,7 @@ if TYPE_CHECKING:
 __all__ = ["NaspiSurcharge", "SurchargeReason", "naspi_surcharge"]
 
 _ZERO = Decimal(0)
-#: Public facts of :data:`~ccnl_engine.payroll.assurance.models_decision.PUBLIC_FACTS`.
+#: Public facts of :data:`~ccnl_engine.decision.models.PUBLIC_FACTS`.
 _CATEGORY = "category"
 _EXCLUSION = "naspi_exclusion"
 _RENEWALS = "renewals"

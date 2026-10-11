@@ -27,11 +27,11 @@ if TYPE_CHECKING:
         MonthlyPayChain,
     )
     from ccnl_engine.compensation.proration.services import RunProration
+    from ccnl_engine.decision.models import CalculationIssue
     from ccnl_engine.employment.category.models import WorkerCategory
     from ccnl_engine.extra_month.models import ExtraMonthAccrual
     from ccnl_engine.pay_item.facade import CompetencePeriod
     from ccnl_engine.pay_item.policies import PolicyContext, PolicyResolver
-    from ccnl_engine.payroll.assurance.models_decision import CalculationIssue
     from ccnl_engine.payroll.period.models_run import RunKind
     from ccnl_engine.payroll.period.ports import KnowledgeRepository
     from ccnl_engine.payroll.period.requests import PeriodCalculationRequest

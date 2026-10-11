@@ -15,13 +15,13 @@ from hypothesis import strategies as st
 
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.ledger.models import AccountKind, LedgerEntry
-from ccnl_engine.payroll.assurance.validators import reconcile
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
 from ccnl_engine.payroll.state.models_ytd_account import EarningsYtd, TaxYtd
+from ccnl_engine.reconciliation.validators import reconcile
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"

@@ -17,6 +17,10 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine.catalog.loaders import load_ccnl
+from ccnl_engine.decision.models import (
+    CalculationStatus,
+    DecisionOrigin,
+)
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.errors import InvalidInputError
@@ -25,10 +29,6 @@ from ccnl_engine.event.standard.handlers import (
     _standard_event_gross,
 )
 from ccnl_engine.inputs import NoPensionFund, WorkerCategory
-from ccnl_engine.payroll.assurance.models_decision import (
-    CalculationStatus,
-    DecisionOrigin,
-)
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period

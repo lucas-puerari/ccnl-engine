@@ -18,10 +18,10 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.errors import InvalidInputError, OutOfScopeError
 from ccnl_engine.ledger.models import AccountKind
-from ccnl_engine.payroll.assurance.types import RunFacts
 from ccnl_engine.payroll.period.models_run import run_identifier
 from ccnl_engine.payroll.period.services_shared import _sum_ledger
 from ccnl_engine.payroll.year.models_payment import PaymentId
+from ccnl_engine.reconciliation.types import RunFacts
 
 if TYPE_CHECKING:
     from ccnl_engine.extra_month.models import ExtraMonthAccrual

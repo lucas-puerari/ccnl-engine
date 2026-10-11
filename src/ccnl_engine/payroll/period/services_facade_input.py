@@ -11,7 +11,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.assurance.policies_engine_mode import EngineMode
+from ccnl_engine.assurance.policies import EngineMode
 from ccnl_engine.payroll.period.inputs import PeriodInput
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.payroll.state.services_opening_balance import OpeningBalances

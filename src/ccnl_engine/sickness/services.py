@@ -34,7 +34,7 @@ from ccnl_engine.sickness.term.rules import (
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
-    from ccnl_engine.payroll.capability.services_rule_lookup import Rule
+    from ccnl_engine.capability.rule.services import Rule
     from ccnl_engine.payroll.period.services_run_context import RunContext
 
 __all__ = ["sickness_rules", "sickness_terms"]

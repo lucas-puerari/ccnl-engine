@@ -43,12 +43,12 @@ from ccnl_engine.withholding.deferral.posting.services import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.ledger.models import LedgerEntry
-    from ccnl_engine.pay_item.facade import PayItem
-    from ccnl_engine.payroll.assurance.models_decision import (
+    from ccnl_engine.decision.models import (
         CalculationDecision,
         CalculationIssue,
     )
+    from ccnl_engine.ledger.models import LedgerEntry
+    from ccnl_engine.pay_item.facade import PayItem
     from ccnl_engine.payroll.period.services_run_context import RunContext
     from ccnl_engine.withholding.cap.services import CappedWithholding
     from ccnl_engine.withholding.deferral.inputs import (

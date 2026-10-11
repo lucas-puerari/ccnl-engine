@@ -11,9 +11,6 @@ import pytest
 from ccnl_engine import PayrollEngine
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.assurance.validators_state import (
-    check_carried_recovery_advance,
-)
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.models_run import PayrollRunId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
@@ -30,6 +27,9 @@ from ccnl_engine.payroll.year.models_payment import PaymentId
 from ccnl_engine.payroll.year.rules_close import close_tax_year
 from ccnl_engine.payroll.year.services_competence import (
     calculate_competence_year,
+)
+from ccnl_engine.reconciliation.transition.validators import (
+    check_carried_recovery_advance,
 )
 from ccnl_engine.tax_credit.account.models import TrattamentoAccount
 from ccnl_engine.tax_credit.recovery.models import RecoveryPlan

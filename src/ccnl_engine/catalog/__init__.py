@@ -6,17 +6,17 @@ Answers what the engine covers before any run.
 from __future__ import annotations
 
 from ccnl_engine.agreement.validity.models import ValidityWindow
+from ccnl_engine.capability.registry.models import (
+    CapabilityCatalog,
+    CapabilityEntry,
+    CapabilityImplementation,
+)
 from ccnl_engine.catalog.loaders import (
     CcnlId,
     ContractSummary,
     LevelSummary,
     get_ccnl,
     search_ccnls,
-)
-from ccnl_engine.payroll.capability.models_catalog import (
-    CapabilityCatalog,
-    CapabilityEntry,
-    CapabilityImplementation,
 )
 from ccnl_engine.provenance.ruleset.assurance.models import (
     RulesetAssurance,

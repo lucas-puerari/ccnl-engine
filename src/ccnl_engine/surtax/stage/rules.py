@@ -1,7 +1,7 @@
 """Surtax stage: addizionale regionale e comunale, with the decision taken.
 
 Each jurisdiction the caller supplies yields one
-:class:`~ccnl_engine.payroll.assurance.models_decision.CalculationDecision`.  The
+:class:`~ccnl_engine.decision.models.CalculationDecision`.  The
 surtax of the year is determined only by its conguaglio; any other run
 takes ``determined_at_conguaglio`` (final, amount 0) for a known table and
 ``table_unknown`` for an unknown one.  On the conguaglio:
@@ -23,14 +23,14 @@ takes ``determined_at_conguaglio`` (final, amount 0) for a known table and
   rates of an earlier year (no delibera of the tax year published, or a
   table of advance rates, D.Lgs. 360/1998 art. 1 c. 4), not those of the
   tax year the conguaglio needs; they are applied and a provisional
-  :class:`~ccnl_engine.payroll.assurance.models_decision.CalculationIssue` names
+  :class:`~ccnl_engine.decision.models.CalculationIssue` names
   the rates year;
 - ``specific_exemptions_not_applied`` (provisional): the municipal row
   has exemptions for a category of income only, which the engine does not
   apply; a provisional issue quotes them;
 - ``table_unknown`` (incomplete, amount ``None``): the code is well formed
   but the tax year table has no row for it.  The amount withheld is zero
-  and a :class:`~ccnl_engine.payroll.assurance.models_decision.CalculationIssue`
+  and a :class:`~ccnl_engine.decision.models.CalculationIssue`
   marks the result as not payable.
 
 Decision amounts are the annual surtax of the tax year, computed by its
@@ -44,12 +44,12 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.irpef import rules as _irpef
-from ccnl_engine.payroll.assurance.models_decision import (
+from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
 )
+from ccnl_engine.irpef import rules as _irpef
 from ccnl_engine.surtax.jurisdiction.types import region_table_name
 from ccnl_engine.surtax.table.rules import (
     DEPENDENT_PROVISIONS_ISSUE,

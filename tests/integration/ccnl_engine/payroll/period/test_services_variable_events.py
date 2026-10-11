@@ -20,12 +20,12 @@ from ccnl_engine.event.facade import (
 )
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.pay_item.facade import SicknessItem
-from ccnl_engine.payroll.assurance.validators import reconcile
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.results import PeriodResult
 from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
+from ccnl_engine.reconciliation.validators import reconcile
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"

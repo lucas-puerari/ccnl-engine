@@ -6,7 +6,7 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
+from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.withholding.agent.rules import (
     NOT_WITHHOLDING_AGENT,
     not_withholding_agent_decision,

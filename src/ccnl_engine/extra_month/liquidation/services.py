@@ -20,15 +20,15 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.decision.models import (
+    CalculationIssue,
+    CalculationStatus,
+)
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.extra_month.qualification.services import (
     month_accrual_rule,
     non_accruing_days,
     termination_settlements,
-)
-from ccnl_engine.payroll.assurance.models_decision import (
-    CalculationIssue,
-    CalculationStatus,
 )
 from ccnl_engine.payroll.period.models_run import (
     PayrollRun,

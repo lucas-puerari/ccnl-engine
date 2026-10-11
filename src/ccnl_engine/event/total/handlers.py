@@ -27,14 +27,14 @@ if TYPE_CHECKING:
     from datetime import date
     from decimal import Decimal
 
+    from ccnl_engine.decision.models import (
+        CalculationDecision,
+        CalculationIssue,
+    )
     from ccnl_engine.event.facade import WorkEvent
     from ccnl_engine.event.handlers import EventEffect
     from ccnl_engine.ledger.models import PostingIntent
     from ccnl_engine.pay_item.facade import PayItem
-    from ccnl_engine.payroll.assurance.models_decision import (
-        CalculationDecision,
-        CalculationIssue,
-    )
     from ccnl_engine.sickness.models import SicknessEpisode
 
 #: Catalog feature each event type executes.  A bonus has none of its own:

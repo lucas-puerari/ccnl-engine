@@ -15,6 +15,10 @@ from ccnl_engine.tax_credit.recovery.models import InstallmentRun
 
 if TYPE_CHECKING:
     from ccnl_engine.contribution.services import TfrAccrual
+    from ccnl_engine.decision.models import (
+        CalculationDecision,
+        CalculationIssue,
+    )
     from ccnl_engine.employment.category.models import WorkerCategory
     from ccnl_engine.employment.fact.inputs import PublicEndOfService
     from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
@@ -26,10 +30,6 @@ if TYPE_CHECKING:
     )
     from ccnl_engine.fund.solidarity.models import SolidarityFund
     from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts
-    from ccnl_engine.payroll.assurance.models_decision import (
-        CalculationDecision,
-        CalculationIssue,
-    )
     from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
     from ccnl_engine.pension_fund.rules import (
         PensionContribution,

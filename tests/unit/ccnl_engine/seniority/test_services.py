@@ -7,7 +7,7 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
+from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.seniority.inputs import (
     SeniorityFact,
     SenioritySource,
