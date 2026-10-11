@@ -37,17 +37,17 @@ from ccnl_engine.extra_month.settlement.services import (
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.pay_item.facade import PublicTfrReduction
 from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.period.models_run import RunKind
-from ccnl_engine.payroll.period.services_shared import (
+from ccnl_engine.pay_item.services import (
     _make_entry,
     _require_resolution,
     _treatment_from_resolution,
 )
 from ccnl_engine.pension_fund.inputs import PensionFundEnrolment
+from ccnl_engine.run.models import RunKind
 
 if TYPE_CHECKING:
     from ccnl_engine.event.total.handlers import _EventTotals
-    from ccnl_engine.payroll.period.services_run_context import RunContext
+    from ccnl_engine.period.context.services import RunContext
 
 __all__ = ["public_tfr_reduction"]
 

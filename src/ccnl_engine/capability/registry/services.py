@@ -43,10 +43,10 @@ from ccnl_engine.errors import DataIntegrityError
 from ccnl_engine.event.facade import BonusEvent
 from ccnl_engine.event.registry.handlers import _HANDLER_REGISTRY
 from ccnl_engine.event.total.handlers import EVENT_FEATURES
-from ccnl_engine.payroll.period.models_run import RunKind
-from ccnl_engine.payroll.period.services_caller_rule import (
+from ccnl_engine.period.decision.override.services import (
     CALLER_SUPPLIED_CAPABILITIES,
 )
+from ccnl_engine.run.models import RunKind
 
 if TYPE_CHECKING:
     from collections.abc import Iterable, Mapping
@@ -56,7 +56,7 @@ if TYPE_CHECKING:
         CapabilityEntry,
     )
     from ccnl_engine.decision.models import CalculationDecision
-    from ccnl_engine.payroll.period.services_run_context import RunContext
+    from ccnl_engine.period.context.services import RunContext
     from ccnl_engine.provenance.source.rule.models import ProvenanceStatus
 
 __all__ = ["capability_report", "case_facts", "registry_errors", "validate_registry"]

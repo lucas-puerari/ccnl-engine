@@ -53,7 +53,8 @@ from tests.integration.ccnl_engine.surtax.residence.builders import (
 from tests.knowledge.ccnl_engine.irpef.other_income.builders import (
     employment_only,
 )
-from tests.knowledge.ccnl_engine.payroll.support import (
+from tests.knowledge.ccnl_engine.seniority.builders import new_hire
+from tests.knowledge.ccnl_engine.support import (
     COMMERCIO,
     PA_FUNZIONI_CENTRALI,
     history,
@@ -61,7 +62,6 @@ from tests.knowledge.ccnl_engine.payroll.support import (
     remitted,
     substitute_tax,
 )
-from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 if TYPE_CHECKING:
     from ccnl_engine import PeriodResult
@@ -99,7 +99,7 @@ def _period(
     """Return the run of ``month`` of ``worker``, with ``events``.
 
     Without ``opening`` the run opens with the months before it, computed
-    without events (:func:`~tests.knowledge.ccnl_engine.payroll.support.history`).
+    without events (:func:`~tests.knowledge.ccnl_engine.support.history`).
 
     Returns:
         The regular run of ``month`` 2026.

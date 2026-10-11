@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from decimal import Decimal
 
+from ccnl_engine.amount.types import _PeriodAmounts
 from ccnl_engine.contribution.services import TfrAccrual
 from ccnl_engine.ledger.line.tax.services import tax_lines
 from ccnl_engine.ledger.models import AccountKind
-from ccnl_engine.payroll.amount.types import _PeriodAmounts
 from ccnl_engine.surtax.obligation.models import (
     SurtaxComponent,
     SurtaxPart,

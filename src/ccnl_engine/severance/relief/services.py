@@ -21,16 +21,16 @@ from typing import TYPE_CHECKING
 from ccnl_engine.contribution.results import ContributionComponent
 from ccnl_engine.employment.inputs import Apprentice
 from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.period.services_shared import _ZERO
+from ccnl_engine.pay_item.services import _ZERO
 from ccnl_engine.pension_fund.inputs import PensionFundEnrolment
 
 if TYPE_CHECKING:
     from decimal import Decimal
 
+    from ccnl_engine.amount.types import _AmountsInput
     from ccnl_engine.contribution.results import ContributionBreakdown
     from ccnl_engine.contribution.services import TfrAccrual
-    from ccnl_engine.payroll.amount.types import _AmountsInput
-    from ccnl_engine.payroll.period.services_run_context import RunContext
+    from ccnl_engine.period.context.services import RunContext
     from ccnl_engine.severance.models import TfrCompensation
 
 __all__ = [

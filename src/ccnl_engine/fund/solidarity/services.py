@@ -17,13 +17,13 @@ from typing import TYPE_CHECKING
 from ccnl_engine.contribution.results import ContributionComponent
 from ccnl_engine.employment.inputs import FixedTerm
 from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.period.services_shared import _ZERO
+from ccnl_engine.pay_item.services import _ZERO
 
 if TYPE_CHECKING:
     from decimal import Decimal
 
+    from ccnl_engine.amount.types import _AmountsInput
     from ccnl_engine.contribution.results import ContributionBreakdown
-    from ccnl_engine.payroll.amount.types import _AmountsInput
 
 __all__ = ["EMPLOYEE_COMPONENT", "EMPLOYER_COMPONENT", "with_solidarity_fund"]
 

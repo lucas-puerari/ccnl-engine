@@ -14,14 +14,14 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.inputs import Apprentice
-from ccnl_engine.payroll.period.models_payroll import PeriodId
-from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
-from ccnl_engine.payroll.period.services import calculate_period
-from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.pension_fund.inputs import PensionFundEnrolment
+from ccnl_engine.period.requests import PeriodCalculationRequest
+from ccnl_engine.period.services import calculate_period
+from ccnl_engine.run.types import PeriodId
 from ccnl_engine.severance.relief.services import (
     APPRENTICE_GUARANTEE_FUND,
     GUARANTEE_FUND_COMPONENT,
@@ -29,7 +29,7 @@ from ccnl_engine.severance.relief.services import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.period.results import PeriodResult
+    from ccnl_engine.period.results import PeriodResult
 
 _METALMECCANICO = "metalmeccanico-federmeccanica.json"
 _APPRENTICE = Apprentice(months_elapsed=6, track="professionalizzante_36")

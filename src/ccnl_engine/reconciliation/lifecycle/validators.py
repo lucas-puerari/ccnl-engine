@@ -15,18 +15,18 @@ from collections import defaultdict
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.period.models_run import RunKind
 from ccnl_engine.reconciliation.transition.validators import run_id_of
 from ccnl_engine.reconciliation.types import (
     InvariantCode,
     ReconciliationViolation,
 )
+from ccnl_engine.run.models import RunKind
 
 if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.extra_month.schedule.models import ExtraMonthKind
-    from ccnl_engine.payroll.period.results import PeriodResult
+    from ccnl_engine.period.results import PeriodResult
     from ccnl_engine.reconciliation.types import RunFacts
 
 __all__: list[str] = []

@@ -7,14 +7,14 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.ledger.models import AccountKind, LedgerEntry
-from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.reconciliation.validators import (
     ReconciliationResult,
     ReconciliationViolation,
     reconcile,
 )
-from tests.unit.ccnl_engine.payroll.period.builders_synthetic_result import (
+from tests.unit.ccnl_engine.reconciliation.builders import (
     COMPETENCE,
     OPENING,
     PAYMENT_DATE,

@@ -2,8 +2,8 @@
 
 The [Architecture contract](architecture-contract.md) fixes the layout: one
 root per concept, directories named after domains, files named after roles.
-The migration from the layout by source (`contract`, `tax`, `payroll`) lands
-one group of concepts at a time.
+The layout by source (`contract`, `tax`, `payroll`) has been migrated; only
+`tax/annual` waits for the knowledge move.
 
 The facade sits in `api.py`, the shared `errors`, `primitives` and
 `validation` modules at the root. Each file is named by its role, and the
@@ -42,8 +42,7 @@ api -> application -> service -> domain
   (orchestration, computation, norms: see
   [Dependency tiers](architecture-contract.md#dependency-tiers)); cycles
   inside a tier are allowed. Every root of the package has a tier or is a
-  legacy root (`tax`, `payroll`), which the rule skips until it
-  empties. An import that cannot
+  legacy root (`tax`), which the rule skips until it empties. An import that cannot
   move yet is allowlisted with its reason; the allowlist and the legacy
   roots only shrink.
 - Every module belongs to a layer. `ccnl_engine.version` and the bundle
@@ -157,26 +156,6 @@ hard limit and delete its line; an offender that shrinks but still offends
 passes with a note, and its value should be lowered in the same change.
 `python scripts/structure/check.py --write-baseline` rewrites the file
 from the tree: review the diff and reject any added entry.
-
-## Payroll layout
-
-Until its concepts move, `payroll/` keeps its layout by subdomain, each file
-named by its role optionally followed by a qualifier (`rules_irpef_net.py`),
-which the naming baseline records:
-
-| Subdomain | Holds |
-|---|---|
-| `period/` | one run: request, inputs and defaults, context, pipeline, posting, checks, result assembly, the knowledge repository port and its bundled sources |
-| `year/` | competence and tax year plans, calendar, run selection, payments, year results, closing a tax year |
-| `amount/` | the amounts of a run |
-| `state/` | period state, opening balances and its JSON serializer |
-
-`period/services.py` (`calculate_period`) reads as the pipeline:
-`build_context`, then `run_events`, `run_amounts`, `run_decisions`,
-`run_credits`, `post_run` and `assemble_result`. A pure state transition is
-a rule (`year/rules_close.py`); the facade reaches it through an application
-service (`period/services_facade_input.py`), since `api` imports the
-application layer only.
 
 ## Test layout
 

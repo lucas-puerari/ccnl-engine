@@ -46,7 +46,7 @@ from ccnl_engine.surtax.stage.rules import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.state.models_ytd_account import TaxYtd
+    from ccnl_engine.balance.cash.account.models import TaxYtd
     from ccnl_engine.surtax.stage.rules import SurtaxOutcome
     from ccnl_engine.tax_credit.recovery.models import PostedInstallment
 

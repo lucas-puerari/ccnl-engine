@@ -8,17 +8,17 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from ccnl_engine.calendar.models import WorkCalendar
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.event.facade import AbsenceEvent
 from ccnl_engine.irpef.computation.services import compute_tax
 from ccnl_engine.irpef.deduction.rules import work_income_deduction
-from ccnl_engine.payroll.period.models_payroll import PeriodId
-from ccnl_engine.payroll.period.models_run import PayrollRun, RunKind
-from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
-from ccnl_engine.payroll.period.services import calculate_period
-from ccnl_engine.payroll.year.models_calendar import WorkCalendar
-from ccnl_engine.payroll.year.services_competence import (
+from ccnl_engine.period.requests import PeriodCalculationRequest
+from ccnl_engine.period.services import calculate_period
+from ccnl_engine.run.models import PayrollRun, RunKind
+from ccnl_engine.run.types import PeriodId
+from ccnl_engine.year.competence.services import (
     calculate_competence_year,
 )
 from tests.integration.ccnl_engine.withholding.builders import (
@@ -27,7 +27,7 @@ from tests.integration.ccnl_engine.withholding.builders import (
 from tests.unit.ccnl_engine.builders import make_year_rules, year_plan
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.year.results import CompetenceYearResult
+    from ccnl_engine.year.results import CompetenceYearResult
 
 _COMMERCIO = "commercio-confcommercio.json"
 _METALMECCANICO = "metalmeccanico-federmeccanica.json"

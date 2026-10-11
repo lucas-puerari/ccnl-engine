@@ -20,11 +20,11 @@ from ccnl_engine.pay_item.facade import (
     SeniorityEarning,
     TfrAccrualItem,
 )
-from ccnl_engine.payroll.period.services_shared import _ZERO
+from ccnl_engine.pay_item.services import _ZERO
 
 if TYPE_CHECKING:
+    from ccnl_engine.amount.types import _PeriodAmounts
     from ccnl_engine.compensation.element.types import MonthlyPayChain
-    from ccnl_engine.payroll.amount.types import _PeriodAmounts
 
 __all__ = ["_BaseLine", "_base_lines"]
 

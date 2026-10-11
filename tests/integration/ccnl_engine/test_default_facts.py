@@ -1,7 +1,7 @@
 """A default left in a public input is not the fact it stands for.
 
 Concia D2, June 2026, every other fact explicit
-(:mod:`tests.knowledge.ccnl_engine.payroll.period.builders_explicit_facts`) and opened
+(:mod:`tests.knowledge.ccnl_engine.period.builders`) and opened
 with the state May closed:
 its only blocker is ``rule_source_weak somma_esente``, so the blockers a
 field adds or removes are visible.  Two properties of the payability
@@ -13,7 +13,7 @@ looks payable.  The residence left unknown is checked by
 ``test_unknown_residence_is_not_no_surtax`` of the legal scenarios.  The
 second property runs on every ``requires_fact`` field of the registry of
 input defaults, with one or more request pairs per field
-(:mod:`tests.integration.ccnl_engine.payroll.period.builders_default_cases`).
+(:mod:`tests.integration.ccnl_engine.default.builders`).
 """
 
 from __future__ import annotations
@@ -42,15 +42,15 @@ from ccnl_engine.inputs import (
     PeriodState,
 )
 from ccnl_engine.results import BlockerCode
-from tests.integration.ccnl_engine.family.builders import (
-    declared_dependent,
-)
-from tests.integration.ccnl_engine.payroll.period.builders_default_cases import (
+from tests.integration.ccnl_engine.default.builders import (
     DEFAULT_CASES,
     DefaultCase,
     Request,
 )
-from tests.knowledge.ccnl_engine.payroll.period.builders_explicit_facts import (
+from tests.integration.ccnl_engine.family.builders import (
+    declared_dependent,
+)
+from tests.knowledge.ccnl_engine.period.builders import (
     CONCIA_D2,
     FACTS,
     competence_year,
@@ -269,7 +269,7 @@ class TestTrueFactHasNoMoreBlockers:
 
     Otherwise the false default is the one path that looks payable.  Each
     ``requires_fact`` field of the registry of input defaults has a case
-    (:mod:`tests.integration.ccnl_engine.payroll.period.builders_default_cases`); a
+    (:mod:`tests.integration.ccnl_engine.default.builders`); a
     field honoured by a blocker
     also shows the blocker its default adds.
     """

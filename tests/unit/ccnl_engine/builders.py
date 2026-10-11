@@ -11,14 +11,14 @@ from dataclasses import replace
 from typing import TYPE_CHECKING, Any
 
 from ccnl_engine.agreement.facade import CCNL
+from ccnl_engine.calendar.tax_year.rules import DEFAULT_PAYMENT_DAY
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.inputs import Employment, Permanent
-from ccnl_engine.payroll.period.inputs import PeriodFacts
-from ccnl_engine.payroll.year.inputs_competence_plan import CompetenceYearPlan
-from ccnl_engine.payroll.year.rules_tax_year import DEFAULT_PAYMENT_DAY
 from ccnl_engine.pension_fund.inputs import NoPensionFund
+from ccnl_engine.period.inputs import PeriodFacts
 from ccnl_engine.tax.annual.models import YearRules
+from ccnl_engine.year.competence.inputs import CompetenceYearPlan
 from tests.integration.ccnl_engine.irpef.declaration.builders import (
     RENEWAL_WAIVED,
 )
@@ -28,11 +28,11 @@ from tests.knowledge.ccnl_engine.severance.builders import no_tfr_fund
 if TYPE_CHECKING:
     from collections.abc import Mapping
 
+    from ccnl_engine.balance.models import PeriodState
+    from ccnl_engine.calendar.inputs import CalendarOverride
     from ccnl_engine.event.facade import WorkEvent
     from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
     from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts
-    from ccnl_engine.payroll.state.models import PeriodState
-    from ccnl_engine.payroll.year.inputs_calendar_override import CalendarOverride
 
 # ---------------------------------------------------------------------------
 # Shared raw data — canonical source for inline fixtures across the test suite

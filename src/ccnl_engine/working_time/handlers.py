@@ -26,12 +26,12 @@ from ccnl_engine.event.standard.handlers import (
     _standard_event_item,
 )
 from ccnl_engine.ledger.models import PostingIntent
-from ccnl_engine.pay_item.treatment.models import EventTreatment
-from ccnl_engine.payroll.period.services_shared import (
+from ccnl_engine.pay_item.services import (
     _ZERO,
     _require_resolution,
     _treatment_from_resolution,
 )
+from ccnl_engine.pay_item.treatment.models import EventTreatment
 from ccnl_engine.regime.handlers import (
     apply_preferential_regime,
 )

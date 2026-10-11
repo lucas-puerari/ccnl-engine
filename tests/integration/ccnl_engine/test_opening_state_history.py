@@ -7,7 +7,7 @@ carried.  The zero state is the fact only for the first run of an
 employment whose start is stated; any other run opened without its
 history has a ``missing_fact opening_state`` blocker, and so has every run
 that descends from it.  Scenario: the Concia D2 of
-:mod:`tests.knowledge.ccnl_engine.payroll.period.builders_explicit_facts`, every other
+:mod:`tests.knowledge.ccnl_engine.period.builders`, every other
 fact explicit.
 """
 
@@ -19,13 +19,13 @@ from datetime import date
 from ccnl_engine import PayrollEngine, PeriodResult
 from ccnl_engine.inputs import EmploymentPeriod, PeriodState
 from ccnl_engine.results import BlockerCode
-from tests.knowledge.ccnl_engine.payroll.period.builders_explicit_facts import (
+from tests.knowledge.ccnl_engine.balance.builders import (
+    fresh_tax_year,
+)
+from tests.knowledge.ccnl_engine.period.builders import (
     CONCIA_D2,
     competence_year,
     regular_run,
-)
-from tests.knowledge.ccnl_engine.payroll.state.builders_opening_state import (
-    fresh_tax_year,
 )
 
 _ENGINE = PayrollEngine.bundled()

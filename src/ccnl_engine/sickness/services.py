@@ -23,7 +23,7 @@ from typing import TYPE_CHECKING
 from ccnl_engine.absence.models import DailyDivisorMethod
 from ccnl_engine.contribution.rate.rules import resolve_rates
 from ccnl_engine.employment.inputs import Apprentice
-from ccnl_engine.payroll.period.models_run import RunKind
+from ccnl_engine.run.models import RunKind
 from ccnl_engine.sickness.cumulation.rules import SicknessWorker
 from ccnl_engine.sickness.day.models import SickPayRules
 from ccnl_engine.sickness.models import SicknessHistory
@@ -35,7 +35,7 @@ from ccnl_engine.sickness.term.rules import (
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.capability.rule.services import Rule
-    from ccnl_engine.payroll.period.services_run_context import RunContext
+    from ccnl_engine.period.context.services import RunContext
 
 __all__ = ["sickness_rules", "sickness_terms"]
 

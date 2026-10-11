@@ -61,7 +61,7 @@ def test_same_method_in_classes_of_other_fields_is_distinct(tmp_path: Path) -> N
 def test_report_counts_each_capability_per_level() -> None:
     """The report has a row per capability and lists multi-level modules."""
     text = report()
-    assert "| payroll |" in text
+    assert "| period |" in text
     assert "| tax |" in text
     assert "Modules tested at more than one level:" in text
 

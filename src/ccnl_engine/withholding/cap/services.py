@@ -31,23 +31,23 @@ from dataclasses import dataclass, replace
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.balance.cash.account.models import WithholdingShortfall
 from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
 )
 from ccnl_engine.ledger.models import AccountKind
-from ccnl_engine.payroll.period.services_shared import _sum_ledger
-from ccnl_engine.payroll.state.models_ytd_account import WithholdingShortfall
+from ccnl_engine.pay_item.services import _sum_ledger
 from ccnl_engine.withholding.rules import (
     WithholdingTopic,
     withholding_rule,
 )
 
 if TYPE_CHECKING:
+    from ccnl_engine.amount.types import _PeriodAmounts
     from ccnl_engine.employment.fact.inputs import EmploymentPeriod
     from ccnl_engine.ledger.models import LedgerEntry
-    from ccnl_engine.payroll.amount.types import _PeriodAmounts
     from ccnl_engine.tax.annual.models import YearRules
 
 __all__ = [

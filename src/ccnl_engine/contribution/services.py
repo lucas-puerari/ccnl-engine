@@ -28,13 +28,13 @@ from ccnl_engine.fund.solidarity.services import (
 )
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.pay_item.rounding.policies import contribution_base, money
-from ccnl_engine.payroll.period.services_shared import _ZERO
+from ccnl_engine.pay_item.services import _ZERO
 
 if TYPE_CHECKING:
     from decimal import Decimal
 
+    from ccnl_engine.amount.types import _AmountsInput
     from ccnl_engine.contribution.results import ContributionBreakdown
-    from ccnl_engine.payroll.amount.types import _AmountsInput
 
 #: An employer of up to five employees in the FIS must say whether its rate
 #: is cut (D.Lgs. 148/2015 art. 29 c. 8-bis).

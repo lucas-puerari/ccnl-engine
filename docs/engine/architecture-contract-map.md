@@ -72,7 +72,7 @@ inventory.
 | `payroll/state/rules_opening_history.py` | `balance/opening/rules.py` |
 | `payroll/state/services_opening.py` | `balance/opening/services.py` |
 | `payroll/state/serializers.py` | `balance/serializers.py` |
-| `payroll/state/serializers_persistence.py` | `balance/serializers.py` |
+| `payroll/state/serializers_persistence.py` | `balance/persistence/serializers.py` |
 
 ## capability
 
@@ -335,30 +335,30 @@ inventory.
 | Today | Target |
 |---|---|
 | `payroll/amount/services.py` | `period/amount/services.py` |
-| `payroll/amount/types.py` | `period/amount/types.py` |
+| `payroll/amount/types.py` | `amount/types.py` |
 | `payroll/period/services_contract.py` | `period/context/agreement/services.py` |
-| `payroll/period/services_context.py` | `period/context/fact/services.py` |
-| `payroll/period/services_context_fact.py` | `period/context/fact/services.py` |
+| `payroll/period/services_context.py` | `period/context/request/services.py` |
+| `payroll/period/services_context_fact.py` | `period/context/services.py` |
 | `payroll/period/services_run_context.py` | `period/context/services.py` |
 | `payroll/period/services_caller_rule.py` | `period/decision/override/services.py` |
-| `payroll/period/rules_run_decision.py` | `period/decision/rules.py` |
+| `payroll/period/rules_run_decision.py` | `decision/rules.py` |
 | `payroll/period/services_base_decision.py` | `period/decision/services.py` |
 | `payroll/period/inputs.py` | `period/inputs.py` |
-| `payroll/period/models_payroll.py` | `period/models.py` |
+| `payroll/period/models_payroll.py` | `run/types.py` |
 | `payroll/period/ports.py` | `period/ports.py` |
 | `payroll/period/services_posting.py` | `period/posting/services.py` |
 | `payroll/period/repositories.py` | `period/repositories.py` |
-| `payroll/period/services_facade_input.py` | `period/request/validators.py` |
+| `payroll/period/services_facade_input.py` | `period/input/services.py` |
 | `payroll/period/requests.py` | `period/requests.py` |
 | `payroll/period/services_assembly.py` | `period/result/services.py` |
 | `payroll/period/results.py` | `period/results.py` |
 | `payroll/period/services.py` | `period/services.py` |
-| `payroll/period/services_shared.py` | `period/services.py` |
+| `payroll/period/services_shared.py` | `pay_item/services.py` |
 | `payroll/period/services_sources.py` | `period/services.py` |
 | `payroll/period/services_pipeline_input.py` | `period/step/input/services.py` |
 | `payroll/period/services_pipeline.py` | `period/step/services.py` |
-| `payroll/period/services_check.py` | `period/validators.py` |
-| `payroll/period/validators_request.py` | `period/validators.py` |
+| `payroll/period/services_check.py` | `period/payslip/services.py` |
+| `payroll/period/validators_request.py` | `period/request/validators.py` |
 
 ## provenance
 
@@ -526,20 +526,20 @@ inventory.
 
 | Today | Target |
 |---|---|
-| `payroll/year/inputs_calendar_override.py` | `year/calendar/inputs.py` |
-| `payroll/year/models_calendar.py` | `year/calendar/models.py` |
-| `payroll/year/services_calendar.py` | `year/calendar/services.py` |
+| `payroll/year/inputs_calendar_override.py` | `calendar/inputs.py` |
+| `payroll/year/models_calendar.py` | `calendar/models.py` |
+| `payroll/year/services_calendar.py` | `calendar/services.py` |
 | `payroll/year/inputs_competence_plan.py` | `year/competence/inputs.py` |
 | `payroll/year/services_run.py` | `year/competence/run/services.py` |
 | `payroll/year/services_competence.py` | `year/competence/services.py` |
 | `payroll/year/models_uncovered_run.py` | `year/coverage/models.py` |
 | `payroll/year/services_coverage.py` | `year/coverage/services.py` |
-| `payroll/year/models_payment.py` | `year/payment/models.py` |
+| `payroll/year/models_payment.py` | `calendar/payment/models.py` |
 | `payroll/year/services_sequence.py` | `year/payment/sequence/services.py` |
 | `payroll/year/services_payment.py` | `year/payment/services.py` |
 | `payroll/year/results.py` | `year/results.py` |
-| `payroll/year/models_schedule.py` | `year/schedule/models.py` |
+| `payroll/year/models_schedule.py` | `calendar/schedule/models.py` |
 | `payroll/year/inputs_tax_plan.py` | `year/tax_year/inputs.py` |
-| `payroll/year/rules_close.py` | `year/tax_year/rules.py` |
-| `payroll/year/rules_tax_year.py` | `year/tax_year/rules.py` |
+| `payroll/year/rules_close.py` | `year/tax_year/closing/rules.py` |
+| `payroll/year/rules_tax_year.py` | `calendar/tax_year/rules.py` |
 | `payroll/year/services_tax_year.py` | `year/tax_year/services.py` |

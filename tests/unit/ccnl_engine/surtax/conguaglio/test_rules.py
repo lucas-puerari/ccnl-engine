@@ -4,11 +4,11 @@ from __future__ import annotations
 
 from decimal import Decimal
 
+from ccnl_engine.balance.cash.account.models import TaxYtd
 from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationStatus,
 )
-from ccnl_engine.payroll.state.models_ytd_account import TaxYtd
 from ccnl_engine.surtax.conguaglio.rules import (
     conguaglio_surtax,
 )

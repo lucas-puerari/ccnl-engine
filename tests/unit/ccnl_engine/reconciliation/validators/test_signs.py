@@ -8,7 +8,7 @@ import pytest
 
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.reconciliation.validators import reconcile
-from tests.unit.ccnl_engine.payroll.period.builders_synthetic_result import (
+from tests.unit.ccnl_engine.reconciliation.builders import (
     OPENING,
     ResultBuilder,
     ledger_entry,

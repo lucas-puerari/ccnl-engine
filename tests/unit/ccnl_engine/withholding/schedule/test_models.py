@@ -9,12 +9,12 @@ import pytest
 from hypothesis import given
 from hypothesis import strategies as st
 
+from ccnl_engine.calendar.models import WorkCalendar
+from ccnl_engine.calendar.payment.models import PaymentId
+from ccnl_engine.calendar.schedule.models import PayrollRunCount, PayrollSchedule
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.irpef.computation.services import compute_tax
-from ccnl_engine.payroll.period.models_run import PayrollRun, PayrollRunId, RunKind
-from ccnl_engine.payroll.year.models_calendar import WorkCalendar
-from ccnl_engine.payroll.year.models_payment import PaymentId
-from ccnl_engine.payroll.year.models_schedule import PayrollRunCount, PayrollSchedule
+from ccnl_engine.run.models import PayrollRun, PayrollRunId, RunKind
 from ccnl_engine.withholding.schedule.models import (
     WithholdingSchedule,
     WithholdingSlot,

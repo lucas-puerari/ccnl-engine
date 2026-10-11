@@ -16,12 +16,12 @@ import pytest
 
 from ccnl_engine import PayrollEngine, PayrollRun, PeriodFacts, PeriodResult
 from ccnl_engine.inputs import EmploymentPeriod
-from ccnl_engine.payroll.period.models_run import RunKind
 from ccnl_engine.results import UnresolvedRequirement
+from ccnl_engine.run.models import RunKind
 from tests.integration.ccnl_engine.surtax.builders import (
     opening_with_2025_surtax,
 )
-from tests.knowledge.ccnl_engine.payroll.period.builders_explicit_facts import (
+from tests.knowledge.ccnl_engine.period.builders import (
     CONCIA_D2,
     competence_year,
     regular_run,

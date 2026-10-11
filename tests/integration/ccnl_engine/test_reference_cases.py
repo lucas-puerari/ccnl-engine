@@ -1,6 +1,6 @@
 """Reference cases of the knowledge tests run through the engine.
 
-The cases are in ``tests/knowledge/ccnl_engine/payroll/period/reference_case/``.
+The cases are in ``tests/knowledge/ccnl_engine/period/reference_case/``.
 Each case pins the salary table components of one regular run to the signed
 table its ``source`` cites: base salary, fixed allowances and period gross.
 Only values read from that source are asserted, each case naming those it
@@ -39,7 +39,6 @@ _CASES_DIR = (
     Path(__file__).parents[2]
     / "knowledge"
     / "ccnl_engine"
-    / "payroll"
     / "period"
     / "reference_case"
 )

@@ -20,9 +20,9 @@ from ccnl_engine.employment.fact.inputs import ContributableHours, WeeklyHours
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.period.models_payroll import PeriodId
-from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
-from ccnl_engine.payroll.period.services import calculate_period
+from ccnl_engine.period.requests import PeriodCalculationRequest
+from ccnl_engine.period.services import calculate_period
+from ccnl_engine.run.types import PeriodId
 from ccnl_engine.severance.relief.services import (
     GUARANTEE_FUND_COMPONENT,
     RELIEF_COMPONENT,
@@ -31,7 +31,7 @@ from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 if TYPE_CHECKING:
     from ccnl_engine.decision.models import CalculationDecision
-    from ccnl_engine.payroll.period.results import PeriodResult
+    from ccnl_engine.period.results import PeriodResult
 
 _DOMESTIC: dict[str, object] = {
     "ccnl_slug": "lavoro-domestico-convivente.json",

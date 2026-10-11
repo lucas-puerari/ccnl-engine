@@ -6,19 +6,19 @@ from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 
+from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.fact.inputs import (
     ContributableHours,
     WeeklyHours,
 )
-from ccnl_engine.payroll.period.models_payroll import PeriodId
-from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
-from ccnl_engine.payroll.period.services import calculate_period
-from ccnl_engine.payroll.state.models import PeriodState
+from ccnl_engine.period.requests import PeriodCalculationRequest
+from ccnl_engine.period.services import calculate_period
 from ccnl_engine.reconciliation.agent.validators import (
     check_non_agent_untaxed,
 )
 from ccnl_engine.reconciliation.types import RunFacts
+from ccnl_engine.run.types import PeriodId
 
 _INVARIANT = "non_agent_untaxed"
 _NOT_AGENT = RunFacts(withholding_agent=False)

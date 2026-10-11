@@ -36,7 +36,7 @@ from ccnl_engine.contribution.minimum_base.services import (
 )
 from ccnl_engine.limitation.loaders import load_engine_limitations
 from ccnl_engine.limitation.models import LimitationStatus, MonetaryImpact
-from ccnl_engine.payroll.period.repositories import (
+from ccnl_engine.period.repositories import (
     BundledKnowledgeRepository,
 )
 from ccnl_engine.seniority.rules import APPRENTICE_SENIORITY_VARIANT

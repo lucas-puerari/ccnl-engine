@@ -103,23 +103,23 @@ years. They group the facts by owner and are validated when built;
 | `CurrentYearTaxFacts` | income of the tax year beyond this employment, the main dwelling excluded, with its date and `IncomeEstimateQuality`; the Art. 12 family deductions add it to the employment income (`None` means unknown, a blocker when a dependent is entitled) |
 | `PeriodFacts` | events, contributable hours, region and Belfiore code, family composition, dependent children of one run |
 
-::: ccnl_engine.payroll.period.inputs
+::: ccnl_engine.period.inputs
     options:
       members:
         - PeriodInput
         - PeriodFacts
 
-::: ccnl_engine.payroll.year.inputs_competence_plan
+::: ccnl_engine.year.competence.inputs
     options:
       members:
         - CompetenceYearPlan
 
-::: ccnl_engine.payroll.year.inputs_tax_plan
+::: ccnl_engine.year.tax_year.inputs
     options:
       members:
         - TaxYearPlan
 
-::: ccnl_engine.payroll.state.services_opening_balance
+::: ccnl_engine.balance.opening.provider.services
     options:
       members:
         - OpeningBalances
@@ -178,13 +178,13 @@ years. They group the facts by owner and are validated when built;
       members:
         - AgriculturalZone
 
-::: ccnl_engine.payroll.period.models_run
+::: ccnl_engine.run.models
     options:
       members:
         - PayrollRun
         - PayrollRunId
 
-::: ccnl_engine.payroll.year.models_payment
+::: ccnl_engine.calendar.payment.models
     options:
       members:
         - PaymentId
@@ -231,7 +231,7 @@ public field to set (`seniority`, `contribution_history`, `sector`,
 omitted. A different calendar is accepted only as a validated
 `CalendarOverride`.
 
-::: ccnl_engine.payroll.year.inputs_calendar_override
+::: ccnl_engine.calendar.inputs
     options:
       members:
         - CalendarOverride
@@ -338,12 +338,12 @@ report `status` is the coverage axis of the assurance: `incomplete` with an
 unresolved requirement, otherwise `partial` when every gap is partial and
 `incomplete` with any other gap.
 
-::: ccnl_engine.payroll.period.results
+::: ccnl_engine.period.results
     options:
       members:
         - PeriodResult
 
-::: ccnl_engine.payroll.year.results
+::: ccnl_engine.year.results
     options:
       members:
         - PaymentsResult
@@ -373,7 +373,7 @@ run.
       members:
         - UnresolvedRequirement
 
-::: ccnl_engine.payroll.year.models_uncovered_run
+::: ccnl_engine.year.coverage.models
     options:
       members:
         - UncoveredRun

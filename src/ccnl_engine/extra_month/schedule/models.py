@@ -52,7 +52,7 @@ class ExtraMonthKind(Enum):
     """Typed kind for an extra contractual month.
 
     Used by :class:`ExtraMonthSchedule` and :class:`PayrollSchedule` to
-    determine which :class:`~ccnl_engine.payroll.period.models_run.PayrollRun`
+    determine which :class:`~ccnl_engine.run.models.PayrollRun`
     factory to call.  Do not infer the kind from the human-readable name.
     """
 

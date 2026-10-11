@@ -13,6 +13,7 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.contribution.minimum_base.services import (
     EXEMPT_CATEGORY_FLOOR,
 )
@@ -20,13 +21,12 @@ from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.fact.inputs import ContributableHours, WeeklyHours
 from ccnl_engine.employment.inputs import Apprentice
-from ccnl_engine.payroll.period.models_payroll import PeriodId
-from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
-from ccnl_engine.payroll.period.services import calculate_period
-from ccnl_engine.payroll.state.models import PeriodState
+from ccnl_engine.period.requests import PeriodCalculationRequest
+from ccnl_engine.period.services import calculate_period
+from ccnl_engine.run.types import PeriodId
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.period.results import PeriodResult
+    from ccnl_engine.period.results import PeriodResult
 
 _OPERAI = "operai-agricoli-florovivaisti.json"
 

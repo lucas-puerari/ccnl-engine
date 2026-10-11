@@ -40,7 +40,7 @@ from tests.integration.ccnl_engine.irpef.declaration.builders import (
     RENEWAL_WAIVED,
 )
 from tests.integration.ccnl_engine.surtax.residence.builders import resident
-from tests.knowledge.ccnl_engine.payroll.state.builders_opening_state import (
+from tests.knowledge.ccnl_engine.balance.builders import (
     fresh_tax_year,
 )
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire

@@ -24,15 +24,15 @@ from ccnl_engine.decision.models import (
 )
 from ccnl_engine.employment.fact.inputs import PublicEndOfService
 from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.period.models_run import RunKind
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
+from ccnl_engine.run.models import RunKind
 from ccnl_engine.severance.services import (
     revaluation_rule_name,
     revaluation_rules,
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.period.services_run_context import RunContext
+    from ccnl_engine.period.context.services import RunContext
     from ccnl_engine.severance.revaluation.models import TfrRevaluationRules
 
 __all__ = [

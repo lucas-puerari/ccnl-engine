@@ -7,7 +7,7 @@ import pickle
 
 from ccnl_engine import PayrollEngine
 from ccnl_engine.inputs import period_state_from_json, period_state_to_json
-from tests.knowledge.ccnl_engine.payroll.period.builders_explicit_facts import (
+from tests.knowledge.ccnl_engine.period.builders import (
     competence_year,
 )
 

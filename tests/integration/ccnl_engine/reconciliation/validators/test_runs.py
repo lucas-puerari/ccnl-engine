@@ -9,6 +9,9 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from ccnl_engine.balance.closing import services as _closing_state
+from ccnl_engine.balance.competence.models import EmploymentAccrualState
+from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
@@ -23,14 +26,9 @@ from ccnl_engine.extra_month.schedule.models import (
     AccrualWindow,
     ExtraMonthKind,
 )
-from ccnl_engine.payroll.period.models_payroll import PeriodId
-from ccnl_engine.payroll.period.models_run import PayrollRun
-from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
-from ccnl_engine.payroll.period.services import calculate_period
-from ccnl_engine.payroll.period.services_check import check_net_covered
-from ccnl_engine.payroll.state import services_closing as _closing_state
-from ccnl_engine.payroll.state.models import PeriodState
-from ccnl_engine.payroll.state.models_accrual import EmploymentAccrualState
+from ccnl_engine.period.payslip.services import check_net_covered
+from ccnl_engine.period.requests import PeriodCalculationRequest
+from ccnl_engine.period.services import calculate_period
 from ccnl_engine.reconciliation.ceiling.validators import (
     check_contribution_ceiling,
 )
@@ -42,14 +40,16 @@ from ccnl_engine.reconciliation.sign.validators import check_signs
 from ccnl_engine.reconciliation.transition.validators import check_ytd_continuity
 from ccnl_engine.reconciliation.types import RunFacts
 from ccnl_engine.reconciliation.validators import reconcile
+from ccnl_engine.run.models import PayrollRun
+from ccnl_engine.run.types import PeriodId
 from ccnl_engine.tax_credit.account.models import TrattamentoAccount
 from tests.integration.ccnl_engine.surtax.builders import (
     opening_with_2025_surtax,
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.period.results import PeriodResult
-    from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
+    from ccnl_engine.balance.cash.models import TaxCashState
+    from ccnl_engine.period.results import PeriodResult
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"

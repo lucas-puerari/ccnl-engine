@@ -16,7 +16,7 @@ from ccnl_engine.decision.models import (
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.ledger.remittance.models import POST_CONGUAGLIO_WITHHOLDING
 from ccnl_engine.pay_item.facade import EmployeeWithholdingItem
-from ccnl_engine.payroll.period.services_shared import (
+from ccnl_engine.pay_item.services import (
     _make_entry,
     _require_resolution,
 )
@@ -31,7 +31,7 @@ from ccnl_engine.withholding.rules import (
 if TYPE_CHECKING:
     from ccnl_engine.ledger.models import LedgerEntry
     from ccnl_engine.pay_item.facade import PayItem
-    from ccnl_engine.payroll.period.services_run_context import RunContext
+    from ccnl_engine.period.context.services import RunContext
     from ccnl_engine.withholding.deferral.inputs import (
         DeferredInstallment,
         DeferredShortfall,

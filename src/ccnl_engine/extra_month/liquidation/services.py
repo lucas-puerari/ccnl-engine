@@ -20,6 +20,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.calendar.services import effective_calendar
 from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
@@ -30,19 +31,18 @@ from ccnl_engine.extra_month.qualification.services import (
     non_accruing_days,
     termination_settlements,
 )
-from ccnl_engine.payroll.period.models_run import (
+from ccnl_engine.run.models import (
     PayrollRun,
     PayrollRunId,
     RunKind,
     run_identifier,
 )
-from ccnl_engine.payroll.year.services_calendar import effective_calendar
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.extra_month.models import ExtraMonthAccrual
     from ccnl_engine.extra_month.schedule.models import ExtraMonthKind
-    from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
+    from ccnl_engine.period.requests import PeriodCalculationRequest
 
 __all__ = ["run_settlements", "settlement_issues"]
 

@@ -18,21 +18,21 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.balance.obligation.models import carried_item_id
 from ccnl_engine.ledger.models import AccountKind
-from ccnl_engine.payroll.period.models_run import run_identifier
-from ccnl_engine.payroll.state.models_obligation import carried_item_id
 from ccnl_engine.reconciliation.types import (
     InvariantCode,
     ReconciliationViolation,
     _sum_account,
 )
+from ccnl_engine.run.models import run_identifier
 from ccnl_engine.tax_credit.recovery.models import InstallmentRun
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.period.models_run import PayrollRunId
-    from ccnl_engine.payroll.period.results import PeriodResult
-    from ccnl_engine.payroll.state.models import PeriodState
-    from ccnl_engine.payroll.state.models_obligation import RecoveryObligation
+    from ccnl_engine.balance.models import PeriodState
+    from ccnl_engine.balance.obligation.models import RecoveryObligation
+    from ccnl_engine.period.results import PeriodResult
+    from ccnl_engine.run.models import PayrollRunId
     from ccnl_engine.tax_credit.account.models import CreditAccount
 
 _ZERO = Decimal(0)

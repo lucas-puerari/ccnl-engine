@@ -39,12 +39,12 @@ from tests.integration.ccnl_engine.family.builders import (
 )
 from tests.knowledge.ccnl_engine.family.oracles import spouse_deduction
 from tests.knowledge.ccnl_engine.irpef.oracles import net_irpef
-from tests.knowledge.ccnl_engine.payroll.period.builders_explicit_facts import (
+from tests.knowledge.ccnl_engine.period.builders import (
     CONCIA_D2,
     FACTS,
     competence_year,
 )
-from tests.knowledge.ccnl_engine.payroll.support import (
+from tests.knowledge.ccnl_engine.support import (
     COMMERCIO,
     COOP_SOCIALI,
     EMPLOYER,

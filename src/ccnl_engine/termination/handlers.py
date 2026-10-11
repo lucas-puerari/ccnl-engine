@@ -17,7 +17,7 @@ from ccnl_engine.pay_item.facade import (
     TfrSettlementItem,
 )
 from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.period.services_shared import _require_resolution
+from ccnl_engine.pay_item.services import _require_resolution
 
 
 def _handle_bilateral_fund(

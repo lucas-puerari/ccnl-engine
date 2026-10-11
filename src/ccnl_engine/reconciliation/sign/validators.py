@@ -45,7 +45,7 @@ from ccnl_engine.reconciliation.types import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.period.results import PeriodResult
+    from ccnl_engine.period.results import PeriodResult
 
 __all__: list[str] = []
 

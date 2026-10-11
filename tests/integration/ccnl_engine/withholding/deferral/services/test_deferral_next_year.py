@@ -37,7 +37,7 @@ from tests.integration.ccnl_engine.withholding.deferral.builders import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.year.results import CompetenceYearResult
+    from ccnl_engine.year.results import CompetenceYearResult
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _YEAR = 2026

@@ -41,13 +41,13 @@ from tests.knowledge.ccnl_engine.irpef.oracles import (
     gross_irpef,
     net_irpef,
 )
-from tests.knowledge.ccnl_engine.payroll.period.builders_explicit_facts import (
+from tests.knowledge.ccnl_engine.period.builders import (
     CONCIA_D2,
     FACTS,
     competence_year,
     regular_run,
 )
-from tests.knowledge.ccnl_engine.payroll.support import COMMERCIO, ENGINE
+from tests.knowledge.ccnl_engine.support import COMMERCIO, ENGINE
 from tests.knowledge.ccnl_engine.withholding.oracles import (
     trattamento_integrativo_above_15000,
 )

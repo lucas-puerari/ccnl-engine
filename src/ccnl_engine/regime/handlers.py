@@ -21,12 +21,12 @@ from ccnl_engine.regime.eligibility.rules import (
 )
 
 if TYPE_CHECKING:
+    from ccnl_engine.balance.cash.account.models import RegimeCapAccount
     from ccnl_engine.decision.models import (
         CalculationDecision,
         CalculationIssue,
     )
     from ccnl_engine.event.handlers import _EventHandlerCtx
-    from ccnl_engine.payroll.state.models_ytd_account import RegimeCapAccount
     from ccnl_engine.regime.models import (
         PreferentialTaxRegime,
     )

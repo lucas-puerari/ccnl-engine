@@ -25,7 +25,7 @@ Under each category the path mirrors the code: a directory of
 `tests/<category>/ccnl_engine/` is a directory of `src/ccnl_engine/`, of
 `integration/scripts/` one of `scripts/`, of `integration/demo/` one of
 `demo/`. A dataset directory of JSON may sit right below one
-(`payroll/period/reference_case/`, `catalog/synthetic_contract/`).
+(`period/reference_case/`, `catalog/synthetic_contract/`).
 
 A unit test, and an integration test below a mirror root directory, is
 named after the module it tests: `src/ccnl_engine/x/y/z.py` is tested by
@@ -71,11 +71,11 @@ document a known wrong result: keep their reason and the error they raise.
 
 ## Knowledge data
 
-| Path under `knowledge/ccnl_engine/payroll/` | Holds |
+| Path under `knowledge/ccnl_engine/` | Holds |
 |---|---|
 | `period/reference_case/` | reference cases: one regular period pinned to a signed salary table, checked by `scripts/provenance/check.py` |
-| `<subdomain>/oracles_*.py` | hand-written calculators of the rules (IRPEF, family deductions, surtaxes, contributions, withholding), written from the sources without importing the engine |
-| `period/oracles_payslip_*.py` | full-payslip oracles built on the rule oracles |
+| `<concept>/oracles.py` | hand-written calculators of the rules (IRPEF, family deductions, surtaxes, contributions, withholding), written from the sources without importing the engine |
+| `period/oracles.py` | full-payslip oracles built on the rule oracles |
 | `period/observed_payslip/` | anonymous transcriptions of real and teaching payslips (one JSON per payslip, amounts as printed): evidence of how payrolls apply the rules, never a signed source. Part of them is converted from the gold annotations of the BurocrazIA dataset (albertobarnabo/burocrazia on Hugging Face, Apache-2.0) |
 
 `integration/ccnl_engine/catalog/synthetic_contract/` holds the

@@ -25,6 +25,9 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine.api import PayrollEngine
+from ccnl_engine.balance.cash.models import TaxCashState
+from ccnl_engine.balance.models import PeriodState
+from ccnl_engine.balance.obligation.models import EmploymentObligations
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.fact.inputs import (
     ContributableHours,
@@ -37,13 +40,10 @@ from ccnl_engine.irpef.declaration.inputs import (
     ShortfallDeferralRequest,
 )
 from ccnl_engine.ledger.models import AccountKind
-from ccnl_engine.payroll.period.inputs import PeriodFacts, PeriodInput
-from ccnl_engine.payroll.period.models_run import PayrollRun, RunKind
-from ccnl_engine.payroll.state.models import PeriodState
-from ccnl_engine.payroll.state.models_obligation import EmploymentObligations
-from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
-from ccnl_engine.payroll.year.rules_close import close_tax_year
+from ccnl_engine.period.inputs import PeriodFacts, PeriodInput
+from ccnl_engine.run.models import PayrollRun, RunKind
 from ccnl_engine.withholding.deferral.inputs import DeferredShortfall
+from ccnl_engine.year.tax_year.closing.rules import close_tax_year
 from tests.integration.ccnl_engine.withholding.deferral.builders import (
     DEFERRAL_REQUEST,
     decision_amount,
@@ -57,7 +57,7 @@ from tests.integration.ccnl_engine.withholding.deferral.builders import (
 from tests.unit.ccnl_engine.builders import EMPLOYER_50
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.period.results import PeriodResult
+    from ccnl_engine.period.results import PeriodResult
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _YEAR = 2026

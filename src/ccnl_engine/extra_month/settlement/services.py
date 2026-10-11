@@ -16,7 +16,7 @@ from ccnl_engine.extra_month.schedule.models import ExtraMonthKind
 from ccnl_engine.ledger.models import AccountKind, LedgerEntry
 from ccnl_engine.pay_item.facade import ExtraMonthEarning, PayItem
 from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.period.services_shared import (
+from ccnl_engine.pay_item.services import (
     _ZERO,
     _apply_extra_month_policy,
     _make_entry,

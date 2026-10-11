@@ -19,10 +19,10 @@ from ccnl_engine.decision.models import (
     DecisionOrigin,
 )
 from ccnl_engine.event.total.handlers import EVENT_FEATURES
-from ccnl_engine.payroll.period.services_caller_rule import (
+from ccnl_engine.pension_fund.rules import NOT_ENROLLED
+from ccnl_engine.period.decision.override.services import (
     CALLER_DECLARED_AMOUNT,
 )
-from ccnl_engine.pension_fund.rules import NOT_ENROLLED
 from ccnl_engine.seniority.rules import NOT_APPLICABLE_BY_CONTRACT
 from ccnl_engine.severance.revaluation.services import NO_OPENING_FUND
 from ccnl_engine.withholding.agent.rules import NOT_WITHHOLDING_AGENT

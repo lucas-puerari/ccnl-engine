@@ -36,7 +36,7 @@ from ccnl_engine.pay_item.facade import (
     SicknessInpsItem,
     SicknessItem,
 )
-from ccnl_engine.payroll.period.services_shared import (
+from ccnl_engine.pay_item.services import (
     _ZERO,
     _require_resolution,
     _treatment_from_resolution,

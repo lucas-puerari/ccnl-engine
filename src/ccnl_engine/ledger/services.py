@@ -18,7 +18,7 @@ from ccnl_engine.pay_item.facade import (
     FixedAllowanceEarning,
     PayItem,
 )
-from ccnl_engine.payroll.period.services_shared import (
+from ccnl_engine.pay_item.services import (
     _make_entry,
     _require_resolution,
 )
@@ -26,11 +26,11 @@ from ccnl_engine.payroll.period.services_shared import (
 if TYPE_CHECKING:
     from datetime import date
 
+    from ccnl_engine.amount.types import _PeriodAmounts
     from ccnl_engine.compensation.element.types import MonthlyPayChain
     from ccnl_engine.ledger.line.services import _BaseLine
     from ccnl_engine.pay_item.policies import PolicyContext, PolicyResolver
-    from ccnl_engine.payroll.amount.types import _PeriodAmounts
-    from ccnl_engine.payroll.period.models_payroll import PeriodId
+    from ccnl_engine.run.types import PeriodId
 
 #: Kinds resolved once per run, before any entry is posted; any other kind
 #: is resolved only when a line of that kind is posted.

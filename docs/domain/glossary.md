@@ -414,8 +414,8 @@ A directory holding Python modules under `src/ccnl_engine`, `tests`,
 technical role (`docs/engine/architecture.md`). The structure check reads
 this list: a name is added here before a directory uses it.
 
-**Concepts** (roots of `src/ccnl_engine`): `absence`, `agreement`,
-`apprenticeship`, `assurance`, `balance`, `capability`, `catalog`,
+**Concepts** (roots of `src/ccnl_engine`): `absence`, `agreement`, `amount`,
+`apprenticeship`, `assurance`, `balance`, `calendar`, `capability`, `catalog`,
 `collection`, `comparison`, `compensation`, `contribution`, `decision`,
 `default`, `employer`, `employment`, `end_of_service`, `event`,
 `extra_month`, `family`, `fund`, `irpef`, `knowledge`, `ledger`,
@@ -435,7 +435,7 @@ this list: a name is added here before a directory uses it.
 `integration`, `issue`, `jurisdiction`, `ladder`, `lifecycle`, `line`,
 `liquidation`, `metadata`, `minimum`, `minimum_base`, `month`, `naspi`,
 `net`, `obligation`, `opening`, `other_employment`, `other_income`,
-`override`, `overtime`, `pay`, `payment`, `plan`, `posting`, `proration`,
+`override`, `overtime`, `pay`, `payslip`, `persistence`, `payment`, `plan`, `posting`, `proration`,
 `provider`, `provincial_element`, `provision`, `public`, `qualification`,
 `raccordo`, `rate`, `recovery`, `registry`, `relief`, `remittance`,
 `renewal_minimum`, `request`, `requirement`, `residence`, `result`,

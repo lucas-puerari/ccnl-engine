@@ -19,7 +19,7 @@ from ccnl_engine.errors import (
     MissingRequiredFactError,
 )
 from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.period.services_shared import _ZERO
+from ccnl_engine.pay_item.services import _ZERO
 
 if TYPE_CHECKING:
     from datetime import date

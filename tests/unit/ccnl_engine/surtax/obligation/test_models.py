@@ -6,8 +6,8 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.balance.obligation.models import EmploymentObligations
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.state.models_obligation import EmploymentObligations
 from ccnl_engine.surtax.obligation.models import (
     SURTAX_WINDOWS,
     SurtaxComponent,

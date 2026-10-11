@@ -15,11 +15,11 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine.agreement.facade import TaxSector
+from ccnl_engine.amount.types import _PeriodAmounts
+from ccnl_engine.balance.cash.account.models import WithholdingShortfall
 from ccnl_engine.contribution.services import TfrAccrual
 from ccnl_engine.ledger.models import AccountKind, LedgerEntry
 from ccnl_engine.pay_item.facade import CompetencePeriod
-from ccnl_engine.payroll.amount.types import _PeriodAmounts
-from ccnl_engine.payroll.state.models_ytd_account import WithholdingShortfall
 from ccnl_engine.tax.annual.loaders import load_year_rules
 from ccnl_engine.withholding.cap.services import (
     cap_withholding,

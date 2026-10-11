@@ -57,8 +57,8 @@ Changes are listed newest first. Older changes are on
 | Before | After |
 |---|---|
 | `tests/unit`, `tests/integration`, `tests/acceptance/{public_api,legal_scenarios}`, `tests/architecture`, `tests/fixtures` | Three categories, each mirroring the code: `tests/knowledge/ccnl_engine/` (legal scenarios, oracles, reference cases, observed payslips), `tests/unit/ccnl_engine/`, `tests/integration/{ccnl_engine,demo,scripts}/`. Public API tests sit at the root of `tests/integration/ccnl_engine/`, repository rules under `tests/integration/scripts/structure/`. No test is removed: 12996 are collected, as before |
-| `tests/fixtures/*.py`, `tests/helpers.py` | `builders_*.py` next to their main consumer, for example `tests/integration/ccnl_engine/payroll/period/builders_period_requests.py`; `tests/helpers.py` is `tests/unit/ccnl_engine/builders.py` |
-| `tests/fixtures/reference_tables/`, `observed_payslips/`, `normative_oracles/`, `synthetic_contracts/` | `tests/knowledge/ccnl_engine/payroll/period/reference_case/` and `observed_payslip/`, `oracles_*.py` in the subdomain of the rule, `tests/integration/ccnl_engine/contract/catalog/synthetic_contract/`. `scripts/provenance/check.py` and `ci.yml` read the new reference case directory |
+| `tests/fixtures/*.py`, `tests/helpers.py` | `builders_*.py` next to their main consumer, for example `tests/integration/ccnl_engine/period/builders.py`; `tests/helpers.py` is `tests/unit/ccnl_engine/builders.py` |
+| `tests/fixtures/reference_tables/`, `observed_payslips/`, `normative_oracles/`, `synthetic_contracts/` | `tests/knowledge/ccnl_engine/period/reference_case/` and `observed_payslip/`, `oracles_*.py` in the subdomain of the rule, `tests/integration/ccnl_engine/contract/catalog/synthetic_contract/`. `scripts/provenance/check.py` and `ci.yml` read the new reference case directory |
 
 
 ## Scripts and demo laid out by operational domain

@@ -31,10 +31,10 @@ from ccnl_engine import (
 )
 from ccnl_engine.inputs import Permanent
 from ccnl_engine.results import EvidenceStatus, ResultAssurance
-from tests.integration.ccnl_engine.payroll.year.builders_next_year_repository import (
+from tests.integration.ccnl_engine.year.builders import (
     NextYearRepository,
 )
-from tests.integration.ccnl_engine.payroll.year.builders_payment_sequence import (
+from tests.integration.ccnl_engine.year.payment.sequence.builders import (
     Payment,
     PaymentSequence,
 )

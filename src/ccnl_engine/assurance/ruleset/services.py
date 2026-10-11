@@ -23,7 +23,7 @@ if TYPE_CHECKING:
     from collections.abc import Iterable, Iterator
 
     from ccnl_engine.assurance.rule_source.services import RuleSource
-    from ccnl_engine.payroll.period.services_run_context import RunContext
+    from ccnl_engine.period.context.services import RunContext
     from ccnl_engine.provenance.ruleset.models import RulesetIdentity
 
 _SURTAX = frozenset({"addizionale_regionale", "addizionale_comunale"})

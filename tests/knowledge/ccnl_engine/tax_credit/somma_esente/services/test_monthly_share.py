@@ -32,12 +32,12 @@ from ccnl_engine.inputs import (
 from tests.integration.ccnl_engine.irpef.declaration.builders import (
     RENEWAL_WAIVED,
 )
-from tests.knowledge.ccnl_engine.payroll.state.builders_opening_state import (
+from tests.knowledge.ccnl_engine.balance.builders import (
     fresh_tax_year,
 )
-from tests.knowledge.ccnl_engine.payroll.support import EMPLOYER, ENGINE
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 from tests.knowledge.ccnl_engine.severance.builders import no_tfr_fund
+from tests.knowledge.ccnl_engine.support import EMPLOYER, ENGINE
 
 pytestmark = pytest.mark.legal_scenario
 

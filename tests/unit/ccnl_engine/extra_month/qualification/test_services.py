@@ -5,13 +5,13 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 
+from ccnl_engine.calendar.models import WorkCalendar
 from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.event.facade import AbsenceEvent, OvertimeEvent
 from ccnl_engine.extra_month.qualification.services import (
     non_accruing_days,
     termination_settlements,
 )
-from ccnl_engine.payroll.year.models_calendar import WorkCalendar
 
 _YEAR = 2026
 

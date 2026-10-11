@@ -25,7 +25,7 @@ Evidence:
   (94.2%) on 8 October 2026.  The survivors are mostly the trace text of
   decisions (source labels, input names).
 - Reference table cases: <!-- trust:reference-cases -->11<!-- /trust:reference-cases -->
-  cases in `tests/knowledge/ccnl_engine/payroll/period/reference_case/`, each running one regular period through
+  cases in `tests/knowledge/ccnl_engine/period/reference_case/`, each running one regular period through
   `PayrollEngine` and asserting, to the cent, the three values its cited
   salary table states: base salary, fixed allowances and period gross. They
   do not check net pay, contributions, taxes or employer cost.
@@ -40,7 +40,7 @@ Evidence:
 
 Full-payslip oracles are kept apart from the reference table cases and from
 the rule oracles, as `oracles_payslip_*.py` in
-`tests/knowledge/ccnl_engine/payroll/period/`, and run in
+`tests/knowledge/ccnl_engine/period/`, and run in
 `test_full_payslip_concia.py` there. The first oracle
 covers the first candidate group for `production`: CCNL Concia UNIC, level
 D2, a whole 2026 competence year with the industria tax and INPS rulesets,
@@ -57,7 +57,7 @@ number of additional months, the employee IVS rate) are not read from a
 fetched primary text; the fixture says which. The oracle is hand-computed,
 not `verified`: no payslip issued by a payroll provider was compared.
 
-Metamorphic tests in `tests/knowledge/ccnl_engine/payroll/period/test_metamorphic_concia.py`
+Metamorphic tests in `tests/knowledge/ccnl_engine/period/services/test_metamorphic_concia.py`
 check relations that need no expected amount: an unknown fact is not a known
 zero, a bonus moves only its axes, the order of independent events and the
 split of a year at an exported state change nothing, and the public totals

@@ -5,6 +5,7 @@ from __future__ import annotations
 from datetime import date
 
 from ccnl_engine.agreement.facade import TaxSector
+from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.contribution.rate.rules import (
     CATEGORY_RATE_ASSUMED_CODE,
     category_rate_issue,
@@ -13,10 +14,9 @@ from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.inputs import Apprentice, Permanent
-from ccnl_engine.payroll.period.models_payroll import PeriodId
-from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
-from ccnl_engine.payroll.period.services import calculate_period
-from ccnl_engine.payroll.state.models import PeriodState
+from ccnl_engine.period.requests import PeriodCalculationRequest
+from ccnl_engine.period.services import calculate_period
+from ccnl_engine.run.types import PeriodId
 from ccnl_engine.tax.annual.loaders import load_year_rules
 
 _ARTIGIANATO = load_year_rules(2026, TaxSector.ARTIGIANATO, 10)

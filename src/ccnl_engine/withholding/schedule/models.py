@@ -21,15 +21,15 @@ from dataclasses import dataclass, field
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.calendar.payment.models import PaymentId
+from ccnl_engine.calendar.schedule.models import PayrollRunCount
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.period.models_run import PayrollRun
-from ccnl_engine.payroll.year.models_payment import PaymentId
-from ccnl_engine.payroll.year.models_schedule import PayrollRunCount
+from ccnl_engine.run.models import PayrollRun
 
 if TYPE_CHECKING:
     from collections.abc import Collection, Iterable, Mapping
 
-    from ccnl_engine.payroll.period.models_run import PayrollRunId, RunKind
+    from ccnl_engine.run.models import PayrollRunId, RunKind
 
 __all__ = ["WithholdingPosition", "WithholdingSchedule", "WithholdingSlot"]
 

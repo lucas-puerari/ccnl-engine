@@ -5,10 +5,11 @@ public namespaces.
 
 ## Modules
 
-The package is organised by capability: `ccnl_engine.payroll` (computation),
-`ccnl_engine.contract` and `ccnl_engine.tax` (schemas and loaders), and
-`ccnl_engine.knowledge` (the versioned JSON data bundle the loaders read, plus
-the readers in `ccnl_engine.knowledge.service`). See
+The package is organised by concept (`ccnl_engine.sickness`,
+`ccnl_engine.contribution`, `ccnl_engine.irpef`, ...), each holding the CCNL
+rules, the statutory tables and the computation of that concept, and
+`ccnl_engine.knowledge` (the versioned JSON data bundle and its readers). See
+[Architecture contract](../engine/architecture-contract.md) and
 [Knowledge base](knowledge.md).
 
 | Page | Contents |

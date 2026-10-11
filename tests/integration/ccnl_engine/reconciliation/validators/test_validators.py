@@ -7,20 +7,20 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.event.facade import WelfareEvent
-from ccnl_engine.payroll.period.models_payroll import PeriodId
-from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
-from ccnl_engine.payroll.period.services import calculate_period
-from ccnl_engine.payroll.state.models import PeriodState
+from ccnl_engine.period.requests import PeriodCalculationRequest
+from ccnl_engine.period.services import calculate_period
 from ccnl_engine.reconciliation.validators import reconcile
+from ccnl_engine.run.types import PeriodId
 from ccnl_engine.tax_credit.account.models import TrattamentoAccount
-from tests.integration.ccnl_engine.payroll.period.builders_period_requests import (
+from tests.integration.ccnl_engine.period.builders import (
     period_request,
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.period.results import PeriodResult
+    from ccnl_engine.period.results import PeriodResult
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"

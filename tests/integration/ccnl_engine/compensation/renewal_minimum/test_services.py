@@ -13,6 +13,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.assurance.models import BlockerCode
+from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.fact.inputs import (
@@ -20,18 +21,17 @@ from ccnl_engine.employment.fact.inputs import (
     WeeklyHours,
 )
 from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
-from ccnl_engine.payroll.period.models_payroll import PeriodId
-from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
-from ccnl_engine.payroll.period.services import calculate_period
-from ccnl_engine.payroll.state.models import PeriodState
+from ccnl_engine.period.requests import PeriodCalculationRequest
+from ccnl_engine.period.services import calculate_period
 from ccnl_engine.regime.models import EmploymentSector
-from tests.integration.ccnl_engine.payroll.year.builders_next_year_repository import (
+from ccnl_engine.run.types import PeriodId
+from tests.integration.ccnl_engine.year.builders import (
     NextYearRepository,
 )
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.period.results import PeriodResult
+    from ccnl_engine.period.results import PeriodResult
 
 _RENEWAL = "rinnovo_substitute_tax"
 

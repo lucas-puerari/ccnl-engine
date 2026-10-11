@@ -68,16 +68,16 @@ from ccnl_engine.errors import (
     UnsupportedTaxYearError,
 )
 from ccnl_engine.knowledge.facade import __version__ as bundle_version
-from ccnl_engine.payroll.period.inputs import PeriodFacts, PeriodInput
-from ccnl_engine.payroll.period.models_run import PayrollRun
-from ccnl_engine.payroll.period.results import PeriodResult
-from ccnl_engine.payroll.year.inputs_competence_plan import CompetenceYearPlan
-from ccnl_engine.payroll.year.inputs_tax_plan import TaxYearPlan
-from ccnl_engine.payroll.year.results import (
+from ccnl_engine.period.inputs import PeriodFacts, PeriodInput
+from ccnl_engine.period.results import PeriodResult
+from ccnl_engine.run.models import PayrollRun
+from ccnl_engine.version import __version__ as engine_version
+from ccnl_engine.year.competence.inputs import CompetenceYearPlan
+from ccnl_engine.year.results import (
     CompetenceYearResult,
     TaxYearResult,
 )
-from ccnl_engine.version import __version__ as engine_version
+from ccnl_engine.year.tax_year.inputs import TaxYearPlan
 
 __all__ = [
     "CcnlEngineError",

@@ -28,8 +28,8 @@ from ccnl_engine.seniority.services import seniority_months_at
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.fund.models import SeniorityConversion
-    from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
-    from ccnl_engine.payroll.period.services_run_context import RunContext
+    from ccnl_engine.period.context.services import RunContext
+    from ccnl_engine.period.requests import PeriodCalculationRequest
 
 __all__ = ["converted_seniority", "kept_seniority_months", "seniority_conversion"]
 

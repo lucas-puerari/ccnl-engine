@@ -20,12 +20,12 @@ from ccnl_engine.pay_item.facade import (
     TaxCreditItem,
     TaxRefundItem,
 )
-from ccnl_engine.payroll.period.services_shared import _ZERO
+from ccnl_engine.pay_item.services import _ZERO
 
 if TYPE_CHECKING:
     from decimal import Decimal
 
-    from ccnl_engine.payroll.amount.types import _PeriodAmounts
+    from ccnl_engine.amount.types import _PeriodAmounts
 
 __all__ = ["tax_lines"]
 

@@ -12,24 +12,24 @@ from decimal import Decimal
 from functools import cache
 from typing import TYPE_CHECKING
 
+from ccnl_engine.balance.cash.account.models import WithholdingShortfall
+from ccnl_engine.balance.models import PeriodState
+from ccnl_engine.balance.obligation.models import ULTERIORE_RECOVERY
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.event.facade import BonusEvent
 from ccnl_engine.irpef.results import TaxComputation, TaxLineItem
-from ccnl_engine.payroll.period.models_payroll import PeriodId
-from ccnl_engine.payroll.period.models_run import RunKind
-from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
-from ccnl_engine.payroll.period.services import calculate_period
-from ccnl_engine.payroll.state.models import PeriodState
-from ccnl_engine.payroll.state.models_obligation import ULTERIORE_RECOVERY
-from ccnl_engine.payroll.state.models_ytd_account import WithholdingShortfall
-from ccnl_engine.payroll.year.services_competence import (
-    calculate_competence_year,
-)
+from ccnl_engine.period.requests import PeriodCalculationRequest
+from ccnl_engine.period.services import calculate_period
 from ccnl_engine.reconciliation.ceiling.validators import (
     check_irpef_annual_reconciliation,
     net_annual_irpef,
 )
 from ccnl_engine.reconciliation.types import RunFacts
+from ccnl_engine.run.models import RunKind
+from ccnl_engine.run.types import PeriodId
+from ccnl_engine.year.competence.services import (
+    calculate_competence_year,
+)
 from tests.knowledge.ccnl_engine.irpef.oracles import (
     net_irpef as oracle_net_irpef,
 )
@@ -40,8 +40,8 @@ from tests.knowledge.ccnl_engine.withholding.oracles import (
 from tests.unit.ccnl_engine.builders import year_plan
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.period.results import PeriodResult
-    from ccnl_engine.payroll.year.results import CompetenceYearResult
+    from ccnl_engine.period.results import PeriodResult
+    from ccnl_engine.year.results import CompetenceYearResult
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"

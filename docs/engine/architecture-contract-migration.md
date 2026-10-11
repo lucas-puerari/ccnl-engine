@@ -44,7 +44,7 @@ A move must update every place that names a path or a dotted module:
   selection.
 - **CI workflows**: the path filters of `capability-matrix.yml`,
   `contract-examples.yml` and `contracts-index.yml`, and the
-  `tests/knowledge/ccnl_engine/payroll/period/reference_case/*.json` globs of `ci.yml`.
+  `tests/knowledge/ccnl_engine/period/reference_case/*.json` globs of `ci.yml`.
 - **Scripts**: the knowledge prefixes of `scripts/knowledge/diff.py`,
   the data paths of the documentation generators and of
   `scripts/knowledge/update.py`, and the reference case directory of
@@ -54,7 +54,7 @@ A move must update every place that names a path or a dotted module:
   `tests/integration/ccnl_engine/knowledge/service/`,
   `tests/integration/ccnl_engine/tax/service/` and
   `tests/integration/scripts/knowledge/test_diff.py`; the reference
-  case directory of `tests/knowledge/ccnl_engine/payroll/period/support_provenance.py`; the layer
+  case directory of `tests/knowledge/ccnl_engine/period/support.py`; the layer
   allowlists of `tests/integration/scripts/structure/test_dependencies.py` and
   `tests/integration/scripts/structure/support_imports.py`.
 - **Documentation**: the `--8<--` snippet includes of the agreement JSON in

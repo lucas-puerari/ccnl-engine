@@ -17,7 +17,7 @@ from ccnl_engine.pension_fund.rules import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.amount.types import _AmountsInput
+    from ccnl_engine.amount.types import _AmountsInput
     from ccnl_engine.pension_fund.rules import (
         PensionContribution,
         PensionFundTerms,

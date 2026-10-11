@@ -19,7 +19,7 @@ from ccnl_engine.event.handlers import (
 )
 from ccnl_engine.ledger.models import AccountKind, PostingIntent
 from ccnl_engine.pay_item.facade import FringeBenefitItem, WelfareItem
-from ccnl_engine.payroll.period.services_shared import _ZERO, _require_resolution
+from ccnl_engine.pay_item.services import _ZERO, _require_resolution
 
 if TYPE_CHECKING:
     from ccnl_engine.variable_pay.models import FringeBenefitRules

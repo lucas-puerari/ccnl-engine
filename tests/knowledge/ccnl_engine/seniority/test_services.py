@@ -36,7 +36,7 @@ from ccnl_engine.inputs import (
     WorkerCategory,
 )
 from ccnl_engine.results import BlockerCode, CalculationStatus
-from tests.knowledge.ccnl_engine.payroll.support import (
+from tests.knowledge.ccnl_engine.support import (
     EMPLOYER,
     ENGINE,
     PA_FUNZIONI_CENTRALI,

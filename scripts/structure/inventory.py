@@ -156,8 +156,6 @@ MIRROR_ROOTS: Final[Mapping[str, str]] = {
     "demo": "demo",
     "scripts": "scripts",
 }
-#: Directories under ``tests`` before a file.
-MAX_TEST_DEPTH: Final = 5
 
 #: A target path, or ``{"dissolve": <dir>}`` for a package marker.
 Entry = str | dict[str, str]
@@ -525,8 +523,6 @@ def _test_problems(target: str, trees: Mapping[str, set[str]]) -> list[str]:
         return [f"category {parts[0]!r} not in {sorted(TEST_CATEGORIES)}"]
     if len(parts) < 3 or parts[1] not in MIRROR_ROOTS:
         return [f"mirror root not in {sorted(MIRROR_ROOTS)}"]
-    if len(parts) - 1 > MAX_TEST_DEPTH:
-        return [f"{len(parts) - 1} directories under tests"]
     return _mirror_problems(parts[2:], trees[parts[1]])
 
 

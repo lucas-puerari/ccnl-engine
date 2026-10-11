@@ -29,7 +29,7 @@ if TYPE_CHECKING:
     from collections.abc import Callable
 
     from ccnl_engine.agreement.validity.rules import ValidityPeriod
-    from ccnl_engine.payroll.period.services_run_context import RunContext
+    from ccnl_engine.period.context.services import RunContext
     from ccnl_engine.provenance.ruleset.models import RulesetIdentity
     from ccnl_engine.provenance.source.rule import models as models_chain
 

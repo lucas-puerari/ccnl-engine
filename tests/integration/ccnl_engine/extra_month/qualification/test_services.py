@@ -13,6 +13,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.assurance.rule_source.services import MISSING_SOURCE_CODE
+from ccnl_engine.calendar.models import WorkCalendar
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.compensation.models import (
     AccrualComparison,
@@ -29,27 +30,26 @@ from ccnl_engine.extra_month.qualification.services import (
 )
 from ccnl_engine.extra_month.schedule.models import ExtraMonthKind
 from ccnl_engine.extra_month.services import run_schedule
-from ccnl_engine.payroll.period.models_payroll import PeriodId
-from ccnl_engine.payroll.period.models_run import PayrollRun
-from ccnl_engine.payroll.period.repositories import (
+from ccnl_engine.period.repositories import (
     BundledKnowledgeRepository,
 )
-from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
-from ccnl_engine.payroll.period.services import calculate_period
-from ccnl_engine.payroll.year.models_calendar import WorkCalendar
+from ccnl_engine.period.requests import PeriodCalculationRequest
+from ccnl_engine.period.services import calculate_period
 from ccnl_engine.provenance.source.models import (
     SourceDocument,
     SourceKind,
     SourceLocation,
 )
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus, RuleProvenance
+from ccnl_engine.run.models import PayrollRun
+from ccnl_engine.run.types import PeriodId
 from tests.integration.ccnl_engine.withholding.builders import (
     calendar_schedule,
 )
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
-    from ccnl_engine.payroll.period.results import PeriodResult
+    from ccnl_engine.period.results import PeriodResult
 
 _YEAR = 2026
 _SLUG = "commercio-confcommercio.json"

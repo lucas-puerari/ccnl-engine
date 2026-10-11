@@ -24,7 +24,7 @@ from ccnl_engine import (
 )
 from ccnl_engine.catalog import RulesetKind
 from ccnl_engine.inputs import Permanent
-from ccnl_engine.payroll.period.repositories import (
+from ccnl_engine.period.repositories import (
     BundledKnowledgeRepository,
 )
 from ccnl_engine.results import BlockerCode

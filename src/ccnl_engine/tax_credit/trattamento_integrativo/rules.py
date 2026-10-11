@@ -16,6 +16,10 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.balance.obligation.models import (
+    RECOVERY_RULES,
+    TRATTAMENTO_RECOVERY,
+)
 from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationStatus,
@@ -23,10 +27,6 @@ from ccnl_engine.decision.models import (
 from ccnl_engine.irpef.results import TaxLineItem
 from ccnl_engine.irpef.rules import DAYS_IN_YEAR
 from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.state.models_obligation import (
-    RECOVERY_RULES,
-    TRATTAMENTO_RECOVERY,
-)
 from ccnl_engine.tax_credit import rules as irpef_credits
 from ccnl_engine.tax_credit.decision.rules import credit_decision
 from ccnl_engine.tax_credit.recovery.models import (

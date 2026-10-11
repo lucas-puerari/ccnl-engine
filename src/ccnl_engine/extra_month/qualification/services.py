@@ -24,17 +24,17 @@ from ccnl_engine.extra_month.models import (
     MonthAccrualRule,
     absence_days,
 )
-from ccnl_engine.payroll.period.models_run import PayrollRun
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus, RuleProvenance
+from ccnl_engine.run.models import PayrollRun
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
     from datetime import date
 
     from ccnl_engine.agreement.facade import CCNL
+    from ccnl_engine.calendar.models import WorkCalendar
     from ccnl_engine.employment.fact.inputs import EmploymentPeriod
     from ccnl_engine.event.facade import WorkEvent
-    from ccnl_engine.payroll.year.models_calendar import WorkCalendar
 
 
 __all__ = [

@@ -30,7 +30,7 @@ if TYPE_CHECKING:
     from ccnl_engine.capability.results import CapabilityReport
     from ccnl_engine.event.total.handlers import _EventTotals
     from ccnl_engine.limitation.models import ModelLimitation
-    from ccnl_engine.payroll.period.services_run_context import RunContext
+    from ccnl_engine.period.context.services import RunContext
 
 __all__ = ["limitation_facts", "run_limitations"]
 

@@ -16,6 +16,12 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.balance.obligation.models import (
+    RECOVERY_RULES,
+    SOMMA_ESENTE_RECOVERY,
+    RecoveryObligation,
+    carried_item_id,
+)
 from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationStatus,
@@ -23,23 +29,17 @@ from ccnl_engine.decision.models import (
 from ccnl_engine.ledger.models import AccountKind, LedgerEntry
 from ccnl_engine.ledger.remittance.models import SOMMA_ESENTE_CREDIT
 from ccnl_engine.pay_item.facade import PayItem, TaxCreditItem
-from ccnl_engine.payroll.period.services_shared import (
+from ccnl_engine.pay_item.services import (
     _make_entry,
     _require_resolution,
-)
-from ccnl_engine.payroll.state.models_obligation import (
-    RECOVERY_RULES,
-    SOMMA_ESENTE_RECOVERY,
-    RecoveryObligation,
-    carried_item_id,
 )
 
 if TYPE_CHECKING:
     from datetime import date
 
+    from ccnl_engine.balance.obligation.models import EmploymentObligations
     from ccnl_engine.pay_item.facade import CompetencePeriod
     from ccnl_engine.pay_item.policies import PolicyContext, PolicyResolver
-    from ccnl_engine.payroll.state.models_obligation import EmploymentObligations
     from ccnl_engine.tax_credit.recovery.models import (
         InstallmentRun,
         PostedInstallment,

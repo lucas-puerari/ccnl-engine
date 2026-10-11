@@ -9,11 +9,11 @@ from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationStatus,
 )
+from ccnl_engine.decision.rules import _ccnl_rule
 from ccnl_engine.fund.assistance.rules import (
     CAPABILITY,
     AssistanceTerms,
 )
-from ccnl_engine.payroll.period.rules_run_decision import _ccnl_rule
 
 if TYPE_CHECKING:
     from datetime import date

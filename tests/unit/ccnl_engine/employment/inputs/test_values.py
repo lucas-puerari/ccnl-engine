@@ -16,8 +16,8 @@ from ccnl_engine.employment.fact.inputs import (
 )
 from ccnl_engine.employment.inputs import Employment, Permanent
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.period.models_payroll import PeriodId
-from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
+from ccnl_engine.period.requests import PeriodCalculationRequest
+from ccnl_engine.run.types import PeriodId
 from ccnl_engine.seniority.inputs import (
     SeniorityFact,
     SenioritySource,
