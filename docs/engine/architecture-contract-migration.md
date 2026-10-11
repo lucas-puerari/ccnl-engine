@@ -62,7 +62,7 @@ A move must update every place that names a path or a dotted module:
   generated from the bundle, the
   `:::` API directives of `docs/api/`, the module paths of
   `docs/engine/architecture.md`, `docs/engine/payroll-state.md`,
-  `docs/rules/index.md`, the migration guides, `tests/README.md` and
+  `docs/rules/index.md`, `tests/README.md` and
   `CLAUDE.md`.
 - **Mirror rules**: the mirror check of `tests/integration/scripts/structure/test_test_layout.py`
   and the categories it allows.
