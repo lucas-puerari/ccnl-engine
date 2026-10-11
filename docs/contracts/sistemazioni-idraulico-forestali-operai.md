@@ -181,7 +181,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 | Document | Kind | Date | URL |
 |---|---|---|---|
 | — | — | 2025-12-04 | [↗](https://redigo.info/) |
-| — | — | 2021-01-01 | [↗](file:ccnl-idraulico-forestali-2021.txt) |
+| — | — | 2021-01-01 | not available |
 
 ??? note "Coverage notes"
     CCNL A181 — Sistemazioni Idraulico-Forestali (Operai OTI). Split from impiegati contract: salary bands overlap, requiring separate files for correct engine ordering and under-classification apprenticeship. 5 livelli operai (O1-O5). Conglobato. Divisore 169, 14 mensilita.

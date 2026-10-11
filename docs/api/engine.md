@@ -37,9 +37,9 @@ by slug or CNEL code: the same value the run reports in `result.rulesets`.
 
 ```python
 engine = PayrollEngine.bundled(mode="operational")
-ruleset = engine.inspect_ruleset("metalmeccanico-federmeccanica")
+ruleset = engine.inspect_ruleset("commercio-confcommercio")
 if not ruleset.is_production:
-    print(ruleset.readiness, ruleset.confidence)  # → exploratory unverified
+    print(ruleset.readiness, ruleset.confidence)  # the run of this CCNL is blocked
 ```
 
 | `RulesetAssurance` field | Meaning |

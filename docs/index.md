@@ -60,14 +60,14 @@ for decision in result.decisions:
     print(decision.capability, decision.reason_code, decision.amount)
 ```
 
-See [example 11: Why this number?](examples/11_why_this_number.py) for a
-full walkthrough.
+See the [explanation example](examples.md#trust-why-this-number) for a full
+walkthrough.
 
 ---
 
 ## Scope
 
-**Always computed (L1: gross, L2: net):**
+**Gross and net (L1, L2):**
 
 - IRPEF gross and net (Art. 11-13 TUIR), work income deductions,
   *trattamento integrativo* (Art. 1 D.L. 3/2020)
@@ -83,7 +83,10 @@ full walkthrough.
 
 Second-level (territorial and company) allowances are not an engine input.
 
-**L3: work rules (126/126 contracts):**
+What each contract computes, and its limits, is in the
+[capability matrix](contracts/capability-matrix.md).
+
+**Work rules (L3):**
 
 Work events are part of the run: pass them in `PeriodFacts.events` and they
 change gross, net and employer cost according to their treatment. See
