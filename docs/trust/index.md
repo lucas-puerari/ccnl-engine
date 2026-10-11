@@ -179,7 +179,7 @@ This is a hard rule:
 Expected values copied from engine output detect regressions only, never a
 systematic error, so they are not accepted as proof of correctness.
 Reference cases live in `tests/knowledge/ccnl_engine/period/reference_case/` and
-`tests/integration/ccnl_engine/test_reference_cases.py` runs each one through
+`tests/integration/ccnl_engine/api/test_reference_cases.py` runs each one through
 `PayrollEngine`. They are reference table cases, not full payslips: a case
 asserts only the values its source states (base salary, fixed allowances and
 period gross from the cited table), to the cent, and never net pay,
@@ -202,7 +202,7 @@ top-level `verification` field:
 | `verified` | Expected values checked against an independent source (a real payslip or an official worked example) | Required |
 | `source_linked` | The case cites the primary source it models; expected values are not checked against a payslip | Required |
 
-`tests/knowledge/ccnl_engine/knowledge/test_data_quality.py` rejects a missing or unknown
+`tests/knowledge/ccnl_engine/bundle/validators/test_data_quality.py` rejects a missing or unknown
 value, a case without a `source` object, and a case whose inputs or expected
 values differ from what the runner executes. In CI,
 `scripts/provenance/check.py` validates every case, prints the count per

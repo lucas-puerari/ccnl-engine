@@ -18,7 +18,7 @@ import pytest
 
 from ccnl_engine.results import BlockerCode
 
-_ROOT = Path(__file__).parents[3]
+_ROOT = Path(__file__).parents[4]
 _EXAMPLES_DIR = _ROOT / "docs" / "examples"
 _CCNL_DATA_DIR = _ROOT / "src" / "ccnl_engine" / "knowledge" / "agreement"
 _GUIDE_EXAMPLES = sorted(_EXAMPLES_DIR.glob("[0-9]*.py"))

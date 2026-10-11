@@ -168,7 +168,7 @@ def test_every_required_fact_has_a_default_case() -> None:
     """Each ``requires_fact`` field is run stated and left to its default.
 
     The cases feed the metamorphic test of
-    ``tests/integration/ccnl_engine/test_default_facts.py``: the true fact
+    ``tests/integration/ccnl_engine/api/test_default_facts.py``: the true fact
     never has more blockers than its default.  A field without a case
     states why.
     """
