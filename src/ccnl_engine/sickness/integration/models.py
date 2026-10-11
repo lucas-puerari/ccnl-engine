@@ -236,6 +236,10 @@ class SicknessRules(BaseModel):
             (Commercio Art. 186: 180 days "in un anno solare") instead of
             the days of one episode.
         carenza_by_event: Lower carenza from the n-th event of the year.
+        carenza_min_days: The carenza is paid only when the sickness lasts
+            more than this many calendar days (Pubblici esercizi FIPE
+            Art. 190: "qualora la durata della malattia superi i cinque
+            giorni"); ``None`` pays it whatever the length.
         max_duration_days: Number of calendar days after which sick leave
             exceeds the comporto period.  Days beyond this limit are not
             modelled by the engine.
@@ -261,6 +265,7 @@ class SicknessRules(BaseModel):
     day_bands: tuple[SicknessDayBand, ...] = Field(default=())
     comporto_calendar_year: bool = False
     carenza_by_event: CarenzaByEvent | None = None
+    carenza_min_days: int | None = Field(default=None, ge=1)
     max_duration_days: int = Field(default=180, ge=1)
     cumulation: SicknessCumulation | None = None
     net_basis: bool = False

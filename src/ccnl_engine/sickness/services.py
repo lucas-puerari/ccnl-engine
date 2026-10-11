@@ -45,6 +45,7 @@ __all__ = ["sickness_rules", "sickness_terms"]
 _CATEGORY = "category"
 _PAYING_KINDS = frozenset({RunKind.REGULAR, RunKind.TERMINATION})
 _FIXED_DIVISORS = {
+    DailyDivisorMethod.BY_22: Decimal(22),
     DailyDivisorMethod.BY_26: Decimal(26),
     DailyDivisorMethod.BY_30: Decimal(30),
 }

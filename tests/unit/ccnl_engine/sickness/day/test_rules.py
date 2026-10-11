@@ -225,6 +225,13 @@ def test_without_cover_the_ccnl_target_applies() -> None:
             (Decimal(40),),
         ),
         (
+            DailyDivisorMethod.BY_22,
+            ((date(2026, 3, 9), date(2026, 3, 15)),),
+            Decimal(22),
+            None,
+            (Decimal(5),),
+        ),
+        (
             DailyDivisorMethod.BY_MONTH_HOURS,
             ((date(2026, 3, 9), date(2026, 3, 15)),),
             Decimal(22),
