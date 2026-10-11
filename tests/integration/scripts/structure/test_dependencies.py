@@ -6,6 +6,10 @@ only ``domain``, performs no I/O and reaches another capability's domain
 only through :data:`DOMAIN_COUPLING`.  Only the package root imports ``api``,
 and the capability layers form no import cycle.
 
+Concepts import their own tier or a lower one (norms, computation,
+orchestration); the roots of the layout by source are skipped until they
+empty (:mod:`tests.integration.scripts.structure.support`).
+
 Each rule is checked on the real sources and on a synthetic violation, so a
 rule that silently stops detecting anything fails too.
 """
@@ -18,6 +22,12 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from tests.integration.scripts.structure.support import (
+    stale_legacy_roots,
+    stale_tier_entries,
+    tier_violations,
+    unknown_concepts,
+)
 from tests.integration.scripts.structure.support_imports import (
     Location,
     cycles,
@@ -108,6 +118,12 @@ DOMAIN_COUPLING: dict[tuple[str, str], str] = {
         "ccnl_engine.provenance",
     ): "Payroll decisions cite the legal source of the rule they apply.",
 }
+
+
+#: Imports of a higher tier, keyed by ``(importing concept, imported module
+#: or package)``, each with the reason it cannot move yet.  Entries may only
+#: be removed; an entry that no import uses fails the suite.
+TIER_ALLOWLIST: dict[tuple[str, str], str] = {}
 
 
 @pytest.fixture(scope="module")
@@ -381,3 +397,70 @@ def test_acyclic_graph_has_no_cycle() -> None:
     """A diamond is not a cycle."""
     graph = {"a": {"b", "c"}, "b": {"d"}, "c": {"d"}, "d": set()}
     assert cycles(graph) == []
+
+
+# ---------------------------------------------------------------------------
+# Concept tiers
+# ---------------------------------------------------------------------------
+
+
+def test_every_root_has_a_tier_or_is_legacy(package: dict[str, Module]) -> None:
+    """A new root of the package needs a tier before it holds modules."""
+    assert unknown_concepts(package) == []
+
+
+def test_legacy_roots_only_shrink(package: dict[str, Module]) -> None:
+    """A legacy root that no module uses must leave the list."""
+    assert stale_legacy_roots(package) == []
+
+
+def test_concepts_import_their_tier_or_lower(package: dict[str, Module]) -> None:
+    """No runtime import reaches a higher tier unless allowlisted."""
+    assert tier_violations(package, TIER_ALLOWLIST) == []
+
+
+def test_tier_allowlist_has_no_stale_entry(package: dict[str, Module]) -> None:
+    """Every tier allowlist entry is still used, so the list only shrinks."""
+    assert stale_tier_entries(package, TIER_ALLOWLIST) == []
+
+
+def test_upward_tier_import_is_reported_and_allowlistable() -> None:
+    """Computation importing orchestration is reported until allowlisted."""
+    modules = _modules(**{
+        "ccnl_engine.sickness.services": (
+            "from ccnl_engine.period.services import shared\n"
+            "from ccnl_engine.provenance.source import models\n"
+            "from ccnl_engine.sickness.day import rules\n"
+            "from ccnl_engine.payroll.period import services\n"
+        ),
+        "ccnl_engine.period.services": "from ccnl_engine.sickness import services\n",
+        "ccnl_engine.contribution.rules": "import ccnl_engine\n",
+    })
+    assert tier_violations(modules, {}) == [
+        (
+            "ccnl_engine/sickness/services.py:1 -> ccnl_engine.period.services "
+            "(sickness computation -> period orchestration)"
+        )
+    ]
+    allowlist = {("sickness", "ccnl_engine.period"): "shared helpers move down"}
+    assert tier_violations(modules, allowlist) == []
+    assert stale_tier_entries(modules, allowlist) == []
+    unused = {("sickness", "ccnl_engine.year"): "nothing imports it"}
+    assert stale_tier_entries(modules, unused) == [("sickness", "ccnl_engine.year")]
+
+
+def test_roots_without_tier_and_stale_legacy_are_reported() -> None:
+    """An unknown root is reported; a legacy root without modules is stale."""
+    modules = _modules(**{
+        "ccnl_engine.__init__": "",
+        "ccnl_engine.misc.models": "",
+        "ccnl_engine.contract.identity.models": "",
+    })
+    assert unknown_concepts(modules) == ["misc"]
+    assert stale_legacy_roots(modules) == [
+        "payroll",
+        "primitives",
+        "tax",
+        "validation",
+        "validation_collection",
+    ]

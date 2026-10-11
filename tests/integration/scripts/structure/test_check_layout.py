@@ -66,6 +66,13 @@ def _layout_tree(root: Path) -> None:
         "demo/app.py",
     )
     (root / "src/ccnl_engine/payroll/__init__.py").write_text("X = 1\n", "utf-8")
+    glossary = root / "docs" / "domain" / "glossary.md"
+    glossary.parent.mkdir(parents=True)
+    glossary.write_text(
+        "## Directory names\n\n**Concepts**: `payroll`.\n\n"
+        "`ci`, `domain`, `fixtures`, `ledger`, `period`.\n",
+        encoding="utf-8",
+    )
     (root / "demo" / "service").mkdir(parents=True)
 
 

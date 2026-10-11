@@ -27,6 +27,7 @@ nav = [
     { "Architecture rules" = "engine/architecture.md" },
     { "Architecture contract" = "engine/architecture-contract.md" },
     { "Architecture target trees" = "engine/architecture-contract-trees.md" },
+    { "Architecture production map" = "engine/architecture-contract-map.md" },
     { "Architecture migration notes" = "engine/architecture-contract-migration.md" },
   ]},
   { "Trust" = [

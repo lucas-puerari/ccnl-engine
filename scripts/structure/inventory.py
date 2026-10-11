@@ -201,8 +201,6 @@ MIRROR_ROOTS: Final[Mapping[str, str]] = {
     "demo": "demo",
     "scripts": "scripts",
 }
-#: Directories under the package root before a module.
-MAX_SOURCE_DEPTH: Final = 3
 #: Directories under ``tests`` before a file.
 MAX_TEST_DEPTH: Final = 5
 
@@ -526,8 +524,6 @@ def _resource_problems(pure: PurePosixPath) -> list[str]:
 
 def _module_problems(pure: PurePosixPath) -> list[str]:
     directory = "/".join(pure.parts[:-1])
-    if len(pure.parts) - 1 > MAX_SOURCE_DEPTH:
-        return [f"{len(pure.parts) - 1} directories under the package"]
     if directory not in SOURCE_TREE:
         return [f"directory {directory!r} not in the target tree"]
     naming = ROLE_NAME if directory else ROOT_NAME
@@ -587,7 +583,7 @@ def _mirror_problems(parts: tuple[str, ...], tree: set[str]) -> list[str]:
 def _tooling_problems(target: str) -> list[str]:
     parts = PurePosixPath(target).parts
     allowed = SCRIPT_DOMAINS if parts[0] == "scripts" else DEMO_DIRS
-    if len(parts) > 3:
+    if parts[0] == "demo" and len(parts) > 3:
         return ["more than one directory level"]
     if len(parts) == 3 and parts[1] not in allowed:
         return [f"directory {parts[1]!r} not in {sorted(allowed)}"]

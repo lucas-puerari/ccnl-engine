@@ -10,8 +10,6 @@ Rules and hard limits:
   exempt;
 - ``public_methods``: methods of a class whose name has no leading
   underscore (15);
-- ``source_depth``: directories under ``src/ccnl_engine`` before a module
-  (3), ``data`` resource directories exempt;
 - ``underscore_files``: files under ``src``, ``tests``, ``scripts`` and
   ``demo`` whose name starts with an underscore (0), the package root
   ``src/ccnl_engine/__init__.py`` and the docstring-only package markers
@@ -20,6 +18,12 @@ Rules and hard limits:
 - ``technical_directories``: directories under the same roots named after a
   technical layer (``domain``, ``application``, ``service``, ``handlers``,
   ``fixtures``, ``data``) instead of a domain (0);
+- ``role_files``: Python modules under ``src``, ``tests``, ``scripts`` and
+  ``demo`` whose name is not a technical role, a test of one, a test helper,
+  a script action or the demo entry point (0);
+- ``domain_directories``: directories holding Python modules under the same
+  roots whose name is not a domain of the glossary (0);
+  :mod:`scripts.structure.naming.rules` states both naming rules;
 - ``markdown_lines``: physical lines of a hand-written Markdown page (600):
   the top-level pages and those under ``docs``. The audit notes
   ``REVIEW.md`` and ``TODO.md`` are excluded, and so are the generated
@@ -73,6 +77,10 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import TYPE_CHECKING, Final
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+
+from scripts.structure.naming import rules as naming
+
 if TYPE_CHECKING:
     from collections.abc import Iterator, Mapping, Sequence
 
@@ -82,7 +90,6 @@ BASELINE: Final = Path(__file__).with_name("baseline.json")
 PACKAGE: Final = Path("src") / "ccnl_engine"
 TESTS: Final = Path("tests")
 MEASURED: Final = (Path("src"), TESTS, Path("scripts"))
-RESOURCE_DIRS: Final = frozenset({"data"})
 #: Roots of the layout rules: underscore files and technical directories.
 LAYOUT_ROOTS: Final = (Path("src"), TESTS, Path("scripts"), Path("demo"))
 #: Gitignored build output of the demo, outside the layout rules.
@@ -129,9 +136,10 @@ LIMITS: Final[dict[str, int]] = {
     "function_lines": 60,
     "class_lines": 150,
     "public_methods": 15,
-    "source_depth": 3,
     "underscore_files": 0,
     "technical_directories": 0,
+    "role_files": 0,
+    "domain_directories": 0,
     "markdown_lines": 600,
 }
 
@@ -142,9 +150,10 @@ TARGETS: Final[dict[str, int]] = {
     "function_lines": 40,
     "class_lines": 100,
     "public_methods": 10,
-    "source_depth": 3,
     "underscore_files": 0,
     "technical_directories": 0,
+    "role_files": 0,
+    "domain_directories": 0,
     "markdown_lines": 450,
 }
 
@@ -236,6 +245,34 @@ def _allowed_init(path: Path, rel: Path) -> bool:
     return len(body) <= 1 and all(
         isinstance(n, ast.Expr) and isinstance(n.value, ast.Constant) for n in body
     )
+
+
+def naming_offenders(root: Path) -> tuple[list[Path], list[Path]]:
+    """Return the misnamed modules and directories of *root*.
+
+    The places :func:`layout_offenders` skips are skipped here too.
+
+    Returns:
+        Python modules breaking :func:`naming.file_offends`, and the
+        directories above a module breaking :func:`naming.directory_offends`,
+        both relative to *root* and sorted.
+    """
+    words = naming.vocabulary(root)
+    files: list[Path] = []
+    dirs: set[Path] = set()
+    for top in LAYOUT_ROOTS:
+        for path in (root / top).rglob("*.py"):
+            rel = path.relative_to(root)
+            if _outside_layout(rel):
+                continue
+            if naming.file_offends(rel):
+                files.append(rel)
+            dirs.update(
+                parent
+                for parent in rel.parents[:-2]
+                if naming.directory_offends(parent, words)
+            )
+    return sorted(files), sorted(dirs)
 
 
 def markdown_files(root: Path) -> list[Path]:
@@ -403,9 +440,6 @@ def measure_tree(root: Path, thresholds: Mapping[str, int] = LIMITS) -> Measurem
         key = rel.as_posix()
         lines = _physical_lines(root / rel)
         _record(found, "production_file_lines", key, lines, thresholds)
-        dirs = rel.relative_to(PACKAGE).parts[:-1]
-        if not RESOURCE_DIRS.intersection(dirs):
-            _record(found, "source_depth", key, len(dirs), thresholds)
     for rel in python_files(root, TESTS):
         lines = _physical_lines(root / rel)
         _record(found, "test_file_lines", rel.as_posix(), lines, thresholds)
@@ -414,6 +448,11 @@ def measure_tree(root: Path, thresholds: Mapping[str, int] = LIMITS) -> Measurem
         _record(found, "underscore_files", rel.as_posix(), 1, thresholds)
     for rel in technical:
         _record(found, "technical_directories", rel.as_posix(), 1, thresholds)
+    misnamed, undomained = naming_offenders(root)
+    for rel in misnamed:
+        _record(found, "role_files", rel.as_posix(), 1, thresholds)
+    for rel in undomained:
+        _record(found, "domain_directories", rel.as_posix(), 1, thresholds)
     for rel in markdown_files(root):
         lines = _physical_lines(root / rel)
         _record(found, "markdown_lines", rel.as_posix(), lines, thresholds)

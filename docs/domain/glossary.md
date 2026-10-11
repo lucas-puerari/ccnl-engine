@@ -407,6 +407,52 @@ caught by `run_within_employment`).
 
 ---
 
+## Directory names
+
+A directory holding Python modules under `src/ccnl_engine`, `tests`,
+`scripts` or `demo` takes one of these names; a file takes the name of its
+technical role (`docs/engine/architecture.md`). The structure check reads
+this list: a name is added here before a directory uses it.
+
+**Concepts** (roots of `src/ccnl_engine`): `absence`, `agreement`,
+`apprenticeship`, `assurance`, `balance`, `capability`, `catalog`,
+`collection`, `comparison`, `compensation`, `contribution`, `decision`,
+`default`, `employer`, `employment`, `end_of_service`, `event`,
+`extra_month`, `family`, `fund`, `irpef`, `knowledge`, `ledger`,
+`limitation`, `pay_item`, `pension_fund`, `period`, `provenance`,
+`reconciliation`, `regime`, `run`, `seniority`, `severance`, `sickness`,
+`surtax`, `tax_credit`, `termination`, `variable_pay`, `withholding`,
+`working_time`, `year`.
+
+**Subdomains**: `account`, `additional_ivs`, `agent`, `allocation`,
+`amount`, `applicability`, `arrears`, `ascendant`, `assistance`,
+`attribution`, `base`, `benefit`, `calendar`, `cap`, `cash`, `category`,
+`ceiling`, `child`, `closing`, `competence`, `computation`, `conguaglio`,
+`context`, `contractual`, `conversion`, `coverage`, `cumulation`, `day`,
+`declaration`, `deduction`, `deferral`, `domestic`, `element`,
+`eligibility`, `enam`, `enrolment`, `entitlement`, `extraction`, `fact`,
+`fis`, `fixed_term`, `foreign`, `headcount`, `indemnity`, `input`,
+`integration`, `issue`, `jurisdiction`, `ladder`, `lifecycle`, `line`,
+`liquidation`, `metadata`, `minimum`, `minimum_base`, `month`, `naspi`,
+`net`, `obligation`, `opening`, `other_employment`, `other_income`,
+`override`, `overtime`, `pay`, `payment`, `plan`, `posting`, `proration`,
+`provider`, `provincial_element`, `provision`, `public`, `qualification`,
+`raccordo`, `rate`, `recovery`, `registry`, `relief`, `remittance`,
+`renewal_minimum`, `request`, `requirement`, `residence`, `result`,
+`revaluation`, `rounding`, `rule`, `rule_source`, `ruleset`, `schedule`,
+`sector`, `selection`, `separate`, `sequence`, `settlement`, `sign`,
+`solidarity`, `somma_esente`, `source`, `spell`, `spouse`, `stage`,
+`standard`, `step`, `support`, `table`, `tax`, `tax_year`, `taxable`,
+`term`, `total`, `trace`, `transition`, `trattamento_integrativo`,
+`treatment`, `ulteriore_detrazione`, `validity`, `zone`.
+
+**Operations** (`scripts`): `capability_matrix`, `contract_example`,
+`contract_page`, `coverage_matrix`, `distribution`, `documentation`,
+`evidence`, `fiscal`, `inventory`, `label`, `manifest`, `mutation`,
+`naming`, `provenance`, `quality`, `smoke`, `structure`, `trust_count`.
+
+---
+
 ## Anti-patterns
 
 - **gross includes fringe/welfare**: fringe benefits and welfare are classified

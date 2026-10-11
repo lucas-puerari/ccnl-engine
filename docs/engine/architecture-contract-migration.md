@@ -69,7 +69,36 @@ A move must update every place that names a path or a dotted module:
 
 ## Amendments
 
-Where this contract departs from the original proposal:
+### Layout by concept
+
+The first migration laid the package out by source (`contract`, `tax`,
+`payroll`) and accepted `<role>_<suffix>.py` files. The owner rejected both
+on 2026-10-11: directories are plain domain names and files are exactly a
+role, so a suffix becomes a subdomain directory, and the roots become
+concepts. Decided with it:
+
+- every package marker stays, so the documentation tooling keeps loading
+  the API reference;
+- depth is not limited;
+- the concepts sit in three tiers (norms, computation, orchestration), and
+  cycles are allowed only inside a tier;
+- names that meant two things were renamed (`capability/support`,
+  `contribution/headcount`, `seniority/ladder`, `severance/relief`,
+  `severance/provision`, `sickness/cumulation/year`, `compensation/element`,
+  `provenance/source/rule`, `knowledge/sector`), `payroll/state` became
+  `balance`, and the phases of a run took the name of what they produce
+  (`period/context`, `period/step`, `period/result`);
+- the knowledge data stay in one tree, renamed after the concepts;
+- test files are `test_<role>.py`; scripts are named after an action;
+  the examples get one directory per theme.
+
+`scripts/structure/check.py` records every module and directory that breaks
+the naming rules (`role_files`, `domain_directories`) in its shrink-only
+baseline, and the tier rule skips the legacy roots until they empty.
+
+### Earlier amendments
+
+Where the first contract departed from the original proposal:
 
 - `payroll/state/` is added. Period state, tax cash state, YTD and credit
   accounts, carried obligations, opening balances and the state codec are
