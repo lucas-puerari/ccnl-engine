@@ -199,7 +199,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 | Document | Kind | Date | URL |
 |---|---|---|---|
 | — | — | 2025-12-04 | [↗](https://www.lavoro-economia.it/?c=9) |
-| — | — | 2021-01-01 | [↗](file:ccnl-idraulico-forestali-2021.txt) |
+| — | — | 2021-01-01 | not available |
 
 ??? note "Coverage notes"
     CCNL A181 — Sistemazioni Idraulico-Forestali (Impiegati). Split from operai contract: salary bands overlap, requiring separate files for correct engine ordering and under-classification apprenticeship. 7 livelli impiegati (I1-I6, I6Q). Conglobated model. Divisore 169, 14 mensilita.

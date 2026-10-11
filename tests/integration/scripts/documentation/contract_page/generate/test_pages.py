@@ -33,6 +33,7 @@ _spec.loader.exec_module(_gen)
 _latest_value = _gen._latest_value
 _latest_date = _gen._latest_date
 _track_params_line = _gen._track_params_line
+_render_sources = _gen._render_sources
 
 
 def _period(valid_from: str, amount: str) -> dict[str, Any]:
@@ -130,3 +131,27 @@ class TestTrackParamsLine:
         result = _track_params_line(periods)
         assert "percentage: 75" in result
         assert "under-level: `1`" in result
+
+
+# ---------------------------------------------------------------------------
+# _render_sources
+# ---------------------------------------------------------------------------
+
+
+class TestRenderSources:
+    """Only a public HTTP address becomes a link."""
+
+    def test_http_url_is_a_link(self) -> None:
+        """An https source links to its address."""
+        table = _render_sources([{"title": "T", "url": "https://example.org/x"}])
+        assert "[↗](https://example.org/x)" in table
+
+    def test_local_file_and_placeholder_are_text(self) -> None:
+        """A file name or the unavailable placeholder is shown as text."""
+        table = _render_sources([
+            {"title": "A", "url": "file:ccnl.txt"},
+            {"title": "B", "url": "unavailable"},
+            {"title": "C"},
+        ])
+        assert "](" not in table
+        assert table.count("not available") == 3

@@ -226,7 +226,7 @@ jobs:
 
       - name: Run docs/examples snippets
         run: |
-          find docs/examples docs/examples/contracts \
+          find docs/examples \
             -name '*.py' ! -name '__init__.py' \
             -print0 \
           | sort -z \

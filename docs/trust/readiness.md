@@ -118,12 +118,12 @@ The <!-- trust:readiness-reviewed -->2<!-- /trust:readiness-reviewed -->
 `reviewed` rulesets: <!-- trust:readiness-reviewed-list -->`commercio-confcommercio`, `concia-unic`<!-- /trust:readiness-reviewed-list -->.
 Each [contract page](../contracts/index.md) shows its own tier.
 
-No ruleset is `reviewed` today. Fifteen rulesets were `reviewed` until
-October 2026 on a file-level review: each still read `assumed` or `missing`
-payable rules and none recorded a `verified` confidence, so all fifteen were
-lowered to `exploratory`. Their `verification.human_reviewed_by` and
-`verification.last_reviewed` are kept; they return to `reviewed` once their
-weak rules are sourced and their confidence is `verified`.
+In October 2026 fifteen rulesets `reviewed` on a file-level review were
+lowered to `exploratory`: each still read `assumed` or `missing` payable rules
+and none recorded a `verified` confidence. Their
+`verification.human_reviewed_by` and `verification.last_reviewed` are kept; a
+ruleset returns to `reviewed` once its weak rules are sourced and its
+confidence is `verified`, as the ones listed above did.
 
 `reviewed` records a file-level review, not a per-value one. Of the `reviewed`
 rulesets, <!-- trust:reviewed-with-reviewer -->2<!-- /trust:reviewed-with-reviewer -->

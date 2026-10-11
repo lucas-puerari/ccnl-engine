@@ -223,8 +223,11 @@ def _render_sources(sources: list[dict[str, Any]]) -> str:
         title = src.get("title") or src.get("document_id", "—")
         kind = src.get("kind", "—")
         pub = src.get("published_on") or src.get("agreement_date") or "—"
-        url = src.get("url", "")
-        link = f"[↗]({url})" if url else "—"
+        url = str(src.get("url") or "")
+        # Only a public HTTP address is a link: a local file name or the
+        # "unavailable" placeholder is not reachable from the site.
+        public = url.startswith(("http://", "https://"))
+        link = f"[↗]({url})" if public else "not available"
         rows.append(f"| {title} | {kind} | {pub} | {link} |")
     return "\n".join(rows)
 

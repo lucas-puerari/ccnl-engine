@@ -216,7 +216,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 | Document | Kind | Date | URL |
 |---|---|---|---|
 | — | — | 2022-10-27 | [↗](https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf) |
-| — | — | 2025-12-17 | [↗](unavailable) |
+| — | — | 2025-12-17 | not available |
 
 ??? note "Coverage notes"
     Salary model: CONGLOBATO. Contingenza=0 e EDR=0 conglobati dal 1.10.2014. Confermato da ilccnl.it luglio 2026: Paga Base 1693.84 | Contingenza 0 | Terzo Elemento 0 | Totale 1693.84 per livello 1.

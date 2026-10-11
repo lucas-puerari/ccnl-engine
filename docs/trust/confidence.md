@@ -80,44 +80,49 @@ one:
 | `ruleset_not_production` | `None` | ruleset id | `operational` mode only: a ruleset that tracks readiness (today, the CCNL) is not `production` with a `verified` confidence; `no_ruleset_tracks_readiness` when the CCNL has no ruleset identity |
 
 A `derived` rule (taken from a cited document location, with no recorded
-human check) lowers the evidence axis but does not block on its own. The
-bundle holds no `verified` rule yet, so requiring `verified` would block every
+human check) lowers the evidence axis but does not block on its own. Only
+<!-- trust:rules-verified -->7<!-- /trust:rules-verified --> payable rules of
+the bundle are `verified`, so requiring `verified` would block almost every
 result; the evidence axis keeps the difference visible instead.
 
 Each blocker also carries a `remediation` sentence for a human reader. Branch
 on `code`, `feature` and `detail`, not on the sentence.
 
-### What the bundle gives today
+### What the bundle gives
 
-For the first level of each CCNL, a regular run of June 2026 with no event,
-for a worker whose residence and empty family are stated, no result is
-payable. Without the residence or the family, each run also carries a
-`requirement_unresolved` blocker per unknown fact; without the residence,
-the `residence_unknown` surtax decisions add a `calculation_issue` and a
-`capability_not_computed` blocker per missing code. None has a coverage gap: the capabilities the engine
-does not compute (INAIL, health funds, maternity, ...) do not apply to an
-ordinary month or are outside the request (see the
-[capability matrix](../contracts/capability-matrix.md)). Every run that
-reads a 2026 sector tax or INPS file is blocked on IRPEF, INPS, TFR, the
-trattamento integrativo and the ulteriore detrazione: those rulesets declare
-`source_type: "estimated"`, so their rules are `assumed` (see
-[Provenance](provenance.md#a-label-never-outruns-its-evidence)). The
-somma esente is `derived` from its own ruleset, quoted from L. 207/2024
-art. 1 cc. 4-5, and blocks no run by its label. Most also
-read an `assumed` base salary:
-<!-- trust:extra-months-assumed -->119 of 126<!-- /trust:extra-months-assumed -->
-CCNLs cite no clause for their number of monthly payments. The bundle holds
+A result is payable when every fact it reads is stated and every rule it
+executes is at least `derived`. Two CCNLs reach it in CI: Metalmeccanico
+Federmeccanica, the `production` ruleset, in `operational` mode, and Concia
+UNIC, a `reviewed` one, in `simulation`
+(`tests/integration/ccnl_engine/api/test_engine_modes.py`).
+
+Stating only the common facts is not enough. For the first level of each
+CCNL, a regular run of June 2026 with no event, for a new hire whose
+residence and empty family are stated, is not payable:
+
+- a fact the engine does not assume is still missing: the opening state of
+  the year, the other employers and the income of the current year, the TFR
+  destination of a company under the Tesoreria rule;
+- a rule the run executes is `assumed`: the municipal surtax of a comune with
+  no delibera for the year and, for most CCNLs, the base salary, since
+  <!-- trust:extra-months-assumed -->119 of 126<!-- /trust:extra-months-assumed -->
+  CCNLs cite no clause for their number of monthly payments;
+- for some CCNLs, an `open_limitation` that concerns every ordinary month (an
+  INPS rate reused from another sector, a salary table read from a proxy
+  source).
+
+Without the residence or the family, each run also carries a
+`requirement_unresolved` blocker per unknown fact. None has a coverage gap:
+the capabilities the engine does not compute (INAIL, health funds, maternity,
+...) do not apply to an ordinary month or are outside the request (see the
+[capability matrix](../contracts/capability-matrix.md)). The bundle holds
 <!-- trust:rules-missing -->85<!-- /trust:rules-missing --> `missing` rules
 (see [Provenance](provenance.md#current-counts)); a run that reads one also
 raises a `rule_source_missing` issue and is `incomplete`.
 
-A minority of these runs also carry an `open_limitation` blocker: the
-limitations that concern every ordinary month of their CCNL (an INPS rate
-reused from another sector, a salary table read from a proxy source).
-
-Use the amounts for simulation, with the blockers shown; do not pay them
-automatically. In `operational` mode every one of these runs also carries a
-`ruleset_not_production` blocker unless its CCNL is `production` (see
+Use an amount for payment only when its result says `is_payable`. In
+`operational` mode every run also carries a `ruleset_not_production` blocker
+unless its CCNL is `production` (see
 [Readiness](readiness.md#simulation-and-operational-modes)).
 
 ## Defaults of the public inputs
