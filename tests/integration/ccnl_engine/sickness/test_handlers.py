@@ -20,6 +20,7 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from ccnl_engine.absence.models import DailyDivisorMethod
 from ccnl_engine.assurance.models import BlockerCode
 from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.catalog.loaders import load_ccnl
@@ -291,6 +292,31 @@ def test_a_quota_of_one_25th_sets_no_daily_quota() -> None:
     result = calculate_period(request)
     assert _decision(result).reason_code == "sickness_daily_quota_missing"
     assert _sick(result) == {}
+
+
+def test_month_hours_quota_counts_the_working_days_of_the_month() -> None:
+    """Concia with ``by_month_hours``: March 2026 has 22 working days.
+
+    Carenza 9-11 March: 3 days; 12-13 March: 2 days, each 1/22 of the pay.
+    """
+
+    class _MonthHours(BundledKnowledgeRepository):
+        def load_ccnl(self, filename: str) -> CCNL:
+            ccnl = load_ccnl(filename)
+            assert ccnl.work_rules is not None
+            assert ccnl.work_rules.absence_rules is not None
+            absence = ccnl.work_rules.absence_rules.model_copy(
+                update={"daily_divisor_method": DailyDivisorMethod.BY_MONTH_HOURS}
+            )
+            rules = ccnl.work_rules.model_copy(update={"absence_rules": absence})
+            return ccnl.model_copy(update={"work_rules": rules})
+
+    request = _req(3, _MARCH, slug="concia-unic.json", level="D2")
+    inputs = _decision(calculate_period(request, repo=_MonthHours())).inputs
+    assert inputs["divisor_method"] == "by_month_hours"
+    segments = str(inputs["segments"])
+    assert "carenza:index=1:units=3:" in segments
+    assert "indemnified:index=4:units=2:" in segments
 
 
 def _after_january_and_february() -> PeriodState:

@@ -25,8 +25,8 @@ class DailyQuota:
 
     Attributes:
         method: Daily divisor method of the CCNL absence rule.
-        divisor: Days (``by_26``, ``by_30``) or hours (``by_hourly``) of
-            one monthly pay.
+        divisor: Days (``by_26``, ``by_30``, ``by_month_hours``) or hours
+            (``by_hourly``) of one monthly pay.
         daily_hours: Hours of one payable day, ``by_hourly`` only.
     """
 

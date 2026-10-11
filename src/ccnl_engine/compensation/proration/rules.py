@@ -13,6 +13,8 @@ hire, a termination and an absence count the same payable days:
   counts as day 30;
 - ``by_hourly``: ``daily_hours / hourly_divisor`` per employed Monday to
   Friday;
+- ``by_month_hours``: one share per employed Monday to Friday out of the
+  Mondays to Fridays of the month, its working days;
 - ``by_25``: the CCNL states the quota but not which days of a month are
   payable, so a partly employed month has no proration and is not paid.
 
@@ -29,7 +31,7 @@ from decimal import Decimal
 
 from ccnl_engine.absence.models import DailyDivisorMethod
 
-__all__ = ["MonthProration", "payable_days"]
+__all__ = ["MonthProration", "month_working_days", "payable_days"]
 
 _ONE = Decimal(1)
 _COMMERCIAL_MONTH = 30
@@ -65,6 +67,17 @@ def _commercial_days(first: date, last: date) -> int:
     return end - min(first.day, _COMMERCIAL_MONTH) + 1
 
 
+def month_working_days(day: date) -> Decimal:
+    """Return the Mondays to Fridays of the month of ``day``.
+
+    Returns:
+        The divisor of ``by_month_hours`` for that month.
+    """
+    month_end = calendar.monthrange(day.year, day.month)[1]
+    first, last = day.replace(day=1), day.replace(day=month_end)
+    return Decimal(_weekdays(first, last, _FRIDAY))
+
+
 def payable_days(method: DailyDivisorMethod, first: date, last: date) -> int:
     """Return the payable days of the employed span ``first``-``last``.
 
@@ -72,7 +85,8 @@ def payable_days(method: DailyDivisorMethod, first: date, last: date) -> int:
 
     Returns:
         Mondays to Saturdays for ``by_26``, commercial-month days for
-        ``by_30``, Mondays to Fridays for ``by_hourly``.
+        ``by_30``, Mondays to Fridays for ``by_hourly`` and
+        ``by_month_hours``.
     """
     if method is DailyDivisorMethod.BY_30:
         return _commercial_days(first, last)
@@ -90,8 +104,8 @@ class MonthProration:
         first: First employed day of the month.
         last: Last employed day of the month.
         days: Payable days from ``first`` to ``last``.
-        divisor: Days (``by_26``, ``by_30``) or hours (``by_hourly``) of one
-            monthly pay.
+        divisor: Days (``by_26``, ``by_30``, ``by_month_hours``) or hours
+            (``by_hourly``) of one monthly pay.
         daily_hours: Hours of one payable day, ``by_hourly`` only.
     """
 
@@ -127,7 +141,10 @@ class MonthProration:
         if method is DailyDivisorMethod.BY_25:
             return None
         first, last = span
-        divisor = _DIVISORS.get(method, hourly_divisor)
+        if method is DailyDivisorMethod.BY_MONTH_HOURS:
+            divisor: Decimal | None = month_working_days(first)
+        else:
+            divisor = _DIVISORS.get(method, hourly_divisor)
         hourly = method is DailyDivisorMethod.BY_HOURLY
         if divisor is None or (hourly and daily_hours is None):
             return None

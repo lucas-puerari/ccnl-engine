@@ -13,11 +13,16 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.absence.models import DailyDivisorMethod
-from ccnl_engine.compensation.proration.rules import MonthProration, payable_days
+from ccnl_engine.compensation.proration.rules import (
+    MonthProration,
+    month_working_days,
+    payable_days,
+)
 
 _BY_26 = DailyDivisorMethod.BY_26
 _BY_30 = DailyDivisorMethod.BY_30
 _BY_HOURLY = DailyDivisorMethod.BY_HOURLY
+_BY_MONTH_HOURS = DailyDivisorMethod.BY_MONTH_HOURS
 
 
 @pytest.mark.parametrize(
@@ -129,3 +134,35 @@ def test_a_quota_of_one_25th_has_no_proration() -> None:
     span = (date(2026, 6, 15), date(2026, 6, 30))
 
     assert MonthProration.of(DailyDivisorMethod.BY_25, span) is None
+
+
+@pytest.mark.parametrize(
+    ("day", "expected"),
+    [
+        # March 2026: 2-6, 9-13, 16-20, 23-27, 30-31.
+        pytest.param(date(2026, 3, 15), 22, id="march"),
+        # February 2026: four whole weeks from Monday 2.
+        pytest.param(date(2026, 2, 1), 20, id="february"),
+        # January 2026: 1-2, 5-9, 12-16, 19-23, 26-30; holidays 1 and 6 count.
+        pytest.param(date(2026, 1, 31), 22, id="holidays-count"),
+        # Leap February 2028: 1-4, 7-11, 14-18, 21-25, 28-29.
+        pytest.param(date(2028, 2, 29), 21, id="leap-february"),
+    ],
+)
+def test_month_working_days_are_its_mondays_to_fridays(
+    day: date, expected: int
+) -> None:
+    """The divisor of ``by_month_hours`` changes with the month."""
+    assert month_working_days(day) == Decimal(expected)
+
+
+def test_month_hours_quota_divides_by_the_working_days_of_the_month() -> None:
+    """16-31 March 2026: 16-20, 23-27 and 30-31 are 12 of 22 working days."""
+    proration = MonthProration.of(
+        _BY_MONTH_HOURS, (date(2026, 3, 16), date(2026, 3, 31))
+    )
+
+    assert proration is not None
+    assert (proration.units, proration.divisor) == (Decimal(12), Decimal(22))
+    assert proration.daily_hours is None
+    assert not proration.full
