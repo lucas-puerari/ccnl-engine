@@ -12,7 +12,8 @@ The CCNL treatment of a day comes from one of two models of
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
+from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.sickness.cumulation.rules import (
@@ -25,7 +26,6 @@ from ccnl_engine.sickness.cumulation.year.rules import YearTreatment
 if TYPE_CHECKING:
     from collections.abc import Callable
     from datetime import date
-    from decimal import Decimal
 
     from ccnl_engine.sickness.indemnity.models import InpsSickPayRates
     from ccnl_engine.sickness.integration.models import SicknessRules
@@ -140,8 +140,30 @@ class SickPayRules:
     ) -> DayTreatment:
         """Return the CCNL treatment of the days of ``episode``.
 
+        A CCNL that pays the carenza only past a minimum length of the
+        sickness (``carenza_min_days``) pays no waiting day of a shorter
+        episode; the length is the one of the certificates the run knows.
+
         Returns:
             A function of the relapse-chain index and the date of a day.
+        """
+        treatment = self._treatment(episode, history)
+        minimum = self.ccnl.carenza_min_days
+        if minimum is None or (episode.ended_on - episode.started_on).days >= minimum:
+            return treatment
+
+        def unpaid_carenza(index: int, day: date) -> CcnlDay:
+            return replace(treatment(index, day), carenza_rate=Decimal(0))
+
+        return unpaid_carenza
+
+    def _treatment(
+        self, episode: SicknessEpisode, history: SicknessHistory
+    ) -> DayTreatment:
+        """Return the treatment of the model of the CCNL, before the carenza.
+
+        Returns:
+            The cumulated, calendar-year or per-episode treatment.
         """
         cumulative = self.cumulative(episode, history)
         if cumulative is not None:

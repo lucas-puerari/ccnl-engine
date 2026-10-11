@@ -388,6 +388,42 @@ def test_an_unknown_regime_is_a_data_error() -> None:
         calculate_period(request, repo=_InpsRegime("spettacolo"))
 
 
+class _CarenzaPastFiveDays(BundledKnowledgeRepository):
+    """Commercio paying the carenza only when the sickness lasts over 5 days."""
+
+    def load_ccnl(self, filename: str) -> CCNL:
+        ccnl = load_ccnl(filename)
+        assert ccnl.work_rules is not None
+        assert ccnl.work_rules.sickness_rules is not None
+        sickness = ccnl.work_rules.sickness_rules.model_copy(
+            update={"carenza_min_days": 5}
+        )
+        rules = ccnl.work_rules.model_copy(update={"sickness_rules": sickness})
+        return ccnl.model_copy(update={"work_rules": rules})
+
+
+@pytest.mark.parametrize(
+    ("ended_on", "paid"),
+    [
+        pytest.param(date(2026, 3, 13), False, id="five-days"),
+        pytest.param(date(2026, 3, 14), True, id="six-days"),
+    ],
+)
+def test_carenza_paid_only_past_the_minimum_length(ended_on: date, paid: bool) -> None:
+    """Pubblici esercizi Art. 190: the carenza only if the sickness tops 5 days."""
+    episode = sickness_episode("short", date(2026, 3, 9), ended_on)
+    request = _req(
+        3,
+        episode,
+        slug="commercio-confcommercio.json",
+        level="4",
+        category=WorkerCategory.IMPIEGATO,
+    )
+    inputs = _decision(calculate_period(request, repo=_CarenzaPastFiveDays())).inputs
+    assert (inputs["carenza_pay"] != Decimal("0.00")) is paid
+    assert "carenza:index=1:units=3:" in str(inputs["segments"])
+
+
 def _after_january_and_february() -> PeriodState:
     january = sickness_episode("j", date(2026, 1, 12), date(2026, 1, 14))
     february = sickness_episode("f", date(2026, 2, 2), date(2026, 2, 4))

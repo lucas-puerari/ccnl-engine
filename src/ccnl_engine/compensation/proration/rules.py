@@ -6,6 +6,7 @@ daily quota is the one the CCNL sets for its unpaid absences
 (:class:`~ccnl_engine.absence.models.DailyDivisorMethod`), so a
 hire, a termination and an absence count the same payable days:
 
+- ``by_22``: one twenty-second per employed Monday to Friday;
 - ``by_26``: one twenty-sixth per employed Monday to Saturday; Sundays are
   not paid days, a public holiday on a weekday is;
 - ``by_30``: one thirtieth per employed day of a 30-day commercial month: a
@@ -38,6 +39,7 @@ _COMMERCIAL_MONTH = 30
 _SATURDAY = 5
 _FRIDAY = 4
 _DIVISORS = {
+    DailyDivisorMethod.BY_22: Decimal(22),
     DailyDivisorMethod.BY_26: Decimal(26),
     DailyDivisorMethod.BY_30: Decimal(_COMMERCIAL_MONTH),
 }
@@ -85,7 +87,7 @@ def payable_days(method: DailyDivisorMethod, first: date, last: date) -> int:
 
     Returns:
         Mondays to Saturdays for ``by_26``, commercial-month days for
-        ``by_30``, Mondays to Fridays for ``by_hourly`` and
+        ``by_30``, Mondays to Fridays for ``by_22``, ``by_hourly`` and
         ``by_month_hours``.
     """
     if method is DailyDivisorMethod.BY_30:

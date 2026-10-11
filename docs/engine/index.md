@@ -211,6 +211,8 @@ last day) keeps its run and pays the daily quotas of its employed days, in
 sets for unpaid absences, `work_rules.absence_rules.daily_divisor_method`,
 with its provenance:
 
+- `by_22`: one twenty-second per employed Monday to Friday (a five-day
+  week);
 - `by_26`: one twenty-sixth per employed Monday to Saturday (Sundays are not
   paid days, a public holiday on a weekday is);
 - `by_30`: one thirtieth per day of a 30-day commercial month (a span to the

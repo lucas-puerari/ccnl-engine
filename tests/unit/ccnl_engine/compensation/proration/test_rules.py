@@ -166,3 +166,24 @@ def test_month_hours_quota_divides_by_the_working_days_of_the_month() -> None:
     assert (proration.units, proration.divisor) == (Decimal(12), Decimal(22))
     assert proration.daily_hours is None
     assert not proration.full
+
+
+def test_daily_quota_divides_by_22() -> None:
+    """16-31 March 2026: 12 Mondays to Fridays are 12 twenty-seconds."""
+    proration = MonthProration.of(
+        DailyDivisorMethod.BY_22, (date(2026, 3, 16), date(2026, 3, 31))
+    )
+
+    assert proration is not None
+    assert (proration.units, proration.divisor) == (Decimal(12), Decimal(22))
+    assert not proration.full
+
+
+def test_a_month_of_23_working_days_pays_one_monthly_pay_by_22() -> None:
+    """2-31 March 2026 holds 22 Mondays to Fridays: a whole monthly pay."""
+    proration = MonthProration.of(
+        DailyDivisorMethod.BY_22, (date(2026, 3, 2), date(2026, 3, 31))
+    )
+
+    assert proration is not None
+    assert proration.full

@@ -105,7 +105,7 @@ it continues for a relapse. The index sets:
 
 | Days | INPS (INPS page on the sickness indemnity) | Worker receives |
 |---|---|---|
-| 1-3 (carenza) | nothing | CCNL `carenza_integration_rate` |
+| 1-3 (carenza) | nothing | CCNL `carenza_integration_rate`, only past `carenza_min_days` of sickness when the CCNL sets it |
 | 4-20 | 50% | the higher of the CCNL tier rate and the INPS rate |
 | 21-180 | 66.66% | the same |
 | past the comporto | left out, `incomplete` issue | left out |
