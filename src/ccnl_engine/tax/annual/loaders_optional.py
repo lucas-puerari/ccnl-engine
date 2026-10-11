@@ -11,7 +11,9 @@ from ccnl_engine.errors import (
     DataIntegrityError,
     UnsupportedTaxYearError,
 )
+from ccnl_engine.family.models import FamilyDeductionRules
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
+from ccnl_engine.regime.models import PreferentialTaxRegime
 from ccnl_engine.severance.revaluation.models import TfrRevaluationRules
 from ccnl_engine.tax.annual.loaders_resource import (
     _as_ruleset,
@@ -19,15 +21,13 @@ from ccnl_engine.tax.annual.loaders_resource import (
     _try_ruleset,
     read_year_json,
 )
-from ccnl_engine.tax.family.models import FamilyDeductionRules
-from ccnl_engine.tax.income.models_credit import SommaEsenteRules
-from ccnl_engine.tax.regime.models import PreferentialTaxRegime
-from ccnl_engine.tax.regime.models_variable_pay import (
+from ccnl_engine.tax.sickness.models import InpsSickPayRates
+from ccnl_engine.tax_credit.models import SommaEsenteRules
+from ccnl_engine.variable_pay.models import (
     FringeBenefitRules,
     PdRRules,
     VariablePayRules,
 )
-from ccnl_engine.tax.sickness.models import InpsSickPayRates
 
 _SICK_PAY_FILE = "social_security/sickness/rates.json"
 
@@ -104,7 +104,7 @@ def load_variable_pay_rules(year: int) -> VariablePayRules:
             file is validated to match.
 
     Returns:
-        A :class:`~ccnl_engine.tax.regime.models_variable_pay.VariablePayRules`
+        A :class:`~ccnl_engine.variable_pay.models.VariablePayRules`
         with thresholds and PdR parameters already validated.
 
     Raises:
@@ -163,7 +163,7 @@ def load_family_deduction_rules(year: int) -> FamilyDeductionRules:
         year: Fiscal year (e.g. ``2026``).
 
     Returns:
-        A :class:`~ccnl_engine.tax.family.models.FamilyDeductionRules`
+        A :class:`~ccnl_engine.family.models.FamilyDeductionRules`
         with all deduction parameters validated.
 
     Raises:

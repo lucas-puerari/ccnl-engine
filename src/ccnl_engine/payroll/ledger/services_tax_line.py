@@ -95,7 +95,7 @@ def _surtax_lines(amounts: _PeriodAmounts) -> list[_BaseLine]:
     """Return the surtax withheld and refunded on the run.
 
     The surtax withheld after the pay cap is split over what was due
-    (:meth:`~ccnl_engine.payroll.taxation.rules_surtax.RunSurtax\
+    (:meth:`~ccnl_engine.surtax.rules.RunSurtax\
 .allocate`): one line per component and reference year, coded 3802
     (regional), 3848 (municipal saldo) or 3847 (municipal acconto), and one
     uncoded ``surtax`` line for the surtax carried in for lack of pay.

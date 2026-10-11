@@ -14,11 +14,11 @@ from ccnl_engine.payroll.period.inputs import PeriodFacts
 from ccnl_engine.payroll.year.services_competence import (
     calculate_competence_year,
 )
+from tests.knowledge.ccnl_engine.irpef.other_income.builders import (
+    employment_only,
+)
 from tests.knowledge.ccnl_engine.payroll.state.builders_opening_state import (
     fresh_tax_year,
-)
-from tests.knowledge.ccnl_engine.payroll.taxation.builders_current_year import (
-    employment_only,
 )
 from tests.unit.ccnl_engine.builders import year_plan
 

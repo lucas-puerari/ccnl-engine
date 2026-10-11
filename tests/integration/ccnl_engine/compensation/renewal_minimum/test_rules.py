@@ -28,9 +28,9 @@ from ccnl_engine.compensation.renewal_minimum.rules import (
     renewal_table_from,
 )
 from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
-from ccnl_engine.payroll.taxation.rules_regime_requirement import RegimeFacts
+from ccnl_engine.regime.models import EmploymentSector
+from ccnl_engine.regime.requirement.rules import RegimeFacts
 from ccnl_engine.tax.annual.loaders_optional import load_variable_pay_rules
-from ccnl_engine.tax.regime.models import EmploymentSector
 
 _RINNOVO = load_variable_pay_rules(2026).rinnovo
 _PRIVATE = EmploymentSector.PRIVATE

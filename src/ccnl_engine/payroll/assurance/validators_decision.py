@@ -32,7 +32,7 @@ from ccnl_engine.payroll.assurance.types import (
     _sum_account,
 )
 from ccnl_engine.payroll.ledger.models import AccountKind
-from ccnl_engine.payroll.taxation.rules_regime_eligibility import RegimeEligibility
+from ccnl_engine.regime.eligibility.rules import RegimeEligibility
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.assurance.models_decision import CalculationDecision

@@ -14,12 +14,12 @@ from ccnl_engine.fund.contractual.rules import contractual_rules
 from ccnl_engine.payroll.accrual.services_decision import accrual_rules
 from ccnl_engine.payroll.event.facade import OvertimeEvent
 from ccnl_engine.payroll.sickness.services import sickness_rules
-from ccnl_engine.payroll.taxation.types_jurisdiction import region_table_name
 from ccnl_engine.pension_fund.inputs import PensionFundEnrolment
 from ccnl_engine.severance.services import (
     revaluation_rules,
     tfr_rules,
 )
+from ccnl_engine.surtax.jurisdiction.types import region_table_name
 from ccnl_engine.working_time.overtime.policies import (
     CCNLOvertimeBands,
     resolve_overtime_rate,

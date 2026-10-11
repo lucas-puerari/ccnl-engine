@@ -36,10 +36,10 @@ from ccnl_engine.inputs import (
     WorkerCategory,
 )
 from ccnl_engine.results import BlockerCode, CalculationStatus
-from tests.integration.ccnl_engine.payroll.taxation.builders_prior_year import (
+from tests.integration.ccnl_engine.irpef.declaration.builders import (
     RENEWAL_WAIVED,
 )
-from tests.integration.ccnl_engine.payroll.taxation.builders_residence import resident
+from tests.integration.ccnl_engine.surtax.residence.builders import resident
 from tests.knowledge.ccnl_engine.payroll.state.builders_opening_state import (
     fresh_tax_year,
 )

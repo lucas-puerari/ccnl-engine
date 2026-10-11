@@ -27,6 +27,7 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
+from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
 from ccnl_engine.payroll.event.facade import BonusEvent
 from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.period.models_payroll import PeriodId
@@ -34,10 +35,9 @@ from ccnl_engine.payroll.period.models_run import PayrollRun
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
-from ccnl_engine.payroll.state.models_credit_account import TrattamentoAccount
 from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
 from ccnl_engine.payroll.state.models_ytd_account import EarningsYtd, TaxYtd
-from ccnl_engine.payroll.taxation.inputs_prior_year import PriorYearTaxFacts
+from ccnl_engine.tax_credit.account.models import TrattamentoAccount
 from tests.integration.ccnl_engine.payroll.withholding.builders_withholding import (
     identified,
     paid_before,

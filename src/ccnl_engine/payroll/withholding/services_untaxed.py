@@ -9,10 +9,10 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.irpef.results import TaxComputation
+from ccnl_engine.irpef.taxable.services import _PdrSplit, taxable_income
 from ccnl_engine.payroll.amount.types import _PeriodAmounts
 from ccnl_engine.payroll.period.services_shared import _ZERO
-from ccnl_engine.payroll.taxation.results import TaxComputation
-from ccnl_engine.payroll.taxation.services_taxable import _PdrSplit, taxable_income
 from ccnl_engine.payroll.withholding.rules_agent import (
     not_withholding_agent_decision,
     not_withholding_agent_decisions,

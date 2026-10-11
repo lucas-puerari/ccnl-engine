@@ -18,7 +18,7 @@ from ccnl_engine import PayrollEngine, PayrollRun, PeriodFacts, PeriodResult
 from ccnl_engine.inputs import EmploymentPeriod
 from ccnl_engine.payroll.period.models_run import RunKind
 from ccnl_engine.results import UnresolvedRequirement
-from tests.integration.ccnl_engine.payroll.taxation.builders_imported_surtax import (
+from tests.integration.ccnl_engine.surtax.builders import (
     opening_with_2025_surtax,
 )
 from tests.knowledge.ccnl_engine.payroll.period.builders_explicit_facts import (

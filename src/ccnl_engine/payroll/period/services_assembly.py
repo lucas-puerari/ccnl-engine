@@ -36,7 +36,6 @@ from ccnl_engine.payroll.capability.services_registry import (
     capability_report,
     case_facts,
 )
-from ccnl_engine.payroll.event.results_benefit import BenefitBreakdown
 from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.period.results import PeriodResult
 from ccnl_engine.payroll.period.services_check import check_net_covered, run_facts
@@ -54,6 +53,7 @@ from ccnl_engine.seniority.services import run_seniority
 from ccnl_engine.severance.revaluation.services import (
     tfr_revaluation_issues,
 )
+from ccnl_engine.variable_pay.benefit.results import BenefitBreakdown
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.assurance.models_decision import (

@@ -33,15 +33,15 @@ from ccnl_engine.employment.fact.inputs import (
 )
 from ccnl_engine.employment.inputs import Employment, Permanent
 from ccnl_engine.errors import InvalidInputError, OutOfScopeError
+from ccnl_engine.irpef.declaration.inputs import (
+    ShortfallDeferralRequest,
+)
 from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.period.inputs import PeriodFacts, PeriodInput
 from ccnl_engine.payroll.period.models_run import PayrollRun, RunKind
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.payroll.state.models_obligation import EmploymentObligations
 from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
-from ccnl_engine.payroll.taxation.inputs_prior_year import (
-    ShortfallDeferralRequest,
-)
 from ccnl_engine.payroll.withholding.inputs_shortfall_deferral import DeferredShortfall
 from ccnl_engine.payroll.year.rules_close import close_tax_year
 from tests.integration.ccnl_engine.payroll.withholding.builders_shortfall_deferral import (  # noqa: E501

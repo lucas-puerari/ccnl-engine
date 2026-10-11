@@ -11,7 +11,7 @@ from ccnl_engine.payroll.ledger.models import PostingIntent
 from ccnl_engine.payroll.period.services_shared import _ZERO
 from ccnl_engine.payroll.sickness.rules_terms import SicknessTerms
 from ccnl_engine.payroll.state.models_ytd_account import RegimeCapAccount
-from ccnl_engine.payroll.taxation.rules_regime_eligibility import RegimeFacts
+from ccnl_engine.regime.eligibility.rules import RegimeFacts
 from ccnl_engine.working_time.overtime.policies import CCNLOvertimeBands
 
 if TYPE_CHECKING:
@@ -25,7 +25,7 @@ if TYPE_CHECKING:
     )
     from ccnl_engine.payroll.sickness.models import SicknessEpisode
     from ccnl_engine.provenance.source.models import SourceLocation
-    from ccnl_engine.tax.regime.models import (
+    from ccnl_engine.regime.models import (
         PreferentialTaxRegime,
     )
 

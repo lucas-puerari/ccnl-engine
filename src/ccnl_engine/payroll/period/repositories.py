@@ -9,23 +9,23 @@ from ccnl_engine.knowledge.capability.loaders import (
     load_capability_catalog,
 )
 from ccnl_engine.knowledge.limitation.loaders import load_engine_limitations
+from ccnl_engine.surtax.loaders import load_surtax_rules
 from ccnl_engine.tax.annual.loaders import load_year_rules
 from ccnl_engine.tax.annual.loaders_optional import (
     load_family_deduction_rules,
     load_sick_pay_rates,
     load_variable_pay_rules,
 )
-from ccnl_engine.tax.surtax.loaders import load_surtax_rules
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL, TaxSector
+    from ccnl_engine.family.models import FamilyDeductionRules
     from ccnl_engine.knowledge.limitation.models import ModelLimitation
     from ccnl_engine.payroll.capability.models_catalog import CapabilityCatalog
+    from ccnl_engine.surtax.models import SurtaxRules
     from ccnl_engine.tax.annual.models import YearRules
-    from ccnl_engine.tax.family.models import FamilyDeductionRules
-    from ccnl_engine.tax.regime.models_variable_pay import VariablePayRules
     from ccnl_engine.tax.sickness.models import InpsSickPayRates
-    from ccnl_engine.tax.surtax.models import SurtaxRules
+    from ccnl_engine.variable_pay.models import VariablePayRules
 
 
 class BundledKnowledgeRepository:
@@ -61,7 +61,7 @@ class BundledKnowledgeRepository:
         """Return surtax rules for *year*.
 
         Returns:
-            A :class:`~ccnl_engine.tax.surtax.models.SurtaxRules`
+            A :class:`~ccnl_engine.surtax.models.SurtaxRules`
             with regionale and comunale rate tables.
         """
         return load_surtax_rules(year)
@@ -87,7 +87,7 @@ class BundledKnowledgeRepository:
         """Return the statutory variable-pay rules for *year*.
 
         Returns:
-            A :class:`~ccnl_engine.tax.regime.models_variable_pay.VariablePayRules`
+            A :class:`~ccnl_engine.variable_pay.models.VariablePayRules`
             with fringe thresholds, PdR and L. 199/2025 regimes.
         """
         return load_variable_pay_rules(year)
@@ -96,7 +96,7 @@ class BundledKnowledgeRepository:
         """Return the Art. 12 TUIR family deduction rules for *year*.
 
         Returns:
-            A :class:`~ccnl_engine.tax.family.models.FamilyDeductionRules`.
+            A :class:`~ccnl_engine.family.models.FamilyDeductionRules`.
         """
         return load_family_deduction_rules(year)
 

@@ -55,16 +55,7 @@ _SRC = Path(str(importlib.resources.files("ccnl_engine"))).parent
 #: ``(importing capability, imported module or package)``.  Each entry states
 #: why the value type belongs to its owner and not to ``shared``.  Entries may
 #: only be removed; an entry that no import uses fails the suite.
-DOMAIN_COUPLING: dict[tuple[str, str], str] = {
-    (
-        "payroll",
-        "ccnl_engine.tax.regime.models",
-    ): "Employment, employer, period and prior-year inputs declare regimes.",
-    (
-        "payroll",
-        "ccnl_engine.tax.income.models",
-    ): "IRPEF deductions apply the yearly income tax rules.",
-}
+DOMAIN_COUPLING: dict[tuple[str, str], str] = {}
 
 
 #: Imports of a higher tier, keyed by ``(importing concept, imported module

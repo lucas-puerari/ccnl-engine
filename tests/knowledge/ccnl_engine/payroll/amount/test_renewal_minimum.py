@@ -29,7 +29,7 @@ from ccnl_engine.inputs import (
     PriorYearTaxFacts,
 )
 from ccnl_engine.results import BlockerCode, CalculationStatus
-from tests.integration.ccnl_engine.payroll.taxation.builders_residence import (
+from tests.integration.ccnl_engine.surtax.residence.builders import (
     COMUNE_BELFIORE,
     REGIONE,
 )

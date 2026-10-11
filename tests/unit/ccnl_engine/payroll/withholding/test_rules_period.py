@@ -8,15 +8,15 @@ from __future__ import annotations
 
 from decimal import Decimal
 
-from ccnl_engine.payroll.taxation.rules_irpef import period_irpef_gross
-from ccnl_engine.payroll.taxation.rules_irpef_credit import CreditOutcome
-from ccnl_engine.payroll.taxation.rules_irpef_net import NetIrpef
+from ccnl_engine.irpef.net.rules import NetIrpef
+from ccnl_engine.irpef.rules import period_irpef_gross
 from ccnl_engine.payroll.withholding.rules_period import (
     NO_PAY,
     PayPeriod,
     PeriodTax,
     period_tax,
 )
+from ccnl_engine.tax_credit.rules import CreditOutcome
 from tests.unit.ccnl_engine.builders import make_year_rules
 
 _ZERO = Decimal(0)

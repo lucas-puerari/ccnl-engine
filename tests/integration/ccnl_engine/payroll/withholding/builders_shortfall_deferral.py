@@ -13,15 +13,15 @@ from decimal import Decimal
 from functools import cache
 from typing import TYPE_CHECKING
 
+from ccnl_engine.irpef.declaration.inputs import (
+    PriorYearTaxFacts,
+    ShortfallDeferralRequest,
+)
 from ccnl_engine.payroll.event.facade import FringeEvent
 from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.payroll.state.models_obligation import EmploymentObligations
 from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
-from ccnl_engine.payroll.taxation.inputs_prior_year import (
-    PriorYearTaxFacts,
-    ShortfallDeferralRequest,
-)
 from ccnl_engine.payroll.withholding.inputs_shortfall_deferral import DeferredShortfall
 from ccnl_engine.payroll.year.services_competence import (
     calculate_competence_year,

@@ -7,7 +7,7 @@ a tax year.  Both group
 the facts by owner: :class:`~ccnl_engine.employment.inputs.Employment`
 for the contract and the worker,
 :class:`~ccnl_engine.employer.inputs.EmployerProfile` for the
-employer, :class:`~ccnl_engine.payroll.taxation.inputs_prior_year.PriorYearTaxFacts`
+employer, :class:`~ccnl_engine.irpef.declaration.inputs.PriorYearTaxFacts`
 for what the tax regimes read once a year, and :class:`PeriodFacts` for what
 holds in one run.  Every input is validated on construction.
 """
@@ -22,16 +22,16 @@ from ccnl_engine.collection.validators import items_of_type, tuple_of
 from ccnl_engine.employer.inputs import EmployerProfile
 from ccnl_engine.employment.fact.inputs import ContributableHours
 from ccnl_engine.employment.inputs import Employment
+from ccnl_engine.family.inputs import FamilyComposition
+from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
+from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts
 from ccnl_engine.payroll.event.facade import WORK_EVENT_TYPES
-from ccnl_engine.payroll.family.inputs import FamilyComposition
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.models_run import PayrollRun
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.state.models import PeriodState
-from ccnl_engine.payroll.taxation.inputs_current_year import CurrentYearTaxFacts
-from ccnl_engine.payroll.taxation.inputs_prior_year import PriorYearTaxFacts
-from ccnl_engine.payroll.taxation.types_jurisdiction import check_surtax_codes
 from ccnl_engine.payroll.year.models_payment import PaymentId
+from ccnl_engine.surtax.jurisdiction.types import check_surtax_codes
 from ccnl_engine.validators import (
     require_date,
     require_instances,

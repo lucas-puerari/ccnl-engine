@@ -8,7 +8,7 @@ tax year, so every one of them is non-negative, even when a single run
 posts a negative adjustment.
 
 The accounts of the tax credits paid on the payslip live in
-:mod:`~ccnl_engine.payroll.state.models_credit_account`.
+:mod:`~ccnl_engine.tax_credit.account.models`.
 """
 
 from __future__ import annotations

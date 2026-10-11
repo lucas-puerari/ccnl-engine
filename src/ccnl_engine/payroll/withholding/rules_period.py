@@ -47,11 +47,11 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.irpef.rules import period_irpef_gross
 from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.taxation.rules_irpef import period_irpef_gross
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.taxation.rules_irpef_net import NetIrpef
+    from ccnl_engine.irpef.net.rules import NetIrpef
     from ccnl_engine.tax.annual.models import YearRules
 
 __all__ = ["NO_PAY", "PayPeriod", "PeriodTax", "period_tax"]

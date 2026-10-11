@@ -39,7 +39,6 @@ from ccnl_engine.payroll.state.models_obligation import (
     RecoveryObligation,
 )
 from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
-from ccnl_engine.payroll.withholding.models_recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.withholding.models_schedule import (
     WithholdingSchedule,
     WithholdingSlot,
@@ -47,6 +46,7 @@ from ccnl_engine.payroll.withholding.models_schedule import (
 from ccnl_engine.payroll.year.services_competence import (
     calculate_competence_year,
 )
+from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
 from tests.integration.ccnl_engine.payroll.withholding.builders_withholding import (
     paid_on_day,
 )

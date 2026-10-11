@@ -28,10 +28,10 @@ from ccnl_engine.inputs import (
     SeniorityFact,
     SenioritySource,
 )
-from tests.knowledge.ccnl_engine.payroll.support import EMPLOYER, ENGINE
-from tests.knowledge.ccnl_engine.payroll.taxation.builders_current_year import (
+from tests.knowledge.ccnl_engine.irpef.other_income.builders import (
     employment_only,
 )
+from tests.knowledge.ccnl_engine.payroll.support import EMPLOYER, ENGINE
 
 if TYPE_CHECKING:
     from ccnl_engine import CompetenceYearResult, PeriodResult

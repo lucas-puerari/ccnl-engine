@@ -12,7 +12,7 @@ with the tredicesima taxable from
 declares no income beyond this employment
 (:meth:`~ccnl_engine.inputs.CurrentYearTaxFacts.employment_only`), so the
 employment income of the year is the reddito complessivo.  Expected
-deductions come from :mod:`tests.knowledge.ccnl_engine.payroll.family.oracles_2026`.
+deductions come from :mod:`tests.knowledge.ccnl_engine.family.oracles`.
 """
 
 from __future__ import annotations
@@ -41,13 +41,13 @@ from ccnl_engine.inputs import (
     Permanent,
 )
 from ccnl_engine.results import CalculationStatus
-from tests.integration.ccnl_engine.payroll.family.builders_dependents import (
+from tests.integration.ccnl_engine.family.builders import (
     declared_dependent,
 )
 from tests.integration.ccnl_engine.payroll.withholding.builders_withholding import (
     paid_before,
 )
-from tests.knowledge.ccnl_engine.payroll.family.oracles_2026 import (
+from tests.knowledge.ccnl_engine.family.oracles import (
     SPOUSE_BAND_EXAMPLES,
     spouse_deduction,
 )
@@ -57,7 +57,7 @@ from tests.knowledge.ccnl_engine.payroll.period.oracles_payslip_metalmeccanico_c
 )
 
 if TYPE_CHECKING:
-    from tests.knowledge.ccnl_engine.payroll.family.oracles_2026 import IncomeBand
+    from tests.knowledge.ccnl_engine.family.oracles import IncomeBand
 
 _ENGINE = PayrollEngine.bundled()
 _SPOUSE = FamilyComposition(

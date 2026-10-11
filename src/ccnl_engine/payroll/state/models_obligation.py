@@ -7,10 +7,10 @@ recovery opened by the conguaglio of year N keeps running on the payslips
 of year N+1 until its last installment (D.L. 3/2020 art. 1 c. 3 for the
 trattamento integrativo, L. 207/2024 art. 1 c. 7 for the somma esente and the ulteriore
 detrazione).  On the last run of the employment the whole residual is
-recovered instead (:meth:`~ccnl_engine.payroll.withholding.models_recovery_plan\
+recovered instead (:meth:`~ccnl_engine.tax_credit.recovery.models\
 .RecoveryPlan.post`), so no recovery outlives the employment.  The surtax a
 conguaglio of year N determines is withheld the same way on the payslips of
-N+1 (:mod:`~ccnl_engine.payroll.state.models_surtax_obligation`), and so is the
+N+1 (:mod:`~ccnl_engine.surtax.obligation.models`), and so is the
 IRPEF of a conguaglio the worker asked in writing to defer
 (:mod:`~ccnl_engine.payroll.withholding.inputs_shortfall_deferral`).
 """
@@ -20,7 +20,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, final
 
-from ccnl_engine.payroll.withholding.models_recovery_plan import RecoveryPlan
+from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
 from ccnl_engine.validators import (
     reject,
     require_instance,
@@ -28,11 +28,11 @@ from ccnl_engine.validators import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.state.models_surtax_obligation import SurtaxObligation
     from ccnl_engine.payroll.withholding.inputs_shortfall_deferral import (
         DeferredShortfall,
     )
-    from ccnl_engine.payroll.withholding.models_recovery_plan import (
+    from ccnl_engine.surtax.obligation.models import SurtaxObligation
+    from ccnl_engine.tax_credit.recovery.models import (
         InstallmentRun,
         PostedInstallment,
     )

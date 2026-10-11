@@ -18,24 +18,24 @@ from ccnl_engine.employment.fact.inputs import (
 )
 from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
 from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
+from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.validators_request import employment_gap
 from ccnl_engine.payroll.state.models import PeriodState
-from ccnl_engine.payroll.taxation.inputs_current_year import CurrentYearTaxFacts
-from ccnl_engine.payroll.taxation.inputs_prior_year import PriorYearTaxFacts
-from ccnl_engine.payroll.taxation.types_jurisdiction import check_surtax_codes
 from ccnl_engine.payroll.year.rules_tax_year import TaxYearPolicy
 from ccnl_engine.pension_fund.inputs import PENSION_FUND_TYPES
+from ccnl_engine.regime.models import EmploymentSector
 from ccnl_engine.seniority.inputs import SeniorityFact
 from ccnl_engine.severance.provision.models import TfrFundBalance
-from ccnl_engine.tax.regime.models import EmploymentSector
+from ccnl_engine.surtax.jurisdiction.types import check_surtax_codes
 from ccnl_engine.validators import FieldSpec, require_instances
 
 if TYPE_CHECKING:
     from ccnl_engine.employment.category.models import WorkerCategory
+    from ccnl_engine.family.inputs import FamilyComposition
     from ccnl_engine.payroll.accrual.models import ExtraMonthAccrual
     from ccnl_engine.payroll.event.facade import WorkEvent
-    from ccnl_engine.payroll.family.inputs import FamilyComposition
     from ccnl_engine.payroll.period.models_run import PayrollRun, PayrollRunId
     from ccnl_engine.payroll.withholding.models_schedule import WithholdingSchedule
     from ccnl_engine.payroll.year.models_payment import PaymentId
@@ -77,7 +77,7 @@ class PeriodCalculationRequest:
         events: Variable work events of the period (overtime, absences...).
         regione: ISO 3166-2:IT region code for the regional surtax, e.g.
             ``"IT-45"``, with ``"IT-BZ"`` / ``"IT-TN"`` for the autonomous
-            provinces (:data:`~ccnl_engine.payroll.taxation.types_jurisdiction\
+            provinces (:data:`~ccnl_engine.surtax.jurisdiction.types\
 .REGION_CODES`).  ``None`` is unknown: when the employer withholds,
             a ``residence_unknown`` decision and a ``requirement_unresolved``
             blocker on ``addizionale_regionale``.

@@ -20,10 +20,10 @@ from ccnl_engine.payroll.year.services_payment import (
 from ccnl_engine.payroll.year.services_sequence import Engine, compute_payments
 
 if TYPE_CHECKING:
+    from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts
     from ccnl_engine.pay_item.policies import PolicyResolver
     from ccnl_engine.payroll.period.ports import KnowledgeRepository
     from ccnl_engine.payroll.period.results import PeriodResult
-    from ccnl_engine.payroll.taxation.inputs_current_year import CurrentYearTaxFacts
     from ccnl_engine.payroll.year.inputs_competence_plan import CompetenceYearPlan
     from ccnl_engine.payroll.year.inputs_tax_plan import TaxYearPlan
 

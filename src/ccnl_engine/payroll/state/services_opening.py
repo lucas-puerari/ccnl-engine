@@ -12,11 +12,6 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.payroll.state.models_accrual import EmploymentAccrualState
-from ccnl_engine.payroll.state.models_credit_account import (
-    SommaEsenteAccount,
-    TrattamentoAccount,
-    UlterioreDetrazioneAccount,
-)
 from ccnl_engine.payroll.state.models_obligation import EmploymentObligations
 from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
 from ccnl_engine.payroll.state.models_ytd_account import (
@@ -25,6 +20,11 @@ from ccnl_engine.payroll.state.models_ytd_account import (
     RegimeCapAccount,
     TaxYtd,
     WithholdingShortfall,
+)
+from ccnl_engine.tax_credit.account.models import (
+    SommaEsenteAccount,
+    TrattamentoAccount,
+    UlterioreDetrazioneAccount,
 )
 
 if TYPE_CHECKING:

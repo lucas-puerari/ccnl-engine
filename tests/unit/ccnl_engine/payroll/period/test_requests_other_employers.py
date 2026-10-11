@@ -7,14 +7,14 @@ from decimal import Decimal
 
 from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
+from ccnl_engine.irpef.other_income.inputs import (
+    CurrentYearTaxFacts,
+    IncomeEstimateQuality,
+)
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.payroll.state.models_accrual import EmploymentAccrualState
-from ccnl_engine.payroll.taxation.inputs_current_year import (
-    CurrentYearTaxFacts,
-    IncomeEstimateQuality,
-)
 
 _IMPORTED = PeriodState(
     accrual=EmploymentAccrualState(

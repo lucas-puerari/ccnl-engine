@@ -155,18 +155,18 @@ years. They group the facts by owner and are validated when built;
         - EmployerProfile
         - Headcount
 
-::: ccnl_engine.payroll.taxation.inputs_prior_year
+::: ccnl_engine.irpef.declaration.inputs
     options:
       members:
         - PriorYearTaxFacts
 
-::: ccnl_engine.payroll.taxation.inputs_current_year
+::: ccnl_engine.irpef.other_income.inputs
     options:
       members:
         - CurrentYearTaxFacts
         - IncomeEstimateQuality
 
-::: ccnl_engine.tax.regime.models
+::: ccnl_engine.regime.models
     options:
       members:
         - EmploymentSector

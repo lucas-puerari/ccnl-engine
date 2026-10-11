@@ -33,7 +33,7 @@ from ccnl_engine.payroll.sickness.validators_month import (
     month_issues,
 )
 from ccnl_engine.payroll.state.models_ytd_account import RegimeCapAccount
-from ccnl_engine.payroll.taxation.rules_regime_eligibility import RegimeFacts
+from ccnl_engine.regime.eligibility.rules import RegimeFacts
 from ccnl_engine.working_time.overtime.policies import CCNLOvertimeBands
 
 if TYPE_CHECKING:
@@ -42,7 +42,7 @@ if TYPE_CHECKING:
     from ccnl_engine.pay_item.policies import PolicyContext, PolicyResolver
     from ccnl_engine.payroll.event.handlers_context import FringeThreshold
     from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
-    from ccnl_engine.tax.regime.models import (
+    from ccnl_engine.regime.models import (
         PreferentialTaxRegime,
     )
 

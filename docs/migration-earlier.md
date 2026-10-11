@@ -209,7 +209,7 @@ namespaces are unchanged, and so are amounts.
 
 | Before | After |
 |---|---|
-| `ccnl_engine.tax.surtax.models.RegionaleEntry`, `ComunaleEntry`, `RegionalDeduction`, `ComunaleDeduction`, `WholeIncomeRate`, `WithholdingCalendar`, `SurtaxBracket` | `ccnl_engine.tax.surtax.models_table` |
+| `ccnl_engine.surtax.models.RegionaleEntry`, `ComunaleEntry`, `RegionalDeduction`, `ComunaleDeduction`, `WholeIncomeRate`, `WithholdingCalendar`, `SurtaxBracket` | `ccnl_engine.surtax.table.models` |
 | `ccnl_engine.payroll.service.ulteriore_recovery.UlterioreSettlement`, `settle_ulteriore` | `ccnl_engine.payroll.service.ulteriore_settlement` |
 
 `SurtaxRules`, `RegionaleRaw` and `ComunaleRaw` stay in `surtax_rules`.

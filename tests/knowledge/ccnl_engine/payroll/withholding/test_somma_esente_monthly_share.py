@@ -29,7 +29,7 @@ from ccnl_engine.inputs import (
     NoPensionFund,
     Permanent,
 )
-from tests.integration.ccnl_engine.payroll.taxation.builders_prior_year import (
+from tests.integration.ccnl_engine.irpef.declaration.builders import (
     RENEWAL_WAIVED,
 )
 from tests.knowledge.ccnl_engine.payroll.state.builders_opening_state import (

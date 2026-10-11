@@ -9,15 +9,15 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
+from ccnl_engine.family.inputs import (
+    DependentRelationship,
+    FamilyComposition,
+)
 from ccnl_engine.payroll.assurance.validators import reconcile
 from ccnl_engine.payroll.event.facade import (
     ArrearsEvent,
     BilateralFundEvent,
     TerminationTFREvent,
-)
-from ccnl_engine.payroll.family.inputs import (
-    DependentRelationship,
-    FamilyComposition,
 )
 from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.period.models_payroll import PeriodId
@@ -25,10 +25,10 @@ from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.results import PeriodResult
 from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
-from tests.integration.ccnl_engine.payroll.family.builders_dependents import (
+from tests.integration.ccnl_engine.family.builders import (
     declared_dependent,
 )
-from tests.integration.ccnl_engine.payroll.taxation.builders_imported_surtax import (
+from tests.integration.ccnl_engine.surtax.builders import (
     opening_with_2025_surtax,
 )
 

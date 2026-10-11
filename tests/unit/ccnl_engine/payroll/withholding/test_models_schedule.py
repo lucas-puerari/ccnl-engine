@@ -10,8 +10,8 @@ from hypothesis import given
 from hypothesis import strategies as st
 
 from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.irpef.computation.services import compute_tax
 from ccnl_engine.payroll.period.models_run import PayrollRun, PayrollRunId, RunKind
-from ccnl_engine.payroll.taxation.services_tax_computation import compute_tax
 from ccnl_engine.payroll.withholding.models_schedule import (
     WithholdingSchedule,
     WithholdingSlot,

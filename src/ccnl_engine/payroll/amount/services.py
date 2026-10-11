@@ -16,17 +16,16 @@ from ccnl_engine.end_of_service.services import (
     life_insurance_issue,
 )
 from ccnl_engine.fund.assistance.rules import run_assistance
-from ccnl_engine.payroll.amount.types import _PeriodAmounts
-from ccnl_engine.payroll.period.rules_run_decision import pdr_decision
-from ccnl_engine.payroll.taxation.rules_surtax import run_surtax
-from ccnl_engine.payroll.taxation.services_irpef import (
+from ccnl_engine.irpef.services import (
     ulteriore_issues,
     withhold_irpef,
 )
-from ccnl_engine.payroll.taxation.services_taxable import (
+from ccnl_engine.irpef.taxable.services import (
     pdr_split,
     taxable_income,
 )
+from ccnl_engine.payroll.amount.types import _PeriodAmounts
+from ccnl_engine.payroll.period.rules_run_decision import pdr_decision
 from ccnl_engine.payroll.withholding.services_untaxed import untaxed_amounts
 from ccnl_engine.pension_fund.services import (
     CONVENTIONAL_BASE_UNKNOWN,
@@ -38,19 +37,20 @@ from ccnl_engine.pension_fund.services import (
 from ccnl_engine.severance.relief.services import (
     with_tfr_compensation,
 )
+from ccnl_engine.surtax.rules import run_surtax
 
 if TYPE_CHECKING:
     from ccnl_engine.contribution.results import ContributionBreakdown
+    from ccnl_engine.irpef.results import TaxComputation
+    from ccnl_engine.irpef.services import _Irpef
+    from ccnl_engine.irpef.taxable.services import _PdrSplit
     from ccnl_engine.payroll.amount.types import _AmountsInput
     from ccnl_engine.payroll.assurance.models_decision import (
         CalculationDecision,
         CalculationIssue,
     )
-    from ccnl_engine.payroll.taxation.results import TaxComputation
-    from ccnl_engine.payroll.taxation.rules_surtax import RunSurtax
-    from ccnl_engine.payroll.taxation.services_irpef import _Irpef
-    from ccnl_engine.payroll.taxation.services_taxable import _PdrSplit
-    from ccnl_engine.payroll.withholding.models_recovery_plan import RecoveryPlan
+    from ccnl_engine.surtax.rules import RunSurtax
+    from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
 
 
 def _decisions(

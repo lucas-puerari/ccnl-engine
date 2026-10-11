@@ -22,27 +22,27 @@ from ccnl_engine.payroll.withholding.rules_law import (
     withholding_rule,
 )
 from ccnl_engine.payroll.withholding.services_cap import cap_withholding, run_net
-from ccnl_engine.payroll.withholding.services_carried_recovery import (
-    CarriedRecoveries,
-    post_carried_recoveries,
-)
 from ccnl_engine.payroll.withholding.services_deferral import (
     DeferredPostings,
     defer_shortfall,
     post_deferred,
 )
-from ccnl_engine.payroll.withholding.services_somma_esente import (
+from ccnl_engine.tax_credit.recovery.services import (
+    CarriedRecoveries,
+    post_carried_recoveries,
+)
+from ccnl_engine.tax_credit.somma_esente.services import (
     SommaEsenteOutcome,
     SommaEsentePosting,
     resolve_somma_esente,
 )
 
 if TYPE_CHECKING:
+    from ccnl_engine.irpef.results import TaxComputation
     from ccnl_engine.pay_item.facade import PayItem
     from ccnl_engine.payroll.amount.types import _PeriodAmounts
     from ccnl_engine.payroll.ledger.models import LedgerEntry
     from ccnl_engine.payroll.period.services_run_context import RunContext
-    from ccnl_engine.payroll.taxation.results import TaxComputation
     from ccnl_engine.payroll.withholding.services_cap import CappedWithholding
 
 

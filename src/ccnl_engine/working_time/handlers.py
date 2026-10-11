@@ -21,9 +21,6 @@ from ccnl_engine.payroll.event.handlers_context import (
     _EventHandlerCtx,
     _treatment_deltas,
 )
-from ccnl_engine.payroll.event.handlers_preferential_regime import (
-    apply_preferential_regime,
-)
 from ccnl_engine.payroll.event.handlers_standard import (
     _make_standard_event_intent,
     _standard_event_gross,
@@ -34,6 +31,9 @@ from ccnl_engine.payroll.period.services_shared import (
     _ZERO,
     _require_resolution,
     _treatment_from_resolution,
+)
+from ccnl_engine.regime.handlers import (
+    apply_preferential_regime,
 )
 from ccnl_engine.working_time.overtime.policies import (
     band_decision,

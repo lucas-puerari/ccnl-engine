@@ -155,7 +155,7 @@ year. The caller selects them with `regione` and `comune_belfiore` on the
 skipped. See [Fiscal computation](../engine/surtax.md#surtax-decisions).
 
 ```python
-from ccnl_engine.tax.surtax.loaders import load_surtax_rules
+from ccnl_engine.surtax.loaders import load_surtax_rules
 
 surtax = load_surtax_rules(2026)
 ```

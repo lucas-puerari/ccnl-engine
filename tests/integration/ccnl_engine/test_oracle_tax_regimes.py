@@ -32,16 +32,16 @@ from ccnl_engine.inputs import (
     WorkerCategory,
 )
 from ccnl_engine.results import CalculationStatus
-from tests.integration.ccnl_engine.payroll.family.builders_dependents import (
+from tests.integration.ccnl_engine.family.builders import (
     declared_dependent,
 )
-from tests.integration.ccnl_engine.payroll.taxation.builders_imported_surtax import (
-    opening_with_2025_surtax,
-)
-from tests.integration.ccnl_engine.payroll.taxation.builders_prior_year import (
+from tests.integration.ccnl_engine.irpef.declaration.builders import (
     RENEWAL_WAIVED,
 )
-from tests.knowledge.ccnl_engine.payroll.taxation.builders_current_year import (
+from tests.integration.ccnl_engine.surtax.builders import (
+    opening_with_2025_surtax,
+)
+from tests.knowledge.ccnl_engine.irpef.other_income.builders import (
     employment_only,
 )
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire

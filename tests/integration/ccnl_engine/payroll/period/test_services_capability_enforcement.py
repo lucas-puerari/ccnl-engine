@@ -16,6 +16,7 @@ import pytest
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.fact.inputs import EmploymentPeriod
+from ccnl_engine.family.inputs import FamilyComposition
 from ccnl_engine.inputs import NoPensionFund
 from ccnl_engine.payroll.assurance.models import BlockerCode, CoverageStatus
 from ccnl_engine.payroll.capability.results import (
@@ -23,19 +24,18 @@ from ccnl_engine.payroll.capability.results import (
     CapabilityReport,
     CapabilityScope,
 )
-from ccnl_engine.payroll.family.inputs import FamilyComposition
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.models_run import PayrollRun, RunKind
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
+from tests.integration.ccnl_engine.irpef.declaration.builders import (
+    RENEWAL_WAIVED,
+)
 from tests.integration.ccnl_engine.payroll.sickness.builders_sickness_episode import (
     march_sickness_episode,
 )
-from tests.integration.ccnl_engine.payroll.taxation.builders_prior_year import (
-    RENEWAL_WAIVED,
-)
-from tests.integration.ccnl_engine.payroll.taxation.builders_residence import (
+from tests.integration.ccnl_engine.surtax.residence.builders import (
     COMUNE_BELFIORE,
     REGIONE,
 )
@@ -54,7 +54,7 @@ def _req(month: int = 1) -> PeriodCalculationRequest:
     Without a residence the surtaxes are unresolved gaps of every run, and
     without a fact that rules it out the renewal regime on the minimo is a
     partial one
-    (:mod:`tests.integration.ccnl_engine.payroll.taxation.builders_prior_year`).
+    (:mod:`tests.integration.ccnl_engine.irpef.declaration.builders`).
 
     Returns:
         The request of the regular run of ``month`` 2026.

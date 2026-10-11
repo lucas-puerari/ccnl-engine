@@ -27,7 +27,7 @@ from ccnl_engine.payroll.assurance.models_decision import (
     CalculationIssue,
     CalculationStatus,
 )
-from ccnl_engine.payroll.taxation.rules_regime_requirement import (
+from ccnl_engine.regime.requirement.rules import (
     ineligibility,
     missing_facts,
 )
@@ -36,8 +36,8 @@ if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.agreement.validity.rules import TimeSeries
-    from ccnl_engine.payroll.taxation.rules_regime_requirement import RegimeFacts
-    from ccnl_engine.tax.regime.models import PreferentialTaxRegime
+    from ccnl_engine.regime.models import PreferentialTaxRegime
+    from ccnl_engine.regime.requirement.rules import RegimeFacts
 
 __all__ = [
     "INCREMENT_UNQUANTIFIED",

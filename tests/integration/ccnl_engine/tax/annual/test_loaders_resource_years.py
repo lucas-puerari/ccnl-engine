@@ -8,13 +8,13 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine.errors import UnsupportedTaxYearError
+from ccnl_engine.surtax.loaders import load_surtax_rules
 from ccnl_engine.tax.annual import loaders_resource as tax_resource_reader
 from ccnl_engine.tax.annual.loaders import load_year_rules
 from ccnl_engine.tax.annual.loaders_resource import (
     read_tax_rules_raw,
     supported_tax_years,
 )
-from ccnl_engine.tax.surtax.loaders import load_surtax_rules
 
 if TYPE_CHECKING:
     from collections.abc import Iterator

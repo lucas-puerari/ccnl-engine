@@ -169,10 +169,8 @@ which the naming baseline records:
 | `period/` | one run: request, inputs and defaults, context, pipeline, posting, checks, result assembly, the knowledge repository port and its bundled sources |
 | `year/` | competence and tax year plans, calendar, run selection, payments, year results, closing a tax year |
 | `amount/` | the amounts of a run |
-| `event/` | variable pay and termination events, their handlers and totals |
-| `taxation/` | IRPEF, deductions and credits, regimes, regional and municipal surtax |
-| `family/` | art. 12 TUIR family deductions |
-| `withholding/` | withholding plan and cap, deferrals, somma esente, carried recoveries |
+| `event/` | termination events, standard handlers, allocation and totals |
+| `withholding/` | withholding plan and cap, deferrals, the withholding agent |
 | `sickness/` | sick pay rules, day classification, cumulation and comporto |
 | `accrual/` | extra-month (tredicesima, quattordicesima) accrual and settlement |
 | `termination/` | bilateral fund and TFR settlement handlers, ratei at termination |

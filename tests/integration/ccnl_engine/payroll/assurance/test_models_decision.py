@@ -22,12 +22,12 @@ from ccnl_engine.provenance.source.models import (
     SourceKind,
     SourceLocation,
 )
-from tests.integration.ccnl_engine.payroll.taxation.builders_residence import resident
+from tests.integration.ccnl_engine.surtax.residence.builders import resident
+from tests.knowledge.ccnl_engine.irpef.other_income.builders import (
+    employment_only,
+)
 from tests.knowledge.ccnl_engine.payroll.state.builders_opening_state import (
     fresh_tax_year,
-)
-from tests.knowledge.ccnl_engine.payroll.taxation.builders_current_year import (
-    employment_only,
 )
 from tests.unit.ccnl_engine.builders import year_plan
 

@@ -220,8 +220,8 @@ names exported from `ccnl_engine` are unchanged, and so are amounts.
 |---|---|
 | `ccnl_engine.engine.contract.*` | `ccnl_engine.contract.*` |
 | `ccnl_engine.engine.tax.*` | `ccnl_engine.tax.*` |
-| `ccnl_engine.engine.surtax.domain.rules` | `ccnl_engine.tax.surtax.models` |
-| `ccnl_engine.engine.surtax.service.loaders` | `ccnl_engine.tax.surtax.loaders` |
+| `ccnl_engine.engine.surtax.domain.rules` | `ccnl_engine.surtax.models` |
+| `ccnl_engine.engine.surtax.service.loaders` | `ccnl_engine.surtax.loaders` |
 | `ccnl_engine.engine.provenance.*` | `ccnl_engine.provenance.*` |
 | `ccnl_engine.engine.metadata.domain.rules` | `ccnl_engine.provenance.ruleset.models` |
 | `ccnl_engine.engine.diff.*` | `ccnl_engine.diff.*` |

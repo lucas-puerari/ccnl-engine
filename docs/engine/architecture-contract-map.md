@@ -237,7 +237,7 @@ inventory.
 | `payroll/family/inputs.py` | `family/inputs.py` |
 | `tax/family/models.py` | `family/models.py` |
 | `payroll/family/rules.py` | `family/rules.py` |
-| `payroll/family/rules_deduction.py` | `family/rules.py` |
+| `payroll/family/rules_deduction.py` | `family/deduction/rules.py` |
 | `payroll/family/services.py` | `family/services.py` |
 | `payroll/family/rules_spouse.py` | `family/spouse/rules.py` |
 

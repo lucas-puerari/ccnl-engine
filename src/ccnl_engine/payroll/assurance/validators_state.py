@@ -26,14 +26,14 @@ from ccnl_engine.payroll.assurance.types import (
 from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.period.models_run import run_identifier
 from ccnl_engine.payroll.state.models_obligation import carried_item_id
-from ccnl_engine.payroll.withholding.models_recovery_plan import InstallmentRun
+from ccnl_engine.tax_credit.recovery.models import InstallmentRun
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.period.models_run import PayrollRunId
     from ccnl_engine.payroll.period.results import PeriodResult
     from ccnl_engine.payroll.state.models import PeriodState
-    from ccnl_engine.payroll.state.models_credit_account import CreditAccount
     from ccnl_engine.payroll.state.models_obligation import RecoveryObligation
+    from ccnl_engine.tax_credit.account.models import CreditAccount
 
 _ZERO = Decimal(0)
 

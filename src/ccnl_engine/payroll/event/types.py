@@ -7,14 +7,14 @@ from ccnl_engine.absence.inputs import (
     SickLeaveEvent,
 )
 from ccnl_engine.payroll.event.inputs_termination import TerminationTFREvent
-from ccnl_engine.payroll.event.inputs_variable_pay import (
+from ccnl_engine.payroll.sickness.models import SicknessEpisode
+from ccnl_engine.variable_pay.inputs import (
     ArrearsEvent,
     BilateralFundEvent,
     BonusEvent,
     FringeEvent,
     WelfareEvent,
 )
-from ccnl_engine.payroll.sickness.models import SicknessEpisode
 from ccnl_engine.working_time.inputs import (
     HolidayWorkEvent,
     NightShiftEvent,

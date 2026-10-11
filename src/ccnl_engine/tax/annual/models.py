@@ -11,6 +11,11 @@ from ccnl_engine.contribution.domestic.models import DomesticInpsRates
 from ccnl_engine.contribution.headcount.models import ApprenticeRawRates, InpsRawRates
 from ccnl_engine.contribution.rate.models import ApprenticeRates, InpsRates
 from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.irpef.models import (
+    IrpefBracket,
+    SterilizzazioneDetrazioniRules,
+    WorkDeductionRules,
+)
 from ccnl_engine.pension_fund.models import ComplementaryPensionRules
 from ccnl_engine.provenance.ruleset.models import RulesetIdentity
 from ccnl_engine.provenance.source.extraction.models import ExtractionTrace
@@ -18,12 +23,7 @@ from ccnl_engine.provenance.source.models import SourceDocument
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from ccnl_engine.severance.models import TfrRules
 from ccnl_engine.severance.revaluation.models import TfrRevaluationRules
-from ccnl_engine.tax.income.models import (
-    IrpefBracket,
-    SterilizzazioneDetrazioniRules,
-    WorkDeductionRules,
-)
-from ccnl_engine.tax.income.models_credit import (
+from ccnl_engine.tax_credit.models import (
     SommaEsenteRules,
     TrattamentoIntegrativoRules,
     UlterioreDetrazioneRules,

@@ -36,11 +36,11 @@ from ccnl_engine.payroll.state.models_obligation import (
     EmploymentObligations,
     RecoveryObligation,
 )
-from ccnl_engine.payroll.withholding.models_recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.year.services_competence import (
     calculate_competence_year,
 )
-from tests.knowledge.ccnl_engine.payroll.taxation.oracles_irpef_2026 import net_irpef
+from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
+from tests.knowledge.ccnl_engine.irpef.oracles import net_irpef
 from tests.unit.ccnl_engine.builders import EMPLOYER_50, year_plan
 
 if TYPE_CHECKING:

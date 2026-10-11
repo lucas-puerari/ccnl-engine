@@ -23,7 +23,7 @@ from ccnl_engine import (
     PeriodFacts,
 )
 from ccnl_engine.inputs import Permanent, WeeklyHours
-from tests.knowledge.ccnl_engine.payroll.taxation.oracles_irpef_2026 import (
+from tests.knowledge.ccnl_engine.irpef.oracles import (
     gross_irpef,
     net_irpef,
 )

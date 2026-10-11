@@ -51,12 +51,12 @@ from ccnl_engine.inputs import (
 from tests.knowledge.ccnl_engine.payroll.period.oracles_payslip_concia_d2_2026 import (
     CONCIA_D2_2026 as ORACLE,
 )
-from tests.knowledge.ccnl_engine.payroll.taxation.oracles_surtax_2026 import (
+from tests.knowledge.ccnl_engine.seniority.builders import new_hire
+from tests.knowledge.ccnl_engine.surtax.oracles import (
     ADVANCE_MONTHS,
     BALANCE_MONTHS,
     installments,
 )
-from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 pytestmark = pytest.mark.legal_scenario
 
