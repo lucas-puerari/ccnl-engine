@@ -303,4 +303,4 @@ The arrears enter the INPS base of the run in every case.
 Each event produces pay items and ledger entries on the period result. A
 condition that lowers the reliability of the result (for example an unknown
 prior-year income) is reported in `result.issues` and blocks
-`result.is_payable`. See [Results and calculation status](../api/engine.md#results-and-calculation-status).
+`result.is_payable`. See [Assurance and payability](../api/results.md#assurance-and-payability).

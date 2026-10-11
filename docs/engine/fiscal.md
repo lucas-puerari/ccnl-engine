@@ -595,6 +595,6 @@ the open category), and the result is not payable. A base above that bound
 needs no day count and is final. The rule is the `minimum_base` block of
 the INPS rules of the year.
 
-**API reference:** [`CalculationDecision`](../api/engine.md#results-and-calculation-status),
-[`REGION_CODES`](../api/models.md#fiscal),
-[`FamilyComposition`](../api/engine.md), [`Art15Deductions`](../api/engine.md)
+**API reference:** [`CalculationDecision`](../api/results.md),
+[`REGION_CODES`](surtax.md),
+[`FamilyComposition`](../api/inputs.md)

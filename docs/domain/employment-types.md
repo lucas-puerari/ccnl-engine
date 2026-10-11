@@ -99,8 +99,8 @@ The engine automatically detects which track the loaded CCNL uses.
 --8<-- "docs/examples/apprenticeship/example.py"
 ```
 
-**API reference:** [`Permanent`](../api/models.md), [`FixedTerm`](../api/models.md),
-[`Apprentice`](../api/models.md), [`ContractPosition`](../api/engine.md)
+**API reference:** [`Permanent`](../api/inputs.md), [`FixedTerm`](../api/inputs.md),
+[`Apprentice`](../api/inputs.md)
 
 ---
 

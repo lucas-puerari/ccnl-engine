@@ -488,5 +488,5 @@ employed before 28 April 1993 is not modelled.
 --8<-- "docs/examples/pension_fund/example.py"
 ```
 
-**API reference:** [`Employment`](../api/engine.md),
-[`WorkerCategory`](../api/engine.md)
+**API reference:** [`Employment`](../api/ccnl_engine.md),
+[`WorkerCategory`](../api/inputs.md)
