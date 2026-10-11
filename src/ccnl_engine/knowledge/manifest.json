@@ -438,8 +438,8 @@
       "valid_to": null,
       "ruleset_id": "ccnl/commercio-confcommercio",
       "ruleset_version": "2026.2",
-      "source_hash": "85359c4f31cb5856778c665a5df5bd59b2b0d63080515d883530c843d815147e",
-      "source_type": "commercial_secondary",
+      "source_hash": "7d0a1c66fa5417658e61a992dae1580b217844224d12a571ff1053e9f2015fd3",
+      "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/commercio-confcommercio.json.gz"
     },
