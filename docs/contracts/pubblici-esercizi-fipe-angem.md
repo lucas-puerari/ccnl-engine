@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 61 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 58 verified / 2 derived / 2 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -52,12 +52,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | — |
-| **Last review** | — |
+| **Last review** | 2026-10-11 |
 | **Latest salary tranche** | 2027-12-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-10-11 | claude-opus-5-5 (ai) | Every payable rule of the file (72 records) and the hourly divisor read again in the signed texts: the CCNL of 8 February 2018, the renewal of 5 June 2024 and its accordo integrativo of 26 June 2024 with the final salary tables. | corrected | All 50 salary periods and the 10 level rows match the accordo integrativo of 26 June 2024 (pp. 1-2) and are verified, with the Quadri allowances (Art. 154), the 14 monthly payments (Artt. 183-184), seniority (Art. 182), overtime 30% and 60% (Art. 126), the daily quota 1/26 (Art. 159), leave (Art. 134) and the hourly divisor 172 (Art. 160). Pages are PDF page indexes.<br>Corrected: sickness (Art. 190, Art. 194). INPS pays 80% for the whole sickness in this sector (regime pubblici_esercizi, funded by the 0.77% supplement) and the CCNL adds no top-up, so the target is 80%; the three days of carenza are paid in full only when the sickness lasts more than five days; the comporto is 180 days a calendar year.<br>Assumed: the overtime bands for holidays (30%) and holiday nights (60%). The CCNL sets only 30% by day and 60% by night (Art. 126) and 20% for ordinary work on a holiday (Art. 132); the two bands are inferences, not cited values.<br>Left derived: the Fon.Te. rates, read in the fund's information sheet, not in the CCNL.<br>Not modelled: the quattordicesima excludes the seniority increments (Art. 184), the collective catering companies move the June 2025 and June 2026 tranches to September (accordo integrativo p. 3), and the conditions of Art. 190 beyond the carenza.<br>FIPE and the Turismo CCNLs are two agreements: FIPE was renewed on 5 June 2024 (level 4 at 1,692.69 from June 2026), the Turismo CCNL of Federalberghi and Faita on 5 July 2024 (1,695.69 from May 2026). |
 
 ## Salary table
 
@@ -105,7 +107,7 @@ percentage: 1.00
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "pubblici-esercizi-fipe-angem/contract_catering_tranche_dates · base_salary · impact yes · open"
-    CONTRACT CATERING: collective catering companies apply the 2nd and 3rd tranche one month later (Sep-25 instead of Jun-25, Sep-26 instead of Jun-26). Only the main sub-sector (public establishments / commercial catering / tourism) is modelled with Jun-25 and Jun-26 dates. Impact: negligible on an annual basis for collective catering companies.
+    CONTRACT CATERING: collective catering companies apply the June 2025 and June 2026 tranches from September (accordo integrativo 26 June 2024, p. 3). Only the main sub-sector (pubblici esercizi, commercial catering, tourism) is modelled, with the June dates.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
@@ -170,26 +172,27 @@ Each simplification below is a model limitation of the registry. An open limitat
 ### Without monetary impact
 
 !!! note ""
-    SALARY MODEL: the contractual pay structure provides for a separate national base pay and contingenza. For engine purposes they are consolidated into base_salary (monthly total per tranche). The total values match the official FIPE pay tables (Tabelle retributive 2024, fipe.it). fixed_allowances models the function allowance for quadri: Qa=75 EUR and Qb=70 EUR, confirmed by lexplain.it (CCNL 2024-2027).
+    SALARY MODEL: the contractual pay structure provides for a separate national base pay and contingenza. For engine purposes they are consolidated into base_salary (monthly total per tranche). The totals are read in the accordo integrativo of 26 June 2024 (pp. 1-2), the same as the FIPE pay tables. fixed_allowances models the function allowance for quadri: Qa=75 EUR and Qb=70 EUR, from Art. 154 of the CCNL of 8 February 2018 (CCNL 2024-2027).
 
 !!! note ""
-    APPRENTICESHIP (Art. 68): professionalizzante apprenticeship 36 months, percentages 80%/85%/90% confirmed by lexplain.it (CCNL 2024-2027 tables). Destination levels modelled as 1-6s and 6 (Qa/Qb excluded per D.Lgs. 81/2015 art. 41; level 7 excluded per tertiary CCNL convention, not verified against Art. 68 — fipe.it full text PDF not parseable: scanned without OCR). Art. 75 (apprenticeship for qualification/diploma) out of scope.
+    APPRENTICESHIP (Art. 68): professionalizzante apprenticeship 36 months, percentages 80%/85%/90% from lexplain.it (secondary, not checked on the signed text). Destination levels modelled as 1-6s and 6 (Qa/Qb excluded per D.Lgs. 81/2015 art. 41; level 7 excluded per tertiary CCNL convention, not verified against Art. 68 — fipe.it full text PDF not parseable: scanned without OCR). Art. 75 (apprenticeship for qualification/diploma) out of scope.
 
 ## Sources
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-06-05 | [↗](https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf) |
-| — | — | 2024-06-05 | [↗](https://www.lexplain.it/tabelle-retributive-ccnl-pubblici-esercizi-ristorazione-e-turismo-2024-2027/) |
+| — | — | 2024-06-26 | [↗](https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf) |
+| — | — | 2024-06-05 | [↗](https://www.fipe.it/wp-content/uploads/2024/06/Contratto-CCNL-05_06_24.pdf) |
+| — | — | 2018-02-08 | [↗](https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf) |
 
 ??? note "Coverage notes"
     2024 RENEWAL: CCNL signed 5 June 2024, validity 1 June 2024 – 31 December 2027 (CNEL H05Y, ~592,364 workers Uniemens 2022 / over 1 million according to FIPE). Pay table source: fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf.
     
     SENIORITY INCREMENTS: 6 quadrennial increments (48 months). Per-level amounts from FIPE pay tables (fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf). Paid over 14 monthly instalments.
     
-    MONTHLY PAYMENTS: 14 (tredicesima + quattordicesima). Source: lexplain.it (CCNL Pubblici Esercizi 2024-2027).
+    MONTHLY PAYMENTS: 14, the tredicesima of Art. 183 and the quattordicesima of Art. 184 of the CCNL of 8 February 2018 (PDF pp. 127-128). The quattordicesima excludes the seniority increments; the engine pays it as a full monthly pay (not modelled).
     
-    HOURLY DIVISOR: 172 (confirmed by lexplain.it: 172 for 40 weekly hours). Verification: Qa Jun-24 = 2331.41 / 172 = 13.55 euro/hour.
+    HOURLY DIVISOR: 172 for a 40-hour week (Art. 160 of the CCNL of 8 February 2018, PDF p. 116; 190 for a 44-hour week, not modelled).
     
     INPS: uses 2026-terziario.json (tax_sector terziario, same as commercio-confcommercio and turismo-confcommercio).
     
