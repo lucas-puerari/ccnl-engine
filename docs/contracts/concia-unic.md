@@ -40,7 +40,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🟢 Verified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 58 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 58 verified / 0 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -49,7 +49,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | — |
-| **Last review** | 2026-10-10 |
+| **Last review** | 2026-10-11 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -57,6 +57,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-10 | claude-opus-5-5 (ai) | Whole file. The values checked were not recorded; no value was marked verified. | confirmed | The review recorded no list of the documents it read. |
+| 2026-10-11 | claude-opus-5-5 (ai) | Every payable rule of the file (98 records) read again in the signed texts: the renewal of 7 March 2024 and the CCNL testo definitivo of 21 January 2021 deposited at CNEL (B101), which the 2024 renewal leaves unchanged for these articles. | corrected | 96 records match their source and are verified; the two corrected rules below are verified too. The 34 records that cited the mysolution.it summary sheet now cite the CNEL testo definitivo. Pages are physical PDF pages (the printed page of the CNEL text is two lower).<br>Corrected: the leave tiers of Art. 42 start after the 10th and the 15th year (120 and 180 months), not 132 and 192.<br>Corrected: Art. 51 b) deducts unworked hours by the ratio 173 / working hours of the month, and Art. 50 keeps 1/25 for Sunday holidays, so the absence rule is by_month_hours instead of by_25.<br>Not modelled, each underpaying: night overtime after the first hour (76%), the 25% and 35% bands for daytime overtime beyond 48 hours, and the sickness tiers of 10 and 12 months for longer service.<br>The IND_FUNZIONE clause is Art. 46 g), not Art. 47.<br>No renewal signed after 7 March 2024; the contract expired on 30 June 2026 and a renewal is under negotiation. |
 
 ## Salary table
 
@@ -127,7 +128,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the 25% and 35% bands over 48 weekly hours and the 76% night band, or pass the multiplier on the overtime event.
 
 !!! warning "concia-unic/seniority_gated_sickness_tiers · sickness · impact yes · open"
-    SICKNESS: 3 seniority tiers (MySolution sintesi p. 4): up to 3 years comporto 8 months, 3 months at 100% then 5 at 50%; 4 to 6 years 10 months, 4 at 100% and 6 at 50%; over 6 years 12 months, 5 at 100% and 7 at 50%; absences of several sicknesses summed over 36 months. Modelled as the first tier per episode: 100% months 1-3, 50% months 4-8, max 240 days.
+    SICKNESS: 3 seniority tiers (Art. 60 of the CCNL testo definitivo 21/01/2021, comporto unchanged by the 2024 renewal): up to 3 years comporto 8 months, 3 months at 100% then 5 at 50%; 4 to 6 years 10 months, 4 at 100% and 6 at 50%; over 6 years 12 months, 5 at 100% and 7 at 50%; absences of several sicknesses summed over 36 months. Modelled as the first tier per episode: 100% months 1-3, 50% months 4-8, max 240 days.
 
     **Applies when:** `sickness` applies; seniority of at least 36 months.
 
@@ -185,18 +186,17 @@ Each simplification below is a model limitation of the registry. An open limitat
 ### Without monetary impact
 
 !!! note ""
-    DAILY DIVISOR: the CCNL sets quota giornaliera = 1/25 of the monthly pay (MySolution sintesi p. 2) without saying which days of a month are payable; modelled as by_25, so a partly employed month and the sick days of a month are not computed (fail closed) instead of being paid on another divisor.
+    DAILY DIVISOR: Art. 51 b) of the CCNL testo definitivo 21/01/2021 (CNEL B101, physical pp. 69-70) deducts the normal hours not worked by the ratio 173 / working hours of the month; Art. 50 keeps the quota of 1/25 for the holidays falling on a Sunday. Modelled as by_month_hours: one share per Monday to Friday out of the Mondays to Fridays of the month.
 
 !!! note ""
-    LEAVE: 20 gg up to 10 years; +2 gg from 11th year (132 months); +3 gg from 16th year over base (not over the 11-year tier; 192 months = 23 gg); 5 settimane (25 gg) from 18th year (216 months). Source: MySolution sintesi 2017 p. 4. ROL 68 ore/anno not modeled.
+    LEAVE: Art. 42 of the CCNL testo definitivo 21/01/2021 (CNEL B101, physical p. 62): 4 weeks (20 days) up to the 10th year of service completed; 4 weeks + 2 days beyond the 10th year (120 months); 4 weeks + 3 days beyond the 15th (180 months); 5 weeks (25 days) beyond the 18th (216 months). ROL 68 ore/anno not modelled.
 
 ## Sources
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
 | — | — | 2024-03-07 | [↗](https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf) |
-| — | — | 2017-04-01 | [↗](https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf) |
-| — | — | — | [↗](https://www.kitech.it/tabelle-retributive-concia-industria) |
+| — | — | 2021-01-21 | [↗](https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617) |
 
 ??? note "Coverage notes"
     SALARY MODEL: split. base_salary = minimo tabellare (Allegato n. 1, CCNL 07/03/2024). EDR = 10.33 EUR (Accordo 31/07/1992, all levels). IPO = Indennità di posizione organizzativa, level-specific time series per tranche (levels B1, C1, D1, E1, E2). IND_FUNZIONE = 25.82 EUR (level A only, Indennità di funzione, art. 47 CCNL 2017). Back-calculation: D1 total 01/01/2026 = 2041.99+123.67+10.33 = 2175.99; kitech confirms 2176.00 (rounding). B1 total = 2494.04+222.01+10.33 = 2726.38; kitech confirms 2726.38. A total = 2937.60+25.82+10.33 = 2973.75; kitech confirms 2973.75.
@@ -209,7 +209,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     APPRENTICESHIP: under_classification per MySolution sintesi 2017 p. 5 (Allegato apprendistato). 6 tracks by destination level, all with levels_below 2 → 1 → 0. D1 period-2: source table prints E2, but 10 of 11 destination tracks are monotone 2->1->0; E2 (order 3) below D1 (order 6) would cut pay mid-track, so D2 (order 5, exactly 1 below D1) is the only consistent reading. Max 36 months per D.Lgs. 167/2011 as amended 26/04/2012 (footnote in source).
     
-    SENIORITY: biennial (cadence_months=24), maximum 5 increments. Amounts from MySolution sintesi apr. 2017 p. 3 (CCNL previgente); confirmed unchanged — kitech.it 2024-tranche totals including 5 scatti match MySolution amounts across all 11 levels.
+    SENIORITY: biennial (cadence_months=24), maximum 5 increments, amounts per level from Art. 48 of the CCNL testo definitivo 21/01/2021 (CNEL B101, physical p. 67), which the 2024 renewal leaves unchanged.
     
 
 ## Raw data

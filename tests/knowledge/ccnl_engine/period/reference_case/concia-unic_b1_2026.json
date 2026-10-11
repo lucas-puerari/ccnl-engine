@@ -1,0 +1,25 @@
+{
+  "verification": "source_linked",
+  "_description": "CCNL Concia UNIC (B101) level B1, January 2026 regular run, permanent, full time: the first month of the tranche of 1 January 2026.",
+  "_notes": [
+    "Minimo B1 2,441.73 from 1 January 2025 and 2,494.04 from 1 January 2026 (Allegato n. 1, page 14): January 2026 carries the new tranche.",
+    "Base salary only: the EDR (10.33) is not in Allegato n. 1, so the allowances and the gross are not pinned here."
+  ],
+  "source": {
+    "document": "Ipotesi di accordo per il rinnovo del CCNL Concia, 7 March 2024 (UNIC, Filctem-CGIL, Femca-CISL, Uiltec-UIL)",
+    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+    "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117",
+    "page": "14",
+    "section": "Allegato n. 1, Tabelle retributive, level B1 from 1 January 2026"
+  },
+  "inputs": {
+    "ccnl_slug": "concia-unic.json",
+    "level_code": "B1",
+    "year": 2026,
+    "month": 1,
+    "headcount": 50
+  },
+  "expected": {
+    "base_salary": "2494.04"
+  }
+}

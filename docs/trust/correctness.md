@@ -24,12 +24,12 @@ Evidence:
   tests of those modules must kill at least 93% of the mutants; 805 of 855
   (94.2%) on 8 October 2026.  The survivors are mostly the trace text of
   decisions (source labels, input names).
-- Reference table cases: <!-- trust:reference-cases -->11<!-- /trust:reference-cases -->
+- Reference table cases: <!-- trust:reference-cases -->12<!-- /trust:reference-cases -->
   cases in `tests/knowledge/ccnl_engine/period/reference_case/`, each running one regular period through
   `PayrollEngine` and asserting, to the cent, the three values its cited
   salary table states: base salary, fixed allowances and period gross. They
   do not check net pay, contributions, taxes or employer cost.
-  <!-- trust:reference-cases-source-linked -->9<!-- /trust:reference-cases-source-linked -->
+  <!-- trust:reference-cases-source-linked -->10<!-- /trust:reference-cases-source-linked -->
   are `source_linked` (they cite the table they model) and
   <!-- trust:reference-cases-verified -->2<!-- /trust:reference-cases-verified -->
   are `verified` against an independent payslip or official worked example.
@@ -96,7 +96,7 @@ enforced; in `operational` mode a CCNL that is not `production` adds a
 Bundled CCNL rulesets at `production`:
 <!-- trust:readiness-production -->1<!-- /trust:readiness-production -->.
 Payable rules with provenance status `verified`:
-<!-- trust:rules-verified -->60<!-- /trust:rules-verified -->
+<!-- trust:rules-verified -->118<!-- /trust:rules-verified -->
 (see [Provenance](provenance.md#current-counts)).
 See [Readiness](readiness.md) for promotion criteria and the current
 distribution.
