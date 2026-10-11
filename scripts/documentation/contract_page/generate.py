@@ -11,19 +11,23 @@ The output depends only on the bundle and the committed usage examples, never
 on the current date, so a committed page stays valid until its data changes.
 
 Each page replaces the raw JSON dump with a structured layout:
-  - Header card: CNEL code, sector, renewal, workers, extraction status
-  - Coverage badges
+  - Header card: CNEL code, sector, renewal, workers, ruleset version
+  - Coverage of the core payroll path and the contract's limits
+  - Assurance: the five axes, each with its meaning
+  - Freshness and known simplifications
   - Salary table (latest tranche per level)
   - Seniority rules
   - Apprenticeship tracks
   - Known simplifications, generated from the limitation registry
   - Sources with links
-  - Collapsed raw JSON (provenance artifact, always present)
+  - A link to the contract file in the repository, never its content: the
+    full JSON would weigh on every page and on the search index
   - Usage example snippet
 """
 
 from __future__ import annotations
 
+import functools
 import json
 import sys
 from pathlib import Path
@@ -42,8 +46,14 @@ from scripts.documentation.coverage.loaders import (
     latest_catalog_year,
 )
 from scripts.documentation.limitation.generate import limitation_lines
+from scripts.provenance.rules import STATUSES, count_by_file, inventory
 
 ROOT = Path(__file__).resolve().parents[3]
+#: Where a page links the contract file it is generated from.
+REPOSITORY_FILE_URL = (
+    "https://github.com/lucas-puerari/ccnl-engine/blob/main/"
+    "src/ccnl_engine/knowledge/agreement/{ccnl_id}.json"
+)
 DATA_DIR = ROOT / "src" / "ccnl_engine" / "knowledge" / "agreement"
 OUT_DIR = ROOT / "docs" / "contracts"
 
@@ -253,7 +263,6 @@ def _header_section(data: dict[str, Any], ccnl_id: str) -> list[str]:
     """
     meta = data.get("meta", {})
     ruleset = data.get("ruleset", {})
-    extraction = meta.get("extraction") or {}
     sources = meta.get("sources") or []
 
     name = meta.get("name", ccnl_id)
@@ -267,8 +276,6 @@ def _header_section(data: dict[str, Any], ccnl_id: str) -> list[str]:
         or "—"
     )
     ruleset_version = ruleset.get("version") or ruleset.get("id") or "—"
-    ext_method = extraction.get("method") or "—"
-    ext_status = ruleset.get("verification_status") or "unverified"
     verification = data.get("verification", {})
     readiness = verification.get("readiness", "exploratory")
     signatories = meta.get("signatories") or []
@@ -284,8 +291,6 @@ def _header_section(data: dict[str, Any], ccnl_id: str) -> list[str]:
         f"| **Last renewal** | {agreement_date} |",
         f"| **Workers (est.)** | {workers} |",
         f"| **Ruleset version** | `{ruleset_version}` |",
-        f"| **Extraction** | {EXTRACTION_BADGE.get(ext_method, ext_method)} |",
-        f"| **Verification** | {VERIFICATION_BADGE.get(ext_status, ext_status)} |",
         f"| **Readiness** | {READINESS_BADGE.get(readiness, readiness)} |",
         "",
         "[← Contracts index](index.md)",
@@ -312,32 +317,37 @@ def _latest_salary_tranche(levels: list[dict[str, Any]]) -> str:
     return max(starts) if starts else "—"
 
 
-def _coverage_tables(
-    cells: CoverageCells,
-    verification: dict[str, Any],
-    meta: dict[str, Any],
-    levels: list[dict[str, Any]],
-) -> list[str]:
-    """Build the Features, Verifica and Freschezza tables.
+@functools.cache
+def _rule_counts() -> dict[str, dict[str, int]]:
+    """Return the payable rules of each data file by provenance status.
 
     Returns:
-        List of markdown lines, from the section heading to the
-        Semplificazioni heading.
+        :func:`scripts.provenance.rules.count_by_file` of the bundle.
     """
-    readiness = verification.get("readiness", "exploratory")
-    confidence = verification.get("confidence", "unverified")
-    last_reviewed = verification.get("last_reviewed") or "—"
-    sources = meta.get("sources") or []
-    agreement_date = (
-        meta.get("agreement_date")
-        or (sources[0].get("published_on") if sources else None)
-        or "—"
-    )
-    latest_tranche = _latest_salary_tranche(levels)
+    return count_by_file(inventory())
+
+
+def _provenance_cell(ccnl_id: str) -> str:
+    """Return the payable rules of a contract file by provenance status.
+
+    Returns:
+        ``verified / derived / assumed / missing`` counts, ``—`` when the
+        file holds no payable rule.
+    """
+    counts = _rule_counts().get(f"agreement/{ccnl_id}.json")
+    if not counts:
+        return "—"
+    return " / ".join(f"{counts[status]} {status}" for status in STATUSES)
+
+
+def _coverage_lines(cells: CoverageCells) -> list[str]:
+    """Build the coverage table of the core payroll path and the limits.
+
+    Returns:
+        Markdown lines, from the section heading to a blank line.
+    """
     return [
         "## Coverage",
-        "",
-        "### Features",
         "",
         (
             "Derived from the capability registry. The scenario features and"
@@ -351,23 +361,81 @@ def _coverage_tables(
         f"| **Core payroll path** | {cells.core} |",
         f"| **Limits of this contract** | {cells.limits} |",
         "",
-        "### Verifica",
+    ]
+
+
+def _assurance_lines(data: dict[str, Any], ccnl_id: str) -> list[str]:
+    """Build the five assurance axes, each with what it says.
+
+    The axes are independent: an AI-assisted extraction can feed a reviewed
+    ruleset, and verified rules can sit in an exploratory one.
+
+    Returns:
+        Markdown lines, from the section heading to a blank line.
+    """
+    verification = data.get("verification", {})
+    extraction = data.get("meta", {}).get("extraction") or {}
+    method = extraction.get("method") or "—"
+    review = data.get("ruleset", {}).get("verification_status") or "unverified"
+    confidence = verification.get("confidence", "unverified")
+    readiness = verification.get("readiness", "exploratory")
+    return [
+        "## Assurance",
         "",
-        "| | |",
-        "|---|---|",
-        f"| **Readiness** | {READINESS_BADGE.get(readiness, readiness)} |",
-        f"| **Confidence** | {VERIFICATION_BADGE.get(confidence, confidence)} |",
-        f"| **Last human review** | {last_reviewed} |",
+        "| Axis | Value | What it says |",
+        "|---|---|---|",
+        (
+            f"| **Extraction method** | {EXTRACTION_BADGE.get(method, method)}"
+            " | How the values were read from the sources |"
+        ),
+        (
+            f"| **Extraction review** | {VERIFICATION_BADGE.get(review, review)}"
+            " | Whether a person checked the extracted file against its sources |"
+        ),
+        (
+            f"| **Rule provenance** | {_provenance_cell(ccnl_id)}"
+            " | Payable rules of the file by the evidence behind each value"
+            " ([statuses](../trust/provenance.md)) |"
+        ),
+        (
+            "| **Ruleset confidence** |"
+            f" {VERIFICATION_BADGE.get(confidence, confidence)}"
+            " | The confidence the ruleset declares as a whole |"
+        ),
+        (
+            f"| **Readiness** | {READINESS_BADGE.get(readiness, readiness)}"
+            " | Whether runs of this contract can be paid in `operational` mode"
+            " ([tiers](../trust/readiness.md)) |"
+        ),
         "",
-        "### Freschezza",
+    ]
+
+
+def _freshness_lines(
+    verification: dict[str, Any],
+    meta: dict[str, Any],
+    levels: list[dict[str, Any]],
+) -> list[str]:
+    """Build the freshness table.
+
+    Returns:
+        Markdown lines, from the section heading to a blank line.
+    """
+    last_reviewed = verification.get("last_reviewed") or "—"
+    sources = meta.get("sources") or []
+    agreement_date = (
+        meta.get("agreement_date")
+        or (sources[0].get("published_on") if sources else None)
+        or "—"
+    )
+    return [
+        "## Freshness",
         "",
         "| | |",
         "|---|---|",
         f"| **Last renewal** | {agreement_date} |",
-        f"| **Last verified** | {last_reviewed} |",
-        f"| **Latest salary tranche** | {latest_tranche} |",
-        "",
-        "### Semplificazioni note",
+        f"| **Last human review** | {last_reviewed} |",
+        f"| **Latest salary tranche** | {_latest_salary_tranche(levels)} |",
         "",
     ]
 
@@ -378,45 +446,34 @@ def _simplification_summary(notes: list[dict[str, Any]]) -> list[str]:
     Returns:
         List of markdown lines, ending with a blank line.
     """
-    simp_count = sum(1 for n in notes if n.get("kind") == "simplification")
-    missing_count = sum(1 for n in notes if n.get("kind") == "missing")
-    simp_s = "e" if simp_count == 1 else "i"
-    simp_a = "a" if simp_count == 1 else "e"
-    missing_suffix = f" {missing_count} feature mancanti." if missing_count else ""
-    lines: list[str] = []
-    if simp_count:
-        lines.extend([
-            f"{simp_count} semplificazion{simp_s} documentat{simp_a}.{missing_suffix}",
-            "Vedi [Known simplifications](#known-simplifications) per i dettagli.",
-        ])
-    else:
-        lines.append("Nessuna semplificazione documentata.")
-        if missing_count:
-            lines.append(f"{missing_count} feature non ancora implementate.")
-    lines.append("")
-    return lines
+    simplifications = sum(1 for n in notes if n.get("kind") == "simplification")
+    missing = sum(1 for n in notes if n.get("kind") == "missing")
+    return [
+        (
+            f"{simplifications} documented simplification(s) and {missing}"
+            " missing feature(s): see [Known simplifications](#known-simplifications)."
+        ),
+        "",
+    ]
 
 
 def _coverage_section(
     cells: CoverageCells,
-    coverage: dict[str, Any],
-    verification: dict[str, Any],
-    meta: dict[str, Any],
-    levels: list[dict[str, Any]],
+    data: dict[str, Any],
+    ccnl_id: str,
 ) -> list[str]:
-    """Build the 4-axis coverage card.
-
-    Axes: Features (core path and limits), Verifica (readiness + confidence),
-    Freschezza (renewal date + last human review + latest tranche),
-    Semplificazioni (count of simplification notes).
+    """Build coverage, assurance and freshness.
 
     Returns:
         List of markdown lines.
     """
-    notes = coverage.get("notes") or []
+    meta = data.get("meta", {})
+    notes = data.get("coverage", {}).get("notes") or []
     return [
-        *_coverage_tables(cells, verification, meta, levels),
+        *_coverage_lines(cells),
         *_simplification_summary(notes),
+        *_assurance_lines(data, ccnl_id),
+        *_freshness_lines(data.get("verification", {}), meta, data.get("levels", [])),
     ]
 
 
@@ -485,18 +542,19 @@ def _body_sections(data: dict[str, Any], ccnl: CCNL) -> list[str]:
 
 
 def _tail_section(ccnl_id: str, root: Path) -> list[str]:
-    """Build the raw-JSON collapse block and optional usage example.
+    """Build the link to the contract file and the optional usage example.
 
     Returns:
         List of markdown lines.
     """
+    url = REPOSITORY_FILE_URL.format(ccnl_id=ccnl_id)
     lines: list[str] = [
         "## Raw data",
         "",
-        '??? note "Full JSON (provenance artifact)"',
-        "    ```json",
-        f'    --8<-- "src/ccnl_engine/knowledge/agreement/{ccnl_id}.json"',
-        "    ```",
+        (
+            "The contract file this page is generated from:"
+            f" [`agreement/{ccnl_id}.json`]({url})."
+        ),
         "",
     ]
     example_path = f"docs/examples/agreement/{ccnl_id}/example.py"
@@ -525,17 +583,12 @@ def generate_page(json_path: Path, root: Path = ROOT) -> str:
     data = json.loads(json_path.read_text(encoding="utf-8"))
     ccnl_id = json_path.stem
 
-    coverage = data.get("coverage", {})
-    verification = data.get("verification", {})
-    meta = data.get("meta", {})
-    levels = data.get("levels", [])
-
     lines: list[str] = []
     lines.extend(_header_section(data, ccnl_id))
     catalog = load_capability_catalog(latest_catalog_year())
     ccnl = CCNL.model_validate(data)
     cells = coverage_cells(catalog, ccnl)
-    lines.extend(_coverage_section(cells, coverage, verification, meta, levels))
+    lines.extend(_coverage_section(cells, data, ccnl_id))
     lines.extend(_body_sections(data, ccnl))
     lines.extend(_tail_section(ccnl_id, root))
 

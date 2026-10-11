@@ -8,8 +8,6 @@
 | **Last renewal** | 2025-02-18 |
 | **Workers (est.)** | ~48k |
 | **Ruleset version** | `2026.2` |
-| **Extraction** | 🧑 Manual |
-| **Verification** | 🔴 Unverified |
 | **Readiness** | 🧪 Exploratory |
 
 [← Contracts index](index.md)
@@ -21,8 +19,6 @@
     - Uiltec-UIL
 
 ## Coverage
-
-### Features
 
 Derived from the capability registry. The scenario features and the ones outside the input are the same for every contract: see the [capability matrix](capability-matrix.md).
 
@@ -36,26 +32,25 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, pension_fund_contribution |
 
-### Verifica
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
-| | |
-|---|---|
-| **Readiness** | 🧪 Exploratory |
-| **Confidence** | 🟡 Needs review |
-| **Last human review** | 2026-09-17 |
+## Assurance
 
-### Freschezza
+| Axis | Value | What it says |
+|---|---|---|
+| **Extraction method** | 🧑 Manual | How the values were read from the sources |
+| **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
+| **Rule provenance** | 0 verified / 0 derived / 43 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Ruleset confidence** | 🟡 Needs review | The confidence the ruleset declares as a whole |
+| **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
+
+## Freshness
 
 | | |
 |---|---|
 | **Last renewal** | 2025-02-18 |
-| **Last verified** | 2026-09-17 |
+| **Last human review** | 2026-09-17 |
 | **Latest salary tranche** | 2027-01-01 |
-
-### Semplificazioni note
-
-4 semplificazioni documentate.
-Vedi [Known simplifications](#known-simplifications) per i dettagli.
 
 ## Salary table
 
@@ -160,10 +155,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 ## Raw data
 
-??? note "Full JSON (provenance artifact)"
-    ```json
-    --8<-- "src/ccnl_engine/knowledge/agreement/tessile-pmi-uniontessile.json"
-    ```
+The contract file this page is generated from: [`agreement/tessile-pmi-uniontessile.json`](https://github.com/lucas-puerari/ccnl-engine/blob/main/src/ccnl_engine/knowledge/agreement/tessile-pmi-uniontessile.json).
 
 ## Usage example
 

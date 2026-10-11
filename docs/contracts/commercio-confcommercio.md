@@ -8,8 +8,6 @@
 | **Last renewal** | 2024-03-28 |
 | **Workers (est.)** | ~800k |
 | **Ruleset version** | `2026.2` |
-| **Extraction** | 🤖 AI-assisted |
-| **Verification** | 🔴 Unverified |
 | **Readiness** | 👁 Reviewed |
 
 [← Contracts index](index.md)
@@ -21,8 +19,6 @@
     - Uiltucs-UIL
 
 ## Coverage
-
-### Features
 
 Derived from the capability registry. The scenario features and the ones outside the input are the same for every contract: see the [capability matrix](capability-matrix.md).
 
@@ -36,26 +32,25 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | seniority, sickness |
 
-### Verifica
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
-| | |
-|---|---|
-| **Readiness** | 👁 Reviewed |
-| **Confidence** | 🟢 Verified |
-| **Last human review** | 2026-10-10 |
+## Assurance
 
-### Freschezza
+| Axis | Value | What it says |
+|---|---|---|
+| **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
+| **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
+| **Rule provenance** | 0 verified / 69 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
+| **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
+
+## Freshness
 
 | | |
 |---|---|
 | **Last renewal** | 2024-03-28 |
-| **Last verified** | 2026-10-10 |
+| **Last human review** | 2026-10-10 |
 | **Latest salary tranche** | 2027-02-01 |
-
-### Semplificazioni note
-
-2 semplificazioni documentate.
-Vedi [Known simplifications](#known-simplifications) per i dettagli.
 
 ## Salary table
 
@@ -183,10 +178,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 ## Raw data
 
-??? note "Full JSON (provenance artifact)"
-    ```json
-    --8<-- "src/ccnl_engine/knowledge/agreement/commercio-confcommercio.json"
-    ```
+The contract file this page is generated from: [`agreement/commercio-confcommercio.json`](https://github.com/lucas-puerari/ccnl-engine/blob/main/src/ccnl_engine/knowledge/agreement/commercio-confcommercio.json).
 
 ## Usage example
 
