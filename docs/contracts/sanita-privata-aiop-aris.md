@@ -28,22 +28,18 @@
 
 ## Coverage
 
-### Funzionalità
+### Features
 
-Derived from the capability registry, as in the [capability matrix](capability-matrix.md).
+Derived from the capability registry. The scenario features and the ones outside the input are the same for every contract: see the [capability matrix](capability-matrix.md).
 
-| | Functional coverage of a layer: its weakest capability |
+| | Core payroll path of a contract |
 |---|---|
-| ✅ | Every capability native: computed from bundled rules and request facts |
-| 📝 | At best caller-supplied: a capability takes a caller rate or amount |
-| ⚠️ | A capability is partial: some variants only, or data the file lacks |
-| 🔲 | A capability is unsupported: the engine does not compute it |
+| ✅ | Every core capability is computed from bundled rules and request facts |
+| ⚠️ | The contract's data leave a core capability partial: see **Limits** |
 
-| Layer | Status |
+| | |
 |---|---|
-| **L1 — Gross** | 🔲 |
-| **L2 — Net** | 🔲 |
-| **L3 — Work rules** | 🔲 |
+| **Core payroll path** | ✅ |
 | **Limits of this contract** | — |
 
 ### Verifica

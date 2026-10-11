@@ -10,11 +10,9 @@ from ccnl_engine.capability.loaders import (
 )
 from ccnl_engine.capability.registry.models import (
     CapabilityImplementation,
-    CapabilityLayer,
 )
 from ccnl_engine.capability.support.services import (
     ccnl_capabilities,
-    layer_coverage,
 )
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.errors import DataIntegrityError
@@ -117,15 +115,3 @@ def test_unknown_capability_is_rejected() -> None:
     ccnl = _with_missing(load_ccnl("metalmeccanico-federmeccanica.json"), "ghost")
     with pytest.raises(DataIntegrityError, match=r"\['ghost'\]"):
         ccnl_capabilities(_CATALOG, ccnl)
-
-
-def test_layer_is_its_worst_capability() -> None:
-    """A layer is as covered as its weakest capability."""
-    capabilities = ccnl_capabilities(
-        _CATALOG, load_ccnl("metalmeccanico-federmeccanica.json")
-    )
-    assert layer_coverage(capabilities) == dict.fromkeys(
-        CapabilityLayer, _IMPL.UNSUPPORTED
-    )
-    native = [c for c in capabilities if c.implementation is _IMPL.NATIVE]
-    assert layer_coverage(native) == dict.fromkeys(CapabilityLayer, _IMPL.NATIVE)

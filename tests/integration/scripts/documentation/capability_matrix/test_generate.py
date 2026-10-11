@@ -80,7 +80,7 @@ def test_page_holds_both_tables() -> None:
     page = build_page(latest_catalog_year())
     assert "## Capabilities" in page
     assert "## CCNL coverage" in page
-    assert "| `base_salary` | Paga base contrattuale | gross | native |" in page
+    assert "| `base_salary` | Paga base contrattuale | core | gross | native |" in page
 
 
 def test_matrix_rows_are_the_index_cells() -> None:
@@ -91,5 +91,4 @@ def test_matrix_rows_are_the_index_cells() -> None:
     for ccnl in bundled_ccnls():
         cells = coverage_cells(catalog, ccnl)
         link = f"[{ccnl.meta.name}]({ccnl.meta.ccnl_id}.md)"
-        l1, l2, l3 = cells.layers
-        assert f"| {link} | {l1} | {l2} | {l3} | {cells.limits} |" in page
+        assert f"| {link} | {cells.core} | {cells.limits} |" in page

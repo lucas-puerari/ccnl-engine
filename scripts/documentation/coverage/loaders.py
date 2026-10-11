@@ -26,13 +26,10 @@ from ccnl_engine.capability.loaders import (
     load_capability_catalog,
 )
 from ccnl_engine.capability.registry.models import (
+    CapabilityApplicability,
     CapabilityImplementation,
-    CapabilityLayer,
 )
-from ccnl_engine.capability.support.services import (
-    ccnl_capabilities,
-    layer_coverage,
-)
+from ccnl_engine.capability.support.services import ccnl_capabilities
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.provenance.ruleset.models import (
     RulesetReadiness,
@@ -43,7 +40,10 @@ from scripts.provenance.rules import inventory
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
-    from ccnl_engine.capability.registry.models import CapabilityCatalog
+    from ccnl_engine.capability.registry.models import (
+        CapabilityCatalog,
+        CapabilityEntry,
+    )
 
 #: Symbol of each implementation, shared by the index and the matrix.
 IMPLEMENTATION_SYMBOL: dict[CapabilityImplementation, str] = {
@@ -54,13 +54,26 @@ IMPLEMENTATION_SYMBOL: dict[CapabilityImplementation, str] = {
 }
 
 IMPLEMENTATION_LEGEND = """\
-| | Functional coverage of a layer: its weakest capability |
+| | Core payroll path of a contract |
 |---|---|
-| ✅ | Every capability native: computed from bundled rules and request facts |
-| 📝 | At best caller-supplied: a capability takes a caller rate or amount |
-| ⚠️ | A capability is partial: some variants only, or data the file lacks |
-| 🔲 | A capability is unsupported: the engine does not compute it |
+| ✅ | Every core capability is computed from bundled rules and request facts |
+| ⚠️ | The contract's data leave a core capability partial: see **Limits** |
 """
+
+#: Scope of a capability on the pages, in display order.
+SCOPES = ("core", "scenario", "outside_input")
+
+_SCOPE_TITLE = {
+    "core": "Core payroll path: computed on every run of every contract",
+    "scenario": (
+        "Scenario features: computed when the request declares the event,"
+        " the fact or the termination"
+    ),
+    "outside_input": (
+        "Outside the input: the request has no field for the fact,"
+        " so the engine does not compute them"
+    ),
+}
 
 _STATUSES = ("verified", "derived", "assumed", "missing")
 
@@ -80,47 +93,94 @@ _READINESS_SYMBOL = {
 
 @dataclass(frozen=True)
 class CoverageCells:
-    """Functional coverage of one CCNL as rendered in both pages.
+    """Functional coverage of one CCNL as rendered on every page.
+
+    Only what differs between contracts is a cell: the scenario features and
+    the ones outside the input are the same for every contract and are shown
+    once, by :func:`scope_summary`.
 
     Attributes:
-        layers: Symbol of the gross, net and work-rules layers.
-        limits: Capabilities a ``missing`` note of the CCNL lowers to
-            partial, comma separated; ``—`` when none.
+        core: Symbol of the core payroll path for this contract.
+        limits: Capabilities the contract's data leave partial (a
+            ``missing`` note or a blocking limitation), comma separated;
+            ``—`` when none.
     """
 
-    layers: tuple[str, str, str]
+    core: str
     limits: str
+
+
+def capability_scope(entry: CapabilityEntry) -> str:
+    """Return the scope of a registry capability.
+
+    A capability every run computes or decides, natively in the registry, is
+    core. One the request has no field for is outside the input. The others
+    apply in some scenarios: an event, a termination, or a decided capability
+    the engine covers only in part (a foreign tax credit, a pension fund).
+
+    Returns:
+        One of :data:`SCOPES`.
+    """
+    if entry.applies_when is CapabilityApplicability.OUTSIDE_INPUT:
+        return "outside_input"
+    if entry.applies_when is CapabilityApplicability.ALWAYS or (
+        entry.applies_when is CapabilityApplicability.DECIDED
+        and entry.implementation is CapabilityImplementation.NATIVE
+    ):
+        return "core"
+    return "scenario"
 
 
 def coverage_cells(catalog: CapabilityCatalog, ccnl: CCNL) -> CoverageCells:
     """Return the functional coverage cells of *ccnl*.
 
     Returns:
-        The layer symbols and the CCNL-specific limits.
+        The symbol of the core path and the CCNL-specific limits.
     """
     capabilities = ccnl_capabilities(catalog, ccnl)
-    layers = layer_coverage(capabilities)
-    gross, net, work = (
-        IMPLEMENTATION_SYMBOL[layers[layer]] for layer in CapabilityLayer
+    scopes = {entry.feature: capability_scope(entry) for entry in catalog.capabilities}
+    core = CapabilityImplementation.worst(
+        c.implementation for c in capabilities if scopes[c.feature] == "core"
     )
     limits = sorted(c.feature for c in capabilities if c.limited_by_ccnl)
-    return CoverageCells((gross, net, work), ", ".join(limits) or "—")
+    return CoverageCells(IMPLEMENTATION_SYMBOL[core], ", ".join(limits) or "—")
+
+
+def scope_summary(catalog: CapabilityCatalog) -> list[str]:
+    """Return the registry capabilities by scope, the same for every contract.
+
+    Returns:
+        Markdown lines: one paragraph and capability list per scope.
+    """
+    lines: list[str] = []
+    for scope in SCOPES:
+        entries = [e for e in catalog.capabilities if capability_scope(e) == scope]
+        lines.extend([f"**{_SCOPE_TITLE[scope]}** ({len(entries)}):", ""])
+        lines.extend(
+            f"- {IMPLEMENTATION_SYMBOL[e.implementation]} `{e.feature}`"
+            f" ({e.implementation.value})"
+            for e in entries
+        )
+        lines.append("")
+    return lines
 
 
 def registry_summary(catalog: CapabilityCatalog) -> list[str]:
-    """Return the per-layer count of registry capabilities by implementation.
+    """Return the count of registry capabilities by scope and implementation.
 
     Returns:
         Markdown table lines, header included.
     """
     header = " | ".join(i.value for i in CapabilityImplementation)
-    lines = [f"| Layer | {header} |", "|---|" + "---:|" * len(CapabilityImplementation)]
-    for layer in CapabilityLayer:
+    lines = [f"| Scope | {header} |", "|---|" + "---:|" * len(CapabilityImplementation)]
+    for scope in SCOPES:
         counts = Counter(
-            e.implementation for e in catalog.capabilities if e.layer is layer
+            e.implementation
+            for e in catalog.capabilities
+            if capability_scope(e) == scope
         )
         cells = " | ".join(str(counts[i]) for i in CapabilityImplementation)
-        lines.append(f"| {layer.value} | {cells} |")
+        lines.append(f"| {scope} | {cells} |")
     return lines
 
 
@@ -167,6 +227,7 @@ class CoverageReport:
 
     ccnl_rows: list[CCNLCoverageRow]
     registry: list[str]
+    """Markdown lines of :func:`scope_summary`."""
     generated_at: date
 
 
@@ -216,7 +277,7 @@ def build_coverage_report(year: int) -> CoverageReport:
     ]
     return CoverageReport(
         ccnl_rows=rows,
-        registry=registry_summary(catalog),
+        registry=scope_summary(catalog),
         generated_at=datetime.now(tz=UTC).date(),
     )
 
@@ -224,10 +285,10 @@ def build_coverage_report(year: int) -> CoverageReport:
 _CONTRACTS_PREAMBLE_TEMPLATE = """\
 # CCNL Coverage
 
-{count} contract configurations covering an estimated **16 million employees**[^1]
-across private and public sectors -- including ARAN public-sector agreements (funzioni
-centrali, locali, sanità, istruzione) and one Presidential Decree (DPR 53/2025[^2]).
-Covers 75+ of the ~99 major private-sector CCNLs (>10,000 workers, CNEL II/2024).
+{count} bundled contract configurations, private and public sector,
+including ARAN public-sector agreements and one Presidential Decree
+(DPR 53/2025[^2]). The table is generated from the data: search it, or use
+`search_ccnls()` from Python.
 
 → [Domain: What is a CCNL](../domain/index.md) ·
 [Capability matrix](capability-matrix.md)
@@ -237,19 +298,17 @@ Covers 75+ of the ~99 major private-sector CCNLs (>10,000 workers, CNEL II/2024)
 No percentage blends them: a contract can be fully covered and still rest
 on unverified sources, or be well sourced and not cleared for production.
 
-- **Coverage (L1, L2, L3):** what the engine computes, derived from the
-  capability registry of {year}. A layer shows its weakest capability; the
-  [capability matrix](capability-matrix.md) lists each one. **Limits**
-  names the capabilities this contract's data leaves partial: a `missing`
-  note, or a model limitation with a monetary impact.
+- **Coverage:** what the engine computes, from the capability registry of
+  {year}. **Core** is the path every run takes; **Limits** names the
+  capabilities this contract's data leave partial (a `missing` note, or a
+  model limitation with a monetary impact). The scenario features and the
+  ones outside the input are the same for every contract and are listed
+  below.
 - **Sources:** payable rules of the contract file by provenance status,
   verified / derived / assumed / missing.
 - **Readiness:** the review tier of the contract ruleset.
 
-Capabilities of the registry by layer and implementation:
-
-{registry}
-
+{scopes}
 {legend}
 | | Readiness and extraction |
 |---|---|
@@ -263,13 +322,12 @@ Capabilities of the registry by layer and implementation:
 """
 
 _CONTRACTS_FOOTER = """
-[^1]: Estimated represented population. Individual contracts may cover overlapping \
-worker populations; figures should not be summed to derive total coverage.
 [^2]: DPR 53/2025 -- Compensation for Forze di Polizia ad ordinamento civile is \
 set by Presidential Decree, not a CNEL-registered agreement. \
 D.P.R. 24 marzo 2025, n. 53 (GU n. 91, 18 April 2025, SO).
-[^3]: Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, \
-CCNL renewal communications.
+[^3]: Approximate estimates of the represented population. Contracts can \
+cover overlapping populations, so the figures do not add up. Sources: CNEL, \
+INPS, Ministero del Lavoro, CCNL renewal communications.
 [^4]: Salary tables extracted from official CCNL documents using AI-assisted \
 tooling, no manual human review. Verify against the official source before use \
 in production.
@@ -290,7 +348,7 @@ def render_contracts_index(report: CoverageReport, year: int) -> str:
     preamble = _CONTRACTS_PREAMBLE_TEMPLATE.format(
         count=len(report.ccnl_rows),
         year=year,
-        registry="\n".join(report.registry),
+        scopes="\n".join(report.registry),
         legend=IMPLEMENTATION_LEGEND,
     )
     lines: list[str] = [
@@ -298,18 +356,17 @@ def render_contracts_index(report: CoverageReport, year: int) -> str:
         preamble,
         (
             "| # | CNEL | CCNL | Sector | Workers (~)[^3] | Renewal"
-            " | L1 | L2 | L3 | Limits | Sources (v / d / a / m)"
+            " | Core | Limits | Sources (v / d / a / m)"
             " | Readiness | Ext[^4] |"
         ),
-        "|---|---|---|---|---:|:---:|:---:|:---:|:---:|---|---|:---:|:---:|",
+        "|---|---|---|---|---:|:---:|:---:|---|---|:---:|:---:|",
     ]
     for i, row in enumerate(report.ccnl_rows, 1):
-        l1, l2, l3 = row.cells.layers
         link = f"[{row.name}]({row.ccnl_id}.md)"
         lines.append(
             f"| {i} | {row.cnel_code} | {link} | {row.sector}"
             f" | {row.workers_estimate or '—'} | {row.agreement_year or '—'}"
-            f" | {l1} | {l2} | {l3} | {row.cells.limits} | {row.sources}"
+            f" | {row.cells.core} | {row.cells.limits} | {row.sources}"
             f" | {_READINESS_SYMBOL[row.readiness]}"
             f" | {_VERIFICATION_EMOJI[row.verification_label]} |"
         )
