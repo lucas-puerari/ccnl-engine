@@ -35,7 +35,7 @@ if TYPE_CHECKING:
 
     from ccnl_engine.agreement.validity.rules import TimeSeries
     from ccnl_engine.compensation.models import CCNLParameters, Level
-    from ccnl_engine.contract.fund.models import (
+    from ccnl_engine.fund.models import (
         ContractualFundContribution,
     )
     from ccnl_engine.seniority.models import SeniorityIncrements

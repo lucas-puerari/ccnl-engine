@@ -41,10 +41,10 @@ from tests.integration.ccnl_engine.payroll.taxation.builders_imported_surtax imp
 from tests.integration.ccnl_engine.payroll.taxation.builders_prior_year import (
     RENEWAL_WAIVED,
 )
-from tests.knowledge.ccnl_engine.payroll.employment.builders_seniority import new_hire
 from tests.knowledge.ccnl_engine.payroll.taxation.builders_current_year import (
     employment_only,
 )
+from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 engine = PayrollEngine.bundled()
 _C3 = Employment(

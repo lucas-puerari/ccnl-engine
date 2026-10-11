@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from decimal import Decimal
 
+from ccnl_engine.contribution.services import TfrAccrual
 from ccnl_engine.payroll.amount.types import _PeriodAmounts
-from ccnl_engine.payroll.contribution.services import TfrAccrual
 from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.ledger.services_tax_line import tax_lines
 from ccnl_engine.payroll.state.models_surtax_obligation import (

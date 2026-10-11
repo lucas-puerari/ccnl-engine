@@ -18,10 +18,6 @@ from ccnl_engine.payroll.accrual.services_extra_month import (
     run_fraction,
 )
 from ccnl_engine.payroll.accrual.services_rule import month_accrual_rule
-from ccnl_engine.payroll.employment.services_seniority_conversion import (
-    kept_seniority_months,
-    seniority_conversion,
-)
 from ccnl_engine.payroll.period.repositories import (
     BundledKnowledgeRepository,
 )
@@ -39,6 +35,10 @@ from ccnl_engine.payroll.termination.services_ratei import (
 from ccnl_engine.payroll.withholding.services_plan import (
     resolve_withholding_schedule,
     upcoming_recurring_gross,
+)
+from ccnl_engine.pension_fund.conversion.services import (
+    kept_seniority_months,
+    seniority_conversion,
 )
 from ccnl_engine.seniority.services import seniority_months_at
 

@@ -12,6 +12,7 @@ from ccnl_engine.errors import (
     UnsupportedTaxYearError,
 )
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
+from ccnl_engine.severance.revaluation.models import TfrRevaluationRules
 from ccnl_engine.tax.annual.loaders_resource import (
     _as_ruleset,
     _read_json,
@@ -26,7 +27,6 @@ from ccnl_engine.tax.regime.models_variable_pay import (
     PdRRules,
     VariablePayRules,
 )
-from ccnl_engine.tax.severance.models_revaluation import TfrRevaluationRules
 from ccnl_engine.tax.sickness.models import InpsSickPayRates
 
 _SICK_PAY_FILE = "social_security/sickness/rates.json"

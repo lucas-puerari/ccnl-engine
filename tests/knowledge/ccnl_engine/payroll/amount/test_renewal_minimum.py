@@ -33,12 +33,12 @@ from tests.integration.ccnl_engine.payroll.taxation.builders_residence import (
     COMUNE_BELFIORE,
     REGIONE,
 )
-from tests.knowledge.ccnl_engine.payroll.employment.builders_seniority import new_hire
 from tests.knowledge.ccnl_engine.payroll.support import (
     history,
     regular_period,
     substitute_tax,
 )
+from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 if TYPE_CHECKING:
     from ccnl_engine import PeriodResult

@@ -37,7 +37,7 @@ from ccnl_engine.inputs import (
     Permanent,
     PriorYearTaxFacts,
 )
-from tests.knowledge.ccnl_engine.payroll.employment.builders_seniority import new_hire
+from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 pytestmark = pytest.mark.legal_scenario
 

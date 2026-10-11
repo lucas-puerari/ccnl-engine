@@ -24,6 +24,9 @@ from ccnl_engine.apprenticeship.rules import (
     MIDPOINT_VARIANT,
     PCT_UNDECLARED,
 )
+from ccnl_engine.contribution.minimum_base.services import (
+    EXEMPT_CATEGORY_FLOOR,
+)
 from ccnl_engine.knowledge.capability.loaders import (
     load_capability_catalog,
 )
@@ -33,12 +36,6 @@ from ccnl_engine.payroll.assurance.services_ruleset import (
     PROVISIONAL_INPS_RULESET,
     PROVISIONAL_RULESET,
 )
-from ccnl_engine.payroll.contribution.services_minimum_base import (
-    EXEMPT_CATEGORY_FLOOR,
-)
-from ccnl_engine.payroll.contribution.services_tfr_compensation import (
-    APPRENTICE_GUARANTEE_FUND,
-)
 from ccnl_engine.payroll.period.repositories import (
     BundledKnowledgeRepository,
 )
@@ -47,6 +44,9 @@ from ccnl_engine.payroll.sickness.handlers import (
     INPS_DAILY_BASE_LIMITATION,
 )
 from ccnl_engine.seniority.rules import APPRENTICE_SENIORITY_VARIANT
+from ccnl_engine.severance.relief.services import (
+    APPRENTICE_GUARANTEE_FUND,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL

@@ -5,6 +5,10 @@ from __future__ import annotations
 from functools import cache
 from typing import TYPE_CHECKING
 
+from ccnl_engine.contribution.headcount.rules import (
+    _resolve_apprentice,
+    _resolve_inps,
+)
 from ccnl_engine.errors import DataIntegrityError
 from ccnl_engine.tax.annual.loaders_optional import (
     load_somma_esente_rules,
@@ -16,10 +20,6 @@ from ccnl_engine.tax.annual.loaders_resource import (
     read_tax_rules_raw,
 )
 from ccnl_engine.tax.annual.models import YearRules, YearRulesRaw
-from ccnl_engine.tax.contribution.rules_tier import (
-    _resolve_apprentice,
-    _resolve_inps,
-)
 
 if TYPE_CHECKING:
     from collections.abc import Mapping

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from ccnl_engine.tax.contribution.models_zone_reduction import AgriculturalZone
+from ccnl_engine.contribution.zone.models import AgriculturalZone
 from ccnl_engine.tax.regime.models import EmployerActivity
 from ccnl_engine.validators import (
     parse_enum,

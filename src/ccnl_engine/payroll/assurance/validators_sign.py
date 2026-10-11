@@ -37,11 +37,11 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.contribution.additional_ivs.rules import SETTLEMENT_COMPONENT
 from ccnl_engine.payroll.assurance.types import (
     InvariantCode,
     ReconciliationViolation,
 )
-from ccnl_engine.payroll.contribution.rules_additional_ivs import SETTLEMENT_COMPONENT
 from ccnl_engine.payroll.ledger.models import AccountKind
 
 if TYPE_CHECKING:

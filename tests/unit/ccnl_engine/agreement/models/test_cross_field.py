@@ -12,8 +12,8 @@ import pytest
 from pydantic import ValidationError
 
 from ccnl_engine.agreement.facade import CCNL
-from ccnl_engine.contract.fund.models import EmployerFund
 from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.fund.models import EmployerFund
 from tests.unit.ccnl_engine.builders import TEST_PROV, make_ccnl_dict
 
 _SERIES = {"periods": [{"valid_from": "2020-01-01", "valid_until": None, "value": "1"}]}

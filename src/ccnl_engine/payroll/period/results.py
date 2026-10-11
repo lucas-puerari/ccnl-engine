@@ -18,11 +18,11 @@ from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.state.models import PeriodState
 
 if TYPE_CHECKING:
+    from ccnl_engine.contribution.results import ContributionBreakdown
     from ccnl_engine.knowledge.limitation.models import ModelLimitation
     from ccnl_engine.pay_item.facade import PayItem
     from ccnl_engine.payroll.assurance.models import ResultAssurance, ResultBlocker
     from ccnl_engine.payroll.capability.results import CapabilityReport
-    from ccnl_engine.payroll.contribution.results import ContributionBreakdown
     from ccnl_engine.payroll.event.results_benefit import BenefitBreakdown
     from ccnl_engine.payroll.ledger.models import LedgerEntry
     from ccnl_engine.payroll.ledger.models_remittance import RemittanceLine

@@ -30,7 +30,7 @@ See [Get started](../getting-started/index.md) for the typical loading sequence 
       members:
         - YearRules
 
-::: ccnl_engine.tax.contribution.models
+::: ccnl_engine.contribution.rate.models
     options:
       members:
         - InpsRates

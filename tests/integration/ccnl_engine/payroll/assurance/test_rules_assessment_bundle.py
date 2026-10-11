@@ -34,7 +34,7 @@ from ccnl_engine.results import BlockerCode
 from tests.integration.ccnl_engine.payroll.taxation.builders_prior_year import (
     RENEWAL_WAIVED,
 )
-from tests.knowledge.ccnl_engine.payroll.employment.builders_seniority import new_hire
+from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 _WEAK = frozenset({"assumed", "missing"})
 _MINIMUM_UNDETERMINED = "inps_minimum_base_undetermined"

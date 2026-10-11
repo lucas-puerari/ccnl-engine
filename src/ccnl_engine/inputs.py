@@ -7,6 +7,8 @@ facts, the calendar, the opening state and the balances imported from another pr
 
 from __future__ import annotations
 
+from ccnl_engine.contribution.base.models import InpsBaseYtd
+from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.employer.inputs import (
     AgriculturalZone,
     EmployerActivity,
@@ -22,12 +24,6 @@ from ccnl_engine.employment.fixed_term.inputs import NaspiExclusion
 from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
 from ccnl_engine.employment.spell.models import EmploymentSpell
 from ccnl_engine.payroll.assurance.policies_engine_mode import EngineMode
-from ccnl_engine.payroll.contribution.inputs_eligibility import ContributionHistory
-from ccnl_engine.payroll.contribution.inputs_pension_fund import (
-    NoPensionFund,
-    PensionFundEnrolment,
-)
-from ccnl_engine.payroll.contribution.models_inps_base import InpsBaseYtd
 from ccnl_engine.payroll.family.inputs import (
     Dependent,
     DependentRelationship,
@@ -55,7 +51,6 @@ from ccnl_engine.payroll.taxation.inputs_prior_year import (
     ShortfallDeferralRequest,
     SubstituteTaxRegime,
 )
-from ccnl_engine.payroll.termination.models_tfr_fund import TfrFundBalance
 from ccnl_engine.payroll.withholding.inputs_shortfall_deferral import DeferredShortfall
 from ccnl_engine.payroll.withholding.models_recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.year.inputs_calendar_override import (
@@ -64,10 +59,15 @@ from ccnl_engine.payroll.year.inputs_calendar_override import (
 )
 from ccnl_engine.payroll.year.models_calendar import WorkCalendar
 from ccnl_engine.payroll.year.models_payment import PaymentId
+from ccnl_engine.pension_fund.inputs import (
+    NoPensionFund,
+    PensionFundEnrolment,
+)
 from ccnl_engine.seniority.inputs import (
     SeniorityFact,
     SenioritySource,
 )
+from ccnl_engine.severance.provision.models import TfrFundBalance
 from ccnl_engine.tax.regime.models import EmploymentSector
 
 __all__ = [

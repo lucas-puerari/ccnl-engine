@@ -25,7 +25,7 @@ from ccnl_engine.validators import (
 if TYPE_CHECKING:
     from _typeshed import DataclassInstance
 
-    from ccnl_engine.payroll.contribution.models_inps_base import InpsBaseYtd
+    from ccnl_engine.contribution.base.models import InpsBaseYtd
     from ccnl_engine.payroll.period.models_run import PayrollRunId
     from ccnl_engine.payroll.state.models_surtax_obligation import SurtaxObligation
     from ccnl_engine.payroll.withholding.inputs_shortfall_deferral import (

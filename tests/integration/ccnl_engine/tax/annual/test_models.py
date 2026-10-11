@@ -11,21 +11,21 @@ import pytest
 from pydantic import ValidationError
 
 from ccnl_engine.agreement.facade import TaxSector
+from ccnl_engine.contribution.headcount.models import (
+    InpsEmployeeTier,
+)
+from ccnl_engine.contribution.headcount.rules import (
+    _assert_tier_integrity,
+    _resolve_tier,
+)
 from ccnl_engine.errors import DataIntegrityError
+from ccnl_engine.severance.models import TfrRules
 from ccnl_engine.tax.annual.loaders import load_year_rules
 from ccnl_engine.tax.annual.loaders_resource import (
     read_inps_rules_raw,
     read_tax_rules_raw,
 )
 from ccnl_engine.tax.annual.models import YearRules, YearRulesRaw
-from ccnl_engine.tax.contribution.models_tier import (
-    InpsEmployeeTier,
-)
-from ccnl_engine.tax.contribution.rules_tier import (
-    _assert_tier_integrity,
-    _resolve_tier,
-)
-from ccnl_engine.tax.severance.models import TfrRules
 from tests.unit.ccnl_engine.builders import (
     DOMESTIC_CONTRIBUTIONS,
     IRPEF_BRACKETS_2026,

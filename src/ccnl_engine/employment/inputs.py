@@ -8,6 +8,7 @@ from decimal import Decimal
 from typing import Literal
 
 from ccnl_engine.collection.validators import frozenset_of
+from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.employment.category.models import (
     WorkerCategory,
     parse_worker_category,
@@ -20,14 +21,13 @@ from ccnl_engine.employment.fact.inputs import (
     check_within_full_time,
 )
 from ccnl_engine.employment.fixed_term.inputs import FixedTerm
-from ccnl_engine.payroll.contribution.inputs_eligibility import ContributionHistory
-from ccnl_engine.payroll.contribution.inputs_pension_fund import (
+from ccnl_engine.pension_fund.inputs import (
     PENSION_FUND_TYPES,
     NoPensionFund,
     PensionFundEnrolment,
 )
-from ccnl_engine.payroll.termination.models_tfr_fund import TfrFundBalance
 from ccnl_engine.seniority.inputs import SeniorityFact
+from ccnl_engine.severance.provision.models import TfrFundBalance
 from ccnl_engine.tax.regime.models import EmploymentSector
 from ccnl_engine.validators import (
     FieldSpec,
@@ -155,7 +155,7 @@ class Employment:
             CCNL.
         pension_fund: Enrolment in a complementary pension fund of the CCNL,
             or
-            :class:`~ccnl_engine.payroll.contribution.inputs_pension_fund.NoPensionFund`
+            :class:`~ccnl_engine.pension_fund.inputs.NoPensionFund`
             to state that the worker is not enrolled: no fund contribution is
             computed, and on a CCNL that has funds the
             ``pension_fund_contribution`` capability records the reason

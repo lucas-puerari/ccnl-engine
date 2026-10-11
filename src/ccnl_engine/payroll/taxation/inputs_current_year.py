@@ -77,7 +77,7 @@ class CurrentYearTaxFacts:
             ``>= 0``.  It counts toward the IVS massimale and the
             additional 1% threshold of the runs whose competence year is
             :attr:`tax_year`, and is carried in their closing state
-            (:class:`~ccnl_engine.payroll.contribution.models_inps_base.InpsBaseYtd`).
+            (:class:`~ccnl_engine.contribution.base.models.InpsBaseYtd`).
         other_income: Every other income of the tax year in the reddito
             complessivo (land and buildings, self-employment, rents under
             cedolare secca, art. 3 c. 7 D.Lgs. 23/2011), ``>= 0``.

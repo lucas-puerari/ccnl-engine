@@ -7,13 +7,13 @@ from typing import Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.agreement.validity.rules import TimeSeries
-from ccnl_engine.contract.fund.models import (
+from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.fund.assistance.models import AssistanceContribution
+from ccnl_engine.fund.models import (
     ContractualFundContribution,
     EmployerFund,
 )
-from ccnl_engine.contract.fund.models_assistance import AssistanceContribution
-from ccnl_engine.contract.fund.models_solidarity import SolidarityFund
-from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.fund.solidarity.models import SolidarityFund
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus, RuleProvenance
 from ccnl_engine.seniority.models import SeniorityIncrements
 

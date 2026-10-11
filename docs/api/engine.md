@@ -124,7 +124,7 @@ years. They group the facts by owner and are validated when built;
       members:
         - OpeningBalances
 
-::: ccnl_engine.payroll.contribution.models_inps_base
+::: ccnl_engine.contribution.base.models
     options:
       members:
         - InpsBaseYtd
@@ -134,7 +134,7 @@ years. They group the facts by owner and are validated when built;
       members:
         - Employment
 
-::: ccnl_engine.payroll.contribution.inputs_pension_fund
+::: ccnl_engine.pension_fund.inputs
     options:
       members:
         - PensionFundEnrolment
@@ -173,7 +173,7 @@ years. They group the facts by owner and are validated when built;
         - EmployerActivity
         - SubstituteTaxRegime
 
-::: ccnl_engine.tax.contribution.models_zone_reduction
+::: ccnl_engine.contribution.zone.models
     options:
       members:
         - AgriculturalZone

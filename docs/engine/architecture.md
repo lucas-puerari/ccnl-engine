@@ -170,14 +170,12 @@ which the naming baseline records:
 | `year/` | competence and tax year plans, calendar, run selection, payments, year results, closing a tax year |
 | `amount/` | the amounts of a run |
 | `event/` | variable pay and termination events, their handlers and totals |
-| `employment/` | seniority increments converted into pension fund contributions |
-| `contribution/` | INPS rates and base, apprentices, domestic work, NASpI, pension and contractual funds |
 | `taxation/` | IRPEF, deductions and credits, regimes, regional and municipal surtax |
 | `family/` | art. 12 TUIR family deductions |
 | `withholding/` | withholding plan and cap, deferrals, somma esente, carried recoveries |
 | `sickness/` | sick pay rules, day classification, cumulation and comporto |
 | `accrual/` | extra-month (tredicesima, quattordicesima) accrual and settlement |
-| `termination/` | TFR, its revaluation and destination, ratei at termination |
+| `termination/` | bilateral fund and TFR settlement handlers, ratei at termination |
 | `ledger/` | ledger entries, posting and remittance codes |
 | `state/` | period state, opening balances and its JSON serializer |
 | `assurance/` | decisions, assessment, ruleset assurance and the reconciliation invariants |

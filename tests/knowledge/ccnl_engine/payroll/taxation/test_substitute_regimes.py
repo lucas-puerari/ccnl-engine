@@ -50,7 +50,6 @@ from tests.integration.ccnl_engine.payroll.taxation.builders_residence import (
     COMUNE_BELFIORE,
     REGIONE,
 )
-from tests.knowledge.ccnl_engine.payroll.employment.builders_seniority import new_hire
 from tests.knowledge.ccnl_engine.payroll.support import (
     COMMERCIO,
     PA_FUNZIONI_CENTRALI,
@@ -62,6 +61,7 @@ from tests.knowledge.ccnl_engine.payroll.support import (
 from tests.knowledge.ccnl_engine.payroll.taxation.builders_current_year import (
     employment_only,
 )
+from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 if TYPE_CHECKING:
     from ccnl_engine import PeriodResult

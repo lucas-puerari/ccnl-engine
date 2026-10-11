@@ -14,16 +14,16 @@ from ccnl_engine.agreement.facade import CCNL
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.inputs import Employment, Permanent
-from ccnl_engine.payroll.contribution.inputs_pension_fund import NoPensionFund
 from ccnl_engine.payroll.period.inputs import PeriodFacts
 from ccnl_engine.payroll.year.inputs_competence_plan import CompetenceYearPlan
 from ccnl_engine.payroll.year.rules_tax_year import DEFAULT_PAYMENT_DAY
+from ccnl_engine.pension_fund.inputs import NoPensionFund
 from ccnl_engine.tax.annual.models import YearRules
 from tests.integration.ccnl_engine.payroll.taxation.builders_prior_year import (
     RENEWAL_WAIVED,
 )
-from tests.knowledge.ccnl_engine.payroll.employment.builders_seniority import new_hire
-from tests.knowledge.ccnl_engine.payroll.termination.builders_tfr import no_tfr_fund
+from tests.knowledge.ccnl_engine.seniority.builders import new_hire
+from tests.knowledge.ccnl_engine.severance.builders import no_tfr_fund
 
 if TYPE_CHECKING:
     from collections.abc import Mapping
@@ -353,11 +353,11 @@ def year_plan(
     those events.  ``employment`` holds the :class:`Employment` fields other
     than the CCNL and the level; the contract defaults to
     :class:`~ccnl_engine.inputs.Permanent`, the seniority to
-    :func:`~tests.knowledge.ccnl_engine.payroll.employment.builders_seniority.new_hire`
+    :func:`~tests.knowledge.ccnl_engine.seniority.builders.new_hire`
     of ``year``, the category of a
     Metalmeccanico Federmeccanica level, which fixes none, to impiegato (the
     industria INPS employer rate depends on it), the TFR fund to
-    :func:`~tests.knowledge.ccnl_engine.payroll.termination.builders_tfr.no_tfr_fund` of
+    :func:`~tests.knowledge.ccnl_engine.severance.builders.no_tfr_fund` of
     ``year`` and the TFR stays in
     the company (``tfr_treasury_fund=False``), not enrolled in a pension
     fund.  ``prior_year`` defaults to

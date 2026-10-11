@@ -6,7 +6,7 @@ no systematic error. Amounts are owned by the reference cases, the oracle
 tests and the per-contract loader tests.
 
 The same scan checks the minimum INPS base of every level
-(:mod:`tests.knowledge.ccnl_engine.payroll.contribution.oracles_2026`): a full month
+(:mod:`tests.knowledge.ccnl_engine.contribution.oracles`): a full month
 of a full-time worker is contributed on at least 26 daily floors, unless
 art. 7 c. 5 D.L. 463/1983 excludes the worker or a blocker on the INPS
 amounts says the minimum is undetermined.
@@ -43,11 +43,11 @@ from ccnl_engine.inputs import (
 )
 from ccnl_engine.results import BlockerCode, CalculationStatus
 from tests.integration.ccnl_engine.payroll.taxation.builders_residence import resident
-from tests.knowledge.ccnl_engine.payroll.contribution.oracles_2026 import (
+from tests.knowledge.ccnl_engine.contribution.oracles import (
     FULL_TIME_MONTHLY_CONTRIBUTION_FLOOR,
     contribution_base,
 )
-from tests.knowledge.ccnl_engine.payroll.employment.builders_seniority import (
+from tests.knowledge.ccnl_engine.seniority.builders import (
     new_hire,
     pricing_category,
 )

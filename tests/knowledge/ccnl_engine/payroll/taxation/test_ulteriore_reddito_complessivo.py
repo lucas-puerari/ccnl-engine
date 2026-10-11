@@ -21,11 +21,11 @@ import pytest
 
 from ccnl_engine import Employment, PeriodResult
 from ccnl_engine.inputs import CurrentYearTaxFacts, Permanent
-from tests.knowledge.ccnl_engine.payroll.employment.builders_seniority import new_hire
 from tests.knowledge.ccnl_engine.payroll.support import regular_period
 from tests.knowledge.ccnl_engine.payroll.taxation.builders_current_year import (
     employment_only,
 )
+from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 pytestmark = pytest.mark.legal_scenario
 

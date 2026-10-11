@@ -36,14 +36,14 @@ from tests.integration.ccnl_engine.payroll.withholding.builders_withholding impo
 from tests.integration.ccnl_engine.payroll.year.builders_next_year_repository import (
     NextYearRepository,
 )
-from tests.knowledge.ccnl_engine.payroll.employment.builders_seniority import new_hire
 from tests.knowledge.ccnl_engine.payroll.support import (
     COMMERCIO,
     EMPLOYER,
     ENGINE,
     regular_period,
 )
-from tests.knowledge.ccnl_engine.payroll.termination.builders_tfr import no_tfr_fund
+from tests.knowledge.ccnl_engine.seniority.builders import new_hire
+from tests.knowledge.ccnl_engine.severance.builders import no_tfr_fund
 
 if TYPE_CHECKING:
     from ccnl_engine import PeriodResult

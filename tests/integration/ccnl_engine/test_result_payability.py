@@ -40,10 +40,10 @@ from tests.integration.ccnl_engine.payroll.taxation.builders_prior_year import (
     RENEWAL_WAIVED,
 )
 from tests.integration.ccnl_engine.payroll.taxation.builders_residence import resident
-from tests.knowledge.ccnl_engine.payroll.employment.builders_seniority import new_hire
 from tests.knowledge.ccnl_engine.payroll.state.builders_opening_state import (
     fresh_tax_year,
 )
+from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 _ENGINE = PayrollEngine.bundled()
 _EMPLOYER = EmployerProfile(provincial_pay_element=False, headcount=Headcount(50))
