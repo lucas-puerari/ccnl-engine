@@ -5,8 +5,8 @@ The page has two tables, both derived from the capability registry:
 - per capability: implementation, applicability, handler, facts and
   variants from the registry, and the provenance of the payable rules it
   reads;
-- per CCNL: the functional coverage of each layer and the capabilities its
-  data leaves partial, the same cells as the contracts index
+- per CCNL: the coverage of the core payroll path and the capabilities its
+  data leave partial, the same cells as the contracts index
   (:func:`scripts.documentation.coverage.coverage_cells`).
 
 Run with::
@@ -35,6 +35,7 @@ from ccnl_engine.capability.registry.models import CapabilityImplementation
 from scripts.documentation.coverage.loaders import (
     IMPLEMENTATION_LEGEND,
     bundled_ccnls,
+    capability_scope,
     coverage_cells,
     latest_catalog_year,
     registry_summary,
@@ -81,7 +82,10 @@ index](index.md) and this page all derive from the same registry.
 
 ## Capabilities
 
-Each capability declares:
+Each capability has a **scope** on these pages: `core` (computed or decided
+on every run: the path the contracts index rates), `scenario` (an event, a
+termination, or a decided capability the engine covers only in part) or
+`outside_input`. Each also declares:
 
 - **Implementation:** `native` (bundled rules and request facts),
   `caller_supplied` (a caller rate or amount stands in for a rule),
@@ -178,18 +182,20 @@ def capability_rows(
     """
     lines = [
         (
-            "| Capability | Description | Layer | Implementation | Applies when"
-            " | Handler | Facts | Variants | Label | Rules (v / d / a / m) |"
+            "| Capability | Description | Scope | Layer | Implementation"
+            " | Applies when | Handler | Facts | Variants | Label"
+            " | Rules (v / d / a / m) |"
         ),
-        "|---|---|---|---|---|---|---|---|---|---|",
+        "|---|---|---|---|---|---|---|---|---|---|---|",
     ]
     for entry in catalog.capabilities:
         counts = by_capability.get(entry.feature, {})
         facts = ", ".join(f"`{f}`" for f in entry.required_facts) or "—"
         variants = ", ".join(entry.variants) or "—"
         lines.append(
-            f"| `{entry.feature}` | {entry.description} | {entry.layer.value} "
-            f"| {entry.implementation.value} | {entry.applies_when.value} "
+            f"| `{entry.feature}` | {entry.description} | {capability_scope(entry)} "
+            f"| {entry.layer.value} | {entry.implementation.value} "
+            f"| {entry.applies_when.value} "
             f"| {entry.handler.value if entry.handler else '—'} | {facts} "
             f"| {variants} | {capability_label(entry, counts)} | {_rules(counts)} |"
         )
@@ -209,17 +215,14 @@ def _ccnl_rows(
         Markdown table lines, one row per bundled CCNL.
     """
     lines = [
-        "| # | CCNL | L1 | L2 | L3 | Limits | Rules (v / d / a / m) |",
-        "|---|---|:---:|:---:|:---:|---|---|",
+        "| # | CCNL | Core | Limits | Rules (v / d / a / m) |",
+        "|---|---|:---:|---|---|",
     ]
     for i, ccnl in enumerate(bundled_ccnls(), 1):
         cells = coverage_cells(catalog, ccnl)
-        l1, l2, l3 = cells.layers
         link = f"[{ccnl.meta.name}]({ccnl.meta.ccnl_id}.md)"
         rules = _rules(by_file.get(f"agreement/{ccnl.meta.ccnl_id}.json", {}))
-        lines.append(
-            f"| {i} | {link} | {l1} | {l2} | {l3} | {cells.limits} | {rules} |"
-        )
+        lines.append(f"| {i} | {link} | {cells.core} | {cells.limits} | {rules} |")
     return lines
 
 

@@ -4,7 +4,6 @@ The coverage of every capability for a CCNL is the implementation the
 registry declares, lowered to ``partial`` when a ``missing`` note of the
 CCNL names the capability (data the engine supports but the file lacks) or
 an open limitation of the CCNL with a monetary impact limits it.
-A layer (gross, net, work rules) is as covered as its worst capability.
 
 The contracts index, the capability matrix and the contract pages all read
 this derivation, so they cannot disagree; no CCNL file declares a coverage
@@ -24,12 +23,10 @@ from ccnl_engine.capability.registry.models import (
 from ccnl_engine.errors import DataIntegrityError
 
 if TYPE_CHECKING:
-    from collections.abc import Iterable
-
     from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.capability.registry.models import CapabilityCatalog
 
-__all__ = ["CcnlCapability", "ccnl_capabilities", "layer_coverage"]
+__all__ = ["CcnlCapability", "ccnl_capabilities"]
 
 #: Implementations a ``missing`` note of the CCNL lowers to partial.
 _LOWERED = frozenset({
@@ -96,20 +93,3 @@ def ccnl_capabilities(
             )
         )
     return tuple(rows)
-
-
-def layer_coverage(
-    capabilities: Iterable[CcnlCapability],
-) -> dict[CapabilityLayer, CapabilityImplementation]:
-    """Return the coverage of each layer: its worst capability.
-
-    Returns:
-        Every layer to the worst implementation of its capabilities.
-    """
-    capabilities = tuple(capabilities)
-    return {
-        layer: CapabilityImplementation.worst(
-            c.implementation for c in capabilities if c.layer is layer
-        )
-        for layer in CapabilityLayer
-    }

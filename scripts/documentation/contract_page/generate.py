@@ -318,7 +318,7 @@ def _coverage_tables(
     meta: dict[str, Any],
     levels: list[dict[str, Any]],
 ) -> list[str]:
-    """Build the Funzionalità, Verifica and Freschezza tables.
+    """Build the Features, Verifica and Freschezza tables.
 
     Returns:
         List of markdown lines, from the section heading to the
@@ -337,19 +337,18 @@ def _coverage_tables(
     return [
         "## Coverage",
         "",
-        "### Funzionalità",
+        "### Features",
         "",
         (
-            "Derived from the capability registry, as in the"
-            " [capability matrix](capability-matrix.md)."
+            "Derived from the capability registry. The scenario features and"
+            " the ones outside the input are the same for every contract: see"
+            " the [capability matrix](capability-matrix.md)."
         ),
         "",
         IMPLEMENTATION_LEGEND,
-        "| Layer | Status |",
+        "| | |",
         "|---|---|",
-        f"| **L1 — Gross** | {cells.layers[0]} |",
-        f"| **L2 — Net** | {cells.layers[1]} |",
-        f"| **L3 — Work rules** | {cells.layers[2]} |",
+        f"| **Core payroll path** | {cells.core} |",
         f"| **Limits of this contract** | {cells.limits} |",
         "",
         "### Verifica",
@@ -407,7 +406,7 @@ def _coverage_section(
 ) -> list[str]:
     """Build the 4-axis coverage card.
 
-    Axes: Funzionalità (L1/L2/L3), Verifica (readiness + confidence),
+    Axes: Features (core path and limits), Verifica (readiness + confidence),
     Freschezza (renewal date + last human review + latest tranche),
     Semplificazioni (count of simplification notes).
 
