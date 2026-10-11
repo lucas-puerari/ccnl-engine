@@ -15,19 +15,19 @@
     ],
     "sources": [
       {
-        "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/",
-        "type": "table",
+        "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+        "type": "text",
         "agreement_date": "2025-11-22"
       },
       {
-        "url": "https://www.lexplain.it/tabelle-retributive-metalmeccanici-industria/",
-        "type": "table",
-        "agreement_date": null
+        "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf",
+        "type": "text",
+        "agreement_date": "2026-06-16"
       },
       {
-        "url": "https://www.lexplain.it/scatti-di-anzianita-contratto-metalmeccanici-industria/",
-        "type": "table",
-        "agreement_date": null
+        "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+        "type": "text",
+        "agreement_date": "2021-02-05"
       }
     ],
     "extraction": {
@@ -46,15 +46,15 @@
       },
       {
         "kind": "info",
-        "text": "JUNE 2025 TRANCHE: values verified against the agreement of 12 June 2025 (source: studiomorettistp.it and dinunzio.it, which report the official Federmeccanica-Assistal consolidated table minimums). All 9 levels confirmed."
+        "text": "JUNE 2025 TRANCHE: values read in the signed minutes of 12 June 2025 (Federmeccanica, Assistal, Fim, Fiom, Uilm), all 9 levels."
       },
       {
         "kind": "info",
-        "text": "JUNE 2024 AND JUNE 2026 TRANCHES: values verified on contratticcnl.it (updated July 2026) and lexplain.it."
+        "text": "JUNE 2024 AND JUNE 2026 TRANCHES: June 2024 read in the signed minutes of 11 June 2024; June 2026 in the renewal of 22 November 2025 (ratified by the referendum of 18-20 February 2026), whose June 2026 tranche absorbs the IPCA share set by the minutes of 16 June 2026."
       },
       {
         "kind": "info",
-        "text": "SENIORITY INCREMENTS: the proposal to replace monthly increments with a one-off 'early settlement' was REJECTED by the unions during the CCNL 2025-2028 negotiations (November 2025 agreement). Increments remain recurring monthly additions as provided by Art. 6 of the current CCNL. The model (seniority_count × amount_by_level) is correct. The amounts in amount_by_level are verified on lexplain.it."
+        "text": "SENIORITY INCREMENTS: the proposal to replace monthly increments with a one-off 'early settlement' was rejected in the 2025-2028 negotiations (renewal of 22 November 2025). Increments remain recurring monthly additions under Art. 6, Sez. Quarta Tit. IV, of the CCNL of 5 February 2021 (physical pp. 175-176), where the amounts by level are read."
       },
       {
         "kind": "info",
@@ -74,7 +74,7 @@
       },
       {
         "kind": "info",
-        "text": "JUN 2021, JUN 2022, JUN 2023 TRANCHES: values retrieved from lexplain.it (metalworking industry pay tables; secondary aggregator source). Cross-check: D1 Jun-2024=1719.67 confirms exact alignment with data already present. Four annual tranches (Jun 2021-2024) based on the IPCA mechanism from the CCNL 05/02/2021."
+        "text": "JUN 2021, JUN 2022, JUN 2023 TRANCHES: read in the CCNL of 5 February 2021 and the signed minutes of 16 June 2023; four annual tranches (June 2021-2024) under the IPCA mechanism of the 2021 CCNL."
       },
       {
         "kind": "info",
@@ -116,30 +116,33 @@
     "hourly_divisor": {
       "periods": [
         {
-          "valid_from": "2024-06-01",
+          "valid_from": "2021-06-01",
           "valid_until": null,
           "value": "173",
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "fiom-ccnl-2021",
-                "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+                "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
                 "kind": "associazione",
                 "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
                 "published_on": "2021-02-05",
                 "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
               },
-              "page": "168",
-              "section": "Sez. Quarta, Titolo IV, Art. 5 - Minimi tabellari e determinazione della quota di retribuzione oraria",
+              "page": "175",
+              "section": "Sez. Quarta, Titolo IV, Art. 5 (last paragraph)",
               "quote": "La retribuzione oraria viene determinata sulla base del divisore 173."
             },
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-10T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-06-01"
+              "verification_status": "verified",
+              "effective_from": "2021-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T20:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         }
@@ -152,11 +155,11 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "fiom-ccnl-2021",
-                "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+                "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
                 "kind": "associazione",
                 "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
                 "published_on": "2021-02-05",
@@ -164,14 +167,17 @@
               },
               "page": "178",
               "section": "Sez. Quarta, Titolo IV, Art. 7 - Tredicesima mensilita",
-              "quote": "L'azienda e tenuta a corrispondere per ciascun anno al lavoratore, in occasione della ricorrenza natalizia, una tredicesima mensilita"
+              "quote": "L'azienda è tenuta a corrispondere per ciascun anno al lavoratore, in occasione della ricorrenza natalizia, una tredicesima mensilità di importo ragguagliato alla retribuzione globale di fatto."
             },
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-10T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2021-06-01"
+              "verification_status": "verified",
+              "effective_from": "2021-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T20:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         }
@@ -264,26 +270,29 @@
         }
       },
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "fiom-ccnl-2021",
-            "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+            "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+            "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
             "kind": "associazione",
             "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
             "published_on": "2021-02-05",
             "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
           },
-          "page": "168-169",
-          "section": "Sez. Quarta, Titolo IV, Art. 6 - Aumenti periodici di anzianità",
-          "quote": "per ogni biennio di anzianità di servizio ... Ai fini del computo degli aumenti periodici si considera un massimo di 5 bienni"
+          "page": "175-176",
+          "section": "Sez. Quarta, Titolo IV, Art. 6 - Aumenti periodici di anzianita",
+          "quote": "per ogni biennio di anzianità di servizio [...] Ai fini del computo degli aumenti periodici si considera un massimo di 5 bienni."
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-10-10T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2021-06-01"
+          "verification_status": "verified",
+          "effective_from": "2021-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T20:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -291,26 +300,29 @@
       "min_days": 15,
       "comparison": "more_than",
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "fiom-ccnl-2021",
-            "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+            "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+            "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
             "kind": "associazione",
             "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
             "published_on": "2021-02-05",
             "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
           },
           "page": "178",
-          "section": "Sez. Quarta, Titolo IV, Art. 7 - Tredicesima mensilita, comma 3",
+          "section": "Sez. Quarta, Titolo IV, Art. 7, comma 3",
           "quote": "La frazione di mese superiore a 15 giorni va considerata a questi effetti come mese intero."
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-10-10T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2021-06-01"
+          "verification_status": "verified",
+          "effective_from": "2021-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T20:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -377,26 +389,29 @@
             "valid_until": "2022-06-01",
             "value": "1488.89",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiom-ccnl-2021",
-                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
                   "kind": "associazione",
                   "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
                   "published_on": "2021-02-05",
                   "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
                 "page": "191",
-                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello' (table after 'Tabelle dei minimi contrattuali', p. 190)",
-                "quote": "D1 ... 1.488,89"
+                "section": "CCNL 2021 'Minimi tabellari per livello'",
+                "quote": "D1 1.488,89 1.509,07"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2021-06-01"
+                "verification_status": "verified",
+                "effective_from": "2021-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -405,26 +420,29 @@
             "valid_until": "2023-06-01",
             "value": "1509.07",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiom-ccnl-2021",
-                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
                   "kind": "associazione",
                   "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
                   "published_on": "2021-02-05",
                   "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
                 "page": "191",
-                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello', column 'dal 1° giugno 2022' (confirmed by verbale 8/6/2022, which only splits the IPCA quota inside the tranche)",
-                "quote": "D1 ... 1.509,07"
+                "section": "CCNL 2021 'Minimi tabellari per livello'",
+                "quote": "D1 1.488,89 1.509,07"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2022-06-01"
+                "verification_status": "verified",
+                "effective_from": "2022-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -433,7 +451,7 @@
             "valid_until": "2024-06-01",
             "value": "1608.67",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-2023",
@@ -444,15 +462,18 @@
                   "sha256": "61a24a9688dcfd0fad3ac463ab948b23759f4da45b2fd220f0bf42965032d81f"
                 },
                 "page": "1",
-                "section": "Verbale di incontro 16/06/2023, table 'Minimi tabellari per livello dal 1° giugno 2023'",
-                "quote": "D1 ... 1.608,67"
+                "section": "Verbale 16/06/2023, Minimi tabellari per livello dal 1° giugno 2023",
+                "quote": "D1 ........ 1.608,67"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2023-06-01"
+                "verification_status": "verified",
+                "effective_from": "2023-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -461,7 +482,7 @@
             "valid_until": "2025-06-01",
             "value": "1719.67",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-2024",
@@ -472,15 +493,18 @@
                   "sha256": "c25205963fe9cd701e4b2360f47257f6169074a84182782d4be4a743e66bac59"
                 },
                 "page": "1",
-                "section": "Verbale di incontro 11/06/2024, table 'Minimi tabellari per livello dal 1° giugno 2024'",
-                "quote": "D1 ... 1.719,67"
+                "section": "Verbale 11/06/2024, Minimi dal 1° giugno 2024",
+                "quote": "D1 ........ 1.719,67"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-06-01"
+                "verification_status": "verified",
+                "effective_from": "2024-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -489,7 +513,7 @@
             "valid_until": "2026-06-01",
             "value": "1742.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-2025",
@@ -500,15 +524,18 @@
                   "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
                 },
                 "page": "1",
-                "section": "Verbale di incontro 12/06/2025, table 'Minimi tabellari per livello dal 1° giugno 2025'",
-                "quote": "D1 ... 1.742,03"
+                "section": "Verbale 12/06/2025, Minimi dal 1° giugno 2025",
+                "quote": "D1 1.742,03"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-06-01"
+                "verification_status": "verified",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -517,7 +544,7 @@
             "valid_until": "2027-06-01",
             "value": "1784.94",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-ipotesi-2025",
@@ -528,15 +555,18 @@
                   "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
                 "page": "2",
-                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2026'",
-                "quote": "D1 ... 1.784,94"
+                "section": "Ipotesi 22/11/2025, Tabelle dei minimi contrattuali",
+                "quote": "D1 1.784,94 1.833,02 1.885,37"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2026-06-01"
+                "verification_status": "verified",
+                "effective_from": "2026-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -545,7 +575,7 @@
             "valid_until": "2028-06-01",
             "value": "1833.02",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-ipotesi-2025",
@@ -556,15 +586,18 @@
                   "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
                 "page": "2",
-                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2027'",
-                "quote": "D1 ... 1833,02"
+                "section": "Ipotesi 22/11/2025, Tabelle dei minimi contrattuali",
+                "quote": "D1 1.784,94 1.833,02 1.885,37"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-06-01"
+                "verification_status": "verified",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               },
               "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
             }
@@ -574,7 +607,7 @@
             "valid_until": null,
             "value": "1885.37",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-ipotesi-2025",
@@ -585,15 +618,18 @@
                   "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
                 "page": "2",
-                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2028'",
-                "quote": "D1 ... 1885,37"
+                "section": "Ipotesi 22/11/2025, Tabelle dei minimi contrattuali",
+                "quote": "D1 1.784,94 1.833,02 1.885,37"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2028-06-01"
+                "verification_status": "verified",
+                "effective_from": "2028-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               },
               "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
             }
@@ -602,7 +638,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "uilm-ipotesi-2025",
@@ -613,15 +649,18 @@
             "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
           },
           "page": "2",
-          "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali'",
-          "quote": null
+          "section": "Tabelle dei minimi contrattuali",
+          "quote": "D1 1.784,94 1.833,02 1.885,37"
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-10-10T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2028-06-01"
+          "verification_status": "verified",
+          "effective_from": "2028-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T20:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -636,26 +675,29 @@
             "valid_until": "2022-06-01",
             "value": "1651.07",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiom-ccnl-2021",
-                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
                   "kind": "associazione",
                   "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
                   "published_on": "2021-02-05",
                   "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
                 "page": "191",
-                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello' (table after 'Tabelle dei minimi contrattuali', p. 190)",
-                "quote": "D2 ... 1.651,07"
+                "section": "CCNL 2021 'Minimi tabellari per livello'",
+                "quote": "D2 1.651,07 1.673,45"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2021-06-01"
+                "verification_status": "verified",
+                "effective_from": "2021-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -664,26 +706,29 @@
             "valid_until": "2023-06-01",
             "value": "1673.45",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiom-ccnl-2021",
-                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
                   "kind": "associazione",
                   "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
                   "published_on": "2021-02-05",
                   "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
                 "page": "191",
-                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello', column 'dal 1° giugno 2022' (confirmed by verbale 8/6/2022, which only splits the IPCA quota inside the tranche)",
-                "quote": "D2 ... 1.673,45"
+                "section": "CCNL 2021 'Minimi tabellari per livello'",
+                "quote": "D2 1.651,07 1.673,45"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2022-06-01"
+                "verification_status": "verified",
+                "effective_from": "2022-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -692,7 +737,7 @@
             "valid_until": "2024-06-01",
             "value": "1783.90",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-2023",
@@ -703,15 +748,18 @@
                   "sha256": "61a24a9688dcfd0fad3ac463ab948b23759f4da45b2fd220f0bf42965032d81f"
                 },
                 "page": "1",
-                "section": "Verbale di incontro 16/06/2023, table 'Minimi tabellari per livello dal 1° giugno 2023'",
-                "quote": "D2 ... 1.783,90"
+                "section": "Verbale 16/06/2023, Minimi tabellari per livello dal 1° giugno 2023",
+                "quote": "D2 ........ 1.783,90"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2023-06-01"
+                "verification_status": "verified",
+                "effective_from": "2023-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -720,7 +768,7 @@
             "valid_until": "2025-06-01",
             "value": "1906.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-2024",
@@ -731,15 +779,18 @@
                   "sha256": "c25205963fe9cd701e4b2360f47257f6169074a84182782d4be4a743e66bac59"
                 },
                 "page": "1",
-                "section": "Verbale di incontro 11/06/2024, table 'Minimi tabellari per livello dal 1° giugno 2024'",
-                "quote": "D2 ... 1.906,99"
+                "section": "Verbale 11/06/2024, Minimi dal 1° giugno 2024",
+                "quote": "D2 ........ 1.906,99"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-06-01"
+                "verification_status": "verified",
+                "effective_from": "2024-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -748,7 +799,7 @@
             "valid_until": "2026-06-01",
             "value": "1931.78",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-2025",
@@ -759,15 +810,18 @@
                   "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
                 },
                 "page": "1",
-                "section": "Verbale di incontro 12/06/2025, table 'Minimi tabellari per livello dal 1° giugno 2025'",
-                "quote": "D2 ... 1.931,78"
+                "section": "Verbale 12/06/2025, Minimi dal 1° giugno 2025",
+                "quote": "D2 1.931,78"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-06-01"
+                "verification_status": "verified",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -776,7 +830,7 @@
             "valid_until": "2027-06-01",
             "value": "1979.37",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-ipotesi-2025",
@@ -787,15 +841,18 @@
                   "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
                 "page": "2",
-                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2026'",
-                "quote": "D2 ... 1.979,37"
+                "section": "Ipotesi 22/11/2025, Tabelle dei minimi contrattuali",
+                "quote": "D2 1.979,37 2.032,70 2.090,76"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2026-06-01"
+                "verification_status": "verified",
+                "effective_from": "2026-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -804,7 +861,7 @@
             "valid_until": "2028-06-01",
             "value": "2032.70",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-ipotesi-2025",
@@ -815,15 +872,18 @@
                   "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
                 "page": "2",
-                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2027'",
-                "quote": "D2 ... 2032,70"
+                "section": "Ipotesi 22/11/2025, Tabelle dei minimi contrattuali",
+                "quote": "D2 1.979,37 2.032,70 2.090,76"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-06-01"
+                "verification_status": "verified",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               },
               "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
             }
@@ -833,7 +893,7 @@
             "valid_until": null,
             "value": "2090.76",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-ipotesi-2025",
@@ -844,15 +904,18 @@
                   "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
                 "page": "2",
-                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2028'",
-                "quote": "D2 ... 2090,76"
+                "section": "Ipotesi 22/11/2025, Tabelle dei minimi contrattuali",
+                "quote": "D2 1.979,37 2.032,70 2.090,76"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2028-06-01"
+                "verification_status": "verified",
+                "effective_from": "2028-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               },
               "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
             }
@@ -861,7 +924,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "uilm-ipotesi-2025",
@@ -872,15 +935,18 @@
             "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
           },
           "page": "2",
-          "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali'",
-          "quote": null
+          "section": "Tabelle dei minimi contrattuali",
+          "quote": "D2 1.979,37 2.032,70 2.090,76"
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-10-10T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2028-06-01"
+          "verification_status": "verified",
+          "effective_from": "2028-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T20:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -895,26 +961,29 @@
             "valid_until": "2022-06-01",
             "value": "1686.74",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiom-ccnl-2021",
-                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
                   "kind": "associazione",
                   "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
                   "published_on": "2021-02-05",
                   "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
                 "page": "191",
-                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello' (table after 'Tabelle dei minimi contrattuali', p. 190)",
-                "quote": "C1 ... 1.686,74"
+                "section": "CCNL 2021 'Minimi tabellari per livello'",
+                "quote": "C1 1.686,74 1.709,60"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2021-06-01"
+                "verification_status": "verified",
+                "effective_from": "2021-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -923,26 +992,29 @@
             "valid_until": "2023-06-01",
             "value": "1709.60",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiom-ccnl-2021",
-                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
                   "kind": "associazione",
                   "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
                   "published_on": "2021-02-05",
                   "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
                 "page": "191",
-                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello', column 'dal 1° giugno 2022' (confirmed by verbale 8/6/2022, which only splits the IPCA quota inside the tranche)",
-                "quote": "C1 ... 1.709,60"
+                "section": "CCNL 2021 'Minimi tabellari per livello'",
+                "quote": "C1 1.686,74 1.709,60"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2022-06-01"
+                "verification_status": "verified",
+                "effective_from": "2022-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -951,7 +1023,7 @@
             "valid_until": "2024-06-01",
             "value": "1822.43",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-2023",
@@ -962,15 +1034,18 @@
                   "sha256": "61a24a9688dcfd0fad3ac463ab948b23759f4da45b2fd220f0bf42965032d81f"
                 },
                 "page": "1",
-                "section": "Verbale di incontro 16/06/2023, table 'Minimi tabellari per livello dal 1° giugno 2023'",
-                "quote": "C1 ... 1.822,43"
+                "section": "Verbale 16/06/2023, Minimi tabellari per livello dal 1° giugno 2023",
+                "quote": "C1 ........ 1.822,43"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2023-06-01"
+                "verification_status": "verified",
+                "effective_from": "2023-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -979,7 +1054,7 @@
             "valid_until": "2025-06-01",
             "value": "1948.18",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-2024",
@@ -990,15 +1065,18 @@
                   "sha256": "c25205963fe9cd701e4b2360f47257f6169074a84182782d4be4a743e66bac59"
                 },
                 "page": "1",
-                "section": "Verbale di incontro 11/06/2024, table 'Minimi tabellari per livello dal 1° giugno 2024'",
-                "quote": "C1 ... 1.948,18"
+                "section": "Verbale 11/06/2024, Minimi dal 1° giugno 2024",
+                "quote": "C1 ........ 1.948,18"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-06-01"
+                "verification_status": "verified",
+                "effective_from": "2024-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1007,7 +1085,7 @@
             "valid_until": "2026-06-01",
             "value": "1973.51",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-2025",
@@ -1018,15 +1096,18 @@
                   "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
                 },
                 "page": "1",
-                "section": "Verbale di incontro 12/06/2025, table 'Minimi tabellari per livello dal 1° giugno 2025'",
-                "quote": "C1 ... 1.973,51"
+                "section": "Verbale 12/06/2025, Minimi dal 1° giugno 2025",
+                "quote": "C1 1.973,51"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-06-01"
+                "verification_status": "verified",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1035,7 +1116,7 @@
             "valid_until": "2027-06-01",
             "value": "2022.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-ipotesi-2025",
@@ -1046,15 +1127,18 @@
                   "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
                 "page": "2",
-                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2026'",
-                "quote": "C1 ... 2.022,12"
+                "section": "Ipotesi 22/11/2025, Tabelle dei minimi contrattuali",
+                "quote": "C1 2.022,12 2.076,59 2.135,89"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2026-06-01"
+                "verification_status": "verified",
+                "effective_from": "2026-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1063,7 +1147,7 @@
             "valid_until": "2028-06-01",
             "value": "2076.59",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-ipotesi-2025",
@@ -1074,15 +1158,18 @@
                   "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
                 "page": "2",
-                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2027'",
-                "quote": "C1 ... 2076,59"
+                "section": "Ipotesi 22/11/2025, Tabelle dei minimi contrattuali",
+                "quote": "C1 2.022,12 2.076,59 2.135,89"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-06-01"
+                "verification_status": "verified",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               },
               "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
             }
@@ -1092,7 +1179,7 @@
             "valid_until": null,
             "value": "2135.89",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-ipotesi-2025",
@@ -1103,15 +1190,18 @@
                   "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
                 "page": "2",
-                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2028'",
-                "quote": "C1 ... 2135,89"
+                "section": "Ipotesi 22/11/2025, Tabelle dei minimi contrattuali",
+                "quote": "C1 2.022,12 2.076,59 2.135,89"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2028-06-01"
+                "verification_status": "verified",
+                "effective_from": "2028-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               },
               "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
             }
@@ -1120,7 +1210,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "uilm-ipotesi-2025",
@@ -1131,15 +1221,18 @@
             "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
           },
           "page": "2",
-          "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali'",
-          "quote": null
+          "section": "Tabelle dei minimi contrattuali",
+          "quote": "C1 2.022,12 2.076,59 2.135,89"
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-10-10T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2028-06-01"
+          "verification_status": "verified",
+          "effective_from": "2028-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T20:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -1154,26 +1247,29 @@
             "valid_until": "2022-06-01",
             "value": "1722.41",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiom-ccnl-2021",
-                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
                   "kind": "associazione",
                   "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
                   "published_on": "2021-02-05",
                   "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
                 "page": "191",
-                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello' (table after 'Tabelle dei minimi contrattuali', p. 190)",
-                "quote": "C2 ... 1.722,41"
+                "section": "CCNL 2021 'Minimi tabellari per livello'",
+                "quote": "C2 1.722,41 1.745,75"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2021-06-01"
+                "verification_status": "verified",
+                "effective_from": "2021-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1182,26 +1278,29 @@
             "valid_until": "2023-06-01",
             "value": "1745.75",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiom-ccnl-2021",
-                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
                   "kind": "associazione",
                   "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
                   "published_on": "2021-02-05",
                   "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
                 "page": "191",
-                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello', column 'dal 1° giugno 2022' (confirmed by verbale 8/6/2022, which only splits the IPCA quota inside the tranche)",
-                "quote": "C2 ... 1.745,75"
+                "section": "CCNL 2021 'Minimi tabellari per livello'",
+                "quote": "C2 1.722,41 1.745,75"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2022-06-01"
+                "verification_status": "verified",
+                "effective_from": "2022-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1210,7 +1309,7 @@
             "valid_until": "2024-06-01",
             "value": "1860.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-2023",
@@ -1221,15 +1320,18 @@
                   "sha256": "61a24a9688dcfd0fad3ac463ab948b23759f4da45b2fd220f0bf42965032d81f"
                 },
                 "page": "1",
-                "section": "Verbale di incontro 16/06/2023, table 'Minimi tabellari per livello dal 1° giugno 2023'",
-                "quote": "C2 ... 1.860,97"
+                "section": "Verbale 16/06/2023, Minimi tabellari per livello dal 1° giugno 2023",
+                "quote": "C2 ........ 1.860,97"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2023-06-01"
+                "verification_status": "verified",
+                "effective_from": "2023-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1238,7 +1340,7 @@
             "valid_until": "2025-06-01",
             "value": "1989.38",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-2024",
@@ -1249,15 +1351,18 @@
                   "sha256": "c25205963fe9cd701e4b2360f47257f6169074a84182782d4be4a743e66bac59"
                 },
                 "page": "1",
-                "section": "Verbale di incontro 11/06/2024, table 'Minimi tabellari per livello dal 1° giugno 2024'",
-                "quote": "C2 ... 1.989,38"
+                "section": "Verbale 11/06/2024, Minimi dal 1° giugno 2024",
+                "quote": "C2 ........ 1.989,38"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-06-01"
+                "verification_status": "verified",
+                "effective_from": "2024-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1266,7 +1371,7 @@
             "valid_until": "2026-06-01",
             "value": "2015.24",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-2025",
@@ -1277,15 +1382,18 @@
                   "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
                 },
                 "page": "1",
-                "section": "Verbale di incontro 12/06/2025, table 'Minimi tabellari per livello dal 1° giugno 2025'",
-                "quote": "C2 ... 2.015,24"
+                "section": "Verbale 12/06/2025, Minimi dal 1° giugno 2025",
+                "quote": "C2 2.015,24"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-06-01"
+                "verification_status": "verified",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1294,7 +1402,7 @@
             "valid_until": "2027-06-01",
             "value": "2064.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-ipotesi-2025",
@@ -1305,15 +1413,18 @@
                   "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
                 "page": "2",
-                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2026'",
-                "quote": "C2 ... 2.064,88"
+                "section": "Ipotesi 22/11/2025, Tabelle dei minimi contrattuali",
+                "quote": "C2 2.064,88 2.120,52 2.181,09"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2026-06-01"
+                "verification_status": "verified",
+                "effective_from": "2026-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1322,7 +1433,7 @@
             "valid_until": "2028-06-01",
             "value": "2120.52",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-ipotesi-2025",
@@ -1333,15 +1444,18 @@
                   "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
                 "page": "2",
-                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2027'",
-                "quote": "C2 ... 2120,52"
+                "section": "Ipotesi 22/11/2025, Tabelle dei minimi contrattuali",
+                "quote": "C2 2.064,88 2.120,52 2.181,09"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-06-01"
+                "verification_status": "verified",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               },
               "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
             }
@@ -1351,7 +1465,7 @@
             "valid_until": null,
             "value": "2181.09",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-ipotesi-2025",
@@ -1362,15 +1476,18 @@
                   "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
                 "page": "2",
-                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2028'",
-                "quote": "C2 ... 2181,09"
+                "section": "Ipotesi 22/11/2025, Tabelle dei minimi contrattuali",
+                "quote": "C2 2.064,88 2.120,52 2.181,09"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2028-06-01"
+                "verification_status": "verified",
+                "effective_from": "2028-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               },
               "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
             }
@@ -1379,7 +1496,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "uilm-ipotesi-2025",
@@ -1390,15 +1507,18 @@
             "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
           },
           "page": "2",
-          "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali'",
-          "quote": null
+          "section": "Tabelle dei minimi contrattuali",
+          "quote": "C2 2.064,88 2.120,52 2.181,09"
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-10-10T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2028-06-01"
+          "verification_status": "verified",
+          "effective_from": "2028-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T20:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -1413,26 +1533,29 @@
             "valid_until": "2022-06-01",
             "value": "1844.64",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiom-ccnl-2021",
-                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
                   "kind": "associazione",
                   "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
                   "published_on": "2021-02-05",
                   "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
                 "page": "191",
-                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello' (table after 'Tabelle dei minimi contrattuali', p. 190)",
-                "quote": "C3 ... 1.844,64"
+                "section": "CCNL 2021 'Minimi tabellari per livello'",
+                "quote": "C3 1.844,64 1.869,64"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2021-06-01"
+                "verification_status": "verified",
+                "effective_from": "2021-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1441,26 +1564,29 @@
             "valid_until": "2023-06-01",
             "value": "1869.64",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiom-ccnl-2021",
-                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
                   "kind": "associazione",
                   "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
                   "published_on": "2021-02-05",
                   "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
                 "page": "191",
-                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello', column 'dal 1° giugno 2022' (confirmed by verbale 8/6/2022, which only splits the IPCA quota inside the tranche)",
-                "quote": "C3 ... 1.869,64"
+                "section": "CCNL 2021 'Minimi tabellari per livello'",
+                "quote": "C3 1.844,64 1.869,64"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2022-06-01"
+                "verification_status": "verified",
+                "effective_from": "2022-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1469,7 +1595,7 @@
             "valid_until": "2024-06-01",
             "value": "1993.04",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-2023",
@@ -1480,15 +1606,18 @@
                   "sha256": "61a24a9688dcfd0fad3ac463ab948b23759f4da45b2fd220f0bf42965032d81f"
                 },
                 "page": "1",
-                "section": "Verbale di incontro 16/06/2023, table 'Minimi tabellari per livello dal 1° giugno 2023'",
-                "quote": "C3 ... 1.993,04"
+                "section": "Verbale 16/06/2023, Minimi tabellari per livello dal 1° giugno 2023",
+                "quote": "C3 ........ 1.993,04"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2023-06-01"
+                "verification_status": "verified",
+                "effective_from": "2023-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1497,7 +1626,7 @@
             "valid_until": "2025-06-01",
             "value": "2130.56",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-2024",
@@ -1508,15 +1637,18 @@
                   "sha256": "c25205963fe9cd701e4b2360f47257f6169074a84182782d4be4a743e66bac59"
                 },
                 "page": "1",
-                "section": "Verbale di incontro 11/06/2024, table 'Minimi tabellari per livello dal 1° giugno 2024'",
-                "quote": "C3 ... 2.130,56"
+                "section": "Verbale 11/06/2024, Minimi dal 1° giugno 2024",
+                "quote": "C3 ........ 2.130,56"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-06-01"
+                "verification_status": "verified",
+                "effective_from": "2024-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1525,7 +1657,7 @@
             "valid_until": "2026-06-01",
             "value": "2158.26",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-2025",
@@ -1536,15 +1668,18 @@
                   "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
                 },
                 "page": "1",
-                "section": "Verbale di incontro 12/06/2025, table 'Minimi tabellari per livello dal 1° giugno 2025'",
-                "quote": "C3 ... 2.158,26"
+                "section": "Verbale 12/06/2025, Minimi dal 1° giugno 2025",
+                "quote": "C3 2.158,26"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-06-01"
+                "verification_status": "verified",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1553,7 +1688,7 @@
             "valid_until": "2027-06-01",
             "value": "2211.43",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-ipotesi-2025",
@@ -1564,15 +1699,18 @@
                   "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
                 "page": "2",
-                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2026'",
-                "quote": "C3 ... 2.211,43"
+                "section": "Ipotesi 22/11/2025, Tabelle dei minimi contrattuali",
+                "quote": "C3 2.211,43 2.271,01 2.335,88"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2026-06-01"
+                "verification_status": "verified",
+                "effective_from": "2026-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1581,7 +1719,7 @@
             "valid_until": "2028-06-01",
             "value": "2271.01",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-ipotesi-2025",
@@ -1592,15 +1730,18 @@
                   "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
                 "page": "2",
-                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2027'",
-                "quote": "C3 ... 2271,01"
+                "section": "Ipotesi 22/11/2025, Tabelle dei minimi contrattuali",
+                "quote": "C3 2.211,43 2.271,01 2.335,88"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-06-01"
+                "verification_status": "verified",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               },
               "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
             }
@@ -1610,7 +1751,7 @@
             "valid_until": null,
             "value": "2335.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-ipotesi-2025",
@@ -1621,15 +1762,18 @@
                   "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
                 "page": "2",
-                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2028'",
-                "quote": "C3 ... 2335,88"
+                "section": "Ipotesi 22/11/2025, Tabelle dei minimi contrattuali",
+                "quote": "C3 2.211,43 2.271,01 2.335,88"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2028-06-01"
+                "verification_status": "verified",
+                "effective_from": "2028-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               },
               "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
             }
@@ -1638,7 +1782,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "uilm-ipotesi-2025",
@@ -1649,15 +1793,18 @@
             "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
           },
           "page": "2",
-          "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali'",
-          "quote": null
+          "section": "Tabelle dei minimi contrattuali",
+          "quote": "C3 2.211,43 2.271,01 2.335,88"
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-10-10T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2028-06-01"
+          "verification_status": "verified",
+          "effective_from": "2028-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T20:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -1672,26 +1819,29 @@
             "valid_until": "2022-06-01",
             "value": "1977.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiom-ccnl-2021",
-                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
                   "kind": "associazione",
                   "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
                   "published_on": "2021-02-05",
                   "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
                 "page": "191",
-                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello' (table after 'Tabelle dei minimi contrattuali', p. 190)",
-                "quote": "B1 ... 1.977,19"
+                "section": "CCNL 2021 'Minimi tabellari per livello'",
+                "quote": "B1 1.977,19 2.003,99"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2021-06-01"
+                "verification_status": "verified",
+                "effective_from": "2021-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1700,26 +1850,29 @@
             "valid_until": "2023-06-01",
             "value": "2003.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiom-ccnl-2021",
-                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
                   "kind": "associazione",
                   "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
                   "published_on": "2021-02-05",
                   "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
                 "page": "191",
-                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello', column 'dal 1° giugno 2022' (confirmed by verbale 8/6/2022, which only splits the IPCA quota inside the tranche)",
-                "quote": "B1 ... 2.003,99"
+                "section": "CCNL 2021 'Minimi tabellari per livello'",
+                "quote": "B1 1.977,19 2.003,99"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2022-06-01"
+                "verification_status": "verified",
+                "effective_from": "2022-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1728,7 +1881,7 @@
             "valid_until": "2024-06-01",
             "value": "2136.25",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-2023",
@@ -1739,15 +1892,18 @@
                   "sha256": "61a24a9688dcfd0fad3ac463ab948b23759f4da45b2fd220f0bf42965032d81f"
                 },
                 "page": "1",
-                "section": "Verbale di incontro 16/06/2023, table 'Minimi tabellari per livello dal 1° giugno 2023'",
-                "quote": "B1 ... 2.136,25"
+                "section": "Verbale 16/06/2023, Minimi tabellari per livello dal 1° giugno 2023",
+                "quote": "B1 ........ 2.136,25"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2023-06-01"
+                "verification_status": "verified",
+                "effective_from": "2023-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1756,7 +1912,7 @@
             "valid_until": "2025-06-01",
             "value": "2283.65",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-2024",
@@ -1767,15 +1923,18 @@
                   "sha256": "c25205963fe9cd701e4b2360f47257f6169074a84182782d4be4a743e66bac59"
                 },
                 "page": "1",
-                "section": "Verbale di incontro 11/06/2024, table 'Minimi tabellari per livello dal 1° giugno 2024'",
-                "quote": "B1 ... 2.283,65"
+                "section": "Verbale 11/06/2024, Minimi dal 1° giugno 2024",
+                "quote": "B1 ........ 2.283,65"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-06-01"
+                "verification_status": "verified",
+                "effective_from": "2024-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1784,7 +1943,7 @@
             "valid_until": "2026-06-01",
             "value": "2313.34",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-2025",
@@ -1795,15 +1954,18 @@
                   "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
                 },
                 "page": "1",
-                "section": "Verbale di incontro 12/06/2025, table 'Minimi tabellari per livello dal 1° giugno 2025'",
-                "quote": "B1 ... 2.313,34"
+                "section": "Verbale 12/06/2025, Minimi dal 1° giugno 2025",
+                "quote": "B1 2.313,34"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-06-01"
+                "verification_status": "verified",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1812,7 +1974,7 @@
             "valid_until": "2027-06-01",
             "value": "2370.33",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-ipotesi-2025",
@@ -1823,15 +1985,18 @@
                   "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
                 "page": "2",
-                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2026'",
-                "quote": "B1 ... 2.370,33"
+                "section": "Ipotesi 22/11/2025, Tabelle dei minimi contrattuali",
+                "quote": "B1 2.370,33 2.434,19 2.503,72"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2026-06-01"
+                "verification_status": "verified",
+                "effective_from": "2026-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1840,7 +2005,7 @@
             "valid_until": "2028-06-01",
             "value": "2434.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-ipotesi-2025",
@@ -1851,15 +2016,18 @@
                   "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
                 "page": "2",
-                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2027'",
-                "quote": "B1 ... 2434,19"
+                "section": "Ipotesi 22/11/2025, Tabelle dei minimi contrattuali",
+                "quote": "B1 2.370,33 2.434,19 2.503,72"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-06-01"
+                "verification_status": "verified",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               },
               "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
             }
@@ -1869,7 +2037,7 @@
             "valid_until": null,
             "value": "2503.72",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-ipotesi-2025",
@@ -1880,15 +2048,18 @@
                   "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
                 "page": "2",
-                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2028'",
-                "quote": "B1 ... 2503,72"
+                "section": "Ipotesi 22/11/2025, Tabelle dei minimi contrattuali",
+                "quote": "B1 2.370,33 2.434,19 2.503,72"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2028-06-01"
+                "verification_status": "verified",
+                "effective_from": "2028-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               },
               "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
             }
@@ -1897,7 +2068,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "uilm-ipotesi-2025",
@@ -1908,15 +2079,18 @@
             "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
           },
           "page": "2",
-          "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali'",
-          "quote": null
+          "section": "Tabelle dei minimi contrattuali",
+          "quote": "B1 2.370,33 2.434,19 2.503,72"
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-10-10T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2028-06-01"
+          "verification_status": "verified",
+          "effective_from": "2028-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T20:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -1931,26 +2105,29 @@
             "valid_until": "2022-06-01",
             "value": "2121.20",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiom-ccnl-2021",
-                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
                   "kind": "associazione",
                   "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
                   "published_on": "2021-02-05",
                   "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
                 "page": "191",
-                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello' (table after 'Tabelle dei minimi contrattuali', p. 190)",
-                "quote": "B2 ... 2.121,20"
+                "section": "CCNL 2021 'Minimi tabellari per livello'",
+                "quote": "B2 2.121,20 2.149,95"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2021-06-01"
+                "verification_status": "verified",
+                "effective_from": "2021-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1959,26 +2136,29 @@
             "valid_until": "2023-06-01",
             "value": "2149.95",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiom-ccnl-2021",
-                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
                   "kind": "associazione",
                   "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
                   "published_on": "2021-02-05",
                   "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
                 "page": "191",
-                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello', column 'dal 1° giugno 2022' (confirmed by verbale 8/6/2022, which only splits the IPCA quota inside the tranche)",
-                "quote": "B2 ... 2.149,95"
+                "section": "CCNL 2021 'Minimi tabellari per livello'",
+                "quote": "B2 2.121,20 2.149,95"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2022-06-01"
+                "verification_status": "verified",
+                "effective_from": "2022-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1987,7 +2167,7 @@
             "valid_until": "2024-06-01",
             "value": "2291.85",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-2023",
@@ -1998,15 +2178,18 @@
                   "sha256": "61a24a9688dcfd0fad3ac463ab948b23759f4da45b2fd220f0bf42965032d81f"
                 },
                 "page": "1",
-                "section": "Verbale di incontro 16/06/2023, table 'Minimi tabellari per livello dal 1° giugno 2023'",
-                "quote": "B2 ... 2.291,85"
+                "section": "Verbale 16/06/2023, Minimi tabellari per livello dal 1° giugno 2023",
+                "quote": "B2 ........ 2.291,85"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2023-06-01"
+                "verification_status": "verified",
+                "effective_from": "2023-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -2015,7 +2198,7 @@
             "valid_until": "2025-06-01",
             "value": "2449.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-2024",
@@ -2026,15 +2209,18 @@
                   "sha256": "c25205963fe9cd701e4b2360f47257f6169074a84182782d4be4a743e66bac59"
                 },
                 "page": "1",
-                "section": "Verbale di incontro 11/06/2024, table 'Minimi tabellari per livello dal 1° giugno 2024'",
-                "quote": "B2 ... 2.449,99"
+                "section": "Verbale 11/06/2024, Minimi dal 1° giugno 2024",
+                "quote": "B2 ........ 2.449,99"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-06-01"
+                "verification_status": "verified",
+                "effective_from": "2024-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -2043,7 +2229,7 @@
             "valid_until": "2026-06-01",
             "value": "2481.84",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-2025",
@@ -2054,15 +2240,18 @@
                   "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
                 },
                 "page": "1",
-                "section": "Verbale di incontro 12/06/2025, table 'Minimi tabellari per livello dal 1° giugno 2025'",
-                "quote": "B2 ... 2.481,84"
+                "section": "Verbale 12/06/2025, Minimi dal 1° giugno 2025",
+                "quote": "B2 2.481,84"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-06-01"
+                "verification_status": "verified",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -2071,7 +2260,7 @@
             "valid_until": "2027-06-01",
             "value": "2542.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-ipotesi-2025",
@@ -2082,15 +2271,18 @@
                   "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
                 "page": "2",
-                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2026'",
-                "quote": "B2 ... 2.542,98"
+                "section": "Ipotesi 22/11/2025, Tabelle dei minimi contrattuali",
+                "quote": "B2 2.542,98 2.611,49 2.686,08"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2026-06-01"
+                "verification_status": "verified",
+                "effective_from": "2026-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -2099,7 +2291,7 @@
             "valid_until": "2028-06-01",
             "value": "2611.49",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-ipotesi-2025",
@@ -2110,15 +2302,18 @@
                   "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
                 "page": "2",
-                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2027'",
-                "quote": "B2 ... 2611,49"
+                "section": "Ipotesi 22/11/2025, Tabelle dei minimi contrattuali",
+                "quote": "B2 2.542,98 2.611,49 2.686,08"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-06-01"
+                "verification_status": "verified",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               },
               "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
             }
@@ -2128,7 +2323,7 @@
             "valid_until": null,
             "value": "2686.08",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-ipotesi-2025",
@@ -2139,15 +2334,18 @@
                   "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
                 "page": "2",
-                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2028'",
-                "quote": "B2 ... 2686,08"
+                "section": "Ipotesi 22/11/2025, Tabelle dei minimi contrattuali",
+                "quote": "B2 2.542,98 2.611,49 2.686,08"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2028-06-01"
+                "verification_status": "verified",
+                "effective_from": "2028-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               },
               "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
             }
@@ -2156,7 +2354,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "uilm-ipotesi-2025",
@@ -2167,15 +2365,18 @@
             "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
           },
           "page": "2",
-          "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali'",
-          "quote": null
+          "section": "Tabelle dei minimi contrattuali",
+          "quote": "B2 2.542,98 2.611,49 2.686,08"
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-10-10T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2028-06-01"
+          "verification_status": "verified",
+          "effective_from": "2028-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T20:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -2190,26 +2391,29 @@
             "valid_until": "2022-06-01",
             "value": "2368.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiom-ccnl-2021",
-                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
                   "kind": "associazione",
                   "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
                   "published_on": "2021-02-05",
                   "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
                 "page": "191",
-                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello' (table after 'Tabelle dei minimi contrattuali', p. 190)",
-                "quote": "B3 ... 2.368,12"
+                "section": "CCNL 2021 'Minimi tabellari per livello'",
+                "quote": "B3 2.368,12 2.400,22"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2021-06-01"
+                "verification_status": "verified",
+                "effective_from": "2021-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -2218,26 +2422,29 @@
             "valid_until": "2023-06-01",
             "value": "2400.22",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiom-ccnl-2021",
-                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
                   "kind": "associazione",
                   "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
                   "published_on": "2021-02-05",
                   "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
                 "page": "191",
-                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello', column 'dal 1° giugno 2022' (confirmed by verbale 8/6/2022, which only splits the IPCA quota inside the tranche)",
-                "quote": "B3 ... 2.400,22"
+                "section": "CCNL 2021 'Minimi tabellari per livello'",
+                "quote": "B3 2.368,12 2.400,22"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2022-06-01"
+                "verification_status": "verified",
+                "effective_from": "2022-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -2246,7 +2453,7 @@
             "valid_until": "2024-06-01",
             "value": "2558.63",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-2023",
@@ -2257,15 +2464,18 @@
                   "sha256": "61a24a9688dcfd0fad3ac463ab948b23759f4da45b2fd220f0bf42965032d81f"
                 },
                 "page": "1",
-                "section": "Verbale di incontro 16/06/2023, table 'Minimi tabellari per livello dal 1° giugno 2023'",
-                "quote": "B3 ... 2.558,63"
+                "section": "Verbale 16/06/2023, Minimi tabellari per livello dal 1° giugno 2023",
+                "quote": "B3 ........ 2.558,63"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2023-06-01"
+                "verification_status": "verified",
+                "effective_from": "2023-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -2274,7 +2484,7 @@
             "valid_until": "2025-06-01",
             "value": "2735.18",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-2024",
@@ -2285,15 +2495,18 @@
                   "sha256": "c25205963fe9cd701e4b2360f47257f6169074a84182782d4be4a743e66bac59"
                 },
                 "page": "1",
-                "section": "Verbale di incontro 11/06/2024, table 'Minimi tabellari per livello dal 1° giugno 2024'",
-                "quote": "B3 ... 2.735,18"
+                "section": "Verbale 11/06/2024, Minimi dal 1° giugno 2024",
+                "quote": "B3 ........ 2.735,18"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-06-01"
+                "verification_status": "verified",
+                "effective_from": "2024-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -2302,7 +2515,7 @@
             "valid_until": "2026-06-01",
             "value": "2770.74",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-2025",
@@ -2313,15 +2526,18 @@
                   "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
                 },
                 "page": "1",
-                "section": "Verbale di incontro 12/06/2025, table 'Minimi tabellari per livello dal 1° giugno 2025'",
-                "quote": "B3 ... 2.770,74"
+                "section": "Verbale 12/06/2025, Minimi dal 1° giugno 2025",
+                "quote": "B3 2.770,74"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-06-01"
+                "verification_status": "verified",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -2330,7 +2546,7 @@
             "valid_until": "2027-06-01",
             "value": "2838.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-ipotesi-2025",
@@ -2341,15 +2557,18 @@
                   "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
                 "page": "2",
-                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2026'",
-                "quote": "B3 ... 2.838,99"
+                "section": "Ipotesi 22/11/2025, Tabelle dei minimi contrattuali",
+                "quote": "B3 2.838,99 2.915,48 2.998,76"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2026-06-01"
+                "verification_status": "verified",
+                "effective_from": "2026-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -2358,7 +2577,7 @@
             "valid_until": "2028-06-01",
             "value": "2915.48",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-ipotesi-2025",
@@ -2369,15 +2588,18 @@
                   "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
                 "page": "2",
-                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2027'",
-                "quote": "B3 ... 2915,48"
+                "section": "Ipotesi 22/11/2025, Tabelle dei minimi contrattuali",
+                "quote": "B3 2.838,99 2.915,48 2.998,76"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-06-01"
+                "verification_status": "verified",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               },
               "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
             }
@@ -2387,7 +2609,7 @@
             "valid_until": null,
             "value": "2998.76",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-ipotesi-2025",
@@ -2398,15 +2620,18 @@
                   "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
                 "page": "2",
-                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2028'",
-                "quote": "B3 ... 2998,76"
+                "section": "Ipotesi 22/11/2025, Tabelle dei minimi contrattuali",
+                "quote": "B3 2.838,99 2.915,48 2.998,76"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2028-06-01"
+                "verification_status": "verified",
+                "effective_from": "2028-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               },
               "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
             }
@@ -2415,7 +2640,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "uilm-ipotesi-2025",
@@ -2426,15 +2651,18 @@
             "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
           },
           "page": "2",
-          "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali'",
-          "quote": null
+          "section": "Tabelle dei minimi contrattuali",
+          "quote": "B3 2.838,99 2.915,48 2.998,76"
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-10-10T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2028-06-01"
+          "verification_status": "verified",
+          "effective_from": "2028-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T20:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -2449,26 +2677,29 @@
             "valid_until": "2022-06-01",
             "value": "2424.86",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiom-ccnl-2021",
-                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
                   "kind": "associazione",
                   "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
                   "published_on": "2021-02-05",
                   "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
                 "page": "191",
-                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello' (table after 'Tabelle dei minimi contrattuali', p. 190)",
-                "quote": "A1 ... 2.424,86"
+                "section": "CCNL 2021 'Minimi tabellari per livello'",
+                "quote": "A1 2.424,86 2.457,72"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2021-06-01"
+                "verification_status": "verified",
+                "effective_from": "2021-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -2477,26 +2708,29 @@
             "valid_until": "2023-06-01",
             "value": "2457.72",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiom-ccnl-2021",
-                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                  "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+                  "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
                   "kind": "associazione",
                   "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
                   "published_on": "2021-02-05",
                   "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
                 },
                 "page": "191",
-                "section": "Sez. Quarta Titolo IV, 'Minimi tabellari per livello', column 'dal 1° giugno 2022' (confirmed by verbale 8/6/2022, which only splits the IPCA quota inside the tranche)",
-                "quote": "A1 ... 2.457,72"
+                "section": "CCNL 2021 'Minimi tabellari per livello'",
+                "quote": "A1 2.424,86 2.457,72"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2022-06-01"
+                "verification_status": "verified",
+                "effective_from": "2022-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -2505,7 +2739,7 @@
             "valid_until": "2024-06-01",
             "value": "2619.93",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-2023",
@@ -2516,15 +2750,18 @@
                   "sha256": "61a24a9688dcfd0fad3ac463ab948b23759f4da45b2fd220f0bf42965032d81f"
                 },
                 "page": "1",
-                "section": "Verbale di incontro 16/06/2023, table 'Minimi tabellari per livello dal 1° giugno 2023'",
-                "quote": "A1 ... 2.619,93"
+                "section": "Verbale 16/06/2023, Minimi tabellari per livello dal 1° giugno 2023",
+                "quote": "A1 ........ 2.619,93"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2023-06-01"
+                "verification_status": "verified",
+                "effective_from": "2023-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -2533,7 +2770,7 @@
             "valid_until": "2025-06-01",
             "value": "2800.71",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-2024",
@@ -2544,15 +2781,18 @@
                   "sha256": "c25205963fe9cd701e4b2360f47257f6169074a84182782d4be4a743e66bac59"
                 },
                 "page": "1",
-                "section": "Verbale di incontro 11/06/2024, table 'Minimi tabellari per livello dal 1° giugno 2024'",
-                "quote": "A1 ... 2.800,71"
+                "section": "Verbale 11/06/2024, Minimi dal 1° giugno 2024",
+                "quote": "A1 ........ 2.800,71"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-06-01"
+                "verification_status": "verified",
+                "effective_from": "2024-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -2561,7 +2801,7 @@
             "valid_until": "2026-06-01",
             "value": "2837.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-2025",
@@ -2572,15 +2812,18 @@
                   "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
                 },
                 "page": "1",
-                "section": "Verbale di incontro 12/06/2025, table 'Minimi tabellari per livello dal 1° giugno 2025'",
-                "quote": "A1 ... 2.837,12"
+                "section": "Verbale 12/06/2025, Minimi dal 1° giugno 2025",
+                "quote": "A1 2.837,12"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-06-01"
+                "verification_status": "verified",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -2589,7 +2832,7 @@
             "valid_until": "2027-06-01",
             "value": "2907.01",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-ipotesi-2025",
@@ -2600,15 +2843,18 @@
                   "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
                 "page": "2",
-                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2026'",
-                "quote": "A1 ... 2.907,01"
+                "section": "Ipotesi 22/11/2025, Tabelle dei minimi contrattuali",
+                "quote": "A1 2.907,01 2.985,33 3.070,61"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2026-06-01"
+                "verification_status": "verified",
+                "effective_from": "2026-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -2617,7 +2863,7 @@
             "valid_until": "2028-06-01",
             "value": "2985.33",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-ipotesi-2025",
@@ -2628,15 +2874,18 @@
                   "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
                 "page": "2",
-                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2027'",
-                "quote": "A1 ... 2985,33"
+                "section": "Ipotesi 22/11/2025, Tabelle dei minimi contrattuali",
+                "quote": "A1 2.907,01 2.985,33 3.070,61"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-06-01"
+                "verification_status": "verified",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               },
               "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
             }
@@ -2646,7 +2895,7 @@
             "valid_until": null,
             "value": "3070.61",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uilm-ipotesi-2025",
@@ -2657,15 +2906,18 @@
                   "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
                 },
                 "page": "2",
-                "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali', column 'dal 1° giugno 2028'",
-                "quote": "A1 ... 3070,61"
+                "section": "Ipotesi 22/11/2025, Tabelle dei minimi contrattuali",
+                "quote": "A1 2.907,01 2.985,33 3.070,61"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2028-06-01"
+                "verification_status": "verified",
+                "effective_from": "2028-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T20:00:00Z",
+                "review_id": "2026-10-11-ai"
               },
               "note": "Minimum agreed for this tranche; in June of each year the parties raise it to the IPCA adjustment when that is higher (ipotesi p. 2)."
             }
@@ -2674,7 +2926,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "uilm-ipotesi-2025",
@@ -2685,15 +2937,18 @@
             "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
           },
           "page": "2",
-          "section": "Ipotesi 22/11/2025, 'Tabelle dei minimi contrattuali'",
-          "quote": null
+          "section": "Tabelle dei minimi contrattuali",
+          "quote": "A1 2.907,01 2.985,33 3.070,61"
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-10-10T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2028-06-01"
+          "verification_status": "verified",
+          "effective_from": "2028-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T20:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     }
@@ -2804,11 +3059,11 @@
     "version": "2026.3",
     "effective_from": "2021-06-01",
     "effective_until": null,
-    "source": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/",
+    "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "e84554736a7e0d9a5d4df38d39f692490048ce12f36cebe71bad77f157548ee5",
+    "source_hash": "e6d61a5474c9b8ecf81b8ba492464f1b1490f77bdf46c7fa1a642c26d2bce86f",
     "published_at": "2026-09-08",
-    "source_type": "commercial_secondary"
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
@@ -2832,26 +3087,29 @@
             "weekday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "fiom-ccnl-2021",
-                "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+                "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
                 "kind": "associazione",
                 "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
                 "published_on": "2021-02-05",
                 "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
               },
               "page": "161",
-              "section": "Sez. Quarta, Titolo III, Art. 7 - Lavoro straordinario, notturno e festivo, rate table, column 'per lavoro non a turni'",
-              "quote": "a) lavoro straordinario: prime due ore ... 25% (per lavoro non a turni)"
+              "section": "Sez. Quarta, Titolo III, Art. 7, rate table, non a turni",
+              "quote": "a) lavoro straordinario: prime due ore ... 25% 25%"
             },
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-10T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2021-06-01"
+              "verification_status": "verified",
+              "effective_from": "2021-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T20:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         },
@@ -2874,26 +3132,29 @@
             "weekday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "fiom-ccnl-2021",
-                "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+                "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
                 "kind": "associazione",
                 "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
                 "published_on": "2021-02-05",
                 "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
               },
               "page": "161",
-              "section": "Sez. Quarta, Titolo III, Art. 7 - Lavoro straordinario, notturno e festivo, rate table, column 'per lavoro non a turni'",
-              "quote": "ore successive ... 30%"
+              "section": "Art. 7 rate table",
+              "quote": "ore successive ... 30% 30%"
             },
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-10T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2021-06-01"
+              "verification_status": "verified",
+              "effective_from": "2021-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T20:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         },
@@ -2915,26 +3176,29 @@
             "night"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "fiom-ccnl-2021",
-                "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+                "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
                 "kind": "associazione",
                 "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
                 "published_on": "2021-02-05",
                 "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
               },
               "page": "161",
-              "section": "Sez. Quarta, Titolo III, Art. 7 - Lavoro straordinario, notturno e festivo, rate table, column 'per lavoro non a turni'",
-              "quote": "g) straordinario notturno (prime 2 ore) ... 50% ... straordinario notturno (ore successive) ... 50% (non a turni; a turni 40%/45%)"
+              "section": "Art. 7 rate table, g)",
+              "quote": "g) straordinario notturno (prime 2 ore) ... 50% 40% / straordinario notturno (ore successive) ... 50% 45%"
             },
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-10T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2021-06-01"
+              "verification_status": "verified",
+              "effective_from": "2021-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T20:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         },
@@ -2956,26 +3220,29 @@
             "holiday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "fiom-ccnl-2021",
-                "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+                "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
                 "kind": "associazione",
                 "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
                 "published_on": "2021-02-05",
                 "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
               },
               "page": "161",
-              "section": "Sez. Quarta, Titolo III, Art. 7 - Lavoro straordinario, notturno e festivo, rate table, column 'per lavoro non a turni'",
-              "quote": "e) straordinario festivo ... 55% (f) con riposo compensativo 35%)"
+              "section": "Art. 7 rate table, e)",
+              "quote": "e) straordinario festivo ... 55% 55%"
             },
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-10T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2021-06-01"
+              "verification_status": "verified",
+              "effective_from": "2021-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T20:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         },
@@ -2997,26 +3264,29 @@
             "night_holiday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "fiom-ccnl-2021",
-                "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+                "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+                "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
                 "kind": "associazione",
                 "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
                 "published_on": "2021-02-05",
                 "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
               },
               "page": "161",
-              "section": "Sez. Quarta, Titolo III, Art. 7 - Lavoro straordinario, notturno e festivo, rate table, column 'per lavoro non a turni'",
-              "quote": "l) straordinario notturno festivo ... 75% (a turni 65%; m) con riposo compensativo 55%)"
+              "section": "Art. 7 rate table, l)",
+              "quote": "l) straordinario notturno festivo ... 75% 65%"
             },
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-10T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2021-06-01"
+              "verification_status": "verified",
+              "effective_from": "2021-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T20:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         }
@@ -3026,26 +3296,29 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "fiom-ccnl-2021",
-            "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+            "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+            "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
             "kind": "associazione",
             "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
             "published_on": "2021-02-05",
             "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
           },
-          "page": "157",
-          "section": "Sez. Quarta, Titolo III, Art. 9 - Festività",
+          "page": "164",
+          "section": "Sez. Quarta, Titolo III, Art. 9 - Festivita",
           "quote": "l'importo di una quota giornaliera della retribuzione di fatto, pari a 1/26 della retribuzione mensile fissa"
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-10-10T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2021-06-01"
+          "verification_status": "verified",
+          "effective_from": "2021-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T20:00:00Z",
+          "review_id": "2026-10-11-ai"
         },
         "note": "The only daily quota the CCNL defines; the run applies it to absences and partly employed months."
       }
@@ -3126,26 +3399,28 @@
         }
       },
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
             "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
             "kind": "associazione",
             "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
-            "pages": [
-              "196-199"
-            ]
+            "published_on": "2021-02-05",
+            "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
           },
-          "page": "196-199",
-          "section": "Sez. Quarta, Titolo VI, Art. 2: Conservazione del posto di lavoro; Trattamento economico (sha256 ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151)",
-          "quote": "il lavoratore non in prova ha diritto alla conservazione del posto per un periodo, definito comporto breve, di: a) 183 giorni di calendario per anzianità di servizio fino a 3 anni compiuti; b) 274 giorni di calendario per anzianità di servizio oltre i 3 anni e fino ai 6 anni compiuti; c) 365 giorni di calendario per anzianità di servizio oltre i 6 anni. […] I suddetti periodi di conservazione del posto e le causali di prolungamento si intendono riferiti alle assenze complessivamente verificatesi nei tre anni precedenti ogni nuovo ultimo episodio morboso. […] – alla intera retribuzione globale per i primi 122 giorni di calendario e all’80% della retribuzione globale per i giorni residui, per anzianità di servizio fino a tre anni compiuti; – alla intera retribuzione globale per i primi 153 giorni di calendario e all’80% della retribuzione globale per i giorni residui, per anzianità di servizio da tre a sei anni compiuti; – alla intera retribuzione globale per i primi 214 giorni di calendario e all’80% della retribuzione globale per i giorni residui, per anzianità di servizio oltre i sei anni. Il suddetto trattamento economico ricomincia ex novo in caso di malattia o infortunio non sul lavoro intervenuto dopo un periodo di 61 giorni di calendario dalla ripresa del servizio. […] nel caso in cui durante ogni anno (1° gennaio-31 dicembre) si siano verificate assenze per malattia di durata non superiore a 5 giorni per un numero di eventi superiori a 3, i primi tre giorni della quarta e delle successive assenze di durata non superiore a 5 giorni saranno retribuiti nel seguente modo: – quarta assenza: 66% della intera retribuzione globale; – quinta e successive: 50% della intera retribuzione globale."
+          "page": "200-203",
+          "section": "Sez. Quarta, Titolo VI, Art. 2",
+          "quote": "alla intera retribuzione globale per i primi 122 giorni di calendario e all'80% della retribuzione globale per i giorni residui"
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-10-07T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2021-06-01"
+          "verification_status": "verified",
+          "effective_from": "2021-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T20:00:00Z",
+          "review_id": "2026-10-11-ai"
         },
         "transformation": "Bands from 0, 36 and 72 completed months of recognised seniority (the exact third and sixth anniversary days fall in the higher band), read on the first day of the episode. Treatment chain: the sick days of consecutive episodes, restarted when at least 61 calendar days separate the return to work (the day after the last sick day) from the next episode. Comporto: sick days within the three years that end on the day assessed (FIOM leaflet: sickness on 10 March 2022 counts from 11 March 2019). Short absence: an episode of at most 5 calendar days, counted in the calendar year of its first day; an absence the CCNL exempts is neither reduced nor counted. 66% and 50% stored as 0.66 and 0.50.",
         "note": "The ipotesi di accordo of 22 November 2025 (FIOM scan, Sez. Quarta Titolo VI Art. 2, sha256 b0be0185c1186a4dd9b56483172fdfd3e160ad92a8c0d3a068b097dc816cdee8) keeps the paragraphs quoted ('omissis') and adds, from 1 January 2026, 30/45/60 more days of comporto for a certified disability; Sez. Quarta Titolo I Art. 4 lowers from 36 to 24 months the fixed-term contracts whose periods are scaled. Not modelled, each with a blocker: comporto prolungato and the disability days (days past the comporto breve are left out), the full pay of hospital stays over 10 days (a day at 80% raises an issue), fixed-term scaling. Not modelled and not blocked: the probation period, during which the CCNL treatment is not due ('lavoratore non in prova'). PDF printed pages 196-199 are file pages 200-203."
@@ -3166,6 +3441,52 @@
         "outcome": "confirmed",
         "findings": [
           "The review recorded no list of the documents it read."
+        ]
+      },
+      {
+        "id": "2026-10-11-ai",
+        "date": "2026-10-11",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Every payable rule of the file (94 records) read again in the signed texts: the CCNL of 5 February 2021, the renewal of 22 November 2025 and the minutes of June 2023, 2024, 2025 and 2026 on the minimi.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+            "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+          },
+          {
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+            "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+          },
+          {
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2023/06/20230616-CCNL-Federmeccanica-Assistal-verbale-dincontro-ADEGUAMENTO-IPCA-allegato-4.pdf",
+            "sha256": "61a24a9688dcfd0fad3ac463ab948b23759f4da45b2fd220f0bf42965032d81f"
+          },
+          {
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2024/06/20240611-CCNL-Federmeccanica-Assistal-adeguamento-IPCA-2023.pdf",
+            "sha256": "c25205963fe9cd701e4b2360f47257f6169074a84182782d4be4a743e66bac59"
+          },
+          {
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+            "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
+          },
+          {
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf",
+            "sha256": "67faca45b8d363b7d9c11e309daea103f05ccc1d4793321846c8ed0b0e4b0195"
+          },
+          {
+            "url": "https://www.fiom-cgil.it/attachments/article/12771/2026-02-23-referendum-ccnl-federmeccanica-assistal.pdf",
+            "sha256": "aaec380cb18c65764f8157b8a8dea09cd1d70c55d0dbc4695c83d330a27e8056"
+          }
+        ],
+        "findings": [
+          "91 records match their source and are verified, and the corrected divisor below is verified too. All 72 salary periods match in amount and dates. Pages are physical PDF pages (the printed page of the 2021 CCNL is four lower).",
+          "Ratified: the workers' referendum of 18-20 February 2026 approved the renewal of 22 November 2025 (93.13% in favour); the minutes of 16 June 2026 call it the Accordo di rinnovo 22 novembre 2025. No consolidated final text is published; the minimi of the signed hypothesis are in force.",
+          "June 2026: the IPCA share is absorbed in the June 2026 tranche of the renewal, so the minimi already in the file stand; the minutes of 16 June 2026 also set travel and on-call allowances, not modelled.",
+          "Corrected: the hourly divisor 173 (Art. 5, Sez. Quarta Tit. IV) is undated in the 2021 CCNL, so it applies from 2021-06-01, not from 2024-06-01.",
+          "Left derived: the Cometa rates (2%, 1.2%, 2.2% under 35, Art. 15) match but start on 1 June 2017 and 1 June 2022, not on 2026-01-01; the leave tiers start 'oltre 10 anni' and 'oltre i 18 anni', which the file reads as 120 and 216 months.",
+          "Wrong page citations corrected: divisor p. 175, seniority pp. 175-176, daily quota 1/26 p. 164, annual leave p. 165."
         ]
       }
     ],

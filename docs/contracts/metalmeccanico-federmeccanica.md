@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 84 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 81 verified / 3 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🏭 Production | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | — |
-| **Last review** | 2026-10-10 |
+| **Last review** | 2026-10-11 |
 | **Latest salary tranche** | 2028-06-01 |
 
 ## Review history
@@ -58,6 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-10 | claude-opus-5-5 (ai) | Whole file. The values checked were not recorded; no value was marked verified. | confirmed | The review recorded no list of the documents it read. |
+| 2026-10-11 | claude-opus-5-5 (ai) | Every payable rule of the file (94 records) read again in the signed texts: the CCNL of 5 February 2021, the renewal of 22 November 2025 and the minutes of June 2023, 2024, 2025 and 2026 on the minimi. | corrected | 91 records match their source and are verified, and the corrected divisor below is verified too. All 72 salary periods match in amount and dates. Pages are physical PDF pages (the printed page of the 2021 CCNL is four lower).<br>Ratified: the workers' referendum of 18-20 February 2026 approved the renewal of 22 November 2025 (93.13% in favour); the minutes of 16 June 2026 call it the Accordo di rinnovo 22 novembre 2025. No consolidated final text is published; the minimi of the signed hypothesis are in force.<br>June 2026: the IPCA share is absorbed in the June 2026 tranche of the renewal, so the minimi already in the file stand; the minutes of 16 June 2026 also set travel and on-call allowances, not modelled.<br>Corrected: the hourly divisor 173 (Art. 5, Sez. Quarta Tit. IV) is undated in the 2021 CCNL, so it applies from 2021-06-01, not from 2024-06-01.<br>Left derived: the Cometa rates (2%, 1.2%, 2.2% under 35, Art. 15) match but start on 1 June 2017 and 1 June 2022, not on 2026-01-01; the leave tiers start 'oltre 10 anni' and 'oltre i 18 anni', which the file reads as 120 and 216 months.<br>Wrong page citations corrected: divisor p. 175, seniority pp. 175-176, daily quota 1/26 p. 164, annual leave p. 165. |
 
 ## Salary table
 
@@ -163,18 +164,18 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-11-22 | [↗](https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/) |
-| — | — | — | [↗](https://www.lexplain.it/tabelle-retributive-metalmeccanici-industria/) |
-| — | — | — | [↗](https://www.lexplain.it/scatti-di-anzianita-contratto-metalmeccanici-industria/) |
+| — | — | 2025-11-22 | [↗](https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf) |
+| — | — | 2026-06-16 | [↗](https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf) |
+| — | — | 2021-02-05 | [↗](https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf) |
 
 ??? note "Coverage notes"
     CONSOLIDATED MINIMUMS: the values in base_salary are the 'consolidated table minimums' of the CCNL Federmeccanica-Assistal, which incorporate base pay, contingenza, and EDR into a single figure (Federmeccanica practice since 2001). For this reason fixed_allowances is empty for all levels.
     
-    JUNE 2025 TRANCHE: values verified against the agreement of 12 June 2025 (source: studiomorettistp.it and dinunzio.it, which report the official Federmeccanica-Assistal consolidated table minimums). All 9 levels confirmed.
+    JUNE 2025 TRANCHE: values read in the signed minutes of 12 June 2025 (Federmeccanica, Assistal, Fim, Fiom, Uilm), all 9 levels.
     
-    JUNE 2024 AND JUNE 2026 TRANCHES: values verified on contratticcnl.it (updated July 2026) and lexplain.it.
+    JUNE 2024 AND JUNE 2026 TRANCHES: June 2024 read in the signed minutes of 11 June 2024; June 2026 in the renewal of 22 November 2025 (ratified by the referendum of 18-20 February 2026), whose June 2026 tranche absorbs the IPCA share set by the minutes of 16 June 2026.
     
-    SENIORITY INCREMENTS: the proposal to replace monthly increments with a one-off 'early settlement' was REJECTED by the unions during the CCNL 2025-2028 negotiations (November 2025 agreement). Increments remain recurring monthly additions as provided by Art. 6 of the current CCNL. The model (seniority_count × amount_by_level) is correct. The amounts in amount_by_level are verified on lexplain.it.
+    SENIORITY INCREMENTS: the proposal to replace monthly increments with a one-off 'early settlement' was rejected in the 2025-2028 negotiations (renewal of 22 November 2025). Increments remain recurring monthly additions under Art. 6, Sez. Quarta Tit. IV, of the CCNL of 5 February 2021 (physical pp. 175-176), where the amounts by level are read.
     
     APPRENTICESHIP: professionalizzante (accordo integrativo 20/04/2021). Eligible levels: D2, C1, C2, C3, B1, B2, B3 (D1 and A1 excluded). Pay: 85% (first third), 90% (second third), 95% (third third), then classified at destination. Three duration tracks: 36m (standard), 30m (diploma EQF 4-7 consistent with profession), 24m (D2 serial repetitive production only). Source: accordo 20/04/2021 Federmeccanica art. 'Apprendistato professionalizzante', reproduced in MySolution circolare Marini 13/05/2021.
     
@@ -184,7 +185,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     INPS: the employer rates in 2026-industria.json are calculated for verified components (IVS 23.81% + DS 1.61% + CUAF 2.48% + CIGO D.Lgs.148/2015 + FIS/CIGS Circ.INPS 5/2025). Resulting totals: ≤15 employees = 30.13%, 16-50 employees = 30.20%, >50 employees = 30.50%. Does not include INAIL. The CIGS employee share (0.30% for >15 employees) is not yet modelled in employee_rate.
     
-    JUN 2021, JUN 2022, JUN 2023 TRANCHES: values retrieved from lexplain.it (metalworking industry pay tables; secondary aggregator source). Cross-check: D1 Jun-2024=1719.67 confirms exact alignment with data already present. Four annual tranches (Jun 2021-2024) based on the IPCA mechanism from the CCNL 05/02/2021.
+    JUN 2021, JUN 2022, JUN 2023 TRANCHES: read in the CCNL of 5 February 2021 and the signed minutes of 16 June 2023; four annual tranches (June 2021-2024) under the IPCA mechanism of the 2021 CCNL.
     
     OVERTIME/NIGHT/HOLIDAY (L3): percentages modelled per Art. 14 CCNL Federmeccanica 2021 (straordinario diurno 15%, lavoro notturno 20%, lavoro festivo 30%). Source: testo contrattuale Art. 14. NOTE: the 2025-11-22 renewal (CCNL 2025-2028) is expected to update these percentages; a dedicated data correction PR will add time-versioned 2025 rates once the official text is available in machine-readable form.
     
