@@ -14,6 +14,7 @@ from scripts.documentation.trust_count.generate import (
     main,
     render,
 )
+from scripts.provenance.rules import inventory
 
 if TYPE_CHECKING:
     from pathlib import Path
@@ -92,3 +93,16 @@ def test_readiness_counts_follow_the_loader_default() -> None:
     for ccnl_id in reviewed:
         ccnl = load_ccnl(f"{ccnl_id.strip('`')}.json")
         assert ccnl.verification.readiness.value == "reviewed"
+
+
+def test_provenance_table_splits_ccnl_rules_from_fiscal_blocks() -> None:
+    """Every rule of a CCNL file counts under the CCNL column, none under fiscal."""
+    rules = inventory()
+    table = bundle_counts()["provenance-table"]
+    ccnl = sum(1 for r in rules if r.file.startswith("agreement/") and r.status)
+    fiscal = sum(1 for r in rules if not r.file.startswith("agreement/") and r.status)
+    lines = [line for line in table.splitlines() if line.startswith("| `")]
+    rows = [line.split("|")[2:4] for line in lines]
+    counts = [[int(cell.replace(" ", "")) for cell in row] for row in rows]
+    assert sum(row[0] for row in counts) == ccnl > 0
+    assert sum(row[1] for row in counts) == fiscal > 0

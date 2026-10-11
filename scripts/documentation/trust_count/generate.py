@@ -116,8 +116,8 @@ def _provenance_counts(rules: tuple[payable_rules.PayableRule, ...]) -> dict[str
     Returns:
         Snippets keyed by marker name.
     """
-    ccnl = Counter(r.status for r in rules if r.file.startswith("ccnl/"))
-    fiscal = Counter(r.status for r in rules if not r.file.startswith("ccnl/"))
+    ccnl = Counter(r.status for r in rules if r.file.startswith("agreement/"))
+    fiscal = Counter(r.status for r in rules if not r.file.startswith("agreement/"))
     rows = [
         f"| `{s}` | {_n(ccnl[s])} | {_n(fiscal[s])} | {_n(ccnl[s] + fiscal[s])} |"
         for s in payable_rules.STATUSES
