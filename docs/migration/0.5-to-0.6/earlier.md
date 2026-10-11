@@ -1,13 +1,13 @@
-# Migration guide: earlier releases
+# Migration: 0.5 to 0.6, earlier changes
 
-Continues the [Migration guide](migration.md); the oldest changes are on
-[Migration guide: inputs and legacy APIs](migration-legacy.md).
+Continues the [newest changes](index.md); the oldest are on
+[inputs and legacy APIs](legacy.md).
 
 ## Withholding of each run under art. 23 DPR 600/1973
 
 The IRPEF of a run before the conguaglio changes; the IRPEF of the year,
 settled by the conguaglio, does not (see
-[Withholding of a run](engine/fiscal.md#withholding-of-a-run)).
+[Withholding of a run](../../engine/fiscal.md#withholding-of-a-run)).
 
 | Before | After |
 |---|---|
@@ -27,7 +27,7 @@ whole. With the 2026 amounts the minimum for the days never exceeds €1,955
 for the days, so payroll deducts €1,955 × days / 365 again up to €15,000,
 and a short employment withholds more IRPEF than before. A new `irpef`
 decision records the part of the minimum left to the tax return (see
-[Fiscal rules](engine/fiscal.md)).
+[Fiscal rules](../../engine/fiscal.md)).
 
 | Before | After |
 |---|---|
@@ -76,7 +76,7 @@ base is below it, the INPS decisions are `incomplete`
 
 The art. 13 deduction, the ulteriore detrazione and the trattamento
 integrativo count the days of every employment whose income the
-withholding projects (see [Fiscal rules](engine/fiscal.md)).
+withholding projects (see [Fiscal rules](../../engine/fiscal.md)).
 
 | Before | After |
 |---|---|
@@ -91,7 +91,7 @@ withholding projects (see [Fiscal rules](engine/fiscal.md)).
 A dependant whose art. 12 TUIR conditions are not stated no longer takes a
 deduction, and the fringe-benefit threshold follows the family composition.
 Amounts are unchanged for a dependant whose conditions are all stated (see
-[Family deductions](engine/fiscal.md#family-deductions-art-12-tuir)).
+[Family deductions](../../engine/fiscal.md#family-deductions-art-12-tuir)).
 
 | Before | After |
 |---|---|
@@ -127,7 +127,7 @@ unchanged.
 A run opened without the history of its employment, or whose contributions
 could depend on an unknown INPS base of other employments, is no longer
 payable. Amounts are unchanged
-(see [Opening state and imported balances](engine/opening-state.md)).
+(see [Opening state and imported balances](../../engine/opening-state.md)).
 
 | Before | After |
 |---|---|
@@ -529,7 +529,7 @@ unchanged in both modes.
 question "can this amount be paid?" now has one answer, `result.is_payable`,
 derived from a `ResultAssurance` that also reads the capability report, the
 provenance of the executed rules and the caller-supplied rules, which the old
-status ignored. See [Assurance](trust/confidence.md).
+status ignored. See [Assurance](../../trust/confidence.md).
 
 | Change | What to do |
 |---|---|
@@ -565,8 +565,8 @@ multiplier is `1 + band` of the CCNL overtime band matching the new
 `OvertimeEvent.kind`; a CCNL without such a band rejects the run. The
 extra-month ratei count a partly worked month with the CCNL clause when the
 bundle has the signed text, and with the engine default (at least 15 days)
-otherwise. See [Work rules](engine/work-rules.md#overtime-multiplier) and
-[Employment period](engine/index.md#employment-period).
+otherwise. See [Work rules](../../engine/work-rules.md#overtime-multiplier) and
+[Employment period](../../engine/index.md#employment-period).
 
 | Change | What to do |
 |---|---|

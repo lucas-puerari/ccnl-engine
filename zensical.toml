@@ -48,9 +48,10 @@ nav = [
     { "Capability matrix" = "contracts/capability-matrix.md" },
   ]},
   { "Migration" = [
-    { "Current release"   = "migration.md" },
-    { "Earlier releases"  = "migration-earlier.md" },
-    { "Inputs and legacy APIs" = "migration-legacy.md" },
+    { "Which guide"       = "migration/index.md" },
+    { "0.5 to 0.6"        = "migration/0.5-to-0.6/index.md" },
+    { "0.5 to 0.6: earlier changes" = "migration/0.5-to-0.6/earlier.md" },
+    { "0.5 to 0.6: inputs and legacy APIs" = "migration/0.5-to-0.6/legacy.md" },
   ]},
   { "API" = [
     { "Overview"            = "api/index.md" },
