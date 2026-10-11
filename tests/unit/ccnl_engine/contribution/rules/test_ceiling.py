@@ -10,7 +10,7 @@ from ccnl_engine.contribution.rules import resolve_contributions
 from ccnl_engine.employment.inputs import (
     Permanent,
 )
-from ccnl_engine.tax.annual.models import YearRules
+from ccnl_engine.knowledge.sector.models import YearRules
 from tests.unit.ccnl_engine.builders import make_year_rules
 from tests.unit.ccnl_engine.contribution.builders import (
     first_run_contributions,

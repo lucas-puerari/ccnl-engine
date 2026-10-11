@@ -27,9 +27,7 @@ from ccnl_engine.capability.support.services import (
 )
 from ccnl_engine.catalog.loaders import load_ccnl
 
-_DATA = importlib.resources.files("ccnl_engine.knowledge").joinpath(
-    "contract", "agreement"
-)
+_DATA = importlib.resources.files("ccnl_engine.knowledge").joinpath("agreement")
 _FILENAMES = sorted(
     entry.name for entry in _DATA.iterdir() if entry.name.endswith(".json")
 )

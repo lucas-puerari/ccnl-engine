@@ -21,7 +21,7 @@ _FILES = sorted(
     entry.name
     for entry in importlib.resources
     .files("ccnl_engine.knowledge")
-    .joinpath("contract", "agreement")
+    .joinpath("agreement")
     .iterdir()
     if entry.name.endswith(".json")
 )

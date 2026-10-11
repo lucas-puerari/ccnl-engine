@@ -43,7 +43,7 @@ from ccnl_engine.tax_credit.ulteriore_detrazione.rules import settle_ulteriore
 if TYPE_CHECKING:
     from ccnl_engine.decision.models import CalculationDecision
     from ccnl_engine.irpef.net.rules import NetIrpef
-    from ccnl_engine.tax.annual.models import YearRules
+    from ccnl_engine.knowledge.sector.models import YearRules
     from ccnl_engine.tax_credit.account.models import CreditAccount
     from ccnl_engine.tax_credit.recovery.models import (
         InstallmentRun,

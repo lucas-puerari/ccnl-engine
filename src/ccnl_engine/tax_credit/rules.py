@@ -165,8 +165,7 @@ def ulteriore_detrazione_lavoro(
     - ``rc > threshold_high``: zero.
 
     The full-year amount, rounded to cents, is proportioned to
-    ``eligible_work_days / 365`` by :func:`~ccnl_engine.payroll.taxation\
-.rules_irpef_deduction.for_days`.
+    ``eligible_work_days / 365`` by :func:`~ccnl_engine.irpef.deduction.rules.for_days`.
     Pass ``eligible_work_days=365`` (the default) for a full year.
 
     Args:

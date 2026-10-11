@@ -112,7 +112,7 @@ it continues for a relapse. The index sets:
 
 INPS pays at most 180 days a calendar year, counted over every recorded
 episode. INPS covers the worker by the rules of
-`knowledge/social_security/sickness/rates.json`: operai of industry and the
+`knowledge/sickness/indemnity/rates.json`: operai of industry and the
 terziario and impiegati of the terziario (secondary source), operai of the
 building and artisan sectors, quadri of the terziario and apprentices
 (unverified); not impiegati and quadri of industry (secondary source),

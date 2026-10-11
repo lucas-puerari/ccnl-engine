@@ -121,7 +121,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Applies when:** `inps_employer` applies; contract type in apprentice.
 
-    **Remediation:** Source the apprentice rates of agricoltura (an INPS circular or an association table of 2026), mark the apprentice block of social_security/contribution/2026/agricoltura.json derived, then remove this note.
+    **Remediation:** Source the apprentice rates of agricoltura (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/agricoltura.json derived, then remove this note.
 
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.
@@ -188,7 +188,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 ??? note "Full JSON (provenance artifact)"
     ```json
-    --8<-- "src/ccnl_engine/knowledge/contract/agreement/consorzi-di-bonifica-snebi.json"
+    --8<-- "src/ccnl_engine/knowledge/agreement/consorzi-di-bonifica-snebi.json"
     ```
 
 ## Usage example

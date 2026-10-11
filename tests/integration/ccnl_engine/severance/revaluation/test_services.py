@@ -36,9 +36,9 @@ from ccnl_engine.run.types import PeriodId
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 if TYPE_CHECKING:
+    from ccnl_engine.knowledge.sector.models import YearRules
     from ccnl_engine.period.results import PeriodResult
     from ccnl_engine.severance.revaluation.models import TfrRevaluationRules
-    from ccnl_engine.tax.annual.models import YearRules
 
 _FUND = TfrFundBalance(2025, Decimal("10000.00"))
 _HIRED_2020 = EmploymentPeriod(date(2020, 1, 1))

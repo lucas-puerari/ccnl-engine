@@ -17,13 +17,13 @@ owner and the name of its compressed copy in the wheel.
 
 | Dataset | Contents |
 |---|---|
-| `contract/agreement/<slug>.json` | One file per CCNL (e.g. `metalmeccanico-federmeccanica.json`) |
-| `taxation/annual/<year>/<sector>.json` | IRPEF brackets, work-income deductions, TFR, trattamento integrativo |
-| `taxation/family/<year>.json`, `exemption/<year>.json`, `variable_pay/<year>.json`, `severance/<year>.json` | Family deductions, somma esente, variable pay, TFR revaluation |
-| `social_security/contribution/<year>/<sector>.json` | INPS rates and apprenticeship, or the domestic flat rates |
-| `social_security/sickness/rates.json` | INPS sick-pay indemnity |
+| `agreement/<slug>.json` | One file per CCNL (e.g. `metalmeccanico-federmeccanica.json`) |
+| `sector/<year>/<sector>.json` | IRPEF brackets, work-income deductions, TFR, trattamento integrativo |
+| `family/<year>.json`, `tax_credit/somma_esente/<year>.json`, `variable_pay/<year>.json`, `severance/revaluation/<year>.json` | Family deductions, somma esente, variable pay, TFR revaluation |
+| `contribution/<year>/<sector>.json` | INPS rates and apprenticeship, or the domestic flat rates |
+| `sickness/indemnity/rates.json` | INPS sick-pay indemnity |
 | `surtax/regional/<year>.json`, `surtax/municipal/<year>.json` | Addizionale regionale e comunale |
-| `capability/<year>/catalog.json`, `limitation/engine.json`, `policy/italy.json` | Capability catalog, engine limitations, policy ruleset |
+| `capability/registry/<year>.json`, `limitation/engine.json`, `pay_item/italy.json` | Capability catalog, engine limitations, policy ruleset |
 
 `scripts/knowledge/manifest.py` rebuilds the manifest from the files;
 `--check` fails in CI when it drifts.
@@ -36,7 +36,7 @@ owner and the name of its compressed copy in the wheel.
 
 Loaders in `ccnl_engine.contract.service`, `ccnl_engine.tax.service` and
 `ccnl_engine.knowledge.service` read these resources through the manifest
-(`ccnl_engine.knowledge.loaders_manifest`): a path the manifest does not list
+(`ccnl_engine.knowledge.loaders`): a path the manifest does not list
 is never read.  A wheel carries each resource compressed under the same path
 with `.gz`.  The loaders validate the JSON against the engine's pydantic
 schemas.

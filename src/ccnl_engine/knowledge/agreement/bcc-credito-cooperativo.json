@@ -1,0 +1,1624 @@
+{
+  "schema_version": "0.5",
+  "meta": {
+    "ccnl_id": "bcc-credito-cooperativo",
+    "name": "CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane",
+    "cnel_code": "J271",
+    "sector": "credito",
+    "tax_sector": "credito",
+    "signatories": [
+      "Federcasse",
+      "FABI",
+      "FIRST-CISL",
+      "FISAC-CGIL",
+      "UGL Credito",
+      "UILCA"
+    ],
+    "sources": [
+      {
+        "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf",
+        "type": "ccnl_text",
+        "agreement_date": "2024-07-09"
+      },
+      {
+        "url": "https://www.kitech.it/tabelle-retributive/banche-credito-cooperativo/",
+        "type": "table",
+        "agreement_date": "2024-07-09"
+      }
+    ],
+    "extraction": {
+      "method": "ai",
+      "model": "claude-sonnet-4-6",
+      "timestamp": "2026-09-02",
+      "human_reviewed": false
+    },
+    "workers_estimate": "~33k"
+  },
+  "coverage": {
+    "notes": [
+      {
+        "kind": "info",
+        "text": "Salary model is conglobated (stipendio per Art. 112 replaces paga base + scala mobile + EDR + other components). Modelled as base_salary with fixed_allowances: []."
+      },
+      {
+        "kind": "info",
+        "text": "First period valid_from set to 2024-09-01 (first tranche date per Allegato A). Pre-tranche salaries belong to the previous CCNL and are not modelled."
+      },
+      {
+        "kind": "info",
+        "text": "Seniority (Art. 113): first scatto after 4 years (48 months), then every 36 months; maximum 8 scatti for the Aree Professionali and 12 for the Quadri Direttivi (Art. 101), via maximum_count_by_level."
+      },
+      {
+        "kind": "simplification",
+        "text": "Apprenticeship (Art. 30) modelled for destination levels 3AP1-3AP4: months 0-18 one level below the destination, then the destination level. The Art. 3 comma 3 derogation (higher destination level) is assumed to follow the same 18-month rule.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "art3_derogation_apprenticeship",
+          "applies_when": {
+            "trigger": "outside_input",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Confirm that the Art. 3 comma 3 derogation follows the 18-month rule."
+        }
+      },
+      {
+        "kind": "info",
+        "text": "Hourly divisor 160 in both periods per Art. 114 (rounding down to the nearest multiple of 5): 37.5h x 52 / 12 = 162.5 → 160 (pre-July 2025); 37h x 52 / 12 = 160.33 → 160 (from July 2025, Art. 118)."
+      },
+      {
+        "kind": "info",
+        "text": "Workers covered: approximately 36,000 (Federcasse / Banche di Credito Cooperativo, Casse Rurali ed Artigiane). Agreement signed 2024-07-09; valid until 2025-12-31 per Art. 9."
+      },
+      {
+        "kind": "info",
+        "text": "INPS rates from 2026-credito.json (same sector as bancari-abi). IRPEF 2026 brackets applied (L. 199/2025)."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "INPS RATES: the employer and worker INPS rates of the sector (credito) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "inps_sector_rates_unsourced",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Source the credito rates of 2026 on an INPS or association table, mark the inps block of contribution/2026/credito.json derived, then remove this note."
+        }
+      }
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2024-09-01",
+          "valid_until": null,
+          "value": "160"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2024-09-01",
+          "valid_until": null,
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 36,
+      "maximum_count": 8,
+      "amount_by_level": {
+        "QD4": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "95.31"
+            }
+          ]
+        },
+        "QD3": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "95.31"
+            }
+          ]
+        },
+        "QD2": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "41.55"
+            }
+          ]
+        },
+        "QD1": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "41.55"
+            }
+          ]
+        },
+        "3AP4": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "41.55"
+            }
+          ]
+        },
+        "3AP3": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "41.55"
+            }
+          ]
+        },
+        "3AP2": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "41.55"
+            }
+          ]
+        },
+        "3AP1": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "41.55"
+            }
+          ]
+        },
+        "2AP2": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "35.57"
+            }
+          ]
+        },
+        "2AP1": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "29.07"
+            }
+          ]
+        },
+        "1AP": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "20.12"
+            }
+          ]
+        }
+      },
+      "first_cadence_months": 48,
+      "maximum_count_by_level": {
+        "QD1": 12,
+        "QD2": 12,
+        "QD3": 12,
+        "QD4": 12
+      },
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+            "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+            "kind": "associazione",
+            "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+          },
+          "section": "Scatti di anzianità"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    "solidarity_fund": {
+      "code": "FONDO_SOLIDARIETA_CREDITO_COOPERATIVO",
+      "employer_rate": "0.0024",
+      "employee_rate": "0.0012",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "inps-bilancio-preventivo-2026-cap-32",
+            "title": "INPS Bilancio preventivo 2026, cap. 32, Fondo di solidarietà del credito cooperativo",
+            "kind": "altro",
+            "url": "https://servizi2.inps.it/servizi/ProvvedimentiFE/ProvvedimentiCDA/DownloadDocumentazioneAggiuntiva/327?nomefile=x.pdf"
+          },
+          "page": "7",
+          "section": "Valore della produzione",
+          "quote": "per contributo ordinario (0,36 %) ripartito tra datore di lavoro e lavoratore nella misura rispettivamente, di due terzi ed un terzo, calcolato sulla retribuzione imponibile ai fini previdenziali di tutti i lavoratori dipendenti con contratto a tempo indeterminato, compresi i dirigenti"
+        },
+        "transformation": "0.36% split two thirds to the employer (0.24%) and one third to the worker (0.12%), on the INPS taxable pay of every permanent worker.",
+        "note": "PDF sha256 a29c19b47b45ea058a586f6094a9ad9557cd3bd606256d6576c6857f902f620b, read on 2026-10-10. Apprentices included: an apprenticeship is 'un contratto di lavoro a tempo indeterminato' (D.Lgs. 81/2015 art. 41 c. 1, Normattiva, read on 2026-10-10); fixed-term workers excluded. Only the ordinary contribution is modelled: the additional contribution due when the fund pays a benefit and the straordinario contribution of the employers that use the assegno straordinario are not."
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "QD4",
+      "order": 11,
+      "description": "Executive Managers - 4th pay level",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "4978.66",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "5059.28",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "5160.06",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "quadro",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+            "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+            "kind": "associazione",
+            "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "QD3",
+      "order": 10,
+      "description": "Executive Managers - 3rd pay level",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "4239.27",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "4309.32",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "4396.88",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "quadro",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+            "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+            "kind": "associazione",
+            "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "QD2",
+      "order": 9,
+      "description": "Executive Managers - 2nd pay level",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "3815.86",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "3882.36",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "3965.48",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "quadro",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+            "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+            "kind": "associazione",
+            "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "QD1",
+      "order": 8,
+      "description": "Executive Managers - 1st pay level",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "3600.61",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "3663.99",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "3743.21",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "quadro",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+            "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+            "kind": "associazione",
+            "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "3AP4",
+      "order": 7,
+      "description": "3rd Professional Area - 4th pay level",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "3206.90",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "3266.90",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "3341.90",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+            "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+            "kind": "associazione",
+            "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "3AP3",
+      "order": 6,
+      "description": "3rd Professional Area - 3rd pay level",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "2943.02",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2994.78",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "3059.49",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+            "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+            "kind": "associazione",
+            "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "3AP2",
+      "order": 5,
+      "description": "3rd Professional Area - 2nd pay level",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "2780.38",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2829.28",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2890.41",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+            "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+            "kind": "associazione",
+            "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "3AP1",
+      "order": 4,
+      "description": "3rd Professional Area - 1st pay level",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "2637.95",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2684.35",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2742.35",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+            "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+            "kind": "associazione",
+            "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "2AP2",
+      "order": 3,
+      "description": "2nd Professional Area - 2nd pay level",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "2474.19",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2517.71",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2572.10",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+            "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+            "kind": "associazione",
+            "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "2AP1",
+      "order": 2,
+      "description": "2nd Professional Area - 1st pay level",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "2315.18",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2355.90",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2406.80",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+            "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+            "kind": "associazione",
+            "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "1AP",
+      "order": 1,
+      "description": "1st Professional Area - single level",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "2156.20",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2194.12",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2241.53",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+            "title": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
+            "kind": "associazione",
+            "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    }
+  ],
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "terza_area",
+      "destination_levels": [
+        "3AP1",
+        "3AP2",
+        "3AP3",
+        "3AP4"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 18,
+          "levels_below": 1
+        },
+        {
+          "months_from": 18,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    }
+  ],
+  "ruleset": {
+    "id": "ccnl/bcc-credito-cooperativo",
+    "version": "2026.2",
+    "effective_from": "2024-09-01",
+    "effective_until": null,
+    "source": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf",
+    "verification_status": "unverified",
+    "source_hash": "73513b11a648eabd30a9b8980845d6deac595267685fcaaaf5b6b5050d034904",
+    "published_at": "2026-09-07",
+    "source_type": "contracting_party"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-07-09",
+                "value": "0.25",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "bcc-credito-cooperativo",
+                "title": "CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/banche-di-credito-cooperativo---casse-rurali-ed-artigiane"
+              },
+              "section": "Straordinario — 25% feriale diurno"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-07-09"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario notturno (22-06h)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-07-09",
+                "value": "0.55",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "bcc-credito-cooperativo",
+                "title": "CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/banche-di-credito-cooperativo---casse-rurali-ed-artigiane"
+              },
+              "section": "Straordinario — 55% notturno (22-06h)"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-07-09"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario sabato",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-07-09",
+                "value": "0.30",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "bcc-credito-cooperativo",
+                "title": "CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/banche-di-credito-cooperativo---casse-rurali-ed-artigiane"
+              },
+              "section": "Straordinario sabato — 30%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-07-09"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario notturno festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-07-09",
+                "value": "0.65",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night_holiday"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "bcc-credito-cooperativo",
+                "title": "CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/banche-di-credito-cooperativo---casse-rurali-ed-artigiane"
+              },
+              "section": "Straordinario notturno festivo — 65%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-07-09"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "bcc-credito-cooperativo",
+            "title": "CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/banche-di-credito-cooperativo---casse-rurali-ed-artigiane"
+          },
+          "section": "Divisore giornaliero 26 (settore credito cooperativo)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-07-09"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "24",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "24"
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "bcc-credito-cooperativo",
+            "title": "CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/banche-di-credito-cooperativo---casse-rurali-ed-artigiane"
+          },
+          "section": "Ferie — 24 giorni lavorativi annui (stima su settore credito cooperativo)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-07-09"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 180,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "bcc-credito-cooperativo",
+            "title": "CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/banche-di-credito-cooperativo---casse-rurali-ed-artigiane"
+          },
+          "section": "Malattia — conservazione trattamento economico; 6 mesi senza riduzione ferie"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-07-09"
+        }
+      }
+    }
+  }
+}

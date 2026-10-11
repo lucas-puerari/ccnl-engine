@@ -278,8 +278,8 @@ inventory.
 |---|---|
 | `knowledge/facade.py` | `knowledge/facade.py` |
 | `knowledge/loaders.py` | `knowledge/loaders.py` |
-| `knowledge/loaders_manifest.py` | `knowledge/loaders.py` |
-| `knowledge/loaders_resource.py` | `knowledge/loaders.py` |
+| `knowledge/loaders.py` | `knowledge/loaders.py` |
+| `knowledge/loaders.py` | `knowledge/loaders.py` |
 | `tax/annual/loaders.py` | `knowledge/sector/loaders.py` |
 | `tax/annual/loaders_resource.py` | `knowledge/sector/loaders.py` |
 | `tax/annual/models.py` | `knowledge/sector/models.py` |

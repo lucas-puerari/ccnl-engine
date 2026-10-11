@@ -1,0 +1,1655 @@
+{
+  "schema_version": "0.5",
+  "meta": {
+    "ccnl_id": "legno-lapidei-artigianato-confartigianato",
+    "name": "CCNL Area Legno-Lapidei — Artigianato",
+    "cnel_code": "F060",
+    "sector": "legno arredamento lapidei artigianato",
+    "tax_sector": "artigianato",
+    "agreement_date": "2024-03-05",
+    "signatories": [
+      "CNA Produzione",
+      "CNA Costruzioni",
+      "Confartigianato Legno e Arredo",
+      "Confartigianato Marmisti",
+      "Casartigiani",
+      "CLAAI",
+      "Feneal-UIL",
+      "Filca-CISL",
+      "Fillea-CGIL"
+    ],
+    "sources": [
+      {
+        "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf",
+        "type": "official_contract",
+        "agreement_date": "2022-09-01",
+        "notes": "SOURCE: Direzionelavoro.it — Base CCNL 2022. Tables: salary base values by level (Sep 2022), hourly divisor 174, seniority amounts pre-Jan-2025, apprenticeship percentages (3 gruppi), mensilita=13, conglobated model confirmed ('Contingenza: conglobata nei minimi retributivi')."
+      },
+      {
+        "url": "https://www.studiodalmaschio.it/rinnovo-ccnl-legno-lapidei-artigianato-2024",
+        "type": "renewal_summary",
+        "agreement_date": "2024-03-05",
+        "notes": "SOURCE: StudioDalmaschio.it — 2024 rinnovo summary (signed 5 marzo 2024). Agreement date, salary increases per tranche (Mar 2024, Jan 2025, Jan 2026, Oct 2026), new seniority amounts from Jan 2025 per level, new apprentice seniority EUR 8.00 from Jan 2025, signatories confirmed."
+      },
+      {
+        "url": "https://www.kitech.it/ccnl/legno-arredo-artigianato",
+        "type": "table",
+        "agreement_date": "2024-03-05",
+        "notes": "SOURCE: Kitech.it — CNEL code F060 confirmed. Jan 2026 salary table cross-validated: AS=2230.81, A=2079.31, B=1900.65, CS=1818.04, C=1734.61, D=1639.71, E=1552.82, F=1458.99. All 8 levels match computed values exactly."
+      }
+    ],
+    "extraction": {
+      "method": "ai",
+      "model": "claude-sonnet-4-6",
+      "timestamp": "2026-09-02T00:00:00",
+      "human_reviewed": false
+    },
+    "workers_estimate": "~95k"
+  },
+  "coverage": {
+    "notes": [
+      {
+        "kind": "info",
+        "text": "SALARY MODEL: conglobated (minimi tabellari conglobati). Confirmed by primary source ('Contingenza: conglobata nei minimi retributivi'). Back-calculation at Jan 2025: AS=2176.39/174=12.508 EUR/h, D=1599.71/174=9.194 EUR/h, F=1423.40/174=8.180 EUR/h — all consistent with hourly divisor 174, confirming conglobated model."
+      },
+      {
+        "kind": "info",
+        "text": "CNEL CODE: F060 confirmed from kitech.it page text ('Area Legno Lapidei (CNEL: F060)') and from direzionelavoro.it PDF URL slug."
+      },
+      {
+        "kind": "info",
+        "text": "TRANCHE DATES: four tranches — 2024-03-01 (retroactive from renewal 5 Mar 2024), 2025-01-01, 2026-01-01, 2026-10-01. Source: studiodalmaschio.it rinnovo summary, cross-validated Jan 2026 values against kitech.it."
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY DIVISOR: 174. Source: primary CCNL text ('Coefficiente orario = 174'). Derived: 40h/week x 52/12 = 173.33, rounded to 174 per contract clause."
+      },
+      {
+        "kind": "info",
+        "text": "ADDITIONAL MONTHS: 13 (tredicesima only). No quattordicesima in this CCNL. Source: direzionelavoro.it base CCNL PDF (mensilita aggiuntive clause)."
+      },
+      {
+        "kind": "info",
+        "text": "SENIORITY: biennale (every 24 months), maximum 5 scatti. Per-level amounts pre-Jan-2025 from 2022 base CCNL: AS=15.494, A=13.944, B=11.879, CS=11.181, C=10.329, D=9.296, E=8.522, F=none. From Jan 2025 (2024 rinnovo): AS=20.49, A=18.94, B=16.88, CS=16.18, C=15.33, D=14.30, E=13.52, F=none. Level F: transitional level (max 12 months), no seniority applies."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICE SENIORITY: EUR 8.00 from Jan 2025. New clause introduced by 2024 rinnovo. Source: studiodalmaschio.it rinnovo summary."
+      },
+      {
+        "kind": "info",
+        "text": "LEVEL F: transitional insertion level, maximum duration 12 months. No seniority and no apprenticeship track apply. Workers in F are re-levelled to E or higher after the transitional period."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP: 3 gruppi from base CCNL 2022 (unchanged in 2024 rinnovo). Gruppo 1 (dest AS, A, B — operai 5 years = 60m), Gruppo 2 (dest CS, C, D — operai 5 years = 60m), Gruppo 3 (dest E — operai 2.5 years = 30m). Level F has no apprenticeship track."
+      },
+      {
+        "kind": "simplification",
+        "text": "Only Legno/Arredamento/Mobili sub-sector salary tables modelled. Lapidei (stone/marble) sub-sector uses different salary tables and is not modelled. CNEL code F060 covers both sub-sectors. Workers in Lapidei should verify against the specific Lapidei tables.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "lapidei_tables_not_modelled",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the Lapidei sub-sector salary tables as a separate file."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Apprenticeship tables use operai duration tracks (5 years for gruppi 1-2, 2.5 years for gruppo 3). Impiegati and impiegati amministrativi have shorter 3-year apprenticeship durations with the same percentages — not separately modelled. For impiegato apprenticeships the operai duration overstates the period.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "impiegati_apprenticeship_duration",
+          "applies_when": {
+            "contract_types": [
+              "apprentice"
+            ],
+            "worker_categories": [
+              "impiegato"
+            ]
+          },
+          "remediation": "Model the 3-year impiegati apprenticeship tracks."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "LEVEL CATEGORY: all levels left null. Primary source text shows multiple levels map to both operai and impiegati (e.g. level B = 'Impiegati di concetto - Operai specializzati provetti') — this is a genuine one-to-many mapping that the schema cannot represent as a single category value, not a data gap. 2026-artigianato.json applies rate 0.2693 (default/operaio) for null category; impiegato rate 0.2471 not applied to impiegato-eligible levels.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "null_category_operaio_rate",
+          "remediation": "Assign a category per level, or require the worker category, so the impiegato INPS rate applies."
+        }
+      },
+      {
+        "kind": "info",
+        "text": "INPS: reuses 2026-artigianato.json (ARTIGIANATO sector)."
+      },
+      {
+        "kind": "simplification",
+        "text": "INPS RATES: the employer and worker INPS rates of the sector (artigianato) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "inps_sector_rates_unsourced",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Source the artigianato rates of 2026 on an INPS or association table, mark the inps block of contribution/2026/artigianato.json derived, then remove this note."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE INPS RATES: the apprentice rates of the sector (artigianato) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles whether the 0.91 NASpI reduction of the artisan employers also applies to apprentices, nor the wage-integration contribution they owe (the FSBA is paid outside INPS). The contributions of an apprentice may differ.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_inps_rates_unsourced",
+          "applies_when": {
+            "trigger": "run",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/artigianato.json derived, then remove this note."
+        }
+      }
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2024-03-01",
+          "valid_until": null,
+          "value": "174"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2024-03-01",
+          "valid_until": null,
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 5,
+      "amount_by_level": {
+        "AS": {
+          "periods": [
+            {
+              "valid_from": "2024-03-01",
+              "valid_until": "2025-01-01",
+              "value": "15.494"
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "20.49"
+            }
+          ]
+        },
+        "A": {
+          "periods": [
+            {
+              "valid_from": "2024-03-01",
+              "valid_until": "2025-01-01",
+              "value": "13.944"
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "18.94"
+            }
+          ]
+        },
+        "B": {
+          "periods": [
+            {
+              "valid_from": "2024-03-01",
+              "valid_until": "2025-01-01",
+              "value": "11.879"
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "16.88"
+            }
+          ]
+        },
+        "CS": {
+          "periods": [
+            {
+              "valid_from": "2024-03-01",
+              "valid_until": "2025-01-01",
+              "value": "11.181"
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "16.18"
+            }
+          ]
+        },
+        "C": {
+          "periods": [
+            {
+              "valid_from": "2024-03-01",
+              "valid_until": "2025-01-01",
+              "value": "10.329"
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "15.33"
+            }
+          ]
+        },
+        "D": {
+          "periods": [
+            {
+              "valid_from": "2024-03-01",
+              "valid_until": "2025-01-01",
+              "value": "9.296"
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "14.30"
+            }
+          ]
+        },
+        "E": {
+          "periods": [
+            {
+              "valid_from": "2024-03-01",
+              "valid_until": "2025-01-01",
+              "value": "8.522"
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "13.52"
+            }
+          ]
+        },
+        "F": {
+          "periods": [
+            {
+              "valid_from": "2024-03-01",
+              "valid_until": null,
+              "value": "0.00"
+            }
+          ]
+        }
+      },
+      "apprentice_amount": {
+        "periods": [
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2025-01-01",
+            "value": "0.00"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "8.00"
+          }
+        ]
+      },
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+            "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+            "kind": "rivista",
+            "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+          },
+          "section": "Scatti di anzianità"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "legno-lapidei-artigianato-2014",
+            "title": "CCNL Legno e lapidei artigianato 25 marzo 2014",
+            "kind": "associazione",
+            "url": "https://www.fenealuil.it/wp-content/uploads/2014/10/CCNL-Legno-Lapidei-Artigiani-25.03.14.pdf",
+            "published_on": "2014-03-25"
+          },
+          "page": "45",
+          "section": "Artt. 47 e 47 bis, Tredicesima mensilità",
+          "quote": "La frazione di mese superiore ai 15 giorni sarà considerata come mese intero."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-03-01"
+        },
+        "note": "Scanned text read by OCR; clause read in the 2014 text, later renewals not checked. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "F",
+      "order": 1,
+      "description": "Level F — entry grade (transitional, max 12 months)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2025-01-01",
+            "value": "1378.91",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1423.40",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-10-01",
+            "value": "1458.99",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": null,
+            "value": "1490.13",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+            "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+            "kind": "rivista",
+            "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "E",
+      "order": 2,
+      "description": "Level E — general worker / clerical staff",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2025-01-01",
+            "value": "1467.59",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1514.94",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-10-01",
+            "value": "1552.82",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": null,
+            "value": "1585.97",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+            "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+            "kind": "rivista",
+            "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "D",
+      "order": 3,
+      "description": "Level D — qualified worker / employee",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2025-01-01",
+            "value": "1549.71",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1599.71",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-10-01",
+            "value": "1639.71",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": null,
+            "value": "1674.71",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+            "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+            "kind": "rivista",
+            "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "C",
+      "order": 4,
+      "description": "Level C — skilled worker / white-collar employee",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2025-01-01",
+            "value": "1639.40",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1692.29",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-10-01",
+            "value": "1734.61",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": null,
+            "value": "1771.64",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+            "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+            "kind": "rivista",
+            "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "CS",
+      "order": 5,
+      "description": "Level CS — expert skilled worker / senior white-collar employee",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2025-01-01",
+            "value": "1718.25",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1773.69",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-10-01",
+            "value": "1818.04",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": null,
+            "value": "1856.85",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+            "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+            "kind": "rivista",
+            "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "B",
+      "order": 6,
+      "description": "Level B — white-collar employees / expert skilled workers",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2025-01-01",
+            "value": "1796.32",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1854.28",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-10-01",
+            "value": "1900.65",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": null,
+            "value": "1941.22",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+            "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+            "kind": "rivista",
+            "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "A",
+      "order": 7,
+      "description": "Level A — managerial employee / highly specialised technician",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2025-01-01",
+            "value": "1965.19",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2028.59",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-10-01",
+            "value": "2079.31",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": null,
+            "value": "2123.69",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+            "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+            "kind": "rivista",
+            "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "AS",
+      "order": 8,
+      "description": "Level AS — quadro / senior technical manager (top level)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2025-01-01",
+            "value": "2108.37",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2176.39",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-10-01",
+            "value": "2230.81",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": null,
+            "value": "2278.43",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+                  "kind": "rivista",
+                  "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
+            "title": "ccnl-legno-lapidei-artigianato-2022-pdf",
+            "kind": "rivista",
+            "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    }
+  ],
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "gruppo_1_legno",
+      "destination_levels": [
+        "AS",
+        "A",
+        "B"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.73"
+        },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 36,
+          "months_until": 48,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 48,
+          "months_until": 60,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 60,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_2_legno",
+      "destination_levels": [
+        "CS",
+        "C",
+        "D"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "percentage": "0.88"
+        },
+        {
+          "months_from": 36,
+          "months_until": 48,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 48,
+          "months_until": 60,
+          "percentage": "0.95"
+        },
+        {
+          "months_from": 60,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_3_legno",
+      "destination_levels": [
+        "E"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 6,
+          "months_until": 12,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 18,
+          "months_until": 24,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 24,
+          "months_until": 30,
+          "percentage": "0.95"
+        },
+        {
+          "months_from": 30,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
+    }
+  ],
+  "ruleset": {
+    "id": "ccnl/legno-lapidei-artigianato-confartigianato",
+    "version": "2026.2",
+    "effective_from": "2024-03-01",
+    "effective_until": null,
+    "source": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf",
+    "verification_status": "unverified",
+    "source_hash": "ccbb16d07f2ed9fa50717ce232721376a2df695c1f1d8708f20942a4347a96aa",
+    "published_at": "2026-09-07",
+    "source_type": "commercial_secondary"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "value": 0.25,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-legno-lapidei-artigianato-confartigianato",
+                "title": "CCNL Legno e Lapidei — Artigianato (CNA / Confartigianato) 2022",
+                "kind": "tabella_retributiva",
+                "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+              },
+              "section": "Art. straordinario — maggiorazione 25%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario feriale notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-legno-lapidei-artigianato-confartigianato",
+                "title": "CCNL Legno e Lapidei — Artigianato (CNA / Confartigianato) 2022",
+                "kind": "tabella_retributiva",
+                "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+              },
+              "section": "Art. straordinario — notturno 50%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-legno-lapidei-artigianato-confartigianato",
+                "title": "CCNL Legno e Lapidei — Artigianato (CNA / Confartigianato) 2022",
+                "kind": "tabella_retributiva",
+                "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+              },
+              "section": "Art. straordinario — festivo 50%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-01-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-legno-lapidei-artigianato-confartigianato",
+            "title": "CCNL Legno e Lapidei — Artigianato (CNA / Confartigianato) 2022",
+            "kind": "tabella_retributiva",
+            "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+          },
+          "section": "Art. orario — divisore mensile standard"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-01-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "20",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "20"
+        },
+        {
+          "service_months_min": 60,
+          "annual_days": "22"
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-legno-lapidei-artigianato-confartigianato",
+            "title": "CCNL Legno e Lapidei — Artigianato (CNA / Confartigianato) 2022",
+            "kind": "tabella_retributiva",
+            "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+          },
+          "section": "Art. ferie — 20 giorni (4 settimane); 22 giorni dopo 5 anni di anzianità"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-01-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 180,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-legno-lapidei-artigianato-confartigianato",
+            "title": "CCNL Legno e Lapidei — Artigianato (CNA / Confartigianato) 2022",
+            "kind": "tabella_retributiva",
+            "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+          },
+          "section": "Art. malattia — integrazione al 100% per 180 giorni"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-01-01"
+        }
+      }
+    }
+  }
+}

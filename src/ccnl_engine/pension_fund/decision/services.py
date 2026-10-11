@@ -1,9 +1,9 @@
 """Decision of the pension fund contributions of one run.
 
 Enrolment is voluntary (D.Lgs. 252/2005 art. 1 c. 2), so it is a fact of
-the employment: :class:`~ccnl_engine.pension_fund.inputs\
-.PensionFundEnrolment` or :class:`~ccnl_engine.pension_fund.inputs\
-.NoPensionFund`.  An enrolment left unknown leaves the contributions
+the employment: :class:`~ccnl_engine.pension_fund.inputs.PensionFundEnrolment` or
+:class:`~ccnl_engine.pension_fund.inputs.NoPensionFund`.  An enrolment left unknown
+leaves the contributions
 undetermined on a CCNL whose funds the bundle holds, and on every CCNL of
 the private sectors and the public administration whose negotiated fund it
 does not hold (domestic work has none): the decision is incomplete and an

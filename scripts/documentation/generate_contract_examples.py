@@ -48,8 +48,8 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 KNOWLEDGE = ROOT / "src" / "ccnl_engine" / "knowledge"
-CCNL_DIR = KNOWLEDGE / "contract" / "agreement"
-INPS_DIR = KNOWLEDGE / "social_security" / "contribution"
+CCNL_DIR = KNOWLEDGE / "agreement"
+INPS_DIR = KNOWLEDGE / "contribution"
 OUT_DIR = ROOT / "docs" / "examples" / "contracts"
 PACKAGE_INIT = "__init__.py"
 

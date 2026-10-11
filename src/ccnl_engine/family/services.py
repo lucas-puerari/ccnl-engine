@@ -1,8 +1,9 @@
 """Art. 12 TUIR family deductions of one run, on the reddito complessivo.
 
 The reddito complessivo is the employment income of the year this run
-projects plus the income of :class:`~ccnl_engine.payroll.taxation\
-.inputs_current_year.CurrentYearTaxFacts`.  When no dependent gives right to a
+projects plus the income of
+:class:`~ccnl_engine.irpef.other_income.inputs.CurrentYearTaxFacts`.  When no dependent
+gives right to a
 deduction in any month, or this employment alone takes every deduction past
 its phase-out, the deductions are zero whatever the other income and the
 facts are not needed.  Otherwise, without facts of the tax year, the run

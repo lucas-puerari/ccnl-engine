@@ -30,7 +30,7 @@ from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.tax_credit import rules as irpef_credits
 
 if TYPE_CHECKING:
-    from ccnl_engine.tax.annual.models import YearRules
+    from ccnl_engine.knowledge.sector.models import YearRules
     from ccnl_engine.tax_credit.rules import CreditOutcome
 
 __all__ = ["NetIrpef", "net_irpef", "run_withholding"]

@@ -63,8 +63,8 @@ class PeriodCalculationRequest:
         opening_state: State entering this period, with the history of
             the employment.  :meth:`PeriodState.zero` is the fact only for
             the first run of an employment whose start is stated; use
-            :func:`~ccnl_engine.year.tax_year.closing.rules\
-.close_tax_year` for the first run of a later tax year.  A state that
+            :func:`~ccnl_engine.year.tax_year.closing.rules.close_tax_year` for the
+            first run of a later tax year.  A state that
             misses the history gives a ``missing_fact opening_state`` issue
             (:mod:`~ccnl_engine.balance.opening.rules`).
         employer: The employer; its headcount resolves INPS rates (some
@@ -77,8 +77,8 @@ class PeriodCalculationRequest:
         events: Variable work events of the period (overtime, absences...).
         regione: ISO 3166-2:IT region code for the regional surtax, e.g.
             ``"IT-45"``, with ``"IT-BZ"`` / ``"IT-TN"`` for the autonomous
-            provinces (:data:`~ccnl_engine.surtax.jurisdiction.types\
-.REGION_CODES`).  ``None`` is unknown: when the employer withholds,
+            provinces (:data:`~ccnl_engine.surtax.jurisdiction.types.REGION_CODES`).
+            ``None`` is unknown: when the employer withholds,
             a ``residence_unknown`` decision and a ``requirement_unresolved``
             blocker on ``addizionale_regionale``.
         comune_belfiore: Belfiore code for the municipal surtax, e.g.

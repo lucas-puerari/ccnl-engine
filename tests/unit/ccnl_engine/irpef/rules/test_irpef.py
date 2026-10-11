@@ -13,8 +13,8 @@ from typing import Any
 from ccnl_engine.irpef.deduction.rules import work_income_deduction
 from ccnl_engine.irpef.models import WorkDeductionRules
 from ccnl_engine.irpef.rules import irpef_gross, surtax_from_brackets
+from ccnl_engine.knowledge.sector.models import YearRules
 from ccnl_engine.surtax.table.models import SurtaxBracket
-from ccnl_engine.tax.annual.models import YearRules
 from tests.unit.ccnl_engine.builders import make_year_rules
 
 # ---------------------------------------------------------------------------

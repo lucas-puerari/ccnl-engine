@@ -8,31 +8,29 @@ from ccnl_engine.capability.loaders import (
     load_capability_catalog,
 )
 from ccnl_engine.catalog.loaders import load_ccnl
+from ccnl_engine.family.loaders import load_family_deduction_rules
+from ccnl_engine.knowledge.sector.loaders import load_year_rules
 from ccnl_engine.limitation.loaders import load_engine_limitations
+from ccnl_engine.sickness.indemnity.loaders import load_sick_pay_rates
 from ccnl_engine.surtax.loaders import load_surtax_rules
-from ccnl_engine.tax.annual.loaders import load_year_rules
-from ccnl_engine.tax.annual.loaders_optional import (
-    load_family_deduction_rules,
-    load_sick_pay_rates,
-    load_variable_pay_rules,
-)
+from ccnl_engine.variable_pay.loaders import load_variable_pay_rules
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL, TaxSector
     from ccnl_engine.capability.registry.models import CapabilityCatalog
     from ccnl_engine.family.models import FamilyDeductionRules
+    from ccnl_engine.knowledge.sector.models import YearRules
     from ccnl_engine.limitation.models import ModelLimitation
     from ccnl_engine.sickness.indemnity.models import InpsSickPayRates
     from ccnl_engine.surtax.models import SurtaxRules
-    from ccnl_engine.tax.annual.models import YearRules
     from ccnl_engine.variable_pay.models import VariablePayRules
 
 
 class BundledKnowledgeRepository:
     """Production implementation of the knowledge repository port.
 
-    Satisfies :class:`~ccnl_engine.period.ports\
-.KnowledgeRepository`. Reads from the versioned JSON files bundled inside
+    Satisfies :class:`~ccnl_engine.period.ports.KnowledgeRepository`. Reads from the
+    versioned JSON files bundled inside
     the ``ccnl_engine`` package.  All loader functions are cached, so repeated
     calls for the same arguments return the same (immutable) object without
     re-parsing.
@@ -52,7 +50,7 @@ class BundledKnowledgeRepository:
         """Return resolved tax year rules for *year*, *sector*, *num_employees*.
 
         Returns:
-            A :class:`~ccnl_engine.tax.annual.models.YearRules` with
+            A :class:`~ccnl_engine.knowledge.sector.models.YearRules` with
             INPS rates resolved for the given headcount.
         """
         return load_year_rules(year, sector, num_employees)

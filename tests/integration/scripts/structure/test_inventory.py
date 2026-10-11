@@ -52,7 +52,7 @@ _RULES: dict[str, object] = {
         },
         {
             "pattern": "^src/ccnl_engine/knowledge/ccnl/data/(?P<n>[a-z]+\\.json)$",
-            "target": "src/ccnl_engine/knowledge/contract/agreement/{n}",
+            "target": "src/ccnl_engine/knowledge/agreement/{n}",
         },
         _MIRROR_RULE,
     ],
@@ -160,7 +160,7 @@ def test_build_maps_overrides_rules_and_mirrors(tmp_path: Path) -> None:
         "scripts/ci/check_structure.py": "scripts/structure/check.py",
         "src/ccnl_engine/__init__.py": "src/ccnl_engine/__init__.py",
         "src/ccnl_engine/knowledge/ccnl/data/metal.json": (
-            "src/ccnl_engine/knowledge/contract/agreement/metal.json"
+            "src/ccnl_engine/knowledge/agreement/metal.json"
         ),
         "src/ccnl_engine/payroll/__init__.py": {"dissolve": "src/ccnl_engine/payroll"},
         "src/ccnl_engine/payroll/domain/_ledger.py": (
@@ -320,7 +320,7 @@ def _repository(root: Path) -> Path:
                     "target": "src/ccnl_engine/__init__.py",
                 }
             ],
-            "overrides": {"src/notes.txt": "src/ccnl_engine/knowledge/policy/x.json"},
+            "overrides": {"src/notes.txt": "src/ccnl_engine/knowledge/pay_item/x.json"},
         },
     )
 

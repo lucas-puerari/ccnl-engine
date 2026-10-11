@@ -92,14 +92,14 @@ def test_main_rewrites_and_rehashes_only_what_it_demotes(
 ) -> None:
     """Records first, then the readiness they no longer back; files rehashed."""
     for group in (
-        "contract/agreement",
-        "taxation/annual",
-        "social_security/contribution",
+        "agreement",
+        "sector",
+        "contribution",
         "surtax/regional",
         "limitation",
     ):
         (tmp_path / group).mkdir(parents=True)
-    ccnl = tmp_path / "contract" / "agreement" / "x.json"
+    ccnl = tmp_path / "agreement" / "x.json"
     _write(
         ccnl,
         {
@@ -108,7 +108,8 @@ def test_main_rewrites_and_rehashes_only_what_it_demotes(
             "parameters": {"accrual_rule": {"provenance": _derived()}},
         },
     )
-    sourced = tmp_path / "taxation" / "annual" / "2026-x.json"
+    sourced = tmp_path / "sector" / "2026" / "x.json"
+    sourced.parent.mkdir()
     _write(sourced, {"ruleset": {"source_type": "official_primary"}})
     untouched = sourced.read_text("utf-8")
     main(tmp_path)
@@ -119,4 +120,4 @@ def test_main_rewrites_and_rehashes_only_what_it_demotes(
     assert sourced.read_text("utf-8") == untouched
     out = capsys.readouterr().out
     assert "Records demoted to assumed: 1" in out
-    assert "  contract/agreement/x.json" in out
+    assert "  agreement/x.json" in out

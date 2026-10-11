@@ -7,8 +7,8 @@ recovery opened by the conguaglio of year N keeps running on the payslips
 of year N+1 until its last installment (D.L. 3/2020 art. 1 c. 3 for the
 trattamento integrativo, L. 207/2024 art. 1 c. 7 for the somma esente and the ulteriore
 detrazione).  On the last run of the employment the whole residual is
-recovered instead (:meth:`~ccnl_engine.tax_credit.recovery.models\
-.RecoveryPlan.post`), so no recovery outlives the employment.  The surtax a
+recovered instead (:meth:`~ccnl_engine.tax_credit.recovery.models.RecoveryPlan.post`),
+so no recovery outlives the employment.  The surtax a
 conguaglio of year N determines is withheld the same way on the payslips of
 N+1 (:mod:`~ccnl_engine.surtax.obligation.models`), and so is the
 IRPEF of a conguaglio the worker asked in writing to defer
@@ -88,8 +88,8 @@ class RecoveryObligation:
     Attributes:
         tax_year: Tax year whose conguaglio found the credit not due.  The
             installments posted in that year enter the ``recovered`` total
-            of its :class:`~ccnl_engine.balance.cash.account.models\
-.CreditAccount`; those posted in a later year are carried: they are
+            of its :class:`~ccnl_engine.balance.cash.account.models.CreditAccount`;
+            those posted in a later year are carried: they are
             deducted on the payslip but belong to no account of the later
             year.
         plan: The installment plan, with the installments still to post.

@@ -2,8 +2,7 @@
 
 The [Architecture contract](architecture-contract.md) fixes the layout: one
 root per concept, directories named after domains, files named after roles.
-The layout by source (`contract`, `tax`, `payroll`) has been migrated; only
-`tax/annual` waits for the knowledge move.
+The layout by source (`contract`, `tax`, `payroll`) has been fully migrated.
 
 The facade sits in `api.py`, the shared `errors`, `primitives` and
 `validation` modules at the root. Each file is named by its role, and the

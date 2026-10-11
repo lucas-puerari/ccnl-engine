@@ -13,7 +13,7 @@ import pytest
 
 from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.irpef.net.rules import NetIrpef
-from ccnl_engine.tax.annual.loaders import load_year_rules
+from ccnl_engine.knowledge.sector.loaders import load_year_rules
 from ccnl_engine.tax_credit.foreign.inputs import ForeignTaxPaid
 from ccnl_engine.tax_credit.foreign.rules import (
     foreign_credit_rule,

@@ -407,7 +407,7 @@ def test_roots_without_tier_and_stale_legacy_are_reported() -> None:
     modules = _modules(**{
         "ccnl_engine.__init__": "",
         "ccnl_engine.misc.models": "",
-        "ccnl_engine.tax.misc.models": "",
+        "ccnl_engine.sickness.models": "",
     })
     assert unknown_concepts(modules) == ["misc"]
     assert stale_legacy_roots(modules) == []

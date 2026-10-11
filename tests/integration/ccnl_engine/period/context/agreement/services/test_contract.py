@@ -23,7 +23,7 @@ from tests.integration.ccnl_engine.year.builders import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.tax.annual.models import YearRules
+    from ccnl_engine.knowledge.sector.models import YearRules
 
 _CEILING_2027 = Decimal("130000.00")
 

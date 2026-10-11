@@ -180,7 +180,7 @@ def readiness_errors(
     """
     weak = weak_counts(rules)
     errors: list[str] = []
-    for path in sorted((root / "contract" / "agreement").glob("*.json")):
+    for path in sorted((root / "agreement").glob("*.json")):
         file = path.relative_to(root).as_posix()
         data = json.loads(path.read_text(encoding="utf-8"))
         verification = data.get("verification") or {}

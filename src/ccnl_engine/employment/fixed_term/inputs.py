@@ -27,8 +27,8 @@ class NaspiExclusion(StrEnum):
     Sources: L. 92/2012 art. 2 c. 28-29 and D.L. 87/2018 art. 1 c. 3, text
     in force on Normattiva on 7 October 2026; INPS circ. 121/2019 par. 2.2
     and 2.4.  Apprentices (c. 29 lett. c) are not a reason here: an
-    apprenticeship is an :class:`~ccnl_engine.employment.inputs\
-.Apprentice` contract, which never pays the surcharge.  Operai agricoli
+    apprenticeship is an :class:`~ccnl_engine.employment.inputs.Apprentice` contract,
+    which never pays the surcharge.  Operai agricoli
     (c. 3) are not a reason either: the bundle marks the categories of the
     sector the whole article does not apply to.
 

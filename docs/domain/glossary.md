@@ -437,7 +437,7 @@ this list: a name is added here before a directory uses it.
 `net`, `obligation`, `opening`, `other_employment`, `other_income`,
 `override`, `overtime`, `pay`, `payslip`, `persistence`, `payment`, `plan`, `posting`, `proration`,
 `provider`, `provincial_element`, `provision`, `public`, `qualification`,
-`raccordo`, `rate`, `recovery`, `registry`, `relief`, `remittance`,
+`raccordo`, `rate`, `raw`, `recovery`, `registry`, `relief`, `remittance`,
 `renewal_minimum`, `request`, `requirement`, `residence`, `result`,
 `revaluation`, `rounding`, `rule`, `rule_source`, `ruleset`, `schedule`,
 `sector`, `selection`, `separate`, `sequence`, `settlement`, `sign`,

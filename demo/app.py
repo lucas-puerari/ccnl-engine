@@ -33,7 +33,7 @@ from ccnl_engine.inputs import (
     WeeklyHours,
 )
 from ccnl_engine.catalog.loaders import load_ccnl
-from ccnl_engine.knowledge.loaders_manifest import read_resource
+from ccnl_engine.knowledge.loaders import read_resource
 from ccnl_engine.surtax.loaders import load_surtax_rules
 from ccnl_engine.surtax.jurisdiction.types import REGION_CODES
 
@@ -58,8 +58,8 @@ def _latest_bundled_year() -> int:
     year = datetime.now(UTC).year
     while True:
         try:
-            read_resource(f"taxation/annual/{year}/industria.json")
-            read_resource(f"social_security/contribution/{year}/industria.json")
+            read_resource(f"sector/{year}/industria.json")
+            read_resource(f"contribution/{year}/industria.json")
             read_resource(f"surtax/regional/{year}.json")
         except FileNotFoundError:
             year -= 1

@@ -8,10 +8,10 @@ if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL, TaxSector
     from ccnl_engine.capability.registry.models import CapabilityCatalog
     from ccnl_engine.family.models import FamilyDeductionRules
+    from ccnl_engine.knowledge.sector.models import YearRules
     from ccnl_engine.limitation.models import ModelLimitation
     from ccnl_engine.sickness.indemnity.models import InpsSickPayRates
     from ccnl_engine.surtax.models import SurtaxRules
-    from ccnl_engine.tax.annual.models import YearRules
     from ccnl_engine.variable_pay.models import VariablePayRules
 
 
@@ -19,8 +19,8 @@ class KnowledgeRepository(Protocol):  # pragma: no cover
     """Read-only access to the versioned payroll rule bundle.
 
     The engine depends on this interface, not on any concrete loader.
-    :class:`~ccnl_engine.period.repositories\
-.BundledKnowledgeRepository` is the production implementation that reads
+    :class:`~ccnl_engine.period.repositories.BundledKnowledgeRepository` is the
+    production implementation that reads
     from the package-bundled JSON files.
     """
 

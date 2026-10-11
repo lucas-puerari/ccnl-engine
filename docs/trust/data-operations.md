@@ -129,7 +129,7 @@ substitute tax rule changes (table below).
 
 | When | Task |
 |---|---|
-| Mid-January | Insert the ISTAT FOI index (without tobacco) of December of the previous year in `taxation/severance/<year>.json` (`december` is `null` until then): every December run with a TFR fund to revalue is blocked without it (art. 2120 c. 4 c.c.). |
+| Mid-January | Insert the ISTAT FOI index (without tobacco) of December of the previous year in `severance/revaluation/<year>.json` (`december` is `null` until then): every December run with a TFR fund to revalue is blocked without it (art. 2120 c. 4 c.c.). |
 | After the budget law and the INPS circulars of the year | Build the `<year>-<sector>.json` tax and INPS files, the somma esente, family deductions, variable pay, surtax and TFR revaluation files of the year, each record with its own source; drop the `provisional` flag of each, and resolve `provisional_ruleset` when no provisional ruleset is left. |
 
 Provisions of 2026 that change or end in 2027, to settle when the 2027

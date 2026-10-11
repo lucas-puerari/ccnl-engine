@@ -131,13 +131,18 @@ LEGACY_SOURCE_TREE: Final = frozenset({
 })
 #: First-level datasets of the knowledge tree.
 KNOWLEDGE_DOMAINS: Final = frozenset({
-    "contract",
-    "taxation",
-    "surtax",
-    "social_security",
-    "policy",
+    "agreement",
     "capability",
+    "contribution",
+    "family",
     "limitation",
+    "pay_item",
+    "sector",
+    "severance",
+    "sickness",
+    "surtax",
+    "tax_credit",
+    "variable_pay",
 })
 SCRIPT_DOMAINS: Final = frozenset({
     "structure",

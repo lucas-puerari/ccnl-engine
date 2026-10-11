@@ -1,7 +1,8 @@
 """Capability report of one run: scope and gaps against the registry.
 
-For every capability of the :class:`~ccnl_engine.payroll.capability\
-.models_catalog.CapabilityCatalog` the run decides its scope from the
+For every capability of the
+:class:`~ccnl_engine.capability.registry.models.CapabilityCatalog` the run decides its
+scope from the
 applicability predicate, the facts of the case and the trace of the
 capability.  Only an applicable capability can leave a gap:
 

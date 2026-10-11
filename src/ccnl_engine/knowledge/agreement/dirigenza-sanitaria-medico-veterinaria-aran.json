@@ -1,0 +1,547 @@
+{
+  "schema_version": "0.5",
+  "meta": {
+    "ccnl_id": "dirigenza-sanitaria-medico-veterinaria-aran",
+    "name": "CCNL Area Sanità 2022-2024 — ARAN (Dirigenti Medici e Veterinari SSN)",
+    "cnel_code": "S225",
+    "sector": "Pubblica Amministrazione",
+    "tax_sector": "pubblica-amministrazione",
+    "signatories": [
+      "ARAN",
+      "ANAAO ASSOMED",
+      "FEDERAZIONE CIMO-FESMED",
+      "AAROI EMAC",
+      "FASSID",
+      "FVM",
+      "UIL FPL",
+      "FEDERAZIONE CISL MEDICI"
+    ],
+    "agreement_date": "2026-02-27",
+    "validity": {
+      "valid_from": "2022-01-01",
+      "valid_until": "2024-12-31"
+    },
+    "sources": [
+      {
+        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
+        "type": "ccnl_definitivo",
+        "agreement_date": "2026-02-27",
+        "notes": "CCNL Area Sanità 2022-2024 (27.02.2026). Art. 11 (incrementi stipendio tabellare: +230€/mese da 1/1/2024, valore a regime 50.005,77€/anno per 13 mensilità). Art. 15 (indennità specificità medico-veterinaria rideterminata in 9.466,00€/anno per 13 mensilità dal 31/12/2024). Art. 14 (retribuzione di posizione). Campo di applicazione: dirigenti medici, sanitari, veterinari e professioni sanitarie SSN."
+      },
+      {
+        "url": "https://openssn.marcopingitore.it/ccnl-dirigenza-sanitaria-2022-2024/2026/02/28/9222/",
+        "type": "fonte_secondaria",
+        "agreement_date": "2026-02-28",
+        "notes": "Riepilogo economico del CCNL Area Sanità 2022-2024. Conferma importi tabellari e indennità."
+      },
+      {
+        "url": "https://ilccnl.it/ccnl/dirigenti---dirigenza-medica-e-veterinaria/dirigenti---sanita-medici-e-veterinari-dal-010195",
+        "type": "fonte_secondaria",
+        "agreement_date": null,
+        "notes": "SIMPLIFICATION: codice CNEL S225 da fonte secondaria (ilccnl.it). Non riportato nel testo ufficiale ARAN."
+      }
+    ],
+    "extraction": {
+      "method": "ai",
+      "model": "claude-sonnet-4-6",
+      "timestamp": "2026-09-03",
+      "human_reviewed": false
+    },
+    "workers_estimate": "~100k",
+    "public_pension_fund": "cps"
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2019-12-19",
+          "valid_until": null,
+          "value": "165"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2019-12-19",
+          "valid_until": null,
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 1,
+      "maximum_count": 0,
+      "amount_by_level": {},
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "2026-02-27-ccnl-area-sanita-2022-2024-3-pdf",
+            "title": "2026-02-27-ccnl-area-sanita-2022-2024-3-pdf",
+            "kind": "associazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf"
+          },
+          "section": "Scatti di anzianità"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    "employer_funds": [
+      {
+        "code": "PERSEO_SIRIO",
+        "description": "Perseo Sirio - Fondo pensione complementare dei dipendenti pubblici",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0100"
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0100"
+            }
+          ]
+        },
+        "contribution_base": "tfr_base",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "perseo-sirio-nota-informativa-2026",
+              "title": "Perseo Sirio, Nota informativa, Parte I, Scheda 'I destinatari e i contributi' (in vigore dal 27/03/2026)",
+              "kind": "altro",
+              "url": "https://www.fondoperseosirio.it/wp-content/uploads/2026/07/Nota-Info-completa_18.12.25.pdf"
+            },
+            "section": "Scheda 'I destinatari e i contributi', Dipendenti pubblici",
+            "quote": "Dipendenti pubblici (D. Lgs. 124/1993): Assunti dopo il 31-dic-2000 ovvero a tempo determinato: Quota TFR 100%, Lavoratore 1%, Datore di lavoro 1% [...] Assunti prima del 1-gen-2001 (optanti): 28,94%, 1%, 1%, 1,5% [...] (1) Le quote di TFR dei dipendenti pubblici non sono versate al fondo ma sono accantonate figurativamente presso l'INPS Gestione Dipendenti Pubblici [...] (5) In percentuale della retribuzione utile ai fini del calcolo del TFR."
+          },
+          "transformation": "1% employer and at least 1% worker of the retribuzione utile ai fini del TFR, the TFR base of the engine, on the monthly payments and the tredicesima. The TFR conferred and the 1.5% of an optant are accrued notionally by INPS Gestione Dipendenti Pubblici, not paid to the fund: the run keeps the TFR where it accrues it.",
+          "note": "Read from the PDF the url serves (sha256 7a52a0d7ea3445ad54eb67bb0ccf206d930a7e72110221a9b010231437b261cc), text layer. No human review recorded."
+        }
+      }
+    ]
+  },
+  "levels": [
+    {
+      "code": "DIRIGENTE",
+      "order": 1,
+      "description": "Dirigente medico o veterinario SSN (rapporto esclusivo o non esclusivo)",
+      "category": "dirigente",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2019-12-19",
+            "valid_until": "2024-01-01",
+            "value": "3616.60",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "2026-02-27-ccnl-area-sanita-2022-2024-3-pdf",
+                  "title": "2026-02-27-ccnl-area-sanita-2022-2024-3-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "3846.60",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "2026-02-27-ccnl-area-sanita-2022-2024-3-pdf",
+                  "title": "2026-02-27-ccnl-area-sanita-2022-2024-3-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "SPECIFICITA_MEDICO_VETERINARIA",
+          "description": "Indennità di specificità medico-veterinaria (Art. 15 CCNL 27.02.2026)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2019-12-19",
+                "valid_until": "2024-12-31",
+                "value": "704.88"
+              },
+              {
+                "valid_from": "2024-12-31",
+                "valid_until": null,
+                "value": "728.15"
+              }
+            ]
+          },
+          "role": null,
+          "months_per_year": 13,
+          "tfr_relevant": false,
+          "contribution_relevant": true,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "2026-02-27-ccnl-area-sanita-2022-2024-3-pdf",
+                "title": "2026-02-27-ccnl-area-sanita-2022-2024-3-pdf",
+                "kind": "associazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "2026-02-27-ccnl-area-sanita-2022-2024-3-pdf",
+            "title": "2026-02-27-ccnl-area-sanita-2022-2024-3-pdf",
+            "kind": "associazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    }
+  ],
+  "apprenticeship": [],
+  "coverage": {
+    "notes": [
+      {
+        "kind": "source",
+        "text": "Stipendio tabellare da Art. 11 CCNL 27.02.2026: incremento +230€/mese da 1/1/2024, valore a regime 50.005,77€/anno per 13 mensilità = 3.846,60€/mese. Art. 11 riferisce Art. 61 comma 3 CCNL 23.1.2024 come base preesistente."
+      },
+      {
+        "kind": "source",
+        "text": "Indennità specificità medico-veterinaria dal 31/12/2024: Art. 15 comma 1 CCNL 27.02.2026, rideterminata in 9.466,00€/anno per 13 mensilità = 728,15€/mese. Applicazione: dirigenti medici e veterinari."
+      },
+      {
+        "kind": "source",
+        "text": "Tredicesima mensilità: Art. 11 comma 1 ('per 13 mensilità'), confermato per tabellare e specificità."
+      },
+      {
+        "kind": "source",
+        "text": "Campo di applicazione: Art. 1 CCNL 27.02.2026 — dirigenti medici, sanitari, veterinari e professioni sanitarie SSN. Questo file modella la sola componente medico-veterinaria."
+      },
+      {
+        "kind": "source",
+        "text": "Signatari: frontespizio CCNL 27.02.2026. CGIL FP non ha firmato."
+      },
+      {
+        "kind": "info",
+        "text": "Retribuzione di posizione (Art. 14): obbligatoria ma variabile per tipo incarico (UOC, UOSD, professionale, ecc.). Non modellata — parte fissa per incarico assegnato in sede aziendale; out_of_scope per il motore."
+      },
+      {
+        "kind": "info",
+        "text": "Indennità per incarico di direzione di struttura complessa (Art. 16): 11.157€/anno per 13 mensilità. Non modellata come fixed_allowance — assegnata solo ai direttori di SC, non a tutti i dirigenti."
+      },
+      {
+        "kind": "info",
+        "text": "Clausola di garanzia retribuzione di posizione (Art. 17): minima garantita per anzianità. Non modellata — variabile per anzianità e valutazione."
+      },
+      {
+        "kind": "info",
+        "text": "Layer 2 implemented. Part-time: engine scales by part_time_pct. Fixed-term: PA is excluded from NASpI addizionale (lavoratori delle pubbliche amministrazioni in statutory exclusion list per INPS guidance); fixed_term_additional_rate=0.000 in tax file. Apprenticeship: no ARAN CCNL defines percentage or under-classification tracks; narrow high-qualification form under D.Lgs. 81/2015 Art. 47 exists for research profiles but is not operationalized in any examined CCNL."
+      },
+      {
+        "kind": "info",
+        "text": "Nessuno scatto automatico di anzianità per i dirigenti. Cadence=1 e maximum_count=0 riflettono l'assenza di progression automatica."
+      },
+      {
+        "kind": "simplification",
+        "text": "Hourly divisor 165 = 38h/settimana × 52/12, arrotondato. Art. 27 CCNL 23.1.2024 (Orario di lavoro dei dirigenti) non modificato dal CCNL 27.02.2026. Il divisore 165 è un'approssimazione — i dirigenti SSN non hanno un orario fisso misurabile.",
+        "capability": "overtime",
+        "monetary_impact": "no"
+      },
+      {
+        "kind": "simplification",
+        "text": "Pre-31/12/2024 specificità medico-veterinaria (704,88€/mese) calcolata per differenza dal valore a regime 728,15€ sottraendo il presunto incremento 23,27€/mese × 13 = 302,51€/anno. L'importo pre-2024 è una stima basata sulle comunicazioni GOAL-plan (fonte secondaria); il valore esatto del CCNL 23.1.2024 Art. 65 non è verificato.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "specificita_pre_2025_estimated",
+          "applies_when": {
+            "effective_until": "2024-12-31"
+          },
+          "remediation": "Source the exact Art. 65 amount of the CCNL 23.1.2024 for periods before 31/12/2024."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Pre-2024 tabellare 3.616,60€/mese = 47.015,77€/anno ricavato sottraendo l'incremento di 230€/mese (× 13) dal valore 2024. Il valore del CCNL 19.12.2019 (base periodo 1) è stimato in assenza di consultazione del testo del previgente contratto.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "tabellare_pre_2024_estimated",
+          "applies_when": {
+            "effective_until": "2024-01-01"
+          },
+          "remediation": "Source the tabellare of the CCNL 19.12.2019 from the previgente contract text."
+        }
+      },
+      {
+        "kind": "info",
+        "text": "CNEL S225 confermato da contratticcnl.it (/ccnl/s225/: \"CCNL dell'Area Sanità (dirigenti)\", deposito 19/12/2019, ARAN). Verificato 2026-09-09."
+      },
+      {
+        "kind": "simplification",
+        "text": "Questo file modella solo la componente medico-veterinaria del CCNL Area Sanità 27.02.2026. Il medesimo CCNL copre anche altri dirigenti sanitari (psicologi, farmacisti, biologi, fisici, chimici), modellati in 'dirigenza-sanitaria-area-sanita-aran.json'. Entrambi i file condividono codice CNEL S225.",
+        "monetary_impact": "no"
+      },
+      {
+        "kind": "simplification",
+        "text": "Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13+ modellati con SicknessTier. Il motore classifica ogni giorno di malattia con il mese dell'episodio in cui cade, quindi un periodo di paga a cavallo di una soglia mensile applica a ciascun giorno il proprio tasso. Comporto max 18 mesi = 540 gg.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "single_rate_across_tier_threshold",
+          "status": "resolved",
+          "remediation": "Resolved: sick days are classified one by one (ccnl_engine.sickness.day.rules); tested with an episode crossing the threshold of a tier within one month."
+        }
+      },
+      {
+        "kind": "info",
+        "text": "Rinnovo 2025-2027: ARAN ha convocato primo tavolo il 22/07/2026 presentando quantificazione economica con risorse ordinarie pari al 5,40%. Trattativa in corso al 2026-09-09; nessun accordo firmato. Fonte: consulentidellavoro.vi.it, vet33.it."
+      },
+      {
+        "kind": "info",
+        "text": "PENSION FUND. Perseo Sirio (1% + 1% of the retribuzione utile ai fini del TFR). Enrolment is a fact: the silenzio-assenso of the hires from 2 January 2019 (accordo ARAN 16/09/2021) is not inferred, nor the three months a fixed term needs to enrol. The TFR conferred stays a notional INPS accrual."
+      }
+    ]
+  },
+  "ruleset": {
+    "id": "ccnl/dirigenza-sanitaria-medico-veterinaria-aran",
+    "version": "2026.2",
+    "effective_from": "2022-01-01",
+    "effective_until": "2024-12-31",
+    "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
+    "verification_status": "unverified",
+    "source_hash": "defe3633fac62a32c0fc07d0d7b2df0a5dfab2aafce13a3e75dbed0ea25b5d30",
+    "published_at": "2026-09-07",
+    "source_type": "institutional_secondary"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario diurno",
+          "kind": "indennita_per_hour",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-03-01",
+                "value": "30.72",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-area-sanita-2022-2024",
+                "title": "CCNL Area Sanità 2022-2024",
+                "kind": "tabella_retributiva",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf"
+              },
+              "section": "Art. 8 CCNL 27.02.2026 — Lavoro straordinario"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2026-03-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario notturno o festivo",
+          "kind": "indennita_per_hour",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-03-01",
+                "value": "34.73",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night_holiday"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-area-sanita-2022-2024",
+                "title": "CCNL Area Sanità 2022-2024",
+                "kind": "tabella_retributiva",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf"
+              },
+              "section": "Art. 8 CCNL 27.02.2026 — Lavoro straordinario"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2026-03-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_hourly",
+      "daily_hours": "7.6",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-area-sanita-2022-2024",
+            "title": "CCNL Area Sanità 2022-2024",
+            "kind": "tabella_retributiva",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf"
+          },
+          "section": "Art. 28 CCNL 23.01.2024 — Orario di lavoro (7h36'/giorno su 5 giorni)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-01-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "28",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "26"
+        },
+        {
+          "service_months_min": 36,
+          "annual_days": "28"
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-area-sanita-2022-2024",
+            "title": "CCNL Area Sanità 2022-2024",
+            "kind": "tabella_retributiva",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf"
+          },
+          "section": "Art. 9 CCNL 27.02.2026 — Ferie (26 gg < 3 anni; 28 gg >= 3 anni, settimana 5 gg)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2026-03-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 540,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-area-sanita-2022-2024",
+            "title": "CCNL Area Sanità 2022-2024",
+            "kind": "tabella_retributiva",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf"
+          },
+          "section": "Art. 38 CCNL 23.01.2024 — Malattia (comporto 18 mesi; mesi 10-12 al 90%, mesi 13-18 al 50%)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-01-01"
+        }
+      },
+      "tiers": [
+        {
+          "month_from": 1,
+          "month_until": 10,
+          "integration_rate": "1"
+        },
+        {
+          "month_from": 10,
+          "month_until": 13,
+          "integration_rate": "0.9"
+        },
+        {
+          "month_from": 13,
+          "month_until": null,
+          "integration_rate": "0.5"
+        }
+      ]
+    }
+  }
+}

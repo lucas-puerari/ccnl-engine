@@ -1,10 +1,10 @@
 {
   "weak_rules": {
-    "contract/agreement/acconciatura-estetica-confartigianato.json": {
+    "agreement/acconciatura-estetica-confartigianato.json": {
       "accrual_rule": "missing",
       "additional_months[2023-02-01]": "assumed"
     },
-    "contract/agreement/agenti-immobiliari-fiaip.json": {
+    "agreement/agenti-immobiliari-fiaip.json": {
       "accrual_rule": "missing",
       "additional_months[2025-05-01]": "assumed",
       "levels[III].base_salary[2025-05-01]": "assumed",
@@ -37,35 +37,35 @@
       "levels[V].base_salary[2027-05-01]": "assumed",
       "seniority_increments": "assumed"
     },
-    "contract/agreement/agenzie-marittime-i481.json": {
+    "agreement/agenzie-marittime-i481.json": {
       "accrual_rule": "assumed",
       "additional_months[2024-09-01]": "assumed"
     },
-    "contract/agreement/agenzie-viaggio-fiavet.json": {
+    "agreement/agenzie-viaggio-fiavet.json": {
       "accrual_rule": "missing",
       "additional_months[2024-06-01]": "assumed"
     },
-    "contract/agreement/alimentari-federalimentare.json": {
+    "agreement/alimentari-federalimentare.json": {
       "accrual_rule": "assumed",
       "additional_months[2023-12-01]": "assumed"
     },
-    "contract/agreement/alimentari-pmi-unionalimentari.json": {
+    "agreement/alimentari-pmi-unionalimentari.json": {
       "accrual_rule": "missing",
       "additional_months[2025-06-01]": "assumed"
     },
-    "contract/agreement/alimentaristi-cooperative-e016.json": {
+    "agreement/alimentaristi-cooperative-e016.json": {
       "accrual_rule": "missing",
       "additional_months[2023-12-01]": "assumed"
     },
-    "contract/agreement/anas.json": {
+    "agreement/anas.json": {
       "accrual_rule": "assumed",
       "additional_months[2026-03-01]": "assumed"
     },
-    "contract/agreement/assicurazioni-ania.json": {
+    "agreement/assicurazioni-ania.json": {
       "accrual_rule": "missing",
       "additional_months[2026-01-01]": "assumed"
     },
-    "contract/agreement/attivita-minerarie-assorisorse.json": {
+    "agreement/attivita-minerarie-assorisorse.json": {
       "accrual_rule": "missing",
       "additional_months[2022-04-01]": "assumed",
       "levels[1S].base_salary[2022-04-01]": "assumed",
@@ -106,261 +106,261 @@
       "levels[8].base_salary[2025-01-01]": "assumed",
       "seniority_increments": "assumed"
     },
-    "contract/agreement/autoferrotranvieri-internavigatori.json": {
+    "agreement/autoferrotranvieri-internavigatori.json": {
       "accrual_rule": "missing",
       "additional_months[2024-12-11]": "assumed"
     },
-    "contract/agreement/autorimesse-ic35.json": {
+    "agreement/autorimesse-ic35.json": {
       "accrual_rule": "missing",
       "additional_months[2025-12-09]": "assumed"
     },
-    "contract/agreement/autoscuole-unasca.json": {
+    "agreement/autoscuole-unasca.json": {
       "accrual_rule": "assumed",
       "additional_months[2021-01-01]": "assumed"
     },
-    "contract/agreement/autostrade-trafori.json": {
+    "agreement/autostrade-trafori.json": {
       "accrual_rule": "missing",
       "additional_months[2023-01-01]": "assumed"
     },
-    "contract/agreement/aziende-termali-federterme.json": {
+    "agreement/aziende-termali-federterme.json": {
       "accrual_rule": "missing",
       "additional_months[2024-10-01]": "assumed"
     },
-    "contract/agreement/bancari-abi.json": {
+    "agreement/bancari-abi.json": {
       "accrual_rule": "missing",
       "additional_months[2023-11-23]": "assumed"
     },
-    "contract/agreement/bcc-credito-cooperativo.json": {
+    "agreement/bcc-credito-cooperativo.json": {
       "accrual_rule": "missing",
       "additional_months[2024-09-01]": "assumed"
     },
-    "contract/agreement/calzaturiero-assocalzaturifici.json": {
+    "agreement/calzaturiero-assocalzaturifici.json": {
       "accrual_rule": "missing",
       "additional_months[2024-08-01]": "assumed"
     },
-    "contract/agreement/carta-cartone-assocarta.json": {
+    "agreement/carta-cartone-assocarta.json": {
       "accrual_rule": "assumed",
       "additional_months[2024-07-01]": "assumed"
     },
-    "contract/agreement/ced-assoced.json": {
+    "agreement/ced-assoced.json": {
       "accrual_rule": "missing",
       "additional_months[2025-09-01]": "assumed"
     },
-    "contract/agreement/cemento-calce-gesso-industria.json": {
+    "agreement/cemento-calce-gesso-industria.json": {
       "accrual_rule": "assumed",
       "additional_months[2024-12-31]": "assumed"
     },
-    "contract/agreement/ceramica-industria-confindustria.json": {
+    "agreement/ceramica-industria-confindustria.json": {
       "accrual_rule": "missing",
       "additional_months[2024-09-01]": "assumed"
     },
-    "contract/agreement/chimica-affini-pmi-unionchimica.json": {
+    "agreement/chimica-affini-pmi-unionchimica.json": {
       "accrual_rule": "missing",
       "additional_months[2026-01-01]": "assumed"
     },
-    "contract/agreement/chimica-farmaceutica-federchimica.json": {
+    "agreement/chimica-farmaceutica-federchimica.json": {
       "accrual_rule": "missing",
       "additional_months[2022-06-13]": "assumed"
     },
-    "contract/agreement/cinema-audiovisivi-industria.json": {
+    "agreement/cinema-audiovisivi-industria.json": {
       "accrual_rule": "missing",
       "additional_months[2025-01-01]": "assumed"
     },
-    "contract/agreement/comunicazione-artigianato-confartigianato.json": {
+    "agreement/comunicazione-artigianato-confartigianato.json": {
       "accrual_rule": "missing",
       "additional_months[2024-12-01]": "assumed"
     },
-    "contract/agreement/consorzi-agrari-assocap.json": {
+    "agreement/consorzi-agrari-assocap.json": {
       "accrual_rule": "missing",
       "additional_months[2025-01-01]": "assumed"
     },
-    "contract/agreement/consorzi-di-bonifica-snebi.json": {
+    "agreement/consorzi-di-bonifica-snebi.json": {
       "accrual_rule": "missing",
       "additional_months[2025-07-01]": "assumed"
     },
-    "contract/agreement/contoterzismo-caiagromec.json": {
+    "agreement/contoterzismo-caiagromec.json": {
       "accrual_rule": "missing",
       "additional_months[2024-06-01]": "assumed"
     },
-    "contract/agreement/cooperative-consorzi-agricoli.json": {
+    "agreement/cooperative-consorzi-agricoli.json": {
       "accrual_rule": "assumed",
       "additional_months[2024-04-01]": "assumed"
     },
-    "contract/agreement/cooperative-sociali.json": {
+    "agreement/cooperative-sociali.json": {
       "accrual_rule": "missing",
       "additional_months[2024-02-01]": "assumed",
       "additional_months[2025-01-01]": "assumed"
     },
-    "contract/agreement/dirigenza-funzioni-centrali-aran.json": {
+    "agreement/dirigenza-funzioni-centrali-aran.json": {
       "accrual_rule": "missing",
       "additional_months[2023-11-16]": "assumed"
     },
-    "contract/agreement/dirigenza-funzioni-locali-aran.json": {
+    "agreement/dirigenza-funzioni-locali-aran.json": {
       "accrual_rule": "missing",
       "additional_months[2020-12-17]": "assumed"
     },
-    "contract/agreement/dirigenza-istruzione-ricerca-aran.json": {
+    "agreement/dirigenza-istruzione-ricerca-aran.json": {
       "accrual_rule": "missing",
       "additional_months[2021-01-01]": "assumed"
     },
-    "contract/agreement/dirigenza-sanitaria-area-sanita-aran.json": {
+    "agreement/dirigenza-sanitaria-area-sanita-aran.json": {
       "accrual_rule": "missing",
       "additional_months[2019-12-19]": "assumed"
     },
-    "contract/agreement/dirigenza-sanitaria-medico-veterinaria-aran.json": {
+    "agreement/dirigenza-sanitaria-medico-veterinaria-aran.json": {
       "accrual_rule": "missing",
       "additional_months[2019-12-19]": "assumed"
     },
-    "contract/agreement/distribuzione-cooperativa-ancc.json": {
+    "agreement/distribuzione-cooperativa-ancc.json": {
       "accrual_rule": "assumed",
       "additional_months[2025-05-01]": "assumed"
     },
-    "contract/agreement/dmo-federdistribuzione.json": {
+    "agreement/dmo-federdistribuzione.json": {
       "accrual_rule": "assumed",
       "additional_months[2023-04-01]": "assumed"
     },
-    "contract/agreement/edilizia-ance.json": {
+    "agreement/edilizia-ance.json": {
       "accrual_rule": "assumed",
       "additional_months[2025-02-01]": "assumed"
     },
-    "contract/agreement/edilizia-artigianato-cna.json": {
+    "agreement/edilizia-artigianato-cna.json": {
       "accrual_rule": "missing",
       "additional_months[2025-05-01]": "assumed"
     },
-    "contract/agreement/edilizia-cooperative-ancpl.json": {
+    "agreement/edilizia-cooperative-ancpl.json": {
       "accrual_rule": "missing",
       "additional_months[2025-02-01]": "assumed"
     },
-    "contract/agreement/edilizia-pmi-confapi-aniem.json": {
+    "agreement/edilizia-pmi-confapi-aniem.json": {
       "accrual_rule": "assumed",
       "additional_months[2025-04-01]": "assumed"
     },
-    "contract/agreement/elettrico-elettricita-futura.json": {
+    "agreement/elettrico-elettricita-futura.json": {
       "accrual_rule": "missing",
       "additional_months[2025-04-01]": "assumed"
     },
-    "contract/agreement/energia-petrolio-confindustria.json": {
+    "agreement/energia-petrolio-confindustria.json": {
       "accrual_rule": "missing",
       "additional_months[2025-07-01]": "assumed"
     },
-    "contract/agreement/esercizi-cinematografici-anec.json": {
+    "agreement/esercizi-cinematografici-anec.json": {
       "accrual_rule": "assumed",
       "additional_months[2023-01-01]": "assumed"
     },
-    "contract/agreement/farmacie-municipalizzate-assofarm.json": {
+    "agreement/farmacie-municipalizzate-assofarm.json": {
       "accrual_rule": "assumed",
       "additional_months[2022-07-01]": "assumed"
     },
-    "contract/agreement/farmacie-private-h121.json": {
+    "agreement/farmacie-private-h121.json": {
       "accrual_rule": "missing",
       "additional_months[2021-11-01]": "assumed"
     },
-    "contract/agreement/federcasa.json": {
+    "agreement/federcasa.json": {
       "accrual_rule": "assumed",
       "additional_months[2024-12-01]": "assumed"
     },
-    "contract/agreement/fiori-recisi-ancef.json": {
+    "agreement/fiori-recisi-ancef.json": {
       "accrual_rule": "missing",
       "additional_months[2023-01-01]": "assumed"
     },
-    "contract/agreement/formazione-professionale.json": {
+    "agreement/formazione-professionale.json": {
       "accrual_rule": "missing",
       "additional_months[2024-01-01]": "assumed"
     },
-    "contract/agreement/forze-polizia-ordinamento-civile.json": {
+    "agreement/forze-polizia-ordinamento-civile.json": {
       "accrual_rule": "missing",
       "additional_months[2022-04-01]": "assumed"
     },
-    "contract/agreement/funivie-anef.json": {
+    "agreement/funivie-anef.json": {
       "accrual_rule": "missing",
       "additional_months[2025-05-01]": "assumed"
     },
-    "contract/agreement/funzioni-centrali-aran.json": {
+    "agreement/funzioni-centrali-aran.json": {
       "accrual_rule": "missing",
       "additional_months[2022-05-09]": "assumed"
     },
-    "contract/agreement/funzioni-locali-aran.json": {
+    "agreement/funzioni-locali-aran.json": {
       "accrual_rule": "missing",
       "additional_months[2022-11-16]": "assumed"
     },
-    "contract/agreement/gas-acqua-utilitalia.json": {
+    "agreement/gas-acqua-utilitalia.json": {
       "accrual_rule": "assumed",
       "additional_months[2022-10-01]": "assumed"
     },
-    "contract/agreement/gomma-plastica-federazione-gomma-plastica.json": {
+    "agreement/gomma-plastica-federazione-gomma-plastica.json": {
       "accrual_rule": "missing",
       "additional_months[2023-01-01]": "assumed"
     },
-    "contract/agreement/grafica-editoria-aieg.json": {
+    "agreement/grafica-editoria-aieg.json": {
       "accrual_rule": "missing",
       "additional_months[2024-03-01]": "assumed"
     },
-    "contract/agreement/igiene-ambientale-utilitalia.json": {
+    "agreement/igiene-ambientale-utilitalia.json": {
       "accrual_rule": "missing",
       "additional_months[2026-02-01]": "assumed"
     },
-    "contract/agreement/impianti-sportivi-sport.json": {
+    "agreement/impianti-sportivi-sport.json": {
       "accrual_rule": "missing",
       "additional_months[2024-01-01]": "assumed"
     },
-    "contract/agreement/impiegati-tecnici-agricoli.json": {
+    "agreement/impiegati-tecnici-agricoli.json": {
       "accrual_rule": "missing",
       "additional_months[2024-07-01]": "assumed"
     },
-    "contract/agreement/industria-turistica-federturismo.json": {
+    "agreement/industria-turistica-federturismo.json": {
       "accrual_rule": "missing",
       "additional_months[2025-01-01]": "assumed"
     },
-    "contract/agreement/informatica-pmi-unimatica.json": {
+    "agreement/informatica-pmi-unimatica.json": {
       "accrual_rule": "assumed",
       "additional_months[2025-01-01]": "assumed"
     },
-    "contract/agreement/istituzioni-servizi-socio-assistenziali-anaste.json": {
+    "agreement/istituzioni-servizi-socio-assistenziali-anaste.json": {
       "accrual_rule": "assumed",
       "additional_months[2023-01-01]": "assumed"
     },
-    "contract/agreement/istruzione-ricerca-aran.json": {
+    "agreement/istruzione-ricerca-aran.json": {
       "accrual_rule": "missing",
       "additional_months[2022-01-01]": "assumed"
     },
-    "contract/agreement/lapidei-industria.json": {
+    "agreement/lapidei-industria.json": {
       "accrual_rule": "missing",
       "additional_months[2022-12-31]": "assumed"
     },
-    "contract/agreement/laterizi-industria-f021.json": {
+    "agreement/laterizi-industria-f021.json": {
       "accrual_rule": "assumed",
       "additional_months[2022-04-01]": "assumed"
     },
-    "contract/agreement/lavanderie-industriali-assosistema.json": {
+    "agreement/lavanderie-industriali-assosistema.json": {
       "accrual_rule": "missing",
       "additional_months[2026-05-01]": "assumed"
     },
-    "contract/agreement/lavoro-domestico-convivente-orario-ridotto.json": {
+    "agreement/lavoro-domestico-convivente-orario-ridotto.json": {
       "accrual_rule": "missing"
     },
-    "contract/agreement/lavoro-domestico-convivente.json": {
+    "agreement/lavoro-domestico-convivente.json": {
       "accrual_rule": "missing"
     },
-    "contract/agreement/lavoro-domestico-non-convivente.json": {
+    "agreement/lavoro-domestico-non-convivente.json": {
       "accrual_rule": "missing"
     },
-    "contract/agreement/legno-arredamento-federlegno.json": {
+    "agreement/legno-arredamento-federlegno.json": {
       "accrual_rule": "assumed",
       "additional_months[2023-07-01]": "assumed"
     },
-    "contract/agreement/legno-lapidei-artigianato-confartigianato.json": {
+    "agreement/legno-lapidei-artigianato-confartigianato.json": {
       "accrual_rule": "assumed",
       "additional_months[2024-03-01]": "assumed"
     },
-    "contract/agreement/logistica-trasporto-confetra.json": {
+    "agreement/logistica-trasporto-confetra.json": {
       "accrual_rule": "assumed",
       "additional_months[2025-01-01]": "assumed"
     },
-    "contract/agreement/marittimi-industria-armatoriale.json": {
+    "agreement/marittimi-industria-armatoriale.json": {
       "accrual_rule": "assumed",
       "additional_months[2024-07-01]": "assumed"
     },
-    "contract/agreement/materiali-costruzione-lapidei-confapi.json": {
+    "agreement/materiali-costruzione-lapidei-confapi.json": {
       "accrual_rule": "assumed",
       "additional_months[2019-04-01]": "assumed",
       "contractual_fund_contribution[1][2026-01-01]": "assumed",
@@ -432,26 +432,26 @@
       "levels[8].fixed_allowances[SUPERMIN_COLL]": "assumed",
       "seniority_increments": "assumed"
     },
-    "contract/agreement/metalmeccanica-cooperative.json": {
+    "agreement/metalmeccanica-cooperative.json": {
       "accrual_rule": "missing",
       "additional_months[2025-06-01]": "assumed"
     },
-    "contract/agreement/metalmeccanico-artigianato.json": {
+    "agreement/metalmeccanico-artigianato.json": {
       "accrual_rule": "missing",
       "additional_months[2022-01-01]": "assumed"
     },
-    "contract/agreement/metalmeccanico-confapi.json": {
+    "agreement/metalmeccanico-confapi.json": {
       "accrual_rule": "missing",
       "additional_months[2021-06-01]": "assumed"
     },
-    "contract/agreement/metalmeccanico-confimi-pmi.json": {
+    "agreement/metalmeccanico-confimi-pmi.json": {
       "accrual_rule": "missing"
     },
-    "contract/agreement/multiservizi-anip.json": {
+    "agreement/multiservizi-anip.json": {
       "accrual_rule": "assumed",
       "additional_months[2021-07-01]": "assumed"
     },
-    "contract/agreement/noleggio-autobus-conducente-anav.json": {
+    "agreement/noleggio-autobus-conducente-anav.json": {
       "accrual_rule": "missing",
       "additional_months[2024-01-01]": "assumed",
       "levels[A1].base_salary[2024-01-01]": "assumed",
@@ -524,27 +524,27 @@
       "levels[Q2].fixed_allowances[INDENNITA_FUNZIONE]": "assumed",
       "seniority_increments": "assumed"
     },
-    "contract/agreement/occhiali-occhialeria-industria.json": {
+    "agreement/occhiali-occhialeria-industria.json": {
       "accrual_rule": "missing",
       "additional_months[2023-05-01]": "assumed"
     },
-    "contract/agreement/ooss-unsic-confsal.json": {
+    "agreement/ooss-unsic-confsal.json": {
       "accrual_rule": "assumed",
       "additional_months[2023-01-19]": "assumed"
     },
-    "contract/agreement/operai-agricoli-florovivaisti.json": {
+    "agreement/operai-agricoli-florovivaisti.json": {
       "accrual_rule": "missing",
       "additional_months[2022-06-01]": "assumed"
     },
-    "contract/agreement/orafi-argentieri-industria-federorafi.json": {
+    "agreement/orafi-argentieri-industria-federorafi.json": {
       "accrual_rule": "assumed",
       "additional_months[2022-06-01]": "assumed"
     },
-    "contract/agreement/organizzazioni-allevatori-aia.json": {
+    "agreement/organizzazioni-allevatori-aia.json": {
       "accrual_rule": "missing",
       "additional_months[2025-09-01]": "assumed"
     },
-    "contract/agreement/ortofrutticoli-agrumari.json": {
+    "agreement/ortofrutticoli-agrumari.json": {
       "accrual_rule": "missing",
       "additional_months[2024-01-01]": "assumed",
       "levels[1].base_salary[2024-01-01]": "assumed",
@@ -600,31 +600,31 @@
       "work_rules.absence_rules": "assumed",
       "work_rules.sickness_rules": "assumed"
     },
-    "contract/agreement/panificazione-artigianato-confartigianato.json": {
+    "agreement/panificazione-artigianato-confartigianato.json": {
       "accrual_rule": "missing",
       "additional_months[2024-04-01]": "assumed"
     },
-    "contract/agreement/panificazione-assipan.json": {
+    "agreement/panificazione-assipan.json": {
       "accrual_rule": "missing",
       "additional_months[2023-01-01]": "assumed"
     },
-    "contract/agreement/pelli-cuoio-industria-assopellettieri.json": {
+    "agreement/pelli-cuoio-industria-assopellettieri.json": {
       "accrual_rule": "missing",
       "additional_months[2023-04-01]": "assumed"
     },
-    "contract/agreement/portieri-fabbricati-confedilizia.json": {
+    "agreement/portieri-fabbricati-confedilizia.json": {
       "accrual_rule": "missing",
       "additional_months[2026-01-01]": "assumed"
     },
-    "contract/agreement/poste-italiane-k700.json": {
+    "agreement/poste-italiane-k700.json": {
       "accrual_rule": "assumed",
       "additional_months[2024-07-23]": "assumed"
     },
-    "contract/agreement/pubblici-esercizi-fipe-angem.json": {
+    "agreement/pubblici-esercizi-fipe-angem.json": {
       "accrual_rule": "missing",
       "additional_months[2024-06-01]": "assumed"
     },
-    "contract/agreement/pulizia-artigianato-confartigianato.json": {
+    "agreement/pulizia-artigianato-confartigianato.json": {
       "accrual_rule": "missing",
       "additional_months[2022-11-01]": "assumed",
       "levels[1].base_salary[2022-11-01]": "assumed",
@@ -713,7 +713,7 @@
       "work_rules.absence_rules": "assumed",
       "work_rules.sickness_rules": "assumed"
     },
-    "contract/agreement/radiotelevisive-radiofonico.json": {
+    "agreement/radiotelevisive-radiofonico.json": {
       "accrual_rule": "missing",
       "additional_months[2026-01-01]": "assumed",
       "levels[1].base_salary[2026-01-01]": "assumed",
@@ -736,7 +736,7 @@
       "levels[6].fixed_allowances[CONTINGENZA]": "assumed",
       "seniority_increments": "assumed"
     },
-    "contract/agreement/radiotelevisive-televisivo.json": {
+    "agreement/radiotelevisive-televisivo.json": {
       "accrual_rule": "missing",
       "additional_months[2026-01-01]": "assumed",
       "levels[1].base_salary[2026-01-01]": "assumed",
@@ -777,53 +777,53 @@
       "levels[9].fixed_allowances[CONTINGENZA]": "assumed",
       "seniority_increments": "assumed"
     },
-    "contract/agreement/recapito-corrispondenza-fise.json": {
+    "agreement/recapito-corrispondenza-fise.json": {
       "accrual_rule": "missing",
       "additional_months[2024-02-01]": "assumed"
     },
-    "contract/agreement/rsa-aiop.json": {
+    "agreement/rsa-aiop.json": {
       "accrual_rule": "assumed",
       "additional_months[2012-04-01]": "assumed"
     },
-    "contract/agreement/sanita-aran.json": {
+    "agreement/sanita-aran.json": {
       "accrual_rule": "missing",
       "additional_months[2022-11-02]": "assumed"
     },
-    "contract/agreement/sanita-privata-aiop-aris.json": {
+    "agreement/sanita-privata-aiop-aris.json": {
       "accrual_rule": "assumed",
       "additional_months[2020-07-01]": "assumed"
     },
-    "contract/agreement/scuole-materne-fism.json": {
+    "agreement/scuole-materne-fism.json": {
       "accrual_rule": "assumed",
       "additional_months[2023-09-01]": "assumed"
     },
-    "contract/agreement/scuole-private-agidae.json": {
+    "agreement/scuole-private-agidae.json": {
       "accrual_rule": "missing",
       "additional_months[2024-09-01]": "assumed"
     },
-    "contract/agreement/scuole-private-laiche-aninsei.json": {
+    "agreement/scuole-private-laiche-aninsei.json": {
       "accrual_rule": "assumed",
       "additional_months[2024-06-15]": "assumed"
     },
-    "contract/agreement/servizi-postali-appalto-fise.json": {
+    "agreement/servizi-postali-appalto-fise.json": {
       "accrual_rule": "assumed",
       "additional_months[2023-12-21]": "assumed"
     },
-    "contract/agreement/sistemazioni-idraulico-forestali-impiegati.json": {
+    "agreement/sistemazioni-idraulico-forestali-impiegati.json": {
       "accrual_rule": "missing",
       "additional_months[2026-01-01]": "assumed",
       "seniority_increments": "assumed"
     },
-    "contract/agreement/sistemazioni-idraulico-forestali-operai.json": {
+    "agreement/sistemazioni-idraulico-forestali-operai.json": {
       "accrual_rule": "missing",
       "additional_months[2026-01-01]": "assumed",
       "seniority_increments": "assumed"
     },
-    "contract/agreement/studi-professionali-confprofessioni.json": {
+    "agreement/studi-professionali-confprofessioni.json": {
       "accrual_rule": "assumed",
       "additional_months[2024-02-16]": "assumed"
     },
-    "contract/agreement/tabacco-apti.json": {
+    "agreement/tabacco-apti.json": {
       "accrual_rule": "missing",
       "additional_months[2025-01-01]": "assumed",
       "employer_funds[ALIFOND].employee_min_rate[2025-07-01]": "assumed",
@@ -884,19 +884,19 @@
       "levels[6].fixed_allowances[EDR]": "assumed",
       "seniority_increments": "assumed"
     },
-    "contract/agreement/telecomunicazioni-asstel.json": {
+    "agreement/telecomunicazioni-asstel.json": {
       "accrual_rule": "assumed",
       "additional_months[2026-01-01]": "assumed"
     },
-    "contract/agreement/terziario-confesercenti.json": {
+    "agreement/terziario-confesercenti.json": {
       "accrual_rule": "assumed",
       "additional_months[1990-01-01]": "assumed"
     },
-    "contract/agreement/tessile-moda-artigianato-confartigianato.json": {
+    "agreement/tessile-moda-artigianato-confartigianato.json": {
       "accrual_rule": "missing",
       "additional_months[2024-07-01]": "assumed"
     },
-    "contract/agreement/tessile-pmi-uniontessile.json": {
+    "agreement/tessile-pmi-uniontessile.json": {
       "accrual_rule": "missing",
       "additional_months[2024-04-01]": "assumed",
       "employer_funds[FONDAPI].employee_min_rate[2026-01-01]": "assumed",
@@ -942,35 +942,35 @@
       "levels[8].fixed_allowances[IND_FUN]": "assumed",
       "seniority_increments": "assumed"
     },
-    "contract/agreement/tessile-smi.json": {
+    "agreement/tessile-smi.json": {
       "accrual_rule": "missing",
       "additional_months[2024-11-11]": "assumed"
     },
-    "contract/agreement/trasporto-aereo-assaeroporti.json": {
+    "agreement/trasporto-aereo-assaeroporti.json": {
       "accrual_rule": "assumed",
       "additional_months[2025-01-01]": "assumed"
     },
-    "contract/agreement/trasporto-ferroviario-agens.json": {
+    "agreement/trasporto-ferroviario-agens.json": {
       "accrual_rule": "missing",
       "additional_months[2025-06-01]": "assumed"
     },
-    "contract/agreement/turismo-confcommercio.json": {
+    "agreement/turismo-confcommercio.json": {
       "accrual_rule": "missing",
       "additional_months[2024-07-01]": "assumed"
     },
-    "contract/agreement/turismo-confesercenti.json": {
+    "agreement/turismo-confesercenti.json": {
       "accrual_rule": "missing",
       "additional_months[2024-07-01]": "assumed"
     },
-    "contract/agreement/turismo-federalberghi.json": {
+    "agreement/turismo-federalberghi.json": {
       "accrual_rule": "missing",
       "additional_months[1990-01-01]": "assumed"
     },
-    "contract/agreement/uneba-uneba.json": {
+    "agreement/uneba-uneba.json": {
       "accrual_rule": "assumed",
       "additional_months[2024-10-01]": "assumed"
     },
-    "contract/agreement/vetro-meccanizzato-assovetro.json": {
+    "agreement/vetro-meccanizzato-assovetro.json": {
       "accrual_rule": "missing",
       "additional_months[2023-03-01]": "assumed",
       "employer_funds[FONCHIM].employee_min_rate[2026-01-01]": "assumed",
@@ -1008,71 +1008,71 @@
       "levels[F].fixed_allowances[TER]": "assumed",
       "seniority_increments": "assumed"
     },
-    "contract/agreement/vigilanza-privata-assiv.json": {
+    "agreement/vigilanza-privata-assiv.json": {
       "accrual_rule": "assumed",
       "additional_months[2023-06-01]": "assumed"
     },
-    "contract/agreement/vigilanza-privata-federdat-gpg.json": {
+    "agreement/vigilanza-privata-federdat-gpg.json": {
       "accrual_rule": "missing",
       "additional_months[2023-06-01]": "assumed"
     },
-    "contract/agreement/vigilanza-privata-federdat-sf.json": {
+    "agreement/vigilanza-privata-federdat-sf.json": {
       "accrual_rule": "missing",
       "additional_months[2023-06-01]": "assumed",
       "additional_months[2024-01-01]": "assumed"
     },
-    "social_security/contribution/2026/agricoltura.json": {
+    "contribution/2026/agricoltura.json": {
       "apprentice": "assumed"
     },
-    "social_security/contribution/2026/artigianato.json": {
+    "contribution/2026/artigianato.json": {
       "apprentice": "assumed",
       "inps": "assumed"
     },
-    "social_security/contribution/2026/credito.json": {
+    "contribution/2026/credito.json": {
       "inps": "assumed"
     },
-    "social_security/contribution/2026/lavoro-domestico.json": {
+    "contribution/2026/lavoro-domestico.json": {
       "domestic_contributions": "assumed"
     },
-    "social_security/contribution/2026/pubblica-amministrazione.json": {
+    "contribution/2026/pubblica-amministrazione.json": {
       "apprentice": "assumed",
       "inps.minimum_base": "assumed"
     },
-    "social_security/contribution/2027/agricoltura.json": {
+    "contribution/2027/agricoltura.json": {
       "apprentice": "assumed",
       "inps": "assumed",
       "inps.employee_additional": "assumed",
       "inps.minimum_base": "assumed",
       "inps.zone_reduction": "assumed"
     },
-    "social_security/contribution/2027/artigianato.json": {
+    "contribution/2027/artigianato.json": {
       "apprentice": "assumed",
       "inps": "assumed",
       "inps.employee_additional": "assumed",
       "inps.minimum_base": "assumed"
     },
-    "social_security/contribution/2027/credito.json": {
+    "contribution/2027/credito.json": {
       "apprentice": "assumed",
       "inps": "assumed",
       "inps.employee_additional": "assumed",
       "inps.minimum_base": "assumed"
     },
-    "social_security/contribution/2027/edilizia.json": {
+    "contribution/2027/edilizia.json": {
       "apprentice": "assumed",
       "inps": "assumed",
       "inps.employee_additional": "assumed",
       "inps.minimum_base": "assumed"
     },
-    "social_security/contribution/2027/industria.json": {
+    "contribution/2027/industria.json": {
       "apprentice": "assumed",
       "inps": "assumed",
       "inps.employee_additional": "assumed",
       "inps.minimum_base": "assumed"
     },
-    "social_security/contribution/2027/lavoro-domestico.json": {
+    "contribution/2027/lavoro-domestico.json": {
       "domestic_contributions": "assumed"
     },
-    "social_security/contribution/2027/pubblica-amministrazione.json": {
+    "contribution/2027/pubblica-amministrazione.json": {
       "apprentice": "assumed",
       "inps": "assumed",
       "inps.end_of_service": "assumed",
@@ -1089,14 +1089,14 @@
       "inps.public_funds.cpug.end_of_service": "assumed",
       "inps.public_life_insurance": "assumed"
     },
-    "social_security/contribution/2027/terziario.json": {
+    "contribution/2027/terziario.json": {
       "apprentice": "assumed",
       "inps": "assumed",
       "inps.employee_additional": "assumed",
       "inps.fis_reduction": "assumed",
       "inps.minimum_base": "assumed"
     },
-    "social_security/sickness/rates.json": {
+    "sickness/indemnity/rates.json": {
       "bands": "assumed"
     },
     "surtax/municipal/2027.json": {
@@ -1105,7 +1105,7 @@
     "surtax/regional/2027.json": {
       "rates": "assumed"
     },
-    "taxation/annual/2027/agricoltura.json": {
+    "sector/2027/agricoltura.json": {
       "complementary_pension": "assumed",
       "fixed_term_additional_rate": "assumed",
       "irpef_brackets": "assumed",
@@ -1115,19 +1115,7 @@
       "work_deduction": "assumed",
       "work_deduction.minimum": "assumed"
     },
-    "taxation/annual/2027/artigianato.json": {
-      "complementary_pension": "assumed",
-      "fixed_term_additional_rate": "assumed",
-      "irpef_brackets": "assumed",
-      "tfr": "assumed",
-      "tfr.additional_ivs": "assumed",
-      "tfr.compensation": "assumed",
-      "trattamento_integrativo": "assumed",
-      "ulteriore_detrazione": "assumed",
-      "work_deduction": "assumed",
-      "work_deduction.minimum": "assumed"
-    },
-    "taxation/annual/2027/credito.json": {
+    "sector/2027/artigianato.json": {
       "complementary_pension": "assumed",
       "fixed_term_additional_rate": "assumed",
       "irpef_brackets": "assumed",
@@ -1139,7 +1127,7 @@
       "work_deduction": "assumed",
       "work_deduction.minimum": "assumed"
     },
-    "taxation/annual/2027/edilizia.json": {
+    "sector/2027/credito.json": {
       "complementary_pension": "assumed",
       "fixed_term_additional_rate": "assumed",
       "irpef_brackets": "assumed",
@@ -1151,7 +1139,7 @@
       "work_deduction": "assumed",
       "work_deduction.minimum": "assumed"
     },
-    "taxation/annual/2027/industria.json": {
+    "sector/2027/edilizia.json": {
       "complementary_pension": "assumed",
       "fixed_term_additional_rate": "assumed",
       "irpef_brackets": "assumed",
@@ -1163,27 +1151,7 @@
       "work_deduction": "assumed",
       "work_deduction.minimum": "assumed"
     },
-    "taxation/annual/2027/lavoro-domestico.json": {
-      "complementary_pension": "assumed",
-      "fixed_term_additional_rate": "assumed",
-      "irpef_brackets": "assumed",
-      "tfr": "assumed",
-      "trattamento_integrativo": "assumed",
-      "ulteriore_detrazione": "assumed",
-      "work_deduction": "assumed",
-      "work_deduction.minimum": "assumed"
-    },
-    "taxation/annual/2027/pubblica-amministrazione.json": {
-      "complementary_pension": "assumed",
-      "fixed_term_additional_rate": "assumed",
-      "irpef_brackets": "assumed",
-      "tfr": "assumed",
-      "trattamento_integrativo": "assumed",
-      "ulteriore_detrazione": "assumed",
-      "work_deduction": "assumed",
-      "work_deduction.minimum": "assumed"
-    },
-    "taxation/annual/2027/terziario.json": {
+    "sector/2027/industria.json": {
       "complementary_pension": "assumed",
       "fixed_term_additional_rate": "assumed",
       "irpef_brackets": "assumed",
@@ -1195,19 +1163,51 @@
       "work_deduction": "assumed",
       "work_deduction.minimum": "assumed"
     },
-    "taxation/exemption/2027.json": {
+    "sector/2027/lavoro-domestico.json": {
+      "complementary_pension": "assumed",
+      "fixed_term_additional_rate": "assumed",
+      "irpef_brackets": "assumed",
+      "tfr": "assumed",
+      "trattamento_integrativo": "assumed",
+      "ulteriore_detrazione": "assumed",
+      "work_deduction": "assumed",
+      "work_deduction.minimum": "assumed"
+    },
+    "sector/2027/pubblica-amministrazione.json": {
+      "complementary_pension": "assumed",
+      "fixed_term_additional_rate": "assumed",
+      "irpef_brackets": "assumed",
+      "tfr": "assumed",
+      "trattamento_integrativo": "assumed",
+      "ulteriore_detrazione": "assumed",
+      "work_deduction": "assumed",
+      "work_deduction.minimum": "assumed"
+    },
+    "sector/2027/terziario.json": {
+      "complementary_pension": "assumed",
+      "fixed_term_additional_rate": "assumed",
+      "irpef_brackets": "assumed",
+      "tfr": "assumed",
+      "tfr.additional_ivs": "assumed",
+      "tfr.compensation": "assumed",
+      "trattamento_integrativo": "assumed",
+      "ulteriore_detrazione": "assumed",
+      "work_deduction": "assumed",
+      "work_deduction.minimum": "assumed"
+    },
+    "tax_credit/somma_esente/2027.json": {
       "somma_esente": "assumed"
     },
-    "taxation/family/2027.json": {
+    "family/2027.json": {
       "children": "assumed",
       "other_dependents": "assumed",
       "spouse": "assumed",
       "spouse_increases": "assumed"
     },
-    "taxation/variable_pay/2026.json": {
+    "variable_pay/2026.json": {
       "pdr": "assumed"
     },
-    "taxation/variable_pay/2027.json": {
+    "variable_pay/2027.json": {
       "fringe_benefit": "assumed",
       "notte_festivi_turni": "assumed",
       "pdr": "assumed",
@@ -1215,13 +1215,13 @@
     }
   },
   "open_limitations": {
-    "contract/agreement/acconciatura-estetica-confartigianato.json": [
+    "agreement/acconciatura-estetica-confartigianato.json": [
       "acconciatura-estetica-confartigianato/apprentice_inps_rates_unsourced",
       "acconciatura-estetica-confartigianato/gruppo_1_reduced_duration",
       "acconciatura-estetica-confartigianato/gruppo_2_semester_mapping",
       "acconciatura-estetica-confartigianato/inps_sector_rates_unsourced"
     ],
-    "contract/agreement/agenti-immobiliari-fiaip.json": [
+    "agreement/agenti-immobiliari-fiaip.json": [
       "agenti-immobiliari-fiaip/apprentice_seniority",
       "agenti-immobiliari-fiaip/ebnaip_qsc_and_flat_quota",
       "agenti-immobiliari-fiaip/fonte_pension_fund",
@@ -1229,103 +1229,103 @@
       "agenti-immobiliari-fiaip/specialist_apprenticeship_track",
       "agenti-immobiliari-fiaip/una_tantum_2025_2026"
     ],
-    "contract/agreement/agenzie-marittime-i481.json": [
+    "agreement/agenzie-marittime-i481.json": [
       "agenzie-marittime-i481/apprentice_seniority",
       "agenzie-marittime-i481/function_allowance_on_fourteenth",
       "agenzie-marittime-i481/level_1_seniority_zero"
     ],
-    "contract/agreement/agenzie-viaggio-fiavet.json": [
+    "agreement/agenzie-viaggio-fiavet.json": [
       "agenzie-viaggio-fiavet/apprentice_seniority"
     ],
-    "contract/agreement/alimentari-federalimentare.json": [
+    "agreement/alimentari-federalimentare.json": [
       "alimentari-federalimentare/apprentice_seniority",
       "alimentari-federalimentare/apprenticeship_period_boundaries"
     ],
-    "contract/agreement/alimentari-pmi-unionalimentari.json": [
+    "agreement/alimentari-pmi-unionalimentari.json": [
       "alimentari-pmi-unionalimentari/egr_increase_2027",
       "alimentari-pmi-unionalimentari/tranches_2027_2028"
     ],
-    "contract/agreement/alimentaristi-cooperative-e016.json": [
+    "agreement/alimentaristi-cooperative-e016.json": [
       "alimentaristi-cooperative-e016/apprentice_seniority",
       "alimentaristi-cooperative-e016/apprenticeship_full_pay_passthrough"
     ],
-    "contract/agreement/anas.json": [
+    "agreement/anas.json": [
       "anas/apprentice_seniority"
     ],
-    "contract/agreement/assicurazioni-ania.json": [
+    "agreement/assicurazioni-ania.json": [
       "assicurazioni-ania/apprentice_seniority",
       "assicurazioni-ania/inps_credit_rate_unverified",
       "assicurazioni-ania/inps_sector_rates_unsourced",
       "assicurazioni-ania/seniority_modal_class_difference",
       "assicurazioni-ania/solidarity_fund_unsourced"
     ],
-    "contract/agreement/attivita-minerarie-assorisorse.json": [
+    "agreement/attivita-minerarie-assorisorse.json": [
       "attivita-minerarie-assorisorse/ocr_salary_values",
       "attivita-minerarie-assorisorse/seniority_not_modelled"
     ],
-    "contract/agreement/autoferrotranvieri-internavigatori.json": [
+    "agreement/autoferrotranvieri-internavigatori.json": [
       "autoferrotranvieri-internavigatori/apprentice_seniority",
       "autoferrotranvieri-internavigatori/public_operator_inps_scheme"
     ],
-    "contract/agreement/autorimesse-ic35.json": [
+    "agreement/autorimesse-ic35.json": [
       "autorimesse-ic35/apprentice_seniority",
       "autorimesse-ic35/apprenticeship_percentages_2019"
     ],
-    "contract/agreement/autoscuole-unasca.json": [
+    "agreement/autoscuole-unasca.json": [
       "autoscuole-unasca/apprentice_seniority",
       "autoscuole-unasca/ente_bilaterale_contribution",
       "autoscuole-unasca/fondo_est_health_fund"
     ],
-    "contract/agreement/autostrade-trafori.json": [
+    "agreement/autostrade-trafori.json": [
       "autostrade-trafori/apprentice_seniority"
     ],
-    "contract/agreement/aziende-termali-federterme.json": [
+    "agreement/aziende-termali-federterme.json": [
       "aziende-termali-federterme/apprentice_seniority",
       "aziende-termali-federterme/ebiterme_fontur_funds",
       "aziende-termali-federterme/edr_rounding_discrepancy",
       "aziende-termali-federterme/terziario_inps_rates_unverified"
     ],
-    "contract/agreement/bancari-abi.json": [
+    "agreement/bancari-abi.json": [
       "bancari-abi/apprentice_seniority",
       "bancari-abi/apprenticeship_destination_levels",
       "bancari-abi/inps_credit_rate_unverified",
       "bancari-abi/inps_sector_rates_unsourced"
     ],
-    "contract/agreement/bcc-credito-cooperativo.json": [
+    "agreement/bcc-credito-cooperativo.json": [
       "bcc-credito-cooperativo/apprentice_seniority",
       "bcc-credito-cooperativo/art3_derogation_apprenticeship",
       "bcc-credito-cooperativo/inps_sector_rates_unsourced"
     ],
-    "contract/agreement/calzaturiero-assocalzaturifici.json": [
+    "agreement/calzaturiero-assocalzaturifici.json": [
       "calzaturiero-assocalzaturifici/apprentice_seniority",
       "calzaturiero-assocalzaturifici/seniority_secondary_source"
     ],
-    "contract/agreement/carta-cartone-assocarta.json": [
+    "agreement/carta-cartone-assocarta.json": [
       "carta-cartone-assocarta/apprentice_seniority"
     ],
-    "contract/agreement/ced-assoced.json": [
+    "agreement/ced-assoced.json": [
       "ced-assoced/terziario_inps_rates_unverified"
     ],
-    "contract/agreement/cemento-calce-gesso-industria.json": [
+    "agreement/cemento-calce-gesso-industria.json": [
       "cemento-calce-gesso-industria/apprentice_seniority",
       "cemento-calce-gesso-industria/apprenticeship_full_pay_passthrough"
     ],
-    "contract/agreement/ceramica-industria-confindustria.json": [
+    "agreement/ceramica-industria-confindustria.json": [
       "ceramica-industria-confindustria/apprentice_seniority",
       "ceramica-industria-confindustria/apprentice_seniority_amount"
     ],
-    "contract/agreement/chimica-affini-pmi-unionchimica.json": [
+    "agreement/chimica-affini-pmi-unionchimica.json": [
       "chimica-affini-pmi-unionchimica/apprentice_seniority",
       "chimica-affini-pmi-unionchimica/tranches_2027_2028"
     ],
-    "contract/agreement/cinema-audiovisivi-industria.json": [
+    "agreement/cinema-audiovisivi-industria.json": [
       "cinema-audiovisivi-industria/bilateral_funds_not_modelled"
     ],
-    "contract/agreement/commercio-confcommercio.json": [
+    "agreement/commercio-confcommercio.json": [
       "commercio-confcommercio/apprentice_seniority",
       "commercio-confcommercio/sickness_net_basis"
     ],
-    "contract/agreement/comunicazione-artigianato-confartigianato.json": [
+    "agreement/comunicazione-artigianato-confartigianato.json": [
       "comunicazione-artigianato-confartigianato/apprentice_inps_rates_unsourced",
       "comunicazione-artigianato-confartigianato/function_allowance_constant",
       "comunicazione-artigianato-confartigianato/inps_sector_rates_unsourced",
@@ -1333,53 +1333,53 @@
       "comunicazione-artigianato-confartigianato/pmi_non_artigiane_tables",
       "comunicazione-artigianato-confartigianato/switchboard_apprenticeship_duration"
     ],
-    "contract/agreement/concia-unic.json": [
+    "agreement/concia-unic.json": [
       "concia-unic/apprentice_seniority",
       "concia-unic/higher_overtime_bands",
       "concia-unic/seniority_gated_sickness_tiers"
     ],
-    "contract/agreement/consorzi-agrari-assocap.json": [
+    "agreement/consorzi-agrari-assocap.json": [
       "consorzi-agrari-assocap/apprentice_inps_rates_unsourced",
       "consorzi-agrari-assocap/cashier_allowance_missing",
       "consorzi-agrari-assocap/filcoop_health_fund_missing",
       "consorzi-agrari-assocap/tranche_2027_01_missing"
     ],
-    "contract/agreement/consorzi-di-bonifica-snebi.json": [
+    "agreement/consorzi-di-bonifica-snebi.json": [
       "consorzi-di-bonifica-snebi/apprentice_inps_rates_unsourced",
       "consorzi-di-bonifica-snebi/ex_sublevel_scatto_mapping",
       "consorzi-di-bonifica-snebi/pre_2000_cohort_table_missing"
     ],
-    "contract/agreement/contoterzismo-caiagromec.json": [
+    "agreement/contoterzismo-caiagromec.json": [
       "contoterzismo-caiagromec/apprentice_inps_rates_unsourced"
     ],
-    "contract/agreement/cooperative-consorzi-agricoli.json": [
+    "agreement/cooperative-consorzi-agricoli.json": [
       "cooperative-consorzi-agricoli/apprentice_inps_rates_unsourced",
       "cooperative-consorzi-agricoli/apprentice_seniority",
       "cooperative-consorzi-agricoli/apprenticeship_passthrough"
     ],
-    "contract/agreement/cooperative-sociali.json": [
+    "agreement/cooperative-sociali.json": [
       "cooperative-sociali/apprentice_seniority"
     ],
-    "contract/agreement/dirigenza-sanitaria-area-sanita-aran.json": [
+    "agreement/dirigenza-sanitaria-area-sanita-aran.json": [
       "dirigenza-sanitaria-area-sanita-aran/specificita_pre_2025_estimated"
     ],
-    "contract/agreement/dirigenza-sanitaria-medico-veterinaria-aran.json": [
+    "agreement/dirigenza-sanitaria-medico-veterinaria-aran.json": [
       "dirigenza-sanitaria-medico-veterinaria-aran/specificita_pre_2025_estimated",
       "dirigenza-sanitaria-medico-veterinaria-aran/tabellare_pre_2024_estimated"
     ],
-    "contract/agreement/distribuzione-cooperativa-ancc.json": [
+    "agreement/distribuzione-cooperativa-ancc.json": [
       "distribuzione-cooperativa-ancc/apprentice_seniority",
       "distribuzione-cooperativa-ancc/seniority_amounts_proxy_source"
     ],
-    "contract/agreement/dmo-federdistribuzione.json": [
+    "agreement/dmo-federdistribuzione.json": [
       "dmo-federdistribuzione/apprentice_seniority",
       "dmo-federdistribuzione/provincial_elements_missing"
     ],
-    "contract/agreement/edilizia-ance.json": [
+    "agreement/edilizia-ance.json": [
       "edilizia-ance/apprentice_seniority",
       "edilizia-ance/contractual_fund_uncovered"
     ],
-    "contract/agreement/edilizia-artigianato-cna.json": [
+    "agreement/edilizia-artigianato-cna.json": [
       "edilizia-artigianato-cna/apprentice_inps_rates_unsourced",
       "edilizia-artigianato-cna/apprentice_seniority",
       "edilizia-artigianato-cna/cassa_edile_accruals_missing",
@@ -1387,65 +1387,65 @@
       "edilizia-artigianato-cna/inps_sector_rates_unsourced",
       "edilizia-artigianato-cna/seniority_cadence_unconfirmed"
     ],
-    "contract/agreement/edilizia-cooperative-ancpl.json": [
+    "agreement/edilizia-cooperative-ancpl.json": [
       "edilizia-cooperative-ancpl/apprentice_seniority"
     ],
-    "contract/agreement/edilizia-pmi-confapi-aniem.json": [
+    "agreement/edilizia-pmi-confapi-aniem.json": [
       "edilizia-pmi-confapi-aniem/apprentice_its_evr_missing",
       "edilizia-pmi-confapi-aniem/apprentice_seniority",
       "edilizia-pmi-confapi-aniem/contractual_fund_partial",
       "edilizia-pmi-confapi-aniem/operai_gruppo_3_track_merged"
     ],
-    "contract/agreement/elettrico-elettricita-futura.json": [
+    "agreement/elettrico-elettricita-futura.json": [
       "elettrico-elettricita-futura/apprentice_seniority"
     ],
-    "contract/agreement/esercizi-cinematografici-anec.json": [
+    "agreement/esercizi-cinematografici-anec.json": [
       "esercizi-cinematografici-anec/apprentice_seniority",
       "esercizi-cinematografici-anec/fpls_rates_approximated"
     ],
-    "contract/agreement/farmacie-municipalizzate-assofarm.json": [
+    "agreement/farmacie-municipalizzate-assofarm.json": [
       "farmacie-municipalizzate-assofarm/apprentice_seniority",
       "farmacie-municipalizzate-assofarm/terziario_rates_proxy"
     ],
-    "contract/agreement/farmacie-private-h121.json": [
+    "agreement/farmacie-private-h121.json": [
       "farmacie-private-h121/apprentice_seniority"
     ],
-    "contract/agreement/fiori-recisi-ancef.json": [
+    "agreement/fiori-recisi-ancef.json": [
       "fiori-recisi-ancef/apprentice_seniority"
     ],
-    "contract/agreement/forze-polizia-ordinamento-civile.json": [
+    "agreement/forze-polizia-ordinamento-civile.json": [
       "forze-polizia-ordinamento-civile/ctps_rates_proxy"
     ],
-    "contract/agreement/funivie-anef.json": [
+    "agreement/funivie-anef.json": [
       "funivie-anef/apprentice_seniority"
     ],
-    "contract/agreement/funzioni-centrali-aran.json": [
+    "agreement/funzioni-centrali-aran.json": [
       "funzioni-centrali-aran/ctps_rates_proxy"
     ],
-    "contract/agreement/funzioni-locali-aran.json": [
+    "agreement/funzioni-locali-aran.json": [
       "funzioni-locali-aran/indennita_comparto_decentrata_missing",
       "funzioni-locali-aran/pre_2024_back_calculated",
       "funzioni-locali-aran/renewal_2025_2027_missing"
     ],
-    "contract/agreement/gas-acqua-utilitalia.json": [
+    "agreement/gas-acqua-utilitalia.json": [
       "gas-acqua-utilitalia/apprentice_seniority",
       "gas-acqua-utilitalia/industria_rates_proxy"
     ],
-    "contract/agreement/gomma-plastica-federazione-gomma-plastica.json": [
+    "agreement/gomma-plastica-federazione-gomma-plastica.json": [
       "gomma-plastica-federazione-gomma-plastica/apprentice_seniority",
       "gomma-plastica-federazione-gomma-plastica/apprenticeship_period_boundaries"
     ],
-    "contract/agreement/grafica-editoria-aieg.json": [
+    "agreement/grafica-editoria-aieg.json": [
       "grafica-editoria-aieg/apprentice_seniority",
       "grafica-editoria-aieg/pre_july_2026_amounts_missing"
     ],
-    "contract/agreement/igiene-ambientale-utilitalia.json": [
+    "agreement/igiene-ambientale-utilitalia.json": [
       "igiene-ambientale-utilitalia/apprentice_seniority",
       "igiene-ambientale-utilitalia/contractual_fund_partial",
       "igiene-ambientale-utilitalia/fund_paid_month",
       "igiene-ambientale-utilitalia/industria_rates_proxy"
     ],
-    "contract/agreement/impianti-sportivi-sport.json": [
+    "agreement/impianti-sportivi-sport.json": [
       "impianti-sportivi-sport/integration_75_days_4_20",
       "impianti-sportivi-sport/level_v_first_semester_overpaid",
       "impianti-sportivi-sport/level_vi_whole_track_at_destination",
@@ -1454,46 +1454,46 @@
       "impianti-sportivi-sport/pre_2015_fourteenth_missing",
       "impianti-sportivi-sport/pre_2015_superminimo_missing"
     ],
-    "contract/agreement/impiegati-tecnici-agricoli.json": [
+    "agreement/impiegati-tecnici-agricoli.json": [
       "impiegati-tecnici-agricoli/apprentice_inps_rates_unsourced",
       "impiegati-tecnici-agricoli/eban_agrifondo_missing",
       "impiegati-tecnici-agricoli/tranche_2025_01_missing"
     ],
-    "contract/agreement/industria-turistica-federturismo.json": [
+    "agreement/industria-turistica-federturismo.json": [
       "industria-turistica-federturismo/apprentice_seniority",
       "industria-turistica-federturismo/seniority_cadence_unconfirmed"
     ],
-    "contract/agreement/informatica-pmi-unimatica.json": [
+    "agreement/informatica-pmi-unimatica.json": [
       "informatica-pmi-unimatica/apprentice_seniority",
       "informatica-pmi-unimatica/apprenticeship_duration_by_agreement"
     ],
-    "contract/agreement/istituzioni-servizi-socio-assistenziali-anaste.json": [
+    "agreement/istituzioni-servizi-socio-assistenziali-anaste.json": [
       "istituzioni-servizi-socio-assistenziali-anaste/apprentice_seniority"
     ],
-    "contract/agreement/istruzione-ricerca-aran.json": [
+    "agreement/istruzione-ricerca-aran.json": [
       "istruzione-ricerca-aran/enam_base",
       "istruzione-ricerca-aran/higher_seniority_bands_missing",
       "istruzione-ricerca-aran/period_1_start_approximated",
       "istruzione-ricerca-aran/seniority_bands_not_increments"
     ],
-    "contract/agreement/lapidei-industria.json": [
+    "agreement/lapidei-industria.json": [
       "lapidei-industria/apprentice_seniority",
       "lapidei-industria/apprenticeship_passthrough"
     ],
-    "contract/agreement/laterizi-industria-f021.json": [
+    "agreement/laterizi-industria-f021.json": [
       "laterizi-industria-f021/apprentice_seniority",
       "laterizi-industria-f021/asq_seniority_from_as",
       "laterizi-industria-f021/level_e_first_period_one_below"
     ],
-    "contract/agreement/lavanderie-industriali-assosistema.json": [
+    "agreement/lavanderie-industriali-assosistema.json": [
       "lavanderie-industriali-assosistema/apprentice_seniority"
     ],
-    "contract/agreement/lavoro-domestico-convivente-orario-ridotto.json": [
+    "agreement/lavoro-domestico-convivente-orario-ridotto.json": [
       "lavoro-domestico-convivente-orario-ridotto/board_lodging_substitute",
       "lavoro-domestico-convivente-orario-ridotto/extra_month_hours",
       "lavoro-domestico-convivente-orario-ridotto/hourly_inps_bracket_unvalidated"
     ],
-    "contract/agreement/lavoro-domestico-convivente.json": [
+    "agreement/lavoro-domestico-convivente.json": [
       "lavoro-domestico-convivente/board_lodging_substitute",
       "lavoro-domestico-convivente/extra_month_hours",
       "lavoro-domestico-convivente/hourly_inps_bracket_unvalidated",
@@ -1501,74 +1501,74 @@
       "lavoro-domestico-convivente/seniority_frozen_at_2026",
       "lavoro-domestico-convivente/tranches_from_2027"
     ],
-    "contract/agreement/lavoro-domestico-non-convivente.json": [
+    "agreement/lavoro-domestico-non-convivente.json": [
       "lavoro-domestico-non-convivente/extra_month_hours",
       "lavoro-domestico-non-convivente/meal_indennity",
       "lavoro-domestico-non-convivente/seniority_frozen_at_2026",
       "lavoro-domestico-non-convivente/tranches_from_2027"
     ],
-    "contract/agreement/legno-arredamento-federlegno.json": [
+    "agreement/legno-arredamento-federlegno.json": [
       "legno-arredamento-federlegno/apprentice_seniority",
       "legno-arredamento-federlegno/apprenticeship_midpoint_components"
     ],
-    "contract/agreement/legno-lapidei-artigianato-confartigianato.json": [
+    "agreement/legno-lapidei-artigianato-confartigianato.json": [
       "legno-lapidei-artigianato-confartigianato/apprentice_inps_rates_unsourced",
       "legno-lapidei-artigianato-confartigianato/impiegati_apprenticeship_duration",
       "legno-lapidei-artigianato-confartigianato/inps_sector_rates_unsourced",
       "legno-lapidei-artigianato-confartigianato/lapidei_tables_not_modelled",
       "legno-lapidei-artigianato-confartigianato/null_category_operaio_rate"
     ],
-    "contract/agreement/logistica-trasporto-confetra.json": [
+    "agreement/logistica-trasporto-confetra.json": [
       "logistica-trasporto-confetra/apprentice_seniority"
     ],
-    "contract/agreement/marittimi-industria-armatoriale.json": [
+    "agreement/marittimi-industria-armatoriale.json": [
       "marittimi-industria-armatoriale/apprentice_seniority"
     ],
-    "contract/agreement/materiali-costruzione-lapidei-confapi.json": [
+    "agreement/materiali-costruzione-lapidei-confapi.json": [
       "materiali-costruzione-lapidei-confapi/contractual_fund_partial"
     ],
-    "contract/agreement/metalmeccanica-cooperative.json": [
+    "agreement/metalmeccanica-cooperative.json": [
       "metalmeccanica-cooperative/apprentice_seniority",
       "metalmeccanica-cooperative/apprenticeship_from_federmeccanica"
     ],
-    "contract/agreement/metalmeccanico-artigianato.json": [
+    "agreement/metalmeccanico-artigianato.json": [
       "metalmeccanico-artigianato/apprentice_inps_rates_unsourced",
       "metalmeccanico-artigianato/apprentice_seniority",
       "metalmeccanico-artigianato/inps_sector_rates_unsourced"
     ],
-    "contract/agreement/metalmeccanico-confapi.json": [
+    "agreement/metalmeccanico-confapi.json": [
       "metalmeccanico-confapi/apprentice_seniority",
       "metalmeccanico-confapi/apprenticeship_36_months_assumed",
       "metalmeccanico-confapi/fondapi_base_elements"
     ],
-    "contract/agreement/metalmeccanico-confimi-pmi.json": [
+    "agreement/metalmeccanico-confimi-pmi.json": [
       "metalmeccanico-confimi-pmi/overtime_bands_from_confapi"
     ],
-    "contract/agreement/metalmeccanico-federmeccanica.json": [
+    "agreement/metalmeccanico-federmeccanica.json": [
       "metalmeccanico-federmeccanica/apprentice_seniority",
       "metalmeccanico-federmeccanica/overtime_exempt_quota_supplement"
     ],
-    "contract/agreement/multiservizi-anip.json": [
+    "agreement/multiservizi-anip.json": [
       "multiservizi-anip/apprentice_seniority",
       "multiservizi-anip/cigs_threshold_16_to_50"
     ],
-    "contract/agreement/noleggio-autobus-conducente-anav.json": [
+    "agreement/noleggio-autobus-conducente-anav.json": [
       "noleggio-autobus-conducente-anav/apprentice_seniority",
       "noleggio-autobus-conducente-anav/salary_tables_from_proxy",
       "noleggio-autobus-conducente-anav/seniority_from_ic35",
       "noleggio-autobus-conducente-anav/t0_table_back_calculated",
       "noleggio-autobus-conducente-anav/una_tantum_2025_2026"
     ],
-    "contract/agreement/occhiali-occhialeria-industria.json": [
+    "agreement/occhiali-occhialeria-industria.json": [
       "occhiali-occhialeria-industria/apprentice_seniority",
       "occhiali-occhialeria-industria/apprenticeship_full_pay"
     ],
-    "contract/agreement/ooss-unsic-confsal.json": [
+    "agreement/ooss-unsic-confsal.json": [
       "ooss-unsic-confsal/apprentice_seniority",
       "ooss-unsic-confsal/level_5_apprentice_one_level_below",
       "ooss-unsic-confsal/salary_2026_from_proxy"
     ],
-    "contract/agreement/operai-agricoli-florovivaisti.json": [
+    "agreement/operai-agricoli-florovivaisti.json": [
       "operai-agricoli-florovivaisti/apprentice_inps_rates_unsourced",
       "operai-agricoli-florovivaisti/apprentice_seniority",
       "operai-agricoli-florovivaisti/eban_fisa_agrifondo",
@@ -1580,45 +1580,45 @@
       "operai-agricoli-florovivaisti/provincial_supplement",
       "operai-agricoli-florovivaisti/seniority_amounts_unconfirmed"
     ],
-    "contract/agreement/orafi-argentieri-industria-federorafi.json": [
+    "agreement/orafi-argentieri-industria-federorafi.json": [
       "orafi-argentieri-industria-federorafi/apprentice_seniority"
     ],
-    "contract/agreement/organizzazioni-allevatori-aia.json": [
+    "agreement/organizzazioni-allevatori-aia.json": [
       "organizzazioni-allevatori-aia/apprentice_inps_rates_unsourced",
       "organizzazioni-allevatori-aia/quadri_function_allowance",
       "organizzazioni-allevatori-aia/third_tranche_sep_2026"
     ],
-    "contract/agreement/ortofrutticoli-agrumari.json": [
+    "agreement/ortofrutticoli-agrumari.json": [
       "ortofrutticoli-agrumari/assumed_sickness_integration_rates",
       "ortofrutticoli-agrumari/ind_fun_assumed_constant",
       "ortofrutticoli-agrumari/ind_fun_fourteen_months",
       "ortofrutticoli-agrumari/seniority_assumed_constant"
     ],
-    "contract/agreement/panificazione-artigianato-confartigianato.json": [
+    "agreement/panificazione-artigianato-confartigianato.json": [
       "panificazione-artigianato-confartigianato/apprentice_inps_rates_unsourced",
       "panificazione-artigianato-confartigianato/ert_veneto",
       "panificazione-artigianato-confartigianato/inps_sector_rates_unsourced"
     ],
-    "contract/agreement/panificazione-assipan.json": [
+    "agreement/panificazione-assipan.json": [
       "panificazione-assipan/apprentice_seniority"
     ],
-    "contract/agreement/pelli-cuoio-industria-assopellettieri.json": [
+    "agreement/pelli-cuoio-industria-assopellettieri.json": [
       "pelli-cuoio-industria-assopellettieri/apprentice_seniority",
       "pelli-cuoio-industria-assopellettieri/level_1_apprentice_reference"
     ],
-    "contract/agreement/portieri-fabbricati-confedilizia.json": [
+    "agreement/portieri-fabbricati-confedilizia.json": [
       "portieri-fabbricati-confedilizia/apprentice_seniority"
     ],
-    "contract/agreement/poste-italiane-k700.json": [
+    "agreement/poste-italiane-k700.json": [
       "poste-italiane-k700/edr_pre_privatization",
       "poste-italiane-k700/fondo_quiescenza_poste_rates"
     ],
-    "contract/agreement/pubblici-esercizi-fipe-angem.json": [
+    "agreement/pubblici-esercizi-fipe-angem.json": [
       "pubblici-esercizi-fipe-angem/apprentice_seniority",
       "pubblici-esercizi-fipe-angem/contract_catering_tranche_dates",
       "pubblici-esercizi-fipe-angem/small_company_pay_reduction"
     ],
-    "contract/agreement/pulizia-artigianato-confartigianato.json": [
+    "agreement/pulizia-artigianato-confartigianato.json": [
       "pulizia-artigianato-confartigianato/apprentice_seniority",
       "pulizia-artigianato-confartigianato/apprenticeship_percentages_2022",
       "pulizia-artigianato-confartigianato/artisan_inps_rates_unverified",
@@ -1627,109 +1627,109 @@
       "pulizia-artigianato-confartigianato/level_2_seniority_amount",
       "pulizia-artigianato-confartigianato/overtime_weekly_threshold"
     ],
-    "contract/agreement/radiotelevisive-radiofonico.json": [
+    "agreement/radiotelevisive-radiofonico.json": [
       "radiotelevisive-radiofonico/apprentice_seniority"
     ],
-    "contract/agreement/radiotelevisive-televisivo.json": [
+    "agreement/radiotelevisive-televisivo.json": [
       "radiotelevisive-televisivo/apprentice_seniority"
     ],
-    "contract/agreement/rsa-aiop.json": [
+    "agreement/rsa-aiop.json": [
       "rsa-aiop/apprentice_seniority"
     ],
-    "contract/agreement/sanita-aran.json": [
+    "agreement/sanita-aran.json": [
       "sanita-aran/pre_2024_back_calculated_tables",
       "sanita-aran/renewal_2025_2027_not_modelled"
     ],
-    "contract/agreement/scuole-materne-fism.json": [
+    "agreement/scuole-materne-fism.json": [
       "scuole-materne-fism/apprentice_seniority",
       "scuole-materne-fism/apprenticeship_identity_track",
       "scuole-materne-fism/salario_di_anzianita"
     ],
-    "contract/agreement/scuole-private-laiche-aninsei.json": [
+    "agreement/scuole-private-laiche-aninsei.json": [
       "scuole-private-laiche-aninsei/apprentice_seniority"
     ],
-    "contract/agreement/servizi-postali-appalto-fise.json": [
+    "agreement/servizi-postali-appalto-fise.json": [
       "servizi-postali-appalto-fise/apprentice_seniority",
       "servizi-postali-appalto-fise/conditional_integrative_allowance",
       "servizi-postali-appalto-fise/level_4s_seniority_amount"
     ],
-    "contract/agreement/sistemazioni-idraulico-forestali-impiegati.json": [
+    "agreement/sistemazioni-idraulico-forestali-impiegati.json": [
       "sistemazioni-idraulico-forestali-impiegati/apprentice_inps_rates_unsourced",
       "sistemazioni-idraulico-forestali-impiegati/apprentice_seniority",
       "sistemazioni-idraulico-forestali-impiegati/derived_tranche_rounding",
       "sistemazioni-idraulico-forestali-impiegati/ind_funzione_transition_date",
       "sistemazioni-idraulico-forestali-impiegati/structural_rules_from_2021_text"
     ],
-    "contract/agreement/sistemazioni-idraulico-forestali-operai.json": [
+    "agreement/sistemazioni-idraulico-forestali-operai.json": [
       "sistemazioni-idraulico-forestali-operai/apprentice_inps_rates_unsourced",
       "sistemazioni-idraulico-forestali-operai/apprentice_seniority",
       "sistemazioni-idraulico-forestali-operai/structural_rules_from_2021_text"
     ],
-    "contract/agreement/studi-professionali-confprofessioni.json": [
+    "agreement/studi-professionali-confprofessioni.json": [
       "studi-professionali-confprofessioni/apprentice_seniority",
       "studi-professionali-confprofessioni/uniform_apprenticeship_percentages"
     ],
-    "contract/agreement/tabacco-apti.json": [
+    "agreement/tabacco-apti.json": [
       "tabacco-apti/alifond_before_july_2025",
       "tabacco-apti/apprentice_seniority"
     ],
-    "contract/agreement/telecomunicazioni-asstel.json": [
+    "agreement/telecomunicazioni-asstel.json": [
       "telecomunicazioni-asstel/apprentice_seniority",
       "telecomunicazioni-asstel/industria_tax_sector_unverified"
     ],
-    "contract/agreement/terziario-confesercenti.json": [
+    "agreement/terziario-confesercenti.json": [
       "terziario-confesercenti/apprentice_seniority",
       "terziario-confesercenti/lump_sum_2024_2025"
     ],
-    "contract/agreement/tessile-moda-artigianato-confartigianato.json": [
+    "agreement/tessile-moda-artigianato-confartigianato.json": [
       "tessile-moda-artigianato-confartigianato/apprentice_inps_rates_unsourced",
       "tessile-moda-artigianato-confartigianato/apprentice_seniority_hire_date",
       "tessile-moda-artigianato-confartigianato/chimica_ceramica_subsectors",
       "tessile-moda-artigianato-confartigianato/inps_sector_rates_unsourced",
       "tessile-moda-artigianato-confartigianato/level_category_unconfirmed"
     ],
-    "contract/agreement/tessile-pmi-uniontessile.json": [
+    "agreement/tessile-pmi-uniontessile.json": [
       "tessile-pmi-uniontessile/fondapi_base_elements",
       "tessile-pmi-uniontessile/other_subsectors_tables"
     ],
-    "contract/agreement/tessile-smi.json": [
+    "agreement/tessile-smi.json": [
       "tessile-smi/apprentice_seniority"
     ],
-    "contract/agreement/trasporto-aereo-assaeroporti.json": [
+    "agreement/trasporto-aereo-assaeroporti.json": [
       "trasporto-aereo-assaeroporti/apprentice_seniority",
       "trasporto-aereo-assaeroporti/art_g6_reclassification",
       "trasporto-aereo-assaeroporti/level_9_seniority_zero",
       "trasporto-aereo-assaeroporti/role_conditional_allowances"
     ],
-    "contract/agreement/trasporto-ferroviario-agens.json": [
+    "agreement/trasporto-ferroviario-agens.json": [
       "trasporto-ferroviario-agens/pre_june_2025_tables",
       "trasporto-ferroviario-agens/seniority_amounts_before_june_2026"
     ],
-    "contract/agreement/turismo-confcommercio.json": [
+    "agreement/turismo-confcommercio.json": [
       "turismo-confcommercio/apprentice_seniority"
     ],
-    "contract/agreement/turismo-confesercenti.json": [
+    "agreement/turismo-confesercenti.json": [
       "turismo-confesercenti/apprentice_seniority"
     ],
-    "contract/agreement/turismo-federalberghi.json": [
+    "agreement/turismo-federalberghi.json": [
       "turismo-federalberghi/apprentice_seniority",
       "turismo-federalberghi/indicative_level_category"
     ],
-    "contract/agreement/uneba-uneba.json": [
+    "agreement/uneba-uneba.json": [
       "uneba-uneba/apprentice_seniority",
       "uneba-uneba/equal_apprenticeship_bands"
     ],
-    "contract/agreement/vetro-meccanizzato-assovetro.json": [
+    "agreement/vetro-meccanizzato-assovetro.json": [
       "vetro-meccanizzato-assovetro/tranches_from_october_2026"
     ],
-    "contract/agreement/vigilanza-privata-assiv.json": [
+    "agreement/vigilanza-privata-assiv.json": [
       "vigilanza-privata-assiv/apprentice_seniority",
       "vigilanza-privata-assiv/terziario_tax_sector_unverified"
     ],
-    "contract/agreement/vigilanza-privata-federdat-gpg.json": [
+    "agreement/vigilanza-privata-federdat-gpg.json": [
       "vigilanza-privata-federdat-gpg/apprentice_seniority"
     ],
-    "contract/agreement/vigilanza-privata-federdat-sf.json": [
+    "agreement/vigilanza-privata-federdat-sf.json": [
       "vigilanza-privata-federdat-sf/apprentice_seniority"
     ],
     "limitation/engine.json": [

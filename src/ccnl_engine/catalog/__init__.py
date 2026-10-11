@@ -18,6 +18,7 @@ from ccnl_engine.catalog.loaders import (
     get_ccnl,
     search_ccnls,
 )
+from ccnl_engine.knowledge.sector.raw.loaders import supported_tax_years
 from ccnl_engine.provenance.ruleset.assurance.models import (
     RulesetAssurance,
     RulesetKind,
@@ -27,7 +28,6 @@ from ccnl_engine.provenance.ruleset.models import (
     RulesetReadiness,
     VerificationStatus,
 )
-from ccnl_engine.tax.annual.loaders_resource import supported_tax_years
 
 __all__ = [
     "CapabilityCatalog",

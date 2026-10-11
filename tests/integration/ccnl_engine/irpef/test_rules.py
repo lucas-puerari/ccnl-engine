@@ -22,7 +22,7 @@ from typing import TYPE_CHECKING, Any
 import pytest
 
 if TYPE_CHECKING:
-    from ccnl_engine.tax.annual.models import YearRules
+    from ccnl_engine.knowledge.sector.models import YearRules
 
 from ccnl_engine.irpef.deduction.rules import work_income_deduction
 from ccnl_engine.irpef.rules import irpef_gross, surtax_from_brackets

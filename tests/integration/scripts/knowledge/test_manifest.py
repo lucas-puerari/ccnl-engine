@@ -23,27 +23,27 @@ def test_entries_follow_the_path_and_the_ruleset(tmp_path: Path) -> None:
     """Dataset, year and scope from the path; identity and validity from the file."""
     _write(
         tmp_path,
-        "contract/agreement/x.json",
+        "agreement/x.json",
         {
             "ruleset": {"id": "ccnl/x", "version": "1", "effective_from": "2024-01-01"},
             "verification": {"owner": "someone"},
         },
     )
-    _write(tmp_path, "social_security/contribution/2026/industria.json", {})
+    _write(tmp_path, "contribution/2026/industria.json", {})
     _write(tmp_path, "surtax/municipal/2026.json", [])
     _write(tmp_path, "limitation/engine.json", {"limitations": []})
 
     entries = {e["path"]: e for e in build(tmp_path)["resources"]}
 
-    agreement = entries["contract/agreement/x.json"]
+    agreement = entries["agreement/x.json"]
     assert (agreement["dataset"], agreement["year"], agreement["scope"]) == (
-        "contract/agreement",
+        "agreement",
         None,
         "x",
     )
     assert (agreement["ruleset_id"], agreement["owner"]) == ("ccnl/x", "someone")
     assert agreement["valid_from"] == "2024-01-01"
-    rates = entries["social_security/contribution/2026/industria.json"]
+    rates = entries["contribution/2026/industria.json"]
     assert (rates["year"], rates["scope"], rates["valid_to"]) == (
         2026,
         "industria",
@@ -62,7 +62,7 @@ def test_a_path_outside_every_dataset_is_rejected(tmp_path: Path) -> None:
 
 def test_check_fails_on_drift_and_passes_once_written(tmp_path: Path) -> None:
     """``--check`` compares the committed manifest with the bundle."""
-    _write(tmp_path, "policy/italy.json", {})
+    _write(tmp_path, "pay_item/italy.json", {})
     assert main(["--check"], root=tmp_path) == 1
     assert main([], root=tmp_path) == 0
     assert main(["--check"], root=tmp_path) == 0

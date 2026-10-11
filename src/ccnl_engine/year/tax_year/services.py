@@ -52,8 +52,8 @@ def calculate_tax_year(
     same closing state as one uninterrupted pass.  A run of the tax year
     whose competence date has no base salary of its level is not computed
     and is listed in ``uncovered_runs``, as in
-    :func:`~ccnl_engine.year.competence.services\
-.calculate_competence_year`; when no run of a competence year has a base
+    :func:`~ccnl_engine.year.competence.services.calculate_competence_year`; when no run
+    of a competence year has a base
     salary, :class:`~ccnl_engine.errors.MissingRuleError` of
     its first run is raised.
 

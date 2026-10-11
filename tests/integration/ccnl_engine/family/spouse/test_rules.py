@@ -15,8 +15,8 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.family.inputs import Dependent, DependentRelationship
+from ccnl_engine.family.loaders import load_family_deduction_rules
 from ccnl_engine.family.spouse.rules import spouse_annual, spouse_deduction
-from ccnl_engine.tax.annual.loaders_optional import load_family_deduction_rules
 from tests.integration.ccnl_engine.family.builders import (
     declared_dependent,
 )

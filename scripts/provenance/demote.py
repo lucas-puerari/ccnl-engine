@@ -128,7 +128,7 @@ def main(root: Path = KNOWLEDGE) -> None:
             records += changed
     weak = provenance_labels.weak_counts(payable_rules.inventory(root))
     demoted: list[str] = []
-    for path in sorted((root / "contract" / "agreement").glob("*.json")):
+    for path in sorted((root / "agreement").glob("*.json")):
         text = path.read_text(encoding="utf-8")
         data = json.loads(text)
         file = path.relative_to(root).as_posix()

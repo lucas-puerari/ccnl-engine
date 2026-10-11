@@ -128,7 +128,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Applies when:** `inps_employer` applies.
 
-    **Remediation:** Source the credito rates of 2026 on an INPS or association table, mark the inps block of social_security/contribution/2026/credito.json derived, then remove this note.
+    **Remediation:** Source the credito rates of 2026 on an INPS or association table, mark the inps block of contribution/2026/credito.json derived, then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -197,7 +197,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 ??? note "Full JSON (provenance artifact)"
     ```json
-    --8<-- "src/ccnl_engine/knowledge/contract/agreement/bcc-credito-cooperativo.json"
+    --8<-- "src/ccnl_engine/knowledge/agreement/bcc-credito-cooperativo.json"
     ```
 
 ## Usage example

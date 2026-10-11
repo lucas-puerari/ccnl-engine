@@ -26,7 +26,7 @@
       "target": "src/ccnl_engine/{name}"
     },
     {
-      "pattern": "^src/ccnl_engine/knowledge/(?P<path>manifest\\.json|(?:contract|social_security|taxation|surtax|capability|limitation|policy)/[a-z0-9_/-]+\\.json)$",
+      "pattern": "^src/ccnl_engine/knowledge/(?P<path>manifest\\.json|(?:agreement|capability|contribution|family|limitation|pay_item|sector|severance|sickness|surtax|tax_credit|variable_pay)/[a-z0-9_/-]+\\.json)$",
       "target": "src/ccnl_engine/knowledge/{path}"
     },
     {

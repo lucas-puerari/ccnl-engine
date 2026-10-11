@@ -4,8 +4,8 @@ An applicability fact decides whether a required capability applies (see
 :mod:`~ccnl_engine.capability.requirement.rules`).  Each one the registry
 names needs a reader here, keyed by the path the registry uses; a fact is
 absent when the request left it to its default, ``None``.
-:func:`~ccnl_engine.capability.registry.services\
-.validate_registry` rejects a registry naming a fact without a reader.
+:func:`~ccnl_engine.capability.registry.services.validate_registry` rejects a registry
+naming a fact without a reader.
 """
 
 from __future__ import annotations

@@ -1,7 +1,7 @@
 """Validity window of a CCNL: the dates on which every rule has a value.
 
-A rule of the bundle is a :class:`~ccnl_engine.agreement.validity.rules\
-.TimeSeries`.  It has no value before its first period and in a ``missing``
+A rule of the bundle is a :class:`~ccnl_engine.agreement.validity.rules.TimeSeries`.  It
+has no value before its first period and in a ``missing``
 or ``unknown`` gap period; a run that reads it on such a date raises
 :class:`~ccnl_engine.errors.MissingRuleError`.  A
 ``not_applicable`` gap is not a hole: the rule is not in force and a run
