@@ -14,7 +14,7 @@ raises `period_gross`; an unpaid absence is reported in
 Import event types from the `ccnl_engine` package, like every other public name.
 
 ```python
---8<-- "docs/examples/12_work_rules.py"
+--8<-- "docs/examples/event/example.py"
 ```
 
 ---

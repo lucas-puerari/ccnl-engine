@@ -1,9 +1,7 @@
 # Target trees
 
 Part of the [Architecture contract](architecture-contract.md). The trees
-below are destinations: every tracked file under `src`, `tests`, `demo` and
-`scripts` reaches one of them, and the [inventory](#inventory) maps the
-moves of each migration.
+below hold every tracked file under `src`, `tests`, `demo` and `scripts`.
 
 ## Data tree
 
@@ -42,13 +40,10 @@ demo/
 ├── app.py  index.html  style.css  ui.js
 ├── localization/en.json  it.json
 └── release/                                   build output, gitignored
-    ├── site/                                  today demo/_build
-    └── packages/                              today demo/wheels
+    ├── site/                                  the assembled demo site
+    └── packages/                              the wheel the site installs
 
 scripts/
-├── structure/     check.py  baseline.json
-│   ├── inventory/ build.py  map.json  rules.json
-│   └── naming/    rules.py
 ├── provenance/    check.py  assign.py  demote.py  rules.py  baseline.json
 │   ├── evidence/  check.py
 │   ├── fiscal/    rules.py
@@ -103,26 +98,3 @@ tests/
 - A directory of non-Python resources (`synthetic_contract`,
   `observed_payslip`, `reference_case`) may sit under the mirror directory
   of the module it exercises; it holds data only.
-
-## Inventory
-
-`scripts/structure/inventory.py` maps every file `git ls-files` lists
-under `src`, `tests`, `demo` and `scripts` to its target, from the ordered
-rules and per-file overrides of `scripts/structure/inventory_rules.json`,
-and writes `scripts/structure/inventory.json`. Overrides win; otherwise the
-first matching rule applies.
-
-A target is a path, or `{"dissolve": "<dir>"}` for a package marker that
-becomes part of the namespace package `<dir>`.
-
-```bash
-uv run python scripts/structure/inventory.py            # regenerate the JSON
-uv run python scripts/structure/inventory.py --check    # CI gate
-uv run python scripts/structure/inventory.py --summary  # counts per area
-```
-
-`--check` fails on a path no rule maps, two paths with one target, an
-underscore basename other than the package root, a technical directory, a
-production module whose name is not a role, a directory outside the trees,
-a dissolved marker that holds code, and on drift between the rules and the
-JSON.

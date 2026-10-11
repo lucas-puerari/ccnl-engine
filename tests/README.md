@@ -1,10 +1,9 @@
 # Test suite
 
-The layout below is binding:
-`tests/integration/scripts/structure/test_test_layout.py` enforces the
-categories, the mirror rule, the helper names and the depth;
-`scripts/structure/inventory.py --check` checks every path against the code
-tree; `scripts/structure/check.py` checks the size of each test file.
+The layout below follows the
+[Architecture contract](../docs/engine/architecture-contract-trees.md#test-tree):
+three categories, directories that mirror the code, test files named after the
+role of the module they test, or kept in the directory of that module.
 
 ## Categories
 
@@ -37,8 +36,7 @@ Knowledge tests, the public API tests at the root of
 
 A knowledge test, and a public API test, imports `ccnl_engine` only through
 the public API: the root and `ccnl_engine.inputs`, `.events`, `.results`
-and `.catalog`. The two tests that read internals by nature are listed,
-with their reason, in `test_test_layout.py`.
+and `.catalog`.
 
 Besides tests, a directory holds only `conftest.py`, `builders[_x].py`
 (request and state builders), `oracles[_x].py` (normative oracles) and
@@ -81,19 +79,3 @@ document a known wrong result: keep their reason and the error they raise.
 `integration/ccnl_engine/catalog/synthetic_contract/` holds the
 expected CCNL values the bundled-contract loader tests compare against.
 Name a dataset after its role, never `data`, `expected` or `samples`.
-
-## Duplicates and inventory
-
-`tests/integration/scripts/structure/test_duplicate_tests.py` fails on any
-exact duplicate: two tests with the same body, decorators, arguments and
-class fields, using names imported from the same modules. It does not see
-conceptual duplicates, the same boundary asserted in several categories
-with different inputs. For those, print the inventory:
-
-```bash
-uv run python -m tests.integration.scripts.structure.support_test_inventory
-```
-
-It counts the tests owning each capability per category and lists the
-modules tested in more than one: check that each asserts something the
-others do not.

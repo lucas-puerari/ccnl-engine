@@ -97,7 +97,7 @@ amounts of such a run leave the increments and the gated allowances out:
 they are what a worker without seniority would earn, not the answer.
 
 ```python
---8<-- "docs/examples/05_seniority.py"
+--8<-- "docs/examples/seniority/example.py"
 ```
 
 ### Worker category
@@ -485,7 +485,7 @@ the issue `pension_fund_young_member_unknown`. The 40% TFR quota of a worker
 employed before 28 April 1993 is not modelled.
 
 ```python
---8<-- "docs/examples/13_pension_fund.py"
+--8<-- "docs/examples/pension_fund/example.py"
 ```
 
 **API reference:** [`Employment`](../api/engine.md),

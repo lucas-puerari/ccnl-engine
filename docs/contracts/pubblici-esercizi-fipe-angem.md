@@ -209,5 +209,5 @@ Each simplification below is a model limitation of the registry. An open limitat
 ## Usage example
 
 ```python
---8<-- "docs/examples/contracts/pubblici-esercizi-fipe-angem.py"
+--8<-- "docs/examples/agreement/pubblici-esercizi-fipe-angem/example.py"
 ```

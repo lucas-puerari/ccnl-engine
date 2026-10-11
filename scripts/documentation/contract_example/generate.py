@@ -1,4 +1,4 @@
-"""Generate one usage example per bundled CCNL in docs/examples/contracts/.
+"""Generate one usage example per bundled CCNL in docs/examples/agreement/.
 
 Each contract page embeds its example (see ``gen_contract_pages.py``), and
 ``tests/integration/ccnl_engine/test_docs_examples.py`` runs every one of them.
@@ -50,8 +50,8 @@ ROOT = Path(__file__).resolve().parents[3]
 KNOWLEDGE = ROOT / "src" / "ccnl_engine" / "knowledge"
 CCNL_DIR = KNOWLEDGE / "agreement"
 INPS_DIR = KNOWLEDGE / "contribution"
-OUT_DIR = ROOT / "docs" / "examples" / "contracts"
-PACKAGE_INIT = "__init__.py"
+OUT_DIR = ROOT / "docs" / "examples" / "agreement"
+EXAMPLE = "example.py"
 
 YEAR = 2026
 MONTH = 9
@@ -362,21 +362,21 @@ def expected_examples() -> dict[str, str]:
     """Render the example of every bundled CCNL.
 
     Returns:
-        Mapping of example file name to its source, sorted by name.
+        Mapping of ``<slug>/example.py`` to its source, sorted by slug.
     """
     return {
-        f"{path.stem}.py": render_example(build_spec(path))
+        f"{path.stem}/{EXAMPLE}": render_example(build_spec(path))
         for path in sorted(CCNL_DIR.glob("*.json"))
     }
 
 
 def _committed_examples() -> set[str]:
-    """Return the example file names currently in ``OUT_DIR``.
+    """Return the examples currently in ``OUT_DIR``.
 
     Returns:
-        File names, the package ``__init__.py`` excluded.
+        Paths ``<slug>/example.py`` relative to ``OUT_DIR``.
     """
-    return {p.name for p in OUT_DIR.glob("*.py") if p.name != PACKAGE_INIT}
+    return {p.relative_to(OUT_DIR).as_posix() for p in OUT_DIR.glob(f"*/{EXAMPLE}")}
 
 
 def drift(expected: dict[str, str]) -> list[str]:
@@ -401,7 +401,9 @@ def write(expected: dict[str, str]) -> None:
     """Write every example and remove examples of CCNLs no longer bundled."""
     for name in sorted(_committed_examples() - set(expected)):
         (OUT_DIR / name).unlink()
+        (OUT_DIR / name).parent.rmdir()
     for name, source in expected.items():
+        (OUT_DIR / name).parent.mkdir(parents=True, exist_ok=True)
         (OUT_DIR / name).write_text(source, encoding="utf-8")
 
 
@@ -414,7 +416,7 @@ def main() -> None:
         return
     problems = drift(expected)
     if problems:
-        print("docs/examples/contracts/ is out of date:", file=sys.stderr)
+        print("docs/examples/agreement/ is out of date:", file=sys.stderr)
         for problem in problems:
             print(f"  {problem}", file=sys.stderr)
         print(
@@ -423,7 +425,7 @@ def main() -> None:
         )
         print("and commit the result.", file=sys.stderr)
         sys.exit(1)
-    print(f"OK: docs/examples/contracts/ is up to date ({len(expected)} examples).")
+    print(f"OK: docs/examples/agreement/ is up to date ({len(expected)} examples).")
 
 
 if __name__ == "__main__":
