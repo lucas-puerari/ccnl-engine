@@ -7,7 +7,7 @@
     "effective_until": null,
     "published_at": "2026-09-11",
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
-    "source_hash": "b339ed554443acf056ee8731460eb8a70d7af38b0116bdaad95a1620c03782cd",
+    "source_hash": "c4bf2abc3cd86df1192c7e1581c8c8bb49cd4510241f2a8b8b27bd85d91df92a",
     "verification_status": "verified",
     "source_type": "contracting_party"
   },
@@ -30,14 +30,9 @@
         "agreement_date": "2024-03-07"
       },
       {
-        "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
+        "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
         "type": "text",
-        "agreement_date": "2017-04-01"
-      },
-      {
-        "url": "https://www.kitech.it/tabelle-retributive-concia-industria",
-        "type": "table",
-        "agreement_date": null
+        "agreement_date": "2021-01-21"
       }
     ],
     "extraction": {
@@ -56,25 +51,28 @@
           "valid_until": null,
           "value": "173",
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-mysolution-2017",
-                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                "kind": "rivista",
-                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-                "published_on": "2017-04-01",
-                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+                "document_id": "cnel-b101-148617",
+                "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                "published_on": "2021-01-21",
+                "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
               },
-              "section": "Parametri retributivi, divisori contrattuali",
-              "page": "2",
-              "quote": "Divisori contrattuali della retribuzione mensile: quota giornaliera 25; quota oraria 173."
+              "page": "69",
+              "section": "Art. 50 - Retribuzione oraria e giornaliera",
+              "quote": "La retribuzione oraria si ottiene dividendo la retribuzione mensile per 173, fatto salvo il caso dell’art.51."
             },
             "extraction": {
               "method": "manual",
               "extraction_timestamp": "2026-09-11T00:00:00",
               "verification_status": "verified",
-              "effective_from": "2024-03-01"
+              "effective_from": "2024-03-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T19:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         }
@@ -87,25 +85,28 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-mysolution-2017",
-                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                "kind": "rivista",
-                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-                "published_on": "2017-04-01",
-                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+                "document_id": "cnel-b101-148617",
+                "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                "published_on": "2021-01-21",
+                "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
               },
-              "section": "Mensilità aggiuntive",
-              "page": "2",
-              "quote": "Nel settore è prevista l’erogazione nel mese di dicembre di una tredicesima mensilità pari a un dodicesimo della retribuzione"
+              "page": "70",
+              "section": "Art. 52 - 13ª mensilità",
+              "quote": "l’azienda è tenuta a corrispondere al lavoratore, prima della Vigilia di Natale, una 13ª mensilità di importo pari alla retribuzione globale mensile di fatto"
             },
             "extraction": {
               "method": "manual",
               "extraction_timestamp": "2026-09-11T00:00:00",
               "verification_status": "verified",
-              "effective_from": "2024-03-01"
+              "effective_from": "2024-03-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T19:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         }
@@ -216,25 +217,28 @@
         }
       },
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "concia-unic-mysolution-2017",
-            "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-            "kind": "rivista",
-            "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-            "published_on": "2017-04-01",
-            "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+            "document_id": "cnel-b101-148617",
+            "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+            "published_on": "2021-01-21",
+            "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
           },
-          "section": "Scatti di anzianità",
-          "page": "2",
-          "quote": "fino a 5 scatti biennali"
+          "page": "67",
+          "section": "Art. 48 - Scatti di anzianità",
+          "quote": "per ogni biennio di effettivo servizio prestato ... B 1ª (ex 7° liv.) 19,63 ... D 2ª (ex 3° liv.) 12,65 ... Il numero massimo maturabile di scatti di anzianità è 5."
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verification_status": "verified",
-          "effective_from": "2024-03-01"
+          "effective_from": "2024-03-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T19:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -242,26 +246,29 @@
       "min_days": 15,
       "comparison": "more_than",
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "concia-unic-mysolution-2017",
-            "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-            "kind": "rivista",
-            "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-            "published_on": "2017-04-01",
-            "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+            "document_id": "cnel-b101-148617",
+            "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+            "published_on": "2021-01-21",
+            "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
           },
-          "page": "2",
-          "section": "Mensilità aggiuntive, tredicesima mensilità",
-          "quote": "Se il rapporto è iniziato/cessato in corso d’anno, la frazione di mese superiore a 15 giorni è considerata mese intero."
+          "page": "70-71",
+          "section": "Art. 52 - 13ª mensilità",
+          "quote": "tanti dodicesimi ... quanti sono i mesi di servizio prestati presso l’azienda, computando come mese intero la frazione di mese superiore a 15 giorni."
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-10-10T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2024-03-01"
+          "verification_status": "verified",
+          "effective_from": "2024-03-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T19:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     }
@@ -278,7 +285,7 @@
             "valid_until": "2025-01-01",
             "value": "2784.14",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -287,14 +294,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello A",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row A: Minimo 2784,14 (2024-03-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2024-03-01"
+                "effective_from": "2024-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -303,7 +314,7 @@
             "valid_until": "2026-01-01",
             "value": "2872.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -312,14 +323,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello A",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row A: Minimo 2872,98 (2025-01-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2025-01-01"
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -328,7 +343,7 @@
             "valid_until": null,
             "value": "2937.60",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -337,14 +352,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello A",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row A: Minimo 2937,60 (2026-01-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           }
@@ -361,54 +380,62 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
-                  "status": "derived",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "concia-unic-mysolution-2017",
-                      "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                      "kind": "rivista",
-                      "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-                      "published_on": "2017-04-01",
-                      "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+                      "document_id": "cnel-b101-148617",
+                      "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                      "kind": "cnel",
+                      "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                      "published_on": "2021-01-21",
+                      "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
                     },
-                    "section": "Dati retributivi, E.d.r. per categoria",
-                    "page": "1"
+                    "page": "65",
+                    "section": "Art. 45 / Art. 46",
+                    "quote": "2. elemento distinto della retribuzione (E.D.R.) pari a 10,33 €;"
                   },
                   "extraction": {
                     "method": "manual",
                     "extraction_timestamp": "2026-09-11T00:00:00",
                     "verification_status": "verified",
-                    "effective_from": "2024-03-01"
+                    "effective_from": "2024-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-10-11T19:00:00Z",
+                    "review_id": "2026-10-11-ai"
                   }
                 }
               }
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-mysolution-2017",
-                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                "kind": "rivista",
-                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-                "published_on": "2017-04-01",
-                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+                "document_id": "cnel-b101-148617",
+                "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                "published_on": "2021-01-21",
+                "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
               },
-              "section": "Dati retributivi, E.d.r. per categoria",
-              "page": "1"
+              "page": "65",
+              "section": "Art. 46 - Elementi della retribuzione",
+              "quote": "elemento distinto della retribuzione pari a 10,33 € di cui al Protocollo 31.7.1992 “EDR”"
             },
             "extraction": {
               "method": "manual",
               "extraction_timestamp": "2026-09-11T00:00:00",
               "verification_status": "verified",
-              "effective_from": "2024-03-01"
+              "effective_from": "2024-03-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T19:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         },
         {
           "code": "IND_FUNZIONE",
-          "description": "Indennità di funzione (livello A — art. 47 CCNL)",
+          "description": "Indennità di funzione (livello A — art. 46 g) CCNL)",
           "monthly": {
             "periods": [
               {
@@ -416,54 +443,62 @@
                 "valid_until": null,
                 "value": "25.82",
                 "provenance": {
-                  "status": "derived",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "concia-unic-mysolution-2017",
-                      "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                      "kind": "rivista",
-                      "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-                      "published_on": "2017-04-01",
-                      "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+                      "document_id": "cnel-b101-148617",
+                      "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                      "kind": "cnel",
+                      "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                      "published_on": "2021-01-21",
+                      "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
                     },
-                    "section": "Dati retributivi, Indennità di funzione, categoria A",
-                    "page": "1"
+                    "page": "65",
+                    "section": "Art. 46 lett. g)",
+                    "quote": "g) indennità di funzione per i Quadri pari a € 25,82 mensili."
                   },
                   "extraction": {
                     "method": "manual",
                     "extraction_timestamp": "2026-09-11T00:00:00",
                     "verification_status": "verified",
-                    "effective_from": "2024-03-01"
+                    "effective_from": "2024-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-10-11T19:00:00Z",
+                    "review_id": "2026-10-11-ai"
                   }
                 }
               }
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-mysolution-2017",
-                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                "kind": "rivista",
-                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-                "published_on": "2017-04-01",
-                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+                "document_id": "cnel-b101-148617",
+                "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                "published_on": "2021-01-21",
+                "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
               },
-              "section": "Dati retributivi, Indennità di funzione, categoria A",
-              "page": "1"
+              "page": "65",
+              "section": "Art. 46 lett. g)",
+              "quote": "g) indennità di funzione per i Quadri pari a € 25,82 mensili."
             },
             "extraction": {
               "method": "manual",
               "extraction_timestamp": "2026-09-11T00:00:00",
               "verification_status": "verified",
-              "effective_from": "2024-03-01"
+              "effective_from": "2024-03-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T19:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "concia-unic-rinnovo-2024",
@@ -472,14 +507,18 @@
             "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
             "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
           },
+          "page": "14",
           "section": "Allegato n. 1 — tabella retributiva",
-          "page": "14"
+          "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row A: Minimo 2784,14 / 2872,98 / 2937,60; I.P.O -"
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verification_status": "verified",
-          "effective_from": "2024-03-01"
+          "effective_from": "2024-03-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T19:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -494,7 +533,7 @@
             "valid_until": "2025-01-01",
             "value": "2369.81",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -503,14 +542,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello B1",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row B1: Minimo 2369,81 (2024-03-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2024-03-01"
+                "effective_from": "2024-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -519,7 +562,7 @@
             "valid_until": "2026-01-01",
             "value": "2441.73",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -528,14 +571,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello B1",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row B1: Minimo 2441,73 (2025-01-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2025-01-01"
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -544,7 +591,7 @@
             "valid_until": null,
             "value": "2494.04",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -553,14 +600,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello B1",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row B1: Minimo 2494,04 (2026-01-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           }
@@ -577,48 +628,56 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
-                  "status": "derived",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "concia-unic-mysolution-2017",
-                      "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                      "kind": "rivista",
-                      "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-                      "published_on": "2017-04-01",
-                      "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+                      "document_id": "cnel-b101-148617",
+                      "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                      "kind": "cnel",
+                      "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                      "published_on": "2021-01-21",
+                      "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
                     },
-                    "section": "Dati retributivi, E.d.r. per categoria",
-                    "page": "1"
+                    "page": "65",
+                    "section": "Art. 45 / Art. 46",
+                    "quote": "2. elemento distinto della retribuzione (E.D.R.) pari a 10,33 €;"
                   },
                   "extraction": {
                     "method": "manual",
                     "extraction_timestamp": "2026-09-11T00:00:00",
                     "verification_status": "verified",
-                    "effective_from": "2024-03-01"
+                    "effective_from": "2024-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-10-11T19:00:00Z",
+                    "review_id": "2026-10-11-ai"
                   }
                 }
               }
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-mysolution-2017",
-                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                "kind": "rivista",
-                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-                "published_on": "2017-04-01",
-                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+                "document_id": "cnel-b101-148617",
+                "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                "published_on": "2021-01-21",
+                "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
               },
-              "section": "Dati retributivi, E.d.r. per categoria",
-              "page": "1"
+              "page": "65",
+              "section": "Art. 46 - Elementi della retribuzione",
+              "quote": "elemento distinto della retribuzione pari a 10,33 € di cui al Protocollo 31.7.1992 “EDR”"
             },
             "extraction": {
               "method": "manual",
               "extraction_timestamp": "2026-09-11T00:00:00",
               "verification_status": "verified",
-              "effective_from": "2024-03-01"
+              "effective_from": "2024-03-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T19:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         },
@@ -632,7 +691,7 @@
                 "valid_until": "2025-01-01",
                 "value": "207.40",
                 "provenance": {
-                  "status": "derived",
+                  "status": "verified",
                   "location": {
                     "source_document": {
                       "document_id": "concia-unic-rinnovo-2024",
@@ -641,14 +700,18 @@
                       "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                       "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                     },
+                    "page": "14",
                     "section": "Allegato n. 1 — tabella retributiva, colonna IPO",
-                    "page": "14"
+                    "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row B1: I.P.O 207,40 (2024-03-01)"
                   },
                   "extraction": {
                     "method": "manual",
                     "extraction_timestamp": "2026-09-11T00:00:00",
                     "verification_status": "verified",
-                    "effective_from": "2024-03-01"
+                    "effective_from": "2024-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-10-11T19:00:00Z",
+                    "review_id": "2026-10-11-ai"
                   }
                 }
               },
@@ -657,7 +720,7 @@
                 "valid_until": "2026-01-01",
                 "value": "215.86",
                 "provenance": {
-                  "status": "derived",
+                  "status": "verified",
                   "location": {
                     "source_document": {
                       "document_id": "concia-unic-rinnovo-2024",
@@ -666,14 +729,18 @@
                       "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                       "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                     },
+                    "page": "14",
                     "section": "Allegato n. 1 — tabella retributiva, colonna IPO",
-                    "page": "14"
+                    "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row B1: I.P.O 215,86 (2025-01-01)"
                   },
                   "extraction": {
                     "method": "manual",
                     "extraction_timestamp": "2026-09-11T00:00:00",
                     "verification_status": "verified",
-                    "effective_from": "2025-01-01"
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-10-11T19:00:00Z",
+                    "review_id": "2026-10-11-ai"
                   }
                 }
               },
@@ -682,7 +749,7 @@
                 "valid_until": null,
                 "value": "222.01",
                 "provenance": {
-                  "status": "derived",
+                  "status": "verified",
                   "location": {
                     "source_document": {
                       "document_id": "concia-unic-rinnovo-2024",
@@ -691,21 +758,25 @@
                       "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                       "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                     },
+                    "page": "14",
                     "section": "Allegato n. 1 — tabella retributiva, colonna IPO",
-                    "page": "14"
+                    "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row B1: I.P.O 222,01 (2026-01-01)"
                   },
                   "extraction": {
                     "method": "manual",
                     "extraction_timestamp": "2026-09-11T00:00:00",
                     "verification_status": "verified",
-                    "effective_from": "2026-01-01"
+                    "effective_from": "2026-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-10-11T19:00:00Z",
+                    "review_id": "2026-10-11-ai"
                   }
                 }
               }
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "concia-unic-rinnovo-2024",
@@ -714,20 +785,24 @@
                 "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                 "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
               },
+              "page": "14",
               "section": "Allegato n. 1 — colonna IPO (livello B1)",
-              "page": "14"
+              "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row B1: I.P.O 207,40 / 215,86 / 222,01"
             },
             "extraction": {
               "method": "manual",
               "extraction_timestamp": "2026-09-11T00:00:00",
               "verification_status": "verified",
-              "effective_from": "2024-03-01"
+              "effective_from": "2024-03-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T19:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "concia-unic-rinnovo-2024",
@@ -736,14 +811,18 @@
             "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
             "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
           },
+          "page": "14",
           "section": "Allegato n. 1 — tabella retributiva",
-          "page": "14"
+          "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row B1: Minimo 2369,81 / 2441,73 / 2494,04; I.P.O 207.40 / 215.86 / 222.01"
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verification_status": "verified",
-          "effective_from": "2024-03-01"
+          "effective_from": "2024-03-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T19:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -758,7 +837,7 @@
             "valid_until": "2025-01-01",
             "value": "2369.81",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -767,14 +846,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello B2",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row B2: Minimo 2369,81 (2024-03-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2024-03-01"
+                "effective_from": "2024-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -783,7 +866,7 @@
             "valid_until": "2026-01-01",
             "value": "2441.73",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -792,14 +875,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello B2",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row B2: Minimo 2441,73 (2025-01-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2025-01-01"
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -808,7 +895,7 @@
             "valid_until": null,
             "value": "2494.04",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -817,14 +904,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello B2",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row B2: Minimo 2494,04 (2026-01-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           }
@@ -841,54 +932,62 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
-                  "status": "derived",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "concia-unic-mysolution-2017",
-                      "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                      "kind": "rivista",
-                      "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-                      "published_on": "2017-04-01",
-                      "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+                      "document_id": "cnel-b101-148617",
+                      "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                      "kind": "cnel",
+                      "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                      "published_on": "2021-01-21",
+                      "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
                     },
-                    "section": "Dati retributivi, E.d.r. per categoria",
-                    "page": "1"
+                    "page": "65",
+                    "section": "Art. 45 / Art. 46",
+                    "quote": "2. elemento distinto della retribuzione (E.D.R.) pari a 10,33 €;"
                   },
                   "extraction": {
                     "method": "manual",
                     "extraction_timestamp": "2026-09-11T00:00:00",
                     "verification_status": "verified",
-                    "effective_from": "2024-03-01"
+                    "effective_from": "2024-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-10-11T19:00:00Z",
+                    "review_id": "2026-10-11-ai"
                   }
                 }
               }
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-mysolution-2017",
-                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                "kind": "rivista",
-                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-                "published_on": "2017-04-01",
-                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+                "document_id": "cnel-b101-148617",
+                "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                "published_on": "2021-01-21",
+                "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
               },
-              "section": "Dati retributivi, E.d.r. per categoria",
-              "page": "1"
+              "page": "65",
+              "section": "Art. 46 - Elementi della retribuzione",
+              "quote": "elemento distinto della retribuzione pari a 10,33 € di cui al Protocollo 31.7.1992 “EDR”"
             },
             "extraction": {
               "method": "manual",
               "extraction_timestamp": "2026-09-11T00:00:00",
               "verification_status": "verified",
-              "effective_from": "2024-03-01"
+              "effective_from": "2024-03-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T19:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "concia-unic-rinnovo-2024",
@@ -897,14 +996,18 @@
             "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
             "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
           },
+          "page": "14",
           "section": "Allegato n. 1 — tabella retributiva",
-          "page": "14"
+          "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row B2: Minimo 2369,81 / 2441,73 / 2494,04; I.P.O -"
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verification_status": "verified",
-          "effective_from": "2024-03-01"
+          "effective_from": "2024-03-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T19:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -919,7 +1022,7 @@
             "valid_until": "2025-01-01",
             "value": "2125.21",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -928,14 +1031,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello C1",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row C1: Minimo 2125,21 (2024-03-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2024-03-01"
+                "effective_from": "2024-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -944,7 +1051,7 @@
             "valid_until": "2026-01-01",
             "value": "2188.67",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -953,14 +1060,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello C1",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row C1: Minimo 2188,67 (2025-01-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2025-01-01"
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -969,7 +1080,7 @@
             "valid_until": null,
             "value": "2234.82",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -978,14 +1089,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello C1",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row C1: Minimo 2234,82 (2026-01-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           }
@@ -1002,48 +1117,56 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
-                  "status": "derived",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "concia-unic-mysolution-2017",
-                      "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                      "kind": "rivista",
-                      "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-                      "published_on": "2017-04-01",
-                      "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+                      "document_id": "cnel-b101-148617",
+                      "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                      "kind": "cnel",
+                      "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                      "published_on": "2021-01-21",
+                      "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
                     },
-                    "section": "Dati retributivi, E.d.r. per categoria",
-                    "page": "1"
+                    "page": "65",
+                    "section": "Art. 45 / Art. 46",
+                    "quote": "2. elemento distinto della retribuzione (E.D.R.) pari a 10,33 €;"
                   },
                   "extraction": {
                     "method": "manual",
                     "extraction_timestamp": "2026-09-11T00:00:00",
                     "verification_status": "verified",
-                    "effective_from": "2024-03-01"
+                    "effective_from": "2024-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-10-11T19:00:00Z",
+                    "review_id": "2026-10-11-ai"
                   }
                 }
               }
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-mysolution-2017",
-                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                "kind": "rivista",
-                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-                "published_on": "2017-04-01",
-                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+                "document_id": "cnel-b101-148617",
+                "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                "published_on": "2021-01-21",
+                "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
               },
-              "section": "Dati retributivi, E.d.r. per categoria",
-              "page": "1"
+              "page": "65",
+              "section": "Art. 46 - Elementi della retribuzione",
+              "quote": "elemento distinto della retribuzione pari a 10,33 € di cui al Protocollo 31.7.1992 “EDR”"
             },
             "extraction": {
               "method": "manual",
               "extraction_timestamp": "2026-09-11T00:00:00",
               "verification_status": "verified",
-              "effective_from": "2024-03-01"
+              "effective_from": "2024-03-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T19:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         },
@@ -1057,7 +1180,7 @@
                 "valid_until": "2025-01-01",
                 "value": "104.00",
                 "provenance": {
-                  "status": "derived",
+                  "status": "verified",
                   "location": {
                     "source_document": {
                       "document_id": "concia-unic-rinnovo-2024",
@@ -1066,14 +1189,18 @@
                       "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                       "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                     },
+                    "page": "14",
                     "section": "Allegato n. 1 — tabella retributiva, colonna IPO",
-                    "page": "14"
+                    "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row C1: I.P.O 104,00 (2024-03-01)"
                   },
                   "extraction": {
                     "method": "manual",
                     "extraction_timestamp": "2026-09-11T00:00:00",
                     "verification_status": "verified",
-                    "effective_from": "2024-03-01"
+                    "effective_from": "2024-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-10-11T19:00:00Z",
+                    "review_id": "2026-10-11-ai"
                   }
                 }
               },
@@ -1082,7 +1209,7 @@
                 "valid_until": "2026-01-01",
                 "value": "108.24",
                 "provenance": {
-                  "status": "derived",
+                  "status": "verified",
                   "location": {
                     "source_document": {
                       "document_id": "concia-unic-rinnovo-2024",
@@ -1091,14 +1218,18 @@
                       "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                       "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                     },
+                    "page": "14",
                     "section": "Allegato n. 1 — tabella retributiva, colonna IPO",
-                    "page": "14"
+                    "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row C1: I.P.O 108,24 (2025-01-01)"
                   },
                   "extraction": {
                     "method": "manual",
                     "extraction_timestamp": "2026-09-11T00:00:00",
                     "verification_status": "verified",
-                    "effective_from": "2025-01-01"
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-10-11T19:00:00Z",
+                    "review_id": "2026-10-11-ai"
                   }
                 }
               },
@@ -1107,7 +1238,7 @@
                 "valid_until": null,
                 "value": "111.32",
                 "provenance": {
-                  "status": "derived",
+                  "status": "verified",
                   "location": {
                     "source_document": {
                       "document_id": "concia-unic-rinnovo-2024",
@@ -1116,21 +1247,25 @@
                       "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                       "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                     },
+                    "page": "14",
                     "section": "Allegato n. 1 — tabella retributiva, colonna IPO",
-                    "page": "14"
+                    "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row C1: I.P.O 111,32 (2026-01-01)"
                   },
                   "extraction": {
                     "method": "manual",
                     "extraction_timestamp": "2026-09-11T00:00:00",
                     "verification_status": "verified",
-                    "effective_from": "2026-01-01"
+                    "effective_from": "2026-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-10-11T19:00:00Z",
+                    "review_id": "2026-10-11-ai"
                   }
                 }
               }
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "concia-unic-rinnovo-2024",
@@ -1139,20 +1274,24 @@
                 "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                 "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
               },
+              "page": "14",
               "section": "Allegato n. 1 — colonna IPO (livello C1)",
-              "page": "14"
+              "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row C1: I.P.O 104,00 / 108,24 / 111,32"
             },
             "extraction": {
               "method": "manual",
               "extraction_timestamp": "2026-09-11T00:00:00",
               "verification_status": "verified",
-              "effective_from": "2024-03-01"
+              "effective_from": "2024-03-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T19:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "concia-unic-rinnovo-2024",
@@ -1161,14 +1300,18 @@
             "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
             "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
           },
+          "page": "14",
           "section": "Allegato n. 1 — tabella retributiva",
-          "page": "14"
+          "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row C1: Minimo 2125,21 / 2188,67 / 2234,82; I.P.O 104.00 / 108.24 / 111.32"
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verification_status": "verified",
-          "effective_from": "2024-03-01"
+          "effective_from": "2024-03-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T19:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -1183,7 +1326,7 @@
             "valid_until": "2025-01-01",
             "value": "2125.21",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -1192,14 +1335,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello C2",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row C2: Minimo 2125,21 (2024-03-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2024-03-01"
+                "effective_from": "2024-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1208,7 +1355,7 @@
             "valid_until": "2026-01-01",
             "value": "2188.67",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -1217,14 +1364,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello C2",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row C2: Minimo 2188,67 (2025-01-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2025-01-01"
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1233,7 +1384,7 @@
             "valid_until": null,
             "value": "2234.82",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -1242,14 +1393,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello C2",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row C2: Minimo 2234,82 (2026-01-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           }
@@ -1266,54 +1421,62 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
-                  "status": "derived",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "concia-unic-mysolution-2017",
-                      "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                      "kind": "rivista",
-                      "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-                      "published_on": "2017-04-01",
-                      "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+                      "document_id": "cnel-b101-148617",
+                      "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                      "kind": "cnel",
+                      "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                      "published_on": "2021-01-21",
+                      "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
                     },
-                    "section": "Dati retributivi, E.d.r. per categoria",
-                    "page": "1"
+                    "page": "65",
+                    "section": "Art. 45 / Art. 46",
+                    "quote": "2. elemento distinto della retribuzione (E.D.R.) pari a 10,33 €;"
                   },
                   "extraction": {
                     "method": "manual",
                     "extraction_timestamp": "2026-09-11T00:00:00",
                     "verification_status": "verified",
-                    "effective_from": "2024-03-01"
+                    "effective_from": "2024-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-10-11T19:00:00Z",
+                    "review_id": "2026-10-11-ai"
                   }
                 }
               }
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-mysolution-2017",
-                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                "kind": "rivista",
-                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-                "published_on": "2017-04-01",
-                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+                "document_id": "cnel-b101-148617",
+                "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                "published_on": "2021-01-21",
+                "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
               },
-              "section": "Dati retributivi, E.d.r. per categoria",
-              "page": "1"
+              "page": "65",
+              "section": "Art. 46 - Elementi della retribuzione",
+              "quote": "elemento distinto della retribuzione pari a 10,33 € di cui al Protocollo 31.7.1992 “EDR”"
             },
             "extraction": {
               "method": "manual",
               "extraction_timestamp": "2026-09-11T00:00:00",
               "verification_status": "verified",
-              "effective_from": "2024-03-01"
+              "effective_from": "2024-03-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T19:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "concia-unic-rinnovo-2024",
@@ -1322,14 +1485,18 @@
             "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
             "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
           },
+          "page": "14",
           "section": "Allegato n. 1 — tabella retributiva",
-          "page": "14"
+          "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row C2: Minimo 2125,21 / 2188,67 / 2234,82; I.P.O -"
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verification_status": "verified",
-          "effective_from": "2024-03-01"
+          "effective_from": "2024-03-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T19:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -1344,7 +1511,7 @@
             "valid_until": "2025-01-01",
             "value": "1946.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -1353,14 +1520,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello D1",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row D1: Minimo 1946,99 (2024-03-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2024-03-01"
+                "effective_from": "2024-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1369,7 +1540,7 @@
             "valid_until": "2026-01-01",
             "value": "2001.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -1378,14 +1549,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello D1",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row D1: Minimo 2001,99 (2025-01-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2025-01-01"
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1394,7 +1569,7 @@
             "valid_until": null,
             "value": "2041.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -1403,14 +1578,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello D1",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row D1: Minimo 2041,99 (2026-01-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           }
@@ -1427,48 +1606,56 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
-                  "status": "derived",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "concia-unic-mysolution-2017",
-                      "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                      "kind": "rivista",
-                      "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-                      "published_on": "2017-04-01",
-                      "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+                      "document_id": "cnel-b101-148617",
+                      "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                      "kind": "cnel",
+                      "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                      "published_on": "2021-01-21",
+                      "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
                     },
-                    "section": "Dati retributivi, E.d.r. per categoria",
-                    "page": "1"
+                    "page": "65",
+                    "section": "Art. 45 / Art. 46",
+                    "quote": "2. elemento distinto della retribuzione (E.D.R.) pari a 10,33 €;"
                   },
                   "extraction": {
                     "method": "manual",
                     "extraction_timestamp": "2026-09-11T00:00:00",
                     "verification_status": "verified",
-                    "effective_from": "2024-03-01"
+                    "effective_from": "2024-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-10-11T19:00:00Z",
+                    "review_id": "2026-10-11-ai"
                   }
                 }
               }
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-mysolution-2017",
-                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                "kind": "rivista",
-                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-                "published_on": "2017-04-01",
-                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+                "document_id": "cnel-b101-148617",
+                "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                "published_on": "2021-01-21",
+                "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
               },
-              "section": "Dati retributivi, E.d.r. per categoria",
-              "page": "1"
+              "page": "65",
+              "section": "Art. 46 - Elementi della retribuzione",
+              "quote": "elemento distinto della retribuzione pari a 10,33 € di cui al Protocollo 31.7.1992 “EDR”"
             },
             "extraction": {
               "method": "manual",
               "extraction_timestamp": "2026-09-11T00:00:00",
               "verification_status": "verified",
-              "effective_from": "2024-03-01"
+              "effective_from": "2024-03-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T19:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         },
@@ -1482,7 +1669,7 @@
                 "valid_until": "2025-01-01",
                 "value": "116.36",
                 "provenance": {
-                  "status": "derived",
+                  "status": "verified",
                   "location": {
                     "source_document": {
                       "document_id": "concia-unic-rinnovo-2024",
@@ -1491,14 +1678,18 @@
                       "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                       "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                     },
+                    "page": "14",
                     "section": "Allegato n. 1 — tabella retributiva, colonna IPO",
-                    "page": "14"
+                    "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row D1: I.P.O 116,36 (2024-03-01)"
                   },
                   "extraction": {
                     "method": "manual",
                     "extraction_timestamp": "2026-09-11T00:00:00",
                     "verification_status": "verified",
-                    "effective_from": "2024-03-01"
+                    "effective_from": "2024-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-10-11T19:00:00Z",
+                    "review_id": "2026-10-11-ai"
                   }
                 }
               },
@@ -1507,7 +1698,7 @@
                 "valid_until": "2026-01-01",
                 "value": "120.59",
                 "provenance": {
-                  "status": "derived",
+                  "status": "verified",
                   "location": {
                     "source_document": {
                       "document_id": "concia-unic-rinnovo-2024",
@@ -1516,14 +1707,18 @@
                       "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                       "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                     },
+                    "page": "14",
                     "section": "Allegato n. 1 — tabella retributiva, colonna IPO",
-                    "page": "14"
+                    "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row D1: I.P.O 120,59 (2025-01-01)"
                   },
                   "extraction": {
                     "method": "manual",
                     "extraction_timestamp": "2026-09-11T00:00:00",
                     "verification_status": "verified",
-                    "effective_from": "2025-01-01"
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-10-11T19:00:00Z",
+                    "review_id": "2026-10-11-ai"
                   }
                 }
               },
@@ -1532,7 +1727,7 @@
                 "valid_until": null,
                 "value": "123.67",
                 "provenance": {
-                  "status": "derived",
+                  "status": "verified",
                   "location": {
                     "source_document": {
                       "document_id": "concia-unic-rinnovo-2024",
@@ -1541,21 +1736,25 @@
                       "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                       "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                     },
+                    "page": "14",
                     "section": "Allegato n. 1 — tabella retributiva, colonna IPO",
-                    "page": "14"
+                    "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row D1: I.P.O 123,67 (2026-01-01)"
                   },
                   "extraction": {
                     "method": "manual",
                     "extraction_timestamp": "2026-09-11T00:00:00",
                     "verification_status": "verified",
-                    "effective_from": "2026-01-01"
+                    "effective_from": "2026-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-10-11T19:00:00Z",
+                    "review_id": "2026-10-11-ai"
                   }
                 }
               }
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "concia-unic-rinnovo-2024",
@@ -1564,20 +1763,24 @@
                 "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                 "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
               },
+              "page": "14",
               "section": "Allegato n. 1 — colonna IPO (livello D1)",
-              "page": "14"
+              "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row D1: I.P.O 116,36 / 120,59 / 123,67"
             },
             "extraction": {
               "method": "manual",
               "extraction_timestamp": "2026-09-11T00:00:00",
               "verification_status": "verified",
-              "effective_from": "2024-03-01"
+              "effective_from": "2024-03-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T19:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "concia-unic-rinnovo-2024",
@@ -1586,14 +1789,18 @@
             "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
             "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
           },
+          "page": "14",
           "section": "Allegato n. 1 — tabella retributiva",
-          "page": "14"
+          "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row D1: Minimo 1946,99 / 2001,99 / 2041,99; I.P.O 116.36 / 120.59 / 123.67"
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verification_status": "verified",
-          "effective_from": "2024-03-01"
+          "effective_from": "2024-03-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T19:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -1608,7 +1815,7 @@
             "valid_until": "2025-01-01",
             "value": "1946.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -1617,14 +1824,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello D2",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row D2: Minimo 1946,99 (2024-03-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2024-03-01"
+                "effective_from": "2024-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1633,7 +1844,7 @@
             "valid_until": "2026-01-01",
             "value": "2001.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -1642,14 +1853,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello D2",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row D2: Minimo 2001,99 (2025-01-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2025-01-01"
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1658,7 +1873,7 @@
             "valid_until": null,
             "value": "2041.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -1667,14 +1882,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello D2",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row D2: Minimo 2041,99 (2026-01-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           }
@@ -1691,54 +1910,62 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
-                  "status": "derived",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "concia-unic-mysolution-2017",
-                      "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                      "kind": "rivista",
-                      "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-                      "published_on": "2017-04-01",
-                      "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+                      "document_id": "cnel-b101-148617",
+                      "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                      "kind": "cnel",
+                      "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                      "published_on": "2021-01-21",
+                      "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
                     },
-                    "section": "Dati retributivi, E.d.r. per categoria",
-                    "page": "1"
+                    "page": "65",
+                    "section": "Art. 45 / Art. 46",
+                    "quote": "2. elemento distinto della retribuzione (E.D.R.) pari a 10,33 €;"
                   },
                   "extraction": {
                     "method": "manual",
                     "extraction_timestamp": "2026-09-11T00:00:00",
                     "verification_status": "verified",
-                    "effective_from": "2024-03-01"
+                    "effective_from": "2024-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-10-11T19:00:00Z",
+                    "review_id": "2026-10-11-ai"
                   }
                 }
               }
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-mysolution-2017",
-                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                "kind": "rivista",
-                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-                "published_on": "2017-04-01",
-                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+                "document_id": "cnel-b101-148617",
+                "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                "published_on": "2021-01-21",
+                "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
               },
-              "section": "Dati retributivi, E.d.r. per categoria",
-              "page": "1"
+              "page": "65",
+              "section": "Art. 46 - Elementi della retribuzione",
+              "quote": "elemento distinto della retribuzione pari a 10,33 € di cui al Protocollo 31.7.1992 “EDR”"
             },
             "extraction": {
               "method": "manual",
               "extraction_timestamp": "2026-09-11T00:00:00",
               "verification_status": "verified",
-              "effective_from": "2024-03-01"
+              "effective_from": "2024-03-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T19:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "concia-unic-rinnovo-2024",
@@ -1747,14 +1974,18 @@
             "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
             "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
           },
+          "page": "14",
           "section": "Allegato n. 1 — tabella retributiva",
-          "page": "14"
+          "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row D2: Minimo 1946,99 / 2001,99 / 2041,99; I.P.O -"
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verification_status": "verified",
-          "effective_from": "2024-03-01"
+          "effective_from": "2024-03-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T19:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -1769,7 +2000,7 @@
             "valid_until": "2025-01-01",
             "value": "1705.52",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -1778,14 +2009,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello E1",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row E1: Minimo 1705,52 (2024-03-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2024-03-01"
+                "effective_from": "2024-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1794,7 +2029,7 @@
             "valid_until": "2026-01-01",
             "value": "1750.79",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -1803,14 +2038,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello E1",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row E1: Minimo 1750,79 (2025-01-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2025-01-01"
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1819,7 +2058,7 @@
             "valid_until": null,
             "value": "1783.71",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -1828,14 +2067,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello E1",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row E1: Minimo 1783,71 (2026-01-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           }
@@ -1852,48 +2095,56 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
-                  "status": "derived",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "concia-unic-mysolution-2017",
-                      "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                      "kind": "rivista",
-                      "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-                      "published_on": "2017-04-01",
-                      "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+                      "document_id": "cnel-b101-148617",
+                      "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                      "kind": "cnel",
+                      "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                      "published_on": "2021-01-21",
+                      "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
                     },
-                    "section": "Dati retributivi, E.d.r. per categoria",
-                    "page": "1"
+                    "page": "65",
+                    "section": "Art. 45 / Art. 46",
+                    "quote": "2. elemento distinto della retribuzione (E.D.R.) pari a 10,33 €;"
                   },
                   "extraction": {
                     "method": "manual",
                     "extraction_timestamp": "2026-09-11T00:00:00",
                     "verification_status": "verified",
-                    "effective_from": "2024-03-01"
+                    "effective_from": "2024-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-10-11T19:00:00Z",
+                    "review_id": "2026-10-11-ai"
                   }
                 }
               }
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-mysolution-2017",
-                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                "kind": "rivista",
-                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-                "published_on": "2017-04-01",
-                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+                "document_id": "cnel-b101-148617",
+                "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                "published_on": "2021-01-21",
+                "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
               },
-              "section": "Dati retributivi, E.d.r. per categoria",
-              "page": "1"
+              "page": "65",
+              "section": "Art. 46 - Elementi della retribuzione",
+              "quote": "elemento distinto della retribuzione pari a 10,33 € di cui al Protocollo 31.7.1992 “EDR”"
             },
             "extraction": {
               "method": "manual",
               "extraction_timestamp": "2026-09-11T00:00:00",
               "verification_status": "verified",
-              "effective_from": "2024-03-01"
+              "effective_from": "2024-03-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T19:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         },
@@ -1907,7 +2158,7 @@
                 "valid_until": "2025-01-01",
                 "value": "146.80",
                 "provenance": {
-                  "status": "derived",
+                  "status": "verified",
                   "location": {
                     "source_document": {
                       "document_id": "concia-unic-rinnovo-2024",
@@ -1916,14 +2167,18 @@
                       "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                       "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                     },
+                    "page": "14",
                     "section": "Allegato n. 1 — tabella retributiva, colonna IPO",
-                    "page": "14"
+                    "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row E1: I.P.O 146,80 (2024-03-01)"
                   },
                   "extraction": {
                     "method": "manual",
                     "extraction_timestamp": "2026-09-11T00:00:00",
                     "verification_status": "verified",
-                    "effective_from": "2024-03-01"
+                    "effective_from": "2024-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-10-11T19:00:00Z",
+                    "review_id": "2026-10-11-ai"
                   }
                 }
               },
@@ -1932,7 +2187,7 @@
                 "valid_until": "2026-01-01",
                 "value": "153.15",
                 "provenance": {
-                  "status": "derived",
+                  "status": "verified",
                   "location": {
                     "source_document": {
                       "document_id": "concia-unic-rinnovo-2024",
@@ -1941,14 +2196,18 @@
                       "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                       "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                     },
+                    "page": "14",
                     "section": "Allegato n. 1 — tabella retributiva, colonna IPO",
-                    "page": "14"
+                    "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row E1: I.P.O 153,15 (2025-01-01)"
                   },
                   "extraction": {
                     "method": "manual",
                     "extraction_timestamp": "2026-09-11T00:00:00",
                     "verification_status": "verified",
-                    "effective_from": "2025-01-01"
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-10-11T19:00:00Z",
+                    "review_id": "2026-10-11-ai"
                   }
                 }
               },
@@ -1957,7 +2216,7 @@
                 "valid_until": null,
                 "value": "157.77",
                 "provenance": {
-                  "status": "derived",
+                  "status": "verified",
                   "location": {
                     "source_document": {
                       "document_id": "concia-unic-rinnovo-2024",
@@ -1966,21 +2225,25 @@
                       "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                       "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                     },
+                    "page": "14",
                     "section": "Allegato n. 1 — tabella retributiva, colonna IPO",
-                    "page": "14"
+                    "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row E1: I.P.O 157,77 (2026-01-01)"
                   },
                   "extraction": {
                     "method": "manual",
                     "extraction_timestamp": "2026-09-11T00:00:00",
                     "verification_status": "verified",
-                    "effective_from": "2026-01-01"
+                    "effective_from": "2026-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-10-11T19:00:00Z",
+                    "review_id": "2026-10-11-ai"
                   }
                 }
               }
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "concia-unic-rinnovo-2024",
@@ -1989,20 +2252,24 @@
                 "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                 "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
               },
+              "page": "14",
               "section": "Allegato n. 1 — colonna IPO (livello E1)",
-              "page": "14"
+              "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row E1: I.P.O 146,80 / 153,15 / 157,77"
             },
             "extraction": {
               "method": "manual",
               "extraction_timestamp": "2026-09-11T00:00:00",
               "verification_status": "verified",
-              "effective_from": "2024-03-01"
+              "effective_from": "2024-03-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T19:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "concia-unic-rinnovo-2024",
@@ -2011,14 +2278,18 @@
             "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
             "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
           },
+          "page": "14",
           "section": "Allegato n. 1 — tabella retributiva",
-          "page": "14"
+          "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row E1: Minimo 1705,52 / 1750,79 / 1783,71; I.P.O 146.80 / 153.15 / 157.77"
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verification_status": "verified",
-          "effective_from": "2024-03-01"
+          "effective_from": "2024-03-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T19:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -2033,7 +2304,7 @@
             "valid_until": "2025-01-01",
             "value": "1705.52",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -2042,14 +2313,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello E2",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row E2: Minimo 1705,52 (2024-03-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2024-03-01"
+                "effective_from": "2024-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -2058,7 +2333,7 @@
             "valid_until": "2026-01-01",
             "value": "1750.79",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -2067,14 +2342,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello E2",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row E2: Minimo 1750,79 (2025-01-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2025-01-01"
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -2083,7 +2362,7 @@
             "valid_until": null,
             "value": "1783.71",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -2092,14 +2371,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello E2",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row E2: Minimo 1783,71 (2026-01-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           }
@@ -2116,48 +2399,56 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
-                  "status": "derived",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "concia-unic-mysolution-2017",
-                      "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                      "kind": "rivista",
-                      "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-                      "published_on": "2017-04-01",
-                      "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+                      "document_id": "cnel-b101-148617",
+                      "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                      "kind": "cnel",
+                      "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                      "published_on": "2021-01-21",
+                      "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
                     },
-                    "section": "Dati retributivi, E.d.r. per categoria",
-                    "page": "1"
+                    "page": "65",
+                    "section": "Art. 45 / Art. 46",
+                    "quote": "2. elemento distinto della retribuzione (E.D.R.) pari a 10,33 €;"
                   },
                   "extraction": {
                     "method": "manual",
                     "extraction_timestamp": "2026-09-11T00:00:00",
                     "verification_status": "verified",
-                    "effective_from": "2024-03-01"
+                    "effective_from": "2024-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-10-11T19:00:00Z",
+                    "review_id": "2026-10-11-ai"
                   }
                 }
               }
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-mysolution-2017",
-                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                "kind": "rivista",
-                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-                "published_on": "2017-04-01",
-                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+                "document_id": "cnel-b101-148617",
+                "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                "published_on": "2021-01-21",
+                "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
               },
-              "section": "Dati retributivi, E.d.r. per categoria",
-              "page": "1"
+              "page": "65",
+              "section": "Art. 46 - Elementi della retribuzione",
+              "quote": "elemento distinto della retribuzione pari a 10,33 € di cui al Protocollo 31.7.1992 “EDR”"
             },
             "extraction": {
               "method": "manual",
               "extraction_timestamp": "2026-09-11T00:00:00",
               "verification_status": "verified",
-              "effective_from": "2024-03-01"
+              "effective_from": "2024-03-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T19:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         },
@@ -2171,7 +2462,7 @@
                 "valid_until": "2025-01-01",
                 "value": "79.21",
                 "provenance": {
-                  "status": "derived",
+                  "status": "verified",
                   "location": {
                     "source_document": {
                       "document_id": "concia-unic-rinnovo-2024",
@@ -2180,14 +2471,18 @@
                       "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                       "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                     },
+                    "page": "14",
                     "section": "Allegato n. 1 — tabella retributiva, colonna IPO",
-                    "page": "14"
+                    "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row E2: I.P.O 79,21 (2024-03-01)"
                   },
                   "extraction": {
                     "method": "manual",
                     "extraction_timestamp": "2026-09-11T00:00:00",
                     "verification_status": "verified",
-                    "effective_from": "2024-03-01"
+                    "effective_from": "2024-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-10-11T19:00:00Z",
+                    "review_id": "2026-10-11-ai"
                   }
                 }
               },
@@ -2196,7 +2491,7 @@
                 "valid_until": "2026-01-01",
                 "value": "81.32",
                 "provenance": {
-                  "status": "derived",
+                  "status": "verified",
                   "location": {
                     "source_document": {
                       "document_id": "concia-unic-rinnovo-2024",
@@ -2205,14 +2500,18 @@
                       "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                       "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                     },
+                    "page": "14",
                     "section": "Allegato n. 1 — tabella retributiva, colonna IPO",
-                    "page": "14"
+                    "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row E2: I.P.O 81,32 (2025-01-01)"
                   },
                   "extraction": {
                     "method": "manual",
                     "extraction_timestamp": "2026-09-11T00:00:00",
                     "verification_status": "verified",
-                    "effective_from": "2025-01-01"
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-10-11T19:00:00Z",
+                    "review_id": "2026-10-11-ai"
                   }
                 }
               },
@@ -2221,7 +2520,7 @@
                 "valid_until": null,
                 "value": "82.86",
                 "provenance": {
-                  "status": "derived",
+                  "status": "verified",
                   "location": {
                     "source_document": {
                       "document_id": "concia-unic-rinnovo-2024",
@@ -2230,21 +2529,25 @@
                       "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                       "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                     },
+                    "page": "14",
                     "section": "Allegato n. 1 — tabella retributiva, colonna IPO",
-                    "page": "14"
+                    "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row E2: I.P.O 82,86 (2026-01-01)"
                   },
                   "extraction": {
                     "method": "manual",
                     "extraction_timestamp": "2026-09-11T00:00:00",
                     "verification_status": "verified",
-                    "effective_from": "2026-01-01"
+                    "effective_from": "2026-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-10-11T19:00:00Z",
+                    "review_id": "2026-10-11-ai"
                   }
                 }
               }
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "concia-unic-rinnovo-2024",
@@ -2253,20 +2556,24 @@
                 "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                 "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
               },
+              "page": "14",
               "section": "Allegato n. 1 — colonna IPO (livello E2)",
-              "page": "14"
+              "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row E2: I.P.O 79,21 / 81,32 / 82,86"
             },
             "extraction": {
               "method": "manual",
               "extraction_timestamp": "2026-09-11T00:00:00",
               "verification_status": "verified",
-              "effective_from": "2024-03-01"
+              "effective_from": "2024-03-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T19:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "concia-unic-rinnovo-2024",
@@ -2275,14 +2582,18 @@
             "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
             "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
           },
+          "page": "14",
           "section": "Allegato n. 1 — tabella retributiva",
-          "page": "14"
+          "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row E2: Minimo 1705,52 / 1750,79 / 1783,71; I.P.O 79.21 / 81.32 / 82.86"
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verification_status": "verified",
-          "effective_from": "2024-03-01"
+          "effective_from": "2024-03-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T19:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -2297,7 +2608,7 @@
             "valid_until": "2025-01-01",
             "value": "1705.52",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -2306,14 +2617,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello E3",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row E3: Minimo 1705,52 (2024-03-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2024-03-01"
+                "effective_from": "2024-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -2322,7 +2637,7 @@
             "valid_until": "2026-01-01",
             "value": "1750.79",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -2331,14 +2646,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello E3",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row E3: Minimo 1750,79 (2025-01-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2025-01-01"
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -2347,7 +2666,7 @@
             "valid_until": null,
             "value": "1783.71",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -2356,14 +2675,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello E3",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row E3: Minimo 1783,71 (2026-01-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           }
@@ -2380,54 +2703,62 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
-                  "status": "derived",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "concia-unic-mysolution-2017",
-                      "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                      "kind": "rivista",
-                      "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-                      "published_on": "2017-04-01",
-                      "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+                      "document_id": "cnel-b101-148617",
+                      "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                      "kind": "cnel",
+                      "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                      "published_on": "2021-01-21",
+                      "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
                     },
-                    "section": "Dati retributivi, E.d.r. per categoria",
-                    "page": "1"
+                    "page": "65",
+                    "section": "Art. 45 / Art. 46",
+                    "quote": "2. elemento distinto della retribuzione (E.D.R.) pari a 10,33 €;"
                   },
                   "extraction": {
                     "method": "manual",
                     "extraction_timestamp": "2026-09-11T00:00:00",
                     "verification_status": "verified",
-                    "effective_from": "2024-03-01"
+                    "effective_from": "2024-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-10-11T19:00:00Z",
+                    "review_id": "2026-10-11-ai"
                   }
                 }
               }
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-mysolution-2017",
-                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                "kind": "rivista",
-                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-                "published_on": "2017-04-01",
-                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+                "document_id": "cnel-b101-148617",
+                "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                "published_on": "2021-01-21",
+                "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
               },
-              "section": "Dati retributivi, E.d.r. per categoria",
-              "page": "1"
+              "page": "65",
+              "section": "Art. 46 - Elementi della retribuzione",
+              "quote": "elemento distinto della retribuzione pari a 10,33 € di cui al Protocollo 31.7.1992 “EDR”"
             },
             "extraction": {
               "method": "manual",
               "extraction_timestamp": "2026-09-11T00:00:00",
               "verification_status": "verified",
-              "effective_from": "2024-03-01"
+              "effective_from": "2024-03-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T19:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "concia-unic-rinnovo-2024",
@@ -2436,14 +2767,18 @@
             "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
             "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
           },
+          "page": "14",
           "section": "Allegato n. 1 — tabella retributiva",
-          "page": "14"
+          "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row E3: Minimo 1705,52 / 1750,79 / 1783,71; I.P.O -"
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verification_status": "verified",
-          "effective_from": "2024-03-01"
+          "effective_from": "2024-03-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T19:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -2458,7 +2793,7 @@
             "valid_until": "2025-01-01",
             "value": "1616.23",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -2467,14 +2802,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello F1",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row F: Minimo 1616,23 (2024-03-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2024-03-01"
+                "effective_from": "2024-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -2483,7 +2822,7 @@
             "valid_until": "2026-01-01",
             "value": "1658.53",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -2492,14 +2831,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello F1",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row F: Minimo 1658,53 (2025-01-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2025-01-01"
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -2508,7 +2851,7 @@
             "valid_until": null,
             "value": "1689.30",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "concia-unic-rinnovo-2024",
@@ -2517,14 +2860,18 @@
                   "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
                   "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
                 },
+                "page": "14",
                 "section": "Allegato n. 1 — tabella retributiva, minimo tabellare livello F1",
-                "page": "14"
+                "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row F: Minimo 1689,30 (2026-01-01)"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T19:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           }
@@ -2541,54 +2888,62 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
-                  "status": "derived",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "concia-unic-mysolution-2017",
-                      "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                      "kind": "rivista",
-                      "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-                      "published_on": "2017-04-01",
-                      "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+                      "document_id": "cnel-b101-148617",
+                      "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                      "kind": "cnel",
+                      "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                      "published_on": "2021-01-21",
+                      "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
                     },
-                    "section": "Dati retributivi, E.d.r. per categoria",
-                    "page": "1"
+                    "page": "65",
+                    "section": "Art. 45 / Art. 46",
+                    "quote": "2. elemento distinto della retribuzione (E.D.R.) pari a 10,33 €;"
                   },
                   "extraction": {
                     "method": "manual",
                     "extraction_timestamp": "2026-09-11T00:00:00",
                     "verification_status": "verified",
-                    "effective_from": "2024-03-01"
+                    "effective_from": "2024-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-10-11T19:00:00Z",
+                    "review_id": "2026-10-11-ai"
                   }
                 }
               }
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-mysolution-2017",
-                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                "kind": "rivista",
-                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-                "published_on": "2017-04-01",
-                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+                "document_id": "cnel-b101-148617",
+                "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                "published_on": "2021-01-21",
+                "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
               },
-              "section": "Dati retributivi, E.d.r. per categoria",
-              "page": "1"
+              "page": "65",
+              "section": "Art. 46 - Elementi della retribuzione",
+              "quote": "elemento distinto della retribuzione pari a 10,33 € di cui al Protocollo 31.7.1992 “EDR”"
             },
             "extraction": {
               "method": "manual",
               "extraction_timestamp": "2026-09-11T00:00:00",
               "verification_status": "verified",
-              "effective_from": "2024-03-01"
+              "effective_from": "2024-03-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T19:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "concia-unic-rinnovo-2024",
@@ -2597,14 +2952,18 @@
             "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
             "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
           },
+          "page": "14",
           "section": "Allegato n. 1 — tabella retributiva",
-          "page": "14"
+          "quote": "Allegato n.1 'MINIMI E I.P.O dal 1° marzo 2024 / dal 1° gennaio 2025 / dal 1° gennaio 2026', row F: Minimo 1616,23 / 1658,53 / 1689,30; I.P.O -"
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verification_status": "verified",
-          "effective_from": "2024-03-01"
+          "effective_from": "2024-03-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T19:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     }
@@ -2780,24 +3139,28 @@
             "weekday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-mysolution-2017",
-                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                "kind": "rivista",
-                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-                "published_on": "2017-04-01",
-                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+                "document_id": "cnel-b101-148617",
+                "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                "published_on": "2021-01-21",
+                "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
               },
-              "section": "Straordinario — diurno feriale fino a 48h 15%",
-              "page": "2"
+              "page": "58",
+              "section": "Art. 35 - Lavoro straordinario, notturno, festivo ed a turni: maggiorazioni",
+              "quote": "2) lavoro straordinario diurno (feriale) per le prime 8 ore 15%"
             },
             "extraction": {
               "method": "manual",
               "extraction_timestamp": "2026-09-11T00:00:00",
               "verification_status": "verified",
-              "effective_from": "2024-03-01"
+              "effective_from": "2024-03-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T19:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         },
@@ -2819,24 +3182,28 @@
             "night"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-mysolution-2017",
-                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                "kind": "rivista",
-                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-                "published_on": "2017-04-01",
-                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+                "document_id": "cnel-b101-148617",
+                "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                "published_on": "2021-01-21",
+                "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
               },
-              "section": "Straordinario — notturno prima ora 61%",
-              "page": "2"
+              "page": "58",
+              "section": "Art. 35 - Lavoro straordinario, notturno, festivo ed a turni: maggiorazioni",
+              "quote": "8) lavoro straordinario notturno (compreso e non compreso in turni avvicendati) 1a ora 61% ore successive 76%"
             },
             "extraction": {
               "method": "manual",
               "extraction_timestamp": "2026-09-11T00:00:00",
               "verification_status": "verified",
-              "effective_from": "2024-03-01"
+              "effective_from": "2024-03-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T19:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         },
@@ -2858,51 +3225,58 @@
             "holiday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "concia-unic-mysolution-2017",
-                "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-                "kind": "rivista",
-                "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-                "published_on": "2017-04-01",
-                "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+                "document_id": "cnel-b101-148617",
+                "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                "published_on": "2021-01-21",
+                "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
               },
-              "section": "Straordinario — festivo 71%",
-              "page": "2"
+              "page": "58",
+              "section": "Art. 35 - Lavoro straordinario, notturno, festivo ed a turni: maggiorazioni",
+              "quote": "7) lavoro straordinario festivo 71%"
             },
             "extraction": {
               "method": "manual",
               "extraction_timestamp": "2026-09-11T00:00:00",
               "verification_status": "verified",
-              "effective_from": "2024-03-01"
+              "effective_from": "2024-03-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T19:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         }
       ]
     },
     "absence_rules": {
-      "daily_divisor_method": "by_25",
+      "daily_divisor_method": "by_month_hours",
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "concia-unic-mysolution-2017",
-            "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-            "kind": "rivista",
-            "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-            "published_on": "2017-04-01",
-            "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+            "document_id": "cnel-b101-148617",
+            "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+            "published_on": "2021-01-21",
+            "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
           },
-          "section": "Parametri retributivi, divisori contrattuali",
-          "page": "2",
-          "quote": "Divisori contrattuali della retribuzione mensile: quota giornaliera 25; quota oraria 173."
+          "page": "69-70",
+          "section": "Art. 50 chiarimento a verbale; Art. 51 lett. b)",
+          "quote": "Le quote relative alle ore normali non lavorate ... saranno calcolate applicando al suddetto numero di ore il coefficiente risultante dal seguente rapporto ... 173 / ore lavorative del mese"
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verification_status": "verified",
-          "effective_from": "2024-03-01"
+          "effective_from": "2024-03-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T19:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -2914,33 +3288,37 @@
           "annual_days": "25"
         },
         {
-          "service_months_min": 192,
+          "service_months_min": 180,
           "annual_days": "23"
         },
         {
-          "service_months_min": 132,
+          "service_months_min": 120,
           "annual_days": "22"
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "concia-unic-mysolution-2017",
-            "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-            "kind": "rivista",
-            "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-            "published_on": "2017-04-01",
-            "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+            "document_id": "cnel-b101-148617",
+            "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+            "published_on": "2021-01-21",
+            "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
           },
-          "section": "Ferie — 4 settimane fino 10 anni; +2gg 11°; +3gg 16°; 5 sett. 18°",
-          "page": "4"
+          "page": "62",
+          "section": "Art. 42 - Ferie",
+          "quote": "- 4 settimane fino al 10° anno compiuto di anzianità - 4 settimane + 2 giorni per anzianità di servizio oltre il 10° e fino al 15° anno compiuto - 4 settimane + 3 giorni ... oltre il 15° e fino al..."
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verification_status": "verified",
-          "effective_from": "2024-03-01"
+          "effective_from": "2024-03-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T19:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -2956,24 +3334,28 @@
       ],
       "max_duration_days": 240,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "concia-unic-mysolution-2017",
-            "title": "CCNL Concia Industria — Sintesi MySolution apr. 2017",
-            "kind": "rivista",
-            "url": "https://www.mysolution.it/globalassets/_nuovomysolution/pdf-schede-sintesi/concia-industria_definitivo.pdf",
-            "published_on": "2017-04-01",
-            "sha256": "2b3029d80ba4556a2ff1244052615d81f42260a2b4b508c733a4cf0dadbed02c"
+            "document_id": "cnel-b101-148617",
+            "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+            "published_on": "2021-01-21",
+            "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
           },
-          "section": "Vicende del rapporto, Malattia: anzianità fino a 3 anni, comporto 8 mesi, primi 3 mesi 100%, 5 mesi successivi 50%",
-          "page": "4"
+          "page": "Filctem p.7; CNEL 76-77",
+          "section": "Art. 60 - Malattia e infortunio",
+          "quote": "1) mesi 8 per gli aventi anzianità di servizio fino a 3 anni ... - intera retribuzione netta per i primi tre mesi e metà di essa per i successivi cinque mesi, se ha un’anzianità di servizio fino a..."
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verification_status": "verified",
-          "effective_from": "2024-03-01"
+          "effective_from": "2024-03-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T19:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     }
@@ -2994,7 +3376,7 @@
       },
       {
         "kind": "source",
-        "text": "SENIORITY: biennial (cadence_months=24), maximum 5 increments. Amounts from MySolution sintesi apr. 2017 p. 3 (CCNL previgente); confirmed unchanged — kitech.it 2024-tranche totals including 5 scatti match MySolution amounts across all 11 levels."
+        "text": "SENIORITY: biennial (cadence_months=24), maximum 5 increments, amounts per level from Art. 48 of the CCNL testo definitivo 21/01/2021 (CNEL B101, physical p. 67), which the 2024 renewal leaves unchanged."
       },
       {
         "kind": "info",
@@ -3016,13 +3398,13 @@
       },
       {
         "kind": "simplification",
-        "text": "DAILY DIVISOR: the CCNL sets quota giornaliera = 1/25 of the monthly pay (MySolution sintesi p. 2) without saying which days of a month are payable; modelled as by_25, so a partly employed month and the sick days of a month are not computed (fail closed) instead of being paid on another divisor.",
+        "text": "DAILY DIVISOR: Art. 51 b) of the CCNL testo definitivo 21/01/2021 (CNEL B101, physical pp. 69-70) deducts the normal hours not worked by the ratio 173 / working hours of the month; Art. 50 keeps the quota of 1/25 for the holidays falling on a Sunday. Modelled as by_month_hours: one share per Monday to Friday out of the Mondays to Fridays of the month.",
         "capability": "absence",
         "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "SICKNESS: 3 seniority tiers (MySolution sintesi p. 4): up to 3 years comporto 8 months, 3 months at 100% then 5 at 50%; 4 to 6 years 10 months, 4 at 100% and 6 at 50%; over 6 years 12 months, 5 at 100% and 7 at 50%; absences of several sicknesses summed over 36 months. Modelled as the first tier per episode: 100% months 1-3, 50% months 4-8, max 240 days.",
+        "text": "SICKNESS: 3 seniority tiers (Art. 60 of the CCNL testo definitivo 21/01/2021, comporto unchanged by the 2024 renewal): up to 3 years comporto 8 months, 3 months at 100% then 5 at 50%; 4 to 6 years 10 months, 4 at 100% and 6 at 50%; over 6 years 12 months, 5 at 100% and 7 at 50%; absences of several sicknesses summed over 36 months. Modelled as the first tier per episode: 100% months 1-3, 50% months 4-8, max 240 days.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
@@ -3035,7 +3417,7 @@
       },
       {
         "kind": "simplification",
-        "text": "LEAVE: 20 gg up to 10 years; +2 gg from 11th year (132 months); +3 gg from 16th year over base (not over the 11-year tier; 192 months = 23 gg); 5 settimane (25 gg) from 18th year (216 months). Source: MySolution sintesi 2017 p. 4. ROL 68 ore/anno not modeled.",
+        "text": "LEAVE: Art. 42 of the CCNL testo definitivo 21/01/2021 (CNEL B101, physical p. 62): 4 weeks (20 days) up to the 10th year of service completed; 4 weeks + 2 days beyond the 10th year (120 months); 4 weeks + 3 days beyond the 15th (180 months); 5 weeks (25 days) beyond the 18th (216 months). ROL 68 ore/anno not modelled.",
         "capability": "leave",
         "monetary_impact": "no"
       },
@@ -3071,6 +3453,32 @@
         "outcome": "confirmed",
         "findings": [
           "The review recorded no list of the documents it read."
+        ]
+      },
+      {
+        "id": "2026-10-11-ai",
+        "date": "2026-10-11",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Every payable rule of the file (98 records) read again in the signed texts: the renewal of 7 March 2024 and the CCNL testo definitivo of 21 January 2021 deposited at CNEL (B101), which the 2024 renewal leaves unchanged for these articles.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+            "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
+          },
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+            "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
+          }
+        ],
+        "findings": [
+          "96 records match their source and are verified; the two corrected rules below are verified too. The 34 records that cited the mysolution.it summary sheet now cite the CNEL testo definitivo. Pages are physical PDF pages (the printed page of the CNEL text is two lower).",
+          "Corrected: the leave tiers of Art. 42 start after the 10th and the 15th year (120 and 180 months), not 132 and 192.",
+          "Corrected: Art. 51 b) deducts unworked hours by the ratio 173 / working hours of the month, and Art. 50 keeps 1/25 for Sunday holidays, so the absence rule is by_month_hours instead of by_25.",
+          "Not modelled, each underpaying: night overtime after the first hour (76%), the 25% and 35% bands for daytime overtime beyond 48 hours, and the sickness tiers of 10 and 12 months for longer service.",
+          "The IND_FUNZIONE clause is Art. 46 g), not Art. 47.",
+          "No renewal signed after 7 March 2024; the contract expired on 30 June 2026 and a renewal is under negotiation."
         ]
       }
     ],

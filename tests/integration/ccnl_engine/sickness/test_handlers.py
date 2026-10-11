@@ -286,33 +286,35 @@ def test_hourly_quota_without_daily_hours_is_missing() -> None:
     assert _decision(result).reason_code == "sickness_daily_quota_missing"
 
 
+class _OneTwentyFifth(BundledKnowledgeRepository):
+    """Concia with a quota of 1/25 in place of its rule."""
+
+    def load_ccnl(self, filename: str) -> CCNL:
+        ccnl = load_ccnl(filename)
+        assert ccnl.work_rules is not None
+        assert ccnl.work_rules.absence_rules is not None
+        absence = ccnl.work_rules.absence_rules.model_copy(
+            update={"daily_divisor_method": DailyDivisorMethod.BY_25}
+        )
+        rules = ccnl.work_rules.model_copy(update={"absence_rules": absence})
+        return ccnl.model_copy(update={"work_rules": rules})
+
+
 def test_a_quota_of_one_25th_sets_no_daily_quota() -> None:
-    """Concia states 1/25 but not which days are payable: no sick day is paid."""
+    """A CCNL that states 1/25 but not which days are payable pays no sick day."""
     request = _req(3, _MARCH, slug="concia-unic.json", level="D2")
-    result = calculate_period(request)
+    result = calculate_period(request, repo=_OneTwentyFifth())
     assert _decision(result).reason_code == "sickness_daily_quota_missing"
     assert _sick(result) == {}
 
 
 def test_month_hours_quota_counts_the_working_days_of_the_month() -> None:
-    """Concia with ``by_month_hours``: March 2026 has 22 working days.
+    """Concia (``by_month_hours``, Art. 51 b): March 2026 has 22 working days.
 
     Carenza 9-11 March: 3 days; 12-13 March: 2 days, each 1/22 of the pay.
     """
-
-    class _MonthHours(BundledKnowledgeRepository):
-        def load_ccnl(self, filename: str) -> CCNL:
-            ccnl = load_ccnl(filename)
-            assert ccnl.work_rules is not None
-            assert ccnl.work_rules.absence_rules is not None
-            absence = ccnl.work_rules.absence_rules.model_copy(
-                update={"daily_divisor_method": DailyDivisorMethod.BY_MONTH_HOURS}
-            )
-            rules = ccnl.work_rules.model_copy(update={"absence_rules": absence})
-            return ccnl.model_copy(update={"work_rules": rules})
-
     request = _req(3, _MARCH, slug="concia-unic.json", level="D2")
-    inputs = _decision(calculate_period(request, repo=_MonthHours())).inputs
+    inputs = _decision(calculate_period(request)).inputs
     assert inputs["divisor_method"] == "by_month_hours"
     segments = str(inputs["segments"])
     assert "carenza:index=1:units=3:" in segments

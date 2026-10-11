@@ -61,8 +61,8 @@ formulas or caller-declared amounts.
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 45 / 5090 / 651 / 85 |
-| `seniority` | Scatti di anzianità | core | gross | native | decided | decision | `employment.seniority` | — | simplified | 1 / 112 / 13 / 0 |
+| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 98 / 5037 / 651 / 85 |
+| `seniority` | Scatti di anzianità | core | gross | native | decided | decision | `employment.seniority` | — | simplified | 2 / 111 / 13 / 0 |
 | `worker_category` | Categoria lavoratore (dichiarata o fissata dal livello) | core | gross | native | decided | decision | `employment.category` | — | implemented | none bundled |
 | `inps_employee` | Contributi INPS a carico dipendente | core | net | native | always | pipeline | — | — | simplified | 4 / 33 / 49 / 0 |
 | `inps_employer` | Contributi INPS a carico azienda | core | net | native | always | pipeline | — | — | simplified | 4 / 41 / 57 / 0 |
@@ -94,13 +94,13 @@ formulas or caller-declared amounts.
 | `addizionale_comunale` | Addizionale comunale IRPEF | core | net | native | decided | decision | `facts.comune_belfiore` | — | simplified | 0 / 1 / 1 / 0 |
 | `family_deductions` | Detrazioni familiari a carico (Art. 12 TUIR) | core | net | native | decided | decision | `facts.family_composition`, `current_year` | children, other_dependants, sole_parent_first_child, spouse, spouse_increase_bands | simplified | 0 / 4 / 4 / 0 |
 | `art15_deductions` | Detrazioni Art. 15 TUIR (interessi mutuo e oneri) | outside_input | net | unsupported | outside_input | — | `facts.art15_expenses` | — | unavailable | none bundled |
-| `overtime` | Lavoro straordinario e supplementare | scenario | work_rules | caller_supplied | event | event | — | ccnl_band_multiplier, caller_multiplier | caller-supplied | 3 / 373 / 7 / 0 |
+| `overtime` | Lavoro straordinario e supplementare | scenario | work_rules | caller_supplied | event | event | — | ccnl_band_multiplier, caller_multiplier | caller-supplied | 6 / 370 / 7 / 0 |
 | `night_work` | Lavoro notturno | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
 | `holiday_work` | Lavoro festivo | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
 | `shift_work` | Lavoro a turni | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
 | `absence` | Assenze ingiustificate | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
 | `leave` | Ferie e permessi ROL | outside_input | work_rules | unsupported | outside_input | — | `facts.events[leave]` | — | unavailable | none bundled |
-| `sickness` | Malattia: episodi su più periodi, carenza, fasce INPS e integrazione CCNL | scenario | work_rules | native | event | event | — | multi_period_episode, inps_bands_and_carenza, ccnl_tiers | simplified | 2 / 222 / 5 / 0 |
+| `sickness` | Malattia: episodi su più periodi, carenza, fasce INPS e integrazione CCNL | scenario | work_rules | native | event | event | — | multi_period_episode, inps_bands_and_carenza, ccnl_tiers | simplified | 4 / 220 / 5 / 0 |
 | `fringe_benefit` | Fringe benefit (informativo) | scenario | work_rules | native | event | event | — | — | simplified | 0 / 1 / 1 / 0 |
 | `welfare` | Welfare aziendale (informativo) | scenario | work_rules | native | event | event | — | — | implemented | none bundled |
 | `bonus_pdr` | Premio di risultato PDR (informativo) | core | net | native | decided | decision | — | — | simplified | 0 / 0 / 2 / 0 |
@@ -244,7 +244,7 @@ never grow.
 | 114 | [CCNL per i lavoratori addetti all'industria orafa, argentiera e della gioielleria (Federorafi)](orafi-argentieri-industria-federorafi.md) | ⚠️ | seniority | 0 / 40 / 2 / 0 |
 | 115 | [CCNL per i lavoratori addetti alle industrie delle pelli e dei succedanei della pelle (Assopellettieri)](pelli-cuoio-industria-assopellettieri.md) | ⚠️ | base_salary, seniority | 0 / 35 / 1 / 1 |
 | 116 | [CCNL per i lavoratori dell'industria alimentare (Federalimentare)](alimentari-federalimentare.md) | ⚠️ | base_salary, seniority | 0 / 73 / 2 / 0 |
-| 117 | [CCNL per i lavoratori dell'industria conciaria (UNIC)](concia-unic.md) | ⚠️ | overtime, seniority, sickness | 0 / 58 / 0 / 0 |
+| 117 | [CCNL per i lavoratori dell'industria conciaria (UNIC)](concia-unic.md) | ⚠️ | overtime, seniority, sickness | 58 / 0 / 0 / 0 |
 | 118 | [CCNL per i lavoratori dell'industria del legno, del sughero, del mobile, dell'arredamento e delle industrie affini (Federlegno-Arredo)](legno-arredamento-federlegno.md) | ⚠️ | base_salary, seniority | 0 / 88 / 2 / 0 |
 | 119 | [CCNL per i lavoratori dell'industria tessile, abbigliamento, moda (SMI)](tessile-smi.md) | ⚠️ | seniority | 0 / 47 / 1 / 1 |
 | 120 | [CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane](bcc-credito-cooperativo.md) | ⚠️ | base_salary, inps_employer, seniority | 0 / 41 / 1 / 1 |
