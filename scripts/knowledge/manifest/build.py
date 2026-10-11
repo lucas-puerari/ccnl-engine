@@ -8,8 +8,8 @@ the ``ruleset`` block gives the identity and validity.
 
 Usage::
 
-    uv run python scripts/knowledge/manifest.py           # write
-    uv run python scripts/knowledge/manifest.py --check   # fail on drift
+    uv run python scripts/knowledge/manifest/build.py           # write
+    uv run python scripts/knowledge/manifest/build.py --check   # fail on drift
 """
 
 from __future__ import annotations
@@ -172,7 +172,10 @@ def main(argv: list[str] | None = None, root: Path = KNOWLEDGE_DIR) -> int:
     if args.check:
         current = target.read_text(encoding="utf-8") if target.exists() else ""
         if current != text:
-            print(f"FAIL: {target} is out of date: run scripts/knowledge/manifest.py")
+            print(
+                f"FAIL: {target} is out of date: run "
+                "scripts/knowledge/manifest/build.py"
+            )
             return 1
         print(f"OK: {target} lists {len(json.loads(text)['resources'])} resources.")
         return 0

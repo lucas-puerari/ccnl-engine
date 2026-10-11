@@ -61,8 +61,8 @@ def _layout_tree(root: Path) -> None:
         "tests/fixtures/builders.py",
         "tests/.hidden/_note.txt",
         "scripts/ci/_helper.py",
-        "demo/_build/_site.html",
-        "demo/wheels/_wheel.whl",
+        "demo/release/site/_site.html",
+        "demo/release/packages/_wheel.whl",
         "demo/app.py",
     )
     (root / "src/ccnl_engine/payroll/__init__.py").write_text("X = 1\n", "utf-8")

@@ -36,7 +36,7 @@ Effective lines are lines holding code, from the ``def`` or ``class`` line to
 the end of the body: blank lines, comment-only lines and docstrings do not
 count. Function and class rules apply to ``src``, ``tests`` and ``scripts``.
 The layout rules skip hidden directories, ``__pycache__`` and the gitignored
-demo build output (``demo/_build``, ``demo/wheels``); each offender is
+demo build output (``demo/release``); each offender is
 recorded with the value 1, so the baseline lists them one by one.
 
 A class is declarative when every method defined in its body is a pydantic
@@ -94,7 +94,7 @@ MEASURED: Final = (Path("src"), TESTS, Path("scripts"))
 #: Roots of the layout rules: underscore files and technical directories.
 LAYOUT_ROOTS: Final = (Path("src"), TESTS, Path("scripts"), Path("demo"))
 #: Gitignored build output of the demo, outside the layout rules.
-GENERATED_DIRS: Final = frozenset({Path("demo") / "_build", Path("demo") / "wheels"})
+GENERATED_DIRS: Final = frozenset({Path("demo") / "release"})
 #: The package markers that may hold code: the package root and the public
 #: namespace package ``ccnl_engine.catalog``.
 ROOT_INIT: Final = PACKAGE / "__init__.py"

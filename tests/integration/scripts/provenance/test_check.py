@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 
 from scripts.provenance.check import check_evidence, check_rules, update_baseline
-from scripts.provenance.evidence import (
+from scripts.provenance.evidence.check import (
     ENGINE_LIMITATIONS,
     Snapshot,
     load_baseline,

@@ -53,13 +53,13 @@ jobs:
         run: uv run python scripts/structure/inventory.py --check
 
       - name: Knowledge manifest is up to date
-        run: uv run python scripts/knowledge/manifest.py --check
+        run: uv run python scripts/knowledge/manifest/build.py --check
 
       - name: Contract pages drift (check only)
-        run: uv run python scripts/documentation/generate_contract_pages.py --check
+        run: uv run python scripts/documentation/contract_page/generate.py --check
 
       - name: Trust counts drift (check only)
-        run: uv run python scripts/documentation/generate_trust_counts.py --check
+        run: uv run python scripts/documentation/trust_count/generate.py --check
 
       - name: Test (pytest, coverage 100%)
         run: uv run pytest
@@ -93,10 +93,10 @@ jobs:
         run: uv sync --frozen --group docs
 
       - name: Generate coverage matrix
-        run: uv run python scripts/documentation/generate_coverage_matrix.py
+        run: uv run python scripts/documentation/coverage_matrix/generate.py
 
       - name: Generate capability matrix
-        run: uv run python scripts/documentation/generate_capability_matrix.py
+        run: uv run python scripts/documentation/capability_matrix/generate.py
 
       - name: Build docs (zensical)
         run: uv run zensical build
@@ -205,7 +205,7 @@ jobs:
           .smokeenv/bin/pip install --quiet dist/*.whl
 
       - name: Smoke test — end-to-end scenario
-        run: .smokeenv/bin/python scripts/quality/smoke_test.py
+        run: .smokeenv/bin/python scripts/quality/smoke/test.py
 
   public-snippets:
     name: Public snippets smoke test

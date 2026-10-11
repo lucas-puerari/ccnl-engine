@@ -18,10 +18,11 @@ from typing import Any
 # would cause mypy to see the file under two different module names.
 # ---------------------------------------------------------------------------
 _MOD_PATH = (
-    Path(__file__).parents[4]
+    Path(__file__).parents[6]
     / "scripts"
     / "documentation"
-    / "generate_contract_pages.py"
+    / "contract_page"
+    / "generate.py"
 )
 _spec = importlib.util.spec_from_file_location("gen_contract_pages", _MOD_PATH)
 assert _spec is not None

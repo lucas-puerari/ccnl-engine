@@ -5,7 +5,7 @@ from __future__ import annotations
 import shutil
 from typing import TYPE_CHECKING
 
-from scripts.documentation.generate_contract_pages import (
+from scripts.documentation.contract_page.generate import (
     DATA_DIR,
     ROOT,
     generate_page,

@@ -1,11 +1,11 @@
 """Generate one documentation page per CCNL contract from its JSON data.
 
 Run:
-    uv run python scripts/documentation/generate_contract_pages.py
+    uv run python scripts/documentation/contract_page/generate.py
 
 Check for drift without writing (for CI)::
 
-    uv run python scripts/documentation/generate_contract_pages.py --check
+    uv run python scripts/documentation/contract_page/generate.py --check
 
 The output depends only on the bundle and the committed usage examples, never
 on the current date, so a committed page stays valid until its data changes.
@@ -29,21 +29,21 @@ import sys
 from pathlib import Path
 from typing import Any
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
 from ccnl_engine.agreement.facade import CCNL
 from ccnl_engine.capability.loaders import (
     load_capability_catalog,
 )
-from scripts.documentation.coverage import (
+from scripts.documentation.coverage.loaders import (
     IMPLEMENTATION_LEGEND,
     CoverageCells,
     coverage_cells,
     latest_catalog_year,
 )
-from scripts.documentation.limitations import limitation_lines
+from scripts.documentation.limitation.generate import limitation_lines
 
-ROOT = Path(__file__).parent.parent.parent
+ROOT = Path(__file__).resolve().parents[3]
 DATA_DIR = ROOT / "src" / "ccnl_engine" / "knowledge" / "agreement"
 OUT_DIR = ROOT / "docs" / "contracts"
 
@@ -586,7 +586,7 @@ def main(
             print("Contract pages out of date:", file=sys.stderr)
             print("\n".join(f"  {name}" for name in drifted), file=sys.stderr)
             print(
-                "Run: uv run python scripts/documentation/generate_contract_pages.py",
+                "Run: uv run python scripts/documentation/contract_page/generate.py",
                 file=sys.stderr,
             )
             return 1

@@ -11,8 +11,8 @@ from ccnl_engine.agreement.facade import CCNLVerification
 from ccnl_engine.limitation.loaders import load_engine_limitations
 from ccnl_engine.limitation.models import LimitationStatus
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
-from scripts.documentation.coverage import bundled_ccnls
-from scripts.provenance.evidence import (
+from scripts.documentation.coverage.loaders import bundled_ccnls
+from scripts.provenance.evidence.check import (
     ENGINE_LIMITATIONS,
     Snapshot,
     compare,

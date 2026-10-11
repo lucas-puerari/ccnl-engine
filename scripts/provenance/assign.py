@@ -42,8 +42,8 @@ from typing import Any, Final
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from ccnl_engine.provenance.ruleset.models import source_hash
-from scripts.provenance.fiscal import FISCAL_RECORDS
-from scripts.provenance.labels import has_citation
+from scripts.provenance.fiscal.rules import FISCAL_RECORDS
+from scripts.provenance.label.check import has_citation
 
 KNOWLEDGE: Final = (
     Path(__file__).resolve().parents[2] / "src" / "ccnl_engine" / "knowledge"

@@ -158,8 +158,8 @@ gates; the `CI` workflow runs all of them on every pull request:
 | Provenance schema | `python scripts/provenance/check.py --schema` | Every payable rule has a record with the evidence its status claims |
 | Provenance evidence | `python scripts/provenance/check.py --evidence` | No new `assumed` or `missing` rule, open limitation or readiness claim; the baseline only shrinks |
 | Reference cases | `python scripts/provenance/check.py tests/knowledge/ccnl_engine/period/reference_case/*.json` | Every reference case has a verification status and a source |
-| Contract pages | `uv run python scripts/documentation/generate_contract_pages.py --check` | Every page matches its CCNL data |
-| Trust counts | `uv run python scripts/documentation/generate_trust_counts.py --check` | Every count in `docs/trust/` matches the bundle |
+| Contract pages | `uv run python scripts/documentation/contract_page/generate.py --check` | Every page matches its CCNL data |
+| Trust counts | `uv run python scripts/documentation/trust_count/generate.py --check` | Every count in `docs/trust/` matches the bundle |
 
 Other workflows check the capability matrix, the contracts index, the
 contract examples and the cognitive complexity of `src/`.

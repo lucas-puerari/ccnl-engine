@@ -1,4 +1,4 @@
-<!-- auto-generated; run: uv run python scripts/documentation/generate_capability_matrix.py -->
+<!-- auto-generated; run: uv run python scripts/documentation/capability_matrix/generate.py -->
 
 <!-- generated: 2026-10-11 -->
 

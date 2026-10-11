@@ -13,7 +13,7 @@ import pytest
 if TYPE_CHECKING:
     import types
 
-_APP_PY = Path(__file__).resolve().parents[3] / "demo" / "app.py"
+_APP_PY = Path(__file__).resolve().parents[4] / "demo" / "app.py"
 
 
 @pytest.fixture(scope="module")

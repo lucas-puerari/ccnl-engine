@@ -7,7 +7,7 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from scripts.knowledge.manifest import build, main
+from scripts.knowledge.manifest.build import build, main
 
 if TYPE_CHECKING:
     from pathlib import Path

@@ -97,7 +97,9 @@ class Vocabulary:
     names: frozenset[str]
 
 
-_TESTED: Final = SOURCE_ROLES | ROOT_MODULES | SCRIPT_ACTIONS | DEMO_ENTRIES
+#: Names a tested module may have, hence names of a directory of its tests.
+TESTED_MODULES: Final = SOURCE_ROLES | ROOT_MODULES | SCRIPT_ACTIONS | DEMO_ENTRIES
+_TESTED: Final = TESTED_MODULES
 
 
 def vocabulary(root: Path) -> Vocabulary:

@@ -172,7 +172,7 @@ The script is idempotent and rehashes the files it changes.
 
 ### Current counts
 
-Generated from the bundle by `scripts/documentation/generate_trust_counts.py`; CI fails
+Generated from the bundle by `scripts/documentation/trust_count/generate.py`; CI fails
 when they drift.
 
 <!-- trust:provenance-table -->
