@@ -622,7 +622,8 @@
     },
     "agreement/pubblici-esercizi-fipe-angem.json": {
       "accrual_rule": "missing",
-      "additional_months[2024-06-01]": "assumed"
+      "overtime_bands[OT_FESTIVO]": "assumed",
+      "overtime_bands[OT_NOTTURNO_FESTIVO]": "assumed"
     },
     "agreement/pulizia-artigianato-confartigianato.json": {
       "accrual_rule": "missing",

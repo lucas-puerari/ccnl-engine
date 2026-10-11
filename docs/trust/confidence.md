@@ -81,7 +81,7 @@ one:
 
 A `derived` rule (taken from a cited document location, with no recorded
 human check) lowers the evidence axis but does not block on its own. Only
-<!-- trust:rules-verified -->199<!-- /trust:rules-verified --> payable rules of
+<!-- trust:rules-verified -->257<!-- /trust:rules-verified --> payable rules of
 the bundle are `verified`, so requiring `verified` would block almost every
 result; the evidence axis keeps the difference visible instead.
 
@@ -105,7 +105,7 @@ residence and empty family are stated, is not payable:
   destination of a company under the Tesoreria rule;
 - a rule the run executes is `assumed`: the municipal surtax of a comune with
   no delibera for the year and, for most CCNLs, the base salary, since
-  <!-- trust:extra-months-assumed -->119 of 126<!-- /trust:extra-months-assumed -->
+  <!-- trust:extra-months-assumed -->118 of 126<!-- /trust:extra-months-assumed -->
   CCNLs cite no clause for their number of monthly payments;
 - for some CCNLs, an `open_limitation` that concerns every ordinary month (an
   INPS rate reused from another sector, a salary table read from a proxy

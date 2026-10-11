@@ -1628,7 +1628,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/pubblici-esercizi-fipe-angem",
       "ruleset_version": "2026.2",
-      "source_hash": "5a8633c5e4dfb9d4a0408510ac0bc74f0a1e6e17319eae9b4d22f688f0a11070",
+      "source_hash": "3226a8a2c0dfe5abd41b8d87d733a8aa01bb65969e32a952ed677c6cbb3dfdf3",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/pubblici-esercizi-fipe-angem.json.gz"
