@@ -18,7 +18,6 @@ from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.employment.spell.models import EmploymentSpell
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.period.models_run import PayrollRunId
-from ccnl_engine.payroll.sickness.models import SicknessEpisode
 from ccnl_engine.payroll.state.models_obligation import (
     RecoveryObligation,
 )
@@ -31,10 +30,11 @@ from ccnl_engine.payroll.state.validators_opening_balance import (
     check_scalar_fields,
     items,
 )
-from ccnl_engine.payroll.withholding.inputs_shortfall_deferral import DeferredShortfall
 from ccnl_engine.payroll.year.models_payment import PaymentId
+from ccnl_engine.sickness.models import SicknessEpisode
 from ccnl_engine.surtax.obligation.models import SurtaxObligation
 from ccnl_engine.validators import require_instance
+from ccnl_engine.withholding.deferral.inputs import DeferredShortfall
 
 __all__ = ["OpeningBalances"]
 

@@ -23,7 +23,7 @@ import pytest
 
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.event.facade import (
+from ccnl_engine.event.facade import (
     AbsenceEvent,
     ArrearsEvent,
     BilateralFundEvent,

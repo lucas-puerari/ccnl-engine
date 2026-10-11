@@ -5,7 +5,7 @@ Each event goes in :attr:`ccnl_engine.PeriodFacts.events`.
 
 from __future__ import annotations
 
-from ccnl_engine.payroll.event.facade import (
+from ccnl_engine.event.facade import (
     AbsenceEvent,
     ArrearsEvent,
     BilateralFundEvent,

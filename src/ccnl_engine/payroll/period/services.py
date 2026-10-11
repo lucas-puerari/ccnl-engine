@@ -63,7 +63,7 @@ def calculate_period(
     A run that cannot close next in the tax year, or whose unpaid absences
     deduct more than its pay, raises ``InvalidInputError``.  IRPEF and surtax
     are withheld up to the pay left and the rest is carried to the next runs
-    of the tax year (:func:`~ccnl_engine.payroll.withholding.services_cap\
+    of the tax year (:func:`~ccnl_engine.withholding.cap.services\
 .cap_withholding`); unpaid absences that leave less pay than the other
     deductions raise ``OutOfScopeError``.
     A closing state or a reconciliation invariant that fails raises

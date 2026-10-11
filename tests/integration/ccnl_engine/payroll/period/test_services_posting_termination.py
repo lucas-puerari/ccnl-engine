@@ -26,7 +26,7 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine.employment.fact.inputs import EmploymentPeriod
-from ccnl_engine.payroll.ledger.models import AccountKind
+from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.payroll.period.inputs import PeriodInput
 from ccnl_engine.payroll.period.models_run import PayrollRun
 from ccnl_engine.payroll.period.services import calculate_period
@@ -39,15 +39,15 @@ from ccnl_engine.payroll.state.models_obligation import (
     RecoveryObligation,
 )
 from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
-from ccnl_engine.payroll.withholding.models_schedule import (
-    WithholdingSchedule,
-    WithholdingSlot,
-)
 from ccnl_engine.payroll.year.services_competence import (
     calculate_competence_year,
 )
 from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
-from tests.integration.ccnl_engine.payroll.withholding.builders_withholding import (
+from ccnl_engine.withholding.schedule.models import (
+    WithholdingSchedule,
+    WithholdingSlot,
+)
+from tests.integration.ccnl_engine.withholding.builders import (
     paid_on_day,
 )
 from tests.unit.ccnl_engine.builders import EMPLOYER_50, year_plan

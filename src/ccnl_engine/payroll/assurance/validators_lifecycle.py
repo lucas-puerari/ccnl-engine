@@ -25,7 +25,7 @@ from ccnl_engine.payroll.period.models_run import RunKind
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.payroll.accrual.models_extra_month_schedule import ExtraMonthKind
+    from ccnl_engine.extra_month.schedule.models import ExtraMonthKind
     from ccnl_engine.payroll.assurance.types import RunFacts
     from ccnl_engine.payroll.period.results import PeriodResult
 

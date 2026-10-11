@@ -28,9 +28,9 @@ from tests.knowledge.ccnl_engine.severance.builders import no_tfr_fund
 if TYPE_CHECKING:
     from collections.abc import Mapping
 
+    from ccnl_engine.event.facade import WorkEvent
     from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
     from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts
-    from ccnl_engine.payroll.event.facade import WorkEvent
     from ccnl_engine.payroll.state.models import PeriodState
     from ccnl_engine.payroll.year.inputs_calendar_override import CalendarOverride
 

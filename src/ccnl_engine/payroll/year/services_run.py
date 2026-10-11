@@ -6,12 +6,12 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.accrual.models import (
+from ccnl_engine.extra_month.models import (
     DEFAULT_MONTH_ACCRUAL_RULE,
     ExtraMonthAccrual,
     MonthAccrualRule,
 )
-from ccnl_engine.payroll.accrual.services_extra_month_qualification import (
+from ccnl_engine.extra_month.qualification.services import (
     non_accruing_days,
     termination_settlements,
     unknown_accrual_days,
@@ -23,16 +23,16 @@ if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.employment.fact.inputs import EmploymentPeriod
-    from ccnl_engine.payroll.accrual.models_extra_month_schedule import (
+    from ccnl_engine.extra_month.schedule.models import (
         ExtraMonthSchedule,
     )
     from ccnl_engine.payroll.period.models_run import PayrollRun, PayrollRunId
     from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
     from ccnl_engine.payroll.state.models import PeriodState
-    from ccnl_engine.payroll.withholding.models_schedule import WithholdingSchedule
     from ccnl_engine.payroll.year.inputs_competence_plan import CompetenceYearPlan
     from ccnl_engine.payroll.year.models_calendar import WorkCalendar
     from ccnl_engine.payroll.year.models_payment import PaymentId
+    from ccnl_engine.withholding.schedule.models import WithholdingSchedule
 
 
 def select_runs(

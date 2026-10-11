@@ -47,7 +47,6 @@ from ccnl_engine.payroll.state.serializers_persistence import (
     period_state_to_json,
 )
 from ccnl_engine.payroll.state.services_opening_balance import OpeningBalances
-from ccnl_engine.payroll.withholding.inputs_shortfall_deferral import DeferredShortfall
 from ccnl_engine.payroll.year.inputs_calendar_override import (
     CalendarOverride,
     CalendarOverrideReason,
@@ -69,6 +68,7 @@ from ccnl_engine.surtax.obligation.models import (
     SurtaxObligation,
 )
 from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
+from ccnl_engine.withholding.deferral.inputs import DeferredShortfall
 
 __all__ = [
     "AgriculturalZone",

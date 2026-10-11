@@ -38,11 +38,11 @@ from ccnl_engine.inputs import (
     SenioritySource,
     WorkerCategory,
 )
-from tests.integration.ccnl_engine.payroll.sickness.builders_sickness_episode import (
+from tests.integration.ccnl_engine.sickness.builders import (
     metalmeccanico_c3,
     sickness_episode,
 )
-from tests.integration.ccnl_engine.payroll.withholding.builders_withholding import (
+from tests.integration.ccnl_engine.withholding.builders import (
     paid_before,
 )
 

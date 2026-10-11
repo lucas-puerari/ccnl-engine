@@ -7,7 +7,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.errors import DataIntegrityError, InvalidInputError
-from ccnl_engine.payroll.ledger.models import AccountKind
+from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.payroll.period.services_shared import _sum_ledger
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.payroll.state.models_obligation import (
@@ -26,17 +26,17 @@ from ccnl_engine.payroll.state.models_ytd_account import (
 
 if TYPE_CHECKING:
     from ccnl_engine.employment.spell.models import EmploymentSpell
+    from ccnl_engine.event.total.handlers import _EventTotals
+    from ccnl_engine.ledger.models import LedgerEntry
     from ccnl_engine.payroll.amount.types import _PeriodAmounts
     from ccnl_engine.payroll.assurance.models_decision import CalculationDecision
-    from ccnl_engine.payroll.event.handlers_totals import _EventTotals
-    from ccnl_engine.payroll.ledger.models import LedgerEntry
-    from ccnl_engine.payroll.withholding.inputs_shortfall_deferral import (
-        DeferredShortfall,
-    )
     from ccnl_engine.payroll.year.models_payment import PaymentId
     from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
     from ccnl_engine.tax_credit.somma_esente.services import (
         SommaEsenteOutcome,
+    )
+    from ccnl_engine.withholding.deferral.inputs import (
+        DeferredShortfall,
     )
 
 _ZERO = Decimal(0)

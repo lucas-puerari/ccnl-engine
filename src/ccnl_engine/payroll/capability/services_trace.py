@@ -12,20 +12,20 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.event.total.handlers import EVENT_FEATURES
 from ccnl_engine.payroll.assurance.models_decision import (
     CalculationStatus,
     DecisionOrigin,
 )
 from ccnl_engine.payroll.capability.models_catalog import CapabilityHandler
 from ccnl_engine.payroll.capability.models_trace import DecisionTrace, TraceState
-from ccnl_engine.payroll.event.handlers_totals import EVENT_FEATURES
 from ccnl_engine.payroll.period.services_caller_rule import (
     CALLER_DECLARED_AMOUNT,
 )
-from ccnl_engine.payroll.withholding.rules_agent import NOT_WITHHOLDING_AGENT
 from ccnl_engine.pension_fund.rules import NOT_ENROLLED
 from ccnl_engine.seniority.rules import NOT_APPLICABLE_BY_CONTRACT
 from ccnl_engine.severance.revaluation.services import NO_OPENING_FUND
+from ccnl_engine.withholding.agent.rules import NOT_WITHHOLDING_AGENT
 
 if TYPE_CHECKING:
     from collections.abc import Iterable

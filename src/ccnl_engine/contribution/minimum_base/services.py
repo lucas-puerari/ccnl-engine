@@ -18,11 +18,11 @@ from ccnl_engine.contribution.minimum_base.models import (
 )
 from ccnl_engine.contribution.minimum_base.rules import resolve_minimum_base
 from ccnl_engine.employment.inputs import Apprentice
+from ccnl_engine.event.facade import AbsenceEvent, SickLeaveEvent
 from ccnl_engine.payroll.assurance.models_decision import (
     CalculationIssue,
     CalculationStatus,
 )
-from ccnl_engine.payroll.event.facade import AbsenceEvent, SickLeaveEvent
 from ccnl_engine.payroll.period.models_run import RunKind
 
 if TYPE_CHECKING:

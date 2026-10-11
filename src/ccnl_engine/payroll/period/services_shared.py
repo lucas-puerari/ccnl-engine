@@ -6,6 +6,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.errors import DataIntegrityError
+from ccnl_engine.ledger.models import AccountKind, LedgerEntry
 from ccnl_engine.pay_item.facade import CompetencePeriod
 from ccnl_engine.pay_item.loaders import load_policy_resolver
 from ccnl_engine.pay_item.policies import (
@@ -17,7 +18,6 @@ from ccnl_engine.pay_item.policies import (
     TfrAxis,
 )
 from ccnl_engine.pay_item.treatment.models import EventTreatment
-from ccnl_engine.payroll.ledger.models import AccountKind, LedgerEntry
 
 if TYPE_CHECKING:
     from datetime import date

@@ -140,7 +140,7 @@ _ALLOWED_REEXPORT_MODULES: frozenset[str] = frozenset({
     "ccnl_engine/results.py",
     "ccnl_engine/agreement/facade.py",
     "ccnl_engine/pay_item/facade.py",
-    "ccnl_engine/payroll/event/facade.py",
+    "ccnl_engine/event/facade.py",
 })
 
 

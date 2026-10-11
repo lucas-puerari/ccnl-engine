@@ -31,10 +31,10 @@ from ccnl_engine.inputs import (
     WeeklyHours,
     WorkerCategory,
 )
-from tests.knowledge.ccnl_engine.payroll.withholding.oracles_2026 import (
+from tests.knowledge.ccnl_engine.seniority.builders import new_hire
+from tests.knowledge.ccnl_engine.withholding.oracles import (
     regular_month_withholding,
 )
-from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 engine = PayrollEngine.bundled()
 _C3 = Employment(

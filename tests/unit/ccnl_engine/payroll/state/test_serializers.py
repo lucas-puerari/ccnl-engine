@@ -19,13 +19,13 @@ import ccnl_engine.payroll as payroll_package
 from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.period.models_run import PayrollRunId, RunKind
-from ccnl_engine.payroll.sickness.models import SicknessEpisode
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.payroll.state.serializers import (
     STATE_TYPES,
     period_state_from_json,
     period_state_to_json,
 )
+from ccnl_engine.sickness.models import SicknessEpisode
 
 _VERSIONS = {"engine_version": "1.0.0", "bundle_version": "2026.1"}
 

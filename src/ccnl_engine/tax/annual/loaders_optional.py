@@ -15,13 +15,13 @@ from ccnl_engine.family.models import FamilyDeductionRules
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from ccnl_engine.regime.models import PreferentialTaxRegime
 from ccnl_engine.severance.revaluation.models import TfrRevaluationRules
+from ccnl_engine.sickness.indemnity.models import InpsSickPayRates
 from ccnl_engine.tax.annual.loaders_resource import (
     _as_ruleset,
     _read_json,
     _try_ruleset,
     read_year_json,
 )
-from ccnl_engine.tax.sickness.models import InpsSickPayRates
 from ccnl_engine.tax_credit.models import SommaEsenteRules
 from ccnl_engine.variable_pay.models import (
     FringeBenefitRules,
@@ -40,7 +40,7 @@ def load_sick_pay_rates() -> InpsSickPayRates:
     legislation (D.L. 663/1979, artt. 1-2, conv. L. 33/1980).
 
     Returns:
-        An :class:`~ccnl_engine.tax.sickness.models.InpsSickPayRates`
+        An :class:`~ccnl_engine.sickness.indemnity.models.InpsSickPayRates`
         with the INPS carenza period, indemnity bands, annual maximum,
         coverage rules and provenance.
     """

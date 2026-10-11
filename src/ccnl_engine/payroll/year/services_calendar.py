@@ -6,7 +6,7 @@ from datetime import date
 from typing import TYPE_CHECKING
 
 from ccnl_engine.agreement.validity.rules import rule_scope
-from ccnl_engine.payroll.accrual.models_extra_month_entitlement import (
+from ccnl_engine.extra_month.entitlement.models import (
     ExtraMonthEntitlement,
 )
 from ccnl_engine.payroll.year.models_calendar import WorkCalendar

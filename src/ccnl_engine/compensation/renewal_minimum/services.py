@@ -17,7 +17,7 @@ from ccnl_engine.compensation.renewal_minimum.rules import (
     assess_renewal_minimum,
     renewal_table_from,
 )
-from ccnl_engine.payroll.event.services_allocation import worker_facts_of
+from ccnl_engine.event.allocation.services import worker_facts_of
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.period.services_run_context import RunContext

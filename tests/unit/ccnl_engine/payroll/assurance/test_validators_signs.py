@@ -6,8 +6,8 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.payroll.assurance.validators import reconcile
-from ccnl_engine.payroll.ledger.models import AccountKind
 from tests.unit.ccnl_engine.payroll.period.builders_synthetic_result import (
     OPENING,
     ResultBuilder,

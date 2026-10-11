@@ -7,25 +7,15 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.pay_item.facade import TaxCreditItem
-from ccnl_engine.payroll.ledger.models import AccountKind
-from ccnl_engine.payroll.ledger.services import (
+from ccnl_engine.ledger.models import AccountKind
+from ccnl_engine.ledger.services import (
     _build_pay_items,
     _project_ledger,
 )
+from ccnl_engine.pay_item.facade import TaxCreditItem
 from ccnl_engine.payroll.period.services_shared import (
     _make_entry,
     _require_resolution,
-)
-from ccnl_engine.payroll.withholding.rules_law import (
-    WithholdingTopic,
-    withholding_rule,
-)
-from ccnl_engine.payroll.withholding.services_cap import cap_withholding, run_net
-from ccnl_engine.payroll.withholding.services_deferral import (
-    DeferredPostings,
-    defer_shortfall,
-    post_deferred,
 )
 from ccnl_engine.tax_credit.recovery.services import (
     CarriedRecoveries,
@@ -36,14 +26,24 @@ from ccnl_engine.tax_credit.somma_esente.services import (
     SommaEsentePosting,
     resolve_somma_esente,
 )
+from ccnl_engine.withholding.cap.services import cap_withholding, run_net
+from ccnl_engine.withholding.deferral.services import (
+    DeferredPostings,
+    defer_shortfall,
+    post_deferred,
+)
+from ccnl_engine.withholding.rules import (
+    WithholdingTopic,
+    withholding_rule,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.irpef.results import TaxComputation
+    from ccnl_engine.ledger.models import LedgerEntry
     from ccnl_engine.pay_item.facade import PayItem
     from ccnl_engine.payroll.amount.types import _PeriodAmounts
-    from ccnl_engine.payroll.ledger.models import LedgerEntry
     from ccnl_engine.payroll.period.services_run_context import RunContext
-    from ccnl_engine.payroll.withholding.services_cap import CappedWithholding
+    from ccnl_engine.withholding.cap.services import CappedWithholding
 
 
 @dataclass(frozen=True)

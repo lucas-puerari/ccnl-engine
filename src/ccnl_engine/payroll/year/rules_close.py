@@ -26,7 +26,7 @@ def close_tax_year(closing: PeriodState) -> PeriodState:
     (:mod:`~ccnl_engine.surtax.obligation.models`).  The IRPEF
     the conguaglio of N deferred on the worker's written request is carried
     too and withheld with its interest on the payslips of N+1 from March
-    (:mod:`~ccnl_engine.payroll.withholding.inputs_shortfall_deferral`).
+    (:mod:`~ccnl_engine.withholding.deferral.inputs`).
 
     Year-end rule: ``closing`` must be bound to a tax year whose last
     payment settled the conguaglio

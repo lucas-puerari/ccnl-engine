@@ -395,7 +395,7 @@ run.
         - MonetaryImpact
         - LimitationStatus
 
-::: ccnl_engine.payroll.ledger.models_remittance
+::: ccnl_engine.ledger.remittance.models
     options:
       members:
         - RemittanceLine

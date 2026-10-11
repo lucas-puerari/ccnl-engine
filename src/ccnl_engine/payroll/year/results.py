@@ -6,19 +6,19 @@ from dataclasses import dataclass, field
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.ledger.remittance.models import remittance_summary
 from ccnl_engine.payroll.assurance.models import ResultAssurance
 from ccnl_engine.payroll.assurance.rules_assessment import assess_nothing_computed
-from ccnl_engine.payroll.ledger.models_remittance import remittance_summary
 from ccnl_engine.payroll.year.rules_close import close_tax_year
 
 if TYPE_CHECKING:
+    from ccnl_engine.ledger.remittance.models import RemittanceLine
     from ccnl_engine.payroll.assurance.models import ResultBlocker
     from ccnl_engine.payroll.assurance.models_decision import (
         CalculationDecision,
         CalculationIssue,
     )
     from ccnl_engine.payroll.assurance.policies_engine_mode import EngineMode
-    from ccnl_engine.payroll.ledger.models_remittance import RemittanceLine
     from ccnl_engine.payroll.period.results import PeriodResult
     from ccnl_engine.payroll.state.models import PeriodState
     from ccnl_engine.payroll.year.inputs_calendar_override import CalendarOverride

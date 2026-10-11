@@ -12,14 +12,15 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.irpef.results import TaxLineItem
 from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.withholding.rules_law import (
-    WithholdingTopic,
-    withholding_rule,
-)
-from ccnl_engine.payroll.withholding.rules_period import NO_PAY, PayPeriod
 from ccnl_engine.tax_credit.foreign.rules import foreign_credit_rule
 from ccnl_engine.tax_credit.rules import somma_esente
 from ccnl_engine.tax_credit.ulteriore_detrazione.recovery.rules import ulteriore_items
+from ccnl_engine.withholding.rules import (
+    NO_PAY,
+    PayPeriod,
+    WithholdingTopic,
+    withholding_rule,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.irpef.net.rules import NetIrpef

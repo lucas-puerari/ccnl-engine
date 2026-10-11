@@ -14,8 +14,8 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.period.ports import KnowledgeRepository
     from ccnl_engine.payroll.period.results import PeriodResult
     from ccnl_engine.payroll.state.models import PeriodState
-    from ccnl_engine.payroll.withholding.models_schedule import WithholdingSchedule
     from ccnl_engine.payroll.year.services_payment import PlannedPayment
+    from ccnl_engine.withholding.schedule.models import WithholdingSchedule
 
 __all__ = ["Engine", "compute_payments"]
 

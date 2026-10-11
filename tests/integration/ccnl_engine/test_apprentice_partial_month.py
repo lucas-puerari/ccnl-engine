@@ -31,7 +31,7 @@ from ccnl_engine import (
     PeriodResult,
 )
 from ccnl_engine.inputs import Apprentice, EmploymentPeriod, WeeklyHours, WorkerCategory
-from tests.integration.ccnl_engine.payroll.sickness.builders_sickness_episode import (
+from tests.integration.ccnl_engine.sickness.builders import (
     sickness_episode,
 )
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire

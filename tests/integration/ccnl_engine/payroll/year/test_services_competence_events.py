@@ -8,8 +8,8 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.event.facade import AbsenceEvent, BonusEvent, WorkEvent
 from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
-from ccnl_engine.payroll.event.facade import AbsenceEvent, BonusEvent, WorkEvent
 from ccnl_engine.payroll.period.inputs import PeriodFacts
 from ccnl_engine.payroll.year.services_competence import (
     calculate_competence_year,

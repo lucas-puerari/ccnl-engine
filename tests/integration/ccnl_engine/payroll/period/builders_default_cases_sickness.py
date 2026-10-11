@@ -31,7 +31,7 @@ from ccnl_engine.inputs import (
     Permanent,
     WorkerCategory,
 )
-from tests.integration.ccnl_engine.payroll.withholding.builders_withholding import (
+from tests.integration.ccnl_engine.withholding.builders import (
     paid_before,
 )
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire

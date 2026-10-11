@@ -25,8 +25,8 @@ import pytest
 
 from ccnl_engine.api import PayrollEngine
 from ccnl_engine.employment.fact.inputs import WeeklyHours
-from ccnl_engine.payroll.event.facade import AbsenceEvent, BonusEvent, OvertimeEvent
-from ccnl_engine.payroll.ledger.models import AccountKind
+from ccnl_engine.event.facade import AbsenceEvent, BonusEvent, OvertimeEvent
+from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.payroll.period.inputs import PeriodFacts, PeriodInput
 from ccnl_engine.payroll.period.models_run import PayrollRun, RunKind
 from ccnl_engine.payroll.state.models_obligation import (

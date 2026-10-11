@@ -12,7 +12,7 @@ recovered instead (:meth:`~ccnl_engine.tax_credit.recovery.models\
 conguaglio of year N determines is withheld the same way on the payslips of
 N+1 (:mod:`~ccnl_engine.surtax.obligation.models`), and so is the
 IRPEF of a conguaglio the worker asked in writing to defer
-(:mod:`~ccnl_engine.payroll.withholding.inputs_shortfall_deferral`).
+(:mod:`~ccnl_engine.withholding.deferral.inputs`).
 """
 
 from __future__ import annotations
@@ -28,13 +28,13 @@ from ccnl_engine.validators import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.withholding.inputs_shortfall_deferral import (
-        DeferredShortfall,
-    )
     from ccnl_engine.surtax.obligation.models import SurtaxObligation
     from ccnl_engine.tax_credit.recovery.models import (
         InstallmentRun,
         PostedInstallment,
+    )
+    from ccnl_engine.withholding.deferral.inputs import (
+        DeferredShortfall,
     )
 
 __all__ = [

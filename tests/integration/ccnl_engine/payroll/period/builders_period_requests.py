@@ -22,7 +22,7 @@ from ccnl_engine.payroll.state.models import PeriodState
 
 if TYPE_CHECKING:
     from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
-    from ccnl_engine.payroll.ledger.models import AccountKind
+    from ccnl_engine.ledger.models import AccountKind
     from ccnl_engine.payroll.period.results import PeriodResult
 
 __all__ = ["METALMECCANICO", "YEAR", "account_total", "period_request"]

@@ -14,13 +14,13 @@ from ccnl_engine.payroll.state.models_obligation import (
     RecoveryObligation,
 )
 from ccnl_engine.payroll.state.services_opening_balance import OpeningBalances
-from ccnl_engine.payroll.withholding.inputs_shortfall_deferral import DeferredShortfall
 from ccnl_engine.payroll.year.models_payment import PaymentId
 from ccnl_engine.surtax.obligation.models import (
     SurtaxComponent,
     SurtaxObligation,
 )
 from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
+from ccnl_engine.withholding.deferral.inputs import DeferredShortfall
 
 _PLAN = RecoveryPlan(
     kind="trattamento_integrativo",

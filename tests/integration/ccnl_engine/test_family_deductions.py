@@ -43,7 +43,7 @@ from ccnl_engine.results import BlockerCode, CalculationDecision, CalculationSta
 from tests.integration.ccnl_engine.family.builders import (
     declared_dependent,
 )
-from tests.integration.ccnl_engine.payroll.withholding.builders_withholding import (
+from tests.integration.ccnl_engine.withholding.builders import (
     paid_before,
 )
 from tests.knowledge.ccnl_engine.payroll.period.oracles_payslip_metalmeccanico_c3_2026 import (  # noqa: E501

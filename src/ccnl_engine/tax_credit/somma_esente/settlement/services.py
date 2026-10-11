@@ -26,8 +26,8 @@ from ccnl_engine.tax_credit.recovery.models import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.withholding.models_schedule import WithholdingPosition
     from ccnl_engine.tax_credit.account.models import SommaEsenteAccount
+    from ccnl_engine.withholding.schedule.models import WithholdingPosition
 
 __all__ = ["Settlement", "settle"]
 

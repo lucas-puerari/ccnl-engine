@@ -15,8 +15,8 @@ from functools import cache
 from typing import TYPE_CHECKING
 
 from ccnl_engine.employment.fact.inputs import EmploymentPeriod, WeeklyHours
+from ccnl_engine.event.facade import AbsenceEvent, WorkEvent
 from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.event.facade import AbsenceEvent, WorkEvent
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.payroll.state.models_obligation import (
     ULTERIORE_RECOVERY,
