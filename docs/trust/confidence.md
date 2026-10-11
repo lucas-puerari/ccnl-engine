@@ -125,8 +125,8 @@ automatically. In `operational` mode every one of these runs also carries a
 Every field with a default in the public input types (the request and plan
 types of `ccnl_engine`, the facts of `ccnl_engine.inputs`, the events of
 `ccnl_engine.events`) is classified in
-`ccnl_engine.payroll.period.policies_default_registry`, and
-`tests/integration/ccnl_engine/payroll/period/test_policies_default_registry_coverage.py`
+`ccnl_engine.default.policies`, and
+`tests/integration/ccnl_engine/default/test_policies.py`
 fails on a defaulted field
 without a classification, or on a classification without its field:
 
@@ -177,7 +177,7 @@ cannot) and the run blocks on it, or leaves the registry when its default
 is removed. For every `requires_fact` field, the run that states the fact
 has at most the blockers of the run that leaves it to its default
 (`tests/integration/ccnl_engine/test_default_facts.py`, on the request pairs
-of `tests/integration/ccnl_engine/payroll/period/builders_default_cases.py`): a false default is never the one
+of `tests/integration/ccnl_engine/default/builders.py`): a false default is never the one
 path that looks payable. `Dependent.dependent_from` and `dependent_until` have no
 default: `None` states an open end. `OpeningBalances.inps_bases`, `surtax_obligations` and
 `recoveries` have no default: an import states what the previous provider

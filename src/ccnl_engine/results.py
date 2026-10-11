@@ -32,7 +32,7 @@ from ccnl_engine.limitation.models import (
     ModelLimitation,
     MonetaryImpact,
 )
-from ccnl_engine.payroll.year.models_uncovered_run import UncoveredRun
+from ccnl_engine.year.coverage.models import UncoveredRun
 
 __all__ = [
     "AccountKind",

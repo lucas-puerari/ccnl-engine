@@ -75,7 +75,7 @@ src/ccnl_engine/
 ├── irpef/  tax_credit/  surtax/  regime/  variable_pay/  family/
 ├── withholding/  ledger/  event/  balance/
 ├── decision/  assurance/  reconciliation/  limitation/  capability/
-├── run/  period/  year/  default/
+├── run/  period/  year/  default/  calendar/  amount/
 ├── knowledge/        bundle readers and the JSON datasets
 ├── provenance/  comparison/
 ```
@@ -104,9 +104,10 @@ The subdomains of each concept are in
 | `regime`, `variable_pay`, `family` | Substitute tax regimes; variable pay and benefits; art. 12 TUIR deductions |
 | `withholding`, `ledger`, `event` | What a run withholds; ledger entries and remittance; work events |
 | `balance` | What a run opens and closes with: competence, tax cash, YTD accounts, obligations, opening balances, the state codec |
-| `decision`, `assurance`, `reconciliation`, `limitation` | Calculation decisions; payability; result invariants; model limitations |
+| `decision`, `assurance`, `reconciliation`, `limitation` | Calculation decisions and the decisions of a run; payability; result invariants; model limitations |
 | `capability` | Capability registry, requirements, traces and reports |
-| `run`, `period`, `year`, `default` | The run identity; one payroll run; competence and tax years; defaults of the public inputs |
+| `run`, `period`, `year`, `default` | The run identity and its month; one payroll run; competence and tax years; defaults of the public inputs |
+| `calendar`, `amount` | The payroll calendar: schedules, payment identity, tax year of a payment; the amounts of a run |
 | `knowledge` | Readers of the bundle and the rules of a tax sector and year |
 | `provenance`, `comparison` | Ruleset and source provenance; the rules diff of a CCNL |
 | `collection` | Validators of the public collections |
@@ -135,16 +136,16 @@ its own tier or of a lower one; cycles inside a tier are allowed.
 | Tier | Concepts |
 |---|---|
 | orchestration | `api`, `inputs`, `events`, `results`, `catalog`, `assurance`, `capability`, `comparison`, `default`, `period`, `reconciliation`, `year` |
-| computation | `agreement`, `knowledge`, `limitation`, `balance`, `absence`, `apprenticeship`, `compensation`, `contribution`, `employer`, `employment`, `end_of_service`, `event`, `extra_month`, `family`, `fund`, `irpef`, `ledger`, `pay_item`, `pension_fund`, `regime`, `seniority`, `severance`, `sickness`, `surtax`, `tax_credit`, `termination`, `variable_pay`, `withholding`, `working_time` |
-| norms | `types`, `validators`, `errors`, `version`, `collection`, `decision`, `provenance`, `run` |
+| computation | `agreement`, `amount`, `calendar`, `decision`, `knowledge`, `limitation`, `balance`, `absence`, `apprenticeship`, `compensation`, `contribution`, `employer`, `employment`, `end_of_service`, `event`, `extra_month`, `family`, `fund`, `irpef`, `ledger`, `pay_item`, `pension_fund`, `regime`, `seniority`, `severance`, `sickness`, `surtax`, `tax_credit`, `termination`, `variable_pay`, `withholding`, `working_time` |
+| norms | `types`, `validators`, `errors`, `version`, `collection`, `provenance`, `run` |
 
-Mapping today's runtime imports onto the targets gives 52 imports from
-computation into orchestration, almost all of them shared helpers and types
-(`period/services.py`, `period/decision/rules.py`, `year/payment/models.py`,
-`capability/rule/services.py`). Each concept migration either moves the
-helper to the tier of its users or records the import, with its reason, in
-the allowlist of `tests/integration/scripts/structure/test_dependencies.py`,
-which only shrinks.
+The migration resolved the imports from computation into orchestration by
+moving the shared helpers and types to the tier of their users
+(`pay_item/services.py`, `decision/rules.py`, `calendar/`, `amount/`). Two
+imports remain, allowlisted with their reason in
+`tests/integration/scripts/structure/test_dependencies.py`: the INPS and
+seniority decisions cite the payable rules of the run through the capability
+rule lookup.
 
 Inside a concept the role direction holds:
 

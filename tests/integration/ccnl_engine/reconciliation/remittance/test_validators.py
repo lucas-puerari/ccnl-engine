@@ -8,18 +8,18 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.ledger.models import AccountKind
-from ccnl_engine.payroll.period.models_payroll import PeriodId
-from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
-from ccnl_engine.payroll.period.services import calculate_period
+from ccnl_engine.period.requests import PeriodCalculationRequest
+from ccnl_engine.period.services import calculate_period
 from ccnl_engine.reconciliation.remittance.validators import (
     check_remittance_code_consistent,
 )
+from ccnl_engine.run.types import PeriodId
 from tests.integration.ccnl_engine.surtax.builders import (
     opening_with_2025_surtax,
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.period.results import PeriodResult
+    from ccnl_engine.period.results import PeriodResult
 
 _INVARIANT = "remittance_code_consistent"
 

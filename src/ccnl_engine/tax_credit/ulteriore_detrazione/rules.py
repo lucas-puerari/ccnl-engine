@@ -13,15 +13,15 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.balance.obligation.models import (
+    RECOVERY_RULES,
+    ULTERIORE_RECOVERY,
+)
 from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationStatus,
 )
 from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.state.models_obligation import (
-    RECOVERY_RULES,
-    ULTERIORE_RECOVERY,
-)
 from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
 from ccnl_engine.tax_credit.ulteriore_detrazione.plan.rules import AT_TERMINATION
 

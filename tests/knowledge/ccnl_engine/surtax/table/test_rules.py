@@ -51,12 +51,12 @@ from ccnl_engine.results import CalculationStatus
 from tests.integration.ccnl_engine.family.builders import (
     declared_dependent,
 )
+from tests.knowledge.ccnl_engine.balance.builders import (
+    fresh_tax_year,
+)
 from tests.knowledge.ccnl_engine.irpef.oracles import net_irpef
 from tests.knowledge.ccnl_engine.irpef.other_income.builders import (
     employment_only,
-)
-from tests.knowledge.ccnl_engine.payroll.state.builders_opening_state import (
-    fresh_tax_year,
 )
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 from tests.knowledge.ccnl_engine.severance.builders import no_tfr_fund

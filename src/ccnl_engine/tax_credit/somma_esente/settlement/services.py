@@ -15,11 +15,11 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.state.models_obligation import (
+from ccnl_engine.balance.obligation.models import (
     RECOVERY_RULES,
     SOMMA_ESENTE_RECOVERY,
 )
+from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.tax_credit.recovery.models import (
     InstallmentRun,
     RecoveryPlan,

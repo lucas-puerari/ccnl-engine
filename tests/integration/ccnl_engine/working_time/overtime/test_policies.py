@@ -29,10 +29,10 @@ from ccnl_engine.event.standard.handlers import (
     _standard_event_gross,
 )
 from ccnl_engine.inputs import NoPensionFund, WorkerCategory
-from ccnl_engine.payroll.period.models_payroll import PeriodId
-from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
-from ccnl_engine.payroll.period.services import calculate_period
+from ccnl_engine.period.requests import PeriodCalculationRequest
+from ccnl_engine.period.services import calculate_period
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus
+from ccnl_engine.run.types import PeriodId
 from ccnl_engine.working_time.overtime.policies import (
     CALLER_MULTIPLIER_DIFFERS,
     CCNL_BAND_APPLIED,
@@ -53,7 +53,7 @@ from tests.knowledge.ccnl_engine.irpef.other_income.builders import (
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.period.results import PeriodResult
+    from ccnl_engine.period.results import PeriodResult
 
 _DAY = date(2026, 3, 10)
 _METAL = "metalmeccanico-federmeccanica.json"

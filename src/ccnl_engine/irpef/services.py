@@ -15,13 +15,13 @@ from ccnl_engine.irpef.computation.services import (
     TaxResolution,
     compute_tax,
 )
-from ccnl_engine.payroll.period.services_shared import _ZERO
+from ccnl_engine.pay_item.services import _ZERO
 from ccnl_engine.withholding.rules import PayPeriod
 
 if TYPE_CHECKING:
+    from ccnl_engine.amount.types import _AmountsInput
     from ccnl_engine.family.services import RunFamily
     from ccnl_engine.irpef.taxable.services import _Taxable
-    from ccnl_engine.payroll.amount.types import _AmountsInput
 
 
 @dataclass(frozen=True)

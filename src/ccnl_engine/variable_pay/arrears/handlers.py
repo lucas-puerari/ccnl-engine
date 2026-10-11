@@ -36,10 +36,10 @@ from ccnl_engine.ledger.models import AccountKind, PostingIntent
 from ccnl_engine.ledger.remittance.models import ARREARS_WITHHOLDING
 from ccnl_engine.pay_item.facade import ContractRenewalArrears
 from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.period.services_shared import _require_resolution
+from ccnl_engine.pay_item.services import _require_resolution
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.period.models_payroll import PeriodId
+    from ccnl_engine.run.types import PeriodId
 
 _CAPABILITY = "contract_renewal_arrears"
 #: Reason of arrears of an earlier tax year: separate taxation.

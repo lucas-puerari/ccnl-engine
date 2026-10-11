@@ -4,7 +4,7 @@ L. 335/1995 art. 2 c. 18 caps the IVS contribution base of a worker first
 enrolled from 1996 at an annual massimale; the massimale is per worker, so
 the bases of the earlier and simultaneous employments of the year count
 toward it (INPS circ. 237/2016 par. 3.1).  The Concia D2 of
-:mod:`tests.knowledge.ccnl_engine.payroll.period.builders_explicit_facts` was first
+:mod:`tests.knowledge.ccnl_engine.period.builders` was first
 enrolled in 2005, so the
 massimale applies.  No amount is expected from the engine: the properties
 hold for any massimale below 1,000,000 EUR, the base the other employments
@@ -21,10 +21,10 @@ import pytest
 
 from ccnl_engine.inputs import InpsBaseYtd, OpeningBalances
 from ccnl_engine.results import BlockerCode
-from tests.knowledge.ccnl_engine.payroll.period.builders_explicit_facts import (
+from tests.knowledge.ccnl_engine.period.builders import (
     regular_run,
 )
-from tests.knowledge.ccnl_engine.payroll.support import ENGINE
+from tests.knowledge.ccnl_engine.support import ENGINE
 
 if TYPE_CHECKING:
     from ccnl_engine import PeriodResult

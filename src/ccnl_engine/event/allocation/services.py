@@ -6,6 +6,7 @@ from dataclasses import replace
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.balance.cash.account.models import RegimeCapAccount
 from ccnl_engine.employment.context.models import EffectiveDateContext
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.event.facade import (
@@ -25,8 +26,7 @@ from ccnl_engine.event.total.handlers import (
 from ccnl_engine.ledger.models import LedgerEntry
 from ccnl_engine.ledger.posting.services import post as _post
 from ccnl_engine.pay_item.facade import CompetencePeriod, PayItem
-from ccnl_engine.payroll.period.services_shared import _ZERO
-from ccnl_engine.payroll.state.models_ytd_account import RegimeCapAccount
+from ccnl_engine.pay_item.services import _ZERO
 from ccnl_engine.regime.eligibility.rules import RegimeFacts
 from ccnl_engine.sickness.models import SicknessEpisode
 from ccnl_engine.sickness.month.validators import (
@@ -41,7 +41,7 @@ if TYPE_CHECKING:
 
     from ccnl_engine.event.handlers import FringeThreshold
     from ccnl_engine.pay_item.policies import PolicyContext, PolicyResolver
-    from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
+    from ccnl_engine.period.requests import PeriodCalculationRequest
     from ccnl_engine.regime.models import (
         PreferentialTaxRegime,
     )

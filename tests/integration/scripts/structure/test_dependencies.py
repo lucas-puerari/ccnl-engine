@@ -145,7 +145,7 @@ def test_analysis_sees_the_package(package: dict[str, Module]) -> None:
     """The analysis reads real modules and real imports, not an empty tree."""
     assert "ccnl_engine.api" in package
     targets = {imp.target for imp in runtime_imports(package)}
-    assert "ccnl_engine.payroll.period.services" in targets
+    assert "ccnl_engine.period.services" in targets
 
 
 # ---------------------------------------------------------------------------
@@ -407,7 +407,7 @@ def test_roots_without_tier_and_stale_legacy_are_reported() -> None:
     modules = _modules(**{
         "ccnl_engine.__init__": "",
         "ccnl_engine.misc.models": "",
-        "ccnl_engine.payroll.misc.models": "",
+        "ccnl_engine.tax.misc.models": "",
     })
     assert unknown_concepts(modules) == ["misc"]
-    assert stale_legacy_roots(modules) == ["tax"]
+    assert stale_legacy_roots(modules) == []

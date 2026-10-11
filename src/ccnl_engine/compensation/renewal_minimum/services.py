@@ -20,7 +20,7 @@ from ccnl_engine.compensation.renewal_minimum.rules import (
 from ccnl_engine.event.allocation.services import worker_facts_of
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.period.services_run_context import RunContext
+    from ccnl_engine.period.context.services import RunContext
 
 __all__ = ["renewal_minimum"]
 

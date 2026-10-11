@@ -6,10 +6,10 @@ from dataclasses import dataclass, field
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.balance.cash.account.models import RegimeCapAccount
 from ccnl_engine.ledger.models import PostingIntent
 from ccnl_engine.pay_item.facade import CompetencePeriod, PayItem
-from ccnl_engine.payroll.period.services_shared import _ZERO
-from ccnl_engine.payroll.state.models_ytd_account import RegimeCapAccount
+from ccnl_engine.pay_item.services import _ZERO
 from ccnl_engine.regime.eligibility.rules import RegimeFacts
 from ccnl_engine.sickness.term.rules import SicknessTerms
 from ccnl_engine.working_time.overtime.policies import CCNLOvertimeBands

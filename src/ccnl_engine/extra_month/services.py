@@ -12,19 +12,19 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.calendar.services import standard_calendar
 from ccnl_engine.extra_month.models import ExtraMonthAccrual
 from ccnl_engine.extra_month.qualification.services import month_accrual_rule
 from ccnl_engine.extra_month.schedule.models import (
     ExtraMonthKind,
     ExtraMonthSchedule,
 )
-from ccnl_engine.payroll.year.services_calendar import standard_calendar
 
 if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.agreement.facade import CCNL
-    from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
+    from ccnl_engine.period.requests import PeriodCalculationRequest
 
 __all__ = ["run_accrual", "run_fraction", "run_schedule"]
 

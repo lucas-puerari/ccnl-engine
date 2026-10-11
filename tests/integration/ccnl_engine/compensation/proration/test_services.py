@@ -21,11 +21,11 @@ from ccnl_engine.compensation.proration.services import (
 )
 from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.employment.fact.inputs import EmploymentPeriod
-from ccnl_engine.payroll.period.models_run import PayrollRun, RunKind
+from ccnl_engine.run.models import PayrollRun, RunKind
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.period.models_run import PayrollRunId
-    from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
+    from ccnl_engine.period.requests import PeriodCalculationRequest
+    from ccnl_engine.run.models import PayrollRunId
 
 _FEDERMECCANICA = "metalmeccanico-federmeccanica.json"
 _VETRO = "vetro-meccanizzato-assovetro.json"

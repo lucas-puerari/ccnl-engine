@@ -4,7 +4,7 @@ A withholding run without ``regione`` or ``comune_belfiore`` records a
 ``residence_unknown`` surtax decision and is incomplete, so a test that
 checks the status of another capability states the residence.  Alghero
 (Belfiore A192, Sardegna IT-88) is the residence of
-:mod:`tests.knowledge.ccnl_engine.payroll.period.builders_explicit_facts`: its row of
+:mod:`tests.knowledge.ccnl_engine.period.builders`: its row of
 ``comunale-2026.json``
 holds the 2026 rates (no ``rates_year``) with no exemption for a category
 of income, so on a conguaglio its municipal decision is neither

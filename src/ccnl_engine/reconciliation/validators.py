@@ -1,7 +1,7 @@
 """Reconciliation invariants for PeriodResult.
 
 Each invariant is a pure function that accepts a result (and, where needed,
-the opening :class:`~ccnl_engine.payroll.state.models.PeriodState` and the
+the opening :class:`~ccnl_engine.balance.models.PeriodState` and the
 :class:`RunFacts` of the run) and returns a list of
 :class:`ReconciliationViolation` instances coded with an
 :class:`InvariantCode`.
@@ -87,8 +87,8 @@ from ccnl_engine.reconciliation.types import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.period.results import PeriodResult
-    from ccnl_engine.payroll.state.models import PeriodState
+    from ccnl_engine.balance.models import PeriodState
+    from ccnl_engine.period.results import PeriodResult
 
 __all__ = [
     "InvariantCode",

@@ -32,7 +32,7 @@ from ccnl_engine.fund.contractual.policies import (
     worked_days,
 )
 from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.period.models_run import RunKind
+from ccnl_engine.run.models import RunKind
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.validity.rules import TimeSeries
@@ -40,7 +40,7 @@ if TYPE_CHECKING:
     from ccnl_engine.fund.models import (
         ContractualFundContribution,
     )
-    from ccnl_engine.payroll.period.services_run_context import RunContext
+    from ccnl_engine.period.context.services import RunContext
 
 __all__ = [
     "PARTIAL_VARIANT",

@@ -29,7 +29,7 @@ from ccnl_engine.inputs import (
 from tests.knowledge.ccnl_engine.irpef.other_income.builders import (
     employment_only,
 )
-from tests.knowledge.ccnl_engine.payroll.support import EMPLOYER, ENGINE, regular_period
+from tests.knowledge.ccnl_engine.support import EMPLOYER, ENGINE, regular_period
 
 if TYPE_CHECKING:
     from ccnl_engine import PeriodResult

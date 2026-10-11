@@ -3,7 +3,7 @@
 The expected values come from
 :mod:`tests.knowledge.ccnl_engine.contribution.oracles`, written from the
 sources; every other fact of the runs is explicit
-(:mod:`tests.knowledge.ccnl_engine.payroll.period.builders_explicit_facts`).
+(:mod:`tests.knowledge.ccnl_engine.period.builders`).
 """
 
 from __future__ import annotations
@@ -32,15 +32,15 @@ from tests.knowledge.ccnl_engine.contribution.oracles import (
     contribution_base,
     naspi_surcharge_rate,
 )
-from tests.knowledge.ccnl_engine.payroll.period.builders_explicit_facts import (
+from tests.knowledge.ccnl_engine.period.builders import (
     CONCIA_D2,
     competence_year,
     regular_run,
 )
-from tests.knowledge.ccnl_engine.payroll.period.oracles_payslip_metalmeccanico_c3_2026 import (  # noqa: E501
+from tests.knowledge.ccnl_engine.period.oracles import (
     C3_MINIMUM_FROM_JUNE_2026,
 )
-from tests.knowledge.ccnl_engine.payroll.support import ENGINE
+from tests.knowledge.ccnl_engine.support import ENGINE
 
 if TYPE_CHECKING:
     from ccnl_engine import Employment, PeriodResult
@@ -119,7 +119,7 @@ def test_monthly_base_reaches_the_daily_floor() -> None:
     """Autoscuole UNASCA level 3, full time, June 2026.
 
     The signed table pays 987.04 + 439.83 + 10.33 = 1,437.20
-    (``tests/knowledge/ccnl_engine/payroll/period/reference_case/autoscuole-unasca_3_2026.json``),
+    (``tests/knowledge/ccnl_engine/period/reference_case/autoscuole-unasca_3_2026.json``),
     below 58.13 x 26 = 1,511.38.  The full month of a full-time worker
     without absences is contributed on the floor, 1,511 to the whole euro
     (INPS circ. 208/2001), and no calculation issue

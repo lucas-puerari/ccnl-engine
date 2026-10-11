@@ -22,7 +22,7 @@ from ccnl_engine.event.facade import (
     WelfareEvent,
     WorkEvent,
 )
-from ccnl_engine.payroll.period.models_payroll import PeriodId
+from ccnl_engine.run.types import PeriodId
 
 __all__ = [
     "AbsenceEvent",

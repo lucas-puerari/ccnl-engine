@@ -17,7 +17,7 @@ from ccnl_engine.employment.inputs import Permanent
 if TYPE_CHECKING:
     from decimal import Decimal
 
-    from ccnl_engine.payroll.period.services_run_context import RunContext
+    from ccnl_engine.period.context.services import RunContext
 
 __all__ = ["ENAM_BASE_VARIANT", "enam_paths", "enam_stipendio"]
 

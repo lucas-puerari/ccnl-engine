@@ -11,12 +11,12 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.balance.competence.models import EmploymentAccrualState
+from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
-from ccnl_engine.payroll.period.services import calculate_period
-from ccnl_engine.payroll.state.models import PeriodState
-from ccnl_engine.payroll.state.models_accrual import EmploymentAccrualState
-from tests.integration.ccnl_engine.payroll.period.builders_period_requests import (
+from ccnl_engine.period.services import calculate_period
+from tests.integration.ccnl_engine.period.builders import (
     period_request,
 )
 

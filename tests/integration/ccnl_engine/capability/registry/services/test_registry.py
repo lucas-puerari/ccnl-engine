@@ -33,7 +33,7 @@ from ccnl_engine.capability.trace.services import (
 )
 from ccnl_engine.errors import DataIntegrityError
 from ccnl_engine.event.registry.handlers import _HANDLER_REGISTRY
-from ccnl_engine.payroll.period.services_caller_rule import (
+from ccnl_engine.period.decision.override.services import (
     CALLER_SUPPLIED_CAPABILITIES,
 )
 

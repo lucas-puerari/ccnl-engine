@@ -32,7 +32,7 @@ from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
 )
-from ccnl_engine.payroll.period.models_run import PayrollRun, RunKind
+from ccnl_engine.run.models import PayrollRun, RunKind
 
 if TYPE_CHECKING:
     from datetime import date
@@ -41,7 +41,7 @@ if TYPE_CHECKING:
     from ccnl_engine.capability.rule.services import Rule
     from ccnl_engine.compensation.element.types import MonthlyPayChain
     from ccnl_engine.employment.fact.inputs import EmploymentPeriod
-    from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
+    from ccnl_engine.period.requests import PeriodCalculationRequest
     from ccnl_engine.provenance.source.models import SourceLocation
 
 __all__ = [

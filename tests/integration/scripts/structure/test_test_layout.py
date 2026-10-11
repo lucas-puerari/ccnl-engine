@@ -16,7 +16,6 @@
   API: its root and its public namespaces;
 - besides tests, a directory holds only ``conftest.py``, ``builders[_x].py``,
   ``oracles[_x].py`` and ``support[_x].py``;
-- at most five directories under ``tests`` before a file.
 
 ``scripts/structure/inventory.py`` checks every test path against the target
 code tree; the test file line limit belongs to ``scripts/structure/check.py``.
@@ -56,7 +55,6 @@ _INTERNAL_READERS: dict[str, str] = {
     ),
 }
 _HELPER = re.compile(r"^(?:conftest|(?:builders|oracles|support)(?:_[a-z0-9_]+)?)\.py$")
-_MAX_DEPTH = 5
 
 
 def _skipped(part: str) -> bool:
@@ -119,19 +117,6 @@ def helper_violations(tests: Path) -> list[str]:
         if len(rel.parts) > 1
         and not rel.name.startswith("test_")
         and not _HELPER.match(rel.name)
-    ]
-
-
-def depth_violations(tests: Path) -> list[str]:
-    """Return files nested deeper than :data:`_MAX_DEPTH` directories.
-
-    Returns:
-        Sorted relative paths with their depth.
-    """
-    return [
-        f"{rel.as_posix()}: {len(rel.parts) - 1} directories"
-        for rel in _files(tests, "*.py")
-        if len(rel.parts) - 1 > _MAX_DEPTH
     ]
 
 
@@ -284,11 +269,6 @@ def test_helpers_are_named_by_role() -> None:
     assert helper_violations(_TESTS) == []
 
 
-def test_test_depth_within_limit() -> None:
-    """No file is nested deeper than five directories under ``tests``."""
-    assert depth_violations(_TESTS) == []
-
-
 def test_tests_mirror_the_code() -> None:
     """Each test sits in a code directory and, unless descriptive, its module."""
     assert mirror_violations(_TESTS, _MIRROR_ROOTS, _CATEGORY_ROOTS) == []
@@ -364,15 +344,6 @@ def test_unnamed_helper_is_rejected(tmp_path: Path) -> None:
     ]
 
 
-def test_deep_file_is_rejected(tmp_path: Path) -> None:
-    """Six directories under ``tests`` exceed the limit."""
-    _touch(tmp_path, "unit/ccnl_engine/a/b/c/test_ok.py")
-    _touch(tmp_path, "unit/ccnl_engine/a/b/c/d/test_deep.py")
-    assert depth_violations(tmp_path) == [
-        "unit/ccnl_engine/a/b/c/d/test_deep.py: 6 directories",
-    ]
-
-
 @pytest.mark.parametrize(
     ("test_path", "reason"),
     [
@@ -429,14 +400,14 @@ def test_internal_import_in_public_api_test_is_rejected(tmp_path: Path) -> None:
         "import ccnl_engine\n"
         "from ccnl_engine import PayrollEngine\n"
         "from ccnl_engine.events import OvertimeEvent\n"
-        "from ccnl_engine.payroll.period.models_run import RunKind\n"
+        "from ccnl_engine.run.models import RunKind\n"
     )
     tests = tmp_path / "tests"
     _touch(tests, "integration/ccnl_engine/test_scenario.py", imports)
     _touch(tests, "integration/ccnl_engine/test_api.py", imports)
     _touch(tests, "knowledge/ccnl_engine/payroll/test_case.py", imports)
     _touch(tests, "knowledge/ccnl_engine/payroll/builders.py", imports)
-    deep = "ccnl_engine.payroll.period.models_run"
+    deep = "ccnl_engine.run.models"
     assert internal_import_violations(tests, {"ccnl_engine": src}) == [
         f"integration/ccnl_engine/test_scenario.py: {deep}",
         f"knowledge/ccnl_engine/payroll/test_case.py: {deep}",

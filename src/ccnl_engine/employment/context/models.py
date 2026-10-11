@@ -6,7 +6,7 @@ import calendar
 from dataclasses import dataclass
 from datetime import date
 
-from ccnl_engine.payroll.year.rules_tax_year import TaxYearBasis, TaxYearPolicy
+from ccnl_engine.calendar.tax_year.rules import TaxYearBasis, TaxYearPolicy
 
 __all__ = ["EffectiveDateContext", "TemporalContext"]
 
@@ -61,7 +61,7 @@ class TemporalContext:
         competence: First day of the competence period.  Used for CCNL
             time-series lookups (base salary, seniority, allowances).
         fiscal_year: Tax year of the run, attributed from the payment date
-            by :class:`~ccnl_engine.payroll.year.rules_tax_year.TaxYearPolicy`.
+            by :class:`~ccnl_engine.calendar.tax_year.rules.TaxYearPolicy`.
             Selects the statutory rate tables (IRPEF brackets, INPS
             thresholds, fringe-benefit ceilings) and the year-to-date state.
         payment: Date on which the payslip is paid.  Used for withholding

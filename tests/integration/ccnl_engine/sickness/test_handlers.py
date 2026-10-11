@@ -21,6 +21,7 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine.assurance.models import BlockerCode
+from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.category.models import WorkerCategory
@@ -28,15 +29,14 @@ from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.employment.inputs import Apprentice
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.event.facade import SickLeaveEvent
-from ccnl_engine.payroll.period.models_payroll import PeriodId
-from ccnl_engine.payroll.period.models_run import PayrollRun, RunKind
-from ccnl_engine.payroll.period.repositories import (
+from ccnl_engine.period.repositories import (
     BundledKnowledgeRepository,
 )
-from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
-from ccnl_engine.payroll.period.services import calculate_period
-from ccnl_engine.payroll.state.models import PeriodState
+from ccnl_engine.period.requests import PeriodCalculationRequest
+from ccnl_engine.period.services import calculate_period
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus, RuleProvenance
+from ccnl_engine.run.models import PayrollRun, RunKind
+from ccnl_engine.run.types import PeriodId
 from tests.integration.ccnl_engine.sickness.builders import (
     sickness_episode,
 )
@@ -48,7 +48,7 @@ from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.decision.models import CalculationDecision
-    from ccnl_engine.payroll.period.results import PeriodResult
+    from ccnl_engine.period.results import PeriodResult
     from ccnl_engine.sickness.indemnity.models import InpsSickPayRates
 
 _FEB_TO_MAR = sickness_episode("2026-02-20", date(2026, 2, 20), date(2026, 3, 13))

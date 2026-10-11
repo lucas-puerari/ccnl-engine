@@ -27,7 +27,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.errors import OutOfScopeError
-from ccnl_engine.payroll.period.models_run import RunKind
+from ccnl_engine.run.models import RunKind
 from ccnl_engine.withholding.cap.services import unrecovered_issue
 from ccnl_engine.withholding.deferral.inputs import (
     DEFERRAL_MONTHLY_RATE,
@@ -49,7 +49,7 @@ if TYPE_CHECKING:
     )
     from ccnl_engine.ledger.models import LedgerEntry
     from ccnl_engine.pay_item.facade import PayItem
-    from ccnl_engine.payroll.period.services_run_context import RunContext
+    from ccnl_engine.period.context.services import RunContext
     from ccnl_engine.withholding.cap.services import CappedWithholding
     from ccnl_engine.withholding.deferral.inputs import (
         DeferredInstallment,

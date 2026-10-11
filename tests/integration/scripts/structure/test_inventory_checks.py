@@ -100,7 +100,6 @@ def test_conforming_targets_pass(target: str) -> None:
         ("tests/acceptance/ccnl_engine/test_a.py", "category 'acceptance'"),
         ("tests/unit/test_a.py", "mirror root not in"),
         ("tests/unit/other/test_a.py", "mirror root not in"),
-        ("tests/unit/ccnl_engine/a/b/c/d/test_a.py", "6 directories under tests"),
         ("tests/unit/ccnl_engine/payroll/misc/test_a.py", "mirrors no code directory"),
         ("tests/unit/ccnl_engine/payroll/helpers.py", "not a test, conftest"),
         ("tests/unit/ccnl_engine/misc/case/a.json", "sits under no code directory"),

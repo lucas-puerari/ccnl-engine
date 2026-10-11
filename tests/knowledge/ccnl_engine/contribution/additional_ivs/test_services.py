@@ -13,10 +13,10 @@ D.L. 384/1992 art. 3-ter, as INPS applies it:
   corso del quale è cessato il rapporto di lavoro", credit or debit.
 
 Metalmeccanico C3 at an industrial employer of 50, every other fact explicit
-(:mod:`tests.knowledge.ccnl_engine.payroll.period.builders_explicit_facts`).  The C3
+(:mod:`tests.knowledge.ccnl_engine.period.builders`).  The C3
 minimum from June 2026 is
 2,211.43
-(``tests.knowledge.ccnl_engine.payroll.period.oracles_payslip_metalmeccanico_c3_2026``).
+(``tests.knowledge.ccnl_engine.period.oracles``).
 """
 
 from __future__ import annotations
@@ -30,12 +30,12 @@ import pytest
 
 from ccnl_engine.events import BonusEvent
 from ccnl_engine.inputs import EmploymentPeriod
-from tests.knowledge.ccnl_engine.payroll.period.builders_explicit_facts import (
+from tests.knowledge.ccnl_engine.period.builders import (
     CONCIA_D2,
     FACTS,
     competence_year,
 )
-from tests.knowledge.ccnl_engine.payroll.support import ENGINE
+from tests.knowledge.ccnl_engine.support import ENGINE
 
 if TYPE_CHECKING:
     from ccnl_engine import CompetenceYearResult, PeriodFacts, PeriodResult

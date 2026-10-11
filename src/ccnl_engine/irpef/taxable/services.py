@@ -6,13 +6,13 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.period.services_shared import _ZERO
+from ccnl_engine.pay_item.services import _ZERO
 from ccnl_engine.pension_fund.services import projected_adjustment
 
 if TYPE_CHECKING:
     from decimal import Decimal
 
-    from ccnl_engine.payroll.amount.types import _AmountsInput
+    from ccnl_engine.amount.types import _AmountsInput
     from ccnl_engine.pension_fund.rules import PensionContribution
 
 

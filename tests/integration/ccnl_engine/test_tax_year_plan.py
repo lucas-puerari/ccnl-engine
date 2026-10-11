@@ -34,7 +34,7 @@ from ccnl_engine import (
     TaxYearResult,
 )
 from ccnl_engine.inputs import Permanent
-from tests.integration.ccnl_engine.payroll.year.builders_next_year_repository import (
+from tests.integration.ccnl_engine.year.builders import (
     NextYearRepository,
 )
 

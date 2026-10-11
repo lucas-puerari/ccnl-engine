@@ -15,7 +15,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from collections.abc import Callable, Mapping
 
-    from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
+    from ccnl_engine.period.requests import PeriodCalculationRequest
 
 __all__ = ["FACT_READERS", "absent_facts"]
 

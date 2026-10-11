@@ -4,7 +4,7 @@ Metalmeccanico C3, June 2026, industrial employer with 50 employees.
 Sources, written by hand and not read from the engine:
 
 - gross of the run: minimo C3 from June 2026, 2,211.43
-  (``tests.knowledge.ccnl_engine.payroll.period.oracles_payslip_metalmeccanico_c3_2026``);
+  (``tests.knowledge.ccnl_engine.period.oracles``);
 - employee INPS 9.49%, of which IVS 9.19% and CIGS 0.30%; employer IVS
   23.81%; 1% addizionale on the pay of the month above 4,685.00 (INPS
   circ. 6/2026 par. 5, mensilizzazione), whatever the YTD base: June is a
@@ -25,6 +25,8 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from ccnl_engine.balance.competence.models import EmploymentAccrualState
+from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.decision.models import (
@@ -32,14 +34,12 @@ from ccnl_engine.decision.models import (
     CalculationStatus,
 )
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
-from ccnl_engine.payroll.period.models_payroll import PeriodId
-from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
-from ccnl_engine.payroll.period.services import calculate_period
-from ccnl_engine.payroll.state.models import PeriodState
-from ccnl_engine.payroll.state.models_accrual import EmploymentAccrualState
+from ccnl_engine.period.requests import PeriodCalculationRequest
+from ccnl_engine.period.services import calculate_period
+from ccnl_engine.run.types import PeriodId
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.period.results import PeriodResult
+    from ccnl_engine.period.results import PeriodResult
 
 _CEILING = Decimal("122295.00")
 _UNCAPPED_EMPLOYEE = Decimal("209.82")

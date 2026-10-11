@@ -4,12 +4,12 @@ Every payable rule of the bundled knowledge data carries a provenance record
 with a known status; the inventory lives in :mod:`scripts.provenance.rules`,
 shared with ``scripts/provenance/check.py``.
 
-The JSON files in ``tests/knowledge/ccnl_engine/payroll/period/reference_case/`` each
+The JSON files in ``tests/knowledge/ccnl_engine/period/reference_case/`` each
 declare a known
 ``verification`` status consistent with their ``source`` block, and carry the
 inputs and expected values that
 ``tests/integration/ccnl_engine/test_reference_cases.py`` executes. The rules
-live in :mod:`tests.knowledge.ccnl_engine.payroll.period.support_provenance`.
+live in :mod:`tests.knowledge.ccnl_engine.period.support`.
 """
 
 from __future__ import annotations
@@ -26,12 +26,12 @@ from scripts.provenance.rules import (
     inventory,
     rule_errors,
 )
-from tests.knowledge.ccnl_engine.payroll.period.support_provenance import (
+from tests.knowledge.ccnl_engine.period.support import (
     CASES_DIR,
     load_case,
     verification_errors,
 )
-from tests.knowledge.ccnl_engine.payroll.period.support_provenance import (
+from tests.knowledge.ccnl_engine.period.support import (
     count_by_status as count_cases,
 )
 

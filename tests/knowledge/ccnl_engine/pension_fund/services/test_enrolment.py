@@ -69,9 +69,9 @@ from ccnl_engine.inputs import (
     PensionFundEnrolment,
     Permanent,
 )
-from tests.knowledge.ccnl_engine.payroll.support import EMPLOYER, ENGINE, regular_period
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 from tests.knowledge.ccnl_engine.severance.builders import no_tfr_fund
+from tests.knowledge.ccnl_engine.support import EMPLOYER, ENGINE, regular_period
 
 if TYPE_CHECKING:
     from ccnl_engine import CompetenceYearResult, PeriodResult

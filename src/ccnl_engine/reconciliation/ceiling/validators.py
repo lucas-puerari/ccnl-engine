@@ -25,7 +25,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.state.models_obligation import ULTERIORE_RECOVERY
+from ccnl_engine.balance.obligation.models import ULTERIORE_RECOVERY
 from ccnl_engine.reconciliation.transition.validators import run_id_of
 from ccnl_engine.reconciliation.types import (
     InvariantCode,
@@ -33,9 +33,9 @@ from ccnl_engine.reconciliation.types import (
 )
 
 if TYPE_CHECKING:
+    from ccnl_engine.balance.models import PeriodState
     from ccnl_engine.irpef.results import TaxComputation
-    from ccnl_engine.payroll.period.results import PeriodResult
-    from ccnl_engine.payroll.state.models import PeriodState
+    from ccnl_engine.period.results import PeriodResult
     from ccnl_engine.reconciliation.types import RunFacts
 
 __all__: list[str] = []

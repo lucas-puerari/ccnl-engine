@@ -12,6 +12,13 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.calendar.payment.models import PaymentId
+from ccnl_engine.calendar.schedule.models import PayrollSchedule
+from ccnl_engine.calendar.services import standard_calendar
+from ccnl_engine.calendar.tax_year.rules import (
+    LAST_PAYMENT_DAY,
+    monthly_payment_date,
+)
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.extra_month.models import (
     DEFAULT_MONTH_ACCRUAL_RULE,
@@ -21,25 +28,18 @@ from ccnl_engine.extra_month.models import (
 from ccnl_engine.extra_month.schedule.models import ExtraMonthKind
 from ccnl_engine.extra_month.services import run_schedule
 from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.period.services_shared import _apply_extra_month_policy
-from ccnl_engine.payroll.year.models_payment import PaymentId
-from ccnl_engine.payroll.year.models_schedule import PayrollSchedule
-from ccnl_engine.payroll.year.rules_tax_year import (
-    LAST_PAYMENT_DAY,
-    monthly_payment_date,
-)
-from ccnl_engine.payroll.year.services_calendar import standard_calendar
+from ccnl_engine.pay_item.services import _apply_extra_month_policy
 from ccnl_engine.withholding.schedule.models import WithholdingSchedule
 
 if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.agreement.facade import CCNL
+    from ccnl_engine.calendar.models import WorkCalendar
     from ccnl_engine.compensation.element.types import MonthlyPayChain
     from ccnl_engine.employment.fact.inputs import EmploymentPeriod
-    from ccnl_engine.payroll.period.models_run import PayrollRunId
-    from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
-    from ccnl_engine.payroll.year.models_calendar import WorkCalendar
+    from ccnl_engine.period.requests import PeriodCalculationRequest
+    from ccnl_engine.run.models import PayrollRunId
     from ccnl_engine.withholding.schedule.models import WithholdingSlot
 
 _ZERO = Decimal(0)
@@ -126,7 +126,7 @@ def standard_payments(
         exclude: Runs left out: those already paid and the current one.
             An extra month is left out when the extra month of its kind and
             year is, whatever month it was paid in
-            (:attr:`~ccnl_engine.payroll.period.models_run.PayrollRunId.payment_key`).
+            (:attr:`~ccnl_engine.run.models.PayrollRunId.payment_key`).
         employment: Employment period; runs of months outside it are left
             out.
         day: Day of the month each projected run is paid on, capped at 28.

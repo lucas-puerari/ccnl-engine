@@ -9,6 +9,13 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from ccnl_engine.balance.cash.models import TaxCashState
+from ccnl_engine.balance.models import PeriodState
+from ccnl_engine.balance.obligation.models import (
+    SOMMA_ESENTE_RECOVERY,
+    EmploymentObligations,
+    RecoveryObligation,
+)
 from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts
 from ccnl_engine.irpef.results import TaxComputation, TaxLineItem
@@ -16,14 +23,7 @@ from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.pay_item.facade import CompetencePeriod
 from ccnl_engine.pay_item.loaders import load_policy_resolver
 from ccnl_engine.pay_item.policies import PolicyContext
-from ccnl_engine.payroll.period.services import calculate_period
-from ccnl_engine.payroll.state.models import PeriodState
-from ccnl_engine.payroll.state.models_obligation import (
-    SOMMA_ESENTE_RECOVERY,
-    EmploymentObligations,
-    RecoveryObligation,
-)
-from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
+from ccnl_engine.period.services import calculate_period
 from ccnl_engine.tax_credit.account.models import SommaEsenteAccount
 from ccnl_engine.tax_credit.models import SommaEsenteBand, SommaEsenteRules
 from ccnl_engine.tax_credit.recovery.models import (
@@ -36,7 +36,7 @@ from ccnl_engine.tax_credit.somma_esente.services import (
     resolve_somma_esente,
 )
 from ccnl_engine.withholding.schedule.models import WithholdingPosition
-from tests.integration.ccnl_engine.payroll.period.builders_period_requests import (
+from tests.integration.ccnl_engine.period.builders import (
     account_total,
     period_request,
 )

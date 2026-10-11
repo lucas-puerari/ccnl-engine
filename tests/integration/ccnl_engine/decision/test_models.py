@@ -14,25 +14,25 @@ from ccnl_engine.decision.models import (
     CalculationStatus,
     DecisionOrigin,
 )
-from ccnl_engine.payroll.year.services_competence import (
-    calculate_competence_year,
-)
 from ccnl_engine.provenance.source.models import (
     SourceDocument,
     SourceKind,
     SourceLocation,
 )
+from ccnl_engine.year.competence.services import (
+    calculate_competence_year,
+)
 from tests.integration.ccnl_engine.surtax.residence.builders import resident
+from tests.knowledge.ccnl_engine.balance.builders import (
+    fresh_tax_year,
+)
 from tests.knowledge.ccnl_engine.irpef.other_income.builders import (
     employment_only,
-)
-from tests.knowledge.ccnl_engine.payroll.state.builders_opening_state import (
-    fresh_tax_year,
 )
 from tests.unit.ccnl_engine.builders import year_plan
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.year.results import CompetenceYearResult
+    from ccnl_engine.year.results import CompetenceYearResult
 
 _FINAL = CalculationStatus.FINAL
 _PROVISIONAL = CalculationStatus.PROVISIONAL

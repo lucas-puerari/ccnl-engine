@@ -28,13 +28,13 @@ from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
 )
-from ccnl_engine.payroll.period.rules_run_decision import _ccnl_rule
+from ccnl_engine.decision.rules import _ccnl_rule
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus
 
 if TYPE_CHECKING:
     from ccnl_engine.capability.rule.services import Rule
     from ccnl_engine.extra_month.models import ExtraMonthAccrual, MonthAccrualRule
-    from ccnl_engine.payroll.period.services_run_context import RunContext
+    from ccnl_engine.period.context.services import RunContext
 
 __all__ = ["accrual_decisions", "accrual_issue", "accrual_rules", "run_accruals"]
 

@@ -24,7 +24,7 @@ from ccnl_engine.events import AbsenceEvent
 from tests.knowledge.ccnl_engine.irpef.other_income.builders import (
     employment_only,
 )
-from tests.knowledge.ccnl_engine.payroll.support import regular_period
+from tests.knowledge.ccnl_engine.support import regular_period
 
 if TYPE_CHECKING:
     from ccnl_engine import PeriodResult

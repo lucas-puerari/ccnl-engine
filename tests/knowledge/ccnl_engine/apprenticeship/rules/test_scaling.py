@@ -16,7 +16,7 @@ import pytest
 
 from ccnl_engine import Employment
 from ccnl_engine.inputs import Apprentice
-from tests.knowledge.ccnl_engine.payroll.support import COMMERCIO, regular_period
+from tests.knowledge.ccnl_engine.support import COMMERCIO, regular_period
 
 if TYPE_CHECKING:
     from ccnl_engine import PeriodResult

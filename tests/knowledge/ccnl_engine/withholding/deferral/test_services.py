@@ -36,7 +36,7 @@ from ccnl_engine.inputs import (
     PriorYearTaxFacts,
     ShortfallDeferralRequest,
 )
-from tests.knowledge.ccnl_engine.payroll.support import EMPLOYER, ENGINE
+from tests.knowledge.ccnl_engine.support import EMPLOYER, ENGINE
 
 pytestmark = pytest.mark.legal_scenario
 

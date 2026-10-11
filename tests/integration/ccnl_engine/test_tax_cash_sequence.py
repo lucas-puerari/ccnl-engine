@@ -16,7 +16,7 @@ from functools import cache
 
 from ccnl_engine import Employment, PayrollRun
 from ccnl_engine.inputs import Permanent
-from tests.integration.ccnl_engine.payroll.year.builders_payment_sequence import (
+from tests.integration.ccnl_engine.year.payment.sequence.builders import (
     Payment,
     PaymentSequence,
 )

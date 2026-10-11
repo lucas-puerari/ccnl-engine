@@ -34,7 +34,7 @@ if TYPE_CHECKING:
     from datetime import date
     from decimal import Decimal
 
-    from ccnl_engine.payroll.period.services_run_context import RunContext
+    from ccnl_engine.period.context.services import RunContext
     from ccnl_engine.provenance.source.models import SourceLocation
     from ccnl_engine.seniority.inputs import (
         SeniorityFact,

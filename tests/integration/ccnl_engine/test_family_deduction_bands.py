@@ -51,7 +51,7 @@ from tests.knowledge.ccnl_engine.family.oracles import (
     SPOUSE_BAND_EXAMPLES,
     spouse_deduction,
 )
-from tests.knowledge.ccnl_engine.payroll.period.oracles_payslip_metalmeccanico_c3_2026 import (  # noqa: E501
+from tests.knowledge.ccnl_engine.period.oracles import (
     C3_MINIMUM_FROM_JUNE_2026,
     employee_taxable,
 )

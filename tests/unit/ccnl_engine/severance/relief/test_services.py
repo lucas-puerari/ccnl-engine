@@ -31,7 +31,7 @@ from ccnl_engine.severance.relief.services import (
 from tests.unit.ccnl_engine.builders import make_year_rules
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.amount.types import _AmountsInput
+    from ccnl_engine.amount.types import _AmountsInput
 
 _COMPENSATION = TfrCompensation(
     guarantee_fund_rate=Decimal("0.0020"),

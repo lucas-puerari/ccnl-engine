@@ -33,9 +33,9 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.balance.obligation.models import ULTERIORE_RECOVERY
 from ccnl_engine.irpef.net.rules import run_withholding
 from ccnl_engine.irpef.results import TaxLineItem
-from ccnl_engine.payroll.state.models_obligation import ULTERIORE_RECOVERY
 from ccnl_engine.tax_credit.decision.rules import credit_decision
 from ccnl_engine.tax_credit.ulteriore_detrazione.plan.rules import post_running_plan
 from ccnl_engine.tax_credit.ulteriore_detrazione.rules import settle_ulteriore

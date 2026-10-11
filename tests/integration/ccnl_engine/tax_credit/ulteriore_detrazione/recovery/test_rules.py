@@ -14,20 +14,20 @@ from decimal import Decimal
 from functools import cache
 from typing import TYPE_CHECKING
 
-from ccnl_engine.employment.fact.inputs import EmploymentPeriod, WeeklyHours
-from ccnl_engine.event.facade import AbsenceEvent, WorkEvent
-from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.state.models import PeriodState
-from ccnl_engine.payroll.state.models_obligation import (
+from ccnl_engine.balance.cash.models import TaxCashState
+from ccnl_engine.balance.models import PeriodState
+from ccnl_engine.balance.obligation.models import (
     ULTERIORE_RECOVERY,
     EmploymentObligations,
     RecoveryObligation,
 )
-from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
-from ccnl_engine.payroll.year.services_competence import (
+from ccnl_engine.employment.fact.inputs import EmploymentPeriod, WeeklyHours
+from ccnl_engine.event.facade import AbsenceEvent, WorkEvent
+from ccnl_engine.pay_item.rounding.policies import money
+from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
+from ccnl_engine.year.competence.services import (
     calculate_competence_year,
 )
-from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
 from tests.knowledge.ccnl_engine.irpef.oracles import (
     further_deduction,
     net_irpef,
@@ -35,7 +35,7 @@ from tests.knowledge.ccnl_engine.irpef.oracles import (
 from tests.unit.ccnl_engine.builders import year_plan
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.year.results import CompetenceYearResult
+    from ccnl_engine.year.results import CompetenceYearResult
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _ZERO = Decimal(0)

@@ -20,8 +20,8 @@ from ccnl_engine.irpef.declaration.inputs import (
     ForeignTaxPaid,
     PriorYearTaxFacts,
 )
-from ccnl_engine.payroll.period.inputs import PeriodFacts
-from ccnl_engine.payroll.year.services_competence import (
+from ccnl_engine.period.inputs import PeriodFacts
+from ccnl_engine.year.competence.services import (
     calculate_competence_year,
 )
 from tests.knowledge.ccnl_engine.irpef.oracles import (
@@ -31,7 +31,7 @@ from tests.knowledge.ccnl_engine.irpef.oracles import (
 from tests.unit.ccnl_engine.builders import year_plan
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.year.results import CompetenceYearResult
+    from ccnl_engine.year.results import CompetenceYearResult
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _FACTS = PeriodFacts(regione="IT-25")

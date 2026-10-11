@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
 
+from ccnl_engine.balance.cash.account.models import RegimeCapAccount
 from ccnl_engine.event.facade import (
     AbsenceEvent,
     ArrearsEvent,
@@ -19,8 +20,7 @@ from ccnl_engine.event.facade import (
     TerminationTFREvent,
     WelfareEvent,
 )
-from ccnl_engine.payroll.period.services_shared import _ZERO
-from ccnl_engine.payroll.state.models_ytd_account import RegimeCapAccount
+from ccnl_engine.pay_item.services import _ZERO
 from ccnl_engine.sickness.models import SicknessHistory
 
 if TYPE_CHECKING:

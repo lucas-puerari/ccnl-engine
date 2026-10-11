@@ -20,7 +20,7 @@ Two gates judge the payable rules of the bundled knowledge data (see
   rules.
 
 Reference cases: every case in
-``tests/knowledge/ccnl_engine/payroll/period/reference_case/`` declares a
+``tests/knowledge/ccnl_engine/period/reference_case/`` declares a
 top-level ``verification`` field, ``verified`` or ``source_linked``, and
 carries a non-empty ``source`` object. Expected values produced by the
 engine itself are not a status: they detect no systematic error, so such
@@ -77,7 +77,6 @@ CASES_DIR = (
     / "tests"
     / "knowledge"
     / "ccnl_engine"
-    / "payroll"
     / "period"
     / "reference_case"
 )

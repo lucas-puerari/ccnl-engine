@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import ClassVar, Self
 
-from ccnl_engine.payroll.state.models_ytd_account import check_non_negative
+from ccnl_engine.balance.cash.account.models import check_non_negative
 
 _ZERO = Decimal(0)
 _CODE = re.compile(r"[a-z][a-z0-9_]*")
@@ -28,7 +28,7 @@ class CreditAccount:
     the updated annual entitlement can fall below what was paid, and the
     excess is then recovered.  The installment plan of a recovery is not
     held here: it can outlast the tax year, so it lives in
-    :class:`~ccnl_engine.payroll.state.models_obligation.EmploymentObligations`
+    :class:`~ccnl_engine.balance.obligation.models.EmploymentObligations`
     under the tax year and the :attr:`KIND` of the account.
 
     Attributes:

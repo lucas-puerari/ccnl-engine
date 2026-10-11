@@ -7,23 +7,23 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.balance.cash.account.models import WithholdingShortfall
+from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.event.facade import OvertimeEvent, WelfareEvent
 from ccnl_engine.ledger.models import AccountKind
-from ccnl_engine.payroll.period.models_payroll import PeriodId
-from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
-from ccnl_engine.payroll.period.services import calculate_period
-from ccnl_engine.payroll.state.models import PeriodState
-from ccnl_engine.payroll.state.models_ytd_account import WithholdingShortfall
+from ccnl_engine.period.requests import PeriodCalculationRequest
+from ccnl_engine.period.services import calculate_period
 from ccnl_engine.reconciliation.attribution.validators import (
     ACCOUNT_CAPABILITIES,
     KIND_ACCOUNTS,
     check_amount_has_decision,
 )
 from ccnl_engine.reconciliation.validators import reconcile
+from ccnl_engine.run.types import PeriodId
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.period.results import PeriodResult
+    from ccnl_engine.period.results import PeriodResult
 
 _INVARIANT = "amount_has_decision"
 _DAY = date(2026, 3, 10)

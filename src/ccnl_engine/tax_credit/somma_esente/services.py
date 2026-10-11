@@ -23,13 +23,13 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.balance.obligation.models import SOMMA_ESENTE_RECOVERY
 from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
 )
 from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.state.models_obligation import SOMMA_ESENTE_RECOVERY
 from ccnl_engine.tax_credit.somma_esente.posting.services import (
     SommaEsentePosting,
     postings,
@@ -39,11 +39,11 @@ from ccnl_engine.tax_credit.somma_esente.settlement.services import (
 )
 
 if TYPE_CHECKING:
+    from ccnl_engine.balance.models import PeriodState
     from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts
     from ccnl_engine.irpef.results import TaxComputation
     from ccnl_engine.ledger.models import LedgerEntry
     from ccnl_engine.pay_item.facade import PayItem
-    from ccnl_engine.payroll.state.models import PeriodState
     from ccnl_engine.tax.annual.models import YearRules
     from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
     from ccnl_engine.withholding.schedule.models import WithholdingPosition

@@ -33,7 +33,7 @@ from ccnl_engine.provenance.source.models import (
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus, RuleProvenance
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.amount.types import _AmountsInput
+    from ccnl_engine.amount.types import _AmountsInput
 
 _FUND = SolidarityFund(
     code="FONDO_SOLIDARIETA_CREDITO",

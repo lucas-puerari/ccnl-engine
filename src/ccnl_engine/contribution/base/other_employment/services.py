@@ -26,7 +26,7 @@ from ccnl_engine.decision.models import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.period.services_run_context import RunContext
+    from ccnl_engine.period.context.services import RunContext
 
 __all__ = ["FACT", "other_employers_issue"]
 

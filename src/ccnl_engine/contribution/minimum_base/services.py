@@ -23,12 +23,12 @@ from ccnl_engine.decision.models import (
 )
 from ccnl_engine.employment.inputs import Apprentice
 from ccnl_engine.event.facade import AbsenceEvent, SickLeaveEvent
-from ccnl_engine.payroll.period.models_run import RunKind
+from ccnl_engine.run.models import RunKind
 
 if TYPE_CHECKING:
     from ccnl_engine.contribution.minimum_base.models import MinimumBase
     from ccnl_engine.employment.fact.inputs import WeeklyHours
-    from ccnl_engine.payroll.period.services_run_context import RunContext
+    from ccnl_engine.period.context.services import RunContext
 
 __all__ = [
     "EXEMPT_CATEGORY_FLOOR",

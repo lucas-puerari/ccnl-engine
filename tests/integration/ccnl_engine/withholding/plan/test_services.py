@@ -9,23 +9,23 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from ccnl_engine.balance.cash.account.models import EarningsYtd
+from ccnl_engine.balance.cash.models import TaxCashState
+from ccnl_engine.balance.competence.models import EmploymentAccrualState
+from ccnl_engine.balance.models import PeriodState
+from ccnl_engine.calendar.models import WorkCalendar
+from ccnl_engine.calendar.payment.models import PaymentId
+from ccnl_engine.calendar.schedule.models import PayrollRunCount
 from ccnl_engine.compensation.element.types import MonthlyPayChain
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.period.models_payroll import PeriodId
-from ccnl_engine.payroll.period.models_run import PayrollRun
-from ccnl_engine.payroll.period.repositories import (
+from ccnl_engine.period.repositories import (
     BundledKnowledgeRepository,
 )
-from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
-from ccnl_engine.payroll.period.services import calculate_period
-from ccnl_engine.payroll.state.models import PeriodState
-from ccnl_engine.payroll.state.models_accrual import EmploymentAccrualState
-from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
-from ccnl_engine.payroll.state.models_ytd_account import EarningsYtd
-from ccnl_engine.payroll.year.models_calendar import WorkCalendar
-from ccnl_engine.payroll.year.models_payment import PaymentId
-from ccnl_engine.payroll.year.models_schedule import PayrollRunCount
+from ccnl_engine.period.requests import PeriodCalculationRequest
+from ccnl_engine.period.services import calculate_period
+from ccnl_engine.run.models import PayrollRun
+from ccnl_engine.run.types import PeriodId
 from ccnl_engine.withholding.plan.services import (
     resolve_withholding_schedule,
     slot_share,

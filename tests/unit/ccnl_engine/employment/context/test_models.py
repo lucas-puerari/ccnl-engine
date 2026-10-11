@@ -6,9 +6,9 @@ from datetime import date
 
 import pytest
 
+from ccnl_engine.calendar.tax_year.rules import TaxYearBasis, TaxYearPolicy
 from ccnl_engine.employment.context.models import TemporalContext
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.year.rules_tax_year import TaxYearBasis, TaxYearPolicy
 
 
 class TestTemporalContextFromPeriod:

@@ -33,30 +33,30 @@ from functools import cache
 from typing import TYPE_CHECKING
 
 from ccnl_engine.agreement.facade import TaxSector
+from ccnl_engine.amount.types import _PeriodAmounts
+from ccnl_engine.balance.cash.account.models import WithholdingShortfall
+from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.contribution.services import TfrAccrual
 from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.event.facade import AbsenceEvent, FringeEvent
 from ccnl_engine.ledger.models import AccountKind, LedgerEntry
 from ccnl_engine.pay_item.facade import CompetencePeriod
-from ccnl_engine.payroll.amount.types import _PeriodAmounts
-from ccnl_engine.payroll.period.models_payroll import PeriodId
-from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
-from ccnl_engine.payroll.period.services import calculate_period
-from ccnl_engine.payroll.state.models import PeriodState
-from ccnl_engine.payroll.state.models_ytd_account import WithholdingShortfall
-from ccnl_engine.payroll.year.services_competence import (
-    calculate_competence_year,
-)
+from ccnl_engine.period.requests import PeriodCalculationRequest
+from ccnl_engine.period.services import calculate_period
+from ccnl_engine.run.types import PeriodId
 from ccnl_engine.tax.annual.loaders import load_year_rules
 from ccnl_engine.withholding.cap.services import (
     CappedWithholding,
     cap_withholding,
 )
+from ccnl_engine.year.competence.services import (
+    calculate_competence_year,
+)
 from tests.integration.ccnl_engine.irpef.declaration.builders import (
     RENEWAL_WAIVED,
 )
-from tests.integration.ccnl_engine.payroll.period.builders_period_requests import (
+from tests.integration.ccnl_engine.period.builders import (
     period_request,
 )
 from tests.knowledge.ccnl_engine.irpef.oracles import net_irpef
@@ -66,8 +66,8 @@ from tests.knowledge.ccnl_engine.withholding.oracles import (
 from tests.unit.ccnl_engine.builders import year_plan
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.period.results import PeriodResult
-    from ccnl_engine.payroll.year.results import CompetenceYearResult
+    from ccnl_engine.period.results import PeriodResult
+    from ccnl_engine.year.results import CompetenceYearResult
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _YEAR = 2026

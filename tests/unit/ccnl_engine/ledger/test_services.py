@@ -5,6 +5,7 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 
+from ccnl_engine.amount.types import _PeriodAmounts
 from ccnl_engine.compensation.element.types import MonthlyPayChain
 from ccnl_engine.contribution.services import TfrAccrual
 from ccnl_engine.ledger.services import (
@@ -17,8 +18,7 @@ from ccnl_engine.pay_item.facade import (
     TaxCreditItem,
     TfrAccrualItem,
 )
-from ccnl_engine.payroll.amount.types import _PeriodAmounts
-from ccnl_engine.payroll.period.models_payroll import PeriodId
+from ccnl_engine.run.types import PeriodId
 
 _ZERO = Decimal(0)
 

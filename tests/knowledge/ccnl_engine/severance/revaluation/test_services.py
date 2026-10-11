@@ -19,8 +19,8 @@ import pytest
 from ccnl_engine import EmployerProfile, Employment, Headcount, PeriodResult
 from ccnl_engine.inputs import EmploymentPeriod, Permanent, TfrFundBalance
 from ccnl_engine.results import BlockerCode, CalculationStatus
-from tests.knowledge.ccnl_engine.payroll.support import regular_period
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire
+from tests.knowledge.ccnl_engine.support import regular_period
 
 pytestmark = pytest.mark.legal_scenario
 

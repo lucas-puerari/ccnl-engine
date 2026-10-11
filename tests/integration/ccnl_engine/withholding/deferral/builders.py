@@ -13,26 +13,26 @@ from decimal import Decimal
 from functools import cache
 from typing import TYPE_CHECKING
 
+from ccnl_engine.balance.cash.models import TaxCashState
+from ccnl_engine.balance.models import PeriodState
+from ccnl_engine.balance.obligation.models import EmploymentObligations
 from ccnl_engine.event.facade import FringeEvent
 from ccnl_engine.irpef.declaration.inputs import (
     PriorYearTaxFacts,
     ShortfallDeferralRequest,
 )
 from ccnl_engine.ledger.models import AccountKind
-from ccnl_engine.payroll.state.models import PeriodState
-from ccnl_engine.payroll.state.models_obligation import EmploymentObligations
-from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
-from ccnl_engine.payroll.year.services_competence import (
+from ccnl_engine.withholding.deferral.inputs import DeferredShortfall
+from ccnl_engine.year.competence.services import (
     calculate_competence_year,
 )
-from ccnl_engine.withholding.deferral.inputs import DeferredShortfall
 from tests.unit.ccnl_engine.builders import year_plan
 
 if TYPE_CHECKING:
     from ccnl_engine.employment.fact.inputs import EmploymentPeriod
     from ccnl_engine.event.facade import AbsenceEvent
-    from ccnl_engine.payroll.period.results import PeriodResult
-    from ccnl_engine.payroll.year.results import CompetenceYearResult
+    from ccnl_engine.period.results import PeriodResult
+    from ccnl_engine.year.results import CompetenceYearResult
 
 __all__ = [
     "CCNL",

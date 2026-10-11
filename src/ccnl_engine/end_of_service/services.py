@@ -32,9 +32,9 @@ from ccnl_engine.employment.fact.inputs import PublicEndOfService
 from ccnl_engine.pay_item.rounding.policies import money
 
 if TYPE_CHECKING:
+    from ccnl_engine.amount.types import _AmountsInput
     from ccnl_engine.contribution.rate.models import EndOfServiceRates
     from ccnl_engine.contribution.results import ContributionBreakdown
-    from ccnl_engine.payroll.amount.types import _AmountsInput
 
 __all__ = [
     "END_OF_SERVICE_UNKNOWN",

@@ -26,6 +26,7 @@ from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
 )
+from ccnl_engine.decision.rules import _ccnl_rule
 from ccnl_engine.extra_month.schedule.models import ExtraMonthKind
 from ccnl_engine.extra_month.settlement.services import (
     ExtraMonthSettlement,
@@ -33,8 +34,7 @@ from ccnl_engine.extra_month.settlement.services import (
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.pay_item.facade import RaccordoElementEarning
 from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.period.rules_run_decision import _ccnl_rule
-from ccnl_engine.payroll.period.services_shared import (
+from ccnl_engine.pay_item.services import (
     _make_entry,
     _require_resolution,
     _treatment_from_resolution,
@@ -42,7 +42,7 @@ from ccnl_engine.payroll.period.services_shared import (
 
 if TYPE_CHECKING:
     from ccnl_engine.capability.rule.services import Rule
-    from ccnl_engine.payroll.period.services_run_context import RunContext
+    from ccnl_engine.period.context.services import RunContext
 
 __all__ = ["ERC_UNKNOWN", "erc_decisions", "erc_of", "erc_rules", "erc_settlement"]
 

@@ -28,7 +28,7 @@ from ccnl_engine import (
 from ccnl_engine.catalog import RulesetKind, RulesetReadiness
 from ccnl_engine.inputs import EngineMode, Permanent, WorkerCategory
 from ccnl_engine.results import BlockerCode
-from tests.knowledge.ccnl_engine.payroll.period.builders_explicit_facts import (
+from tests.knowledge.ccnl_engine.period.builders import (
     CONCIA_D2,
     competence_year,
     regular_run,

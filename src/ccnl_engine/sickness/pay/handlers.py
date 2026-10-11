@@ -15,7 +15,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.period.services_shared import _ZERO
+from ccnl_engine.pay_item.services import _ZERO
 from ccnl_engine.sickness.cumulation.results import (
     CumulationReport,
     cumulation_report,

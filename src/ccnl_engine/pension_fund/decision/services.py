@@ -24,10 +24,10 @@ from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
 )
+from ccnl_engine.decision.rules import _ccnl_rule
 from ccnl_engine.employment.inputs import Apprentice
 from ccnl_engine.event.facade import SickLeaveEvent, SicknessEpisode
 from ccnl_engine.fund.contractual.rules import contractual_run
-from ccnl_engine.payroll.period.rules_run_decision import _ccnl_rule
 from ccnl_engine.pension_fund.conversion.services import (
     converted_seniority,
 )
@@ -41,11 +41,11 @@ from ccnl_engine.pension_fund.rules import (
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
-    from ccnl_engine.payroll.period.services_run_context import RunContext
     from ccnl_engine.pension_fund.rules import (
         PensionContribution,
         PensionFundTerms,
     )
+    from ccnl_engine.period.context.services import RunContext
 
 _ZERO = Decimal(0)
 _NOT_IN_BUNDLE = "not_in_bundle"

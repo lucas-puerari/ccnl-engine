@@ -8,23 +8,23 @@ from typing import TYPE_CHECKING
 from ccnl_engine.assurance.models import BlockerCode
 from ccnl_engine.assurance.policies import EngineMode
 from ccnl_engine.assurance.rules import NO_TRACKED_READINESS
+from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
-from ccnl_engine.payroll.period.models_payroll import PeriodId
-from ccnl_engine.payroll.period.repositories import (
+from ccnl_engine.period.repositories import (
     BundledKnowledgeRepository,
 )
-from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
-from ccnl_engine.payroll.period.services import calculate_period
-from ccnl_engine.payroll.state.models import PeriodState
+from ccnl_engine.period.requests import PeriodCalculationRequest
+from ccnl_engine.period.services import calculate_period
 from ccnl_engine.provenance.ruleset.assurance.models import RulesetKind
 from ccnl_engine.provenance.ruleset.models import RulesetReadiness
+from ccnl_engine.run.types import PeriodId
 from tests.integration.ccnl_engine.catalog.builders import (
     AnonymousCcnlRepository,
 )
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import TaxSector
-    from ccnl_engine.payroll.period.results import PeriodResult
+    from ccnl_engine.period.results import PeriodResult
     from ccnl_engine.tax.annual.models import YearRules
 
 _METALMECCANICO = "metalmeccanico-federmeccanica.json"

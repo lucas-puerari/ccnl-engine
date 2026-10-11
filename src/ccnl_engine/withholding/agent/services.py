@@ -9,10 +9,10 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.amount.types import _PeriodAmounts
 from ccnl_engine.irpef.results import TaxComputation
 from ccnl_engine.irpef.taxable.services import _PdrSplit, taxable_income
-from ccnl_engine.payroll.amount.types import _PeriodAmounts
-from ccnl_engine.payroll.period.services_shared import _ZERO
+from ccnl_engine.pay_item.services import _ZERO
 from ccnl_engine.withholding.agent.rules import (
     not_withholding_agent_decision,
     not_withholding_agent_decisions,
@@ -21,10 +21,10 @@ from ccnl_engine.withholding.agent.rules import (
 if TYPE_CHECKING:
     from decimal import Decimal
 
+    from ccnl_engine.amount.types import _AmountsInput
     from ccnl_engine.contribution.results import ContributionBreakdown
     from ccnl_engine.contribution.services import TfrAccrual
     from ccnl_engine.decision.models import CalculationDecision
-    from ccnl_engine.payroll.amount.types import _AmountsInput
     from ccnl_engine.pension_fund.rules import PensionContribution
 
 #: No IRPEF computed: no withholding, credit or conguaglio.

@@ -7,7 +7,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING, Literal
 
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.period.models_payroll import PeriodId
+from ccnl_engine.run.types import PeriodId
 from ccnl_engine.validators import (
     require_choice,
     require_date,

@@ -37,7 +37,7 @@ if TYPE_CHECKING:
     from collections.abc import Iterable, Mapping
 
     from ccnl_engine.decision.models import CalculationDecision
-    from ccnl_engine.payroll.period.services_run_context import RunContext
+    from ccnl_engine.period.context.services import RunContext
     from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
 _EXECUTED = frozenset({TraceState.COMPUTED, TraceState.PARTIAL})

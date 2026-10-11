@@ -25,7 +25,7 @@ from ccnl_engine.inputs import (
     WeeklyHours,
     WorkerCategory,
 )
-from tests.knowledge.ccnl_engine.payroll.support import (
+from tests.knowledge.ccnl_engine.support import (
     COMMERCIO,
     DOMESTIC,
     EMPLOYER,

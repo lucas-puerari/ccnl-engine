@@ -2,7 +2,7 @@
 
 Each event type carries the data needed to compute its gross amount and
 accounting treatment (INPS, IRPEF, TFR bases).  Events are passed on
-:class:`~ccnl_engine.payroll.period.requests.PeriodCalculationRequest` and
+:class:`~ccnl_engine.period.requests.PeriodCalculationRequest` and
 processed in ``calculate_period``.
 """
 

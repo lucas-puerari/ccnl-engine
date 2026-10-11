@@ -35,9 +35,9 @@ from ccnl_engine.reconciliation.types import (
 from ccnl_engine.regime.eligibility.rules import RegimeEligibility
 
 if TYPE_CHECKING:
+    from ccnl_engine.balance.models import PeriodState
     from ccnl_engine.decision.models import CalculationDecision
-    from ccnl_engine.payroll.period.results import PeriodResult
-    from ccnl_engine.payroll.state.models import PeriodState
+    from ccnl_engine.period.results import PeriodResult
     from ccnl_engine.reconciliation.types import RunFacts
 
 __all__: list[str] = []

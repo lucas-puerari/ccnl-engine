@@ -8,6 +8,19 @@ facts, the calendar, the opening state and the balances imported from another pr
 from __future__ import annotations
 
 from ccnl_engine.assurance.policies import EngineMode
+from ccnl_engine.balance.models import PeriodState
+from ccnl_engine.balance.obligation.models import RecoveryObligation
+from ccnl_engine.balance.opening.provider.services import OpeningBalances
+from ccnl_engine.balance.persistence.serializers import (
+    period_state_from_json,
+    period_state_to_json,
+)
+from ccnl_engine.calendar.inputs import (
+    CalendarOverride,
+    CalendarOverrideReason,
+)
+from ccnl_engine.calendar.models import WorkCalendar
+from ccnl_engine.calendar.payment.models import PaymentId
 from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.employer.inputs import (
@@ -39,25 +52,12 @@ from ccnl_engine.irpef.other_income.inputs import (
     CurrentYearTaxFacts,
     IncomeEstimateQuality,
 )
-from ccnl_engine.payroll.period.models_run import PayrollRunId
-from ccnl_engine.payroll.state.models import PeriodState
-from ccnl_engine.payroll.state.models_obligation import RecoveryObligation
-from ccnl_engine.payroll.state.serializers_persistence import (
-    period_state_from_json,
-    period_state_to_json,
-)
-from ccnl_engine.payroll.state.services_opening_balance import OpeningBalances
-from ccnl_engine.payroll.year.inputs_calendar_override import (
-    CalendarOverride,
-    CalendarOverrideReason,
-)
-from ccnl_engine.payroll.year.models_calendar import WorkCalendar
-from ccnl_engine.payroll.year.models_payment import PaymentId
 from ccnl_engine.pension_fund.inputs import (
     NoPensionFund,
     PensionFundEnrolment,
 )
 from ccnl_engine.regime.models import EmploymentSector
+from ccnl_engine.run.models import PayrollRunId
 from ccnl_engine.seniority.inputs import (
     SeniorityFact,
     SenioritySource,

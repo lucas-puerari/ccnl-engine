@@ -103,6 +103,13 @@ max-public-methods = 15
 "src/ccnl_engine/tax/annual/models.py" = ["TCH"]
 "src/ccnl_engine/agreement/**" = ["TCH"]
 "src/ccnl_engine/catalog/**" = ["TCH"]
+"src/ccnl_engine/amount/**" = ["TCH"]
+"src/ccnl_engine/calendar/**" = ["TCH"]
+"src/ccnl_engine/balance/**" = ["TCH"]
+"src/ccnl_engine/default/**" = ["TCH"]
+"src/ccnl_engine/period/**" = ["TCH"]
+"src/ccnl_engine/run/**" = ["TCH"]
+"src/ccnl_engine/year/**" = ["TCH"]
 "src/ccnl_engine/assurance/**" = ["TCH"]
 "src/ccnl_engine/capability/**" = ["TCH"]
 "src/ccnl_engine/decision/**" = ["TCH"]
@@ -133,7 +140,6 @@ max-public-methods = 15
 "src/ccnl_engine/pay_item/**" = ["TCH"]
 "src/ccnl_engine/seniority/**" = ["TCH"]
 "src/ccnl_engine/working_time/**" = ["TCH"]
-"src/ccnl_engine/payroll/**" = ["TCH"]
 "src/ccnl_engine/provenance/ruleset/models.py" = ["TCH"]
 "src/ccnl_engine/types.py" = ["TCH"]
 
@@ -281,8 +287,8 @@ pytest_add_cli_args_test_selection = [
     "tests/unit/ccnl_engine/withholding/rules/test_period.py",
     "tests/unit/ccnl_engine/irpef/computation/test_services.py",
     "tests/unit/ccnl_engine/tax_credit/recovery/test_models.py",
-    "tests/integration/ccnl_engine/payroll/period/test_services_pdr_trattamento.py",
-    "tests/integration/ccnl_engine/payroll/period/test_services_fiscal_regime.py",
+    "tests/integration/ccnl_engine/period/services/test_pdr_trattamento.py",
+    "tests/integration/ccnl_engine/period/services/test_fiscal_regime.py",
     "tests/integration/ccnl_engine/withholding/cap/services/test_cap.py",
     "tests/integration/ccnl_engine/withholding/cap/services/test_cap_credit_recovery.py",
     "tests/integration/ccnl_engine/withholding/deferral/services/test_deferral.py",

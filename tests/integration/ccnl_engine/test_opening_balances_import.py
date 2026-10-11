@@ -56,13 +56,13 @@ from ccnl_engine.inputs import (
     PeriodState,
     Permanent,
 )
-from tests.integration.ccnl_engine.payroll.year.builders_next_year_repository import (
+from tests.integration.ccnl_engine.year.builders import (
     NextYearRepository,
 )
 from tests.knowledge.ccnl_engine.contribution.oracles import (
     contribution_base,
 )
-from tests.knowledge.ccnl_engine.payroll.period.oracles_payslip_metalmeccanico_c3_2026 import (  # noqa: E501
+from tests.knowledge.ccnl_engine.period.oracles import (
     C3_MINIMUM_FROM_JUNE_2026,
 )
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire

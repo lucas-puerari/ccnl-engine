@@ -3,8 +3,8 @@
 The CCNL ``additional_months`` parameter is an :class:`ExtraMonthEntitlement`:
 equivalent months of pay per year, possibly fractional (13.5).  It is not a
 count of payslips; see
-:class:`~ccnl_engine.payroll.year.models_schedule.PayrollRunCount`
-and :class:`~ccnl_engine.payroll.year.models_schedule.WithholdingSchedule`.
+:class:`~ccnl_engine.calendar.schedule.models.PayrollRunCount`
+and :class:`~ccnl_engine.calendar.schedule.models.WithholdingSchedule`.
 """
 
 from __future__ import annotations
