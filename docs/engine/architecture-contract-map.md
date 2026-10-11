@@ -303,7 +303,7 @@ inventory.
 |---|---|
 | `knowledge/limitation/loaders.py` | `limitation/loaders.py` |
 | `knowledge/limitation/models.py` | `limitation/models.py` |
-| `payroll/assurance/services_limitation.py` | `limitation/services.py` |
+| `payroll/assurance/services_limitation.py` | `assurance/limitation/services.py` |
 
 ## pay_item
 

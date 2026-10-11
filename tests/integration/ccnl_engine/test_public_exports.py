@@ -20,8 +20,8 @@ import pytest
 
 import ccnl_engine
 from ccnl_engine import errors as errors_module
+from ccnl_engine.decision.models import PUBLIC_FACTS
 from ccnl_engine.errors import PUBLIC_ERROR_CODES, CcnlEngineError
-from ccnl_engine.payroll.assurance.models_decision import PUBLIC_FACTS
 from tests.integration.scripts.structure.support_imports import (
     PUBLIC_NAMESPACES,
     ROOT_PACKAGE,

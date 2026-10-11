@@ -31,12 +31,12 @@ from dataclasses import dataclass, replace
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.ledger.models import AccountKind
-from ccnl_engine.payroll.assurance.models_decision import (
+from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
 )
+from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.payroll.period.services_shared import _sum_ledger
 from ccnl_engine.payroll.state.models_ytd_account import WithholdingShortfall
 from ccnl_engine.withholding.rules import (

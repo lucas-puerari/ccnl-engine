@@ -5,6 +5,17 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.assurance.limitation.services import run_limitations
+from ccnl_engine.assurance.rule_source.services import (
+    missing_source_issues,
+    run_rule_sources,
+    weakest_by_capability,
+)
+from ccnl_engine.assurance.ruleset.services import run_rulesets
+from ccnl_engine.capability.registry.services import (
+    capability_report,
+    case_facts,
+)
 from ccnl_engine.compensation.renewal_minimum.services import renewal_minimum
 from ccnl_engine.contribution.additional_ivs.rules import (
     MONTHLY_COMPONENT,
@@ -26,18 +37,6 @@ from ccnl_engine.extra_month.decision.services import (
 )
 from ccnl_engine.extra_month.liquidation.services import settlement_issues
 from ccnl_engine.ledger.models import AccountKind
-from ccnl_engine.payroll.assurance.services_limitation import run_limitations
-from ccnl_engine.payroll.assurance.services_rule_source import (
-    missing_source_issues,
-    run_rule_sources,
-    weakest_by_capability,
-)
-from ccnl_engine.payroll.assurance.services_ruleset import run_rulesets
-from ccnl_engine.payroll.assurance.validators import check_period
-from ccnl_engine.payroll.capability.services_registry import (
-    capability_report,
-    case_facts,
-)
 from ccnl_engine.payroll.period.results import PeriodResult
 from ccnl_engine.payroll.period.services_check import check_net_covered, run_facts
 from ccnl_engine.payroll.period.services_shared import _sum_ledger
@@ -48,6 +47,7 @@ from ccnl_engine.payroll.state.services_closing import (
 from ccnl_engine.pension_fund.decision.services import (
     pension_fund_issue,
 )
+from ccnl_engine.reconciliation.validators import check_period
 from ccnl_engine.seniority.services import run_seniority
 from ccnl_engine.severance.revaluation.services import (
     tfr_revaluation_issues,
@@ -56,11 +56,11 @@ from ccnl_engine.variable_pay.benefit.results import BenefitBreakdown
 from ccnl_engine.withholding.cap.services import run_net
 
 if TYPE_CHECKING:
-    from ccnl_engine.ledger.models import LedgerEntry
-    from ccnl_engine.payroll.assurance.models_decision import (
+    from ccnl_engine.decision.models import (
         CalculationDecision,
         CalculationIssue,
     )
+    from ccnl_engine.ledger.models import LedgerEntry
     from ccnl_engine.payroll.period.services_pipeline import (
         RunAmounts,
         RunEvents,

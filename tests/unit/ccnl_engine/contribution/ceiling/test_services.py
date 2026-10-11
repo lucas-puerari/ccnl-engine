@@ -17,7 +17,7 @@ from ccnl_engine.contribution.ceiling.services import (
     IvsCeiling,
     resolve_ivs_ceiling,
 )
-from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
+from ccnl_engine.decision.models import CalculationStatus
 from tests.unit.ccnl_engine.builders import make_domestic_year_rules, make_year_rules
 
 _CEILING = Decimal("122295.00")

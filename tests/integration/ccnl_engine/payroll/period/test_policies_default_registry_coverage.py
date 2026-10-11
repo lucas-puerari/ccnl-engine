@@ -18,10 +18,10 @@ import importlib
 import inspect
 
 import ccnl_engine
-from ccnl_engine.knowledge.capability.loaders import (
+from ccnl_engine.capability.loaders import (
     load_capability_catalog,
 )
-from ccnl_engine.payroll.assurance.models_decision import PUBLIC_FACTS
+from ccnl_engine.decision.models import PUBLIC_FACTS
 from ccnl_engine.payroll.period.models_default import (
     DefaultPolicy,
     FactEnforcement,

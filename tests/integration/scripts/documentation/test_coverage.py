@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from ccnl_engine.knowledge.capability.loaders import (
+from ccnl_engine.capability.loaders import (
     load_capability_catalog,
 )
 from scripts.documentation.coverage import (

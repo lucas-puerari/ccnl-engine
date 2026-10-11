@@ -27,7 +27,7 @@ from ccnl_engine.compensation.renewal_minimum.rules import (
     assess_renewal_minimum,
     renewal_table_from,
 )
-from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
+from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.regime.models import EmploymentSector
 from ccnl_engine.regime.requirement.rules import RegimeFacts
 from ccnl_engine.tax.annual.loaders_optional import load_variable_pay_rules

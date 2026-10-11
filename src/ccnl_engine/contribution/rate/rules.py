@@ -10,11 +10,11 @@ from ccnl_engine.contribution.apprenticeship.rules import (
     apprentice_employer_rate,
 )
 from ccnl_engine.contribution.naspi.rules import naspi_surcharge
-from ccnl_engine.employment.inputs import Apprentice, FixedTerm
-from ccnl_engine.payroll.assurance.models_decision import (
+from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
 )
+from ccnl_engine.employment.inputs import Apprentice, FixedTerm
 
 if TYPE_CHECKING:
     from decimal import Decimal

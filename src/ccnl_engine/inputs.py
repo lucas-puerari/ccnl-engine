@@ -7,6 +7,7 @@ facts, the calendar, the opening state and the balances imported from another pr
 
 from __future__ import annotations
 
+from ccnl_engine.assurance.policies import EngineMode
 from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.employer.inputs import (
@@ -38,7 +39,6 @@ from ccnl_engine.irpef.other_income.inputs import (
     CurrentYearTaxFacts,
     IncomeEstimateQuality,
 )
-from ccnl_engine.payroll.assurance.policies_engine_mode import EngineMode
 from ccnl_engine.payroll.period.models_run import PayrollRunId
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.payroll.state.models_obligation import RecoveryObligation

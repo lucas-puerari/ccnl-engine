@@ -32,7 +32,7 @@ from typing import Any
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from ccnl_engine.agreement.facade import CCNL
-from ccnl_engine.knowledge.capability.loaders import (
+from ccnl_engine.capability.loaders import (
     load_capability_catalog,
 )
 from scripts.documentation.coverage import (

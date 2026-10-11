@@ -20,6 +20,7 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.capability.rule.services import contract_rules
 from ccnl_engine.contribution.additional_ivs.services import (
     additional_ivs_position,
 )
@@ -27,12 +28,11 @@ from ccnl_engine.contribution.ceiling.inputs import (
     CONTRIBUTORY_COHORT_START,
 )
 from ccnl_engine.contribution.rules import resolve_contributions
-from ccnl_engine.payroll.assurance.models_decision import (
+from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
 )
-from ccnl_engine.payroll.capability.services_rule_lookup import contract_rules
 
 if TYPE_CHECKING:
     from ccnl_engine.contribution.ceiling.inputs import ContributionHistory

@@ -14,18 +14,18 @@ import json
 
 import pytest
 
-from ccnl_engine.catalog.loaders import load_ccnl
-from ccnl_engine.knowledge.capability.loaders import (
+from ccnl_engine.capability.loaders import (
     load_capability_catalog,
 )
-from ccnl_engine.payroll.capability.models_catalog import (
+from ccnl_engine.capability.registry.models import (
     CapabilityImplementation,
     CapabilityLayer,
 )
-from ccnl_engine.payroll.capability.services_coverage import (
+from ccnl_engine.capability.support.services import (
     ccnl_capabilities,
     layer_coverage,
 )
+from ccnl_engine.catalog.loaders import load_ccnl
 
 _DATA = importlib.resources.files("ccnl_engine.knowledge").joinpath(
     "contract", "agreement"

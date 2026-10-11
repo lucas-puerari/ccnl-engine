@@ -6,17 +6,7 @@ gaps, unresolved requirements, runs a year left out and the remittance lines.
 
 from __future__ import annotations
 
-from ccnl_engine.knowledge.limitation.models import (
-    LimitationStatus,
-    ModelLimitation,
-    MonetaryImpact,
-)
-from ccnl_engine.ledger.models import AccountKind
-from ccnl_engine.ledger.remittance.models import (
-    RemittanceColumn,
-    RemittanceLine,
-)
-from ccnl_engine.payroll.assurance.models import (
+from ccnl_engine.assurance.models import (
     BlockerCode,
     CoverageStatus,
     EvidenceStatus,
@@ -24,14 +14,24 @@ from ccnl_engine.payroll.assurance.models import (
     ResultAssurance,
     ResultBlocker,
 )
-from ccnl_engine.payroll.assurance.models_decision import (
+from ccnl_engine.capability.requirement.rules import UnresolvedRequirement
+from ccnl_engine.capability.results import CapabilityGap, CapabilityScope
+from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
     DecisionOrigin,
 )
-from ccnl_engine.payroll.capability.results import CapabilityGap, CapabilityScope
-from ccnl_engine.payroll.capability.rules_requirement import UnresolvedRequirement
+from ccnl_engine.ledger.models import AccountKind
+from ccnl_engine.ledger.remittance.models import (
+    RemittanceColumn,
+    RemittanceLine,
+)
+from ccnl_engine.limitation.models import (
+    LimitationStatus,
+    ModelLimitation,
+    MonetaryImpact,
+)
 from ccnl_engine.payroll.year.models_uncovered_run import UncoveredRun
 
 __all__ = [

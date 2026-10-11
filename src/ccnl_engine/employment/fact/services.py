@@ -22,11 +22,11 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.event.facade import AbsenceEvent
-from ccnl_engine.payroll.assurance.models_decision import (
+from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
 )
+from ccnl_engine.event.facade import AbsenceEvent
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.period.services_run_context import RunContext

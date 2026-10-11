@@ -19,14 +19,14 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.compensation.raccordo.services import erc_of
-from ccnl_engine.employment.inputs import Apprentice
-from ccnl_engine.event.facade import SickLeaveEvent, SicknessEpisode
-from ccnl_engine.fund.contractual.rules import contractual_run
-from ccnl_engine.payroll.assurance.models_decision import (
+from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
 )
+from ccnl_engine.employment.inputs import Apprentice
+from ccnl_engine.event.facade import SickLeaveEvent, SicknessEpisode
+from ccnl_engine.fund.contractual.rules import contractual_run
 from ccnl_engine.payroll.period.rules_run_decision import _ccnl_rule
 from ccnl_engine.pension_fund.conversion.services import (
     converted_seniority,

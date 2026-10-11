@@ -12,14 +12,14 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.family.inputs import DependentRelationship
-from ccnl_engine.irpef import rules as _irpef
-from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.assurance.models_decision import (
+from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
 )
+from ccnl_engine.family.inputs import DependentRelationship
+from ccnl_engine.irpef import rules as _irpef
+from ccnl_engine.pay_item.rounding.policies import money
 
 if TYPE_CHECKING:
     from ccnl_engine.family.inputs import FamilyComposition

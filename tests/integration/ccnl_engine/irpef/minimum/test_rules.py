@@ -14,11 +14,11 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.agreement.facade import TaxSector
+from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.irpef.minimum.rules import (
     MINIMUM_PROPORTIONED,
     minimum_decision,
 )
-from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
 from ccnl_engine.tax.annual.loaders import load_year_rules
 
 _RULES = load_year_rules(2026, TaxSector.INDUSTRIA, 50)

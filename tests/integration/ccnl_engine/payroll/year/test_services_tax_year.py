@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.employment.inputs import Employment, Permanent
@@ -16,7 +17,6 @@ from ccnl_engine.family.inputs import (
     DependentRelationship,
     FamilyComposition,
 )
-from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
 from ccnl_engine.payroll.period.inputs import PeriodFacts
 from ccnl_engine.payroll.year.inputs_competence_plan import CompetenceYearPlan
 from ccnl_engine.payroll.year.inputs_tax_plan import TaxYearPlan

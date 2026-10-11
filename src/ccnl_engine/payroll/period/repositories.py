@@ -4,11 +4,11 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.catalog.loaders import load_ccnl
-from ccnl_engine.knowledge.capability.loaders import (
+from ccnl_engine.capability.loaders import (
     load_capability_catalog,
 )
-from ccnl_engine.knowledge.limitation.loaders import load_engine_limitations
+from ccnl_engine.catalog.loaders import load_ccnl
+from ccnl_engine.limitation.loaders import load_engine_limitations
 from ccnl_engine.surtax.loaders import load_surtax_rules
 from ccnl_engine.tax.annual.loaders import load_year_rules
 from ccnl_engine.tax.annual.loaders_optional import (
@@ -19,9 +19,9 @@ from ccnl_engine.tax.annual.loaders_optional import (
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL, TaxSector
+    from ccnl_engine.capability.registry.models import CapabilityCatalog
     from ccnl_engine.family.models import FamilyDeductionRules
-    from ccnl_engine.knowledge.limitation.models import ModelLimitation
-    from ccnl_engine.payroll.capability.models_catalog import CapabilityCatalog
+    from ccnl_engine.limitation.models import ModelLimitation
     from ccnl_engine.sickness.indemnity.models import InpsSickPayRates
     from ccnl_engine.surtax.models import SurtaxRules
     from ccnl_engine.tax.annual.models import YearRules
@@ -70,7 +70,7 @@ class BundledKnowledgeRepository:
         """Return the capability catalog for *year*.
 
         Returns:
-            A :class:`~ccnl_engine.payroll.capability.models_catalog.CapabilityCatalog`
+            A :class:`~ccnl_engine.capability.registry.models.CapabilityCatalog`
             with all declared capabilities for the requested year.
         """
         return load_capability_catalog(year)

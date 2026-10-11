@@ -28,7 +28,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.absence.models import DailyDivisorMethod
 from ccnl_engine.compensation.proration.rules import MonthProration
-from ccnl_engine.payroll.assurance.models_decision import (
+from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
 )
@@ -38,9 +38,9 @@ if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.agreement.facade import CCNL
+    from ccnl_engine.capability.rule.services import Rule
     from ccnl_engine.compensation.element.types import MonthlyPayChain
     from ccnl_engine.employment.fact.inputs import EmploymentPeriod
-    from ccnl_engine.payroll.capability.services_rule_lookup import Rule
     from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
     from ccnl_engine.provenance.source.models import SourceLocation
 

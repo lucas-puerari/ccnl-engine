@@ -9,13 +9,13 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts
 from ccnl_engine.irpef.results import TaxComputation, TaxLineItem
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.pay_item.facade import CompetencePeriod
 from ccnl_engine.pay_item.loaders import load_policy_resolver
 from ccnl_engine.pay_item.policies import PolicyContext
-from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
 from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.payroll.state.models_obligation import (

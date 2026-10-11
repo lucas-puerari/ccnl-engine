@@ -41,11 +41,11 @@ from ccnl_engine.surtax.stage.rules import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.amount.types import _AmountsInput
-    from ccnl_engine.payroll.assurance.models_decision import (
+    from ccnl_engine.decision.models import (
         CalculationDecision,
         CalculationIssue,
     )
+    from ccnl_engine.payroll.amount.types import _AmountsInput
     from ccnl_engine.surtax.obligation.models import SurtaxObligation
 
 __all__ = ["RunSurtax", "run_surtax"]

@@ -4,10 +4,10 @@ from __future__ import annotations
 
 import pytest
 
-from ccnl_engine.knowledge.capability.loaders import (
+from ccnl_engine.capability.loaders import (
     load_capability_catalog,
 )
-from ccnl_engine.payroll.capability.models_catalog import (
+from ccnl_engine.capability.registry.models import (
     CapabilityApplicability,
     CapabilityEntry,
     CapabilityHandler,

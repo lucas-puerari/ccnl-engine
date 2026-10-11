@@ -11,11 +11,11 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from ccnl_engine.agreement.facade import NoteKind
-from ccnl_engine.knowledge.limitation.loaders import load_engine_limitations
+from ccnl_engine.limitation.loaders import load_engine_limitations
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
-    from ccnl_engine.knowledge.limitation.models import LimitationScope, ModelLimitation
+    from ccnl_engine.limitation.models import LimitationScope, ModelLimitation
 
 _INTRO = (
     "Each simplification below is a model limitation of the registry. An open "

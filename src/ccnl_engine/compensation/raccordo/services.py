@@ -21,6 +21,11 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.decision.models import (
+    CalculationDecision,
+    CalculationIssue,
+    CalculationStatus,
+)
 from ccnl_engine.extra_month.schedule.models import ExtraMonthKind
 from ccnl_engine.extra_month.settlement.services import (
     ExtraMonthSettlement,
@@ -28,11 +33,6 @@ from ccnl_engine.extra_month.settlement.services import (
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.pay_item.facade import RaccordoElementEarning
 from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.assurance.models_decision import (
-    CalculationDecision,
-    CalculationIssue,
-    CalculationStatus,
-)
 from ccnl_engine.payroll.period.rules_run_decision import _ccnl_rule
 from ccnl_engine.payroll.period.services_shared import (
     _make_entry,
@@ -41,7 +41,7 @@ from ccnl_engine.payroll.period.services_shared import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.capability.services_rule_lookup import Rule
+    from ccnl_engine.capability.rule.services import Rule
     from ccnl_engine.payroll.period.services_run_context import RunContext
 
 __all__ = ["ERC_UNKNOWN", "erc_decisions", "erc_of", "erc_rules", "erc_settlement"]

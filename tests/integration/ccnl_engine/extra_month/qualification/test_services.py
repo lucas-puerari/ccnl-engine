@@ -12,11 +12,13 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.assurance.rule_source.services import MISSING_SOURCE_CODE
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.compensation.models import (
     AccrualComparison,
     ExtraMonthAccrualRule,
 )
+from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.extra_month.decision.services import REASON_CODE
@@ -27,8 +29,6 @@ from ccnl_engine.extra_month.qualification.services import (
 )
 from ccnl_engine.extra_month.schedule.models import ExtraMonthKind
 from ccnl_engine.extra_month.services import run_schedule
-from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
-from ccnl_engine.payroll.assurance.services_rule_source import MISSING_SOURCE_CODE
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.models_run import PayrollRun
 from ccnl_engine.payroll.period.repositories import (

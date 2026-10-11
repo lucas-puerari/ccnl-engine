@@ -6,8 +6,8 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.assurance.policies import EngineMode
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.assurance.policies_engine_mode import EngineMode
 from ccnl_engine.payroll.period.repositories import (
     BundledKnowledgeRepository,
 )

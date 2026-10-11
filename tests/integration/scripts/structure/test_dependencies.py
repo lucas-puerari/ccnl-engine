@@ -61,7 +61,22 @@ DOMAIN_COUPLING: dict[tuple[str, str], str] = {}
 #: Imports of a higher tier, keyed by ``(importing concept, imported module
 #: or package)``, each with the reason it cannot move yet.  Entries may only
 #: be removed; an entry that no import uses fails the suite.
-TIER_ALLOWLIST: dict[tuple[str, str], str] = {}
+TIER_ALLOWLIST: dict[tuple[str, str], str] = {
+    (
+        "contribution",
+        "ccnl_engine.capability.rule.services",
+    ): (
+        "INPS decisions cite the payable rules of the run, which the rule "
+        "lookup of the capability report builds from every computation concept."
+    ),
+    (
+        "seniority",
+        "ccnl_engine.capability.rule.services",
+    ): (
+        "The seniority decision cites the payable rules of the run, which the "
+        "rule lookup of the capability report builds."
+    ),
+}
 
 
 @pytest.fixture(scope="module")

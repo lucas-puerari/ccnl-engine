@@ -19,9 +19,9 @@ from ccnl_engine.payroll.period.repositories import (
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL, TaxSector
+    from ccnl_engine.capability.registry.models import CapabilityCatalog
     from ccnl_engine.family.models import FamilyDeductionRules
-    from ccnl_engine.knowledge.limitation.models import ModelLimitation
-    from ccnl_engine.payroll.capability.models_catalog import CapabilityCatalog
+    from ccnl_engine.limitation.models import ModelLimitation
     from ccnl_engine.sickness.indemnity.models import InpsSickPayRates
     from ccnl_engine.surtax.models import SurtaxRules
     from ccnl_engine.tax.annual.models import YearRules

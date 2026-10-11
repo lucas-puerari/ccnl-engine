@@ -29,12 +29,12 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.compensation.proration.rules import payable_days
-from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.event.facade import AbsenceEvent
-from ccnl_engine.payroll.assurance.models_decision import (
+from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
 )
+from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.event.facade import AbsenceEvent
 from ccnl_engine.sickness.models import SicknessEpisode
 
 if TYPE_CHECKING:

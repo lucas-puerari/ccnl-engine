@@ -3,7 +3,7 @@
 One decision per stage: the pay chain (``base_salary``), the INPS
 contributions of the worker and of the employer, the TFR accrual and the
 ordinary IRPEF withholding.  Each names the payable rule it read, as listed
-by :mod:`~ccnl_engine.payroll.capability.services_rule_lookup`, and its
+by :mod:`~ccnl_engine.capability.rule.services`, and its
 source when the rule records one.  The decisions other capabilities take on
 the same amounts (apprenticeship scaling, seniority, credits, surtax, the
 withholding cap) are referenced by capability, not repeated.
@@ -13,14 +13,14 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contribution.decision.services import inps_decisions
-from ccnl_engine.payroll.assurance.models_decision import (
-    CalculationDecision,
-    CalculationStatus,
-)
-from ccnl_engine.payroll.capability.services_rule_lookup import (
+from ccnl_engine.capability.rule.services import (
     contract_rules,
     tax_rules,
+)
+from ccnl_engine.contribution.decision.services import inps_decisions
+from ccnl_engine.decision.models import (
+    CalculationDecision,
+    CalculationStatus,
 )
 from ccnl_engine.payroll.period.rules_run_decision import _ccnl_rule
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
@@ -28,8 +28,8 @@ from ccnl_engine.provenance.source.rule.models import RuleProvenance
 if TYPE_CHECKING:
     from decimal import Decimal
 
+    from ccnl_engine.capability.rule.services import Rule
     from ccnl_engine.event.total.handlers import _EventTotals
-    from ccnl_engine.payroll.capability.services_rule_lookup import Rule
     from ccnl_engine.payroll.period.services_pipeline import RunAmounts
     from ccnl_engine.payroll.period.services_run_context import RunContext
     from ccnl_engine.tax.annual.models import YearRules

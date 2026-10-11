@@ -28,11 +28,11 @@ if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.compensation.element.types import MonthlyPayChain
+    from ccnl_engine.decision.models import CalculationIssue
     from ccnl_engine.event.total.handlers import _EventTotals
     from ccnl_engine.extra_month.models import ExtraMonthAccrual
     from ccnl_engine.pay_item.facade import CompetencePeriod
     from ccnl_engine.pay_item.policies import PolicyContext, PolicyResolver
-    from ccnl_engine.payroll.assurance.models_decision import CalculationIssue
 
 __all__ = ["ExtraMonthSettlement", "settle_extra_months"]
 

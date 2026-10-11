@@ -17,14 +17,14 @@ from ccnl_engine.contribution.naspi.rules import (
     SurchargeReason,
     naspi_surcharge,
 )
-from ccnl_engine.payroll.assurance.models_decision import (
+from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
 )
 
 if TYPE_CHECKING:
     from ccnl_engine.contribution.naspi.rules import NaspiSurcharge
-    from ccnl_engine.payroll.assurance.models_decision import CalculationDecision
+    from ccnl_engine.decision.models import CalculationDecision
     from ccnl_engine.payroll.period.services_run_context import RunContext
 
 __all__ = ["ISSUE_CODE", "naspi_issue", "run_naspi_surcharge", "with_naspi"]

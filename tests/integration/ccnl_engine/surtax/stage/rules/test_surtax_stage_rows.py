@@ -7,12 +7,12 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.family.inputs import (
     Dependent,
     DependentRelationship,
     FamilyComposition,
 )
-from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
 from ccnl_engine.surtax.models import SurtaxRules
 from ccnl_engine.surtax.stage.rules import (
     SurtaxOutcome,

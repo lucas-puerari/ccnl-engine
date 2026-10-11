@@ -103,6 +103,11 @@ max-public-methods = 15
 "src/ccnl_engine/tax/annual/models.py" = ["TCH"]
 "src/ccnl_engine/agreement/**" = ["TCH"]
 "src/ccnl_engine/catalog/**" = ["TCH"]
+"src/ccnl_engine/assurance/**" = ["TCH"]
+"src/ccnl_engine/capability/**" = ["TCH"]
+"src/ccnl_engine/decision/**" = ["TCH"]
+"src/ccnl_engine/limitation/**" = ["TCH"]
+"src/ccnl_engine/reconciliation/**" = ["TCH"]
 "src/ccnl_engine/event/**" = ["TCH"]
 "src/ccnl_engine/extra_month/**" = ["TCH"]
 "src/ccnl_engine/ledger/**" = ["TCH"]
@@ -233,8 +238,8 @@ source_paths = [
     "src/ccnl_engine/irpef/deduction/rules.py",
     "src/ccnl_engine/ledger/models.py",
     "src/ccnl_engine/pay_item/rounding/policies.py",
-    "src/ccnl_engine/payroll/assurance/rules_assessment.py",
-    "src/ccnl_engine/payroll/capability/rules_requirement.py",
+    "src/ccnl_engine/assurance/rules.py",
+    "src/ccnl_engine/capability/requirement/rules.py",
     "src/ccnl_engine/tax_credit/trattamento_integrativo/rules.py",
     "src/ccnl_engine/irpef/net/rules.py",
     "src/ccnl_engine/contribution/additional_ivs/rules.py",
@@ -263,9 +268,9 @@ pytest_add_cli_args_test_selection = [
     "tests/integration/ccnl_engine/family/spouse/test_rules.py",
     "tests/integration/ccnl_engine/irpef/test_rules.py",
     "tests/unit/ccnl_engine/irpef/deduction/test_rules.py",
-    "tests/unit/ccnl_engine/payroll/assurance/test_rules_assessment.py",
-    "tests/unit/ccnl_engine/payroll/assurance/test_rules_assessment_readiness.py",
-    "tests/unit/ccnl_engine/payroll/capability/test_rules_requirement.py",
+    "tests/unit/ccnl_engine/assurance/rules/test_assessment.py",
+    "tests/unit/ccnl_engine/assurance/rules/test_assessment_readiness.py",
+    "tests/unit/ccnl_engine/capability/requirement/test_rules.py",
     "tests/unit/ccnl_engine/tax_credit/trattamento_integrativo/test_rules.py",
     "tests/unit/ccnl_engine/irpef/net/test_rules.py",
     "tests/integration/ccnl_engine/irpef/net/test_rules.py",

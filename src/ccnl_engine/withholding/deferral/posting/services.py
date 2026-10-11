@@ -8,14 +8,14 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.ledger.models import AccountKind
-from ccnl_engine.ledger.remittance.models import POST_CONGUAGLIO_WITHHOLDING
-from ccnl_engine.pay_item.facade import EmployeeWithholdingItem
-from ccnl_engine.payroll.assurance.models_decision import (
+from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
 )
+from ccnl_engine.ledger.models import AccountKind
+from ccnl_engine.ledger.remittance.models import POST_CONGUAGLIO_WITHHOLDING
+from ccnl_engine.pay_item.facade import EmployeeWithholdingItem
 from ccnl_engine.payroll.period.services_shared import (
     _make_entry,
     _require_resolution,

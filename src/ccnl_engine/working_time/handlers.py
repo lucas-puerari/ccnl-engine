@@ -2,6 +2,10 @@
 
 from __future__ import annotations
 
+from ccnl_engine.decision.models import (
+    CalculationDecision,
+    CalculationIssue,
+)
 from ccnl_engine.event.facade import (
     AbsenceEvent,
     BonusEvent,
@@ -23,10 +27,6 @@ from ccnl_engine.event.standard.handlers import (
 )
 from ccnl_engine.ledger.models import PostingIntent
 from ccnl_engine.pay_item.treatment.models import EventTreatment
-from ccnl_engine.payroll.assurance.models_decision import (
-    CalculationDecision,
-    CalculationIssue,
-)
 from ccnl_engine.payroll.period.services_shared import (
     _ZERO,
     _require_resolution,

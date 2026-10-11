@@ -23,12 +23,12 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.assurance.models_decision import (
+from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
 )
+from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.payroll.state.models_obligation import SOMMA_ESENTE_RECOVERY
 from ccnl_engine.tax_credit.somma_esente.posting.services import (
     SommaEsentePosting,

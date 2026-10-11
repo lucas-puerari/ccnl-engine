@@ -12,14 +12,14 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.assurance.models import BlockerCode
+from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.fact.inputs import (
     ContributableHours,
     WeeklyHours,
 )
 from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
-from ccnl_engine.payroll.assurance.models import BlockerCode
-from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period

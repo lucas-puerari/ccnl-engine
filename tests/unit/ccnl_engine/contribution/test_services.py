@@ -16,9 +16,9 @@ from ccnl_engine.contribution.services import (
     TFR_TREASURY_FUND_CODE,
     TfrAccrual,
 )
+from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.employment.fact.inputs import PublicEndOfService
 from ccnl_engine.ledger.models import AccountKind
-from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
 
 _QUOTA = Decimal("152.02")
 

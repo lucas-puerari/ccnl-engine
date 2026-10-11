@@ -30,7 +30,7 @@ from ccnl_engine.apprenticeship.models import (
     ApprenticeshipUnderClassification,
 )
 from ccnl_engine.compensation.models import CCNLParameters, Level
-from ccnl_engine.knowledge.limitation.models import ModelLimitation
+from ccnl_engine.limitation.models import ModelLimitation
 from ccnl_engine.provenance.ruleset.models import RulesetIdentity
 from ccnl_engine.seniority.models import SeniorityIncrements
 

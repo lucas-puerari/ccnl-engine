@@ -14,7 +14,13 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine.agreement.validity.rules import TimeSeries
+from ccnl_engine.capability.trace.models import TraceState
+from ccnl_engine.capability.trace.services import (
+    build_traces,
+    caller_supplied_fields,
+)
 from ccnl_engine.catalog.loaders import load_ccnl
+from ccnl_engine.decision.models import DecisionOrigin
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.event.facade import (
     AbsenceEvent,
@@ -31,12 +37,6 @@ from ccnl_engine.event.facade import (
     WelfareEvent,
 )
 from ccnl_engine.ledger.models import AccountKind
-from ccnl_engine.payroll.assurance.models_decision import DecisionOrigin
-from ccnl_engine.payroll.capability.models_trace import TraceState
-from ccnl_engine.payroll.capability.services_trace import (
-    build_traces,
-    caller_supplied_fields,
-)
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period
@@ -54,8 +54,8 @@ from ccnl_engine.payroll.state.models import PeriodState
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
+    from ccnl_engine.decision.models import CalculationDecision
     from ccnl_engine.event.facade import WorkEvent
-    from ccnl_engine.payroll.assurance.models_decision import CalculationDecision
 
 _CCNL = load_ccnl("metalmeccanico-federmeccanica.json")
 _BARE = _CCNL.model_copy(update={"work_rules": None})

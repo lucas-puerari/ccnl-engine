@@ -7,7 +7,7 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
+from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.payroll.period.models_run import PayrollRunId, RunKind
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.payroll.state.models_accrual import EmploymentAccrualState

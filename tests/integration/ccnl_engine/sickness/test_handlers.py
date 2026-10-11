@@ -20,6 +20,7 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from ccnl_engine.assurance.models import BlockerCode
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.category.models import WorkerCategory
@@ -27,7 +28,6 @@ from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.employment.inputs import Apprentice
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.event.facade import SickLeaveEvent
-from ccnl_engine.payroll.assurance.models import BlockerCode
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.models_run import PayrollRun, RunKind
 from ccnl_engine.payroll.period.repositories import (
@@ -47,7 +47,7 @@ from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
-    from ccnl_engine.payroll.assurance.models_decision import CalculationDecision
+    from ccnl_engine.decision.models import CalculationDecision
     from ccnl_engine.payroll.period.results import PeriodResult
     from ccnl_engine.sickness.indemnity.models import InpsSickPayRates
 

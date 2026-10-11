@@ -5,11 +5,11 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.fund.models import FundContributionBase
-from ccnl_engine.payroll.assurance.models_decision import (
+from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
 )
+from ccnl_engine.fund.models import FundContributionBase
 from ccnl_engine.pension_fund.rules import (
     contractual_only,
     contribute,

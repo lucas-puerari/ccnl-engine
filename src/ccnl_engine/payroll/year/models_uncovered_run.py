@@ -5,8 +5,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from ccnl_engine.assurance.models import BlockerCode, ResultBlocker
 from ccnl_engine.errors import MissingRuleError
-from ccnl_engine.payroll.assurance.models import BlockerCode, ResultBlocker
 
 if TYPE_CHECKING:
     from datetime import date

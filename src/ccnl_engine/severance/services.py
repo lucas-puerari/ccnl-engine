@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.capability.services_rule_lookup import Rule
+    from ccnl_engine.capability.rule.services import Rule
     from ccnl_engine.severance.models import TfrRules
     from ccnl_engine.severance.revaluation.models import TfrRevaluationRules
 

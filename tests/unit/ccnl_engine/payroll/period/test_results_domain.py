@@ -7,6 +7,7 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.capability.results import CapabilityReport
 from ccnl_engine.contribution.results import ContributionBreakdown
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.errors import InvalidInputError
@@ -16,7 +17,6 @@ from ccnl_engine.pay_item.facade import (
     BaseSalaryEarning,
     CompetencePeriod,
 )
-from ccnl_engine.payroll.capability.results import CapabilityReport
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.results import PeriodResult

@@ -12,22 +12,22 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.capability.rule.services import contract_rules
 from ccnl_engine.contribution.naspi.services import with_naspi
 from ccnl_engine.contribution.rate.rules import resolve_rates
-from ccnl_engine.payroll.assurance.models_decision import (
+from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationStatus,
 )
-from ccnl_engine.payroll.capability.services_rule_lookup import contract_rules
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
 if TYPE_CHECKING:
     from decimal import Decimal
 
+    from ccnl_engine.capability.rule.services import Rule
     from ccnl_engine.contribution.ceiling.services import IvsCeiling
     from ccnl_engine.contribution.minimum_base.models import MinimumBase
     from ccnl_engine.event.total.handlers import _EventTotals
-    from ccnl_engine.payroll.capability.services_rule_lookup import Rule
     from ccnl_engine.payroll.period.services_pipeline import RunAmounts
     from ccnl_engine.payroll.period.services_run_context import RunContext
 

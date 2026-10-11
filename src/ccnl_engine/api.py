@@ -30,12 +30,12 @@ from ccnl_engine.payroll.year.services_tax_year import (
 )
 
 if TYPE_CHECKING:
+    from ccnl_engine.assurance.policies import EngineMode
     from ccnl_engine.catalog.loaders import (
         ContractSummary,
         LevelSummary,
     )
     from ccnl_engine.pay_item.policies import PolicyResolver
-    from ccnl_engine.payroll.assurance.policies_engine_mode import EngineMode
     from ccnl_engine.payroll.period.inputs import PeriodInput
     from ccnl_engine.payroll.period.ports import KnowledgeRepository
     from ccnl_engine.payroll.period.results import PeriodResult
@@ -64,7 +64,7 @@ class PayrollEngine:
     data.
 
     The ``mode`` sets the payability policy of every result (see
-    :class:`~ccnl_engine.payroll.assurance.policies_engine_mode.EngineMode`):
+    :class:`~ccnl_engine.assurance.policies.EngineMode`):
     ``"simulation"`` (the default) reports ruleset readiness, while
     ``"operational"`` also blocks payment from any ruleset that is not
     ``production``.  Both modes compute the same amounts.

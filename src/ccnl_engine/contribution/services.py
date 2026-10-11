@@ -10,6 +10,10 @@ from ccnl_engine.contribution.domestic.services import (
 )
 from ccnl_engine.contribution.rate.rules import resolve_rates
 from ccnl_engine.contribution.rules import resolve_contributions
+from ccnl_engine.decision.models import (
+    CalculationIssue,
+    CalculationStatus,
+)
 from ccnl_engine.employment.fact.inputs import PublicEndOfService
 from ccnl_engine.employment.inputs import Apprentice
 from ccnl_engine.end_of_service.services import (
@@ -24,10 +28,6 @@ from ccnl_engine.fund.solidarity.services import (
 )
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.pay_item.rounding.policies import contribution_base, money
-from ccnl_engine.payroll.assurance.models_decision import (
-    CalculationIssue,
-    CalculationStatus,
-)
 from ccnl_engine.payroll.period.services_shared import _ZERO
 
 if TYPE_CHECKING:

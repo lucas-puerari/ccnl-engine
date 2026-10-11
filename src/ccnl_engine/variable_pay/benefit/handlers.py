@@ -6,6 +6,11 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.decision.models import (
+    CalculationDecision,
+    CalculationIssue,
+    CalculationStatus,
+)
 from ccnl_engine.event.facade import FringeEvent, WelfareEvent
 from ccnl_engine.event.handlers import (
     EventEffect,
@@ -14,11 +19,6 @@ from ccnl_engine.event.handlers import (
 )
 from ccnl_engine.ledger.models import AccountKind, PostingIntent
 from ccnl_engine.pay_item.facade import FringeBenefitItem, WelfareItem
-from ccnl_engine.payroll.assurance.models_decision import (
-    CalculationDecision,
-    CalculationIssue,
-    CalculationStatus,
-)
 from ccnl_engine.payroll.period.services_shared import _ZERO, _require_resolution
 
 if TYPE_CHECKING:

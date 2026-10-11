@@ -28,10 +28,10 @@ from typing import TYPE_CHECKING
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from ccnl_engine.knowledge.capability.loaders import (
+from ccnl_engine.capability.loaders import (
     load_capability_catalog,
 )
-from ccnl_engine.payroll.capability.models_catalog import CapabilityImplementation
+from ccnl_engine.capability.registry.models import CapabilityImplementation
 from scripts.documentation.coverage import (
     IMPLEMENTATION_LEGEND,
     bundled_ccnls,
@@ -44,7 +44,7 @@ from scripts.provenance.rules import count_by_capability, count_by_file, invento
 if TYPE_CHECKING:
     from collections.abc import Mapping
 
-    from ccnl_engine.payroll.capability.models_catalog import (
+    from ccnl_engine.capability.registry.models import (
         CapabilityCatalog,
         CapabilityEntry,
     )

@@ -9,7 +9,7 @@ from __future__ import annotations
 from decimal import Decimal
 
 from ccnl_engine.agreement.facade import TaxSector
-from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
+from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.tax.annual.loaders import load_year_rules
 from ccnl_engine.tax_credit.account.models import UlterioreDetrazioneAccount
 from ccnl_engine.tax_credit.ulteriore_detrazione.rules import settle_ulteriore

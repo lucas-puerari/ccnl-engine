@@ -23,8 +23,8 @@ if TYPE_CHECKING:
 
     from ccnl_engine.contribution.results import ContributionBreakdown
     from ccnl_engine.contribution.services import TfrAccrual
+    from ccnl_engine.decision.models import CalculationDecision
     from ccnl_engine.payroll.amount.types import _AmountsInput
-    from ccnl_engine.payroll.assurance.models_decision import CalculationDecision
     from ccnl_engine.pension_fund.rules import PensionContribution
 
 #: No IRPEF computed: no withholding, credit or conguaglio.
