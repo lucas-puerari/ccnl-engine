@@ -206,7 +206,7 @@ function makeCombobox(wrapId, selectId, placeholderKey) {
 
 const EXAMPLES = [
   {
-    key: "standard",
+    key: "full_time",
     params: {
       ccnl: "metalmeccanico-federmeccanica", level: "C1", contract: "permanent",
       part_time_pct: 100, seniority_months: 0, headcount: 200,

@@ -160,7 +160,7 @@ def test_the_four_examples_compute(demo_app: types.ModuleType) -> None:
     examples = _examples()
 
     assert [ex["key"] for ex in examples] == [
-        "standard",
+        "full_time",
         "part_time",
         "apprentice",
         "domestic",
