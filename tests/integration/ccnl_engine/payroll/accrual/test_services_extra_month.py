@@ -8,8 +8,8 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
-from ccnl_engine.payroll.employment.inputs_fact import EmploymentPeriod
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
+from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.payroll.event.facade import AbsenceEvent
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.models_run import PayrollRun, RunKind

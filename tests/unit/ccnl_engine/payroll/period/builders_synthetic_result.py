@@ -11,7 +11,7 @@ from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
 
-from ccnl_engine.payroll.amount.facade import BaseSalaryEarning, CompetencePeriod
+from ccnl_engine.pay_item.facade import BaseSalaryEarning, CompetencePeriod
 from ccnl_engine.payroll.capability.results import CapabilityReport
 from ccnl_engine.payroll.contribution.results import ContributionBreakdown
 from ccnl_engine.payroll.event.results_benefit import BenefitBreakdown

@@ -21,12 +21,12 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine.catalog.loaders import load_ccnl
-from ccnl_engine.contract.employment.models_category import WorkerCategory
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
+from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.employment.fact.inputs import EmploymentPeriod
+from ccnl_engine.employment.inputs import Apprentice
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.assurance.models import BlockerCode
-from ccnl_engine.payroll.employment.inputs import Apprentice
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
-from ccnl_engine.payroll.employment.inputs_fact import EmploymentPeriod
 from ccnl_engine.payroll.event.facade import SickLeaveEvent
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.models_run import PayrollRun, RunKind

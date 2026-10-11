@@ -8,13 +8,13 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.amount.loaders_policy import load_policy_resolver
+from ccnl_engine.pay_item.loaders import load_policy_resolver
 from ccnl_engine.payroll.period.repositories import (
     BundledKnowledgeRepository,
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.amount.policies import PolicyResolver
+    from ccnl_engine.pay_item.policies import PolicyResolver
     from ccnl_engine.payroll.period.ports import KnowledgeRepository
 
 __all__ = ["bundled_policies", "bundled_repository"]
@@ -34,7 +34,7 @@ def bundled_policies() -> PolicyResolver:
     """Return the pay-item policy resolver of the bundled Italian ruleset.
 
     Returns:
-        A freshly loaded :class:`~ccnl_engine.payroll.amount.policies\
+        A freshly loaded :class:`~ccnl_engine.pay_item.policies\
 .PolicyResolver`.
     """
     return load_policy_resolver()

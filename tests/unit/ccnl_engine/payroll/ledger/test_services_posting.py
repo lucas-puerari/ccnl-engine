@@ -7,7 +7,7 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.payroll.amount.facade import CompetencePeriod
+from ccnl_engine.pay_item.facade import CompetencePeriod
 from ccnl_engine.payroll.ledger.models import AccountKind, LedgerEntry, PostingIntent
 from ccnl_engine.payroll.ledger.services_posting import post
 

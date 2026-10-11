@@ -33,7 +33,6 @@ from ccnl_engine.payroll.event.handlers_context import (
     _EventHandlerCtx,
 )
 from ccnl_engine.payroll.event.handlers_variable_pay import _handle_arrears
-from ccnl_engine.payroll.event.handlers_work_time import _handle_standard
 from ccnl_engine.payroll.sickness.handlers import (
     _handle_sickness_episode,
 )
@@ -41,6 +40,7 @@ from ccnl_engine.payroll.termination.handlers import (
     _handle_bilateral_fund,
     _handle_termination_tfr,
 )
+from ccnl_engine.working_time.handlers import _handle_standard
 
 __all__ = ["_HANDLER_REGISTRY", "EventEffect", "_EventHandlerCtx", "_EventHandlerFn"]
 

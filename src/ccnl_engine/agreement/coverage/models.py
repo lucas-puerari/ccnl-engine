@@ -18,23 +18,23 @@ from typing import TYPE_CHECKING, Self
 
 from pydantic import BaseModel, ConfigDict, model_validator
 
+from ccnl_engine.absence.models import AbsenceRules
 from ccnl_engine.agreement.types import NoteKind
-from ccnl_engine.contract.absence.models import AbsenceRules
 from ccnl_engine.contract.sickness.models import SicknessRules
-from ccnl_engine.contract.working_time.models import LeaveRules, TimeSupplements
 from ccnl_engine.knowledge.limitation.models import (
     ModelLimitation,
     MonetaryImpact,
     NoteLimitation,
 )
+from ccnl_engine.working_time.models import LeaveRules, TimeSupplements
 
 if TYPE_CHECKING:
     from collections.abc import Iterator, Sequence
     from datetime import date
 
     from ccnl_engine.agreement.validity.rules import TimeSeries
-    from ccnl_engine.contract.compensation.models import CCNLParameters, Level
-    from ccnl_engine.contract.seniority.models import SeniorityIncrements
+    from ccnl_engine.compensation.models import CCNLParameters, Level
+    from ccnl_engine.seniority.models import SeniorityIncrements
 
 
 class CoverageNote(BaseModel):

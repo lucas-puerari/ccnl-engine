@@ -5,7 +5,8 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 
-from ccnl_engine.payroll.amount.facade import (
+from ccnl_engine.compensation.element.types import MonthlyPayChain
+from ccnl_engine.pay_item.facade import (
     BaseSalaryEarning,
     EmployeeWithholdingItem,
     EmployerContributionItem,
@@ -13,7 +14,6 @@ from ccnl_engine.payroll.amount.facade import (
     TfrAccrualItem,
 )
 from ccnl_engine.payroll.amount.types import _PeriodAmounts
-from ccnl_engine.payroll.amount.types_chain import MonthlyPayChain
 from ccnl_engine.payroll.contribution.services import TfrAccrual
 from ccnl_engine.payroll.ledger.services import (
     _build_pay_items,

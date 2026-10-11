@@ -11,9 +11,9 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.employment.fixed_term.inputs import NaspiExclusion
+from ccnl_engine.employment.inputs import FixedTerm, Permanent
 from ccnl_engine.errors import MissingRequiredFactError
-from ccnl_engine.payroll.employment.inputs import FixedTerm, Permanent
-from ccnl_engine.payroll.employment.inputs_fixed_term import NaspiExclusion
 from ccnl_engine.payroll.period.services import calculate_period
 from tests.integration.ccnl_engine.payroll.period.builders_period_requests import (
     period_request,

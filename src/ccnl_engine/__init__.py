@@ -54,6 +54,8 @@ ruleset that is not ``production``; :meth:`~PayrollEngine.list_contracts` and
 from __future__ import annotations
 
 from ccnl_engine.api import PayrollEngine
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
+from ccnl_engine.employment.inputs import Employment
 from ccnl_engine.errors import (
     CcnlEngineError,
     DataIntegrityError,
@@ -66,8 +68,6 @@ from ccnl_engine.errors import (
     UnsupportedTaxYearError,
 )
 from ccnl_engine.knowledge.facade import __version__ as bundle_version
-from ccnl_engine.payroll.employment.inputs import Employment
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.period.inputs import PeriodFacts, PeriodInput
 from ccnl_engine.payroll.period.models_run import PayrollRun
 from ccnl_engine.payroll.period.results import PeriodResult

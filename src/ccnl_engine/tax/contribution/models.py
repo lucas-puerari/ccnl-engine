@@ -13,7 +13,7 @@ from typing import Self
 from pydantic import BaseModel, ConfigDict, model_validator
 
 from ccnl_engine.agreement.facade import PublicPensionFund
-from ccnl_engine.contract.employment.models_category import WorkerCategory
+from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from ccnl_engine.tax.contribution.models_additional_ivs import AdditionalIvsRule
 from ccnl_engine.tax.contribution.models_fis_reduction import FisReduction

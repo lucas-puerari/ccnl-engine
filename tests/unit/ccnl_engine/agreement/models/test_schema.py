@@ -11,7 +11,7 @@ import pytest
 from pydantic import ValidationError
 
 from ccnl_engine.agreement.facade import CCNL, CCNLMeta
-from ccnl_engine.contract.compensation.models import CCNLParameters
+from ccnl_engine.compensation.models import CCNLParameters
 from ccnl_engine.provenance.source.extraction.models import ExtractionTrace
 from ccnl_engine.provenance.source.models import SourceKind
 from tests.unit.ccnl_engine.builders import TEST_PROV, make_ccnl_dict

@@ -114,6 +114,14 @@ max-public-methods = 15
 "src/ccnl_engine/contract/**" = ["TCH"]
 "src/ccnl_engine/agreement/**" = ["TCH"]
 "src/ccnl_engine/catalog/**" = ["TCH"]
+"src/ccnl_engine/absence/**" = ["TCH"]
+"src/ccnl_engine/apprenticeship/**" = ["TCH"]
+"src/ccnl_engine/compensation/**" = ["TCH"]
+"src/ccnl_engine/employer/**" = ["TCH"]
+"src/ccnl_engine/employment/**" = ["TCH"]
+"src/ccnl_engine/pay_item/**" = ["TCH"]
+"src/ccnl_engine/seniority/**" = ["TCH"]
+"src/ccnl_engine/working_time/**" = ["TCH"]
 "src/ccnl_engine/payroll/**" = ["TCH"]
 "src/ccnl_engine/tax/surtax/models.py" = ["TCH"]
 "src/ccnl_engine/tax/surtax/models_table.py" = ["TCH"]
@@ -220,7 +228,7 @@ source_paths = [
     "src/ccnl_engine/payroll/taxation/rules_irpef.py",
     "src/ccnl_engine/payroll/taxation/rules_irpef_deduction.py",
     "src/ccnl_engine/payroll/ledger/models.py",
-    "src/ccnl_engine/payroll/amount/policies_rounding.py",
+    "src/ccnl_engine/pay_item/rounding/policies.py",
     "src/ccnl_engine/payroll/assurance/rules_assessment.py",
     "src/ccnl_engine/payroll/capability/rules_requirement.py",
     "src/ccnl_engine/payroll/taxation/rules_trattamento_credit.py",
@@ -233,12 +241,12 @@ source_paths = [
 # so imports resolve. Hypothesis tests are left out: they use multiple
 # executors and are incompatible with fork mode.
 pytest_add_cli_args_test_selection = [
-    "tests/unit/ccnl_engine/payroll/employment/test_inputs.py",
+    "tests/unit/ccnl_engine/employment/inputs/test_inputs.py",
     "tests/unit/ccnl_engine/payroll/family/test_inputs.py",
     "tests/unit/ccnl_engine/payroll/ledger/test_models.py",
-    "tests/unit/ccnl_engine/payroll/amount/test_facade.py",
-    "tests/unit/ccnl_engine/payroll/amount/test_policies_rounding.py",
-    "tests/unit/ccnl_engine/payroll/amount/test_types_treatment.py",
+    "tests/unit/ccnl_engine/pay_item/facade/test_facade.py",
+    "tests/unit/ccnl_engine/pay_item/rounding/test_policies.py",
+    "tests/unit/ccnl_engine/pay_item/treatment/test_types.py",
     "tests/unit/ccnl_engine/payroll/contribution/test_rules.py",
     "tests/unit/ccnl_engine/payroll/contribution/test_rules_ceiling.py",
     "tests/unit/ccnl_engine/payroll/contribution/test_rules_rate.py",

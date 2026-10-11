@@ -27,7 +27,7 @@ if TYPE_CHECKING:
     from datetime import date
     from decimal import Decimal
 
-    from ccnl_engine.payroll.amount.facade import PayItem
+    from ccnl_engine.pay_item.facade import PayItem
     from ccnl_engine.payroll.assurance.models_decision import (
         CalculationDecision,
         CalculationIssue,

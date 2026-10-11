@@ -12,7 +12,7 @@ adds 0.5 points to the rate of the previous contract: 1.4%, 1.9%, 2.4%,
 2.9% for the original contract and three renewals (INPS circ. 121/2019
 par. 2.3).  C. 3 excludes the operai agricoli from the whole article, so
 from the surcharge; c. 29 lists the other exclusions
-(:class:`~ccnl_engine.payroll.employment.inputs_fixed_term.NaspiExclusion`).
+(:class:`~ccnl_engine.employment.fixed_term.inputs.NaspiExclusion`).
 
 The rates and the exempt categories are data of the sector ruleset; the
 contract facts come from the request.  A fact the surcharge depends on and
@@ -27,11 +27,11 @@ from decimal import Decimal
 from enum import StrEnum
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.employment.inputs_fixed_term import FixedTerm
+from ccnl_engine.employment.fixed_term.inputs import FixedTerm
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.employment.models_category import WorkerCategory
-    from ccnl_engine.payroll.employment.inputs import Contract
+    from ccnl_engine.employment.category.models import WorkerCategory
+    from ccnl_engine.employment.inputs import Contract
     from ccnl_engine.tax.annual.models import YearRules
 
 __all__ = ["NaspiSurcharge", "SurchargeReason", "naspi_surcharge"]

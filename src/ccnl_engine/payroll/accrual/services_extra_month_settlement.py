@@ -12,9 +12,9 @@ from dataclasses import dataclass, replace
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.pay_item.facade import ExtraMonthEarning, PayItem
+from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.payroll.accrual.models_extra_month_schedule import ExtraMonthKind
-from ccnl_engine.payroll.amount.facade import ExtraMonthEarning, PayItem
-from ccnl_engine.payroll.amount.policies_rounding import money
 from ccnl_engine.payroll.ledger.models import AccountKind, LedgerEntry
 from ccnl_engine.payroll.period.services_shared import (
     _ZERO,
@@ -27,10 +27,10 @@ from ccnl_engine.payroll.period.services_shared import (
 if TYPE_CHECKING:
     from datetime import date
 
+    from ccnl_engine.compensation.element.types import MonthlyPayChain
+    from ccnl_engine.pay_item.facade import CompetencePeriod
+    from ccnl_engine.pay_item.policies import PolicyContext, PolicyResolver
     from ccnl_engine.payroll.accrual.models import ExtraMonthAccrual
-    from ccnl_engine.payroll.amount.facade import CompetencePeriod
-    from ccnl_engine.payroll.amount.policies import PolicyContext, PolicyResolver
-    from ccnl_engine.payroll.amount.types_chain import MonthlyPayChain
     from ccnl_engine.payroll.assurance.models_decision import CalculationIssue
     from ccnl_engine.payroll.event.handlers_totals import _EventTotals
 

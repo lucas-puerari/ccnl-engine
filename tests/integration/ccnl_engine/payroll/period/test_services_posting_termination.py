@@ -25,7 +25,7 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.payroll.employment.inputs_fact import EmploymentPeriod
+from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.period.inputs import PeriodInput
 from ccnl_engine.payroll.period.models_run import PayrollRun

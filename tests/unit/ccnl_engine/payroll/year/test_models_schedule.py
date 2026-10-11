@@ -7,13 +7,13 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.accrual.models_extra_month_schedule import (
     AccrualWindow,
     ExtraMonthKind,
     ExtraMonthSchedule,
 )
-from ccnl_engine.payroll.employment.inputs_fact import EmploymentPeriod
 from ccnl_engine.payroll.period.models_run import PayrollRun, RunKind
 from ccnl_engine.payroll.year.models_calendar import WorkCalendar
 from ccnl_engine.payroll.year.models_schedule import PayrollSchedule

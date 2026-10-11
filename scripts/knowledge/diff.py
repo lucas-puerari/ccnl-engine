@@ -34,11 +34,11 @@ if TYPE_CHECKING:
     from decimal import Decimal
 
     from ccnl_engine.agreement.validity.rules import TimeSeries
-    from ccnl_engine.contract.compensation.models import CCNLParameters, Level
+    from ccnl_engine.compensation.models import CCNLParameters, Level
     from ccnl_engine.contract.fund.models import (
         ContractualFundContribution,
     )
-    from ccnl_engine.contract.seniority.models import SeniorityIncrements
+    from ccnl_engine.seniority.models import SeniorityIncrements
 
 # Paths inside the repo used for git diff filtering.
 _KNOWLEDGE_ROOT = "src/ccnl_engine/knowledge"

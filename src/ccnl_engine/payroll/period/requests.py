@@ -7,19 +7,18 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.contribution.inputs_eligibility import ContributionHistory
-from ccnl_engine.payroll.contribution.inputs_pension_fund import PENSION_FUND_TYPES
-from ccnl_engine.payroll.employment.inputs import Apprentice, FixedTerm, Permanent
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile
-from ccnl_engine.payroll.employment.inputs_fact import (
+from ccnl_engine.employer.inputs import EmployerProfile
+from ccnl_engine.employment.fact.inputs import (
     ContributableHours,
     EmploymentPeriod,
     PublicEndOfService,
     WeeklyHours,
     check_within_full_time,
 )
-from ccnl_engine.payroll.employment.inputs_seniority import SeniorityFact
+from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
+from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.payroll.contribution.inputs_eligibility import ContributionHistory
+from ccnl_engine.payroll.contribution.inputs_pension_fund import PENSION_FUND_TYPES
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.validators_request import employment_gap
 from ccnl_engine.payroll.state.models import PeriodState
@@ -28,11 +27,12 @@ from ccnl_engine.payroll.taxation.inputs_prior_year import PriorYearTaxFacts
 from ccnl_engine.payroll.taxation.types_jurisdiction import check_surtax_codes
 from ccnl_engine.payroll.termination.models_tfr_fund import TfrFundBalance
 from ccnl_engine.payroll.year.rules_tax_year import TaxYearPolicy
+from ccnl_engine.seniority.inputs import SeniorityFact
 from ccnl_engine.tax.regime.models import EmploymentSector
 from ccnl_engine.validators import FieldSpec, require_instances
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.employment.models_category import WorkerCategory
+    from ccnl_engine.employment.category.models import WorkerCategory
     from ccnl_engine.payroll.accrual.models import ExtraMonthAccrual
     from ccnl_engine.payroll.contribution.inputs_pension_fund import (
         NoPensionFund,

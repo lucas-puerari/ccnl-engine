@@ -25,7 +25,7 @@ from ccnl_engine.payroll.period.services_pipeline import (
 from ccnl_engine.payroll.period.services_posting import post_run, run_credits
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.amount.policies import PolicyResolver
+    from ccnl_engine.pay_item.policies import PolicyResolver
     from ccnl_engine.payroll.period.ports import KnowledgeRepository
     from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
     from ccnl_engine.payroll.period.results import PeriodResult
@@ -47,7 +47,7 @@ def calculate_period(
         repo: Optional knowledge repository. Uses
             :class:`~ccnl_engine.payroll.period.repositories\
 .BundledKnowledgeRepository` when ``None``.
-        resolver: Optional pre-loaded :class:`~ccnl_engine.payroll.amount.policies\
+        resolver: Optional pre-loaded :class:`~ccnl_engine.pay_item.policies\
 .PolicyResolver`.  When ``None``, the bundled Italian ruleset is loaded on every
             call.  Pass a cached instance (e.g. from :attr:`PayrollEngine._resolver`)
             to avoid repeated JSON parsing.

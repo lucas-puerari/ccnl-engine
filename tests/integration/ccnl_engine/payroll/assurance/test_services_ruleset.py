@@ -5,10 +5,10 @@ from __future__ import annotations
 from datetime import date
 from typing import TYPE_CHECKING
 
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.payroll.assurance.models import BlockerCode
 from ccnl_engine.payroll.assurance.policies_engine_mode import EngineMode
 from ccnl_engine.payroll.assurance.rules_assessment import NO_TRACKED_READINESS
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.repositories import (
     BundledKnowledgeRepository,

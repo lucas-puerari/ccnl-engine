@@ -21,7 +21,7 @@ from ccnl_engine.knowledge.validators import (
 from ccnl_engine.validators import require_str
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.employment.models_category import WorkerCategory
+    from ccnl_engine.employment.category.models import WorkerCategory
     from ccnl_engine.provenance.ruleset.models import RulesetReadiness
 
 

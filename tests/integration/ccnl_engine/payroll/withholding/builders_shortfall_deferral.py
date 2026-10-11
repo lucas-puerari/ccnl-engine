@@ -29,7 +29,7 @@ from ccnl_engine.payroll.year.services_competence import (
 from tests.unit.ccnl_engine.builders import year_plan
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.employment.inputs_fact import EmploymentPeriod
+    from ccnl_engine.employment.fact.inputs import EmploymentPeriod
     from ccnl_engine.payroll.event.facade import AbsenceEvent
     from ccnl_engine.payroll.period.results import PeriodResult
     from ccnl_engine.payroll.year.results import CompetenceYearResult

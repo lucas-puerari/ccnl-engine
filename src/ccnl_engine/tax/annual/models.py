@@ -7,7 +7,7 @@ from typing import Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.agreement.facade import TaxSector
-from ccnl_engine.contract.employment.models_category import WorkerCategory
+from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.provenance.ruleset.models import RulesetIdentity
 from ccnl_engine.provenance.source.extraction.models import ExtractionTrace
 from ccnl_engine.provenance.source.models import SourceDocument

@@ -8,7 +8,7 @@ from decimal import Decimal
 import pytest
 from pydantic import ValidationError
 
-from ccnl_engine.payroll.amount.facade import CompetencePeriod
+from ccnl_engine.pay_item.facade import CompetencePeriod
 from ccnl_engine.payroll.ledger.models import (
     AccountKind,
     LedgerEntry,

@@ -26,12 +26,12 @@ from decimal import Decimal
 from enum import StrEnum
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.amount.rules_proration import payable_days
+from ccnl_engine.compensation.proration.rules import payable_days
 
 if TYPE_CHECKING:
     from collections.abc import Iterator
 
-    from ccnl_engine.contract.absence.models import DailyDivisorMethod
+    from ccnl_engine.absence.models import DailyDivisorMethod
     from ccnl_engine.payroll.sickness.models import SicknessEpisode, SicknessHistory
     from ccnl_engine.payroll.sickness.models_pay_rule import DayTreatment, SickPayRules
     from ccnl_engine.payroll.sickness.rules_cumulation import CcnlDay
@@ -237,7 +237,7 @@ def segment_units(
     """Return the payable units of each segment under the CCNL divisor.
 
     Days are counted as the CCNL counts a partial month
-    (:func:`~ccnl_engine.payroll.amount.rules_proration.payable_days`), from the
+    (:func:`~ccnl_engine.compensation.proration.rules.payable_days`), from the
     first sick day; hours for ``by_hourly``.  The running total never
     exceeds ``divisor``: a month of sickness is worth one monthly pay.
 

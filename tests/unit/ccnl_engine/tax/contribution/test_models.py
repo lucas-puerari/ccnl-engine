@@ -6,7 +6,7 @@ from typing import Any
 import pytest
 from pydantic import ValidationError
 
-from ccnl_engine.contract.employment.models_category import WorkerCategory
+from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.payroll.contribution.rules_apprentice_rate import (
     apprentice_employer_rate,
 )

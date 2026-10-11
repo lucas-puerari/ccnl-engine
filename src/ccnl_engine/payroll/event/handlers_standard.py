@@ -5,7 +5,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.amount.facade import (
+from ccnl_engine.pay_item.facade import (
     AbsenceDeduction,
     BonusEarning,
     CompetencePeriod,
@@ -14,7 +14,7 @@ from ccnl_engine.payroll.amount.facade import (
     PayItem,
     SicknessItem,
 )
-from ccnl_engine.payroll.amount.policies_rounding import money
+from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.payroll.event.facade import (
     AbsenceEvent,
     BonusEvent,
@@ -29,7 +29,7 @@ from ccnl_engine.payroll.ledger.models import AccountKind, PostingIntent
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.payroll.amount.policies import PolicyResolution
+    from ccnl_engine.pay_item.policies import PolicyResolution
 
 _WorkTimeEvent = (
     OvertimeEvent | NightShiftEvent | HolidayWorkEvent | ShiftWorkEvent | AbsenceEvent
@@ -48,7 +48,7 @@ def _standard_event_gross(event: _CashEvent) -> Decimal:
 
     An overtime event must carry the multiplier it is paid with, resolved
     against the CCNL bands by
-    :func:`~ccnl_engine.payroll.event.policies_overtime_rate.resolve_overtime_rate`.
+    :func:`~ccnl_engine.working_time.overtime.policies.resolve_overtime_rate`.
 
     Returns:
         Rounded gross amount in EUR (negative for absence deductions).

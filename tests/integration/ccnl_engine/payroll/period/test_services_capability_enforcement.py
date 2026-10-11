@@ -13,7 +13,9 @@ from datetime import date
 
 import pytest
 
-from ccnl_engine.contract.employment.models_category import WorkerCategory
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
+from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.inputs import NoPensionFund
 from ccnl_engine.payroll.assurance.models import BlockerCode, CoverageStatus
 from ccnl_engine.payroll.capability.results import (
@@ -21,8 +23,6 @@ from ccnl_engine.payroll.capability.results import (
     CapabilityReport,
     CapabilityScope,
 )
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
-from ccnl_engine.payroll.employment.inputs_fact import EmploymentPeriod
 from ccnl_engine.payroll.family.inputs import FamilyComposition
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.models_run import PayrollRun, RunKind

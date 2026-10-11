@@ -8,8 +8,8 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.catalog.loaders import load_ccnl
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
-from ccnl_engine.payroll.employment.inputs_fact import WeeklyHours
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
+from ccnl_engine.employment.fact.inputs import WeeklyHours
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.models_run import PayrollRun
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest

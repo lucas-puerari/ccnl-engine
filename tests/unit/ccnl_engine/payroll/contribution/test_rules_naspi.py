@@ -12,13 +12,13 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.contract.employment.models_category import WorkerCategory
+from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.employment.fixed_term.inputs import FixedTerm, NaspiExclusion
+from ccnl_engine.employment.inputs import Apprentice, Permanent
 from ccnl_engine.payroll.contribution.rules_naspi import (
     SurchargeReason,
     naspi_surcharge,
 )
-from ccnl_engine.payroll.employment.inputs import Apprentice, Permanent
-from ccnl_engine.payroll.employment.inputs_fixed_term import FixedTerm, NaspiExclusion
 from tests.unit.ccnl_engine.builders import make_year_rules
 
 if TYPE_CHECKING:

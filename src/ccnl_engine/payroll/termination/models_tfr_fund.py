@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from decimal import Decimal
 
-from ccnl_engine.payroll.employment.inputs_fact import FEATURE
+from ccnl_engine.employment.fact.inputs import FEATURE
 from ccnl_engine.validators import (
     reject,
     require_decimal,

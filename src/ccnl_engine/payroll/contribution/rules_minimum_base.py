@@ -34,7 +34,7 @@ from dataclasses import replace
 from datetime import timedelta
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.amount.policies_rounding import money
+from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.payroll.contribution.models_minimum_base import (
     MinimumBase,
     MinimumBaseReason,

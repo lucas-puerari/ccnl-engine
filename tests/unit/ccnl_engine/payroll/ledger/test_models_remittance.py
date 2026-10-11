@@ -5,7 +5,7 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 
-from ccnl_engine.payroll.amount.facade import CompetencePeriod
+from ccnl_engine.pay_item.facade import CompetencePeriod
 from ccnl_engine.payroll.ledger.models import AccountKind, LedgerEntry
 from ccnl_engine.payroll.ledger.models_remittance import (
     ACCOUNT_CODES,

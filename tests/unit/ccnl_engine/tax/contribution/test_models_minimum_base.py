@@ -5,7 +5,7 @@ from decimal import Decimal
 import pytest
 from pydantic import ValidationError
 
-from ccnl_engine.contract.employment.models_category import WorkerCategory
+from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.tax.contribution.models_minimum_base import MinimumBaseRule
 
 #: Circ. INPS 6/2026 par. 1 (58.13 a day) and par. 4 (58.13 x 6/40 = 8.72).

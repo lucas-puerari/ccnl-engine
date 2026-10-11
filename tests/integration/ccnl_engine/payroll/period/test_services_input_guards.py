@@ -8,8 +8,8 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.errors import DataIntegrityError, InvalidInputError
-from ccnl_engine.payroll.amount.loaders_policy import load_policy_resolver
-from ccnl_engine.payroll.amount.policies import PolicyContext
+from ccnl_engine.pay_item.loaders import load_policy_resolver
+from ccnl_engine.pay_item.policies import PolicyContext
 from ccnl_engine.payroll.assurance import validators as _reconcile_mod
 from ccnl_engine.payroll.assurance.validators import (
     ReconciliationResult,

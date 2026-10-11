@@ -16,7 +16,7 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.employment.inputs_employer import (
+from ccnl_engine.employer.inputs import (
     EmployerActivity,
     EmployerProfile,
     Headcount,

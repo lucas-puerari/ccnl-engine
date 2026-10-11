@@ -22,8 +22,8 @@ from ccnl_engine.payroll.contribution.inputs_pension_fund import (
     PensionFundEnrolment,
 )
 from ccnl_engine.payroll.contribution.rules_pension_fund_lookup import fund_of
-from ccnl_engine.payroll.employment.rules_seniority import seniority_maximum
-from ccnl_engine.payroll.employment.services_seniority import seniority_months_at
+from ccnl_engine.seniority.rules import seniority_maximum
+from ccnl_engine.seniority.services import seniority_months_at
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL

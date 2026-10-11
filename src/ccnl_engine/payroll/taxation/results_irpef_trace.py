@@ -10,7 +10,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.amount.policies_rounding import money
+from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.payroll.taxation.results import TaxLineItem
 from ccnl_engine.payroll.taxation.rules_foreign_tax_credit import foreign_credit_rule
 from ccnl_engine.payroll.taxation.rules_irpef_credit import somma_esente

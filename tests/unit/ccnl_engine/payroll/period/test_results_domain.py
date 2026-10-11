@@ -7,14 +7,14 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.amount.facade import (
+from ccnl_engine.pay_item.facade import (
     BaseSalaryEarning,
     CompetencePeriod,
 )
 from ccnl_engine.payroll.capability.results import CapabilityReport
 from ccnl_engine.payroll.contribution.results import ContributionBreakdown
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.event.results_benefit import BenefitBreakdown
 from ccnl_engine.payroll.ledger.models import AccountKind, LedgerEntry
 from ccnl_engine.payroll.period.models_payroll import PeriodId

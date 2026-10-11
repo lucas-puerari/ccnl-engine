@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.amount.facade import (
+from ccnl_engine.pay_item.facade import (
     BaseSalaryEarning,
     EmployeeWithholdingItem,
     EmployerContributionItem,

@@ -20,7 +20,7 @@ from ccnl_engine.payroll.year.services_payment import (
 from ccnl_engine.payroll.year.services_sequence import Engine, compute_payments
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.amount.policies import PolicyResolver
+    from ccnl_engine.pay_item.policies import PolicyResolver
     from ccnl_engine.payroll.period.ports import KnowledgeRepository
     from ccnl_engine.payroll.period.results import PeriodResult
     from ccnl_engine.payroll.taxation.inputs_current_year import CurrentYearTaxFacts

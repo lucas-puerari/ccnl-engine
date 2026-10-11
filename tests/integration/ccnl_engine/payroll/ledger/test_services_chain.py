@@ -6,15 +6,15 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine.agreement.validity.rules import TimeSeries, ValidityPeriod
-from ccnl_engine.contract.compensation.models import Allowance
-from ccnl_engine.payroll.amount.facade import (
+from ccnl_engine.compensation.element.types import MonthlyPayChain
+from ccnl_engine.compensation.models import Allowance
+from ccnl_engine.pay_item.facade import (
     FixedAllowanceEarning,
     SeniorityEarning,
 )
-from ccnl_engine.payroll.amount.loaders_policy import load_policy_resolver
-from ccnl_engine.payroll.amount.policies import PolicyContext
+from ccnl_engine.pay_item.loaders import load_policy_resolver
+from ccnl_engine.pay_item.policies import PolicyContext
 from ccnl_engine.payroll.amount.types import _PeriodAmounts
-from ccnl_engine.payroll.amount.types_chain import MonthlyPayChain
 from ccnl_engine.payroll.contribution.services import TfrAccrual
 from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.ledger.services import (

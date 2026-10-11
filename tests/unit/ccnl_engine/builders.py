@@ -11,10 +11,10 @@ from dataclasses import replace
 from typing import TYPE_CHECKING, Any
 
 from ccnl_engine.agreement.facade import CCNL
-from ccnl_engine.contract.employment.models_category import WorkerCategory
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
+from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.employment.inputs import Employment, Permanent
 from ccnl_engine.payroll.contribution.inputs_pension_fund import NoPensionFund
-from ccnl_engine.payroll.employment.inputs import Employment, Permanent
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.period.inputs import PeriodFacts
 from ccnl_engine.payroll.year.inputs_competence_plan import CompetenceYearPlan
 from ccnl_engine.payroll.year.rules_tax_year import DEFAULT_PAYMENT_DAY

@@ -168,9 +168,9 @@ which the naming baseline records:
 |---|---|
 | `period/` | one run: request, inputs and defaults, context, pipeline, posting, checks, result assembly, the knowledge repository port and its bundled sources |
 | `year/` | competence and tax year plans, calendar, run selection, payments, year results, closing a tax year |
-| `amount/` | pay items and treatments, the CCNL pay chain, proration, renewal minimum, rounding, the amounts of a run |
-| `event/` | work, absence, variable pay and termination events, their handlers and totals |
-| `employment/` | employment, employer, seniority, apprenticeship and category |
+| `amount/` | the amounts of a run |
+| `event/` | variable pay and termination events, their handlers and totals |
+| `employment/` | seniority increments converted into pension fund contributions |
 | `contribution/` | INPS rates and base, apprentices, domestic work, NASpI, pension and contractual funds |
 | `taxation/` | IRPEF, deductions and credits, regimes, regional and municipal surtax |
 | `family/` | art. 12 TUIR family deductions |

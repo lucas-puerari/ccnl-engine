@@ -6,19 +6,19 @@ from dataclasses import dataclass, field
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.amount.facade import CompetencePeriod, PayItem
-from ccnl_engine.payroll.event.policies_overtime_rate import CCNLOvertimeBands
+from ccnl_engine.pay_item.facade import CompetencePeriod, PayItem
 from ccnl_engine.payroll.ledger.models import PostingIntent
 from ccnl_engine.payroll.period.services_shared import _ZERO
 from ccnl_engine.payroll.sickness.rules_terms import SicknessTerms
 from ccnl_engine.payroll.state.models_ytd_account import RegimeCapAccount
 from ccnl_engine.payroll.taxation.rules_regime_eligibility import RegimeFacts
+from ccnl_engine.working_time.overtime.policies import CCNLOvertimeBands
 
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.payroll.amount.models_treatment import EventTreatment
-    from ccnl_engine.payroll.amount.policies import PolicyContext, PolicyResolver
+    from ccnl_engine.pay_item.policies import PolicyContext, PolicyResolver
+    from ccnl_engine.pay_item.treatment.models import EventTreatment
     from ccnl_engine.payroll.assurance.models_decision import (
         CalculationDecision,
         CalculationIssue,

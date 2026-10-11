@@ -6,10 +6,9 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.errors import DataIntegrityError
-from ccnl_engine.payroll.amount.facade import CompetencePeriod
-from ccnl_engine.payroll.amount.loaders_policy import load_policy_resolver
-from ccnl_engine.payroll.amount.models_treatment import EventTreatment
-from ccnl_engine.payroll.amount.policies import (
+from ccnl_engine.pay_item.facade import CompetencePeriod
+from ccnl_engine.pay_item.loaders import load_policy_resolver
+from ccnl_engine.pay_item.policies import (
     ContributionAxis,
     PolicyContext,
     PolicyResolution,
@@ -17,13 +16,14 @@ from ccnl_engine.payroll.amount.policies import (
     TaxAxis,
     TfrAxis,
 )
+from ccnl_engine.pay_item.treatment.models import EventTreatment
 from ccnl_engine.payroll.ledger.models import AccountKind, LedgerEntry
 
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.payroll.amount.types_chain import MonthlyPayChain
-    from ccnl_engine.payroll.employment.inputs_fact import WeeklyHours
+    from ccnl_engine.compensation.element.types import MonthlyPayChain
+    from ccnl_engine.employment.fact.inputs import WeeklyHours
 
 _ZERO = Decimal(0)
 
@@ -112,7 +112,7 @@ def _apply_extra_month_policy(
             contractual fraction of the extra month.
 
     Returns:
-        Adjusted :class:`~ccnl_engine.payroll.amount.types_chain.MonthlyPayChain`.
+        Adjusted :class:`~ccnl_engine.compensation.element.types.MonthlyPayChain`.
     """
     if run_kind not in {"thirteenth", "fourteenth"}:
         return chain

@@ -9,8 +9,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.employment.inputs import FixedTerm
-from ccnl_engine.payroll.employment.models_spell import EmploymentSpell, spells_with
+from ccnl_engine.employment.inputs import FixedTerm
+from ccnl_engine.employment.spell.models import EmploymentSpell, spells_with
 from ccnl_engine.payroll.event.facade import AbsenceEvent
 from ccnl_engine.payroll.period.services_context_fact import (
     chain_gross,
@@ -22,15 +22,15 @@ from ccnl_engine.payroll.state.rules_opening_history import opening_state_issue
 if TYPE_CHECKING:
     from decimal import Decimal
 
-    from ccnl_engine.contract.employment.models_category import WorkerCategory
-    from ccnl_engine.payroll.accrual.models import ExtraMonthAccrual
-    from ccnl_engine.payroll.amount.facade import CompetencePeriod
-    from ccnl_engine.payroll.amount.policies import PolicyContext, PolicyResolver
-    from ccnl_engine.payroll.amount.services_proration import RunProration
-    from ccnl_engine.payroll.amount.types_chain import (
+    from ccnl_engine.compensation.element.types import (
         ApprenticeshipScaling,
         MonthlyPayChain,
     )
+    from ccnl_engine.compensation.proration.services import RunProration
+    from ccnl_engine.employment.category.models import WorkerCategory
+    from ccnl_engine.pay_item.facade import CompetencePeriod
+    from ccnl_engine.pay_item.policies import PolicyContext, PolicyResolver
+    from ccnl_engine.payroll.accrual.models import ExtraMonthAccrual
     from ccnl_engine.payroll.assurance.models_decision import CalculationIssue
     from ccnl_engine.payroll.period.models_run import RunKind
     from ccnl_engine.payroll.period.ports import KnowledgeRepository

@@ -9,11 +9,11 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine import PayrollEngine
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.assurance.validators_state import (
     check_carried_recovery_advance,
 )
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.models_run import PayrollRunId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest

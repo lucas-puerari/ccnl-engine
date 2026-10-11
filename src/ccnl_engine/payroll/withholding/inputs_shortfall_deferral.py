@@ -40,7 +40,7 @@ from decimal import ROUND_DOWN, Decimal
 from typing import final
 
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.amount.policies_rounding import money
+from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.validators import (
     reject,
     require_date,

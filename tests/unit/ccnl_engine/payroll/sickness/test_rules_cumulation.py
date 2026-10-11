@@ -24,10 +24,6 @@ from ccnl_engine.contract.sickness.models import (
     SicknessRules,
     SicknessSeniorityBand,
 )
-from ccnl_engine.payroll.employment.inputs_seniority import (
-    SeniorityFact,
-    SenioritySource,
-)
 from ccnl_engine.payroll.sickness.models import SicknessEpisode
 from ccnl_engine.payroll.sickness.rules_cumulation import (
     CcnlDay,
@@ -35,6 +31,10 @@ from ccnl_engine.payroll.sickness.rules_cumulation import (
     ShortAbsence,
     SicknessWorker,
     window_start,
+)
+from ccnl_engine.seniority.inputs import (
+    SeniorityFact,
+    SenioritySource,
 )
 
 _ONE = Decimal(1)

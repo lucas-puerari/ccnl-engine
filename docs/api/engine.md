@@ -129,7 +129,7 @@ years. They group the facts by owner and are validated when built;
       members:
         - InpsBaseYtd
 
-::: ccnl_engine.payroll.employment.inputs
+::: ccnl_engine.employment.inputs
     options:
       members:
         - Employment
@@ -140,7 +140,7 @@ years. They group the facts by owner and are validated when built;
         - PensionFundEnrolment
         - NoPensionFund
 
-::: ccnl_engine.payroll.employment.inputs_fact
+::: ccnl_engine.employment.fact.inputs
     options:
       members:
         - EmploymentPeriod
@@ -149,7 +149,7 @@ years. They group the facts by owner and are validated when built;
         - SenioritySource
         - ContributableHours
 
-::: ccnl_engine.payroll.employment.inputs_employer
+::: ccnl_engine.employer.inputs
     options:
       members:
         - EmployerProfile
@@ -237,7 +237,7 @@ omitted. A different calendar is accepted only as a validated
         - CalendarOverride
         - CalendarOverrideReason
 
-::: ccnl_engine.contract.employment.models_category
+::: ccnl_engine.employment.category.models
     options:
       members:
         - WorkerCategory

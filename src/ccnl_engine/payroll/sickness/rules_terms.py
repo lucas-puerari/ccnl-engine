@@ -11,8 +11,8 @@ from ccnl_engine.payroll.sickness.models import SicknessHistory
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.contract.absence.models import DailyDivisorMethod
-    from ccnl_engine.payroll.amount.types_chain import MonthlyPayChain
+    from ccnl_engine.absence.models import DailyDivisorMethod
+    from ccnl_engine.compensation.element.types import MonthlyPayChain
     from ccnl_engine.payroll.sickness.models_pay_rule import SickPayRules
     from ccnl_engine.provenance.source.models import SourceLocation
 

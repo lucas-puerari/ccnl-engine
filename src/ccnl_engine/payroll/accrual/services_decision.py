@@ -22,7 +22,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.amount.services_erc import erc_decisions, erc_rules
+from ccnl_engine.compensation.raccordo.services import erc_decisions, erc_rules
 from ccnl_engine.payroll.assurance.models_decision import (
     CalculationDecision,
     CalculationIssue,

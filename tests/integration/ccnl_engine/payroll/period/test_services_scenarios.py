@@ -13,9 +13,9 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING, Any
 
-from ccnl_engine.payroll.amount.facade import BaseSalaryEarning
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
+from ccnl_engine.pay_item.facade import BaseSalaryEarning
 from ccnl_engine.payroll.assurance.validators import reconcile
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.ledger.models import AccountKind, LedgerEntry
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest

@@ -21,9 +21,9 @@ from enum import Enum
 from types import MappingProxyType
 from typing import Any, NoReturn
 
+from ccnl_engine.employment.spell.models import EmploymentSpell
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.contribution.models_inps_base import InpsBaseYtd
-from ccnl_engine.payroll.employment.models_spell import EmploymentSpell
 from ccnl_engine.payroll.period.models_run import PayrollRunId
 from ccnl_engine.payroll.period.types_run_kind import RunKind
 from ccnl_engine.payroll.sickness.models import SicknessEpisode

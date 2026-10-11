@@ -24,7 +24,7 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine.api import PayrollEngine
-from ccnl_engine.payroll.employment.inputs_fact import WeeklyHours
+from ccnl_engine.employment.fact.inputs import WeeklyHours
 from ccnl_engine.payroll.event.facade import AbsenceEvent, BonusEvent, OvertimeEvent
 from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.period.inputs import PeriodFacts, PeriodInput

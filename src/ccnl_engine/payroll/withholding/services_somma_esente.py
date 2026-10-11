@@ -23,7 +23,7 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.amount.policies_rounding import money
+from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.payroll.assurance.models_decision import (
     CalculationDecision,
     CalculationIssue,
@@ -39,7 +39,7 @@ from ccnl_engine.payroll.withholding.services_somma_esente_settlement import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.amount.facade import PayItem
+    from ccnl_engine.pay_item.facade import PayItem
     from ccnl_engine.payroll.ledger.models import LedgerEntry
     from ccnl_engine.payroll.state.models import PeriodState
     from ccnl_engine.payroll.taxation.inputs_current_year import CurrentYearTaxFacts

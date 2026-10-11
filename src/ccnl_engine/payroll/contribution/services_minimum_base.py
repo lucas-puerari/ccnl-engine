@@ -12,6 +12,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.employment.inputs import Apprentice
 from ccnl_engine.payroll.assurance.models_decision import (
     CalculationIssue,
     CalculationStatus,
@@ -21,13 +22,12 @@ from ccnl_engine.payroll.contribution.models_minimum_base import (
     MonthPosition,
 )
 from ccnl_engine.payroll.contribution.rules_minimum_base import resolve_minimum_base
-from ccnl_engine.payroll.employment.inputs import Apprentice
 from ccnl_engine.payroll.event.facade import AbsenceEvent, SickLeaveEvent
 from ccnl_engine.payroll.period.models_run import RunKind
 
 if TYPE_CHECKING:
+    from ccnl_engine.employment.fact.inputs import WeeklyHours
     from ccnl_engine.payroll.contribution.models_minimum_base import MinimumBase
-    from ccnl_engine.payroll.employment.inputs_fact import WeeklyHours
     from ccnl_engine.payroll.period.services_run_context import RunContext
 
 __all__ = [

@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.amount.facade import (
+from ccnl_engine.pay_item.facade import (
     BaseSalaryEarning,
     EmployeeWithholdingItem,
     EmployerContributionItem,
@@ -23,8 +23,8 @@ from ccnl_engine.payroll.ledger.services_tax_line import tax_lines
 from ccnl_engine.payroll.period.services_shared import _ZERO
 
 if TYPE_CHECKING:
+    from ccnl_engine.compensation.element.types import MonthlyPayChain
     from ccnl_engine.payroll.amount.types import _PeriodAmounts
-    from ccnl_engine.payroll.amount.types_chain import MonthlyPayChain
 
 __all__ = ["_BaseLine", "_base_lines"]
 

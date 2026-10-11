@@ -8,7 +8,7 @@ processed in ``calculate_period``.
 
 from __future__ import annotations
 
-from ccnl_engine.payroll.event.inputs_absence_sickness import (
+from ccnl_engine.absence.inputs import (
     AbsenceEvent,
     SickLeaveEvent,
 )
@@ -20,15 +20,15 @@ from ccnl_engine.payroll.event.inputs_variable_pay import (
     FringeEvent,
     WelfareEvent,
 )
-from ccnl_engine.payroll.event.inputs_work_time import (
+from ccnl_engine.payroll.event.types import WORK_EVENT_TYPES, WorkEvent
+from ccnl_engine.payroll.sickness.models import SicknessEpisode
+from ccnl_engine.working_time.inputs import (
     HolidayWorkEvent,
     NightShiftEvent,
     OvertimeEvent,
     OvertimeKind,
     ShiftWorkEvent,
 )
-from ccnl_engine.payroll.event.types import WORK_EVENT_TYPES, WorkEvent
-from ccnl_engine.payroll.sickness.models import SicknessEpisode
 
 __all__ = [
     "WORK_EVENT_TYPES",

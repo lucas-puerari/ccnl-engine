@@ -25,14 +25,14 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine.api import PayrollEngine
-from ccnl_engine.errors import InvalidInputError, OutOfScopeError
-from ccnl_engine.payroll.employment.inputs import Employment, Permanent
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
-from ccnl_engine.payroll.employment.inputs_fact import (
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
+from ccnl_engine.employment.fact.inputs import (
     ContributableHours,
     EmploymentPeriod,
     WeeklyHours,
 )
+from ccnl_engine.employment.inputs import Employment, Permanent
+from ccnl_engine.errors import InvalidInputError, OutOfScopeError
 from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.period.inputs import PeriodFacts, PeriodInput
 from ccnl_engine.payroll.period.models_run import PayrollRun, RunKind

@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from ccnl_engine.employment.inputs import Apprentice, FixedTerm
 from ccnl_engine.payroll.assurance.models_decision import (
     CalculationIssue,
     CalculationStatus,
@@ -14,13 +15,12 @@ from ccnl_engine.payroll.contribution.rules_apprentice_rate import (
     apprentice_employer_rate,
 )
 from ccnl_engine.payroll.contribution.rules_naspi import naspi_surcharge
-from ccnl_engine.payroll.employment.inputs import Apprentice, FixedTerm
 
 if TYPE_CHECKING:
     from decimal import Decimal
 
-    from ccnl_engine.contract.employment.models_category import WorkerCategory
-    from ccnl_engine.payroll.employment.inputs import Contract as Employment
+    from ccnl_engine.employment.category.models import WorkerCategory
+    from ccnl_engine.employment.inputs import Contract as Employment
     from ccnl_engine.tax.annual.models import YearRules
     from ccnl_engine.tax.contribution.models import InpsRates
 

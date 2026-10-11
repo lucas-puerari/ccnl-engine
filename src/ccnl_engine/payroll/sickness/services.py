@@ -2,7 +2,7 @@
 
 Only the run that posts the monthly pay of its month pays sick days: a
 regular run, or a termination run when the regular run of its month is not
-closed (:mod:`~ccnl_engine.payroll.amount.services_proration`).  An
+closed (:mod:`~ccnl_engine.compensation.proration.services`).  An
 adjustment or extra-month run posts no monthly pay, so an episode passed
 to it is rejected and no day is counted twice.
 
@@ -20,9 +20,9 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.absence.models import DailyDivisorMethod
+from ccnl_engine.absence.models import DailyDivisorMethod
+from ccnl_engine.employment.inputs import Apprentice
 from ccnl_engine.payroll.contribution.rules_rate import resolve_rates
-from ccnl_engine.payroll.employment.inputs import Apprentice
 from ccnl_engine.payroll.period.models_run import RunKind
 from ccnl_engine.payroll.sickness.models import SicknessHistory
 from ccnl_engine.payroll.sickness.models_pay_rule import SickPayRules

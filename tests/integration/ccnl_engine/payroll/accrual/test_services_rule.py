@@ -13,10 +13,12 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.catalog.loaders import load_ccnl
-from ccnl_engine.contract.compensation.models import (
+from ccnl_engine.compensation.models import (
     AccrualComparison,
     ExtraMonthAccrualRule,
 )
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
+from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.payroll.accrual.models import ExtraMonthAccrual
 from ccnl_engine.payroll.accrual.models_extra_month_schedule import ExtraMonthKind
 from ccnl_engine.payroll.accrual.services_decision import REASON_CODE
@@ -27,8 +29,6 @@ from ccnl_engine.payroll.accrual.services_rule import (
 )
 from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
 from ccnl_engine.payroll.assurance.services_rule_source import MISSING_SOURCE_CODE
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
-from ccnl_engine.payroll.employment.inputs_fact import EmploymentPeriod
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.models_run import PayrollRun
 from ccnl_engine.payroll.period.repositories import (

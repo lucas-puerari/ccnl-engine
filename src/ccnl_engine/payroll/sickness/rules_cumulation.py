@@ -34,8 +34,8 @@ if TYPE_CHECKING:
         SicknessRules,
         SicknessSeniorityBand,
     )
-    from ccnl_engine.payroll.employment.inputs_seniority import SeniorityFact
     from ccnl_engine.payroll.sickness.models import SicknessEpisode
+    from ccnl_engine.seniority.inputs import SeniorityFact
 
 __all__ = [
     "CcnlDay",

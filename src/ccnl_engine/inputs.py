@@ -7,7 +7,20 @@ facts, the calendar, the opening state and the balances imported from another pr
 
 from __future__ import annotations
 
-from ccnl_engine.contract.employment.models_category import WorkerCategory
+from ccnl_engine.employer.inputs import (
+    AgriculturalZone,
+    EmployerActivity,
+)
+from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.employment.fact.inputs import (
+    ContributableHours,
+    EmploymentPeriod,
+    PublicEndOfService,
+    WeeklyHours,
+)
+from ccnl_engine.employment.fixed_term.inputs import NaspiExclusion
+from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
+from ccnl_engine.employment.spell.models import EmploymentSpell
 from ccnl_engine.payroll.assurance.policies_engine_mode import EngineMode
 from ccnl_engine.payroll.contribution.inputs_eligibility import ContributionHistory
 from ccnl_engine.payroll.contribution.inputs_pension_fund import (
@@ -15,23 +28,6 @@ from ccnl_engine.payroll.contribution.inputs_pension_fund import (
     PensionFundEnrolment,
 )
 from ccnl_engine.payroll.contribution.models_inps_base import InpsBaseYtd
-from ccnl_engine.payroll.employment.inputs import Apprentice, FixedTerm, Permanent
-from ccnl_engine.payroll.employment.inputs_employer import (
-    AgriculturalZone,
-    EmployerActivity,
-)
-from ccnl_engine.payroll.employment.inputs_fact import (
-    ContributableHours,
-    EmploymentPeriod,
-    PublicEndOfService,
-    WeeklyHours,
-)
-from ccnl_engine.payroll.employment.inputs_fixed_term import NaspiExclusion
-from ccnl_engine.payroll.employment.inputs_seniority import (
-    SeniorityFact,
-    SenioritySource,
-)
-from ccnl_engine.payroll.employment.models_spell import EmploymentSpell
 from ccnl_engine.payroll.family.inputs import (
     Dependent,
     DependentRelationship,
@@ -68,6 +64,10 @@ from ccnl_engine.payroll.year.inputs_calendar_override import (
 )
 from ccnl_engine.payroll.year.models_calendar import WorkCalendar
 from ccnl_engine.payroll.year.models_payment import PaymentId
+from ccnl_engine.seniority.inputs import (
+    SeniorityFact,
+    SenioritySource,
+)
 from ccnl_engine.tax.regime.models import EmploymentSector
 
 __all__ = [

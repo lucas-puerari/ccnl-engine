@@ -12,10 +12,10 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.employment.models_category import WorkerCategory
-from ccnl_engine.payroll.employment.inputs import Permanent
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
-from ccnl_engine.payroll.employment.inputs_fact import ContributableHours, WeeklyHours
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
+from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.employment.fact.inputs import ContributableHours, WeeklyHours
+from ccnl_engine.employment.inputs import Permanent
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.state.models import PeriodState

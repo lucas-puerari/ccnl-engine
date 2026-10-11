@@ -9,6 +9,8 @@ from __future__ import annotations
 from datetime import date
 from typing import TYPE_CHECKING
 
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
+from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.inputs import NoPensionFund, WorkerCategory
 from ccnl_engine.payroll.assurance.models import BlockerCode
 from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
@@ -18,8 +20,6 @@ from ccnl_engine.payroll.assurance.services_rule_source import (
     missing_source_issues,
     weakest_by_capability,
 )
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
-from ccnl_engine.payroll.employment.inputs_fact import EmploymentPeriod
 from ccnl_engine.payroll.family.inputs import (
     DependentRelationship,
     FamilyComposition,

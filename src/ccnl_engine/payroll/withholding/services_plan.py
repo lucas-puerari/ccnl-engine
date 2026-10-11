@@ -13,6 +13,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.payroll.accrual.models import (
     DEFAULT_MONTH_ACCRUAL_RULE,
     ExtraMonthAccrual,
@@ -20,7 +21,6 @@ from ccnl_engine.payroll.accrual.models import (
 )
 from ccnl_engine.payroll.accrual.models_extra_month_schedule import ExtraMonthKind
 from ccnl_engine.payroll.accrual.services_extra_month import run_schedule
-from ccnl_engine.payroll.amount.policies_rounding import money
 from ccnl_engine.payroll.period.services_shared import _apply_extra_month_policy
 from ccnl_engine.payroll.withholding.models_schedule import WithholdingSchedule
 from ccnl_engine.payroll.year.models_payment import PaymentId
@@ -35,8 +35,8 @@ if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.agreement.facade import CCNL
-    from ccnl_engine.payroll.amount.types_chain import MonthlyPayChain
-    from ccnl_engine.payroll.employment.inputs_fact import EmploymentPeriod
+    from ccnl_engine.compensation.element.types import MonthlyPayChain
+    from ccnl_engine.employment.fact.inputs import EmploymentPeriod
     from ccnl_engine.payroll.period.models_run import PayrollRunId
     from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
     from ccnl_engine.payroll.withholding.models_schedule import WithholdingSlot

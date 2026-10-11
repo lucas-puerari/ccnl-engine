@@ -23,13 +23,13 @@ from dataclasses import replace
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.amount.policies_rounding import money
+from ccnl_engine.employment.fact.inputs import PublicEndOfService
+from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.payroll.assurance.models_decision import (
     CalculationIssue,
     CalculationStatus,
 )
 from ccnl_engine.payroll.contribution.results import ContributionComponent
-from ccnl_engine.payroll.employment.inputs_fact import PublicEndOfService
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.amount.types import _AmountsInput

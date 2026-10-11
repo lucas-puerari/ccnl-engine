@@ -6,9 +6,9 @@ from datetime import date
 
 import pytest
 
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
+from ccnl_engine.employment.inputs import Employment, Permanent
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.employment.inputs import Employment, Permanent
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.payroll.taxation.inputs_current_year import CurrentYearTaxFacts
 from ccnl_engine.payroll.year.inputs_competence_plan import CompetenceYearPlan

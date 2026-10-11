@@ -15,7 +15,7 @@ from __future__ import annotations
 
 from decimal import ROUND_FLOOR, Decimal
 
-from ccnl_engine.payroll.amount.policies_rounding import money
+from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.payroll.taxation.rules_irpef import DAYS_IN_YEAR
 from ccnl_engine.tax.income.models import WorkDeductionRules
 

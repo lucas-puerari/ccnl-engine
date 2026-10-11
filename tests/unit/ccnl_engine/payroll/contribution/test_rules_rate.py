@@ -4,14 +4,14 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.contract.employment.models_category import WorkerCategory
-from ccnl_engine.payroll.contribution.rules_rate import resolve_rates
-from ccnl_engine.payroll.employment.inputs import (
+from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.employment.fixed_term.inputs import NaspiExclusion
+from ccnl_engine.employment.inputs import (
     Apprentice,
     FixedTerm,
     Permanent,
 )
-from ccnl_engine.payroll.employment.inputs_fixed_term import NaspiExclusion
+from ccnl_engine.payroll.contribution.rules_rate import resolve_rates
 from tests.unit.ccnl_engine.builders import make_domestic_year_rules
 from tests.unit.ccnl_engine.payroll.contribution.builders_contribution_rules import (
     inps_year_rules,

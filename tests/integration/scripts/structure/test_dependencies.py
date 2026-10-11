@@ -57,37 +57,9 @@ _SRC = Path(str(importlib.resources.files("ccnl_engine"))).parent
 #: only be removed; an entry that no import uses fails the suite.
 DOMAIN_COUPLING: dict[tuple[str, str], str] = {
     (
-        "tax",
-        "ccnl_engine.contract.employment.models_category",
-    ): "INPS contribution rules are selected by the CCNL worker category.",
-    (
-        "payroll",
-        "ccnl_engine.contract.employment.models_category",
-    ): "The employment input validates the CCNL worker category.",
-    (
-        "payroll",
-        "ccnl_engine.contract.compensation.models",
-    ): "Extra-month ratei compare accruing days as the CCNL accrual rule says.",
-    (
-        "payroll",
-        "ccnl_engine.contract.absence.models",
-    ): "A partly employed month counts payable days by the CCNL daily divisor.",
-    (
         "payroll",
         "ccnl_engine.tax.regime.models",
     ): "Employment, employer, period and prior-year inputs declare regimes.",
-    (
-        "payroll",
-        "ccnl_engine.tax.contribution.models_zone_reduction",
-    ): "The employer profile declares the agricultural zone of its INPS cut.",
-    (
-        "payroll",
-        "ccnl_engine.contract.employment.models_apprenticeship",
-    ): "Apprentice pay follows the CCNL apprenticeship percentages and tracks.",
-    (
-        "payroll",
-        "ccnl_engine.contract.working_time.models",
-    ): "Overtime pay applies the CCNL overtime bands.",
     (
         "payroll",
         "ccnl_engine.tax.income.models",

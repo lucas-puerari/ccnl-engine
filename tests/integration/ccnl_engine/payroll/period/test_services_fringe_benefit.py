@@ -41,7 +41,7 @@ from ccnl_engine.inputs import (
     PeriodState,
     Permanent,
 )
-from ccnl_engine.payroll.amount.facade import FringeBenefitItem
+from ccnl_engine.pay_item.facade import FringeBenefitItem
 from ccnl_engine.payroll.assurance.models_decision import (
     CalculationDecision,
     CalculationStatus,

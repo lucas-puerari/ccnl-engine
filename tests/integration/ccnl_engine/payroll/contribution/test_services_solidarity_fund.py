@@ -14,12 +14,12 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
+from ccnl_engine.employment.inputs import FixedTerm
 from ccnl_engine.payroll.contribution.services_solidarity_fund import (
     EMPLOYEE_COMPONENT,
     EMPLOYER_COMPONENT,
 )
-from ccnl_engine.payroll.employment.inputs import FixedTerm
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period

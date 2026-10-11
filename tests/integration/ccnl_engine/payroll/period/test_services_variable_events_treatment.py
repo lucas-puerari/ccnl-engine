@@ -12,15 +12,15 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.amount.policies_rounding import money
+from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.payroll.assurance.models import BlockerCode
 from ccnl_engine.payroll.assurance.models_decision import (
     CalculationDecision,
     CalculationStatus,
 )
 from ccnl_engine.payroll.assurance.validators import reconcile
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.event.facade import (
     AbsenceEvent,
     ArrearsEvent,

@@ -6,7 +6,7 @@ from dataclasses import dataclass, field
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.amount.facade import PayItem, TaxCreditItem
+from ccnl_engine.pay_item.facade import PayItem, TaxCreditItem
 from ccnl_engine.payroll.ledger.models import AccountKind, LedgerEntry
 from ccnl_engine.payroll.ledger.models_remittance import SOMMA_ESENTE_CREDIT
 from ccnl_engine.payroll.period.services_shared import (
@@ -18,8 +18,8 @@ from ccnl_engine.payroll.withholding.models_recovery_plan import InstallmentRun
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.payroll.amount.facade import CompetencePeriod
-    from ccnl_engine.payroll.amount.policies import PolicyContext, PolicyResolver
+    from ccnl_engine.pay_item.facade import CompetencePeriod
+    from ccnl_engine.pay_item.policies import PolicyContext, PolicyResolver
 
 __all__ = ["SommaEsentePosting", "postings"]
 

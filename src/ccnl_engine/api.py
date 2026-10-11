@@ -34,7 +34,7 @@ if TYPE_CHECKING:
         ContractSummary,
         LevelSummary,
     )
-    from ccnl_engine.payroll.amount.policies import PolicyResolver
+    from ccnl_engine.pay_item.policies import PolicyResolver
     from ccnl_engine.payroll.assurance.policies_engine_mode import EngineMode
     from ccnl_engine.payroll.period.inputs import PeriodInput
     from ccnl_engine.payroll.period.ports import KnowledgeRepository

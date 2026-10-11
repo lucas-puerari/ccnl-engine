@@ -28,8 +28,8 @@ from datetime import date, timedelta
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.compensation.proration.rules import payable_days
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.amount.rules_proration import payable_days
 from ccnl_engine.payroll.assurance.models_decision import (
     CalculationIssue,
     CalculationStatus,

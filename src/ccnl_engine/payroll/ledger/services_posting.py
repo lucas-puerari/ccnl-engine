@@ -14,7 +14,7 @@ from ccnl_engine.payroll.ledger.models import LedgerEntry, PostingIntent
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.payroll.amount.facade import CompetencePeriod
+    from ccnl_engine.pay_item.facade import CompetencePeriod
 
 
 def post(

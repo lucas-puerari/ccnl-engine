@@ -15,8 +15,8 @@ if TYPE_CHECKING:
 
     from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.agreement.validity.rules import TimeSeries
-    from ccnl_engine.contract.employment.models_category import WorkerCategory
-    from ccnl_engine.contract.seniority.models import (
+    from ccnl_engine.employment.category.models import WorkerCategory
+    from ccnl_engine.seniority.models import (
         SeniorityIncrements,
         SeniorityTier,
     )

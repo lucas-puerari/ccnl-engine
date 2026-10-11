@@ -14,7 +14,7 @@ from decimal import Decimal
 from types import SimpleNamespace
 from typing import TYPE_CHECKING, cast
 
-from ccnl_engine.payroll.amount.types_chain import MonthlyPayChain
+from ccnl_engine.compensation.element.types import MonthlyPayChain
 from ccnl_engine.payroll.sickness.handlers_pay import (
     _grossed,
     _quota,

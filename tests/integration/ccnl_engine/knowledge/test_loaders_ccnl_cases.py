@@ -22,11 +22,11 @@ from typing import TYPE_CHECKING, Any
 
 import pytest
 
-from ccnl_engine.catalog.loaders import load_ccnl
-from ccnl_engine.contract.employment.models_apprenticeship import (
+from ccnl_engine.apprenticeship.models import (
     ApprenticeshipPercentage,
     ApprenticeshipUnderClassification,
 )
+from ccnl_engine.catalog.loaders import load_ccnl
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL

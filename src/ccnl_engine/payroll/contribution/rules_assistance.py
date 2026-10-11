@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from ccnl_engine.errors import MissingRequiredFactError
-from ccnl_engine.payroll.amount.policies_rounding import money
+from ccnl_engine.pay_item.rounding.policies import money
 
 if TYPE_CHECKING:
     from decimal import Decimal

@@ -4,9 +4,9 @@
 (:class:`~ccnl_engine.payroll.year.inputs_competence_plan.CompetenceYearPlan`,
 :class:`~ccnl_engine.payroll.year.inputs_tax_plan.TaxYearPlan`) every run of
 a tax year.  Both group
-the facts by owner: :class:`~ccnl_engine.payroll.employment.inputs.Employment`
+the facts by owner: :class:`~ccnl_engine.employment.inputs.Employment`
 for the contract and the worker,
-:class:`~ccnl_engine.payroll.employment.inputs_employer.EmployerProfile` for the
+:class:`~ccnl_engine.employer.inputs.EmployerProfile` for the
 employer, :class:`~ccnl_engine.payroll.taxation.inputs_prior_year.PriorYearTaxFacts`
 for what the tax regimes read once a year, and :class:`PeriodFacts` for what
 holds in one run.  Every input is validated on construction.
@@ -19,9 +19,9 @@ from datetime import date
 from typing import TYPE_CHECKING
 
 from ccnl_engine.collection.validators import items_of_type, tuple_of
-from ccnl_engine.payroll.employment.inputs import Employment
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile
-from ccnl_engine.payroll.employment.inputs_fact import ContributableHours
+from ccnl_engine.employer.inputs import EmployerProfile
+from ccnl_engine.employment.fact.inputs import ContributableHours
+from ccnl_engine.employment.inputs import Employment
 from ccnl_engine.payroll.event.facade import WORK_EVENT_TYPES
 from ccnl_engine.payroll.family.inputs import FamilyComposition
 from ccnl_engine.payroll.period.models_payroll import PeriodId
