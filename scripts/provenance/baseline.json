@@ -1096,14 +1096,11 @@
       "inps.fis_reduction": "assumed",
       "inps.minimum_base": "assumed"
     },
-    "sickness/indemnity/rates.json": {
-      "bands": "assumed"
-    },
-    "surtax/municipal/2027.json": {
-      "rates": "assumed"
-    },
-    "surtax/regional/2027.json": {
-      "rates": "assumed"
+    "family/2027.json": {
+      "children": "assumed",
+      "other_dependents": "assumed",
+      "spouse": "assumed",
+      "spouse_increases": "assumed"
     },
     "sector/2027/agricoltura.json": {
       "complementary_pension": "assumed",
@@ -1195,14 +1192,14 @@
       "work_deduction": "assumed",
       "work_deduction.minimum": "assumed"
     },
+    "surtax/municipal/2027.json": {
+      "rates": "assumed"
+    },
+    "surtax/regional/2027.json": {
+      "rates": "assumed"
+    },
     "tax_credit/somma_esente/2027.json": {
       "somma_esente": "assumed"
-    },
-    "family/2027.json": {
-      "children": "assumed",
-      "other_dependents": "assumed",
-      "spouse": "assumed",
-      "spouse_increases": "assumed"
     },
     "variable_pay/2026.json": {
       "pdr": "assumed"

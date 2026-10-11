@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import importlib.resources
 import json
+from decimal import Decimal
 from typing import Any
 
 import pytest
@@ -42,13 +43,18 @@ class TestMiscCoverageGaps:
     def test_indemnity_bands_carry_their_provenance_record(self) -> None:
         """The bands record is read from ``bands_provenance``, never left empty.
 
-        The secondary summary it cites records no URL, so the record is
-        ``assumed`` while keeping its location.
+        The general bands and the regime of the pubblici esercizi cite the
+        INPS page on the sickness indemnity: ``derived``.
         """
-        record = load_sick_pay_rates().bands_provenance
+        rates = load_sick_pay_rates()
+        record = rates.bands_provenance
         assert record is not None
-        assert record.status is ProvenanceStatus.ASSUMED
+        assert record.status is ProvenanceStatus.DERIVED
         assert record.location is not None
+        regime = rates.for_regime("pubblici_esercizi")
+        assert regime.band_rate(4) == regime.band_rate(180) == Decimal("0.80")
+        assert regime.bands_provenance is not None
+        assert regime.bands_provenance.status is ProvenanceStatus.DERIVED
 
 
 @pytest.mark.parametrize(

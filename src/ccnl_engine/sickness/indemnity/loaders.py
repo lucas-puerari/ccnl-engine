@@ -12,7 +12,7 @@ from ccnl_engine.sector.raw.loaders import (
     _provenance_of,
     _read_json,
 )
-from ccnl_engine.sickness.indemnity.models import InpsSickPayRates
+from ccnl_engine.sickness.indemnity.models import InpsSickPayRates, SickPayRegime
 
 _SICK_PAY_FILE = "sickness/indemnity/rates.json"
 
@@ -57,6 +57,13 @@ def sick_pay_rates_from(raw: dict[str, Any], filename: str) -> InpsSickPayRates:
             bands_provenance=_provenance_of({
                 "provenance": raw.get("bands_provenance")
             }),
+            regimes=tuple(
+                SickPayRegime.model_validate({
+                    **regime,
+                    "provenance": _provenance_of(regime),
+                })
+                for regime in raw.get("regimes", ())
+            ),
         )
     except KeyError as exc:
         msg = f"{filename}: required field {exc.args[0]!r} is missing"

@@ -246,6 +246,10 @@ class SicknessRules(BaseModel):
             worker's INPS rate before the company tops it up.
         apprentices_excluded: The company owes apprentices no integration
             and no carenza (Commercio Art. 187: "né agli apprendisti").
+        inps_regime: Id of the INPS indemnity regime of the workers of the
+            CCNL (:class:`~ccnl_engine.sickness.indemnity.models.SickPayRegime`),
+            e.g. ``pubblici_esercizi`` (80% for the whole sickness);
+            ``None`` for the general bands.
         provenance: Links this rule to its CCNL article.
     """
 
@@ -261,6 +265,7 @@ class SicknessRules(BaseModel):
     cumulation: SicknessCumulation | None = None
     net_basis: bool = False
     apprentices_excluded: bool = False
+    inps_regime: str | None = None
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")

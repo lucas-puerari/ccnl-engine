@@ -81,6 +81,64 @@ class SickPayCoverage(BaseModel):
         )
 
 
+def _check_band_chain(bands: list[SickPayBand], carenza_days: int, owner: str) -> None:
+    """Check that ``bands`` start after the carenza and leave no gap or overlap.
+
+    Raises:
+        ValueError: When a band starts elsewhere, overlaps the next or leaves
+            a gap before it.
+    """
+    expected_start = carenza_days + 1
+    first = bands[0]
+    if first.day_from != expected_start:
+        msg = (
+            f"{owner}: first band day_from must be "
+            f"carenza_days + 1 = {expected_start}, "
+            f"got {first.day_from}"
+        )
+        raise ValueError(msg)
+    for i in range(len(bands) - 1):
+        curr = bands[i]
+        nxt = bands[i + 1]
+        if nxt.day_from <= curr.day_to:
+            msg = (
+                f"{owner}: bands[{i}] (days {curr.day_from}-"
+                f"{curr.day_to}) overlaps bands[{i + 1}] "
+                f"(day_from={nxt.day_from})"
+            )
+            raise ValueError(msg)
+        if nxt.day_from != curr.day_to + 1:
+            msg = (
+                f"{owner}: gap between bands[{i}] "
+                f"(day_to={curr.day_to}) and bands[{i + 1}] "
+                f"(day_from={nxt.day_from})"
+            )
+            raise ValueError(msg)
+
+
+class SickPayRegime(BaseModel):
+    """INPS indemnity bands of a group of workers that differs from the rule.
+
+    A CCNL names the regime of its workers in
+    :attr:`~ccnl_engine.sickness.integration.models.SicknessRules.inps_regime`;
+    the regime replaces the general bands, while the carenza, the annual
+    maximum and the coverage stay those of :class:`InpsSickPayRates`.
+
+    Attributes:
+        id: Name the CCNL refers to (``pubblici_esercizi``...).
+        description: Who the regime covers.
+        bands: Rate bands ordered by ``day_from`` (non-overlapping).
+        provenance: Provenance record of the regime rates.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    id: str = Field(min_length=1)
+    description: str = ""
+    bands: list[SickPayBand] = Field(min_length=1)
+    provenance: RuleProvenance | None = None
+
+
 class InpsSickPayRates(BaseModel):
     """Statutory INPS sick-pay indemnity rates (malattia ordinaria).
 
@@ -102,6 +160,8 @@ class InpsSickPayRates(BaseModel):
             wins; a worker no rule matches is not known to be covered.
         ruleset: Provenance of the statutory source.
         bands_provenance: Provenance record of the indemnity rates.
+        regimes: Bands of the groups of workers whose rates differ from
+            ``bands``, each named by an id unique in the table.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -113,6 +173,30 @@ class InpsSickPayRates(BaseModel):
     coverage: tuple[SickPayCoverage, ...] = Field(min_length=1)
     ruleset: RulesetIdentity | None = None
     bands_provenance: RuleProvenance | None = None
+    regimes: tuple[SickPayRegime, ...] = ()
+
+    def for_regime(self, regime: str | None) -> InpsSickPayRates:
+        """Return the table with the bands of ``regime`` in place of the rule.
+
+        Args:
+            regime: Id of a regime of :attr:`regimes`; ``None`` keeps the
+                general bands.
+
+        Returns:
+            This table for ``None``; otherwise a copy whose bands and their
+            provenance are the regime's.
+
+        Raises:
+            KeyError: When no regime has the id ``regime``.
+        """
+        if regime is None:
+            return self
+        found = next((r for r in self.regimes if r.id == regime), None)
+        if found is None:
+            raise KeyError(regime)
+        return self.model_copy(
+            update={"bands": found.bands, "bands_provenance": found.provenance}
+        )
 
     def covers(
         self, sector: str, category: str | None, contract_type: str
@@ -142,30 +226,12 @@ class InpsSickPayRates(BaseModel):
 
     @model_validator(mode="after")
     def _check_bands(self) -> Self:
-        expected_start = self.carenza_days + 1
-        first = self.bands[0]
-        if first.day_from != expected_start:
-            msg = (
-                f"InpsSickPayRates: first band day_from must be "
-                f"carenza_days + 1 = {expected_start}, "
-                f"got {first.day_from}"
-            )
+        _check_band_chain(self.bands, self.carenza_days, "InpsSickPayRates")
+        ids = [r.id for r in self.regimes]
+        if len(set(ids)) != len(ids):
+            msg = f"InpsSickPayRates: regime ids must be unique: {ids}"
             raise ValueError(msg)
-        for i in range(len(self.bands) - 1):
-            curr = self.bands[i]
-            nxt = self.bands[i + 1]
-            if nxt.day_from <= curr.day_to:
-                msg = (
-                    f"InpsSickPayRates: bands[{i}] (days {curr.day_from}-"
-                    f"{curr.day_to}) overlaps bands[{i + 1}] "
-                    f"(day_from={nxt.day_from})"
-                )
-                raise ValueError(msg)
-            if nxt.day_from != curr.day_to + 1:
-                msg = (
-                    f"InpsSickPayRates: gap between bands[{i}] "
-                    f"(day_to={curr.day_to}) and bands[{i + 1}] "
-                    f"(day_from={nxt.day_from})"
-                )
-                raise ValueError(msg)
+        for regime in self.regimes:
+            owner = f"InpsSickPayRates.regimes[{regime.id}]"
+            _check_band_chain(regime.bands, self.carenza_days, owner)
         return self

@@ -28,7 +28,7 @@ from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.employment.inputs import Apprentice
-from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.errors import DataIntegrityError, InvalidInputError
 from ccnl_engine.event.facade import SickLeaveEvent
 from ccnl_engine.period.repositories import (
     BundledKnowledgeRepository,
@@ -321,6 +321,73 @@ def test_month_hours_quota_counts_the_working_days_of_the_month() -> None:
     assert "indemnified:index=4:units=2:" in segments
 
 
+class _InpsRegime(BundledKnowledgeRepository):
+    """Commercio with its sickness rule moved to the named INPS regime."""
+
+    def __init__(self, regime: str) -> None:
+        self._regime = regime
+
+    def load_ccnl(self, filename: str) -> CCNL:
+        ccnl = load_ccnl(filename)
+        assert ccnl.work_rules is not None
+        assert ccnl.work_rules.sickness_rules is not None
+        sickness = ccnl.work_rules.sickness_rules.model_copy(
+            update={"inps_regime": self._regime}
+        )
+        rules = ccnl.work_rules.model_copy(update={"sickness_rules": sickness})
+        return ccnl.model_copy(update={"work_rules": rules})
+
+
+def test_a_regime_pays_its_inps_rate_on_every_day() -> None:
+    """Pubblici esercizi: INPS pays 80% from day 4."""
+    request = _req(
+        3,
+        _MARCH,
+        slug="commercio-confcommercio.json",
+        level="4",
+        category=WorkerCategory.IMPIEGATO,
+    )
+    result = calculate_period(request, repo=_InpsRegime("pubblici_esercizi"))
+    segments = str(_decision(result).inputs["segments"])
+    assert "indemnified:index=4:units=2:inps=0.80:" in segments
+
+
+def test_a_regime_reports_its_own_provenance() -> None:
+    """The record of the regime, not of the general bands, reaches the evidence."""
+
+    class _MissingRegime(_InpsRegime):
+        def load_sick_pay_rates(self) -> InpsSickPayRates:
+            rates = super().load_sick_pay_rates()
+            record = RuleProvenance(status=ProvenanceStatus.MISSING)
+            regimes = tuple(
+                r.model_copy(update={"provenance": record}) for r in rates.regimes
+            )
+            return rates.model_copy(update={"regimes": regimes})
+
+    request = _req(
+        3,
+        _MARCH,
+        slug="commercio-confcommercio.json",
+        level="4",
+        category=WorkerCategory.IMPIEGATO,
+    )
+    result = calculate_period(request, repo=_MissingRegime("pubblici_esercizi"))
+    assert result.capability_report.rule_sources["sickness"] is ProvenanceStatus.MISSING
+
+
+def test_an_unknown_regime_is_a_data_error() -> None:
+    """A CCNL naming a regime the table lacks is rejected."""
+    request = _req(
+        3,
+        _MARCH,
+        slug="commercio-confcommercio.json",
+        level="4",
+        category=WorkerCategory.IMPIEGATO,
+    )
+    with pytest.raises(DataIntegrityError, match="spettacolo"):
+        calculate_period(request, repo=_InpsRegime("spettacolo"))
+
+
 def _after_january_and_february() -> PeriodState:
     january = sickness_episode("j", date(2026, 1, 12), date(2026, 1, 14))
     february = sickness_episode("f", date(2026, 2, 2), date(2026, 2, 4))
@@ -384,7 +451,7 @@ def test_indemnity_bands_report_their_provenance() -> None:
     result = calculate_period(_req(3, _MARCH), repo=_MissingBands())
     sources = result.capability_report.rule_sources
     assert (
-        bundled.capability_report.rule_sources["sickness"] is ProvenanceStatus.ASSUMED
+        bundled.capability_report.rule_sources["sickness"] is ProvenanceStatus.DERIVED
     )
     assert sources["sickness"] is ProvenanceStatus.MISSING
 
