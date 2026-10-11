@@ -1094,7 +1094,8 @@
       "inps": "assumed",
       "inps.employee_additional": "assumed",
       "inps.fis_reduction": "assumed",
-      "inps.minimum_base": "assumed"
+      "inps.minimum_base": "assumed",
+      "inps.sick_pay_supplements.pubblici_esercizi": "assumed"
     },
     "family/2027.json": {
       "children": "assumed",

@@ -103,6 +103,22 @@ class PublicEnamRate(BaseModel):
     provenance: RuleProvenance | None = None
 
 
+class SickPaySupplement(BaseModel):
+    """Additional sickness contribution of the employers of an INPS regime.
+
+    The employers whose staff INPS indemnifies at the rates of a regime
+    (:class:`~ccnl_engine.sickness.indemnity.models.SickPayRegime`) pay it
+    on top of the sector rate, e.g. the 0.77% of the pubblici esercizi
+    (INPS circ. 71/1985, authorisation code 9P).  It is not IVS: the
+    massimale does not cap it.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    employer_rate: NonNegativeRate
+    provenance: RuleProvenance | None = None
+
+
 class PublicFundRates(BaseModel):
     """Pension contribution rates of a fund of INPS Gestione Dipendenti Pubblici.
 
@@ -161,6 +177,8 @@ class InpsRates(BaseModel):
     determinato owe no Fondo di garanzia TFR); ``zone_reduction`` is the cut
     of the agricultural disadvantaged zones and ``zone_reduction_open``
     flags rates of an employer that does not say its zone.
+    ``sick_pay_supplements`` are the additional sickness contributions of
+    the employers of an INPS sick-pay regime, by regime id.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -186,6 +204,7 @@ class InpsRates(BaseModel):
     employer_fixed_term_rate_by_category: dict[WorkerCategory, NonNegativeRate] = {}
     zone_reduction: ZoneReduction | None = None
     zone_reduction_open: bool = False
+    sick_pay_supplements: dict[str, SickPaySupplement] = {}
 
     @property
     def ceiling_record(self) -> RuleProvenance | None:

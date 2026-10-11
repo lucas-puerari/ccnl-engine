@@ -107,6 +107,7 @@ def _resolve_inps(raw: InpsRawRates | None, num_employees: int) -> InpsRates | N
         ceiling_provenance=raw.ceiling_provenance,
         fis_reduction=raw.fis_reduction,
         base_whole_euro=raw.base_whole_euro,
+        sick_pay_supplements=raw.sick_pay_supplements,
     )
 
 
