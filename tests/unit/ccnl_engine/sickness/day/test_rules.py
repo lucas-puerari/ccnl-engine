@@ -224,6 +224,13 @@ def test_without_cover_the_ccnl_target_applies() -> None:
             Decimal(8),
             (Decimal(40),),
         ),
+        (
+            DailyDivisorMethod.BY_MONTH_HOURS,
+            ((date(2026, 3, 9), date(2026, 3, 15)),),
+            Decimal(22),
+            None,
+            (Decimal(5),),
+        ),
     ],
 )
 def test_units_follow_the_ccnl_divisor(
@@ -236,7 +243,8 @@ def test_units_follow_the_ccnl_divisor(
     """January 2026 has 27 Mondays to Saturdays: the month is capped at 26.
 
     16-28 February runs to day 30 of the commercial month: 15 days; 9-15
-    March is five weekdays of eight hours.
+    March is five weekdays of eight hours, or five of the 22 working days
+    of March.
     """
     segments = tuple(
         SickDaySegment(first, last, 1, SickDayKind.INDEMNIFIED, _ZERO, _ONE)

@@ -215,7 +215,11 @@ with its provenance:
   paid days, a public holiday on a weekday is);
 - `by_30`: one thirtieth per day of a 30-day commercial month (a span to the
   month end runs to day 30, day 31 counts as day 30);
-- `by_hourly`: `daily_hours / hourly_divisor` per employed Monday to Friday.
+- `by_hourly`: `daily_hours / hourly_divisor` per employed Monday to Friday;
+- `by_month_hours`: one share per employed Monday to Friday out of the
+  Mondays to Fridays of the month (weekday holidays included), for a CCNL
+  that deducts unworked hours in proportion to the working hours of the
+  month. Sick days use the same divisor.
 
 Each pay component is prorated and rounded on its own, after the part-time
 ratio, and never above one monthly pay (2 March 2026, a Monday after a

@@ -21,6 +21,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.absence.models import DailyDivisorMethod
+from ccnl_engine.compensation.proration.rules import month_working_days
 from ccnl_engine.contribution.rate.rules import resolve_rates
 from ccnl_engine.employment.inputs import Apprentice
 from ccnl_engine.run.models import RunKind
@@ -63,6 +64,8 @@ def _quota(ccnl: CCNL, day: date) -> DailyQuota | None:
     if rules is None or rules.daily_divisor_method is DailyDivisorMethod.BY_25:
         return None
     method = rules.daily_divisor_method
+    if method is DailyDivisorMethod.BY_MONTH_HOURS:
+        return DailyQuota(method, month_working_days(day))
     fixed = _FIXED_DIVISORS.get(method)
     if fixed is not None:
         return DailyQuota(method, fixed)

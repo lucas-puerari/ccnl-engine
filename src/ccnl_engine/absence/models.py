@@ -19,12 +19,18 @@ class DailyDivisorMethod(StrEnum):
     * ``by_30``: ``gross_monthly / 30`` — the PA calendar-month divisor.
     * ``by_hourly``: ``hourly_rate * daily_hours`` — for contracts that
       specify a daily working-hours figure.
+    * ``by_month_hours``: ``gross_monthly * hours / working hours of the
+      month`` — for contracts that deduct unworked hours in proportion to
+      the working hours of the month (e.g. CCNL Concia art. 51 b): one
+      payable day is one Monday to Friday, weekday holidays included, so
+      the divisor is the Mondays to Fridays of the month.
     """
 
     BY_25 = "by_25"
     BY_26 = "by_26"
     BY_30 = "by_30"
     BY_HOURLY = "by_hourly"
+    BY_MONTH_HOURS = "by_month_hours"
 
 
 class AbsenceRules(BaseModel):
@@ -38,6 +44,8 @@ class AbsenceRules(BaseModel):
     * ``by_30``: ``gross_monthly / 30`` (PA calendar-month convention).
     * ``by_hourly``: ``hourly_rate * daily_hours`` — ``daily_hours`` must
       be provided.
+    * ``by_month_hours``: ``gross_monthly / Mondays to Fridays of the month``
+      per Monday to Friday.
 
     ``provenance`` links this rule to its source CCNL article.
     """
