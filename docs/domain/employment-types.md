@@ -18,7 +18,7 @@ limit; full INPS rates apply. This is the baseline from which all other types
 deviate.
 
 ```python
---8<-- "docs/examples/01_quickstart.py"
+--8<-- "docs/examples/period/example.py"
 ```
 
 ## Fixed-term (*tempo determinato*)
@@ -75,7 +75,7 @@ the seasonal exclusion for activities that only a CCNL calls seasonal (INPS
 messages 269/2025 and 483/2025): the caller states the exclusion.
 
 ```python
---8<-- "docs/examples/03_fixed_term.py"
+--8<-- "docs/examples/fixed_term/example.py"
 ```
 
 ## Apprenticeship (*apprendistato*)
@@ -96,7 +96,7 @@ The `Apprentice` type covers both salary tracks used by Italian CCNLs:
 The engine automatically detects which track the loaded CCNL uses.
 
 ```python
---8<-- "docs/examples/06_apprentice.py"
+--8<-- "docs/examples/apprenticeship/example.py"
 ```
 
 **API reference:** [`Permanent`](../api/models.md), [`FixedTerm`](../api/models.md),

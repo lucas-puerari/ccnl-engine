@@ -411,8 +411,8 @@ caught by `run_within_employment`).
 
 A directory holding Python modules under `src/ccnl_engine`, `tests`,
 `scripts` or `demo` takes one of these names; a file takes the name of its
-technical role (`docs/engine/architecture.md`). The structure check reads
-this list: a name is added here before a directory uses it.
+technical role (`docs/engine/architecture.md`). A name is added here before
+a directory uses it.
 
 **Concepts** (roots of `src/ccnl_engine`): `absence`, `agreement`, `amount`,
 `apprenticeship`, `assurance`, `balance`, `bundle`, `calendar`, `capability`, `catalog`,
@@ -448,8 +448,8 @@ this list: a name is added here before a directory uses it.
 
 **Operations** (`scripts`): `capability_matrix`, `contract_example`,
 `contract_page`, `coverage_matrix`, `distribution`, `documentation`,
-`evidence`, `fiscal`, `inventory`, `label`, `manifest`, `mutation`,
-`naming`, `provenance`, `quality`, `smoke`, `structure`, `trust_count`.
+`evidence`, `fiscal`, `label`, `manifest`, `mutation`, `provenance`,
+`quality`, `smoke`, `trust_count`.
 
 ---
 

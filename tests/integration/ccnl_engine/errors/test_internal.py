@@ -18,9 +18,8 @@ from pathlib import Path
 import ccnl_engine
 from ccnl_engine.agreement.validity.rules import SeriesGapError
 from ccnl_engine.errors import CcnlEngineError
-from tests.integration.scripts.structure.support_imports import read_package
 
-_SRC = Path(str(importlib.resources.files("ccnl_engine"))).parent
+_PACKAGE = Path(str(importlib.resources.files("ccnl_engine")))
 
 #: Modules that define, raise or catch ``SeriesGapError``.
 SERIES_GAP_MODULES: frozenset[str] = frozenset({
@@ -30,18 +29,32 @@ SERIES_GAP_MODULES: frozenset[str] = frozenset({
 })
 
 
+def _parsed_modules() -> dict[str, ast.Module]:
+    """Parse every module of the package, keyed by dotted name.
+
+    Returns:
+        The syntax tree of each module; a package by its own name.
+    """
+    modules: dict[str, ast.Module] = {}
+    for path in sorted(_PACKAGE.rglob("*.py")):
+        parts = path.relative_to(_PACKAGE.parent).with_suffix("").parts
+        name = ".".join(parts[:-1] if parts[-1] == "__init__" else parts)
+        modules[name] = ast.parse(path.read_text(encoding="utf-8"))
+    return modules
+
+
 def _modules_naming(name: str) -> set[str]:
     return {
-        module.name
-        for module in read_package(_SRC).values()
+        module
+        for module, tree in _parsed_modules().items()
         if any(
             isinstance(node, ast.Name | ast.alias)
             and name in {getattr(node, "id", None), getattr(node, "name", None)}
-            for node in ast.walk(module.tree)
+            for node in ast.walk(tree)
         )
         or any(
             isinstance(node, ast.ClassDef) and node.name == name
-            for node in ast.walk(module.tree)
+            for node in ast.walk(tree)
         )
     }
 

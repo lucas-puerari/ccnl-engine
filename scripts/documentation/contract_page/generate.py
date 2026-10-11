@@ -497,7 +497,7 @@ def _tail_section(ccnl_id: str, root: Path) -> list[str]:
         "    ```",
         "",
     ]
-    example_path = f"docs/examples/contracts/{ccnl_id}.py"
+    example_path = f"docs/examples/agreement/{ccnl_id}/example.py"
     if (root / example_path).exists():
         lines.extend([
             "## Usage example",

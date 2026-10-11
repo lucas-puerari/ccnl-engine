@@ -30,7 +30,7 @@ surtax (below) and has a `requirement_unresolved` blocker on it (see
 [Fail-closed payability](../trust/confidence.md#fail-closed-payability)).
 
 ```python
---8<-- "docs/examples/07_addizionali.py"
+--8<-- "docs/examples/surtax/example.py"
 ```
 
 ## When the surtax is withheld

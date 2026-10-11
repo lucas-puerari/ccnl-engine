@@ -7,16 +7,14 @@ The package moves from a layout by source (`contract` for the CCNL,
 `tax` for the statutory tables, `payroll` for the computation) to a layout
 by concept: one root per concept (`sickness`, `contribution`, `irpef`), with
 the CCNL rules, the statutory tables and the computation of that concept
-below it. The moves land one group of concepts at a time; until a module
-moves, it keeps its current path and the checks below treat its root as
-legacy.
+below it.
 
 The contract has four pages:
 
 - this page: principles, decisions, the production tree, the concepts, the
   roles and the dependency tiers;
 - [Target trees](architecture-contract-trees.md): the data, `demo`,
-  `scripts`, examples and test trees, and the inventory;
+  `scripts`, examples and test trees;
 - [Production map](architecture-contract-map.md): the target of every
   current production module;
 - [Migration notes](architecture-contract-migration.md): the namespace
@@ -56,7 +54,6 @@ The contract has four pages:
 | Root modules | `api`, `inputs`, `results`, `events`, `errors`, `version`, plus the roles `types` (today `primitives`) and `validators` (today `validation`); `validation_collection` becomes `collection/validators.py`. No alias: nothing outside the package imports the old names. |
 | Deep imports | Paths below the five public modules are not public. Moves carry no shim and no deprecation alias. |
 | Knowledge data | The JSON bundle stays in one tree, `knowledge/`, with its datasets named after the concepts that read them. |
-| Inventory | Each concept migration maps its moves in `scripts/structure/inventory.json` in the same change; CI fails on drift. |
 
 ## Production tree
 
@@ -144,8 +141,7 @@ its own tier or of a lower one; cycles inside a tier are allowed.
 The migration resolved the imports from computation into orchestration by
 moving the shared helpers and types to the tier of their users
 (`pay_item/services.py`, `decision/rules.py`, `calendar/`, `amount/`). Two
-imports remain, allowlisted with their reason in
-`tests/integration/scripts/structure/test_dependencies.py`: the INPS and
+imports remain, by design: the INPS and
 seniority decisions cite the payable rules of the run through the capability
 rule lookup.
 

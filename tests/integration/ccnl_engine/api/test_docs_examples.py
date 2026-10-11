@@ -1,7 +1,8 @@
 """Every script under ``docs/examples/`` runs against the public API.
 
-The numbered examples are the ones the guides embed: each must run and print
-something. The per-contract examples in ``docs/examples/contracts/`` exist
+The theme examples (``docs/examples/<theme>/example.py``) are the ones the
+guides embed: each must run and print something. The per-contract examples in
+``docs/examples/agreement/<slug>/example.py`` exist
 for every bundled CCNL, exit cleanly and print the gross, the employee
 contributions, the IRPEF, the net, the payability, the blocker codes and the
 issue codes of the run.  The amounts are engine output, so only their shape
@@ -21,12 +22,8 @@ from ccnl_engine.results import BlockerCode
 _ROOT = Path(__file__).parents[4]
 _EXAMPLES_DIR = _ROOT / "docs" / "examples"
 _CCNL_DATA_DIR = _ROOT / "src" / "ccnl_engine" / "knowledge" / "agreement"
-_GUIDE_EXAMPLES = sorted(_EXAMPLES_DIR.glob("[0-9]*.py"))
-_CONTRACT_EXAMPLES = sorted(
-    path
-    for path in (_EXAMPLES_DIR / "contracts").glob("*.py")
-    if path.name != "__init__.py"
-)
+_GUIDE_EXAMPLES = sorted(_EXAMPLES_DIR.glob("*/example.py"))
+_CONTRACT_EXAMPLES = sorted((_EXAMPLES_DIR / "agreement").glob("*/example.py"))
 _AMOUNT = r"-?\d+(\.\d+)? EUR"
 _CODES = r"none|[a-z0-9_]+(, [a-z0-9_]+)*"
 _BLOCKERS = "none|({0})(, ({0}))*".format("|".join(code.value for code in BlockerCode))
@@ -44,7 +41,7 @@ _EXPECTED_LINES = (
 def _run(example: Path) -> None:
     """Run ``example`` as ``__main__`` and fail on a non-zero exit."""
     code = _exit_code(example)
-    assert code in {0, None}, f"{example.name} exited with {code}"
+    assert code in {0, None}, f"{example.parent.name} exited with {code}"
 
 
 def _exit_code(example: Path) -> str | int | None:
@@ -65,13 +62,13 @@ def test_guide_examples_exist() -> None:
     assert _GUIDE_EXAMPLES
 
 
-@pytest.mark.parametrize("example", _GUIDE_EXAMPLES, ids=lambda p: p.stem)
+@pytest.mark.parametrize("example", _GUIDE_EXAMPLES, ids=lambda p: p.parent.name)
 def test_guide_example_runs_and_prints(
     example: Path, capsys: pytest.CaptureFixture[str]
 ) -> None:
     """A guide example raises nothing and prints its result."""
     _run(example)
-    assert capsys.readouterr().out.strip(), f"{example.name} printed nothing"
+    assert capsys.readouterr().out.strip(), f"{example.parent.name} printed nothing"
 
 
 def test_every_bundled_ccnl_has_an_example() -> None:
@@ -79,10 +76,10 @@ def test_every_bundled_ccnl_has_an_example() -> None:
     ccnls = {path.stem for path in _CCNL_DATA_DIR.glob("*.json")}
 
     assert ccnls
-    assert {path.stem for path in _CONTRACT_EXAMPLES} == ccnls
+    assert {path.parent.name for path in _CONTRACT_EXAMPLES} == ccnls
 
 
-@pytest.mark.parametrize("example", _CONTRACT_EXAMPLES, ids=lambda p: p.stem)
+@pytest.mark.parametrize("example", _CONTRACT_EXAMPLES, ids=lambda p: p.parent.name)
 def test_contract_example_prints_the_run(
     example: Path, capsys: pytest.CaptureFixture[str]
 ) -> None:
@@ -93,5 +90,5 @@ def test_contract_example_prints_the_run(
     for label, value in _EXPECTED_LINES:
         pattern = rf"^{label}:\s+({value})$"
         assert re.search(pattern, out, re.MULTILINE), (
-            f"{example.name} does not print {label!r} as {value!r}:\n{out}"
+            f"{example.parent.name} does not print {label!r} as {value!r}:\n{out}"
         )

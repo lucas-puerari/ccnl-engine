@@ -11,7 +11,7 @@ net salary?" but "why is it that number?" This example walks through all three
 verifiability layers: provenance, versioning, and the capability report.
 
 ```python
---8<-- "docs/examples/11_why_this_number.py"
+--8<-- "docs/examples/explanation/example.py"
 ```
 
 ## Basics
@@ -21,7 +21,7 @@ verifiability layers: provenance, versioning, and the capability report.
 Minimal call: build a `PeriodInput` and pass it to `PayrollEngine.calculate_period()`.
 
 ```python
---8<-- "docs/examples/01_quickstart.py"
+--8<-- "docs/examples/period/example.py"
 ```
 
 ### Reading the result
@@ -31,7 +31,7 @@ gross, net and employer cost, the INPS contribution breakdown, the IRPEF
 computation and the pay items.
 
 ```python
---8<-- "docs/examples/02_payroll_fields.py"
+--8<-- "docs/examples/result/example.py"
 ```
 
 ## Contract types
@@ -41,7 +41,7 @@ computation and the pay items.
 `FixedTerm(renewals=..., naspi_exclusion=...)` adds the NASpI surcharge to the employer's INPS contribution: 1.4%, plus 0.5% per renewal, unless an exclusion of L. 92/2012 art. 2 c. 29 applies; gross and net are unchanged. Left unknown, either fact blocks the run.
 
 ```python
---8<-- "docs/examples/03_fixed_term.py"
+--8<-- "docs/examples/fixed_term/example.py"
 ```
 
 ### Apprenticeship (apprendistato)
@@ -49,7 +49,7 @@ computation and the pay items.
 Percentage track: the apprentice's pay is a % of the destination level, increasing with `months_elapsed`.
 
 ```python
---8<-- "docs/examples/06_apprentice.py"
+--8<-- "docs/examples/apprenticeship/example.py"
 ```
 
 ## Pay components
@@ -59,7 +59,7 @@ Percentage track: the apprentice's pay is a % of the destination level, increasi
 A `FamilyComposition` with dependants raises the Art. 12 TUIR deductions and the net pay. The deductions read the reddito complessivo of the year: state the income beyond this employment with `CurrentYearTaxFacts` (zero included), or the result is not payable. See [Family deductions](engine/fiscal.md#family-deductions-art-12-tuir).
 
 ```python
---8<-- "docs/examples/04_part_time.py"
+--8<-- "docs/examples/family/example.py"
 ```
 
 ### Seniority increments (scatti di anzianità)
@@ -67,7 +67,7 @@ A `FamilyComposition` with dependants raises the Art. 12 TUIR deductions and the
 Pass the recognised seniority as `Employment.seniority`, a `SeniorityFact` dated and sourced; unknown seniority is a missing fact, not zero. The category selects category-specific increments.
 
 ```python
---8<-- "docs/examples/05_seniority.py"
+--8<-- "docs/examples/seniority/example.py"
 ```
 
 ### Pension fund (previdenza complementare)
@@ -75,7 +75,7 @@ Pass the recognised seniority as `Employment.seniority`, a `SeniorityFact` dated
 Declare the enrolment in the CCNL fund as `Employment.pension_fund`; without it no fund contribution is posted. See [Pension funds](engine/pay-components.md#pension-funds-previdenza-complementare).
 
 ```python
---8<-- "docs/examples/13_pension_fund.py"
+--8<-- "docs/examples/pension_fund/example.py"
 ```
 
 ### Year-to-date chaining
@@ -83,7 +83,7 @@ Declare the enrolment in the CCNL fund as `Employment.pension_fund`; without it 
 Pass the `closing_state` of one run as the `opening_state` of the next, so progressive IRPEF and the year-to-date totals carry forward.
 
 ```python
---8<-- "docs/examples/09_negotiated_ral.py"
+--8<-- "docs/examples/balance/example.py"
 ```
 
 ### Second-level bargaining (contrattazione di secondo livello)
@@ -91,7 +91,7 @@ Pass the `closing_state` of one run as the `opening_state` of the next, so progr
 Territorial or company allowances on top of the CCNL minimums, with per-item contribution/TFR/apprenticeship control.
 
 ```python
---8<-- "docs/examples/08_second_level.py"
+--8<-- "docs/examples/calendar/example.py"
 ```
 
 ## Fiscal
@@ -101,7 +101,7 @@ Territorial or company allowances on top of the CCNL minimums, with per-item con
 Pass `regione` (ISO 3166-2:IT region code, e.g. `IT-45`) and `comune_belfiore` (Belfiore code, e.g. `F257`) to include addizionale regionale and comunale. The surtax of a year is determined by its conguaglio and withheld the next year by installments, so a run withholds the surtax an earlier conguaglio determined: import it with `OpeningBalances.surtax_obligations`. Check `result.assurance.calculation` and `result.decisions`: an unknown table, or a `regione` or `comune_belfiore` left `None` (decision `residence_unknown`), makes the calculation `incomplete` and the result not payable.
 
 ```python
---8<-- "docs/examples/07_addizionali.py"
+--8<-- "docs/examples/surtax/example.py"
 ```
 
 ### December paid in January (tax year and conguaglio)
@@ -113,7 +113,7 @@ conguaglio on the last; `calculate_competence_year` computes the runs of one
 competence year across the tax years that pay them.
 
 ```python
---8<-- "docs/examples/14_tax_year.py"
+--8<-- "docs/examples/tax_year/example.py"
 ```
 
 ### Domestic work (lavoro domestico)
@@ -121,5 +121,5 @@ competence year across the tax years that pay them.
 Flat per-hour INPS contributions; the employer does not withhold IRPEF. `weekly_hours` is required.
 
 ```python
---8<-- "docs/examples/10_domestic.py"
+--8<-- "docs/examples/domestic/example.py"
 ```

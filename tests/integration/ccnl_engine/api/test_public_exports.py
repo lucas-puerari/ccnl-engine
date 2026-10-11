@@ -22,12 +22,16 @@ import ccnl_engine
 from ccnl_engine import errors as errors_module
 from ccnl_engine.decision.models import PUBLIC_FACTS
 from ccnl_engine.errors import PUBLIC_ERROR_CODES, CcnlEngineError
-from tests.integration.scripts.structure.support_imports import (
-    PUBLIC_NAMESPACES,
-    ROOT_PACKAGE,
-)
 
 _REPO = Path(__file__).parents[4]
+ROOT_PACKAGE = "ccnl_engine"
+#: Public namespace modules next to the package root.
+PUBLIC_NAMESPACES = frozenset({
+    f"{ROOT_PACKAGE}.inputs",
+    f"{ROOT_PACKAGE}.events",
+    f"{ROOT_PACKAGE}.results",
+    f"{ROOT_PACKAGE}.catalog",
+})
 
 EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
     "ccnl_engine": frozenset({

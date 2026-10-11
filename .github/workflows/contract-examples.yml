@@ -7,7 +7,7 @@ on:
       - "src/ccnl_engine/knowledge/contract/**"
       - "src/ccnl_engine/knowledge/social_security/**"
       - "scripts/documentation/contract_example/generate.py"
-      - "docs/examples/contracts/**"
+      - "docs/examples/agreement/**"
 
 concurrency:
   group: contract-examples-${{ github.head_ref }}
@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   check-contract-examples:
-    name: Verify docs/examples/contracts/ is up to date
+    name: Verify docs/examples/agreement/ is up to date
     runs-on: ubuntu-latest
 
     steps:

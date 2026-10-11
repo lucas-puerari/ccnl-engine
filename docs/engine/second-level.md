@@ -18,7 +18,7 @@ than the CCNL. The year calculation accepts such a calendar only as a
 `CalendarOverride` with its reason, validated against the CCNL calendar:
 
 ```python
---8<-- "docs/examples/08_second_level.py"
+--8<-- "docs/examples/calendar/example.py"
 ```
 
 !!! note
