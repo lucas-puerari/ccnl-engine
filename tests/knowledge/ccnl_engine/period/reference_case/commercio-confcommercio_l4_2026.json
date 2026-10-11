@@ -9,9 +9,11 @@
     "The terzo elemento nazionale (2.07) is due where no provincial third element is in force (Art. 215): the case states none is."
   ],
   "source": {
-    "document": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-    "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-    "section": "Level 4 minimo tabellare and contingenza, tranche from November 2025"
+    "document": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+    "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001",
+    "page": "65",
+    "section": "Table 'Paga base dal 1/11/2025', row IV: paga base 1257,46, contingenza 524,22; terzo elemento 2,07 from Art. 215 of the Testo Unico 2019 (PDF p. 199)"
   },
   "inputs": {
     "ccnl_slug": "commercio-confcommercio.json",

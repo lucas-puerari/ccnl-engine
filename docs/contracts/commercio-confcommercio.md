@@ -40,7 +40,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 69 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 53 verified / 16 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -49,7 +49,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-03-28 |
-| **Last review** | 2026-10-10 |
+| **Last review** | 2026-10-11 |
 | **Latest salary tranche** | 2027-02-01 |
 
 ## Review history
@@ -57,6 +57,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-10 | claude-opus-5-5 (ai) | Whole file. The values checked were not recorded; no value was marked verified. | confirmed | The review recorded no list of the documents it read. |
+| 2026-10-11 | claude-opus-5-5 (ai) | Every payable rule of the file (80 records) read again in the signed texts: the Testo Unico of 30 July 2019 and the renewal of 22 March 2024 with the accordo integrativo of 28 March 2024. | confirmed | 64 records match their source and are verified; no amount differs. Pages are PDF page indexes (the printed page of the 2019 text is one higher).<br>Wrong page citations corrected: Artt. 210-211 on p. 197, Art. 159 on p. 157, Artt. 186-187 on pp. 178-180.<br>The 16 contingenza and terzo elemento records match in amount, but no source states their valid_from 1993-11-01: they stay derived. No effect on periods from 2024-04-01.<br>The Fon.Te. rates are read in Art. 107 (and Art. 57 for apprentices) of the 2019 text instead of the fund's information sheet.<br>Not modelled: the two one-off payments of the 2024 renewal (level IV 175 EUR on 1 July 2024 and on 1 July 2025, 2024 text p. 50).<br>Pages 1-62 of the 2024 text are image-only and were read by OCR; the expiry clause of Art. 259 is illegible. |
 
 ## Salary table
 
@@ -161,8 +162,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024) | tabella_retributiva | 2024-03-28 | [↗](https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/) |
-| CCNL Terziario Distribuzione e Servizi — Testo Unico 2019 (rinnovo 22/03/2024) | associazione | 2024-03-22 | [↗](https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019) |
+| CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata) | associazione | 2024-03-28 | [↗](https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf) |
+| CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019 | associazione | 2019-07-30 | [↗](https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf) |
 
 ??? note "Coverage notes"
     'contingenza_edr' is the tables' 'Contingenza + EDR' column (contingenza frozen since November 1993 per L. 438/1992 plus EDR 10,33); 'terzo_elemento_nazionale' is the 2,07 EUR element of Art. 215.
@@ -175,7 +176,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     TERZO ELEMENTO NAZIONALE (Art. 215): 2.07 EUR a month due only in the provinces where no provincial third element is in force; paid when EmployerProfile.provincial_pay_element is false, left out with a missing_fact blocker when it is not stated.
     
-    Salary tables: five tranches of the rinnovo 22/03/2024 (paga base dal 1/4/2024, 1/3/2025, 1/11/2025, 1/11/2026, 1/2/2027) taken from the official tabelle retributive as perfected by the Accordo integrativo 28/03/2024 (rounding fixes on Q, I, II, VI vs the 22/03 ipotesi), consolidated text at comuneportofinomare.it (Eutekne) cross-checked with lexplain.it.
+    Salary tables: five tranches of the rinnovo 22/03/2024 (paga base dal 1/4/2024, 1/3/2025, 1/11/2025, 1/11/2026, 1/2/2027) taken from the official tabelle retributive as perfected by the Accordo integrativo 28/03/2024 (rounding fixes on Q, I, II, VI vs the 22/03 ipotesi), read in the signed text published by Uiltucs (pp. 63-65 of the 2024 PDF).
     
     Seniority (Art. 205): ten triennial scatti; amounts Q 25,46, I 24,84, II 22,83, III 21,95, IV 20,66, V 20,30, VI 19,73, VII 19,47 (dal 1/1/1990, unchanged by the 2024 renewal).
     

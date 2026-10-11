@@ -149,13 +149,19 @@ def test_payable_statuses_cover_every_rule() -> None:
     assert sum(counts[status] for status in STATUSES) == len(_RULES)
 
 
-def test_verified_rules_are_the_reviewed_l2_rules_of_industria() -> None:
-    """Only the L2 rules re-checked for the production CCNL are verified.
+def test_verified_fiscal_rules_are_the_reviewed_l2_rules_of_industria() -> None:
+    """Outside the CCNL files, only the L2 rules of the production CCNL are verified.
 
     Each names its reviewer and date (``RuleProvenance`` rejects a verified
-    record without them, so the bundle would not load otherwise).
+    record without them, so the bundle would not load otherwise). Verified
+    CCNL rules point to their review log instead, which the evidence gate
+    checks.
     """
-    verified = {(r.file, r.path) for r in _RULES if r.status == "verified"}
+    verified = {
+        (r.file, r.path)
+        for r in _RULES
+        if r.status == "verified" and not r.file.startswith("agreement/")
+    }
     inps = "contribution/2026/industria.json"
     tax = "sector/2026/industria.json"
     assert verified == {
@@ -167,7 +173,6 @@ def test_verified_rules_are_the_reviewed_l2_rules_of_industria() -> None:
         (tax, "tfr.additional_ivs"),
         (tax, "tfr.compensation"),
     }
-    assert count_by_status(_RULES)["verified"] == len(verified)
 
 
 def test_salary_period_without_provenance_fails() -> None:

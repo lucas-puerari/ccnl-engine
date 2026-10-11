@@ -14,22 +14,28 @@
     ],
     "sources": [
       {
-        "document_id": "tabelle-retributive-commercio-2024",
-        "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
-        "kind": "tabella_retributiva",
-        "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-        "pages": [],
+        "document_id": "uiltucs-tds",
+        "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+        "kind": "associazione",
+        "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+        "pages": [
+          "63",
+          "64",
+          "65"
+        ],
         "published_on": "2024-03-28",
-        "jurisdiction": "it"
+        "jurisdiction": "it",
+        "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
       },
       {
-        "document_id": "ccnl-commercio-confcommercio-2019",
-        "title": "CCNL Terziario Distribuzione e Servizi — Testo Unico 2019 (rinnovo 22/03/2024)",
+        "document_id": "uiltucs-tu2019",
+        "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
         "kind": "associazione",
-        "url": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
+        "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
         "pages": [],
-        "published_on": "2024-03-22",
-        "jurisdiction": "it"
+        "published_on": "2019-07-30",
+        "jurisdiction": "it",
+        "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
       }
     ],
     "extraction": {
@@ -49,7 +55,7 @@
     "notes": [
       {
         "kind": "source",
-        "text": "Salary tables: five tranches of the rinnovo 22/03/2024 (paga base dal 1/4/2024, 1/3/2025, 1/11/2025, 1/11/2026, 1/2/2027) taken from the official tabelle retributive as perfected by the Accordo integrativo 28/03/2024 (rounding fixes on Q, I, II, VI vs the 22/03 ipotesi), consolidated text at comuneportofinomare.it (Eutekne) cross-checked with lexplain.it."
+        "text": "Salary tables: five tranches of the rinnovo 22/03/2024 (paga base dal 1/4/2024, 1/3/2025, 1/11/2025, 1/11/2026, 1/2/2027) taken from the official tabelle retributive as perfected by the Accordo integrativo 28/03/2024 (rounding fixes on Q, I, II, VI vs the 22/03 ipotesi), read in the signed text published by Uiltucs (pp. 63-65 of the 2024 PDF)."
       },
       {
         "kind": "source",
@@ -115,7 +121,7 @@
           "valid_until": null,
           "value": "168",
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "uiltucs-tu2019",
@@ -125,16 +131,19 @@
                 "published_on": "2019-07-30",
                 "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
               },
-              "page": "196",
+              "page": "197",
               "section": "Art. 211 - Quota oraria, lett. a)",
-              "quote": "168, per il personale la cui durata normale di lavoro è di 40 ore settimanali"
+              "quote": "a) 168, per il personale la cui durata normale di lavoro è di 40 ore settimanali;"
             },
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-10T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-04-01"
+              "verification_status": "verified",
+              "effective_from": "2024-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T18:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         }
@@ -147,7 +156,7 @@
           "valid_until": null,
           "value": "14",
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "uiltucs-tu2019",
@@ -157,16 +166,19 @@
                 "published_on": "2019-07-30",
                 "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
               },
-              "page": "200-201",
-              "section": "Capo XIV - Mensilita supplementari (13a e 14a): Art. 220 Tredicesima mensilita (p. 200), Art. 221 Quattordicesima Mensilita (p. 201)",
-              "quote": "Art. 221: 'sara corrisposto, il 1° luglio di ogni anno, un importo pari ad una mensilita della retribuzione di fatto ... (quattordicesima mensilita)'"
+              "page": "200-202",
+              "section": "Artt. 220-221 and Nota a verbale",
+              "quote": "la suddivisione in 14 mensilità della retribuzione annua incide esclusivamente sulle modalità di pagamento"
             },
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-10T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-04-01"
+              "verification_status": "verified",
+              "effective_from": "2024-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T18:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         }
@@ -250,7 +262,7 @@
         }
       },
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "uiltucs-tu2019",
@@ -261,15 +273,18 @@
             "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
           },
           "page": "192-193",
-          "section": "Art. 205 - Scatti di anzianita",
-          "quote": "il personale ha diritto a dieci scatti triennali ... Quadri 25,46 I 24,84 II 22,83 III 21,95 IV 20,66 V 20,30 VI 19,73 VII 19,47 (dal 01.01.1990)"
+          "section": "Art. 205 - Scatti di anzianità",
+          "quote": "il personale ha diritto a dieci scatti triennali ... Quadri 25,46 I 24,84 II 22,83 III 21,95 IV 20,66 V 20,30 VI 19,73 VII 19,47"
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-10-10T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "1993-11-01"
+          "verification_status": "verified",
+          "effective_from": "1993-11-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T18:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -277,7 +292,7 @@
       "min_days": 15,
       "comparison": "at_least",
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "uiltucs-tu2019",
@@ -288,15 +303,18 @@
             "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
           },
           "page": "192",
-          "section": "Art. 204 - Computo anzianita frazione annua; referred to by footnotes 19 and 20 of Artt. 220 (p. 200) and 221 (p. 201)",
-          "quote": "le frazioni di anno saranno computate, a tutti gli effetti contrattuali, per dodicesimi, computandosi come mese intero le frazioni di mese superiori o uguali a 15 giorni."
+          "section": "Art. 204",
+          "quote": "computandosi come mese intero le frazioni di mese superiori o uguali a 15 giorni."
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-10-10T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "1993-11-01"
+          "verification_status": "verified",
+          "effective_from": "1993-11-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T18:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -304,40 +322,60 @@
       "month": 12,
       "day": 24,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-terziario-confcommercio-testo-unico-2019",
-            "title": "Testo Unico 30 luglio 2019 CCNL Terziario, Distribuzione e Servizi",
-            "kind": "altro",
-            "url": "https://www.ebinter.it/ebinter-site/wp-content/uploads/2022/01/CCNL-Terziario-Distribuzione-e-Servizi_30-Luglio-2019.pdf",
-            "published_on": "2019-07-30"
+            "document_id": "uiltucs-tu2019",
+            "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "published_on": "2019-07-30",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
           },
           "page": "200",
-          "section": "Art. 220, Tredicesima mensilità",
-          "quote": "In coincidenza con la vigilia di Natale di ogni anno le aziende dovranno corrispondere al personale dipendente un importo pari ad una mensilità della retribuzione di fatto di cui all’art. 208 (esclusi gli assegni familiari)."
+          "section": "Art. 220 - Tredicesima mensilità",
+          "quote": "In coincidenza con la vigilia di Natale di ogni anno le aziende dovranno corrispondere al personale dipendente un importo pari ad una mensilità"
         },
-        "note": "Paid on Christmas Eve for the window January to December. Quote taken from the text layer of the cited PDF (PDF page 200, sha256 76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016), line-break hyphenation removed; read with AI assistance, no human review recorded."
+        "note": "Paid on Christmas Eve for the window January to December. Quote taken from the text layer of the cited PDF (PDF page 200, sha256 76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016), line-break hyphenation removed; read with AI assistance, no human review recorded.",
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-10-11T18:00:00Z",
+          "effective_from": "2024-04-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T18:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-11-ai"
+        }
       }
     },
     "fourteenth_payment_day": {
       "month": 7,
       "day": 1,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-terziario-confcommercio-testo-unico-2019",
-            "title": "Testo Unico 30 luglio 2019 CCNL Terziario, Distribuzione e Servizi",
-            "kind": "altro",
-            "url": "https://www.ebinter.it/ebinter-site/wp-content/uploads/2022/01/CCNL-Terziario-Distribuzione-e-Servizi_30-Luglio-2019.pdf",
-            "published_on": "2019-07-30"
+            "document_id": "uiltucs-tu2019",
+            "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "published_on": "2019-07-30",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
           },
           "page": "201",
-          "section": "Art. 221, Quattordicesima mensilità",
-          "quote": "Al personale compreso nella sfera di applicazione del presente contratto sarà corrisposto, il 1° luglio di ogni anno, un importo pari ad una mensilità della retribuzione di fatto di cui all’art. 208 in atto al 30 giugno immediatamente precedente (quattordicesima mensilità), esclusi gli assegni familiari."
+          "section": "Art. 221 - Quattordicesima mensilità",
+          "quote": "sarà corrisposto, il 1° luglio di ogni anno, un importo pari ad una mensilità della retribuzione di fatto di cui all’art. 208 in atto al 30 giugno"
         },
-        "note": "Paid on 1 July for the window July to June that ends on 30 June: the run stays the June quattordicesima, paid the next day. Quote taken from the text layer of the cited PDF (PDF page 201), line-break hyphenation removed; read with AI assistance, no human review recorded."
+        "note": "Paid on 1 July for the window July to June that ends on 30 June: the run stays the June quattordicesima, paid the next day. Quote taken from the text layer of the cited PDF (PDF page 201), line-break hyphenation removed; read with AI assistance, no human review recorded.",
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-10-11T18:00:00Z",
+          "effective_from": "2024-04-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T18:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-11-ai"
+        }
       }
     },
     "employer_funds": [
@@ -364,19 +402,31 @@
         },
         "contribution_base": "tfr_base",
         "provenance": {
-          "status": "derived",
+          "status": "verified",
           "location": {
             "source_document": {
-              "document_id": "fonte-allegato-1-contribuzione-2026",
-              "title": "Fon.Te. Nota informativa, Allegato 1 'Informazioni sulla contribuzione' (dati aggiornati al 23 marzo 2026)",
-              "kind": "altro",
-              "url": "https://fondofonte.it/wp-content/uploads/2022/06/Allegato-1-info-tab-contribuzione.pdf"
+              "document_id": "uiltucs-tu2019",
+              "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+              "kind": "associazione",
+              "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+              "published_on": "2019-07-30",
+              "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
             },
-            "section": "Table 'CCNL TERZIARIO DISTRIBUZIONE E SERVIZI (CONFCOMMERCIO e FILCAMS – CGIL, FISASCAT – CISL, UILTuCS)'",
-            "quote": "Lavoratori occupati dopo il 28.04.1993 50% o 100% 0,55% 1,55% 29 novembre 1996 Trimestrale; Apprendisti 50% o 100% 0,55% 1,05% 29 novembre 1996 Trimestrale"
+            "page": "105-106 and 77",
+            "section": "Art. 107 - Fondo di previdenza complementare Fon.Te (rates); Art. 57 - Fon.Te (apprentices)",
+            "quote": "il valore massimo della contribuzione a carico dei datori di lavoro, pari all’1,55% della retribuzione utile per il computo del TFR ... e quella minima dei lavoratori pari allo 0,55%"
           },
           "transformation": "Employer 1.55% and worker minimum 0.55%, the columns 'Datore di Lavoro' and 'Lavoratore' of the table of the CCNL, employer 1.05% for apprentices (row 'Apprendisti'). The quota of TFR is the worker's choice in PensionFundEnrolment.tfr_to_fund.",
-          "note": "Read from the PDF the url serves (sha256 e1604b50f245d34b4ea04aa53bb91056f55635b39b8c0935f31f2a79b578d40e), text layer; valid_from is the first day of the bundled tax year, the rates being in force since 29 November 1996. The base is the retribuzione utile ai fini del calcolo del TFR, as note (1) of the Scheda 'I destinatari e i contributi' states (https://www.fondofonte.it/statuto-e-nota-informativa/parte-i-scheda-iii-i-destinatari-e-i-contributi/, sha256 dc19e50af945d0671920bb1ebc77e5d75cc2a9dd2f6fd8cad5dd2882a66c8cb2). No human review recorded."
+          "note": "Read from the PDF the url serves (sha256 e1604b50f245d34b4ea04aa53bb91056f55635b39b8c0935f31f2a79b578d40e), text layer; valid_from is the first day of the bundled tax year, the rates being in force since 29 November 1996. The base is the retribuzione utile ai fini del calcolo del TFR, as note (1) of the Scheda 'I destinatari e i contributi' states (https://www.fondofonte.it/statuto-e-nota-informativa/parte-i-scheda-iii-i-destinatari-e-i-contributi/, sha256 dc19e50af945d0671920bb1ebc77e5d75cc2a9dd2f6fd8cad5dd2882a66c8cb2). No human review recorded.",
+          "extraction": {
+            "method": "manual",
+            "extraction_timestamp": "2026-10-11T18:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-11T18:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-10-11-ai"
+          }
         },
         "apprentice_rate": {
           "periods": [
@@ -402,7 +452,7 @@
             "valid_until": "2025-03-01",
             "value": "2070.25",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -413,15 +463,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "64",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/4/2024'",
-                "quote": "Paga base dal 1/4/2024 ... Quadro 2070,25"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2024-04-01",
+                "quote": "Quadro                 2070,25       260,76          540,37        2871,38"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-04-01"
+                "verification_status": "verified",
+                "effective_from": "2024-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -430,7 +483,7 @@
             "valid_until": "2025-11-01",
             "value": "2122.33",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -441,15 +494,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "64",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/3/2025'",
-                "quote": "Paga base dal 1/3/2025 ... Quadro 2122,33"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2025-03-01",
+                "quote": "Quadro                 2122,33       260,76          540,37        2923,46"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-03-01"
+                "verification_status": "verified",
+                "effective_from": "2025-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -458,7 +514,7 @@
             "valid_until": "2026-11-01",
             "value": "2183.09",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -469,15 +525,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "65",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2025'",
-                "quote": "Paga base dal 1/11/2025 ... Quadro 2183,09"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2025-11-01",
+                "quote": "Quadro                        2183,09       260.76          540.37        2984.22"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-11-01"
+                "verification_status": "verified",
+                "effective_from": "2025-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -486,7 +545,7 @@
             "valid_until": "2027-02-01",
             "value": "2243.85",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -497,15 +556,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "65",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2026'",
-                "quote": "Paga base dal 1/11/2026 ... Quadro 2243,85"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2026-11-01",
+                "quote": "Quadro                        2243,85        260,76          540,37        3044,98"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2026-11-01"
+                "verification_status": "verified",
+                "effective_from": "2026-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -514,7 +576,7 @@
             "valid_until": null,
             "value": "2313.29",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -525,15 +587,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "65",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/2/2027'",
-                "quote": "Paga base dal 1/2/2027 ... Quadro 2313,29"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2027-02-01",
+                "quote": "Quadro                        2313,29       260,76          540,37        3114,42"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-02-01"
+                "verification_status": "verified",
+                "effective_from": "2027-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           }
@@ -626,7 +691,7 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "uiltucs-tds",
@@ -636,23 +701,26 @@
                 "published_on": "2024-03-28",
                 "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
               },
-              "page": "64",
-              "section": "Accordo integrativo 28/03/2024, column 'Altri el.' (same in all tranche tables, pp. 64-65)",
-              "quote": "Quadro ... 260,76"
+              "page": "64-65",
+              "section": "column 'Altri el.' row Quadro",
+              "quote": "Quadro 2070,25 260,76 540,37 2871,38"
             },
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-10T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "1993-11-01"
+              "verification_status": "verified",
+              "effective_from": "1993-11-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T18:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         }
       ],
       "category": "quadro",
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "uiltucs-tds",
@@ -662,16 +730,19 @@
             "published_on": "2024-03-28",
             "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
           },
-          "page": "65",
+          "page": "64-65",
           "section": "Accordo integrativo 28/03/2024, tabelle retributive",
-          "quote": null
+          "quote": "Livelli ... Quadro"
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-10-10T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2027-02-01"
+          "verification_status": "verified",
+          "effective_from": "2027-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T18:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -686,7 +757,7 @@
             "valid_until": "2025-03-01",
             "value": "1864.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -697,15 +768,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "64",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/4/2024'",
-                "quote": "Paga base dal 1/4/2024 ... I 1864,88"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2024-04-01",
+                "quote": "I                      1864,88                       537,52        2402,40"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-04-01"
+                "verification_status": "verified",
+                "effective_from": "2024-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -714,7 +788,7 @@
             "valid_until": "2025-11-01",
             "value": "1911.80",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -725,15 +799,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "64",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/3/2025'",
-                "quote": "Paga base dal 1/3/2025 ... I 1911,80"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2025-03-01",
+                "quote": "I                      1911,80                       537,52        2449,32"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-03-01"
+                "verification_status": "verified",
+                "effective_from": "2025-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -742,7 +819,7 @@
             "valid_until": "2026-11-01",
             "value": "1966.54",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -753,15 +830,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "65",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2025'",
-                "quote": "Paga base dal 1/11/2025 ... I 1966,54"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2025-11-01",
+                "quote": "I                             1966,54                       537,52        2504.06"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-11-01"
+                "verification_status": "verified",
+                "effective_from": "2025-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -770,7 +850,7 @@
             "valid_until": "2027-02-01",
             "value": "2021.28",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -781,15 +861,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "65",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2026'",
-                "quote": "Paga base dal 1/11/2026 ... I 2021,28"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2026-11-01",
+                "quote": "I                             202L28                         537,52        2558,80"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2026-11-01"
+                "verification_status": "verified",
+                "effective_from": "2026-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -798,7 +881,7 @@
             "valid_until": null,
             "value": "2083.84",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -809,15 +892,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "65",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/2/2027'",
-                "quote": "Paga base dal 1/2/2027 ... I 2083,84"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2027-02-01",
+                "quote": "1                             2083,84                       537.52        2621,36"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-02-01"
+                "verification_status": "verified",
+                "effective_from": "2027-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           }
@@ -899,7 +985,7 @@
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "uiltucs-tds",
@@ -909,16 +995,19 @@
             "published_on": "2024-03-28",
             "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
           },
-          "page": "65",
+          "page": "64-65",
           "section": "Accordo integrativo 28/03/2024, tabelle retributive",
-          "quote": null
+          "quote": "Livelli ... I"
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-10-10T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2027-02-01"
+          "verification_status": "verified",
+          "effective_from": "2027-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T18:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -933,7 +1022,7 @@
             "valid_until": "2025-03-01",
             "value": "1613.11",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -944,15 +1033,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "64",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/4/2024'",
-                "quote": "Paga base dal 1/4/2024 ... II 1613,11"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2024-04-01",
+                "quote": "II                     1613,11                       532,54        2145,65"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-04-01"
+                "verification_status": "verified",
+                "effective_from": "2024-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -961,7 +1053,7 @@
             "valid_until": "2025-11-01",
             "value": "1653.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -972,15 +1064,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "64",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/3/2025'",
-                "quote": "Paga base dal 1/3/2025 ... II 1653,69"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2025-03-01",
+                "quote": "II                     1653,69                       532,54        2186,23"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-03-01"
+                "verification_status": "verified",
+                "effective_from": "2025-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -989,7 +1084,7 @@
             "valid_until": "2026-11-01",
             "value": "1701.04",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -1000,15 +1095,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "65",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2025'",
-                "quote": "Paga base dal 1/11/2025 ... II 1701,04"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2025-11-01",
+                "quote": "II                            1701,04                       532,54        2233,58"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-11-01"
+                "verification_status": "verified",
+                "effective_from": "2025-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1017,7 +1115,7 @@
             "valid_until": "2027-02-01",
             "value": "1748.39",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -1028,15 +1126,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "65",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2026'",
-                "quote": "Paga base dal 1/11/2026 ... II 1748,39"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2026-11-01",
+                "quote": "II                            1748,39                        532,54        2280,93"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2026-11-01"
+                "verification_status": "verified",
+                "effective_from": "2026-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1045,7 +1146,7 @@
             "valid_until": null,
             "value": "1802.50",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -1056,15 +1157,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "65",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/2/2027'",
-                "quote": "Paga base dal 1/2/2027 ... II 1802,50"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2027-02-01",
+                "quote": "II                            1802,50                       532,54        2335,04"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-02-01"
+                "verification_status": "verified",
+                "effective_from": "2027-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           }
@@ -1146,7 +1250,7 @@
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "uiltucs-tds",
@@ -1156,16 +1260,19 @@
             "published_on": "2024-03-28",
             "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
           },
-          "page": "65",
+          "page": "64-65",
           "section": "Accordo integrativo 28/03/2024, tabelle retributive",
-          "quote": null
+          "quote": "Livelli ... II"
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-10-10T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2027-02-01"
+          "verification_status": "verified",
+          "effective_from": "2027-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T18:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -1180,7 +1287,7 @@
             "valid_until": "2025-03-01",
             "value": "1378.78",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -1191,15 +1298,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "64",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/4/2024'",
-                "quote": "Paga base dal 1/4/2024 ... III 1378,78"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2024-04-01",
+                "quote": "III                    1378.78                       527,90        1906,68"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-04-01"
+                "verification_status": "verified",
+                "effective_from": "2024-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1208,7 +1318,7 @@
             "valid_until": "2025-11-01",
             "value": "1413.47",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -1219,15 +1329,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "64",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/3/2025'",
-                "quote": "Paga base dal 1/3/2025 ... III 1413,47"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2025-03-01",
+                "quote": "III                    1413,47                       527,90        1941,37"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-03-01"
+                "verification_status": "verified",
+                "effective_from": "2025-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1236,7 +1349,7 @@
             "valid_until": "2026-11-01",
             "value": "1453.94",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -1247,15 +1360,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "65",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2025'",
-                "quote": "Paga base dal 1/11/2025 ... III 1453,94"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2025-11-01",
+                "quote": "III                           1453,94                       527,90        1981,84"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-11-01"
+                "verification_status": "verified",
+                "effective_from": "2025-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1264,7 +1380,7 @@
             "valid_until": "2027-02-01",
             "value": "1494.41",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -1275,15 +1391,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "65",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2026'",
-                "quote": "Paga base dal 1/11/2026 ... III 1494,41"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2026-11-01",
+                "quote": "III                           1494,41                        527,90        2022,31"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2026-11-01"
+                "verification_status": "verified",
+                "effective_from": "2026-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1292,7 +1411,7 @@
             "valid_until": null,
             "value": "1540.66",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -1303,15 +1422,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "65",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/2/2027'",
-                "quote": "Paga base dal 1/2/2027 ... III 1540,66"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2027-02-01",
+                "quote": "III                           1540,66                       527,90        2068,56"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-02-01"
+                "verification_status": "verified",
+                "effective_from": "2027-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           }
@@ -1393,7 +1515,7 @@
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "uiltucs-tds",
@@ -1403,16 +1525,19 @@
             "published_on": "2024-03-28",
             "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
           },
-          "page": "65",
+          "page": "64-65",
           "section": "Accordo integrativo 28/03/2024, tabelle retributive",
-          "quote": null
+          "quote": "Livelli ... III"
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-10-10T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2027-02-01"
+          "verification_status": "verified",
+          "effective_from": "2027-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T18:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -1427,7 +1552,7 @@
             "valid_until": "2025-03-01",
             "value": "1192.46",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -1438,15 +1563,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "64",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/4/2024'",
-                "quote": "Paga base dal 1/4/2024 ... IV 1192,46"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2024-04-01",
+                "quote": "IV                     1192,46                       524,22        1716,68"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-04-01"
+                "verification_status": "verified",
+                "effective_from": "2024-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1455,7 +1583,7 @@
             "valid_until": "2025-11-01",
             "value": "1222.46",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -1466,15 +1594,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "64",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/3/2025'",
-                "quote": "Paga base dal 1/3/2025 ... IV 1222,46"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2025-03-01",
+                "quote": "IV                     1222,46                       524,22        1746,68"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-03-01"
+                "verification_status": "verified",
+                "effective_from": "2025-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1483,7 +1614,7 @@
             "valid_until": "2026-11-01",
             "value": "1257.46",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -1494,15 +1625,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "65",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2025'",
-                "quote": "Paga base dal 1/11/2025 ... IV 1257,46"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2025-11-01",
+                "quote": "IV                            1257,46                       524,22        1781,68"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-11-01"
+                "verification_status": "verified",
+                "effective_from": "2025-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1511,7 +1645,7 @@
             "valid_until": "2027-02-01",
             "value": "1292.46",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -1522,15 +1656,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "65",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2026'",
-                "quote": "Paga base dal 1/11/2026 ... IV 1292,46"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2026-11-01",
+                "quote": "IV                            1292,46                        524,22        1816,68"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2026-11-01"
+                "verification_status": "verified",
+                "effective_from": "2026-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1539,7 +1676,7 @@
             "valid_until": null,
             "value": "1332.46",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -1550,15 +1687,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "65",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/2/2027'",
-                "quote": "Paga base dal 1/2/2027 ... IV 1332,46"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2027-02-01",
+                "quote": "IV                            1332,46                       524,22        1856,68"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-02-01"
+                "verification_status": "verified",
+                "effective_from": "2027-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           }
@@ -1640,7 +1780,7 @@
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "uiltucs-tds",
@@ -1650,16 +1790,19 @@
             "published_on": "2024-03-28",
             "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
           },
-          "page": "65",
+          "page": "64-65",
           "section": "Accordo integrativo 28/03/2024, tabelle retributive",
-          "quote": null
+          "quote": "Livelli ... IV"
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-10-10T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2027-02-01"
+          "verification_status": "verified",
+          "effective_from": "2027-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T18:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -1674,7 +1817,7 @@
             "valid_until": "2025-03-01",
             "value": "1077.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -1685,15 +1828,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "64",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/4/2024'",
-                "quote": "Paga base dal 1/4/2024 ... V 1077,35"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2024-04-01",
+                "quote": "V                      1077,35                       521,94        1599,29"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-04-01"
+                "verification_status": "verified",
+                "effective_from": "2024-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1702,7 +1848,7 @@
             "valid_until": "2025-11-01",
             "value": "1104.45",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -1713,15 +1859,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "64",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/3/2025'",
-                "quote": "Paga base dal 1/3/2025 ... V 1104,45"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2025-03-01",
+                "quote": "V                      1104,45                       521,94        1626,39"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-03-01"
+                "verification_status": "verified",
+                "effective_from": "2025-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1730,7 +1879,7 @@
             "valid_until": "2026-11-01",
             "value": "1136.07",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -1741,15 +1890,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "65",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2025'",
-                "quote": "Paga base dal 1/11/2025 ... V 1136,07"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2025-11-01",
+                "quote": "V                             1136,07                       521,94        1658,01"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-11-01"
+                "verification_status": "verified",
+                "effective_from": "2025-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1758,7 +1910,7 @@
             "valid_until": "2027-02-01",
             "value": "1167.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -1769,15 +1921,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "65",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2026'",
-                "quote": "Paga base dal 1/11/2026 ... V 1167,69"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2026-11-01",
+                "quote": "V                             1167,69                        521,94        1689,63"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2026-11-01"
+                "verification_status": "verified",
+                "effective_from": "2026-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1786,7 +1941,7 @@
             "valid_until": null,
             "value": "1203.83",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -1797,15 +1952,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "65",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/2/2027'",
-                "quote": "Paga base dal 1/2/2027 ... V 1203,83"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2027-02-01",
+                "quote": "V                            1203,83                        521,94        1725,77"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-02-01"
+                "verification_status": "verified",
+                "effective_from": "2027-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           }
@@ -1887,7 +2045,7 @@
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "uiltucs-tds",
@@ -1897,16 +2055,19 @@
             "published_on": "2024-03-28",
             "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
           },
-          "page": "65",
+          "page": "64-65",
           "section": "Accordo integrativo 28/03/2024, tabelle retributive",
-          "quote": null
+          "quote": "Livelli ... V"
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-10-10T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2027-02-01"
+          "verification_status": "verified",
+          "effective_from": "2027-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T18:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -1921,7 +2082,7 @@
             "valid_until": "2025-03-01",
             "value": "967.22",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -1932,15 +2093,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "64",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/4/2024'",
-                "quote": "Paga base dal 1/4/2024 ... VI 967,22"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2024-04-01",
+                "quote": "VI                      967,22                       519,76        1486.98"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-04-01"
+                "verification_status": "verified",
+                "effective_from": "2024-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1949,7 +2113,7 @@
             "valid_until": "2025-11-01",
             "value": "991.55",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -1960,15 +2124,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "64",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/3/2025'",
-                "quote": "Paga base dal 1/3/2025 ... VI 991,55"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2025-03-01",
+                "quote": "VI                      991,55                       519,76        1511,31"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-03-01"
+                "verification_status": "verified",
+                "effective_from": "2025-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -1977,7 +2144,7 @@
             "valid_until": "2026-11-01",
             "value": "1019.94",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -1988,15 +2155,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "65",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2025'",
-                "quote": "Paga base dal 1/11/2025 ... VI 1019,94"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2025-11-01",
+                "quote": "VI                            1019,94                       519,76        1539.70"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-11-01"
+                "verification_status": "verified",
+                "effective_from": "2025-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -2005,7 +2175,7 @@
             "valid_until": "2027-02-01",
             "value": "1048.33",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -2016,15 +2186,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "65",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2026'",
-                "quote": "Paga base dal 1/11/2026 ... VI 1048,33"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2026-11-01",
+                "quote": "VI                            1048,33                        519,76        1568,09"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2026-11-01"
+                "verification_status": "verified",
+                "effective_from": "2026-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -2033,7 +2206,7 @@
             "valid_until": null,
             "value": "1080.77",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -2044,15 +2217,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "65",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/2/2027'",
-                "quote": "Paga base dal 1/2/2027 ... VI 1080,77"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2027-02-01",
+                "quote": "VI                            1080,77                      519,76         1600,53"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-02-01"
+                "verification_status": "verified",
+                "effective_from": "2027-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           }
@@ -2134,7 +2310,7 @@
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "uiltucs-tds",
@@ -2144,16 +2320,19 @@
             "published_on": "2024-03-28",
             "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
           },
-          "page": "65",
+          "page": "64-65",
           "section": "Accordo integrativo 28/03/2024, tabelle retributive",
-          "quote": null
+          "quote": "Livelli ... VI"
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-10-10T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2027-02-01"
+          "verification_status": "verified",
+          "effective_from": "2027-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T18:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -2168,7 +2347,7 @@
             "valid_until": "2025-03-01",
             "value": "828.08",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -2179,15 +2358,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "64",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/4/2024'",
-                "quote": "Paga base dal 1/4/2024 ... VII 828,08"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2024-04-01",
+                "quote": "VII                     828,08          5,16         517,51        1350,75"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-04-01"
+                "verification_status": "verified",
+                "effective_from": "2024-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -2196,7 +2378,7 @@
             "valid_until": "2025-11-01",
             "value": "848.91",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -2207,15 +2389,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "64",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/3/2025'",
-                "quote": "Paga base dal 1/3/2025 ... VII 848,91"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2025-03-01",
+                "quote": "VII                     848,91          5,16         517,51        1371,58"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-03-01"
+                "verification_status": "verified",
+                "effective_from": "2025-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -2224,7 +2409,7 @@
             "valid_until": "2026-11-01",
             "value": "873.22",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -2235,15 +2420,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "65",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2025'",
-                "quote": "Paga base dal 1/11/2025 ... VII 873,22"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2025-11-01",
+                "quote": "VII                            873,22          5,16         517,51        1395,89"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-11-01"
+                "verification_status": "verified",
+                "effective_from": "2025-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -2252,7 +2440,7 @@
             "valid_until": "2027-02-01",
             "value": "897.53",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -2263,15 +2451,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "65",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/11/2026'",
-                "quote": "Paga base dal 1/11/2026 ... VII 897,53"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2026-11-01",
+                "quote": "VII                            897,53           5,16         517,51        1420,20"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2026-11-01"
+                "verification_status": "verified",
+                "effective_from": "2026-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           },
@@ -2280,7 +2471,7 @@
             "valid_until": null,
             "value": "925.31",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
                   "document_id": "uiltucs-tds",
@@ -2291,15 +2482,18 @@
                   "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
                 },
                 "page": "65",
-                "section": "Accordo integrativo 28/03/2024, 'Aumenti retributivi mensili e tabelle retributive', tabella 'Paga base dal 1/2/2027'",
-                "quote": "Paga base dal 1/2/2027 ... VII 925,31"
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal' 2027-02-01",
+                "quote": "VII                            925,31          5,16         517,51        1447,98"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-10T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-02-01"
+                "verification_status": "verified",
+                "effective_from": "2027-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T18:00:00Z",
+                "review_id": "2026-10-11-ai"
               }
             }
           }
@@ -2392,7 +2586,7 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "uiltucs-tds",
@@ -2402,22 +2596,25 @@
                 "published_on": "2024-03-28",
                 "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
               },
-              "page": "64",
-              "section": "Accordo integrativo 28/03/2024, column 'Altri el.' (same in all tranche tables, pp. 64-65)",
-              "quote": "VII ... 5,16"
+              "page": "64-65",
+              "section": "column 'Altri el.' row VII",
+              "quote": "VII 828,08 5,16 517,51 1350,75"
             },
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-10T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "1993-11-01"
+              "verification_status": "verified",
+              "effective_from": "1993-11-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T18:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "uiltucs-tds",
@@ -2427,16 +2624,19 @@
             "published_on": "2024-03-28",
             "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
           },
-          "page": "65",
+          "page": "64-65",
           "section": "Accordo integrativo 28/03/2024, tabelle retributive",
-          "quote": null
+          "quote": "Livelli ... VII"
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-10-10T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2027-02-01"
+          "verification_status": "verified",
+          "effective_from": "2027-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T18:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     }
@@ -2494,11 +2694,11 @@
     "version": "2026.2",
     "effective_from": "1993-11-01",
     "effective_until": null,
-    "source": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
+    "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "85359c4f31cb5856778c665a5df5bd59b2b0d63080515d883530c843d815147e",
+    "source_hash": "7d0a1c66fa5417658e61a992dae1580b217844224d12a571ff1053e9f2015fd3",
     "published_at": "2026-09-07",
-    "source_type": "commercial_secondary"
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
@@ -2522,7 +2722,7 @@
             "weekday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "uiltucs-tu2019",
@@ -2540,8 +2740,11 @@
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-10T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "1993-11-01"
+              "verification_status": "verified",
+              "effective_from": "1993-11-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T18:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         },
@@ -2563,7 +2766,7 @@
             "weekday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "uiltucs-tu2019",
@@ -2581,8 +2784,11 @@
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-10T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "1993-11-01"
+              "verification_status": "verified",
+              "effective_from": "1993-11-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T18:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           },
           "hour_threshold_per_week": 8
@@ -2605,7 +2811,7 @@
             "night"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "uiltucs-tu2019",
@@ -2616,15 +2822,18 @@
                 "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
               },
               "page": "149",
-              "section": "Art. 149 - Maggiorazione lavoro straordinario, comma 3",
-              "quote": "Le ore straordinarie di lavoro prestate per la notte - intendendosi per tali quelle effettuate dalle ore 22 alle 6 del mattino, sempre che non si tratti di turni regolari di servizio - verranno retribuite ... con la maggiorazione del 50%"
+              "section": "Art. 149 - Maggiorazione lavoro straordinario",
+              "quote": "effettuate dalle ore 22 alle 6 del mattino ... con la maggiorazione del 50% (cinquanta per cento)"
             },
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-10T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "1993-11-01"
+              "verification_status": "verified",
+              "effective_from": "1993-11-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T18:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         },
@@ -2646,7 +2855,7 @@
             "holiday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "uiltucs-tu2019",
@@ -2658,14 +2867,17 @@
               },
               "page": "149",
               "section": "Art. 149 - Maggiorazione lavoro straordinario",
-              "quote": "con la maggiorazione del 30% (trenta per cento)"
+              "quote": "nei giorni festivi o la domenica ... con la maggiorazione del 30% (trenta per cento)"
             },
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
               "extraction_timestamp": "2026-10-10T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "1993-11-01"
+              "verification_status": "verified",
+              "effective_from": "1993-11-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T18:00:00Z",
+              "review_id": "2026-10-11-ai"
             }
           }
         }
@@ -2675,7 +2887,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "uiltucs-tu2019",
@@ -2685,16 +2897,19 @@
             "published_on": "2019-07-30",
             "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
           },
-          "page": "196",
+          "page": "197",
           "section": "Art. 210 - Quota giornaliera",
-          "quote": "dividendo l'importo mensile per il divisore convenzionale 26"
+          "quote": "dividendo l’importo mensile per il divisore convenzionale 26, fatto salvo quanto previsto dall’art. 190."
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-10-10T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "1993-11-01"
+          "verification_status": "verified",
+          "effective_from": "1993-11-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T18:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -2707,7 +2922,7 @@
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "uiltucs-tu2019",
@@ -2717,16 +2932,19 @@
             "published_on": "2019-07-30",
             "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
           },
-          "page": "156",
+          "page": "157",
           "section": "Art. 159 - Ferie",
-          "quote": "misura di ventisei giorni lavorativi"
+          "quote": "diritto a un periodo di ferie annuali nella misura di ventisei giorni lavorativi"
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-10-10T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "1993-11-01"
+          "verification_status": "verified",
+          "effective_from": "1993-11-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T18:00:00Z",
+          "review_id": "2026-10-11-ai"
         }
       }
     },
@@ -2737,7 +2955,7 @@
       "net_basis": true,
       "apprentices_excluded": true,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "uiltucs-tu2019",
@@ -2747,16 +2965,19 @@
             "published_on": "2019-07-30",
             "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
           },
-          "page": "177",
-          "section": "Art. 187 - Trattamento economico di malattia",
-          "quote": "100% (cento per cento) per primi tre giorni (periodo di carenza); 75% (settantacinque per cento) per i giorni dal 4° al 20°; 100% (cento per cento) per i giorni dal 21° in poi"
+          "page": "178-180",
+          "section": "Artt. 186-187",
+          "quote": "1) 100% (cento per cento) per primi tre giorni (periodo di carenza); 2) 75% (settantacinque per cento) per i giorni dal 4° al 20°; 3) 100% ... dal 21° in poi"
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-10-10T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "1993-11-01"
+          "verification_status": "verified",
+          "effective_from": "1993-11-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T18:00:00Z",
+          "review_id": "2026-10-11-ai"
         },
         "transformation": "Art. 187 b): 100% for the three days of carenza, 75% for days 4-20 and 100% from day 21, stored as day_bands of the episode; the carenza at 66%, 50% and 0% from the third event of the calendar year as carenza_by_event; comporto of 180 days in the calendar year (Art. 186) as max_duration_days counted over the year. The measures are of the 'retribuzione giornaliera netta' (net_basis): the INPS share, free of contributions, is grossed up by the worker's INPS rate before the company tops it up to the measure, so that the worker's pay net of contributions reaches it; the company owes apprentices no integration and no carenza (apprentices_excluded).",
         "note": "Net basis, p. 177: '100% (cento per cento) per i giorni dal 21° in poi della retribuzione giornaliera netta cui il lavoratore avrebbe avuto diritto in caso di normale svolgimento del rapporto. Per retribuzione giornaliera si intende la quota giornaliera della retribuzione di fatto di cui all'art.208.' Apprentices, p. 178: 'Le indennità a carico del datore di lavoro non sono dovute nei casi di cui ai successivi artt. 189 e 195 né agli apprendisti.' The CCNL does not say how the net pay is computed: the gross-up of the INPS indemnity by the worker's contributions ('lordizzazione') is the payroll practice described by the Ordine dei Consulenti del Lavoro di Salerno (https://www.ordineconsulentilavorosalerno.it/files/2021/06/slides_zinno.pdf, 'la somma a carico dell'INAIL dev'essere aumentata dei contributi INPS'), not a norm; the open limitation sickness_net_basis records it. Quotes read on 2026-10-10."
@@ -2798,6 +3019,32 @@
         "outcome": "confirmed",
         "findings": [
           "The review recorded no list of the documents it read."
+        ]
+      },
+      {
+        "id": "2026-10-11-ai",
+        "date": "2026-10-11",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Every payable rule of the file (80 records) read again in the signed texts: the Testo Unico of 30 July 2019 and the renewal of 22 March 2024 with the accordo integrativo of 28 March 2024.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+          },
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+            "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
+          }
+        ],
+        "findings": [
+          "64 records match their source and are verified; no amount differs. Pages are PDF page indexes (the printed page of the 2019 text is one higher).",
+          "Wrong page citations corrected: Artt. 210-211 on p. 197, Art. 159 on p. 157, Artt. 186-187 on pp. 178-180.",
+          "The 16 contingenza and terzo elemento records match in amount, but no source states their valid_from 1993-11-01: they stay derived. No effect on periods from 2024-04-01.",
+          "The Fon.Te. rates are read in Art. 107 (and Art. 57 for apprentices) of the 2019 text instead of the fund's information sheet.",
+          "Not modelled: the two one-off payments of the 2024 renewal (level IV 175 EUR on 1 July 2024 and on 1 July 2025, 2024 text p. 50).",
+          "Pages 1-62 of the 2024 text are image-only and were read by OCR; the expiry clause of Art. 259 is illegible."
         ]
       }
     ],
