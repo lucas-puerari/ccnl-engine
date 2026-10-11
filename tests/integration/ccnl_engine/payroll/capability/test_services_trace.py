@@ -10,7 +10,7 @@ from ccnl_engine.payroll.assurance.models_decision import (
 )
 from ccnl_engine.payroll.capability.models_trace import TraceState
 from ccnl_engine.payroll.capability.services_trace import build_traces
-from ccnl_engine.payroll.withholding.rules_agent import (
+from ccnl_engine.withholding.agent.rules import (
     not_withholding_agent_decision,
 )
 

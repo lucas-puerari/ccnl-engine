@@ -42,8 +42,8 @@ api -> application -> service -> domain
   (orchestration, computation, norms: see
   [Dependency tiers](architecture-contract.md#dependency-tiers)); cycles
   inside a tier are allowed. Every root of the package has a tier or is a
-  legacy root (`contract`, `tax`, `payroll` and the root modules being
-  renamed), which the rule skips until it empties. An import that cannot
+  legacy root (`tax`, `payroll`), which the rule skips until it
+  empties. An import that cannot
   move yet is allowlisted with its reason; the allowlist and the legacy
   roots only shrink.
 - Every module belongs to a layer. `ccnl_engine.version` and the bundle
@@ -169,12 +169,6 @@ which the naming baseline records:
 | `period/` | one run: request, inputs and defaults, context, pipeline, posting, checks, result assembly, the knowledge repository port and its bundled sources |
 | `year/` | competence and tax year plans, calendar, run selection, payments, year results, closing a tax year |
 | `amount/` | the amounts of a run |
-| `event/` | termination events, standard handlers, allocation and totals |
-| `withholding/` | withholding plan and cap, deferrals, the withholding agent |
-| `sickness/` | sick pay rules, day classification, cumulation and comporto |
-| `accrual/` | extra-month (tredicesima, quattordicesima) accrual and settlement |
-| `termination/` | bilateral fund and TFR settlement handlers, ratei at termination |
-| `ledger/` | ledger entries, posting and remittance codes |
 | `state/` | period state, opening balances and its JSON serializer |
 | `assurance/` | decisions, assessment, ruleset assurance and the reconciliation invariants |
 | `capability/` | capability catalog, requirements, applicability and coverage |

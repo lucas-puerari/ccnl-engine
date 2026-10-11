@@ -98,7 +98,7 @@ class SickLeaveEvent:
     """Sick pay amount set by the caller: an explicit, never payable override.
 
     The engine computes sickness from a
-    :class:`~ccnl_engine.payroll.sickness.models.SicknessEpisode`.  This
+    :class:`~ccnl_engine.sickness.models.SicknessEpisode`.  This
     event overrides that computation with an employer-paid amount the
     caller computed; the run records a caller-supplied decision for the
     ``sickness`` capability, so its result is not payable.  The amount is

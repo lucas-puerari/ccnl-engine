@@ -22,10 +22,10 @@ from ccnl_engine.collection.validators import items_of_type, tuple_of
 from ccnl_engine.employer.inputs import EmployerProfile
 from ccnl_engine.employment.fact.inputs import ContributableHours
 from ccnl_engine.employment.inputs import Employment
+from ccnl_engine.event.facade import WORK_EVENT_TYPES
 from ccnl_engine.family.inputs import FamilyComposition
 from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
 from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts
-from ccnl_engine.payroll.event.facade import WORK_EVENT_TYPES
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.models_run import PayrollRun
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
@@ -39,10 +39,10 @@ from ccnl_engine.validators import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.accrual.models import ExtraMonthAccrual
-    from ccnl_engine.payroll.event.facade import WorkEvent
+    from ccnl_engine.event.facade import WorkEvent
+    from ccnl_engine.extra_month.models import ExtraMonthAccrual
     from ccnl_engine.payroll.period.models_run import PayrollRunId
-    from ccnl_engine.payroll.withholding.models_schedule import WithholdingSchedule
+    from ccnl_engine.withholding.schedule.models import WithholdingSchedule
 
 __all__ = ["PeriodFacts", "PeriodInput"]
 
@@ -61,7 +61,7 @@ class PeriodFacts:
             ``missing_fact`` blocker.
         events: Variable work events of the run (overtime, absences,
             bonuses, supplements), each one of the
-            :data:`~ccnl_engine.payroll.event.types.WorkEvent` types.  A
+            :data:`~ccnl_engine.event.types.WorkEvent` types.  A
             list is accepted and stored as a tuple.
         regione: ISO 3166-2:IT region code for the regional surtax, e.g.
             ``"IT-45"``, ``"IT-BZ"`` / ``"IT-TN"`` for the autonomous

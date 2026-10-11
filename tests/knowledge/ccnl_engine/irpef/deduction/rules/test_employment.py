@@ -48,7 +48,7 @@ from tests.knowledge.ccnl_engine.payroll.period.builders_explicit_facts import (
     regular_run,
 )
 from tests.knowledge.ccnl_engine.payroll.support import COMMERCIO, ENGINE
-from tests.knowledge.ccnl_engine.payroll.withholding.oracles_2026 import (
+from tests.knowledge.ccnl_engine.withholding.oracles import (
     trattamento_integrativo_above_15000,
 )
 
@@ -375,7 +375,7 @@ def test_trattamento_integrativo_counts_the_family_deductions(
     spouse between 15,000 and 40,000.  On the year's taxable (about 17,200
     EUR at level 7, 19,000 at level 6) art. 12 + art. 13 exceed the gross
     tax, so the credit is their difference capped at 1,200, computed by
-    :func:`~tests.knowledge.ccnl_engine.payroll.withholding.oracles_2026.trattamento_integrativo_above_15000`.
+    :func:`~tests.knowledge.ccnl_engine.withholding.oracles.trattamento_integrativo_above_15000`.
     """
     employment = replace(
         CONCIA_D2, category=None, ccnl_slug=COMMERCIO, level_code=level_code

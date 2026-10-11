@@ -7,13 +7,13 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.event.total.handlers import EVENT_FEATURES
 from ccnl_engine.payroll.assurance.models_decision import (
     CalculationDecision,
     CalculationStatus,
 )
 from ccnl_engine.payroll.capability.models_trace import DecisionTrace, TraceState
 from ccnl_engine.payroll.capability.services_trace import build_traces
-from ccnl_engine.payroll.event.handlers_totals import EVENT_FEATURES
 
 _D = Decimal
 _ZERO = _D(0)

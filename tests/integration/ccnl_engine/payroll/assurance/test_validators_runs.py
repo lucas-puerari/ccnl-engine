@@ -18,8 +18,8 @@ from ccnl_engine.errors import (
     InvalidInputError,
     OutOfScopeError,
 )
-from ccnl_engine.payroll.accrual.models import ExtraMonthAccrual
-from ccnl_engine.payroll.accrual.models_extra_month_schedule import (
+from ccnl_engine.extra_month.models import ExtraMonthAccrual
+from ccnl_engine.extra_month.schedule.models import (
     AccrualWindow,
     ExtraMonthKind,
 )

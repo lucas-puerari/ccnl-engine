@@ -19,19 +19,18 @@ from ccnl_engine.irpef.trace.results import (
     annual_items,
     somma_esente_items,
 )
-from ccnl_engine.payroll.withholding.rules_period import NO_PAY, period_tax
 from ccnl_engine.tax_credit.foreign.rules import foreign_tax_credit
 from ccnl_engine.tax_credit.recovery.models import InstallmentRun
 from ccnl_engine.tax_credit.trattamento_integrativo.rules import resolve_trattamento
 from ccnl_engine.tax_credit.ulteriore_detrazione.recovery.rules import (
     withhold_with_ulteriore,
 )
+from ccnl_engine.withholding.rules import NO_PAY, period_tax
 
 if TYPE_CHECKING:
     from ccnl_engine.irpef.net.rules import NetIrpef
     from ccnl_engine.irpef.results import TaxLineItem
     from ccnl_engine.payroll.assurance.models_decision import CalculationDecision
-    from ccnl_engine.payroll.withholding.rules_period import PayPeriod
     from ccnl_engine.tax.annual.models import YearRules
     from ccnl_engine.tax_credit.account.models import CreditAccount
     from ccnl_engine.tax_credit.foreign.inputs import ForeignTaxPaid
@@ -39,6 +38,7 @@ if TYPE_CHECKING:
     from ccnl_engine.tax_credit.ulteriore_detrazione.rules import (
         UlterioreSettlement,
     )
+    from ccnl_engine.withholding.rules import PayPeriod
 
 _ZERO = Decimal(0)
 #: A run that is neither the last of the employment nor an adjustment.
@@ -108,7 +108,7 @@ def compute_tax(
     The period withholding (``ordinary_tax``) is
     :func:`~ccnl_engine.irpef.net.rules.run_withholding`: before
     the last slot the IRPEF of the pay period under art. 23 c. 2 DPR
-    600/1973 (:func:`~ccnl_engine.payroll.withholding.rules_period\
+    600/1973 (:func:`~ccnl_engine.withholding.rules\
 .period_tax`), the deductions of the period taken from the annual ones on
     the projection; the last slot settles the full balance, which can be
     negative (a refund).

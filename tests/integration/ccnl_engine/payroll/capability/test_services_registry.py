@@ -12,6 +12,7 @@ from unittest.mock import patch
 import pytest
 
 from ccnl_engine.errors import DataIntegrityError
+from ccnl_engine.event.registry.handlers import _HANDLER_REGISTRY
 from ccnl_engine.knowledge.capability.loaders import (
     load_capability_catalog,
 )
@@ -32,7 +33,6 @@ from ccnl_engine.payroll.capability.services_trace import (
     HANDLERS,
     build_traces,
 )
-from ccnl_engine.payroll.event.handlers_registry import _HANDLER_REGISTRY
 from ccnl_engine.payroll.period.services_caller_rule import (
     CALLER_SUPPLIED_CAPABILITIES,
 )

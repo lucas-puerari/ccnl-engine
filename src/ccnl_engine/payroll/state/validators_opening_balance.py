@@ -27,11 +27,11 @@ if TYPE_CHECKING:
 
     from ccnl_engine.contribution.base.models import InpsBaseYtd
     from ccnl_engine.payroll.period.models_run import PayrollRunId
-    from ccnl_engine.payroll.withholding.inputs_shortfall_deferral import (
-        DeferredShortfall,
-    )
     from ccnl_engine.payroll.year.models_payment import PaymentId
     from ccnl_engine.surtax.obligation.models import SurtaxObligation
+    from ccnl_engine.withholding.deferral.inputs import (
+        DeferredShortfall,
+    )
 
 __all__ = [
     "FEATURE",

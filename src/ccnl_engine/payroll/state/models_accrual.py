@@ -10,7 +10,7 @@ unchanged across the change of tax year
 December 2026 closed in 2026 cannot be paid again in 2027.
 
 The extra-month ratei maturati are counted from the employment dates
-(:class:`~ccnl_engine.payroll.accrual.models.ExtraMonthAccrual`); the
+(:class:`~ccnl_engine.extra_month.models.ExtraMonthAccrual`); the
 ratei liquidati are the extra-month runs closed here.  The INPS base
 toward the IVS massimale follows competence too
 (:mod:`~ccnl_engine.contribution.base.models`), so it is counted here per
@@ -30,7 +30,7 @@ from ccnl_engine.collection.validators import items_of_type, tuple_of
 from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.period.models_run import PayrollRunId, RunKind
-from ccnl_engine.payroll.sickness.models import SicknessEpisode
+from ccnl_engine.sickness.models import SicknessEpisode
 from ccnl_engine.validators import require_date
 
 __all__ = ["EmploymentAccrualState"]

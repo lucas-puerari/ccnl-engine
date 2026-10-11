@@ -36,7 +36,7 @@ from ccnl_engine.working_time.models import TimeSupplementKind, WorkKind
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
-    from ccnl_engine.payroll.event.facade import OvertimeEvent
+    from ccnl_engine.event.facade import OvertimeEvent
     from ccnl_engine.working_time.models import OvertimeBand
 
 __all__ = [

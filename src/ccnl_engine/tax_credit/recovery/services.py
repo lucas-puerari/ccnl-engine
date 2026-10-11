@@ -16,13 +16,13 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.ledger.models import AccountKind, LedgerEntry
+from ccnl_engine.ledger.remittance.models import SOMMA_ESENTE_CREDIT
 from ccnl_engine.pay_item.facade import PayItem, TaxCreditItem
 from ccnl_engine.payroll.assurance.models_decision import (
     CalculationDecision,
     CalculationStatus,
 )
-from ccnl_engine.payroll.ledger.models import AccountKind, LedgerEntry
-from ccnl_engine.payroll.ledger.models_remittance import SOMMA_ESENTE_CREDIT
 from ccnl_engine.payroll.period.services_shared import (
     _make_entry,
     _require_resolution,
@@ -59,7 +59,7 @@ class CarriedRecoveries:
         items: One negative tax credit item per carried recovery.
         entries: The matching ``CREDIT_RECOVERIES`` ledger entries, coded
             1704 for the somma esente and uncoded otherwise (see
-            :mod:`~ccnl_engine.payroll.ledger.models_remittance`).
+            :mod:`~ccnl_engine.ledger.remittance.models`).
         remaining: The carried recoveries after this run, without those
             whose last installment was just posted.
         decisions: One decision per installment posted, capability

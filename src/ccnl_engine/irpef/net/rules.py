@@ -14,7 +14,7 @@ that brings one of those oneri into the run must carry the reduction.
 
 :func:`run_withholding` returns the IRPEF of the run: before the last slot
 the tax of its pay period under art. 23 c. 2 DPR 600/1973
-(:mod:`~ccnl_engine.payroll.withholding.rules_period`), on the last slot
+(:mod:`~ccnl_engine.withholding.rules`), on the last slot
 the whole balance of the year, the conguaglio of art. 23 c. 3.
 """
 

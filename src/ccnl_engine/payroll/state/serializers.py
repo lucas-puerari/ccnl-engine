@@ -26,7 +26,6 @@ from ccnl_engine.employment.spell.models import EmploymentSpell
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.period.models_run import PayrollRunId
 from ccnl_engine.payroll.period.types_run_kind import RunKind
-from ccnl_engine.payroll.sickness.models import SicknessEpisode
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.payroll.state.models_accrual import EmploymentAccrualState
 from ccnl_engine.payroll.state.models_obligation import (
@@ -41,8 +40,8 @@ from ccnl_engine.payroll.state.models_ytd_account import (
     TaxYtd,
     WithholdingShortfall,
 )
-from ccnl_engine.payroll.withholding.inputs_shortfall_deferral import DeferredShortfall
 from ccnl_engine.payroll.year.models_payment import PaymentId
+from ccnl_engine.sickness.models import SicknessEpisode
 from ccnl_engine.surtax.obligation.models import (
     SurtaxComponent,
     SurtaxObligation,
@@ -53,6 +52,7 @@ from ccnl_engine.tax_credit.account.models import (
     UlterioreDetrazioneAccount,
 )
 from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
+from ccnl_engine.withholding.deferral.inputs import DeferredShortfall
 
 __all__ = ["STATE_TYPES", "period_state_from_json", "period_state_to_json"]
 

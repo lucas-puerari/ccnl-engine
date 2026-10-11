@@ -59,7 +59,7 @@ _RULES: dict[str, object] = {
     "overrides": {
         "src/ccnl_engine/payroll/__init__.py": {"dissolve": "src/ccnl_engine/payroll"},
         "src/ccnl_engine/payroll/domain/_ledger.py": (
-            "src/ccnl_engine/payroll/ledger/models.py"
+            "src/ccnl_engine/payroll/period/models.py"
         ),
         "src/ccnl_engine/payroll/family/__init__.py": {
             "dissolve": "src/ccnl_engine/payroll/family"
@@ -164,7 +164,7 @@ def test_build_maps_overrides_rules_and_mirrors(tmp_path: Path) -> None:
         ),
         "src/ccnl_engine/payroll/__init__.py": {"dissolve": "src/ccnl_engine/payroll"},
         "src/ccnl_engine/payroll/domain/_ledger.py": (
-            "src/ccnl_engine/payroll/ledger/models.py"
+            "src/ccnl_engine/payroll/period/models.py"
         ),
         "src/ccnl_engine/payroll/family/__init__.py": {
             "dissolve": "src/ccnl_engine/payroll/family"
@@ -180,10 +180,10 @@ def test_build_maps_overrides_rules_and_mirrors(tmp_path: Path) -> None:
             "dissolve": "tests/unit/ccnl_engine/payroll"
         },
         "tests/unit/ccnl_engine/payroll/domain/test_ledger.py": (
-            "tests/unit/ccnl_engine/payroll/ledger/test_models.py"
+            "tests/unit/ccnl_engine/payroll/period/test_models.py"
         ),
         "tests/unit/ccnl_engine/payroll/domain/test_ledger_balance.py": (
-            "tests/unit/ccnl_engine/payroll/ledger/test_models_balance.py"
+            "tests/unit/ccnl_engine/payroll/period/test_models_balance.py"
         ),
         "tests/unit/ccnl_engine/payroll/test_family_spouse.py": (
             "tests/unit/ccnl_engine/payroll/family/test_family_spouse.py"
@@ -249,8 +249,8 @@ def test_unmapped_source_leaves_its_test_unmapped() -> None:
 def test_render_and_summary() -> None:
     """The file is indented JSON; the summary counts areas and subdomains."""
     mapping = {
-        "a.py": "src/ccnl_engine/payroll/ledger/models.py",
-        "b.py": "src/ccnl_engine/payroll/ledger/rules.py",
+        "a.py": "src/ccnl_engine/payroll/period/models.py",
+        "b.py": "src/ccnl_engine/payroll/period/rules.py",
         "c.py": "src/ccnl_engine/tax/income/models.py",
         "d.py": "tests/conftest.py",
         "e.py": {"dissolve": "src/ccnl_engine"},
@@ -260,7 +260,7 @@ def test_render_and_summary() -> None:
     assert li.render(mapping).endswith("}\n")
     assert li.summary(mapping) == [
         "dissolved package markers: 1",
-        "src/ccnl_engine/payroll/ledger: 2",
+        "src/ccnl_engine/payroll/period: 2",
         "src/ccnl_engine/tax: 1",
         "tests: 1",
     ]

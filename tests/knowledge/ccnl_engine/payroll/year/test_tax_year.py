@@ -30,11 +30,11 @@ from ccnl_engine.inputs import (
     WeeklyHours,
 )
 from ccnl_engine.results import BlockerCode
-from tests.integration.ccnl_engine.payroll.withholding.builders_withholding import (
-    paid_before,
-)
 from tests.integration.ccnl_engine.payroll.year.builders_next_year_repository import (
     NextYearRepository,
+)
+from tests.integration.ccnl_engine.withholding.builders import (
+    paid_before,
 )
 from tests.knowledge.ccnl_engine.payroll.support import (
     COMMERCIO,

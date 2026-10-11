@@ -106,56 +106,20 @@ TEST_NAME: Final = re.compile(
 #: keep ``<role>_<suffix>.py`` names until their modules move into concepts.
 LEGACY_SOURCE_TREE: Final = frozenset({
     "",
-    "contract",
-    *(
-        f"contract/{name}"
-        for name in (
-            "employment",
-            "compensation",
-            "working_time",
-            "absence",
-            "sickness",
-            "seniority",
-            "fund",
-        )
-    ),
     "payroll",
     *(
         f"payroll/{name}"
         for name in (
             "period",
             "year",
-            "employment",
-            "event",
             "amount",
-            "contribution",
-            "taxation",
-            "withholding",
-            "sickness",
-            "family",
-            "termination",
-            "accrual",
-            "ledger",
             "assurance",
             "capability",
             "state",
         )
     ),
     "tax",
-    *(
-        f"tax/{name}"
-        for name in (
-            "income",
-            "surtax",
-            "contribution",
-            "pension",
-            "sickness",
-            "severance",
-            "family",
-            "regime",
-            "annual",
-        )
-    ),
+    *(f"tax/{name}" for name in ("annual",)),
     "knowledge",
     "knowledge/capability",
     "knowledge/limitation",

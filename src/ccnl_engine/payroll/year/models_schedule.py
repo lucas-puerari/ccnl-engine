@@ -8,10 +8,10 @@ how many :class:`~ccnl_engine.payroll.period.models_run.PayrollRun` to compute.
 Three quantities are kept apart because they differ as soon as an extra month
 is fractional (13.5 equivalent months, 14 payslips):
 
-- :class:`~ccnl_engine.payroll.accrual.models_extra_month_entitlement\
+- :class:`~ccnl_engine.extra_month.entitlement.models\
 .ExtraMonthEntitlement`: how many months of pay the year grants;
 - :class:`PayrollRunCount`: how many payslips the year issues;
-- :class:`~ccnl_engine.payroll.withholding.models_schedule\
+- :class:`~ccnl_engine.withholding.schedule.models\
 .WithholdingSchedule`: the IRPEF withholding slots that the annual
   projection and the year-end conguaglio run on: the payments of the tax
   year, a late payment of an earlier competence year included.
@@ -27,7 +27,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.accrual.models_extra_month_schedule import ExtraMonthKind
+from ccnl_engine.extra_month.schedule.models import ExtraMonthKind
 from ccnl_engine.payroll.period.models_run import PayrollRun
 
 if TYPE_CHECKING:
@@ -42,7 +42,7 @@ class PayrollRunCount:
     """Number of payslips issued in a payroll year.
 
     An integer, never derived by truncating an
-    :class:`~ccnl_engine.payroll.accrual.models_extra_month_entitlement\
+    :class:`~ccnl_engine.extra_month.entitlement.models\
 .ExtraMonthEntitlement`: half a quattordicesima is still one payslip.
 
     Attributes:
@@ -100,7 +100,7 @@ class PayrollSchedule:
         """Build a :class:`PayrollSchedule` from a :class:`WorkCalendar`.
 
         Generates twelve regular runs (one per calendar month) plus one extra
-        run per :class:`~ccnl_engine.payroll.accrual.models_extra_month_schedule\
+        run per :class:`~ccnl_engine.extra_month.schedule.models\
 .ExtraMonthSchedule` in the calendar.  The extra run is inserted directly
         after the regular run for its ``payment_month``.  With
         ``employment``, only the runs of months the employment overlaps are

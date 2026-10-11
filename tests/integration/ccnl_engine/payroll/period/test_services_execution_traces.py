@@ -10,6 +10,13 @@ from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.context.models import EffectiveDateContext
+from ccnl_engine.event.allocation.services import _process_events
+from ccnl_engine.event.facade import (
+    BonusEvent,
+    OvertimeEvent,
+    WelfareEvent,
+    WorkEvent,
+)
 from ccnl_engine.family.inputs import (
     DependentRelationship,
     FamilyComposition,
@@ -22,13 +29,6 @@ from ccnl_engine.pay_item.policies import PolicyContext
 from ccnl_engine.payroll.capability.models_trace import TraceState
 from ccnl_engine.payroll.capability.results import CapabilityGapKind
 from ccnl_engine.payroll.capability.services_trace import build_traces
-from ccnl_engine.payroll.event.facade import (
-    BonusEvent,
-    OvertimeEvent,
-    WelfareEvent,
-    WorkEvent,
-)
-from ccnl_engine.payroll.event.services_allocation import _process_events
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.rules_run_decision import (

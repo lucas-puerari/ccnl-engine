@@ -32,7 +32,7 @@ from ccnl_engine.payroll.state.models import PeriodState
 from tests.integration.ccnl_engine.irpef.declaration.builders import (
     RENEWAL_WAIVED,
 )
-from tests.integration.ccnl_engine.payroll.sickness.builders_sickness_episode import (
+from tests.integration.ccnl_engine.sickness.builders import (
     march_sickness_episode,
 )
 from tests.integration.ccnl_engine.surtax.residence.builders import (

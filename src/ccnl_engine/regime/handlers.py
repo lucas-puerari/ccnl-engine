@@ -6,26 +6,26 @@ from dataclasses import dataclass, replace
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.event.facade import (
+from ccnl_engine.event.facade import (
     BonusEvent,
     HolidayWorkEvent,
     NightShiftEvent,
     ShiftWorkEvent,
 )
-from ccnl_engine.payroll.ledger.models import AccountKind, PostingIntent
-from ccnl_engine.payroll.ledger.models_remittance import REGIME_CODES
+from ccnl_engine.ledger.models import AccountKind, PostingIntent
+from ccnl_engine.ledger.remittance.models import REGIME_CODES
+from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.regime.eligibility.rules import (
     RegimeFacts,
     assess_regime,
 )
 
 if TYPE_CHECKING:
+    from ccnl_engine.event.handlers import _EventHandlerCtx
     from ccnl_engine.payroll.assurance.models_decision import (
         CalculationDecision,
         CalculationIssue,
     )
-    from ccnl_engine.payroll.event.handlers_context import _EventHandlerCtx
     from ccnl_engine.payroll.state.models_ytd_account import RegimeCapAccount
     from ccnl_engine.regime.models import (
         PreferentialTaxRegime,

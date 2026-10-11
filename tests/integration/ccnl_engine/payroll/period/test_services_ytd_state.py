@@ -13,8 +13,8 @@ from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 
-from ccnl_engine.payroll.event.facade import BilateralFundEvent, BonusEvent
-from ccnl_engine.payroll.ledger.models import AccountKind
+from ccnl_engine.event.facade import BilateralFundEvent, BonusEvent
+from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.payroll.period.models_run import PayrollRun
 from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models import PeriodState
@@ -24,7 +24,7 @@ from tests.integration.ccnl_engine.payroll.period.builders_period_requests impor
     account_total,
     period_request,
 )
-from tests.integration.ccnl_engine.payroll.withholding.builders_withholding import (
+from tests.integration.ccnl_engine.withholding.builders import (
     identified,
     paid_before,
 )

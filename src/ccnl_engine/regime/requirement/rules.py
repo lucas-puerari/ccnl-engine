@@ -14,7 +14,7 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.withholding.rules_agent import NOT_WITHHOLDING_AGENT
+from ccnl_engine.withholding.agent.rules import NOT_WITHHOLDING_AGENT
 
 if TYPE_CHECKING:
     from ccnl_engine.regime.models import (

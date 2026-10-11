@@ -7,13 +7,13 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.ledger.remittance.models import remittance_summary
 from ccnl_engine.payroll.assurance.models_decision import (
     CalculationDecision,
     CalculationIssue,
 )
 from ccnl_engine.payroll.assurance.policies_engine_mode import EngineMode
 from ccnl_engine.payroll.assurance.rules_assessment import assess
-from ccnl_engine.payroll.ledger.models_remittance import remittance_summary
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.state.models import PeriodState
 
@@ -21,11 +21,11 @@ if TYPE_CHECKING:
     from ccnl_engine.contribution.results import ContributionBreakdown
     from ccnl_engine.irpef.results import TaxComputation
     from ccnl_engine.knowledge.limitation.models import ModelLimitation
+    from ccnl_engine.ledger.models import LedgerEntry
+    from ccnl_engine.ledger.remittance.models import RemittanceLine
     from ccnl_engine.pay_item.facade import PayItem
     from ccnl_engine.payroll.assurance.models import ResultAssurance, ResultBlocker
     from ccnl_engine.payroll.capability.results import CapabilityReport
-    from ccnl_engine.payroll.ledger.models import LedgerEntry
-    from ccnl_engine.payroll.ledger.models_remittance import RemittanceLine
     from ccnl_engine.payroll.period.models_run import PayrollRun
     from ccnl_engine.provenance.ruleset.assurance.models import RulesetAssurance
     from ccnl_engine.variable_pay.benefit.results import BenefitBreakdown
@@ -147,7 +147,7 @@ class PeriodResult:
         IRPEF withheld, surtax, substitute and separate taxes, credits paid
         and recovered, IRPEF refunded and recoveries carried for lack of
         pay, one line per account and code (see
-        :func:`~ccnl_engine.payroll.ledger.models_remittance.remittance_summary`).
+        :func:`~ccnl_engine.ledger.remittance.models.remittance_summary`).
 
         Returns:
             The lines of the run, uncoded ones included.

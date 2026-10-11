@@ -17,8 +17,8 @@ from ccnl_engine.contribution.services import (
     TfrAccrual,
 )
 from ccnl_engine.employment.fact.inputs import PublicEndOfService
+from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
-from ccnl_engine.payroll.ledger.models import AccountKind
 
 _QUOTA = Decimal("152.02")
 

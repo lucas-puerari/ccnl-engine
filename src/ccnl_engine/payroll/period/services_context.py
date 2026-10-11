@@ -11,13 +11,16 @@ from typing import TYPE_CHECKING
 from ccnl_engine.compensation.element.services import _resolve_chain
 from ccnl_engine.compensation.proration.services import run_proration
 from ccnl_engine.employment.category.rules import resolve_worker_category
-from ccnl_engine.pay_item.facade import CompetencePeriod
-from ccnl_engine.pay_item.policies import PolicyContext
-from ccnl_engine.payroll.accrual.services_extra_month import (
+from ccnl_engine.extra_month.liquidation.services import (
+    run_settlements,
+)
+from ccnl_engine.extra_month.qualification.services import month_accrual_rule
+from ccnl_engine.extra_month.services import (
     run_accrual,
     run_fraction,
 )
-from ccnl_engine.payroll.accrual.services_rule import month_accrual_rule
+from ccnl_engine.pay_item.facade import CompetencePeriod
+from ccnl_engine.pay_item.policies import PolicyContext
 from ccnl_engine.payroll.period.repositories import (
     BundledKnowledgeRepository,
 )
@@ -29,18 +32,15 @@ from ccnl_engine.payroll.period.services_shared import (
     _effective_resolver,
     _int_value,
 )
-from ccnl_engine.payroll.termination.services_ratei import (
-    run_settlements,
-)
-from ccnl_engine.payroll.withholding.services_plan import (
-    resolve_withholding_schedule,
-    upcoming_recurring_gross,
-)
 from ccnl_engine.pension_fund.conversion.services import (
     kept_seniority_months,
     seniority_conversion,
 )
 from ccnl_engine.seniority.services import seniority_months_at
+from ccnl_engine.withholding.plan.services import (
+    resolve_withholding_schedule,
+    upcoming_recurring_gross,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.compensation.element.types import (

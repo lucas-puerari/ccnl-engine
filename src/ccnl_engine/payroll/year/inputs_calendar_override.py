@@ -14,7 +14,7 @@ from decimal import Decimal
 from enum import StrEnum
 
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.accrual.models_extra_month_schedule import ExtraMonthKind
+from ccnl_engine.extra_month.schedule.models import ExtraMonthKind
 from ccnl_engine.payroll.year.models_calendar import WorkCalendar
 from ccnl_engine.validators import (
     parse_enum,

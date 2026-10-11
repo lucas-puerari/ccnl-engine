@@ -17,13 +17,13 @@ from ccnl_engine.payroll.state.models_obligation import (
 )
 from ccnl_engine.payroll.state.services_opening import opening_state
 from ccnl_engine.payroll.state.services_opening_balance import OpeningBalances
-from ccnl_engine.payroll.withholding.inputs_shortfall_deferral import DeferredShortfall
 from ccnl_engine.payroll.year.models_payment import PaymentId
 from ccnl_engine.surtax.obligation.models import (
     SurtaxComponent,
     SurtaxObligation,
 )
 from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
+from ccnl_engine.withholding.deferral.inputs import DeferredShortfall
 
 _JUNE = (PaymentId.parse("2026-06-regular@2026-06-27"),)
 #: INPS base of 2026 up to June, with no other employment in the year.

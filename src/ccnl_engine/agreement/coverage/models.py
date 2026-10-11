@@ -20,12 +20,12 @@ from pydantic import BaseModel, ConfigDict, model_validator
 
 from ccnl_engine.absence.models import AbsenceRules
 from ccnl_engine.agreement.types import NoteKind
-from ccnl_engine.contract.sickness.models import SicknessRules
 from ccnl_engine.knowledge.limitation.models import (
     ModelLimitation,
     MonetaryImpact,
     NoteLimitation,
 )
+from ccnl_engine.sickness.integration.models import SicknessRules
 from ccnl_engine.working_time.models import LeaveRules, TimeSupplements
 
 if TYPE_CHECKING:

@@ -182,7 +182,7 @@ class WithholdingShortfall:
     the worker, who pays it (art. 23 c. 3 DPR 600/1973 for 2026, art. 33
     c. 4 D.Lgs. 33/2025 from 2027), unless the worker asked in writing to
     defer the IRPEF to the next year
-    (:class:`~ccnl_engine.payroll.withholding.inputs_shortfall_deferral.DeferredShortfall`).
+    (:class:`~ccnl_engine.withholding.deferral.inputs.DeferredShortfall`).
 
     A credit recovery (trattamento integrativo, somma esente, installments
     of an earlier year) the pay cannot cover is tracked the same way, apart

@@ -5,9 +5,9 @@ and how many extra contractual months (e.g. tredicesima, quattordicesima) are
 paid and in which calendar month.
 
 Its :attr:`~WorkCalendar.entitlement` is an
-:class:`~ccnl_engine.payroll.accrual.models_extra_month_entitlement.ExtraMonthEntitlement`;
+:class:`~ccnl_engine.extra_month.entitlement.models.ExtraMonthEntitlement`;
 each extra month is an
-:class:`~ccnl_engine.payroll.accrual.models_extra_month_schedule.ExtraMonthSchedule`.
+:class:`~ccnl_engine.extra_month.schedule.models.ExtraMonthSchedule`.
 
 The standard calendar is always derived from the CCNL; a caller replaces it
 only through a
@@ -21,12 +21,12 @@ from decimal import Decimal
 
 from ccnl_engine.collection.validators import items_of_type, tuple_of
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.accrual.models_extra_month_entitlement import (
+from ccnl_engine.extra_month.entitlement.models import (
     MAX_ADDITIONAL_MONTHS,
     MIN_ADDITIONAL_MONTHS,
     ExtraMonthEntitlement,
 )
-from ccnl_engine.payroll.accrual.models_extra_month_schedule import (
+from ccnl_engine.extra_month.schedule.models import (
     ExtraMonthKind,
     ExtraMonthSchedule,
 )

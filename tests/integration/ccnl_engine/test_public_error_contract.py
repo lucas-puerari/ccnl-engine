@@ -39,7 +39,7 @@ from ccnl_engine.inputs import (
     WorkerCategory,
 )
 from ccnl_engine.results import BlockerCode, CalculationDecision
-from tests.integration.ccnl_engine.payroll.sickness.builders_sickness_episode import (
+from tests.integration.ccnl_engine.sickness.builders import (
     metalmeccanico_c3,
     sickness_episode,
 )

@@ -11,7 +11,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.employment.inputs import FixedTerm
 from ccnl_engine.employment.spell.models import EmploymentSpell, spells_with
-from ccnl_engine.payroll.event.facade import AbsenceEvent
+from ccnl_engine.event.facade import AbsenceEvent
 from ccnl_engine.payroll.period.services_context_fact import (
     chain_gross,
     installment_run,
@@ -28,22 +28,22 @@ if TYPE_CHECKING:
     )
     from ccnl_engine.compensation.proration.services import RunProration
     from ccnl_engine.employment.category.models import WorkerCategory
+    from ccnl_engine.extra_month.models import ExtraMonthAccrual
     from ccnl_engine.pay_item.facade import CompetencePeriod
     from ccnl_engine.pay_item.policies import PolicyContext, PolicyResolver
-    from ccnl_engine.payroll.accrual.models import ExtraMonthAccrual
     from ccnl_engine.payroll.assurance.models_decision import CalculationIssue
     from ccnl_engine.payroll.period.models_run import RunKind
     from ccnl_engine.payroll.period.ports import KnowledgeRepository
     from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
     from ccnl_engine.payroll.period.services_contract import RunContract
     from ccnl_engine.payroll.state.models import PeriodState
-    from ccnl_engine.payroll.withholding.models_schedule import (
-        WithholdingPosition,
-        WithholdingSchedule,
-    )
     from ccnl_engine.payroll.year.models_payment import PaymentId
     from ccnl_engine.tax_credit.recovery.models import InstallmentRun
     from ccnl_engine.variable_pay.models import VariablePayRules
+    from ccnl_engine.withholding.schedule.models import (
+        WithholdingPosition,
+        WithholdingSchedule,
+    )
 
 
 @dataclass(frozen=True)
@@ -222,6 +222,6 @@ class RunContext:
         """Whether the employer withholds tax: false for a household employer.
 
         The only place a run reads it from the CCNL; see
-        :mod:`~ccnl_engine.payroll.withholding.rules_agent`.
+        :mod:`~ccnl_engine.withholding.agent.rules`.
         """
         return self.contract.ccnl.meta.withholding_agent

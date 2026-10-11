@@ -18,12 +18,12 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.payroll.assurance.types import (
     InvariantCode,
     ReconciliationViolation,
     _sum_account,
 )
-from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.period.models_run import run_identifier
 from ccnl_engine.payroll.state.models_obligation import carried_item_id
 from ccnl_engine.tax_credit.recovery.models import InstallmentRun

@@ -12,7 +12,7 @@ whole excess back on its payslip.  The engine tracks the part of the
 deduction each run's withholding applied (the withholding without the
 deduction less the withholding with it: before the conguaglio the share of
 the deduction the pay period took, see
-:mod:`~ccnl_engine.payroll.withholding.rules_period`), keeps on the conguaglio payslip
+:mod:`~ccnl_engine.withholding.rules`), keeps on the conguaglio payslip
 what c. 7 allows (the whole excess up to 60 EUR, otherwise the first
 installment) and defers the other nine installments to the next runs as a
 recovery obligation (:mod:`.ulteriore_settlement`).  A part the withholding
@@ -43,7 +43,6 @@ from ccnl_engine.tax_credit.ulteriore_detrazione.rules import settle_ulteriore
 if TYPE_CHECKING:
     from ccnl_engine.irpef.net.rules import NetIrpef
     from ccnl_engine.payroll.assurance.models_decision import CalculationDecision
-    from ccnl_engine.payroll.withholding.rules_period import PeriodTax
     from ccnl_engine.tax.annual.models import YearRules
     from ccnl_engine.tax_credit.account.models import CreditAccount
     from ccnl_engine.tax_credit.recovery.models import (
@@ -54,6 +53,7 @@ if TYPE_CHECKING:
     from ccnl_engine.tax_credit.ulteriore_detrazione.rules import (
         UlterioreSettlement,
     )
+    from ccnl_engine.withholding.rules import PeriodTax
 
 __all__ = ["ulteriore_items", "withhold_with_ulteriore"]
 

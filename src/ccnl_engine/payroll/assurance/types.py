@@ -7,11 +7,11 @@ from decimal import Decimal
 from enum import StrEnum
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.ledger.models import AccountKind
+from ccnl_engine.ledger.models import AccountKind
 
 if TYPE_CHECKING:
     from ccnl_engine.employment.fact.inputs import EmploymentPeriod
-    from ccnl_engine.payroll.accrual.models import ExtraMonthAccrual
+    from ccnl_engine.extra_month.models import ExtraMonthAccrual
     from ccnl_engine.payroll.period.results import PeriodResult
 
 __all__ = ["InvariantCode", "ReconciliationViolation", "RunFacts"]

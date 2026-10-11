@@ -18,19 +18,19 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.accrual.services_rule import month_accrual_rule
+from ccnl_engine.extra_month.qualification.services import month_accrual_rule
 from ccnl_engine.payroll.period.models_run import RunKind
 from ccnl_engine.payroll.state.models import PeriodState
 from ccnl_engine.payroll.state.models_obligation import EmploymentObligations
 from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
-from ccnl_engine.payroll.withholding.models_schedule import (
-    WithholdingSchedule,
-    WithholdingSlot,
-)
 from ccnl_engine.payroll.year.models_payment import PaymentId
 from ccnl_engine.payroll.year.services_calendar import effective_calendar
 from ccnl_engine.payroll.year.services_coverage import split_covered
 from ccnl_engine.payroll.year.services_run import plan_year
+from ccnl_engine.withholding.schedule.models import (
+    WithholdingSchedule,
+    WithholdingSlot,
+)
 
 if TYPE_CHECKING:
     from collections.abc import Iterable

@@ -2,7 +2,7 @@
 
 Implemented invariant:
     non_agent_untaxed: when the employer is not a withholding agent (see
-        :mod:`~ccnl_engine.payroll.withholding.rules_agent`), the run posts
+        :mod:`~ccnl_engine.withholding.agent.rules`), the run posts
         nothing to the tax and credit accounts, so by ``net_identity`` its
         net is the gross less the employee contributions and the other
         non-tax deductions; and the net never exceeds the gross plus the
@@ -14,12 +14,12 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.payroll.assurance.types import (
     InvariantCode,
     ReconciliationViolation,
     _sum_account,
 )
-from ccnl_engine.payroll.ledger.models import AccountKind
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.assurance.types import RunFacts

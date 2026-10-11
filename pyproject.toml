@@ -101,9 +101,14 @@ max-public-methods = 15
 # Applies to Pydantic model files and types.py (Bracket is a dataclass
 # whose field types Pydantic resolves at runtime via get_type_hints).
 "src/ccnl_engine/tax/annual/models.py" = ["TCH"]
-"src/ccnl_engine/contract/**" = ["TCH"]
 "src/ccnl_engine/agreement/**" = ["TCH"]
 "src/ccnl_engine/catalog/**" = ["TCH"]
+"src/ccnl_engine/event/**" = ["TCH"]
+"src/ccnl_engine/extra_month/**" = ["TCH"]
+"src/ccnl_engine/ledger/**" = ["TCH"]
+"src/ccnl_engine/sickness/**" = ["TCH"]
+"src/ccnl_engine/termination/**" = ["TCH"]
+"src/ccnl_engine/withholding/**" = ["TCH"]
 "src/ccnl_engine/family/**" = ["TCH"]
 "src/ccnl_engine/irpef/**" = ["TCH"]
 "src/ccnl_engine/regime/**" = ["TCH"]
@@ -226,7 +231,7 @@ source_paths = [
     "src/ccnl_engine/contribution/rules.py",
     "src/ccnl_engine/irpef/rules.py",
     "src/ccnl_engine/irpef/deduction/rules.py",
-    "src/ccnl_engine/payroll/ledger/models.py",
+    "src/ccnl_engine/ledger/models.py",
     "src/ccnl_engine/pay_item/rounding/policies.py",
     "src/ccnl_engine/payroll/assurance/rules_assessment.py",
     "src/ccnl_engine/payroll/capability/rules_requirement.py",
@@ -234,7 +239,7 @@ source_paths = [
     "src/ccnl_engine/irpef/net/rules.py",
     "src/ccnl_engine/contribution/additional_ivs/rules.py",
     "src/ccnl_engine/contribution/minimum_base/rules.py",
-    "src/ccnl_engine/payroll/withholding/rules_period.py",
+    "src/ccnl_engine/withholding/rules.py",
 ]
 # Limit collection to the tests of the mutated payroll modules; copy full src
 # so imports resolve. Hypothesis tests are left out: they use multiple
@@ -242,7 +247,7 @@ source_paths = [
 pytest_add_cli_args_test_selection = [
     "tests/unit/ccnl_engine/employment/inputs/test_inputs.py",
     "tests/unit/ccnl_engine/family/test_inputs.py",
-    "tests/unit/ccnl_engine/payroll/ledger/test_models.py",
+    "tests/unit/ccnl_engine/ledger/test_models.py",
     "tests/unit/ccnl_engine/pay_item/facade/test_facade.py",
     "tests/unit/ccnl_engine/pay_item/rounding/test_policies.py",
     "tests/unit/ccnl_engine/pay_item/treatment/test_types.py",
@@ -268,16 +273,16 @@ pytest_add_cli_args_test_selection = [
     "tests/unit/ccnl_engine/contribution/minimum_base/test_rules.py",
     "tests/unit/ccnl_engine/contribution/minimum_base/models/test_run.py",
     "tests/unit/ccnl_engine/contribution/minimum_base/models/test_rule.py",
-    "tests/unit/ccnl_engine/payroll/withholding/test_rules_period.py",
+    "tests/unit/ccnl_engine/withholding/rules/test_period.py",
     "tests/unit/ccnl_engine/irpef/computation/test_services.py",
     "tests/unit/ccnl_engine/tax_credit/recovery/test_models.py",
     "tests/integration/ccnl_engine/payroll/period/test_services_pdr_trattamento.py",
     "tests/integration/ccnl_engine/payroll/period/test_services_fiscal_regime.py",
-    "tests/integration/ccnl_engine/payroll/withholding/test_services_cap.py",
-    "tests/integration/ccnl_engine/payroll/withholding/test_services_cap_credit_recovery.py",
-    "tests/integration/ccnl_engine/payroll/withholding/test_services_deferral.py",
-    "tests/integration/ccnl_engine/payroll/withholding/test_services_deferral_next_year.py",
-    "tests/integration/ccnl_engine/payroll/withholding/test_services_plan.py",
+    "tests/integration/ccnl_engine/withholding/cap/services/test_cap.py",
+    "tests/integration/ccnl_engine/withholding/cap/services/test_cap_credit_recovery.py",
+    "tests/integration/ccnl_engine/withholding/deferral/services/test_deferral.py",
+    "tests/integration/ccnl_engine/withholding/deferral/services/test_deferral_next_year.py",
+    "tests/integration/ccnl_engine/withholding/plan/test_services.py",
     "tests/integration/ccnl_engine/tax_credit/somma_esente/services/test_somma_esente.py",
     "tests/integration/ccnl_engine/tax_credit/somma_esente/services/test_somma_esente_year.py",
 ]

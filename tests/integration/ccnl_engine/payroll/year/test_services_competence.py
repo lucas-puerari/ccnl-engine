@@ -11,9 +11,9 @@ import pytest
 from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.employment.inputs import Permanent
 from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.event.facade import AbsenceEvent
 from ccnl_engine.payroll.assurance.models import BlockerCode
 from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
-from ccnl_engine.payroll.event.facade import AbsenceEvent
 from ccnl_engine.payroll.period.models_run import RunKind
 from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.year import services_sequence as sequence_module

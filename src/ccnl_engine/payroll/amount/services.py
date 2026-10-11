@@ -26,7 +26,6 @@ from ccnl_engine.irpef.taxable.services import (
 )
 from ccnl_engine.payroll.amount.types import _PeriodAmounts
 from ccnl_engine.payroll.period.rules_run_decision import pdr_decision
-from ccnl_engine.payroll.withholding.services_untaxed import untaxed_amounts
 from ccnl_engine.pension_fund.services import (
     CONVENTIONAL_BASE_UNKNOWN,
     ERC_UNKNOWN,
@@ -38,6 +37,7 @@ from ccnl_engine.severance.relief.services import (
     with_tfr_compensation,
 )
 from ccnl_engine.surtax.rules import run_surtax
+from ccnl_engine.withholding.agent.services import untaxed_amounts
 
 if TYPE_CHECKING:
     from ccnl_engine.contribution.results import ContributionBreakdown

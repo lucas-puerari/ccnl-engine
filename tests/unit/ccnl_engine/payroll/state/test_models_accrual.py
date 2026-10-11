@@ -10,8 +10,8 @@ import pytest
 from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.period.models_run import PayrollRunId, RunKind
-from ccnl_engine.payroll.sickness.models import SicknessEpisode
 from ccnl_engine.payroll.state.models_accrual import EmploymentAccrualState
+from ccnl_engine.sickness.models import SicknessEpisode
 
 _FIELD = "EmploymentAccrualState.competence_runs"
 

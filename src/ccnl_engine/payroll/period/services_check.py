@@ -17,15 +17,15 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.errors import InvalidInputError, OutOfScopeError
+from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.payroll.assurance.types import RunFacts
-from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.period.models_run import run_identifier
 from ccnl_engine.payroll.period.services_shared import _sum_ledger
 from ccnl_engine.payroll.year.models_payment import PaymentId
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.accrual.models import ExtraMonthAccrual
-    from ccnl_engine.payroll.ledger.models import LedgerEntry
+    from ccnl_engine.extra_month.models import ExtraMonthAccrual
+    from ccnl_engine.ledger.models import LedgerEntry
     from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
     from ccnl_engine.payroll.period.results import PeriodResult
     from ccnl_engine.tax.annual.models import YearRules

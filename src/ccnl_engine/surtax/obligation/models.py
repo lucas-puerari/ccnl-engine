@@ -35,7 +35,7 @@ from enum import StrEnum
 from types import MappingProxyType
 from typing import TYPE_CHECKING, final
 
-from ccnl_engine.payroll.ledger.models_remittance import (
+from ccnl_engine.ledger.remittance.models import (
     MUNICIPAL_SURTAX_ADVANCE,
     MUNICIPAL_SURTAX_BALANCE,
     REGIONAL_SURTAX,

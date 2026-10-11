@@ -12,7 +12,7 @@ from datetime import date, timedelta
 from typing import TYPE_CHECKING
 
 from ccnl_engine.employment.inputs import FixedTerm
-from ccnl_engine.payroll.event.facade import AbsenceEvent, SicknessEpisode
+from ccnl_engine.event.facade import AbsenceEvent, SicknessEpisode
 from ccnl_engine.pension_fund.inputs import PensionFundEnrolment
 
 if TYPE_CHECKING:

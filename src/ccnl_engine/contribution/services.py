@@ -22,12 +22,12 @@ from ccnl_engine.end_of_service.services import (
 from ccnl_engine.fund.solidarity.services import (
     with_solidarity_fund,
 )
+from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.pay_item.rounding.policies import contribution_base, money
 from ccnl_engine.payroll.assurance.models_decision import (
     CalculationIssue,
     CalculationStatus,
 )
-from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.period.services_shared import _ZERO
 
 if TYPE_CHECKING:

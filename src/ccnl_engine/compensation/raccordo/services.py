@@ -21,18 +21,18 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.pay_item.facade import RaccordoElementEarning
-from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.accrual.models_extra_month_schedule import ExtraMonthKind
-from ccnl_engine.payroll.accrual.services_extra_month_settlement import (
+from ccnl_engine.extra_month.schedule.models import ExtraMonthKind
+from ccnl_engine.extra_month.settlement.services import (
     ExtraMonthSettlement,
 )
+from ccnl_engine.ledger.models import AccountKind
+from ccnl_engine.pay_item.facade import RaccordoElementEarning
+from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.payroll.assurance.models_decision import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
 )
-from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.period.rules_run_decision import _ccnl_rule
 from ccnl_engine.payroll.period.services_shared import (
     _make_entry,

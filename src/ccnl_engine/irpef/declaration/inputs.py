@@ -10,9 +10,6 @@ from ccnl_engine.collection.validators import (
     items_of_type,
     tuple_of,
 )
-from ccnl_engine.payroll.withholding.inputs_shortfall_deferral import (
-    ShortfallDeferralRequest,
-)
 from ccnl_engine.regime.models import SubstituteTaxRegime
 from ccnl_engine.tax_credit.foreign.inputs import (
     ForeignTaxPaid,
@@ -22,6 +19,9 @@ from ccnl_engine.validators import (
     parse_enum,
     require_decimal,
     require_instance,
+)
+from ccnl_engine.withholding.deferral.inputs import (
+    ShortfallDeferralRequest,
 )
 
 __all__ = [

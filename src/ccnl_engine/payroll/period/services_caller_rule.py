@@ -18,12 +18,7 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.assurance.models_decision import (
-    CalculationDecision,
-    CalculationStatus,
-    DecisionOrigin,
-)
-from ccnl_engine.payroll.event.facade import (
+from ccnl_engine.event.facade import (
     AbsenceEvent,
     ArrearsEvent,
     BilateralFundEvent,
@@ -37,8 +32,13 @@ from ccnl_engine.payroll.event.facade import (
     TerminationTFREvent,
     WelfareEvent,
 )
-from ccnl_engine.payroll.event.handlers_standard import (
+from ccnl_engine.event.standard.handlers import (
     _standard_event_gross,
+)
+from ccnl_engine.payroll.assurance.models_decision import (
+    CalculationDecision,
+    CalculationStatus,
+    DecisionOrigin,
 )
 from ccnl_engine.working_time.models import TimeSupplementKind, WorkKind
 from ccnl_engine.working_time.overtime.policies import (
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 
     from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.agreement.validity.rules import TimeSeries
-    from ccnl_engine.payroll.event.facade import WorkEvent
+    from ccnl_engine.event.facade import WorkEvent
     from ccnl_engine.working_time.models import OvertimeBand
 
 __all__ = [

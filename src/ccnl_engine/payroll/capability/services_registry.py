@@ -21,6 +21,9 @@ from functools import cache
 from typing import TYPE_CHECKING
 
 from ccnl_engine.errors import DataIntegrityError
+from ccnl_engine.event.facade import BonusEvent
+from ccnl_engine.event.registry.handlers import _HANDLER_REGISTRY
+from ccnl_engine.event.total.handlers import EVENT_FEATURES
 from ccnl_engine.payroll.assurance.models_decision import DecisionOrigin
 from ccnl_engine.payroll.capability.models_catalog import CapabilityImplementation
 from ccnl_engine.payroll.capability.models_trace import TraceState
@@ -40,9 +43,6 @@ from ccnl_engine.payroll.capability.services_trace import (
     caller_supplied_fields,
     traces_to_observed,
 )
-from ccnl_engine.payroll.event.facade import BonusEvent
-from ccnl_engine.payroll.event.handlers_registry import _HANDLER_REGISTRY
-from ccnl_engine.payroll.event.handlers_totals import EVENT_FEATURES
 from ccnl_engine.payroll.period.models_run import RunKind
 from ccnl_engine.payroll.period.services_caller_rule import (
     CALLER_SUPPLIED_CAPABILITIES,

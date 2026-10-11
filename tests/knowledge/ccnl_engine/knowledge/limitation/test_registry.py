@@ -39,13 +39,13 @@ from ccnl_engine.payroll.assurance.services_ruleset import (
 from ccnl_engine.payroll.period.repositories import (
     BundledKnowledgeRepository,
 )
-from ccnl_engine.payroll.sickness.handlers import (
-    CUMULATION_LIMITATION,
-    INPS_DAILY_BASE_LIMITATION,
-)
 from ccnl_engine.seniority.rules import APPRENTICE_SENIORITY_VARIANT
 from ccnl_engine.severance.relief.services import (
     APPRENTICE_GUARANTEE_FUND,
+)
+from ccnl_engine.sickness.handlers import (
+    CUMULATION_LIMITATION,
+    INPS_DAILY_BASE_LIMITATION,
 )
 
 if TYPE_CHECKING:

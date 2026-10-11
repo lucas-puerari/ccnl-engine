@@ -31,12 +31,12 @@ from ccnl_engine.end_of_service.services import (
     end_of_service_base,
 )
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.pay_item.facade import PublicTfrReduction
-from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.accrual.services_extra_month_settlement import (
+from ccnl_engine.extra_month.settlement.services import (
     ExtraMonthSettlement,
 )
-from ccnl_engine.payroll.ledger.models import AccountKind
+from ccnl_engine.ledger.models import AccountKind
+from ccnl_engine.pay_item.facade import PublicTfrReduction
+from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.payroll.period.models_run import RunKind
 from ccnl_engine.payroll.period.services_shared import (
     _make_entry,
@@ -46,7 +46,7 @@ from ccnl_engine.payroll.period.services_shared import (
 from ccnl_engine.pension_fund.inputs import PensionFundEnrolment
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.event.handlers_totals import _EventTotals
+    from ccnl_engine.event.total.handlers import _EventTotals
     from ccnl_engine.payroll.period.services_run_context import RunContext
 
 __all__ = ["public_tfr_reduction"]

@@ -13,9 +13,9 @@ from decimal import Decimal
 
 from ccnl_engine.contribution.results import ContributionBreakdown
 from ccnl_engine.irpef.results import TaxComputation
+from ccnl_engine.ledger.models import AccountKind, LedgerEntry
 from ccnl_engine.pay_item.facade import BaseSalaryEarning, CompetencePeriod
 from ccnl_engine.payroll.capability.results import CapabilityReport
-from ccnl_engine.payroll.ledger.models import AccountKind, LedgerEntry
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.models_run import PayrollRunId, RunKind
 from ccnl_engine.payroll.period.results import PeriodResult

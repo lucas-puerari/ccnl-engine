@@ -41,13 +41,13 @@ from ccnl_engine.inputs import (
     PeriodState,
     Permanent,
 )
+from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.pay_item.facade import FringeBenefitItem
 from ccnl_engine.payroll.assurance.models_decision import (
     CalculationDecision,
     CalculationStatus,
 )
 from ccnl_engine.payroll.capability.services_trace import build_traces
-from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
 from ccnl_engine.payroll.state.models_ytd_account import FringeYtd

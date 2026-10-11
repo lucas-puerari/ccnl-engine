@@ -27,10 +27,10 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
+from ccnl_engine.event.facade import BonusEvent
 from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
+from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.payroll.assurance.validators import reconcile
-from ccnl_engine.payroll.event.facade import BonusEvent
-from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period

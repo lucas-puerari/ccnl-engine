@@ -13,13 +13,13 @@ from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.employment.fixed_term.inputs import NaspiExclusion
 from ccnl_engine.employment.inputs import Apprentice, FixedTerm
 from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.pay_item.facade import (
     BaseSalaryEarning,
     EmployeeWithholdingItem,
     EmployerContributionItem,
     TfrAccrualItem,
 )
-from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.repositories import (
     BundledKnowledgeRepository,

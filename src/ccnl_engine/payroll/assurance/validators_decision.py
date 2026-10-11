@@ -25,13 +25,13 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
 from ccnl_engine.payroll.assurance.types import (
     InvariantCode,
     ReconciliationViolation,
     _sum_account,
 )
-from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.regime.eligibility.rules import RegimeEligibility
 
 if TYPE_CHECKING:

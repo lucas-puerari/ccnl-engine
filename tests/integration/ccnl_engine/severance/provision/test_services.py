@@ -18,8 +18,8 @@ import pytest
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.fact.inputs import ContributableHours, WeeklyHours
 from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period

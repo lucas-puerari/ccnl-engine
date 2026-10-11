@@ -6,9 +6,9 @@ from dataclasses import dataclass, field
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.ledger.models import AccountKind, LedgerEntry
+from ccnl_engine.ledger.remittance.models import SOMMA_ESENTE_CREDIT
 from ccnl_engine.pay_item.facade import PayItem, TaxCreditItem
-from ccnl_engine.payroll.ledger.models import AccountKind, LedgerEntry
-from ccnl_engine.payroll.ledger.models_remittance import SOMMA_ESENTE_CREDIT
 from ccnl_engine.payroll.period.services_shared import (
     _make_entry,
     _require_resolution,

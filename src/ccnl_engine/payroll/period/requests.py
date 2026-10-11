@@ -33,16 +33,16 @@ from ccnl_engine.validators import FieldSpec, require_instances
 
 if TYPE_CHECKING:
     from ccnl_engine.employment.category.models import WorkerCategory
+    from ccnl_engine.event.facade import WorkEvent
+    from ccnl_engine.extra_month.models import ExtraMonthAccrual
     from ccnl_engine.family.inputs import FamilyComposition
-    from ccnl_engine.payroll.accrual.models import ExtraMonthAccrual
-    from ccnl_engine.payroll.event.facade import WorkEvent
     from ccnl_engine.payroll.period.models_run import PayrollRun, PayrollRunId
-    from ccnl_engine.payroll.withholding.models_schedule import WithholdingSchedule
     from ccnl_engine.payroll.year.models_payment import PaymentId
     from ccnl_engine.pension_fund.inputs import (
         NoPensionFund,
         PensionFundEnrolment,
     )
+    from ccnl_engine.withholding.schedule.models import WithholdingSchedule
 
 
 @dataclass(frozen=True)
@@ -120,7 +120,7 @@ class PeriodCalculationRequest:
             without absences.  Ignored on a regular run.
         extra_month_settlements: Ratei the run liquidates at the end of the
             employment, as extra-month earnings; ``None`` derives them
-            (:mod:`~ccnl_engine.payroll.termination.services_ratei`).
+            (:mod:`~ccnl_engine.extra_month.liquidation.services`).
         sector: Private or public sector of the employment, ``None`` when
             not known.  Read by the regimes restricted to one sector.
         prior_year: Prior-year income and written waivers, read by every

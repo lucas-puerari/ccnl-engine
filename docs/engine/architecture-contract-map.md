@@ -209,7 +209,7 @@ inventory.
 | `payroll/event/services_allocation.py` | `event/allocation/services.py` |
 | `payroll/event/facade.py` | `event/facade.py` |
 | `payroll/event/handlers_context.py` | `event/handlers.py` |
-| `payroll/event/handlers_registry.py` | `event/handlers.py` |
+| `payroll/event/handlers_registry.py` | `event/registry/handlers.py` |
 | `payroll/event/handlers_standard.py` | `event/standard/handlers.py` |
 | `payroll/event/handlers_totals.py` | `event/total/handlers.py` |
 | `payroll/event/types.py` | `event/types.py` |
@@ -289,7 +289,7 @@ inventory.
 
 | Today | Target |
 |---|---|
-| `payroll/ledger/services_base_line.py` | `ledger/line/services.py` |
+| `payroll/ledger/services_base_line.py` | `ledger/line/base/services.py` |
 | `payroll/ledger/services_line.py` | `ledger/line/services.py` |
 | `payroll/ledger/services_tax_line.py` | `ledger/line/tax/services.py` |
 | `payroll/ledger/models.py` | `ledger/models.py` |

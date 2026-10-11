@@ -16,7 +16,7 @@ from ccnl_engine.payroll.assurance.models_decision import (
     CalculationStatus,
 )
 from ccnl_engine.payroll.period.services_shared import _ZERO
-from ccnl_engine.payroll.withholding.rules_period import PayPeriod
+from ccnl_engine.withholding.rules import PayPeriod
 
 if TYPE_CHECKING:
     from ccnl_engine.family.services import RunFamily

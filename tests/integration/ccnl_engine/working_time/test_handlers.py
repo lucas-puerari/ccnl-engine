@@ -14,13 +14,13 @@ from ccnl_engine.employer.inputs import (
     EmployerProfile,
     Headcount,
 )
+from ccnl_engine.event.facade import NightShiftEvent
 from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
 from ccnl_engine.payroll.assurance.types import RunFacts
 from ccnl_engine.payroll.assurance.validators import reconcile
 from ccnl_engine.payroll.assurance.validators_decision import (
     check_substitute_tax_plafond,
 )
-from ccnl_engine.payroll.event.facade import NightShiftEvent
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period

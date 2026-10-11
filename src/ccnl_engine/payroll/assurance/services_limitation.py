@@ -27,9 +27,9 @@ from ccnl_engine.severance.relief.services import (
 )
 
 if TYPE_CHECKING:
+    from ccnl_engine.event.total.handlers import _EventTotals
     from ccnl_engine.knowledge.limitation.models import ModelLimitation
     from ccnl_engine.payroll.capability.results import CapabilityReport
-    from ccnl_engine.payroll.event.handlers_totals import _EventTotals
     from ccnl_engine.payroll.period.services_run_context import RunContext
 
 __all__ = ["limitation_facts", "run_limitations"]

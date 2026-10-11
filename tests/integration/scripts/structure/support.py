@@ -6,7 +6,7 @@ norms, computation or orchestration (``docs/engine/architecture.md``).  A
 module imports at runtime only concepts of its own tier or of a lower one;
 cycles inside a tier are allowed.
 
-The roots of the layout by source (``contract``, ``tax``, ``payroll``) are
+The roots of the layout by source (``tax``, ``payroll``) are
 :data:`LEGACY_ROOTS`: the tier rule skips them until their modules move into
 concepts, and the set only shrinks.  Between legacy roots the rules of the
 layout by source still hold: a domain reaches another legacy capability's
@@ -104,7 +104,7 @@ CONCEPT_TIERS: Mapping[str, int] = {
     ),
 }
 #: Roots of the layout by source, outside the tier rule until they empty.
-LEGACY_ROOTS: frozenset[str] = frozenset({"contract", "tax", "payroll"})
+LEGACY_ROOTS: frozenset[str] = frozenset({"tax", "payroll"})
 
 
 def concept(name: str) -> str | None:

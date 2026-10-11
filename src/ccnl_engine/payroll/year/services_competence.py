@@ -11,8 +11,6 @@ from ccnl_engine.payroll.assurance.policies_engine_mode import EngineMode
 from ccnl_engine.payroll.period.repositories import (
     BundledKnowledgeRepository,
 )
-from ccnl_engine.payroll.withholding.models_schedule import WithholdingSlot
-from ccnl_engine.payroll.withholding.services_plan import standard_payments
 from ccnl_engine.payroll.year.results import CompetenceYearResult
 from ccnl_engine.payroll.year.rules_close import close_tax_year
 from ccnl_engine.payroll.year.services_calendar import standard_calendar
@@ -24,6 +22,8 @@ from ccnl_engine.payroll.year.services_payment import (
     tax_year_schedule,
 )
 from ccnl_engine.payroll.year.services_sequence import Engine, compute_payments
+from ccnl_engine.withholding.plan.services import standard_payments
+from ccnl_engine.withholding.schedule.models import WithholdingSlot
 
 if TYPE_CHECKING:
     from ccnl_engine.pay_item.policies import PolicyResolver

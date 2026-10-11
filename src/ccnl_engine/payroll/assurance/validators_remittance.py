@@ -3,7 +3,7 @@
 Implemented invariant:
     remittance_code_consistent: an entry carries a codice tributo only when its
         account admits that code
-        (:data:`~ccnl_engine.payroll.ledger.models_remittance.ACCOUNT_CODES`), and
+        (:data:`~ccnl_engine.ledger.remittance.models.ACCOUNT_CODES`), and
         every entry of an account whose code is always known (IRPEF
         withheld, separate tax, credits paid) carries one.
 """
@@ -12,14 +12,14 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.ledger.remittance.models import ACCOUNT_CODES, CODED_ACCOUNTS
 from ccnl_engine.payroll.assurance.types import (
     InvariantCode,
     ReconciliationViolation,
 )
-from ccnl_engine.payroll.ledger.models_remittance import ACCOUNT_CODES, CODED_ACCOUNTS
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.ledger.models import LedgerEntry
+    from ccnl_engine.ledger.models import LedgerEntry
     from ccnl_engine.payroll.period.results import PeriodResult
 
 __all__: list[str] = []

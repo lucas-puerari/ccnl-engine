@@ -31,7 +31,6 @@ if TYPE_CHECKING:
         CalculationIssue,
     )
     from ccnl_engine.payroll.state.models_tax_cash import TaxCashState
-    from ccnl_engine.payroll.withholding.models_schedule import WithholdingPosition
     from ccnl_engine.pension_fund.rules import (
         PensionContribution,
         PensionFundTerms,
@@ -45,6 +44,7 @@ if TYPE_CHECKING:
         UlterioreSettlement,
     )
     from ccnl_engine.variable_pay.models import PdRRules
+    from ccnl_engine.withholding.schedule.models import WithholdingPosition
 
 
 @dataclass(frozen=True)
@@ -86,7 +86,7 @@ class _AmountsInput:
     whether the run is the last of the employment, which defers nothing and
     settles every running plan, or an adjustment run.
     ``withholding_agent`` is false for an employer that withholds no tax
-    (see :mod:`~ccnl_engine.payroll.withholding.rules_agent`).
+    (see :mod:`~ccnl_engine.withholding.agent.rules`).
     ``pension`` holds the rates of the pension fund the worker is enrolled
     in, ``None`` when not enrolled; ``contractual_fund`` the contribution
     the CCNL owes a fund for every worker.  ``conguaglio`` is true on the run that

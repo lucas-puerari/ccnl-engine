@@ -10,13 +10,13 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.ledger.models import AccountKind
+from ccnl_engine.ledger.remittance.models import POST_CONGUAGLIO_WITHHOLDING
 from ccnl_engine.payroll.assurance.types import (
     InvariantCode,
     ReconciliationViolation,
     _sum_account,
 )
-from ccnl_engine.payroll.ledger.models import AccountKind
-from ccnl_engine.payroll.ledger.models_remittance import POST_CONGUAGLIO_WITHHOLDING
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.period.results import PeriodResult

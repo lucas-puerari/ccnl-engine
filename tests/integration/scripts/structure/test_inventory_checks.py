@@ -42,7 +42,7 @@ li = _load()
 
 #: Code trees the test targets below may mirror.
 _TREES = {
-    "ccnl_engine": {"", "payroll", "payroll/ledger"},
+    "ccnl_engine": {"", "payroll", "payroll/period"},
     "demo": {""},
     "scripts": {"", "structure"},
 }
@@ -55,18 +55,18 @@ _TREES = {
         "src/ccnl_engine/py.typed",
         "src/ccnl_engine/api.py",
         "src/ccnl_engine/collection/validators.py",
-        "src/ccnl_engine/payroll/ledger/models.py",
-        "src/ccnl_engine/payroll/ledger/services_base_line.py",
+        "src/ccnl_engine/payroll/period/models.py",
+        "src/ccnl_engine/payroll/period/services_base_line.py",
         "src/ccnl_engine/knowledge/social_security/contribution/2026/industria.json",
-        "src/ccnl_engine/payroll/ledger/__init__.py",
+        "src/ccnl_engine/payroll/period/__init__.py",
         "tests/conftest.py",
         "tests/README.md",
-        "tests/unit/ccnl_engine/payroll/ledger/test_models.py",
+        "tests/unit/ccnl_engine/payroll/period/test_models.py",
         "tests/unit/ccnl_engine/builders.py",
         "tests/knowledge/ccnl_engine/payroll/oracles_irpef_2026.py",
         "tests/integration/scripts/structure/support_imports.py",
-        "tests/knowledge/ccnl_engine/payroll/ledger/payslip/p01.json",
-        "tests/knowledge/ccnl_engine/payroll/ledger/notes.md",
+        "tests/knowledge/ccnl_engine/payroll/period/payslip/p01.json",
+        "tests/knowledge/ccnl_engine/payroll/period/notes.md",
         "scripts/structure/check.py",
         "scripts/structure/naming/rules.py",
         "demo/app.py",
@@ -83,13 +83,13 @@ def test_conforming_targets_pass(target: str) -> None:
     [
         ("src/ccnl_engine/payroll/_ledger.py", "basename starts with an underscore"),
         (
-            "tests/unit/ccnl_engine/payroll/ledger/__init__.py",
+            "tests/unit/ccnl_engine/payroll/period/__init__.py",
             "basename starts with an underscore",
         ),
         ("src/ccnl_engine/payroll/domain/models.py", "technical directory 'domain'"),
         ("src/ccnl_engine/a/b/c/d/models.py", "not in the target tree"),
         ("src/ccnl_engine/payroll/misc/models.py", "not in the target tree"),
-        ("src/ccnl_engine/payroll/ledger/ledger.py", "name is not a technical role"),
+        ("src/ccnl_engine/payroll/period/ledger.py", "name is not a technical role"),
         ("src/ccnl_engine/helpers.py", "name is not a technical role"),
         ("src/ccnl_engine/payroll/table.json", "resource outside a knowledge"),
         ("src/ccnl_engine/knowledge/x.json", "resource outside a knowledge"),
@@ -137,7 +137,7 @@ def _marker(root: Path, rel: str, text: str) -> str:
 
 def test_dissolve_rules(tmp_path: Path) -> None:
     """Only a code-free marker dissolves, into a directory of the target tree."""
-    target = "src/ccnl_engine/payroll/ledger/models.py"
+    target = "src/ccnl_engine/payroll/period/models.py"
     empty = _marker(tmp_path, "a/__init__.py", '"""Doc."""\n')
     future = _marker(tmp_path, "b/__init__.py", "from __future__ import annotations\n")
     code = _marker(tmp_path, "c/__init__.py", "from x import y\n")
@@ -146,7 +146,7 @@ def test_dissolve_rules(tmp_path: Path) -> None:
     mapping = {
         "f.py": target,
         empty: {"dissolve": "src/ccnl_engine/payroll"},
-        future: {"dissolve": "src/ccnl_engine/payroll/ledger"},
+        future: {"dissolve": "src/ccnl_engine/payroll/period"},
         code: {"dissolve": "src/ccnl_engine"},
         module: {"dissolve": "src/ccnl_engine"},
         stray: {"dissolve": "src/ccnl_engine/payroll/misc"},
@@ -173,10 +173,10 @@ def test_code_free_reads_docstrings_and_future_imports() -> None:
 def test_test_targets_mirror_the_target_code_tree(tmp_path: Path) -> None:
     """A test directory must exist in the target tree of the code it mirrors."""
     mapping = {
-        "a.py": "src/ccnl_engine/payroll/ledger/models.py",
-        "b.py": "tests/unit/ccnl_engine/payroll/ledger/test_models.py",
-        "c.py": "tests/unit/ccnl_engine/payroll/period/test_models.py",
+        "a.py": "src/ccnl_engine/payroll/period/models.py",
+        "b.py": "tests/unit/ccnl_engine/payroll/period/test_models.py",
+        "c.py": "tests/unit/ccnl_engine/payroll/state/test_models.py",
     }
     assert li.check_mapping(mapping, tmp_path) == [
-        "c.py: directory 'payroll/period' mirrors no code directory"
+        "c.py: directory 'payroll/state' mirrors no code directory"
     ]

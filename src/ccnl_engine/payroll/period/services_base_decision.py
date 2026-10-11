@@ -28,8 +28,8 @@ from ccnl_engine.provenance.source.rule.models import RuleProvenance
 if TYPE_CHECKING:
     from decimal import Decimal
 
+    from ccnl_engine.event.total.handlers import _EventTotals
     from ccnl_engine.payroll.capability.services_rule_lookup import Rule
-    from ccnl_engine.payroll.event.handlers_totals import _EventTotals
     from ccnl_engine.payroll.period.services_pipeline import RunAmounts
     from ccnl_engine.payroll.period.services_run_context import RunContext
     from ccnl_engine.tax.annual.models import YearRules
@@ -195,7 +195,7 @@ def base_stage_decisions(
 
     An employer that is not a withholding agent computes no IRPEF: its
     ``irpef`` capability keeps the not-applicable decision of
-    :mod:`~ccnl_engine.payroll.withholding.rules_agent`.
+    :mod:`~ccnl_engine.withholding.agent.rules`.
 
     Returns:
         The ``base_salary``, ``inps_employee``, ``inps_employer`` and
