@@ -13,11 +13,15 @@
 [← Contracts index](index.md)
 
 ??? note "Signatories"
+    - AITI
+    - ASSOESPRESSI
+    - ASSOLOGISTICA
+    - FEDESPEDI
+    - FEDIT
+    - FISI
+    - TRASPORTOUNITO FIAP
+    - ANITA
     - Confetra
-    - Assoespressi
-    - Federazione Autotrasportatori Italiani
-    - Federlogistica
-    - FIAP
     - FILT-CGIL
     - FIT-CISL
     - UILTrasporti
@@ -44,7 +48,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 43 derived / 2 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 41 verified / 4 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -53,7 +57,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-12-06 |
-| **Last review** | 2026-09-18 |
+| **Last review** | 2026-10-11 |
 | **Latest salary tranche** | 2027-06-01 |
 
 ## Review history
@@ -61,6 +65,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-09-18 | maintainer (human) | Whole file. The values checked were not recorded. | confirmed | The review recorded no list of the documents it read. |
+| 2026-10-11 | claude-opus-5-5 (ai) | Every payable rule of the file (55 records) read again in the signed testo unico of the renewal of 6 December 2024 (Verbale di accordo 25 September 2025), published by Confetra; the URLs the file cited return 404. | corrected | Corrected: every one of the 36 salary periods. The base salary is the minimo plus the EPA of the tables of pp. 80-81 for non-travelling staff; the file held values about 88-110 EUR too high. The printed Totale of the 1 January 2027 table already includes the minimo increase of 1 June 2027; the Legacoop circular of 19 December 2024 (p. 2) confirms that January 2027 is an EPA-only step, so the period holds minimo plus EPA.<br>Corrected: the Quadri receive the indennità di funzione of 51.65 EUR a month (Art. 6 c. 4, p. 17), which the file lacked.<br>Corrected: the daily quota is 1/22 (Art. 61 c. 3, Sezione prima, p. 86), not 1/26, which applies to a six-day week of non-travelling staff and to Sezione seconda (Art. 73 c. 5).<br>Verified: 14 monthly payments (Artt. 18-19), the accrual of fractions over 15 days (Art. 18 c. 2, Art. 19 c. 2), seniority (Art. 17) and 22 days of leave (Art. 24). Pages are PDF page numbers, equal to the printed ones.<br>Assumed: sickness. Art. 63 A) c. 7-12 keeps the job 245 or 365 days and pays 3 months in full and 5 at half (up to 5 years of service) or 5 and 7, counted over 24 or 30 months; the cumulation model holds one window in whole years for every band, so the rule is not expressible and the file's 100% for 180 days is wrong.<br>Left derived: the overtime rates (30%, 50%, 65%, 75%, Art. 13 c. 6) match, but their start of 2023-05-01 is not stated; the level descriptions are paraphrases.<br>Not modelled: the EDR of Art. 60 c. 8 (10 EUR at level 3S, re-parametrised) for workers in service on 26 January 2011, which affects every entitlement, and level 6J and travelling staff. |
 
 ## Salary table
 
@@ -68,15 +73,15 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Quadro — quadro with high directional and managerial expertise | € 2,754.22 | 2027-06-01 |
-| `1` | Level 1 — management role / area manager | € 2,589.10 | 2027-06-01 |
-| `2` | Level 2 — operational unit manager / junior management role | € 2,382.07 | 2027-06-01 |
-| `3S` | Level 3 Super — reference technical/operational expert or process manager | € 2,240.37 | 2027-06-01 |
-| `3` | Level 3 — highly specialised operator / department coordinator | € 2,182.80 | 2027-06-01 |
-| `4` | Level 4 — specialist operator (C/CE licence driver, CED operator) | € 2,069.62 | 2027-06-01 |
-| `4J` | Level 4 Junior — recently graded senior operator | € 2,018.13 | 2027-06-01 |
-| `5` | Level 5 — qualified operator (cat. B driver, specialist warehouse worker) | € 1,971.13 | 2027-06-01 |
-| `6` | Level 6 — worker assigned to generic operational support tasks | € 1,841.61 | 2027-06-01 |
+| `Q` | Quadro — quadro with high directional and managerial expertise | € 2,681.12 | 2027-06-01 |
+| `1` | Level 1 — management role / area manager | € 2,496.84 | 2027-06-01 |
+| `2` | Level 2 — operational unit manager / junior management role | € 2,302.61 | 2027-06-01 |
+| `3S` | Level 3 Super — reference technical/operational expert or process manager | € 2,070.37 | 2027-06-01 |
+| `3` | Level 3 — highly specialised operator / department coordinator | € 2,016.54 | 2027-06-01 |
+| `4` | Level 4 — specialist operator (C/CE licence driver, CED operator) | € 1,912.80 | 2027-06-01 |
+| `4J` | Level 4 Junior — recently graded senior operator | € 1,865.27 | 2027-06-01 |
+| `5` | Level 5 — qualified operator (cat. B driver, specialist warehouse worker) | € 1,817.10 | 2027-06-01 |
+| `6` | Level 6 — worker assigned to generic operational support tasks | € 1,703.67 | 2027-06-01 |
 
 ## Seniority increments
 
@@ -158,9 +163,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-12-06 | [↗](https://www.confetra.com/wp-content/uploads/2025/09/testo-unico-ccnl-logistica-2025.pdf) |
-| — | — | 2024-12-19 | [↗](https://www.confetra.com/wp-content/uploads/2024/12/circ283-2024.pdf) |
-| — | — | 2024-12-06 | [↗](https://www.contrattotrasporti.it/art-106-tabelle-retributive/) |
+| — | — | 2024-12-06 | [↗](https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf) |
 
 ??? note "Coverage notes"
     STAFF: tables for non-travelling staff (clerical employees and sedentary workers). The CCNL also covers travelling staff (drivers engaged in international transport) with separate tables and rules — not modelled in this file.
@@ -169,7 +172,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     HOURLY DIVISOR: 168 hours/month. Primary source: Art. 61 para. 3 consolidated text September 2025 — 'The hourly pay is obtained by dividing the monthly pay by 168'.
     
-    TRANCHES: four tranches at 1.1.2025 (+120 for 3S), 1.1.2026 (+90 for 3S), 1.1.2027 (+40 for 3S), 1.6.2027 (+40 for 3S). Source: contrattotrasporti.it/art-106-tabelle-retributive (Art. 106 consolidated text) and Confetra circ283-2024 (January 2025 tranche).
+    TRANCHES: four tranches for level 3S: 1.1.2025 +120 (minimo 90 + EPA 30), 1.1.2026 +40 (minimo), 1.1.2027 +30 (EPA), 1.6.2027 +40 (minimo 10 + EPA 30). Source: the tables of pp. 80-81 of the testo unico of 25 September 2025 and the Legacoop circular of 19 December 2024 (p. 2).
     
     ICE: the Indennità di Copertura Economica (ICE) was a provisional element in force until 31.12.2024. It ceases from 1.1.2025 with the renewal taking effect. base_salary values do not include ICE (ceased element). The consolidated text cites net increases of EUR 230 at 3S compared to the previous pay including ICE — the difference from the algebraic sum of the tranches (EUR 290 from base without ICE) corresponds to the pre-existing ICE value for that level.
     
@@ -181,7 +184,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     EPA: Elemento Professionale d'Area, a component introduced by the 6.12.2024 renewal. Included in base_salary values from 1.1.2025. Not shown separately because it forms an integral part of the minimum pay (it affects all contractual and statutory entitlements) — see Confetra circ283-2024.
     
-    EDR: the EDR of EUR 10.33/month (agreement 26 Jan 2001) has been conglobated into the minimum pay tables from 1.1.2001 (Art. 61 note). Subsequent additional EDRs (agreement 2011, agreement 2021) are NON-incidente (do not affect contractual entitlements) — not modelled in base_salary; they represent a separate pay slip item outside the engine.
+    EDR: the EDR of EUR 10.33/month (agreement 26 Jan 2001) is conglobated into the minimum pay tables from 1.1.2001 (Art. 61 note). The EDR of Art. 60 c. 8 (10 EUR at level 3S, re-parametrised by level) for workers in service on 26 January 2011 affects every entitlement and is not modelled; the EDR of the 2021 agreement does not affect other entitlements.
     
     INPS: uses 2026-industria.json (TaxSector.INDUSTRIA). File already present — no changes to the tax file.
     

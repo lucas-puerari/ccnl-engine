@@ -5,47 +5,47 @@
     {
       "level_code": "6",
       "as_of": "2027-06-01",
-      "expected_monthly": "1841.61"
+      "expected_monthly": "1703.67"
     },
     {
       "level_code": "5",
       "as_of": "2027-06-01",
-      "expected_monthly": "1971.13"
+      "expected_monthly": "1817.10"
     },
     {
       "level_code": "4J",
       "as_of": "2027-06-01",
-      "expected_monthly": "2018.13"
+      "expected_monthly": "1865.27"
     },
     {
       "level_code": "4",
       "as_of": "2027-06-01",
-      "expected_monthly": "2069.62"
+      "expected_monthly": "1912.80"
     },
     {
       "level_code": "3",
       "as_of": "2027-06-01",
-      "expected_monthly": "2182.80"
+      "expected_monthly": "2016.54"
     },
     {
       "level_code": "3S",
       "as_of": "2027-06-01",
-      "expected_monthly": "2240.37"
+      "expected_monthly": "2070.37"
     },
     {
       "level_code": "2",
       "as_of": "2027-06-01",
-      "expected_monthly": "2382.07"
+      "expected_monthly": "2302.61"
     },
     {
       "level_code": "1",
       "as_of": "2027-06-01",
-      "expected_monthly": "2589.10"
+      "expected_monthly": "2496.84"
     },
     {
       "level_code": "Q",
       "as_of": "2027-06-01",
-      "expected_monthly": "2754.22"
+      "expected_monthly": "2681.12"
     }
   ],
   "seniority_checks": [

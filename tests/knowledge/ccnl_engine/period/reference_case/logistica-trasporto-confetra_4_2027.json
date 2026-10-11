@@ -1,0 +1,27 @@
+{
+  "verification": "source_linked",
+  "_description": "CCNL Logistica, Trasporto Merci e Spedizione level 4, June 2027 regular run, permanent, full time, non-travelling staff: the first month of a tranche.",
+  "_notes": [
+    "Base salary = minimo plus EPA from 1 June 2027 (testo unico, p. 81): 1912.80.",
+    "No fixed allowance applies below the Quadri; the gross is the base salary."
+  ],
+  "source": {
+    "document": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+    "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+    "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24",
+    "page": "81",
+    "section": "Minimi contrattuali mensili ed EPA dal 1.6.2027, row 4°"
+  },
+  "inputs": {
+    "ccnl_slug": "logistica-trasporto-confetra.json",
+    "level_code": "4",
+    "year": 2027,
+    "month": 6,
+    "headcount": 50
+  },
+  "expected": {
+    "base_salary": "1912.80",
+    "fixed_allowances": "0.00",
+    "period_gross": "1912.80"
+  }
+}

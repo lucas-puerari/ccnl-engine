@@ -28,16 +28,16 @@ class TestLoadLogisticaTrasportoConfetra:
         assert codes == {"Q", "1", "2", "3S", "3", "4", "4J", "5", "6"}
 
     def test_logistica_trasporto_confetra_level_3s_salary_jan2025(self) -> None:
-        """3S conglobated minimum at first tranche (Jan 2025) must be 2070.37."""
+        """3S minimo plus EPA at the first tranche (Jan 2025): 1930.37 + 30.00."""
         ccnl = load_ccnl("logistica-trasporto-confetra.json")
         lv = next(lvl for lvl in ccnl.levels if lvl.code == "3S")
-        assert lv.base_salary.value_at(date(2025, 1, 1)) == Decimal("2070.37")
+        assert lv.base_salary.value_at(date(2025, 1, 1)) == Decimal("1960.37")
 
     def test_logistica_trasporto_confetra_level_3s_salary_jan2026(self) -> None:
-        """3S conglobated minimum at second tranche (Jan 2026) must be 2160.37."""
+        """3S minimo plus EPA at the second tranche (Jan 2026): 1970.37 + 30.00."""
         ccnl = load_ccnl("logistica-trasporto-confetra.json")
         lv = next(lvl for lvl in ccnl.levels if lvl.code == "3S")
-        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("2160.37")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("2000.37")
 
     def test_logistica_trasporto_confetra_level_ordering(self) -> None:
         """Quadro must have the highest order; 6° livello the lowest."""
@@ -57,11 +57,14 @@ class TestLoadLogisticaTrasportoConfetra:
         ccnl = load_ccnl("logistica-trasporto-confetra.json")
         assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(168)
 
-    def test_logistica_trasporto_confetra_no_fixed_allowances(self) -> None:
-        """All levels must have no fixed allowances (conglobated model)."""
+    def test_logistica_trasporto_confetra_fixed_allowances(self) -> None:
+        """Only the Quadri hold an allowance: 51.65 of indennità di funzione."""
         ccnl = load_ccnl("logistica-trasporto-confetra.json")
-        for lv in ccnl.levels:
-            assert lv.fixed_allowances == ()
+        allowances = {lv.code: lv.fixed_allowances for lv in ccnl.levels}
+        (function,) = allowances.pop("Q")
+        assert function.code == "IND_FUN"
+        assert function.monthly.value_at(date(2026, 1, 1)) == Decimal("51.65")
+        assert all(a == () for a in allowances.values())
 
     def test_logistica_trasporto_confetra_tax_sector(self) -> None:
         """CCNL must declare tax_sector INDUSTRIA."""

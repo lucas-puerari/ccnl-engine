@@ -1,0 +1,27 @@
+{
+  "verification": "source_linked",
+  "_description": "CCNL Logistica, Trasporto Merci e Spedizione level 3S, January 2026 regular run, permanent, full time, non-travelling staff: the first month of a tranche.",
+  "_notes": [
+    "Base salary = 1.970,37 + EPA 30,00 from 1 January 2026 (testo unico, p. 80): 2000.37.",
+    "No fixed allowance applies below the Quadri; the gross is the base salary."
+  ],
+  "source": {
+    "document": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+    "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+    "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24",
+    "page": "80",
+    "section": "Minimi contrattuali mensili ed EPA dal 1.1.2026, row 3°S"
+  },
+  "inputs": {
+    "ccnl_slug": "logistica-trasporto-confetra.json",
+    "level_code": "3S",
+    "year": 2026,
+    "month": 1,
+    "headcount": 50
+  },
+  "expected": {
+    "base_salary": "2000.37",
+    "fixed_allowances": "0.00",
+    "period_gross": "2000.37"
+  }
+}

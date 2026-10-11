@@ -1271,7 +1271,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/logistica-trasporto-confetra",
       "ruleset_version": "2026.2",
-      "source_hash": "8aab332899d24b1a5bf96b535d445f8c65c469bf4f59be2d45274447a2abc983",
+      "source_hash": "c6a758c5d30ac85594c22042ac4e472d7b755f2cee73e2e5b91f6f36b6fa3c74",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/logistica-trasporto-confetra.json.gz"
