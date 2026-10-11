@@ -7,6 +7,11 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.employer.inputs import (
+    EmployerActivity,
+    EmployerProfile,
+    Headcount,
+)
 from ccnl_engine.payroll.assurance.models_decision import (
     CalculationDecision,
     CalculationStatus,
@@ -17,11 +22,6 @@ from ccnl_engine.payroll.assurance.validators_decision import (
     check_decision_provenance,
     check_substitute_tax_eligibility,
     check_substitute_tax_plafond,
-)
-from ccnl_engine.payroll.employment.inputs_employer import (
-    EmployerActivity,
-    EmployerProfile,
-    Headcount,
 )
 from ccnl_engine.payroll.event.facade import BonusEvent, NightShiftEvent
 from ccnl_engine.payroll.period.models_payroll import PeriodId

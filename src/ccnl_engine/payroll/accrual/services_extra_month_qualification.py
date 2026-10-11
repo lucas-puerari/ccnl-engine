@@ -23,8 +23,8 @@ if TYPE_CHECKING:
     from collections.abc import Iterable
     from datetime import date
 
+    from ccnl_engine.employment.fact.inputs import EmploymentPeriod
     from ccnl_engine.payroll.accrual.models import MonthAccrualRule
-    from ccnl_engine.payroll.employment.inputs_fact import EmploymentPeriod
     from ccnl_engine.payroll.event.facade import WorkEvent
     from ccnl_engine.payroll.year.models_calendar import WorkCalendar
 

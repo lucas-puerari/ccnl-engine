@@ -26,7 +26,7 @@ from ccnl_engine.payroll.year.services_payment import (
 from ccnl_engine.payroll.year.services_sequence import Engine, compute_payments
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.amount.policies import PolicyResolver
+    from ccnl_engine.pay_item.policies import PolicyResolver
     from ccnl_engine.payroll.period.ports import KnowledgeRepository
     from ccnl_engine.payroll.period.results import PeriodResult
     from ccnl_engine.payroll.state.models import PeriodState
@@ -55,7 +55,7 @@ def calculate_competence_year(
     when its payment month is such a month.  A partly employed month pays
     the daily quotas of its employed days under the CCNL partial-month
     rule, and is not payable when the CCNL defines none (see
-    :mod:`~ccnl_engine.payroll.amount.rules_proration`).  Extra months accrue per
+    :mod:`~ccnl_engine.compensation.proration.rules`).  Extra months accrue per
     qualifying month of their window; an absence with ``suspends_accrual``
     in any entry of ``plan.periods`` removes its days from every window,
     and the ratei of an extra month not paid before the termination are

@@ -15,7 +15,7 @@ import re
 import pytest
 
 from ccnl_engine.catalog.loaders import load_ccnl
-from ccnl_engine.contract.compensation.models import AccrualComparison
+from ccnl_engine.compensation.models import AccrualComparison
 
 _FILES = sorted(
     entry.name

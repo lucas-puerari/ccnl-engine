@@ -16,8 +16,8 @@ from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, final
 
 from ccnl_engine.collection.validators import items_of_type, tuple_of
+from ccnl_engine.employment.spell.models import EmploymentSpell, spells_of
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.employment.models_spell import EmploymentSpell, spells_of
 from ccnl_engine.payroll.state.models_credit_account import (
     SommaEsenteAccount,
     TrattamentoAccount,
@@ -92,7 +92,7 @@ class TaxCashState:
         employment_spells: Days in :attr:`tax_year` of each employment the
             payments paid, in order of first day: the art. 13 TUIR
             deduction counts their union
-            (:mod:`~ccnl_engine.payroll.employment.models_spell`).
+            (:mod:`~ccnl_engine.employment.spell.models`).
 
     Raises:
         InvalidInputError: When a field is not of its type, a payment

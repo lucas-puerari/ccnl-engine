@@ -24,15 +24,15 @@ from ccnl_engine.agreement.validators import (
     _check_tier_level_codes,
     _collect_transition_dates,
 )
-from ccnl_engine.contract.compensation.models import CCNLParameters, Level
-from ccnl_engine.contract.employment.models_apprenticeship import (
+from ccnl_engine.apprenticeship.models import (
     ApprenticeshipPercentage,
     ApprenticeshipTrack,
     ApprenticeshipUnderClassification,
 )
-from ccnl_engine.contract.seniority.models import SeniorityIncrements
+from ccnl_engine.compensation.models import CCNLParameters, Level
 from ccnl_engine.knowledge.limitation.models import ModelLimitation
 from ccnl_engine.provenance.ruleset.models import RulesetIdentity
+from ccnl_engine.seniority.models import SeniorityIncrements
 
 
 class CCNL(BaseModel):

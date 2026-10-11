@@ -15,7 +15,8 @@ from typing import TYPE_CHECKING, cast
 
 import pytest
 
-from ccnl_engine.contract.employment.models_category import WorkerCategory
+from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.employment.inputs import Apprentice, Permanent
 from ccnl_engine.payroll.contribution.results import (
     ContributionBreakdown,
     ContributionComponent,
@@ -26,7 +27,6 @@ from ccnl_engine.payroll.contribution.services_tfr_compensation import (
     RELIEF_COMPONENT,
     with_tfr_compensation,
 )
-from ccnl_engine.payroll.employment.inputs import Apprentice, Permanent
 from ccnl_engine.tax.severance.models import TfrCompensation, TfrRules
 from tests.unit.ccnl_engine.builders import make_year_rules
 

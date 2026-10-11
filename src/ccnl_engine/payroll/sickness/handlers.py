@@ -24,7 +24,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.amount.facade import (
+from ccnl_engine.pay_item.facade import (
     AbsenceDeduction,
     PayItem,
     SicknessInpsItem,

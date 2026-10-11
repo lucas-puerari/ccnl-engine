@@ -8,17 +8,16 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.compensation.element.services import _resolve_chain
+from ccnl_engine.compensation.proration.services import run_proration
+from ccnl_engine.employment.category.rules import resolve_worker_category
+from ccnl_engine.pay_item.facade import CompetencePeriod
+from ccnl_engine.pay_item.policies import PolicyContext
 from ccnl_engine.payroll.accrual.services_extra_month import (
     run_accrual,
     run_fraction,
 )
 from ccnl_engine.payroll.accrual.services_rule import month_accrual_rule
-from ccnl_engine.payroll.amount.facade import CompetencePeriod
-from ccnl_engine.payroll.amount.policies import PolicyContext
-from ccnl_engine.payroll.amount.services_chain import _resolve_chain
-from ccnl_engine.payroll.amount.services_proration import run_proration
-from ccnl_engine.payroll.employment.rules_category import resolve_worker_category
-from ccnl_engine.payroll.employment.services_seniority import seniority_months_at
 from ccnl_engine.payroll.employment.services_seniority_conversion import (
     kept_seniority_months,
     seniority_conversion,
@@ -41,14 +40,15 @@ from ccnl_engine.payroll.withholding.services_plan import (
     resolve_withholding_schedule,
     upcoming_recurring_gross,
 )
+from ccnl_engine.seniority.services import seniority_months_at
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.employment.models_category import WorkerCategory
-    from ccnl_engine.payroll.amount.policies import PolicyResolver
-    from ccnl_engine.payroll.amount.types_chain import (
+    from ccnl_engine.compensation.element.types import (
         ApprenticeshipScaling,
         MonthlyPayChain,
     )
+    from ccnl_engine.employment.category.models import WorkerCategory
+    from ccnl_engine.pay_item.policies import PolicyResolver
     from ccnl_engine.payroll.period.ports import KnowledgeRepository
     from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
     from ccnl_engine.payroll.period.services_contract import RunContract

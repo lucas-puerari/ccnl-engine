@@ -7,6 +7,7 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.payroll.accrual.models import (
     DEFAULT_MONTH_ACCRUAL_RULE,
     ExtraMonthAccrual,
@@ -18,7 +19,6 @@ from ccnl_engine.payroll.accrual.models_extra_month_schedule import (
     ExtraMonthKind,
     ExtraMonthSchedule,
 )
-from ccnl_engine.payroll.employment.inputs_fact import EmploymentPeriod
 
 _THIRTEENTH = ExtraMonthSchedule(
     kind=ExtraMonthKind.THIRTEENTH, name="tredicesima", payment_month=12

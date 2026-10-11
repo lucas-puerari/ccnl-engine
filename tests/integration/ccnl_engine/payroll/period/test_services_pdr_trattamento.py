@@ -26,8 +26,8 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.payroll.assurance.validators import reconcile
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.event.facade import BonusEvent
 from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.period.models_payroll import PeriodId

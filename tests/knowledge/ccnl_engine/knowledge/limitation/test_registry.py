@@ -16,9 +16,13 @@ import pytest
 
 from ccnl_engine import PayrollEngine
 from ccnl_engine.agreement.facade import NoteKind
-from ccnl_engine.contract.employment.models_apprenticeship import (
+from ccnl_engine.apprenticeship.models import (
     ApprenticeshipPercentage,
     ApprenticeshipUnderClassification,
+)
+from ccnl_engine.apprenticeship.rules import (
+    MIDPOINT_VARIANT,
+    PCT_UNDECLARED,
 )
 from ccnl_engine.knowledge.capability.loaders import (
     load_capability_catalog,
@@ -35,11 +39,6 @@ from ccnl_engine.payroll.contribution.services_minimum_base import (
 from ccnl_engine.payroll.contribution.services_tfr_compensation import (
     APPRENTICE_GUARANTEE_FUND,
 )
-from ccnl_engine.payroll.employment.rules_apprenticeship import (
-    MIDPOINT_VARIANT,
-    PCT_UNDECLARED,
-)
-from ccnl_engine.payroll.employment.rules_seniority import APPRENTICE_SENIORITY_VARIANT
 from ccnl_engine.payroll.period.repositories import (
     BundledKnowledgeRepository,
 )
@@ -47,6 +46,7 @@ from ccnl_engine.payroll.sickness.handlers import (
     CUMULATION_LIMITATION,
     INPS_DAILY_BASE_LIMITATION,
 )
+from ccnl_engine.seniority.rules import APPRENTICE_SENIORITY_VARIANT
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL

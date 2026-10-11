@@ -22,10 +22,10 @@ from ccnl_engine.payroll.year.models_schedule import PayrollSchedule
 if TYPE_CHECKING:
     from datetime import date
 
+    from ccnl_engine.employment.fact.inputs import EmploymentPeriod
     from ccnl_engine.payroll.accrual.models_extra_month_schedule import (
         ExtraMonthSchedule,
     )
-    from ccnl_engine.payroll.employment.inputs_fact import EmploymentPeriod
     from ccnl_engine.payroll.period.models_run import PayrollRun, PayrollRunId
     from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
     from ccnl_engine.payroll.state.models import PeriodState

@@ -11,13 +11,13 @@ from __future__ import annotations
 from datetime import date
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.employment.models_category import WorkerCategory
-from ccnl_engine.payroll.assurance.models import BlockerCode
-from ccnl_engine.payroll.employment.inputs_employer import (
+from ccnl_engine.employer.inputs import (
     AgriculturalZone,
     EmployerProfile,
     Headcount,
 )
+from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.payroll.assurance.models import BlockerCode
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period

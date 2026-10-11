@@ -12,9 +12,9 @@ from ccnl_engine.collection.validators import (
     items_of_type,
     mapping_of,
 )
+from ccnl_engine.employer.inputs import EmployerProfile
+from ccnl_engine.employment.inputs import Employment
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.employment.inputs import Employment
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile
 from ccnl_engine.payroll.period.inputs import PeriodFacts
 from ccnl_engine.payroll.period.models_run import PayrollRun, PayrollRunId, RunKind
 from ccnl_engine.payroll.state.models import PeriodState

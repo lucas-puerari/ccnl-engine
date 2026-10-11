@@ -14,8 +14,10 @@ from ccnl_engine.payroll.taxation.rules_surtax import RunSurtax
 from ccnl_engine.payroll.withholding.models_recovery_plan import InstallmentRun
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.employment.models_category import WorkerCategory
     from ccnl_engine.contract.fund.models_solidarity import SolidarityFund
+    from ccnl_engine.employment.category.models import WorkerCategory
+    from ccnl_engine.employment.fact.inputs import PublicEndOfService
+    from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
     from ccnl_engine.payroll.assurance.models_decision import (
         CalculationDecision,
         CalculationIssue,
@@ -29,8 +31,6 @@ if TYPE_CHECKING:
         PensionFundTerms,
     )
     from ccnl_engine.payroll.contribution.services import TfrAccrual
-    from ccnl_engine.payroll.employment.inputs import Apprentice, FixedTerm, Permanent
-    from ccnl_engine.payroll.employment.inputs_fact import PublicEndOfService
     from ccnl_engine.payroll.family.inputs import FamilyComposition
     from ccnl_engine.payroll.state.models_surtax_obligation import SurtaxObligation
     from ccnl_engine.payroll.state.models_tax_cash import TaxCashState

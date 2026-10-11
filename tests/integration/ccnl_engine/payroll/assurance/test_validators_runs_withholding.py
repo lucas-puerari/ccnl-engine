@@ -12,12 +12,12 @@ from decimal import Decimal
 from functools import cache
 from typing import TYPE_CHECKING
 
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.payroll.assurance.types import RunFacts
 from ccnl_engine.payroll.assurance.validators_withholding import (
     check_irpef_annual_reconciliation,
     net_annual_irpef,
 )
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.event.facade import BonusEvent
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.models_run import RunKind

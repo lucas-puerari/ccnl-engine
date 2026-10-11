@@ -12,7 +12,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.employment.inputs import Permanent
+from ccnl_engine.employment.inputs import Permanent
 
 if TYPE_CHECKING:
     from decimal import Decimal

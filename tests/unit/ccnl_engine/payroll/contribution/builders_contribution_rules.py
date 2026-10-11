@@ -14,13 +14,13 @@ from ccnl_engine.payroll.contribution.rules import resolve_contributions
 from tests.unit.ccnl_engine.builders import make_year_rules
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.employment.models_category import WorkerCategory
-    from ccnl_engine.payroll.contribution.results import ContributionBreakdown
-    from ccnl_engine.payroll.employment.inputs import (
+    from ccnl_engine.employment.category.models import WorkerCategory
+    from ccnl_engine.employment.inputs import (
         Apprentice,
         FixedTerm,
         Permanent,
     )
+    from ccnl_engine.payroll.contribution.results import ContributionBreakdown
     from ccnl_engine.tax.annual.models import YearRules
 
 __all__ = ["first_run_contributions", "inps_year_rules"]

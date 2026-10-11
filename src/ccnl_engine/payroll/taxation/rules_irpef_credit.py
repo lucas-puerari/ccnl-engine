@@ -14,7 +14,7 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.amount.policies_rounding import money
+from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.payroll.taxation.rules_irpef import DAYS_IN_YEAR
 from ccnl_engine.payroll.taxation.rules_irpef_deduction import (
     DEFAULT_WORK_DEDUCTION,

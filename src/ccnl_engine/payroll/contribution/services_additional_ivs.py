@@ -19,7 +19,7 @@ from ccnl_engine.payroll.contribution.rules_additional_ivs import AdditionalIvsP
 from ccnl_engine.payroll.period.models_run import RunKind
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.employment.inputs_fact import EmploymentPeriod
+    from ccnl_engine.employment.fact.inputs import EmploymentPeriod
     from ccnl_engine.payroll.period.models_run import PayrollRunId
     from ccnl_engine.payroll.period.services_run_context import RunContext
     from ccnl_engine.provenance.source.rule.models import RuleProvenance

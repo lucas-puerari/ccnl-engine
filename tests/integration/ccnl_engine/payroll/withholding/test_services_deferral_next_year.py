@@ -22,10 +22,10 @@ from decimal import ROUND_DOWN, ROUND_HALF_UP, Decimal
 from functools import cache
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
-from ccnl_engine.payroll.employment.inputs_fact import (
+from ccnl_engine.employment.fact.inputs import (
     EmploymentPeriod,
 )
+from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
 from ccnl_engine.payroll.event.facade import AbsenceEvent
 from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.ledger.models_remittance import remittance_summary

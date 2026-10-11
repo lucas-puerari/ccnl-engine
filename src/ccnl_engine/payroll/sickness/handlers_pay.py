@@ -14,7 +14,7 @@ from datetime import timedelta
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.amount.policies_rounding import money
+from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.payroll.period.services_shared import _ZERO
 from ccnl_engine.payroll.sickness.results_cumulation import (
     CumulationReport,
@@ -30,7 +30,7 @@ from ccnl_engine.payroll.sickness.rules_day import (
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.payroll.amount.types_chain import MonthlyPayChain
+    from ccnl_engine.compensation.element.types import MonthlyPayChain
     from ccnl_engine.payroll.sickness.models import SicknessEpisode
     from ccnl_engine.payroll.sickness.models_pay_rule import SickPayRules
     from ccnl_engine.payroll.sickness.rules_terms import (

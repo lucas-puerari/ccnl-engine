@@ -5,7 +5,7 @@ employers of the zones "particolarmente svantaggiate (ex montani)" are cut
 by 75%, those of the "svantaggiate" by 68%; the cut does not apply to the
 0.30% of art. 25 c. 4 L. 845/1978.  Which zone the land lies in is known to
 the employer only:
-:attr:`~ccnl_engine.payroll.employment.inputs_employer.EmployerProfile.agricultural_zone`
+:attr:`~ccnl_engine.employer.inputs.EmployerProfile.agricultural_zone`
 states it.
 """
 

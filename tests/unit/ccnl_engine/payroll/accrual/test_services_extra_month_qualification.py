@@ -5,11 +5,11 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 
+from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.payroll.accrual.services_extra_month_qualification import (
     non_accruing_days,
     termination_settlements,
 )
-from ccnl_engine.payroll.employment.inputs_fact import EmploymentPeriod
 from ccnl_engine.payroll.event.facade import AbsenceEvent, OvertimeEvent
 from ccnl_engine.payroll.year.models_calendar import WorkCalendar
 

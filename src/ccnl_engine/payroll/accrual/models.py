@@ -23,17 +23,17 @@ from datetime import date, timedelta
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.compensation.models import AccrualComparison
+from ccnl_engine.compensation.models import AccrualComparison
 
 if TYPE_CHECKING:
     from collections.abc import Iterator
 
+    from ccnl_engine.employment.fact.inputs import EmploymentPeriod
     from ccnl_engine.payroll.accrual.models_extra_month_schedule import (
         AccrualWindow,
         ExtraMonthKind,
         ExtraMonthSchedule,
     )
-    from ccnl_engine.payroll.employment.inputs_fact import EmploymentPeriod
     from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
 __all__ = [

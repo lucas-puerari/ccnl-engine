@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from decimal import Decimal
 
-from ccnl_engine.contract.employment.models_category import WorkerCategory
+from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.tax.severance.models import TfrCompensation
 
 _COMPENSATION = TfrCompensation(

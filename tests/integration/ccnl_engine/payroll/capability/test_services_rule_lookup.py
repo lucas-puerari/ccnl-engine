@@ -8,14 +8,14 @@ from typing import TYPE_CHECKING, cast
 
 from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.catalog.loaders import load_ccnl
-from ccnl_engine.payroll.amount.services_proration import FULL_MONTH
+from ccnl_engine.compensation.proration.services import FULL_MONTH
+from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
 from ccnl_engine.payroll.assurance.services_rule_source import run_rule_sources
 from ccnl_engine.payroll.capability.services_rule_lookup import (
     LOADED,
     contract_rules,
     tax_rules,
 )
-from ccnl_engine.payroll.employment.inputs import Apprentice, FixedTerm, Permanent
 from ccnl_engine.payroll.period.repositories import (
     BundledKnowledgeRepository,
 )

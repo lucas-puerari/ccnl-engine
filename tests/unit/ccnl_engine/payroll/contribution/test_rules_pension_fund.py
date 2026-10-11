@@ -15,7 +15,7 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine.catalog.loaders import load_ccnl
-from ccnl_engine.contract.employment.models_category import WorkerCategory
+from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.contribution.inputs_pension_fund import PensionFundEnrolment
 from ccnl_engine.payroll.contribution.rules_pension_fund import (

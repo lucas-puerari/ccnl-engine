@@ -19,13 +19,13 @@ from ccnl_engine.payroll.assurance.models_decision import (
 from ccnl_engine.payroll.capability.models_catalog import CapabilityHandler
 from ccnl_engine.payroll.capability.models_trace import DecisionTrace, TraceState
 from ccnl_engine.payroll.contribution.rules_pension_fund import NOT_ENROLLED
-from ccnl_engine.payroll.employment.rules_seniority import NOT_APPLICABLE_BY_CONTRACT
 from ccnl_engine.payroll.event.handlers_totals import EVENT_FEATURES
 from ccnl_engine.payroll.period.services_caller_rule import (
     CALLER_DECLARED_AMOUNT,
 )
 from ccnl_engine.payroll.termination.services_tfr_revaluation import NO_OPENING_FUND
 from ccnl_engine.payroll.withholding.rules_agent import NOT_WITHHOLDING_AGENT
+from ccnl_engine.seniority.rules import NOT_APPLICABLE_BY_CONTRACT
 
 if TYPE_CHECKING:
     from collections.abc import Iterable

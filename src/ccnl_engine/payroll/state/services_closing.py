@@ -25,9 +25,9 @@ from ccnl_engine.payroll.state.models_ytd_account import (
 )
 
 if TYPE_CHECKING:
+    from ccnl_engine.employment.spell.models import EmploymentSpell
     from ccnl_engine.payroll.amount.types import _PeriodAmounts
     from ccnl_engine.payroll.assurance.models_decision import CalculationDecision
-    from ccnl_engine.payroll.employment.models_spell import EmploymentSpell
     from ccnl_engine.payroll.event.handlers_totals import _EventTotals
     from ccnl_engine.payroll.ledger.models import LedgerEntry
     from ccnl_engine.payroll.withholding.inputs_shortfall_deferral import (

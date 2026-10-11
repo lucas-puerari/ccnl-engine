@@ -73,7 +73,7 @@ def test_employment_defined_once() -> None:
         for name in set(_class_definitions(path)) & found.keys():
             found[name].append(str(path.relative_to(_SRC)))
     assert found == {
-        "Employment": ["ccnl_engine/payroll/employment/inputs.py"],
+        "Employment": ["ccnl_engine/employment/inputs.py"],
         "EmploymentFacts": [],
     }
 
@@ -139,7 +139,7 @@ _ALLOWED_REEXPORT_MODULES: frozenset[str] = frozenset({
     "ccnl_engine/inputs.py",
     "ccnl_engine/results.py",
     "ccnl_engine/agreement/facade.py",
-    "ccnl_engine/payroll/amount/facade.py",
+    "ccnl_engine/pay_item/facade.py",
     "ccnl_engine/payroll/event/facade.py",
 })
 

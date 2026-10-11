@@ -14,15 +14,15 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.employment.models_category import WorkerCategory
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
+from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.employment.inputs import Apprentice
 from ccnl_engine.payroll.contribution.inputs_pension_fund import PensionFundEnrolment
 from ccnl_engine.payroll.contribution.services_tfr_compensation import (
     APPRENTICE_GUARANTEE_FUND,
     GUARANTEE_FUND_COMPONENT,
     RELIEF_COMPONENT,
 )
-from ccnl_engine.payroll.employment.inputs import Apprentice
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period

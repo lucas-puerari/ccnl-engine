@@ -8,11 +8,11 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine.agreement.facade import TaxSector
-from ccnl_engine.catalog.loaders import load_ccnl
-from ccnl_engine.contract.employment.models_apprenticeship import (
+from ccnl_engine.apprenticeship.models import (
     ApprenticeshipUnderClassification,
     UnderClassificationPeriod,
 )
+from ccnl_engine.catalog.loaders import load_ccnl
 
 
 class TestLoadLateriziIndustriaF021:

@@ -15,6 +15,7 @@ from typing import TYPE_CHECKING, cast
 import pytest
 
 from ccnl_engine.contract.fund.models_solidarity import SolidarityFund
+from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
 from ccnl_engine.payroll.contribution.results import (
     ContributionBreakdown,
     ContributionComponent,
@@ -24,7 +25,6 @@ from ccnl_engine.payroll.contribution.services_solidarity_fund import (
     EMPLOYER_COMPONENT,
     with_solidarity_fund,
 )
-from ccnl_engine.payroll.employment.inputs import Apprentice, FixedTerm, Permanent
 from ccnl_engine.provenance.source.models import (
     SourceDocument,
     SourceKind,

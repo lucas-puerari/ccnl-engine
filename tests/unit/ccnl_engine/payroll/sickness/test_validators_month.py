@@ -13,7 +13,7 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.contract.absence.models import DailyDivisorMethod
+from ccnl_engine.absence.models import DailyDivisorMethod
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.event.facade import AbsenceEvent
 from ccnl_engine.payroll.sickness.models import SicknessEpisode

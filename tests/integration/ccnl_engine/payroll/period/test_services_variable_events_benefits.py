@@ -9,9 +9,9 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.inputs import DependentRelationship, FamilyComposition
 from ccnl_engine.payroll.assurance.validators import reconcile
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.event.facade import FringeEvent, WelfareEvent
 from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.period.models_payroll import PeriodId

@@ -6,7 +6,8 @@ from datetime import date
 
 import pytest
 
-from ccnl_engine.contract.compensation.models import AccrualComparison
+from ccnl_engine.compensation.models import AccrualComparison
+from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.payroll.accrual.models import (
     DEFAULT_ACCRUAL_RULE_ID,
     DEFAULT_MONTH_ACCRUAL_RULE,
@@ -18,7 +19,6 @@ from ccnl_engine.payroll.accrual.models_extra_month_schedule import (
     ExtraMonthKind,
     ExtraMonthSchedule,
 )
-from ccnl_engine.payroll.employment.inputs_fact import EmploymentPeriod
 
 _YEAR = 2026
 _TREDICESIMA = ExtraMonthSchedule(

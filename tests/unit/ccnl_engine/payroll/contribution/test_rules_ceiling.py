@@ -2,14 +2,14 @@
 
 from decimal import Decimal
 
+from ccnl_engine.employment.inputs import (
+    Permanent,
+)
 from ccnl_engine.payroll.contribution.results import (
     ContributionBreakdown,
 )
 from ccnl_engine.payroll.contribution.rules import resolve_contributions
 from ccnl_engine.payroll.contribution.rules_additional_ivs import AdditionalIvsPosition
-from ccnl_engine.payroll.employment.inputs import (
-    Permanent,
-)
 from ccnl_engine.tax.annual.models import YearRules
 from tests.unit.ccnl_engine.builders import make_year_rules
 from tests.unit.ccnl_engine.payroll.contribution.builders_contribution_rules import (

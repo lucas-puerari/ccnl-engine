@@ -11,8 +11,8 @@ from __future__ import annotations
 from datetime import date, timedelta
 from typing import TYPE_CHECKING
 
+from ccnl_engine.employment.inputs import FixedTerm
 from ccnl_engine.payroll.contribution.inputs_pension_fund import PensionFundEnrolment
-from ccnl_engine.payroll.employment.inputs import FixedTerm
 from ccnl_engine.payroll.event.facade import AbsenceEvent, SicknessEpisode
 
 if TYPE_CHECKING:

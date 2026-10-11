@@ -7,9 +7,9 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.employment.inputs import Employment, Permanent
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.contribution.inputs_pension_fund import PensionFundEnrolment
-from ccnl_engine.payroll.employment.inputs import Employment, Permanent
 
 
 def test_valid_enrolment() -> None:

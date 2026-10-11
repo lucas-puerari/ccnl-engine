@@ -12,7 +12,7 @@ from decimal import Decimal
 from hypothesis import given, settings
 from hypothesis import strategies as st
 
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
 from ccnl_engine.payroll.period.services import calculate_period

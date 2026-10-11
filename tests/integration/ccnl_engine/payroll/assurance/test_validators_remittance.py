@@ -6,10 +6,10 @@ from dataclasses import replace
 from datetime import date
 from typing import TYPE_CHECKING
 
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.payroll.assurance.validators_remittance import (
     check_remittance_code_consistent,
 )
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest

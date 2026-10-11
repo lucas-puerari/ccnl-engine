@@ -11,22 +11,22 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.agreement.validity.rules import rule_scope
-from ccnl_engine.errors import UnknownLevelError
-from ccnl_engine.payroll.amount.services_provincial import (
+from ccnl_engine.compensation.provincial_element.services import (
     without_replaced_elements,
 )
-from ccnl_engine.payroll.employment.models_context import (
+from ccnl_engine.employment.context.models import (
     EffectiveDateContext,
     TemporalContext,
 )
+from ccnl_engine.errors import UnknownLevelError
 from ccnl_engine.tax.contribution.models_fis_reduction import with_fis_reduction
 from ccnl_engine.tax.contribution.models_zone_reduction import with_zone_reduction
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL, TaxSector
-    from ccnl_engine.contract.compensation.models import Level
+    from ccnl_engine.compensation.models import Level
+    from ccnl_engine.employment.fact.inputs import WeeklyHours
     from ccnl_engine.payroll.capability.models_catalog import CapabilityCatalog
-    from ccnl_engine.payroll.employment.inputs_fact import WeeklyHours
     from ccnl_engine.payroll.period.ports import KnowledgeRepository
     from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
     from ccnl_engine.tax.annual.models import YearRules

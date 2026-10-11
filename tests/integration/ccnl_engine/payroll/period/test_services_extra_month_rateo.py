@@ -5,7 +5,7 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 
-from ccnl_engine.payroll.employment.inputs_fact import EmploymentPeriod
+from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.models_run import PayrollRun
 from ccnl_engine.payroll.period.requests import PeriodCalculationRequest

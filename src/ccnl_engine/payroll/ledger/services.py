@@ -11,7 +11,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.amount.facade import (
+from ccnl_engine.pay_item.facade import (
     CompetencePeriod,
     FixedAllowanceEarning,
     PayItem,
@@ -26,9 +26,9 @@ from ccnl_engine.payroll.period.services_shared import (
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.payroll.amount.policies import PolicyContext, PolicyResolver
+    from ccnl_engine.compensation.element.types import MonthlyPayChain
+    from ccnl_engine.pay_item.policies import PolicyContext, PolicyResolver
     from ccnl_engine.payroll.amount.types import _PeriodAmounts
-    from ccnl_engine.payroll.amount.types_chain import MonthlyPayChain
     from ccnl_engine.payroll.ledger.services_line import _BaseLine
     from ccnl_engine.payroll.period.models_payroll import PeriodId
 
@@ -86,7 +86,7 @@ def _build_pay_items(
     """Build the base pay-item tuple from resolved period amounts and chain.
 
     Returns:
-        Tuple of :class:`~ccnl_engine.payroll.amount.facade.PayItem`
+        Tuple of :class:`~ccnl_engine.pay_item.facade.PayItem`
         instances for this period.
     """
     cp = CompetencePeriod(year=period_id.year, month=period_id.month)

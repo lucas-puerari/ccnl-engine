@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.amount.facade import (
+from ccnl_engine.pay_item.facade import (
     EmployeeWithholdingItem,
     TaxCreditItem,
     TaxRefundItem,

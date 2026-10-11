@@ -9,9 +9,9 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from ccnl_engine.compensation.element.types import MonthlyPayChain
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.amount.types_chain import MonthlyPayChain
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.period.models_payroll import PeriodId
 from ccnl_engine.payroll.period.models_run import PayrollRun
 from ccnl_engine.payroll.period.repositories import (

@@ -6,9 +6,9 @@ from dataclasses import replace
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.employment.context.models import EffectiveDateContext
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.amount.facade import CompetencePeriod, PayItem
-from ccnl_engine.payroll.employment.models_context import EffectiveDateContext
+from ccnl_engine.pay_item.facade import CompetencePeriod, PayItem
 from ccnl_engine.payroll.event.facade import (
     AbsenceEvent,
     ArrearsEvent,
@@ -23,7 +23,6 @@ from ccnl_engine.payroll.event.handlers_totals import (
     _EventAccumulator,
     _EventTotals,
 )
-from ccnl_engine.payroll.event.policies_overtime_rate import CCNLOvertimeBands
 from ccnl_engine.payroll.ledger.models import LedgerEntry
 from ccnl_engine.payroll.ledger.services_posting import post as _post
 from ccnl_engine.payroll.period.services_shared import _ZERO
@@ -35,11 +34,12 @@ from ccnl_engine.payroll.sickness.validators_month import (
 )
 from ccnl_engine.payroll.state.models_ytd_account import RegimeCapAccount
 from ccnl_engine.payroll.taxation.rules_regime_eligibility import RegimeFacts
+from ccnl_engine.working_time.overtime.policies import CCNLOvertimeBands
 
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.payroll.amount.policies import PolicyContext, PolicyResolver
+    from ccnl_engine.pay_item.policies import PolicyContext, PolicyResolver
     from ccnl_engine.payroll.event.handlers_context import FringeThreshold
     from ccnl_engine.payroll.period.requests import PeriodCalculationRequest
     from ccnl_engine.tax.regime.models import (

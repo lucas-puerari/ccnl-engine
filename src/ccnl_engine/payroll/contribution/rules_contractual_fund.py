@@ -20,7 +20,8 @@ from decimal import ROUND_HALF_UP, Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.agreement.validity.rules import rule_scope
-from ccnl_engine.payroll.amount.policies_rounding import money
+from ccnl_engine.employment.inputs import Apprentice
+from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.payroll.assurance.models_decision import (
     CalculationIssue,
     CalculationStatus,
@@ -31,7 +32,6 @@ from ccnl_engine.payroll.contribution.policies_contractual_eligibility import (
     short_fixed_term,
     worked_days,
 )
-from ccnl_engine.payroll.employment.inputs import Apprentice
 from ccnl_engine.payroll.period.models_run import RunKind
 
 if TYPE_CHECKING:

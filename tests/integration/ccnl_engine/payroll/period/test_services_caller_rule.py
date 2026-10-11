@@ -15,13 +15,13 @@ import pytest
 
 from ccnl_engine.agreement.validity.rules import TimeSeries
 from ccnl_engine.catalog.loaders import load_ccnl
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.payroll.assurance.models_decision import DecisionOrigin
 from ccnl_engine.payroll.capability.models_trace import TraceState
 from ccnl_engine.payroll.capability.services_trace import (
     build_traces,
     caller_supplied_fields,
 )
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.event.facade import (
     AbsenceEvent,
     ArrearsEvent,

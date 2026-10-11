@@ -17,7 +17,7 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.contract.employment.models_category import WorkerCategory
+from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.payroll.contribution.models_minimum_base import (
     MinimumBaseReason,
     MonthPosition,

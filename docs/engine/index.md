@@ -266,7 +266,7 @@ employment dates and never from the runs already closed:
   the `ExtraMonthAccrual` of a `calculate_period` request can pass its own
   `MonthAccrualRule(min_days=15, comparison=AccrualComparison.MORE_THAN)`
   (from `ccnl_engine.payroll.accrual.models` and
-  `ccnl_engine.contract.compensation.models`);
+  `ccnl_engine.compensation.models`);
 - an `AbsenceEvent` with `suspends_accrual=True` (for example aspettativa non
   retribuita) removes its calendar days from every window. The caller says
   which absences suspend accrual: `False` for an ordinary unpaid absence,

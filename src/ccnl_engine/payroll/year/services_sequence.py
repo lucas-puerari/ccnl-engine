@@ -9,7 +9,7 @@ from ccnl_engine.payroll.period.services import calculate_period
 from ccnl_engine.payroll.year.services_run import run_request
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.amount.policies import PolicyResolver
+    from ccnl_engine.pay_item.policies import PolicyResolver
     from ccnl_engine.payroll.assurance.policies_engine_mode import EngineMode
     from ccnl_engine.payroll.period.ports import KnowledgeRepository
     from ccnl_engine.payroll.period.results import PeriodResult

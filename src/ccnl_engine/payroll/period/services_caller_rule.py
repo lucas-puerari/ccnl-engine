@@ -18,7 +18,6 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.working_time.models import TimeSupplementKind, WorkKind
 from ccnl_engine.payroll.assurance.models_decision import (
     CalculationDecision,
     CalculationStatus,
@@ -41,7 +40,8 @@ from ccnl_engine.payroll.event.facade import (
 from ccnl_engine.payroll.event.handlers_standard import (
     _standard_event_gross,
 )
-from ccnl_engine.payroll.event.policies_overtime_rate import (
+from ccnl_engine.working_time.models import TimeSupplementKind, WorkKind
+from ccnl_engine.working_time.overtime.policies import (
     CCNLOvertimeBands,
     resolve_overtime_rate,
 )
@@ -51,8 +51,8 @@ if TYPE_CHECKING:
 
     from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.agreement.validity.rules import TimeSeries
-    from ccnl_engine.contract.working_time.models import OvertimeBand
     from ccnl_engine.payroll.event.facade import WorkEvent
+    from ccnl_engine.working_time.models import OvertimeBand
 
 __all__ = [
     "CALLER_DECLARED_AMOUNT",

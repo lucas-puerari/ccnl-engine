@@ -12,7 +12,7 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.agreement.facade import TaxSector
-from ccnl_engine.contract.employment.models_category import WorkerCategory
+from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.tax.annual.loaders import load_year_rules
 
 _YEAR = 2026

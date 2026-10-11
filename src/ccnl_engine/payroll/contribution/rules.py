@@ -16,7 +16,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.amount.policies_rounding import money
+from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.payroll.contribution.results import (
     ContributionBreakdown,
     ContributionComponent,
@@ -28,8 +28,8 @@ from ccnl_engine.payroll.contribution.rules_additional_ivs import (
 from ccnl_engine.payroll.contribution.rules_rate import resolve_rates
 
 if TYPE_CHECKING:
-    from ccnl_engine.contract.employment.models_category import WorkerCategory
-    from ccnl_engine.payroll.employment.inputs import Apprentice, FixedTerm, Permanent
+    from ccnl_engine.employment.category.models import WorkerCategory
+    from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
     from ccnl_engine.tax.annual.models import YearRules
 
 _ZERO = Decimal(0)

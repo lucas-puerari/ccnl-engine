@@ -8,11 +8,11 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
+from ccnl_engine.employment.fact.inputs import EmploymentPeriod
+from ccnl_engine.employment.inputs import Employment, Permanent
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
-from ccnl_engine.payroll.employment.inputs import Employment, Permanent
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
-from ccnl_engine.payroll.employment.inputs_fact import EmploymentPeriod
 from ccnl_engine.payroll.family.inputs import (
     DependentRelationship,
     FamilyComposition,

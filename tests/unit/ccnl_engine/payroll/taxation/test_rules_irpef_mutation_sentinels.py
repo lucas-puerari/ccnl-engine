@@ -21,7 +21,7 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.payroll.amount.policies_rounding import money
+from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.payroll.taxation import rules_irpef_deduction as _deductions
 from ccnl_engine.payroll.taxation.rules_irpef_credit import (
     trattamento_integrativo,

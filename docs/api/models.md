@@ -13,13 +13,13 @@ behind each model.
 
 ## Employment
 
-::: ccnl_engine.payroll.employment.inputs
+::: ccnl_engine.employment.inputs
     options:
       members:
         - Permanent
         - Apprentice
 
-::: ccnl_engine.payroll.employment.inputs_fixed_term
+::: ccnl_engine.employment.fixed_term.inputs
     options:
       members:
         - FixedTerm
@@ -36,7 +36,7 @@ behind each model.
         - CoverageNote
         - NoteKind
 
-::: ccnl_engine.contract.compensation.models
+::: ccnl_engine.compensation.models
     options:
       members:
         - Level

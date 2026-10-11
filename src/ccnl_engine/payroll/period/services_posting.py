@@ -7,7 +7,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.amount.facade import TaxCreditItem
+from ccnl_engine.pay_item.facade import TaxCreditItem
 from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.ledger.services import (
     _build_pay_items,
@@ -38,7 +38,7 @@ from ccnl_engine.payroll.withholding.services_somma_esente import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.amount.facade import PayItem
+    from ccnl_engine.pay_item.facade import PayItem
     from ccnl_engine.payroll.amount.types import _PeriodAmounts
     from ccnl_engine.payroll.ledger.models import LedgerEntry
     from ccnl_engine.payroll.period.services_run_context import RunContext

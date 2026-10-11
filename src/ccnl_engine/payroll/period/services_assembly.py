@@ -5,11 +5,12 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.compensation.renewal_minimum.services import renewal_minimum
+from ccnl_engine.employment.fact.services import fact_issues
 from ccnl_engine.payroll.accrual.services_decision import (
     accrual_issue,
     run_accruals,
 )
-from ccnl_engine.payroll.amount.services_renewal_minimum import renewal_minimum
 from ccnl_engine.payroll.assurance.services_limitation import run_limitations
 from ccnl_engine.payroll.assurance.services_rule_source import (
     missing_source_issues,
@@ -38,8 +39,6 @@ from ccnl_engine.payroll.contribution.services_other_employer import (
 from ccnl_engine.payroll.contribution.services_pension_decision import (
     pension_fund_issue,
 )
-from ccnl_engine.payroll.employment.services_fact import fact_issues
-from ccnl_engine.payroll.employment.services_seniority import run_seniority
 from ccnl_engine.payroll.event.results_benefit import BenefitBreakdown
 from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.period.results import PeriodResult
@@ -54,6 +53,7 @@ from ccnl_engine.payroll.termination.services_tfr_revaluation import (
     tfr_revaluation_issues,
 )
 from ccnl_engine.payroll.withholding.services_cap import run_net
+from ccnl_engine.seniority.services import run_seniority
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.assurance.models_decision import (

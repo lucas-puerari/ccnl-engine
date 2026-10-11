@@ -8,7 +8,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.amount.facade import EmployeeWithholdingItem
+from ccnl_engine.pay_item.facade import EmployeeWithholdingItem
 from ccnl_engine.payroll.assurance.models_decision import (
     CalculationDecision,
     CalculationIssue,
@@ -29,7 +29,7 @@ from ccnl_engine.payroll.withholding.rules_law import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.amount.facade import PayItem
+    from ccnl_engine.pay_item.facade import PayItem
     from ccnl_engine.payroll.ledger.models import LedgerEntry
     from ccnl_engine.payroll.period.services_run_context import RunContext
     from ccnl_engine.payroll.withholding.inputs_shortfall_deferral import (

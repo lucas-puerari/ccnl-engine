@@ -10,8 +10,8 @@ from typing import TYPE_CHECKING
 from ccnl_engine.payroll.ledger.models import AccountKind
 
 if TYPE_CHECKING:
+    from ccnl_engine.employment.fact.inputs import EmploymentPeriod
     from ccnl_engine.payroll.accrual.models import ExtraMonthAccrual
-    from ccnl_engine.payroll.employment.inputs_fact import EmploymentPeriod
     from ccnl_engine.payroll.period.results import PeriodResult
 
 __all__ = ["InvariantCode", "ReconciliationViolation", "RunFacts"]

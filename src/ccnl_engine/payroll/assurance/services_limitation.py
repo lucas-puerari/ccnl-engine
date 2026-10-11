@@ -24,7 +24,7 @@ from ccnl_engine.payroll.contribution.services_pension_decision import paid_mont
 from ccnl_engine.payroll.contribution.services_tfr_compensation import (
     tfr_compensation_paths,
 )
-from ccnl_engine.payroll.employment.services_seniority import seniority_months_at
+from ccnl_engine.seniority.services import seniority_months_at
 
 if TYPE_CHECKING:
     from ccnl_engine.knowledge.limitation.models import ModelLimitation

@@ -5,7 +5,9 @@ from __future__ import annotations
 from dataclasses import dataclass, replace
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.amount.policies_rounding import contribution_base, money
+from ccnl_engine.employment.fact.inputs import PublicEndOfService
+from ccnl_engine.employment.inputs import Apprentice
+from ccnl_engine.pay_item.rounding.policies import contribution_base, money
 from ccnl_engine.payroll.assurance.models_decision import (
     CalculationIssue,
     CalculationStatus,
@@ -25,8 +27,6 @@ from ccnl_engine.payroll.contribution.services_public_end_of_service import (
 from ccnl_engine.payroll.contribution.services_solidarity_fund import (
     with_solidarity_fund,
 )
-from ccnl_engine.payroll.employment.inputs import Apprentice
-from ccnl_engine.payroll.employment.inputs_fact import PublicEndOfService
 from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.period.services_shared import _ZERO
 

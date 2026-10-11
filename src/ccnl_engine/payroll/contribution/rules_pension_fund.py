@@ -5,7 +5,7 @@ Rules, D.Lgs. 252/2005 unless stated:
 - the fund is financed by the worker, the employer and the TFR (art. 8
   c. 1); the CCNL sets the rates (art. 8 c. 2).  The bundle stores them as
   a fraction of the base the fund names, the INPS or the TFR base
-  (:class:`~ccnl_engine.contract.compensation.models.EmployerFund`);
+  (:class:`~ccnl_engine.compensation.models.EmployerFund`);
 - the employee and employer contributions are deductible from the income
   up to an annual cap (art. 8 c. 4; TUIR art. 10 c. 1 lett. e-bis): the
   employee part withheld and the employer part within the cap do not form
@@ -24,7 +24,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.amount.policies_rounding import money
+from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.payroll.contribution.inputs_pension_fund import PENSION_FEATURE
 from ccnl_engine.payroll.contribution.rules_pension_fund_lookup import (
     check_category,
@@ -37,8 +37,8 @@ if TYPE_CHECKING:
 
     from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.agreement.validity.rules import ValidityPeriod
-    from ccnl_engine.contract.employment.models_category import WorkerCategory
     from ccnl_engine.contract.fund.models import EmployerFund
+    from ccnl_engine.employment.category.models import WorkerCategory
     from ccnl_engine.payroll.contribution.inputs_pension_fund import (
         PensionFundEnrolment,
     )

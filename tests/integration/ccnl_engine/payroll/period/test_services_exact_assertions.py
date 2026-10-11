@@ -21,8 +21,8 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.event.facade import (
     AbsenceEvent,
     ArrearsEvent,

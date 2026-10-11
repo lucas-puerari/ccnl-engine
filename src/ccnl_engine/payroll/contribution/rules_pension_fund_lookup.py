@@ -14,8 +14,8 @@ if TYPE_CHECKING:
 
     from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.agreement.validity.rules import TimeSeries, ValidityPeriod
-    from ccnl_engine.contract.employment.models_category import WorkerCategory
     from ccnl_engine.contract.fund.models import EmployerFund
+    from ccnl_engine.employment.category.models import WorkerCategory
     from ccnl_engine.payroll.contribution.inputs_pension_fund import (
         PensionFundEnrolment,
     )

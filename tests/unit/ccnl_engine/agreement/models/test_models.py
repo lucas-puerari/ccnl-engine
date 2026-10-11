@@ -13,9 +13,9 @@ from pydantic import ValidationError
 
 from ccnl_engine.agreement.facade import CCNL
 from ccnl_engine.agreement.validity.rules import TimeSeries, ValidityPeriod
-from ccnl_engine.contract.employment.models_category import WorkerCategory
-from ccnl_engine.contract.seniority.models import SeniorityIncrements
-from ccnl_engine.payroll.employment.rules_seniority import (
+from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.seniority.models import SeniorityIncrements
+from ccnl_engine.seniority.rules import (
     seniority_first_cadence,
     seniority_maximum,
 )

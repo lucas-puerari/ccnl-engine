@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.amount.policies_rounding import money
+from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.payroll.period.models_run import RunKind
 from ccnl_engine.payroll.withholding.models_recovery_plan import InstallmentRun
 from ccnl_engine.payroll.withholding.services_cap import ends_in_year
@@ -16,8 +16,8 @@ from ccnl_engine.payroll.withholding.services_cap import ends_in_year
 if TYPE_CHECKING:
     from decimal import Decimal
 
-    from ccnl_engine.payroll.amount.types_chain import MonthlyPayChain
-    from ccnl_engine.payroll.employment.inputs_fact import EmploymentPeriod
+    from ccnl_engine.compensation.element.types import MonthlyPayChain
+    from ccnl_engine.employment.fact.inputs import EmploymentPeriod
 
 __all__ = ["chain_gross", "installment_run", "settles_tax_year"]
 

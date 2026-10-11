@@ -9,9 +9,9 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.payroll.amount.facade import CompetencePeriod
-from ccnl_engine.payroll.amount.loaders_policy import load_policy_resolver
-from ccnl_engine.payroll.amount.policies import PolicyContext
+from ccnl_engine.pay_item.facade import CompetencePeriod
+from ccnl_engine.pay_item.loaders import load_policy_resolver
+from ccnl_engine.pay_item.policies import PolicyContext
 from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
 from ccnl_engine.payroll.ledger.models import AccountKind
 from ccnl_engine.payroll.period.services import calculate_period

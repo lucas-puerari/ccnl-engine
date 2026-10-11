@@ -5,8 +5,8 @@ from decimal import Decimal
 from typing import Any
 
 from ccnl_engine.agreement.validity.rules import SeriesGapError
-from ccnl_engine.contract.seniority.models import SeniorityIncrements
 from ccnl_engine.provenance.source.models import SourceKind
+from ccnl_engine.seniority.models import SeniorityIncrements
 
 
 def _check_salary_ordering_at_date(sorted_levels: list[Any], check_date: date) -> None:

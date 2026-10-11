@@ -7,16 +7,16 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.catalog.loaders import load_ccnl
-from ccnl_engine.contract.employment.models_category import WorkerCategory
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
+from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.employment.context.models import EffectiveDateContext
 from ccnl_engine.inputs import NoPensionFund
-from ccnl_engine.payroll.amount.facade import CompetencePeriod
-from ccnl_engine.payroll.amount.loaders_policy import load_policy_resolver
-from ccnl_engine.payroll.amount.policies import PolicyContext
+from ccnl_engine.pay_item.facade import CompetencePeriod
+from ccnl_engine.pay_item.loaders import load_policy_resolver
+from ccnl_engine.pay_item.policies import PolicyContext
 from ccnl_engine.payroll.capability.models_trace import TraceState
 from ccnl_engine.payroll.capability.results import CapabilityGapKind
 from ccnl_engine.payroll.capability.services_trace import build_traces
-from ccnl_engine.payroll.employment.inputs_employer import EmployerProfile, Headcount
-from ccnl_engine.payroll.employment.models_context import EffectiveDateContext
 from ccnl_engine.payroll.event.facade import (
     BonusEvent,
     OvertimeEvent,

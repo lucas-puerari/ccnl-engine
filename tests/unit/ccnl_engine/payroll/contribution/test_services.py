@@ -12,12 +12,12 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.employment.fact.inputs import PublicEndOfService
 from ccnl_engine.payroll.assurance.models_decision import CalculationStatus
 from ccnl_engine.payroll.contribution.services import (
     TFR_TREASURY_FUND_CODE,
     TfrAccrual,
 )
-from ccnl_engine.payroll.employment.inputs_fact import PublicEndOfService
 from ccnl_engine.payroll.ledger.models import AccountKind
 
 _QUOTA = Decimal("152.02")

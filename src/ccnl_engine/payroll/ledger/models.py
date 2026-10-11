@@ -19,7 +19,7 @@ from enum import StrEnum
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from ccnl_engine.payroll.amount.facade import CompetencePeriod
+from ccnl_engine.pay_item.facade import CompetencePeriod
 
 # ---------------------------------------------------------------------------
 # Domain primitives

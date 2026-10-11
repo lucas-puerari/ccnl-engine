@@ -10,7 +10,7 @@ from ccnl_engine.errors import (
     DataIntegrityError,
     MissingRequiredFactError,
 )
-from ccnl_engine.payroll.amount.policies_rounding import money
+from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.payroll.contribution.results import (
     ContributionBreakdown,
     ContributionComponent,
@@ -25,7 +25,7 @@ if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.agreement.facade import CCNL
-    from ccnl_engine.payroll.employment.inputs import Contract
+    from ccnl_engine.employment.inputs import Contract
     from ccnl_engine.tax.annual.models import YearRules
     from ccnl_engine.tax.contribution.models_domestic import DomesticInpsRates
 

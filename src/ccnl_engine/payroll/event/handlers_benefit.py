@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.amount.facade import FringeBenefitItem, WelfareItem
+from ccnl_engine.pay_item.facade import FringeBenefitItem, WelfareItem
 from ccnl_engine.payroll.assurance.models_decision import (
     CalculationDecision,
     CalculationIssue,

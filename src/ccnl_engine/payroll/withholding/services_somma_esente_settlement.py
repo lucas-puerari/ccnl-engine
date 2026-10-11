@@ -15,7 +15,7 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.amount.policies_rounding import money
+from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.payroll.state.models_obligation import (
     RECOVERY_RULES,
     SOMMA_ESENTE_RECOVERY,

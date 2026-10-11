@@ -14,9 +14,9 @@ from __future__ import annotations
 from dataclasses import replace
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.amount.policies_rounding import money
+from ccnl_engine.employment.inputs import FixedTerm
+from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.payroll.contribution.results import ContributionComponent
-from ccnl_engine.payroll.employment.inputs import FixedTerm
 from ccnl_engine.payroll.period.services_shared import _ZERO
 
 if TYPE_CHECKING:

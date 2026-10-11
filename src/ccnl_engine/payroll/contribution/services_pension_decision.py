@@ -18,7 +18,8 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.agreement.facade import TaxSector
-from ccnl_engine.payroll.amount.services_erc import erc_of
+from ccnl_engine.compensation.raccordo.services import erc_of
+from ccnl_engine.employment.inputs import Apprentice
 from ccnl_engine.payroll.assurance.models_decision import (
     CalculationDecision,
     CalculationIssue,
@@ -32,7 +33,6 @@ from ccnl_engine.payroll.contribution.rules_pension_fund import (
     resolve_terms,
 )
 from ccnl_engine.payroll.contribution.rules_pension_fund_lookup import check_tfr_only
-from ccnl_engine.payroll.employment.inputs import Apprentice
 from ccnl_engine.payroll.employment.services_seniority_conversion import (
     converted_seniority,
 )

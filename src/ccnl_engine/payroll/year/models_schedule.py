@@ -31,7 +31,7 @@ from ccnl_engine.payroll.accrual.models_extra_month_schedule import ExtraMonthKi
 from ccnl_engine.payroll.period.models_run import PayrollRun
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.employment.inputs_fact import EmploymentPeriod
+    from ccnl_engine.employment.fact.inputs import EmploymentPeriod
     from ccnl_engine.payroll.year.models_calendar import WorkCalendar
 
 __all__ = ["PayrollRunCount", "PayrollSchedule"]

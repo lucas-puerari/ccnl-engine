@@ -11,14 +11,14 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from ccnl_engine.compensation.raccordo.services import erc_settlement
+from ccnl_engine.compensation.renewal_minimum.services import renewal_minimum
+from ccnl_engine.pay_item.rounding.policies import contribution_base
 from ccnl_engine.payroll.accrual.services_decision import accrual_decisions
 from ccnl_engine.payroll.accrual.services_extra_month_settlement import (
     settle_extra_months,
 )
-from ccnl_engine.payroll.amount.policies_rounding import contribution_base
 from ccnl_engine.payroll.amount.services import _compute_amounts
-from ccnl_engine.payroll.amount.services_erc import erc_settlement
-from ccnl_engine.payroll.amount.services_renewal_minimum import renewal_minimum
 from ccnl_engine.payroll.contribution.policies_assistance import assistance_decision
 from ccnl_engine.payroll.contribution.services_ivs_ceiling import (
     IvsCeiling,
@@ -29,10 +29,6 @@ from ccnl_engine.payroll.contribution.services_minimum_base import run_minimum_b
 from ccnl_engine.payroll.contribution.services_pension_decision import (
     pension_decision,
     pension_unresolved,
-)
-from ccnl_engine.payroll.employment.services_seniority import (
-    run_seniority,
-    seniority_decision,
 )
 from ccnl_engine.payroll.period.rules_run_decision import contract_decisions
 from ccnl_engine.payroll.period.services_base_decision import (
@@ -55,11 +51,15 @@ from ccnl_engine.payroll.termination.services_public_tfr_reduction import (
 from ccnl_engine.payroll.termination.services_tfr_revaluation import (
     tfr_revaluation_decisions,
 )
+from ccnl_engine.seniority.services import (
+    run_seniority,
+    seniority_decision,
+)
 
 if TYPE_CHECKING:
     from decimal import Decimal
 
-    from ccnl_engine.payroll.amount.facade import PayItem
+    from ccnl_engine.pay_item.facade import PayItem
     from ccnl_engine.payroll.amount.types import _PeriodAmounts
     from ccnl_engine.payroll.assurance.models_decision import CalculationDecision
     from ccnl_engine.payroll.contribution.models_minimum_base import MinimumBase

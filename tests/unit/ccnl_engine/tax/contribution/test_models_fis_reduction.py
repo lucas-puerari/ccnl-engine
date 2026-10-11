@@ -13,7 +13,7 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.contract.employment.models_category import WorkerCategory
+from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.tax.contribution.models import InpsRates
 from ccnl_engine.tax.contribution.models_fis_reduction import (
     FisReduction,

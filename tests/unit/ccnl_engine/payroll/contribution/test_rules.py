@@ -2,17 +2,17 @@
 
 from decimal import Decimal
 
-from ccnl_engine.contract.employment.models_category import WorkerCategory
-from ccnl_engine.payroll.amount.policies_rounding import money
+from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.employment.fixed_term.inputs import NaspiExclusion
+from ccnl_engine.employment.inputs import (
+    FixedTerm,
+    Permanent,
+)
+from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.payroll.contribution.results import (
     ContributionBreakdown,
     ContributionComponent,
 )
-from ccnl_engine.payroll.employment.inputs import (
-    FixedTerm,
-    Permanent,
-)
-from ccnl_engine.payroll.employment.inputs_fixed_term import NaspiExclusion
 from tests.unit.ccnl_engine.builders import make_year_rules
 from tests.unit.ccnl_engine.payroll.contribution.builders_contribution_rules import (
     first_run_contributions,
