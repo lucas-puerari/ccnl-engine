@@ -5,7 +5,7 @@ Concia D2, June 2026, every other fact explicit
 with the state May closed:
 its only blocker is ``rule_source_weak somma_esente``, so the blockers a
 field adds or removes are visible.  Two properties of the payability
-contract (:mod:`tests.integration.ccnl_engine.test_result_payability`): a
+contract (:mod:`tests.integration.ccnl_engine.api.test_result_payability`): a
 default that selects a monetary branch adds a blocker the explicit value
 does not have, and the true value of a fact never has more blockers than
 the default it replaces, otherwise the false default is the one path that

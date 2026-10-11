@@ -27,7 +27,7 @@ from tests.integration.scripts.structure.support_imports import (
     ROOT_PACKAGE,
 )
 
-_REPO = Path(__file__).parents[3]
+_REPO = Path(__file__).parents[4]
 
 EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
     "ccnl_engine": frozenset({

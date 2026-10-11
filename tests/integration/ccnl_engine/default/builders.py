@@ -7,7 +7,7 @@ Every ``requires_fact`` field of
 Each case is the explicit Concia D2 of 2026
 (:mod:`tests.knowledge.ccnl_engine.period.builders`)
 with one field changed: ``true`` states the fact, ``default`` leaves the field
-to its default; ``tests/integration/ccnl_engine/test_default_facts.py`` runs both.
+to its default; ``tests/integration/ccnl_engine/api/test_default_facts.py`` runs both.
 """
 
 from __future__ import annotations

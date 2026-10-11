@@ -36,7 +36,7 @@ from ccnl_engine import (
 from ccnl_engine.inputs import ContributableHours, Permanent, WeeklyHours
 
 _CASES_DIR = (
-    Path(__file__).parents[2]
+    Path(__file__).parents[3]
     / "knowledge"
     / "ccnl_engine"
     / "period"

@@ -67,7 +67,7 @@ the root layer.
   the one-request example of the root docstring or is an error.
 - A type reachable from a public type that a caller never builds, matches on
   or catches (state internals, pay item variants) stays internal.
-- `tests/integration/ccnl_engine/test_public_exports.py` pins each `__all__`, keeps the
+- `tests/integration/ccnl_engine/api/test_public_exports.py` pins each `__all__`, keeps the
   modules disjoint and keeps README, `docs/examples` and the wheel smoke test
   on these five modules. Acceptance tests import nothing else.
 

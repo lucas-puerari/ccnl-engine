@@ -47,9 +47,6 @@ _CATEGORY_ROOTS: dict[str, frozenset[str]] = {
 }
 #: Tests that mirror no module yet read internal modules, with the reason.
 _INTERNAL_READERS: dict[str, str] = {
-    "integration/ccnl_engine/test_public_exports.py": (
-        "pins the public surface against the modules that define it"
-    ),
     "knowledge/ccnl_engine/limitation/models/test_registry.py": (
         "matches the limitation registry with the modules that raise each one"
     ),
