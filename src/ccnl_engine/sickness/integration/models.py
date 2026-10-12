@@ -273,6 +273,14 @@ class SicknessCumulation(BaseModel):
             treatment starts anew (Concia art. 60 C: "Il trattamento
             economico suindicato ricomincia ex novo [...] dal 16° giorno di
             ricovero ospedaliero"); ``None`` when the CCNL has no such rule.
+        restart_after_full_pay_months: Months after the end of the full
+            pay from which a new episode starts the treatment anew (Concia
+            art. 60 C: "assenza per malattia iniziata dopo dodici mesi dal
+            giorno in cui è cessato il diritto al trattamento economico del
+            100%"); ``None`` without such a rule.
+        periodic_checks_outside_comporto: Whether the episodes of periodic
+            checks (``SicknessEpisode.periodic_check``) are left out of the
+            comporto (Concia art. 60 B).
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -286,6 +294,8 @@ class SicknessCumulation(BaseModel):
     serious_illness: SeriousIllnessRule | None = None
     hospital_comporto: HospitalComportoRule | None = None
     hospital_restart_day: int | None = Field(default=None, ge=1)
+    restart_after_full_pay_months: int | None = Field(default=None, ge=1)
+    periodic_checks_outside_comporto: bool = False
 
     @model_validator(mode="after")
     def _ordered_bands(self) -> Self:

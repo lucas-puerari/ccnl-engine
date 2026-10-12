@@ -30,9 +30,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | overtime, seniority, sickness |
+| **Limits of this contract** | overtime, seniority |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-12 | claude-opus-5-5 (ai) | Overtime bands of art. 35 and the sickness rule of art. 60, follow-ups of the review of 2026-10-11. | corrected | Overtime: the 25% (49th weekly hour), 35% (beyond) and 76% (night after the first hour) bands were missing; added, the night threshold read per day.<br>Sickness: only the band up to 3 years was modelled, per episode and on the gross pay; now three seniority bands within 36 months, on the net pay, with the restart after 4 months without sickness (derived: months of 30 days, band edges read on completed months). |
 | 2026-10-12 | claude-opus-5-5 (ai) | Special cases of the comporto (art. 60 B as rewritten on 7 March 2024). | corrected | The longer comporto of the malattie invalidanti (+2, +3, +4 months) and the hospital stays over 5 days left out of the comporto (60 days at most) are now modelled; the restart from the 16th day of a hospital stay and the periodic checks stay a limitation. |
 | 2026-10-12 | claude-opus-5-5 (ai) | Restart of the sickness treatment from the 16th day of a hospital stay (art. 60 C). | corrected | From the 16th day of a hospital stay the treatment starts anew (full pay again): modelled with hospital_restart_day 16. |
+| 2026-10-12 | claude-opus-5-5 (ai) | Restart 12 months after the end of the full pay and periodic checks (art. 60). | corrected | The last special cases of art. 60 are modelled: the restart 12 months after the full pay ended and the periodic checks out of the comporto; the limitation sickness_special_cases is closed. |
 
 ## Salary table
 
@@ -129,13 +130,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `overtime` applies.
 
     **Remediation:** Pass the multiplier on the overtime event for the hours past a threshold; the engine does not split an event by weekly or daily hours.
-
-!!! warning "concia-unic/sickness_special_cases · sickness · impact yes · open"
-    SICKNESS: seniority bands of art. 60 modelled as a cumulation (8, 10, 12 months of comporto within 36 months; 3, 4, 5 months in full and the rest at half, on the net pay; restart after 4 months without sickness); the longer comporto of an invalidating disease (+2, +3, +4 months) and the hospital stays over 5 days left out of the comporto up to 60 days are modelled. The restart of the treatment from the 16th day of a hospital stay is modelled within the episode. Not modelled: the restart 12 months after the end of the full pay, the restart carried to the later episodes of the chain, and the days of periodic checks of an oncological illness left out of the comporto.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the restart 12 months after the end of the full pay and the days of periodic checks.
 
 !!! warning "concia-unic/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
@@ -211,6 +205,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     IPO CROSS-CHECK: MySolution 2017 IPO at 01/05/2019: B1=182.63, C1=91.62, D1=103.98, E1=128.23, E2=73.02. Allegato n.1 pre-renewal (30/06/2023): B1=192.63, C1=96.62, D1=108.98, E1=135.73, E2=75.52. Deltas B1+10.00, C1+5.00, D1+5.00, E1+7.50, E2+2.50 — all clean round figures consistent with 2019-2023 renewal cycle.
     
     APPRENTICESHIP: under_classification per MySolution sintesi 2017 p. 5 (Allegato apprendistato). 6 tracks by destination level, all with levels_below 2 → 1 → 0. D1 period-2: source table prints E2, but 10 of 11 destination tracks are monotone 2->1->0; E2 (order 3) below D1 (order 6) would cut pay mid-track, so D2 (order 5, exactly 1 below D1) is the only consistent reading. Max 36 months per D.Lgs. 167/2011 as amended 26/04/2012 (footnote in source).
+    
+    SICKNESS: seniority bands of art. 60 modelled as a cumulation (8, 10, 12 months of comporto within 36 months; 3, 4, 5 months in full and the rest at half, on the net pay); restarts after 4 months without sickness, from the 16th day of a hospital stay (within the episode) and 12 months after the end of the full pay; comporto 2, 3, 4 months longer for an invalidating disease; hospital stays over 5 days (60 at most) and periodic checks of an oncological illness left out of the comporto.
     
     SENIORITY: biennial (cadence_months=24), maximum 5 increments, amounts per level from Art. 48 of the CCNL testo definitivo 21/01/2021 (CNEL B101, physical p. 67), which the 2024 renewal leaves unchanged.
     

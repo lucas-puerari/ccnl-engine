@@ -111,6 +111,29 @@ def window_start(day: date, years: int, months: int = 0) -> date:
     return anchor + timedelta(days=1)
 
 
+def _restarts(episode: SicknessEpisode, ended: date | None, months: int | None) -> bool:
+    """Return whether ``episode`` starts the treatment anew.
+
+    Returns:
+        Whether it starts ``months`` or more after the full pay ``ended``.
+    """
+    if months is None or ended is None:
+        return False
+    return episode.started_on >= _months_after(ended, months)
+
+
+def _months_after(day: date, months: int) -> date:
+    """Return the day ``months`` calendar months after ``day``.
+
+    Returns:
+        The same day of the month, the last of a shorter month.
+    """
+    month = day.month - 1 + months
+    year, month = day.year + month // 12, month % 12 + 1
+    last = calendar.monthrange(year, month)[1]
+    return date(year, month, min(day.day, last))
+
+
 def _stay_overlap(stay: tuple[date, date], first: date, last: date) -> int:
     start, end = max(stay[0], first), min(stay[1], last)
     return max((end - start).days + 1, 0)
@@ -167,12 +190,37 @@ class CumulativeTreatment:
         reset = self.cumulation.reset_after_days
         if reset is None:
             return days, start
+        linked: list[SicknessEpisode] = []
         for previous in reversed(self.earlier):
             worked = (start - previous.ended_on).days - 1
             if worked >= reset:
                 break
-            days += previous.days
+            linked.insert(0, previous)
             start = previous.started_on
+        return self._restarted(linked, start)
+
+    def _restarted(
+        self, linked: list[SicknessEpisode], start: date
+    ) -> tuple[int, date]:
+        """Return the chain of ``linked`` after a restart past the full pay.
+
+        An episode starting ``restart_after_full_pay_months`` after the day
+        the full pay ended starts the chain anew.
+
+        Returns:
+            The days of the earlier episodes of the chain and its first day.
+        """
+        months = self.cumulation.restart_after_full_pay_months
+        full = self.band.full_pay_days
+        days, ended = 0, None
+        for episode in linked:
+            if _restarts(episode, ended, months):
+                days, start, ended = 0, episode.started_on, None
+            if ended is None and days + episode.days > full:
+                ended = episode.started_on + timedelta(days=full - days)
+            days += episode.days
+        if _restarts(self.episode, ended, months):
+            return 0, self.episode.started_on
         return days, start
 
     def chain_days(self, day: date) -> int:
@@ -271,9 +319,12 @@ class CumulativeTreatment:
             ``False`` for a serious illness the CCNL leaves out of it.
         """
         rule = self.cumulation.serious_illness
-        return not (
-            rule is not None and rule.outside_comporto and episode.serious_illness
+        serious = rule is not None and rule.outside_comporto and episode.serious_illness
+        check = (
+            self.cumulation.periodic_checks_outside_comporto
+            and episode.periodic_check is True
         )
+        return not (serious or check)
 
     @cached_property
     def short(self) -> ShortAbsence:
