@@ -48,7 +48,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 41 verified / 5 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 41 verified / 22 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -79,9 +79,9 @@ Latest effective values per level (monthly gross, EUR).
 | `2` | Level 2 — operational unit manager / junior management role | € 2,302.61 | 2027-06-01 |
 | `3S` | Level 3 Super — reference technical/operational expert or process manager | € 2,070.37 | 2027-06-01 |
 | `3` | Level 3 — highly specialised operator / department coordinator | € 2,016.54 | 2027-06-01 |
-| `4` | Level 4 — specialist operator (C/CE licence driver, CED operator) | € 1,912.80 | 2027-06-01 |
+| `4` | Level 4 — specialist operator (CED operator) | € 1,912.80 | 2027-06-01 |
 | `4J` | Level 4 Junior — recently graded senior operator | € 1,865.27 | 2027-06-01 |
-| `5` | Level 5 — qualified operator (cat. B driver, specialist warehouse worker) | € 1,817.10 | 2027-06-01 |
+| `5` | Level 5 — qualified operator (specialist warehouse worker) | € 1,817.10 | 2027-06-01 |
 | `6` | Level 6 — worker assigned to generic operational support tasks | € 1,703.67 | 2027-06-01 |
 
 ## Seniority increments
@@ -132,6 +132,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: the remaining CCNLs are tracked by their own apprentice_seniority limitation.
 
+!!! warning "apprenticeship_pct_undeclared_components · base_salary · impact unknown · open"
+    A percentage apprenticeship reduces every fixed allowance whose apprenticeship_pct_relevant flag the data leaves at its default, together with the base salary. Whether the CCNL applies the percentage to that allowance (an EDR, a contingenza, a function allowance) was not sourced. The run is affected when such an allowance is in the apprentice's pay.
+
+    **Applies when:** `base_salary` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source, for each CCNL, the elements the apprenticeship percentage applies to and set apprenticeship_pct_relevant on every allowance; the limitation then no longer applies to its runs.
+
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.
 
@@ -174,7 +181,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 | — | — | 2024-12-06 | [↗](https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf) |
 
 ??? note "Coverage notes"
-    STAFF: tables for non-travelling staff (clerical employees and sedentary workers). The CCNL also covers travelling staff (drivers engaged in international transport) with separate tables and rules — not modelled in this file.
+    STAFF: tables for non-travelling staff (clerical employees and sedentary workers). The travelling staff (personale viaggiante, every driver and rider: levels C3, B3, A3, F2, E2, D2, H1, G1, I, L of pp. 25-26, tables pp. 81-82) is not modelled: a driver needs a level of that staff, not of this table.
     
     CONGLOBATED MINIMUMS: base_salary values are the conglobated monthly minimum pay (minimum pay table + contingenza per Art. 61 note + EPA). Primary check: Art. 61 of the consolidated text September 2025 — 'From 1.1.2001 the indennità di contingenza has been conglobated into the minimum pay tables together with the EDR of EUR 10.33 per month'. fixed_allowances is empty for all levels.
     
@@ -188,11 +195,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     SENIORITY INCREMENTS: biennial (24-month cadence), max 5 biennial periods. Amounts from Art. 17 consolidated text September 2025. Non-travelling staff.
     
-    LEVEL 6° JUNIOR: abolished from 31.12.2025 (renewal of 6.12.2024, Confetra circ008-2025). All workers graded at 6J automatically promoted to 6°. Not modelled in this file.
+    LEVEL 6° JUNIOR: not modelled. The profile existed only in 2025 (1,464.53 a month from 1.1.2025, p. 80; seniority step 18.78, art. 17; EDR 2021 7.58, p. 82) and ended on 31.12.2025 (p. 25: 'Il presente profilo avrà termine inderogabilmente il 31 dicembre 2025'), its workers moving to level 6; a level of the bundle must cover the whole span of the ruleset. A 2025 run of a 6J worker uses level 6 with the 2025 amounts above as overrides.
     
     EPA: Elemento Professionale d'Area, a component introduced by the 6.12.2024 renewal. Included in base_salary values from 1.1.2025. Not shown separately because it forms an integral part of the minimum pay (it affects all contractual and statutory entitlements) — see Confetra circ283-2024.
     
-    EDR: the EDR of EUR 10.33/month (agreement 26 Jan 2001) is conglobated into the minimum pay tables from 1.1.2001 (Art. 61 note). The EDR of Art. 60 c. 8 (10 EUR at level 3S, re-parametrised by level) for workers in service on 26 January 2011 affects every entitlement and is not modelled; the EDR of the 2021 agreement does not affect other entitlements.
+    EDR: the EDR of EUR 10.33/month (agreement 26 Jan 2001) is conglobated into the minimum pay tables (Art. 61 note). The EDR of art. 60 c. 8 (workers in service on 26 January 2011) and the EDR of the agreement of 18 May 2021 (13 mensilità, no effect on other institutes) are paid as allowances; the 2021 EDR may still enter the daily base of absences and sickness, which 'nessuna incidenza su alcun istituto contrattuale' excludes.
     
     INPS: uses 2026-industria.json (TaxSector.INDUSTRIA). File already present — no changes to the tax file.
     

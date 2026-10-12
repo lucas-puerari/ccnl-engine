@@ -40,7 +40,7 @@
     "notes": [
       {
         "kind": "info",
-        "text": "STAFF: tables for non-travelling staff (clerical employees and sedentary workers). The CCNL also covers travelling staff (drivers engaged in international transport) with separate tables and rules — not modelled in this file."
+        "text": "STAFF: tables for non-travelling staff (clerical employees and sedentary workers). The travelling staff (personale viaggiante, every driver and rider: levels C3, B3, A3, F2, E2, D2, H1, G1, I, L of pp. 25-26, tables pp. 81-82) is not modelled: a driver needs a level of that staff, not of this table."
       },
       {
         "kind": "info",
@@ -68,7 +68,7 @@
       },
       {
         "kind": "info",
-        "text": "LEVEL 6° JUNIOR: abolished from 31.12.2025 (renewal of 6.12.2024, Confetra circ008-2025). All workers graded at 6J automatically promoted to 6°. Not modelled in this file."
+        "text": "LEVEL 6° JUNIOR: not modelled. The profile existed only in 2025 (1,464.53 a month from 1.1.2025, p. 80; seniority step 18.78, art. 17; EDR 2021 7.58, p. 82) and ended on 31.12.2025 (p. 25: 'Il presente profilo avrà termine inderogabilmente il 31 dicembre 2025'), its workers moving to level 6; a level of the bundle must cover the whole span of the ruleset. A 2025 run of a 6J worker uses level 6 with the 2025 amounts above as overrides."
       },
       {
         "kind": "info",
@@ -76,7 +76,7 @@
       },
       {
         "kind": "info",
-        "text": "EDR: the EDR of EUR 10.33/month (agreement 26 Jan 2001) is conglobated into the minimum pay tables from 1.1.2001 (Art. 61 note). The EDR of Art. 60 c. 8 (10 EUR at level 3S, re-parametrised by level) for workers in service on 26 January 2011 affects every entitlement and is not modelled; the EDR of the 2021 agreement does not affect other entitlements."
+        "text": "EDR: the EDR of EUR 10.33/month (agreement 26 Jan 2001) is conglobated into the minimum pay tables (Art. 61 note). The EDR of art. 60 c. 8 (workers in service on 26 January 2011) and the EDR of the agreement of 18 May 2021 (13 mensilità, no effect on other institutes) are paid as allowances; the 2021 EDR may still enter the daily base of absences and sickness, which 'nessuna incidenza su alcun istituto contrattuale' excludes."
       },
       {
         "kind": "info",
@@ -439,7 +439,84 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "EDR_2021",
+          "description": "EDR ex accordo 18 maggio 2021, 13 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "8.26"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "82-83",
+              "section": "EDR ex accordo 18 maggio 2021, personale non viaggiante, 1.1.2022",
+              "quote": "6° 8,26"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2022-01-01"
+            },
+            "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
+          }
+        },
+        {
+          "code": "EDR_2011",
+          "description": "EDR art. 60 c. 8, lavoratori in servizio al 26 gennaio 2011",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "8.26"
+              }
+            ]
+          },
+          "in_service_on": "2011-01-26",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "85",
+              "section": "Art. 60 c. 8 (Sezione prima), personale non viaggiante",
+              "quote": "6° 8,26"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2011-01-01"
+            },
+            "transformation": "'ai lavoratori in servizio alla data del 26 gennaio 2011 è riconosciuto un elemento distinto della retribuzione non riassorbibile pari a 10 euro al 3° Super da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The amount follows the current level (the text does not say)."
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -462,7 +539,7 @@
     {
       "code": "5",
       "order": 2,
-      "description": "Level 5 — qualified operator (cat. B driver, specialist warehouse worker)",
+      "description": "Level 5 — qualified operator (specialist warehouse worker)",
       "base_salary": {
         "periods": [
           {
@@ -591,7 +668,84 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "EDR_2021",
+          "description": "EDR ex accordo 18 maggio 2021, 13 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "8.79"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "82-83",
+              "section": "EDR ex accordo 18 maggio 2021, personale non viaggiante, 1.1.2022",
+              "quote": "5° 8,79"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2022-01-01"
+            },
+            "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
+          }
+        },
+        {
+          "code": "EDR_2011",
+          "description": "EDR art. 60 c. 8, lavoratori in servizio al 26 gennaio 2011",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "8.84"
+              }
+            ]
+          },
+          "in_service_on": "2011-01-26",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "85",
+              "section": "Art. 60 c. 8 (Sezione prima), personale non viaggiante",
+              "quote": "5° 8,84"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2011-01-01"
+            },
+            "transformation": "'ai lavoratori in servizio alla data del 26 gennaio 2011 è riconosciuto un elemento distinto della retribuzione non riassorbibile pari a 10 euro al 3° Super da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The amount follows the current level (the text does not say)."
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -743,7 +897,46 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "EDR_2021",
+          "description": "EDR ex accordo 18 maggio 2021, 13 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "9.02"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "82-83",
+              "section": "EDR ex accordo 18 maggio 2021, personale non viaggiante, 1.1.2022",
+              "quote": "4°Junior 9,02"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2022-01-01"
+            },
+            "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -766,7 +959,7 @@
     {
       "code": "4",
       "order": 4,
-      "description": "Level 4 — specialist operator (C/CE licence driver, CED operator)",
+      "description": "Level 4 — specialist operator (CED operator)",
       "base_salary": {
         "periods": [
           {
@@ -895,7 +1088,84 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "EDR_2021",
+          "description": "EDR ex accordo 18 maggio 2021, 13 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "9.24"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "82-83",
+              "section": "EDR ex accordo 18 maggio 2021, personale non viaggiante, 1.1.2022",
+              "quote": "4° 9,24"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2022-01-01"
+            },
+            "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
+          }
+        },
+        {
+          "code": "EDR_2011",
+          "description": "EDR art. 60 c. 8, lavoratori in servizio al 26 gennaio 2011",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "9.26"
+              }
+            ]
+          },
+          "in_service_on": "2011-01-26",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "85",
+              "section": "Art. 60 c. 8 (Sezione prima), personale non viaggiante",
+              "quote": "4° 9,26"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2011-01-01"
+            },
+            "transformation": "'ai lavoratori in servizio alla data del 26 gennaio 2011 è riconosciuto un elemento distinto della retribuzione non riassorbibile pari a 10 euro al 3° Super da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The amount follows the current level (the text does not say)."
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -1047,7 +1317,84 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "EDR_2021",
+          "description": "EDR ex accordo 18 maggio 2021, 13 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "9.70"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "82-83",
+              "section": "EDR ex accordo 18 maggio 2021, personale non viaggiante, 1.1.2022",
+              "quote": "3° 9,70"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2022-01-01"
+            },
+            "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
+          }
+        },
+        {
+          "code": "EDR_2011",
+          "description": "EDR art. 60 c. 8, lavoratori in servizio al 26 gennaio 2011",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "9.75"
+              }
+            ]
+          },
+          "in_service_on": "2011-01-26",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "85",
+              "section": "Art. 60 c. 8 (Sezione prima), personale non viaggiante",
+              "quote": "3° 9,75"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2011-01-01"
+            },
+            "transformation": "'ai lavoratori in servizio alla data del 26 gennaio 2011 è riconosciuto un elemento distinto della retribuzione non riassorbibile pari a 10 euro al 3° Super da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The amount follows the current level (the text does not say)."
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -1199,7 +1546,84 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "EDR_2021",
+          "description": "EDR ex accordo 18 maggio 2021, 13 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "82-83",
+              "section": "EDR ex accordo 18 maggio 2021, personale non viaggiante, 1.1.2022",
+              "quote": "3°Super 10,00"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2022-01-01"
+            },
+            "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
+          }
+        },
+        {
+          "code": "EDR_2011",
+          "description": "EDR art. 60 c. 8, lavoratori in servizio al 26 gennaio 2011",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2011-01-26",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "85",
+              "section": "Art. 60 c. 8 (Sezione prima), personale non viaggiante",
+              "quote": "3° Super 10,00"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2011-01-01"
+            },
+            "transformation": "'ai lavoratori in servizio alla data del 26 gennaio 2011 è riconosciuto un elemento distinto della retribuzione non riassorbibile pari a 10 euro al 3° Super da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The amount follows the current level (the text does not say)."
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -1351,7 +1775,84 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "EDR_2021",
+          "description": "EDR ex accordo 18 maggio 2021, 13 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "11.06"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "82-83",
+              "section": "EDR ex accordo 18 maggio 2021, personale non viaggiante, 1.1.2022",
+              "quote": "2° 11,06"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2022-01-01"
+            },
+            "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
+          }
+        },
+        {
+          "code": "EDR_2011",
+          "description": "EDR art. 60 c. 8, lavoratori in servizio al 26 gennaio 2011",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "11.07"
+              }
+            ]
+          },
+          "in_service_on": "2011-01-26",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "85",
+              "section": "Art. 60 c. 8 (Sezione prima), personale non viaggiante",
+              "quote": "2° 11,07"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2011-01-01"
+            },
+            "transformation": "'ai lavoratori in servizio alla data del 26 gennaio 2011 è riconosciuto un elemento distinto della retribuzione non riassorbibile pari a 10 euro al 3° Super da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The amount follows the current level (the text does not say)."
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -1503,7 +2004,84 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "EDR_2021",
+          "description": "EDR ex accordo 18 maggio 2021, 13 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "12.05"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "82-83",
+              "section": "EDR ex accordo 18 maggio 2021, personale non viaggiante, 1.1.2022",
+              "quote": "1° 12,05"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2022-01-01"
+            },
+            "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
+          }
+        },
+        {
+          "code": "EDR_2011",
+          "description": "EDR art. 60 c. 8, lavoratori in servizio al 26 gennaio 2011",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "12.07"
+              }
+            ]
+          },
+          "in_service_on": "2011-01-26",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "85",
+              "section": "Art. 60 c. 8 (Sezione prima), personale non viaggiante",
+              "quote": "1° 12,07"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2011-01-01"
+            },
+            "transformation": "'ai lavoratori in servizio alla data del 26 gennaio 2011 è riconosciuto un elemento distinto della retribuzione non riassorbibile pari a 10 euro al 3° Super da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The amount follows the current level (the text does not say)."
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -1693,6 +2271,82 @@
               "review_id": "2026-10-11-ai"
             }
           }
+        },
+        {
+          "code": "EDR_2021",
+          "description": "EDR ex accordo 18 maggio 2021, 13 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "12.80"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "82-83",
+              "section": "EDR ex accordo 18 maggio 2021, personale non viaggiante, 1.1.2022",
+              "quote": "Quadri 12,80"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2022-01-01"
+            },
+            "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
+          }
+        },
+        {
+          "code": "EDR_2011",
+          "description": "EDR art. 60 c. 8, lavoratori in servizio al 26 gennaio 2011",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "12.89"
+              }
+            ]
+          },
+          "in_service_on": "2011-01-26",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "85",
+              "section": "Art. 60 c. 8 (Sezione prima), personale non viaggiante",
+              "quote": "Quadro 12,89"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2011-01-01"
+            },
+            "transformation": "'ai lavoratori in servizio alla data del 26 gennaio 2011 è riconosciuto un elemento distinto della retribuzione non riassorbibile pari a 10 euro al 3° Super da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The amount follows the current level (the text does not say)."
+          }
         }
       ],
       "provenance": {
@@ -1755,7 +2409,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "3fa5509e9d354380908a0f1c223fd4039a43ba5e9310a6ec30156201eb4cadfd",
+    "source_hash": "ca38d75da36d45e6e3afd935bd7810adcdbf94c36d38f9eb2c94ca8d3976f289",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

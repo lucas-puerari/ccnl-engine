@@ -3,7 +3,7 @@
   "_description": "CCNL Logistica, Trasporto Merci e Spedizione level 3S, January 2026 regular run, permanent, full time, non-travelling staff: the first month of a tranche.",
   "_notes": [
     "Base salary = 1.970,37 + EPA 30,00 from 1 January 2026 (testo unico, p. 80): 2000.37.",
-    "No fixed allowance applies below the Quadri; the gross is the base salary."
+    "EDR ex accordo 18 maggio 2021 (p. 82), paid for 13 mensilità: 10,00 at level 3°S; the EDR of art. 60 c. 8 needs the worker in service on 26.1.2011, which the case does not state."
   ],
   "source": {
     "document": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
@@ -21,7 +21,7 @@
   },
   "expected": {
     "base_salary": "2000.37",
-    "fixed_allowances": "0.00",
-    "period_gross": "2000.37"
+    "fixed_allowances": "10.00",
+    "period_gross": "2010.37"
   }
 }
