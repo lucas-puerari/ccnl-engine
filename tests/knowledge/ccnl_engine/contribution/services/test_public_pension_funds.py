@@ -10,9 +10,10 @@ contribution to the end-of-service fund), with the credit contribution of
 - Funzioni Centrali (CTPS), Funzionari, 2227.99: employee 8.80% =
   196.06312 -> 196.06 + credit 7.797965 -> 7.80 = 203.86, employer 24.20%
   = 539.17358 -> 539.17;
-- Funzioni Locali (CPDEL), Istruttori, 1928.23: employee 8.85% =
-  170.648355 -> 170.65 + credit 6.748805 -> 6.75 = 177.40, employer
-  23.80% = 458.91874 -> 458.92.
+- Funzioni Locali (CPDEL), Istruttori, 1928.23 + indennità di comparto
+  32.06 (Tabella C, column 4) = 1960.29: employee 8.85% = 173.485665 ->
+  173.49 + credit 6.861015 -> 6.86 = 180.35, employer 23.80% = 466.54902
+  -> 466.55.
 """
 
 from __future__ import annotations
@@ -36,7 +37,7 @@ pytestmark = pytest.mark.legal_scenario
     ("slug", "level", "employee", "employer"),
     [
         ("funzioni-centrali-aran.json", "FUNZIONARI", "203.86", "539.17"),
-        ("funzioni-locali-aran.json", "ISTRUTTORI", "177.40", "458.92"),
+        ("funzioni-locali-aran.json", "ISTRUTTORI", "180.35", "466.55"),
     ],
     ids=["ctps", "cpdel"],
 )

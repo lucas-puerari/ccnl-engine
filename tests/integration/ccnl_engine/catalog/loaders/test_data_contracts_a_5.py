@@ -64,11 +64,16 @@ class TestLoadFunzioniLocaliAran:
         ccnl = load_ccnl("funzioni-locali-aran.json")
         assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(156)
 
-    def test_funzioni_locali_aran_no_fixed_allowances(self) -> None:
-        """Conglobated model: all levels have no fixed allowances."""
+    def test_funzioni_locali_aran_indennita_di_comparto(self) -> None:
+        """Every area carries the indennità di comparto of Tabella C, 12 months."""
         ccnl = load_ccnl("funzioni-locali-aran.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == ()
+            (allowance,) = lv.fixed_allowances
+            assert allowance.code == "INDENNITA_COMPARTO"
+            assert allowance.months_per_year == 12
+        istruttori = ccnl.level_by_code("ISTRUTTORI").fixed_allowances[0]
+        assert istruttori.monthly.value_at(date(2025, 12, 31)) == Decimal("45.80")
+        assert istruttori.monthly.value_at(date(2026, 1, 1)) == Decimal("32.06")
 
     def test_funzioni_locali_aran_tax_sector(self) -> None:
         """Contract declares PUBBLICA_AMMINISTRAZIONE tax sector."""

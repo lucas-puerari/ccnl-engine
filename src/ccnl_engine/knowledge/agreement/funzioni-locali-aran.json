@@ -314,7 +314,52 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "INDENNITA_COMPARTO",
+          "description": "Indennità di comparto (art. 33 CCNL 22.1.2004; art. 60 CCNL 23.2.2026), 12 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": "2026-01-01",
+                "value": "32.40"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "22.68"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-funzioni-locali-2022-2024",
+                "title": "CCNL Comparto Funzioni Locali 2022-2024, 23 febbraio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
+                "published_on": "2026-02-23",
+                "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
+              },
+              "page": "85",
+              "section": "Tabella C (indennità di comparto, valori mensili per 12 mensilità): column 1 'valori mensili di partenza', column 4 'valori mensili di uscita'; art. 60 c. 1",
+              "quote": "OPERATORI 32,40 3,09 6,63 22,68"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T10:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2023-04-01"
+            },
+            "transformation": "Column 1 (32.40) until the conglobamento, column 4 (22.68) from 1 January 2026 (art. 60 c. 1: from the first January after the ipotesi of 3 November 2025, columns 2 and 3 enter the tabellare and the indennità is redetermined as column 4); paid for 12 months, not in the tredicesima.",
+            "note": "Column 1 is the amount in force before the conglobamento; the file starts on 1 April 2023, when the areas of Tabella C took effect. Art. 60 c. 1 charges column 4 to the Fondo risorse decentrate: it is still paid to every worker of the area, the fund being only its budget source."
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -439,7 +484,52 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "INDENNITA_COMPARTO",
+          "description": "Indennità di comparto (art. 33 CCNL 22.1.2004; art. 60 CCNL 23.2.2026), 12 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": "2026-01-01",
+                "value": "39.31"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "27.52"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-funzioni-locali-2022-2024",
+                "title": "CCNL Comparto Funzioni Locali 2022-2024, 23 febbraio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
+                "published_on": "2026-02-23",
+                "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
+              },
+              "page": "85",
+              "section": "Tabella C (indennità di comparto, valori mensili per 12 mensilità): column 1 'valori mensili di partenza', column 4 'valori mensili di uscita'; art. 60 c. 1",
+              "quote": "OPERATORI ESPERTI 39,31 3,73 8,06 27,52"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T10:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2023-04-01"
+            },
+            "transformation": "Column 1 (39.31) until the conglobamento, column 4 (27.52) from 1 January 2026 (art. 60 c. 1: from the first January after the ipotesi of 3 November 2025, columns 2 and 3 enter the tabellare and the indennità is redetermined as column 4); paid for 12 months, not in the tredicesima.",
+            "note": "Column 1 is the amount in force before the conglobamento; the file starts on 1 April 2023, when the areas of Tabella C took effect. Art. 60 c. 1 charges column 4 to the Fondo risorse decentrate: it is still paid to every worker of the area, the fund being only its budget source."
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -564,7 +654,52 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "INDENNITA_COMPARTO",
+          "description": "Indennità di comparto (art. 33 CCNL 22.1.2004; art. 60 CCNL 23.2.2026), 12 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": "2026-01-01",
+                "value": "45.80"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "32.06"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-funzioni-locali-2022-2024",
+                "title": "CCNL Comparto Funzioni Locali 2022-2024, 23 febbraio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
+                "published_on": "2026-02-23",
+                "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
+              },
+              "page": "85",
+              "section": "Tabella C (indennità di comparto, valori mensili per 12 mensilità): column 1 'valori mensili di partenza', column 4 'valori mensili di uscita'; art. 60 c. 1",
+              "quote": "ISTRUTTORI 45,80 4,34 9,40 32,06"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T10:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2023-04-01"
+            },
+            "transformation": "Column 1 (45.80) until the conglobamento, column 4 (32.06) from 1 January 2026 (art. 60 c. 1: from the first January after the ipotesi of 3 November 2025, columns 2 and 3 enter the tabellare and the indennità is redetermined as column 4); paid for 12 months, not in the tredicesima.",
+            "note": "Column 1 is the amount in force before the conglobamento; the file starts on 1 April 2023, when the areas of Tabella C took effect. Art. 60 c. 1 charges column 4 to the Fondo risorse decentrate: it is still paid to every worker of the area, the fund being only its budget source."
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -689,7 +824,52 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "INDENNITA_COMPARTO",
+          "description": "Indennità di comparto (art. 33 CCNL 22.1.2004; art. 60 CCNL 23.2.2026), 12 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": "2026-01-01",
+                "value": "51.90"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "36.33"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-funzioni-locali-2022-2024",
+                "title": "CCNL Comparto Funzioni Locali 2022-2024, 23 febbraio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
+                "published_on": "2026-02-23",
+                "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
+              },
+              "page": "85",
+              "section": "Tabella C (indennità di comparto, valori mensili per 12 mensilità): column 1 'valori mensili di partenza', column 4 'valori mensili di uscita'; art. 60 c. 1",
+              "quote": "FUNZIONARI ED ELEVATA QUALIFICAZIONE 51,90 4,95 10,62 36,33"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T10:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2023-04-01"
+            },
+            "transformation": "Column 1 (51.90) until the conglobamento, column 4 (36.33) from 1 January 2026 (art. 60 c. 1: from the first January after the ipotesi of 3 November 2025, columns 2 and 3 enter the tabellare and the indennità is redetermined as column 4); paid for 12 months, not in the tredicesima.",
+            "note": "Column 1 is the amount in force before the conglobamento; the file starts on 1 April 2023, when the areas of Tabella C took effect. Art. 60 c. 1 charges column 4 to the Fondo risorse decentrate: it is still paid to every worker of the area, the fund being only its budget source."
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -747,19 +927,6 @@
       },
       {
         "kind": "simplification",
-        "text": "Indennità di comparto post-conglobamento (Tabella C col.4) fully charged to Fondo risorse decentrate — not modelled as a fixed_allowance (varies by administration and is not a universal fixed amount).",
-        "capability": "company_supplement",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "indennita_comparto_decentrata_missing",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Model the indennita di comparto charged to the fondo risorse decentrate as an administration-level supplement."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "2025-2027 RENEWAL NOT YET MODELLED. ARAN signed an ipotesi di CCNL Funzioni Locali 2025-2027 on 21 July 2026. Retroactive increases from Jan 1, 2025. Pending comitato di settore, Governo, and Corte dei conti certification. Average monthly increase will be around €136.76 from base; exact per-level amounts not yet verified for this file.",
         "capability": "base_salary",
         "monetary_impact": "unknown",
@@ -778,6 +945,10 @@
       {
         "kind": "info",
         "text": "PENSION FUND. The contractual adherence to Perseo Sirio of art. 98 CCNL 16/11/2022 (polizia locale) is funded by the fines of art. 208 D.Lgs. 285/1992, not by the payroll: it is not modelled."
+      },
+      {
+        "kind": "info",
+        "text": "INDENNITÀ DI COMPARTO: fixed monthly amount per area, paid for 12 months (Tabella C CCNL 23.2.2026): column 1 until 31.12.2025, column 4 from 1.1.2026, after the partial conglobamento of columns 2 and 3 in the tabellare (art. 60)."
       }
     ]
   },
@@ -788,7 +959,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
     "verification_status": "unverified",
-    "source_hash": "a45b0390ba47ecc87149f02cd67bd837c52173e86311cb7c7a889a3263b47215",
+    "source_hash": "948e929d19dc081e6bb0044f8715970e46d320b06702c78b6e3c05a16b6d1a8b",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

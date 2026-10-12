@@ -1711,7 +1711,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1",
     "verification_status": "unverified",
-    "source_hash": "2e3f0ef0a7eb38abb83c6b0218abbf405e03e10f99c68daa018ec1a5c2701997",
+    "source_hash": "d6aac94f3f6038f994fdd26136c3ede4f15facdfa2d2094c8c8d863b9480cb1a",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1725,7 +1725,7 @@
       "daily_hours": null,
       "provenance": {
         "status": "assumed",
-        "note": "No text of the comparto fixes the daily quota of an unpaid absence of the scuola staff: the only daily divisor in the texts read is the 1/30 of the compenso individuale accessorio (CCNL Scuola 2007, p. 75). by_26 is kept as extracted, not sourced."
+        "note": "No text of the comparto fixes the daily quota of an unpaid absence of the scuola staff: the only daily divisor in the texts read is the 1/30 of the compenso individuale accessorio (CCNL Scuola 2007, p. 75). by_26 is kept as extracted, not sourced. Searched on 2026-10-13: the trade press reports a deduction of 1/30 of the taxable monthly pay for a day of strike and 1/30 of the RPD or CIA for the first ten days of sickness (NoiPA practice), but no statute, CCNL or NoiPA document read gives the daily quota of an unpaid absence; it stays assumed until one is found."
       }
     },
     "leave_rules": {
