@@ -159,6 +159,7 @@ _SECTOR_REVIEWED = {
     "sterilizzazione_detrazioni",
     "fixed_term_additional_rate",
     "complementary_pension",
+    "tfr",
     "tfr.additional_ivs",
     "tfr.compensation",
 }
@@ -181,6 +182,7 @@ def _reviewed(file: str, path: str) -> bool:
         "family/2026.json",
         "tax_credit/somma_esente/2026.json",
         "surtax/regional/2026.json",
+        "severance/revaluation/2026.json",
     }
 
 
@@ -190,7 +192,8 @@ def test_verified_fiscal_rules_are_the_reviewed_tables() -> None:
     They are the L2 rules of the production CCNL, the domestic INPS table of
     INPS circ. 9/2026 and the shared 2026 tax tables (IRPEF, work deduction,
     trattamento integrativo, ulteriore detrazione, family deductions, somma
-    esente, regional surtax).  Each names its reviewer and date
+    esente, regional surtax), the TFR divisor and revaluation of art. 2120
+    c.c. (L. 297/1982 art. 1).  Each names its reviewer and date
     (``RuleProvenance`` rejects a verified record without them, so the
     bundle would not load otherwise). Verified CCNL rules point to their
     review log instead, which the evidence gate checks.

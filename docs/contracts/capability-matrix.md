@@ -81,8 +81,8 @@ formulas or caller-declared amounts.
 | `health_fund_employer` | Fondo sanitario integrativo a carico azienda | outside_input | net | unsupported | outside_input | — | `employment.health_fund` | — | unavailable | none bundled |
 | `territorial_supplement` | Integrazione da contratto territoriale | outside_input | gross | unsupported | outside_input | — | `employment.territorial_agreement` | — | unavailable | none bundled |
 | `company_supplement` | Integrazione da contratto aziendale | outside_input | gross | unsupported | outside_input | — | `employment.company_agreement` | — | unavailable | none bundled |
-| `tfr` | Trattamento di Fine Rapporto | core | net | native | always | pipeline | `employment.tfr_treasury_fund` | — | simplified | 11 / 7 / 18 / 0 |
-| `tfr_revaluation` | Rivalutazione del fondo TFR al 31 dicembre e imposta sostitutiva (art. 2120 c. 4 c.c.) | core | net | native | decided | decision | `employment.tfr_fund` | — | implemented | 0 / 3 / 0 / 0 |
+| `tfr` | Trattamento di Fine Rapporto | core | net | native | always | pipeline | `employment.tfr_treasury_fund` | — | simplified | 18 / 0 / 18 / 0 |
+| `tfr_revaluation` | Rivalutazione del fondo TFR al 31 dicembre e imposta sostitutiva (art. 2120 c. 4 c.c.) | core | net | native | decided | decision | `employment.tfr_fund` | — | implemented | 1 / 2 / 0 / 0 |
 | `irpef` | IRPEF (sostituto d'imposta) | core | net | native | always | pipeline | — | — | simplified | 24 / 0 / 24 / 0 |
 | `trattamento_integrativo` | Trattamento integrativo (ex bonus 80€) | core | net | native | decided | decision | — | — | simplified | 8 / 0 / 8 / 0 |
 | `ulteriore_detrazione_lavoro` | Ulteriore detrazione lavoro dipendente | core | net | native | decided | decision | — | — | simplified | 8 / 0 / 8 / 0 |
