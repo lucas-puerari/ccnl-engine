@@ -105,13 +105,16 @@ def _resolve_chain(
     worker_category: WorkerCategory | None = None,
     weekly_hours: int | None = None,
     full_time_weekly_hours: int | None = None,
+    hired_on: date | None = None,
 ) -> tuple[MonthlyPayChain, ApprenticeshipScaling | None]:
     """Resolve the elementary pay chain for the period.
 
     For a percentage apprenticeship the percentage reduces the base salary,
     the seniority and the allowances flagged ``apprenticeship_pct_relevant``;
     the other allowances are paid in full.  Part-time scaling then applies
-    when ``weekly_hours < full_time_weekly_hours``.
+    when ``weekly_hours < full_time_weekly_hours``.  An allowance of a
+    cohort in service on a day (``in_service_on``) is kept only when
+    ``hired_on`` is known and not later.
 
     Returns:
         :class:`~ccnl_engine.compensation.element.types.MonthlyPayChain` with each
@@ -129,6 +132,7 @@ def _resolve_chain(
             roles=roles,
             worker_category=worker_category,
         )
+    chain = chain.for_hire_date(hired_on)
     return _part_time(ccnl, chain, weekly_hours, full_time_weekly_hours), scaling
 
 

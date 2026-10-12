@@ -7,6 +7,7 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.agreement.validity.rules import TimeSeries
 from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.extra_month.schedule.models import ExtraMonthKind
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from ccnl_engine.types import FrozenDict
 
@@ -62,6 +63,9 @@ class SeniorityIncrements(BaseModel):
     apprenticeship, replacing the level amount. Workers of an
     ``excluded_categories`` category accrue no increment (e.g. operai edili,
     who receive APE through the Cassa Edile instead).
+    ``excluded_from_extra_months`` lists the extra months the increments do
+    not enter (Pubblici Esercizi FIPE art. 184: the quattordicesima is due
+    "esclusi [...] gli scatti di anzianità maturati").
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -75,6 +79,7 @@ class SeniorityIncrements(BaseModel):
     maximum_count_by_level: Mapping[str, int] = Field(default_factory=dict)
     apprentice_amount: TimeSeries | None = None
     excluded_categories: tuple[WorkerCategory, ...] = Field(default=())
+    excluded_from_extra_months: tuple[ExtraMonthKind, ...] = Field(default=())
     amount_by_level_by_category: Mapping[WorkerCategory, Mapping[str, TimeSeries]] = (
         Field(default_factory=dict)
     )

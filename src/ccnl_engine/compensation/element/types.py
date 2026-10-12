@@ -9,6 +9,8 @@ from typing import TYPE_CHECKING, Protocol
 from ccnl_engine.pay_item.rounding.policies import money
 
 if TYPE_CHECKING:
+    from datetime import date
+
     from ccnl_engine.compensation.models import Allowance
 
 _ZERO = Decimal(0)
@@ -26,16 +28,20 @@ class MonthlyPayChain:
     """Full-time monthly pay components of one level on one date.
 
     ``limitations`` holds the ids of the engine limitations whose code path
-    built the chain; every derived chain keeps them.  An allowance flagged
-    ``in_kind`` is the value of a benefit provided in kind: it stays out of
-    the cash gross (:attr:`allowances_total`) and counts in
-    :attr:`in_kind_total`, until :meth:`for_extra_month` pays it in cash.
+    built the chain; every derived chain keeps them, and so
+    ``seniority_excluded_from``, the ``months_threshold`` values of the
+    extra months the seniority does not enter (14 for a quattordicesima).
+    An allowance flagged ``in_kind`` is the value of a benefit provided in
+    kind: it stays out of the cash gross (:attr:`allowances_total`) and
+    counts in :attr:`in_kind_total`, until :meth:`for_extra_month` pays it
+    in cash.
     """
 
     base: Decimal
     seniority: Decimal
     allowances: tuple[tuple[Allowance, Decimal], ...]
     limitations: tuple[str, ...] = ()
+    seniority_excluded_from: frozenset[int] = frozenset()
 
     def scaled(self, factor: Decimal) -> MonthlyPayChain:
         """Scale all components by ``factor``.
@@ -48,6 +54,7 @@ class MonthlyPayChain:
             seniority=money(self.seniority * factor),
             allowances=tuple((a, money(v * factor)) for a, v in self.allowances),
             limitations=self.limitations,
+            seniority_excluded_from=self.seniority_excluded_from,
         )
 
     def prorated(self, units: Decimal, divisor: Decimal) -> MonthlyPayChain:
@@ -66,6 +73,7 @@ class MonthlyPayChain:
                 (a, money(v * units / divisor)) for a, v in self.allowances
             ),
             limitations=self.limitations,
+            seniority_excluded_from=self.seniority_excluded_from,
         )
 
     def scaled_for_apprenticeship(self, percentage: Decimal) -> MonthlyPayChain:
@@ -90,6 +98,7 @@ class MonthlyPayChain:
                 for a, v in self.allowances
             ),
             limitations=self.limitations,
+            seniority_excluded_from=self.seniority_excluded_from,
         )
 
     def scaled_for_part_time(self, factor: Decimal) -> MonthlyPayChain:
@@ -112,6 +121,7 @@ class MonthlyPayChain:
                 for a, v in self.allowances
             ),
             limitations=self.limitations,
+            seniority_excluded_from=self.seniority_excluded_from,
         )
 
     def for_extra_month(self, months_threshold: int) -> MonthlyPayChain:
@@ -121,7 +131,8 @@ class MonthlyPayChain:
         (no restriction) or is at least ``months_threshold``.  Allowances
         paid fewer than ``months_threshold`` times per year (e.g. an EDR paid
         only 12 times in a 13-month contract) are excluded from the run.
-        Base salary and seniority are always included.  An allowance
+        Base salary is always included, the seniority unless the extra
+        month is in ``seniority_excluded_from``.  An allowance
         provided in kind is paid in cash in the extra month (CCNL lavoro
         domestico art. 39 c. 1: the tredicesima includes the indennità
         sostitutiva of board and lodging).
@@ -139,11 +150,36 @@ class MonthlyPayChain:
             for a, v in self.allowances
             if a.months_per_year is None or a.months_per_year >= months_threshold
         )
+        excluded = months_threshold in self.seniority_excluded_from
+        return MonthlyPayChain(
+            base=self.base,
+            seniority=_ZERO if excluded else self.seniority,
+            allowances=eligible,
+            limitations=self.limitations,
+            seniority_excluded_from=self.seniority_excluded_from,
+        )
+
+    def for_hire_date(self, hired_on: date | None) -> MonthlyPayChain:
+        """Drop the allowances of a cohort the worker does not belong to.
+
+        Returns:
+            The chain without the allowances whose ``in_service_on`` is
+            before ``hired_on``, or set when ``hired_on`` is unknown.
+        """
+        kept = tuple(
+            (a, v)
+            for a, v in self.allowances
+            if a.in_service_on is None
+            or (hired_on is not None and hired_on <= a.in_service_on)
+        )
+        if len(kept) == len(self.allowances):
+            return self
         return MonthlyPayChain(
             base=self.base,
             seniority=self.seniority,
-            allowances=eligible,
+            allowances=kept,
             limitations=self.limitations,
+            seniority_excluded_from=self.seniority_excluded_from,
         )
 
     @property

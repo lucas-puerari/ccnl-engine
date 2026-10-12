@@ -84,6 +84,11 @@ def _base_chain(
         worker_category=worker_category,
         weekly_hours=_int_value(request.weekly_hours),
         full_time_weekly_hours=_int_value(request.full_time_weekly_hours),
+        hired_on=(
+            None
+            if request.employment_period is None
+            else request.employment_period.started_on
+        ),
     )
 
 
