@@ -45,7 +45,9 @@ class Allowance(BaseModel):
     is known and is at least this many months on the run. When the
     seniority is unknown, threshold-gated allowances are excluded and the
     run names the missing fact: the engine cannot gate on service time
-    without knowing service time.
+    without knowing service time.  ``service_months_until`` closes the band
+    of seniority: the allowance is included only below it (the RPD of the
+    AFAM docenti, by band of anzianità di servizio).
 
     ``part_time_proportionable=False`` marks allowances that must be paid at
     their full contractual value regardless of the worker's part-time fraction
@@ -77,6 +79,7 @@ class Allowance(BaseModel):
     in_kind: bool = False
     replaced_by_provincial_element: bool = False
     service_months_threshold: int | None = Field(default=None, ge=0)
+    service_months_until: int | None = Field(default=None, ge=1)
     in_service_on: date | None = None
     provenance: RuleProvenance | None = None
 

@@ -4650,7 +4650,56 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "CIA",
+          "description": "Compenso Individuale Accessorio",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-01-01",
+                "value": "111.90"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2027-01-01",
+                "value": "115.90"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "123.40"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2025-2027",
+                "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                "published_on": "2026-07-01",
+                "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+              },
+              "page": "34",
+              "section": "Tabella D6 - AFAM, Compenso Individuale Accessorio, Operatori",
+              "quote": "Operatori 7,50 123,40"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:04:30Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Monthly, 12 instalments. The 2024 amount is the 2025 value less its increment from 1.1.2025 plus that from 1.1.2024 (CCNL 2022-2024 Tabelle D3-D6, p. 62-63)."
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -4813,7 +4862,56 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "CIA",
+          "description": "Compenso Individuale Accessorio",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-01-01",
+                "value": "122.58"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2027-01-01",
+                "value": "126.98"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "135.28"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2025-2027",
+                "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                "published_on": "2026-07-01",
+                "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+              },
+              "page": "34",
+              "section": "Tabella D6 - AFAM, Compenso Individuale Accessorio, Assistenti / Funzionari",
+              "quote": "Assistenti / Funzionari 8,30 135,28"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:04:30Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Monthly, 12 instalments. The 2024 amount is the 2025 value less its increment from 1.1.2025 plus that from 1.1.2024 (CCNL 2022-2024 Tabelle D3-D6, p. 62-63)."
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -4976,7 +5074,56 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "CIA",
+          "description": "Compenso Individuale Accessorio",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-01-01",
+                "value": "122.58"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2027-01-01",
+                "value": "126.98"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "135.28"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2025-2027",
+                "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                "published_on": "2026-07-01",
+                "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+              },
+              "page": "34",
+              "section": "Tabella D6 - AFAM, Compenso Individuale Accessorio, Assistenti / Funzionari",
+              "quote": "Assistenti / Funzionari 8,30 135,28"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:04:30Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Monthly, 12 instalments. The 2024 amount is the 2025 value less its increment from 1.1.2025 plus that from 1.1.2024 (CCNL 2022-2024 Tabelle D3-D6, p. 62-63)."
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -5139,7 +5286,157 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "RPR_0",
+          "description": "Retribuzione Professionale Ricercatori, anzianità da 0 a 14 anni",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-01-01",
+                "value": "141.72"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2027-01-01",
+                "value": "147.72"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "156.32"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2025-2027",
+                "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                "published_on": "2026-07-01",
+                "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+              },
+              "page": "34",
+              "section": "Tabella D4 - AFAM, Retribuzione Professionale Ricercatori, Da 0 a 14 anni",
+              "quote": "Da 0 a 14 anni 8,60 156,32"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:04:30Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Monthly, 12 instalments; 2025 and 2026 the value rideterminato from 1.1.2025, 2027 that from 1.1.2027. The 2024 amount is the 2025 value less its increment from 1.1.2025 plus that from 1.1.2024 (CCNL 2022-2024 Tabelle D3-D6, p. 62-63)."
+          },
+          "service_months_until": 180,
+          "service_months_threshold": 0
+        },
+        {
+          "code": "RPR_15",
+          "description": "Retribuzione Professionale Ricercatori, anzianità da 15 a 27 anni",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-01-01",
+                "value": "165.28"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2027-01-01",
+                "value": "172.28"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "182.78"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2025-2027",
+                "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                "published_on": "2026-07-01",
+                "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+              },
+              "page": "34",
+              "section": "Tabella D4 - AFAM, Retribuzione Professionale Ricercatori, Da 15 a 27 anni",
+              "quote": "Da 15 a 27 anni 10,50 182,78"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:04:30Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Monthly, 12 instalments; 2025 and 2026 the value rideterminato from 1.1.2025, 2027 that from 1.1.2027. The 2024 amount is the 2025 value less its increment from 1.1.2025 plus that from 1.1.2024 (CCNL 2022-2024 Tabelle D3-D6, p. 62-63)."
+          },
+          "service_months_threshold": 180,
+          "service_months_until": 336
+        },
+        {
+          "code": "RPR_28",
+          "description": "Retribuzione Professionale Ricercatori, anzianità da 28 anni",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-01-01",
+                "value": "204.69"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2027-01-01",
+                "value": "213.69"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "226.69"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2025-2027",
+                "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                "published_on": "2026-07-01",
+                "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+              },
+              "page": "34",
+              "section": "Tabella D4 - AFAM, Retribuzione Professionale Ricercatori, Da 28 anni",
+              "quote": "Da 28 anni 13,00 226,69"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:04:30Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Monthly, 12 instalments; 2025 and 2026 the value rideterminato from 1.1.2025, 2027 that from 1.1.2027. The 2024 amount is the 2025 value less its increment from 1.1.2025 plus that from 1.1.2024 (CCNL 2022-2024 Tabelle D3-D6, p. 62-63)."
+          },
+          "service_months_threshold": 336
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -5302,7 +5599,57 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "RET_POSIZIONE",
+          "description": "Retribuzione di posizione, parte fissa",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-01-01",
+                "value": "422.79"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2027-01-01",
+                "value": "430.17"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "447.38"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2025-2027",
+                "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                "published_on": "2026-07-01",
+                "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+              },
+              "page": "34",
+              "section": "Tabella D5 - AFAM, Retribuzione di posizione - parte fissa, Elevate Qualificazioni",
+              "quote": "Elevate Qualificazioni 206,50 5.368,53"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:04:30Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Annual 5,073.43 (2024), 5,162.03 (2025-2026), 5,368.53 (2027) over 12. The 2024 amount is the 2025 value less its increment from 1.1.2025 plus that from 1.1.2024 (CCNL 2022-2024 Tabelle D3-D6, p. 62-63).",
+            "note": "The tabella gives annual amounts; the instalments (12 here) are set by art. 159 c. 6 CCNL 18/1/2024, not read (assumed)."
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -5465,7 +5812,157 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "RPD_0",
+          "description": "Retribuzione Professionale Docenti, anzianità da 0 a 14 anni",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-01-01",
+                "value": "225.28"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2027-01-01",
+                "value": "231.28"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "239.88"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2025-2027",
+                "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                "published_on": "2026-07-01",
+                "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+              },
+              "page": "33",
+              "section": "Tabella D3 - AFAM, Retribuzione Professionale Docenti, Da 0 a 14 anni",
+              "quote": "Da 0 a 14 anni 8,60 239,88"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:04:30Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Monthly, 12 instalments; 2025 and 2026 the value rideterminato from 1.1.2025, 2027 that from 1.1.2027. The 2024 amount is the 2025 value less its increment from 1.1.2025 plus that from 1.1.2024 (CCNL 2022-2024 Tabelle D3-D6, p. 62-63)."
+          },
+          "service_months_until": 180,
+          "service_months_threshold": 0
+        },
+        {
+          "code": "RPD_15",
+          "description": "Retribuzione Professionale Docenti, anzianità da 15 a 27 anni",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-01-01",
+                "value": "276.91"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2027-01-01",
+                "value": "283.91"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "294.41"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2025-2027",
+                "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                "published_on": "2026-07-01",
+                "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+              },
+              "page": "33",
+              "section": "Tabella D3 - AFAM, Retribuzione Professionale Docenti, Da 15 a 27 anni",
+              "quote": "Da 15 a 27 anni 10,50 294,41"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:04:30Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Monthly, 12 instalments; 2025 and 2026 the value rideterminato from 1.1.2025, 2027 that from 1.1.2027. The 2024 amount is the 2025 value less its increment from 1.1.2025 plus that from 1.1.2024 (CCNL 2022-2024 Tabelle D3-D6, p. 62-63)."
+          },
+          "service_months_threshold": 180,
+          "service_months_until": 336
+        },
+        {
+          "code": "RPD_28",
+          "description": "Retribuzione Professionale Docenti, anzianità da 28 anni",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-01-01",
+                "value": "342.92"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2027-01-01",
+                "value": "351.92"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "364.92"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2025-2027",
+                "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                "published_on": "2026-07-01",
+                "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+              },
+              "page": "33",
+              "section": "Tabella D3 - AFAM, Retribuzione Professionale Docenti, Da 28 anni",
+              "quote": "Da 28 anni 13,00 364,92"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:04:30Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Monthly, 12 instalments; 2025 and 2026 the value rideterminato from 1.1.2025, 2027 that from 1.1.2027. The 2024 amount is the 2025 value less its increment from 1.1.2025 plus that from 1.1.2024 (CCNL 2022-2024 Tabelle D3-D6, p. 62-63)."
+          },
+          "service_months_threshold": 336
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -5501,19 +5998,6 @@
       },
       {
         "kind": "simplification",
-        "text": "ALLOWANCES: the fixed allowances of the AFAM staff (Tabelle D3-D6) are not modelled; the caller pays them.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "afam_allowances_missing",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Model the AFAM allowances of Tabelle D3-D6."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "SHARED RULES: the hourly divisor, the tredicesima, the leave, absence, sickness and accrual rules are those of the scuola file of the same comparto (istruzione-ricerca-aran), not read again for the AFAM staff. No overtime table is modelled.",
         "capability": "sickness",
         "monetary_impact": "unknown",
@@ -5537,6 +6021,10 @@
           },
           "remediation": "Add the Fondo Espero rates of the AFAM staff."
         }
+      },
+      {
+        "kind": "info",
+        "text": "ALLOWANCES: RPD of the docenti (Tabella D3) and RPR of the ricercatori (D4) by band of anzianità di servizio (0-14, 15-27, 28 years and more), the CIA of operatori, assistenti and funzionari (D6), 12 instalments; the retribuzione di posizione parte fissa of the Elevate Qualificazioni (D5), annual over 12 (assumed). The banded allowances need the seniority of the worker."
       }
     ]
   },
@@ -5547,7 +6035,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "dbc4428a3ec36e65099fa3e40675dc75412433281dabe78083494e3763b9ec95",
+    "source_hash": "81969fd1ddf4288253e8b0375431c2b5a9f793105ab6a3f7ea3b8df216947527",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -5680,6 +6168,27 @@
         ],
         "findings": [
           "New file for the AFAM staff of the comparto Istruzione e Ricerca: Tabella D2 of the CCNL 2022-2024 and 2025-2027, read on the ARAN texts."
+        ]
+      },
+      {
+        "id": "2026-10-12-ai-afam-allowances",
+        "date": "2026-10-12",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "AFAM allowances, Tabelle D3-D6 of the CCNL 2022-2024 and 2025-2027.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+            "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+          },
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+            "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+          }
+        ],
+        "findings": [
+          "The AFAM allowances were a limitation (afam_allowances_missing): RPD, RPR, CIA and the retribuzione di posizione are now paid, the 2024 amounts derived from the increments of the CCNL 2022-2024."
         ]
       }
     ]

@@ -32,10 +32,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, pension_fund_contribution, sickness |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | pension_fund_contribution, sickness |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 24 verified / 4 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 24 verified / 13 derived / 2 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-12 | claude-opus-5-5 (ai) | Tabellare and seniority bands of the AFAM staff, 2024-2027. | corrected | New file for the AFAM staff of the comparto Istruzione e Ricerca: Tabella D2 of the CCNL 2022-2024 and 2025-2027, read on the ARAN texts. |
+| 2026-10-12 | claude-opus-5-5 (ai) | AFAM allowances, Tabelle D3-D6 of the CCNL 2022-2024 and 2025-2027. | corrected | The AFAM allowances were a limitation (afam_allowances_missing): RPD, RPR, CIA and the retribuzione di posizione are now paid, the 2024 amounts derived from the increments of the CCNL 2022-2024. |
 
 ## Salary table
 
@@ -82,13 +83,6 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "afam-aran/afam_allowances_missing · base_salary · impact yes · open"
-    ALLOWANCES: the fixed allowances of the AFAM staff (Tabelle D3-D6) are not modelled; the caller pays them.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the AFAM allowances of Tabelle D3-D6.
 
 !!! warning "afam-aran/shared_rules_unchecked · sickness · impact unknown · open"
     SHARED RULES: the hourly divisor, the tredicesima, the leave, absence, sickness and accrual rules are those of the scuola file of the same comparto (istruzione-ricerca-aran), not read again for the AFAM staff. No overtime table is modelled.
@@ -143,6 +137,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 ??? note "Coverage notes"
     SCOPE: staff of the AFAM institutions (accademie, conservatori, ISIA): Aree Operatori, Assistenti, Funzionari, Elevate Qualificazioni (new classification of art. 165 CCNL 18/1/2024 from 1.5.2024, allegato J), docenti di prima fascia and ricercatori, with seven bands of anzianità di servizio (Tabella D2 of the CCNL 2022-2024 and 2025-2027) as seniority steps, from 1.1.2024.
+    
+    ALLOWANCES: RPD of the docenti (Tabella D3) and RPR of the ricercatori (D4) by band of anzianità di servizio (0-14, 15-27, 28 years and more), the CIA of operatori, assistenti and funzionari (D6), 12 instalments; the retribuzione di posizione parte fissa of the Elevate Qualificazioni (D5), annual over 12 (assumed). The banded allowances need the seniority of the worker.
     
 
 ## Raw data

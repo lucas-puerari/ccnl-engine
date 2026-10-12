@@ -4,6 +4,7 @@
       "additional_months[2023-02-01]": "assumed"
     },
     "agreement/afam-aran.json": {
+      "levels[ELEVATA_QUALIFICAZIONE].fixed_allowances[RET_POSIZIONE]": "assumed",
       "work_rules.absence_rules": "assumed"
     },
     "agreement/agenti-immobiliari-fiaip.json": {
@@ -1151,7 +1152,6 @@
       "acconciatura-estetica-confartigianato/inps_sector_rates_unsourced"
     ],
     "agreement/afam-aran.json": [
-      "afam-aran/afam_allowances_missing",
       "afam-aran/pension_fund_not_modelled",
       "afam-aran/shared_rules_unchecked"
     ],
