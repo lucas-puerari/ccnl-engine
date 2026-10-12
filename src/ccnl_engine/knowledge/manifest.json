@@ -2110,6 +2110,23 @@
       "wheel_resource": "agreement/uneba-uneba.json.gz"
     },
     {
+      "dataset_id": "agreement/universita-aran",
+      "path": "agreement/universita-aran.json",
+      "dataset": "agreement",
+      "year": null,
+      "scope": "universita-aran",
+      "model": "CCNL",
+      "schema_version": "0.5",
+      "valid_from": "2024-01-01",
+      "valid_to": null,
+      "ruleset_id": "ccnl/universita-aran",
+      "ruleset_version": "2026.2",
+      "source_hash": "56fa47cd1baf569df96ed5a147bffefd1b9264ed04ab5bc08981f9320151b59b",
+      "source_type": "official_primary",
+      "owner": "ccnl-engine maintainers",
+      "wheel_resource": "agreement/universita-aran.json.gz"
+    },
+    {
       "dataset_id": "agreement/vetro-meccanizzato-assovetro",
       "path": "agreement/vetro-meccanizzato-assovetro.json",
       "dataset": "agreement",
