@@ -13,6 +13,7 @@ Every count is read off the calendar by hand.
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 
@@ -23,6 +24,7 @@ from ccnl_engine.sickness.cumulation.rules import SicknessWorker
 from ccnl_engine.sickness.day.models import SickPayRules
 from ccnl_engine.sickness.day.rules import SickDayKind, classify_days
 from ccnl_engine.sickness.indemnity.models import (
+    FixedTermSickLimit,
     InpsSickPayRates,
     SickPayBand,
     SickPayCoverage,
@@ -37,6 +39,7 @@ _INPS = InpsSickPayRates(
     bands=[SickPayBand(day_from=4, day_to=180, rate=_HALF)],
     annual_max_days=180,
     coverage=(SickPayCoverage(covered=True, source="test: every worker"),),
+    fixed_term=FixedTermSickLimit(short_work_days=30),
 )
 _FULL = SicknessRules(carenza_integration_rate=_ONE, full_pay_integration_rate=_ONE)
 
@@ -130,3 +133,14 @@ def test_days_of_work_are_bounded(worked: int) -> None:
         SicknessEpisode(
             "a", date(2026, 3, 1), date(2026, 3, 2), prior_worked_days=worked
         )
+
+
+def test_a_table_without_the_rule_applies_no_limit() -> None:
+    """The limit is the bundle's record: a table without it applies none."""
+    rules = _rules()
+    bare = rules.inps.model_copy(update={"fixed_term": None})
+    episode = SicknessEpisode(
+        "a", date(2026, 3, 1), date(2026, 4, 14), prior_worked_days=10
+    )
+    kinds = _kinds(episode, replace(rules, inps=bare))
+    assert SickDayKind.FIXED_TERM_LIMIT not in {k for _, _, k, _ in kinds}

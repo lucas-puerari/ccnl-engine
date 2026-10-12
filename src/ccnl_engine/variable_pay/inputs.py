@@ -221,10 +221,11 @@ class TravelAllowanceEvent:
             the place of work: within it no part is exempt.
         in_tfr_base: Whether the allowance enters the TFR base.  Art. 2120
             c.c. lets the CCNL decide, so the caller states it.
-        abroad: Whether the trasferta is abroad, with the higher cap.
         meals_lodging: ``"one"`` when meals or lodging are reimbursed or
             provided free, ``"both"`` when both are, ``"none"`` otherwise:
-            the cap is reduced by one third or by two thirds.
+            the cap is reduced by one third or by two thirds.  Required:
+            ``"none"`` gives the largest exemption.
+        abroad: Whether the trasferta is abroad, with the higher cap.
         trasfertista: Whether the worker is bound by contract to work in
             places always different (art. 51 c. 6 TUIR, 50% exempt):
             not supported, the event is rejected.
@@ -239,8 +240,8 @@ class TravelAllowanceEvent:
     daily_amount: Decimal
     outside_municipality: bool
     in_tfr_base: bool
+    meals_lodging: Literal["none", "one", "both"]
     abroad: bool = False
-    meals_lodging: Literal["none", "one", "both"] = "none"
     trasfertista: bool = False
 
     def __post_init__(self) -> None:  # noqa: D105

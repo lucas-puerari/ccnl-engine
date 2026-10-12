@@ -2565,7 +2565,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/agricoltura",
       "ruleset_version": "2026.1",
-      "source_hash": "09d112b0253c6d1ec37e755150e2ce9447364f16dedfd14b3a0bd3acd559b120",
+      "source_hash": "8248542dc6e3994c951e7caa16ecf8a2fedbee7184a4865ee40e5fd94c1723e9",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/agricoltura.json.gz"
@@ -2582,7 +2582,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/artigianato",
       "ruleset_version": "2026.1",
-      "source_hash": "5e6ab735687b808070738a06923909cafeb11dd3f84617180976b8e47be7e654",
+      "source_hash": "a7fb45c9373e3515fcb1930319884f5b561e6c06c92460d6fdd2fe8f059daa62",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/artigianato.json.gz"
@@ -2599,7 +2599,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/credito",
       "ruleset_version": "2026.1",
-      "source_hash": "fe01218ff975f88310af81ca69518a1778eeb614c44770627ebabb3e7627e736",
+      "source_hash": "2fbdb5d5e389a12d6ff9c2bb755d097177dbe9582a3ded3219f130dadc4a221c",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/credito.json.gz"
@@ -2616,7 +2616,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/edilizia",
       "ruleset_version": "2026.1",
-      "source_hash": "b79fa6f17c8ef8d65d6611861c36195cd81f6087aa70cc18f3e4796a3e2c9f1e",
+      "source_hash": "4a2ffdbc9e7a2e46de05f7b5dea4c2216dfe2964be1b1674005e77fd095324bc",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/edilizia.json.gz"
@@ -2633,7 +2633,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/industria",
       "ruleset_version": "2026.1",
-      "source_hash": "61c88f894b12c6caa2787536a29cc03915514506a060fe0e0f8a18a829ab0dc0",
+      "source_hash": "db11c8e9b3215dd7790f290e1a28fba2be42e96e1fe0abcdbe048ed64503a82b",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/industria.json.gz"
@@ -2650,7 +2650,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/lavoro-domestico",
       "ruleset_version": "2026.1",
-      "source_hash": "c6ed752732be2ba034eca01e6f2158f0c045600d37b78cf36031227a1964b259",
+      "source_hash": "df059fb4fe24b007581cf0289c082eee5197ff399ee18a53d2085c9538b071b1",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/lavoro-domestico.json.gz"
@@ -2667,7 +2667,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/pubblica-amministrazione",
       "ruleset_version": "2026.1",
-      "source_hash": "882d2fb5a3f18426147e068fe5c24f8f317189137846103bed13fe07b42cbb0c",
+      "source_hash": "5cd8c2296a1eb0757046c2011e8076c3f1509b3067654ef65fcbcc546e09ee37",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/pubblica-amministrazione.json.gz"
@@ -2684,7 +2684,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/terziario",
       "ruleset_version": "2026.1",
-      "source_hash": "f0a662635f8b44d92f1c64e8730ea32b0e4144aba7db79f3b58aab2746e10f6c",
+      "source_hash": "ac63f9a5712a0d36210553da65e5c6c62138445739f2e1bace7554847edf6ecf",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/terziario.json.gz"
@@ -2837,7 +2837,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/tfr-revaluation",
       "ruleset_version": "2026.1",
-      "source_hash": "3eaa45f94494ae493a443d88b6337ed90f793ee796d1dcd79a1e339755d5a5fc",
+      "source_hash": "740f9193751b301c9efdf5d3d97a27f918c4cbd221c466c33f9105a1de0e9d2e",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "severance/revaluation/2026.json.gz"
@@ -2854,7 +2854,7 @@
       "valid_to": null,
       "ruleset_id": "inps/sick-pay-rates",
       "ruleset_version": "1.1",
-      "source_hash": "69021a769a5630aa591e3f00441c4148994f0420958d1a716674c75ba41dacdf",
+      "source_hash": "5ad2e6c073d372be0ccf2e7e75eb8f5beea72a649db8b2e11dbe51cef941e606",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sickness/indemnity/rates.json.gz"

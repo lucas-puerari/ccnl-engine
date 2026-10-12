@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "D.P.R. 917/1986 (TUIR) artt. 11 and 13; D.L. 3/2020 art. 1; L. 207/2024 art. 1 c. 6; L. 199/2025 art. 1; c.c. art. 2120",
     "verification_status": "unverified",
-    "source_hash": "5e6ab735687b808070738a06923909cafeb11dd3f84617180976b8e47be7e654",
+    "source_hash": "a7fb45c9373e3515fcb1930319884f5b561e6c06c92460d6fdd2fe8f059daa62",
     "source_type": "official_primary"
   },
   "irpef_brackets": [
@@ -95,17 +95,17 @@
       "status": "verified",
       "location": {
         "source_document": {
-          "document_id": "l-297-1982",
-          "title": "L. 29 maggio 1982 n. 297, art. 1 (testo dell'art. 2120 c.c.)",
+          "document_id": "codice-civile",
+          "title": "Codice civile",
           "kind": "legge",
-          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1982-05-29;297~art1!vig=2026-10-12",
-          "sha256": "d2eb233bf2a0cb0fe18fc34a58deef6c1249e61229f3d2e1a4ff8410a66b3142"
+          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:regio.decreto:1942-03-16;262~art2120",
+          "sha256": "f853df683b814d86431327554cef99b8967561807e6c806d67a0ca5802d59069"
         },
-        "section": "art. 1 (art. 2120 c.c., c. 1)",
+        "section": "art. 2120 c. 1",
         "quote": "Tale trattamento si calcola sommando per ciascun anno di servizio una quota pari e comunque non superiore all'importo della retribuzione dovuta per l'anno stesso divisa per 13,5."
       },
       "transformation": "accrual_divisor = 13,5 = 13.5.",
-      "note": "Art. 2120 c.c. as replaced by L. 297/1982 art. 1, read in the text in force on 2026-10-12 on Normattiva (the codice civile page of art. 2120 does not serve the article text); quote found in the page, whitespace normalised. Quote checked on 2026-10-10 against the text in force at the url of the record, whitespace normalised. Not checked by a named reviewer.",
+      "note": "Normattiva snapshot of art. 2120 c.c. in force on 2026-10-10 (text in force from 11-4-1991); quote found in the page, whitespace normalised. Quote checked on 2026-10-10 against the text in force at the url of the record, whitespace normalised. Not checked by a named reviewer.",
       "extraction": {
         "method": "ai",
         "model": "claude-opus-5-5",

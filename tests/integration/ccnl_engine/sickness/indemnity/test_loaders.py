@@ -82,3 +82,13 @@ def test_a_table_with_an_invalid_field_is_a_data_error(
 
     with pytest.raises(DataIntegrityError, match=_FILE):
         sick_pay_rates_from(raw, _FILE)
+
+
+def test_the_fixed_term_rule_is_read_and_optional() -> None:
+    """The bundle states D.L. 463/1983 art. 5; a table without it has none."""
+    rates = sick_pay_rates_from(_bundled(), _FILE)
+    assert rates.fixed_term is not None
+    assert rates.fixed_term.short_work_days == 30
+    raw = _bundled()
+    del raw["fixed_term"]
+    assert sick_pay_rates_from(raw, _FILE).fixed_term is None

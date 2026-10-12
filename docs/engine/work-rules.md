@@ -35,7 +35,7 @@ amounts are `Decimal` values in EUR, validated on construction.
 | `SickLeaveEvent` | `amount`, `sick_days`, `waiting_period_days` | Sick pay the caller computed: an override of the engine, never payable; INPS and IRPEF, no TFR |
 | `FringeEvent` | `amount` | Fringe benefit (art. 51 c. 3 TUIR); exempt while the year total stays within the threshold, then the whole year total is taxable; see [Fringe benefits](#fringe-benefits) |
 | `WelfareEvent` | `amount` | Welfare benefit; exempt from INPS and IRPEF, no TFR |
-| `TravelAllowanceEvent` | `days`, `daily_amount`, `outside_municipality`, `in_tfr_base`, `abroad`, `meals_lodging` | Daily travel allowance (indennità di trasferta), paid in cash; outside the comune exempt from IRPEF and INPS up to 46.48 a day (77.47 abroad), reduced by one third or two thirds when meals or lodging are reimbursed or provided (art. 51 c. 5 TUIR, art. 12 c. 2 L. 153/1969); within the comune income in full; TFR as the CCNL sets, stated on the event; a `trasfertista` (art. 51 c. 6) is rejected |
+| `TravelAllowanceEvent` | `days`, `daily_amount`, `outside_municipality`, `in_tfr_base`, `meals_lodging` (all required), `abroad` | Daily travel allowance (indennità di trasferta), paid in cash; outside the comune exempt from IRPEF and INPS up to 46.48 a day (77.47 abroad), reduced by one third or two thirds when meals or lodging are reimbursed or provided (art. 51 c. 5 TUIR, art. 12 c. 2 L. 153/1969); within the comune income in full; TFR as the CCNL sets, stated on the event; a `trasfertista` (art. 51 c. 6) is rejected |
 | `StandbyEvent` | `kind` (`StandbyKind`: hours, worked day, rest day, holiday, week, week with holiday, week with holiday and rest day), `quantity`, `calls` | Standby pay (reperibilità) at the CCNL `work_rules.standby_rules` rates of the worker's level band in force on the event date, plus the CCNL fee per call with an intervention; income for IRPEF and INPS; TFR as the CCNL rules say (Federmeccanica: excluded). A CCNL or a date without rates rejects the event (`MissingRuleError`) |
 | `BonusEvent` | `amount`, `kind`, `agreement_signed_on` | One-off bonus; `kind` selects ordinary IRPEF, the PdR regime or the renewal regime |
 | `BilateralFundEvent` | `employee_amount`, `employer_amount` | Bilateral or health fund contribution; see [Pay components](pay-components.md#bilateral-funds-fondi-bilaterali) |
@@ -128,7 +128,9 @@ the calendar days of the employment in those 12 months; INPS pays the later
 days directly (c. 5), so their share is not on the payslip. The days past
 the limit are unpaid sickness (`fixed_term_limit`, deducted). Without
 `prior_worked_days` the limit is not applied and the run has a provisional
-`sickness_fixed_term_prior_work_unknown` issue.
+`sickness_fixed_term_prior_work_unknown` issue. The 30 days of c. 3 and
+the source are the `fixed_term` record of `sickness/indemnity/rates.json`,
+cited in the rule sources of a fixed-term run.
 
 A CCNL whose workers INPS indemnifies at other rates names the regime in
 `work_rules.sickness_rules.inps_regime`; its bands replace the ones above,

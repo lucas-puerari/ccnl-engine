@@ -12,7 +12,11 @@ from ccnl_engine.sector.raw.loaders import (
     _provenance_of,
     _read_json,
 )
-from ccnl_engine.sickness.indemnity.models import InpsSickPayRates, SickPayRegime
+from ccnl_engine.sickness.indemnity.models import (
+    FixedTermSickLimit,
+    InpsSickPayRates,
+    SickPayRegime,
+)
 
 _SICK_PAY_FILE = "sickness/indemnity/rates.json"
 
@@ -30,6 +34,15 @@ def load_sick_pay_rates() -> InpsSickPayRates:
         coverage rules and provenance.
     """
     return sick_pay_rates_from(_read_json(_SICK_PAY_FILE), _SICK_PAY_FILE)
+
+
+def _fixed_term(raw: dict[str, Any] | None) -> FixedTermSickLimit | None:
+    if raw is None:
+        return None
+    return FixedTermSickLimit.model_validate({
+        **{k: v for k, v in raw.items() if k != "description"},
+        "provenance": _provenance_of(raw),
+    })
 
 
 def sick_pay_rates_from(raw: dict[str, Any], filename: str) -> InpsSickPayRates:
@@ -64,6 +77,7 @@ def sick_pay_rates_from(raw: dict[str, Any], filename: str) -> InpsSickPayRates:
                 })
                 for regime in raw.get("regimes", ())
             ),
+            fixed_term=_fixed_term(raw.get("fixed_term")),
         )
     except KeyError as exc:
         msg = f"{filename}: required field {exc.args[0]!r} is missing"

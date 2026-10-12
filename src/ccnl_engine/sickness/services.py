@@ -230,6 +230,25 @@ def sickness_rules(ctx: RunContext) -> tuple[Rule, ...]:
             None if absence is None else absence.provenance,
         ),
         _inps_rule(ctx, None if sickness is None else sickness.inps_regime),
+        *_fixed_term_rule(ctx),
+    )
+
+
+def _fixed_term_rule(ctx: RunContext) -> tuple[Rule, ...]:
+    """Return the D.L. 463/1983 art. 5 rule of a fixed-term contract.
+
+    Returns:
+        ``inps/sick-pay-rates:fixed_term`` for a fixed-term contract, else
+        nothing.
+    """
+    if ctx.request.contract_type.type != "fixed_term":
+        return ()
+    limit = _inps_rates(ctx, None).fixed_term
+    return (
+        (
+            "inps/sick-pay-rates:fixed_term",
+            None if limit is None else limit.provenance,
+        ),
     )
 
 
