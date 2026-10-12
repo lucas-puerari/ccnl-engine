@@ -25,12 +25,15 @@ class WorkKind(StrEnum):
     ``NIGHT_HOLIDAY`` represents hours worked at night *on* a public holiday
     (lavoro straordinario festivo-notturno).  The caller must declare these
     hours separately in :attr:`OvertimeHours.night_holiday_hours`; they do
-    not overlap with ``night_hours`` or ``holiday_hours``.
+    not overlap with ``night_hours`` or ``holiday_hours``.  ``REST_DAY``
+    is overtime on the weekly rest day for the CCNLs that pay it apart from
+    the public holidays.
     """
 
     WEEKDAY = "weekday"
     NIGHT = "night"
     HOLIDAY = "holiday"
+    REST_DAY = "rest_day"
     NIGHT_HOLIDAY = "night_holiday"
     SUPPLEMENTARE = "supplementare"
 

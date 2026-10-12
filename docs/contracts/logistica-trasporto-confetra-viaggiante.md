@@ -38,9 +38,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, overtime, seniority, sickness |
+| **Limits of this contract** | base_salary, seniority, sickness |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -48,7 +48,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 52 verified / 30 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 53 verified / 30 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -67,6 +67,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-11 | claude-opus-5-5 (ai) | Inherited from logistica-trasporto-confetra, of which this file is a copy: the review covered that file's levels; here it stands for the shared rules (work rules, parameters) only. Every payable rule of the file (55 records) read again in the signed testo unico of the renewal of 6 December 2024 (Verbale di accordo 25 September 2025), published by Confetra; the URLs the file cited return 404. | corrected | Corrected: every one of the 36 salary periods. The base salary is the minimo plus the EPA of the tables of pp. 80-81 for non-travelling staff; the file held values about 88-110 EUR too high. The printed Totale of the 1 January 2027 table already includes the minimo increase of 1 June 2027; the Legacoop circular of 19 December 2024 (p. 2) confirms that January 2027 is an EPA-only step, so the period holds minimo plus EPA.<br>Corrected: the Quadri receive the indennità di funzione of 51.65 EUR a month (Art. 6 c. 4, p. 17), which the file lacked.<br>Corrected: the daily quota is 1/22 (Art. 61 c. 3, Sezione prima, p. 86), not 1/26, which applies to a six-day week of non-travelling staff and to Sezione seconda (Art. 73 c. 5).<br>Verified: 14 monthly payments (Artt. 18-19), the accrual of fractions over 15 days (Art. 18 c. 2, Art. 19 c. 2), seniority (Art. 17) and 22 days of leave (Art. 24). Pages are PDF page numbers, equal to the printed ones.<br>Assumed: sickness. Art. 63 A) c. 7-12 keeps the job 245 or 365 days and pays 3 months in full and 5 at half (up to 5 years of service) or 5 and 7, counted over 24 or 30 months; the cumulation model holds one window in whole years for every band, so the rule is not expressible and the file's 100% for 180 days is wrong.<br>Left derived: the overtime rates (30%, 50%, 65%, 75%, Art. 13 c. 6) match, but their start of 2023-05-01 is not stated; the level descriptions are paraphrases.<br>Not modelled: the EDR of Art. 60 c. 8 (10 EUR at level 3S, re-parametrised) for workers in service on 26 January 2011, which affects every entitlement, and level 6J and travelling staff. |
 | 2026-10-12 | claude-opus-5-5 (ai) | Inherited from logistica-trasporto-confetra, of which this file is a copy: the review covered that file's levels; here it stands for the shared rules (work rules, parameters) only. Sickness rule of art. 63 A), now expressible with a window and steps per seniority band; readiness of the file. | corrected | The sickness rule was assumed (100% for 180 days, not the CCNL's): it is now 90 days in full and 150 at half within 24 months, comporto 245 days, up to 5 years of seniority; 150 in full and 210 at half within 30 months, comporto 365 days, above.<br>With no assumed or missing payable rule left and the salary tables, additional months, divisor and seniority verified on 2026-10-11, the file is promoted to reviewed. |
 | 2026-10-12 | claude-opus-5-5 (ai) | Travelling staff: levels, salary tables of the four tranches, seniority, EDR 2011 and 2021, apprenticeship, overtime, against the signed testo unico (Verbale 25 September 2025). | corrected | This file was created from logistica-trasporto-confetra for the travelling staff, which that file left out: same rules and review history, with the travelling levels, seniority amounts, EDR and apprenticeship tracks.<br>51 of the 52 salary values equal minimo plus EPA and the printed Totale of pp. 81-82; F2 prints a Totale 0.06 above the sum at every tranche. The Legacoop circular of December 2024 confirms the F2 minimo (1.791,51 + 87,63), so the Totale is the misprint: F2 takes the sum and stays derived.<br>Saturday and Sunday overtime of the travelling staff is 30% (art. 13 c. 6); the engine has one holiday band, left as a limitation.<br>Tabella B (p. 75) reads by year: drivers A3-C3 over 5 years and D2-F2 over 4, 90% the first year, 95% the second, 100% after. |
+| 2026-10-12 | claude-opus-5-5 (ai) | Weekend overtime and working time of the travelling staff (artt. 11, 11 bis, 13). | corrected | Sunday overtime of the travelling staff is 30% (art. 13 c. 6), not the 65% of the holiday band: new band OT_RIPOSO on the rest_day overtime kind.<br>The 47-hour regime of art. 11 bis changes the overtime threshold, not the pay: the hourly divisor is 168 under every regime (art. 13 c. 8); the limitation travelling_working_time is closed. |
 
 ## Salary table
 
@@ -126,20 +127,6 @@ percentage: 1.00
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "logistica-trasporto-confetra-viaggiante/travelling_working_time · overtime · impact unknown · open"
-    WORKING TIME: drivers work 39 hours a week (art. 11 c. 1) over up to 6 days, averaged over 4 weeks; the drivers in discontinuous duties of art. 11 bis work 47 hours, and the riders I and L have their own rules (art. 11 sexies). The engine reads the overtime hours from the request and applies the 168-hour divisor of art. 13 c. 8 to every level.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Count as overtime only the hours beyond the regime of the worker (39, or 47 under art. 11 bis) when filling the request.
-
-!!! warning "logistica-trasporto-confetra-viaggiante/travelling_weekend_overtime · overtime · impact yes · open"
-    TRAVELLING WEEKEND OVERTIME: for the travelling staff the work on Saturday and Sunday beyond the ordinary hours is paid at 30% (art. 13 c. 6, p. 39), while the holiday band of the engine pays 65% (75% at night) for every overtime hour on a rest day or public holiday. Report the Sunday overtime of a driver as weekday overtime; the 65% stays for the overtime on the festività of artt. 60 and 71.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Report the Saturday and Sunday overtime of a travelling worker as weekday overtime (30%).
 
 !!! warning "logistica-trasporto-confetra-viaggiante/travelling_allowances · base_salary · impact yes · open"
     NOT MODELLED: the indennità di trasferta and the night allowance of art. 16 (0.93 euro per trasferta of 18-24 hours, TFR only), the 50% on the Sunday and holiday work within the ordinary hours (art. 12 c. 4), and the 4.5 days of paid leave of art. 11 c. 11. The night premium of art. 12 does not apply to the travelling staff.
@@ -227,6 +214,10 @@ Each simplification below is a model limitation of the registry. An open limitat
     SENIORITY INCREMENTS: biennial, at most 5 bienni, amounts of the travelling column of art. 17 c. 2 (p. 41).
     
     APPRENTICESHIP: Tabella A (p. 75): drivers G1 and H1 75%, 85%, then 100%; riders I and L 100% throughout. Tabella B: drivers A3, B3, C3 (5 years) and D2, E2, F2 (4 years) 90%, 95%, then 100%.
+    
+    WORKING TIME: drivers work 39 hours a week (art. 11 c. 1) over up to 6 days, averaged over 4 weeks; the discontinuous drivers of art. 11 bis (qualifiche 3 A-C and 2 D-F, after the verification procedure) work 47 hours ordinary. The regime moves only the threshold beyond which an hour is overtime: the monthly pay is the same and the hourly pay divides it by 168 under every regime (art. 13 c. 8), so the request declares the overtime hours beyond the worker's own regime.
+    
+    TRAVELLING WEEKEND OVERTIME: Saturday and Sunday overtime of the travelling staff is 30% (art. 13 c. 6, p. 39): Saturday as weekday overtime, Sunday as rest_day overtime (OT_RIPOSO). Overtime on the festività of artt. 60 and 71 is holiday overtime at 65%, 75% at night. Sunday night overtime: the text gives 30% for any hour of the weekend; report it as rest_day.
     
     CONGLOBATED MINIMUMS: base_salary values are the conglobated monthly minimum pay (minimum pay table + contingenza per Art. 61 note + EPA). Primary check: Art. 61 of the consolidated text September 2025 — 'From 1.1.2001 the indennità di contingenza has been conglobated into the minimum pay tables together with the EDR of EUR 10.33 per month'. fixed_allowances is empty for all levels.
     

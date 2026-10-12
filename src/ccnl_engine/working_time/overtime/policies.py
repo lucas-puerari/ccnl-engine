@@ -135,10 +135,23 @@ def _kind_bands(
 ) -> list[tuple[OvertimeBand, Decimal]]:
     """Return the unconditional percentage overtime bands of the event's kind.
 
+    Rest-day overtime takes the holiday bands when the CCNL has none of its
+    own.
+
     Returns:
         ``(band, supplement)`` for each band in force on the event date.
     """
     kind = WorkKind(event.kind.value)
+    found = _bands_of(bands, event, kind)
+    if not found and kind is WorkKind.REST_DAY:
+        # Most CCNLs pay rest-day overtime as straordinario festivo.
+        return _bands_of(bands, event, WorkKind.HOLIDAY)
+    return found
+
+
+def _bands_of(
+    bands: CCNLOvertimeBands, event: OvertimeEvent, kind: WorkKind
+) -> list[tuple[OvertimeBand, Decimal]]:
     found: list[tuple[OvertimeBand, Decimal]] = []
     for band in bands.bands:
         rate = _in_force(band, event)

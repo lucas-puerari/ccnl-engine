@@ -59,30 +59,12 @@
         "text": "APPRENTICESHIP: Tabella A (p. 75): drivers G1 and H1 75%, 85%, then 100%; riders I and L 100% throughout. Tabella B: drivers A3, B3, C3 (5 years) and D2, E2, F2 (4 years) 90%, 95%, then 100%."
       },
       {
-        "kind": "simplification",
-        "text": "WORKING TIME: drivers work 39 hours a week (art. 11 c. 1) over up to 6 days, averaged over 4 weeks; the drivers in discontinuous duties of art. 11 bis work 47 hours, and the riders I and L have their own rules (art. 11 sexies). The engine reads the overtime hours from the request and applies the 168-hour divisor of art. 13 c. 8 to every level.",
-        "capability": "overtime",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "travelling_working_time",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Count as overtime only the hours beyond the regime of the worker (39, or 47 under art. 11 bis) when filling the request."
-        }
+        "kind": "info",
+        "text": "WORKING TIME: drivers work 39 hours a week (art. 11 c. 1) over up to 6 days, averaged over 4 weeks; the discontinuous drivers of art. 11 bis (qualifiche 3 A-C and 2 D-F, after the verification procedure) work 47 hours ordinary. The regime moves only the threshold beyond which an hour is overtime: the monthly pay is the same and the hourly pay divides it by 168 under every regime (art. 13 c. 8), so the request declares the overtime hours beyond the worker's own regime."
       },
       {
-        "kind": "simplification",
-        "text": "TRAVELLING WEEKEND OVERTIME: for the travelling staff the work on Saturday and Sunday beyond the ordinary hours is paid at 30% (art. 13 c. 6, p. 39), while the holiday band of the engine pays 65% (75% at night) for every overtime hour on a rest day or public holiday. Report the Sunday overtime of a driver as weekday overtime; the 65% stays for the overtime on the festività of artt. 60 and 71.",
-        "capability": "overtime",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "travelling_weekend_overtime",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Report the Saturday and Sunday overtime of a travelling worker as weekday overtime (30%)."
-        }
+        "kind": "info",
+        "text": "TRAVELLING WEEKEND OVERTIME: Saturday and Sunday overtime of the travelling staff is 30% (art. 13 c. 6, p. 39): Saturday as weekday overtime, Sunday as rest_day overtime (OT_RIPOSO). Overtime on the festività of artt. 60 and 71 is holiday overtime at 65%, 75% at night. Sunday night overtime: the text gives 30% for any hour of the weekend; report it as rest_day."
       },
       {
         "kind": "simplification",
@@ -3375,7 +3357,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "1d41790bf945149e0896f1c3dbde6fedd63f4c1aacbb4ebd35ed266704a41811",
+    "source_hash": "04ce173e6a696b1ecff1fe38562d33eac5e7fef03c59faf461fcf0fb44488537",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3417,7 +3399,7 @@
               "verification_status": "unverified",
               "effective_from": "2023-05-01"
             },
-            "note": "Art. 13 c. 6 (pp. 38-39) applies to every worker: 30% weekday, 50% night, 65% festivo by day, 75% festivo by night; for the travelling staff 'la prestazione lavorativa effettuata di sabato e di domenica, oltre l'orario ordinario di lavoro, è remunerata con la maggiorazione del 30%' (note travelling_weekend_overtime)."
+            "note": "Art. 13 c. 6 (pp. 38-39) applies to every worker: 30% weekday, 50% night, 65% festivo by day, 75% festivo by night. The travelling staff's Saturday and Sunday overtime is 30% (OT_RIPOSO, kind rest_day)."
           }
         },
         {
@@ -3454,7 +3436,7 @@
               "verification_status": "unverified",
               "effective_from": "2023-05-01"
             },
-            "note": "Art. 13 c. 6 (pp. 38-39) applies to every worker: 30% weekday, 50% night, 65% festivo by day, 75% festivo by night; for the travelling staff 'la prestazione lavorativa effettuata di sabato e di domenica, oltre l'orario ordinario di lavoro, è remunerata con la maggiorazione del 30%' (note travelling_weekend_overtime)."
+            "note": "Art. 13 c. 6 (pp. 38-39) applies to every worker: 30% weekday, 50% night, 65% festivo by day, 75% festivo by night. The travelling staff's Saturday and Sunday overtime is 30% (OT_RIPOSO, kind rest_day)."
           }
         },
         {
@@ -3491,7 +3473,7 @@
               "verification_status": "unverified",
               "effective_from": "2023-05-01"
             },
-            "note": "Art. 13 c. 6 (pp. 38-39) applies to every worker: 30% weekday, 50% night, 65% festivo by day, 75% festivo by night; for the travelling staff 'la prestazione lavorativa effettuata di sabato e di domenica, oltre l'orario ordinario di lavoro, è remunerata con la maggiorazione del 30%' (note travelling_weekend_overtime)."
+            "note": "Art. 13 c. 6 (pp. 38-39) applies to every worker: 30% weekday, 50% night, 65% festivo by day, 75% festivo by night. The travelling staff's Saturday and Sunday overtime is 30% (OT_RIPOSO, kind rest_day)."
           }
         },
         {
@@ -3528,7 +3510,52 @@
               "verification_status": "unverified",
               "effective_from": "2023-05-01"
             },
-            "note": "Art. 13 c. 6 (pp. 38-39) applies to every worker: 30% weekday, 50% night, 65% festivo by day, 75% festivo by night; for the travelling staff 'la prestazione lavorativa effettuata di sabato e di domenica, oltre l'orario ordinario di lavoro, è remunerata con la maggiorazione del 30%' (note travelling_weekend_overtime)."
+            "note": "Art. 13 c. 6 (pp. 38-39) applies to every worker: 30% weekday, 50% night, 65% festivo by day, 75% festivo by night. The travelling staff's Saturday and Sunday overtime is 30% (OT_RIPOSO, kind rest_day)."
+          }
+        },
+        {
+          "code": "OT_RIPOSO",
+          "description": "Straordinario di sabato e domenica, personale viaggiante",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "value": 0.3,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "rest_day"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "39",
+              "section": "Art. 13 c. 6, personale viaggiante",
+              "quote": "per il personale viaggiante la prestazione lavorativa effettuata di sabato e di domenica, oltre l’orario ordinario di lavoro, è remunerata con la maggiorazione del 30%"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T12:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T12:00:00Z",
+              "review_id": "2026-10-12-ai-rest-day"
+            },
+            "transformation": "Sunday overtime is the rest_day kind at 30%; Saturday overtime is weekday overtime, already 30% (OT_DIURNO). The festività of artt. 60 and 71 keep OT_FESTIVO 65% and OT_NOTTURNO_FESTIVO 75%."
           }
         }
       ]
@@ -3730,6 +3757,24 @@
           "51 of the 52 salary values equal minimo plus EPA and the printed Totale of pp. 81-82; F2 prints a Totale 0.06 above the sum at every tranche. The Legacoop circular of December 2024 confirms the F2 minimo (1.791,51 + 87,63), so the Totale is the misprint: F2 takes the sum and stays derived.",
           "Saturday and Sunday overtime of the travelling staff is 30% (art. 13 c. 6); the engine has one holiday band, left as a limitation.",
           "Tabella B (p. 75) reads by year: drivers A3-C3 over 5 years and D2-F2 over 4, 90% the first year, 95% the second, 100% after."
+        ]
+      },
+      {
+        "id": "2026-10-12-ai-rest-day",
+        "date": "2026-10-12",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Weekend overtime and working time of the travelling staff (artt. 11, 11 bis, 13).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          }
+        ],
+        "findings": [
+          "Sunday overtime of the travelling staff is 30% (art. 13 c. 6), not the 65% of the holiday band: new band OT_RIPOSO on the rest_day overtime kind.",
+          "The 47-hour regime of art. 11 bis changes the overtime threshold, not the pay: the hourly divisor is 168 under every regime (art. 13 c. 8); the limitation travelling_working_time is closed."
         ]
       }
     ]

@@ -187,6 +187,9 @@ def _band_inputs(
         for band in bands
         if _stands_for(band, kind)
     }
+    if not inputs and kind is WorkKind.REST_DAY:
+        # Rest-day overtime falls back on the holiday bands, as it is paid.
+        return _band_inputs(ccnl, event, WorkKind.HOLIDAY)
     return inputs or {"bundle_band": NOT_IN_BUNDLE}
 
 
