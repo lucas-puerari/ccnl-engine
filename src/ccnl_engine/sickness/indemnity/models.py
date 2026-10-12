@@ -51,6 +51,9 @@ class SickPayCoverage(BaseModel):
         sectors: INPS tax sectors of the CCNL (``industria``...).
         categories: Worker categories (``operaio``, ``impiegato``...).
         contract_types: Contract types (``apprentice``...).
+        ccnls: CCNL ids, for a group INPS names by its contract (the
+            portieri of the CCNL Confedilizia are outside the cover whatever
+            their sector).
         covered: Whether INPS pays the indemnity to the matching workers.
         source: Normative source of the rule.
     """
@@ -60,10 +63,17 @@ class SickPayCoverage(BaseModel):
     sectors: frozenset[str] | None = Field(default=None, min_length=1)
     categories: frozenset[str] | None = Field(default=None, min_length=1)
     contract_types: frozenset[str] | None = Field(default=None, min_length=1)
+    ccnls: frozenset[str] | None = Field(default=None, min_length=1)
     covered: bool
     source: str = Field(min_length=1)
 
-    def matches(self, sector: str, category: str | None, contract_type: str) -> bool:
+    def matches(
+        self,
+        sector: str,
+        category: str | None,
+        contract_type: str,
+        ccnl: str | None = None,
+    ) -> bool:
         """Return whether the rule concerns the worker.
 
         An unknown category matches only a rule that does not restrict it.
@@ -78,6 +88,7 @@ class SickPayCoverage(BaseModel):
                 or (category is not None and category in self.categories)
             )
             and (self.contract_types is None or contract_type in self.contract_types)
+            and (self.ccnls is None or ccnl in self.ccnls)
         )
 
 
@@ -199,7 +210,11 @@ class InpsSickPayRates(BaseModel):
         )
 
     def covers(
-        self, sector: str, category: str | None, contract_type: str
+        self,
+        sector: str,
+        category: str | None,
+        contract_type: str,
+        ccnl: str | None = None,
     ) -> bool | None:
         """Return whether INPS pays the sickness indemnity to the worker.
 
@@ -208,7 +223,11 @@ class InpsSickPayRates(BaseModel):
             no rule matches.
         """
         rule = next(
-            (r for r in self.coverage if r.matches(sector, category, contract_type)),
+            (
+                r
+                for r in self.coverage
+                if r.matches(sector, category, contract_type, ccnl)
+            ),
             None,
         )
         return None if rule is None else rule.covered

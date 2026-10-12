@@ -38,11 +38,18 @@
     "published_at": "2026-10-04",
     "source": "D.L. 30 dicembre 1979 n. 663, artt. 1-2 (conv. L. 29 febbraio 1980 n. 33) for the waiting period and the indemnity; rates, 180-day annual maximum and cover as summarised by Assolombarda, Lavoro a tempo indeterminato - Tutele previdenziali (secondary, read 2026-10-04); not checked against an INPS circular",
     "verification_status": "unverified",
-    "source_hash": "707af81dc7062e2a0569c8a74ffc5e792e9f98dacb297a25d368ec607d6437d2",
+    "source_hash": "69021a769a5630aa591e3f00441c4148994f0420958d1a716674c75ba41dacdf",
     "source_type": "contracting_party"
   },
   "annual_max_days": 180,
   "coverage": [
+    {
+      "ccnls": [
+        "portieri-fabbricati-confedilizia"
+      ],
+      "covered": false,
+      "source": "INPS, Indennità di malattia/degenza ospedaliera e visite mediche di controllo (https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.indennit--di-malattia-e-visite-mediche-di-controllo.html, updated 21 September 2026, read 2026-10-12): 'Non spetta a (elenco non esaustivo): [...] portieri'"
+    },
     {
       "sectors": [
         "pubblica-amministrazione"
@@ -124,6 +131,16 @@
       ],
       "covered": false,
       "source": "INPS, Indennità di malattia/degenza ospedaliera e visite mediche di controllo (https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.indennit--di-malattia-e-visite-mediche-di-controllo.html, updated 21 September 2026, read 2026-10-12), Indennità di malattia per lavoratori dipendenti: 'Non spetta a (elenco non esaustivo): collaboratori familiari (colf e badanti); impiegati dell'industria; quadri (industria e artigianato); dirigenti; portieri; lavoratori autonomi'"
+    },
+    {
+      "sectors": [
+        "agricoltura"
+      ],
+      "categories": [
+        "operaio"
+      ],
+      "covered": true,
+      "source": "INPS, Indennità di malattia/degenza ospedaliera e visite mediche di controllo (https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.indennit--di-malattia-e-visite-mediche-di-controllo.html, updated 21 September 2026, read 2026-10-12): 'L'indennità spetta, in presenza di specifici requisiti, a: [...] lavoratori dell'agricoltura'; the fixed-term operai need 51 giornate of enrolment (D.L. 463/1983 art. 5 c. 6), not checked by the engine"
     }
   ],
   "regimes": [
