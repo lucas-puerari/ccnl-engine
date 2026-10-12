@@ -343,7 +343,7 @@
           "verification_status": "verified"
         },
         "transformation": "The 1.73% rate for taxable income up to 28,000 euro is stored as a whole-income rate; the detrazione for income from 28,001 to 30,000 euro starts above 28,000 euro.",
-        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=08&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
+        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=08&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026. The MEF page starts the deduction 'da 28.001' euro; it is read as an income above 28,000, the declared incomes being in whole euro: the two readings differ only between 28,000.01 and 28,000.99."
       }
     },
     "Liguria": {
@@ -818,7 +818,7 @@
           "verification_status": "verified"
         },
         "transformation": "Up to 28,000 euro the increases of 0.50% (first bracket) and 1.79% (second bracket) do not apply: 1.73 - 0.50 = 3.02 - 1.79 = 1.23%, stored as a whole-income rate of 1.23% up to 28,000 euro. The detrazione for income from 28,001 to 50,000 euro starts above 28,000 euro.",
-        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=19&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
+        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=19&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026. The MEF page starts the deduction 'da 28.001' euro; it is read as an income above 28,000, the declared incomes being in whole euro: the two readings differ only between 28,000.01 and 28,000.99."
       }
     },
     "Valle d'Aosta": {
@@ -896,7 +896,7 @@
     "published_at": "2026-09-27",
     "source": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/sceltaregione.htm",
     "verification_status": "unverified",
-    "source_hash": "dd4231f211c75dac281e6fc03c5c09f3826ccf60ad89ce957dd444b6b785f09b",
+    "source_hash": "8a0d4c0adb386c4fecc495434287aa4bd59881632262ab3d1cee73ac1864b712",
     "source_type": "official_primary"
   },
   "provenance": {

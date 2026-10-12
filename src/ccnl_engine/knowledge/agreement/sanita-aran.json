@@ -728,7 +728,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf",
     "verification_status": "unverified",
-    "source_hash": "57ed16d31ae462db742589b149968e525c33cc7784390241a148e7335693a9c1",
+    "source_hash": "9c9f64f8d94bae38dd7bc07b0e8106774df7d87097c92d6daeb6ebce76e758cd",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -981,7 +981,7 @@
           "verified_at": "2026-10-12T22:00:00Z",
           "review_id": "2026-10-12-ai"
         },
-        "transformation": "28 days on a five-day week (c. 2); 26 for a worker hired for the first time in a public administration, for the first three years of service (cc. 4-5)."
+        "transformation": "28 days on a five-day week (c. 2); 26 for a worker hired for the first time in a public administration, for the first three years of service (cc. 4-5). The CCNL counts the three years in any public administration ('a qualsiasi titolo prestato' / 'presso una qualsiasi pubblica amministrazione'); the tiers read the seniority with this employer, so a worker with earlier public service gets 26 (30) days when the text gives 28 (32): state the seniority with the earlier public service included."
       }
     },
     "sickness_rules": {

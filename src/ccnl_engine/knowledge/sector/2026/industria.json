@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "D.P.R. 917/1986 (TUIR) artt. 11 and 13; D.L. 3/2020 art. 1; L. 207/2024 art. 1 c. 6; L. 199/2025 art. 1; c.c. art. 2120",
     "verification_status": "unverified",
-    "source_hash": "014ecd65ab53916a77412b132a1b8224a38b69e43957c550d76984ba69126eb1",
+    "source_hash": "0fe88d94677441627c456eb5f40ea5a0e717343993b2562191490816fe827bdf",
     "source_type": "official_primary"
   },
   "irpef_brackets": [
@@ -319,36 +319,58 @@
     }
   },
   "fixed_term_additional_rate_provenance": {
-    "status": "derived",
+    "status": "verified",
     "location": {
       "source_document": {
         "document_id": "l-92-2012",
         "title": "L. 28 giugno 2012 n. 92",
         "kind": "legge",
-        "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2012-06-28;92~art2!vig=2026-10-07"
+        "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2012-06-28;92~art2!vig=2026-10-07",
+        "sha256": "948bbe2857065219111f67615820dfdb3fb018c0c609304482e9fd6b29b373b7"
       },
       "section": "art. 2 c. 28",
       "quote": "ai rapporti di lavoro subordinato non a tempo indeterminato si applica un contributo addizionale, a carico del datore di lavoro, pari all'1,4 per cento della retribuzione imponibile ai fini previdenziali. Il contributo addizionale è aumentato di 0,5 punti percentuali in occasione di ciascun rinnovo del contratto a tempo determinato, anche in regime di somministrazione. Le disposizioni del precedente periodo non si applicano ai contratti di lavoro domestico, nonché nelle ipotesi di cui al comma 29."
     },
     "transformation": "fixed_term_additional_rate: '1,4 per cento' = 0.014; fixed_term_renewal_increment: '0,5 punti percentuali' = 0.005, added once per renewal to the rate of the previous contract.",
-    "note": "INPS circ. 121/2019 par. 2.3 (https://servizi2.inps.it/CircolariZIP/Circolare%20numero%20121%20del%2006-09-2019.pdf, sha256 4523ce7c22a7f5d8c51cfe4de8968642d1279ab7fc7209fc9a0e31e3ddb49449): 'contratto originario: 1,4%; 1° rinnovo: 1.9% (1,4% + 0,5%); 2° rinnovo: 2.4% (1,9% + 0,5%); 3° rinnovo: 2,9% (2,4% + 0,5%)', and 'si considera primo rinnovo contrattuale quello sottoscritto a far tempo dal 14 luglio 2018'; par. 2.2: the increase 'non trova applicazione in caso di proroga'. Normattiva text of L. 92/2012 art. 2 read on 2026-10-07 (in force on that date, last amending act published 2026-03-23). Not checked by a named reviewer."
+    "note": "INPS circ. 121/2019 par. 2.3 (https://servizi2.inps.it/CircolariZIP/Circolare%20numero%20121%20del%2006-09-2019.pdf, sha256 4523ce7c22a7f5d8c51cfe4de8968642d1279ab7fc7209fc9a0e31e3ddb49449): 'contratto originario: 1,4%; 1° rinnovo: 1.9% (1,4% + 0,5%); 2° rinnovo: 2.4% (1,9% + 0,5%); 3° rinnovo: 2,9% (2,4% + 0,5%)', and 'si considera primo rinnovo contrattuale quello sottoscritto a far tempo dal 14 luglio 2018'; par. 2.2: the increase 'non trova applicazione in caso di proroga'. Normattiva text of L. 92/2012 art. 2 read on 2026-10-07 (in force on that date, last amending act published 2026-03-23). Not checked by a named reviewer. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026.",
+    "extraction": {
+      "method": "ai",
+      "model": "claude-opus-5-5",
+      "extraction_timestamp": "2026-10-12T20:00:00Z",
+      "effective_from": "2026-01-01",
+      "effective_until": "2026-12-31",
+      "verified_by": "claude-opus-5-5",
+      "verified_at": "2026-10-12T20:00:00Z",
+      "verification_status": "verified"
+    }
   },
   "complementary_pension": {
     "deduction_cap": "5300.00",
     "solidarity_rate": "0.10",
     "provenance": {
-      "status": "derived",
+      "status": "verified",
       "location": {
         "source_document": {
           "document_id": "dlgs-252-2005",
           "title": "D.Lgs. 252/2005, disciplina delle forme pensionistiche complementari",
           "kind": "legge",
-          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2005-12-05;252~art8"
+          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2005-12-05;252~art8!vig=2026-10-12",
+          "sha256": "112e419bb7faa5dd93fc6a614ee7194e99e0d442453c25bc500b93ace5ae0b9b"
         },
         "section": "art. 8 c. 4, last period (added by L. 199/2025 art. 1 c. 201 lett. a) n. 1); art. 16 c. 1",
         "quote": "A decorrere dal periodo d'imposta 2026, il limite di cui al primo periodo è innalzato a euro 5.300."
       },
-      "note": "deduction_cap: art. 8 c. 4 D.Lgs. 252/2005, via art. 10 c. 1 lett. e-bis and art. 51 c. 2 lett. h TUIR; the TFR paid to the fund does not count. solidarity_rate: art. 16 c. 1 D.Lgs. 252/2005, the 10% contribution of art. 9-bis D.L. 103/1991 (conv. L. 166/1991) on the employer contributions other than the TFR. Quote checked on 2026-09-27 against the Normattiva text of art. 8 in force from 1-1-2026 (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2005-12-05;252~art8), whitespace normalised and the '((' '))' amendment markers removed: identical; the sentence added by the Gazzetta Ufficiale text of L. 199/2025 art. 1 c. 201 lett. a) n. 1 (https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.codiceRedazionale=26A00149&art.dataPubblicazioneGazzetta=2026-01-21&art.flagTipoArticolo=0&art.idArticolo=1&art.idGruppo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.progressivo=3&art.versione=1) is the same except for the accent spelling (e' for è). Not checked by a named reviewer."
+      "note": "deduction_cap: art. 8 c. 4 D.Lgs. 252/2005, via art. 10 c. 1 lett. e-bis and art. 51 c. 2 lett. h TUIR; the TFR paid to the fund does not count. solidarity_rate: art. 16 c. 1 D.Lgs. 252/2005, the 10% contribution of art. 9-bis D.L. 103/1991 (conv. L. 166/1991) on the employer contributions other than the TFR. Quote checked on 2026-09-27 against the Normattiva text of art. 8 in force from 1-1-2026 (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2005-12-05;252~art8), whitespace normalised and the '((' '))' amendment markers removed: identical; the sentence added by the Gazzetta Ufficiale text of L. 199/2025 art. 1 c. 201 lett. a) n. 1 (https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.codiceRedazionale=26A00149&art.dataPubblicazioneGazzetta=2026-01-21&art.flagTipoArticolo=0&art.idArticolo=1&art.idGruppo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.progressivo=3&art.versione=1) is the same except for the accent spelling (e' for è). Not checked by a named reviewer. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026.",
+      "extraction": {
+        "method": "ai",
+        "model": "claude-opus-5-5",
+        "extraction_timestamp": "2026-10-12T20:00:00Z",
+        "effective_from": "2026-01-01",
+        "effective_until": "2026-12-31",
+        "verified_by": "claude-opus-5-5",
+        "verified_at": "2026-10-12T20:00:00Z",
+        "verification_status": "verified"
+      }
     }
   }
 }

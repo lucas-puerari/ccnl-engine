@@ -788,7 +788,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
     "verification_status": "unverified",
-    "source_hash": "b35938c26f37445754d1dd2ee5194a34860d977f47ad5aa504baf01ea3bcb7ef",
+    "source_hash": "a45b0390ba47ecc87149f02cd67bd837c52173e86311cb7c7a889a3263b47215",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -1041,7 +1041,7 @@
           "verified_at": "2026-10-12T22:00:00Z",
           "review_id": "2026-10-12-ai"
         },
-        "transformation": "28 days on a five-day week (c. 2); 26 for a worker hired for the first time in a public administration, for the first three years of service (cc. 4-5)."
+        "transformation": "28 days on a five-day week (c. 2); 26 for a worker hired for the first time in a public administration, for the first three years of service (cc. 4-5). The CCNL counts the three years in any public administration ('a qualsiasi titolo prestato' / 'presso una qualsiasi pubblica amministrazione'); the tiers read the seniority with this employer, so a worker with earlier public service gets 26 (30) days when the text gives 28 (32): state the seniority with the earlier public service included."
       }
     },
     "sickness_rules": {

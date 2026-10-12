@@ -1711,7 +1711,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1",
     "verification_status": "unverified",
-    "source_hash": "808515b8c3a93c068b88302e5dea4d68e9f940d0a13fe9d31b9ca50bb5862579",
+    "source_hash": "2e3f0ef0a7eb38abb83c6b0218abbf405e03e10f99c68daa018ec1a5c2701997",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1765,7 +1765,7 @@
           "verified_at": "2026-10-12T21:00:00Z",
           "review_id": "2026-10-12-ai"
         },
-        "transformation": "32 days (c. 2), 30 for the first 3 years of service (cc. 3-4: 'Dopo 3 anni di servizio, a qualsiasi titolo prestato')."
+        "transformation": "32 days (c. 2), 30 for the first 3 years of service (cc. 3-4: 'Dopo 3 anni di servizio, a qualsiasi titolo prestato'). The CCNL counts the three years in any public administration ('a qualsiasi titolo prestato' / 'presso una qualsiasi pubblica amministrazione'); the tiers read the seniority with this employer, so a worker with earlier public service gets 26 (30) days when the text gives 28 (32): state the seniority with the earlier public service included."
       }
     },
     "sickness_rules": {
