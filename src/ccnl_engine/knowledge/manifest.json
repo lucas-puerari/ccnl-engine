@@ -1260,6 +1260,23 @@
       "wheel_resource": "agreement/legno-lapidei-artigianato-confartigianato.json.gz"
     },
     {
+      "dataset_id": "agreement/logistica-trasporto-confetra-viaggiante",
+      "path": "agreement/logistica-trasporto-confetra-viaggiante.json",
+      "dataset": "agreement",
+      "year": null,
+      "scope": "logistica-trasporto-confetra-viaggiante",
+      "model": "CCNL",
+      "schema_version": "0.5",
+      "valid_from": "2025-01-01",
+      "valid_to": null,
+      "ruleset_id": "ccnl/logistica-trasporto-confetra-viaggiante",
+      "ruleset_version": "2026.2",
+      "source_hash": "ed96fe02461604f925ed79c639d5e5c3e423b2c2af01500981b25dd337de9521",
+      "source_type": "contracting_party",
+      "owner": "ccnl-engine maintainers",
+      "wheel_resource": "agreement/logistica-trasporto-confetra-viaggiante.json.gz"
+    },
+    {
       "dataset_id": "agreement/logistica-trasporto-confetra",
       "path": "agreement/logistica-trasporto-confetra.json",
       "dataset": "agreement",
@@ -1271,7 +1288,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/logistica-trasporto-confetra",
       "ruleset_version": "2026.2",
-      "source_hash": "ca38d75da36d45e6e3afd935bd7810adcdbf94c36d38f9eb2c94ca8d3976f289",
+      "source_hash": "7ba80c02a936b9d3d56734e9c574fc24073c59a597c4804f0cc22c4c4b968255",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/logistica-trasporto-confetra.json.gz"

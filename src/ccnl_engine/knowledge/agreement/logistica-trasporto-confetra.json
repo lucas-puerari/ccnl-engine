@@ -40,7 +40,7 @@
     "notes": [
       {
         "kind": "info",
-        "text": "STAFF: tables for non-travelling staff (clerical employees and sedentary workers). The travelling staff (personale viaggiante, every driver and rider: levels C3, B3, A3, F2, E2, D2, H1, G1, I, L of pp. 25-26, tables pp. 81-82) is not modelled: a driver needs a level of that staff, not of this table."
+        "text": "STAFF: tables for non-travelling staff (clerical employees and sedentary workers). The travelling staff (personale viaggiante, drivers and riders: letters C3 to L of pp. 25-26, tables pp. 81-82) is modelled in logistica-trasporto-confetra-viaggiante."
       },
       {
         "kind": "info",
@@ -2409,7 +2409,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "ca38d75da36d45e6e3afd935bd7810adcdbf94c36d38f9eb2c94ca8d3976f289",
+    "source_hash": "7ba80c02a936b9d3d56734e9c574fc24073c59a597c4804f0cc22c4c4b968255",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

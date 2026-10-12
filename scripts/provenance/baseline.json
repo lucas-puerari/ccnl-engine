@@ -1443,6 +1443,13 @@
       "legno-lapidei-artigianato-confartigianato/lapidei_tables_not_modelled",
       "legno-lapidei-artigianato-confartigianato/null_category_operaio_rate"
     ],
+    "agreement/logistica-trasporto-confetra-viaggiante.json": [
+      "logistica-trasporto-confetra-viaggiante/apprentice_seniority",
+      "logistica-trasporto-confetra-viaggiante/grave_illness",
+      "logistica-trasporto-confetra-viaggiante/travelling_allowances",
+      "logistica-trasporto-confetra-viaggiante/travelling_weekend_overtime",
+      "logistica-trasporto-confetra-viaggiante/travelling_working_time"
+    ],
     "agreement/logistica-trasporto-confetra.json": [
       "logistica-trasporto-confetra/apprentice_seniority",
       "logistica-trasporto-confetra/grave_illness"
