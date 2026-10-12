@@ -181,7 +181,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 | — | — | 2024-12-06 | [↗](https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf) |
 
 ??? note "Coverage notes"
-    STAFF: tables for non-travelling staff (clerical employees and sedentary workers). The travelling staff (personale viaggiante, every driver and rider: levels C3, B3, A3, F2, E2, D2, H1, G1, I, L of pp. 25-26, tables pp. 81-82) is not modelled: a driver needs a level of that staff, not of this table.
+    STAFF: tables for non-travelling staff (clerical employees and sedentary workers). The travelling staff (personale viaggiante, drivers and riders: letters C3 to L of pp. 25-26, tables pp. 81-82) is modelled in logistica-trasporto-confetra-viaggiante.
     
     CONGLOBATED MINIMUMS: base_salary values are the conglobated monthly minimum pay (minimum pay table + contingenza per Art. 61 note + EPA). Primary check: Art. 61 of the consolidated text September 2025 — 'From 1.1.2001 the indennità di contingenza has been conglobated into the minimum pay tables together with the EDR of EUR 10.33 per month'. fixed_allowances is empty for all levels.
     

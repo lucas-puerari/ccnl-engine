@@ -1,0 +1,3743 @@
+{
+  "schema_version": "0.5",
+  "meta": {
+    "ccnl_id": "logistica-trasporto-confetra-viaggiante",
+    "name": "CCNL Logistica, Trasporto Merci e Spedizione (Confetra) - Personale viaggiante",
+    "cnel_code": "I100",
+    "sector": "logistica",
+    "tax_sector": "industria",
+    "signatories": [
+      "AITI",
+      "ASSOESPRESSI",
+      "ASSOLOGISTICA",
+      "FEDESPEDI",
+      "FEDIT",
+      "FISI",
+      "TRASPORTOUNITO FIAP",
+      "ANITA",
+      "Confetra",
+      "FILT-CGIL",
+      "FIT-CISL",
+      "UILTrasporti"
+    ],
+    "agreement_date": "2024-12-06",
+    "sources": [
+      {
+        "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+        "type": "testo_unico",
+        "agreement_date": "2024-12-06"
+      }
+    ],
+    "extraction": {
+      "method": "ai",
+      "model": "claude-sonnet-4-6",
+      "timestamp": "2026-09-01T00:00:00",
+      "human_reviewed": false
+    },
+    "workers_estimate": "~430k"
+  },
+  "coverage": {
+    "notes": [
+      {
+        "kind": "info",
+        "text": "STAFF: travelling staff (personale viaggiante) of the CCNL Logistica: drivers of qualifiche 3 (C, B, A), 2 (F, E, D) and 1 (H, G) and riders of letters I (bicycle) and L (moped or motorcycle), art. 2 pp. 25-26, tables pp. 81-82. The non-travelling staff is logistica-trasporto-confetra. Every level is an operaio."
+      },
+      {
+        "kind": "info",
+        "text": "RIDER PARAMETERS: letter I starts at parametro 110 and moves to 116 after 6 months; letter L starts at 110, moves to 116 after 6 months and to 119 after further 9 months (art. 2, p. 26). Each parametro is a level (I110, I116, L110, L116, L119): the request names the parametro reached, the engine does not move the worker."
+      },
+      {
+        "kind": "info",
+        "text": "TRANCHES: four tranches: 1.1.2025, 1.1.2026, 1.1.2027 (EPA), 1.6.2027 (minimo and EPA), +260.00 at B3 in all (140 minimo, 120 EPA, p. 82). base_salary is minimo plus EPA."
+      },
+      {
+        "kind": "info",
+        "text": "SENIORITY INCREMENTS: biennial, at most 5 bienni, amounts of the travelling column of art. 17 c. 2 (p. 41)."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP: Tabella A (p. 75): drivers G1 and H1 75%, 85%, then 100%; riders I and L 100% throughout. Tabella B: drivers A3, B3, C3 (5 years) and D2, E2, F2 (4 years) 90%, 95%, then 100%."
+      },
+      {
+        "kind": "simplification",
+        "text": "WORKING TIME: drivers work 39 hours a week (art. 11 c. 1) over up to 6 days, averaged over 4 weeks; the drivers in discontinuous duties of art. 11 bis work 47 hours, and the riders I and L have their own rules (art. 11 sexies). The engine reads the overtime hours from the request and applies the 168-hour divisor of art. 13 c. 8 to every level.",
+        "capability": "overtime",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "travelling_working_time",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Count as overtime only the hours beyond the regime of the worker (39, or 47 under art. 11 bis) when filling the request."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "TRAVELLING WEEKEND OVERTIME: for the travelling staff the work on Saturday and Sunday beyond the ordinary hours is paid at 30% (art. 13 c. 6, p. 39), while the holiday band of the engine pays 65% (75% at night) for every overtime hour on a rest day or public holiday. Report the Sunday overtime of a driver as weekday overtime; the 65% stays for the overtime on the festività of artt. 60 and 71.",
+        "capability": "overtime",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "travelling_weekend_overtime",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Report the Saturday and Sunday overtime of a travelling worker as weekday overtime (30%)."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "NOT MODELLED: the indennità di trasferta and the night allowance of art. 16 (0.93 euro per trasferta of 18-24 hours, TFR only), the 50% on the Sunday and holiday work within the ordinary hours (art. 12 c. 4), and the 4.5 days of paid leave of art. 11 c. 11. The night premium of art. 12 does not apply to the travelling staff.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "travelling_allowances",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Pay the trasferta and the Sunday or holiday work within the ordinary hours outside the engine."
+        }
+      },
+      {
+        "kind": "info",
+        "text": "CONGLOBATED MINIMUMS: base_salary values are the conglobated monthly minimum pay (minimum pay table + contingenza per Art. 61 note + EPA). Primary check: Art. 61 of the consolidated text September 2025 — 'From 1.1.2001 the indennità di contingenza has been conglobated into the minimum pay tables together with the EDR of EUR 10.33 per month'. fixed_allowances is empty for all levels."
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY DIVISOR: 168 hours/month. Primary source: Art. 61 para. 3 consolidated text September 2025 — 'The hourly pay is obtained by dividing the monthly pay by 168'."
+      },
+      {
+        "kind": "info",
+        "text": "ICE: the Indennità di Copertura Economica (ICE) was a provisional element in force until 31.12.2024. It ceases from 1.1.2025 with the renewal taking effect. base_salary values do not include ICE (ceased element). The consolidated text cites net increases of EUR 230 at 3S compared to the previous pay including ICE — the difference from the algebraic sum of the tranches (EUR 290 from base without ICE) corresponds to the pre-existing ICE value for that level."
+      },
+      {
+        "kind": "info",
+        "text": "ADDITIONAL MONTHS: 14 (tredicesima Art. 18 + quattordicesima Art. 19 consolidated text September 2025)."
+      },
+      {
+        "kind": "info",
+        "text": "EPA: Elemento Professionale d'Area, a component introduced by the 6.12.2024 renewal. Included in base_salary values from 1.1.2025. Not shown separately because it forms an integral part of the minimum pay (it affects all contractual and statutory entitlements) — see Confetra circ283-2024."
+      },
+      {
+        "kind": "info",
+        "text": "EDR: the EDR of EUR 10.33/month (agreement 26 Jan 2001) is conglobated into the minimum pay tables (Art. 61 note). The EDR of art. 60 c. 8 (workers in service on 26 January 2011) and the EDR of the agreement of 18 May 2021 (13 mensilità, no effect on other institutes) are paid as allowances; the 2021 EDR may still enter the daily base of absences and sickness, which 'nessuna incidenza su alcun istituto contrattuale' excludes."
+      },
+      {
+        "kind": "info",
+        "text": "INPS: uses 2026-industria.json (TaxSector.INDUSTRIA). File already present — no changes to the tax file."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 63 cc. 8, 12: sickness from the 'malattie particolarmente gravi' of INPS circ. 95/2016 is paid in full for 18 months and left out of the comporto count; the request does not say whether an episode is one, so the ordinary treatment applies.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "grave_illness",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add a fact for a grave illness episode and pay it in full for 18 months outside the comporto."
+        }
+      }
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2025-01-01",
+          "valid_until": null,
+          "value": "168"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2025-01-01",
+          "valid_until": null,
+          "value": "14",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "41",
+              "section": "Art. 18 c.1 Tredicesima mensilita; Art. 19 c.1 (p.42) Quattordicesima mensilita",
+              "quote": "L'azienda corrisponderà una tredicesima mensilità pari alla retribuzione globale mensile del lavoratore del mese di novembre"
+            },
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it.",
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-10-11T22:00:00Z",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T22:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-11-ai"
+            }
+          }
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 5,
+      "amount_by_level": {
+        "C3": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "24.79"
+            }
+          ]
+        },
+        "B3": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "24.79"
+            }
+          ]
+        },
+        "A3": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "24.79"
+            }
+          ]
+        },
+        "F2": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "24.27"
+            }
+          ]
+        },
+        "E2": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "24.27"
+            }
+          ]
+        },
+        "D2": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "24.27"
+            }
+          ]
+        },
+        "H1": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "23.24"
+            }
+          ]
+        },
+        "G1": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "23.14"
+            }
+          ]
+        },
+        "I110": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "22.18"
+            }
+          ]
+        },
+        "I116": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "22.18"
+            }
+          ]
+        },
+        "L110": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "21.62"
+            }
+          ]
+        },
+        "L116": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "21.62"
+            }
+          ]
+        },
+        "L119": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "21.62"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-logistica-testo-unico-2025",
+            "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+            "kind": "associazione",
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "published_on": "2025-09-25",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          },
+          "page": "40-41",
+          "section": "Art. 17 c. 2, personale viaggiante",
+          "quote": "C3 24,79"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T20:00:00Z",
+          "verification_status": "verified",
+          "effective_from": "2025-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T20:00:00Z",
+          "review_id": "2026-10-13-ai-travelling"
+        },
+        "transformation": "Art. 17 c. 2, right column (personale viaggiante): C3, B3, A3 24.79; F2, E2, D2 24.27; H1 23.24; G1 23.14; I 22.18; L 21.62. Same biennial cadence and 5 bienni as the non-travelling staff (c. 1)."
+      }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-logistica-testo-unico-2025",
+            "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+            "kind": "associazione",
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "published_on": "2025-09-25",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          },
+          "page": "41",
+          "section": "Art. 18 c.2 (13th); Art. 19 c.2 p.42 (14th); Art. 24 c.2 p.45 (ferie)",
+          "quote": "Le frazioni di mese non superiori ai 15 giorni non saranno calcolate mentre saranno considerate come mese intero se superiori a 15 giorni."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T22:00:00Z",
+          "review_id": "2026-10-11-ai"
+        },
+        "note": "Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "I110",
+      "order": 1,
+      "description": "Lettera I, parametro 110: rider on a bicycle, first 6 months",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1606.56",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2025-01-01",
+                "quote": "I (+74,44) 1.596,56 10,00 1.606,56 110"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1639.65",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2026-01-01",
+                "quote": "I (+33,09) 1.629,65 10,00 1.639,65 110"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-06-01",
+            "value": "1649.65",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2027-01-01",
+                "quote": "I 1.629,65 (+10,00) 20,00 1.649,65 110"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "1667.91",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "82",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2027-06-01",
+                "quote": "I (+8,26) 1.637,91 (+10,00) 30,00 1.667,91 110"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_2021",
+          "description": "EDR ex accordo 18 maggio 2021, 13 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "8.27"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "82-83",
+              "section": "EDR ex accordo 18 maggio 2021, personale viaggiante, 1.1.2022",
+              "quote": "I 8,27"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Rows I and L follow the parametri 110, 116 and 119 in order."
+          }
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-logistica-testo-unico-2025",
+            "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+            "kind": "associazione",
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "published_on": "2025-09-25",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          },
+          "page": "25-26",
+          "section": "Art. 2 (classificazione), personale viaggiante",
+          "quote": "- Lettera I: Operai - Personale viaggiante che utilizza cicli - parametro 110 che trascorsi 6 mesi passerà al"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T20:00:00Z",
+          "effective_from": "2025-01-01",
+          "verification_status": "unverified"
+        }
+      }
+    },
+    {
+      "code": "L110",
+      "order": 2,
+      "description": "Lettera L, parametro 110: rider on a moped or motorcycle, first 6 months",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1613.23",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2025-01-01",
+                "quote": "L (+74,44) 1.596,56 16,67 1.613,23 110"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1646.32",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2026-01-01",
+                "quote": "L (+33,09) 1.629,65 16,67 1.646,32 110"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-06-01",
+            "value": "1662.99",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "82",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2027-01-01",
+                "quote": "L 1.629,65 (+16,67) 33,34 1.662,99 110"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "1687.91",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "82",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2027-06-01",
+                "quote": "L (+8,26) 1.637,91 (+16,67) 50,00 1.687,91 110"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_2021",
+          "description": "EDR ex accordo 18 maggio 2021, 13 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "8.27"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "82-83",
+              "section": "EDR ex accordo 18 maggio 2021, personale viaggiante, 1.1.2022",
+              "quote": "L 8,27"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Rows I and L follow the parametri 110, 116 and 119 in order."
+          }
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-logistica-testo-unico-2025",
+            "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+            "kind": "associazione",
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "published_on": "2025-09-25",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          },
+          "page": "25-26",
+          "section": "Art. 2 (classificazione), personale viaggiante",
+          "quote": "- Lettera L: Operai - Personale viaggiante che utilizza ciclomotori e motocicli - parametro 110 che trascorsi 6"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T20:00:00Z",
+          "effective_from": "2025-01-01",
+          "verification_status": "unverified"
+        }
+      }
+    },
+    {
+      "code": "I116",
+      "order": 3,
+      "description": "Lettera I, parametro 116: rider on a bicycle, after 6 months",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1693.63",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2025-01-01",
+                "quote": "I (+78,50) 1.683,63 10,00 1.693,63 116"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1728.52",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2026-01-01",
+                "quote": "I (+34,89) 1.718,52 10,00 1.728,52 116"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-06-01",
+            "value": "1738.52",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2027-01-01",
+                "quote": "I 1.718,52 (+10,00) 20,00 1.738,52 116"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "1757.24",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "82",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2027-06-01",
+                "quote": "I (+8,72) 1.727,24 (+10,00) 30,00 1.757,24 116"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_2021",
+          "description": "EDR ex accordo 18 maggio 2021, 13 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "8.72"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "82-83",
+              "section": "EDR ex accordo 18 maggio 2021, personale viaggiante, 1.1.2022",
+              "quote": "I 8,72"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Rows I and L follow the parametri 110, 116 and 119 in order."
+          }
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-logistica-testo-unico-2025",
+            "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+            "kind": "associazione",
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "published_on": "2025-09-25",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          },
+          "page": "25-26",
+          "section": "Art. 2 (classificazione), personale viaggiante",
+          "quote": "- Lettera I: Operai - Personale viaggiante che utilizza cicli - parametro 110 che trascorsi 6 mesi passerà al"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T20:00:00Z",
+          "effective_from": "2025-01-01",
+          "verification_status": "unverified"
+        }
+      }
+    },
+    {
+      "code": "L116",
+      "order": 4,
+      "description": "Lettera L, parametro 116: rider on a moped or motorcycle, after 6 months",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1700.30",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2025-01-01",
+                "quote": "L (+78,50) 1.683,63 16,67 1.700,30 116"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1735.19",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2026-01-01",
+                "quote": "L (+34,89) 1.718,52 16,67 1.735,19 116"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-06-01",
+            "value": "1751.86",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "82",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2027-01-01",
+                "quote": "L 1.718,52 (+16,67) 33,34 1.751,86 116"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "1777.23",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "82",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2027-06-01",
+                "quote": "L (+8,71) 1.727,23 (+16,67) 50,00 1.777,23 116"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_2021",
+          "description": "EDR ex accordo 18 maggio 2021, 13 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "8.72"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "82-83",
+              "section": "EDR ex accordo 18 maggio 2021, personale viaggiante, 1.1.2022",
+              "quote": "L 8,72"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Rows I and L follow the parametri 110, 116 and 119 in order."
+          }
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-logistica-testo-unico-2025",
+            "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+            "kind": "associazione",
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "published_on": "2025-09-25",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          },
+          "page": "25-26",
+          "section": "Art. 2 (classificazione), personale viaggiante",
+          "quote": "- Lettera L: Operai - Personale viaggiante che utilizza ciclomotori e motocicli - parametro 110 che trascorsi 6"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T20:00:00Z",
+          "effective_from": "2025-01-01",
+          "verification_status": "unverified"
+        }
+      }
+    },
+    {
+      "code": "L119",
+      "order": 5,
+      "description": "Lettera L, parametro 119: rider on a moped or motorcycle, after further 9 months",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1743.86",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2025-01-01",
+                "quote": "L (+80,53) 1.727,19 16,67 1.743,86 119"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1779.65",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2026-01-01",
+                "quote": "L (+35,79) 1.762,98 16,67 1.779,65 119"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-06-01",
+            "value": "1796.32",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "82",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2027-01-01",
+                "quote": "L 1.762,98 (+16,67) 33,34 1.796,32 119"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "1821.92",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "82",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2027-06-01",
+                "quote": "L (+8,94) 1.771,92 (+16,67) 50,00 1.821,92 119"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_2021",
+          "description": "EDR ex accordo 18 maggio 2021, 13 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "8.95"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "82-83",
+              "section": "EDR ex accordo 18 maggio 2021, personale viaggiante, 1.1.2022",
+              "quote": "L 8,95"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Rows I and L follow the parametri 110, 116 and 119 in order."
+          }
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-logistica-testo-unico-2025",
+            "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+            "kind": "associazione",
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "published_on": "2025-09-25",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          },
+          "page": "25-26",
+          "section": "Art. 2 (classificazione), personale viaggiante",
+          "quote": "- Lettera L: Operai - Personale viaggiante che utilizza ciclomotori e motocicli - parametro 110 che trascorsi 6"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T20:00:00Z",
+          "effective_from": "2025-01-01",
+          "verification_status": "unverified"
+        }
+      }
+    },
+    {
+      "code": "G1",
+      "order": 6,
+      "description": "Qualifica 1, lettera G (parametro 124): driver",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1838.78",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2025-01-01",
+                "quote": "G1 (+83,91) 1.812,11 26,67 1.838,78 124,0"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1876.08",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2026-01-01",
+                "quote": "G1 (+37,30) 1.849,41 26,67 1.876,08 124,0"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-06-01",
+            "value": "1902.75",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2027-01-01",
+                "quote": "G1 1.849,41 (+26,67) 53,34 1.902,75 124,0"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "1938.72",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "82",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2027-06-01",
+                "quote": "G1 (+9,31) 1.858,72 (+26,67) 80,00 1.938,72 124,0"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_2021",
+          "description": "EDR ex accordo 18 maggio 2021, 13 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "9.32"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "82-83",
+              "section": "EDR ex accordo 18 maggio 2021, personale viaggiante, 1.1.2022",
+              "quote": "G1 9,32"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Rows I and L follow the parametri 110, 116 and 119 in order."
+          }
+        },
+        {
+          "code": "EDR_2011",
+          "description": "EDR art. 60 c. 8, lavoratori in servizio al 26 gennaio 2011",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "9.26"
+              }
+            ]
+          },
+          "in_service_on": "2011-01-26",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "85",
+              "section": "Art. 60 c. 8 (Sezione prima), personale viaggiante",
+              "quote": "G1 9,26"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "effective_from": "2011-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "10 euro at B3 'da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The riders' letters I and L did not exist in 2011 and have no row."
+          }
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-logistica-testo-unico-2025",
+            "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+            "kind": "associazione",
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "published_on": "2025-09-25",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          },
+          "page": "25-26",
+          "section": "Art. 2 (classificazione), personale viaggiante",
+          "quote": "Appartiene alla presente aerea il personale viaggiante, conducenti in possesso delle patenti corrispondenti,"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T20:00:00Z",
+          "effective_from": "2025-01-01",
+          "verification_status": "unverified"
+        }
+      }
+    },
+    {
+      "code": "H1",
+      "order": 7,
+      "description": "Qualifica 1, lettera H (parametro 124.5): driver",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1847.75",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2025-01-01",
+                "quote": "H1 (+84,25) 1.819,42 28,33 1.847,75 124,5"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1885.20",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2026-01-01",
+                "quote": "H1 (+37,45) 1.856,87 28,33 1.885,20 124,5"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-06-01",
+            "value": "1913.53",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2027-01-01",
+                "quote": "H1 1.856,87 (+28,33) 56,66 1.913,53 124,5"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "1951.23",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "82",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2027-06-01",
+                "quote": "H1 (+9,36) 1.866,23 (+28,33) 85,00 1.951,23 124,5"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_2021",
+          "description": "EDR ex accordo 18 maggio 2021, 13 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "9.36"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "82-83",
+              "section": "EDR ex accordo 18 maggio 2021, personale viaggiante, 1.1.2022",
+              "quote": "H1 9,36"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Rows I and L follow the parametri 110, 116 and 119 in order."
+          }
+        },
+        {
+          "code": "EDR_2011",
+          "description": "EDR art. 60 c. 8, lavoratori in servizio al 26 gennaio 2011",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "9.26"
+              }
+            ]
+          },
+          "in_service_on": "2011-01-26",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "85",
+              "section": "Art. 60 c. 8 (Sezione prima), personale viaggiante",
+              "quote": "H1 9,26"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "effective_from": "2011-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "10 euro at B3 'da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The riders' letters I and L did not exist in 2011 and have no row."
+          }
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-logistica-testo-unico-2025",
+            "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+            "kind": "associazione",
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "published_on": "2025-09-25",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          },
+          "page": "25-26",
+          "section": "Art. 2 (classificazione), personale viaggiante",
+          "quote": "Appartiene alla presente aerea il personale viaggiante, conducenti in possesso delle patenti corrispondenti,"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T20:00:00Z",
+          "effective_from": "2025-01-01",
+          "verification_status": "unverified"
+        }
+      }
+    },
+    {
+      "code": "D2",
+      "order": 8,
+      "description": "Qualifica 2, lettera D (parametro 128.5): driver",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1907.03",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2025-01-01",
+                "quote": "D2 (+86,95) 1.877,03 30,00 1.907,03 128,5"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1945.68",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2026-01-01",
+                "quote": "D2 (+38,65) 1.915,68 30,00 1.945,68 128,5"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-06-01",
+            "value": "1975.68",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2027-01-01",
+                "quote": "D2 1.915,68 (+30,00) 60,00 1.975,68 128,5"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "2015.34",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "82",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2027-06-01",
+                "quote": "D2 (+9,66) 1.925,34 (+30,00) 90,00 2.015,34 128,5"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_2021",
+          "description": "EDR ex accordo 18 maggio 2021, 13 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "9.66"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "82-83",
+              "section": "EDR ex accordo 18 maggio 2021, personale viaggiante, 1.1.2022",
+              "quote": "D2 9,66"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Rows I and L follow the parametri 110, 116 and 119 in order."
+          }
+        },
+        {
+          "code": "EDR_2011",
+          "description": "EDR art. 60 c. 8, lavoratori in servizio al 26 gennaio 2011",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "9.75"
+              }
+            ]
+          },
+          "in_service_on": "2011-01-26",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "85",
+              "section": "Art. 60 c. 8 (Sezione prima), personale viaggiante",
+              "quote": "D2 9,75"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "effective_from": "2011-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "10 euro at B3 'da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The riders' letters I and L did not exist in 2011 and have no row."
+          }
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-logistica-testo-unico-2025",
+            "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+            "kind": "associazione",
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "published_on": "2025-09-25",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          },
+          "page": "25-26",
+          "section": "Art. 2 (classificazione), personale viaggiante",
+          "quote": "Appartiene alla presente aerea il personale viaggiante, conducenti in possesso delle patenti corrispondenti,"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T20:00:00Z",
+          "effective_from": "2025-01-01",
+          "verification_status": "unverified"
+        }
+      }
+    },
+    {
+      "code": "E2",
+      "order": 9,
+      "description": "Qualifica 2, lettera E (parametro 129): driver",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1908.11",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2025-01-01",
+                "quote": "E2 (+87,29) 1.878,11 30,00 1.908,11 129,0"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1946.91",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2026-01-01",
+                "quote": "E2 (+38,80) 1.916,91 30,00 1.946,91 129,0"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-06-01",
+            "value": "1976.91",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2027-01-01",
+                "quote": "E2 1.916,91 (+30,00) 60,00 1.976,91 129,0"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "2016.61",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "82",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2027-06-01",
+                "quote": "E2 (+9,70) 1.926,61 (+30,00) 90,00 2.016,61 129,0"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_2021",
+          "description": "EDR ex accordo 18 maggio 2021, 13 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "9.70"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "82-83",
+              "section": "EDR ex accordo 18 maggio 2021, personale viaggiante, 1.1.2022",
+              "quote": "E2 9,70"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Rows I and L follow the parametri 110, 116 and 119 in order."
+          }
+        },
+        {
+          "code": "EDR_2011",
+          "description": "EDR art. 60 c. 8, lavoratori in servizio al 26 gennaio 2011",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "9.75"
+              }
+            ]
+          },
+          "in_service_on": "2011-01-26",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "85",
+              "section": "Art. 60 c. 8 (Sezione prima), personale viaggiante",
+              "quote": "E2 9,75"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "effective_from": "2011-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "10 euro at B3 'da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The riders' letters I and L did not exist in 2011 and have no row."
+          }
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-logistica-testo-unico-2025",
+            "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+            "kind": "associazione",
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "published_on": "2025-09-25",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          },
+          "page": "25-26",
+          "section": "Art. 2 (classificazione), personale viaggiante",
+          "quote": "Appartiene alla presente aerea il personale viaggiante, conducenti in possesso delle patenti corrispondenti,"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T20:00:00Z",
+          "effective_from": "2025-01-01",
+          "verification_status": "unverified"
+        }
+      }
+    },
+    {
+      "code": "F2",
+      "order": 10,
+      "description": "Qualifica 2, lettera F (parametro 129.5): driver",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1909.14",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2025-01-01",
+                "quote": "F2 (+87,63) 1.879,14 30,00 1.909,20 129,5"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "unverified"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche.",
+              "note": "The printed Totale is 1909.20, 0.06 above minimo 1879.14 plus EPA 30.00; the same gap at every tranche of F2, while E2 and D2 add up. The value is the sum of the two components."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1948.09",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2026-01-01",
+                "quote": "F2 (+38,95) 1.918,09 30,00 1.948,15 129,5"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "unverified"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche.",
+              "note": "The printed Totale is 1948.15, 0.06 above minimo 1918.09 plus EPA 30.00; the same gap at every tranche of F2, while E2 and D2 add up. The value is the sum of the two components."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-06-01",
+            "value": "1978.09",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2027-01-01",
+                "quote": "F2 1.918,09 (+30,00) 60,00 1.978,15 129,5"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "unverified"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche.",
+              "note": "The printed Totale is 1978.15, 0.06 above minimo 1918.09 plus EPA 60.00; the same gap at every tranche of F2, while E2 and D2 add up. The value is the sum of the two components."
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "2017.83",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "82",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2027-06-01",
+                "quote": "F2 (+9,74) 1.927,83 (+30,00) 90,00 2.017,89 129,5"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verification_status": "unverified"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche.",
+              "note": "The printed Totale is 2017.89, 0.06 above minimo 1927.83 plus EPA 90.00; the same gap at every tranche of F2, while E2 and D2 add up. The value is the sum of the two components."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_2021",
+          "description": "EDR ex accordo 18 maggio 2021, 13 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "9.74"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "82-83",
+              "section": "EDR ex accordo 18 maggio 2021, personale viaggiante, 1.1.2022",
+              "quote": "F2 9,74"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Rows I and L follow the parametri 110, 116 and 119 in order."
+          }
+        },
+        {
+          "code": "EDR_2011",
+          "description": "EDR art. 60 c. 8, lavoratori in servizio al 26 gennaio 2011",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "9.75"
+              }
+            ]
+          },
+          "in_service_on": "2011-01-26",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "85",
+              "section": "Art. 60 c. 8 (Sezione prima), personale viaggiante",
+              "quote": "F2 9,75"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "effective_from": "2011-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "10 euro at B3 'da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The riders' letters I and L did not exist in 2011 and have no row."
+          }
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-logistica-testo-unico-2025",
+            "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+            "kind": "associazione",
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "published_on": "2025-09-25",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          },
+          "page": "25-26",
+          "section": "Art. 2 (classificazione), personale viaggiante",
+          "quote": "Appartiene alla presente aerea il personale viaggiante, conducenti in possesso delle patenti corrispondenti,"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T20:00:00Z",
+          "effective_from": "2025-01-01",
+          "verification_status": "unverified"
+        }
+      }
+    },
+    {
+      "code": "A3",
+      "order": 11,
+      "description": "Qualifica 3, lettera A (parametro 132.5): driver",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1962.62",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2025-01-01",
+                "quote": "A3 (+89,67) 1.929,29 33,33 1.962,62 132,5"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2002.47",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2026-01-01",
+                "quote": "A3 (+39,85) 1.969,14 33,33 2.002,47 132,5"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-06-01",
+            "value": "2035.80",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2027-01-01",
+                "quote": "A3 1.969,14 (+33,33) 66,66 2.035,80 132,5"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "2079.11",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "82",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2027-06-01",
+                "quote": "A3 (+9,97) 1.979,11 (+33,33) 100,00 2.079,11 132,5"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_2021",
+          "description": "EDR ex accordo 18 maggio 2021, 13 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "9.96"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "82-83",
+              "section": "EDR ex accordo 18 maggio 2021, personale viaggiante, 1.1.2022",
+              "quote": "A3 9,96"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Rows I and L follow the parametri 110, 116 and 119 in order."
+          }
+        },
+        {
+          "code": "EDR_2011",
+          "description": "EDR art. 60 c. 8, lavoratori in servizio al 26 gennaio 2011",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2011-01-26",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "85",
+              "section": "Art. 60 c. 8 (Sezione prima), personale viaggiante",
+              "quote": "A3 10,00"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "effective_from": "2011-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "10 euro at B3 'da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The riders' letters I and L did not exist in 2011 and have no row."
+          }
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-logistica-testo-unico-2025",
+            "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+            "kind": "associazione",
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "published_on": "2025-09-25",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          },
+          "page": "25-26",
+          "section": "Art. 2 (classificazione), personale viaggiante",
+          "quote": "Appartiene alla presente aerea il personale viaggiante, conducenti in possesso delle patenti corrispondenti,"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T20:00:00Z",
+          "effective_from": "2025-01-01",
+          "verification_status": "unverified"
+        }
+      }
+    },
+    {
+      "code": "B3",
+      "order": 12,
+      "description": "Qualifica 3, lettera B (parametro 133): driver",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1970.37",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2025-01-01",
+                "quote": "B3 (+90,00) 1.930,37 40,00 1.970,37 133,0"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2010.37",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2026-01-01",
+                "quote": "B3 (+40,00) 1.970,37 40,00 2.010,37 133,0"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-06-01",
+            "value": "2050.37",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2027-01-01",
+                "quote": "B3 1.970,37 (+40,00) 80,00 2.050,37 133,0"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "2100.37",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "82",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2027-06-01",
+                "quote": "B3 (+10,00) 1.980,37 (+40,00) 120,00 2.100,37 133,0"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_2021",
+          "description": "EDR ex accordo 18 maggio 2021, 13 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "82-83",
+              "section": "EDR ex accordo 18 maggio 2021, personale viaggiante, 1.1.2022",
+              "quote": "B3 10,00"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Rows I and L follow the parametri 110, 116 and 119 in order."
+          }
+        },
+        {
+          "code": "EDR_2011",
+          "description": "EDR art. 60 c. 8, lavoratori in servizio al 26 gennaio 2011",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2011-01-26",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "85",
+              "section": "Art. 60 c. 8 (Sezione prima), personale viaggiante",
+              "quote": "B3 10,00"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "effective_from": "2011-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "10 euro at B3 'da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The riders' letters I and L did not exist in 2011 and have no row."
+          }
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-logistica-testo-unico-2025",
+            "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+            "kind": "associazione",
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "published_on": "2025-09-25",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          },
+          "page": "25-26",
+          "section": "Art. 2 (classificazione), personale viaggiante",
+          "quote": "Appartiene alla presente aerea il personale viaggiante, conducenti in possesso delle patenti corrispondenti,"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T20:00:00Z",
+          "effective_from": "2025-01-01",
+          "verification_status": "unverified"
+        }
+      }
+    },
+    {
+      "code": "C3",
+      "order": 13,
+      "description": "Qualifica 3, lettera C (parametro 133.5): driver of the highest qualification",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1981.46",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2025-01-01",
+                "quote": "C3 (+90,34) 1.931,46 50,00 1.981,46 133,5"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2021.61",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2026-01-01",
+                "quote": "C3 (+40,15) 1.971,61 50,00 2.021,61 133,5"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-06-01",
+            "value": "2071.61",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "81",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2027-01-01",
+                "quote": "C3 1.971,61 (+50,00) 100,00 2.071,61 133,5"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "2131.65",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-logistica-testo-unico-2025",
+                  "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                  "published_on": "2025-09-25",
+                  "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+                },
+                "page": "82",
+                "section": "Minimi contrattuali mensili ed EPA, personale viaggiante, tranche 2027-06-01",
+                "quote": "C3 (+10,04) 1.981,65 (+50,00) 150,00 2.131,65 133,5"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T20:00:00Z",
+                "review_id": "2026-10-13-ai-travelling"
+              },
+              "transformation": "Minimo plus EPA of the table of the tranche."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_2021",
+          "description": "EDR ex accordo 18 maggio 2021, 13 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "10.04"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "82-83",
+              "section": "EDR ex accordo 18 maggio 2021, personale viaggiante, 1.1.2022",
+              "quote": "C3 10,04"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Rows I and L follow the parametri 110, 116 and 119 in order."
+          }
+        },
+        {
+          "code": "EDR_2011",
+          "description": "EDR art. 60 c. 8, lavoratori in servizio al 26 gennaio 2011",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2011-01-26",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "85",
+              "section": "Art. 60 c. 8 (Sezione prima), personale viaggiante",
+              "quote": "C3 10,00"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "effective_from": "2011-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "10 euro at B3 'da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The riders' letters I and L did not exist in 2011 and have no row."
+          }
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-logistica-testo-unico-2025",
+            "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+            "kind": "associazione",
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "published_on": "2025-09-25",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          },
+          "page": "25-26",
+          "section": "Art. 2 (classificazione), personale viaggiante",
+          "quote": "Appartiene alla presente aerea il personale viaggiante, conducenti in possesso delle patenti corrispondenti,"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T20:00:00Z",
+          "effective_from": "2025-01-01",
+          "verification_status": "unverified"
+        }
+      }
+    }
+  ],
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "drivers_g_h",
+      "destination_levels": [
+        "H1",
+        "G1"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "drivers_a_f",
+      "destination_levels": [
+        "C3",
+        "B3",
+        "A3",
+        "F2",
+        "E2",
+        "D2"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.95"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "riders",
+      "destination_levels": [
+        "I110",
+        "I116",
+        "L110",
+        "L116",
+        "L119"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
+    }
+  ],
+  "ruleset": {
+    "id": "ccnl/logistica-trasporto-confetra-viaggiante",
+    "version": "2026.2",
+    "effective_from": "2025-01-01",
+    "effective_until": null,
+    "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+    "verification_status": "unverified",
+    "source_hash": "ed96fe02461604f925ed79c639d5e5c3e423b2c2af01500981b25dd337de9521",
+    "published_at": "2026-09-07",
+    "source_type": "contracting_party"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-05-01",
+                "value": 0.3,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-trasporto-confetra-2023",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione (Confetra) 2023-2026",
+                "kind": "tabella_retributiva",
+                "url": "https://www.confetra.com/wp-content/uploads/2025/09/testo-unico-ccnl-logistica-2025.pdf"
+              },
+              "section": "Art. straordinario — maggiorazione 30%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2023-05-01"
+            },
+            "note": "Art. 13 c. 6 (pp. 38-39) applies to every worker: 30% weekday, 50% night, 65% festivo by day, 75% festivo by night; for the travelling staff 'la prestazione lavorativa effettuata di sabato e di domenica, oltre l'orario ordinario di lavoro, è remunerata con la maggiorazione del 30%' (note travelling_weekend_overtime)."
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario feriale notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-05-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-trasporto-confetra-2023",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione (Confetra) 2023-2026",
+                "kind": "tabella_retributiva",
+                "url": "https://www.confetra.com/wp-content/uploads/2025/09/testo-unico-ccnl-logistica-2025.pdf"
+              },
+              "section": "Art. straordinario — maggiorazione notturno 50%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2023-05-01"
+            },
+            "note": "Art. 13 c. 6 (pp. 38-39) applies to every worker: 30% weekday, 50% night, 65% festivo by day, 75% festivo by night; for the travelling staff 'la prestazione lavorativa effettuata di sabato e di domenica, oltre l'orario ordinario di lavoro, è remunerata con la maggiorazione del 30%' (note travelling_weekend_overtime)."
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-05-01",
+                "value": 0.65,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-trasporto-confetra-2023",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione (Confetra) 2023-2026",
+                "kind": "tabella_retributiva",
+                "url": "https://www.confetra.com/wp-content/uploads/2025/09/testo-unico-ccnl-logistica-2025.pdf"
+              },
+              "section": "Art. straordinario — maggiorazione festivo 65%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2023-05-01"
+            },
+            "note": "Art. 13 c. 6 (pp. 38-39) applies to every worker: 30% weekday, 50% night, 65% festivo by day, 75% festivo by night; for the travelling staff 'la prestazione lavorativa effettuata di sabato e di domenica, oltre l'orario ordinario di lavoro, è remunerata con la maggiorazione del 30%' (note travelling_weekend_overtime)."
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario notturno festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-05-01",
+                "value": 0.75,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night_holiday"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-trasporto-confetra-2023",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione (Confetra) 2023-2026",
+                "kind": "tabella_retributiva",
+                "url": "https://www.confetra.com/wp-content/uploads/2025/09/testo-unico-ccnl-logistica-2025.pdf"
+              },
+              "section": "Art. straordinario — notturno festivo 75%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2023-05-01"
+            },
+            "note": "Art. 13 c. 6 (pp. 38-39) applies to every worker: 30% weekday, 50% night, 65% festivo by day, 75% festivo by night; for the travelling staff 'la prestazione lavorativa effettuata di sabato e di domenica, oltre l'orario ordinario di lavoro, è remunerata con la maggiorazione del 30%' (note travelling_weekend_overtime)."
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_22",
+      "daily_hours": null,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-logistica-testo-unico-2025",
+            "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+            "kind": "associazione",
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "published_on": "2025-09-25",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          },
+          "page": "86",
+          "section": "Art. 61 c. 3 (Sezione prima)",
+          "quote": "La retribuzione giornaliera del personale si ottiene dividendo la retribuzione mensile per 22. Per il personale non viaggiante, in caso di orario di lavoro settimanale distribuito su 6 giorni"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2023-05-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T22:00:00Z",
+          "review_id": "2026-10-11-ai"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "22",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "22"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-logistica-testo-unico-2025",
+            "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+            "kind": "associazione",
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "published_on": "2025-09-25",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          },
+          "page": "45",
+          "section": "Art. 24 c.1, c.1 bis",
+          "quote": "ad un periodo di riposo retribuito pari a 22 giorni lavorativi indipendentemente dall'anzianità di servizio"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2023-05-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T22:00:00Z",
+          "review_id": "2026-10-11-ai"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "cumulation": {
+        "window_years": 2,
+        "reduced_integration_rate": "0",
+        "bands": [
+          {
+            "seniority_months_from": 0,
+            "full_pay_days": 90,
+            "comporto_days": 245,
+            "window_months": 24,
+            "steps": [
+              {
+                "day_from": 91,
+                "day_until": 241,
+                "integration_rate": "0.5"
+              }
+            ]
+          },
+          {
+            "seniority_months_from": 60,
+            "full_pay_days": 150,
+            "comporto_days": 365,
+            "window_months": 30,
+            "steps": [
+              {
+                "day_from": 151,
+                "day_until": 361,
+                "integration_rate": "0.5"
+              }
+            ]
+          }
+        ]
+      },
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-logistica-testo-unico-2025",
+            "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+            "kind": "associazione",
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "published_on": "2025-09-25",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          },
+          "page": "88",
+          "section": "Art. 63 A) c. 7, 8, 12 (Sezione prima)",
+          "quote": "corresponsione dell'intera retribuzione globale mensile per 3 mesi e della metà di essa per altri 5 mesi, se aventi anzianità di servizio non superiore a 5 anni"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T12:00:00Z",
+          "verification_status": "unverified",
+          "effective_from": "2023-05-01"
+        },
+        "transformation": "Up to 5 years of seniority: job kept 245 days (c. 7), counted over the 24 months before the day (c. 8), 3 months in full and 5 at half (c. 12): 90 days at 100%, days 91-240 at 50%, then unpaid. Above 5 years: 365 days over 30 months, 5 months in full and 7 at half: 150 days at 100%, days 151-360 at 50%. Months of 30 days; the band from 60 months reads 'superiore ai 5 anni' as five completed years and any further day. The CCNL treatment tops up the INPS indemnity to these shares of the retribuzione globale (c. 13).",
+        "note": "Not modelled: the 18 months in full of the 'malattie particolarmente gravi' of INPS circ. 95/2016 (c. 12, last period), which also leave the comporto count (c. 8): the request does not say whether an episode is one (limitation grave_illness)."
+      }
+    }
+  },
+  "verification": {
+    "confidence": "verified",
+    "readiness": "reviewed",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-09-18-human",
+        "date": "2026-09-18",
+        "reviewer": "maintainer",
+        "reviewer_kind": "human",
+        "scope": "Whole file. The values checked were not recorded.",
+        "outcome": "confirmed",
+        "findings": [
+          "The review recorded no list of the documents it read."
+        ]
+      },
+      {
+        "id": "2026-10-11-ai",
+        "date": "2026-10-11",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Every payable rule of the file (55 records) read again in the signed testo unico of the renewal of 6 December 2024 (Verbale di accordo 25 September 2025), published by Confetra; the URLs the file cited return 404.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          },
+          {
+            "url": "https://legacoop.coop/wp-content/uploads/2024/12/Circolare-rinnovo-ccnl-merci-e-logistica-6-dicembre-.pdf",
+            "sha256": "0b6b2976de111eccf3efa24a4ebf46126f6924cfa0ccabc6b9ba8b0a0c8509d6"
+          }
+        ],
+        "findings": [
+          "Corrected: every one of the 36 salary periods. The base salary is the minimo plus the EPA of the tables of pp. 80-81 for non-travelling staff; the file held values about 88-110 EUR too high. The printed Totale of the 1 January 2027 table already includes the minimo increase of 1 June 2027; the Legacoop circular of 19 December 2024 (p. 2) confirms that January 2027 is an EPA-only step, so the period holds minimo plus EPA.",
+          "Corrected: the Quadri receive the indennità di funzione of 51.65 EUR a month (Art. 6 c. 4, p. 17), which the file lacked.",
+          "Corrected: the daily quota is 1/22 (Art. 61 c. 3, Sezione prima, p. 86), not 1/26, which applies to a six-day week of non-travelling staff and to Sezione seconda (Art. 73 c. 5).",
+          "Verified: 14 monthly payments (Artt. 18-19), the accrual of fractions over 15 days (Art. 18 c. 2, Art. 19 c. 2), seniority (Art. 17) and 22 days of leave (Art. 24). Pages are PDF page numbers, equal to the printed ones.",
+          "Assumed: sickness. Art. 63 A) c. 7-12 keeps the job 245 or 365 days and pays 3 months in full and 5 at half (up to 5 years of service) or 5 and 7, counted over 24 or 30 months; the cumulation model holds one window in whole years for every band, so the rule is not expressible and the file's 100% for 180 days is wrong.",
+          "Left derived: the overtime rates (30%, 50%, 65%, 75%, Art. 13 c. 6) match, but their start of 2023-05-01 is not stated; the level descriptions are paraphrases.",
+          "Not modelled: the EDR of Art. 60 c. 8 (10 EUR at level 3S, re-parametrised) for workers in service on 26 January 2011, which affects every entitlement, and level 6J and travelling staff."
+        ]
+      },
+      {
+        "id": "2026-10-13-ai",
+        "date": "2026-10-13",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Sickness rule of art. 63 A), now expressible with a window and steps per seniority band; readiness of the file.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          }
+        ],
+        "findings": [
+          "The sickness rule was assumed (100% for 180 days, not the CCNL's): it is now 90 days in full and 150 at half within 24 months, comporto 245 days, up to 5 years of seniority; 150 in full and 210 at half within 30 months, comporto 365 days, above.",
+          "With no assumed or missing payable rule left and the salary tables, additional months, divisor and seniority verified on 2026-10-11, the file is promoted to reviewed."
+        ]
+      },
+      {
+        "id": "2026-10-13-ai-travelling",
+        "date": "2026-10-13",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Travelling staff: levels, salary tables of the four tranches, seniority, EDR 2011 and 2021, apprenticeship, overtime, against the signed testo unico (Verbale 25 September 2025).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          }
+        ],
+        "findings": [
+          "This file was created from logistica-trasporto-confetra for the travelling staff, which that file left out: same rules and review history, with the travelling levels, seniority amounts, EDR and apprenticeship tracks.",
+          "51 of the 52 salary values equal minimo plus EPA and the printed Totale of pp. 81-82; F2 prints a Totale 0.06 above the sum at every tranche, so F2 takes the sum and stays derived.",
+          "Saturday and Sunday overtime of the travelling staff is 30% (art. 13 c. 6); the engine has one holiday band, left as a limitation."
+        ]
+      }
+    ]
+  }
+}
