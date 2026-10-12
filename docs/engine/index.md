@@ -267,7 +267,10 @@ employment dates and never from the runs already closed:
   per day of a month served in part (Sanità 2022-2024 art. 60 c. 4; Area I
   dirigenza 2006 art. 63 c. 4); `service_days_365`, a 365th of the year for
   every day served (Funzioni Locali 2022 art. 75 c. 3). The decision then
-  records the `day_units` accrued beyond the whole months. The rule is stored only for
+  records the `day_units` accrued beyond the whole months. A threshold
+  can count working days instead of calendar days (`working_days`: Monday to
+  Saturday, Cooperative sociali art. 79, "superiore ai 15 giorni
+  lavorativi"). The rule is stored only for
   the 62 CCNLs whose signed text was read, with the article and the quote
   (status `assumed` until a named reviewer checks it). The other CCNLs use
   the engine default, at least 15 days, recorded as a `missing` rule: a run

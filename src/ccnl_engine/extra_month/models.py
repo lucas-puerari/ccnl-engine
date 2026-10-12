@@ -82,6 +82,8 @@ class MonthAccrualRule:
             day-based comparison only a month accruing every day (none for
             ``service_days_365``), the other days accruing as
             :meth:`day_units`.
+        working_days: The threshold counts the accruing days from Monday
+            to Saturday, not calendar days.
         source: Where the rule comes from, in words.
         rule: Identifier of the rule: ``<ruleset>:parameters.accrual_rule``
             for a CCNL rule, :data:`DEFAULT_ACCRUAL_RULE_ID` for the default.
@@ -96,6 +98,7 @@ class MonthAccrualRule:
     min_days: int | None = _DEFAULT_MIN_DAYS
     source: str = _DEFAULT_SOURCE
     comparison: AccrualComparison = AccrualComparison.AT_LEAST
+    working_days: bool = False
     rule: str = DEFAULT_ACCRUAL_RULE_ID
     provenance: RuleProvenance | None = None
 
@@ -158,6 +161,13 @@ class MonthAccrualRule:
         Returns:
             Qualifying months, from 0 to 12.
         """
+        if self.working_days:
+            spans = _month_spans(window, ended_on)
+            return sum(
+                1
+                for first, last, _ in spans
+                if self.counts(_working_days(first, last, non_accruing_days))
+            )
         months = _month_days(window, ended_on, non_accruing_days)
         return sum(1 for days, length in months if self.counts(days, length))
 

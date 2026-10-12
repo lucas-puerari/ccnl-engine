@@ -168,6 +168,7 @@ def month_accrual_rule(ccnl: CCNL) -> MonthAccrualRule:
         min_days=stored.min_days,
         source=f"CCNL {ccnl.meta.name}: {section or 'accrual clause'}",
         comparison=stored.comparison,
+        working_days=stored.working_days,
         rule=accrual_rule_id(ccnl),
         provenance=stored.provenance,
     )
