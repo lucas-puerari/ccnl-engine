@@ -401,6 +401,25 @@ def _logistica_long(*, serious: bool | None) -> PeriodInput:
     return replace(run, employment=employment)
 
 
+def _cinema_sickness(contributions: int | None) -> PeriodInput:
+    """Return a ten-day episode of a film production impiegato.
+
+    Returns:
+        The March run, the daily contributions given.
+    """
+    episode = SicknessEpisode(
+        "CIN", date(2026, 3, 2), date(2026, 3, 11), daily_contributions=contributions
+    )
+    run = _march(PeriodState.zero(), episode)
+    employment = replace(
+        _EMPLOYMENT,
+        ccnl_slug="cinema-audiovisivi-industria.json",
+        level_code="4",
+        category=WorkerCategory.IMPIEGATO,
+    )
+    return replace(run, employment=employment)
+
+
 def _fixed_term_sickness(worked: int | None) -> PeriodInput:
     """Return a five-day episode of a fixed-term worker, its days of work given.
 
@@ -441,6 +460,9 @@ def sickness_cases[C](
                 _long_sickness(None),
                 "hospital_stays",
             ),
+        ),
+        "SicknessEpisode.daily_contributions": (
+            case(_cinema_sickness(120), _cinema_sickness(None), "daily_contributions"),
         ),
         "SicknessEpisode.serious_illness": (
             case(

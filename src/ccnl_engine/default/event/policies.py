@@ -100,6 +100,13 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "an ordinary sickness absence; a periodic check is a fact of the "
         "certificate the event records"
     ),
+    "SicknessEpisode.daily_contributions": requires_fact(
+        "sickness",
+        "event.daily_contributions",
+        FactEnforcement.REPORTED,
+        "unknown contributions: an INPS regime with a requirement pays its "
+        "share, with a provisional sickness_daily_contributions_unknown issue",
+    ),
     "SicknessEpisode.serious_illness": requires_fact(
         "sickness",
         "event.serious_illness",

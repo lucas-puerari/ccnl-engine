@@ -38,7 +38,7 @@
     "published_at": "2026-10-04",
     "source": "D.L. 30 dicembre 1979 n. 663, artt. 1-2 (conv. L. 29 febbraio 1980 n. 33) for the waiting period and the indemnity; rates, 180-day annual maximum and cover as summarised by Assolombarda, Lavoro a tempo indeterminato - Tutele previdenziali (secondary, read 2026-10-04); not checked against an INPS circular",
     "verification_status": "unverified",
-    "source_hash": "3bf5aed677d389b7cb1c64e1c072615a4283c9ae494fb8a3bfad0ddd25d31f6f",
+    "source_hash": "2eade980d0901da0094e3e1f06e639fc1b53df2bcef23f1f0a2f945926812821",
     "source_type": "contracting_party"
   },
   "annual_max_days": 180,
@@ -70,6 +70,14 @@
       ],
       "covered": false,
       "source": "INPS, Indennità di malattia/degenza ospedaliera e visite mediche di controllo (https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.indennit--di-malattia-e-visite-mediche-di-controllo.html, updated 21 September 2026, read 2026-10-12), Indennità di malattia per lavoratori dipendenti: 'Non spetta a (elenco non esaustivo): collaboratori familiari (colf e badanti); impiegati dell'industria; quadri (industria e artigianato); dirigenti; portieri; lavoratori autonomi'"
+    },
+    {
+      "ccnls": [
+        "cinema-audiovisivi-industria",
+        "esercizi-cinematografici-anec"
+      ],
+      "covered": true,
+      "source": "INPS circ. 132/2021 par. 1 (copy https://www.informazionefiscale.it/IMG/pdf/circolare_numero_132_del_10-09-2021.pdf, sha256 50c9b803...): the subordinate workers insured with the Fondo pensioni lavoratori dello spettacolo have the sickness cover, operai and impiegati alike, except the self-employed musicians, the permanent staff of the Fondazioni lirico-sinfoniche and the staff of public bodies."
     },
     {
       "contract_types": [
@@ -203,8 +211,9 @@
           "quote": "al 60% della retribuzione media globale giornaliera fino al 20° giorno di durata della malattia"
         },
         "transformation": "From the fourth day ('L'indennità di malattia spetta dal quarto giorno successivo a quello di inizio dell'evento'), 60% up to the 20th day and 80% from the 21st to the 180th ('all'80% della retribuzione media globale giornaliera dal 21° giorno in poi fino al limite di 180 giorni').",
-        "note": "Copy of the INPS circular on a third-party site. Not modelled: the 40% of the days not worked of a worker on predetermined days, the requirement of 40 daily contributions from 1 January of the year before (art. 66 D.L. 73/2021), and the base of the last 40 contributed days (the engine applies the rates to the CCNL daily quota)."
-      }
+        "note": "Copy of the INPS circular on a third-party site. The requirement of 40 daily contributions from 1 January of the year before (art. 66 D.L. 73/2021, par. 2.1) is min_daily_contributions, read with SicknessEpisode.daily_contributions. Not modelled: the 40% of the days not worked of a worker on predetermined days; the base of the last 40 contributed days is the engine-wide simplification of the INPS share on the CCNL daily quota (inps_share_on_ccnl_quota)."
+      },
+      "min_daily_contributions": 40
     }
   ],
   "fixed_term": {

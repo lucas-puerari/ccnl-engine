@@ -87,17 +87,8 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "SICKNESS INPS REGIME: the employees insured with the Fondo pensioni lavoratori dello spettacolo have their own INPS sickness indemnity (INPS circ. 132/2021 par. 2.2-2.3): from the fourth day, 60% up to the 20th day and 80% from the 21st to the 180th, applied through the INPS regime 'spettacolo'. Not modelled: the requirement of 40 daily contributions from 1 January of the year before (art. 66 D.L. 73/2021) and the base of the average pay of the last 40 contributed days.",
-        "capability": "sickness",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "spettacolo_sickness_regime",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "State whether the worker has the 40 daily contributions and the average pay of the last 40 contributed days."
-        }
+        "kind": "info",
+        "text": "SICKNESS INPS REGIME: the employees insured with the Fondo pensioni lavoratori dello spettacolo, operai and impiegati alike, have their own INPS sickness indemnity (INPS circ. 132/2021): from the fourth day, 60% up to the 20th day and 80% from the 21st to the 180th (regime 'spettacolo'), with 40 daily contributions from 1 January of the year before (SicknessEpisode.daily_contributions)."
       }
     ]
   },
@@ -1872,7 +1863,7 @@
     "effective_until": null,
     "source": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "678c0322d882d4f4947324765b4c758c6af0c174d323e543df59697411a2f445",
+    "source_hash": "5ec2f4f70de44adc49f1c9202a048f00fdc960ef3ad0c5d15b5a14416a1c6e7b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

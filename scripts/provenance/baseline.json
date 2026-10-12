@@ -1291,8 +1291,7 @@
     ],
     "agreement/cinema-audiovisivi-industria.json": [
       "cinema-audiovisivi-industria/bilateral_funds_not_modelled",
-      "cinema-audiovisivi-industria/fpls_rates_approximated",
-      "cinema-audiovisivi-industria/spettacolo_sickness_regime"
+      "cinema-audiovisivi-industria/fpls_rates_approximated"
     ],
     "agreement/commercio-confcommercio.json": [
       "commercio-confcommercio/apprentice_seniority",
@@ -1378,8 +1377,7 @@
     ],
     "agreement/esercizi-cinematografici-anec.json": [
       "esercizi-cinematografici-anec/apprentice_seniority",
-      "esercizi-cinematografici-anec/fpls_rates_approximated",
-      "esercizi-cinematografici-anec/spettacolo_sickness_regime"
+      "esercizi-cinematografici-anec/fpls_rates_approximated"
     ],
     "agreement/farmacie-municipalizzate-assofarm.json": [
       "farmacie-municipalizzate-assofarm/apprentice_seniority",

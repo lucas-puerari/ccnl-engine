@@ -25,7 +25,7 @@ is the CCNL daily-divisor count (:func:`segment_units`).
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from datetime import date, timedelta
 from decimal import Decimal
 from enum import StrEnum
@@ -233,6 +233,10 @@ def _walk(
     offset = history.offset(episode)
     ccnl: DayTreatment = rules.treatment(episode, history)
     limit = _fixed_term_limit(episode, rules)
+    required = rules.inps.min_daily_contributions
+    stated = episode.daily_contributions
+    if required is not None and stated is not None and stated < required:
+        rules = replace(rules, inps_cover=False)
     first, last = span
     for step in range((last - first).days + 1):
         day = first + timedelta(days=step)
