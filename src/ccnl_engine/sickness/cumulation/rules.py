@@ -8,10 +8,11 @@ A CCNL with a :class:`~ccnl_engine.sickness.integration.models.SicknessCumulatio
   work between them, or, without ``reset_after_days``, the sick days within
   the window of the comporto (CCNL lavoro domestico Art. 27 c. 7).  The
   days of the chain up to the full-pay days of the seniority band are paid
-  in full, the later ones at the reduced rate;
-- the comporto: the sick days within the ``window_years`` that end on the
-  day.  A day past the comporto days of the band is outside what the CCNL
-  integrates;
+  in full, the later ones at the rate of the step of the band holding them
+  (PA comparti: 90%, then 50%), else at the reduced rate;
+- the comporto: the sick days within the ``window_years``, or the months
+  of the band's own window, that end on the day.  A day past the comporto
+  days of the band is outside what the CCNL integrates;
 - the short absences of the calendar year: from the ``from_event``-th
   absence of at most ``max_days`` days, its first days are paid at the
   reduced rate of its rank, unless the CCNL exempts it.
@@ -24,6 +25,7 @@ read the episodes the state records; what the days before
 
 from __future__ import annotations
 
+import calendar
 from dataclasses import dataclass, field
 from datetime import date, timedelta
 from decimal import Decimal
@@ -94,17 +96,18 @@ class ShortAbsence:
     unknown: bool = False
 
 
-def window_start(day: date, years: int) -> date:
-    """Return the first day of the ``years`` that end on ``day``.
+def window_start(day: date, years: int, months: int = 0) -> date:
+    """Return the first day of the ``years`` and ``months`` that end on ``day``.
 
     Returns:
-        The day after the same day ``years`` earlier (28 February for a
-        29 February that year lacks).
+        The day after the same day ``years`` and ``months`` earlier, or
+        after the last day of that month when it is shorter (28 February
+        for a 29 February that year lacks).
     """
-    try:
-        anchor = day.replace(year=day.year - years)
-    except ValueError:
-        anchor = date(day.year - years, 2, 28)
+    total = (day.year - years) * 12 + day.month - 1 - months
+    year, month = divmod(total, 12)
+    last = calendar.monthrange(year, month + 1)[1]
+    anchor = date(year, month + 1, min(day.day, last))
     return anchor + timedelta(days=1)
 
 
@@ -178,6 +181,18 @@ class CumulativeTreatment:
             return self.window_days(day)
         return self.chain[0] + (day - self.episode.started_on).days + 1
 
+    def window_first(self, day: date) -> date:
+        """Return the first day of the window of the band that ends on ``day``.
+
+        Returns:
+            The start of the band's own window in months when it has one,
+            else of the ``window_years`` of the cumulation.
+        """
+        months = self.band.window_months
+        if months is None:
+            return window_start(day, self.cumulation.window_years)
+        return window_start(day, 0, months)
+
     def window_days(self, day: date) -> int:
         """Return the sick days within the window that ends on ``day``.
 
@@ -185,7 +200,7 @@ class CumulativeTreatment:
             The recorded sick days from the start of the window, plus the
             episode up to ``day``.
         """
-        first = window_start(day, self.cumulation.window_years)
+        first = self.window_first(day)
         earlier = sum(_overlap(e, first, day) for e in self.earlier)
         return earlier + _overlap(self.episode, first, day)
 
@@ -230,11 +245,12 @@ class CumulativeTreatment:
         """
         del index
         band = self.band
-        rate = (
-            self.rules.full_pay_integration_rate
-            if self.chain_days(day) <= band.full_pay_days
-            else self.cumulation.reduced_integration_rate
-        )
+        count = self.chain_days(day)
+        if count <= band.full_pay_days:
+            rate = self.rules.full_pay_integration_rate
+        else:
+            step = band.step_rate(count)
+            rate = self.cumulation.reduced_integration_rate if step is None else step
         short = self.cumulation.short_absences
         first_days = 0 if short is None else short.first_days
         if (day - self.episode.started_on).days < first_days:

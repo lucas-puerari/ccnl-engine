@@ -194,6 +194,12 @@ counts the sickness of several episodes. Metalmeccanici Federmeccanica
   exempts the absence (`SicknessEpisode.short_absence_exempt`).
 - The band is the one of the seniority on the first day of the episode.
 
+A seniority band can count over its own window (`window_months`: Logistica
+Confetra art. 63, 24 months up to 5 years of seniority and 30 above) and pay
+the days past its full-pay days by steps (`steps`, by day of the count: the
+PA comparti pay 90% for 3 months and 50% for the next 6); a day in no step
+takes `reduced_integration_rate`.
+
 Without `reset_after_days` there is no chain: the full-pay days are counted
 over the same window as the comporto. The CCNL lavoro domestico (Art. 27
 cc. 4-7) pays the sickness within the comporto, 50% up to the third day
