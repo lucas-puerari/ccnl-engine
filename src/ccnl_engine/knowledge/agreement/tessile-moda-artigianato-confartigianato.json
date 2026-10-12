@@ -321,7 +321,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-12T18:00:00Z",
+          "extraction_timestamp": "2026-10-12T07:59:31Z",
           "verification_status": "unverified",
           "effective_from": "2017-12-14"
         },
@@ -1292,7 +1292,7 @@
     "effective_until": null,
     "source": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato",
     "verification_status": "unverified",
-    "source_hash": "209d58820d5a2625285993409e361e7c202307313f96d7fdfa8a8d603da814a6",
+    "source_hash": "e92acce7e545f663aad6b5be3ee15d1297f6c84e5eb2e5e88ea5a1a7ed4814a8",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

@@ -34,11 +34,11 @@
       "extraction": {
         "method": "ai",
         "model": "claude-opus-5-5",
-        "extraction_timestamp": "2026-10-12T20:00:00Z",
+        "extraction_timestamp": "2026-10-12T08:12:31Z",
         "effective_from": "2026-01-01",
         "effective_until": "2026-12-31",
         "verified_by": "claude-opus-5-5",
-        "verified_at": "2026-10-12T20:00:00Z",
+        "verified_at": "2026-10-12T08:12:31Z",
         "verification_status": "verified"
       }
     }
@@ -52,6 +52,6 @@
     "source": "L. 30 dicembre 2024 n. 207, art. 1 cc. 4-5",
     "source_type": "official_primary",
     "verification_status": "unverified",
-    "source_hash": "046af61cce0daae4df5f4a94202249cd0d8539cb92e58839cd10169a8341ebec"
+    "source_hash": "ae90b2bf39b1366b344802586b5da918f0d4147dd78e476cbc8e6f8fef7e6d20"
   }
 }

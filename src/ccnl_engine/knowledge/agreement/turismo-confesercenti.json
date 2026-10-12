@@ -240,7 +240,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-12T18:00:00Z",
+          "extraction_timestamp": "2026-10-12T07:59:31Z",
           "verification_status": "unverified",
           "effective_from": "2024-07-01"
         },
@@ -1712,7 +1712,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257",
     "verification_status": "unverified",
-    "source_hash": "1cb3e5dedbc1ed014763e1236ac05550b6330f4f1805ab12ea248269445d76ed",
+    "source_hash": "601a51ce26b97bacf4505b675247a29eae2f712135c2e0fc9a3bd6400a5907e2",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

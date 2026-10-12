@@ -188,7 +188,7 @@
               "verification_status": "verified",
               "effective_from": "2025-11-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-10-12T15:00:00Z",
+              "verified_at": "2026-10-12T07:00:31Z",
               "review_id": "2026-10-12-ai"
             }
           }
@@ -222,7 +222,7 @@
               "verification_status": "verified",
               "effective_from": "2025-11-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-10-12T15:00:00Z",
+              "verified_at": "2026-10-12T07:00:31Z",
               "review_id": "2026-10-12-ai"
             }
           }
@@ -327,7 +327,7 @@
           "verification_status": "verified",
           "effective_from": "2020-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T15:00:00Z",
+          "verified_at": "2026-10-12T07:00:31Z",
           "review_id": "2026-10-12-ai"
         },
         "transformation": "Each amount is 4% of the monthly minimum of its level, to the cent; the cadence is 24 months and the maximum 7 steps (c. 3: 'Il numero massimo degli scatti è fissato in 7')."
@@ -373,7 +373,7 @@
           "verification_status": "verified",
           "effective_from": "2021-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T15:00:00Z",
+          "verified_at": "2026-10-12T07:00:31Z",
           "review_id": "2026-10-12-ai"
         }
       }
@@ -398,11 +398,11 @@
         },
         "extraction": {
           "method": "ai",
-          "extraction_timestamp": "2026-10-12T15:00:00Z",
+          "extraction_timestamp": "2026-10-12T07:00:31Z",
           "effective_from": "2025-11-01",
           "model": "claude-opus-5-5",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T15:00:00Z",
+          "verified_at": "2026-10-12T07:00:31Z",
           "verification_status": "verified",
           "review_id": "2026-10-12-ai"
         }
@@ -441,7 +441,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T15:00:00Z",
+                "verified_at": "2026-10-12T07:00:31Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "Hourly rate of Tabella C x 40 x 52 / 12 (Art. 14 c. 1 lett. b and chiarimento a verbale 1), to the cent."
@@ -472,7 +472,7 @@
           "verification_status": "verified",
           "effective_from": "2020-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T15:00:00Z",
+          "verified_at": "2026-10-12T07:00:31Z",
           "review_id": "2026-10-12-ai"
         }
       }
@@ -508,7 +508,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T15:00:00Z",
+                "verified_at": "2026-10-12T07:00:31Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "Hourly rate of Tabella C x 40 x 52 / 12 (Art. 14 c. 1 lett. b and chiarimento a verbale 1), to the cent."
@@ -539,7 +539,7 @@
           "verification_status": "verified",
           "effective_from": "2020-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T15:00:00Z",
+          "verified_at": "2026-10-12T07:00:31Z",
           "review_id": "2026-10-12-ai"
         }
       }
@@ -575,7 +575,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T15:00:00Z",
+                "verified_at": "2026-10-12T07:00:31Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "Hourly rate of Tabella C x 40 x 52 / 12 (Art. 14 c. 1 lett. b and chiarimento a verbale 1), to the cent."
@@ -606,7 +606,7 @@
           "verification_status": "verified",
           "effective_from": "2020-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T15:00:00Z",
+          "verified_at": "2026-10-12T07:00:31Z",
           "review_id": "2026-10-12-ai"
         }
       }
@@ -642,7 +642,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T15:00:00Z",
+                "verified_at": "2026-10-12T07:00:31Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "Hourly rate of Tabella C x 40 x 52 / 12 (Art. 14 c. 1 lett. b and chiarimento a verbale 1), to the cent."
@@ -673,7 +673,7 @@
           "verification_status": "verified",
           "effective_from": "2020-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T15:00:00Z",
+          "verified_at": "2026-10-12T07:00:31Z",
           "review_id": "2026-10-12-ai"
         }
       }
@@ -709,7 +709,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T15:00:00Z",
+                "verified_at": "2026-10-12T07:00:31Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "Hourly rate of Tabella C x 40 x 52 / 12 (Art. 14 c. 1 lett. b and chiarimento a verbale 1), to the cent."
@@ -740,7 +740,7 @@
           "verification_status": "verified",
           "effective_from": "2020-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T15:00:00Z",
+          "verified_at": "2026-10-12T07:00:31Z",
           "review_id": "2026-10-12-ai"
         }
       }
@@ -776,7 +776,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T15:00:00Z",
+                "verified_at": "2026-10-12T07:00:31Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "Hourly rate of Tabella C x 40 x 52 / 12 (Art. 14 c. 1 lett. b and chiarimento a verbale 1), to the cent."
@@ -807,7 +807,7 @@
           "verification_status": "verified",
           "effective_from": "2020-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T15:00:00Z",
+          "verified_at": "2026-10-12T07:00:31Z",
           "review_id": "2026-10-12-ai"
         }
       }
@@ -843,7 +843,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T15:00:00Z",
+                "verified_at": "2026-10-12T07:00:31Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "Hourly rate of Tabella C x 40 x 52 / 12 (Art. 14 c. 1 lett. b and chiarimento a verbale 1), to the cent."
@@ -874,7 +874,7 @@
           "verification_status": "verified",
           "effective_from": "2020-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T15:00:00Z",
+          "verified_at": "2026-10-12T07:00:31Z",
           "review_id": "2026-10-12-ai"
         }
       }
@@ -910,7 +910,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T15:00:00Z",
+                "verified_at": "2026-10-12T07:00:31Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "Hourly rate of Tabella C x 40 x 52 / 12 (Art. 14 c. 1 lett. b and chiarimento a verbale 1), to the cent."
@@ -941,7 +941,7 @@
           "verification_status": "verified",
           "effective_from": "2020-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T15:00:00Z",
+          "verified_at": "2026-10-12T07:00:31Z",
           "review_id": "2026-10-12-ai"
         }
       }
@@ -955,7 +955,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "fe56c072d389678895adb9f2c1039347d4dd428a02a68561392dd582e1bd8649",
+    "source_hash": "4fb26cc4d70ed71c0865311a243568c5bfff4d1cdf294ede63f91b0d69b6a1f4",
     "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },
@@ -996,11 +996,11 @@
             },
             "extraction": {
               "method": "ai",
-              "extraction_timestamp": "2026-10-12T15:00:00Z",
+              "extraction_timestamp": "2026-10-12T07:00:31Z",
               "effective_from": "2025-11-01",
               "model": "claude-opus-5-5",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-10-12T15:00:00Z",
+              "verified_at": "2026-10-12T07:00:31Z",
               "verification_status": "verified",
               "review_id": "2026-10-12-ai"
             }
@@ -1039,11 +1039,11 @@
             },
             "extraction": {
               "method": "ai",
-              "extraction_timestamp": "2026-10-12T15:00:00Z",
+              "extraction_timestamp": "2026-10-12T07:00:31Z",
               "effective_from": "2025-11-01",
               "model": "claude-opus-5-5",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-10-12T15:00:00Z",
+              "verified_at": "2026-10-12T07:00:31Z",
               "verification_status": "verified",
               "review_id": "2026-10-12-ai"
             }
@@ -1083,11 +1083,11 @@
             },
             "extraction": {
               "method": "ai",
-              "extraction_timestamp": "2026-10-12T15:00:00Z",
+              "extraction_timestamp": "2026-10-12T07:00:31Z",
               "effective_from": "2025-11-01",
               "model": "claude-opus-5-5",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-10-12T15:00:00Z",
+              "verified_at": "2026-10-12T07:00:31Z",
               "verification_status": "verified",
               "review_id": "2026-10-12-ai"
             }
@@ -1126,11 +1126,11 @@
             },
             "extraction": {
               "method": "ai",
-              "extraction_timestamp": "2026-10-12T15:00:00Z",
+              "extraction_timestamp": "2026-10-12T07:00:31Z",
               "effective_from": "2025-11-01",
               "model": "claude-opus-5-5",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-10-12T15:00:00Z",
+              "verified_at": "2026-10-12T07:00:31Z",
               "verification_status": "verified",
               "review_id": "2026-10-12-ai"
             }
@@ -1162,7 +1162,7 @@
           "verification_status": "verified",
           "effective_from": "2025-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T15:00:00Z",
+          "verified_at": "2026-10-12T07:00:31Z",
           "review_id": "2026-10-12-ai"
         }
       }
@@ -1196,7 +1196,7 @@
           "verification_status": "verified",
           "effective_from": "2025-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T15:00:00Z",
+          "verified_at": "2026-10-12T07:00:31Z",
           "review_id": "2026-10-12-ai"
         }
       }
@@ -1244,7 +1244,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-12T12:00:00Z",
+          "extraction_timestamp": "2026-10-12T06:26:56Z",
           "verification_status": "unverified",
           "effective_from": "2025-11-01"
         },

@@ -346,7 +346,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-12T18:00:00Z",
+          "extraction_timestamp": "2026-10-12T07:59:31Z",
           "verification_status": "unverified",
           "effective_from": "2014-05-13"
         },
@@ -1437,7 +1437,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/ccnl/comunicazione-artigianato",
     "verification_status": "unverified",
-    "source_hash": "4e498a83cf9aec66105d1f58381cb235bc3af60e5c5996f6ab62ebf0f1e484f8",
+    "source_hash": "98a6655bd9836e237dad5bef0984ff95284248cf76c14f0fa9a009b22e2e648d",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

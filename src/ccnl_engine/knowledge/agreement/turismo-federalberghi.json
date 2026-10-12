@@ -264,7 +264,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-12T18:00:00Z",
+          "extraction_timestamp": "2026-10-12T07:59:31Z",
           "verification_status": "unverified",
           "effective_from": "2024-07-01"
         },
@@ -2055,7 +2055,7 @@
     "effective_until": null,
     "source": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
     "verification_status": "unverified",
-    "source_hash": "2289b2790e61e34d0dd6a00fe8b55b8f6170539051cb4673654daf8554f8e799",
+    "source_hash": "6e43e5664858bb5e76dc1f8cfb65811c5df8c7a3a487b4f5fb09eaee47014c68",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

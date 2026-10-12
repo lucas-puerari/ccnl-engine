@@ -48,9 +48,9 @@
       "extraction": {
         "method": "ai",
         "model": "claude-opus-5-5",
-        "extraction_timestamp": "2026-10-12T12:00:00Z",
+        "extraction_timestamp": "2026-10-12T06:26:56Z",
         "verified_by": "claude-opus-5-5",
-        "verified_at": "2026-10-12T12:00:00Z",
+        "verified_at": "2026-10-12T06:26:56Z",
         "verification_status": "verified",
         "effective_from": "2026-01-01",
         "effective_until": "2026-12-31"
@@ -65,7 +65,7 @@
     "published_at": "2026-09-07",
     "source": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2026/02/Circolare_15154/Allegati/16551_Circolare-numero-9-del-03-02-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "6e8b905fdecefcab5d4ed8aca3ce41383a18614b84ff1b1368c624d8dbd3e786",
+    "source_hash": "5483b56a2581b9656f8ca8a7648c0189b53fe63c59092066952c6bad89a0db85",
     "source_type": "official_primary"
   }
 }

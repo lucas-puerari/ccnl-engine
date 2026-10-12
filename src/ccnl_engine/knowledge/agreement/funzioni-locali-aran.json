@@ -65,11 +65,11 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T22:00:00Z",
+              "extraction_timestamp": "2026-10-12T08:35:16Z",
               "verification_status": "verified",
               "effective_from": "2022-11-16",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-10-12T22:00:00Z",
+              "verified_at": "2026-10-12T08:35:16Z",
               "review_id": "2026-10-12-ai"
             }
           }
@@ -100,11 +100,11 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T22:00:00Z",
+              "extraction_timestamp": "2026-10-12T08:35:16Z",
               "verification_status": "verified",
               "effective_from": "2026-02-23",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-10-12T22:00:00Z",
+              "verified_at": "2026-10-12T08:35:16Z",
               "review_id": "2026-10-12-ai"
             }
           }
@@ -133,7 +133,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-12T22:00:00Z",
+          "extraction_timestamp": "2026-10-12T08:35:16Z",
           "verification_status": "unverified",
           "effective_from": "2026-02-23"
         },
@@ -200,7 +200,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-12T18:00:00Z",
+          "extraction_timestamp": "2026-10-12T07:59:31Z",
           "verification_status": "unverified",
           "effective_from": "2022-11-16"
         },
@@ -238,11 +238,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:35:16Z",
                 "verification_status": "verified",
                 "effective_from": "2023-04-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T22:00:00Z",
+                "verified_at": "2026-10-12T08:35:16Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
@@ -270,11 +270,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:35:16Z",
                 "verification_status": "verified",
                 "effective_from": "2024-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T22:00:00Z",
+                "verified_at": "2026-10-12T08:35:16Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
@@ -302,11 +302,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:35:16Z",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T22:00:00Z",
+                "verified_at": "2026-10-12T08:35:16Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
@@ -408,11 +408,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:35:16Z",
                 "verification_status": "verified",
                 "effective_from": "2023-04-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T22:00:00Z",
+                "verified_at": "2026-10-12T08:35:16Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
@@ -440,11 +440,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:35:16Z",
                 "verification_status": "verified",
                 "effective_from": "2024-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T22:00:00Z",
+                "verified_at": "2026-10-12T08:35:16Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
@@ -472,11 +472,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:35:16Z",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T22:00:00Z",
+                "verified_at": "2026-10-12T08:35:16Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
@@ -578,11 +578,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:35:16Z",
                 "verification_status": "verified",
                 "effective_from": "2023-04-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T22:00:00Z",
+                "verified_at": "2026-10-12T08:35:16Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
@@ -610,11 +610,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:35:16Z",
                 "verification_status": "verified",
                 "effective_from": "2024-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T22:00:00Z",
+                "verified_at": "2026-10-12T08:35:16Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
@@ -642,11 +642,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:35:16Z",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T22:00:00Z",
+                "verified_at": "2026-10-12T08:35:16Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
@@ -748,11 +748,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:35:16Z",
                 "verification_status": "verified",
                 "effective_from": "2023-04-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T22:00:00Z",
+                "verified_at": "2026-10-12T08:35:16Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
@@ -780,11 +780,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:35:16Z",
                 "verification_status": "verified",
                 "effective_from": "2024-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T22:00:00Z",
+                "verified_at": "2026-10-12T08:35:16Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
@@ -812,11 +812,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:35:16Z",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T22:00:00Z",
+                "verified_at": "2026-10-12T08:35:16Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
@@ -959,7 +959,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
     "verification_status": "unverified",
-    "source_hash": "5f3883a31a81db59740bf36216ca9609136ce81e7e559c5246342781fe510ad8",
+    "source_hash": "e7802ebce26688c5518e0ab9014a4b3bf7a76a03460729850e1fe4a628fc2873",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -1002,11 +1002,11 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T22:00:00Z",
+              "extraction_timestamp": "2026-10-12T08:35:16Z",
               "verification_status": "verified",
               "effective_from": "2022-11-16",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-10-12T22:00:00Z",
+              "verified_at": "2026-10-12T08:35:16Z",
               "review_id": "2026-10-12-ai"
             }
           }
@@ -1046,11 +1046,11 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T22:00:00Z",
+              "extraction_timestamp": "2026-10-12T08:35:16Z",
               "verification_status": "verified",
               "effective_from": "2022-11-16",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-10-12T22:00:00Z",
+              "verified_at": "2026-10-12T08:35:16Z",
               "review_id": "2026-10-12-ai"
             }
           }
@@ -1090,11 +1090,11 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T22:00:00Z",
+              "extraction_timestamp": "2026-10-12T08:35:16Z",
               "verification_status": "verified",
               "effective_from": "2022-11-16",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-10-12T22:00:00Z",
+              "verified_at": "2026-10-12T08:35:16Z",
               "review_id": "2026-10-12-ai"
             }
           }
@@ -1134,11 +1134,11 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T22:00:00Z",
+              "extraction_timestamp": "2026-10-12T08:35:16Z",
               "verification_status": "verified",
               "effective_from": "2022-11-16",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-10-12T22:00:00Z",
+              "verified_at": "2026-10-12T08:35:16Z",
               "review_id": "2026-10-12-ai"
             }
           }
@@ -1166,11 +1166,11 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-12T22:00:00Z",
+          "extraction_timestamp": "2026-10-12T08:35:16Z",
           "verification_status": "verified",
           "effective_from": "2022-11-16",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T22:00:00Z",
+          "verified_at": "2026-10-12T08:35:16Z",
           "review_id": "2026-10-12-ai"
         }
       }
@@ -1205,11 +1205,11 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-12T22:00:00Z",
+          "extraction_timestamp": "2026-10-12T08:35:16Z",
           "verification_status": "verified",
           "effective_from": "2026-02-23",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T22:00:00Z",
+          "verified_at": "2026-10-12T08:35:16Z",
           "review_id": "2026-10-12-ai"
         },
         "transformation": "28 days on a five-day week (c. 2); 26 for a worker hired for the first time in a public administration, for the first three years of service (cc. 4-5). The CCNL counts the three years in any public administration ('a qualsiasi titolo prestato' / 'presso una qualsiasi pubblica amministrazione'); the tiers read the seniority with this employer, so a worker with earlier public service gets 26 (30) days when the text gives 28 (32): state the seniority with the earlier public service included."
@@ -1259,7 +1259,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-12T22:00:00Z",
+          "extraction_timestamp": "2026-10-12T08:35:16Z",
           "verification_status": "unverified",
           "effective_from": "2026-02-23"
         },

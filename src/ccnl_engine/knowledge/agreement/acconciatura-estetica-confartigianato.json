@@ -273,7 +273,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-12T18:00:00Z",
+          "extraction_timestamp": "2026-10-12T07:59:31Z",
           "verification_status": "unverified",
           "effective_from": "2011-10-03"
         },
@@ -1036,7 +1036,7 @@
     "effective_until": null,
     "source": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf",
     "verification_status": "unverified",
-    "source_hash": "9b9786cc80f10444eff2130a4ade03378a150d1586295a3558109b33f27b0f65",
+    "source_hash": "ce9e96d506976503c581e4dbcc2889892c0895492990a3ed65604f49b488eade",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

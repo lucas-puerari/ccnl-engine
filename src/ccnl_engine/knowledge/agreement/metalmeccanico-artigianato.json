@@ -275,7 +275,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-12T18:00:00Z",
+          "extraction_timestamp": "2026-10-12T07:59:31Z",
           "verification_status": "unverified",
           "effective_from": "2024-11-19"
         },
@@ -2258,7 +2258,7 @@
     "effective_until": null,
     "source": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "82b4a032ef920ca2c7717e91a4f5101f6dab7ba6ca8b09007d01e80431aaac8a",
+    "source_hash": "f79df0c142724cbcf4c0776f89ac08431e30687cefd5e14cc30eed4414f675b4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
