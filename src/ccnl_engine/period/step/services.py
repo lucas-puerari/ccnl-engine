@@ -228,5 +228,5 @@ def run_decisions(
         + (() if renewal is None else (renewal.decision,))
         + totals.decisions
         + amounts.decisions
-        + caller_supplied_decisions(request.events, contract.ccnl)
+        + caller_supplied_decisions(request.events, contract.ccnl, request.level_code)
     )

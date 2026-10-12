@@ -248,11 +248,15 @@ def _value(value: object) -> Decimal | str:
 
 
 def _decision(
-    index: int, event: WorkEvent, rule: _CallerRule, ccnl: CCNL
+    index: int,
+    event: WorkEvent,
+    rule: _CallerRule,
+    ccnl: CCNL,
+    level_code: str | None,
 ) -> CalculationDecision:
     fields, paid = rule.fields, event
     if isinstance(event, OvertimeEvent):
-        bands = CCNLOvertimeBands.of(ccnl, event.event_date.year)
+        bands = CCNLOvertimeBands.of(ccnl, event.event_date.year, level_code)
         paid = resolve_overtime_rate(event, bands).paid(event)
         fields = fields if event.multiplier is not None else ("hourly_rate",)
     return CalculationDecision(
@@ -272,19 +276,20 @@ def _decision(
 
 
 def caller_supplied_decisions(
-    events: tuple[WorkEvent, ...], ccnl: CCNL
+    events: tuple[WorkEvent, ...], ccnl: CCNL, level_code: str | None = None
 ) -> tuple[CalculationDecision, ...]:
     """Return one caller-supplied decision per event that carries one.
 
     Args:
         events: Events of the run, in request order.
         ccnl: The applicable CCNL, source of the comparable bundle values.
+        level_code: Level of the worker, selecting the bands of a level.
 
     Returns:
         The decisions in event order; a fringe benefit has none.
     """
     return tuple(
-        _decision(index, event, rule, ccnl)
+        _decision(index, event, rule, ccnl, level_code)
         for index, event in enumerate(events)
         if (rule := _RULES.get(type(event))) is not None
     )

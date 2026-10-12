@@ -52,6 +52,8 @@ class OvertimeBand(BaseModel):
     the band to hours *beyond* that threshold (straordinario, not supplementare).
     ``required_context_kinds``, when non-empty, makes this a conditional band:
     it is only applied when ALL listed kinds also have non-zero declared hours.
+    ``levels``, when non-empty, restricts the band to those level codes (a
+    PA table of hourly amounts by area); empty, it applies to every level.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -64,6 +66,7 @@ class OvertimeBand(BaseModel):
     hour_threshold_per_week: int | None = None
     applies_to_kinds: tuple[WorkKind, ...]
     required_context_kinds: tuple[WorkKind, ...] = ()
+    levels: tuple[str, ...] = ()
     provenance: RuleProvenance | None = None
 
 
@@ -106,7 +109,7 @@ class TimeSupplements(BaseModel):
             ValueError: If two or more unconditional bands share a WorkKind
                 with no threshold to distinguish them.
         """
-        unconditional: dict[str, list[str]] = {}
+        unconditional: dict[str, list[OvertimeBand]] = {}
         for band in bands:
             is_conditional = bool(band.required_context_kinds)
             has_threshold = (
@@ -115,8 +118,12 @@ class TimeSupplements(BaseModel):
             )
             if not is_conditional and not has_threshold:
                 for k in band.applies_to_kinds:
-                    unconditional.setdefault(k, []).append(band.code)
-        collisions = {k: codes for k, codes in unconditional.items() if len(codes) > 1}
+                    unconditional.setdefault(k, []).append(band)
+        collisions = {
+            k: [b.code for b in found]
+            for k, found in unconditional.items()
+            if _levels_overlap(found)
+        }
         if collisions:
             details = "; ".join(
                 f"{k}: {codes}" for k, codes in sorted(collisions.items())
@@ -127,6 +134,21 @@ class TimeSupplements(BaseModel):
             )
             raise ValueError(msg)
         return bands
+
+
+def _levels_overlap(bands: list[OvertimeBand]) -> bool:
+    """Return whether two of ``bands`` can apply to the same level.
+
+    Returns:
+        ``True`` when two bands share a level or one names no level.
+    """
+    for i, band in enumerate(bands):
+        for other in bands[i + 1 :]:
+            if not band.levels or not other.levels:
+                return True
+            if set(band.levels) & set(other.levels):
+                return True
+    return False
 
 
 class LeaveEntitlementTier(BaseModel):

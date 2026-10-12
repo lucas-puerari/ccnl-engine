@@ -1691,15 +1691,20 @@
       },
       {
         "kind": "simplification",
-        "text": "Overtime of the scuola staff is paid at fixed hourly amounts by profile (CCNL 2019-2021 Tabelle E1.6 docenti and E1.7 ATA, e.g. 'OPERATORI/COLLABORATORI € 13,75 € 15,95 € 18,70'), not as a percentage of the hourly pay: no overtime band is modelled, so an overtime event needs its multiplier.",
+        "text": "The ore aggiuntive of the docenti are paid at fixed hourly amounts by activity (CCNL 2019-2021 Tabella E1.6: corsi di recupero 55,00, insegnamento 38,50, non di insegnamento 19,25), not by time of day: no overtime band is modelled for the docenti levels, so their overtime event needs the amount as hourly_rate with multiplier 1. The ATA areas are paid by the bands of Tabella E1.7.",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
           "variant": "fixed_hourly_overtime",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "outside_input",
+            "levels": [
+              "DOCENTE_INFANZIA_PRIMARIA",
+              "DOCENTE_DIPLOMATO_SECONDARIA",
+              "DOCENTE_SECONDARIA"
+            ]
           },
-          "remediation": "Model the hourly amounts of Tabelle E1.6 and E1.7 per profile."
+          "remediation": "Pass the amount of Tabella E1.6 of the activity as hourly_rate with multiplier 1."
         }
       }
     ]
@@ -1711,14 +1716,444 @@
     "effective_until": "2024-12-31",
     "source": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1",
     "verification_status": "unverified",
-    "source_hash": "370ba863ddbf14ab23d381303bdf6ed206233a24139740767059a8aaff06167e",
+    "source_hash": "1cf7ae82a32c68b12c1585c27430281e923d5f335a77a4a0394b754f9cddd03f",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
-      "overtime_bands": []
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO_OPER",
+          "description": "Ore aggiuntive diurne, area Operatori/Collaboratori (Tabella E1.7)",
+          "kind": "indennita_per_hour",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "13.75"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "levels": [
+            "COLLABORATORE_SCOLASTICO",
+            "OPERATORE"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "257",
+              "section": "Tabella E1.7 - SCUOLA (art. 80 c. 2), dal 1 gennaio 2024",
+              "quote": "OPERATORI/COLLABORATORI € 13,75 € 15,95 € 18,70"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T12:49:02Z",
+              "verification_status": "verified",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T12:49:02Z",
+              "review_id": "2026-10-12-ai-overtime"
+            },
+            "transformation": "Compenso orario lordo of the ATA 'prestazioni aggiuntive all'orario d'obbligo' by area: diurne, notturne o festive, notturne e festive; paid per hour in place of the hourly rate. Not amended by the CCNL 2022-2024 (art. 23, Tabella B4 is università) nor by the CCNL 2025-2027 (art. 11, Tabella B4 università)."
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO_O_OPER",
+          "description": "Ore aggiuntive notturne o festive, area Operatori/Collaboratori (Tabella E1.7)",
+          "kind": "indennita_per_hour",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "15.95"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
+          "levels": [
+            "COLLABORATORE_SCOLASTICO",
+            "OPERATORE"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "257",
+              "section": "Tabella E1.7 - SCUOLA (art. 80 c. 2), dal 1 gennaio 2024",
+              "quote": "OPERATORI/COLLABORATORI € 13,75 € 15,95 € 18,70"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T12:49:02Z",
+              "verification_status": "verified",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T12:49:02Z",
+              "review_id": "2026-10-12-ai-overtime"
+            },
+            "transformation": "Compenso orario lordo of the ATA 'prestazioni aggiuntive all'orario d'obbligo' by area: diurne, notturne o festive, notturne e festive; paid per hour in place of the hourly rate. Not amended by the CCNL 2022-2024 (art. 23, Tabella B4 is università) nor by the CCNL 2025-2027 (art. 11, Tabella B4 università)."
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO_OPER",
+          "description": "Ore aggiuntive notturne e festive, area Operatori/Collaboratori (Tabella E1.7)",
+          "kind": "indennita_per_hour",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "18.70"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night_holiday"
+          ],
+          "levels": [
+            "COLLABORATORE_SCOLASTICO",
+            "OPERATORE"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "257",
+              "section": "Tabella E1.7 - SCUOLA (art. 80 c. 2), dal 1 gennaio 2024",
+              "quote": "OPERATORI/COLLABORATORI € 13,75 € 15,95 € 18,70"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T12:49:02Z",
+              "verification_status": "verified",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T12:49:02Z",
+              "review_id": "2026-10-12-ai-overtime"
+            },
+            "transformation": "Compenso orario lordo of the ATA 'prestazioni aggiuntive all'orario d'obbligo' by area: diurne, notturne o festive, notturne e festive; paid per hour in place of the hourly rate. Not amended by the CCNL 2022-2024 (art. 23, Tabella B4 is università) nor by the CCNL 2025-2027 (art. 11, Tabella B4 università)."
+          }
+        },
+        {
+          "code": "OT_DIURNO_ASSI",
+          "description": "Ore aggiuntive diurne, area Assistenti (Tabella E1.7)",
+          "kind": "indennita_per_hour",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "15.95"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "levels": [
+            "ASSISTENTE"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "257",
+              "section": "Tabella E1.7 - SCUOLA (art. 80 c. 2), dal 1 gennaio 2024",
+              "quote": "ASSISTENTI € 15,95 € 18,15 € 20,90"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T12:49:02Z",
+              "verification_status": "verified",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T12:49:02Z",
+              "review_id": "2026-10-12-ai-overtime"
+            },
+            "transformation": "Compenso orario lordo of the ATA 'prestazioni aggiuntive all'orario d'obbligo' by area: diurne, notturne o festive, notturne e festive; paid per hour in place of the hourly rate. Not amended by the CCNL 2022-2024 (art. 23, Tabella B4 is università) nor by the CCNL 2025-2027 (art. 11, Tabella B4 università)."
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO_O_ASSI",
+          "description": "Ore aggiuntive notturne o festive, area Assistenti (Tabella E1.7)",
+          "kind": "indennita_per_hour",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "18.15"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
+          "levels": [
+            "ASSISTENTE"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "257",
+              "section": "Tabella E1.7 - SCUOLA (art. 80 c. 2), dal 1 gennaio 2024",
+              "quote": "ASSISTENTI € 15,95 € 18,15 € 20,90"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T12:49:02Z",
+              "verification_status": "verified",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T12:49:02Z",
+              "review_id": "2026-10-12-ai-overtime"
+            },
+            "transformation": "Compenso orario lordo of the ATA 'prestazioni aggiuntive all'orario d'obbligo' by area: diurne, notturne o festive, notturne e festive; paid per hour in place of the hourly rate. Not amended by the CCNL 2022-2024 (art. 23, Tabella B4 is università) nor by the CCNL 2025-2027 (art. 11, Tabella B4 università)."
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO_ASSI",
+          "description": "Ore aggiuntive notturne e festive, area Assistenti (Tabella E1.7)",
+          "kind": "indennita_per_hour",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "20.90"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night_holiday"
+          ],
+          "levels": [
+            "ASSISTENTE"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "257",
+              "section": "Tabella E1.7 - SCUOLA (art. 80 c. 2), dal 1 gennaio 2024",
+              "quote": "ASSISTENTI € 15,95 € 18,15 € 20,90"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T12:49:02Z",
+              "verification_status": "verified",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T12:49:02Z",
+              "review_id": "2026-10-12-ai-overtime"
+            },
+            "transformation": "Compenso orario lordo of the ATA 'prestazioni aggiuntive all'orario d'obbligo' by area: diurne, notturne o festive, notturne e festive; paid per hour in place of the hourly rate. Not amended by the CCNL 2022-2024 (art. 23, Tabella B4 is università) nor by the CCNL 2025-2027 (art. 11, Tabella B4 università)."
+          }
+        },
+        {
+          "code": "OT_DIURNO_FUNZ",
+          "description": "Ore aggiuntive diurne, area Funzionari (Tabella E1.7)",
+          "kind": "indennita_per_hour",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "20.35"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "levels": [
+            "FUNZIONARIO_ED_ESPERTO"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "257",
+              "section": "Tabella E1.7 - SCUOLA (art. 80 c. 2), dal 1 gennaio 2024",
+              "quote": "FUNZIONARI € 20,35 € 22,54 € 26,95"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T12:49:02Z",
+              "verification_status": "verified",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T12:49:02Z",
+              "review_id": "2026-10-12-ai-overtime"
+            },
+            "transformation": "Compenso orario lordo of the ATA 'prestazioni aggiuntive all'orario d'obbligo' by area: diurne, notturne o festive, notturne e festive; paid per hour in place of the hourly rate. Not amended by the CCNL 2022-2024 (art. 23, Tabella B4 is università) nor by the CCNL 2025-2027 (art. 11, Tabella B4 università)."
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO_O_FUNZ",
+          "description": "Ore aggiuntive notturne o festive, area Funzionari (Tabella E1.7)",
+          "kind": "indennita_per_hour",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "22.54"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
+          "levels": [
+            "FUNZIONARIO_ED_ESPERTO"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "257",
+              "section": "Tabella E1.7 - SCUOLA (art. 80 c. 2), dal 1 gennaio 2024",
+              "quote": "FUNZIONARI € 20,35 € 22,54 € 26,95"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T12:49:02Z",
+              "verification_status": "verified",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T12:49:02Z",
+              "review_id": "2026-10-12-ai-overtime"
+            },
+            "transformation": "Compenso orario lordo of the ATA 'prestazioni aggiuntive all'orario d'obbligo' by area: diurne, notturne o festive, notturne e festive; paid per hour in place of the hourly rate. Not amended by the CCNL 2022-2024 (art. 23, Tabella B4 is università) nor by the CCNL 2025-2027 (art. 11, Tabella B4 università)."
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO_FUNZ",
+          "description": "Ore aggiuntive notturne e festive, area Funzionari (Tabella E1.7)",
+          "kind": "indennita_per_hour",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "26.95"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night_holiday"
+          ],
+          "levels": [
+            "FUNZIONARIO_ED_ESPERTO"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "257",
+              "section": "Tabella E1.7 - SCUOLA (art. 80 c. 2), dal 1 gennaio 2024",
+              "quote": "FUNZIONARI € 20,35 € 22,54 € 26,95"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T12:49:02Z",
+              "verification_status": "verified",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T12:49:02Z",
+              "review_id": "2026-10-12-ai-overtime"
+            },
+            "transformation": "Compenso orario lordo of the ATA 'prestazioni aggiuntive all'orario d'obbligo' by area: diurne, notturne o festive, notturne e festive; paid per hour in place of the hourly rate. Not amended by the CCNL 2022-2024 (art. 23, Tabella B4 is università) nor by the CCNL 2025-2027 (art. 11, Tabella B4 università)."
+          }
+        }
+      ]
     },
     "absence_rules": {
       "daily_divisor_method": "by_26",
@@ -1870,6 +2305,25 @@
           "Sickness: comporto of 18 months with 9 months at 100%, 3 at 90% and 6 at 50% (art. 17), not 270 days at 100%.",
           "Overtime: the scuola pays fixed hourly amounts, not percentages: the 15/30/30/50% bands had no basis and are removed.",
           "Daily quota: no scuola text fixes it; by_26 is now assumed."
+        ]
+      },
+      {
+        "id": "2026-10-12-ai-overtime",
+        "date": "2026-10-12",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Overtime of the scuola ATA staff: Tabella E1.7 of the CCNL 2019-2021 and the overtime articles of the CCNL 2022-2024 and 2025-2027.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+            "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+          }
+        ],
+        "findings": [
+          "The ATA 'prestazioni aggiuntive' are paid at fixed hourly amounts by area from 1 January 2024 (Tabella E1.7): nine bands in EUR per hour by area and time of day, now paid by the engine.",
+          "The CCNL 2022-2024 (art. 23) and 2025-2027 (art. 11) update only the università overtime (Tabella B4): the scuola amounts stay those of 2024.",
+          "The docenti ore aggiuntive (Tabella E1.6) are by activity, not by time of day: left to the caller (limitation fixed_hourly_overtime, docenti levels)."
         ]
       }
     ]

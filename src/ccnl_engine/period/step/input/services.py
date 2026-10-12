@@ -93,7 +93,9 @@ def variable_events(
         opening_work_time_cap=opening.cash.work_time_regime,
         worker_facts=worker_facts_of(request, withholding_agent=ctx.withholding_agent),
         overtime_bands=CCNLOvertimeBands.of(
-            ctx.contract.ccnl, ctx.contract.tctx.competence.year
+            ctx.contract.ccnl,
+            ctx.contract.tctx.competence.year,
+            ctx.request.level_code,
         ),
         sickness=sickness_terms(ctx),
         travel_allowance=var_pay.travel_allowance,
