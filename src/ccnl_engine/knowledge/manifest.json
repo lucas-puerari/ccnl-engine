@@ -784,6 +784,23 @@
       "wheel_resource": "agreement/energia-petrolio-confindustria.json.gz"
     },
     {
+      "dataset_id": "agreement/enti-ricerca-aran",
+      "path": "agreement/enti-ricerca-aran.json",
+      "dataset": "agreement",
+      "year": null,
+      "scope": "enti-ricerca-aran",
+      "model": "CCNL",
+      "schema_version": "0.5",
+      "valid_from": "2024-01-01",
+      "valid_to": null,
+      "ruleset_id": "ccnl/enti-ricerca-aran",
+      "ruleset_version": "2026.2",
+      "source_hash": "7a51df50643220e479099e4d886f3dbb033f62cc130145a9ea044b6b4bb1b9d8",
+      "source_type": "official_primary",
+      "owner": "ccnl-engine maintainers",
+      "wheel_resource": "agreement/enti-ricerca-aran.json.gz"
+    },
+    {
       "dataset_id": "agreement/esercizi-cinematografici-anec",
       "path": "agreement/esercizi-cinematografici-anec.json",
       "dataset": "agreement",

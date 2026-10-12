@@ -217,6 +217,9 @@
       "accrual_rule": "missing",
       "additional_months[2025-07-01]": "assumed"
     },
+    "agreement/enti-ricerca-aran.json": {
+      "work_rules.absence_rules": "assumed"
+    },
     "agreement/esercizi-cinematografici-anec.json": {
       "accrual_rule": "assumed",
       "additional_months[2023-01-01]": "assumed"
@@ -1321,6 +1324,11 @@
     ],
     "agreement/elettrico-elettricita-futura.json": [
       "elettrico-elettricita-futura/apprentice_seniority"
+    ],
+    "agreement/enti-ricerca-aran.json": [
+      "enti-ricerca-aran/perseo_sirio_not_modelled",
+      "enti-ricerca-aran/research_allowances_missing",
+      "enti-ricerca-aran/shared_rules_unchecked"
     ],
     "agreement/esercizi-cinematografici-anec.json": [
       "esercizi-cinematografici-anec/apprentice_seniority",

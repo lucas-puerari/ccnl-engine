@@ -1,0 +1,3853 @@
+{
+  "schema_version": "0.5",
+  "meta": {
+    "ccnl_id": "enti-ricerca-aran",
+    "name": "CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN, Enti pubblici di ricerca (ASI compresa)",
+    "cnel_code": "S305",
+    "sector": "Pubblica Amministrazione",
+    "tax_sector": "pubblica-amministrazione",
+    "signatories": [
+      "ARAN",
+      "CISL FSUR",
+      "FLC CGIL",
+      "UIL SCUOLA RUA",
+      "SNALS CONFSAL",
+      "GILDA UNAMS",
+      "ANIEF"
+    ],
+    "agreement_date": "2026-07-01",
+    "sources": [
+      {
+        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+        "type": "fonte_primaria",
+        "agreement_date": "2026-07-01",
+        "notes": "CCNL 2025-2027 sui principali aspetti del trattamento economico, signed definitively on 1 July 2026 by ARAN and every union of the comparto. Tabella A2 (pp. 18-19): tabellare from 1.1.2025, 1.1.2026, 1.1.2027."
+      },
+      {
+        "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+        "type": "fonte_primaria",
+        "agreement_date": "2025-12-23",
+        "notes": "CCNL 2022-2024 (FLC CGIL did not sign). Tabella A2 (pp. 50-51): tabellare from 1.1.2024."
+      },
+      {
+        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+        "type": "fonte_primaria",
+        "agreement_date": "2024-01-18",
+        "notes": "CCNL 2019-2021. Tabelle C1 and E1.5 (pp. 246, 256): tabellare from 1.2.2023."
+      },
+      {
+        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/07/CCNL-SCUOLA-2006-2009.pdf",
+        "type": "fonte_primaria",
+        "agreement_date": "2007-11-29",
+        "notes": "CCNL Scuola 2006-2009, still in force for ferie (art. 13), malattia (art. 17) and tredicesima (art. 80)."
+      }
+    ],
+    "extraction": {
+      "method": "ai",
+      "model": "claude-sonnet-4-6",
+      "timestamp": "2026-09-03",
+      "human_reviewed": false
+    },
+    "workers_estimate": "~1,2M",
+    "public_pension_fund": "ctps",
+    "public_life_insurance": false
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2022-01-01",
+          "valid_until": null,
+          "value": "156"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2022-01-01",
+          "valid_until": null,
+          "value": "13",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-scuola-2006-2009",
+                "title": "CCNL Comparto Scuola 2006-2009, 29 novembre 2007",
+                "kind": "associazione",
+                "url": "https://usrfvg.regione.fvg.it/export/sites/default/USRFVG/allegati/archivio_file/TS/2016/CCNL_scuola_2006_2009.pdf",
+                "published_on": "2007-11-29",
+                "sha256": "4c7b272d8a2987c239d5f77e27af429c55096b71c8fa198265bac549f348dbf6"
+              },
+              "section": "Art. 80 c. 1 (tredicesima mensilità)",
+              "quote": "spetta una tredicesima mensilità corrisposta nel mese di dicembre di ogni anno.",
+              "page": "52"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T07:59:31Z",
+              "verification_status": "unverified",
+              "effective_from": "2007-11-29"
+            },
+            "note": "Kept in force by the CCNL Istruzione e Ricerca 2022-2024 of 23 December 2025, art. 1 c. 13 ('continuano a trovare applicazione [...] i CCNL dei precedenti comparti'). Copy of the ARAN text hosted by the USR Friuli Venezia Giulia. Scuola section only."
+          }
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 36,
+      "maximum_count": 6,
+      "amount_by_level": {},
+      "tiers": [
+        {
+          "cadence_months": 36,
+          "maximum_count": 1,
+          "amount_by_level": {
+            "I": {
+              "periods": [
+                {
+                  "valid_from": "2024-01-01",
+                  "valid_until": "2025-01-01",
+                  "value": "457.08",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2022-2024",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                        "published_on": "2025-12-23",
+                        "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                      },
+                      "page": "59",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2024, Livello I - Dirigente di ricerca e Dirigente tecnologo, da 3 a 7",
+                      "quote": "da 3 a 7 60.093,22"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2024-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 3 a 7 (5007.77) less that of the band before (4550.69)."
+                  }
+                },
+                {
+                  "valid_from": "2025-01-01",
+                  "valid_until": "2026-01-01",
+                  "value": "465.81",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2025, Livello I - Dirigente di ricerca e Dirigente tecnologo, da 3 a 7",
+                      "quote": "da 3 a 7 61.241,50 62.390,14 63.438,22"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2025-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 3 a 7 (5103.46) less that of the band before (4637.65)."
+                  }
+                },
+                {
+                  "valid_from": "2026-01-01",
+                  "valid_until": "2027-01-01",
+                  "value": "474.55",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2026, Livello I - Dirigente di ricerca e Dirigente tecnologo, da 3 a 7",
+                      "quote": "da 3 a 7 61.241,50 62.390,14 63.438,22"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2026-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 3 a 7 (5199.18) less that of the band before (4724.63)."
+                  }
+                },
+                {
+                  "valid_from": "2027-01-01",
+                  "valid_until": null,
+                  "value": "482.53",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2027, Livello I - Dirigente di ricerca e Dirigente tecnologo, da 3 a 7",
+                      "quote": "da 3 a 7 61.241,50 62.390,14 63.438,22"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2027-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 3 a 7 (5286.52) less that of the band before (4803.99)."
+                  }
+                }
+              ]
+            },
+            "II": {
+              "periods": [
+                {
+                  "valid_from": "2024-01-01",
+                  "valid_until": "2025-01-01",
+                  "value": "325.83",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2022-2024",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                        "published_on": "2025-12-23",
+                        "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                      },
+                      "page": "59",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2024, Livello II - Primo ricercatore e Primo tecnologo, da 3 a 7",
+                      "quote": "da 3 a 7 46.244,23"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2024-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 3 a 7 (3853.69) less that of the band before (3527.86)."
+                  }
+                },
+                {
+                  "valid_from": "2025-01-01",
+                  "valid_until": "2026-01-01",
+                  "value": "332.06",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2025, Livello II - Primo ricercatore e Primo tecnologo, da 3 a 7",
+                      "quote": "da 3 a 7 47.127,91 48.011,83 48.818,35"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2025-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 3 a 7 (3927.33) less that of the band before (3595.27)."
+                  }
+                },
+                {
+                  "valid_from": "2026-01-01",
+                  "valid_until": "2027-01-01",
+                  "value": "338.29",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2026, Livello II - Primo ricercatore e Primo tecnologo, da 3 a 7",
+                      "quote": "da 3 a 7 47.127,91 48.011,83 48.818,35"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2026-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 3 a 7 (4000.99) less that of the band before (3662.70)."
+                  }
+                },
+                {
+                  "valid_from": "2027-01-01",
+                  "valid_until": null,
+                  "value": "343.97",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2027, Livello II - Primo ricercatore e Primo tecnologo, da 3 a 7",
+                      "quote": "da 3 a 7 47.127,91 48.011,83 48.818,35"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2027-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 3 a 7 (4068.20) less that of the band before (3724.23)."
+                  }
+                }
+              ]
+            },
+            "III": {
+              "periods": [
+                {
+                  "valid_from": "2024-01-01",
+                  "valid_until": "2025-01-01",
+                  "value": "220.61",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2022-2024",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                        "published_on": "2025-12-23",
+                        "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                      },
+                      "page": "59",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2024, Livello III - Ricercatore e Tecnologo, da 3 a 7",
+                      "quote": "da 3 a 7 36.074,98"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2024-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 3 a 7 (3006.25) less that of the band before (2785.64)."
+                  }
+                },
+                {
+                  "valid_from": "2025-01-01",
+                  "valid_until": "2026-01-01",
+                  "value": "224.83",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2025, Livello III - Ricercatore e Tecnologo, da 3 a 7",
+                      "quote": "da 3 a 7 36.764,38 37.453,78 38.083,06"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2025-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 3 a 7 (3063.70) less that of the band before (2838.87)."
+                  }
+                },
+                {
+                  "valid_from": "2026-01-01",
+                  "valid_until": "2027-01-01",
+                  "value": "229.04",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2026, Livello III - Ricercatore e Tecnologo, da 3 a 7",
+                      "quote": "da 3 a 7 36.764,38 37.453,78 38.083,06"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2026-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 3 a 7 (3121.15) less that of the band before (2892.11)."
+                  }
+                },
+                {
+                  "valid_from": "2027-01-01",
+                  "valid_until": null,
+                  "value": "232.89",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2027, Livello III - Ricercatore e Tecnologo, da 3 a 7",
+                      "quote": "da 3 a 7 36.764,38 37.453,78 38.083,06"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2027-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 3 a 7 (3173.59) less that of the band before (2940.70)."
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "cadence_months": 60,
+          "maximum_count": 1,
+          "amount_by_level": {
+            "I": {
+              "periods": [
+                {
+                  "valid_from": "2024-01-01",
+                  "valid_until": "2025-01-01",
+                  "value": "477.60",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2022-2024",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                        "published_on": "2025-12-23",
+                        "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                      },
+                      "page": "59",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2024, Livello I - Dirigente di ricerca e Dirigente tecnologo, da 8 a 12",
+                      "quote": "da 8 a 12 65.824,46"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2024-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 8 a 12 (5485.37) less that of the band before (5007.77)."
+                  }
+                },
+                {
+                  "valid_from": "2025-01-01",
+                  "valid_until": "2026-01-01",
+                  "value": "486.73",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2025, Livello I - Dirigente di ricerca e Dirigente tecnologo, da 8 a 12",
+                      "quote": "da 8 a 12 67.082,30 68.340,38 69.488,42"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2025-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 8 a 12 (5590.19) less that of the band before (5103.46)."
+                  }
+                },
+                {
+                  "valid_from": "2026-01-01",
+                  "valid_until": "2027-01-01",
+                  "value": "495.85",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2026, Livello I - Dirigente di ricerca e Dirigente tecnologo, da 8 a 12",
+                      "quote": "da 8 a 12 67.082,30 68.340,38 69.488,42"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2026-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 8 a 12 (5695.03) less that of the band before (5199.18)."
+                  }
+                },
+                {
+                  "valid_from": "2027-01-01",
+                  "valid_until": null,
+                  "value": "504.18",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2027, Livello I - Dirigente di ricerca e Dirigente tecnologo, da 8 a 12",
+                      "quote": "da 8 a 12 67.082,30 68.340,38 69.488,42"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2027-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 8 a 12 (5790.70) less that of the band before (5286.52)."
+                  }
+                }
+              ]
+            },
+            "II": {
+              "periods": [
+                {
+                  "valid_from": "2024-01-01",
+                  "valid_until": "2025-01-01",
+                  "value": "338.08",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2022-2024",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                        "published_on": "2025-12-23",
+                        "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                      },
+                      "page": "59",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2024, Livello II - Primo ricercatore e Primo tecnologo, da 8 a 12",
+                      "quote": "da 8 a 12 50.301,26"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2024-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 8 a 12 (4191.77) less that of the band before (3853.69)."
+                  }
+                },
+                {
+                  "valid_from": "2025-01-01",
+                  "valid_until": "2026-01-01",
+                  "value": "344.54",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2025, Livello II - Primo ricercatore e Primo tecnologo, da 8 a 12",
+                      "quote": "da 8 a 12 51.262,46 52.223,90 53.101,22"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2025-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 8 a 12 (4271.87) less that of the band before (3927.33)."
+                  }
+                },
+                {
+                  "valid_from": "2026-01-01",
+                  "valid_until": "2027-01-01",
+                  "value": "351.00",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2026, Livello II - Primo ricercatore e Primo tecnologo, da 8 a 12",
+                      "quote": "da 8 a 12 51.262,46 52.223,90 53.101,22"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2026-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 8 a 12 (4351.99) less that of the band before (4000.99)."
+                  }
+                },
+                {
+                  "valid_from": "2027-01-01",
+                  "valid_until": null,
+                  "value": "356.90",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2027, Livello II - Primo ricercatore e Primo tecnologo, da 8 a 12",
+                      "quote": "da 8 a 12 51.262,46 52.223,90 53.101,22"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2027-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 8 a 12 (4425.10) less that of the band before (4068.20)."
+                  }
+                }
+              ]
+            },
+            "III": {
+              "periods": [
+                {
+                  "valid_from": "2024-01-01",
+                  "valid_until": "2025-01-01",
+                  "value": "228.34",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2022-2024",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                        "published_on": "2025-12-23",
+                        "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                      },
+                      "page": "59",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2024, Livello III - Ricercatore e Tecnologo, da 8 a 12",
+                      "quote": "da 8 a 12 38.815,13"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2024-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 8 a 12 (3234.59) less that of the band before (3006.25)."
+                  }
+                },
+                {
+                  "valid_from": "2025-01-01",
+                  "valid_until": "2026-01-01",
+                  "value": "232.70",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2025, Livello III - Ricercatore e Tecnologo, da 8 a 12",
+                      "quote": "da 8 a 12 39.556,85 40.298,69 40.975,73"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2025-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 8 a 12 (3296.40) less that of the band before (3063.70)."
+                  }
+                },
+                {
+                  "valid_from": "2026-01-01",
+                  "valid_until": "2027-01-01",
+                  "value": "237.07",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2026, Livello III - Ricercatore e Tecnologo, da 8 a 12",
+                      "quote": "da 8 a 12 39.556,85 40.298,69 40.975,73"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2026-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 8 a 12 (3358.22) less that of the band before (3121.15)."
+                  }
+                },
+                {
+                  "valid_from": "2027-01-01",
+                  "valid_until": null,
+                  "value": "241.05",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2027, Livello III - Ricercatore e Tecnologo, da 8 a 12",
+                      "quote": "da 8 a 12 39.556,85 40.298,69 40.975,73"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2027-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 8 a 12 (3414.64) less that of the band before (3173.59)."
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "cadence_months": 60,
+          "maximum_count": 1,
+          "amount_by_level": {
+            "I": {
+              "periods": [
+                {
+                  "valid_from": "2024-01-01",
+                  "valid_until": "2025-01-01",
+                  "value": "472.59",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2022-2024",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                        "published_on": "2025-12-23",
+                        "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                      },
+                      "page": "59",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2024, Livello I - Dirigente di ricerca e Dirigente tecnologo, da 13 a 16",
+                      "quote": "da 13 a 16 71.495,46"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2024-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 13 a 16 (5957.96) less that of the band before (5485.37)."
+                  }
+                },
+                {
+                  "valid_from": "2025-01-01",
+                  "valid_until": "2026-01-01",
+                  "value": "481.62",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2025, Livello I - Dirigente di ricerca e Dirigente tecnologo, da 13 a 16",
+                      "quote": "da 13 a 16 72.861,66 74.228,10 75.475,14"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2025-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 13 a 16 (6071.81) less that of the band before (5590.19)."
+                  }
+                },
+                {
+                  "valid_from": "2026-01-01",
+                  "valid_until": "2027-01-01",
+                  "value": "490.65",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2026, Livello I - Dirigente di ricerca e Dirigente tecnologo, da 13 a 16",
+                      "quote": "da 13 a 16 72.861,66 74.228,10 75.475,14"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2026-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 13 a 16 (6185.68) less that of the band before (5695.03)."
+                  }
+                },
+                {
+                  "valid_from": "2027-01-01",
+                  "valid_until": null,
+                  "value": "498.90",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2027, Livello I - Dirigente di ricerca e Dirigente tecnologo, da 13 a 16",
+                      "quote": "da 13 a 16 72.861,66 74.228,10 75.475,14"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2027-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 13 a 16 (6289.60) less that of the band before (5790.70)."
+                  }
+                }
+              ]
+            },
+            "II": {
+              "periods": [
+                {
+                  "valid_from": "2024-01-01",
+                  "valid_until": "2025-01-01",
+                  "value": "338.62",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2022-2024",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                        "published_on": "2025-12-23",
+                        "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                      },
+                      "page": "59",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2024, Livello II - Primo ricercatore e Primo tecnologo, da 13 a 16",
+                      "quote": "da 13 a 16 54.364,73"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2024-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 13 a 16 (4530.39) less that of the band before (4191.77)."
+                  }
+                },
+                {
+                  "valid_from": "2025-01-01",
+                  "valid_until": "2026-01-01",
+                  "value": "345.09",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2025, Livello II - Primo ricercatore e Primo tecnologo, da 13 a 16",
+                      "quote": "da 13 a 16 55.403,57 56.442,65 57.390,77"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2025-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 13 a 16 (4616.96) less that of the band before (4271.87)."
+                  }
+                },
+                {
+                  "valid_from": "2026-01-01",
+                  "valid_until": "2027-01-01",
+                  "value": "351.56",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2026, Livello II - Primo ricercatore e Primo tecnologo, da 13 a 16",
+                      "quote": "da 13 a 16 55.403,57 56.442,65 57.390,77"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2026-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 13 a 16 (4703.55) less that of the band before (4351.99)."
+                  }
+                },
+                {
+                  "valid_from": "2027-01-01",
+                  "valid_until": null,
+                  "value": "357.46",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2027, Livello II - Primo ricercatore e Primo tecnologo, da 13 a 16",
+                      "quote": "da 13 a 16 55.403,57 56.442,65 57.390,77"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2027-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 13 a 16 (4782.56) less that of the band before (4425.10)."
+                  }
+                }
+              ]
+            },
+            "III": {
+              "periods": [
+                {
+                  "valid_from": "2024-01-01",
+                  "valid_until": "2025-01-01",
+                  "value": "235.27",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2022-2024",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                        "published_on": "2025-12-23",
+                        "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                      },
+                      "page": "59",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2024, Livello III - Ricercatore e Tecnologo, da 13 a 16",
+                      "quote": "da 13 a 16 41.638,37"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2024-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 13 a 16 (3469.86) less that of the band before (3234.59)."
+                  }
+                },
+                {
+                  "valid_from": "2025-01-01",
+                  "valid_until": "2026-01-01",
+                  "value": "239.77",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2025, Livello III - Ricercatore e Tecnologo, da 13 a 16",
+                      "quote": "da 13 a 16 42.434,09 43.229,93 43.956,05"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2025-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 13 a 16 (3536.17) less that of the band before (3296.40)."
+                  }
+                },
+                {
+                  "valid_from": "2026-01-01",
+                  "valid_until": "2027-01-01",
+                  "value": "244.27",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2026, Livello III - Ricercatore e Tecnologo, da 13 a 16",
+                      "quote": "da 13 a 16 42.434,09 43.229,93 43.956,05"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2026-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 13 a 16 (3602.49) less that of the band before (3358.22)."
+                  }
+                },
+                {
+                  "valid_from": "2027-01-01",
+                  "valid_until": null,
+                  "value": "248.36",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2027, Livello III - Ricercatore e Tecnologo, da 13 a 16",
+                      "quote": "da 13 a 16 42.434,09 43.229,93 43.956,05"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2027-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 13 a 16 (3663.00) less that of the band before (3414.64)."
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "cadence_months": 48,
+          "maximum_count": 1,
+          "amount_by_level": {
+            "I": {
+              "periods": [
+                {
+                  "valid_from": "2024-01-01",
+                  "valid_until": "2025-01-01",
+                  "value": "865.57",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2022-2024",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                        "published_on": "2025-12-23",
+                        "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                      },
+                      "page": "59",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2024, Livello I - Dirigente di ricerca e Dirigente tecnologo, da 17 a 21",
+                      "quote": "da 17 a 21 81.882,40"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2024-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 17 a 21 (6823.53) less that of the band before (5957.96)."
+                  }
+                },
+                {
+                  "valid_from": "2025-01-01",
+                  "valid_until": "2026-01-01",
+                  "value": "882.11",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2025, Livello I - Dirigente di ricerca e Dirigente tecnologo, da 17 a 21",
+                      "quote": "da 17 a 21 83.447,08 85.012,12 86.440,24"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2025-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 17 a 21 (6953.92) less that of the band before (6071.81)."
+                  }
+                },
+                {
+                  "valid_from": "2026-01-01",
+                  "valid_until": "2027-01-01",
+                  "value": "898.66",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2026, Livello I - Dirigente di ricerca e Dirigente tecnologo, da 17 a 21",
+                      "quote": "da 17 a 21 83.447,08 85.012,12 86.440,24"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2026-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 17 a 21 (7084.34) less that of the band before (6185.68)."
+                  }
+                },
+                {
+                  "valid_from": "2027-01-01",
+                  "valid_until": null,
+                  "value": "913.75",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2027, Livello I - Dirigente di ricerca e Dirigente tecnologo, da 17 a 21",
+                      "quote": "da 17 a 21 83.447,08 85.012,12 86.440,24"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2027-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 17 a 21 (7203.35) less that of the band before (6289.60)."
+                  }
+                }
+              ]
+            },
+            "II": {
+              "periods": [
+                {
+                  "valid_from": "2024-01-01",
+                  "valid_until": "2025-01-01",
+                  "value": "570.56",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2022-2024",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                        "published_on": "2025-12-23",
+                        "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                      },
+                      "page": "59",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2024, Livello II - Primo ricercatore e Primo tecnologo, da 17 a 21",
+                      "quote": "da 17 a 21 61.211,40"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2024-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 17 a 21 (5100.95) less that of the band before (4530.39)."
+                  }
+                },
+                {
+                  "valid_from": "2025-01-01",
+                  "valid_until": "2026-01-01",
+                  "value": "581.47",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2025, Livello II - Primo ricercatore e Primo tecnologo, da 17 a 21",
+                      "quote": "da 17 a 21 62.381,16 63.551,04 64.618,56"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2025-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 17 a 21 (5198.43) less that of the band before (4616.96)."
+                  }
+                },
+                {
+                  "valid_from": "2026-01-01",
+                  "valid_until": "2027-01-01",
+                  "value": "592.37",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2026, Livello II - Primo ricercatore e Primo tecnologo, da 17 a 21",
+                      "quote": "da 17 a 21 62.381,16 63.551,04 64.618,56"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2026-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 17 a 21 (5295.92) less that of the band before (4703.55)."
+                  }
+                },
+                {
+                  "valid_from": "2027-01-01",
+                  "valid_until": null,
+                  "value": "602.32",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2027, Livello II - Primo ricercatore e Primo tecnologo, da 17 a 21",
+                      "quote": "da 17 a 21 62.381,16 63.551,04 64.618,56"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2027-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 17 a 21 (5384.88) less that of the band before (4782.56)."
+                  }
+                }
+              ]
+            },
+            "III": {
+              "periods": [
+                {
+                  "valid_from": "2024-01-01",
+                  "valid_until": "2025-01-01",
+                  "value": "418.57",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2022-2024",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                        "published_on": "2025-12-23",
+                        "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                      },
+                      "page": "59",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2024, Livello III - Ricercatore e Tecnologo, da 17 a 21",
+                      "quote": "da 17 a 21 46.661,21"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2024-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 17 a 21 (3888.43) less that of the band before (3469.86)."
+                  }
+                },
+                {
+                  "valid_from": "2025-01-01",
+                  "valid_until": "2026-01-01",
+                  "value": "426.57",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2025, Livello III - Ricercatore e Tecnologo, da 17 a 21",
+                      "quote": "da 17 a 21 47.552,93 48.444,65 49.258,49"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2025-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 17 a 21 (3962.74) less that of the band before (3536.17)."
+                  }
+                },
+                {
+                  "valid_from": "2026-01-01",
+                  "valid_until": "2027-01-01",
+                  "value": "434.56",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2026, Livello III - Ricercatore e Tecnologo, da 17 a 21",
+                      "quote": "da 17 a 21 47.552,93 48.444,65 49.258,49"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2026-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 17 a 21 (4037.05) less that of the band before (3602.49)."
+                  }
+                },
+                {
+                  "valid_from": "2027-01-01",
+                  "valid_until": null,
+                  "value": "441.87",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2027, Livello III - Ricercatore e Tecnologo, da 17 a 21",
+                      "quote": "da 17 a 21 47.552,93 48.444,65 49.258,49"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2027-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 17 a 21 (4104.87) less that of the band before (3663.00)."
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "cadence_months": 60,
+          "maximum_count": 1,
+          "amount_by_level": {
+            "I": {
+              "periods": [
+                {
+                  "valid_from": "2024-01-01",
+                  "valid_until": "2025-01-01",
+                  "value": "653.79",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2022-2024",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                        "published_on": "2025-12-23",
+                        "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                      },
+                      "page": "59",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2024, Livello I - Dirigente di ricerca e Dirigente tecnologo, da 22 a 29",
+                      "quote": "da 22 a 29 89.727,83"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2024-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 22 a 29 (7477.32) less that of the band before (6823.53)."
+                  }
+                },
+                {
+                  "valid_from": "2025-01-01",
+                  "valid_until": "2026-01-01",
+                  "value": "666.29",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2025, Livello I - Dirigente di ricerca e Dirigente tecnologo, da 22 a 29",
+                      "quote": "da 22 a 29 91.442,51 93.157,43 94.722,35"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2025-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 22 a 29 (7620.21) less that of the band before (6953.92)."
+                  }
+                },
+                {
+                  "valid_from": "2026-01-01",
+                  "valid_until": "2027-01-01",
+                  "value": "678.78",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2026, Livello I - Dirigente di ricerca e Dirigente tecnologo, da 22 a 29",
+                      "quote": "da 22 a 29 91.442,51 93.157,43 94.722,35"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2026-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 22 a 29 (7763.12) less that of the band before (7084.34)."
+                  }
+                },
+                {
+                  "valid_from": "2027-01-01",
+                  "valid_until": null,
+                  "value": "690.18",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2027, Livello I - Dirigente di ricerca e Dirigente tecnologo, da 22 a 29",
+                      "quote": "da 22 a 29 91.442,51 93.157,43 94.722,35"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2027-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 22 a 29 (7893.53) less that of the band before (7203.35)."
+                  }
+                }
+              ]
+            },
+            "II": {
+              "periods": [
+                {
+                  "valid_from": "2024-01-01",
+                  "valid_until": "2025-01-01",
+                  "value": "470.81",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2022-2024",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                        "published_on": "2025-12-23",
+                        "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                      },
+                      "page": "59",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2024, Livello II - Primo ricercatore e Primo tecnologo, da 22 a 29",
+                      "quote": "da 22 a 29 66.861,09"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2024-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 22 a 29 (5571.76) less that of the band before (5100.95)."
+                  }
+                },
+                {
+                  "valid_from": "2025-01-01",
+                  "valid_until": "2026-01-01",
+                  "value": "479.80",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2025, Livello II - Primo ricercatore e Primo tecnologo, da 22 a 29",
+                      "quote": "da 22 a 29 68.138,73 69.416,61 70.582,77"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2025-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 22 a 29 (5678.23) less that of the band before (5198.43)."
+                  }
+                },
+                {
+                  "valid_from": "2026-01-01",
+                  "valid_until": "2027-01-01",
+                  "value": "488.80",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2026, Livello II - Primo ricercatore e Primo tecnologo, da 22 a 29",
+                      "quote": "da 22 a 29 68.138,73 69.416,61 70.582,77"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2026-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 22 a 29 (5784.72) less that of the band before (5295.92)."
+                  }
+                },
+                {
+                  "valid_from": "2027-01-01",
+                  "valid_until": null,
+                  "value": "497.02",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2027, Livello II - Primo ricercatore e Primo tecnologo, da 22 a 29",
+                      "quote": "da 22 a 29 68.138,73 69.416,61 70.582,77"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2027-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 22 a 29 (5881.90) less that of the band before (5384.88)."
+                  }
+                }
+              ]
+            },
+            "III": {
+              "periods": [
+                {
+                  "valid_from": "2024-01-01",
+                  "valid_until": "2025-01-01",
+                  "value": "335.95",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2022-2024",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                        "published_on": "2025-12-23",
+                        "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                      },
+                      "page": "59",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2024, Livello III - Ricercatore e Tecnologo, da 22 a 29",
+                      "quote": "da 22 a 29 50.692,51"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2024-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 22 a 29 (4224.38) less that of the band before (3888.43)."
+                  }
+                },
+                {
+                  "valid_from": "2025-01-01",
+                  "valid_until": "2026-01-01",
+                  "value": "342.36",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2025, Livello III - Ricercatore e Tecnologo, da 22 a 29",
+                      "quote": "da 22 a 29 51.661,15 52.630,03 53.514,19"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2025-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 22 a 29 (4305.10) less that of the band before (3962.74)."
+                  }
+                },
+                {
+                  "valid_from": "2026-01-01",
+                  "valid_until": "2027-01-01",
+                  "value": "348.79",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2026, Livello III - Ricercatore e Tecnologo, da 22 a 29",
+                      "quote": "da 22 a 29 51.661,15 52.630,03 53.514,19"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2026-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 22 a 29 (4385.84) less that of the band before (4037.05)."
+                  }
+                },
+                {
+                  "valid_from": "2027-01-01",
+                  "valid_until": null,
+                  "value": "354.65",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2027, Livello III - Ricercatore e Tecnologo, da 22 a 29",
+                      "quote": "da 22 a 29 51.661,15 52.630,03 53.514,19"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2027-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 22 a 29 (4459.52) less that of the band before (4104.87)."
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "cadence_months": 96,
+          "maximum_count": 1,
+          "amount_by_level": {
+            "I": {
+              "periods": [
+                {
+                  "valid_from": "2024-01-01",
+                  "valid_until": "2025-01-01",
+                  "value": "846.84",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2022-2024",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                        "published_on": "2025-12-23",
+                        "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                      },
+                      "page": "59",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2024, Livello I - Dirigente di ricerca e Dirigente tecnologo, da 30 in poi",
+                      "quote": "da 30 in poi 99.889,86"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2024-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 30 in poi (8324.16) less that of the band before (7477.32)."
+                  }
+                },
+                {
+                  "valid_from": "2025-01-01",
+                  "valid_until": "2026-01-01",
+                  "value": "863.02",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2025, Livello I - Dirigente di ricerca e Dirigente tecnologo, da 30 in poi",
+                      "quote": "da 30 in poi 101.798,70 103.707,90 105.450,06"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2025-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 30 in poi (8483.23) less that of the band before (7620.21)."
+                  }
+                },
+                {
+                  "valid_from": "2026-01-01",
+                  "valid_until": "2027-01-01",
+                  "value": "879.21",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2026, Livello I - Dirigente di ricerca e Dirigente tecnologo, da 30 in poi",
+                      "quote": "da 30 in poi 101.798,70 103.707,90 105.450,06"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2026-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 30 in poi (8642.33) less that of the band before (7763.12)."
+                  }
+                },
+                {
+                  "valid_from": "2027-01-01",
+                  "valid_until": null,
+                  "value": "893.98",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2027, Livello I - Dirigente di ricerca e Dirigente tecnologo, da 30 in poi",
+                      "quote": "da 30 in poi 101.798,70 103.707,90 105.450,06"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2027-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 30 in poi (8787.51) less that of the band before (7893.53)."
+                  }
+                }
+              ]
+            },
+            "II": {
+              "periods": [
+                {
+                  "valid_from": "2024-01-01",
+                  "valid_until": "2025-01-01",
+                  "value": "603.37",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2022-2024",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                        "published_on": "2025-12-23",
+                        "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                      },
+                      "page": "59",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2024, Livello II - Primo ricercatore e Primo tecnologo, da 30 in poi",
+                      "quote": "da 30 in poi 74.101,61"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2024-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 30 in poi (6175.13) less that of the band before (5571.76)."
+                  }
+                },
+                {
+                  "valid_from": "2025-01-01",
+                  "valid_until": "2026-01-01",
+                  "value": "614.90",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2025, Livello II - Primo ricercatore e Primo tecnologo, da 30 in poi",
+                      "quote": "da 30 in poi 75.517,61 76.933,97 78.226,37"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2025-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 30 in poi (6293.13) less that of the band before (5678.23)."
+                  }
+                },
+                {
+                  "valid_from": "2026-01-01",
+                  "valid_until": "2027-01-01",
+                  "value": "626.44",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2026, Livello II - Primo ricercatore e Primo tecnologo, da 30 in poi",
+                      "quote": "da 30 in poi 75.517,61 76.933,97 78.226,37"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2026-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 30 in poi (6411.16) less that of the band before (5784.72)."
+                  }
+                },
+                {
+                  "valid_from": "2027-01-01",
+                  "valid_until": null,
+                  "value": "636.96",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2027, Livello II - Primo ricercatore e Primo tecnologo, da 30 in poi",
+                      "quote": "da 30 in poi 75.517,61 76.933,97 78.226,37"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2027-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 30 in poi (6518.86) less that of the band before (5881.90)."
+                  }
+                }
+              ]
+            },
+            "III": {
+              "periods": [
+                {
+                  "valid_from": "2024-01-01",
+                  "valid_until": "2025-01-01",
+                  "value": "430.04",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2022-2024",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                        "published_on": "2025-12-23",
+                        "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                      },
+                      "page": "59",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2024, Livello III - Ricercatore e Tecnologo, da 30 in poi",
+                      "quote": "da 30 in poi 55.853,03"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2024-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 30 in poi (4654.42) less that of the band before (4224.38)."
+                  }
+                },
+                {
+                  "valid_from": "2025-01-01",
+                  "valid_until": "2026-01-01",
+                  "value": "438.26",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2025, Livello III - Ricercatore e Tecnologo, da 30 in poi",
+                      "quote": "da 30 in poi 56.920,31 57.987,83 58.961,99"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2025-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 30 in poi (4743.36) less that of the band before (4305.10)."
+                  }
+                },
+                {
+                  "valid_from": "2026-01-01",
+                  "valid_until": "2027-01-01",
+                  "value": "446.48",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2026, Livello III - Ricercatore e Tecnologo, da 30 in poi",
+                      "quote": "da 30 in poi 56.920,31 57.987,83 58.961,99"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2026-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 30 in poi (4832.32) less that of the band before (4385.84)."
+                  }
+                },
+                {
+                  "valid_from": "2027-01-01",
+                  "valid_until": null,
+                  "value": "453.98",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "28",
+                      "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2027, Livello III - Ricercatore e Tecnologo, da 30 in poi",
+                      "quote": "da 30 in poi 56.920,31 57.987,83 58.961,99"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T17:09:42Z",
+                      "effective_from": "2027-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the band da 30 in poi (4913.50) less that of the band before (4459.52)."
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-ir-2025-2027",
+            "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+            "published_on": "2026-07-01",
+            "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+          },
+          "page": "28",
+          "section": "Tabella C4 - ENTI DI RICERCA (anzianità di servizio 0-2, 3-7, 8-12, 13-16, 17-21, 22-29, da 30)",
+          "quote": "Nuova retribuzione tabellare annua"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T17:09:42Z",
+          "effective_from": "2024-01-01",
+          "verification_status": "unverified"
+        },
+        "transformation": "The seven bands of the ricercatori and tecnologi as six steps after 3, 8, 13, 17, 22 and 30 years (36, 60, 60, 48, 60, 96 months); each the monthly tabellare of the band less that of the band before. The seniority is the anzianità di servizio the caller states. Levels IV-VIII have one tabellare."
+      }
+    },
+    "employer_funds": [],
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-scuola-2006-2009",
+            "title": "CCNL Comparto Scuola 2006-2009, 29 novembre 2007",
+            "kind": "associazione",
+            "url": "https://usrfvg.regione.fvg.it/export/sites/default/USRFVG/allegati/archivio_file/TS/2016/CCNL_scuola_2006_2009.pdf",
+            "published_on": "2007-11-29",
+            "sha256": "4c7b272d8a2987c239d5f77e27af429c55096b71c8fa198265bac549f348dbf6"
+          },
+          "section": "Art. 80 c. 4 (tredicesima mensilità)",
+          "quote": "la tredicesima è dovuta in ragione di un dodicesimo per ogni mese di servizio prestato o frazione di mese superiore a 15 giorni.",
+          "page": "52"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T07:59:31Z",
+          "verification_status": "unverified",
+          "effective_from": "2007-11-29"
+        },
+        "note": "Kept in force by the CCNL Istruzione e Ricerca 2022-2024 of 23 December 2025, art. 1 c. 13 ('continuano a trovare applicazione [...] i CCNL dei precedenti comparti'). Copy of the ARAN text hosted by the USR Friuli Venezia Giulia. Scuola section only."
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "VIII",
+      "order": 1,
+      "description": "Livello VIII (personale tecnico e amministrativo)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "1786.32",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2022-2024",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                  "published_on": "2025-12-23",
+                  "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                },
+                "page": "58",
+                "section": "Tabella C3 - ENTI DI RICERCA, dal 1.1.2024",
+                "quote": "VIII 21.435,84"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1833.29",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "27",
+                "section": "Tabella C3 - ENTI DI RICERCA, dal 1.1.2025",
+                "quote": "VIII 21.999,48 22.563,12 22.923,96"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1880.26",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "27",
+                "section": "Tabella C3 - ENTI DI RICERCA, dal 1.1.2026",
+                "quote": "VIII 21.999,48 22.563,12 22.923,96"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1910.33",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "27",
+                "section": "Tabella C3 - ENTI DI RICERCA, dal 1.1.2027",
+                "quote": "VIII 21.999,48 22.563,12 22.923,96"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-ir-2025-2027",
+            "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+            "published_on": "2026-07-01",
+            "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+          },
+          "page": "27",
+          "section": "Tabella C3 - ENTI DI RICERCA",
+          "quote": "VIII 21.999,48 22.563,12 22.923,96"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T17:09:42Z",
+          "effective_from": "2024-01-01",
+          "verification_status": "unverified"
+        },
+        "transformation": "Level of the tabella."
+      }
+    },
+    {
+      "code": "VII",
+      "order": 2,
+      "description": "Livello VII (personale tecnico e amministrativo)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "1888.48",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2022-2024",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                  "published_on": "2025-12-23",
+                  "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                },
+                "page": "58",
+                "section": "Tabella C3 - ENTI DI RICERCA, dal 1.1.2024",
+                "quote": "VII 22.661,70"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1938.13",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "27",
+                "section": "Tabella C3 - ENTI DI RICERCA, dal 1.1.2025",
+                "quote": "VII 23.257,50 23.853,54 24.234,90"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1987.80",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "27",
+                "section": "Tabella C3 - ENTI DI RICERCA, dal 1.1.2026",
+                "quote": "VII 23.257,50 23.853,54 24.234,90"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "2019.58",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "27",
+                "section": "Tabella C3 - ENTI DI RICERCA, dal 1.1.2027",
+                "quote": "VII 23.257,50 23.853,54 24.234,90"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-ir-2025-2027",
+            "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+            "published_on": "2026-07-01",
+            "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+          },
+          "page": "27",
+          "section": "Tabella C3 - ENTI DI RICERCA",
+          "quote": "VII 23.257,50 23.853,54 24.234,90"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T17:09:42Z",
+          "effective_from": "2024-01-01",
+          "verification_status": "unverified"
+        },
+        "transformation": "Level of the tabella."
+      }
+    },
+    {
+      "code": "VI",
+      "order": 3,
+      "description": "Livello VI (personale tecnico e amministrativo)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "2061.70",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2022-2024",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                  "published_on": "2025-12-23",
+                  "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                },
+                "page": "58",
+                "section": "Tabella C3 - ENTI DI RICERCA, dal 1.1.2024",
+                "quote": "VI 24.740,35"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2115.91",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "27",
+                "section": "Tabella C3 - ENTI DI RICERCA, dal 1.1.2025",
+                "quote": "VI 25.390,87 26.041,51 26.457,91"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2170.13",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "27",
+                "section": "Tabella C3 - ENTI DI RICERCA, dal 1.1.2026",
+                "quote": "VI 25.390,87 26.041,51 26.457,91"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "2204.83",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "27",
+                "section": "Tabella C3 - ENTI DI RICERCA, dal 1.1.2027",
+                "quote": "VI 25.390,87 26.041,51 26.457,91"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-ir-2025-2027",
+            "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+            "published_on": "2026-07-01",
+            "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+          },
+          "page": "27",
+          "section": "Tabella C3 - ENTI DI RICERCA",
+          "quote": "VI 25.390,87 26.041,51 26.457,91"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T17:09:42Z",
+          "effective_from": "2024-01-01",
+          "verification_status": "unverified"
+        },
+        "transformation": "Level of the tabella."
+      }
+    },
+    {
+      "code": "V",
+      "order": 4,
+      "description": "Livello V (personale tecnico e amministrativo)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "2240.64",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2022-2024",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                  "published_on": "2025-12-23",
+                  "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                },
+                "page": "58",
+                "section": "Tabella C3 - ENTI DI RICERCA, dal 1.1.2024",
+                "quote": "V 26.887,70"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2299.55",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "27",
+                "section": "Tabella C3 - ENTI DI RICERCA, dal 1.1.2025",
+                "quote": "V 27.594,62 28.301,78 28.754,30"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2358.48",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "27",
+                "section": "Tabella C3 - ENTI DI RICERCA, dal 1.1.2026",
+                "quote": "V 27.594,62 28.301,78 28.754,30"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "2396.19",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "27",
+                "section": "Tabella C3 - ENTI DI RICERCA, dal 1.1.2027",
+                "quote": "V 27.594,62 28.301,78 28.754,30"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-ir-2025-2027",
+            "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+            "published_on": "2026-07-01",
+            "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+          },
+          "page": "27",
+          "section": "Tabella C3 - ENTI DI RICERCA",
+          "quote": "V 27.594,62 28.301,78 28.754,30"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T17:09:42Z",
+          "effective_from": "2024-01-01",
+          "verification_status": "unverified"
+        },
+        "transformation": "Level of the tabella."
+      }
+    },
+    {
+      "code": "IV",
+      "order": 5,
+      "description": "Livello IV (personale tecnico e amministrativo)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "2466.05",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2022-2024",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                  "published_on": "2025-12-23",
+                  "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                },
+                "page": "58",
+                "section": "Tabella C3 - ENTI DI RICERCA, dal 1.1.2024",
+                "quote": "IV 29.592,57"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2530.89",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "27",
+                "section": "Tabella C3 - ENTI DI RICERCA, dal 1.1.2025",
+                "quote": "IV 30.370,65 31.148,85 31.646,97"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2595.74",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "27",
+                "section": "Tabella C3 - ENTI DI RICERCA, dal 1.1.2026",
+                "quote": "IV 30.370,65 31.148,85 31.646,97"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "2637.25",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "27",
+                "section": "Tabella C3 - ENTI DI RICERCA, dal 1.1.2027",
+                "quote": "IV 30.370,65 31.148,85 31.646,97"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-ir-2025-2027",
+            "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+            "published_on": "2026-07-01",
+            "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+          },
+          "page": "27",
+          "section": "Tabella C3 - ENTI DI RICERCA",
+          "quote": "IV 30.370,65 31.148,85 31.646,97"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T17:09:42Z",
+          "effective_from": "2024-01-01",
+          "verification_status": "unverified"
+        },
+        "transformation": "Level of the tabella."
+      }
+    },
+    {
+      "code": "III",
+      "order": 6,
+      "description": "Livello III - Ricercatore e Tecnologo",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "2785.64",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2022-2024",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                  "published_on": "2025-12-23",
+                  "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                },
+                "page": "59",
+                "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2024, Livello III - Ricercatore e Tecnologo, da 0 a 2",
+                "quote": "da 0 a 2 33.427,65"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare of the first band over 12."
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2838.87",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "28",
+                "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2025, Livello III - Ricercatore e Tecnologo, da 0 a 2",
+                "quote": "da 0 a 2 34.066,41 34.705,29 35.288,37"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare of the first band over 12."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2892.11",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "28",
+                "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2026, Livello III - Ricercatore e Tecnologo, da 0 a 2",
+                "quote": "da 0 a 2 34.066,41 34.705,29 35.288,37"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare of the first band over 12."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "2940.70",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "28",
+                "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2027, Livello III - Ricercatore e Tecnologo, da 0 a 2",
+                "quote": "da 0 a 2 34.066,41 34.705,29 35.288,37"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare of the first band over 12."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-ir-2025-2027",
+            "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+            "published_on": "2026-07-01",
+            "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+          },
+          "page": "28",
+          "section": "Tabella C4 - ENTI DI RICERCA",
+          "quote": "Livello III - Ricercatore e Tecnologo"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T17:09:42Z",
+          "effective_from": "2024-01-01",
+          "verification_status": "unverified"
+        },
+        "transformation": "Level of the tabella."
+      }
+    },
+    {
+      "code": "II",
+      "order": 7,
+      "description": "Livello II - Primo ricercatore e Primo tecnologo",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "3527.86",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2022-2024",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                  "published_on": "2025-12-23",
+                  "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                },
+                "page": "59",
+                "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2024, Livello II - Primo ricercatore e Primo tecnologo, da 0 a 2",
+                "quote": "da 0 a 2 42.334,29"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare of the first band over 12."
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "3595.27",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "28",
+                "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2025, Livello II - Primo ricercatore e Primo tecnologo, da 0 a 2",
+                "quote": "da 0 a 2 43.143,21 43.952,37 44.690,73"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare of the first band over 12."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "3662.70",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "28",
+                "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2026, Livello II - Primo ricercatore e Primo tecnologo, da 0 a 2",
+                "quote": "da 0 a 2 43.143,21 43.952,37 44.690,73"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare of the first band over 12."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "3724.23",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "28",
+                "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2027, Livello II - Primo ricercatore e Primo tecnologo, da 0 a 2",
+                "quote": "da 0 a 2 43.143,21 43.952,37 44.690,73"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare of the first band over 12."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-ir-2025-2027",
+            "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+            "published_on": "2026-07-01",
+            "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+          },
+          "page": "28",
+          "section": "Tabella C4 - ENTI DI RICERCA",
+          "quote": "Livello II - Primo ricercatore e Primo tecnologo"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T17:09:42Z",
+          "effective_from": "2024-01-01",
+          "verification_status": "unverified"
+        },
+        "transformation": "Level of the tabella."
+      }
+    },
+    {
+      "code": "I",
+      "order": 8,
+      "description": "Livello I - Dirigente di ricerca e Dirigente tecnologo",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "4550.69",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2022-2024",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                  "published_on": "2025-12-23",
+                  "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                },
+                "page": "59",
+                "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2024, Livello I - Dirigente di ricerca e Dirigente tecnologo, da 0 a 2",
+                "quote": "da 0 a 2 54.608,33"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare of the first band over 12."
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "4637.65",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "28",
+                "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2025, Livello I - Dirigente di ricerca e Dirigente tecnologo, da 0 a 2",
+                "quote": "da 0 a 2 55.651,85 56.695,61 57.647,93"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare of the first band over 12."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "4724.63",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "28",
+                "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2026, Livello I - Dirigente di ricerca e Dirigente tecnologo, da 0 a 2",
+                "quote": "da 0 a 2 55.651,85 56.695,61 57.647,93"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare of the first band over 12."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "4803.99",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "28",
+                "section": "Tabella C4 - ENTI DI RICERCA, dal 1.1.2027, Livello I - Dirigente di ricerca e Dirigente tecnologo, da 0 a 2",
+                "quote": "da 0 a 2 55.651,85 56.695,61 57.647,93"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T17:09:42Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T17:09:42Z",
+                "review_id": "2026-10-12-ai-ricerca"
+              },
+              "transformation": "Annual tabellare of the first band over 12."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-ir-2025-2027",
+            "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+            "published_on": "2026-07-01",
+            "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+          },
+          "page": "28",
+          "section": "Tabella C4 - ENTI DI RICERCA",
+          "quote": "Livello I - Dirigente di ricerca e Dirigente tecnologo"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T17:09:42Z",
+          "effective_from": "2024-01-01",
+          "verification_status": "unverified"
+        },
+        "transformation": "Level of the tabella."
+      }
+    }
+  ],
+  "apprenticeship": [],
+  "coverage": {
+    "notes": [
+      {
+        "kind": "info",
+        "text": "SCOPE: staff of the enti pubblici di ricerca (ASI included): levels IV-VIII (Tabella C3, one tabellare) and the ricercatori and tecnologi of levels I-III (Tabella C4, seven bands of anzianità di servizio as seniority steps), from 1.1.2024 (CCNL 2022-2024) and 2025-2027 (CCNL 2025-2027)."
+      },
+      {
+        "kind": "simplification",
+        "text": "ALLOWANCES: the indennità di Ente of levels IV-VIII (Tabella C5) and the indennità di valorizzazione professionale of levels I-III (Tabella C6) are stated by the CCNL only as increments from 1.1.2027, their earlier amounts set by older contracts not read: not modelled, the caller pays them.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "research_allowances_missing",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Read the indennità di Ente and di valorizzazione professionale of the earlier CCNL and add them with the 2027 increments."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "SHARED RULES: the hourly divisor, the tredicesima, the leave, absence, sickness and accrual rules are those of the scuola file of the same comparto (istruzione-ricerca-aran), not read again for the research bodies. No overtime table is modelled.",
+        "capability": "sickness",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "shared_rules_unchecked",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Read the research sections of the CCNL 2019-2021 (18/1/2024) for leave, absence, sickness and overtime."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "PENSION FUND: the staff of the research bodies join the Fondo Perseo Sirio, not modelled here.",
+        "capability": "pension_fund_contribution",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "perseo_sirio_not_modelled",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the employer and employee rates of Fondo Perseo Sirio."
+        }
+      }
+    ]
+  },
+  "ruleset": {
+    "id": "ccnl/enti-ricerca-aran",
+    "version": "2026.2",
+    "effective_from": "2024-01-01",
+    "effective_until": null,
+    "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+    "verification_status": "unverified",
+    "source_hash": "7a51df50643220e479099e4d886f3dbb033f62cc130145a9ea044b6b4bb1b9d8",
+    "published_at": "2026-09-07",
+    "source_type": "official_primary"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": []
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "status": "assumed",
+        "note": "No text of the comparto fixes the daily quota of an unpaid absence of the scuola staff: the only daily divisor in the texts read is the 1/30 of the compenso individuale accessorio (CCNL Scuola 2007, p. 75). by_26 is kept as extracted, not sourced. Searched on 2026-10-12: the trade press reports a deduction of 1/30 of the taxable monthly pay for a day of strike and 1/30 of the RPD or CIA for the first ten days of sickness (NoiPA practice), but no statute, CCNL or NoiPA document read gives the daily quota of an unpaid absence; it stays assumed until one is found."
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "32",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "30"
+        },
+        {
+          "service_months_min": 36,
+          "annual_days": "32"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-scuola-2006-2009-aran",
+            "title": "CCNL Comparto Scuola 2006-2009, 29 novembre 2007",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/07/CCNL-SCUOLA-2006-2009.pdf",
+            "published_on": "2007-11-29",
+            "sha256": "e71227f907cf2292f4994e535c2b431bb2961221ad16eae12c803d8bf911757d"
+          },
+          "page": "23",
+          "section": "Art. 13 cc. 2-4 (ferie)",
+          "quote": "I dipendenti neo-assunti nella scuola hanno diritto a 30 giorni lavorativi di ferie"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T08:24:13Z",
+          "verification_status": "verified",
+          "effective_from": "2007-11-29",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T08:24:13Z",
+          "review_id": "2026-10-12-ai"
+        },
+        "transformation": "32 days (c. 2), 30 for the first 3 years of service (cc. 3-4: 'Dopo 3 anni di servizio, a qualsiasi titolo prestato'). The CCNL counts the three years in any public administration ('a qualsiasi titolo prestato' / 'presso una qualsiasi pubblica amministrazione'); the tiers read the seniority with this employer, so a worker with earlier public service gets 26 (30) days when the text gives 28 (32): state the seniority with the earlier public service included."
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "cumulation": {
+        "window_years": 3,
+        "reduced_integration_rate": "0",
+        "bands": [
+          {
+            "seniority_months_from": 0,
+            "full_pay_days": 270,
+            "comporto_days": 540,
+            "steps": [
+              {
+                "day_from": 271,
+                "day_until": 361,
+                "integration_rate": "0.9"
+              },
+              {
+                "day_from": 361,
+                "day_until": 541,
+                "integration_rate": "0.5"
+              }
+            ]
+          }
+        ]
+      },
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-scuola-2006-2009-aran",
+            "title": "CCNL Comparto Scuola 2006-2009, 29 novembre 2007",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/07/CCNL-SCUOLA-2006-2009.pdf",
+            "published_on": "2007-11-29",
+            "sha256": "e71227f907cf2292f4994e535c2b431bb2961221ad16eae12c803d8bf911757d"
+          },
+          "page": "27-28",
+          "section": "Art. 17 cc. 1, 8 (assenze per malattia)",
+          "quote": "b) 90% della retribuzione di cui alla lett. a) per i successivi 3 mesi di assenza;"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T08:24:13Z",
+          "verification_status": "unverified",
+          "effective_from": "2007-11-29"
+        },
+        "note": "Job kept 18 months within the three years before the day (the CCNL sums 'le assenze per malattia verificatesi nel triennio precedente' the last episode): 540 days of 30-day months over a window of 3 years; 9 months (270 days) in full, 3 (days 271-360) at 90%, 6 (days 361-540) at 50%. The window ends on the sick day, not on the start of the last episode. The cut of the accessory pay of the first 10 days (D.L. 112/2008 art. 71 c. 1) is not modelled."
+      }
+    }
+  },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-12-ai-ricerca",
+        "date": "2026-10-12",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Tabellare and seniority bands of the research bodies, 2024-2027.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+            "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+          },
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+            "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+          }
+        ],
+        "findings": [
+          "New file for the research bodies of the comparto Istruzione e Ricerca: Tabelle C3 and C4 of the CCNL 2022-2024 and 2025-2027, read on the ARAN texts."
+        ]
+      }
+    ]
+  }
+}

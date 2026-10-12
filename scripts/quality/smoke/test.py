@@ -59,8 +59,8 @@ def main() -> int:
     print(f"OK: period_net={net}")
 
     ccnls = engine.list_contracts()
-    if len(ccnls) != 129:
-        print(f"FAIL: list_contracts() returned {len(ccnls)} items, expected 129")
+    if len(ccnls) != 130:
+        print(f"FAIL: list_contracts() returned {len(ccnls)} items, expected 130")
         return 1
 
     slug = ccnls[0].ccnl_id
