@@ -129,7 +129,7 @@ ruleset without the fields above. These errors have no baseline.
 ## Current status
 
 Distribution across the
-<!-- trust:ccnl-total -->130<!-- /trust:ccnl-total --> bundled CCNL rulesets,
+<!-- trust:ccnl-total -->131<!-- /trust:ccnl-total --> bundled CCNL rulesets,
 generated from the data by `scripts/documentation/trust_count/generate.py` (CI fails when
 it drifts):
 
@@ -137,7 +137,7 @@ it drifts):
 
 | Readiness | CCNL rulesets |
 |---|---:|
-| `exploratory` | 119 |
+| `exploratory` | 120 |
 | `reviewed` | 10 |
 | `production` | 1 |
 
@@ -159,7 +159,7 @@ hold an entry in the review log, and
 <!-- trust:reviewed-confidence-verified -->10<!-- /trust:reviewed-confidence-verified -->
 set `verification.confidence = "verified"` (step 5 of the criteria above).
 A per-value review is recorded only by the provenance status `verified` of a
-payable rule, and <!-- trust:rules-verified -->674<!-- /trust:rules-verified -->
+payable rule, and <!-- trust:rules-verified -->698<!-- /trust:rules-verified -->
 payable rules of the bundle have it (see
 [Provenance](provenance.md#provenance-status)).
 
