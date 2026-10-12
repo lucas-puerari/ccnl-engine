@@ -84,3 +84,21 @@ def test_a_stay_outside_the_episode_is_rejected() -> None:
             date(2026, 3, 10),
             hospital_stays=((date(2026, 3, 5), date(2026, 3, 12)),),
         )
+
+
+def test_cutting_the_episode_cuts_its_stays() -> None:
+    """A stay past the day processed is cut with the episode."""
+    episode = SicknessEpisode(
+        "e",
+        date(2026, 3, 1),
+        date(2026, 4, 30),
+        hospital_stays=(
+            (date(2026, 3, 10), date(2026, 4, 5)),
+            (date(2026, 4, 20), date(2026, 4, 25)),
+        ),
+    )
+
+    cut = episode.through(date(2026, 3, 31))
+
+    assert cut.hospital_stays == ((date(2026, 3, 10), date(2026, 3, 31)),)
+    assert episode.through(date(2026, 5, 1)) is episode
