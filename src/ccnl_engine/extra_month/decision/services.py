@@ -100,6 +100,7 @@ def accrual_decisions(ctx: RunContext) -> tuple[CalculationDecision, ...]:
                 "fraction": accrual.fraction,
                 "min_days": str(accrual.rule.min_days or "none"),
                 "comparison": accrual.rule.comparison.value,
+                "working_days": str(accrual.rule.working_days).lower(),
                 "rule_origin": _origin(accrual.rule),
             },
             source=(

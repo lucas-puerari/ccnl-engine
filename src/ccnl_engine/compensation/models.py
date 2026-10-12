@@ -150,6 +150,10 @@ class ExtraMonthAccrualRule(BaseModel):
         min_days: Threshold in calendar days; ``None`` for a day-based
             comparison, which has none.
         comparison: How a month is counted (:class:`AccrualComparison`).
+        working_days: The threshold counts the accruing days from Monday
+            to Saturday instead of calendar days (CCNL Cooperative sociali
+            art. 79: "superiore ai 15 giorni lavorativi", the week counted
+            on six days by art. 60).
         provenance: Source of the clause; ``missing`` is not allowed, a
             rule without a source is left out of the data instead.
 
@@ -163,6 +167,7 @@ class ExtraMonthAccrualRule(BaseModel):
 
     min_days: int | None = None
     comparison: AccrualComparison
+    working_days: bool = False
     provenance: RuleProvenance
 
     @model_validator(mode="after")
@@ -172,8 +177,11 @@ class ExtraMonthAccrualRule(BaseModel):
             raise ValueError(msg)
         days = self.min_days
         if self.comparison.by_days:
-            if days is not None:
-                msg = f"{self.comparison.value} has no threshold; leave min_days out"
+            if days is not None or self.working_days:
+                msg = (
+                    f"{self.comparison.value} has no threshold; "
+                    "leave min_days and working_days out"
+                )
                 raise ValueError(msg)
             return self
         more_than = self.comparison is AccrualComparison.MORE_THAN
