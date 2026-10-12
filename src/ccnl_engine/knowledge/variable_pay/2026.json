@@ -30,16 +30,20 @@
     "income_ceiling": "80000.00",
     "description": "Art. 1 cc. 182-190 L. 208/2015: premio di risultato, imposta sostitutiva 1% entro 5.000 EUR per il 2026 (L. 199/2025 art. 1 c. 9)",
     "provenance": {
-      "status": "assumed",
+      "status": "derived",
       "location": {
         "source_document": {
-          "document_id": "l-208-2015",
-          "title": "L. 208/2015, legge di stabilità 2016",
-          "kind": "legge"
+          "document_id": "l-199-2025",
+          "title": "L. 30 dicembre 2025 n. 199, legge di bilancio 2026",
+          "kind": "legge",
+          "url": "https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.codiceRedazionale=26A00149&art.dataPubblicazioneGazzetta=2026-01-21&art.flagTipoArticolo=0&art.idArticolo=1&art.idGruppo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.progressivo=1&art.versione=1",
+          "published_on": "2025-12-30"
         },
-        "section": "art. 1 cc. 182-190"
+        "section": "art. 1 c. 9",
+        "quote": "Ai premi di produttivita' e alle somme erogate a titolo di partecipazione agli utili di cui all'articolo 1, comma 182, della legge 28 dicembre 2015, n. 208, erogati negli anni 2026 e 2027, l'imposta sostitutiva ivi prevista e' applicabile, entro il limite di importo complessivo di 5.000 euro, con l'aliquota ridotta all'1 per cento."
       },
-      "note": "Substitute rate 1% within 5,000 EUR for the premi paid in 2026 and 2027 per L. 199/2025 art. 1 c. 9; L. 207/2024 art. 1 c. 385, restricted to 2025 by L. 199/2025 art. 1 c. 8, no longer applies to 2026. Both commi checked on 2026-09-27 against the Gazzetta Ufficiale text of L. 199/2025 (https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.codiceRedazionale=26A00149&art.dataPubblicazioneGazzetta=2026-01-21&art.flagTipoArticolo=0&art.idArticolo=1&art.idGruppo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.progressivo=1&art.versione=1). Assumed, not derived: no citation (http(s) url and section or page)."
+      "transformation": "max_amount 5,000 and flat_tax_rate 0.01 from c. 9; income_ceiling 80,000 from L. 208/2015 art. 1 c. 186 as amended by L. 232/2016 art. 1 c. 160 lett. d.",
+      "note": "Gazzetta Ufficiale text of L. 199/2025 art. 1 read on 2026-10-12 (page sha256 e05f6f864509f87e7488cdae075fe3a1f2632f6f4577b87ee05479a1ed193c1d). Income ceiling: L. 232/2016 art. 1 c. 160 lett. d (https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.codiceRedazionale=16G00242&art.dataPubblicazioneGazzetta=2016-12-21&art.flagTipoArticolo=0&art.idArticolo=1&art.idGruppo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.progressivo=2&art.versione=1, read 2026-10-12, page sha256 77a30a4bb447d79265b80e0362db40d0ed00d839a8d2a66006dddac4ff16cf13): 'al comma 186, le parole: «euro 50.000» sono sostituite dalle seguenti: «euro 80.000»'. L. 207/2024 art. 1 c. 385, restricted to 2025 by L. 199/2025 art. 1 c. 8, no longer applies to 2026."
     }
   },
   "rinnovo": {
@@ -109,7 +113,7 @@
     "published_at": "2026-09-08",
     "source": "TUIR art. 51 c. 3; L. 207/2024 art. 1 c. 390; L. 208/2015 art. 1 cc. 182-190; L. 199/2025 art. 1 cc. 7, 9, 10-11",
     "verification_status": "unverified",
-    "source_hash": "84ce7b9c87d014a49cfc508da32b61df829b7b0cf874e6b40cebce5b281c9af2",
+    "source_hash": "6dd25f81a3ca6a43b493faf9a5836c48572911bab081eea1b70dfc99a3c74351",
     "source_type": "official_primary"
   }
 }
