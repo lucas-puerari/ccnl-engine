@@ -201,8 +201,20 @@ class CumulativeTreatment:
             episode up to ``day``.
         """
         first = self.window_first(day)
-        earlier = sum(_overlap(e, first, day) for e in self.earlier)
-        return earlier + _overlap(self.episode, first, day)
+        earlier = sum(_overlap(e, first, day) for e in self.earlier if self._counted(e))
+        own = _overlap(self.episode, first, day) if self._counted(self.episode) else 0
+        return earlier + own
+
+    def _counted(self, episode: SicknessEpisode) -> bool:
+        """Return whether ``episode`` counts toward the comporto.
+
+        Returns:
+            ``False`` for a serious illness the CCNL leaves out of it.
+        """
+        rule = self.cumulation.serious_illness
+        return not (
+            rule is not None and rule.outside_comporto and episode.serious_illness
+        )
 
     @cached_property
     def short(self) -> ShortAbsence:
@@ -246,12 +258,7 @@ class CumulativeTreatment:
         del index
         band = self.band
         count = self.chain_days(day)
-        if count <= band.full_pay_days:
-            rate = self.rules.full_pay_integration_rate
-        else:
-            step = band.step_rate(count)
-            rate = self.cumulation.reduced_integration_rate if step is None else step
-            rate = self._hospital(day, rate)
+        rate = self._rate(count, day)
         short = self.cumulation.short_absences
         first_days = 0 if short is None else short.first_days
         if (day - self.episode.started_on).days < first_days:
@@ -261,6 +268,28 @@ class CumulativeTreatment:
             rate=rate,
             carenza_rate=min(self.rules.carenza_integration_rate, rate),
         )
+
+    def _rate(self, count: int, day: date) -> Decimal:
+        """Return the integration rate of ``day``, the ``count``-th of the chain.
+
+        A serious illness the CCNL treats apart is paid in full for its days
+        and at the reduced rate after them; otherwise the band decides, a
+        long hospital stay paying a reduced day in full.
+
+        Returns:
+            The rate of the day.
+        """
+        serious = self.cumulation.serious_illness
+        if serious is not None and self.episode.serious_illness:
+            if (day - self.episode.started_on).days < serious.full_pay_days:
+                return self.rules.full_pay_integration_rate
+            return self.cumulation.reduced_integration_rate
+        band = self.band
+        if count <= band.full_pay_days:
+            return self.rules.full_pay_integration_rate
+        step = band.step_rate(count)
+        rate = self.cumulation.reduced_integration_rate if step is None else step
+        return self._hospital(day, rate)
 
     def _hospital(self, day: date, rate: Decimal) -> Decimal:
         """Return the rate of a reduced day, full within a long hospital stay.

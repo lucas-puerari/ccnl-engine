@@ -42,6 +42,7 @@ __all__ = [
     "HOSPITAL_STAY",
     "HOSPITAL_STAY_UNKNOWN",
     "SENIORITY_UNKNOWN",
+    "SERIOUS_ILLNESS_UNKNOWN",
     "cumulation_inputs",
     "cumulation_issues",
     "year_issues",
@@ -57,6 +58,8 @@ EXEMPTION_UNKNOWN = "sickness_short_absence_exemption_unknown"
 BAND_CHANGES = "sickness_seniority_band_changes"
 #: A day is paid at the reduced rate and hospital stays are not modelled.
 HOSPITAL_STAY = "sickness_hospital_stay_not_modelled"
+#: A day is paid at the reduced rate and a serious illness is not stated.
+SERIOUS_ILLNESS_UNKNOWN = "sickness_serious_illness_unknown"
 #: A day is paid at the reduced rate and the hospital stays are not stated.
 HOSPITAL_STAY_UNKNOWN = "sickness_hospital_stays_unknown"
 #: The full-pay and comporto days of a fixed-term contract are not scaled.
@@ -118,6 +121,37 @@ def _messages(
     )
 
 
+def _serious_issue(
+    episode: SicknessEpisode, report: CumulationReport, terms: SicknessTerms
+) -> CalculationIssue | None:
+    """Return the issue of reduced days a serious illness could change.
+
+    Returns:
+        For a CCNL with a serious-illness treatment, a missing-fact issue
+        when the episode does not say whether it is one and its days are
+        reduced; else ``None``.
+    """
+    rules = terms.rules
+    cumulation = None if rules is None else rules.ccnl.cumulation
+    if (
+        not report.reduced
+        or episode.serious_illness is not None
+        or cumulation is None
+        or cumulation.serious_illness is None
+    ):
+        return None
+    return CalculationIssue(
+        code=SERIOUS_ILLNESS_UNKNOWN,
+        message=(
+            f"sickness episode '{episode.episode_id}': days are paid at the "
+            "reduced rate; a particularly serious illness is paid in full and "
+            "left out of the comporto: state SicknessEpisode.serious_illness"
+        ),
+        status=_PROVISIONAL,
+        fact="serious_illness",
+    )
+
+
 def _hospital_issue(
     episode: SicknessEpisode, report: CumulationReport, terms: SicknessTerms
 ) -> CalculationIssue | None:
@@ -170,6 +204,9 @@ def cumulation_issues(
         for holds, code, message, fact in _messages(episode, report)
         if holds
     ]
+    serious = _serious_issue(episode, report, terms)
+    if serious is not None:
+        issues.append(serious)
     hospital = _hospital_issue(episode, report, terms)
     if hospital is not None:
         issues.append(hospital)

@@ -101,19 +101,6 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
-      },
-      {
-        "kind": "simplification",
-        "text": "Art. 63 cc. 8, 12: sickness from the 'malattie particolarmente gravi' of INPS circ. 95/2016 is paid in full for 18 months and left out of the comporto count; the request does not say whether an episode is one, so the ordinary treatment applies.",
-        "capability": "sickness",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "grave_illness",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Add a fact for a grave illness episode and pay it in full for 18 months outside the comporto."
-        }
       }
     ]
   },
@@ -2409,7 +2396,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "b412b3a65626600d4b6b896fa7a6e0b5d6107f48090b2c3dd4a3c49087e658d6",
+    "source_hash": "c3068a4449f73d22bcb2cfb4aaf495eea5af5b93d5aa019ef659341291545630",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2659,7 +2646,11 @@
               }
             ]
           }
-        ]
+        ],
+        "serious_illness": {
+          "full_pay_days": 540,
+          "outside_comporto": true
+        }
       },
       "provenance": {
         "status": "derived",
@@ -2684,7 +2675,7 @@
           "effective_from": "2023-05-01"
         },
         "transformation": "Up to 5 years of seniority: job kept 245 days (c. 7), counted over the 24 months before the day (c. 8), 3 months in full and 5 at half (c. 12): 90 days at 100%, days 91-240 at 50%, then unpaid. Above 5 years: 365 days over 30 months, 5 months in full and 7 at half: 150 days at 100%, days 151-360 at 50%. Months of 30 days; the band from 60 months reads 'superiore ai 5 anni' as five completed years and any further day. The CCNL treatment tops up the INPS indemnity to these shares of the retribuzione globale (c. 13).",
-        "note": "Not modelled: the 18 months in full of the 'malattie particolarmente gravi' of INPS circ. 95/2016 (c. 12, last period), which also leave the comporto count (c. 8): the request does not say whether an episode is one (limitation grave_illness)."
+        "note": "Malattie particolarmente gravi (INPS circ. 95/2016): left out of the comporto count (c. 8: 'ad esclusione di quelli per malattie particolarmente gravi') and paid 'con la corresponsione dell'intera retribuzione globale mensile per 18 mesi' (c. 12): 540 days of 30-day months from the first day of the episode, stated by SicknessEpisode.serious_illness."
       }
     }
   },
@@ -2747,6 +2738,23 @@
         "findings": [
           "The sickness rule was assumed (100% for 180 days, not the CCNL's): it is now 90 days in full and 150 at half within 24 months, comporto 245 days, up to 5 years of seniority; 150 in full and 210 at half within 30 months, comporto 365 days, above.",
           "With no assumed or missing payable rule left and the salary tables, additional months, divisor and seniority verified on 2026-10-11, the file is promoted to reviewed."
+        ]
+      },
+      {
+        "id": "2026-10-12-ai-serious-illness",
+        "date": "2026-10-12",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Malattie particolarmente gravi (art. 63 cc. 8 and 12).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          }
+        ],
+        "findings": [
+          "The serious illnesses of INPS circ. 95/2016 were a limitation (grave_illness): now paid in full for 18 months and left out of the comporto when SicknessEpisode.serious_illness says so."
         ]
       }
     ]
