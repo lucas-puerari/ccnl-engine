@@ -70,19 +70,21 @@
       }
     },
     "provenance": {
-      "status": "assumed",
+      "status": "derived",
       "location": {
         "source_document": {
           "document_id": "inps-aliquote-contributive-2012",
           "title": "INPS Direzione Centrale Entrate, Aliquote contributive in vigore dal 1 gennaio 2012",
           "kind": "amministrazione",
-          "url": "https://servizi2.inps.it/Servizi/CircMessStd/maestro.ashx?idAllegato=966&flagOriginale=1"
+          "url": "https://servizi2.inps.it/Servizi/CircMessStd/maestro.ashx?idAllegato=966&flagOriginale=1",
+          "sha256": "edb80d81236fb90cd3c3804e48589e1263c7ae95065cacdc5e12909a9077d64d"
         },
-        "section": "CREDITO e ASSICURAZIONI",
-        "quote": "Operai ... 38,50 9,19 33,00 1,31 0,30 0,20 0,68 ... 2,55 0,46 ... Impiegati ... 35,95 ... Dirigenti ... 35,95 ... (*) CUAF ……………… = 2,48 - 1,80 = 0,68%."
+        "section": "CREDITO e ASSICURAZIONI (CSC 6.01.01, 6.01.02, 6.02.01), lavoro a tempo indeterminato",
+        "quote": "Operai ... 38,50 9,19 33,00 1,31 0,30 0,20 0,68 ... 2,55 0,46 ... Impiegati ... 35,95 ... Dirigenti ... 35,95 ... (*) CUAF ……………… = 2,48 - 1,80 = 0,68%.",
+        "page": "22"
       },
       "transformation": "Employer = total - 9.19: impiegati and dirigenti 35.95 - 9.19 = 26.76 (IVS 23.81, NASpI 1.31 + 0.30, Fondo Garanzia TFR 0.20, CUAF 0.68, maternita 0.46); operai (salariati) 38.50 - 9.19 = 29.31, with malattia 2.55. rate is the impiegati rate, rate_by_category the operai rate.",
-      "note": "Assumed: the table is of 2012; the 2026 totals are confirmed only by Kitech table 6.1 (https://www.kitech.it/Contributi-previdenziali.aspx?p=9_165, sha256 a6d424e75a7fb383d758fc17d840f4b690c53e29cbb5168ee20ba8dd84c91fcf), 'DIRIGENTI | 35,95 | 9,19 | OPERAI E IMPIEGATI | 35,95 | 9,19 | SALARIATI | 38,50 | 9,19', a software house page that does not prove the year shown; promote on a 2026 INPS or association table. The Fondo di solidarietà del credito is not in these totals: 0.20% (0.133% employer, 0.067% worker) on 'tutti i lavoratori dipendenti con contratto a tempo indeterminato, compresi i dirigenti' (circ. INPS 90/2015 p. 11, https://servizi2.inps.it/CircolariZIP/Circolare%20numero%2090%20del%2006-05-2015.pdf, sha256 17165601e0b65710bd79220f09f88b184c320b0347a2662dedb276a26ff951f0; confirmed for 2026 by the INPS bilancio preventivo 2026, cap. 31, p. 7). The fund belongs to the CCNL, not to this file, which also serves BCC (own fund, 0.36%) and assicurazioni ANIA (own fund, rate unsourced): it is modelled as parameters.solidarity_fund of bancari-abi and bcc-credito-cooperativo, and ANIA declares the solidarity_fund_unsourced limitation."
+      "note": "The INPS breakdown of the sector is of 2012; the INPS open-data table 'Aliquote contributive Assicurazioni', in force from 1 January 2013, gives the same components and totals (Wayback copy of 2024-05-15 of https://servizi2.inps.it/docallegati/Mig/OpenData/Aliquote_contributive_Assicurazioni.xml, sha256 1367a6e2aad7591dfbfdd3c57cc631d0d2ea109f8b65bff62a5c728ec2a71fef: 'TOTALE (tempo indeterminato) 38,50 / 35,95 / 35,95', 'TOTALE a carico LAVORATORE 9,19'). Every component but the malattia of the salariati is printed with the same rate in the 2026 table of the general management (Assimpredil ANCE, Aliquote contributive INPS dal 1 gennaio 2026, tabella 1/2026, https://portale.assimpredilance.it/uploads/allegati/misug20260219_106_019_minimali_di_retribuzione_inps_2026_allegato_1_6997426c09ebe.pdf, sha256 83508e4e61d305be578ecb224a00bdf4f7628214578999a02d4763d93f58756f, p. 1: IVS 33,00 with 9,19 of the worker, CUAF 0,68, NASpI 1,61, Fondo garanzia T.F.R. 0,20, maternità 0,46). No CIG or CIGS: the sector is covered by the bilateral solidarity funds of D.Lgs. 148/2015 arts. 26-27 (INPS circ. 18/2022 p. 9: CIGS for employers 'che operano in settori non coperti dai Fondi di solidarietà bilaterali'). Not a 2026 INPS table: the malattia 2.55 of the salariati and any later change of the sector's CUAF exemption (1.80) are of 2012. The Fondo di solidarietà is not in these totals: it belongs to the CCNL (parameters.solidarity_fund): ABI 0.20% (circ. 90/2015), BCC 0.36% (circ. 104/2015), ANIA 0.30% (circ. 56/2015)."
     }
   },
   "apprentice": {
@@ -119,7 +121,7 @@
     "published_at": "2026-09-07",
     "source": "https://servizi2.inps.it/Servizi/CircMessStd/maestro.ashx?idAllegato=966&flagOriginale=1",
     "verification_status": "unverified",
-    "source_hash": "25f6512a16525629cf5301239d95e1901b9447a444e50d385420b007956592a2",
-    "source_type": "institutional_secondary"
+    "source_hash": "bfc0c1f50ab68e3635f81dfe83dc8d414060d4623e8e80b667227ac4d879dbaa",
+    "source_type": "official_primary"
   }
 }

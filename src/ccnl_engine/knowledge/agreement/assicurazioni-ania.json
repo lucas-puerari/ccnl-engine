@@ -128,23 +128,6 @@
       },
       {
         "kind": "simplification",
-        "text": "SOLIDARITY FUND: the insurance companies have a bilateral solidarity fund of their own at INPS (Fondo di solidarietà del settore assicurativo, accord ANIA of 20 May 2013, D.I. 78459 of 17 January 2014, G.U. n. 88 of 15 April 2014). No source found gives its ordinary contribution rate in force in 2026, so the run charges none: the employer and worker contributions of a permanent worker are understated by the fund contribution.",
-        "capability": "inps_employer",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "solidarity_fund_unsourced",
-          "applies_when": {
-            "trigger": "run",
-            "contract_types": [
-              "permanent",
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the ordinary contribution of the insurance solidarity fund (its decree or an INPS circular), add it as parameters.solidarity_fund, then remove this note."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "INPS RATES: the employer and worker INPS rates of the sector (credito) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.",
         "capability": "inps_employer",
         "monetary_impact": "unknown",
@@ -155,6 +138,10 @@
           },
           "remediation": "Source the credito rates of 2026 on an INPS or association table, mark the inps block of contribution/2026/credito.json derived, then remove this note."
         }
+      },
+      {
+        "kind": "info",
+        "text": "SOLIDARITY FUND: Fondo di solidarietà del settore assicurativo (accord ANIA of 20 May 2013, D.I. 78459 of 17 January 2014): ordinary contribution 0.30% of the INPS taxable pay of permanent workers, 0.20% employer and 0.10% worker, dirigenti excluded (INPS circ. 56/2015 p. 11); collected by INPS in the overall rate."
       }
     ]
   },
@@ -341,6 +328,29 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
+      }
+    },
+    "solidarity_fund": {
+      "code": "FONDO_SOLIDARIETA_ASSICURATIVO",
+      "employer_rate": "0.002",
+      "employee_rate": "0.001",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "inps-circolare-56-2015",
+            "title": "INPS Circolare n. 56 del 10 marzo 2015, Fondo di solidarietà del settore assicurativo (D.I. 78459/2014)",
+            "kind": "inps_circolare",
+            "url": "https://servizi2.inps.it/CircolariZIP/Circolare%20numero%2056%20del%2010-03-2015.pdf",
+            "published_on": "2015-03-10",
+            "sha256": "70a155505e2320a06b407c41155dc7cf65245baefc2e478de335d8ffe2c60ab0"
+          },
+          "page": "11",
+          "section": "Finanziamento, lett. a) Contributo ordinario",
+          "quote": "dovuto al Fondo un contributo ordinario dello 0,30% (di cui lo 0,20% a carico del datore di lavoro e lo 0,10% a carico dei lavoratori) calcolato sulla retribuzione imponibile ai fini previdenziali di tutti i lavoratori dipendenti con contratto a tempo indeterminato, esclusi i dirigenti."
+        },
+        "transformation": "0.20% employer and 0.10% worker of the INPS taxable pay of every permanent worker; the CCNL ANIA has no dirigenti level.",
+        "note": "The circular is of 2015: no 2026 source found confirms the rate, nor whether the fund changed it when funds adapted to D.Lgs. 148/2015 art. 26 c. 7-bis."
       }
     }
   },
@@ -1174,7 +1184,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/",
     "verification_status": "unverified",
-    "source_hash": "fadb5391781884c4aba6db26576ea6657b17f56308e3f4fc71bf00a4b4ae737a",
+    "source_hash": "979c5cea3cf3f31e6b6837e1296430c7b23e8716c910fe8b9ce2b8fa5a3c4d90",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

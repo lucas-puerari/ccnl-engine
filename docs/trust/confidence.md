@@ -197,7 +197,7 @@ is `False` on its closing state). See
 ## Model limitations
 
 A known simplification of the model is data, not a comment. The registry has
-<!-- trust:limitations-total -->301<!-- /trust:limitations-total --> `ModelLimitation`
+<!-- trust:limitations-total -->300<!-- /trust:limitations-total --> `ModelLimitation`
 entries: one per `simplification` note of a CCNL file that can move an
 amount, and <!-- trust:limitations-engine -->9<!-- /trust:limitations-engine -->
 engine limitations of code paths several CCNLs share
@@ -214,10 +214,10 @@ limits, the `rulesets` and dates it affects, a `monetary_impact` (`yes`,
 `no`, `unknown`), a `status` (`open`, `resolved`), its `source` and a
 `remediation`.
 
-The <!-- trust:simplification-notes -->360<!-- /trust:simplification-notes -->
+The <!-- trust:simplification-notes -->359<!-- /trust:simplification-notes -->
 simplification notes of the bundle each state their impact on what the engine
 computes from the bundle:
-<!-- trust:simplification-yes -->82<!-- /trust:simplification-yes --> `yes`,
+<!-- trust:simplification-yes -->81<!-- /trust:simplification-yes --> `yes`,
 <!-- trust:simplification-unknown -->210<!-- /trust:simplification-unknown --> `unknown`
 and <!-- trust:simplification-no -->68<!-- /trust:simplification-no --> `no` (the
 engine refuses the case, or takes the value from the caller). A file whose
