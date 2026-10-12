@@ -176,7 +176,16 @@ class SicknessEpisode:
         Returns:
             The episode ending on ``day`` when it lasts beyond it.
         """
-        return self if self.ended_on <= day else replace(self, ended_on=day)
+        if self.ended_on <= day:
+            return self
+        stays = None
+        if self.hospital_stays is not None:
+            stays = tuple(
+                (first, min(last, day))
+                for first, last in self.hospital_stays
+                if first <= day
+            )
+        return replace(self, ended_on=day, hospital_stays=stays)
 
     def before(self, day: date) -> SicknessEpisode | None:
         """Return the part of the episode before ``day``.
