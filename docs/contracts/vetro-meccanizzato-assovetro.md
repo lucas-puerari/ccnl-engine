@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Extraction method** | 🧑 Manual | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
 | **Rule provenance** | 0 verified / 0 derived / 35 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
-| **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
+| **Ruleset confidence** | 🟡 Needs review | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
 ## Freshness
@@ -49,7 +49,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-04-09 |
-| **Last review** | 2026-09-17 |
+| **Last review** | 2026-10-12 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -57,6 +57,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-09-17 | maintainer (human) | Whole file. The values checked were not recorded. | confirmed | The review recorded no list of the documents it read. |
+| 2026-10-12 | claude-opus-5-5 (ai) | File-level confidence against the provenance of its payable rules; no value re-read. | flagged | confidence was 'verified' while no payable rule is verified, 35 are assumed and the accrual rule is missing; the review of 2026-09-17 recorded neither the documents it read nor the values it checked. Confidence set to needs_review until the values are read in the signed text. |
 
 ## Salary table
 

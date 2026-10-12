@@ -1352,7 +1352,7 @@
     ]
   },
   "verification": {
-    "confidence": "verified",
+    "confidence": "needs_review",
     "verified_cases": 0,
     "reviews": [
       {
@@ -1364,6 +1364,17 @@
         "outcome": "confirmed",
         "findings": [
           "The review recorded no list of the documents it read."
+        ]
+      },
+      {
+        "id": "2026-10-12-ai",
+        "date": "2026-10-12",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "File-level confidence against the provenance of its payable rules; no value re-read.",
+        "outcome": "flagged",
+        "findings": [
+          "confidence was 'verified' while no payable rule is verified, 35 are assumed and the accrual rule is missing; the review of 2026-09-17 recorded neither the documents it read nor the values it checked. Confidence set to needs_review until the values are read in the signed text."
         ]
       }
     ]
@@ -1377,6 +1388,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "fe4060679946db5aa71d37ee5f42be7db856502d5752438b4fb0a745eeaf15d8"
+    "source_hash": "f59115d99b1d7672910a29aeee7e61860b9dda1ba87173e9fc37cc830cec8b13"
   }
 }

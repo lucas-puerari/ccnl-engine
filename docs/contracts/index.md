@@ -203,7 +203,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 101 | H058 | [CCNL Turismo (Assoturismo-Confesercenti)](turismo-confesercenti.md) | turismo — alberghi, campeggi, pubblici esercizi, agenzie di viaggi | — | 2024 | ⚠️ | seniority | 0 / 56 / 1 / 1 | 🧪 | 🤖 |
 | 102 | H052 | [CCNL Turismo — Federalberghi/Faita](turismo-federalberghi.md) | Turismo | ~220k | 2024 | ⚠️ | seniority, worker_category | 0 / 68 / 1 / 1 | 🧪 | 🤖 |
 | 103 | H052 | [CCNL Turismo, Pubblici Esercizi e Ristorazione (Confcommercio)](turismo-confcommercio.md) | turismo | ~300k | — | ⚠️ | seniority | 0 / 58 / 1 / 1 | 🧪 | 🤖 |
-| 104 | B132 | [CCNL Vetro (Industrie) — Settori Meccanizzati (Prime Lavorazioni)](vetro-meccanizzato-assovetro.md) | vetro industria — settori meccanizzati | ~28k | 2026 | ⚠️ | base_salary | 0 / 0 / 35 / 1 | 🧪 | 🧑✓ |
+| 104 | B132 | [CCNL Vetro (Industrie) — Settori Meccanizzati (Prime Lavorazioni)](vetro-meccanizzato-assovetro.md) | vetro industria — settori meccanizzati | ~28k | 2026 | ⚠️ | base_salary | 0 / 0 / 35 / 1 | 🧪 | 🔍 |
 | 105 | HV17 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG](vigilanza-privata-federdat-gpg.md) | vigilanza privata — guardie particolari giurate (GPG) | ~45k | 2023 | ⚠️ | seniority | 0 / 48 / 1 / 1 | 🧪 | 🤖 |
 | 106 | HV17 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF](vigilanza-privata-federdat-sf.md) | vigilanza privata — servizi fiduciari (SF) | ~40k | 2023 | ⚠️ | seniority | 0 / 46 / 2 / 1 | 🧪 | 🤖 |
 | 107 | H0B1 | [CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso](agenti-immobiliari-fiaip.md) | agenzie immobiliari | — | 2025 | ⚠️ | base_salary, bilateral_funds, pension_fund_contribution, seniority, una_tantum | 0 / 0 / 30 / 1 | 🧪 | 🤖 |
