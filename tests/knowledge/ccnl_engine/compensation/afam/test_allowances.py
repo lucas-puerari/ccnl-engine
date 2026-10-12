@@ -56,3 +56,25 @@ def test_rpd_band_of_the_seniority(months: int, rpd: str) -> None:
 def test_cia_of_an_assistente() -> None:
     """The CIA is paid whatever the seniority."""
     assert _allowances("ASSISTENTE", 12)["total"] == Decimal("126.98")
+
+
+def test_university_tecnologo_positions() -> None:
+    """Tabella B2, from 1.3.2026: 0-5 years 34,537.80, 6-11 years 38,661.40.
+
+    With 7 years of service the step of the second position is paid:
+    38,661.40 / 12 - 34,537.80 / 12 = 3,221.78 - 2,878.15 = 343.63.
+    """
+    result = calculate_period(
+        PeriodCalculationRequest(
+            employer=EmployerProfile(headcount=Headcount(50)),
+            period_id=PeriodId(year=2026, month=4),
+            payment_date=date(2026, 4, 27),
+            ccnl_slug="universita-tecnologi-aran.json",
+            level_code="TECNOLOGO",
+            seniority=SeniorityFact(84, date(2026, 4, 1), SenioritySource.PAYSLIP),
+            opening_state=PeriodState.zero(),
+        )
+    )
+    by_kind = {i.kind: i.amount for i in result.pay_items}
+    assert by_kind["base_salary_earning"] == Decimal("2878.15")
+    assert by_kind["seniority_earning"] == Decimal("343.63")

@@ -1,0 +1,144 @@
+# CCNL Comparto Istruzione e Ricerca 2025-2027 (trattamento economico) - ARAN, Università, tecnologi a tempo indeterminato
+
+| | |
+|---|---|
+| **CNEL code** | `S305` |
+| **Sector** | Pubblica Amministrazione |
+| **Tax sector** | `pubblica-amministrazione` |
+| **Last renewal** | 2026-07-01 |
+| **Workers (est.)** | ~1,2M |
+| **Ruleset version** | `2026.2` |
+| **Readiness** | 🧪 Exploratory |
+
+[← Contracts index](index.md)
+
+??? note "Signatories"
+    - ARAN
+    - CISL FSUR
+    - FLC CGIL
+    - UIL SCUOLA RUA
+    - SNALS CONFSAL
+    - GILDA UNAMS
+    - ANIEF
+
+## Coverage
+
+Derived from the capability registry. The scenario features and the ones outside the input are the same for every contract: see the [capability matrix](capability-matrix.md).
+
+| | Core payroll path of a contract |
+|---|---|
+| ✅ | Every core capability is computed from bundled rules and request facts |
+| ⚠️ | The contract's data leave a core capability partial: see **Limits** |
+
+| | |
+|---|---|
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | pension_fund_contribution, sickness |
+
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+
+## Assurance
+
+| Axis | Value | What it says |
+|---|---|---|
+| **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
+| **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
+| **Rule provenance** | 2 verified / 4 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
+| **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
+
+## Freshness
+
+| | |
+|---|---|
+| **Last renewal** | 2026-07-01 |
+| **Last review** | 2026-10-12 |
+| **Latest salary tranche** | 2027-01-01 |
+
+## Review history
+
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-10-12 | claude-opus-5-5 (ai) | Tecnologi a tempo indeterminato, Tabella B2 of the CCNL 2025-2027. | corrected | The tecnologi of the universities, introduced from 1.3.2026, are now a level with their six posizioni stipendiali. |
+
+## Salary table
+
+Latest effective values per level (monthly gross, EUR).
+
+| Level | Description | Base salary (monthly) | Effective from |
+|---|---|---:|:---:|
+| `TECNOLOGO` | Tecnologo a tempo indeterminato | € 3,076.87 | 2027-01-01 |
+
+## Seniority increments
+
+**Cadence:** every 72 months  
+**Maximum:** 5 increments
+
+## Known simplifications
+
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "universita-tecnologi-aran/shared_rules_unchecked · sickness · impact unknown · open"
+    SHARED RULES: the hourly divisor, the tredicesima, the leave, absence, sickness and accrual rules are those of the scuola file of the same comparto (istruzione-ricerca-aran), not read again for the university staff.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Read the university sections of the CCNL 2019-2021 (18/1/2024) for leave, absence and sickness.
+
+!!! warning "universita-tecnologi-aran/perseo_sirio_not_modelled · pension_fund_contribution · impact yes · open"
+    PENSION FUND: the university staff join the Fondo Perseo Sirio, not modelled here (the scuola fund Espero does not apply).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the employer and employee rates of Fondo Perseo Sirio.
+
+!!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
+    The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.
+
+    **Applies when:** `sickness` applies; the run takes the engine code path.
+
+    **Remediation:** Compute the INPS indemnity on the INPS daily base and calendar days of the INPS rules, with the pay of the month before, then resolve this limitation.
+
+!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
+    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded.
+
+    **Applies when:** `sickness` applies; the run takes the engine code path.
+
+    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
+
+!!! warning "provisional_ruleset · irpef · impact unknown · open"
+    The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
+
+    **Applies when:** `irpef` applies; the run takes the engine code path.
+
+    **Remediation:** Replace each provisional ruleset of the year with the values of its published sources, drop its provisional flag, then resolve this limitation.
+
+!!! warning "provisional_inps_ruleset · inps_employer · impact unknown · open"
+    The run reads an INPS ruleset marked provisional: the INPS circulars of its year are not published yet, so the rates, the massimale and the minimale (and the hourly contributions of domestic work) are those of the year before, carried over. The indexed amounts change every January: the carried-over values understate them.
+
+    **Applies when:** `inps_employer` applies; the run takes the engine code path.
+
+    **Remediation:** Replace each provisional INPS ruleset of the year with the values of the INPS circulars of the year, drop its provisional flag, then resolve this limitation.
+
+## Sources
+
+| Document | Kind | Date | URL |
+|---|---|---|---|
+| — | — | 2026-07-01 | [↗](https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf) |
+| — | — | 2025-12-23 | [↗](https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf) |
+| — | — | 2024-01-18 | [↗](https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf) |
+| — | — | 2007-11-29 | [↗](https://www.aranagenzia.it/wp-content/uploads/2024/07/CCNL-SCUOLA-2006-2009.pdf) |
+
+??? note "Coverage notes"
+    SCOPE: tecnologi a tempo indeterminato of the universities, a profile from 1.3.2026 (CCNL 2025-2027 Tabella B2): six posizioni stipendiali (0-5, 6-11, 12-17, 18-23, 24-30, 31 and more years) as seniority steps. No overtime table; the allowances of the profile are not modelled.
+    
+
+## Raw data
+
+The contract file this page is generated from: [`agreement/universita-tecnologi-aran.json`](https://github.com/lucas-puerari/ccnl-engine/blob/main/src/ccnl_engine/knowledge/agreement/universita-tecnologi-aran.json).
+
+## Usage example
+
+```python
+--8<-- "docs/examples/agreement/universita-tecnologi-aran/example.py"
+```
