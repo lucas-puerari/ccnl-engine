@@ -40,7 +40,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🟢 Verified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 58 verified / 0 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 57 verified / 1 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -49,7 +49,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | — |
-| **Last review** | 2026-10-11 |
+| **Last review** | 2026-10-13 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -58,6 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-10 | claude-opus-5-5 (ai) | Whole file. The values checked were not recorded; no value was marked verified. | confirmed | The review recorded no list of the documents it read. |
 | 2026-10-11 | claude-opus-5-5 (ai) | Every payable rule of the file (98 records) read again in the signed texts: the renewal of 7 March 2024 and the CCNL testo definitivo of 21 January 2021 deposited at CNEL (B101), which the 2024 renewal leaves unchanged for these articles. | corrected | 96 records match their source and are verified; the two corrected rules below are verified too. The 34 records that cited the mysolution.it summary sheet now cite the CNEL testo definitivo. Pages are physical PDF pages (the printed page of the CNEL text is two lower).<br>Corrected: the leave tiers of Art. 42 start after the 10th and the 15th year (120 and 180 months), not 132 and 192.<br>Corrected: Art. 51 b) deducts unworked hours by the ratio 173 / working hours of the month, and Art. 50 keeps 1/25 for Sunday holidays, so the absence rule is by_month_hours instead of by_25.<br>Not modelled, each underpaying: night overtime after the first hour (76%), the 25% and 35% bands for daytime overtime beyond 48 hours, and the sickness tiers of 10 and 12 months for longer service.<br>The IND_FUNZIONE clause is Art. 46 g), not Art. 47.<br>No renewal signed after 7 March 2024; the contract expired on 30 June 2026 and a renewal is under negotiation. |
+| 2026-10-13 | claude-opus-5-5 (ai) | Overtime bands of art. 35 and the sickness rule of art. 60, follow-ups of the review of 2026-10-11. | corrected | Overtime: the 25% (49th weekly hour), 35% (beyond) and 76% (night after the first hour) bands were missing; added, the night threshold read per day.<br>Sickness: only the band up to 3 years was modelled, per episode and on the gross pay; now three seniority bands within 36 months, on the net pay, with the restart after 4 months without sickness (derived: months of 30 days, band edges read on completed months). |
 
 ## Salary table
 
@@ -121,18 +122,18 @@ Destination levels: `E2`
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "concia-unic/higher_overtime_bands · overtime · impact yes · open"
-    OVERTIME: 6 bands in contract (diurno fino 48h 15%, diurno oltre 48h prima ora 25%, oltre 48h successive 35%, notturno prima ora 61%, notturno successive 76%, festivo 71%). Engine supports one rate per applies_to_kinds; modeled as 15% diurno, 61% notturno, 71% festivo. Higher overtime bands omitted.
+    OVERTIME: every band of art. 35 is modelled: 15% to the 48th weekly hour, 25% the 49th, 35% beyond; night 61% the first hour, 76% after (first hour read per day); holiday 71%. The percentages do not add up ('la maggiore assorbe la minore', p. 57). The engine pays the first tier of an overtime event and flags the bands past a threshold (overtime_tier_not_applied): the caller passes the multiplier for the hours past a threshold.
 
     **Applies when:** `overtime` applies.
 
-    **Remediation:** Model the 25% and 35% bands over 48 weekly hours and the 76% night band, or pass the multiplier on the overtime event.
+    **Remediation:** Pass the multiplier on the overtime event for the hours past a threshold; the engine does not split an event by weekly or daily hours.
 
-!!! warning "concia-unic/seniority_gated_sickness_tiers · sickness · impact yes · open"
-    SICKNESS: 3 seniority tiers (Art. 60 of the CCNL testo definitivo 21/01/2021, comporto unchanged by the 2024 renewal): up to 3 years comporto 8 months, 3 months at 100% then 5 at 50%; 4 to 6 years 10 months, 4 at 100% and 6 at 50%; over 6 years 12 months, 5 at 100% and 7 at 50%; absences of several sicknesses summed over 36 months. Modelled as the first tier per episode: 100% months 1-3, 50% months 4-8, max 240 days.
+!!! warning "concia-unic/sickness_special_cases · sickness · impact yes · open"
+    SICKNESS: seniority bands of art. 60 modelled as a cumulation (8, 10, 12 months of comporto within 36 months; 3, 4, 5 months in full and the rest at half, on the net pay; restart after 4 months without sickness). Not modelled: the restart of the treatment from the 16th day of a hospital stay and 12 months after the end of the full pay; hospital stays over 5 days left out of the comporto up to 60 days; the longer comporto of an invalidating disease (+2, +3, +4 months) and of life-saving therapies (renewal 2024 p. 7): the request does not carry these facts.
 
-    **Applies when:** `sickness` applies; seniority of at least 36 months.
+    **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add the second and third seniority tiers (4 and 5 months at full pay over 10 and 12 months) and the 36-month sum to the sickness rule, then resolve this limitation.
+    **Remediation:** Add the hospital-stay and grave-illness facts to the sickness episode and model the restarts and comporto extensions of art. 60.
 
 !!! warning "concia-unic/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.

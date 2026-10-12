@@ -7,7 +7,7 @@
     "effective_until": null,
     "published_at": "2026-09-11",
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
-    "source_hash": "c4bf2abc3cd86df1192c7e1581c8c8bb49cd4510241f2a8b8b27bd85d91df92a",
+    "source_hash": "e4aeb797faae143b5aa9000a89363494a4870bdf6e43d8697933caec57861d11",
     "verification_status": "verified",
     "source_type": "contracting_party"
   },
@@ -3165,8 +3165,92 @@
           }
         },
         {
+          "code": "OT_DIURNO_EXTRA",
+          "description": "Straordinario diurno feriale, 49a ora settimanale",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-03-01",
+                "valid_until": null,
+                "value": "0.25"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "hour_threshold_per_week": 8,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-b101-148617",
+                "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                "published_on": "2021-01-21",
+                "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
+              },
+              "page": "58",
+              "section": "Art. 35 - Lavoro straordinario, notturno, festivo ed a turni: maggiorazioni",
+              "quote": "2) lavoro straordinario diurno (feriale) per le prime 8 ore 15% per le ore successive alla 48a: 1ª ora 25% ore successive 35%"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T13:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2024-03-01"
+            },
+            "transformation": "Overtime starts beyond 40 weekly hours (art. 31 b): the first 8 overtime hours are the hours to the 48th, so the 49th is past a threshold of 8 overtime hours."
+          }
+        },
+        {
+          "code": "OT_DIURNO_EXTRA_2",
+          "description": "Straordinario diurno feriale, dalla 50a ora settimanale",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-03-01",
+                "valid_until": null,
+                "value": "0.35"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "hour_threshold_per_week": 9,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-b101-148617",
+                "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                "published_on": "2021-01-21",
+                "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
+              },
+              "page": "58",
+              "section": "Art. 35 - Lavoro straordinario, notturno, festivo ed a turni: maggiorazioni",
+              "quote": "2) lavoro straordinario diurno (feriale) per le prime 8 ore 15% per le ore successive alla 48a: 1ª ora 25% ore successive 35%"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T13:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2024-03-01"
+            },
+            "transformation": "'ore successive' to the first hour past the 48th: past a threshold of 9 overtime hours."
+          }
+        },
+        {
           "code": "OT_NOTTURNO",
-          "description": "Straordinario notturno (prima ora turni operai 61%)",
+          "description": "Straordinario notturno, prima ora",
           "kind": "percentage",
           "rate": {
             "periods": [
@@ -3249,6 +3333,48 @@
               "review_id": "2026-10-11-ai"
             }
           }
+        },
+        {
+          "code": "OT_NOTTURNO_EXTRA",
+          "description": "Straordinario notturno, ore successive alla prima",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-03-01",
+                "valid_until": null,
+                "value": "0.76"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "hour_threshold_per_day": 1,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-b101-148617",
+                "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+                "published_on": "2021-01-21",
+                "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
+              },
+              "page": "58",
+              "section": "Art. 35 - Lavoro straordinario, notturno, festivo ed a turni: maggiorazioni",
+              "quote": "8) lavoro straordinario notturno (compreso e non compreso in turni avvicendati) 1a ora 61% ore successive 76%"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T13:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2024-03-01"
+            },
+            "transformation": "The text does not say what the '1a ora' counts over; read as the first night overtime hour of each day, as the metalmeccanico 'prime 2 ore'."
+          }
         }
       ]
     },
@@ -3325,38 +3451,53 @@
     "sickness_rules": {
       "carenza_integration_rate": "1.0",
       "full_pay_integration_rate": "1.0",
-      "tiers": [
-        {
-          "month_from": 4,
-          "month_until": null,
-          "integration_rate": "0.5"
-        }
-      ],
-      "max_duration_days": 240,
+      "net_basis": true,
+      "cumulation": {
+        "window_years": 3,
+        "reset_after_days": 120,
+        "reduced_integration_rate": "0.5",
+        "bands": [
+          {
+            "seniority_months_from": 0,
+            "full_pay_days": 90,
+            "comporto_days": 240
+          },
+          {
+            "seniority_months_from": 36,
+            "full_pay_days": 120,
+            "comporto_days": 300
+          },
+          {
+            "seniority_months_from": 72,
+            "full_pay_days": 150,
+            "comporto_days": 360
+          }
+        ]
+      },
       "provenance": {
-        "status": "verified",
+        "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "cnel-b101-148617",
-            "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
-            "kind": "cnel",
-            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
-            "published_on": "2021-01-21",
-            "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
+            "document_id": "concia-unic-rinnovo-2024",
+            "title": "Rinnovo CCNL aziende conciarie 7 marzo 2024 (Filctem CGIL)",
+            "kind": "associazione",
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+            "published_on": "2024-03-07",
+            "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
           },
-          "page": "Filctem p.7; CNEL 76-77",
-          "section": "Art. 60 - Malattia e infortunio",
-          "quote": "1) mesi 8 per gli aventi anzianità di servizio fino a 3 anni ... - intera retribuzione netta per i primi tre mesi e metà di essa per i successivi cinque mesi, se ha un’anzianità di servizio fino a..."
+          "page": "7-8",
+          "section": "Art. 60 B) as rewritten by the renewal of 7 March 2024 (comporto, 36-month window)",
+          "quote": "1) mesi 8 per gli aventi anzianità di servizio fino a 3 anni 2) mesi 10 per gli aventi anzianità di servizio fino a 6 anni 3) mesi 12 per gli aventi anzianità di servizio oltre i 6 anni."
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-11T00:00:00",
-          "verification_status": "verified",
-          "effective_from": "2024-03-01",
-          "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-11T19:00:00Z",
-          "review_id": "2026-10-11-ai"
-        }
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T13:00:00Z",
+          "verification_status": "unverified",
+          "effective_from": "2024-03-01"
+        },
+        "transformation": "Comporto 8, 10, 12 months (240, 300, 360 days of 30-day months) within 36 months (renewal p. 8: 'si intendono riferiti ad un arco temporale di 36 mesi'); pay (CNEL p. 77, art. 60 C): 'intera retribuzione netta' for 3, 4, 5 months and half for 5, 6, 7 more, so the half runs to the end of the comporto; on the net pay (net_basis). The treatment restarts after 'un periodo di quattro mesi senza alcuna assenza per malattia' (reset_after_days 120). Bands from 36 and 72 completed months for 'fino a 3 anni' and 'fino a 6 anni'.",
+        "note": "Scanned renewal, read by OCR and checked on the page images. Group 3 (operai) receive the INPS indemnity topped up to the net pay of group 1."
       }
     }
   },
@@ -3388,12 +3529,12 @@
       },
       {
         "kind": "simplification",
-        "text": "OVERTIME: 6 bands in contract (diurno fino 48h 15%, diurno oltre 48h prima ora 25%, oltre 48h successive 35%, notturno prima ora 61%, notturno successive 76%, festivo 71%). Engine supports one rate per applies_to_kinds; modeled as 15% diurno, 61% notturno, 71% festivo. Higher overtime bands omitted.",
+        "text": "OVERTIME: every band of art. 35 is modelled: 15% to the 48th weekly hour, 25% the 49th, 35% beyond; night 61% the first hour, 76% after (first hour read per day); holiday 71%. The percentages do not add up ('la maggiore assorbe la minore', p. 57). The engine pays the first tier of an overtime event and flags the bands past a threshold (overtime_tier_not_applied): the caller passes the multiplier for the hours past a threshold.",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
           "variant": "higher_overtime_bands",
-          "remediation": "Model the 25% and 35% bands over 48 weekly hours and the 76% night band, or pass the multiplier on the overtime event."
+          "remediation": "Pass the multiplier on the overtime event for the hours past a threshold; the engine does not split an event by weekly or daily hours."
         }
       },
       {
@@ -3404,15 +3545,15 @@
       },
       {
         "kind": "simplification",
-        "text": "SICKNESS: 3 seniority tiers (Art. 60 of the CCNL testo definitivo 21/01/2021, comporto unchanged by the 2024 renewal): up to 3 years comporto 8 months, 3 months at 100% then 5 at 50%; 4 to 6 years 10 months, 4 at 100% and 6 at 50%; over 6 years 12 months, 5 at 100% and 7 at 50%; absences of several sicknesses summed over 36 months. Modelled as the first tier per episode: 100% months 1-3, 50% months 4-8, max 240 days.",
+        "text": "SICKNESS: seniority bands of art. 60 modelled as a cumulation (8, 10, 12 months of comporto within 36 months; 3, 4, 5 months in full and the rest at half, on the net pay; restart after 4 months without sickness). Not modelled: the restart of the treatment from the 16th day of a hospital stay and 12 months after the end of the full pay; hospital stays over 5 days left out of the comporto up to 60 days; the longer comporto of an invalidating disease (+2, +3, +4 months) and of life-saving therapies (renewal 2024 p. 7): the request does not carry these facts.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "seniority_gated_sickness_tiers",
+          "variant": "sickness_special_cases",
           "applies_when": {
-            "seniority_months_from": 36
+            "trigger": "outside_input"
           },
-          "remediation": "Add the second and third seniority tiers (4 and 5 months at full pay over 10 and 12 months) and the 36-month sum to the sickness rule, then resolve this limitation."
+          "remediation": "Add the hospital-stay and grave-illness facts to the sickness episode and model the restarts and comporto extensions of art. 60."
         }
       },
       {
@@ -3479,6 +3620,28 @@
           "Not modelled, each underpaying: night overtime after the first hour (76%), the 25% and 35% bands for daytime overtime beyond 48 hours, and the sickness tiers of 10 and 12 months for longer service.",
           "The IND_FUNZIONE clause is Art. 46 g), not Art. 47.",
           "No renewal signed after 7 March 2024; the contract expired on 30 June 2026 and a renewal is under negotiation."
+        ]
+      },
+      {
+        "id": "2026-10-13-ai",
+        "date": "2026-10-13",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Overtime bands of art. 35 and the sickness rule of art. 60, follow-ups of the review of 2026-10-11.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+            "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
+          },
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+            "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
+          }
+        ],
+        "findings": [
+          "Overtime: the 25% (49th weekly hour), 35% (beyond) and 76% (night after the first hour) bands were missing; added, the night threshold read per day.",
+          "Sickness: only the band up to 3 years was modelled, per episode and on the gross pay; now three seniority bands within 36 months, on the net pay, with the restart after 4 months without sickness (derived: months of 30 days, band edges read on completed months)."
         ]
       }
     ],

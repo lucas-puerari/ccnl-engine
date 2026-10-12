@@ -81,7 +81,7 @@ one:
 
 A `derived` rule (taken from a cited document location, with no recorded
 human check) lowers the evidence axis but does not block on its own. Only
-<!-- trust:rules-verified -->519<!-- /trust:rules-verified --> payable rules of
+<!-- trust:rules-verified -->518<!-- /trust:rules-verified --> payable rules of
 the bundle are `verified`, so requiring `verified` would block almost every
 result; the evidence axis keeps the difference visible instead.
 
@@ -235,7 +235,7 @@ the run uses its CCNL:
 - an engine limitation applies only when the run takes its code path, and the
   run records the traversal (an apprentice in a midpoint period of a CCNL
   whose midpoint components are unsourced);
-- <!-- trust:limitations-outside-input -->50<!-- /trust:limitations-outside-input -->
+- <!-- trust:limitations-outside-input -->51<!-- /trust:limitations-outside-input -->
   limitations depend on a fact the request cannot express (a hire date before
   a transitional regime, a fund the worker joins, a sector section): they are
   documented on the contract page and never recorded on a run.
