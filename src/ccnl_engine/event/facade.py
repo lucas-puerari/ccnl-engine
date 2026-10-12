@@ -29,6 +29,8 @@ from ccnl_engine.working_time.inputs import (
     OvertimeEvent,
     OvertimeKind,
     ShiftWorkEvent,
+    StandbyEvent,
+    StandbyKind,
 )
 
 __all__ = [
@@ -45,6 +47,8 @@ __all__ = [
     "ShiftWorkEvent",
     "SickLeaveEvent",
     "SicknessEpisode",
+    "StandbyEvent",
+    "StandbyKind",
     "TerminationTFREvent",
     "TravelAllowanceEvent",
     "WelfareEvent",

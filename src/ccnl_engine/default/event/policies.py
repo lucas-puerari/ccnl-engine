@@ -68,6 +68,9 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
     "SicknessEpisode.relapse_of": absence_is_fact(
         "a new episode; a relapse is stated by the medical certificate"
     ),
+    "StandbyEvent.calls": absence_is_fact(
+        "no call followed by an intervention; each is a fact of the standby log"
+    ),
     "TravelAllowanceEvent.abroad": absence_is_fact(
         "a trasferta in Italy; abroad is a fact the event records"
     ),

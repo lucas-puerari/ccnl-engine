@@ -29,6 +29,7 @@ if TYPE_CHECKING:
     )
     from ccnl_engine.sickness.models import SicknessEpisode
     from ccnl_engine.variable_pay.models import TravelAllowanceRules
+    from ccnl_engine.working_time.standby.handlers import StandbyTerms
 
 
 @dataclass(frozen=True)
@@ -74,7 +75,8 @@ class _EventHandlerCtx:
     every regime and the PdR read.  ``overtime_bands`` are the CCNL bands an
     overtime event without a multiplier is paid with; ``sickness`` the rules
     and the episodes a sickness episode is paid with, updated after each;
-    ``travel_allowance`` the exempt caps a travel allowance is assessed with.
+    ``travel_allowance`` the exempt caps a travel allowance is assessed with;
+    ``standby`` the CCNL standby rates and the worker's level.
     """
 
     evt_id: str
@@ -93,6 +95,7 @@ class _EventHandlerCtx:
     overtime_bands: CCNLOvertimeBands = field(default_factory=CCNLOvertimeBands)
     sickness: SicknessTerms = field(default_factory=SicknessTerms)
     travel_allowance: TravelAllowanceRules | None = None
+    standby: StandbyTerms | None = None
 
     @property
     def tax_year(self) -> int:

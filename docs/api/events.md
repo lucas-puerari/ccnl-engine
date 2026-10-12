@@ -30,6 +30,10 @@ gross, net and employer cost according to its treatment; see
 
 ::: ccnl_engine.events.SicknessEpisode
 
+::: ccnl_engine.events.StandbyEvent
+
+::: ccnl_engine.events.StandbyKind
+
 ::: ccnl_engine.events.TerminationTFREvent
 
 ::: ccnl_engine.events.TravelAllowanceEvent

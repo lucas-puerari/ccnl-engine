@@ -310,9 +310,26 @@ def _overtime_rules(ctx: RunContext) -> tuple[Rule, ...]:
     return tuple(rules.values())
 
 
+def _standby_rules(ctx: RunContext) -> tuple[Rule, ...]:
+    """Return the CCNL standby rules the standby of the run was paid with.
+
+    Returns:
+        ``<ccnl>:work_rules.standby_rules`` with its record, ``None`` as
+        the record when the CCNL has none (a standby event then fails, so
+        a run never reports it).
+    """
+    ccnl = ctx.contract.ccnl
+    work = ccnl.work_rules
+    standby = None if work is None else work.standby_rules
+    name = _name(ccnl.ruleset, f"ccnl/{ccnl.meta.ccnl_id}")
+    record = None if standby is None else standby.provenance
+    return ((f"{name}:work_rules.standby_rules", record),)
+
+
 #: Capabilities whose rules need a load, done only when the capability ran.
 LOADED: dict[str, Callable[[RunContext], tuple[Rule, ...]]] = {
     "overtime": _overtime_rules,
+    "standby": _standby_rules,
     "addizionale_regionale": partial(_surtax_rules, regional=True),
     "addizionale_comunale": partial(_surtax_rules, regional=False),
     "family_deductions": _family_rules,

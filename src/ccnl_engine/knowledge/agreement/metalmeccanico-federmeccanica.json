@@ -3080,7 +3080,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "cb067e269a5ec2d039ae4a1fe85cf6dca8af387525fabf603e5057f97246755c",
+    "source_hash": "db33ea04688b8bd7005eea5f4377c8fc71d077e69e3e58293a4bea0b13d2dff4",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -3444,6 +3444,1297 @@
         "transformation": "Bands from 0, 36 and 72 completed months of recognised seniority (the exact third and sixth anniversary days fall in the higher band), read on the first day of the episode. Treatment chain: the sick days of consecutive episodes, restarted when at least 61 calendar days separate the return to work (the day after the last sick day) from the next episode. Comporto: sick days within the three years that end on the day assessed (FIOM leaflet: sickness on 10 March 2022 counts from 11 March 2019). Short absence: an episode of at most 5 calendar days, counted in the calendar year of its first day; an absence the CCNL exempts is neither reduced nor counted. 66% and 50% stored as 0.66 and 0.50.",
         "note": "The ipotesi di accordo of 22 November 2025 (FIOM scan, Sez. Quarta Titolo VI Art. 2, sha256 b0be0185c1186a4dd9b56483172fdfd3e160ad92a8c0d3a068b097dc816cdee8) keeps the paragraphs quoted ('omissis') and adds, from 1 January 2026, 30/45/60 more days of comporto for a certified disability; Sez. Quarta Titolo I Art. 4 lowers from 36 to 24 months the fixed-term contracts whose periods are scaled. Not modelled, each with a blocker: comporto prolungato and the disability days (days past the comporto breve are left out), the full pay of hospital stays over 10 days (a day at 80% raises an issue), fixed-term scaling. Not modelled and not blocked: the probation period, during which the CCNL treatment is not due ('lavoratore non in prova'). PDF printed pages 196-199 are file pages 200-203."
       }
+    },
+    "standby_rules": {
+      "bands": [
+        {
+          "levels": [
+            "D1",
+            "D2",
+            "C1"
+          ],
+          "rates": {
+            "worked_day": {
+              "periods": [
+                {
+                  "valid_from": "2021-06-01",
+                  "valid_until": "2025-06-01",
+                  "value": null,
+                  "gap_kind": "missing"
+                },
+                {
+                  "valid_from": "2025-06-01",
+                  "valid_until": "2026-06-01",
+                  "value": "5.76",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2025-06-12",
+                        "title": "Verbale di incontro 12 giugno 2025, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+                        "published_on": "2025-06-12",
+                        "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2025",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2025:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2025-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                },
+                {
+                  "valid_from": "2026-06-01",
+                  "valid_until": null,
+                  "value": "5.87",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2026-06-16",
+                        "title": "Verbale di incontro 16 giugno 2026, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf",
+                        "published_on": "2026-06-16",
+                        "sha256": "67faca45b8d363b7d9c11e309daea103f05ccc1d4793321846c8ed0b0e4b0195"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2026",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2026:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2026-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                }
+              ]
+            },
+            "rest_day": {
+              "periods": [
+                {
+                  "valid_from": "2021-06-01",
+                  "valid_until": "2025-06-01",
+                  "value": null,
+                  "gap_kind": "missing"
+                },
+                {
+                  "valid_from": "2025-06-01",
+                  "valid_until": "2026-06-01",
+                  "value": "8.67",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2025-06-12",
+                        "title": "Verbale di incontro 12 giugno 2025, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+                        "published_on": "2025-06-12",
+                        "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2025",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2025:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2025-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                },
+                {
+                  "valid_from": "2026-06-01",
+                  "valid_until": null,
+                  "value": "8.83",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2026-06-16",
+                        "title": "Verbale di incontro 16 giugno 2026, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf",
+                        "published_on": "2026-06-16",
+                        "sha256": "67faca45b8d363b7d9c11e309daea103f05ccc1d4793321846c8ed0b0e4b0195"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2026",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2026:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2026-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                }
+              ]
+            },
+            "holiday": {
+              "periods": [
+                {
+                  "valid_from": "2021-06-01",
+                  "valid_until": "2025-06-01",
+                  "value": null,
+                  "gap_kind": "missing"
+                },
+                {
+                  "valid_from": "2025-06-01",
+                  "valid_until": "2026-06-01",
+                  "value": "9.37",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2025-06-12",
+                        "title": "Verbale di incontro 12 giugno 2025, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+                        "published_on": "2025-06-12",
+                        "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2025",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2025:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2025-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                },
+                {
+                  "valid_from": "2026-06-01",
+                  "valid_until": null,
+                  "value": "9.55",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2026-06-16",
+                        "title": "Verbale di incontro 16 giugno 2026, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf",
+                        "published_on": "2026-06-16",
+                        "sha256": "67faca45b8d363b7d9c11e309daea103f05ccc1d4793321846c8ed0b0e4b0195"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2026",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2026:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2026-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                }
+              ]
+            },
+            "week": {
+              "periods": [
+                {
+                  "valid_from": "2021-06-01",
+                  "valid_until": "2025-06-01",
+                  "value": null,
+                  "gap_kind": "missing"
+                },
+                {
+                  "valid_from": "2025-06-01",
+                  "valid_until": "2026-06-01",
+                  "value": "37.47",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2025-06-12",
+                        "title": "Verbale di incontro 12 giugno 2025, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+                        "published_on": "2025-06-12",
+                        "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2025",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2025:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2025-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                },
+                {
+                  "valid_from": "2026-06-01",
+                  "valid_until": null,
+                  "value": "38.18",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2026-06-16",
+                        "title": "Verbale di incontro 16 giugno 2026, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf",
+                        "published_on": "2026-06-16",
+                        "sha256": "67faca45b8d363b7d9c11e309daea103f05ccc1d4793321846c8ed0b0e4b0195"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2026",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2026:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2026-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                }
+              ]
+            },
+            "week_holiday": {
+              "periods": [
+                {
+                  "valid_from": "2021-06-01",
+                  "valid_until": "2025-06-01",
+                  "value": null,
+                  "gap_kind": "missing"
+                },
+                {
+                  "valid_from": "2025-06-01",
+                  "valid_until": "2026-06-01",
+                  "value": "38.17",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2025-06-12",
+                        "title": "Verbale di incontro 12 giugno 2025, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+                        "published_on": "2025-06-12",
+                        "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2025",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2025:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2025-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                },
+                {
+                  "valid_from": "2026-06-01",
+                  "valid_until": null,
+                  "value": "38.90",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2026-06-16",
+                        "title": "Verbale di incontro 16 giugno 2026, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf",
+                        "published_on": "2026-06-16",
+                        "sha256": "67faca45b8d363b7d9c11e309daea103f05ccc1d4793321846c8ed0b0e4b0195"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2026",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2026:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2026-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                }
+              ]
+            },
+            "week_holiday_rest_day": {
+              "periods": [
+                {
+                  "valid_from": "2021-06-01",
+                  "valid_until": "2025-06-01",
+                  "value": null,
+                  "gap_kind": "missing"
+                },
+                {
+                  "valid_from": "2025-06-01",
+                  "valid_until": "2026-06-01",
+                  "value": "41.08",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2025-06-12",
+                        "title": "Verbale di incontro 12 giugno 2025, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+                        "published_on": "2025-06-12",
+                        "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2025",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2025:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2025-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                },
+                {
+                  "valid_from": "2026-06-01",
+                  "valid_until": null,
+                  "value": "41.86",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2026-06-16",
+                        "title": "Verbale di incontro 16 giugno 2026, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf",
+                        "published_on": "2026-06-16",
+                        "sha256": "67faca45b8d363b7d9c11e309daea103f05ccc1d4793321846c8ed0b0e4b0195"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2026",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2026:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2026-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "levels": [
+            "C2",
+            "C3"
+          ],
+          "rates": {
+            "worked_day": {
+              "periods": [
+                {
+                  "valid_from": "2021-06-01",
+                  "valid_until": "2025-06-01",
+                  "value": null,
+                  "gap_kind": "missing"
+                },
+                {
+                  "valid_from": "2025-06-01",
+                  "valid_until": "2026-06-01",
+                  "value": "6.87",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2025-06-12",
+                        "title": "Verbale di incontro 12 giugno 2025, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+                        "published_on": "2025-06-12",
+                        "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2025",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2025:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2025-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                },
+                {
+                  "valid_from": "2026-06-01",
+                  "valid_until": null,
+                  "value": "7.00",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2026-06-16",
+                        "title": "Verbale di incontro 16 giugno 2026, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf",
+                        "published_on": "2026-06-16",
+                        "sha256": "67faca45b8d363b7d9c11e309daea103f05ccc1d4793321846c8ed0b0e4b0195"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2026",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2026:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2026-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                }
+              ]
+            },
+            "rest_day": {
+              "periods": [
+                {
+                  "valid_from": "2021-06-01",
+                  "valid_until": "2025-06-01",
+                  "value": null,
+                  "gap_kind": "missing"
+                },
+                {
+                  "valid_from": "2025-06-01",
+                  "valid_until": "2026-06-01",
+                  "value": "10.78",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2025-06-12",
+                        "title": "Verbale di incontro 12 giugno 2025, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+                        "published_on": "2025-06-12",
+                        "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2025",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2025:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2025-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                },
+                {
+                  "valid_from": "2026-06-01",
+                  "valid_until": null,
+                  "value": "10.98",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2026-06-16",
+                        "title": "Verbale di incontro 16 giugno 2026, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf",
+                        "published_on": "2026-06-16",
+                        "sha256": "67faca45b8d363b7d9c11e309daea103f05ccc1d4793321846c8ed0b0e4b0195"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2026",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2026:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2026-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                }
+              ]
+            },
+            "holiday": {
+              "periods": [
+                {
+                  "valid_from": "2021-06-01",
+                  "valid_until": "2025-06-01",
+                  "value": null,
+                  "gap_kind": "missing"
+                },
+                {
+                  "valid_from": "2025-06-01",
+                  "valid_until": "2026-06-01",
+                  "value": "11.56",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2025-06-12",
+                        "title": "Verbale di incontro 12 giugno 2025, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+                        "published_on": "2025-06-12",
+                        "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2025",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2025:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2025-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                },
+                {
+                  "valid_from": "2026-06-01",
+                  "valid_until": null,
+                  "value": "11.78",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2026-06-16",
+                        "title": "Verbale di incontro 16 giugno 2026, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf",
+                        "published_on": "2026-06-16",
+                        "sha256": "67faca45b8d363b7d9c11e309daea103f05ccc1d4793321846c8ed0b0e4b0195"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2026",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2026:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2026-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                }
+              ]
+            },
+            "week": {
+              "periods": [
+                {
+                  "valid_from": "2021-06-01",
+                  "valid_until": "2025-06-01",
+                  "value": null,
+                  "gap_kind": "missing"
+                },
+                {
+                  "valid_from": "2025-06-01",
+                  "valid_until": "2026-06-01",
+                  "value": "45.13",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2025-06-12",
+                        "title": "Verbale di incontro 12 giugno 2025, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+                        "published_on": "2025-06-12",
+                        "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2025",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2025:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2025-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                },
+                {
+                  "valid_from": "2026-06-01",
+                  "valid_until": null,
+                  "value": "45.98",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2026-06-16",
+                        "title": "Verbale di incontro 16 giugno 2026, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf",
+                        "published_on": "2026-06-16",
+                        "sha256": "67faca45b8d363b7d9c11e309daea103f05ccc1d4793321846c8ed0b0e4b0195"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2026",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2026:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2026-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                }
+              ]
+            },
+            "week_holiday": {
+              "periods": [
+                {
+                  "valid_from": "2021-06-01",
+                  "valid_until": "2025-06-01",
+                  "value": null,
+                  "gap_kind": "missing"
+                },
+                {
+                  "valid_from": "2025-06-01",
+                  "valid_until": "2026-06-01",
+                  "value": "45.91",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2025-06-12",
+                        "title": "Verbale di incontro 12 giugno 2025, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+                        "published_on": "2025-06-12",
+                        "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2025",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2025:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2025-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                },
+                {
+                  "valid_from": "2026-06-01",
+                  "valid_until": null,
+                  "value": "46.78",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2026-06-16",
+                        "title": "Verbale di incontro 16 giugno 2026, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf",
+                        "published_on": "2026-06-16",
+                        "sha256": "67faca45b8d363b7d9c11e309daea103f05ccc1d4793321846c8ed0b0e4b0195"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2026",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2026:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2026-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                }
+              ]
+            },
+            "week_holiday_rest_day": {
+              "periods": [
+                {
+                  "valid_from": "2021-06-01",
+                  "valid_until": "2025-06-01",
+                  "value": null,
+                  "gap_kind": "missing"
+                },
+                {
+                  "valid_from": "2025-06-01",
+                  "valid_until": "2026-06-01",
+                  "value": "49.82",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2025-06-12",
+                        "title": "Verbale di incontro 12 giugno 2025, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+                        "published_on": "2025-06-12",
+                        "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2025",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2025:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2025-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                },
+                {
+                  "valid_from": "2026-06-01",
+                  "valid_until": null,
+                  "value": "50.76",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2026-06-16",
+                        "title": "Verbale di incontro 16 giugno 2026, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf",
+                        "published_on": "2026-06-16",
+                        "sha256": "67faca45b8d363b7d9c11e309daea103f05ccc1d4793321846c8ed0b0e4b0195"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2026",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2026:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2026-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "levels": [
+            "B1",
+            "B2",
+            "B3",
+            "A1"
+          ],
+          "rates": {
+            "worked_day": {
+              "periods": [
+                {
+                  "valid_from": "2021-06-01",
+                  "valid_until": "2025-06-01",
+                  "value": null,
+                  "gap_kind": "missing"
+                },
+                {
+                  "valid_from": "2025-06-01",
+                  "valid_until": "2026-06-01",
+                  "value": "7.88",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2025-06-12",
+                        "title": "Verbale di incontro 12 giugno 2025, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+                        "published_on": "2025-06-12",
+                        "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2025",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2025:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2025-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                },
+                {
+                  "valid_from": "2026-06-01",
+                  "valid_until": null,
+                  "value": "8.03",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2026-06-16",
+                        "title": "Verbale di incontro 16 giugno 2026, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf",
+                        "published_on": "2026-06-16",
+                        "sha256": "67faca45b8d363b7d9c11e309daea103f05ccc1d4793321846c8ed0b0e4b0195"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2026",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2026:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2026-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                }
+              ]
+            },
+            "rest_day": {
+              "periods": [
+                {
+                  "valid_from": "2021-06-01",
+                  "valid_until": "2025-06-01",
+                  "value": null,
+                  "gap_kind": "missing"
+                },
+                {
+                  "valid_from": "2025-06-01",
+                  "valid_until": "2026-06-01",
+                  "value": "12.98",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2025-06-12",
+                        "title": "Verbale di incontro 12 giugno 2025, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+                        "published_on": "2025-06-12",
+                        "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2025",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2025:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2025-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                },
+                {
+                  "valid_from": "2026-06-01",
+                  "valid_until": null,
+                  "value": "13.23",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2026-06-16",
+                        "title": "Verbale di incontro 16 giugno 2026, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf",
+                        "published_on": "2026-06-16",
+                        "sha256": "67faca45b8d363b7d9c11e309daea103f05ccc1d4793321846c8ed0b0e4b0195"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2026",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2026:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2026-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                }
+              ]
+            },
+            "holiday": {
+              "periods": [
+                {
+                  "valid_from": "2021-06-01",
+                  "valid_until": "2025-06-01",
+                  "value": null,
+                  "gap_kind": "missing"
+                },
+                {
+                  "valid_from": "2025-06-01",
+                  "valid_until": "2026-06-01",
+                  "value": "13.66",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2025-06-12",
+                        "title": "Verbale di incontro 12 giugno 2025, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+                        "published_on": "2025-06-12",
+                        "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2025",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2025:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2025-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                },
+                {
+                  "valid_from": "2026-06-01",
+                  "valid_until": null,
+                  "value": "13.92",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2026-06-16",
+                        "title": "Verbale di incontro 16 giugno 2026, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf",
+                        "published_on": "2026-06-16",
+                        "sha256": "67faca45b8d363b7d9c11e309daea103f05ccc1d4793321846c8ed0b0e4b0195"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2026",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2026:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2026-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                }
+              ]
+            },
+            "week": {
+              "periods": [
+                {
+                  "valid_from": "2021-06-01",
+                  "valid_until": "2025-06-01",
+                  "value": null,
+                  "gap_kind": "missing"
+                },
+                {
+                  "valid_from": "2025-06-01",
+                  "valid_until": "2026-06-01",
+                  "value": "52.38",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2025-06-12",
+                        "title": "Verbale di incontro 12 giugno 2025, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+                        "published_on": "2025-06-12",
+                        "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2025",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2025:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2025-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                },
+                {
+                  "valid_from": "2026-06-01",
+                  "valid_until": null,
+                  "value": "53.38",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2026-06-16",
+                        "title": "Verbale di incontro 16 giugno 2026, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf",
+                        "published_on": "2026-06-16",
+                        "sha256": "67faca45b8d363b7d9c11e309daea103f05ccc1d4793321846c8ed0b0e4b0195"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2026",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2026:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2026-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                }
+              ]
+            },
+            "week_holiday": {
+              "periods": [
+                {
+                  "valid_from": "2021-06-01",
+                  "valid_until": "2025-06-01",
+                  "value": null,
+                  "gap_kind": "missing"
+                },
+                {
+                  "valid_from": "2025-06-01",
+                  "valid_until": "2026-06-01",
+                  "value": "53.06",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2025-06-12",
+                        "title": "Verbale di incontro 12 giugno 2025, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+                        "published_on": "2025-06-12",
+                        "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2025",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2025:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2025-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                },
+                {
+                  "valid_from": "2026-06-01",
+                  "valid_until": null,
+                  "value": "54.07",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2026-06-16",
+                        "title": "Verbale di incontro 16 giugno 2026, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf",
+                        "published_on": "2026-06-16",
+                        "sha256": "67faca45b8d363b7d9c11e309daea103f05ccc1d4793321846c8ed0b0e4b0195"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2026",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2026:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2026-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                }
+              ]
+            },
+            "week_holiday_rest_day": {
+              "periods": [
+                {
+                  "valid_from": "2021-06-01",
+                  "valid_until": "2025-06-01",
+                  "value": null,
+                  "gap_kind": "missing"
+                },
+                {
+                  "valid_from": "2025-06-01",
+                  "valid_until": "2026-06-01",
+                  "value": "58.16",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2025-06-12",
+                        "title": "Verbale di incontro 12 giugno 2025, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+                        "published_on": "2025-06-12",
+                        "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2025",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2025:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2025-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                },
+                {
+                  "valid_from": "2026-06-01",
+                  "valid_until": null,
+                  "value": "59.27",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "uilm-verbale-ipca-2026-06-16",
+                        "title": "Verbale di incontro 16 giugno 2026, adeguamento IPCA dei minimi, trasferta e reperibilità",
+                        "kind": "associazione",
+                        "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf",
+                        "published_on": "2026-06-16",
+                        "sha256": "67faca45b8d363b7d9c11e309daea103f05ccc1d4793321846c8ed0b0e4b0195"
+                      },
+                      "page": "2",
+                      "section": "Indennità di reperibilità dal 1° giugno 2026",
+                      "quote": "Indennità di reperibilità dal 1° giugno 2026:"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T12:33:49Z",
+                      "verification_status": "unverified",
+                      "effective_from": "2026-06-01"
+                    },
+                    "transformation": "Cell of the scanned table, read on the page image."
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "hourly_divisor": "16",
+      "call_fee": {
+        "periods": [
+          {
+            "valid_from": "2021-06-01",
+            "valid_until": null,
+            "value": "5.00"
+          }
+        ]
+      },
+      "in_tfr_base": false,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+            "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
+            "kind": "associazione",
+            "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+            "published_on": "2021-02-05",
+            "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+          },
+          "page": "154-156",
+          "section": "Sez. Quarta, Titolo III, Art. 6 - Reperibilità",
+          "quote": "le parti convengono che i trattamenti economici di cui al presente articolo siano esclusi dalla base di calcolo del trattamento di fine rapporto"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T12:33:49Z",
+          "verification_status": "unverified",
+          "effective_from": "2021-06-01"
+        },
+        "transformation": "Bands D1-D2-C1, C2-C3, B1 and above ('superiore al C3' in 2021); the hourly rate is the 16-hour column divided by 16; 5.00 euro for each call followed by an intervention; excluded from the TFR base (art. 2120 c. 2 c.c.). Rates from 1 June 2025 and 1 June 2026 from the IPCA verbali; the 2021 table of p. 155 and the updates of 2022-2024 are not extracted (gap missing).",
+        "note": "Not modelled here: the travel time after a call (85% of the ordinary hourly pay) and the intervention hours (overtime or ordinary hours), which take their own events; the 'personale direttivo' is excluded from the standby rules."
+      }
     }
   },
   "verification": {
@@ -3533,6 +4824,32 @@
           "Cometa: rates confirmed (art. 15 not amended in 2025); the periods started on 2026-01-01, now 1 June 2017 (2% and 1.2%) and, for young members, 2% from 6 February 2021 and 2.2% from 1 June 2022.",
           "Leave: the clause is on p. 165, not p. 158; the norme transitorie on p. 167.",
           "Trasferta and reperibilità (June 2026 amounts) are per event: documented, not paid, as the engine takes no such event."
+        ]
+      },
+      {
+        "id": "2026-10-12-ai-standby",
+        "date": "2026-10-12",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Standby (reperibilità): art. 6 Sez. Quarta Titolo III and the IPCA verbali of June 2025 and June 2026.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+            "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+          },
+          {
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+            "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
+          },
+          {
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf",
+            "sha256": "67faca45b8d363b7d9c11e309daea103f05ccc1d4793321846c8ed0b0e4b0195"
+          }
+        ],
+        "findings": [
+          "Standby was documented and not paid: the engine now takes a StandbyEvent and the rates of the three bands from 1 June 2025 and 1 June 2026, read on the page images of the two signed verbali.",
+          "Art. 6 excludes the standby pay from the TFR base and pays 5.00 euro for each call with an intervention."
         ]
       }
     ],

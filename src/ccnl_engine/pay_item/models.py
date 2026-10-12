@@ -161,6 +161,12 @@ class FringeBenefitItem(_PayItemBase):
     taxable_amount: Decimal = Field(default=Decimal(0), ge=Decimal(0))
 
 
+class StandbyEarning(_PayItemBase):
+    """Standby pay (indennità di reperibilità) at the CCNL rates."""
+
+    kind: Literal["standby_earning"] = "standby_earning"
+
+
 class TravelAllowanceItem(_PayItemBase):
     """Travel allowance (indennità di trasferta), paid in cash.
 
@@ -276,6 +282,7 @@ PayItem = Annotated[
     | RaccordoElementEarning
     | PublicTfrReduction
     | FringeBenefitItem
+    | StandbyEarning
     | TravelAllowanceItem
     | WelfareItem
     | AbsenceDeduction

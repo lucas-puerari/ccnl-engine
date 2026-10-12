@@ -74,6 +74,7 @@ KIND_CAPABILITIES: dict[str, frozenset[str]] = {
     "absence_deduction": frozenset({"absence", "sickness"}),
     "fringe_benefit_item": frozenset({"fringe_benefit"}),
     "travel_allowance_item": frozenset({"travel_allowance"}),
+    "standby_earning": frozenset({"standby"}),
     "welfare_item": frozenset({"welfare"}),
 }
 
