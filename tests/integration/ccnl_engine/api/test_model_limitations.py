@@ -94,12 +94,12 @@ def test_apprentice_seniority_needs_matured_increments(
 ) -> None:
     """The unsourced apprentice seniority matters once increments mature."""
     result = _run(
-        "turismo-confcommercio",
+        "turismo-federalberghi",
         "4",
-        Apprentice(months_elapsed=1, track="professionalizzante_36"),
+        Apprentice(months_elapsed=1, track="standard"),
         seniority=seniority,
     )
-    limitation_id = f"turismo-confcommercio/{_APPRENTICE_SENIORITY}"
+    limitation_id = f"turismo-federalberghi/{_APPRENTICE_SENIORITY}"
     assert (limitation_id in _ids(result)) is recorded
     blockers = {(b.code, b.feature, b.detail) for b in result.blockers}
     blocker = (BlockerCode.OPEN_LIMITATION, "seniority", limitation_id)

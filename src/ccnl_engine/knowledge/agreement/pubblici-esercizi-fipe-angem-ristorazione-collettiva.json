@@ -76,7 +76,7 @@
       },
       {
         "kind": "info",
-        "text": "INPS: uses 2026-terziario.json (tax_sector terziario, same as commercio-confcommercio and turismo-confcommercio)."
+        "text": "INPS: uses 2026-terziario.json (tax_sector terziario, same as commercio-confcommercio and turismo-federalberghi)."
       },
       {
         "kind": "simplification",
@@ -2327,7 +2327,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "d45eed4f8fa3297c080a15c39e00b66768b0c65dd5a755b1a50415306b163e26",
+    "source_hash": "77d504584832637eeec96af6fd5d315bb8451c7b85f795ecfa9de86d4697dd2c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

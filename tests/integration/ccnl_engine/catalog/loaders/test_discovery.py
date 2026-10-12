@@ -88,13 +88,12 @@ class TestGetCcnl:
             get_ccnl("H052")
         assert set(exc_info.value.suggestions) == {
             "agenzie-viaggio-fiavet",
-            "turismo-confcommercio",
             "turismo-federalberghi",
         }
 
     def test_slug_of_a_shared_code_resolves(self) -> None:
         """The slug still names the contract whose CNEL code is shared."""
-        assert get_ccnl("turismo-confcommercio").cnel_code == "H052"
+        assert get_ccnl("turismo-federalberghi").cnel_code == "H052"
 
     def test_every_unique_cnel_code_resolves(self) -> None:
         """A code held by one bundled CCNL resolves to it."""

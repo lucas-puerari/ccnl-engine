@@ -178,7 +178,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     B5 PART-TIME NOTE: Art. 122 provides a 15% hourly premium for B5 (pulitori/lavascale) with weekly schedule below 8 hours. Not modelled (SIMPLIFICATION).
     
-    INPS: uses 2026-terziario.json (same tax_sector as commercio-confcommercio and turismo-confcommercio).
+    INPS: uses 2026-terziario.json (same tax_sector as commercio-confcommercio and turismo-federalberghi).
     
 
 ## Raw data
