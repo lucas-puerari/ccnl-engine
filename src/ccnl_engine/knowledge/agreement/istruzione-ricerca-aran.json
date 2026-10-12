@@ -2,35 +2,48 @@
   "schema_version": "0.5",
   "meta": {
     "ccnl_id": "istruzione-ricerca-aran",
-    "name": "CCNL Comparto Istruzione e Ricerca 2022-2024 — ARAN",
+    "name": "CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN",
     "cnel_code": "S305",
     "sector": "Pubblica Amministrazione",
     "tax_sector": "pubblica-amministrazione",
     "signatories": [
       "ARAN",
-      "FLC CGIL",
       "CISL FSUR",
+      "FLC CGIL",
       "UIL SCUOLA RUA",
+      "SNALS CONFSAL",
       "GILDA UNAMS",
-      "SNALS CONFSAL"
+      "ANIEF"
     ],
-    "agreement_date": "2025-12-23",
+    "agreement_date": "2026-07-01",
     "validity": {
       "valid_from": "2022-01-01",
-      "valid_until": "2024-12-31"
+      "valid_until": "2027-12-31"
     },
     "sources": [
       {
-        "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1",
+        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
         "type": "fonte_primaria",
-        "agreement_date": "2025-12-23",
-        "notes": "Allegato 1 al CCNL Comparto Istruzione e Ricerca 2022-2024. Tabella A1 (incrementi mensili da 1/1/2024) e Tabella A2 (stipendio tabellare annuo a regime dal 1/1/2024) per docenti ATA. Valori per tutte le fasce di anzianità. Fonte primaria."
+        "agreement_date": "2026-07-01",
+        "notes": "CCNL 2025-2027 sui principali aspetti del trattamento economico, signed definitively on 1 July 2026 by ARAN and every union of the comparto. Tabella A2 (pp. 18-19): tabellare from 1.1.2025, 1.1.2026, 1.1.2027."
       },
       {
-        "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=494",
-        "type": "fonte_secondaria",
-        "agreement_date": null,
-        "notes": "kitech.it: codice CNEL S305 confermato per scuole personale docente Comparto Istruzione e Ricerca."
+        "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+        "type": "fonte_primaria",
+        "agreement_date": "2025-12-23",
+        "notes": "CCNL 2022-2024 (FLC CGIL did not sign). Tabella A2 (pp. 50-51): tabellare from 1.1.2024."
+      },
+      {
+        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+        "type": "fonte_primaria",
+        "agreement_date": "2024-01-18",
+        "notes": "CCNL 2019-2021. Tabelle C1 and E1.5 (pp. 246, 256): tabellare from 1.2.2023."
+      },
+      {
+        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/07/CCNL-SCUOLA-2006-2009.pdf",
+        "type": "fonte_primaria",
+        "agreement_date": "2007-11-29",
+        "notes": "CCNL Scuola 2006-2009, still in force for ferie (art. 13), malattia (art. 17) and tredicesima (art. 80)."
       }
     ],
     "extraction": {
@@ -94,19 +107,25 @@
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "ann1",
-            "title": "ann1",
-            "kind": "rivista",
-            "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
+            "document_id": "ccnl-ir-2019-2021",
+            "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+            "published_on": "2024-01-18",
+            "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
           },
-          "section": "Scatti di anzianità"
+          "page": "71",
+          "section": "Art. 51 c. 2 (posizioni stipendiali)",
+          "quote": "Il passaggio tra una posizione stipendiale e l’altra potrà essere acquisito al termine dei periodi previsti dall’allegata Tabella C1 - Scuola"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T21:00:00Z",
           "verification_status": "unverified",
-          "effective_from": "2020-01-01"
-        }
+          "effective_from": "2024-01-18"
+        },
+        "note": "The posizioni stipendiali (0-8, 9-14, 15-20, 21-27, 28-34, 35+ years) are reached by service, not paid as steps on top of the tabellare: the file models the fascia 0-8 only (limitation higher_seniority_bands_missing)."
       }
     },
     "employer_funds": [
@@ -190,70 +209,192 @@
       "base_salary": {
         "periods": [
           {
-            "valid_from": "2022-01-01",
+            "valid_from": "2023-02-01",
             "valid_until": "2024-01-01",
-            "value": "1257.08",
+            "value": "1368.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ann1",
-                  "title": "ann1",
-                  "kind": "rivista",
-                  "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
+                  "document_id": "ccnl-ir-2019-2021",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                  "published_on": "2024-01-18",
+                  "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
                 },
-                "section": "Tabella retributiva"
+                "page": "256",
+                "section": "Tabelle C1 / E1.5 (Scuola), retribuzione tabellare conglobata, fascia 0-8; decorrenza p. 245: 'Valori decorrenti dal primo giorno del secondo mese successivo a quello di sottoscrizione del CCNL 6/12/2022'",
+                "quote": "COLLABORATORI 0-8 16.427,76"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2023-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "16.427,76 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
             }
           },
           {
             "valid_from": "2024-01-01",
-            "valid_until": null,
-            "value": "1342.82",
+            "valid_until": "2025-01-01",
+            "value": "1454.72",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ann1",
-                  "title": "ann1",
-                  "kind": "rivista",
-                  "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
+                  "document_id": "ccnl-ir-2022-2024",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                  "published_on": "2025-12-23",
+                  "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "50",
+                "section": "Tabella A2 - Scuola, nuova retribuzione tabellare annua, fascia 0-8",
+                "quote": "17.456,64"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "17.456,64 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1484.65",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "18",
+                "section": "Tabella A2 - Scuola, nuova retribuzione tabellare annua, fascia 0-8, 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "0-8 17.815,80 18.175,08 18.485,88"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "17.815,80 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1514.59",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "18",
+                "section": "Tabella A2 - Scuola, nuova retribuzione tabellare annua, fascia 0-8, 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "0-8 17.815,80 18.175,08 18.485,88"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "18.175,08 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1540.49",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "18",
+                "section": "Tabella A2 - Scuola, nuova retribuzione tabellare annua, fascia 0-8, 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "0-8 17.815,80 18.175,08 18.485,88"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "18.485,88 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
             }
           }
         ]
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ann1",
-            "title": "ann1",
-            "kind": "rivista",
-            "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
+            "document_id": "ccnl-ir-2022-2024",
+            "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+            "published_on": "2025-12-23",
+            "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
           },
-          "section": "Livelli contrattuali"
+          "page": "50-51",
+          "section": "Tabella A2 - Scuola, profili",
+          "quote": "Valori in Euro per 12 mensilità cui aggiungere la 13^ mensilità"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T21:00:00Z",
+          "verification_status": "verified",
+          "effective_from": "2024-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T21:00:00Z",
+          "review_id": "2026-10-12-ai"
         }
       }
     },
@@ -265,70 +406,192 @@
       "base_salary": {
         "periods": [
           {
-            "valid_from": "2022-01-01",
+            "valid_from": "2023-02-01",
             "valid_until": "2024-01-01",
-            "value": "1287.56",
+            "value": "1402.17",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ann1",
-                  "title": "ann1",
-                  "kind": "rivista",
-                  "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
+                  "document_id": "ccnl-ir-2019-2021",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                  "published_on": "2024-01-18",
+                  "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
                 },
-                "section": "Tabella retributiva"
+                "page": "256",
+                "section": "Tabelle C1 / E1.5 (Scuola), retribuzione tabellare conglobata, fascia 0-8; decorrenza p. 245: 'Valori decorrenti dal primo giorno del secondo mese successivo a quello di sottoscrizione del CCNL 6/12/2022'",
+                "quote": "OPERATORI 0-8 16.826,09"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2023-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "16.826,09 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
             }
           },
           {
             "valid_from": "2024-01-01",
-            "valid_until": null,
-            "value": "1375.38",
+            "valid_until": "2025-01-01",
+            "value": "1489.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ann1",
-                  "title": "ann1",
-                  "kind": "rivista",
-                  "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
+                  "document_id": "ccnl-ir-2022-2024",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                  "published_on": "2025-12-23",
+                  "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "50",
+                "section": "Tabella A2 - Scuola, nuova retribuzione tabellare annua, fascia 0-8",
+                "quote": "17.879,93"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "17.879,93 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1520.65",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "18",
+                "section": "Tabella A2 - Scuola, nuova retribuzione tabellare annua, fascia 0-8, 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "0-8 18.247,85 18.615,77 19.384,86"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "18.247,85 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1551.31",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "18",
+                "section": "Tabella A2 - Scuola, nuova retribuzione tabellare annua, fascia 0-8, 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "0-8 18.247,85 18.615,77 19.384,86"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "18.615,77 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1615.41",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "18",
+                "section": "Tabella A2 - Scuola, nuova retribuzione tabellare annua, fascia 0-8, 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "0-8 18.247,85 18.615,77 19.384,86"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "19.384,86 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
             }
           }
         ]
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ann1",
-            "title": "ann1",
-            "kind": "rivista",
-            "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
+            "document_id": "ccnl-ir-2022-2024",
+            "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+            "published_on": "2025-12-23",
+            "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
           },
-          "section": "Livelli contrattuali"
+          "page": "50-51",
+          "section": "Tabella A2 - Scuola, profili",
+          "quote": "Valori in Euro per 12 mensilità cui aggiungere la 13^ mensilità"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T21:00:00Z",
+          "verification_status": "verified",
+          "effective_from": "2024-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T21:00:00Z",
+          "review_id": "2026-10-12-ai"
         }
       }
     },
@@ -340,70 +603,192 @@
       "base_salary": {
         "periods": [
           {
-            "valid_from": "2022-01-01",
+            "valid_from": "2023-02-01",
             "valid_until": "2024-01-01",
-            "value": "1401.28",
+            "value": "1526.01",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ann1",
-                  "title": "ann1",
-                  "kind": "rivista",
-                  "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
+                  "document_id": "ccnl-ir-2019-2021",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                  "published_on": "2024-01-18",
+                  "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
                 },
-                "section": "Tabella retributiva"
+                "page": "256",
+                "section": "Tabelle C1 / E1.5 (Scuola), retribuzione tabellare conglobata, fascia 0-8; decorrenza p. 245: 'Valori decorrenti dal primo giorno del secondo mese successivo a quello di sottoscrizione del CCNL 6/12/2022'",
+                "quote": "ASSISTENTI 0-8 18.312,16"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2023-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "18.312,16 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
             }
           },
           {
             "valid_from": "2024-01-01",
-            "valid_until": null,
-            "value": "1496.85",
+            "valid_until": "2025-01-01",
+            "value": "1621.59",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ann1",
-                  "title": "ann1",
-                  "kind": "rivista",
-                  "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
+                  "document_id": "ccnl-ir-2022-2024",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                  "published_on": "2025-12-23",
+                  "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "50",
+                "section": "Tabella A2 - Scuola, nuova retribuzione tabellare annua, fascia 0-8",
+                "quote": "19.459,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "19.459,12 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1654.95",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "18",
+                "section": "Tabella A2 - Scuola, nuova retribuzione tabellare annua, fascia 0-8, 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "0-8 19.859,44 20.260,00 20.606,44"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "19.859,44 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1688.33",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "18",
+                "section": "Tabella A2 - Scuola, nuova retribuzione tabellare annua, fascia 0-8, 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "0-8 19.859,44 20.260,00 20.606,44"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "20.260,00 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1717.20",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "18",
+                "section": "Tabella A2 - Scuola, nuova retribuzione tabellare annua, fascia 0-8, 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "0-8 19.859,44 20.260,00 20.606,44"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "20.606,44 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
             }
           }
         ]
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ann1",
-            "title": "ann1",
-            "kind": "rivista",
-            "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
+            "document_id": "ccnl-ir-2022-2024",
+            "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+            "published_on": "2025-12-23",
+            "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
           },
-          "section": "Livelli contrattuali"
+          "page": "50-51",
+          "section": "Tabella A2 - Scuola, profili",
+          "quote": "Valori in Euro per 12 mensilità cui aggiungere la 13^ mensilità"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T21:00:00Z",
+          "verification_status": "verified",
+          "effective_from": "2024-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T21:00:00Z",
+          "review_id": "2026-10-12-ai"
         }
       }
     },
@@ -415,70 +800,192 @@
       "base_salary": {
         "periods": [
           {
-            "valid_from": "2022-01-01",
+            "valid_from": "2023-02-01",
             "valid_until": "2024-01-01",
-            "value": "1614.53",
+            "value": "1758.25",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ann1",
-                  "title": "ann1",
-                  "kind": "rivista",
-                  "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
+                  "document_id": "ccnl-ir-2019-2021",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                  "published_on": "2024-01-18",
+                  "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
                 },
-                "section": "Tabella retributiva"
+                "page": "246",
+                "section": "Tabelle C1 / E1.5 (Scuola), retribuzione tabellare conglobata, fascia 0-8; decorrenza p. 245: 'Valori decorrenti dal primo giorno del secondo mese successivo a quello di sottoscrizione del CCNL 6/12/2022'",
+                "quote": "0 -8 20.897,20 201,84 21.099,04"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2023-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "21.099,04 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
             }
           },
           {
             "valid_from": "2024-01-01",
-            "valid_until": null,
-            "value": "1724.65",
+            "valid_until": "2025-01-01",
+            "value": "1868.37",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ann1",
-                  "title": "ann1",
-                  "kind": "rivista",
-                  "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
+                  "document_id": "ccnl-ir-2022-2024",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                  "published_on": "2025-12-23",
+                  "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Tabella A2 - Scuola, nuova retribuzione tabellare annua, fascia 0-8",
+                "quote": "22.420,48"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "22.420,48 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1906.81",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "19",
+                "section": "Tabella A2 - Scuola, nuova retribuzione tabellare annua, fascia 0-8, 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "0-8 22.881,76 23.343,16 23.742,40"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "22.881,76 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1945.26",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "19",
+                "section": "Tabella A2 - Scuola, nuova retribuzione tabellare annua, fascia 0-8, 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "0-8 22.881,76 23.343,16 23.742,40"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "23.343,16 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1978.53",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "19",
+                "section": "Tabella A2 - Scuola, nuova retribuzione tabellare annua, fascia 0-8, 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "0-8 22.881,76 23.343,16 23.742,40"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "23.742,40 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
             }
           }
         ]
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ann1",
-            "title": "ann1",
-            "kind": "rivista",
-            "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
+            "document_id": "ccnl-ir-2022-2024",
+            "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+            "published_on": "2025-12-23",
+            "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
           },
-          "section": "Livelli contrattuali"
+          "page": "50-51",
+          "section": "Tabella A2 - Scuola, profili",
+          "quote": "Valori in Euro per 12 mensilità cui aggiungere la 13^ mensilità"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T21:00:00Z",
+          "verification_status": "verified",
+          "effective_from": "2024-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T21:00:00Z",
+          "review_id": "2026-10-12-ai"
         }
       }
     },
@@ -490,70 +997,192 @@
       "base_salary": {
         "periods": [
           {
-            "valid_from": "2022-01-01",
+            "valid_from": "2023-02-01",
             "valid_until": "2024-01-01",
-            "value": "1614.53",
+            "value": "1758.25",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ann1",
-                  "title": "ann1",
-                  "kind": "rivista",
-                  "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
+                  "document_id": "ccnl-ir-2019-2021",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                  "published_on": "2024-01-18",
+                  "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
                 },
-                "section": "Tabella retributiva"
+                "page": "246",
+                "section": "Tabelle C1 / E1.5 (Scuola), retribuzione tabellare conglobata, fascia 0-8; decorrenza p. 245: 'Valori decorrenti dal primo giorno del secondo mese successivo a quello di sottoscrizione del CCNL 6/12/2022'",
+                "quote": "0 -8 20.897,20 201,84 21.099,04"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2023-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "21.099,04 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
             }
           },
           {
             "valid_from": "2024-01-01",
-            "valid_until": null,
-            "value": "1724.65",
+            "valid_until": "2025-01-01",
+            "value": "1868.37",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ann1",
-                  "title": "ann1",
-                  "kind": "rivista",
-                  "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
+                  "document_id": "ccnl-ir-2022-2024",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                  "published_on": "2025-12-23",
+                  "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Tabella A2 - Scuola, nuova retribuzione tabellare annua, fascia 0-8",
+                "quote": "22.420,48"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "22.420,48 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1906.81",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "19",
+                "section": "Tabella A2 - Scuola, nuova retribuzione tabellare annua, fascia 0-8, 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "0-8 22.881,76 23.343,16 23.742,40"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "22.881,76 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1945.26",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "19",
+                "section": "Tabella A2 - Scuola, nuova retribuzione tabellare annua, fascia 0-8, 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "0-8 22.881,76 23.343,16 23.742,40"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "23.343,16 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1978.53",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "19",
+                "section": "Tabella A2 - Scuola, nuova retribuzione tabellare annua, fascia 0-8, 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "0-8 22.881,76 23.343,16 23.742,40"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "23.742,40 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
             }
           }
         ]
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ann1",
-            "title": "ann1",
-            "kind": "rivista",
-            "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
+            "document_id": "ccnl-ir-2022-2024",
+            "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+            "published_on": "2025-12-23",
+            "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
           },
-          "section": "Livelli contrattuali"
+          "page": "50-51",
+          "section": "Tabella A2 - Scuola, profili",
+          "quote": "Valori in Euro per 12 mensilità cui aggiungere la 13^ mensilità"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T21:00:00Z",
+          "verification_status": "verified",
+          "effective_from": "2024-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T21:00:00Z",
+          "review_id": "2026-10-12-ai"
         }
       }
     },
@@ -565,70 +1194,192 @@
       "base_salary": {
         "periods": [
           {
-            "valid_from": "2022-01-01",
+            "valid_from": "2023-02-01",
             "valid_until": "2024-01-01",
-            "value": "1747.59",
+            "value": "1903.16",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ann1",
-                  "title": "ann1",
-                  "kind": "rivista",
-                  "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
+                  "document_id": "ccnl-ir-2019-2021",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                  "published_on": "2024-01-18",
+                  "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
                 },
-                "section": "Tabella retributiva"
+                "page": "246",
+                "section": "Tabelle C1 / E1.5 (Scuola), retribuzione tabellare conglobata, fascia 0-8; decorrenza p. 245: 'Valori decorrenti dal primo giorno del secondo mese successivo a quello di sottoscrizione del CCNL 6/12/2022'",
+                "quote": "0 -8 22.678,52 159,36 22.837,88"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2023-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "22.837,88 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
             }
           },
           {
             "valid_from": "2024-01-01",
-            "valid_until": null,
-            "value": "1866.79",
+            "valid_until": "2025-01-01",
+            "value": "2022.36",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ann1",
-                  "title": "ann1",
-                  "kind": "rivista",
-                  "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
+                  "document_id": "ccnl-ir-2022-2024",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                  "published_on": "2025-12-23",
+                  "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Tabella A2 - Scuola, nuova retribuzione tabellare annua, fascia 0-8",
+                "quote": "24.268,28"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "24.268,28 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2063.97",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "19",
+                "section": "Tabella A2 - Scuola, nuova retribuzione tabellare annua, fascia 0-8, 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "0-8 24.767,60 25.267,04 25.699,16"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "24.767,60 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2105.59",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "19",
+                "section": "Tabella A2 - Scuola, nuova retribuzione tabellare annua, fascia 0-8, 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "0-8 24.767,60 25.267,04 25.699,16"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "25.267,04 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "2141.60",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "19",
+                "section": "Tabella A2 - Scuola, nuova retribuzione tabellare annua, fascia 0-8, 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "0-8 24.767,60 25.267,04 25.699,16"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "25.699,16 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
             }
           }
         ]
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ann1",
-            "title": "ann1",
-            "kind": "rivista",
-            "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
+            "document_id": "ccnl-ir-2022-2024",
+            "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+            "published_on": "2025-12-23",
+            "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
           },
-          "section": "Livelli contrattuali"
+          "page": "50-51",
+          "section": "Tabella A2 - Scuola, profili",
+          "quote": "Valori in Euro per 12 mensilità cui aggiungere la 13^ mensilità"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T21:00:00Z",
+          "verification_status": "verified",
+          "effective_from": "2024-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T21:00:00Z",
+          "review_id": "2026-10-12-ai"
         }
       }
     },
@@ -640,70 +1391,192 @@
       "base_salary": {
         "periods": [
           {
-            "valid_from": "2022-01-01",
+            "valid_from": "2023-02-01",
             "valid_until": "2024-01-01",
-            "value": "1835.45",
+            "value": "1998.84",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ann1",
-                  "title": "ann1",
-                  "kind": "rivista",
-                  "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
+                  "document_id": "ccnl-ir-2019-2021",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                  "published_on": "2024-01-18",
+                  "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
                 },
-                "section": "Tabella retributiva"
+                "page": "256",
+                "section": "Tabelle C1 / E1.5 (Scuola), retribuzione tabellare conglobata, fascia 0-8; decorrenza p. 245: 'Valori decorrenti dal primo giorno del secondo mese successivo a quello di sottoscrizione del CCNL 6/12/2022'",
+                "quote": "0-8 23.986,09"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2023-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "23.986,09 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
             }
           },
           {
             "valid_from": "2024-01-01",
-            "valid_until": null,
-            "value": "1960.65",
+            "valid_until": "2025-01-01",
+            "value": "2124.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ann1",
-                  "title": "ann1",
-                  "kind": "rivista",
-                  "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
+                  "document_id": "ccnl-ir-2022-2024",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                  "published_on": "2025-12-23",
+                  "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "50",
+                "section": "Tabella A2 - Scuola, nuova retribuzione tabellare annua, fascia 0-8",
+                "quote": "25.488,37"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "25.488,37 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2167.73",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "18",
+                "section": "Tabella A2 - Scuola, nuova retribuzione tabellare annua, fascia 0-8, 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "0-8 26.012,77 26.537,29 26.991,13"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "26.012,77 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2211.44",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "18",
+                "section": "Tabella A2 - Scuola, nuova retribuzione tabellare annua, fascia 0-8, 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "0-8 26.012,77 26.537,29 26.991,13"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "26.537,29 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "2249.26",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "18",
+                "section": "Tabella A2 - Scuola, nuova retribuzione tabellare annua, fascia 0-8, 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "0-8 26.012,77 26.537,29 26.991,13"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T21:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "26.991,13 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
             }
           }
         ]
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ann1",
-            "title": "ann1",
-            "kind": "rivista",
-            "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
+            "document_id": "ccnl-ir-2022-2024",
+            "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+            "published_on": "2025-12-23",
+            "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
           },
-          "section": "Livelli contrattuali"
+          "page": "50-51",
+          "section": "Tabella A2 - Scuola, profili",
+          "quote": "Valori in Euro per 12 mensilità cui aggiungere la 13^ mensilità"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T21:00:00Z",
+          "verification_status": "verified",
+          "effective_from": "2024-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T21:00:00Z",
+          "review_id": "2026-10-12-ai"
         }
       }
     }
@@ -713,39 +1586,11 @@
     "notes": [
       {
         "kind": "source",
-        "text": "Stipendio tabellare annuo da Tabella A2 CCNL 23/12/2025 allegato ufficiale (notiziedellascuola.it). Valori fascia 0-8 anni da 1/1/2024."
-      },
-      {
-        "kind": "source",
-        "text": "Pre-2024: back-calcolato sottraendo incremento mensile (Tabella A1) × 13. Esempio COLLABORATORE: 17.456,64 - 85,74×13 = 16.342,02€/anno = 1.257,08€/mese."
+        "text": "SALARY TABLES: monthly tabellare = annual tabellare of the fascia 0-8 over 12 (the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'). 1.2.2023-31.12.2023: CCNL 2019-2021 Tabelle C1 and E1.5; 2024: CCNL 2022-2024 Tabella A2; 2025, 2026, 2027: CCNL 2025-2027 Tabella A2."
       },
       {
         "kind": "source",
         "text": "CNEL S305 da kitech.it per comparto Istruzione e Ricerca personale docente. Confermato coerente con S325 (area dirigenza IR)."
-      },
-      {
-        "kind": "source",
-        "text": "COLLABORATORE_SCOLASTICO — Tab A2 0-8: 17.456,64€/anno; incremento Tab A1: 85,74€/mese."
-      },
-      {
-        "kind": "source",
-        "text": "OPERATORE — Tab A2 0-8: 17.879,93€/anno; incremento: 87,82€/mese (nuovo profilo da 1/5/2024)."
-      },
-      {
-        "kind": "source",
-        "text": "ASSISTENTE — Tab A2 0-8: 19.459,12€/anno; incremento: 95,58€/mese."
-      },
-      {
-        "kind": "source",
-        "text": "DOCENTE_INFANZIA_PRIMARIA — Tab A2 0-8: 22.420,48€/anno; incremento: 110,12€/mese. Copre anche docente secondaria II diploma (stesso valore tabellare)."
-      },
-      {
-        "kind": "source",
-        "text": "DOCENTE_SECONDARIA — Tab A2 0-8: 24.268,28€/anno; incremento: 119,20€/mese. Copre secondaria I grado, secondaria II laurea (stessi valori entry). Incremento secondaria II laurea: 119,20 (0-8) ma diverge per fasce superiori (136,18 per fascia 9-14)."
-      },
-      {
-        "kind": "source",
-        "text": "FUNZIONARIO_ED_ESPERTO — Tab A2 0-8: 25.488,37€/anno; incremento: 125,19€/mese."
       },
       {
         "kind": "info",
@@ -807,19 +1652,6 @@
         "monetary_impact": "no"
       },
       {
-        "kind": "simplification",
-        "text": "valid_from period 1 = 2022-01-01 (inizio validità del triennio). Il previgente CCNL 2019-2021 aveva stabilito i valori pre-2024; la data esatta di firma del CCNL 2019-2021 non è disponibile dalla fonte e viene approssimata.",
-        "capability": "base_salary",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "period_1_start_approximated",
-          "applies_when": {
-            "effective_until": "2024-01-01"
-          },
-          "remediation": "Source the signing date of the CCNL 2019-2021 for the start of period 1."
-        }
-      },
-      {
         "kind": "info",
         "text": "PENSION FUND. Fondo Scuola Espero (1% + 1%); enrolment is a fact, the silenzio-assenso of the hires from 2019 is not inferred, nor the three months a fixed term needs to enrol. The TFR conferred stays a notional INPS accrual."
       },
@@ -843,6 +1675,32 @@
           },
           "remediation": "Source the IIS conglobata of the profile, leave it out of the ENAM base, then remove this note."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "Before 1 February 2023 the tabellare of the CCNL 2016-2018 applied with the elemento perequativo paid apart; the file starts on 1 February 2023, when the CCNL 2019-2021 conglobated it.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "before_february_2023",
+          "applies_when": {
+            "effective_until": "2023-02-01"
+          },
+          "remediation": "Add the 2022 and January 2023 tabellare and the elemento perequativo of the CCNL 2019-2021."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Overtime of the scuola staff is paid at fixed hourly amounts by profile (CCNL 2019-2021 Tabelle E1.6 docenti and E1.7 ATA, e.g. 'OPERATORI/COLLABORATORI € 13,75 € 15,95 € 18,70'), not as a percentage of the hourly pay: no overtime band is modelled, so an overtime event needs its multiplier.",
+        "capability": "overtime",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "fixed_hourly_overtime",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the hourly amounts of Tabelle E1.6 and E1.7 per profile."
+        }
       }
     ]
   },
@@ -853,230 +1711,107 @@
     "effective_until": "2024-12-31",
     "source": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1",
     "verification_status": "unverified",
-    "source_hash": "7ddc9ad44f7bf2a6143f802361fb83fa78272161374aaf86ec309b2a77c28053",
+    "source_hash": "808515b8c3a93c068b88302e5dea4d68e9f940d0a13fe9d31b9ca50bb5862579",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
-      "overtime_bands": [
-        {
-          "code": "OT_DIURNO",
-          "description": "Straordinario feriale diurno",
-          "kind": "percentage",
-          "rate": {
-            "periods": [
-              {
-                "valid_from": "2022-01-01",
-                "value": 0.15,
-                "provenance": null,
-                "valid_until": null
-              }
-            ]
-          },
-          "applies_to_kinds": [
-            "weekday"
-          ],
-          "provenance": {
-            "status": "derived",
-            "location": {
-              "source_document": {
-                "document_id": "ccnl-istruzione-ricerca-2022-2024",
-                "title": "CCNL Comparto Istruzione e Ricerca (ARAN) 2022-2024",
-                "kind": "tabella_retributiva",
-                "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
-              },
-              "section": "Art. straordinario — maggiorazione feriale 15%"
-            },
-            "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2022-01-01"
-            }
-          }
-        },
-        {
-          "code": "OT_NOTTURNO",
-          "description": "Straordinario feriale notturno",
-          "kind": "percentage",
-          "rate": {
-            "periods": [
-              {
-                "valid_from": "2022-01-01",
-                "value": 0.3,
-                "provenance": null,
-                "valid_until": null
-              }
-            ]
-          },
-          "applies_to_kinds": [
-            "night"
-          ],
-          "provenance": {
-            "status": "derived",
-            "location": {
-              "source_document": {
-                "document_id": "ccnl-istruzione-ricerca-2022-2024",
-                "title": "CCNL Comparto Istruzione e Ricerca (ARAN) 2022-2024",
-                "kind": "tabella_retributiva",
-                "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
-              },
-              "section": "Art. straordinario — maggiorazione notturno 30%"
-            },
-            "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2022-01-01"
-            }
-          }
-        },
-        {
-          "code": "OT_FESTIVO",
-          "description": "Straordinario festivo",
-          "kind": "percentage",
-          "rate": {
-            "periods": [
-              {
-                "valid_from": "2022-01-01",
-                "value": 0.3,
-                "provenance": null,
-                "valid_until": null
-              }
-            ]
-          },
-          "applies_to_kinds": [
-            "holiday"
-          ],
-          "provenance": {
-            "status": "derived",
-            "location": {
-              "source_document": {
-                "document_id": "ccnl-istruzione-ricerca-2022-2024",
-                "title": "CCNL Comparto Istruzione e Ricerca (ARAN) 2022-2024",
-                "kind": "tabella_retributiva",
-                "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
-              },
-              "section": "Art. straordinario — maggiorazione festivo 30%"
-            },
-            "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2022-01-01"
-            }
-          }
-        },
-        {
-          "code": "OT_NOTTURNO_FESTIVO",
-          "description": "Straordinario notturno festivo",
-          "kind": "percentage",
-          "rate": {
-            "periods": [
-              {
-                "valid_from": "2022-01-01",
-                "value": 0.5,
-                "provenance": null,
-                "valid_until": null
-              }
-            ]
-          },
-          "applies_to_kinds": [
-            "night_holiday"
-          ],
-          "provenance": {
-            "status": "derived",
-            "location": {
-              "source_document": {
-                "document_id": "ccnl-istruzione-ricerca-2022-2024",
-                "title": "CCNL Comparto Istruzione e Ricerca (ARAN) 2022-2024",
-                "kind": "tabella_retributiva",
-                "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
-              },
-              "section": "Art. straordinario — notturno festivo 50%"
-            },
-            "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2022-01-01"
-            }
-          }
-        }
-      ]
+      "overtime_bands": []
     },
     "absence_rules": {
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
-        "status": "derived",
-        "location": {
-          "source_document": {
-            "document_id": "ccnl-istruzione-ricerca-2022-2024",
-            "title": "CCNL Comparto Istruzione e Ricerca (ARAN) 2022-2024",
-            "kind": "tabella_retributiva",
-            "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
-          },
-          "section": "Art. orario — divisore mensile standard"
-        },
-        "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2022-01-01"
-        }
+        "status": "assumed",
+        "note": "No text of the comparto fixes the daily quota of an unpaid absence of the scuola staff: the only daily divisor in the texts read is the 1/30 of the compenso individuale accessorio (CCNL Scuola 2007, p. 75). by_26 is kept as extracted, not sourced."
       }
     },
     "leave_rules": {
-      "default_annual_days": "28",
+      "default_annual_days": "32",
       "entitlement_tiers": [
         {
           "service_months_min": 0,
-          "annual_days": "28"
+          "annual_days": "30"
+        },
+        {
+          "service_months_min": 36,
+          "annual_days": "32"
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-istruzione-ricerca-2022-2024",
-            "title": "CCNL Comparto Istruzione e Ricerca (ARAN) 2022-2024",
-            "kind": "tabella_retributiva",
-            "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
+            "document_id": "ccnl-scuola-2006-2009-aran",
+            "title": "CCNL Comparto Scuola 2006-2009, 29 novembre 2007",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/07/CCNL-SCUOLA-2006-2009.pdf",
+            "published_on": "2007-11-29",
+            "sha256": "e71227f907cf2292f4994e535c2b431bb2961221ad16eae12c803d8bf911757d"
           },
-          "section": "Art. ferie — 28 giorni lavorativi (personale tecnico-amministrativo)"
+          "page": "23",
+          "section": "Art. 13 cc. 2-4 (ferie)",
+          "quote": "I dipendenti neo-assunti nella scuola hanno diritto a 30 giorni lavorativi di ferie"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2022-01-01"
-        }
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T21:00:00Z",
+          "verification_status": "verified",
+          "effective_from": "2007-11-29",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T21:00:00Z",
+          "review_id": "2026-10-12-ai"
+        },
+        "transformation": "32 days (c. 2), 30 for the first 3 years of service (cc. 3-4: 'Dopo 3 anni di servizio, a qualsiasi titolo prestato')."
       }
     },
     "sickness_rules": {
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
-      "max_duration_days": 270,
+      "tiers": [
+        {
+          "month_from": 1,
+          "month_until": 10,
+          "integration_rate": "1"
+        },
+        {
+          "month_from": 10,
+          "month_until": 13,
+          "integration_rate": "0.9"
+        },
+        {
+          "month_from": 13,
+          "month_until": 19,
+          "integration_rate": "0.5"
+        }
+      ],
+      "max_duration_days": 548,
       "provenance": {
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "ccnl-istruzione-ricerca-2022-2024",
-            "title": "CCNL Comparto Istruzione e Ricerca (ARAN) 2022-2024",
-            "kind": "tabella_retributiva",
-            "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1"
+            "document_id": "ccnl-scuola-2006-2009-aran",
+            "title": "CCNL Comparto Scuola 2006-2009, 29 novembre 2007",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/07/CCNL-SCUOLA-2006-2009.pdf",
+            "published_on": "2007-11-29",
+            "sha256": "e71227f907cf2292f4994e535c2b431bb2961221ad16eae12c803d8bf911757d"
           },
-          "section": "Art. malattia — piena retribuzione per 9 mesi (270 giorni) in 36 mesi"
+          "page": "27-28",
+          "section": "Art. 17 cc. 1, 8 (assenze per malattia)",
+          "quote": "b) 90% della retribuzione di cui alla lett. a) per i successivi 3 mesi di assenza;"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T21:00:00Z",
           "verification_status": "unverified",
-          "effective_from": "2022-01-01"
-        }
+          "effective_from": "2007-11-29"
+        },
+        "note": "Job kept 18 months (about 548 days), paid in full for 9 months, at 90% for 3 and at 50% for 6 (c. 8). The CCNL sums the sickness of the three years before the last episode (c. 1: 'si sommano [...] le assenze per malattia verificatesi nel triennio precedente'); the tiers count one episode and its relapses (engine limitation sickness_cumulation_window). The cut of the first 10 days of each episode (D.L. 112/2008 art. 71 c. 1) is not modelled."
       }
     }
   },
@@ -1094,6 +1829,42 @@
         "outcome": "confirmed",
         "findings": [
           "The review recorded no list of the documents it read."
+        ]
+      },
+      {
+        "id": "2026-10-12-ai",
+        "date": "2026-10-12",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Salary tables of the seven scuola profiles, leave, sickness, seniority, overtime and the daily quota, against the signed ARAN texts of 2007, 2024, 2025 and 2026.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+            "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+          },
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+            "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+          },
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+            "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+          },
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/07/CCNL-SCUOLA-2006-2009.pdf",
+            "sha256": "e71227f907cf2292f4994e535c2b431bb2961221ad16eae12c803d8bf911757d"
+          }
+        ],
+        "findings": [
+          "Every monthly tabellare was the annual amount over 13; the tables are per 12 mensilità plus the tredicesima: the values were about 7.7% low (e.g. Docente infanzia 2024: 1,724.65 -> 1,868.37).",
+          "The pre-2024 periods were back-calculated with the increments times 13 and started on 2022-01-01; they are now the tables of the CCNL 2019-2021, in force from 1 February 2023.",
+          "The CCNL 2025-2027 on the economic treatment, signed definitively on 1 July 2026, was missing: periods from 1.1.2025, 1.1.2026 and 1.1.2027 added.",
+          "Signatories: FLC CGIL did not sign the CCNL 2022-2024 (it signed the 2025-2027); ANIEF signed both and was missing.",
+          "Ferie: 32 days, 30 for the first 3 years (CCNL 2007 art. 13), not 28.",
+          "Sickness: comporto of 18 months with 9 months at 100%, 3 at 90% and 6 at 50% (art. 17), not 270 days at 100%.",
+          "Overtime: the scuola pays fixed hourly amounts, not percentages: the 15/30/30/50% bands had no basis and are removed.",
+          "Daily quota: no scuola text fixes it; by_26 is now assumed."
         ]
       }
     ]

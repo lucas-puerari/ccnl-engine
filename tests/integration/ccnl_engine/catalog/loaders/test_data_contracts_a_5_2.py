@@ -104,16 +104,16 @@ class TestLoadIstruzioneRicercaAran:
         }
 
     def test_istruzione_ricerca_aran_assistente_salary_tranche1(self) -> None:
-        """ASSISTENTE first tranche (2022-01-01): 1401.28 EUR/month."""
+        """ASSISTENTE from 1/2/2023 (CCNL 2019-2021): 18,312.16 / 12 = 1526.01."""
         ccnl = load_ccnl("istruzione-ricerca-aran.json")
         lv = ccnl.level_by_code("ASSISTENTE")
-        assert lv.base_salary.value_at(date(2022, 1, 1)) == Decimal("1401.28")
+        assert lv.base_salary.value_at(date(2023, 2, 1)) == Decimal("1526.01")
 
     def test_istruzione_ricerca_aran_assistente_salary_tranche2(self) -> None:
-        """ASSISTENTE second tranche (1/1/2024): 1496.85 EUR/month."""
+        """ASSISTENTE from 1/1/2024 (CCNL 2022-2024): 19,459.12 / 12 = 1621.59."""
         ccnl = load_ccnl("istruzione-ricerca-aran.json")
         lv = ccnl.level_by_code("ASSISTENTE")
-        assert lv.base_salary.value_at(date(2024, 1, 1)) == Decimal("1496.85")
+        assert lv.base_salary.value_at(date(2024, 1, 1)) == Decimal("1621.59")
 
     def test_istruzione_ricerca_aran_level_ordering(self) -> None:
         """FUNZIONARIO_ED_ESPERTO has highest order; COLLABORATORE has lowest."""

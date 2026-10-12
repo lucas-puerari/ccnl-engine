@@ -5,32 +5,32 @@
     {
       "level_code": "COLLABORATORE_SCOLASTICO",
       "as_of": "2024-01-01",
-      "expected_monthly": "1342.82"
+      "expected_monthly": "1454.72"
     },
     {
       "level_code": "OPERATORE",
       "as_of": "2024-01-01",
-      "expected_monthly": "1375.38"
+      "expected_monthly": "1489.99"
     },
     {
       "level_code": "ASSISTENTE",
       "as_of": "2024-01-01",
-      "expected_monthly": "1496.85"
+      "expected_monthly": "1621.59"
     },
     {
       "level_code": "DOCENTE_INFANZIA_PRIMARIA",
       "as_of": "2024-01-01",
-      "expected_monthly": "1724.65"
+      "expected_monthly": "1868.37"
     },
     {
       "level_code": "DOCENTE_SECONDARIA",
       "as_of": "2024-01-01",
-      "expected_monthly": "1866.79"
+      "expected_monthly": "2022.36"
     },
     {
       "level_code": "FUNZIONARIO_ED_ESPERTO",
       "as_of": "2024-01-01",
-      "expected_monthly": "1960.65"
+      "expected_monthly": "2124.03"
     }
   ]
 }
