@@ -144,8 +144,9 @@ def _serious_issue(
         code=SERIOUS_ILLNESS_UNKNOWN,
         message=(
             f"sickness episode '{episode.episode_id}': days are paid at the "
-            "reduced rate; a particularly serious illness is paid in full and "
-            "left out of the comporto: state SicknessEpisode.serious_illness"
+            "reduced rate; the CCNL treats a particularly serious illness "
+            "apart (its pay or its comporto): state "
+            "SicknessEpisode.serious_illness"
         ),
         status=_PROVISIONAL,
         fact="serious_illness",

@@ -101,7 +101,7 @@ def _history_reach(treatment: CumulativeTreatment, last: date) -> bool:
         and episode.short_absence_exempt is not True
     )
     return (
-        treatment.window_days(last) + unknown > band.comporto_days
+        treatment.comporto_count(last) + unknown > treatment.comporto_limit()
         or (linked and treatment.chain_days(last) + unknown > band.full_pay_days)
         or short_unknown
     )
@@ -117,7 +117,7 @@ def _reduced_paid(treatment: CumulativeTreatment, span: tuple[date, date]) -> bo
     first = max(span[0], treatment.first_reduced())
     return (
         first <= span[1]
-        and treatment.window_days(first) <= treatment.band.comporto_days
+        and treatment.comporto_count(first) <= treatment.comporto_limit()
     )
 
 
