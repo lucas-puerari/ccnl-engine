@@ -931,7 +931,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/funzioni-centrali-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "e1b4ed1e7dcac1df32805c152a0da9c8f7430674c09ece0a801574a44f489849",
+      "source_hash": "a2ded0e188bb7e2ef0064c54d2d64385d078905af176416f2fd56d3342462f5e",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/funzioni-centrali-aran.json.gz"

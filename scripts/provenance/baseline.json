@@ -1340,8 +1340,7 @@
       "funivie-anef/apprentice_seniority"
     ],
     "agreement/funzioni-centrali-aran.json": [
-      "funzioni-centrali-aran/ctps_rates_proxy",
-      "funzioni-centrali-aran/leave_from_2027"
+      "funzioni-centrali-aran/ctps_rates_proxy"
     ],
     "agreement/funzioni-locali-aran.json": [
       "funzioni-locali-aran/renewal_2025_2027_missing"

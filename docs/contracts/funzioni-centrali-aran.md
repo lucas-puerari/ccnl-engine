@@ -37,9 +37,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | inps_employer, leave |
+| **Limits of this contract** | inps_employer |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -91,13 +91,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `inps_employer` applies.
 
     **Remediation:** Verify the CTPS rates against the annual INPS circular.
-
-!!! warning "funzioni-centrali-aran/leave_from_2027 · leave · impact yes · open"
-    From 1 January 2027 the ferie of art. 21 CCNL 2025-2027 drop the 26 days of the first three years (28 days for every worker on a five-day week); the rule holds one tier set and keeps 26 days for the first three years.
-
-    **Applies when:** `leave` applies; from 2027-01-01.
-
-    **Remediation:** Make the leave tiers a time series and drop the 26-day tier from 1 January 2027.
 
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.

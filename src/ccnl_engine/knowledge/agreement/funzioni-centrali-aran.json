@@ -1029,19 +1029,6 @@
       {
         "kind": "info",
         "text": "PENSION FUND. Perseo Sirio (1% + 1% of the retribuzione utile ai fini del TFR). Enrolment is a fact: the silenzio-assenso of the hires from 2 January 2019 (accordo ARAN 16/09/2021) is not inferred, nor the three months a fixed term needs to enrol. The TFR conferred stays a notional INPS accrual."
-      },
-      {
-        "kind": "simplification",
-        "text": "From 1 January 2027 the ferie of art. 21 CCNL 2025-2027 drop the 26 days of the first three years (28 days for every worker on a five-day week); the rule holds one tier set and keeps 26 days for the first three years.",
-        "capability": "leave",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "leave_from_2027",
-          "applies_when": {
-            "effective_from": "2027-01-01"
-          },
-          "remediation": "Make the leave tiers a time series and drop the 26-day tier from 1 January 2027."
-        }
       }
     ]
   },
@@ -1052,7 +1039,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "e1b4ed1e7dcac1df32805c152a0da9c8f7430674c09ece0a801574a44f489849",
+    "source_hash": "a2ded0e188bb7e2ef0064c54d2d64385d078905af176416f2fd56d3342462f5e",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -1273,7 +1260,8 @@
       "entitlement_tiers": [
         {
           "service_months_min": 0,
-          "annual_days": "26"
+          "annual_days": "26",
+          "valid_until": "2027-01-01"
         },
         {
           "service_months_min": 36,
@@ -1305,7 +1293,7 @@
           "verified_at": "2026-10-12T22:00:00Z",
           "review_id": "2026-10-12-ai"
         },
-        "transformation": "28 days on a five-day week (c. 2); 26 for a worker hired for the first time in a public administration, for the first three years of service (cc. 4-5). From 1 January 2027 art. 21 of the CCNL 2025-2027 (p. 31: 'Il presente articolo entra in vigore il 1° gennaio 2027') gives 28 days to every worker: see the limitation leave_from_2027. The CCNL counts the three years in any public administration ('a qualsiasi titolo prestato' / 'presso una qualsiasi pubblica amministrazione'); the tiers read the seniority with this employer, so a worker with earlier public service gets 26 (30) days when the text gives 28 (32): state the seniority with the earlier public service included."
+        "transformation": "28 days on a five-day week (c. 2); 26 for a worker hired for the first time in a public administration, for the first three years of service (cc. 4-5). From 1 January 2027 art. 21 of the CCNL 2025-2027 (p. 31: 'Il presente articolo entra in vigore il 1° gennaio 2027') gives 28 days to every worker: the 26-day tier ends on that day. The CCNL counts the three years in any public administration ('a qualsiasi titolo prestato' / 'presso una qualsiasi pubblica amministrazione'); the tiers read the seniority with this employer, so a worker with earlier public service gets 26 (30) days when the text gives 28 (32): state the seniority with the earlier public service included."
       }
     },
     "sickness_rules": {
