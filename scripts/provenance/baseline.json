@@ -914,6 +914,9 @@
       "levels[OPERATORE].fixed_allowances[IND_ATENEO]": "assumed",
       "work_rules.absence_rules": "assumed"
     },
+    "agreement/universita-tecnologi-aran.json": {
+      "work_rules.absence_rules": "assumed"
+    },
     "agreement/vetro-meccanizzato-assovetro.json": {
       "accrual_rule": "missing",
       "additional_months[2023-03-01]": "assumed",
@@ -1674,6 +1677,10 @@
     "agreement/universita-aran.json": [
       "universita-aran/perseo_sirio_not_modelled",
       "universita-aran/shared_rules_unchecked"
+    ],
+    "agreement/universita-tecnologi-aran.json": [
+      "universita-tecnologi-aran/perseo_sirio_not_modelled",
+      "universita-tecnologi-aran/shared_rules_unchecked"
     ],
     "agreement/vetro-meccanizzato-assovetro.json": [
       "vetro-meccanizzato-assovetro/tranches_from_october_2026"

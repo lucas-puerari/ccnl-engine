@@ -2161,6 +2161,23 @@
       "wheel_resource": "agreement/universita-aran.json.gz"
     },
     {
+      "dataset_id": "agreement/universita-tecnologi-aran",
+      "path": "agreement/universita-tecnologi-aran.json",
+      "dataset": "agreement",
+      "year": null,
+      "scope": "universita-tecnologi-aran",
+      "model": "CCNL",
+      "schema_version": "0.5",
+      "valid_from": "2026-03-01",
+      "valid_to": null,
+      "ruleset_id": "ccnl/universita-tecnologi-aran",
+      "ruleset_version": "2026.2",
+      "source_hash": "6dfbbc9165c3874f1b688b799a3883de4efb7b0c6bbd62f3ae07cb7600b70388",
+      "source_type": "official_primary",
+      "owner": "ccnl-engine maintainers",
+      "wheel_resource": "agreement/universita-tecnologi-aran.json.gz"
+    },
+    {
       "dataset_id": "agreement/vetro-meccanizzato-assovetro",
       "path": "agreement/vetro-meccanizzato-assovetro.json",
       "dataset": "agreement",

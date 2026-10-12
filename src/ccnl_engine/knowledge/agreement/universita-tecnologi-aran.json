@@ -1,0 +1,775 @@
+{
+  "schema_version": "0.5",
+  "meta": {
+    "ccnl_id": "universita-tecnologi-aran",
+    "name": "CCNL Comparto Istruzione e Ricerca 2025-2027 (trattamento economico) - ARAN, Università, tecnologi a tempo indeterminato",
+    "cnel_code": "S305",
+    "sector": "Pubblica Amministrazione",
+    "tax_sector": "pubblica-amministrazione",
+    "signatories": [
+      "ARAN",
+      "CISL FSUR",
+      "FLC CGIL",
+      "UIL SCUOLA RUA",
+      "SNALS CONFSAL",
+      "GILDA UNAMS",
+      "ANIEF"
+    ],
+    "agreement_date": "2026-07-01",
+    "sources": [
+      {
+        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+        "type": "fonte_primaria",
+        "agreement_date": "2026-07-01",
+        "notes": "CCNL 2025-2027 sui principali aspetti del trattamento economico, signed definitively on 1 July 2026 by ARAN and every union of the comparto. Tabella A2 (pp. 18-19): tabellare from 1.1.2025, 1.1.2026, 1.1.2027."
+      },
+      {
+        "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+        "type": "fonte_primaria",
+        "agreement_date": "2025-12-23",
+        "notes": "CCNL 2022-2024 (FLC CGIL did not sign). Tabella A2 (pp. 50-51): tabellare from 1.1.2024."
+      },
+      {
+        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+        "type": "fonte_primaria",
+        "agreement_date": "2024-01-18",
+        "notes": "CCNL 2019-2021. Tabelle C1 and E1.5 (pp. 246, 256): tabellare from 1.2.2023."
+      },
+      {
+        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/07/CCNL-SCUOLA-2006-2009.pdf",
+        "type": "fonte_primaria",
+        "agreement_date": "2007-11-29",
+        "notes": "CCNL Scuola 2006-2009, still in force for ferie (art. 13), malattia (art. 17) and tredicesima (art. 80)."
+      }
+    ],
+    "extraction": {
+      "method": "ai",
+      "model": "claude-sonnet-4-6",
+      "timestamp": "2026-09-03",
+      "human_reviewed": false
+    },
+    "workers_estimate": "~1,2M",
+    "public_pension_fund": "ctps",
+    "public_life_insurance": false
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2022-01-01",
+          "valid_until": null,
+          "value": "156"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2022-01-01",
+          "valid_until": null,
+          "value": "13",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-scuola-2006-2009",
+                "title": "CCNL Comparto Scuola 2006-2009, 29 novembre 2007",
+                "kind": "associazione",
+                "url": "https://usrfvg.regione.fvg.it/export/sites/default/USRFVG/allegati/archivio_file/TS/2016/CCNL_scuola_2006_2009.pdf",
+                "published_on": "2007-11-29",
+                "sha256": "4c7b272d8a2987c239d5f77e27af429c55096b71c8fa198265bac549f348dbf6"
+              },
+              "section": "Art. 80 c. 1 (tredicesima mensilità)",
+              "quote": "spetta una tredicesima mensilità corrisposta nel mese di dicembre di ogni anno.",
+              "page": "52"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T07:59:31Z",
+              "verification_status": "unverified",
+              "effective_from": "2007-11-29"
+            },
+            "note": "Kept in force by the CCNL Istruzione e Ricerca 2022-2024 of 23 December 2025, art. 1 c. 13 ('continuano a trovare applicazione [...] i CCNL dei precedenti comparti'). Copy of the ARAN text hosted by the USR Friuli Venezia Giulia. Scuola section only."
+          }
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 72,
+      "maximum_count": 5,
+      "amount_by_level": {},
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-ir-2025-2027",
+            "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+            "published_on": "2026-07-01",
+            "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+          },
+          "page": "22",
+          "section": "Tabella B2 - UNIVERSITÀ, personale Aree e CEL",
+          "quote": "Nuova retribuzione tabellare annua"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T16:56:05Z",
+          "effective_from": "2024-01-01",
+          "verification_status": "unverified"
+        },
+        "transformation": "One tabellare per area, without seniority steps (the differenziali economici are individual, paid by the caller). The tecnologi a tempo indeterminato (from 1.3.2026) have six posizioni stipendiali (0-5, 6-11, 12-17, 18-23, 24-30, 31 and more years) as five steps after 6, 12, 18, 24 and 31 years (72, 72, 72, 72, 84 months)."
+      },
+      "tiers": [
+        {
+          "cadence_months": 72,
+          "maximum_count": 1,
+          "amount_by_level": {
+            "TECNOLOGO": {
+              "periods": [
+                {
+                  "valid_from": "2026-03-01",
+                  "valid_until": "2027-01-01",
+                  "value": "343.63",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "22",
+                      "section": "Tabella B2 - Università, Tecnologi a tempo indeterminato, da 6 a 11",
+                      "quote": "da 6 a 11 38.661,40 41.330,68"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:20:17Z",
+                      "effective_from": "2026-03-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the position less that of the position before."
+                  }
+                },
+                {
+                  "valid_from": "2027-01-01",
+                  "valid_until": null,
+                  "value": "367.35",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "22",
+                      "section": "Tabella B2 - Università, Tecnologi a tempo indeterminato, da 6 a 11",
+                      "quote": "da 6 a 11 38.661,40 41.330,68"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:20:17Z",
+                      "effective_from": "2026-03-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the position less that of the position before."
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "cadence_months": 72,
+          "maximum_count": 1,
+          "amount_by_level": {
+            "TECNOLOGO": {
+              "periods": [
+                {
+                  "valid_from": "2026-03-01",
+                  "valid_until": "2027-01-01",
+                  "value": "343.64",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "22",
+                      "section": "Tabella B2 - Università, Tecnologi a tempo indeterminato, da 12 a 17",
+                      "quote": "da 12 a 17 42.785,00 45.739,04"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:20:17Z",
+                      "effective_from": "2026-03-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the position less that of the position before."
+                  }
+                },
+                {
+                  "valid_from": "2027-01-01",
+                  "valid_until": null,
+                  "value": "367.37",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "22",
+                      "section": "Tabella B2 - Università, Tecnologi a tempo indeterminato, da 12 a 17",
+                      "quote": "da 12 a 17 42.785,00 45.739,04"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:20:17Z",
+                      "effective_from": "2026-03-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the position less that of the position before."
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "cadence_months": 72,
+          "maximum_count": 1,
+          "amount_by_level": {
+            "TECNOLOGO": {
+              "periods": [
+                {
+                  "valid_from": "2026-03-01",
+                  "valid_until": "2027-01-01",
+                  "value": "343.63",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "22",
+                      "section": "Tabella B2 - Università, Tecnologi a tempo indeterminato, da 18 a 23",
+                      "quote": "da 18 a 23 46.908,60 50.147,28"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:20:17Z",
+                      "effective_from": "2026-03-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the position less that of the position before."
+                  }
+                },
+                {
+                  "valid_from": "2027-01-01",
+                  "valid_until": null,
+                  "value": "367.35",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "22",
+                      "section": "Tabella B2 - Università, Tecnologi a tempo indeterminato, da 18 a 23",
+                      "quote": "da 18 a 23 46.908,60 50.147,28"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:20:17Z",
+                      "effective_from": "2026-03-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the position less that of the position before."
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "cadence_months": 72,
+          "maximum_count": 1,
+          "amount_by_level": {
+            "TECNOLOGO": {
+              "periods": [
+                {
+                  "valid_from": "2026-03-01",
+                  "valid_until": "2027-01-01",
+                  "value": "343.63",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "22",
+                      "section": "Tabella B2 - Università, Tecnologi a tempo indeterminato, da 24 a 30",
+                      "quote": "da 24 a 30 51.032,20 54.555,64"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:20:17Z",
+                      "effective_from": "2026-03-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the position less that of the position before."
+                  }
+                },
+                {
+                  "valid_from": "2027-01-01",
+                  "valid_until": null,
+                  "value": "367.36",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "22",
+                      "section": "Tabella B2 - Università, Tecnologi a tempo indeterminato, da 24 a 30",
+                      "quote": "da 24 a 30 51.032,20 54.555,64"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:20:17Z",
+                      "effective_from": "2026-03-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the position less that of the position before."
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "cadence_months": 84,
+          "maximum_count": 1,
+          "amount_by_level": {
+            "TECNOLOGO": {
+              "periods": [
+                {
+                  "valid_from": "2026-03-01",
+                  "valid_until": "2027-01-01",
+                  "value": "343.64",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "22",
+                      "section": "Tabella B2 - Università, Tecnologi a tempo indeterminato, da 31 in poi",
+                      "quote": "da 31 in poi 55.155,80 58.964,00"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:20:17Z",
+                      "effective_from": "2026-03-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the position less that of the position before."
+                  }
+                },
+                {
+                  "valid_from": "2027-01-01",
+                  "valid_until": null,
+                  "value": "367.37",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2025-2027",
+                        "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                        "published_on": "2026-07-01",
+                        "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                      },
+                      "page": "22",
+                      "section": "Tabella B2 - Università, Tecnologi a tempo indeterminato, da 31 in poi",
+                      "quote": "da 31 in poi 55.155,80 58.964,00"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:20:17Z",
+                      "effective_from": "2026-03-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare of the position less that of the position before."
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "employer_funds": [],
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-scuola-2006-2009",
+            "title": "CCNL Comparto Scuola 2006-2009, 29 novembre 2007",
+            "kind": "associazione",
+            "url": "https://usrfvg.regione.fvg.it/export/sites/default/USRFVG/allegati/archivio_file/TS/2016/CCNL_scuola_2006_2009.pdf",
+            "published_on": "2007-11-29",
+            "sha256": "4c7b272d8a2987c239d5f77e27af429c55096b71c8fa198265bac549f348dbf6"
+          },
+          "section": "Art. 80 c. 4 (tredicesima mensilità)",
+          "quote": "la tredicesima è dovuta in ragione di un dodicesimo per ogni mese di servizio prestato o frazione di mese superiore a 15 giorni.",
+          "page": "52"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T07:59:31Z",
+          "verification_status": "unverified",
+          "effective_from": "2007-11-29"
+        },
+        "note": "Kept in force by the CCNL Istruzione e Ricerca 2022-2024 of 23 December 2025, art. 1 c. 13 ('continuano a trovare applicazione [...] i CCNL dei precedenti comparti'). Copy of the ARAN text hosted by the USR Friuli Venezia Giulia. Scuola section only."
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "TECNOLOGO",
+      "order": 1,
+      "description": "Tecnologo a tempo indeterminato",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": "2027-01-01",
+            "value": "2878.15",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "22",
+                "section": "Tabella B2 - Università, Tecnologi a tempo indeterminato, da 0 a 5, dal 1.3.2026",
+                "quote": "da 0 a 5 34.537,80 36.922,44"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T18:20:17Z",
+                "effective_from": "2026-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T18:20:17Z",
+                "review_id": "2026-10-12-ai-tecnologi"
+              },
+              "transformation": "Annual tabellare of the first position over 12."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "3076.87",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "22",
+                "section": "Tabella B2 - Università, Tecnologi a tempo indeterminato, da 0 a 5, rideterminato dal 1.1.2027",
+                "quote": "da 0 a 5 34.537,80 36.922,44"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T18:20:17Z",
+                "effective_from": "2026-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T18:20:17Z",
+                "review_id": "2026-10-12-ai-tecnologi"
+              },
+              "transformation": "Annual tabellare of the first position over 12."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-ir-2025-2027",
+            "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+            "published_on": "2026-07-01",
+            "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+          },
+          "page": "22",
+          "section": "Tabella B2 - Università, Tecnologi a tempo indeterminato",
+          "quote": "da 0 a 5 34.537,80 36.922,44"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T18:20:17Z",
+          "effective_from": "2026-03-01",
+          "verification_status": "unverified"
+        },
+        "transformation": "Profile of the tabella, in force from 1.3.2026."
+      }
+    }
+  ],
+  "apprenticeship": [],
+  "coverage": {
+    "notes": [
+      {
+        "kind": "info",
+        "text": "SCOPE: tecnologi a tempo indeterminato of the universities, a profile from 1.3.2026 (CCNL 2025-2027 Tabella B2): six posizioni stipendiali (0-5, 6-11, 12-17, 18-23, 24-30, 31 and more years) as seniority steps. No overtime table; the allowances of the profile are not modelled."
+      },
+      {
+        "kind": "simplification",
+        "text": "SHARED RULES: the hourly divisor, the tredicesima, the leave, absence, sickness and accrual rules are those of the scuola file of the same comparto (istruzione-ricerca-aran), not read again for the university staff.",
+        "capability": "sickness",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "shared_rules_unchecked",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Read the university sections of the CCNL 2019-2021 (18/1/2024) for leave, absence and sickness."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "PENSION FUND: the university staff join the Fondo Perseo Sirio, not modelled here (the scuola fund Espero does not apply).",
+        "capability": "pension_fund_contribution",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "perseo_sirio_not_modelled",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the employer and employee rates of Fondo Perseo Sirio."
+        }
+      }
+    ]
+  },
+  "ruleset": {
+    "id": "ccnl/universita-tecnologi-aran",
+    "version": "2026.2",
+    "effective_from": "2026-03-01",
+    "effective_until": null,
+    "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+    "verification_status": "unverified",
+    "source_hash": "6dfbbc9165c3874f1b688b799a3883de4efb7b0c6bbd62f3ae07cb7600b70388",
+    "published_at": "2026-09-07",
+    "source_type": "official_primary"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": []
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "status": "assumed",
+        "note": "No text of the comparto fixes the daily quota of an unpaid absence of the scuola staff: the only daily divisor in the texts read is the 1/30 of the compenso individuale accessorio (CCNL Scuola 2007, p. 75). by_26 is kept as extracted, not sourced. Searched on 2026-10-12: the trade press reports a deduction of 1/30 of the taxable monthly pay for a day of strike and 1/30 of the RPD or CIA for the first ten days of sickness (NoiPA practice), but no statute, CCNL or NoiPA document read gives the daily quota of an unpaid absence; it stays assumed until one is found."
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "32",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "30"
+        },
+        {
+          "service_months_min": 36,
+          "annual_days": "32"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-scuola-2006-2009-aran",
+            "title": "CCNL Comparto Scuola 2006-2009, 29 novembre 2007",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/07/CCNL-SCUOLA-2006-2009.pdf",
+            "published_on": "2007-11-29",
+            "sha256": "e71227f907cf2292f4994e535c2b431bb2961221ad16eae12c803d8bf911757d"
+          },
+          "page": "23",
+          "section": "Art. 13 cc. 2-4 (ferie)",
+          "quote": "I dipendenti neo-assunti nella scuola hanno diritto a 30 giorni lavorativi di ferie"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T08:24:13Z",
+          "verification_status": "verified",
+          "effective_from": "2007-11-29",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T08:24:13Z",
+          "review_id": "2026-10-12-ai"
+        },
+        "transformation": "32 days (c. 2), 30 for the first 3 years of service (cc. 3-4: 'Dopo 3 anni di servizio, a qualsiasi titolo prestato'). The CCNL counts the three years in any public administration ('a qualsiasi titolo prestato' / 'presso una qualsiasi pubblica amministrazione'); the tiers read the seniority with this employer, so a worker with earlier public service gets 26 (30) days when the text gives 28 (32): state the seniority with the earlier public service included."
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "cumulation": {
+        "window_years": 3,
+        "reduced_integration_rate": "0",
+        "bands": [
+          {
+            "seniority_months_from": 0,
+            "full_pay_days": 270,
+            "comporto_days": 540,
+            "steps": [
+              {
+                "day_from": 271,
+                "day_until": 361,
+                "integration_rate": "0.9"
+              },
+              {
+                "day_from": 361,
+                "day_until": 541,
+                "integration_rate": "0.5"
+              }
+            ]
+          }
+        ]
+      },
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-scuola-2006-2009-aran",
+            "title": "CCNL Comparto Scuola 2006-2009, 29 novembre 2007",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/07/CCNL-SCUOLA-2006-2009.pdf",
+            "published_on": "2007-11-29",
+            "sha256": "e71227f907cf2292f4994e535c2b431bb2961221ad16eae12c803d8bf911757d"
+          },
+          "page": "27-28",
+          "section": "Art. 17 cc. 1, 8 (assenze per malattia)",
+          "quote": "b) 90% della retribuzione di cui alla lett. a) per i successivi 3 mesi di assenza;"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T08:24:13Z",
+          "verification_status": "unverified",
+          "effective_from": "2007-11-29"
+        },
+        "note": "Job kept 18 months within the three years before the day (the CCNL sums 'le assenze per malattia verificatesi nel triennio precedente' the last episode): 540 days of 30-day months over a window of 3 years; 9 months (270 days) in full, 3 (days 271-360) at 90%, 6 (days 361-540) at 50%. The window ends on the sick day, not on the start of the last episode. The cut of the accessory pay of the first 10 days (D.L. 112/2008 art. 71 c. 1) is not modelled."
+      }
+    }
+  },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-12-ai-tecnologi",
+        "date": "2026-10-12",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Tecnologi a tempo indeterminato, Tabella B2 of the CCNL 2025-2027.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+            "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+          }
+        ],
+        "findings": [
+          "The tecnologi of the universities, introduced from 1.3.2026, are now a level with their six posizioni stipendiali."
+        ]
+      }
+    ]
+  }
+}
