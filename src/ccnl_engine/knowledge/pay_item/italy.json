@@ -172,6 +172,20 @@
     "legal_basis": "Art. 51 c. 5 TUIR; art. 12 c. 2 L. 153/1969: income above the daily cap; TFR as the CCNL sets (art. 2120 c.c.), stated on the event"
   },
   {
+    "policy_id": "it/earning/standby",
+    "policy_version": "2026.1",
+    "kinds": [
+      "standby_earning"
+    ],
+    "effective_from": "2000-01-01",
+    "effective_until": null,
+    "tax": "ordinary",
+    "contribution": "included",
+    "tfr": "special",
+    "cost": "employee_cash",
+    "legal_basis": "Art. 51 TUIR; TFR as the CCNL sets (art. 2120 c. 2 c.c.), read from its standby rules"
+  },
+  {
     "policy_id": "it/tfr/accrual",
     "policy_version": "2026.1",
     "kinds": [

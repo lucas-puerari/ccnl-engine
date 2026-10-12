@@ -21,6 +21,7 @@ from ccnl_engine.event.facade import (
     ShiftWorkEvent,
     SickLeaveEvent,
     SicknessEpisode,
+    StandbyEvent,
     TerminationTFREvent,
     TravelAllowanceEvent,
     WelfareEvent,
@@ -43,6 +44,7 @@ from ccnl_engine.variable_pay.benefit.handlers import (
 )
 from ccnl_engine.variable_pay.travel.handlers import _handle_travel_allowance
 from ccnl_engine.working_time.handlers import _handle_standard
+from ccnl_engine.working_time.standby.handlers import _handle_standby
 
 __all__ = ["_HANDLER_REGISTRY", "EventEffect", "_EventHandlerCtx", "_EventHandlerFn"]
 
@@ -53,6 +55,7 @@ _HANDLER_REGISTRY: dict[type, _EventHandlerFn] = {
     NightShiftEvent: _handle_standard,
     HolidayWorkEvent: _handle_standard,
     ShiftWorkEvent: _handle_standard,
+    StandbyEvent: _handle_standby,
     AbsenceEvent: _handle_standard,
     SickLeaveEvent: _handle_standard,
     BonusEvent: _handle_standard,

@@ -21,6 +21,7 @@ from ccnl_engine.working_time.inputs import (
     NightShiftEvent,
     OvertimeEvent,
     ShiftWorkEvent,
+    StandbyEvent,
 )
 
 __all__ = ["WORK_EVENT_TYPES", "WorkEvent"]
@@ -30,6 +31,7 @@ WorkEvent = (
     | NightShiftEvent
     | HolidayWorkEvent
     | ShiftWorkEvent
+    | StandbyEvent
     | AbsenceEvent
     | SickLeaveEvent
     | SicknessEpisode
@@ -48,6 +50,7 @@ WORK_EVENT_TYPES: tuple[type[WorkEvent], ...] = (
     NightShiftEvent,
     HolidayWorkEvent,
     ShiftWorkEvent,
+    StandbyEvent,
     AbsenceEvent,
     SickLeaveEvent,
     SicknessEpisode,

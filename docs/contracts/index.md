@@ -49,7 +49,7 @@ on unverified sources, or be well sourced and not cleared for production.
 - ✅ `notte_festivi_turni_substitute_tax` (native)
 - ✅ `assistance_contribution` (native)
 
-**Scenario features: computed when the request declares the event, the fact or the termination** (15):
+**Scenario features: computed when the request declares the event, the fact or the termination** (16):
 
 - 🔲 `termination_residual_leave` (unsupported)
 - 📝 `termination_tfr` (caller_supplied)
@@ -59,6 +59,7 @@ on unverified sources, or be well sourced and not cleared for production.
 - 📝 `night_work` (caller_supplied)
 - 📝 `holiday_work` (caller_supplied)
 - 📝 `shift_work` (caller_supplied)
+- ✅ `standby` (native)
 - 📝 `absence` (caller_supplied)
 - ✅ `sickness` (native)
 - ✅ `fringe_benefit` (native)

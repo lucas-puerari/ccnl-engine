@@ -473,6 +473,17 @@
       "description": "Lavoro a turni"
     },
     {
+      "feature": "standby",
+      "layer": "work_rules",
+      "implementation": "native",
+      "applies_when": "event",
+      "handler": "event",
+      "evidence": "derived",
+      "variants": [],
+      "required_facts": [],
+      "description": "Reperibilità (importi del CCNL per livello)"
+    },
+    {
       "feature": "absence",
       "layer": "work_rules",
       "implementation": "caller_supplied",

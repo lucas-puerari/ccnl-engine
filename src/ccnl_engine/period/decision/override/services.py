@@ -34,6 +34,7 @@ from ccnl_engine.event.facade import (
     ShiftWorkEvent,
     SickLeaveEvent,
     SicknessEpisode,
+    StandbyEvent,
     TerminationTFREvent,
     TravelAllowanceEvent,
     WelfareEvent,
@@ -237,8 +238,8 @@ def _amount(event: WorkEvent) -> Decimal:
         return money(event.daily_amount * event.days)
     if isinstance(event, _CASH_EVENTS):
         return _standard_event_gross(event)
-    if isinstance(event, SicknessEpisode):  # pragma: no cover - no caller rule
-        return Decimal(0)
+    if isinstance(event, (SicknessEpisode, StandbyEvent)):  # pragma: no cover
+        return Decimal(0)  # no caller rule: never asked
     return event.amount
 
 
