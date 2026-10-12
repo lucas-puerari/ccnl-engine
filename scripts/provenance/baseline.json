@@ -335,15 +335,6 @@
       "accrual_rule": "missing",
       "additional_months[2026-05-01]": "assumed"
     },
-    "agreement/lavoro-domestico-convivente-orario-ridotto.json": {
-      "accrual_rule": "missing"
-    },
-    "agreement/lavoro-domestico-convivente.json": {
-      "accrual_rule": "missing"
-    },
-    "agreement/lavoro-domestico-non-convivente.json": {
-      "accrual_rule": "missing"
-    },
     "agreement/legno-arredamento-federlegno.json": {
       "accrual_rule": "assumed",
       "additional_months[2023-07-01]": "assumed"
@@ -1487,6 +1478,7 @@
       "lavoro-domestico-convivente-orario-ridotto/board_lodging_substitute",
       "lavoro-domestico-convivente-orario-ridotto/extra_month_hours",
       "lavoro-domestico-convivente-orario-ridotto/hourly_inps_bracket_unvalidated",
+      "lavoro-domestico-convivente-orario-ridotto/hours_within_arrangement",
       "lavoro-domestico-convivente-orario-ridotto/oncological_comporto",
       "lavoro-domestico-convivente-orario-ridotto/sick_board_lodging"
     ],
