@@ -2565,7 +2565,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/agricoltura",
       "ruleset_version": "2026.1",
-      "source_hash": "62d572852cb3b8353ca73078444c38c2dfc77f5c4e6f783cb9d5c11167a3ca5b",
+      "source_hash": "09d112b0253c6d1ec37e755150e2ce9447364f16dedfd14b3a0bd3acd559b120",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/agricoltura.json.gz"
@@ -2582,7 +2582,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/artigianato",
       "ruleset_version": "2026.1",
-      "source_hash": "189a65db381009e249300248479cbef52273295ca9aea77e71267f0feca68f37",
+      "source_hash": "5e6ab735687b808070738a06923909cafeb11dd3f84617180976b8e47be7e654",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/artigianato.json.gz"
@@ -2599,7 +2599,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/credito",
       "ruleset_version": "2026.1",
-      "source_hash": "5dcf6473c7794c847e97ff30e0450d2a96dc88b9d1a19b77a5a08a10a1ffe344",
+      "source_hash": "fe01218ff975f88310af81ca69518a1778eeb614c44770627ebabb3e7627e736",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/credito.json.gz"
@@ -2616,7 +2616,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/edilizia",
       "ruleset_version": "2026.1",
-      "source_hash": "13fa0ae520f8e47e5fd150279202d4c04d9478b9c04b5d51d5a75828849c451d",
+      "source_hash": "b79fa6f17c8ef8d65d6611861c36195cd81f6087aa70cc18f3e4796a3e2c9f1e",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/edilizia.json.gz"
@@ -2633,7 +2633,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/industria",
       "ruleset_version": "2026.1",
-      "source_hash": "0fe88d94677441627c456eb5f40ea5a0e717343993b2562191490816fe827bdf",
+      "source_hash": "61c88f894b12c6caa2787536a29cc03915514506a060fe0e0f8a18a829ab0dc0",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/industria.json.gz"
@@ -2650,7 +2650,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/lavoro-domestico",
       "ruleset_version": "2026.1",
-      "source_hash": "0de79631ef6df4fb6c880120a69662df4e804843f924205543a9d3433b3af613",
+      "source_hash": "c6ed752732be2ba034eca01e6f2158f0c045600d37b78cf36031227a1964b259",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/lavoro-domestico.json.gz"
@@ -2667,7 +2667,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/pubblica-amministrazione",
       "ruleset_version": "2026.1",
-      "source_hash": "6a3c96173a0ea52b5288be3df917e1b6b384dbd28f40d285b74fcb989b12e44b",
+      "source_hash": "882d2fb5a3f18426147e068fe5c24f8f317189137846103bed13fe07b42cbb0c",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/pubblica-amministrazione.json.gz"
@@ -2684,7 +2684,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/terziario",
       "ruleset_version": "2026.1",
-      "source_hash": "04c55906d052eb3e609cfe4aa3b12fb735d08192f4e82d53b36dc76f1da4044b",
+      "source_hash": "f0a662635f8b44d92f1c64e8730ea32b0e4144aba7db79f3b58aab2746e10f6c",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/terziario.json.gz"
@@ -2837,7 +2837,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/tfr-revaluation",
       "ruleset_version": "2026.1",
-      "source_hash": "9fa01171f12081c3c52120004502cacfbd2ef528ab39a58968c750b9c926e8a0",
+      "source_hash": "3eaa45f94494ae493a443d88b6337ed90f793ee796d1dcd79a1e339755d5a5fc",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "severance/revaluation/2026.json.gz"
