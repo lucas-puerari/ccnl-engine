@@ -9,10 +9,13 @@
     "signatories": [
       "ARAN",
       "CISL FP",
-      "UIL FPL",
       "FIALS",
       "NURSIND",
-      "NURSING UP"
+      "NURSING UP",
+      "CISL",
+      "CONFSAL",
+      "CGS",
+      "CSE"
     ],
     "agreement_date": "2025-10-27",
     "validity": {
@@ -21,16 +24,16 @@
     },
     "sources": [
       {
-        "url": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf",
-        "type": "ipotesi_ccnl",
-        "agreement_date": "2025-01-14",
-        "notes": "Ipotesi di CCNL Comparto Sanità 2022-2024. Art. 26 (orario 36h/sett.), Art. 57 (13ª mensilità), Art. 58 (incrementi tabellari dal 1.1.2024), Tabella 1a (incrementi mensili per 13 mensilità), Tabella 2a (retribuzione tabellare annua per 12 mensilità + 13^). Firma definitiva ottobre 2025."
+        "url": "https://www.aranagenzia.it/wp-content/uploads/2025/10/2025_10_27_COMP-SANITA_2022-2024.pdf",
+        "type": "testo_ccnl",
+        "agreement_date": "2025-10-27",
+        "notes": "CCNL Comparto Sanità 2022-2024 signed definitively on 27 October 2025 (FP CGIL and UIL FPL did not sign). Tabella 2a (p. 107), art. 59 (divisors), art. 60 (tredicesima), art. 35 (ferie), art. 40 (malattia)."
       },
       {
-        "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=400",
-        "type": "fonte_secondaria",
-        "agreement_date": null,
-        "notes": "SIMPLIFICATION: conferma codice CNEL S205 per CCNL Comparto Sanità (fonte secondaria lavoro-economia.it)."
+        "url": "https://www.aranagenzia.it/wp-content/uploads/2022/11/2022_11_02_COMP-SANITA_2019-2021.pdf",
+        "type": "testo_ccnl",
+        "agreement_date": "2022-11-02",
+        "notes": "CCNL 2019-2021. Tabella D (p. 167), art. 99 (classification from 1.1.2023), art. 100 (elevata qualificazione), art. 47 (straordinario)."
       }
     ],
     "extraction": {
@@ -48,7 +51,33 @@
         {
           "valid_from": "2022-11-02",
           "valid_until": null,
-          "value": "156"
+          "value": "156",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-sanita-2022-2024-aran",
+                "title": "CCNL Comparto Sanità 2022-2024, 27 ottobre 2025",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/10/2025_10_27_COMP-SANITA_2022-2024.pdf",
+                "published_on": "2025-10-27",
+                "sha256": "44703973da37ba07c1c1455795c18e710a596de00a28d59bbc462662f678235d"
+              },
+              "page": "87",
+              "section": "Art. 59 c. 4 (retribuzione oraria)",
+              "quote": "La retribuzione oraria si ottiene dividendo le corrispondenti retribuzioni mensili di cui al comma 2 per 156."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T22:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2025-10-27",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T22:00:00Z",
+              "review_id": "2026-10-12-ai"
+            }
+          }
         }
       ]
     },
@@ -59,26 +88,29 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-sanita-2022-2024",
-                "title": "CCNL Comparto Sanità 2022-2024, testo definitivo 27 ottobre 2025",
+                "document_id": "ccnl-sanita-2022-2024-aran",
+                "title": "CCNL Comparto Sanità 2022-2024, 27 ottobre 2025",
                 "kind": "amministrazione",
-                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/10/2025.10.27-CCNL-comparto-definitivo-3.pdf",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/10/2025_10_27_COMP-SANITA_2022-2024.pdf",
                 "published_on": "2025-10-27",
-                "sha256": "2d5a0d966527851b1e06cd2d7e758905877e65eedaf84e0aaaeb083f3b2fac47"
+                "sha256": "44703973da37ba07c1c1455795c18e710a596de00a28d59bbc462662f678235d"
               },
+              "page": "88",
               "section": "Art. 60 c. 1 (tredicesima mensilità)",
-              "quote": "Le amministrazioni corrispondono una tredicesima mensilità nel periodo compreso tra il 15 ed il 21 dicembre",
-              "page": "88"
+              "quote": "Le amministrazioni corrispondono una tredicesima mensilità nel periodo compreso"
             },
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:00:00Z",
-              "verification_status": "unverified",
-              "effective_from": "2025-10-27"
+              "extraction_timestamp": "2026-10-12T22:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2025-10-27",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T22:00:00Z",
+              "review_id": "2026-10-12-ai"
             }
           }
         }
@@ -92,19 +124,25 @@
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "allegato1736872056-pdf",
-            "title": "allegato1736872056-pdf",
-            "kind": "rivista",
-            "url": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf"
+            "document_id": "ccnl-sanita-2019-2021",
+            "title": "CCNL Comparto Sanità 2019-2021, 2 novembre 2022",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2022/11/2022_11_02_COMP-SANITA_2019-2021.pdf",
+            "published_on": "2022-11-02",
+            "sha256": "c9f57cf60c3ae2cacbfea57dd856ba13d4e9d197a4bc1c58f9b3d37aa5785722"
           },
-          "section": "Scatti di anzianità"
+          "page": "30",
+          "section": "Art. 19 c. 4 (differenziali economici di professionalità)",
+          "quote": "avviene mediante procedura selettiva, nel rispetto delle modalità e dei criteri di"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T22:00:00Z",
           "verification_status": "unverified",
-          "effective_from": "2020-01-01"
-        }
+          "effective_from": "2022-11-02"
+        },
+        "note": "The differenziali economici di professionalità are awarded by a selective procedure, not by seniority: no automatic step."
       }
     },
     "employer_funds": [
@@ -183,26 +221,35 @@
       "base_salary": {
         "periods": [
           {
-            "valid_from": "2022-11-02",
+            "valid_from": "2023-01-01",
             "valid_until": "2024-01-01",
             "value": "1586.59",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "allegato1736872056-pdf",
-                  "title": "allegato1736872056-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf"
+                  "document_id": "ccnl-sanita-2019-2021",
+                  "title": "CCNL Comparto Sanità 2019-2021, 2 novembre 2022",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2022/11/2022_11_02_COMP-SANITA_2019-2021.pdf",
+                  "published_on": "2022-11-02",
+                  "sha256": "c9f57cf60c3ae2cacbfea57dd856ba13d4e9d197a4bc1c58f9b3d37aa5785722"
                 },
-                "section": "Tabella retributiva"
+                "page": "167",
+                "section": "Tabella D, decorrente dalla data di applicazione del nuovo sistema di classificazione professionale (art. 99 c. 3: 'A decorrere dall’1 gennaio 2023, data di entrata in vigore del nuovo sistema di classificazione')",
+                "quote": "Area del PERSONALE DI SUPPORTO 19.039,05"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (the table is 'per 12 mensilità a cui aggiungere la 13^ mensilità')."
             }
           },
           {
@@ -210,22 +257,31 @@
             "valid_until": null,
             "value": "1701.59",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "allegato1736872056-pdf",
-                  "title": "allegato1736872056-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf"
+                  "document_id": "ccnl-sanita-2022-2024-aran",
+                  "title": "CCNL Comparto Sanità 2022-2024, 27 ottobre 2025",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/10/2025_10_27_COMP-SANITA_2022-2024.pdf",
+                  "published_on": "2025-10-27",
+                  "sha256": "44703973da37ba07c1c1455795c18e710a596de00a28d59bbc462662f678235d"
                 },
-                "section": "Tabella retributiva"
+                "page": "107",
+                "section": "Tabella 2a, retribuzione tabellare annua dal 1.1.2024",
+                "quote": "PERSONALE DI SUPPORTO 20.419,05"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (the table is 'per 12 mensilità a cui aggiungere la 13^ mensilità')."
             }
           }
         ]
@@ -258,26 +314,35 @@
       "base_salary": {
         "periods": [
           {
-            "valid_from": "2022-11-02",
+            "valid_from": "2023-01-01",
             "valid_until": "2024-01-01",
             "value": "1675.45",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "allegato1736872056-pdf",
-                  "title": "allegato1736872056-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf"
+                  "document_id": "ccnl-sanita-2019-2021",
+                  "title": "CCNL Comparto Sanità 2019-2021, 2 novembre 2022",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2022/11/2022_11_02_COMP-SANITA_2019-2021.pdf",
+                  "published_on": "2022-11-02",
+                  "sha256": "c9f57cf60c3ae2cacbfea57dd856ba13d4e9d197a4bc1c58f9b3d37aa5785722"
                 },
-                "section": "Tabella retributiva"
+                "page": "167",
+                "section": "Tabella D, decorrente dalla data di applicazione del nuovo sistema di classificazione professionale (art. 99 c. 3: 'A decorrere dall’1 gennaio 2023, data di entrata in vigore del nuovo sistema di classificazione')",
+                "quote": "Area degli OPERATORI 20.105,34"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (the table is 'per 12 mensilità a cui aggiungere la 13^ mensilità')."
             }
           },
           {
@@ -285,22 +350,31 @@
             "valid_until": null,
             "value": "1795.45",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "allegato1736872056-pdf",
-                  "title": "allegato1736872056-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf"
+                  "document_id": "ccnl-sanita-2022-2024-aran",
+                  "title": "CCNL Comparto Sanità 2022-2024, 27 ottobre 2025",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/10/2025_10_27_COMP-SANITA_2022-2024.pdf",
+                  "published_on": "2025-10-27",
+                  "sha256": "44703973da37ba07c1c1455795c18e710a596de00a28d59bbc462662f678235d"
                 },
-                "section": "Tabella retributiva"
+                "page": "107",
+                "section": "Tabella 2a, retribuzione tabellare annua dal 1.1.2024",
+                "quote": "OPERATORI 21.545,34"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (the table is 'per 12 mensilità a cui aggiungere la 13^ mensilità')."
             }
           }
         ]
@@ -333,26 +407,35 @@
       "base_salary": {
         "periods": [
           {
-            "valid_from": "2022-11-02",
+            "valid_from": "2023-01-01",
             "valid_until": "2024-01-01",
             "value": "1786.48",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "allegato1736872056-pdf",
-                  "title": "allegato1736872056-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf"
+                  "document_id": "ccnl-sanita-2019-2021",
+                  "title": "CCNL Comparto Sanità 2019-2021, 2 novembre 2022",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2022/11/2022_11_02_COMP-SANITA_2019-2021.pdf",
+                  "published_on": "2022-11-02",
+                  "sha256": "c9f57cf60c3ae2cacbfea57dd856ba13d4e9d197a4bc1c58f9b3d37aa5785722"
                 },
-                "section": "Tabella retributiva"
+                "page": "167",
+                "section": "Tabella D, decorrente dalla data di applicazione del nuovo sistema di classificazione professionale (art. 99 c. 3: 'A decorrere dall’1 gennaio 2023, data di entrata in vigore del nuovo sistema di classificazione')",
+                "quote": "Area degli ASSISTENTI 21.437,79"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (the table is 'per 12 mensilità a cui aggiungere la 13^ mensilità')."
             }
           },
           {
@@ -360,22 +443,31 @@
             "valid_until": null,
             "value": "1913.48",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "allegato1736872056-pdf",
-                  "title": "allegato1736872056-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf"
+                  "document_id": "ccnl-sanita-2022-2024-aran",
+                  "title": "CCNL Comparto Sanità 2022-2024, 27 ottobre 2025",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/10/2025_10_27_COMP-SANITA_2022-2024.pdf",
+                  "published_on": "2025-10-27",
+                  "sha256": "44703973da37ba07c1c1455795c18e710a596de00a28d59bbc462662f678235d"
                 },
-                "section": "Tabella retributiva"
+                "page": "107",
+                "section": "Tabella 2a, retribuzione tabellare annua dal 1.1.2024",
+                "quote": "ASSISTENTI 22.961,79"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (the table is 'per 12 mensilità a cui aggiungere la 13^ mensilità')."
             }
           }
         ]
@@ -408,26 +500,35 @@
       "base_salary": {
         "periods": [
           {
-            "valid_from": "2022-11-02",
+            "valid_from": "2023-01-01",
             "valid_until": "2024-01-01",
             "value": "1941.58",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "allegato1736872056-pdf",
-                  "title": "allegato1736872056-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf"
+                  "document_id": "ccnl-sanita-2019-2021",
+                  "title": "CCNL Comparto Sanità 2019-2021, 2 novembre 2022",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2022/11/2022_11_02_COMP-SANITA_2019-2021.pdf",
+                  "published_on": "2022-11-02",
+                  "sha256": "c9f57cf60c3ae2cacbfea57dd856ba13d4e9d197a4bc1c58f9b3d37aa5785722"
                 },
-                "section": "Tabella retributiva"
+                "page": "167",
+                "section": "Tabella D, decorrente dalla data di applicazione del nuovo sistema di classificazione professionale (art. 99 c. 3: 'A decorrere dall’1 gennaio 2023, data di entrata in vigore del nuovo sistema di classificazione')",
+                "quote": "Area dei PROFESSIONISTI DELLA SALUTE e dei FUNZIONARI 23.298,93"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (the table is 'per 12 mensilità a cui aggiungere la 13^ mensilità')."
             }
           },
           {
@@ -435,22 +536,31 @@
             "valid_until": null,
             "value": "2076.58",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "allegato1736872056-pdf",
-                  "title": "allegato1736872056-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf"
+                  "document_id": "ccnl-sanita-2022-2024-aran",
+                  "title": "CCNL Comparto Sanità 2022-2024, 27 ottobre 2025",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/10/2025_10_27_COMP-SANITA_2022-2024.pdf",
+                  "published_on": "2025-10-27",
+                  "sha256": "44703973da37ba07c1c1455795c18e710a596de00a28d59bbc462662f678235d"
                 },
-                "section": "Tabella retributiva"
+                "page": "107",
+                "section": "Tabella 2a, retribuzione tabellare annua dal 1.1.2024",
+                "quote": "PROFESSIONISTI DELLA SALUTE E DEI FUNZIONARI 24.918,93"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (the table is 'per 12 mensilità a cui aggiungere la 13^ mensilità')."
             }
           }
         ]
@@ -483,26 +593,35 @@
       "base_salary": {
         "periods": [
           {
-            "valid_from": "2022-11-02",
+            "valid_from": "2023-01-01",
             "valid_until": "2024-01-01",
             "value": "2692.31",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "allegato1736872056-pdf",
-                  "title": "allegato1736872056-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf"
+                  "document_id": "ccnl-sanita-2019-2021",
+                  "title": "CCNL Comparto Sanità 2019-2021, 2 novembre 2022",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2022/11/2022_11_02_COMP-SANITA_2019-2021.pdf",
+                  "published_on": "2022-11-02",
+                  "sha256": "c9f57cf60c3ae2cacbfea57dd856ba13d4e9d197a4bc1c58f9b3d37aa5785722"
                 },
-                "section": "Tabella retributiva"
+                "page": "142",
+                "section": "Art. 100 c. 1 (area dell'elevata qualificazione), from the application of the new classification on 1.1.2023",
+                "quote": "qualificazione è stabilita in un importo annuo lordo complessivo pari a 35.000 euro,"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "35,000 / 13: the annual amount is 'comprensivo di tredicesima mensilità' (p. 143)."
             }
           },
           {
@@ -510,22 +629,31 @@
             "valid_until": null,
             "value": "2886.21",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "allegato1736872056-pdf",
-                  "title": "allegato1736872056-pdf",
-                  "kind": "rivista",
-                  "url": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf"
+                  "document_id": "ccnl-sanita-2022-2024-aran",
+                  "title": "CCNL Comparto Sanità 2022-2024, 27 ottobre 2025",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/10/2025_10_27_COMP-SANITA_2022-2024.pdf",
+                  "published_on": "2025-10-27",
+                  "sha256": "44703973da37ba07c1c1455795c18e710a596de00a28d59bbc462662f678235d"
                 },
-                "section": "Tabella retributiva"
+                "page": "107",
+                "section": "Tabella 2a, retribuzione tabellare annua dal 1.1.2024",
+                "quote": "ELEVATA QUALIFICAZIONE 34.634,49"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (the table is 'per 12 mensilità a cui aggiungere la 13^ mensilità')."
             }
           }
         ]
@@ -556,19 +684,7 @@
     "notes": [
       {
         "kind": "source",
-        "text": "Salary tables from Ipotesi CCNL Comparto Sanità 2022-2024 (ARAN, 14.01.2025, definitively signed October 2025). Art. 58 comma 1 (increments from 1.1.2024 per Tabella 1a), Art. 58 comma 2 (annual amounts from Tabella 2a). Monthly values = Tabella 2a / 12."
-      },
-      {
-        "kind": "source",
-        "text": "Tranche 1 (2022-11-02) values back-calculated from CCNL 2.11.2022 base by subtracting Tabella 1a increments. 2022-2023 anticipation payments (Art. 47-bis D.Lgs. 165/2001) not modelled as separate periods (SIMPLIFICATION)."
-      },
-      {
-        "kind": "source",
-        "text": "Hourly divisor 156 from Art. 26 comma 1 (36h/week standard working time for comparto Sanità)."
-      },
-      {
-        "kind": "source",
-        "text": "13 mensilità from Art. 57 (Tredicesima mensilità) of this CCNL."
+        "text": "SALARY TABLES: 1.1.2023-31.12.2023 CCNL 2.11.2022 Tabella D (new classification from 1.1.2023; elevata qualificazione art. 100: 35,000 a year with the tredicesima); from 1.1.2024 CCNL 27.10.2025 Tabella 2a. Monthly = annual / 12, the tredicesima paid apart. The old categories of November and December 2022 and the anticipation increments are not modelled. Overtime hourly base: art. 47 c. 7 counts the retribuzione base with the rateo of tredicesima over 156; the run takes the hourly rate the caller states."
       },
       {
         "kind": "info",
@@ -585,24 +701,6 @@
       {
         "kind": "info",
         "text": "CNEL code S205 confirmed via multiple secondary sources: lavoro-economia.it lists 'CCNL Comparto Sanità [Cnel: S205]', kitech.it and ilccnl.it concur. Not stated in the official ipotesi PDF text; CNEL archive not separately verified."
-      },
-      {
-        "kind": "simplification",
-        "text": "PRE-2024 BACK-CALCULATED. Nov 2022 values derived by subtracting Tabella 1a increments from Jan 2024 amounts (support −115, operatori −120, assistenti −127, collaboratori −127, funzionari −129, elevata qualificazione −185 approx). Primary CCNL 2019-2021 text not verified directly. 2022-2023 anticipation payments not modelled as intermediate periods.",
-        "capability": "base_salary",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "pre_2024_back_calculated_tables",
-          "applies_when": {
-            "effective_until": "2024-01-01"
-          },
-          "remediation": "Source the 2019-2021 salary tables from the signed CCNL text instead of back-calculating them."
-        }
-      },
-      {
-        "kind": "simplification",
-        "text": "Agreement date 2025-10-27 (firma definitiva) per ARAN press release. The PDF used is the Ipotesi from 14.01.2025; salary tables are identical to the final signed version.",
-        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
@@ -630,7 +728,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf",
     "verification_status": "unverified",
-    "source_hash": "d9bfedaf34d52316595586110359ddc64bd98c54e4d21338137d845723511b8d",
+    "source_hash": "57ed16d31ae462db742589b149968e525c33cc7784390241a148e7335693a9c1",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -645,7 +743,7 @@
           "rate": {
             "periods": [
               {
-                "valid_from": "2024-01-01",
+                "valid_from": "2022-11-02",
                 "value": 0.15,
                 "provenance": null,
                 "valid_until": null
@@ -656,21 +754,29 @@
             "weekday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-sanita-aran-2022-2024",
-                "title": "CCNL Comparto Sanità ARAN 2022-2024",
-                "kind": "tabella_retributiva",
-                "url": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf"
+                "document_id": "ccnl-sanita-2019-2021",
+                "title": "CCNL Comparto Sanità 2019-2021, 2 novembre 2022",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2022/11/2022_11_02_COMP-SANITA_2019-2021.pdf",
+                "published_on": "2022-11-02",
+                "sha256": "c9f57cf60c3ae2cacbfea57dd856ba13d4e9d197a4bc1c58f9b3d37aa5785722"
               },
-              "section": "Art. lavoro straordinario"
+              "page": "70",
+              "section": "Art. 47 cc. 7-8 (lavoro straordinario)",
+              "quote": "La maggiorazione di cui al comma 7 è pari al 15% per lavoro straordinario diurno, al 30% per lavoro straordinario prestato nei giorni festivi o in orario notturno"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T22:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2022-11-02",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T22:00:00Z",
+              "review_id": "2026-10-12-ai"
             }
           }
         },
@@ -681,7 +787,7 @@
           "rate": {
             "periods": [
               {
-                "valid_from": "2024-01-01",
+                "valid_from": "2022-11-02",
                 "value": 0.3,
                 "provenance": null,
                 "valid_until": null
@@ -692,21 +798,29 @@
             "night"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-sanita-aran-2022-2024",
-                "title": "CCNL Comparto Sanità ARAN 2022-2024",
-                "kind": "tabella_retributiva",
-                "url": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf"
+                "document_id": "ccnl-sanita-2019-2021",
+                "title": "CCNL Comparto Sanità 2019-2021, 2 novembre 2022",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2022/11/2022_11_02_COMP-SANITA_2019-2021.pdf",
+                "published_on": "2022-11-02",
+                "sha256": "c9f57cf60c3ae2cacbfea57dd856ba13d4e9d197a4bc1c58f9b3d37aa5785722"
               },
-              "section": "Art. lavoro straordinario"
+              "page": "70",
+              "section": "Art. 47 cc. 7-8 (lavoro straordinario)",
+              "quote": "La maggiorazione di cui al comma 7 è pari al 15% per lavoro straordinario diurno, al 30% per lavoro straordinario prestato nei giorni festivi o in orario notturno"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T22:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2022-11-02",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T22:00:00Z",
+              "review_id": "2026-10-12-ai"
             }
           }
         },
@@ -717,7 +831,7 @@
           "rate": {
             "periods": [
               {
-                "valid_from": "2024-01-01",
+                "valid_from": "2022-11-02",
                 "value": 0.3,
                 "provenance": null,
                 "valid_until": null
@@ -728,21 +842,29 @@
             "holiday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-sanita-aran-2022-2024",
-                "title": "CCNL Comparto Sanità ARAN 2022-2024",
-                "kind": "tabella_retributiva",
-                "url": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf"
+                "document_id": "ccnl-sanita-2019-2021",
+                "title": "CCNL Comparto Sanità 2019-2021, 2 novembre 2022",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2022/11/2022_11_02_COMP-SANITA_2019-2021.pdf",
+                "published_on": "2022-11-02",
+                "sha256": "c9f57cf60c3ae2cacbfea57dd856ba13d4e9d197a4bc1c58f9b3d37aa5785722"
               },
-              "section": "Art. lavoro straordinario"
+              "page": "70",
+              "section": "Art. 47 cc. 7-8 (lavoro straordinario)",
+              "quote": "La maggiorazione di cui al comma 7 è pari al 15% per lavoro straordinario diurno, al 30% per lavoro straordinario prestato nei giorni festivi o in orario notturno"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T22:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2022-11-02",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T22:00:00Z",
+              "review_id": "2026-10-12-ai"
             }
           }
         },
@@ -753,7 +875,7 @@
           "rate": {
             "periods": [
               {
-                "valid_from": "2024-01-01",
+                "valid_from": "2022-11-02",
                 "value": 0.5,
                 "provenance": null,
                 "valid_until": null
@@ -764,21 +886,29 @@
             "night_holiday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-sanita-aran-2022-2024",
-                "title": "CCNL Comparto Sanità ARAN 2022-2024",
-                "kind": "tabella_retributiva",
-                "url": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf"
+                "document_id": "ccnl-sanita-2019-2021",
+                "title": "CCNL Comparto Sanità 2019-2021, 2 novembre 2022",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2022/11/2022_11_02_COMP-SANITA_2019-2021.pdf",
+                "published_on": "2022-11-02",
+                "sha256": "c9f57cf60c3ae2cacbfea57dd856ba13d4e9d197a4bc1c58f9b3d37aa5785722"
               },
-              "section": "Art. lavoro straordinario"
+              "page": "70",
+              "section": "Art. 47 cc. 7-8 (lavoro straordinario)",
+              "quote": "ed al 50% per quello prestato in orario notturno festivo."
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T22:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2022-11-02",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T22:00:00Z",
+              "review_id": "2026-10-12-ai"
             }
           }
         }
@@ -788,21 +918,29 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-sanita-aran-2022-2024",
-            "title": "CCNL Comparto Sanità ARAN 2022-2024",
-            "kind": "tabella_retributiva",
-            "url": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf"
+            "document_id": "ccnl-sanita-2022-2024-aran",
+            "title": "CCNL Comparto Sanità 2022-2024, 27 ottobre 2025",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/10/2025_10_27_COMP-SANITA_2022-2024.pdf",
+            "published_on": "2025-10-27",
+            "sha256": "44703973da37ba07c1c1455795c18e710a596de00a28d59bbc462662f678235d"
           },
-          "section": "Art. orario di lavoro"
+          "page": "87",
+          "section": "Art. 59 c. 3 (retribuzione giornaliera)",
+          "quote": "La retribuzione giornaliera si ottiene dividendo le corrispondenti retribuzioni mensili di cui al comma 2 per 26."
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2024-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T22:00:00Z",
+          "verification_status": "verified",
+          "effective_from": "2025-10-27",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T22:00:00Z",
+          "review_id": "2026-10-12-ai"
         }
       }
     },
@@ -811,55 +949,91 @@
       "entitlement_tiers": [
         {
           "service_months_min": 0,
+          "annual_days": "26"
+        },
+        {
+          "service_months_min": 36,
           "annual_days": "28"
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-sanita-aran-2022-2024",
-            "title": "CCNL Comparto Sanità ARAN 2022-2024",
-            "kind": "tabella_retributiva",
-            "url": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf"
+            "document_id": "ccnl-sanita-2022-2024-aran",
+            "title": "CCNL Comparto Sanità 2022-2024, 27 ottobre 2025",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/10/2025_10_27_COMP-SANITA_2022-2024.pdf",
+            "published_on": "2025-10-27",
+            "sha256": "44703973da37ba07c1c1455795c18e710a596de00a28d59bbc462662f678235d"
           },
-          "section": "Art. ferie"
+          "page": "52",
+          "section": "Art. 35 cc. 2, 4 (ferie)",
+          "quote": "spettano 26 giorni di ferie in caso di articolazione dell'orario di lavoro su cinque giorni"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2024-01-01"
-        }
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T22:00:00Z",
+          "verification_status": "verified",
+          "effective_from": "2025-10-27",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T22:00:00Z",
+          "review_id": "2026-10-12-ai"
+        },
+        "transformation": "28 days on a five-day week (c. 2); 26 for a worker hired for the first time in a public administration, for the first three years of service (cc. 4-5)."
       }
     },
     "sickness_rules": {
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
-      "max_duration_days": 270,
+      "tiers": [
+        {
+          "month_from": 1,
+          "month_until": 10,
+          "integration_rate": "1"
+        },
+        {
+          "month_from": 10,
+          "month_until": 13,
+          "integration_rate": "0.9"
+        },
+        {
+          "month_from": 13,
+          "month_until": 19,
+          "integration_rate": "0.5"
+        }
+      ],
+      "max_duration_days": 548,
       "provenance": {
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "ccnl-sanita-aran-2022-2024",
-            "title": "CCNL Comparto Sanità ARAN 2022-2024",
-            "kind": "tabella_retributiva",
-            "url": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf"
+            "document_id": "ccnl-sanita-2022-2024-aran",
+            "title": "CCNL Comparto Sanità 2022-2024, 27 ottobre 2025",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/10/2025_10_27_COMP-SANITA_2022-2024.pdf",
+            "published_on": "2025-10-27",
+            "sha256": "44703973da37ba07c1c1455795c18e710a596de00a28d59bbc462662f678235d"
           },
-          "section": "Art. malattia — 9 mesi in 36"
+          "page": "60",
+          "section": "Art. 40 c. 11 (assenze per malattia)",
+          "quote": "90% della retribuzione di cui all’art. 59, comma 2, lett. c)"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T22:00:00Z",
           "verification_status": "unverified",
-          "effective_from": "2024-01-01"
-        }
+          "effective_from": "2025-10-27"
+        },
+        "note": "Job kept 18 months (about 548 days); 9 months in full, 3 at 90%, 6 at 50%. The CCNL sums the sickness of the three years before the last episode; the tiers count one episode and its relapses (engine limitation sickness_cumulation_window). The cut of the accessory pay of the first 10 days (D.L. 112/2008 art. 71 c. 1) is not modelled."
       }
     }
   },
   "verification": {
-    "confidence": "unverified",
-    "readiness": "exploratory",
+    "confidence": "verified",
+    "readiness": "reviewed",
     "verified_cases": 0,
     "reviews": [
       {
@@ -871,6 +1045,34 @@
         "outcome": "confirmed",
         "findings": [
           "The review recorded no list of the documents it read."
+        ]
+      },
+      {
+        "id": "2026-10-12-ai",
+        "date": "2026-10-12",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Salary tables, additional months, hourly and daily divisors, overtime, leave, sickness and seniority, against the CCNL of 2 November 2022 and the definitive CCNL of 27 October 2025.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/10/2025_10_27_COMP-SANITA_2022-2024.pdf",
+            "sha256": "44703973da37ba07c1c1455795c18e710a596de00a28d59bbc462662f678235d"
+          },
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2022/11/2022_11_02_COMP-SANITA_2019-2021.pdf",
+            "sha256": "c9f57cf60c3ae2cacbfea57dd856ba13d4e9d197a4bc1c58f9b3d37aa5785722"
+          }
+        ],
+        "findings": [
+          "Salary amounts confirmed (annual table over 12; elevata qualificazione 2023: 35,000 / 13).",
+          "The first period started on 2022-11-02, the signing date; the new classification applies from 1 January 2023 (art. 99 c. 3).",
+          "Overtime is art. 47 c. 8 of the CCNL 2.11.2022, in force from 2022, not from 2024.",
+          "Citations moved from the ipotesi of January 2025 (other article numbers) to the definitive text of 27 October 2025.",
+          "Sickness: comporto of 18 months with 9 months at 100%, 3 at 90% and 6 at 50% (art. 40), not 270 days at 100%.",
+          "Leave: 26 days for the first three years of a first public employment (art. 35 c. 4).",
+          "Signatories: FP CGIL and UIL FPL did not sign; CONFSAL, CGS, CSE and CISL signed.",
+          "The 2025-2027 renewal is an ipotesi of 29 July 2026, not in force."
         ]
       }
     ]

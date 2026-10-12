@@ -1359,11 +1359,11 @@
       "funivie-anef/apprentice_seniority"
     ],
     "agreement/funzioni-centrali-aran.json": [
-      "funzioni-centrali-aran/ctps_rates_proxy"
+      "funzioni-centrali-aran/ctps_rates_proxy",
+      "funzioni-centrali-aran/leave_from_2027"
     ],
     "agreement/funzioni-locali-aran.json": [
       "funzioni-locali-aran/indennita_comparto_decentrata_missing",
-      "funzioni-locali-aran/pre_2024_back_calculated",
       "funzioni-locali-aran/renewal_2025_2027_missing"
     ],
     "agreement/gas-acqua-utilitalia.json": [
@@ -1583,7 +1583,6 @@
       "rsa-aiop/apprentice_seniority"
     ],
     "agreement/sanita-aran.json": [
-      "sanita-aran/pre_2024_back_calculated_tables",
       "sanita-aran/renewal_2025_2027_not_modelled"
     ],
     "agreement/scuole-materne-fism.json": [

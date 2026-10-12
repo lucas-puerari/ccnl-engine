@@ -46,7 +46,33 @@
         {
           "valid_from": "2022-11-16",
           "valid_until": null,
-          "value": "156"
+          "value": "156",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-funzioni-locali-2019-2021",
+                "title": "CCNL Comparto Funzioni Locali 2019-2021, 16 novembre 2022",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2023/10/CCNL-Comparto-Funzioni-Locali-2019-2021-16.11.2022.pdf",
+                "published_on": "2022-11-16",
+                "sha256": "8cea8d673cf66299d55169c60b1624417c804cf294b0045b234e35a2e76b764d"
+              },
+              "page": "95",
+              "section": "Art. 74 c. 3 (retribuzione oraria)",
+              "quote": "3. La retribuzione oraria si ottiene dividendo la corrispondente retribuzione mensile per 156."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T22:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2022-11-16",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T22:00:00Z",
+              "review_id": "2026-10-12-ai"
+            }
+          }
         }
       ]
     },
@@ -57,28 +83,30 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-funzioni-locali-2019-2021",
-                "title": "CCNL Comparto Funzioni Locali 2019-2021, 16 novembre 2022",
+                "document_id": "ccnl-funzioni-locali-2022-2024",
+                "title": "CCNL Comparto Funzioni Locali 2022-2024, 23 febbraio 2026",
                 "kind": "amministrazione",
-                "url": "https://www.aranagenzia.it/wp-content/uploads/2023/10/CCNL-Comparto-Funzioni-Locali-2019-2021-16.11.2022.pdf",
-                "published_on": "2022-11-16",
-                "sha256": "8cea8d673cf66299d55169c60b1624417c804cf294b0045b234e35a2e76b764d"
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
+                "published_on": "2026-02-23",
+                "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
               },
-              "section": "Art. 75 c. 1 (tredicesima mensilità)",
-              "quote": "a tempo determinato una tredicesima mensilità nel periodo compreso tra il 10 ed il 18 dicembre",
-              "page": "95"
+              "page": "80",
+              "section": "Art. 56 c. 1 (incrementi della retribuzione tabellare)",
+              "quote": "per tredici mensilità, indicati nell’allegata Tabella A, colonna 1"
             },
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:00:00Z",
-              "verification_status": "unverified",
-              "effective_from": "2022-11-16"
-            },
-            "note": "Still the operative clause: the CCNL 2022-2024 of 23 February 2026, art. 40 c. 9, refers to 'la disciplina dell'art. 75 del CCNL del 16 novembre 2022'."
+              "extraction_timestamp": "2026-10-12T22:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2026-02-23",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T22:00:00Z",
+              "review_id": "2026-10-12-ai"
+            }
           }
         }
       ]
@@ -91,19 +119,25 @@
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "ccnl-comparto-2022-2024-23-02-26-pdf",
-            "title": "ccnl-comparto-2022-2024-23-02-26-pdf",
-            "kind": "associazione",
-            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf"
+            "document_id": "ccnl-funzioni-locali-2022-2024",
+            "title": "CCNL Comparto Funzioni Locali 2022-2024, 23 febbraio 2026",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
+            "published_on": "2026-02-23",
+            "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
           },
-          "section": "Scatti di anzianità"
+          "page": "22",
+          "section": "Art. 14 c. 2 (differenziali stipendiali)",
+          "quote": "avviene mediante procedura selettiva di area, attivabile annualmente"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T22:00:00Z",
           "verification_status": "unverified",
-          "effective_from": "2020-01-01"
-        }
+          "effective_from": "2026-02-23"
+        },
+        "note": "The differenziali stipendiali are awarded by a selective procedure, not by seniority: no automatic step."
       }
     },
     "employer_funds": [
@@ -183,26 +217,35 @@
       "base_salary": {
         "periods": [
           {
-            "valid_from": "2022-11-16",
+            "valid_from": "2023-04-01",
             "valid_until": "2024-01-01",
             "value": "1523.61",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-comparto-2022-2024-23-02-26-pdf",
-                  "title": "ccnl-comparto-2022-2024-23-02-26-pdf",
-                  "kind": "associazione",
-                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf"
+                  "document_id": "ccnl-funzioni-locali-2019-2021",
+                  "title": "CCNL Comparto Funzioni Locali 2019-2021, 16 novembre 2022",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2023/10/CCNL-Comparto-Funzioni-Locali-2019-2021-16.11.2022.pdf",
+                  "published_on": "2022-11-16",
+                  "sha256": "8cea8d673cf66299d55169c60b1624417c804cf294b0045b234e35a2e76b764d"
                 },
-                "section": "Tabella retributiva"
+                "page": "128",
+                "section": "Tabella G, decorrente dalla data di applicazione del nuovo sistema di classificazione professionale (art. 13 c. 1: 'entra in vigore il 1° giorno del quinto mese successivo alla sottoscrizione definitiva', 16.11.2022 -> 1.4.2023)",
+                "quote": "Area degli OPERATORI 18.283,31"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           },
           {
@@ -210,22 +253,31 @@
             "valid_until": "2026-01-01",
             "value": "1637.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-comparto-2022-2024-23-02-26-pdf",
-                  "title": "ccnl-comparto-2022-2024-23-02-26-pdf",
-                  "kind": "associazione",
-                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf"
+                  "document_id": "ccnl-funzioni-locali-2022-2024",
+                  "title": "CCNL Comparto Funzioni Locali 2022-2024, 23 febbraio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
+                  "published_on": "2026-02-23",
+                  "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
                 },
-                "section": "Tabella retributiva"
+                "page": "85",
+                "section": "Tabella B, retribuzione tabellare annua dal 1.1.2024 (prima colonna)",
+                "quote": "OPERATORI 19.645,43 19.753,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           },
           {
@@ -233,22 +285,31 @@
             "valid_until": null,
             "value": "1646.09",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-comparto-2022-2024-23-02-26-pdf",
-                  "title": "ccnl-comparto-2022-2024-23-02-26-pdf",
-                  "kind": "associazione",
-                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf"
+                  "document_id": "ccnl-funzioni-locali-2022-2024",
+                  "title": "CCNL Comparto Funzioni Locali 2022-2024, 23 febbraio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
+                  "published_on": "2026-02-23",
+                  "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
                 },
-                "section": "Tabella retributiva"
+                "page": "85",
+                "section": "Tabella B, retribuzione tabellare annua con il parziale conglobamento dell'indennità di comparto (seconda colonna); art. 60 c. 1: 'Con decorrenza primo gennaio dell’anno successivo a quello di sottoscrizione dell’Ipotesi di CCNL' (ipotesi del 3.11.2025)",
+                "quote": "OPERATORI 19.645,43 19.753,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           }
         ]
@@ -281,26 +342,35 @@
       "base_salary": {
         "periods": [
           {
-            "valid_from": "2022-11-16",
+            "valid_from": "2023-04-01",
             "valid_until": "2024-01-01",
             "value": "1586.21",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-comparto-2022-2024-23-02-26-pdf",
-                  "title": "ccnl-comparto-2022-2024-23-02-26-pdf",
-                  "kind": "associazione",
-                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf"
+                  "document_id": "ccnl-funzioni-locali-2019-2021",
+                  "title": "CCNL Comparto Funzioni Locali 2019-2021, 16 novembre 2022",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2023/10/CCNL-Comparto-Funzioni-Locali-2019-2021-16.11.2022.pdf",
+                  "published_on": "2022-11-16",
+                  "sha256": "8cea8d673cf66299d55169c60b1624417c804cf294b0045b234e35a2e76b764d"
                 },
-                "section": "Tabella retributiva"
+                "page": "128",
+                "section": "Tabella G, decorrente dalla data di applicazione del nuovo sistema di classificazione professionale (art. 13 c. 1: 'entra in vigore il 1° giorno del quinto mese successivo alla sottoscrizione definitiva', 16.11.2022 -> 1.4.2023)",
+                "quote": "Area degli OPERATORI ESPERTI 19.034,51"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           },
           {
@@ -308,22 +378,31 @@
             "valid_until": "2026-01-01",
             "value": "1704.38",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-comparto-2022-2024-23-02-26-pdf",
-                  "title": "ccnl-comparto-2022-2024-23-02-26-pdf",
-                  "kind": "associazione",
-                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf"
+                  "document_id": "ccnl-funzioni-locali-2022-2024",
+                  "title": "CCNL Comparto Funzioni Locali 2022-2024, 23 febbraio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
+                  "published_on": "2026-02-23",
+                  "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
                 },
-                "section": "Tabella retributiva"
+                "page": "85",
+                "section": "Tabella B, retribuzione tabellare annua dal 1.1.2024 (prima colonna)",
+                "quote": "OPERATORI ESPERTI 20.452,55 20.583,23"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           },
           {
@@ -331,22 +410,31 @@
             "valid_until": null,
             "value": "1715.27",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-comparto-2022-2024-23-02-26-pdf",
-                  "title": "ccnl-comparto-2022-2024-23-02-26-pdf",
-                  "kind": "associazione",
-                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf"
+                  "document_id": "ccnl-funzioni-locali-2022-2024",
+                  "title": "CCNL Comparto Funzioni Locali 2022-2024, 23 febbraio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
+                  "published_on": "2026-02-23",
+                  "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
                 },
-                "section": "Tabella retributiva"
+                "page": "85",
+                "section": "Tabella B, retribuzione tabellare annua con il parziale conglobamento dell'indennità di comparto (seconda colonna); art. 60 c. 1: 'Con decorrenza primo gennaio dell’anno successivo a quello di sottoscrizione dell’Ipotesi di CCNL' (ipotesi del 3.11.2025)",
+                "quote": "OPERATORI ESPERTI 20.452,55 20.583,23"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           }
         ]
@@ -379,26 +467,35 @@
       "base_salary": {
         "periods": [
           {
-            "valid_from": "2022-11-16",
+            "valid_from": "2023-04-01",
             "valid_until": "2024-01-01",
             "value": "1782.74",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-comparto-2022-2024-23-02-26-pdf",
-                  "title": "ccnl-comparto-2022-2024-23-02-26-pdf",
-                  "kind": "associazione",
-                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf"
+                  "document_id": "ccnl-funzioni-locali-2019-2021",
+                  "title": "CCNL Comparto Funzioni Locali 2019-2021, 16 novembre 2022",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2023/10/CCNL-Comparto-Funzioni-Locali-2019-2021-16.11.2022.pdf",
+                  "published_on": "2022-11-16",
+                  "sha256": "8cea8d673cf66299d55169c60b1624417c804cf294b0045b234e35a2e76b764d"
                 },
-                "section": "Tabella retributiva"
+                "page": "128",
+                "section": "Tabella G, decorrente dalla data di applicazione del nuovo sistema di classificazione professionale (art. 13 c. 1: 'entra in vigore il 1° giorno del quinto mese successivo alla sottoscrizione definitiva', 16.11.2022 -> 1.4.2023)",
+                "quote": "Area degli ISTRUTTORI 21.392,87"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           },
           {
@@ -406,22 +503,31 @@
             "valid_until": "2026-01-01",
             "value": "1915.55",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-comparto-2022-2024-23-02-26-pdf",
-                  "title": "ccnl-comparto-2022-2024-23-02-26-pdf",
-                  "kind": "associazione",
-                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf"
+                  "document_id": "ccnl-funzioni-locali-2022-2024",
+                  "title": "CCNL Comparto Funzioni Locali 2022-2024, 23 febbraio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
+                  "published_on": "2026-02-23",
+                  "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
                 },
-                "section": "Tabella retributiva"
+                "page": "85",
+                "section": "Tabella B, retribuzione tabellare annua dal 1.1.2024 (prima colonna)",
+                "quote": "ISTRUTTORI 22.986,59 23.138,75"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           },
           {
@@ -429,22 +535,31 @@
             "valid_until": null,
             "value": "1928.23",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-comparto-2022-2024-23-02-26-pdf",
-                  "title": "ccnl-comparto-2022-2024-23-02-26-pdf",
-                  "kind": "associazione",
-                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf"
+                  "document_id": "ccnl-funzioni-locali-2022-2024",
+                  "title": "CCNL Comparto Funzioni Locali 2022-2024, 23 febbraio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
+                  "published_on": "2026-02-23",
+                  "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
                 },
-                "section": "Tabella retributiva"
+                "page": "85",
+                "section": "Tabella B, retribuzione tabellare annua con il parziale conglobamento dell'indennità di comparto (seconda colonna); art. 60 c. 1: 'Con decorrenza primo gennaio dell’anno successivo a quello di sottoscrizione dell’Ipotesi di CCNL' (ipotesi del 3.11.2025)",
+                "quote": "ISTRUTTORI 22.986,59 23.138,75"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           }
         ]
@@ -477,26 +592,35 @@
       "base_salary": {
         "periods": [
           {
-            "valid_from": "2022-11-16",
+            "valid_from": "2023-04-01",
             "valid_until": "2024-01-01",
             "value": "1934.36",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-comparto-2022-2024-23-02-26-pdf",
-                  "title": "ccnl-comparto-2022-2024-23-02-26-pdf",
-                  "kind": "associazione",
-                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf"
+                  "document_id": "ccnl-funzioni-locali-2019-2021",
+                  "title": "CCNL Comparto Funzioni Locali 2019-2021, 16 novembre 2022",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2023/10/CCNL-Comparto-Funzioni-Locali-2019-2021-16.11.2022.pdf",
+                  "published_on": "2022-11-16",
+                  "sha256": "8cea8d673cf66299d55169c60b1624417c804cf294b0045b234e35a2e76b764d"
                 },
-                "section": "Tabella retributiva"
+                "page": "128",
+                "section": "Tabella G, decorrente dalla data di applicazione del nuovo sistema di classificazione professionale (art. 13 c. 1: 'entra in vigore il 1° giorno del quinto mese successivo alla sottoscrizione definitiva', 16.11.2022 -> 1.4.2023)",
+                "quote": "Area dei FUNZIONARI ED ELEVATA QUALIFICAZIONE 23.212,35"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           },
           {
@@ -504,22 +628,31 @@
             "valid_until": "2026-01-01",
             "value": "2078.47",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-comparto-2022-2024-23-02-26-pdf",
-                  "title": "ccnl-comparto-2022-2024-23-02-26-pdf",
-                  "kind": "associazione",
-                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf"
+                  "document_id": "ccnl-funzioni-locali-2022-2024",
+                  "title": "CCNL Comparto Funzioni Locali 2022-2024, 23 febbraio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
+                  "published_on": "2026-02-23",
+                  "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
                 },
-                "section": "Tabella retributiva"
+                "page": "85",
+                "section": "Tabella B, retribuzione tabellare annua dal 1.1.2024 (prima colonna)",
+                "quote": "FUNZIONARI ED ELEVATA QUALIFICAZIONE 24.941,67 25.114,11"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           },
           {
@@ -527,22 +660,31 @@
             "valid_until": null,
             "value": "2092.84",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-comparto-2022-2024-23-02-26-pdf",
-                  "title": "ccnl-comparto-2022-2024-23-02-26-pdf",
-                  "kind": "associazione",
-                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf"
+                  "document_id": "ccnl-funzioni-locali-2022-2024",
+                  "title": "CCNL Comparto Funzioni Locali 2022-2024, 23 febbraio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
+                  "published_on": "2026-02-23",
+                  "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
                 },
-                "section": "Tabella retributiva"
+                "page": "85",
+                "section": "Tabella B, retribuzione tabellare annua con il parziale conglobamento dell'indennità di comparto (seconda colonna); art. 60 c. 1: 'Con decorrenza primo gennaio dell’anno successivo a quello di sottoscrizione dell’Ipotesi di CCNL' (ipotesi del 3.11.2025)",
+                "quote": "FUNZIONARI ED ELEVATA QUALIFICAZIONE 24.941,67 25.114,11"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           }
         ]
@@ -573,11 +715,11 @@
     "notes": [
       {
         "kind": "source",
-        "text": "Salary tables from CCNL Comparto Funzioni Locali 2022-2024 (ARAN, 23.02.2026). Art. 56 Tabella A (monthly increments per 13 months) and Tabella B (annual amounts per 12 months + 13th). Monthly values = Tabella B / 12."
+        "text": "SALARY TABLES: 1.4.2023-31.12.2023 CCNL 16.11.2022 Tabella G (new classification in force from 1.4.2023); from 1.1.2024 and 1.1.2026 CCNL 23.2.2026 Tabella B. Monthly = annual / 12. The anticipation increments of 2022-2023 and the old categories before 1.4.2023 are not modelled."
       },
       {
         "kind": "source",
-        "text": "Tranche 1 (2022-11-16) values back-calculated from CCNL 16.11.2022 base by subtracting Tabella A col.1 increments from 2024-01-01 values. The 2022 and 2023 anticipation payments (Art. 56, alinea 1-2) are not modelled as separate tabellare periods."
+        "text": "Salary tables from CCNL Comparto Funzioni Locali 2022-2024 (ARAN, 23.02.2026). Art. 56 Tabella A (monthly increments per 13 months) and Tabella B (annual amounts per 12 months + 13th). Monthly values = Tabella B / 12."
       },
       {
         "kind": "source",
@@ -602,19 +744,6 @@
       {
         "kind": "info",
         "text": "CNEL code S105 confirmed via multiple secondary sources: kitech.it lists 'CCNL Comparto Funzioni Locali [Cnel: S105]', lavoro-economia.it concurs. Not stated in official ARAN PDF; CNEL archive not separately queried."
-      },
-      {
-        "kind": "simplification",
-        "text": "PRE-2024 BACK-CALCULATED. Nov 2022 values derived by back-calculation (2024 values minus Tabella A col.1 increments). 2022-2023 anticipation payments (Art. 47-bis D.Lgs. 165/2001) not modelled as intermediate periods.",
-        "capability": "base_salary",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "pre_2024_back_calculated",
-          "applies_when": {
-            "effective_until": "2024-01-01"
-          },
-          "remediation": "Source the 2022-2023 values and the anticipation payments from the CCNL 2019-2021 tables."
-        }
       },
       {
         "kind": "simplification",
@@ -659,7 +788,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
     "verification_status": "unverified",
-    "source_hash": "dfb7356bc67cb89065d571e8f19d49886443886ecccb20371da62caceee34f0c",
+    "source_hash": "b35938c26f37445754d1dd2ee5194a34860d977f47ad5aa504baf01ea3bcb7ef",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -674,7 +803,7 @@
           "rate": {
             "periods": [
               {
-                "valid_from": "2022-01-01",
+                "valid_from": "2022-11-16",
                 "value": 0.15,
                 "provenance": null,
                 "valid_until": null
@@ -685,21 +814,29 @@
             "weekday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-funzioni-locali-2022-2024",
-                "title": "CCNL Comparto Funzioni Locali (ARAN) 2022-2024",
-                "kind": "tabella_retributiva",
-                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf"
+                "document_id": "ccnl-funzioni-locali-2019-2021",
+                "title": "CCNL Comparto Funzioni Locali 2019-2021, 16 novembre 2022",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2023/10/CCNL-Comparto-Funzioni-Locali-2019-2021-16.11.2022.pdf",
+                "published_on": "2022-11-16",
+                "sha256": "8cea8d673cf66299d55169c60b1624417c804cf294b0045b234e35a2e76b764d"
               },
-              "section": "Art. straordinario — maggiorazione feriale 15%"
+              "page": "43",
+              "section": "Art. 32 c. 5 (lavoro straordinario)",
+              "quote": "- al 15% per il lavoro straordinario diurno;"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2022-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T22:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2022-11-16",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T22:00:00Z",
+              "review_id": "2026-10-12-ai"
             }
           }
         },
@@ -710,7 +847,7 @@
           "rate": {
             "periods": [
               {
-                "valid_from": "2022-01-01",
+                "valid_from": "2022-11-16",
                 "value": 0.3,
                 "provenance": null,
                 "valid_until": null
@@ -721,21 +858,29 @@
             "night"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-funzioni-locali-2022-2024",
-                "title": "CCNL Comparto Funzioni Locali (ARAN) 2022-2024",
-                "kind": "tabella_retributiva",
-                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf"
+                "document_id": "ccnl-funzioni-locali-2019-2021",
+                "title": "CCNL Comparto Funzioni Locali 2019-2021, 16 novembre 2022",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2023/10/CCNL-Comparto-Funzioni-Locali-2019-2021-16.11.2022.pdf",
+                "published_on": "2022-11-16",
+                "sha256": "8cea8d673cf66299d55169c60b1624417c804cf294b0045b234e35a2e76b764d"
               },
-              "section": "Art. straordinario — maggiorazione notturno 30%"
+              "page": "43",
+              "section": "Art. 32 c. 5 (lavoro straordinario)",
+              "quote": "- al 30% per il lavoro straordinario prestato nei giorni festivi o in orario notturno"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2022-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T22:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2022-11-16",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T22:00:00Z",
+              "review_id": "2026-10-12-ai"
             }
           }
         },
@@ -746,7 +891,7 @@
           "rate": {
             "periods": [
               {
-                "valid_from": "2022-01-01",
+                "valid_from": "2022-11-16",
                 "value": 0.3,
                 "provenance": null,
                 "valid_until": null
@@ -757,21 +902,29 @@
             "holiday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-funzioni-locali-2022-2024",
-                "title": "CCNL Comparto Funzioni Locali (ARAN) 2022-2024",
-                "kind": "tabella_retributiva",
-                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf"
+                "document_id": "ccnl-funzioni-locali-2019-2021",
+                "title": "CCNL Comparto Funzioni Locali 2019-2021, 16 novembre 2022",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2023/10/CCNL-Comparto-Funzioni-Locali-2019-2021-16.11.2022.pdf",
+                "published_on": "2022-11-16",
+                "sha256": "8cea8d673cf66299d55169c60b1624417c804cf294b0045b234e35a2e76b764d"
               },
-              "section": "Art. straordinario — maggiorazione festivo 30%"
+              "page": "43",
+              "section": "Art. 32 c. 5 (lavoro straordinario)",
+              "quote": "- al 30% per il lavoro straordinario prestato nei giorni festivi o in orario notturno"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2022-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T22:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2022-11-16",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T22:00:00Z",
+              "review_id": "2026-10-12-ai"
             }
           }
         },
@@ -782,7 +935,7 @@
           "rate": {
             "periods": [
               {
-                "valid_from": "2022-01-01",
+                "valid_from": "2022-11-16",
                 "value": 0.5,
                 "provenance": null,
                 "valid_until": null
@@ -793,21 +946,29 @@
             "night_holiday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-funzioni-locali-2022-2024",
-                "title": "CCNL Comparto Funzioni Locali (ARAN) 2022-2024",
-                "kind": "tabella_retributiva",
-                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf"
+                "document_id": "ccnl-funzioni-locali-2019-2021",
+                "title": "CCNL Comparto Funzioni Locali 2019-2021, 16 novembre 2022",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2023/10/CCNL-Comparto-Funzioni-Locali-2019-2021-16.11.2022.pdf",
+                "published_on": "2022-11-16",
+                "sha256": "8cea8d673cf66299d55169c60b1624417c804cf294b0045b234e35a2e76b764d"
               },
-              "section": "Art. straordinario — maggiorazione notturno festivo 50%"
+              "page": "43",
+              "section": "Art. 32 c. 5 (lavoro straordinario)",
+              "quote": "- al 50% per il lavoro straordinario prestato in orario notturno-festivo."
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2022-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T22:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2022-11-16",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T22:00:00Z",
+              "review_id": "2026-10-12-ai"
             }
           }
         }
@@ -817,21 +978,29 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-funzioni-locali-2022-2024",
-            "title": "CCNL Comparto Funzioni Locali (ARAN) 2022-2024",
-            "kind": "tabella_retributiva",
-            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf"
+            "document_id": "ccnl-funzioni-locali-2019-2021",
+            "title": "CCNL Comparto Funzioni Locali 2019-2021, 16 novembre 2022",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2023/10/CCNL-Comparto-Funzioni-Locali-2019-2021-16.11.2022.pdf",
+            "published_on": "2022-11-16",
+            "sha256": "8cea8d673cf66299d55169c60b1624417c804cf294b0045b234e35a2e76b764d"
           },
-          "section": "Art. orario — divisore mensile standard"
+          "page": "95",
+          "section": "Art. 74 c. 4 (retribuzione giornaliera)",
+          "quote": "4. La retribuzione giornaliera si ottiene dividendo la corrispondente retribuzione mensile per 26."
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2022-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T22:00:00Z",
+          "verification_status": "verified",
+          "effective_from": "2022-11-16",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T22:00:00Z",
+          "review_id": "2026-10-12-ai"
         }
       }
     },
@@ -840,55 +1009,91 @@
       "entitlement_tiers": [
         {
           "service_months_min": 0,
+          "annual_days": "26"
+        },
+        {
+          "service_months_min": 36,
           "annual_days": "28"
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "ccnl-funzioni-locali-2022-2024",
-            "title": "CCNL Comparto Funzioni Locali (ARAN) 2022-2024",
-            "kind": "tabella_retributiva",
-            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf"
+            "title": "CCNL Comparto Funzioni Locali 2022-2024, 23 febbraio 2026",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
+            "published_on": "2026-02-23",
+            "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
           },
-          "section": "Art. ferie — 28 giorni lavorativi annui"
+          "page": "39",
+          "section": "Art. 28 cc. 2, 4-5 (ferie)",
+          "quote": "rispettivamente di 26 e di 30 giorni lavorativi"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2022-01-01"
-        }
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T22:00:00Z",
+          "verification_status": "verified",
+          "effective_from": "2026-02-23",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T22:00:00Z",
+          "review_id": "2026-10-12-ai"
+        },
+        "transformation": "28 days on a five-day week (c. 2); 26 for a worker hired for the first time in a public administration, for the first three years of service (cc. 4-5)."
       }
     },
     "sickness_rules": {
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
-      "max_duration_days": 270,
+      "tiers": [
+        {
+          "month_from": 1,
+          "month_until": 10,
+          "integration_rate": "1"
+        },
+        {
+          "month_from": 10,
+          "month_until": 13,
+          "integration_rate": "0.9"
+        },
+        {
+          "month_from": 13,
+          "month_until": 19,
+          "integration_rate": "0.5"
+        }
+      ],
+      "max_duration_days": 548,
       "provenance": {
         "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-funzioni-locali-2022-2024",
-            "title": "CCNL Comparto Funzioni Locali (ARAN) 2022-2024",
-            "kind": "tabella_retributiva",
-            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf"
+            "title": "CCNL Comparto Funzioni Locali 2022-2024, 23 febbraio 2026",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
+            "published_on": "2026-02-23",
+            "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
           },
-          "section": "Art. malattia — piena retribuzione per 9 mesi (270 giorni) in 36 mesi"
+          "page": "50-51",
+          "section": "Art. 36 cc. 1, 11 (assenze per malattia)",
+          "quote": "b) 90% della retribuzione di cui alla lettera \"a\" per i successivi 3 mesi di assenza;"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T22:00:00Z",
           "verification_status": "unverified",
-          "effective_from": "2022-01-01"
-        }
+          "effective_from": "2026-02-23"
+        },
+        "note": "Job kept 18 months (about 548 days); 9 months in full, 3 at 90%, 6 at 50%. The CCNL sums the sickness of the three years before the last episode; the tiers count one episode and its relapses (engine limitation sickness_cumulation_window). The cut of the accessory pay of the first 10 days (D.L. 112/2008 art. 71 c. 1) is not modelled."
       }
     }
   },
   "verification": {
-    "confidence": "unverified",
-    "readiness": "exploratory",
+    "confidence": "verified",
+    "readiness": "reviewed",
     "verified_cases": 0,
     "reviews": [
       {
@@ -900,6 +1105,32 @@
         "outcome": "confirmed",
         "findings": [
           "The review recorded no list of the documents it read."
+        ]
+      },
+      {
+        "id": "2026-10-12-ai",
+        "date": "2026-10-12",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Salary tables, additional months, hourly and daily divisors, overtime, leave, sickness and seniority, against the CCNL of 16 November 2022 and of 23 February 2026.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
+            "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
+          },
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2023/10/CCNL-Comparto-Funzioni-Locali-2019-2021-16.11.2022.pdf",
+            "sha256": "8cea8d673cf66299d55169c60b1624417c804cf294b0045b234e35a2e76b764d"
+          }
+        ],
+        "findings": [
+          "Salary amounts confirmed (annual table over 12).",
+          "The first period started on 2022-11-16, the signing date; the new classification of Tabella G applies from 1 April 2023 (art. 13 c. 1).",
+          "Overtime is in art. 32 c. 5 of the CCNL 16.11.2022, not in the CCNL 2022-2024.",
+          "Sickness: comporto of 18 months with 9 months at 100%, 3 at 90% and 6 at 50% (art. 36), not 270 days at 100%.",
+          "Leave: 26 days for the first three years of a first public employment (art. 28 cc. 4-5).",
+          "The 2025-2027 renewal is an ipotesi of 21 July 2026, not in force."
         ]
       }
     ]

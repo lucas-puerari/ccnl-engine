@@ -402,10 +402,10 @@ class TestLoadFunzioniCentraliAran:
         }
 
     def test_funzioni_centrali_aran_funzionari_salary_tranche1(self) -> None:
-        """FUNZIONARI first tranche (9/5/2022): 1958.49 EUR/month."""
+        """FUNZIONARI from 1/11/2022 (new classification): 1958.49 EUR/month."""
         ccnl = load_ccnl("funzioni-centrali-aran.json")
         lv = ccnl.level_by_code("FUNZIONARI")
-        assert lv.base_salary.value_at(date(2022, 5, 9)) == Decimal("1958.49")
+        assert lv.base_salary.value_at(date(2022, 11, 1)) == Decimal("1958.49")
 
     def test_funzioni_centrali_aran_funzionari_salary_tranche2(self) -> None:
         """FUNZIONARI second tranche (1/1/2024): 2113.59 EUR/month."""

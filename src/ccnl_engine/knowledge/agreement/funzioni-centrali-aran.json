@@ -26,16 +26,28 @@
     ],
     "sources": [
       {
+        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+        "type": "ccnl_pdf",
+        "agreement_date": "2026-08-06",
+        "notes": "CCNL Comparto Funzioni Centrali 2025-2027, signed definitively on 6 August 2026. Tabella 3 (p. 66): tabellare from 1.1.2025, 1.1.2026, 1.1.2027."
+      },
+      {
         "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
         "type": "ccnl_pdf",
         "agreement_date": "2025-01-27",
-        "notes": "Testo ufficiale CCNL Comparto Funzioni Centrali 2022-2024 firmato il 27/01/2025. UIL PA e UIL hanno aderito il 04/11/2025."
+        "notes": "CCNL 2022-2024 signed on 27 January 2025 (UIL PA and UIL adhered on 4 November 2025). Tabella 2 (p. 55), art. 29 (divisors), art. 21 (ferie), art. 24 (malattia)."
       },
       {
-        "url": "https://cislfp.it/2026/08/06/ccnl-funzioni-centrali-2025-2027-aumenti-busta-paga/",
-        "type": "sindacato",
-        "agreement_date": "2026-08-06",
-        "notes": "CCNL Funzioni Centrali 2025-2027 firmato definitivamente il 6/8/2026. Tabella incrementi cumulativi mensili per area: Operatori +44.70/+89.50/+126.60, Assistenti +47.10/+94.20/+133.20, Funzionari +57.20/+114.40/+161.80, EP +78.10/+156.20/+221.00 (da 1/1/2025, 1/1/2026, 1/1/2027). CISL FP fonte primaria sindacale; testo ufficiale ARAN atteso su aranagenzia.it."
+        "url": "https://www.aranagenzia.it/wp-content/uploads/2023/05/Frontespizio-e-CCNL-Comparto-Funzioni-Centrali-2019-2021-1.pdf",
+        "type": "ccnl_pdf",
+        "agreement_date": "2022-05-09",
+        "notes": "CCNL 2019-2021. Tabella H (p. 104), art. 18 (classification in force from 1.11.2022), art. 53 (elevate professionalità)."
+      },
+      {
+        "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL-definitivo-Funzioni-centrali-triennio-2016-2018_firmato_12-2-2018.pdf",
+        "type": "ccnl_pdf",
+        "agreement_date": "2018-02-12",
+        "notes": "CCNL 2016-2018. Art. 25 (straordinario), art. 72 (tredicesima)."
       }
     ],
     "extraction": {
@@ -53,7 +65,33 @@
         {
           "valid_from": "2022-05-09",
           "valid_until": null,
-          "value": "156"
+          "value": "156",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-funzioni-centrali-2022-2024",
+                "title": "CCNL Comparto Funzioni Centrali 2022-2024, 27 gennaio 2025",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
+                "published_on": "2025-01-27",
+                "sha256": "7115a9eb2d432a906e9df8e5fcb275dae415cfe4edcebe9ac40ea0a494eff924"
+              },
+              "page": "46",
+              "section": "Art. 29 c. 3 (retribuzione oraria)",
+              "quote": "La retribuzione oraria si ottiene dividendo le corrispondenti retribuzioni mensili per 156."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T22:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2025-01-27",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T22:00:00Z",
+              "review_id": "2026-10-12-ai"
+            }
+          }
         }
       ]
     },
@@ -64,28 +102,30 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-funzioni-centrali-2016-2018",
-                "title": "CCNL Comparto Funzioni Centrali 2016-2018, 12 febbraio 2018",
+                "document_id": "ccnl-funzioni-centrali-2022-2024",
+                "title": "CCNL Comparto Funzioni Centrali 2022-2024, 27 gennaio 2025",
                 "kind": "amministrazione",
-                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL-definitivo-Funzioni-centrali-triennio-2016-2018_firmato_12-2-2018.pdf",
-                "published_on": "2018-02-12",
-                "sha256": "d374410b7e202197f2cfd5828994bb56572533daf3dc39c4e775e888c915762e"
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
+                "published_on": "2025-01-27",
+                "sha256": "7115a9eb2d432a906e9df8e5fcb275dae415cfe4edcebe9ac40ea0a494eff924"
               },
-              "section": "Art. 72 c. 1 (tredicesima mensilità)",
-              "quote": "Le amministrazioni corrispondono una tredicesima mensilità nel periodo compreso tra il 15 ed il 21 dicembre",
-              "page": "86"
+              "page": "47",
+              "section": "Art. 30 c. 1 (incrementi della retribuzione tabellare)",
+              "quote": "per tredici mensilità, indicati nell’allegata tabella 1"
             },
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:00:00Z",
-              "verification_status": "unverified",
-              "effective_from": "2018-02-12"
-            },
-            "note": "Kept in force by the CCNL 2025-2027 of 6 August 2026, art. 47; the CCNL 9 May 2022 also cites 'art. 72 del CCNL 12 febbraio 2018'."
+              "extraction_timestamp": "2026-10-12T22:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2025-01-27",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T22:00:00Z",
+              "review_id": "2026-10-12-ai"
+            }
           }
         }
       ]
@@ -98,19 +138,25 @@
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "ccnl-l-c-fc-2022-2024-pdf",
-            "title": "ccnl-l-c-fc-2022-2024-pdf",
-            "kind": "associazione",
-            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf"
+            "document_id": "ccnl-funzioni-centrali-2022-2024",
+            "title": "CCNL Comparto Funzioni Centrali 2022-2024, 27 gennaio 2025",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
+            "published_on": "2025-01-27",
+            "sha256": "7115a9eb2d432a906e9df8e5fcb275dae415cfe4edcebe9ac40ea0a494eff924"
           },
-          "section": "Scatti di anzianità"
+          "page": "27",
+          "section": "Art. 16 c. 2 (differenziali stipendiali)",
+          "quote": "avviene mediante procedura selettiva di area"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T22:00:00Z",
           "verification_status": "unverified",
-          "effective_from": "2020-01-01"
-        }
+          "effective_from": "2025-01-27"
+        },
+        "note": "The differenziali stipendiali are awarded by a selective procedure, not by seniority: no automatic step."
       }
     },
     "employer_funds": [
@@ -190,26 +236,35 @@
       "base_salary": {
         "periods": [
           {
-            "valid_from": "2022-05-09",
+            "valid_from": "2022-11-01",
             "valid_until": "2024-01-01",
             "value": "1532.57",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-l-c-fc-2022-2024-pdf",
-                  "title": "ccnl-l-c-fc-2022-2024-pdf",
-                  "kind": "associazione",
-                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf"
+                  "document_id": "ccnl-funzioni-centrali-2019-2021",
+                  "title": "CCNL Comparto Funzioni Centrali 2019-2021, 9 maggio 2022",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2023/05/Frontespizio-e-CCNL-Comparto-Funzioni-Centrali-2019-2021-1.pdf",
+                  "published_on": "2022-05-09",
+                  "sha256": "459fb979cbfc9cc64ea251fdae5fb868533ebe9ecd7c17980c4c99ff0f79285f"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella H, decorrente dalla data di applicazione del nuovo sistema di classificazione professionale (art. 18 c. 1: 'entra in vigore il giorno 1 del mese successivo ad un periodo dilatorio pari a cinque mesi', 9.5.2022 -> 1.11.2022)",
+                "quote": "Area degli OPERATORI 18.390,84"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2022-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           },
           {
@@ -217,22 +272,31 @@
             "valid_until": "2025-01-01",
             "value": "1653.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-l-c-fc-2022-2024-pdf",
-                  "title": "ccnl-l-c-fc-2022-2024-pdf",
-                  "kind": "associazione",
-                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf"
+                  "document_id": "ccnl-funzioni-centrali-2022-2024",
+                  "title": "CCNL Comparto Funzioni Centrali 2022-2024, 27 gennaio 2025",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7115a9eb2d432a906e9df8e5fcb275dae415cfe4edcebe9ac40ea0a494eff924"
                 },
-                "section": "Tabella retributiva"
+                "page": "55",
+                "section": "Tabella 2, retribuzione tabellare annua dal 1.1.2024",
+                "quote": "OPERATORI 19.847,64"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           },
           {
@@ -240,22 +304,31 @@
             "valid_until": "2026-01-01",
             "value": "1698.67",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-l-c-fc-2025-2027-cisl",
-                  "title": "ccnl-l-c-fc-2025-2027-cisl",
-                  "kind": "rivista",
-                  "url": "https://cislfp.it/2026/08/06/ccnl-funzioni-centrali-2025-2027-aumenti-busta-paga/"
+                  "document_id": "ccnl-funzioni-centrali-2025-2027",
+                  "title": "CCNL Comparto Funzioni Centrali 2025-2027, 6 agosto 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                  "published_on": "2026-08-06",
+                  "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
                 },
-                "section": "Tabella incrementi retributivi 2025-2027"
+                "page": "66",
+                "section": "Tabella 3, retribuzione tabellare annua 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "OPERATORI 20.384,04 20.921,64 21.366,84"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-09T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
                 "verification_status": "verified",
-                "effective_from": "2025-01-01"
-              }
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           },
           {
@@ -263,22 +336,31 @@
             "valid_until": "2027-01-01",
             "value": "1743.47",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-l-c-fc-2025-2027-cisl",
-                  "title": "ccnl-l-c-fc-2025-2027-cisl",
-                  "kind": "rivista",
-                  "url": "https://cislfp.it/2026/08/06/ccnl-funzioni-centrali-2025-2027-aumenti-busta-paga/"
+                  "document_id": "ccnl-funzioni-centrali-2025-2027",
+                  "title": "CCNL Comparto Funzioni Centrali 2025-2027, 6 agosto 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                  "published_on": "2026-08-06",
+                  "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
                 },
-                "section": "Tabella incrementi retributivi 2025-2027"
+                "page": "66",
+                "section": "Tabella 3, retribuzione tabellare annua 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "OPERATORI 20.384,04 20.921,64 21.366,84"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-09T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              }
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           },
           {
@@ -286,22 +368,31 @@
             "valid_until": null,
             "value": "1780.57",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-l-c-fc-2025-2027-cisl",
-                  "title": "ccnl-l-c-fc-2025-2027-cisl",
-                  "kind": "rivista",
-                  "url": "https://cislfp.it/2026/08/06/ccnl-funzioni-centrali-2025-2027-aumenti-busta-paga/"
+                  "document_id": "ccnl-funzioni-centrali-2025-2027",
+                  "title": "CCNL Comparto Funzioni Centrali 2025-2027, 6 agosto 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                  "published_on": "2026-08-06",
+                  "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
                 },
-                "section": "Tabella incrementi retributivi 2025-2027"
+                "page": "66",
+                "section": "Tabella 3, retribuzione tabellare annua 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "OPERATORI 20.384,04 20.921,64 21.366,84"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-09T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
                 "verification_status": "verified",
-                "effective_from": "2027-01-01"
-              }
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           }
         ]
@@ -334,26 +425,35 @@
       "base_salary": {
         "periods": [
           {
-            "valid_from": "2022-05-09",
+            "valid_from": "2022-11-01",
             "valid_until": "2024-01-01",
             "value": "1612.66",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-l-c-fc-2022-2024-pdf",
-                  "title": "ccnl-l-c-fc-2022-2024-pdf",
-                  "kind": "associazione",
-                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf"
+                  "document_id": "ccnl-funzioni-centrali-2019-2021",
+                  "title": "CCNL Comparto Funzioni Centrali 2019-2021, 9 maggio 2022",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2023/05/Frontespizio-e-CCNL-Comparto-Funzioni-Centrali-2019-2021-1.pdf",
+                  "published_on": "2022-05-09",
+                  "sha256": "459fb979cbfc9cc64ea251fdae5fb868533ebe9ecd7c17980c4c99ff0f79285f"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella H, decorrente dalla data di applicazione del nuovo sistema di classificazione professionale (art. 18 c. 1: 'entra in vigore il giorno 1 del mese successivo ad un periodo dilatorio pari a cinque mesi', 9.5.2022 -> 1.11.2022)",
+                "quote": "Area degli ASSISTENTI 19.351,97"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2022-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           },
           {
@@ -361,22 +461,31 @@
             "valid_until": "2025-01-01",
             "value": "1740.36",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-l-c-fc-2022-2024-pdf",
-                  "title": "ccnl-l-c-fc-2022-2024-pdf",
-                  "kind": "associazione",
-                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf"
+                  "document_id": "ccnl-funzioni-centrali-2022-2024",
+                  "title": "CCNL Comparto Funzioni Centrali 2022-2024, 27 gennaio 2025",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7115a9eb2d432a906e9df8e5fcb275dae415cfe4edcebe9ac40ea0a494eff924"
                 },
-                "section": "Tabella retributiva"
+                "page": "55",
+                "section": "Tabella 2, retribuzione tabellare annua dal 1.1.2024",
+                "quote": "ASSISTENTI 20.884,37"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           },
           {
@@ -384,22 +493,31 @@
             "valid_until": "2026-01-01",
             "value": "1787.46",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-l-c-fc-2025-2027-cisl",
-                  "title": "ccnl-l-c-fc-2025-2027-cisl",
-                  "kind": "rivista",
-                  "url": "https://cislfp.it/2026/08/06/ccnl-funzioni-centrali-2025-2027-aumenti-busta-paga/"
+                  "document_id": "ccnl-funzioni-centrali-2025-2027",
+                  "title": "CCNL Comparto Funzioni Centrali 2025-2027, 6 agosto 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                  "published_on": "2026-08-06",
+                  "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
                 },
-                "section": "Tabella incrementi retributivi 2025-2027"
+                "page": "66",
+                "section": "Tabella 3, retribuzione tabellare annua 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "ASSISTENTI 21.449,57 22.014,77 22.482,77"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-09T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
                 "verification_status": "verified",
-                "effective_from": "2025-01-01"
-              }
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           },
           {
@@ -407,22 +525,31 @@
             "valid_until": "2027-01-01",
             "value": "1834.56",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-l-c-fc-2025-2027-cisl",
-                  "title": "ccnl-l-c-fc-2025-2027-cisl",
-                  "kind": "rivista",
-                  "url": "https://cislfp.it/2026/08/06/ccnl-funzioni-centrali-2025-2027-aumenti-busta-paga/"
+                  "document_id": "ccnl-funzioni-centrali-2025-2027",
+                  "title": "CCNL Comparto Funzioni Centrali 2025-2027, 6 agosto 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                  "published_on": "2026-08-06",
+                  "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
                 },
-                "section": "Tabella incrementi retributivi 2025-2027"
+                "page": "66",
+                "section": "Tabella 3, retribuzione tabellare annua 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "ASSISTENTI 21.449,57 22.014,77 22.482,77"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-09T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              }
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           },
           {
@@ -430,22 +557,31 @@
             "valid_until": null,
             "value": "1873.56",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-l-c-fc-2025-2027-cisl",
-                  "title": "ccnl-l-c-fc-2025-2027-cisl",
-                  "kind": "rivista",
-                  "url": "https://cislfp.it/2026/08/06/ccnl-funzioni-centrali-2025-2027-aumenti-busta-paga/"
+                  "document_id": "ccnl-funzioni-centrali-2025-2027",
+                  "title": "CCNL Comparto Funzioni Centrali 2025-2027, 6 agosto 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                  "published_on": "2026-08-06",
+                  "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
                 },
-                "section": "Tabella incrementi retributivi 2025-2027"
+                "page": "66",
+                "section": "Tabella 3, retribuzione tabellare annua 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "ASSISTENTI 21.449,57 22.014,77 22.482,77"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-09T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
                 "verification_status": "verified",
-                "effective_from": "2027-01-01"
-              }
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           }
         ]
@@ -478,26 +614,35 @@
       "base_salary": {
         "periods": [
           {
-            "valid_from": "2022-05-09",
+            "valid_from": "2022-11-01",
             "valid_until": "2024-01-01",
             "value": "1958.49",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-l-c-fc-2022-2024-pdf",
-                  "title": "ccnl-l-c-fc-2022-2024-pdf",
-                  "kind": "associazione",
-                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf"
+                  "document_id": "ccnl-funzioni-centrali-2019-2021",
+                  "title": "CCNL Comparto Funzioni Centrali 2019-2021, 9 maggio 2022",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2023/05/Frontespizio-e-CCNL-Comparto-Funzioni-Centrali-2019-2021-1.pdf",
+                  "published_on": "2022-05-09",
+                  "sha256": "459fb979cbfc9cc64ea251fdae5fb868533ebe9ecd7c17980c4c99ff0f79285f"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella H, decorrente dalla data di applicazione del nuovo sistema di classificazione professionale (art. 18 c. 1: 'entra in vigore il giorno 1 del mese successivo ad un periodo dilatorio pari a cinque mesi', 9.5.2022 -> 1.11.2022)",
+                "quote": "Area dei FUNZIONARI 23.501,93"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2022-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           },
           {
@@ -505,22 +650,31 @@
             "valid_until": "2025-01-01",
             "value": "2113.59",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-l-c-fc-2022-2024-pdf",
-                  "title": "ccnl-l-c-fc-2022-2024-pdf",
-                  "kind": "associazione",
-                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf"
+                  "document_id": "ccnl-funzioni-centrali-2022-2024",
+                  "title": "CCNL Comparto Funzioni Centrali 2022-2024, 27 gennaio 2025",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7115a9eb2d432a906e9df8e5fcb275dae415cfe4edcebe9ac40ea0a494eff924"
                 },
-                "section": "Tabella retributiva"
+                "page": "55",
+                "section": "Tabella 2, retribuzione tabellare annua dal 1.1.2024",
+                "quote": "FUNZIONARI 25.363,13"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           },
           {
@@ -528,22 +682,31 @@
             "valid_until": "2026-01-01",
             "value": "2170.79",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-l-c-fc-2025-2027-cisl",
-                  "title": "ccnl-l-c-fc-2025-2027-cisl",
-                  "kind": "rivista",
-                  "url": "https://cislfp.it/2026/08/06/ccnl-funzioni-centrali-2025-2027-aumenti-busta-paga/"
+                  "document_id": "ccnl-funzioni-centrali-2025-2027",
+                  "title": "CCNL Comparto Funzioni Centrali 2025-2027, 6 agosto 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                  "published_on": "2026-08-06",
+                  "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
                 },
-                "section": "Tabella incrementi retributivi 2025-2027"
+                "page": "66",
+                "section": "Tabella 3, retribuzione tabellare annua 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "FUNZIONARI 26.049,53 26.735,93 27.304,73"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-09T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
                 "verification_status": "verified",
-                "effective_from": "2025-01-01"
-              }
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           },
           {
@@ -551,22 +714,31 @@
             "valid_until": "2027-01-01",
             "value": "2227.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-l-c-fc-2025-2027-cisl",
-                  "title": "ccnl-l-c-fc-2025-2027-cisl",
-                  "kind": "rivista",
-                  "url": "https://cislfp.it/2026/08/06/ccnl-funzioni-centrali-2025-2027-aumenti-busta-paga/"
+                  "document_id": "ccnl-funzioni-centrali-2025-2027",
+                  "title": "CCNL Comparto Funzioni Centrali 2025-2027, 6 agosto 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                  "published_on": "2026-08-06",
+                  "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
                 },
-                "section": "Tabella incrementi retributivi 2025-2027"
+                "page": "66",
+                "section": "Tabella 3, retribuzione tabellare annua 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "FUNZIONARI 26.049,53 26.735,93 27.304,73"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-09T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              }
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           },
           {
@@ -574,22 +746,31 @@
             "valid_until": null,
             "value": "2275.39",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-l-c-fc-2025-2027-cisl",
-                  "title": "ccnl-l-c-fc-2025-2027-cisl",
-                  "kind": "rivista",
-                  "url": "https://cislfp.it/2026/08/06/ccnl-funzioni-centrali-2025-2027-aumenti-busta-paga/"
+                  "document_id": "ccnl-funzioni-centrali-2025-2027",
+                  "title": "CCNL Comparto Funzioni Centrali 2025-2027, 6 agosto 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                  "published_on": "2026-08-06",
+                  "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
                 },
-                "section": "Tabella incrementi retributivi 2025-2027"
+                "page": "66",
+                "section": "Tabella 3, retribuzione tabellare annua 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "FUNZIONARI 26.049,53 26.735,93 27.304,73"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-09T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
                 "verification_status": "verified",
-                "effective_from": "2027-01-01"
-              }
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           }
         ]
@@ -622,26 +803,35 @@
       "base_salary": {
         "periods": [
           {
-            "valid_from": "2022-05-09",
+            "valid_from": "2022-11-01",
             "valid_until": "2024-01-01",
             "value": "2692.31",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-l-c-fc-2022-2024-pdf",
-                  "title": "ccnl-l-c-fc-2022-2024-pdf",
-                  "kind": "associazione",
-                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf"
+                  "document_id": "ccnl-funzioni-centrali-2019-2021",
+                  "title": "CCNL Comparto Funzioni Centrali 2019-2021, 9 maggio 2022",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2023/05/Frontespizio-e-CCNL-Comparto-Funzioni-Centrali-2019-2021-1.pdf",
+                  "published_on": "2022-05-09",
+                  "sha256": "459fb979cbfc9cc64ea251fdae5fb868533ebe9ecd7c17980c4c99ff0f79285f"
                 },
-                "section": "Tabella retributiva"
+                "page": "68",
+                "section": "Art. 53 c. 1 (area delle elevate professionalità), from the application of the new classification on 1.11.2022",
+                "quote": "annuo lordo complessivo pari a 35.000 euro, comprensivo di tredicesima mensilità."
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2022-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "35,000 / 13: the annual amount includes the tredicesima."
             }
           },
           {
@@ -649,22 +839,31 @@
             "valid_until": "2025-01-01",
             "value": "2886.21",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-l-c-fc-2022-2024-pdf",
-                  "title": "ccnl-l-c-fc-2022-2024-pdf",
-                  "kind": "associazione",
-                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf"
+                  "document_id": "ccnl-funzioni-centrali-2022-2024",
+                  "title": "CCNL Comparto Funzioni Centrali 2022-2024, 27 gennaio 2025",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
+                  "published_on": "2025-01-27",
+                  "sha256": "7115a9eb2d432a906e9df8e5fcb275dae415cfe4edcebe9ac40ea0a494eff924"
                 },
-                "section": "Tabella retributiva"
+                "page": "55",
+                "section": "Tabella 2, retribuzione tabellare annua dal 1.1.2024",
+                "quote": "ELEVATE PROFESSIONALITA' 34.634,49"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           },
           {
@@ -672,22 +871,31 @@
             "valid_until": "2026-01-01",
             "value": "2964.31",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-l-c-fc-2025-2027-cisl",
-                  "title": "ccnl-l-c-fc-2025-2027-cisl",
-                  "kind": "rivista",
-                  "url": "https://cislfp.it/2026/08/06/ccnl-funzioni-centrali-2025-2027-aumenti-busta-paga/"
+                  "document_id": "ccnl-funzioni-centrali-2025-2027",
+                  "title": "CCNL Comparto Funzioni Centrali 2025-2027, 6 agosto 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                  "published_on": "2026-08-06",
+                  "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
                 },
-                "section": "Tabella incrementi retributivi 2025-2027"
+                "page": "66",
+                "section": "Tabella 3, retribuzione tabellare annua 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "ELEVATE PROFESSIONALITA' 35.571,69 36.508,89 37.286,49"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-09T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
                 "verification_status": "verified",
-                "effective_from": "2025-01-01"
-              }
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           },
           {
@@ -695,22 +903,31 @@
             "valid_until": "2027-01-01",
             "value": "3042.41",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-l-c-fc-2025-2027-cisl",
-                  "title": "ccnl-l-c-fc-2025-2027-cisl",
-                  "kind": "rivista",
-                  "url": "https://cislfp.it/2026/08/06/ccnl-funzioni-centrali-2025-2027-aumenti-busta-paga/"
+                  "document_id": "ccnl-funzioni-centrali-2025-2027",
+                  "title": "CCNL Comparto Funzioni Centrali 2025-2027, 6 agosto 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                  "published_on": "2026-08-06",
+                  "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
                 },
-                "section": "Tabella incrementi retributivi 2025-2027"
+                "page": "66",
+                "section": "Tabella 3, retribuzione tabellare annua 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "ELEVATE PROFESSIONALITA' 35.571,69 36.508,89 37.286,49"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-09T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              }
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           },
           {
@@ -718,22 +935,31 @@
             "valid_until": null,
             "value": "3107.21",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-l-c-fc-2025-2027-cisl",
-                  "title": "ccnl-l-c-fc-2025-2027-cisl",
-                  "kind": "rivista",
-                  "url": "https://cislfp.it/2026/08/06/ccnl-funzioni-centrali-2025-2027-aumenti-busta-paga/"
+                  "document_id": "ccnl-funzioni-centrali-2025-2027",
+                  "title": "CCNL Comparto Funzioni Centrali 2025-2027, 6 agosto 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                  "published_on": "2026-08-06",
+                  "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
                 },
-                "section": "Tabella incrementi retributivi 2025-2027"
+                "page": "66",
+                "section": "Tabella 3, retribuzione tabellare annua 'Dal 1.1.2025 Dal 1.1.2026 Dal 1.1.2027'",
+                "quote": "ELEVATE PROFESSIONALITA' 35.571,69 36.508,89 37.286,49"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-09T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T22:00:00Z",
                 "verification_status": "verified",
-                "effective_from": "2027-01-01"
-              }
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T22:00:00Z",
+                "review_id": "2026-10-12-ai"
+              },
+              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
             }
           }
         ]
@@ -763,6 +989,10 @@
   "coverage": {
     "notes": [
       {
+        "kind": "source",
+        "text": "SALARY TABLES: 1.11.2022-31.12.2023 CCNL 9.5.2022 Tabella H (new classification from 1.11.2022; elevate professionalità art. 53: 35,000 a year with the tredicesima); 2024 CCNL 27.1.2025 Tabella 2; 2025, 2026, 2027 CCNL 6.8.2026 Tabella 3. Monthly = annual / 12, the tredicesima paid apart. Hourly divisor 156 (art. 29 c. 3), daily 30 (art. 29 c. 4)."
+      },
+      {
         "kind": "info",
         "text": "Layer 2 implemented. Part-time: engine scales by part_time_pct. Fixed-term: PA is excluded from NASpI addizionale (lavoratori delle pubbliche amministrazioni in statutory exclusion list per INPS guidance); fixed_term_additional_rate=0.000 in tax file. Apprenticeship: no ARAN CCNL defines percentage or under-classification tracks; narrow high-qualification form under D.Lgs. 81/2015 Art. 47 exists for research profiles but is not operationalized in any examined CCNL."
       },
@@ -790,14 +1020,6 @@
       },
       {
         "kind": "info",
-        "text": "retribuzione tabellare conglobata dal 1/1/2024 per 13 mensilità (Tabella 2, Art. 30 CCNL 2022-2024); tranche precedente dal 9/5/2022 derivata per sottrazione degli incrementi Tabella 1."
-      },
-      {
-        "kind": "info",
-        "text": "divisore orario 156 (settimana di 36h) — Art. 29 c.3 CCNL 2022-2024 fonte primaria. Verifica: OPERATORI 1653,97/156=10,60; ASSISTENTI 1740,36/156=11,16; FUNZIONARI 2113,59/156=13,55."
-      },
-      {
-        "kind": "info",
         "text": "progressione economica non automatica — differenziali stipendiali assegnati per graduatoria (Art. 16 CCNL 2022-2024); seniority_increments.maximum_count=0."
       },
       {
@@ -807,6 +1029,19 @@
       {
         "kind": "info",
         "text": "PENSION FUND. Perseo Sirio (1% + 1% of the retribuzione utile ai fini del TFR). Enrolment is a fact: the silenzio-assenso of the hires from 2 January 2019 (accordo ARAN 16/09/2021) is not inferred, nor the three months a fixed term needs to enrol. The TFR conferred stays a notional INPS accrual."
+      },
+      {
+        "kind": "simplification",
+        "text": "From 1 January 2027 the ferie of art. 21 CCNL 2025-2027 drop the 26 days of the first three years (28 days for every worker on a five-day week); the rule holds one tier set and keeps 26 days for the first three years.",
+        "capability": "leave",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "leave_from_2027",
+          "applies_when": {
+            "effective_from": "2027-01-01"
+          },
+          "remediation": "Make the leave tiers a time series and drop the 26-day tier from 1 January 2027."
+        }
       }
     ]
   },
@@ -817,7 +1052,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "abcead83b94e0df0dff85e0831785342e3d022db11f35d7c6be17e17fc543683",
+    "source_hash": "367ee6cd2771e383b58f120e051a78e0ab39723aa55dfdc1a18f06fda8d5938a",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -832,7 +1067,7 @@
           "rate": {
             "periods": [
               {
-                "valid_from": "2022-01-01",
+                "valid_from": "2018-02-12",
                 "value": 0.15,
                 "provenance": null,
                 "valid_until": null
@@ -843,21 +1078,29 @@
             "weekday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-funzioni-centrali-2022-2024",
-                "title": "CCNL Comparto Funzioni Centrali (ARAN) 2022-2024",
-                "kind": "tabella_retributiva",
-                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf"
+                "document_id": "ccnl-funzioni-centrali-2016-2018",
+                "title": "CCNL Comparto Funzioni Centrali 2016-2018, 12 febbraio 2018",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL-definitivo-Funzioni-centrali-triennio-2016-2018_firmato_12-2-2018.pdf",
+                "published_on": "2018-02-12",
+                "sha256": "d374410b7e202197f2cfd5828994bb56572533daf3dc39c4e775e888c915762e"
               },
-              "section": "Art. straordinario — maggiorazione feriale 15%"
+              "page": "31",
+              "section": "Art. 25 c. 5 (lavoro straordinario), kept in force by the CCNL 2025-2027 (p. 15)",
+              "quote": "a) al 15% per il lavoro straordinario diurno;"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2022-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T22:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2018-02-12",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T22:00:00Z",
+              "review_id": "2026-10-12-ai"
             }
           }
         },
@@ -868,7 +1111,7 @@
           "rate": {
             "periods": [
               {
-                "valid_from": "2022-01-01",
+                "valid_from": "2018-02-12",
                 "value": 0.3,
                 "provenance": null,
                 "valid_until": null
@@ -879,21 +1122,29 @@
             "night"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-funzioni-centrali-2022-2024",
-                "title": "CCNL Comparto Funzioni Centrali (ARAN) 2022-2024",
-                "kind": "tabella_retributiva",
-                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf"
+                "document_id": "ccnl-funzioni-centrali-2016-2018",
+                "title": "CCNL Comparto Funzioni Centrali 2016-2018, 12 febbraio 2018",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL-definitivo-Funzioni-centrali-triennio-2016-2018_firmato_12-2-2018.pdf",
+                "published_on": "2018-02-12",
+                "sha256": "d374410b7e202197f2cfd5828994bb56572533daf3dc39c4e775e888c915762e"
               },
-              "section": "Art. straordinario — maggiorazione notturno 30%"
+              "page": "31",
+              "section": "Art. 25 c. 5 (lavoro straordinario), kept in force by the CCNL 2025-2027 (p. 15)",
+              "quote": "b) al 30% per il lavoro straordinario prestato nei giorni festivi o in orario notturno"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2022-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T22:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2018-02-12",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T22:00:00Z",
+              "review_id": "2026-10-12-ai"
             }
           }
         },
@@ -904,7 +1155,7 @@
           "rate": {
             "periods": [
               {
-                "valid_from": "2022-01-01",
+                "valid_from": "2018-02-12",
                 "value": 0.3,
                 "provenance": null,
                 "valid_until": null
@@ -915,21 +1166,29 @@
             "holiday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-funzioni-centrali-2022-2024",
-                "title": "CCNL Comparto Funzioni Centrali (ARAN) 2022-2024",
-                "kind": "tabella_retributiva",
-                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf"
+                "document_id": "ccnl-funzioni-centrali-2016-2018",
+                "title": "CCNL Comparto Funzioni Centrali 2016-2018, 12 febbraio 2018",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL-definitivo-Funzioni-centrali-triennio-2016-2018_firmato_12-2-2018.pdf",
+                "published_on": "2018-02-12",
+                "sha256": "d374410b7e202197f2cfd5828994bb56572533daf3dc39c4e775e888c915762e"
               },
-              "section": "Art. straordinario — maggiorazione festivo 30%"
+              "page": "31",
+              "section": "Art. 25 c. 5 (lavoro straordinario), kept in force by the CCNL 2025-2027 (p. 15)",
+              "quote": "b) al 30% per il lavoro straordinario prestato nei giorni festivi o in orario notturno"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2022-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T22:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2018-02-12",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T22:00:00Z",
+              "review_id": "2026-10-12-ai"
             }
           }
         },
@@ -940,7 +1199,7 @@
           "rate": {
             "periods": [
               {
-                "valid_from": "2022-01-01",
+                "valid_from": "2018-02-12",
                 "value": 0.5,
                 "provenance": null,
                 "valid_until": null
@@ -951,45 +1210,61 @@
             "night_holiday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-funzioni-centrali-2022-2024",
-                "title": "CCNL Comparto Funzioni Centrali (ARAN) 2022-2024",
-                "kind": "tabella_retributiva",
-                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf"
+                "document_id": "ccnl-funzioni-centrali-2016-2018",
+                "title": "CCNL Comparto Funzioni Centrali 2016-2018, 12 febbraio 2018",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL-definitivo-Funzioni-centrali-triennio-2016-2018_firmato_12-2-2018.pdf",
+                "published_on": "2018-02-12",
+                "sha256": "d374410b7e202197f2cfd5828994bb56572533daf3dc39c4e775e888c915762e"
               },
-              "section": "Art. straordinario — maggiorazione notturno festivo 50%"
+              "page": "31",
+              "section": "Art. 25 c. 5 (lavoro straordinario), kept in force by the CCNL 2025-2027 (p. 15)",
+              "quote": "c) al 50% per il lavoro straordinario prestato in orario notturno-festivo."
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2022-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T22:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2018-02-12",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T22:00:00Z",
+              "review_id": "2026-10-12-ai"
             }
           }
         }
       ]
     },
     "absence_rules": {
-      "daily_divisor_method": "by_26",
+      "daily_divisor_method": "by_30",
       "daily_hours": null,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "ccnl-funzioni-centrali-2022-2024",
-            "title": "CCNL Comparto Funzioni Centrali (ARAN) 2022-2024",
-            "kind": "tabella_retributiva",
-            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf"
+            "title": "CCNL Comparto Funzioni Centrali 2022-2024, 27 gennaio 2025",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
+            "published_on": "2025-01-27",
+            "sha256": "7115a9eb2d432a906e9df8e5fcb275dae415cfe4edcebe9ac40ea0a494eff924"
           },
-          "section": "Art. orario — divisore mensile standard"
+          "page": "46",
+          "section": "Art. 29 c. 4 (retribuzione giornaliera)",
+          "quote": "4. La retribuzione giornaliera si ottiene dividendo la corrispondente retribuzione mensile per 30."
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2022-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T22:00:00Z",
+          "verification_status": "verified",
+          "effective_from": "2025-01-27",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T22:00:00Z",
+          "review_id": "2026-10-12-ai"
         }
       }
     },
@@ -998,50 +1273,127 @@
       "entitlement_tiers": [
         {
           "service_months_min": 0,
+          "annual_days": "26"
+        },
+        {
+          "service_months_min": 36,
           "annual_days": "28"
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "ccnl-funzioni-centrali-2022-2024",
-            "title": "CCNL Comparto Funzioni Centrali (ARAN) 2022-2024",
-            "kind": "tabella_retributiva",
-            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf"
+            "title": "CCNL Comparto Funzioni Centrali 2022-2024, 27 gennaio 2025",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
+            "published_on": "2025-01-27",
+            "sha256": "7115a9eb2d432a906e9df8e5fcb275dae415cfe4edcebe9ac40ea0a494eff924"
           },
-          "section": "Art. 32 ferie — 28 giorni lavorativi annui"
+          "page": "32",
+          "section": "Art. 21 cc. 2, 4-5 (ferie)",
+          "quote": "rispettivamente di 26 e di 30 giorni lavorativi"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2022-01-01"
-        }
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T22:00:00Z",
+          "verification_status": "verified",
+          "effective_from": "2025-01-27",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T22:00:00Z",
+          "review_id": "2026-10-12-ai"
+        },
+        "transformation": "28 days on a five-day week (c. 2); 26 for a worker hired for the first time in a public administration, for the first three years of service (cc. 4-5). From 1 January 2027 art. 21 of the CCNL 2025-2027 (p. 31: 'Il presente articolo entra in vigore il 1° gennaio 2027') gives 28 days to every worker: see the limitation leave_from_2027."
       }
     },
     "sickness_rules": {
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
-      "max_duration_days": 270,
+      "tiers": [
+        {
+          "month_from": 1,
+          "month_until": 10,
+          "integration_rate": "1"
+        },
+        {
+          "month_from": 10,
+          "month_until": 13,
+          "integration_rate": "0.9"
+        },
+        {
+          "month_from": 13,
+          "month_until": 19,
+          "integration_rate": "0.5"
+        }
+      ],
+      "max_duration_days": 548,
       "provenance": {
         "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-funzioni-centrali-2022-2024",
-            "title": "CCNL Comparto Funzioni Centrali (ARAN) 2022-2024",
-            "kind": "tabella_retributiva",
-            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf"
+            "title": "CCNL Comparto Funzioni Centrali 2022-2024, 27 gennaio 2025",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
+            "published_on": "2025-01-27",
+            "sha256": "7115a9eb2d432a906e9df8e5fcb275dae415cfe4edcebe9ac40ea0a494eff924"
           },
-          "section": "Art. 34 malattia — piena retribuzione per 9 mesi (270 giorni) in 36 mesi"
+          "page": "38-39",
+          "section": "Art. 24 cc. 1, 10 (assenze per malattia)",
+          "quote": "b) 90 % della retribuzione di cui alla lettera \"a\" per i successivi 3 mesi di assenza;"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T22:00:00Z",
           "verification_status": "unverified",
-          "effective_from": "2022-01-01"
-        }
+          "effective_from": "2025-01-27"
+        },
+        "note": "Job kept 18 months (about 548 days); 9 months in full, 3 at 90%, 6 at 50%. The CCNL sums the sickness of the three years before the last episode; the tiers count one episode and its relapses (engine limitation sickness_cumulation_window). The cut of the accessory pay of the first 10 days (D.L. 112/2008 art. 71 c. 1) is not modelled."
       }
     }
+  },
+  "verification": {
+    "reviews": [
+      {
+        "id": "2026-10-12-ai",
+        "date": "2026-10-12",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Salary tables, additional months, hourly and daily divisors, overtime, leave, sickness and seniority, against the CCNLs of 12 February 2018, 9 May 2022, 27 January 2025 and 6 August 2026.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+            "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+          },
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
+            "sha256": "7115a9eb2d432a906e9df8e5fcb275dae415cfe4edcebe9ac40ea0a494eff924"
+          },
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2023/05/Frontespizio-e-CCNL-Comparto-Funzioni-Centrali-2019-2021-1.pdf",
+            "sha256": "459fb979cbfc9cc64ea251fdae5fb868533ebe9ecd7c17980c4c99ff0f79285f"
+          },
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL-definitivo-Funzioni-centrali-triennio-2016-2018_firmato_12-2-2018.pdf",
+            "sha256": "d374410b7e202197f2cfd5828994bb56572533daf3dc39c4e775e888c915762e"
+          }
+        ],
+        "findings": [
+          "Salary amounts confirmed (annual table over 12; elevate professionalità 2022: 35,000 / 13).",
+          "The first period started on 2022-05-09, the signing date; the new classification applies from 1 November 2022 (art. 18 c. 1).",
+          "The 2025-2027 values cited a union page; they are now cited to the ARAN text of 6 August 2026 (Tabella 3).",
+          "Daily quota: art. 29 c. 4 divides by 30, not 26.",
+          "Overtime is in art. 25 c. 5 of the CCNL 12.2.2018, kept in force by the CCNL 2025-2027.",
+          "Sickness: comporto of 18 months with 9 months at 100%, 3 at 90% and 6 at 50% (art. 24), not 270 days at 100%.",
+          "Leave: 26 days for the first three years of a first public employment until 31 December 2026 (art. 21 CCNL 2022-2024)."
+        ]
+      }
+    ],
+    "confidence": "verified",
+    "readiness": "reviewed"
   }
 }

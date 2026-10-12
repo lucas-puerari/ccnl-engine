@@ -931,7 +931,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/funzioni-centrali-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "abcead83b94e0df0dff85e0831785342e3d022db11f35d7c6be17e17fc543683",
+      "source_hash": "367ee6cd2771e383b58f120e051a78e0ab39723aa55dfdc1a18f06fda8d5938a",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/funzioni-centrali-aran.json.gz"
@@ -948,7 +948,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/funzioni-locali-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "dfb7356bc67cb89065d571e8f19d49886443886ecccb20371da62caceee34f0c",
+      "source_hash": "b35938c26f37445754d1dd2ee5194a34860d977f47ad5aa504baf01ea3bcb7ef",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/funzioni-locali-aran.json.gz"
@@ -1730,7 +1730,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/sanita-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "d9bfedaf34d52316595586110359ddc64bd98c54e4d21338137d845723511b8d",
+      "source_hash": "57ed16d31ae462db742589b149968e525c33cc7784390241a148e7335693a9c1",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/sanita-aran.json.gz"
