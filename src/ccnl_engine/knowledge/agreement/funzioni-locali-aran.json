@@ -351,7 +351,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T10:00:00Z",
+              "extraction_timestamp": "2026-10-12T09:20:04Z",
               "verification_status": "unverified",
               "effective_from": "2023-04-01"
             },
@@ -521,7 +521,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T10:00:00Z",
+              "extraction_timestamp": "2026-10-12T09:20:04Z",
               "verification_status": "unverified",
               "effective_from": "2023-04-01"
             },
@@ -691,7 +691,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T10:00:00Z",
+              "extraction_timestamp": "2026-10-12T09:20:04Z",
               "verification_status": "unverified",
               "effective_from": "2023-04-01"
             },
@@ -861,7 +861,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T10:00:00Z",
+              "extraction_timestamp": "2026-10-12T09:20:04Z",
               "verification_status": "unverified",
               "effective_from": "2023-04-01"
             },
@@ -959,7 +959,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
     "verification_status": "unverified",
-    "source_hash": "c4307e4adc1f4463b465720270d610558f675e1a2387b2975c5f1cac9879c630",
+    "source_hash": "5f3883a31a81db59740bf36216ca9609136ce81e7e559c5246342781fe510ad8",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

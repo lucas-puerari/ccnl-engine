@@ -82,7 +82,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T08:00:00Z",
+              "extraction_timestamp": "2026-10-12T08:53:29Z",
               "verification_status": "unverified",
               "effective_from": "2026-08-06"
             }
@@ -211,7 +211,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-13T08:00:00Z",
+          "extraction_timestamp": "2026-10-12T08:53:29Z",
           "verification_status": "unverified",
           "effective_from": "1946-10-25"
         },
@@ -447,7 +447,7 @@
     "effective_until": "2024-12-31",
     "source": "https://quifinanza.it/lavoro/ccnl-istruzione-ricerca-2022-2024-tabelle-retributive/1011686/",
     "verification_status": "unverified",
-    "source_hash": "b57bb32f7236a7fc494d99d7a55bb224dcb8bf77080d9fd78dbe7609cad077b7",
+    "source_hash": "59e45e131ae7500689fa2d06539189bb07f1d9335ac122350cc516111003cb5c",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

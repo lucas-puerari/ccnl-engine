@@ -513,7 +513,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-13T08:00:00Z",
+          "extraction_timestamp": "2026-10-12T08:53:29Z",
           "verification_status": "unverified",
           "effective_from": "2025-05-20"
         },
@@ -2253,7 +2253,7 @@
     "effective_until": "2028-09-30",
     "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
     "verification_status": "unverified",
-    "source_hash": "8ef97e364e26af41e5785f539c1e2fac567237b9f572938d32cf002ab81e0594",
+    "source_hash": "51a4dd07b9e22e34b0373acf1e90a52a5a99d46bb84db6f7a690a8f384b8e671",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

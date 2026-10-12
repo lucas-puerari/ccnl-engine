@@ -471,7 +471,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "extraction_timestamp": "2026-10-12T10:21:27Z",
               "verification_status": "unverified",
               "effective_from": "2022-01-01"
             },
@@ -509,7 +509,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "extraction_timestamp": "2026-10-12T10:21:27Z",
               "verification_status": "unverified",
               "effective_from": "2011-01-01"
             },
@@ -700,7 +700,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "extraction_timestamp": "2026-10-12T10:21:27Z",
               "verification_status": "unverified",
               "effective_from": "2022-01-01"
             },
@@ -738,7 +738,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "extraction_timestamp": "2026-10-12T10:21:27Z",
               "verification_status": "unverified",
               "effective_from": "2011-01-01"
             },
@@ -929,7 +929,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "extraction_timestamp": "2026-10-12T10:21:27Z",
               "verification_status": "unverified",
               "effective_from": "2022-01-01"
             },
@@ -1120,7 +1120,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "extraction_timestamp": "2026-10-12T10:21:27Z",
               "verification_status": "unverified",
               "effective_from": "2022-01-01"
             },
@@ -1158,7 +1158,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "extraction_timestamp": "2026-10-12T10:21:27Z",
               "verification_status": "unverified",
               "effective_from": "2011-01-01"
             },
@@ -1349,7 +1349,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "extraction_timestamp": "2026-10-12T10:21:27Z",
               "verification_status": "unverified",
               "effective_from": "2022-01-01"
             },
@@ -1387,7 +1387,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "extraction_timestamp": "2026-10-12T10:21:27Z",
               "verification_status": "unverified",
               "effective_from": "2011-01-01"
             },
@@ -1578,7 +1578,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "extraction_timestamp": "2026-10-12T10:21:27Z",
               "verification_status": "unverified",
               "effective_from": "2022-01-01"
             },
@@ -1616,7 +1616,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "extraction_timestamp": "2026-10-12T10:21:27Z",
               "verification_status": "unverified",
               "effective_from": "2011-01-01"
             },
@@ -1807,7 +1807,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "extraction_timestamp": "2026-10-12T10:21:27Z",
               "verification_status": "unverified",
               "effective_from": "2022-01-01"
             },
@@ -1845,7 +1845,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "extraction_timestamp": "2026-10-12T10:21:27Z",
               "verification_status": "unverified",
               "effective_from": "2011-01-01"
             },
@@ -2036,7 +2036,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "extraction_timestamp": "2026-10-12T10:21:27Z",
               "verification_status": "unverified",
               "effective_from": "2022-01-01"
             },
@@ -2074,7 +2074,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "extraction_timestamp": "2026-10-12T10:21:27Z",
               "verification_status": "unverified",
               "effective_from": "2011-01-01"
             },
@@ -2303,7 +2303,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "extraction_timestamp": "2026-10-12T10:21:27Z",
               "verification_status": "unverified",
               "effective_from": "2022-01-01"
             },
@@ -2341,7 +2341,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T16:00:00Z",
+              "extraction_timestamp": "2026-10-12T10:21:27Z",
               "verification_status": "unverified",
               "effective_from": "2011-01-01"
             },
@@ -2409,7 +2409,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "7ba80c02a936b9d3d56734e9c574fc24073c59a597c4804f0cc22c4c4b968255",
+    "source_hash": "90dabf83b7e50ff0ded72fcf7bb76ad81525fa108eceea09bca11cc9f3f961dd",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2679,7 +2679,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-13T12:00:00Z",
+          "extraction_timestamp": "2026-10-12T09:38:51Z",
           "verification_status": "unverified",
           "effective_from": "2023-05-01"
         },
@@ -2732,8 +2732,8 @@
         ]
       },
       {
-        "id": "2026-10-13-ai",
-        "date": "2026-10-13",
+        "id": "2026-10-12-ai",
+        "date": "2026-10-12",
         "reviewer": "claude-opus-5-5",
         "reviewer_kind": "ai",
         "scope": "Sickness rule of art. 63 A), now expressible with a window and steps per seniority band; readiness of the file.",

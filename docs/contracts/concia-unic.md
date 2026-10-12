@@ -49,7 +49,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | — |
-| **Last review** | 2026-10-13 |
+| **Last review** | 2026-10-12 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -58,7 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-10 | claude-opus-5-5 (ai) | Whole file. The values checked were not recorded; no value was marked verified. | confirmed | The review recorded no list of the documents it read. |
 | 2026-10-11 | claude-opus-5-5 (ai) | Every payable rule of the file (98 records) read again in the signed texts: the renewal of 7 March 2024 and the CCNL testo definitivo of 21 January 2021 deposited at CNEL (B101), which the 2024 renewal leaves unchanged for these articles. | corrected | 96 records match their source and are verified; the two corrected rules below are verified too. The 34 records that cited the mysolution.it summary sheet now cite the CNEL testo definitivo. Pages are physical PDF pages (the printed page of the CNEL text is two lower).<br>Corrected: the leave tiers of Art. 42 start after the 10th and the 15th year (120 and 180 months), not 132 and 192.<br>Corrected: Art. 51 b) deducts unworked hours by the ratio 173 / working hours of the month, and Art. 50 keeps 1/25 for Sunday holidays, so the absence rule is by_month_hours instead of by_25.<br>Not modelled, each underpaying: night overtime after the first hour (76%), the 25% and 35% bands for daytime overtime beyond 48 hours, and the sickness tiers of 10 and 12 months for longer service.<br>The IND_FUNZIONE clause is Art. 46 g), not Art. 47.<br>No renewal signed after 7 March 2024; the contract expired on 30 June 2026 and a renewal is under negotiation. |
-| 2026-10-13 | claude-opus-5-5 (ai) | Overtime bands of art. 35 and the sickness rule of art. 60, follow-ups of the review of 2026-10-11. | corrected | Overtime: the 25% (49th weekly hour), 35% (beyond) and 76% (night after the first hour) bands were missing; added, the night threshold read per day.<br>Sickness: only the band up to 3 years was modelled, per episode and on the gross pay; now three seniority bands within 36 months, on the net pay, with the restart after 4 months without sickness (derived: months of 30 days, band edges read on completed months). |
+| 2026-10-12 | claude-opus-5-5 (ai) | Overtime bands of art. 35 and the sickness rule of art. 60, follow-ups of the review of 2026-10-11. | corrected | Overtime: the 25% (49th weekly hour), 35% (beyond) and 76% (night after the first hour) bands were missing; added, the night threshold read per day.<br>Sickness: only the band up to 3 years was modelled, per episode and on the gross pay; now three seniority bands within 36 months, on the net pay, with the restart after 4 months without sickness (derived: months of 30 days, band edges read on completed months). |
 
 ## Salary table
 
