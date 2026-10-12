@@ -1,0 +1,58 @@
+"""AFAM allowances by band of seniority (CCNL Istruzione e Ricerca D3-D6).
+
+From 1.1.2025 the RPD of a docente di prima fascia is 231.28 up to 14 years
+of service, 283.91 from 15 to 27, 351.92 from 28; the CIA of an assistente
+126.98.
+"""
+
+from __future__ import annotations
+
+from datetime import date
+from decimal import Decimal
+
+import pytest
+
+from ccnl_engine.balance.models import PeriodState
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
+from ccnl_engine.period.requests import PeriodCalculationRequest
+from ccnl_engine.period.services import calculate_period
+from ccnl_engine.run.types import PeriodId
+from ccnl_engine.seniority.inputs import SeniorityFact, SenioritySource
+
+
+def _allowances(level: str, months: int) -> dict[str, Decimal]:
+    result = calculate_period(
+        PeriodCalculationRequest(
+            employer=EmployerProfile(headcount=Headcount(50)),
+            period_id=PeriodId(year=2026, month=3),
+            payment_date=date(2026, 3, 27),
+            ccnl_slug="afam-aran.json",
+            level_code=level,
+            seniority=SeniorityFact(months, date(2026, 3, 1), SenioritySource.PAYSLIP),
+            opening_state=PeriodState.zero(),
+        )
+    )
+    return {
+        i.item_id.rsplit("_", 1)[-1]: i.amount
+        for i in result.pay_items
+        if i.kind == "fixed_allowance_earning"
+    } | {
+        "total": sum(
+            (i.amount for i in result.pay_items if i.kind == "fixed_allowance_earning"),
+            Decimal(0),
+        )
+    }
+
+
+@pytest.mark.parametrize(
+    ("months", "rpd"),
+    [(100, "231.28"), (180, "283.91"), (335, "283.91"), (336, "351.92")],
+)
+def test_rpd_band_of_the_seniority(months: int, rpd: str) -> None:
+    """One RPD band applies, the one of the anzianità di servizio."""
+    assert _allowances("DOCENTE_PRIMA_FASCIA", months)["total"] == Decimal(rpd)
+
+
+def test_cia_of_an_assistente() -> None:
+    """The CIA is paid whatever the seniority."""
+    assert _allowances("ASSISTENTE", 12)["total"] == Decimal("126.98")

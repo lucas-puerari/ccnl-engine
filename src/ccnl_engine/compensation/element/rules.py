@@ -37,9 +37,14 @@ def _allowance_active(
     if allowance.role is not None and allowance.role not in roles:
         return False
     threshold = allowance.service_months_threshold
-    if threshold is None:
+    until = allowance.service_months_until
+    if threshold is None and until is None:
         return True
-    return seniority_months is not None and seniority_months >= threshold
+    if seniority_months is None:
+        return False
+    return (threshold is None or seniority_months >= threshold) and (
+        until is None or seniority_months < until
+    )
 
 
 def service_gated_allowances(
@@ -48,13 +53,15 @@ def service_gated_allowances(
     """Return the allowances of the level gated by months of service.
 
     Returns:
-        The allowances with a ``service_months_threshold`` whose role, if
-        any, the worker holds.
+        The allowances with a ``service_months_threshold`` or a
+        ``service_months_until`` whose role, if any, the worker holds.
     """
     return tuple(
         a
         for a in level.fixed_allowances
-        if a.service_months_threshold is not None
+        if (
+            a.service_months_threshold is not None or a.service_months_until is not None
+        )
         and (a.role is None or a.role in roles)
     )
 

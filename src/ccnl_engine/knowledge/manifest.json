@@ -30,7 +30,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/afam-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "dbc4428a3ec36e65099fa3e40675dc75412433281dabe78083494e3763b9ec95",
+      "source_hash": "81969fd1ddf4288253e8b0375431c2b5a9f793105ab6a3f7ea3b8df216947527",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/afam-aran.json.gz"
