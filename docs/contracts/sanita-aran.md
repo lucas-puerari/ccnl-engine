@@ -8,17 +8,20 @@
 | **Last renewal** | 2025-10-27 |
 | **Workers (est.)** | ~580k |
 | **Ruleset version** | `2026.2` |
-| **Readiness** | 🧪 Exploratory |
+| **Readiness** | 👁 Reviewed |
 
 [← Contracts index](index.md)
 
 ??? note "Signatories"
     - ARAN
     - CISL FP
-    - UIL FPL
     - FIALS
     - NURSIND
     - NURSING UP
+    - CISL
+    - CONFSAL
+    - CGS
+    - CSE
 
 ## Coverage
 
@@ -34,7 +37,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -42,16 +45,16 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 21 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
-| **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
-| **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
+| **Rule provenance** | 16 verified / 5 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
+| **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
 ## Freshness
 
 | | |
 |---|---|
 | **Last renewal** | 2025-10-27 |
-| **Last review** | 2026-09-18 |
+| **Last review** | 2026-10-12 |
 | **Latest salary tranche** | 2024-01-01 |
 
 ## Review history
@@ -59,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-09-18 | maintainer (human) | Whole file. The values checked were not recorded. | confirmed | The review recorded no list of the documents it read. |
+| 2026-10-12 | claude-opus-5-5 (ai) | Salary tables, additional months, hourly and daily divisors, overtime, leave, sickness and seniority, against the CCNL of 2 November 2022 and the definitive CCNL of 27 October 2025. | corrected | Salary amounts confirmed (annual table over 12; elevata qualificazione 2023: 35,000 / 13).<br>The first period started on 2022-11-02, the signing date; the new classification applies from 1 January 2023 (art. 99 c. 3).<br>Overtime is art. 47 c. 8 of the CCNL 2.11.2022, in force from 2022, not from 2024.<br>Citations moved from the ipotesi of January 2025 (other article numbers) to the definitive text of 27 October 2025.<br>Sickness: comporto of 18 months with 9 months at 100%, 3 at 90% and 6 at 50% (art. 40), not 270 days at 100%.<br>Leave: 26 days for the first three years of a first public employment (art. 35 c. 4).<br>Signatories: FP CGIL and UIL FPL did not sign; CONFSAL, CGS, CSE and CISL signed.<br>The 2025-2027 renewal is an ipotesi of 29 July 2026, not in force. |
 
 ## Salary table
 
@@ -80,13 +84,6 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "sanita-aran/pre_2024_back_calculated_tables · base_salary · impact unknown · open"
-    PRE-2024 BACK-CALCULATED. Nov 2022 values derived by subtracting Tabella 1a increments from Jan 2024 amounts (support −115, operatori −120, assistenti −127, collaboratori −127, funzionari −129, elevata qualificazione −185 approx). Primary CCNL 2019-2021 text not verified directly. 2022-2023 anticipation payments not modelled as intermediate periods.
-
-    **Applies when:** `base_salary` applies; before 2024-01-01.
-
-    **Remediation:** Source the 2019-2021 salary tables from the signed CCNL text instead of back-calculating them.
 
 !!! warning "sanita-aran/renewal_2025_2027_not_modelled · base_salary · impact unknown · open"
     2025-2027 RENEWAL NOT YET MODELLED. An ipotesi di CCNL 2025-2027 was signed by ARAN on 29 July 2026 with retroactive effect from 1 January 2025. Increases (monthly, 13 mensilità) from Jan 2024 base: support +41.40 (Jan 2025)/+82.80 (Jan 2026)/+106.70 (Jan 2027); operatori +43.70/+87.40/+112.60; assistenti +46.60/+93.20/+120.00; funzionari +50.50/+101.10/+130.20; elevata qualificazione +70.20/+140.50/+181.00. Not yet modelled — ipotesi pending comitato di settore, Governo, and Corte dei conti certification.
@@ -123,17 +120,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Replace each provisional INPS ruleset of the year with the values of the INPS circulars of the year, drop its provisional flag, then resolve this limitation.
 
-### Without monetary impact
-
-!!! note ""
-    Agreement date 2025-10-27 (firma definitiva) per ARAN press release. The PDF used is the Ipotesi from 14.01.2025; salary tables are identical to the final signed version.
-
 ## Sources
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-01-14 | [↗](https://www.quotidianosanita.it/allegati/allegato1736872056.pdf) |
-| — | — | — | [↗](https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=400) |
+| — | — | 2025-10-27 | [↗](https://www.aranagenzia.it/wp-content/uploads/2025/10/2025_10_27_COMP-SANITA_2022-2024.pdf) |
+| — | — | 2022-11-02 | [↗](https://www.aranagenzia.it/wp-content/uploads/2022/11/2022_11_02_COMP-SANITA_2019-2021.pdf) |
 
 ??? note "Coverage notes"
     Layer 2 implemented. Part-time: engine scales by part_time_pct. Fixed-term: PA is excluded from NASpI addizionale (lavoratori delle pubbliche amministrazioni in statutory exclusion list per INPS guidance); fixed_term_additional_rate=0.000 in tax file. Apprenticeship: no ARAN CCNL defines percentage or under-classification tracks; narrow high-qualification form under D.Lgs. 81/2015 Art. 47 exists for research profiles but is not operationalized in any examined CCNL.
@@ -146,13 +138,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     PENSION FUND. Perseo Sirio (1% + 1% of the retribuzione utile ai fini del TFR). Enrolment is a fact: the silenzio-assenso of the hires from 2 January 2019 (accordo ARAN 16/09/2021) is not inferred, nor the three months a fixed term needs to enrol. The TFR conferred stays a notional INPS accrual.
     
-    Salary tables from Ipotesi CCNL Comparto Sanità 2022-2024 (ARAN, 14.01.2025, definitively signed October 2025). Art. 58 comma 1 (increments from 1.1.2024 per Tabella 1a), Art. 58 comma 2 (annual amounts from Tabella 2a). Monthly values = Tabella 2a / 12.
-    
-    Tranche 1 (2022-11-02) values back-calculated from CCNL 2.11.2022 base by subtracting Tabella 1a increments. 2022-2023 anticipation payments (Art. 47-bis D.Lgs. 165/2001) not modelled as separate periods (SIMPLIFICATION).
-    
-    Hourly divisor 156 from Art. 26 comma 1 (36h/week standard working time for comparto Sanità).
-    
-    13 mensilità from Art. 57 (Tredicesima mensilità) of this CCNL.
+    SALARY TABLES: 1.1.2023-31.12.2023 CCNL 2.11.2022 Tabella D (new classification from 1.1.2023; elevata qualificazione art. 100: 35,000 a year with the tredicesima); from 1.1.2024 CCNL 27.10.2025 Tabella 2a. Monthly = annual / 12, the tredicesima paid apart. The old categories of November and December 2022 and the anticipation increments are not modelled. Overtime hourly base: art. 47 c. 7 counts the retribuzione base with the rateo of tredicesima over 156; the run takes the hourly rate the caller states.
     
 
 ## Raw data

@@ -8,7 +8,7 @@
 | **Last renewal** | 2026-02-23 |
 | **Workers (est.)** | ~400k |
 | **Ruleset version** | `2026.2` |
-| **Readiness** | 🧪 Exploratory |
+| **Readiness** | 👁 Reviewed |
 
 [← Contracts index](index.md)
 
@@ -32,7 +32,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, company_supplement |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -40,16 +40,16 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 23 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
-| **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
-| **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
+| **Rule provenance** | 18 verified / 5 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
+| **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
 ## Freshness
 
 | | |
 |---|---|
 | **Last renewal** | 2026-02-23 |
-| **Last review** | 2026-09-18 |
+| **Last review** | 2026-10-12 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -57,6 +57,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-09-18 | maintainer (human) | Whole file. The values checked were not recorded. | confirmed | The review recorded no list of the documents it read. |
+| 2026-10-12 | claude-opus-5-5 (ai) | Salary tables, additional months, hourly and daily divisors, overtime, leave, sickness and seniority, against the CCNL of 16 November 2022 and of 23 February 2026. | corrected | Salary amounts confirmed (annual table over 12).<br>The first period started on 2022-11-16, the signing date; the new classification of Tabella G applies from 1 April 2023 (art. 13 c. 1).<br>Overtime is in art. 32 c. 5 of the CCNL 16.11.2022, not in the CCNL 2022-2024.<br>Sickness: comporto of 18 months with 9 months at 100%, 3 at 90% and 6 at 50% (art. 36), not 270 days at 100%.<br>Leave: 26 days for the first three years of a first public employment (art. 28 cc. 4-5).<br>The 2025-2027 renewal is an ipotesi of 21 July 2026, not in force. |
 
 ## Salary table
 
@@ -77,13 +78,6 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "funzioni-locali-aran/pre_2024_back_calculated · base_salary · impact unknown · open"
-    PRE-2024 BACK-CALCULATED. Nov 2022 values derived by back-calculation (2024 values minus Tabella A col.1 increments). 2022-2023 anticipation payments (Art. 47-bis D.Lgs. 165/2001) not modelled as intermediate periods.
-
-    **Applies when:** `base_salary` applies; before 2024-01-01.
-
-    **Remediation:** Source the 2022-2023 values and the anticipation payments from the CCNL 2019-2021 tables.
 
 !!! warning "funzioni-locali-aran/indennita_comparto_decentrata_missing · company_supplement · impact yes · open"
     Indennità di comparto post-conglobamento (Tabella C col.4) fully charged to Fondo risorse decentrate — not modelled as a fixed_allowance (varies by administration and is not a universal fixed amount).
@@ -145,9 +139,9 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     PENSION FUND. The contractual adherence to Perseo Sirio of art. 98 CCNL 16/11/2022 (polizia locale) is funded by the fines of art. 208 D.Lgs. 285/1992, not by the payroll: it is not modelled.
     
-    Salary tables from CCNL Comparto Funzioni Locali 2022-2024 (ARAN, 23.02.2026). Art. 56 Tabella A (monthly increments per 13 months) and Tabella B (annual amounts per 12 months + 13th). Monthly values = Tabella B / 12.
+    SALARY TABLES: 1.4.2023-31.12.2023 CCNL 16.11.2022 Tabella G (new classification in force from 1.4.2023); from 1.1.2024 and 1.1.2026 CCNL 23.2.2026 Tabella B. Monthly = annual / 12. The anticipation increments of 2022-2023 and the old categories before 1.4.2023 are not modelled.
     
-    Tranche 1 (2022-11-16) values back-calculated from CCNL 16.11.2022 base by subtracting Tabella A col.1 increments from 2024-01-01 values. The 2022 and 2023 anticipation payments (Art. 56, alinea 1-2) are not modelled as separate tabellare periods.
+    Salary tables from CCNL Comparto Funzioni Locali 2022-2024 (ARAN, 23.02.2026). Art. 56 Tabella A (monthly increments per 13 months) and Tabella B (annual amounts per 12 months + 13th). Monthly values = Tabella B / 12.
     
     Tranche 3 (2026-01-01) from parziale conglobamento indennità di comparto (Art. 60): Tabella B col.2 / 12. ARAN announcement explicitly states 'decorrenza retroattiva al 1/1/2026'. DATE CORRECTED 2026-09-09: was incorrectly set to 2027-01-01 in initial extraction; confirmed as 2026-01-01 via ilccnl.it (values match exactly) and ARAN press release.
     

@@ -34,10 +34,10 @@ class TestLoadFunzioniLocaliAran:
         }
 
     def test_funzioni_locali_aran_istruttori_salary_tranche1(self) -> None:
-        """ISTRUTTORI first tranche (2022-11-16): 1782.74 EUR/month."""
+        """ISTRUTTORI from 1/4/2023 (new classification): 1782.74 EUR/month."""
         ccnl = load_ccnl("funzioni-locali-aran.json")
         lv = ccnl.level_by_code("ISTRUTTORI")
-        assert lv.base_salary.value_at(date(2022, 11, 16)) == Decimal("1782.74")
+        assert lv.base_salary.value_at(date(2023, 4, 1)) == Decimal("1782.74")
 
     def test_funzioni_locali_aran_istruttori_salary_tranche2(self) -> None:
         """ISTRUTTORI second tranche (1/1/2024): 1915.55 EUR/month."""
@@ -106,10 +106,10 @@ class TestLoadSanitaAran:
         }
 
     def test_sanita_aran_professionisti_salary_tranche1(self) -> None:
-        """PROFESSIONISTI first tranche (2022-11-02): 1941.58 EUR/month."""
+        """PROFESSIONISTI from 1/1/2023 (new classification): 1941.58 EUR/month."""
         ccnl = load_ccnl("sanita-aran.json")
         lv = ccnl.level_by_code("PROFESSIONISTI")
-        assert lv.base_salary.value_at(date(2022, 11, 2)) == Decimal("1941.58")
+        assert lv.base_salary.value_at(date(2023, 1, 1)) == Decimal("1941.58")
 
     def test_sanita_aran_professionisti_salary_tranche2(self) -> None:
         """PROFESSIONISTI second tranche (1/1/2024): 2076.58 EUR/month."""

@@ -8,7 +8,7 @@
 | **Last renewal** | 2025-01-27 |
 | **Workers (est.)** | ~250k |
 | **Ruleset version** | `2026.2` |
-| **Readiness** | 🧪 Exploratory |
+| **Readiness** | 👁 Reviewed |
 
 [← Contracts index](index.md)
 
@@ -37,9 +37,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | inps_employer |
+| **Limits of this contract** | inps_employer, leave |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -47,21 +47,23 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 31 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
-| **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
-| **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
+| **Rule provenance** | 26 verified / 5 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
+| **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
 ## Freshness
 
 | | |
 |---|---|
 | **Last renewal** | 2025-01-27 |
-| **Last review** | — |
+| **Last review** | 2026-10-12 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-10-12 | claude-opus-5-5 (ai) | Salary tables, additional months, hourly and daily divisors, overtime, leave, sickness and seniority, against the CCNLs of 12 February 2018, 9 May 2022, 27 January 2025 and 6 August 2026. | corrected | Salary amounts confirmed (annual table over 12; elevate professionalità 2022: 35,000 / 13).<br>The first period started on 2022-05-09, the signing date; the new classification applies from 1 November 2022 (art. 18 c. 1).<br>The 2025-2027 values cited a union page; they are now cited to the ARAN text of 6 August 2026 (Tabella 3).<br>Daily quota: art. 29 c. 4 divides by 30, not 26.<br>Overtime is in art. 25 c. 5 of the CCNL 12.2.2018, kept in force by the CCNL 2025-2027.<br>Sickness: comporto of 18 months with 9 months at 100%, 3 at 90% and 6 at 50% (art. 24), not 270 days at 100%.<br>Leave: 26 days for the first three years of a first public employment until 31 December 2026 (art. 21 CCNL 2022-2024). |
 
 ## Salary table
 
@@ -89,6 +91,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `inps_employer` applies.
 
     **Remediation:** Verify the CTPS rates against the annual INPS circular.
+
+!!! warning "funzioni-centrali-aran/leave_from_2027 · leave · impact yes · open"
+    From 1 January 2027 the ferie of art. 21 CCNL 2025-2027 drop the 26 days of the first three years (28 days for every worker on a five-day week); the rule holds one tier set and keeps 26 days for the first three years.
+
+    **Applies when:** `leave` applies; from 2027-01-01.
+
+    **Remediation:** Make the leave tiers a time series and drop the 26-day tier from 1 January 2027.
 
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.
@@ -122,8 +131,10 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
+| — | — | 2026-08-06 | [↗](https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf) |
 | — | — | 2025-01-27 | [↗](https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf) |
-| — | — | 2026-08-06 | [↗](https://cislfp.it/2026/08/06/ccnl-funzioni-centrali-2025-2027-aumenti-busta-paga/) |
+| — | — | 2022-05-09 | [↗](https://www.aranagenzia.it/wp-content/uploads/2023/05/Frontespizio-e-CCNL-Comparto-Funzioni-Centrali-2019-2021-1.pdf) |
+| — | — | 2018-02-12 | [↗](https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL-definitivo-Funzioni-centrali-triennio-2016-2018_firmato_12-2-2018.pdf) |
 
 ??? note "Coverage notes"
     Layer 2 implemented. Part-time: engine scales by part_time_pct. Fixed-term: PA is excluded from NASpI addizionale (lavoratori delle pubbliche amministrazioni in statutory exclusion list per INPS guidance); fixed_term_additional_rate=0.000 in tax file. Apprenticeship: no ARAN CCNL defines percentage or under-classification tracks; narrow high-qualification form under D.Lgs. 81/2015 Art. 47 exists for research profiles but is not operationalized in any examined CCNL.
@@ -134,15 +145,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     codice CNEL S005 confermato da tre fonti secondarie convergenti: lavoro-economia.it (intestazione pagina "CCNL Comparto Funzioni Centrali [Cnel: S005]"), blia.it (ID S005-209278), contratticcnl.it (/ccnl/s005/). Verificato 2026-09-09.
     
-    retribuzione tabellare conglobata dal 1/1/2024 per 13 mensilità (Tabella 2, Art. 30 CCNL 2022-2024); tranche precedente dal 9/5/2022 derivata per sottrazione degli incrementi Tabella 1.
-    
-    divisore orario 156 (settimana di 36h) — Art. 29 c.3 CCNL 2022-2024 fonte primaria. Verifica: OPERATORI 1653,97/156=10,60; ASSISTENTI 1740,36/156=11,16; FUNZIONARI 2113,59/156=13,55.
-    
     progressione economica non automatica — differenziali stipendiali assegnati per graduatoria (Art. 16 CCNL 2022-2024); seniority_increments.maximum_count=0.
     
     sub-settori ENAC, ANSFISA, ANSV e AGID hanno tabelle retributive proprie (Tabelle 3-6 CCNL) non modellate — out_of_scope per implementazione standard.
     
     PENSION FUND. Perseo Sirio (1% + 1% of the retribuzione utile ai fini del TFR). Enrolment is a fact: the silenzio-assenso of the hires from 2 January 2019 (accordo ARAN 16/09/2021) is not inferred, nor the three months a fixed term needs to enrol. The TFR conferred stays a notional INPS accrual.
+    
+    SALARY TABLES: 1.11.2022-31.12.2023 CCNL 9.5.2022 Tabella H (new classification from 1.11.2022; elevate professionalità art. 53: 35,000 a year with the tredicesima); 2024 CCNL 27.1.2025 Tabella 2; 2025, 2026, 2027 CCNL 6.8.2026 Tabella 3. Monthly = annual / 12, the tredicesima paid apart. Hourly divisor 156 (art. 29 c. 3), daily 30 (art. 29 c. 4).
     
 
 ## Raw data

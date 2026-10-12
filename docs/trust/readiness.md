@@ -137,14 +137,14 @@ it drifts):
 
 | Readiness | CCNL rulesets |
 |---|---:|
-| `exploratory` | 120 |
-| `reviewed` | 5 |
+| `exploratory` | 117 |
+| `reviewed` | 8 |
 | `production` | 1 |
 
 <!-- /trust:readiness-table -->
 
-The <!-- trust:readiness-reviewed -->5<!-- /trust:readiness-reviewed -->
-`reviewed` rulesets: <!-- trust:readiness-reviewed-list -->`commercio-confcommercio`, `concia-unic`, `lavoro-domestico-convivente`, `lavoro-domestico-convivente-orario-ridotto`, `lavoro-domestico-non-convivente`<!-- /trust:readiness-reviewed-list -->.
+The <!-- trust:readiness-reviewed -->8<!-- /trust:readiness-reviewed -->
+`reviewed` rulesets: <!-- trust:readiness-reviewed-list -->`commercio-confcommercio`, `concia-unic`, `funzioni-centrali-aran`, `funzioni-locali-aran`, `lavoro-domestico-convivente`, `lavoro-domestico-convivente-orario-ridotto`, `lavoro-domestico-non-convivente`, `sanita-aran`<!-- /trust:readiness-reviewed-list -->.
 Each [contract page](../contracts/index.md) shows its own tier.
 
 In October 2026 fifteen rulesets `reviewed` on a file-level review were
@@ -154,12 +154,12 @@ file-level review that promoted them; a ruleset returns to `reviewed` once its w
 confidence is `verified`, as the ones listed above did.
 
 `reviewed` records a file-level review, not a per-value one. Of the `reviewed`
-rulesets, <!-- trust:reviewed-with-reviewer -->5<!-- /trust:reviewed-with-reviewer -->
+rulesets, <!-- trust:reviewed-with-reviewer -->8<!-- /trust:reviewed-with-reviewer -->
 hold an entry in the review log, and
-<!-- trust:reviewed-confidence-verified -->5<!-- /trust:reviewed-confidence-verified -->
+<!-- trust:reviewed-confidence-verified -->8<!-- /trust:reviewed-confidence-verified -->
 set `verification.confidence = "verified"` (step 5 of the criteria above).
 A per-value review is recorded only by the provenance status `verified` of a
-payable rule, and <!-- trust:rules-verified -->435<!-- /trust:rules-verified -->
+payable rule, and <!-- trust:rules-verified -->495<!-- /trust:rules-verified -->
 payable rules of the bundle have it (see
 [Provenance](provenance.md#provenance-status)).
 

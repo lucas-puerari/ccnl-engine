@@ -125,10 +125,10 @@ on unverified sources, or be well sourced and not cleared for production.
 | 23 | F032 | [CCNL Cemento, Calce e Gesso — Industria (Federbeton)](cemento-calce-gesso-industria.md) | industria del cemento calce e gesso | ~25k | — | ⚠️ | base_salary, seniority | 0 / 80 / 2 / 0 | 🧪 | 🤖 |
 | 24 | B122 | [CCNL Ceramica Industria (Confindustria-Assopiastrelle)](ceramica-industria-confindustria.md) | ceramica | ~23k | — | ⚠️ | seniority | 0 / 60 / 1 / 1 | 🧪 | 🤖 |
 | 25 | B018 | [CCNL Chimica e Affini PMI — Unionchimica Confapi](chimica-affini-pmi-unionchimica.md) | chimica | ~56k | 2026 | ⚠️ | base_salary, seniority | 0 / 21 / 1 / 1 | 🧪 | 🤖 |
-| 26 | S005 | [CCNL Comparto Funzioni Centrali — Triennio 2022-2024](funzioni-centrali-aran.md) | Pubblica Amministrazione — Comparto Funzioni Centrali | ~250k | 2025 | ⚠️ | inps_employer | 0 / 31 / 0 / 0 | 🧪 | 🤖 |
-| 27 | S105 | [CCNL Comparto Funzioni Locali 2022-2024 — ARAN](funzioni-locali-aran.md) | Pubblica Amministrazione | ~400k | 2026 | ⚠️ | base_salary, company_supplement | 0 / 23 / 0 / 0 | 🧪 | 🤖 |
+| 26 | S005 | [CCNL Comparto Funzioni Centrali — Triennio 2022-2024](funzioni-centrali-aran.md) | Pubblica Amministrazione — Comparto Funzioni Centrali | ~250k | 2025 | ⚠️ | inps_employer, leave | 26 / 5 / 0 / 0 | 👁 | 🧑 |
+| 27 | S105 | [CCNL Comparto Funzioni Locali 2022-2024 — ARAN](funzioni-locali-aran.md) | Pubblica Amministrazione | ~400k | 2026 | ⚠️ | base_salary, company_supplement | 18 / 5 / 0 / 0 | 👁 | 🧑 |
 | 28 | S305 | [CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN](istruzione-ricerca-aran.md) | Pubblica Amministrazione | ~1,2M | 2026 | ⚠️ | base_salary, inps_employee, overtime, seniority | 35 / 6 / 1 / 0 | 🧪 | 🤖 |
-| 29 | S205 | [CCNL Comparto Sanità 2022-2024 — ARAN](sanita-aran.md) | Pubblica Amministrazione | ~580k | 2025 | ⚠️ | base_salary | 0 / 21 / 0 / 0 | 🧪 | 🤖 |
+| 29 | S205 | [CCNL Comparto Sanità 2022-2024 — ARAN](sanita-aran.md) | Pubblica Amministrazione | ~580k | 2025 | ⚠️ | base_salary | 16 / 5 / 0 / 0 | 👁 | 🧑 |
 | 30 | G029 | [CCNL Comunicazione, Informatica e Servizi Innovativi PMI — Settore Informatico](informatica-pmi-unimatica.md) | informatica-servizi-innovativi | ~20k | — | ⚠️ | base_salary, seniority | 0 / 40 / 2 / 0 | 🧪 | 🤖 |
 | 31 | A141 | [CCNL Consorzi Agrari (ASSOCAP-FLAI-FAI-UILA)](consorzi-agrari-assocap.md) | Agricoltura | ~2k | 2023 | ⚠️ | base_salary, health_fund_employer, inps_employer | 0 / 36 / 1 / 1 | 🧪 | 🤖 |
 | 32 | A131 | [CCNL Consorzi di Bonifica (SNEBI-FLAI-FAI-FILBI)](consorzi-di-bonifica-snebi.md) | Agricoltura | ~4k | 2025 | ⚠️ | base_salary, inps_employer, seniority | 0 / 56 / 1 / 1 | 🧪 | 🤖 |
