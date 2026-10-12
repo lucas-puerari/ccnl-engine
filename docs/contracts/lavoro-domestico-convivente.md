@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employee, inps_employer, seniority |
+| **Limits of this contract** | assistance_contribution, base_salary, inps_employer, seniority |
 
 6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -131,12 +131,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Add a fact for the days without board and lodging and pay the Tabella F value for them.
 
-!!! warning "lavoro-domestico-convivente/extra_month_hours · inps_employee · impact unknown · open"
-    INPS and Cas.Sa.Colf are charged on the contributable hours the run states, a tredicesima run too. No bundled source says whether the tredicesima carries contributable hours of its own, and a competence year gives it the hours of its default facts, those of a regular month.
+!!! warning "lavoro-domestico-convivente/extra_month_hours · assistance_contribution · impact unknown · open"
+    The INPS contributions of the tredicesima are paid on the hours of the year: INPS bands them on the paga oraria effettiva, which spreads the tredicesima over the hours, so the tredicesima run charges no INPS hours. The Cas.Sa.Colf contribution of Art. 54 c. 2 is charged on the contributable hours the run states, a tredicesima run too: no bundled source says whether the tredicesima carries hours of its own for it.
 
-    **Applies when:** `inps_employee` applies; run kind in thirteenth.
+    **Applies when:** `assistance_contribution` applies; run kind in thirteenth.
 
-    **Remediation:** Source from the INPS rules whether the tredicesima carries contributable hours and set them for extra-month runs.
+    **Remediation:** Source from the Cas.Sa.Colf rules whether the tredicesima carries contributable hours and set them for extra-month runs.
 
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.

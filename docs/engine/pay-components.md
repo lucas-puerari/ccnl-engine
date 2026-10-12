@@ -15,6 +15,10 @@ part-time fraction from the two and scales the contractual pay by it.
 alone never count as full time: without `full_time_weekly_hours` the run
 computes the full-time pay and carries a `missing_fact` blocker for it, on
 a domestic CCNL too, where `weekly_hours` also selects the INPS bracket.
+The bracket of up to 24 weekly hours is chosen on the paga oraria effettiva
+(INPS circ. 9/2026): the monthly pay with board and lodging, spread over
+`weekly_hours` x 52 / 12 hours and raised by the tredicesima. The
+tredicesima run charges no INPS hours of its own.
 
 ```python
 from datetime import date

@@ -21,6 +21,8 @@ from ccnl_engine.errors import (
 from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.pay_item.services import _ZERO
 
+_WEEKS = 52
+
 if TYPE_CHECKING:
     from datetime import date
 
@@ -136,17 +138,27 @@ def compute_domestic_breakdown(
 def _domestic_hourly_rate(
     ccnl: CCNL,
     year_rules: YearRules,
-    monthly_gross: Decimal,
+    monthly_pay: Decimal,
+    weekly_hours: int | None,
     as_of: date,
 ) -> Decimal | None:
-    """Return the derived domestic hourly rate, or ``None`` for non-domestic CCNLs.
+    """Return the effective hourly pay that bands domestic contributions.
+
+    The INPS bands are of the paga oraria effettiva: the agreed hourly pay,
+    the board and lodging and the tredicesima spread over the hours (INPS,
+    Contributi e agevolazioni fiscali per chi assume un lavoratore
+    domestico).  ``monthly_pay`` is the pay of a regular month, benefits in
+    kind included; it is spread over the hours of the month, ``weekly_hours``
+    x 52 / 12, and raised by the additional months over the twelve.
 
     Returns:
-        Hourly rate in EUR for domestic CCNLs (``monthly_gross / hourly_divisor``),
-        or ``None`` when the CCNL uses standard INPS rates.
+        Hourly rate in EUR for domestic CCNLs, zero without pay or weekly
+        hours, or ``None`` when the CCNL uses standard INPS rates.
     """
     if year_rules.domestic_contributions is None:
         return None
+    if monthly_pay <= _ZERO or not weekly_hours:
+        return _ZERO
     with rule_scope(ruleset=ccnl.meta.ccnl_id, feature="inps_employee"):
-        hourly_divisor = ccnl.parameters.hourly_divisor.value_at(as_of)
-    return money(monthly_gross / hourly_divisor) if monthly_gross > _ZERO else _ZERO
+        months = ccnl.parameters.additional_months.value_at(as_of)
+    return money(monthly_pay * months / (weekly_hours * _WEEKS))

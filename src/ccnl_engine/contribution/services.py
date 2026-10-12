@@ -105,7 +105,10 @@ def run_contributions(inp: _AmountsInput) -> tuple[ContributionBreakdown, Decima
 
     Domestic CCNLs have no ordinary INPS rules: their flat per-hour
     contributions apply and no employee rate is projected on the slots
-    still to come.
+    still to come.  The tredicesima of a domestic worker is spread over
+    the hours of the year in the effective hourly pay that bands them
+    (:func:`~ccnl_engine.contribution.domestic.services._domestic_hourly_rate`),
+    so its own run charges no hours.
 
     Returns:
         ``(breakdown, employee_rate)``.
@@ -125,7 +128,7 @@ def run_contributions(inp: _AmountsInput) -> tuple[ContributionBreakdown, Decima
     breakdown = compute_domestic_breakdown(
         inp.rules,
         inp.weekly_hours,
-        inp.contributable_hours,
+        _ZERO if inp.additional_month else inp.contributable_hours,
         inp.domestic_hourly_rate,
         inp.contract_type,
     )

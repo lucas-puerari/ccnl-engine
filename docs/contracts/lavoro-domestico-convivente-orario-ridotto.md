@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employee, inps_employer |
+| **Limits of this contract** | assistance_contribution, base_salary, inps_employer |
 
 3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -100,12 +100,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Add a fact for the days without board and lodging and pay the Tabella F value for them.
 
-!!! warning "lavoro-domestico-convivente-orario-ridotto/extra_month_hours · inps_employee · impact unknown · open"
-    INPS and Cas.Sa.Colf are charged on the contributable hours the run states, a tredicesima run too. No bundled source says whether the tredicesima carries contributable hours of its own, and a competence year gives it the hours of its default facts, those of a regular month.
+!!! warning "lavoro-domestico-convivente-orario-ridotto/extra_month_hours · assistance_contribution · impact unknown · open"
+    The INPS contributions of the tredicesima are paid on the hours of the year: INPS bands them on the paga oraria effettiva, which spreads the tredicesima over the hours, so the tredicesima run charges no INPS hours. The Cas.Sa.Colf contribution of Art. 54 c. 2 is charged on the contributable hours the run states, a tredicesima run too: no bundled source says whether the tredicesima carries hours of its own for it.
 
-    **Applies when:** `inps_employee` applies; run kind in thirteenth.
+    **Applies when:** `assistance_contribution` applies; run kind in thirteenth.
 
-    **Remediation:** Source from the INPS rules whether the tredicesima carries contributable hours and set them for extra-month runs.
+    **Remediation:** Source from the Cas.Sa.Colf rules whether the tredicesima carries contributable hours and set them for extra-month runs.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
