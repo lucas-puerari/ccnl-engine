@@ -307,9 +307,6 @@
       "accrual_rule": "assumed",
       "additional_months[2024-03-01]": "assumed"
     },
-    "agreement/logistica-trasporto-confetra.json": {
-      "work_rules.sickness_rules": "assumed"
-    },
     "agreement/marittimi-industria-armatoriale.json": {
       "accrual_rule": "assumed",
       "additional_months[2024-07-01]": "assumed"
@@ -1447,7 +1444,8 @@
       "legno-lapidei-artigianato-confartigianato/null_category_operaio_rate"
     ],
     "agreement/logistica-trasporto-confetra.json": [
-      "logistica-trasporto-confetra/apprentice_seniority"
+      "logistica-trasporto-confetra/apprentice_seniority",
+      "logistica-trasporto-confetra/grave_illness"
     ],
     "agreement/marittimi-industria-armatoriale.json": [
       "marittimi-industria-armatoriale/apprentice_seniority"

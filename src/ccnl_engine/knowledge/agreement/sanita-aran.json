@@ -728,7 +728,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf",
     "verification_status": "unverified",
-    "source_hash": "9c9f64f8d94bae38dd7bc07b0e8106774df7d87097c92d6daeb6ebce76e758cd",
+    "source_hash": "84f1f0d406763f3736b999a43598a9681981407e42108de336b0fcc9e6dbbdda",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -987,24 +987,29 @@
     "sickness_rules": {
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
-      "tiers": [
-        {
-          "month_from": 1,
-          "month_until": 10,
-          "integration_rate": "1"
-        },
-        {
-          "month_from": 10,
-          "month_until": 13,
-          "integration_rate": "0.9"
-        },
-        {
-          "month_from": 13,
-          "month_until": 19,
-          "integration_rate": "0.5"
-        }
-      ],
-      "max_duration_days": 548,
+      "cumulation": {
+        "window_years": 3,
+        "reduced_integration_rate": "0",
+        "bands": [
+          {
+            "seniority_months_from": 0,
+            "full_pay_days": 270,
+            "comporto_days": 540,
+            "steps": [
+              {
+                "day_from": 271,
+                "day_until": 361,
+                "integration_rate": "0.9"
+              },
+              {
+                "day_from": 361,
+                "day_until": 541,
+                "integration_rate": "0.5"
+              }
+            ]
+          }
+        ]
+      },
       "provenance": {
         "status": "derived",
         "location": {
@@ -1027,7 +1032,7 @@
           "verification_status": "unverified",
           "effective_from": "2025-10-27"
         },
-        "note": "Job kept 18 months (about 548 days); 9 months in full, 3 at 90%, 6 at 50%. The CCNL sums the sickness of the three years before the last episode; the tiers count one episode and its relapses (engine limitation sickness_cumulation_window). The cut of the accessory pay of the first 10 days (D.L. 112/2008 art. 71 c. 1) is not modelled."
+        "note": "Job kept 18 months within the three years before the day (the CCNL sums 'le assenze per malattia verificatesi nel triennio precedente' the last episode): 540 days of 30-day months over a window of 3 years; 9 months (270 days) in full, 3 (days 271-360) at 90%, 6 (days 361-540) at 50%. The window ends on the sick day, not on the start of the last episode. The cut of the accessory pay of the first 10 days (D.L. 112/2008 art. 71 c. 1) is not modelled."
       }
     }
   },

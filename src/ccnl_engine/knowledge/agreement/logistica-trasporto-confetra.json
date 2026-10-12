@@ -101,6 +101,19 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 63 cc. 8, 12: sickness from the 'malattie particolarmente gravi' of INPS circ. 95/2016 is paid in full for 18 months and left out of the comporto count; the request does not say whether an episode is one, so the ordinary treatment applies.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "grave_illness",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add a fact for a grave illness episode and pay it in full for 18 months outside the comporto."
+        }
       }
     ]
   },
@@ -1742,7 +1755,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "c6a758c5d30ac85594c22042ac4e472d7b755f2cee73e2e5b91f6f36b6fa3c74",
+    "source_hash": "3fa5509e9d354380908a0f1c223fd4039a43ba5e9310a6ec30156201eb4cadfd",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1962,9 +1975,40 @@
     "sickness_rules": {
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
-      "max_duration_days": 180,
+      "cumulation": {
+        "window_years": 2,
+        "reduced_integration_rate": "0",
+        "bands": [
+          {
+            "seniority_months_from": 0,
+            "full_pay_days": 90,
+            "comporto_days": 245,
+            "window_months": 24,
+            "steps": [
+              {
+                "day_from": 91,
+                "day_until": 241,
+                "integration_rate": "0.5"
+              }
+            ]
+          },
+          {
+            "seniority_months_from": 60,
+            "full_pay_days": 150,
+            "comporto_days": 365,
+            "window_months": 30,
+            "steps": [
+              {
+                "day_from": 151,
+                "day_until": 361,
+                "integration_rate": "0.5"
+              }
+            ]
+          }
+        ]
+      },
       "provenance": {
-        "status": "assumed",
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-logistica-testo-unico-2025",
@@ -1979,18 +2023,20 @@
           "quote": "corresponsione dell'intera retribuzione globale mensile per 3 mesi e della metà di essa per altri 5 mesi, se aventi anzianità di servizio non superiore a 5 anni"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T12:00:00Z",
           "verification_status": "unverified",
           "effective_from": "2023-05-01"
         },
-        "note": "The CCNL keeps the job 245 or 365 days and pays 3 months in full and 5 at half (up to 5 years of service) or 5 and 7, counted over the 24 or 30 months before the day; the cumulation model holds one window in whole years for every band, so the rule is not expressible. The values held (100% for 180 days) are not the CCNL's."
+        "transformation": "Up to 5 years of seniority: job kept 245 days (c. 7), counted over the 24 months before the day (c. 8), 3 months in full and 5 at half (c. 12): 90 days at 100%, days 91-240 at 50%, then unpaid. Above 5 years: 365 days over 30 months, 5 months in full and 7 at half: 150 days at 100%, days 151-360 at 50%. Months of 30 days; the band from 60 months reads 'superiore ai 5 anni' as five completed years and any further day. The CCNL treatment tops up the INPS indemnity to these shares of the retribuzione globale (c. 13).",
+        "note": "Not modelled: the 18 months in full of the 'malattie particolarmente gravi' of INPS circ. 95/2016 (c. 12, last period), which also leave the comporto count (c. 8): the request does not say whether an episode is one (limitation grave_illness)."
       }
     }
   },
   "verification": {
-    "confidence": "unverified",
-    "readiness": "exploratory",
+    "confidence": "verified",
+    "readiness": "reviewed",
     "verified_cases": 0,
     "reviews": [
       {
@@ -2029,6 +2075,24 @@
           "Assumed: sickness. Art. 63 A) c. 7-12 keeps the job 245 or 365 days and pays 3 months in full and 5 at half (up to 5 years of service) or 5 and 7, counted over 24 or 30 months; the cumulation model holds one window in whole years for every band, so the rule is not expressible and the file's 100% for 180 days is wrong.",
           "Left derived: the overtime rates (30%, 50%, 65%, 75%, Art. 13 c. 6) match, but their start of 2023-05-01 is not stated; the level descriptions are paraphrases.",
           "Not modelled: the EDR of Art. 60 c. 8 (10 EUR at level 3S, re-parametrised) for workers in service on 26 January 2011, which affects every entitlement, and level 6J and travelling staff."
+        ]
+      },
+      {
+        "id": "2026-10-13-ai",
+        "date": "2026-10-13",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Sickness rule of art. 63 A), now expressible with a window and steps per seniority band; readiness of the file.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          }
+        ],
+        "findings": [
+          "The sickness rule was assumed (100% for 180 days, not the CCNL's): it is now 90 days in full and 150 at half within 24 months, comporto 245 days, up to 5 years of seniority; 150 in full and 210 at half within 30 months, comporto 365 days, above.",
+          "With no assumed or missing payable rule left and the salary tables, additional months, divisor and seniority verified on 2026-10-11, the file is promoted to reviewed."
         ]
       }
     ]
