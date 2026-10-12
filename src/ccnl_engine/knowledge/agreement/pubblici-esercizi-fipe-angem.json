@@ -365,7 +365,35 @@
           "note": "Read from the PDF the url serves (sha256 e1604b50f245d34b4ea04aa53bb91056f55635b39b8c0935f31f2a79b578d40e), text layer; valid_from is the first day of the bundled tax year, the rates being in force since 29 November 1996. The base is the retribuzione utile ai fini del calcolo del TFR, as note (1) of the Scheda 'I destinatari e i contributi' states (https://www.fondofonte.it/statuto-e-nota-informativa/parte-i-scheda-iii-i-destinatari-e-i-contributi/, sha256 dc19e50af945d0671920bb1ebc77e5d75cc2a9dd2f6fd8cad5dd2882a66c8cb2). No human review recorded."
         }
       }
-    ]
+    ],
+    "accrual_rule": {
+      "comparison": "cumulated_fractions",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "fipe-ccnl-2018-02-08",
+            "title": "CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo, 8 febbraio 2018 (scansione firmata)",
+            "kind": "associazione",
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "published_on": "2018-02-08",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          },
+          "page": "127-128",
+          "section": "Articolo 183 c. 2 (tredicesima) and articolo 184 c. 4 (quattordicesima)",
+          "quote": "le frazioni di mese saranno cumulate. La somma così ottenuta comporterà la corresponsione di un rateo mensile per ogni trenta giorni di calendario, nonché per la eventuale frazione residua pari o superiore a quindici giorni. La frazione inferiore ai quindici giorni non verrà considerata."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T14:47:03Z",
+          "verification_status": "unverified",
+          "effective_from": "2018-02-08"
+        },
+        "transformation": "A whole month accrues a rateo; the calendar days of the months worked in part (start, end, or reduced work) are summed: a rateo for each 30 days and one for a remainder of 15 days or more.",
+        "note": "Scanned CCNL read by OCR and checked on the page images (pp. 127-128). Same wording for the tredicesima (art. 183 c. 2) and the quattordicesima (art. 184 c. 4)."
+      }
+    }
   },
   "levels": [
     {
@@ -2341,7 +2369,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "f86655852916696975b3d11bdb344849475f64943d4e147bb9b6b461afda67fb",
+    "source_hash": "e899af5c73548e8ce934c5b6ddd1b2640f9cebe29608e43c7e4027cc6c452b26",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2671,6 +2699,23 @@
           "Quattordicesima: art. 184 c. 1 excludes the matured seniority increments; the engine paid them. Now excluded.",
           "Holiday overtime: the 30% and 60% are art. 126 itself (by time of day), not an analogy: derived from p. 99; whether art. 132's 20% is added is left open (outside_input note).",
           "Ristorazione collettiva: the 2025 and 2026 tranches start in September for the companies of art. 1 c. 1 par. II (accordo integrativo 26.6.2024, p. 3); still the limitation contract_catering_tranche_dates."
+        ]
+      },
+      {
+        "id": "2026-10-12-ai-accrual",
+        "date": "2026-10-12",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Accrual of the tredicesima and quattordicesima (artt. 183 c. 2 and 184 c. 4).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          }
+        ],
+        "findings": [
+          "The accrual rule was missing (engine default of 15 days per month): the CCNL cumulates the fractions of month, a rateo for each 30 days and one for a remainder of 15 days or more, now modelled (cumulated_fractions)."
         ]
       }
     ]

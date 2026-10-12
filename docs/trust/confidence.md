@@ -116,7 +116,7 @@ Without the residence or the family, each run also carries a
 the capabilities the engine does not compute (INAIL, health funds, maternity,
 ...) do not apply to an ordinary month or are outside the request (see the
 [capability matrix](../contracts/capability-matrix.md)). The bundle holds
-<!-- trust:rules-missing -->61<!-- /trust:rules-missing --> `missing` rules
+<!-- trust:rules-missing -->59<!-- /trust:rules-missing --> `missing` rules
 (see [Provenance](provenance.md#current-counts)); a run that reads one also
 raises a `rule_source_missing` issue and is `incomplete`.
 

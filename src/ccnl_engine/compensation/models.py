@@ -124,6 +124,13 @@ class AccrualComparison(StrEnum):
             whole months too (CCNL Funzioni Locali 16 November 2022 art. 75
             c. 3: "in ragione di tanti 365esimi quanti sono i giorni di
             servizio prestato").
+        CUMULATED_FRACTIONS: A whole month accrues a rateo; the days of the
+            months served in part are summed, and each 30 days accrue a
+            rateo, a remainder of 15 days or more one more (CCNL Pubblici
+            Esercizi 8 February 2018 art. 183 c. 2: "le frazioni di mese
+            saranno cumulate [...] un rateo mensile per ogni trenta giorni
+            di calendario, nonché per la eventuale frazione residua pari o
+            superiore a quindici giorni").
     """
 
     AT_LEAST = "at_least"
@@ -132,6 +139,7 @@ class AccrualComparison(StrEnum):
     DAYS_365 = "days_365"
     DAYS_360 = "days_360"
     SERVICE_DAYS_365 = "service_days_365"
+    CUMULATED_FRACTIONS = "cumulated_fractions"
 
     @property
     def by_days(self) -> bool:

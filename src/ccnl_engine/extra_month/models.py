@@ -70,6 +70,12 @@ _DEFAULT_SOURCE = (
 )
 
 
+#: Days of a rateo and of the remainder that accrues one more, when the
+#: fractions of month are cumulated.
+_CUMULATED_MONTH_DAYS = 30
+_CUMULATED_HALF = 15
+
+
 @dataclass(frozen=True)
 class MonthAccrualRule:
     """When a calendar month of an accrual window counts as a whole month.
@@ -186,6 +192,8 @@ class MonthAccrualRule:
         """
         if not self.by_working_days:
             return Decimal(0)
+        if self.comparison is AccrualComparison.CUMULATED_FRACTIONS:
+            return _cumulated(window, ended_on, non_accruing_days)
         total = Decimal(0)
         for first, last, length in _month_spans(window, ended_on):
             total += self._month_units(first, last, length, non_accruing_days)
@@ -214,6 +222,27 @@ class MonthAccrualRule:
         if mode is AccrualComparison.DAYS_365:
             return days * Decimal(_MONTHS_PER_WINDOW) / _YEAR_DAYS
         return min(days / _MONTH_DAYS_360, Decimal(1))
+
+
+def _cumulated(
+    window: AccrualWindow,
+    ended_on: date | None,
+    excluded: frozenset[date],
+) -> Decimal:
+    """Return the rateos the summed days of the partial months accrue.
+
+    Returns:
+        One rateo for each 30 days and one for a remainder of 15 days
+        or more, at most 12.
+    """
+    days = sum(
+        accruing
+        for accruing, length in _month_days(window, ended_on, excluded)
+        if 0 < accruing < length
+    )
+    whole, rest = divmod(days, _CUMULATED_MONTH_DAYS)
+    units = whole + (1 if rest >= _CUMULATED_HALF else 0)
+    return Decimal(min(units, _MONTHS_PER_WINDOW))
 
 
 def _month_spans(

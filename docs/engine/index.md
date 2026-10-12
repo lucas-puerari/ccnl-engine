@@ -266,7 +266,10 @@ employment dates and never from the runs already closed:
   `days_360`, a twelfth per whole month and a 365th or 360th of the year
   per day of a month served in part (Sanità 2022-2024 art. 60 c. 4; Area I
   dirigenza 2006 art. 63 c. 4); `service_days_365`, a 365th of the year for
-  every day served (Funzioni Locali 2022 art. 75 c. 3). The decision then
+  every day served (Funzioni Locali 2022 art. 75 c. 3); `cumulated_fractions`,
+  a rateo per whole month, the days of the months worked in part summed
+  into a rateo for each 30 and one for a remainder of 15 or more (Pubblici
+  Esercizi art. 183 c. 2). The decision then
   records the `day_units` accrued beyond the whole months. A threshold
   can count working days instead of calendar days (`working_days`: Monday to
   Saturday, Cooperative sociali art. 79, "superiore ai 15 giorni
