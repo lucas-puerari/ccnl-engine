@@ -170,6 +170,9 @@ class ExtraMonthAccrualRule(BaseModel):
             on six days by art. 60).
         provenance: Source of the clause; ``missing`` is not allowed, a
             rule without a source is left out of the data instead.
+        valid_from: First day the clause applies, when a renewal changed
+            it; the months starting before it follow :attr:`previous`.
+        previous: The clause of the months before :attr:`valid_from`.
 
     Raises:
         ValueError: When a full 28-day month would not count, when the
@@ -183,6 +186,8 @@ class ExtraMonthAccrualRule(BaseModel):
     comparison: AccrualComparison
     working_days: bool = False
     provenance: RuleProvenance
+    valid_from: date | None = None
+    previous: "ExtraMonthAccrualRule | None" = None
 
     @model_validator(mode="after")
     def _check_threshold(self) -> Self:

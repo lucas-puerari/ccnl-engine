@@ -33,6 +33,7 @@ if TYPE_CHECKING:
 
     from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.calendar.models import WorkCalendar
+    from ccnl_engine.compensation.models import ExtraMonthAccrualRule
     from ccnl_engine.employment.fact.inputs import EmploymentPeriod
     from ccnl_engine.event.facade import WorkEvent
 
@@ -162,8 +163,18 @@ def month_accrual_rule(ccnl: CCNL) -> MonthAccrualRule:
             rule=accrual_rule_id(ccnl),
             provenance=MISSING_ACCRUAL_PROVENANCE,
         )
+    return _month_rule(ccnl, stored)
+
+
+def _month_rule(ccnl: CCNL, stored: ExtraMonthAccrualRule) -> MonthAccrualRule:
+    """Return the month rule of a stored clause and of the clauses before it.
+
+    Returns:
+        The rule, its :attr:`~MonthAccrualRule.previous` built likewise.
+    """
     location = stored.provenance.location
     section = None if location is None else location.section
+    previous = stored.previous
     return MonthAccrualRule(
         min_days=stored.min_days,
         source=f"CCNL {ccnl.meta.name}: {section or 'accrual clause'}",
@@ -171,4 +182,6 @@ def month_accrual_rule(ccnl: CCNL) -> MonthAccrualRule:
         working_days=stored.working_days,
         rule=accrual_rule_id(ccnl),
         provenance=stored.provenance,
+        valid_from=stored.valid_from,
+        previous=None if previous is None else _month_rule(ccnl, previous),
     )

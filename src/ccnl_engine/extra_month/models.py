@@ -95,6 +95,9 @@ class MonthAccrualRule:
             for a CCNL rule, :data:`DEFAULT_ACCRUAL_RULE_ID` for the default.
         provenance: Provenance of the rule, ``None`` when the caller built
             it or it is the bare engine default.
+        valid_from: First day the rule applies; a month starting before it
+            is counted with :attr:`previous`.  ``None`` for every month.
+        previous: Rule of the months before :attr:`valid_from`.
 
     Raises:
         ValueError: When a full 28-day month would not count or the
@@ -107,6 +110,8 @@ class MonthAccrualRule:
     working_days: bool = False
     rule: str = DEFAULT_ACCRUAL_RULE_ID
     provenance: RuleProvenance | None = None
+    valid_from: date | None = None
+    previous: MonthAccrualRule | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         if self.by_working_days:
@@ -119,6 +124,18 @@ class MonthAccrualRule:
                 f"{self.comparison.value!r}; got {self.min_days}"
             )
             raise ValueError(msg)
+
+    def at(self, day: date) -> MonthAccrualRule:
+        """Return the rule a month starting on ``day`` is counted with.
+
+        Returns:
+            :attr:`previous` (or its own earlier rule) before
+            :attr:`valid_from`, else this rule.
+        """
+        before = self.valid_from is not None and day < self.valid_from
+        if before and self.previous is not None:
+            return self.previous.at(day)
+        return self
 
     @property
     def by_working_days(self) -> bool:
@@ -167,15 +184,15 @@ class MonthAccrualRule:
         Returns:
             Qualifying months, from 0 to 12.
         """
-        if self.working_days:
-            spans = _month_spans(window, ended_on)
-            return sum(
-                1
-                for first, last, _ in spans
-                if self.counts(_working_days(first, last, non_accruing_days))
-            )
-        months = _month_days(window, ended_on, non_accruing_days)
-        return sum(1 for days, length in months if self.counts(days, length))
+        total = 0
+        for first, last, length in _month_spans(window, ended_on):
+            rule = self.at(_month_start(first))
+            if rule.working_days:
+                total += rule.counts(_working_days(first, last, non_accruing_days))
+            else:
+                days = _accruing_days(first, last, non_accruing_days)
+                total += rule.counts(days, length)
+        return total
 
     def day_units(
         self,
@@ -190,14 +207,18 @@ class MonthAccrualRule:
             Zero for a threshold rule; for a day-based rule the sum over
             the months of their share (:meth:`_month_units`), at most 12.
         """
-        if not self.by_working_days:
-            return Decimal(0)
-        if self.comparison is AccrualComparison.CUMULATED_FRACTIONS:
-            return _cumulated(window, ended_on, non_accruing_days)
         total = Decimal(0)
+        cumulated = 0
         for first, last, length in _month_spans(window, ended_on):
-            total += self._month_units(first, last, length, non_accruing_days)
-        return min(total, Decimal(_MONTHS_PER_WINDOW))
+            rule = self.at(_month_start(first))
+            if not rule.by_working_days:
+                continue
+            if rule.comparison is AccrualComparison.CUMULATED_FRACTIONS:
+                days = _accruing_days(first, last, non_accruing_days)
+                cumulated += days if 0 < days < length else 0
+                continue
+            total += rule._month_units(first, last, length, non_accruing_days)  # noqa: SLF001
+        return min(total + _cumulated(cumulated), Decimal(_MONTHS_PER_WINDOW))
 
     def _month_units(
         self, first: date, last: date, length: int, excluded: frozenset[date]
@@ -224,25 +245,24 @@ class MonthAccrualRule:
         return min(days / _MONTH_DAYS_360, Decimal(1))
 
 
-def _cumulated(
-    window: AccrualWindow,
-    ended_on: date | None,
-    excluded: frozenset[date],
-) -> Decimal:
+def _cumulated(days: int) -> Decimal:
     """Return the rateos the summed days of the partial months accrue.
 
     Returns:
-        One rateo for each 30 days and one for a remainder of 15 days
-        or more, at most 12.
+        One rateo for each 30 days and one for a remainder of 15 days or
+        more.
     """
-    days = sum(
-        accruing
-        for accruing, length in _month_days(window, ended_on, excluded)
-        if 0 < accruing < length
-    )
     whole, rest = divmod(days, _CUMULATED_MONTH_DAYS)
-    units = whole + (1 if rest >= _CUMULATED_HALF else 0)
-    return Decimal(min(units, _MONTHS_PER_WINDOW))
+    return Decimal(whole + (1 if rest >= _CUMULATED_HALF else 0))
+
+
+def _month_start(first: date) -> date:
+    """Return the first calendar day of the month of ``first``.
+
+    Returns:
+        The first day of the month.
+    """
+    return first.replace(day=1)
 
 
 def _month_spans(
