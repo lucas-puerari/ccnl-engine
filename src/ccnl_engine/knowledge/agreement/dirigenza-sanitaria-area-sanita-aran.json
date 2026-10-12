@@ -84,7 +84,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:00:00Z",
+              "extraction_timestamp": "2026-10-12T07:59:31Z",
               "verification_status": "unverified",
               "effective_from": "2024-01-23"
             },
@@ -176,7 +176,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-12T18:00:00Z",
+          "extraction_timestamp": "2026-10-12T07:59:31Z",
           "verification_status": "unverified",
           "effective_from": "2024-01-23"
         },
@@ -379,7 +379,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "87110435c7a12ac78bbf66a5fe11fa6d98e5ed3c8341a2d1da773f5115c468ee",
+    "source_hash": "946a1acb9110048175867e1b8f38cad7b8159fa273721b4011389d0850792ab6",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

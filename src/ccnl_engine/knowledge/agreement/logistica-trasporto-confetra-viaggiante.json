@@ -172,10 +172,10 @@
             "note": "Number of monthly payments read from the contract file; no clause is cited for it.",
             "extraction": {
               "method": "manual",
-              "extraction_timestamp": "2026-10-11T22:00:00Z",
+              "extraction_timestamp": "2026-10-11T19:57:35Z",
               "effective_from": "2025-01-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-10-11T22:00:00Z",
+              "verified_at": "2026-10-11T19:57:35Z",
               "verification_status": "verified",
               "review_id": "2026-10-11-ai"
             }
@@ -358,7 +358,7 @@
           "verification_status": "verified",
           "effective_from": "2025-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-11T22:00:00Z",
+          "verified_at": "2026-10-11T19:57:35Z",
           "review_id": "2026-10-11-ai"
         },
         "note": "Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
@@ -3357,7 +3357,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "8aa4f4392463668be8c9b704e4e3c727967ba94a7a42da5ba117d83cd97e81b2",
+    "source_hash": "0397c3f77e567db79f519e26b18bf235d3ca77b1100a32bc92be684e44776605",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3584,7 +3584,7 @@
           "verification_status": "verified",
           "effective_from": "2023-05-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-11T22:00:00Z",
+          "verified_at": "2026-10-11T19:57:35Z",
           "review_id": "2026-10-11-ai"
         }
       }
@@ -3618,7 +3618,7 @@
           "verification_status": "verified",
           "effective_from": "2023-05-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-11T22:00:00Z",
+          "verified_at": "2026-10-11T19:57:35Z",
           "review_id": "2026-10-11-ai"
         }
       }

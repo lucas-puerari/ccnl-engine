@@ -151,10 +151,10 @@
             "note": "Number of monthly payments read from the contract file; no clause is cited for it.",
             "extraction": {
               "method": "manual",
-              "extraction_timestamp": "2026-10-11T22:00:00Z",
+              "extraction_timestamp": "2026-10-11T19:57:35Z",
               "effective_from": "2025-01-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-10-11T22:00:00Z",
+              "verified_at": "2026-10-11T19:57:35Z",
               "verification_status": "verified",
               "review_id": "2026-10-11-ai"
             }
@@ -269,7 +269,7 @@
           "verification_status": "verified",
           "effective_from": "2020-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-11T22:00:00Z",
+          "verified_at": "2026-10-11T19:57:35Z",
           "review_id": "2026-10-11-ai"
         }
       }
@@ -299,7 +299,7 @@
           "verification_status": "verified",
           "effective_from": "2025-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-11T22:00:00Z",
+          "verified_at": "2026-10-11T19:57:35Z",
           "review_id": "2026-10-11-ai"
         },
         "note": "Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
@@ -338,7 +338,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
@@ -369,7 +369,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
@@ -400,7 +400,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA. The printed Totale of the 1.1.2027 table already includes the minimo increase of 1.6.2027; January 2027 is an EPA-only step (Legacoop circular of 19 December 2024, p. 2)."
@@ -431,7 +431,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
@@ -567,7 +567,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
@@ -598,7 +598,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
@@ -629,7 +629,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA. The printed Totale of the 1.1.2027 table already includes the minimo increase of 1.6.2027; January 2027 is an EPA-only step (Legacoop circular of 19 December 2024, p. 2)."
@@ -660,7 +660,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
@@ -796,7 +796,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
@@ -827,7 +827,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
@@ -858,7 +858,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA. The printed Totale of the 1.1.2027 table already includes the minimo increase of 1.6.2027; January 2027 is an EPA-only step (Legacoop circular of 19 December 2024, p. 2)."
@@ -889,7 +889,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
@@ -987,7 +987,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
@@ -1018,7 +1018,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
@@ -1049,7 +1049,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA. The printed Totale of the 1.1.2027 table already includes the minimo increase of 1.6.2027; January 2027 is an EPA-only step (Legacoop circular of 19 December 2024, p. 2)."
@@ -1080,7 +1080,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
@@ -1216,7 +1216,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
@@ -1247,7 +1247,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
@@ -1278,7 +1278,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA. The printed Totale of the 1.1.2027 table already includes the minimo increase of 1.6.2027; January 2027 is an EPA-only step (Legacoop circular of 19 December 2024, p. 2)."
@@ -1309,7 +1309,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
@@ -1445,7 +1445,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
@@ -1476,7 +1476,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
@@ -1507,7 +1507,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA. The printed Totale of the 1.1.2027 table already includes the minimo increase of 1.6.2027; January 2027 is an EPA-only step (Legacoop circular of 19 December 2024, p. 2)."
@@ -1538,7 +1538,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
@@ -1674,7 +1674,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
@@ -1705,7 +1705,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
@@ -1736,7 +1736,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA. The printed Totale of the 1.1.2027 table already includes the minimo increase of 1.6.2027; January 2027 is an EPA-only step (Legacoop circular of 19 December 2024, p. 2)."
@@ -1767,7 +1767,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
@@ -1903,7 +1903,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
@@ -1934,7 +1934,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
@@ -1965,7 +1965,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA. The printed Totale of the 1.1.2027 table already includes the minimo increase of 1.6.2027; January 2027 is an EPA-only step (Legacoop circular of 19 December 2024, p. 2)."
@@ -1996,7 +1996,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
@@ -2132,7 +2132,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
@@ -2163,7 +2163,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
@@ -2194,7 +2194,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA. The printed Totale of the 1.1.2027 table already includes the minimo increase of 1.6.2027; January 2027 is an EPA-only step (Legacoop circular of 19 December 2024, p. 2)."
@@ -2225,7 +2225,7 @@
                 "verification_status": "verified",
                 "effective_from": "2020-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-11T22:00:00Z",
+                "verified_at": "2026-10-11T19:57:35Z",
                 "review_id": "2026-10-11-ai"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
@@ -2263,10 +2263,10 @@
             },
             "extraction": {
               "method": "manual",
-              "extraction_timestamp": "2026-10-11T22:00:00Z",
+              "extraction_timestamp": "2026-10-11T19:57:35Z",
               "effective_from": "2025-01-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-10-11T22:00:00Z",
+              "verified_at": "2026-10-11T19:57:35Z",
               "verification_status": "verified",
               "review_id": "2026-10-11-ai"
             }
@@ -2409,7 +2409,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "90dabf83b7e50ff0ded72fcf7bb76ad81525fa108eceea09bca11cc9f3f961dd",
+    "source_hash": "b412b3a65626600d4b6b896fa7a6e0b5d6107f48090b2c3dd4a3c49087e658d6",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2587,7 +2587,7 @@
           "verification_status": "verified",
           "effective_from": "2023-05-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-11T22:00:00Z",
+          "verified_at": "2026-10-11T19:57:35Z",
           "review_id": "2026-10-11-ai"
         }
       }
@@ -2621,7 +2621,7 @@
           "verification_status": "verified",
           "effective_from": "2023-05-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-11T22:00:00Z",
+          "verified_at": "2026-10-11T19:57:35Z",
           "review_id": "2026-10-11-ai"
         }
       }

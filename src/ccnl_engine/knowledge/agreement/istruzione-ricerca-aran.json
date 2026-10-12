@@ -90,7 +90,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:00:00Z",
+              "extraction_timestamp": "2026-10-12T07:59:31Z",
               "verification_status": "unverified",
               "effective_from": "2007-11-29"
             },
@@ -6184,7 +6184,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-12T18:00:00Z",
+          "extraction_timestamp": "2026-10-12T07:59:31Z",
           "verification_status": "unverified",
           "effective_from": "2007-11-29"
         },
@@ -6222,11 +6222,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2023-02-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "16.427,76 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -6254,11 +6254,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2024-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "17.456,64 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -6286,11 +6286,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2025-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "17.815,80 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -6318,11 +6318,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "18.175,08 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -6350,11 +6350,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2027-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "18.485,88 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -6381,11 +6381,11 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-12T21:00:00Z",
+          "extraction_timestamp": "2026-10-12T08:24:13Z",
           "verification_status": "verified",
           "effective_from": "2024-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T21:00:00Z",
+          "verified_at": "2026-10-12T08:24:13Z",
           "review_id": "2026-10-12-ai"
         }
       }
@@ -6419,11 +6419,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2023-02-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "16.826,09 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -6451,11 +6451,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2024-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "17.879,93 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -6483,11 +6483,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2025-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "18.247,85 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -6515,11 +6515,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "18.615,77 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -6547,11 +6547,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2027-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "19.384,86 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -6578,11 +6578,11 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-12T21:00:00Z",
+          "extraction_timestamp": "2026-10-12T08:24:13Z",
           "verification_status": "verified",
           "effective_from": "2024-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T21:00:00Z",
+          "verified_at": "2026-10-12T08:24:13Z",
           "review_id": "2026-10-12-ai"
         }
       }
@@ -6616,11 +6616,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2023-02-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "18.312,16 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -6648,11 +6648,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2024-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "19.459,12 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -6680,11 +6680,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2025-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "19.859,44 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -6712,11 +6712,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "20.260,00 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -6744,11 +6744,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2027-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "20.606,44 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -6775,11 +6775,11 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-12T21:00:00Z",
+          "extraction_timestamp": "2026-10-12T08:24:13Z",
           "verification_status": "verified",
           "effective_from": "2024-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T21:00:00Z",
+          "verified_at": "2026-10-12T08:24:13Z",
           "review_id": "2026-10-12-ai"
         }
       }
@@ -6813,11 +6813,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2023-02-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "21.099,04 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -6845,11 +6845,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2024-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "22.420,48 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -6877,11 +6877,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2025-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "22.881,76 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -6909,11 +6909,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "23.343,16 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -6941,11 +6941,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2027-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "23.742,40 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -6972,11 +6972,11 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-12T21:00:00Z",
+          "extraction_timestamp": "2026-10-12T08:24:13Z",
           "verification_status": "verified",
           "effective_from": "2024-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T21:00:00Z",
+          "verified_at": "2026-10-12T08:24:13Z",
           "review_id": "2026-10-12-ai"
         }
       }
@@ -7010,11 +7010,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2023-02-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "21.099,04 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -7042,11 +7042,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2024-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "22.420,48 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -7074,11 +7074,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2025-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "22.881,76 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -7106,11 +7106,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "23.343,16 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -7138,11 +7138,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2027-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "23.742,40 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -7169,11 +7169,11 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-12T21:00:00Z",
+          "extraction_timestamp": "2026-10-12T08:24:13Z",
           "verification_status": "verified",
           "effective_from": "2024-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T21:00:00Z",
+          "verified_at": "2026-10-12T08:24:13Z",
           "review_id": "2026-10-12-ai"
         }
       }
@@ -7207,11 +7207,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2023-02-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "22.837,88 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -7239,11 +7239,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2024-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "24.268,28 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -7271,11 +7271,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2025-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "24.767,60 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -7303,11 +7303,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "25.267,04 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -7335,11 +7335,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2027-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "25.699,16 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -7366,11 +7366,11 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-12T21:00:00Z",
+          "extraction_timestamp": "2026-10-12T08:24:13Z",
           "verification_status": "verified",
           "effective_from": "2024-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T21:00:00Z",
+          "verified_at": "2026-10-12T08:24:13Z",
           "review_id": "2026-10-12-ai"
         }
       }
@@ -7404,11 +7404,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2023-02-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "22.837,88 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -7436,11 +7436,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2024-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "24.268,28 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -7468,11 +7468,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2025-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "24.767,60 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -7500,11 +7500,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "25.267,04 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -7532,11 +7532,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2027-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "25.699,16 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -7563,11 +7563,11 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-12T21:00:00Z",
+          "extraction_timestamp": "2026-10-12T08:24:13Z",
           "verification_status": "verified",
           "effective_from": "2024-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T21:00:00Z",
+          "verified_at": "2026-10-12T08:24:13Z",
           "review_id": "2026-10-12-ai"
         }
       }
@@ -7601,11 +7601,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2023-02-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "23.986,09 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -7633,11 +7633,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2024-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "25.488,37 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -7665,11 +7665,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2025-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "26.012,77 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -7697,11 +7697,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "26.537,29 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -7729,11 +7729,11 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T21:00:00Z",
+                "extraction_timestamp": "2026-10-12T08:24:13Z",
                 "verification_status": "verified",
                 "effective_from": "2027-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T21:00:00Z",
+                "verified_at": "2026-10-12T08:24:13Z",
                 "review_id": "2026-10-12-ai"
               },
               "transformation": "26.991,13 / 12. Annual tabellare of the fascia 0-8 of the table over 12: the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'."
@@ -7760,11 +7760,11 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-12T21:00:00Z",
+          "extraction_timestamp": "2026-10-12T08:24:13Z",
           "verification_status": "verified",
           "effective_from": "2024-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T21:00:00Z",
+          "verified_at": "2026-10-12T08:24:13Z",
           "review_id": "2026-10-12-ai"
         }
       }
@@ -7878,7 +7878,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1",
     "verification_status": "unverified",
-    "source_hash": "57e9d2b92488080313aa919bd6f33eea92afb371a6e98affa908c990dee79e76",
+    "source_hash": "7c0d26d2047a6a20055fbaac4628ea5c375d2fe479c96632ea642ad5e4446c76",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -8355,11 +8355,11 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-12T21:00:00Z",
+          "extraction_timestamp": "2026-10-12T08:24:13Z",
           "verification_status": "verified",
           "effective_from": "2007-11-29",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T21:00:00Z",
+          "verified_at": "2026-10-12T08:24:13Z",
           "review_id": "2026-10-12-ai"
         },
         "transformation": "32 days (c. 2), 30 for the first 3 years of service (cc. 3-4: 'Dopo 3 anni di servizio, a qualsiasi titolo prestato'). The CCNL counts the three years in any public administration ('a qualsiasi titolo prestato' / 'presso una qualsiasi pubblica amministrazione'); the tiers read the seniority with this employer, so a worker with earlier public service gets 26 (30) days when the text gives 28 (32): state the seniority with the earlier public service included."
@@ -8409,7 +8409,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-12T21:00:00Z",
+          "extraction_timestamp": "2026-10-12T08:24:13Z",
           "verification_status": "unverified",
           "effective_from": "2007-11-29"
         },

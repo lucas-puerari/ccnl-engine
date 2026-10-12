@@ -81,7 +81,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:00:00Z",
+              "extraction_timestamp": "2026-10-12T07:59:31Z",
               "verification_status": "unverified",
               "effective_from": "2007-05-14"
             },
@@ -173,7 +173,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-12T18:00:00Z",
+          "extraction_timestamp": "2026-10-12T07:59:31Z",
           "verification_status": "unverified",
           "effective_from": "2007-05-14"
         },
@@ -334,7 +334,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.truenumbers.it/ccnl-dirigenti-enti-locali-aumenti-arretrati/",
     "verification_status": "unverified",
-    "source_hash": "fa60fa7bf57aa9c028528c7179797e0a6c44c808d78cc7145aada023d225704e",
+    "source_hash": "73058acb61ca90c776fe17bf2a391f619f32be9cd780af7cceee5ed0bfedc6ee",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

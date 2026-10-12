@@ -13,7 +13,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/acconciatura-estetica-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "9b9786cc80f10444eff2130a4ade03378a150d1586295a3558109b33f27b0f65",
+      "source_hash": "ce9e96d506976503c581e4dbcc2889892c0895492990a3ed65604f49b488eade",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/acconciatura-estetica-confartigianato.json.gz"
@@ -268,7 +268,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/bancari-abi",
       "ruleset_version": "2026.2",
-      "source_hash": "ae313bdba3cb82c14134d27c3fc9cf107197be8f352d68dd4d888ed7d3581287",
+      "source_hash": "e9d3017ff1f35de58dcbe83a13be8adfe716596d94c2cc10f13dec8aa083b429",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/bancari-abi.json.gz"
@@ -404,7 +404,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/chimica-farmaceutica-federchimica",
       "ruleset_version": "2026.2",
-      "source_hash": "0fee14b03fde7e851ca33e1587177a04698034ec4d54ec21796cfbbb7f6ad6c0",
+      "source_hash": "1a721355c5fac50609e5460a70432fff92a27fc150ed157d57e83f3ebbf91f8d",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/chimica-farmaceutica-federchimica.json.gz"
@@ -455,7 +455,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/comunicazione-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "4e498a83cf9aec66105d1f58381cb235bc3af60e5c5996f6ab62ebf0f1e484f8",
+      "source_hash": "98a6655bd9836e237dad5bef0984ff95284248cf76c14f0fa9a009b22e2e648d",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/comunicazione-artigianato-confartigianato.json.gz"
@@ -472,7 +472,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/concia-unic",
       "ruleset_version": "2026.1",
-      "source_hash": "ff4056da9066e07de9c7003a696e9f9d9ae2bbce655a2994c60b3a39eec0249f",
+      "source_hash": "3cbe7d5488b957462b1f4c70b1b13c24fbe06df13b84a8c61728c019f9781ea9",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/concia-unic.json.gz"
@@ -574,7 +574,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/dirigenza-funzioni-centrali-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "f69ae307215f25f90a4f63553145ecb7299dae74bb67948fe6d57316e36cab88",
+      "source_hash": "5c6640ca1fc984cffc8d1cd794ee708741489b6501a9fe1a0bf01e3c0891cf03",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/dirigenza-funzioni-centrali-aran.json.gz"
@@ -591,7 +591,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/dirigenza-funzioni-locali-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "fa60fa7bf57aa9c028528c7179797e0a6c44c808d78cc7145aada023d225704e",
+      "source_hash": "73058acb61ca90c776fe17bf2a391f619f32be9cd780af7cceee5ed0bfedc6ee",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/dirigenza-funzioni-locali-aran.json.gz"
@@ -625,7 +625,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/dirigenza-sanitaria-area-sanita-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "87110435c7a12ac78bbf66a5fe11fa6d98e5ed3c8341a2d1da773f5115c468ee",
+      "source_hash": "946a1acb9110048175867e1b8f38cad7b8159fa273721b4011389d0850792ab6",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/dirigenza-sanitaria-area-sanita-aran.json.gz"
@@ -931,7 +931,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/funzioni-centrali-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "a2ded0e188bb7e2ef0064c54d2d64385d078905af176416f2fd56d3342462f5e",
+      "source_hash": "9751fbe8337ec2744845e0cb15675541867a081a8af0b51934c86f50f8fbff93",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/funzioni-centrali-aran.json.gz"
@@ -948,7 +948,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/funzioni-locali-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "5f3883a31a81db59740bf36216ca9609136ce81e7e559c5246342781fe510ad8",
+      "source_hash": "e7802ebce26688c5518e0ab9014a4b3bf7a76a03460729850e1fe4a628fc2873",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/funzioni-locali-aran.json.gz"
@@ -1067,7 +1067,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/industria-turistica-federturismo",
       "ruleset_version": "2026.2",
-      "source_hash": "bacdf344ab9a4ed7c2f6abb89f4d81191a1042dadff3f28fcdd15730ed60590a",
+      "source_hash": "dd7100486bdd48224c84ca2dc09f1d500f7186f7c07e3eece108cba53d51ffb0",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/industria-turistica-federturismo.json.gz"
@@ -1118,7 +1118,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/istruzione-ricerca-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "57e9d2b92488080313aa919bd6f33eea92afb371a6e98affa908c990dee79e76",
+      "source_hash": "7c0d26d2047a6a20055fbaac4628ea5c375d2fe479c96632ea642ad5e4446c76",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/istruzione-ricerca-aran.json.gz"
@@ -1186,7 +1186,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/lavoro-domestico-convivente-orario-ridotto",
       "ruleset_version": "2026.3",
-      "source_hash": "c089ac9163f653e1c2e976d295f568b009d1105ca001507963cd4845ebe1f10c",
+      "source_hash": "ef7d5e4bb9d6e1a3a520ce7f567ad11d01bb2cdfb9c744bcc071817b0094494d",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/lavoro-domestico-convivente-orario-ridotto.json.gz"
@@ -1203,7 +1203,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/lavoro-domestico-convivente",
       "ruleset_version": "2026.3",
-      "source_hash": "e8dd86017003757b2f323846aa08f8560ab6cb123a82fb9c749e77998c208722",
+      "source_hash": "8c5bf394f43d663cd90ace9c7f2c3a42bdb7ed45799050205c554ffeedd35fae",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/lavoro-domestico-convivente.json.gz"
@@ -1220,7 +1220,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/lavoro-domestico-non-convivente",
       "ruleset_version": "2026.3",
-      "source_hash": "fe56c072d389678895adb9f2c1039347d4dd428a02a68561392dd582e1bd8649",
+      "source_hash": "4fb26cc4d70ed71c0865311a243568c5bfff4d1cdf294ede63f91b0d69b6a1f4",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/lavoro-domestico-non-convivente.json.gz"
@@ -1271,7 +1271,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/logistica-trasporto-confetra-viaggiante",
       "ruleset_version": "2026.2",
-      "source_hash": "8aa4f4392463668be8c9b704e4e3c727967ba94a7a42da5ba117d83cd97e81b2",
+      "source_hash": "0397c3f77e567db79f519e26b18bf235d3ca77b1100a32bc92be684e44776605",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/logistica-trasporto-confetra-viaggiante.json.gz"
@@ -1288,7 +1288,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/logistica-trasporto-confetra",
       "ruleset_version": "2026.2",
-      "source_hash": "90dabf83b7e50ff0ded72fcf7bb76ad81525fa108eceea09bca11cc9f3f961dd",
+      "source_hash": "b412b3a65626600d4b6b896fa7a6e0b5d6107f48090b2c3dd4a3c49087e658d6",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/logistica-trasporto-confetra.json.gz"
@@ -1356,7 +1356,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-artigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "82b4a032ef920ca2c7717e91a4f5101f6dab7ba6ca8b09007d01e80431aaac8a",
+      "source_hash": "f79df0c142724cbcf4c0776f89ac08431e30687cefd5e14cc30eed4414f675b4",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/metalmeccanico-artigianato.json.gz"
@@ -1373,7 +1373,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-confapi",
       "ruleset_version": "2026.2",
-      "source_hash": "1d57b89157458e00c565238fd1f67c64092a33f2b07fbc9aa5d1f9f3cfe33efb",
+      "source_hash": "ed0a658673a0f37cd67936bbdaf37ed13472dbef97db3511b1861b947bebff88",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/metalmeccanico-confapi.json.gz"
@@ -1407,7 +1407,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-federmeccanica",
       "ruleset_version": "2026.3",
-      "source_hash": "db33ea04688b8bd7005eea5f4377c8fc71d077e69e3e58293a4bea0b13d2dff4",
+      "source_hash": "0108a9c28b2f714837a7e0eb8c764e7b7c46ff5b3231e3ac56ff95f330e856f2",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-federmeccanica.json.gz"
@@ -1560,7 +1560,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/panificazione-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "23719c5252f063cd375e01a16656f5ecff52992b043b4527895705b29c9f8c9d",
+      "source_hash": "9e0cf7e7091c183774f80f325cd2f7bb1ae55eb131126d63b2e02df4b22f4636",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/panificazione-artigianato-confartigianato.json.gz"
@@ -1645,7 +1645,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/pubblici-esercizi-fipe-angem-ristorazione-collettiva",
       "ruleset_version": "2026.2",
-      "source_hash": "70e6f40a537d62194776795693411e1c07d1c9a468545cac00976dd2195562d1",
+      "source_hash": "d45eed4f8fa3297c080a15c39e00b66768b0c65dd5a755b1a50415306b163e26",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/pubblici-esercizi-fipe-angem-ristorazione-collettiva.json.gz"
@@ -1662,7 +1662,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/pubblici-esercizi-fipe-angem",
       "ruleset_version": "2026.2",
-      "source_hash": "e899af5c73548e8ce934c5b6ddd1b2640f9cebe29608e43c7e4027cc6c452b26",
+      "source_hash": "16f2940df5656e6cb1ce758e744ba936f4e6dfd74892daf5c0529e19dea384d4",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/pubblici-esercizi-fipe-angem.json.gz"
@@ -1764,7 +1764,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/sanita-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "84f1f0d406763f3736b999a43598a9681981407e42108de336b0fcc9e6dbbdda",
+      "source_hash": "da543ab4d78b73f123785a3cd2583dd95200cf4a900ee4e487430c7369662a9f",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/sanita-aran.json.gz"
@@ -1968,7 +1968,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/tessile-moda-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "209d58820d5a2625285993409e361e7c202307313f96d7fdfa8a8d603da814a6",
+      "source_hash": "e92acce7e545f663aad6b5be3ee15d1297f6c84e5eb2e5e88ea5a1a7ed4814a8",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/tessile-moda-artigianato-confartigianato.json.gz"
@@ -2070,7 +2070,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-confesercenti",
       "ruleset_version": "2026.2",
-      "source_hash": "1cb3e5dedbc1ed014763e1236ac05550b6330f4f1805ab12ea248269445d76ed",
+      "source_hash": "601a51ce26b97bacf4505b675247a29eae2f712135c2e0fc9a3bd6400a5907e2",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/turismo-confesercenti.json.gz"
@@ -2087,7 +2087,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-federalberghi",
       "ruleset_version": "2026.2",
-      "source_hash": "2289b2790e61e34d0dd6a00fe8b55b8f6170539051cb4673654daf8554f8e799",
+      "source_hash": "6e43e5664858bb5e76dc1f8cfb65811c5df8c7a3a487b4f5fb09eaee47014c68",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/turismo-federalberghi.json.gz"
@@ -2308,7 +2308,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "inps/2026/lavoro-domestico",
       "ruleset_version": "2026.1",
-      "source_hash": "6e8b905fdecefcab5d4ed8aca3ce41383a18614b84ff1b1368c624d8dbd3e786",
+      "source_hash": "5483b56a2581b9656f8ca8a7648c0189b53fe63c59092066952c6bad89a0db85",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "contribution/2026/lavoro-domestico.json.gz"
@@ -2495,7 +2495,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/family-deductions",
       "ruleset_version": "2026.2",
-      "source_hash": "b2d3a92d84f234d56be78a1683178bf410ce76884f71998281c0851141e9b499",
+      "source_hash": "b5e503dcb9586b464c1857d7277dacb1731ea76ff639d82b6d7d48b1c5e8bc20",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "family/2026.json.gz"
@@ -2565,7 +2565,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/agricoltura",
       "ruleset_version": "2026.1",
-      "source_hash": "8248542dc6e3994c951e7caa16ecf8a2fedbee7184a4865ee40e5fd94c1723e9",
+      "source_hash": "26743b77caf5feac75870aa696203d31dc48abb48dddb8502cb053777ae15f89",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/agricoltura.json.gz"
@@ -2582,7 +2582,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/artigianato",
       "ruleset_version": "2026.1",
-      "source_hash": "a7fb45c9373e3515fcb1930319884f5b561e6c06c92460d6fdd2fe8f059daa62",
+      "source_hash": "8f1c9cddcf7bc3defb603109c96f623c4a86aaa7f6046be053df42cca9b90eba",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/artigianato.json.gz"
@@ -2599,7 +2599,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/credito",
       "ruleset_version": "2026.1",
-      "source_hash": "2fbdb5d5e389a12d6ff9c2bb755d097177dbe9582a3ded3219f130dadc4a221c",
+      "source_hash": "de69a0dc50f313110719b9613a5ad9080c3db48842c1646f313d76943a492030",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/credito.json.gz"
@@ -2616,7 +2616,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/edilizia",
       "ruleset_version": "2026.1",
-      "source_hash": "4a2ffdbc9e7a2e46de05f7b5dea4c2216dfe2964be1b1674005e77fd095324bc",
+      "source_hash": "423e0ed00d70b16e79a9823694e5d94c74507eafe794b44674c6b5fb94707651",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/edilizia.json.gz"
@@ -2633,7 +2633,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/industria",
       "ruleset_version": "2026.1",
-      "source_hash": "db11c8e9b3215dd7790f290e1a28fba2be42e96e1fe0abcdbe048ed64503a82b",
+      "source_hash": "82af205c9b9e7468239fd69096877177897b3126367b8bcbf2954d8d91891d07",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/industria.json.gz"
@@ -2650,7 +2650,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/lavoro-domestico",
       "ruleset_version": "2026.1",
-      "source_hash": "df059fb4fe24b007581cf0289c082eee5197ff399ee18a53d2085c9538b071b1",
+      "source_hash": "6173f123e51288b3e6db505929a3f02cf56d0e7db2b88d8cd27a1ac76b216524",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/lavoro-domestico.json.gz"
@@ -2667,7 +2667,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/pubblica-amministrazione",
       "ruleset_version": "2026.1",
-      "source_hash": "5cd8c2296a1eb0757046c2011e8076c3f1509b3067654ef65fcbcc546e09ee37",
+      "source_hash": "8e08b7679b07bf0f3bccb85fd45982ef1e8c30dc8166f3643d8a6d6e579a959b",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/pubblica-amministrazione.json.gz"
@@ -2684,7 +2684,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/terziario",
       "ruleset_version": "2026.1",
-      "source_hash": "ac63f9a5712a0d36210553da65e5c6c62138445739f2e1bace7554847edf6ecf",
+      "source_hash": "104520587cb8c8867413ac1dc9593ecc5478e415187fa0f789307887ef5ede95",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/terziario.json.gz"
@@ -2905,7 +2905,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "surtax/2026/regionale",
       "ruleset_version": "2026.2",
-      "source_hash": "8a0d4c0adb386c4fecc495434287aa4bd59881632262ab3d1cee73ac1864b712",
+      "source_hash": "3fbfa0ab4701ea355acb79a1ea43210764c9a1a36997dc93e20b68b830907b09",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "surtax/regional/2026.json.gz"
@@ -2939,7 +2939,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/somma-esente",
       "ruleset_version": "2026.1",
-      "source_hash": "046af61cce0daae4df5f4a94202249cd0d8539cb92e58839cd10169a8341ebec",
+      "source_hash": "ae90b2bf39b1366b344802586b5da918f0d4147dd78e476cbc8e6f8fef7e6d20",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "tax_credit/somma_esente/2026.json.gz"

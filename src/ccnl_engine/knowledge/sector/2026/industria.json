@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "D.P.R. 917/1986 (TUIR) artt. 11 and 13; D.L. 3/2020 art. 1; L. 207/2024 art. 1 c. 6; L. 199/2025 art. 1; c.c. art. 2120",
     "verification_status": "unverified",
-    "source_hash": "db11c8e9b3215dd7790f290e1a28fba2be42e96e1fe0abcdbe048ed64503a82b",
+    "source_hash": "82af205c9b9e7468239fd69096877177897b3126367b8bcbf2954d8d91891d07",
     "source_type": "official_primary"
   },
   "irpef_brackets": [
@@ -143,11 +143,11 @@
       "extraction": {
         "method": "ai",
         "model": "claude-opus-5-5",
-        "extraction_timestamp": "2026-10-12T20:00:00Z",
+        "extraction_timestamp": "2026-10-12T08:12:31Z",
         "effective_from": "2026-01-01",
         "effective_until": "2026-12-31",
         "verified_by": "claude-opus-5-5",
-        "verified_at": "2026-10-12T20:00:00Z",
+        "verified_at": "2026-10-12T08:12:31Z",
         "verification_status": "verified"
       }
     }
@@ -175,11 +175,11 @@
       "extraction": {
         "method": "ai",
         "model": "claude-opus-5-5",
-        "extraction_timestamp": "2026-10-12T20:00:00Z",
+        "extraction_timestamp": "2026-10-12T08:12:31Z",
         "effective_from": "2026-01-01",
         "effective_until": "2026-12-31",
         "verified_by": "claude-opus-5-5",
-        "verified_at": "2026-10-12T20:00:00Z",
+        "verified_at": "2026-10-12T08:12:31Z",
         "verification_status": "verified"
       }
     }
@@ -205,11 +205,11 @@
       "extraction": {
         "method": "ai",
         "model": "claude-opus-5-5",
-        "extraction_timestamp": "2026-10-12T20:00:00Z",
+        "extraction_timestamp": "2026-10-12T08:12:31Z",
         "effective_from": "2026-01-01",
         "effective_until": "2026-12-31",
         "verified_by": "claude-opus-5-5",
-        "verified_at": "2026-10-12T20:00:00Z",
+        "verified_at": "2026-10-12T08:12:31Z",
         "verification_status": "verified"
       }
     }
@@ -247,11 +247,11 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-12T20:00:00Z",
+          "extraction_timestamp": "2026-10-12T08:12:31Z",
           "effective_from": "2026-01-01",
           "effective_until": "2026-12-31",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T20:00:00Z",
+          "verified_at": "2026-10-12T08:12:31Z",
           "verification_status": "verified"
         }
       }
@@ -274,11 +274,11 @@
       "extraction": {
         "method": "ai",
         "model": "claude-opus-5-5",
-        "extraction_timestamp": "2026-10-12T20:00:00Z",
+        "extraction_timestamp": "2026-10-12T08:12:31Z",
         "effective_from": "2026-01-01",
         "effective_until": "2026-12-31",
         "verified_by": "claude-opus-5-5",
-        "verified_at": "2026-10-12T20:00:00Z",
+        "verified_at": "2026-10-12T08:12:31Z",
         "verification_status": "verified"
       }
     }
@@ -310,11 +310,11 @@
     "extraction": {
       "method": "ai",
       "model": "claude-opus-5-5",
-      "extraction_timestamp": "2026-10-12T20:00:00Z",
+      "extraction_timestamp": "2026-10-12T08:12:31Z",
       "effective_from": "2026-01-01",
       "effective_until": "2026-12-31",
       "verified_by": "claude-opus-5-5",
-      "verified_at": "2026-10-12T20:00:00Z",
+      "verified_at": "2026-10-12T08:12:31Z",
       "verification_status": "verified"
     }
   },
@@ -336,11 +336,11 @@
     "extraction": {
       "method": "ai",
       "model": "claude-opus-5-5",
-      "extraction_timestamp": "2026-10-12T20:00:00Z",
+      "extraction_timestamp": "2026-10-12T08:12:31Z",
       "effective_from": "2026-01-01",
       "effective_until": "2026-12-31",
       "verified_by": "claude-opus-5-5",
-      "verified_at": "2026-10-12T20:00:00Z",
+      "verified_at": "2026-10-12T08:12:31Z",
       "verification_status": "verified"
     }
   },
@@ -364,11 +364,11 @@
       "extraction": {
         "method": "ai",
         "model": "claude-opus-5-5",
-        "extraction_timestamp": "2026-10-12T20:00:00Z",
+        "extraction_timestamp": "2026-10-12T08:12:31Z",
         "effective_from": "2026-01-01",
         "effective_until": "2026-12-31",
         "verified_by": "claude-opus-5-5",
-        "verified_at": "2026-10-12T20:00:00Z",
+        "verified_at": "2026-10-12T08:12:31Z",
         "verification_status": "verified"
       }
     }

@@ -309,7 +309,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-12T18:00:00Z",
+          "extraction_timestamp": "2026-10-12T07:59:31Z",
           "verification_status": "unverified",
           "effective_from": "2024-06-06"
         },
@@ -1772,7 +1772,7 @@
     "effective_until": null,
     "source": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "23719c5252f063cd375e01a16656f5ecff52992b043b4527895705b29c9f8c9d",
+    "source_hash": "9e0cf7e7091c183774f80f325cd2f7bb1ae55eb131126d63b2e02df4b22f4636",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

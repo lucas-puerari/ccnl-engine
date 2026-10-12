@@ -41,7 +41,7 @@
           "effective_from": "2026-01-01",
           "effective_until": "2026-12-31",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T20:00:00Z",
+          "verified_at": "2026-10-12T08:12:31Z",
           "verification_status": "verified"
         },
         "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=01&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
@@ -73,7 +73,7 @@
           "effective_from": "2026-01-01",
           "effective_until": "2026-12-31",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T20:00:00Z",
+          "verified_at": "2026-10-12T08:12:31Z",
           "verification_status": "verified"
         },
         "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=02&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
@@ -125,7 +125,7 @@
           "effective_from": "2026-01-01",
           "effective_until": "2026-12-31",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T20:00:00Z",
+          "verified_at": "2026-10-12T08:12:31Z",
           "verification_status": "verified"
         },
         "transformation": "Disposizione b), 125 euro times (income less 50,000) over 25,000 with a cap of 125 euro, is stored as a deduction of 125 euro phased in over 25,000 euro above 50,000.",
@@ -158,7 +158,7 @@
           "effective_from": "2026-01-01",
           "effective_until": "2026-12-31",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T20:00:00Z",
+          "verified_at": "2026-10-12T08:12:31Z",
           "verification_status": "verified"
         },
         "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=04&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
@@ -203,7 +203,7 @@
           "effective_from": "2026-01-01",
           "effective_until": "2026-12-31",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T20:00:00Z",
+          "verified_at": "2026-10-12T08:12:31Z",
           "verification_status": "verified"
         },
         "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=05&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
@@ -247,7 +247,7 @@
           "effective_from": "2026-01-01",
           "effective_until": "2026-12-31",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T20:00:00Z",
+          "verified_at": "2026-10-12T08:12:31Z",
           "verification_status": "verified"
         },
         "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=06&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
@@ -283,7 +283,7 @@
           "effective_from": "2026-01-01",
           "effective_until": "2026-12-31",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T20:00:00Z",
+          "verified_at": "2026-10-12T08:12:31Z",
           "verification_status": "verified"
         },
         "transformation": "MEF lists 0.70% up to 15,000 euro and 1.23% above; its disposizione particolare applies 0.70% to the whole income up to 15,000 euro and 1.23% to the whole income above, stored as a single 1.23% bracket with a whole-income rate of 0.70% up to 15,000 euro.",
@@ -339,7 +339,7 @@
           "effective_from": "2026-01-01",
           "effective_until": "2026-12-31",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T20:00:00Z",
+          "verified_at": "2026-10-12T08:12:31Z",
           "verification_status": "verified"
         },
         "transformation": "The 1.73% rate for taxable income up to 28,000 euro is stored as a whole-income rate; the detrazione for income from 28,001 to 30,000 euro starts above 28,000 euro.",
@@ -380,7 +380,7 @@
           "effective_from": "2026-01-01",
           "effective_until": "2026-12-31",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T20:00:00Z",
+          "verified_at": "2026-10-12T08:12:31Z",
           "verification_status": "verified"
         },
         "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=09&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
@@ -424,7 +424,7 @@
           "effective_from": "2026-01-01",
           "effective_until": "2026-12-31",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T20:00:00Z",
+          "verified_at": "2026-10-12T08:12:31Z",
           "verification_status": "verified"
         },
         "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=10&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
@@ -469,7 +469,7 @@
           "effective_from": "2026-01-01",
           "effective_until": "2026-12-31",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T20:00:00Z",
+          "verified_at": "2026-10-12T08:12:31Z",
           "verification_status": "verified"
         },
         "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=11&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
@@ -513,7 +513,7 @@
           "effective_from": "2026-01-01",
           "effective_until": "2026-12-31",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T20:00:00Z",
+          "verified_at": "2026-10-12T08:12:31Z",
           "verification_status": "verified"
         },
         "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=12&anno=2026&delibera=1. MEF lists two delibere for 2026; the one published on 19 June 2026 (delibera=1) supersedes the one published on 29 January 2026 (delibera=2: 1.73/1.93/3.33/3.33%). Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
@@ -558,7 +558,7 @@
           "effective_from": "2026-01-01",
           "effective_until": "2026-12-31",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T20:00:00Z",
+          "verified_at": "2026-10-12T08:12:31Z",
           "verification_status": "verified"
         },
         "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=13&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
@@ -603,7 +603,7 @@
           "effective_from": "2026-01-01",
           "effective_until": "2026-12-31",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T20:00:00Z",
+          "verified_at": "2026-10-12T08:12:31Z",
           "verification_status": "verified"
         },
         "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=14&anno=2026&delibera=1. MEF lists two delibere for 2026; the one published on 29 May 2026 (delibera=1), which raises the rates to cover the 2025 health deficit, supersedes the one published on 28 January 2026 (delibera=2: 1.33/1.43/1.63/1.85%). Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
@@ -636,7 +636,7 @@
           "effective_from": "2026-01-01",
           "effective_until": "2026-12-31",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T20:00:00Z",
+          "verified_at": "2026-10-12T08:12:31Z",
           "verification_status": "verified"
         },
         "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=15&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
@@ -668,7 +668,7 @@
           "effective_from": "2026-01-01",
           "effective_until": "2026-12-31",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T20:00:00Z",
+          "verified_at": "2026-10-12T08:12:31Z",
           "verification_status": "verified"
         },
         "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=16&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
@@ -712,7 +712,7 @@
           "effective_from": "2026-01-01",
           "effective_until": "2026-12-31",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T20:00:00Z",
+          "verified_at": "2026-10-12T08:12:31Z",
           "verification_status": "verified"
         },
         "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=17&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
@@ -758,7 +758,7 @@
           "effective_from": "2026-01-01",
           "effective_until": "2026-12-31",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T20:00:00Z",
+          "verified_at": "2026-10-12T08:12:31Z",
           "verification_status": "verified"
         },
         "transformation": "The deduction of 30,000 euro from a taxable income up to 30,000 euro leaves no base, so it is stored as an exemption threshold of 30,000 euro.",
@@ -814,7 +814,7 @@
           "effective_from": "2026-01-01",
           "effective_until": "2026-12-31",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T20:00:00Z",
+          "verified_at": "2026-10-12T08:12:31Z",
           "verification_status": "verified"
         },
         "transformation": "Up to 28,000 euro the increases of 0.50% (first bracket) and 1.79% (second bracket) do not apply: 1.73 - 0.50 = 3.02 - 1.79 = 1.23%, stored as a whole-income rate of 1.23% up to 28,000 euro. The detrazione for income from 28,001 to 50,000 euro starts above 28,000 euro.",
@@ -848,7 +848,7 @@
           "effective_from": "2026-01-01",
           "effective_until": "2026-12-31",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T20:00:00Z",
+          "verified_at": "2026-10-12T08:12:31Z",
           "verification_status": "verified"
         },
         "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=20&anno=2026. The exemption is on reddito complessivo up to 15,000 euro; The engine tests the income limits on the IRPEF taxable income of the employment. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
@@ -881,7 +881,7 @@
           "effective_from": "2026-01-01",
           "effective_until": "2026-12-31",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-12T20:00:00Z",
+          "verified_at": "2026-10-12T08:12:31Z",
           "verification_status": "verified"
         },
         "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=21&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
@@ -896,7 +896,7 @@
     "published_at": "2026-09-27",
     "source": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/sceltaregione.htm",
     "verification_status": "unverified",
-    "source_hash": "8a0d4c0adb386c4fecc495434287aa4bd59881632262ab3d1cee73ac1864b712",
+    "source_hash": "3fbfa0ab4701ea355acb79a1ea43210764c9a1a36997dc93e20b68b830907b09",
     "source_type": "official_primary"
   },
   "provenance": {
@@ -915,11 +915,11 @@
     "extraction": {
       "method": "ai",
       "model": "claude-opus-5-5",
-      "extraction_timestamp": "2026-10-12T20:00:00Z",
+      "extraction_timestamp": "2026-10-12T08:12:31Z",
       "effective_from": "2026-01-01",
       "effective_until": "2026-12-31",
       "verified_by": "claude-opus-5-5",
-      "verified_at": "2026-10-12T20:00:00Z",
+      "verified_at": "2026-10-12T08:12:31Z",
       "verification_status": "verified"
     }
   }
