@@ -346,6 +346,24 @@ def _sickness_import(known_from: date | None) -> PeriodInput:
     return _march(opening, episode)
 
 
+def _fixed_term_sickness(worked: int | None) -> PeriodInput:
+    """Return a five-day episode of a fixed-term worker, its days of work given.
+
+    Returns:
+        The March run; with 200 days of work before it the limit of D.L.
+        463/1983 art. 5 leaves every day paid.
+    """
+    episode = SicknessEpisode(
+        "FT", date(2026, 3, 9), date(2026, 3, 13), prior_worked_days=worked
+    )
+    run = _march(PeriodState.zero(), episode)
+    employment = replace(
+        _EMPLOYMENT,
+        contract_type=FixedTerm(renewals=0, naspi_exclusion=NaspiExclusion.NONE),
+    )
+    return replace(run, employment=employment)
+
+
 def sickness_cases[C](
     case: Callable[[PeriodInput, PeriodInput, str], C],
 ) -> Mapping[str, tuple[C, ...]]:
@@ -360,6 +378,13 @@ def sickness_cases[C](
                 _short_absences(False),
                 _short_absences(None),
                 "short_absence_exempt",
+            ),
+        ),
+        "SicknessEpisode.prior_worked_days": (
+            case(
+                _fixed_term_sickness(200),
+                _fixed_term_sickness(None),
+                "prior_worked_days",
             ),
         ),
         "OpeningBalances.sickness_known_from": (

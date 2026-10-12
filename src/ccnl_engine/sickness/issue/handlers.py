@@ -54,6 +54,8 @@ QUOTA_MISSING = "sickness_daily_quota_missing"
 BEYOND_COMPORTO = "sickness_beyond_comporto"
 #: The bundle does not say whether INPS pays the worker.
 COVER_UNKNOWN = "sickness_inps_cover_unknown"
+#: A fixed-term episode does not state the days of work before it.
+PRIOR_WORK_UNKNOWN = "sickness_fixed_term_prior_work_unknown"
 _NONE = "none"
 _ZERO = Decimal(0)
 
@@ -128,6 +130,23 @@ def episode_issues(
                 "are paid as if INPS did not, at the CCNL rate only",
                 CalculationStatus.PROVISIONAL,
                 terms.cover_fact,
+            )
+        )
+    if (
+        rules is not None
+        and rules.fixed_term
+        and episode.prior_worked_days is None
+        and kinds - {SickDayKind.BEYOND_COMPORTO}
+    ):
+        issues.append(
+            _issue(
+                PRIOR_WORK_UNKNOWN,
+                f"sickness episode '{episode.episode_id}': a fixed-term "
+                "contract pays sickness for no more days than those of work "
+                "in the 12 months before (D.L. 463/1983 art. 5); state "
+                "prior_worked_days, the days are paid without that limit",
+                CalculationStatus.PROVISIONAL,
+                "prior_worked_days",
             )
         )
     if pay.report is not None:

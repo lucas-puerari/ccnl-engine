@@ -31,7 +31,7 @@ amounts are `Decimal` values in EUR, validated on construction.
 | `HolidayWorkEvent` | `supplement_amount` | Public holiday or weekly rest-day supplement; INPS and IRPEF, no TFR |
 | `ShiftWorkEvent` | `supplement_amount` | Shift allowance; INPS and IRPEF, no TFR |
 | `AbsenceEvent` | `hours`, `hourly_rate`, `end_date`, `suspends_accrual` | Unpaid absence deducted from pay; reduces the INPS and TFR base |
-| `SicknessEpisode` | `episode_id`, `started_on`, `ended_on`, `relapse_of` | Sickness episode; the engine derives the deduction, INPS indemnity, CCNL integration and carenza pay of the days in the run's month; see [Sickness](#sickness) |
+| `SicknessEpisode` | `episode_id`, `started_on`, `ended_on`, `relapse_of`, `prior_worked_days` (fixed-term) | Sickness episode; the engine derives the deduction, INPS indemnity, CCNL integration and carenza pay of the days in the run's month; see [Sickness](#sickness) |
 | `SickLeaveEvent` | `amount`, `sick_days`, `waiting_period_days` | Sick pay the caller computed: an override of the engine, never payable; INPS and IRPEF, no TFR |
 | `FringeEvent` | `amount` | Fringe benefit (art. 51 c. 3 TUIR); exempt while the year total stays within the threshold, then the whole year total is taxable; see [Fringe benefits](#fringe-benefits) |
 | `WelfareEvent` | `amount` | Welfare benefit; exempt from INPS and IRPEF, no TFR |
@@ -118,6 +118,17 @@ it continues for a relapse. The index sets:
 | 4-20 | 50% | the higher of the CCNL tier rate and the INPS rate |
 | 21-180 | 66.66% | the same |
 | past the comporto | left out, `incomplete` issue | left out |
+
+A fixed-term contract pays sickness for no more days than those of work in
+the 12 months before the episode, every employer counted
+(`SicknessEpisode.prior_worked_days`, D.L. 463/1983 art. 5 c. 1); with 30
+days or fewer, for at most 30 days in the calendar year, the INPS share
+paid by INPS directly (c. 3). The employer advances the INPS share only for
+the calendar days of the employment in those 12 months; INPS pays the later
+days directly (c. 5), so their share is not on the payslip. The days past
+the limit are unpaid sickness (`fixed_term_limit`, deducted). Without
+`prior_worked_days` the limit is not applied and the run has a provisional
+`sickness_fixed_term_prior_work_unknown` issue.
 
 A CCNL whose workers INPS indemnifies at other rates names the regime in
 `work_rules.sickness_rules.inps_regime`; its bands replace the ones above,
@@ -224,6 +235,7 @@ only when it could change a day the run pays:
 | `sickness_history_unknown` | days before the recorded history could pass a threshold | `OpeningBalances.sickness_known_from` (the hire date when the imported episodes are complete), or `Employment.employment_period` |
 | `sickness_seniority_unknown` | the counts pass the days of the first band | `Employment.seniority` |
 | `sickness_short_absence_exemption_unknown` | a short absence could be reduced | `SicknessEpisode.short_absence_exempt` |
+| `sickness_fixed_term_prior_work_unknown` | a fixed-term episode without its days of work before it | `SicknessEpisode.prior_worked_days` |
 | `sickness_seniority_band_changes` | the band changes within the days paid | not modelled |
 | `sickness_hospital_stay_not_modelled` | a day is paid at 80% (a hospital stay over 10 days is paid in full) | not modelled |
 | `sickness_fixed_term_proportion` | a fixed-term contract (periods scaled to its length) | not modelled |

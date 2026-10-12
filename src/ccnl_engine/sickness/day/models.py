@@ -51,12 +51,15 @@ class SickPayRules:
         ccnl: CCNL integration rates, tiers and comporto.
         worker: Seniority, hire date and known sickness history, read by
             a cumulated CCNL treatment.
+        fixed_term: Whether the contract is fixed-term, whose sickness pay
+            is limited by D.L. 463/1983 art. 5.
     """
 
     inps: InpsSickPayRates
     inps_cover: bool | None
     ccnl: SicknessRules
     worker: SicknessWorker = field(default_factory=SicknessWorker)
+    fixed_term: bool = False
 
     def target_rate(self, index: int) -> Decimal:
         """Return the CCNL integration target of episode day ``index``.
