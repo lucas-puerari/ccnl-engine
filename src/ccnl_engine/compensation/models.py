@@ -1,5 +1,6 @@
 """Compensation, allowance, and level models for CCNL contracts."""
 
+from datetime import date
 from decimal import Decimal
 from enum import StrEnum
 from typing import Self
@@ -35,6 +36,10 @@ class Allowance(BaseModel):
     percentage together with the base salary; a CCNL that lists the reduced
     elements exempts every allowance it does not list.
 
+    ``in_service_on`` limits the allowance to the workers in service on
+    that day (Logistica Confetra art. 60 c. 8: the EDR of the workers "in
+    servizio alla data del 26 gennaio 2011"): it is paid only when the
+    employment started on or before it, and not when the start is unknown.
     ``service_months_threshold`` makes the allowance conditional: it is
     included only when the recognised seniority (``Employment.seniority``)
     is known and is at least this many months on the run. When the
@@ -72,6 +77,7 @@ class Allowance(BaseModel):
     in_kind: bool = False
     replaced_by_provincial_element: bool = False
     service_months_threshold: int | None = Field(default=None, ge=0)
+    in_service_on: date | None = None
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")

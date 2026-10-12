@@ -91,6 +91,10 @@ def _level_seniority(
         return None
 
 
+#: ``months_threshold`` of each extra month, as ``for_extra_month`` takes it.
+_EXTRA_MONTH_THRESHOLD = {"thirteenth": 13, "fourteenth": 14}
+
+
 def _level_chain(
     ccnl: CCNL,
     level: Level,
@@ -128,6 +132,7 @@ def _level_chain(
             if _allowance_active(a, roles, seniority_months, as_of)
         )
         base = level.base_salary.value_at(as_of)
+    excluded = ccnl.parameters.seniority_increments.excluded_from_extra_months
     return MonthlyPayChain(
         base=base,
         seniority=seniority,
@@ -136,5 +141,8 @@ def _level_chain(
             (f"{ccnl.meta.ccnl_id}/{APPRENTICE_SENIORITY_VARIANT}",)
             if unsourced
             else ()
+        ),
+        seniority_excluded_from=frozenset(
+            _EXTRA_MONTH_THRESHOLD[kind.value] for kind in excluded
         ),
     )
