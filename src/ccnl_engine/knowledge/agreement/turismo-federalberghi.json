@@ -268,7 +268,35 @@
           "verification_status": "unverified",
           "effective_from": "2024-07-01"
         },
-        "note": "Rule of the renewal in force from 1 July 2024; before it the CCNL counted a fraction of at least 15 days as a month. The rule is stored once, for the windows from 2025. Hotels and campsites already used 26ths before 2024 (artt. 225 and 277 CCNL 2010). Also deposited at the CNEL (id 194291)."
+        "note": "Rule of the renewal in force from 1 July 2024; before it the CCNL cumulated the fractions of month (a rateo for each 30 days and one for a remainder of 15 days or more): the earlier clause applies to the months before 1 July 2024 (previous). Hotels and campsites already used 26ths before 2024 (artt. 225 and 277 CCNL 2010). Also deposited at the CNEL (id 194291)."
+      },
+      "valid_from": "2024-07-01",
+      "previous": {
+        "comparison": "cumulated_fractions",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-turismo-2010",
+              "title": "CCNL Turismo 20 febbraio 2010 (testo UILTuCS)",
+              "kind": "associazione",
+              "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+              "published_on": "2010-02-20",
+              "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+            },
+            "page": "141-142",
+            "section": "Art. 160 c. 2 (tredicesima) and art. 161 c. 4 (quattordicesima), text before the renewal of 5 July 2024",
+            "quote": "le frazioni di mese saranno cumulate. La somma così ottenuta comporterà la corresponsione di un rateo mensile per ogni trenta giorni di calendario, nonché per la eventuale frazione residua pari o superiore a quindici giorni. La frazione inferiore ai quindici giorni non verrà considerata."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-12T16:39:37Z",
+            "verification_status": "unverified",
+            "effective_from": "2010-02-20"
+          },
+          "note": "Scanned text read by OCR. Hotels and campsites follow artt. 225 and 277 (twenty-sixths) also before 2024: not modelled apart."
+        }
       }
     }
   },
@@ -2055,7 +2083,7 @@
     "effective_until": null,
     "source": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
     "verification_status": "unverified",
-    "source_hash": "6e43e5664858bb5e76dc1f8cfb65811c5df8c7a3a487b4f5fb09eaee47014c68",
+    "source_hash": "6eddb59168d5ea9bdc5fec12545693d872fd0080bfd9dc113e11010929932d0a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -269,7 +269,10 @@ employment dates and never from the runs already closed:
   every day served (Funzioni Locali 2022 art. 75 c. 3); `cumulated_fractions`,
   a rateo per whole month, the days of the months worked in part summed
   into a rateo for each 30 and one for a remainder of 15 or more (Pubblici
-  Esercizi art. 183 c. 2). The decision then
+  Esercizi art. 183 c. 2). A clause a renewal changed carries its
+  `valid_from` and the `previous` clause: each month of the window is counted
+  with the clause in force on its first day (Turismo: cumulated fractions until
+  30 June 2024, twenty-sixths from 1 July). The decision then
   records the `day_units` accrued beyond the whole months. A threshold
   can count working days instead of calendar days (`working_days`: Monday to
   Saturday, Cooperative sociali art. 79, "superiore ai 15 giorni

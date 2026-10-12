@@ -58,6 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-12 | claude-opus-5-5 (ai) | Identity, sources, seniority, Quadri allowance and salary tables against the signed ipotesi of 5 July 2024 and the CCNL of 2010. | corrected | The 50 salary values equal art. 152 c. 1 of the Federalberghi/Faita ipotesi of 5 July 2024 cell by cell (scan, page image): this file is the same CCNL as turismo-federalberghi, not a FIPE section; FIPE and Federviaggio are not signatories.<br>The source agreement date 2024-06-05 was FIPE's; now 2024-07-05. Sources moved from lexplain to the signed texts.<br>Seniority: six steps every 36 months (art. 158), not 48.<br>Quadri: the indennità di funzione of art. 145 (QA 75, QB 70) was missing; added, absorption not modelled.<br>The file duplicates turismo-federalberghi; whether to retire it is left to the owner. |
+| 2026-10-12 | claude-opus-5-5 (ai) | Accrual of the extra months before the renewal of 5 July 2024. | corrected | Before 1 July 2024 the CCNL of 2010 cumulated the fractions of month (artt. 160 c. 2, 161 c. 4): now the rule of the months before that day. |
 
 ## Salary table
 
