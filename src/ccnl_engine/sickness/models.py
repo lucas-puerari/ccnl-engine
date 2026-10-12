@@ -62,6 +62,10 @@ class SicknessEpisode:
         periodic_check: Whether the absence is a periodic check of a worker
             who had an invalidating illness (Concia art. 60 B), which a CCNL
             may leave out of the comporto; ``None`` when not stated.
+        daily_contributions: Daily contributions of the worker from 1
+            January of the year before the episode, every employer counted
+            (spettacolo: art. 66 D.L. 73/2021); ``None`` when not stated.
+            Read only by an INPS regime with a requirement.
         prior_worked_days: Days of work activity of a fixed-term worker in
             the 12 months before the episode, with every employer (D.L.
             463/1983 art. 5 c. 1); ``None`` when not stated.  Read only for
@@ -83,6 +87,7 @@ class SicknessEpisode:
     hospital_stays: tuple[tuple[date, date], ...] | None = None
     serious_illness: bool | None = None
     periodic_check: bool | None = None
+    daily_contributions: int | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         require_str(
@@ -103,6 +108,14 @@ class SicknessEpisode:
                 f"{_OWNER}.short_absence_exempt",
                 feature=_FEATURE,
             )
+        require_int(
+            self.daily_contributions,
+            f"{_OWNER}.daily_contributions",
+            feature=_FEATURE,
+            minimum=0,
+            maximum=1000,
+            optional=True,
+        )
         require_int(
             self.prior_worked_days,
             f"{_OWNER}.prior_worked_days",

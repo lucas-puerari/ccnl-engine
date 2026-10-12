@@ -143,6 +143,10 @@ class SickPayRegime(BaseModel):
             additional sickness contribution, listed in the INPS table of
             the year (``inps.sick_pay_supplements``); ``False`` for a regime
             funded by the ordinary rates (the lavoratori dello spettacolo).
+        min_daily_contributions: Daily contributions from 1 January of the
+            year before the episode the worker needs for the indemnity
+            (spettacolo: 40, art. 66 D.L. 73/2021); ``None`` without such a
+            requirement.
         provenance: Provenance record of the regime rates.
     """
 
@@ -152,6 +156,7 @@ class SickPayRegime(BaseModel):
     description: str = ""
     bands: list[SickPayBand] = Field(min_length=1)
     additional_contribution: bool = True
+    min_daily_contributions: int | None = Field(default=None, ge=1)
     provenance: RuleProvenance | None = None
 
 
@@ -200,6 +205,8 @@ class InpsSickPayRates(BaseModel):
             ``bands``, each named by an id unique in the table.
         fixed_term: Limit of a fixed-term contract; ``None`` when the
             table does not state it, and then not applied.
+        min_daily_contributions: Requirement of the regime the table was
+            resolved for (:meth:`for_regime`), ``None`` without one.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -213,6 +220,7 @@ class InpsSickPayRates(BaseModel):
     bands_provenance: RuleProvenance | None = None
     regimes: tuple[SickPayRegime, ...] = ()
     fixed_term: FixedTermSickLimit | None = None
+    min_daily_contributions: int | None = None
 
     def for_regime(self, regime: str | None) -> InpsSickPayRates:
         """Return the table with the bands of ``regime`` in place of the rule.
@@ -234,7 +242,11 @@ class InpsSickPayRates(BaseModel):
         if found is None:
             raise KeyError(regime)
         return self.model_copy(
-            update={"bands": found.bands, "bands_provenance": found.provenance}
+            update={
+                "bands": found.bands,
+                "bands_provenance": found.provenance,
+                "min_daily_contributions": found.min_daily_contributions,
+            }
         )
 
     def covers(

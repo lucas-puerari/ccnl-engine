@@ -29,9 +29,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | inps_employer, seniority, sickness |
+| **Limits of this contract** | inps_employer, seniority |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -124,13 +124,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
-!!! warning "esercizi-cinematografici-anec/spettacolo_sickness_regime · sickness · impact yes · open"
-    SICKNESS INPS REGIME: the employees insured with the Fondo pensioni lavoratori dello spettacolo have their own INPS sickness indemnity (INPS circ. 132/2021 par. 2.2-2.3): from the fourth day, 60% up to the 20th day and 80% from the 21st to the 180th, applied through the INPS regime 'spettacolo'. Not modelled: the requirement of 40 daily contributions from 1 January of the year before (art. 66 D.L. 73/2021) and the base of the average pay of the last 40 contributed days.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** State whether the worker has the 40 daily contributions and the average pay of the last 40 contributed days.
-
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
 
@@ -185,6 +178,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Level code aliases in the PDF: monosala Q is also written 'VI Qua' in the paga table header and '6' in Tabella B. Code 'Q' (Tabella A label) is used consistently here.
     
     Workers: 6,427 (ADAPT 18th Report, CNEL aggiornamento 31/12/2023).
+    
+    SICKNESS INPS REGIME: the employees insured with the Fondo pensioni lavoratori dello spettacolo, operai and impiegati alike, have their own INPS sickness indemnity (INPS circ. 132/2021): from the fourth day, 60% up to the 20th day and 80% from the 21st to the 180th (regime 'spettacolo'), with 40 daily contributions from 1 January of the year before (SicknessEpisode.daily_contributions).
     
     Primary source: CCNL Esercizi Cinematografici 2023-2026 (FISTel CISL, signed 16/10/2025). Art. 54: period 01/01/2023-31/12/2026. Three salary tranches: 01/01/2023, 01/11/2024, 01/07/2025 from salary tables (pages 59-65 of the PDF). Baseline (31/12/2022 column) used only for increment verification, not modelled as a separate period.
     

@@ -54,6 +54,8 @@ QUOTA_MISSING = "sickness_daily_quota_missing"
 BEYOND_COMPORTO = "sickness_beyond_comporto"
 #: The bundle does not say whether INPS pays the worker.
 COVER_UNKNOWN = "sickness_inps_cover_unknown"
+#: A regime with a contribution requirement and the contributions unstated.
+CONTRIBUTIONS_UNKNOWN = "sickness_daily_contributions_unknown"
 #: A fixed-term episode does not state the days of work before it.
 PRIOR_WORK_UNKNOWN = "sickness_fixed_term_prior_work_unknown"
 _NONE = "none"
@@ -147,6 +149,23 @@ def episode_issues(
                 "prior_worked_days, the days are paid without that limit",
                 CalculationStatus.PROVISIONAL,
                 "prior_worked_days",
+            )
+        )
+    if (
+        rules is not None
+        and rules.inps.min_daily_contributions is not None
+        and episode.daily_contributions is None
+        and SickDayKind.INDEMNIFIED in kinds
+    ):
+        issues.append(
+            _issue(
+                CONTRIBUTIONS_UNKNOWN,
+                f"sickness episode '{episode.episode_id}': the INPS regime pays "
+                f"only with {rules.inps.min_daily_contributions} daily "
+                "contributions from 1 January of the year before; state "
+                "daily_contributions, the INPS share is paid meanwhile",
+                CalculationStatus.PROVISIONAL,
+                "daily_contributions",
             )
         )
     if pay.report is not None:
