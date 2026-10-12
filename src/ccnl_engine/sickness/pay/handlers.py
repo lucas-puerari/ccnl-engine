@@ -142,6 +142,38 @@ def _grossed(share: Decimal, rules: SickPayRules, terms: SicknessTerms) -> Decim
     return money(share / (1 - terms.employee_rate))
 
 
+def _segment_pay(
+    segment: SickDaySegment,
+    base: Decimal,
+    rules: tuple[SickPayRules, SicknessTerms],
+    *,
+    excluded: bool,
+) -> tuple[Decimal, Decimal, Decimal]:
+    """Return the INPS advance, integration and carenza pay of one segment.
+
+    A day past the fixed-term limit (D.L. 463/1983 art. 5) is unpaid; an
+    INPS share paid by INPS directly is not advanced.
+
+    Returns:
+        ``(inps, integration, carenza)`` of the segment.
+    """
+    if segment.kind is SickDayKind.FIXED_TERM_LIMIT:
+        return _ZERO, _ZERO, _ZERO
+    share = money(base * segment.inps_rate)
+    advanced = (
+        share
+        if segment.kind is not SickDayKind.CARENZA and not segment.inps_direct
+        else _ZERO
+    )
+    if excluded:
+        return advanced, _ZERO, _ZERO
+    worker = money(base * segment.worker_rate)
+    if segment.kind is SickDayKind.CARENZA:
+        return advanced, _ZERO, worker
+    integration = max(_ZERO, worker - _grossed(share, *rules))
+    return advanced, integration, _ZERO
+
+
 def episode_pay(
     episode: SicknessEpisode, span: tuple[date, date], terms: SicknessTerms
 ) -> EpisodePay | None:
@@ -177,16 +209,12 @@ def episode_pay(
         reached = _quota(chain, counted, quota.divisor)
         base, before = reached - before, reached
         absence += base
-        share = money(base * segment.inps_rate)
-        if segment.kind is not SickDayKind.CARENZA:
-            inps += share
-        if excluded:
-            continue
-        worker = money(base * segment.worker_rate)
-        if segment.kind is SickDayKind.CARENZA:
-            carenza += worker
-            continue
-        integration += max(_ZERO, worker - _grossed(share, rules, terms))
+        paid = _segment_pay(segment, base, (rules, terms), excluded=excluded)
+        inps, integration, carenza = (
+            inps + paid[0],
+            integration + paid[1],
+            carenza + paid[2],
+        )
     cumulative = rules.cumulative(episode, terms.history)
     report = None if cumulative is None else cumulation_report(cumulative, span)
     return EpisodePay(segments, units, absence, inps, integration, carenza, report)

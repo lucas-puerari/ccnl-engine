@@ -21,6 +21,7 @@ from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.validators import (
     require_bool,
     require_date,
+    require_int,
     require_str,
 )
 
@@ -52,11 +53,16 @@ class SicknessEpisode:
             when not stated.  Read only by a CCNL that reduces short
             absences or the carenza by event, when the reduction could
             apply.
+        prior_worked_days: Days of work activity of a fixed-term worker in
+            the 12 months before the episode, with every employer (D.L.
+            463/1983 art. 5 c. 1); ``None`` when not stated.  Read only for
+            a fixed-term contract, which pays sickness for no more days.
 
     Raises:
         InvalidInputError: When the identifier is blank, a day is not a
-            date, ``short_absence_exempt`` is not a bool, the episode ends
-            before it starts or continues itself.
+            date, ``short_absence_exempt`` is not a bool,
+            ``prior_worked_days`` is not an int in [0, 366], the episode
+            ends before it starts or continues itself.
     """
 
     episode_id: str
@@ -64,6 +70,7 @@ class SicknessEpisode:
     ended_on: date
     relapse_of: str | None = None
     short_absence_exempt: bool | None = None
+    prior_worked_days: int | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         require_str(
@@ -84,6 +91,14 @@ class SicknessEpisode:
                 f"{_OWNER}.short_absence_exempt",
                 feature=_FEATURE,
             )
+        require_int(
+            self.prior_worked_days,
+            f"{_OWNER}.prior_worked_days",
+            feature=_FEATURE,
+            minimum=0,
+            maximum=366,
+            optional=True,
+        )
         if self.ended_on < self.started_on:
             msg = (
                 f"{_OWNER}.ended_on ({self.ended_on}) must not precede "

@@ -82,6 +82,14 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "an ordinary trasferta; a worker bound to always different places "
         "is a fact of the contract"
     ),
+    "SicknessEpisode.prior_worked_days": requires_fact(
+        "sickness",
+        "event.prior_worked_days",
+        FactEnforcement.REPORTED,
+        "unknown days of work before a fixed-term episode: the D.L. 463/1983 "
+        "art. 5 limit is not applied, with a provisional "
+        "sickness_fixed_term_prior_work_unknown issue",
+    ),
     "SicknessEpisode.short_absence_exempt": requires_fact(
         "sickness",
         "event.short_absence_exempt",

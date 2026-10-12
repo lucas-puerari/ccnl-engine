@@ -149,7 +149,11 @@ def sickness_terms(ctx: RunContext) -> SicknessTerms:
             ccnl.meta.ccnl_id,
         )
         rules = SickPayRules(
-            inps=inps, inps_cover=cover, ccnl=ccnl_rules, worker=_worker(ctx)
+            inps=inps,
+            inps_cover=cover,
+            ccnl=ccnl_rules,
+            worker=_worker(ctx),
+            fixed_term=ctx.request.contract_type.type == "fixed_term",
         )
         cover_fact = _CATEGORY if cover is None and category is None else None
     provenance = None if ccnl_rules is None else ccnl_rules.provenance
