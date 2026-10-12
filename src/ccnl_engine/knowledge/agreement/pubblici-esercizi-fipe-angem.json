@@ -54,7 +54,7 @@
       },
       {
         "kind": "simplification",
-        "text": "CONTRACT CATERING: collective catering companies apply the June 2025 and June 2026 tranches from September (accordo integrativo 26 June 2024, p. 3). Only the main sub-sector (pubblici esercizi, commercial catering, tourism) is modelled, with the June dates.",
+        "text": "CONTRACT CATERING: collective catering companies apply the June 2025 and June 2026 tranches from September (accordo integrativo 26 June 2024, p. 3); they are modelled in pubblici-esercizi-fipe-angem-ristorazione-collettiva. This file holds the June dates of the other sub-sectors.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -62,12 +62,12 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the contract-catering sub-sector with its September tranche dates."
+          "remediation": "Use pubblici-esercizi-fipe-angem-ristorazione-collettiva for a collective catering company."
         }
       },
       {
         "kind": "simplification",
-        "text": "SMALLER COMPANIES: Art. 162 provides for a reduction in base pay for smaller companies (from €2.58 to €5.68 per level). Not modelled — applicable only to micro-enterprises under paragraph II Art. 1. Maximum impact: €5.68/month for Qa.",
+        "text": "SMALLER COMPANIES: Art. 162 provides for a reduction in base pay for smaller companies (from €2.58 to €5.68 per level). Not modelled — applicable only to the smaller pubblici esercizi of paragraph I Art. 1 (CCNL 2018, p. 118: \"Per il personale delle aziende minori dei pubblici esercizi [...] si fa rinvio all'articolo 162\"). Maximum impact: €5.68/month for Qa.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -90,7 +90,7 @@
       },
       {
         "kind": "info",
-        "text": "MONTHLY PAYMENTS: 14, the tredicesima of Art. 183 and the quattordicesima of Art. 184 of the CCNL of 8 February 2018 (PDF pp. 127-128). The quattordicesima excludes the seniority increments; the engine pays it as a full monthly pay (not modelled)."
+        "text": "MONTHLY PAYMENTS: 14, the tredicesima of Art. 183 and the quattordicesima of Art. 184 of the CCNL of 8 February 2018 (PDF pp. 127-128). The quattordicesima excludes the matured seniority increments (seniority_increments.excluded_from_extra_months)."
       },
       {
         "kind": "info",
@@ -114,6 +114,19 @@
             ]
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "HOLIDAY OVERTIME: Art. 126 (PDF p. 99) gives 30% by day and 60% by night for every overtime hour; Art. 132 (p. 103) gives 20% for the hours worked on a festività. The CCNL states no cumulation rule between them (it does for night work, art. 126 c. 3, and for Sunday work, art. 130 c. 2). The engine pays holiday overtime at 30%/60% without the 20%.",
+        "capability": "overtime",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "holiday_overtime_cumulation",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Confirm whether the 20% of art. 132 is added to the overtime rate on a festività; if so set the bands to 0.5 and 0.8, else close this note."
         }
       }
     ]
@@ -306,8 +319,12 @@
           "verified_by": "claude-opus-5-5",
           "verified_at": "2026-10-11T21:00:00Z",
           "review_id": "2026-10-11-ai"
-        }
-      }
+        },
+        "note": "The increments are left out of the quattordicesima: art. 184 c. 1 (p. 128) pays 'una mensilità della retribuzione in atto al 30 giugno [...] esclusi gli assegni familiari e gli scatti di anzianità maturati'; the tredicesima of art. 183 c. 1 (p. 127) includes 'eventuali scatti di anzianità'."
+      },
+      "excluded_from_extra_months": [
+        "fourteenth"
+      ]
     },
     "employer_funds": [
       {
@@ -2324,7 +2341,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "3226a8a2c0dfe5abd41b8d87d733a8aa01bb65969e32a952ed677c6cbb3dfdf3",
+    "source_hash": "8daa4fd76ab310603bb9e4fbce2b75013d26677aa5bc32f3981820b19db8d7e7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2436,7 +2453,7 @@
             "holiday"
           ],
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "fipe-ccnl-2018-02-08",
@@ -2447,16 +2464,17 @@
                 "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
               },
               "page": "99",
-              "section": "Articolo 126 - Maggiorazione per lavoro straordinario",
-              "quote": "maggiorata del 30 per cento se diurno o 60 per cento se notturno."
+              "section": "Articolo 126 - Maggiorazione per lavoro straordinario, commi 1-2",
+              "quote": "Il lavoro straordinario è compensato con la retribuzione ragguagliata ad ore maggiorata del 30 per cento se diurno o 60 per cento se notturno."
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T17:00:00Z",
               "verification_status": "unverified",
-              "effective_from": "2024-06-01"
+              "effective_from": "2018-02-08"
             },
-            "note": "The CCNL sets no rate for overtime on a holiday: Art. 126 gives 30% by day and 60% by night, Art. 132 20% for ordinary work on a holiday. The band applies the day or night rate to holiday overtime by inference."
+            "note": "Art. 126 sets the overtime rate by time of day only (night: from midnight to 6, c. 2), so it covers overtime on a holiday: 30% by day, 60% by night. Whether the 20% of art. 132 (work on a festività, p. 103) is added is not stated (note holiday_overtime_cumulation)."
           }
         },
         {
@@ -2477,7 +2495,7 @@
             "night_holiday"
           ],
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "fipe-ccnl-2018-02-08",
@@ -2488,16 +2506,17 @@
                 "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
               },
               "page": "99",
-              "section": "Articolo 126 - Maggiorazione per lavoro straordinario",
-              "quote": "maggiorata del 30 per cento se diurno o 60 per cento se notturno."
+              "section": "Articolo 126 - Maggiorazione per lavoro straordinario, commi 1-2",
+              "quote": "Il lavoro straordinario è compensato con la retribuzione ragguagliata ad ore maggiorata del 30 per cento se diurno o 60 per cento se notturno."
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T17:00:00Z",
               "verification_status": "unverified",
-              "effective_from": "2024-06-01"
+              "effective_from": "2018-02-08"
             },
-            "note": "The CCNL sets no rate for overtime on a holiday: Art. 126 gives 30% by day and 60% by night, Art. 132 20% for ordinary work on a holiday. The band applies the day or night rate to holiday overtime by inference."
+            "note": "Art. 126 sets the overtime rate by time of day only (night: from midnight to 6, c. 2), so it covers overtime on a holiday: 30% by day, 60% by night. Whether the 20% of art. 132 (work on a festività, p. 103) is added is not stated (note holiday_overtime_cumulation)."
           }
         }
       ]
@@ -2633,6 +2652,25 @@
           "Left derived: the Fon.Te. rates, read in the fund's information sheet, not in the CCNL.",
           "Not modelled: the quattordicesima excludes the seniority increments (Art. 184), the collective catering companies move the June 2025 and June 2026 tranches to September (accordo integrativo p. 3), and the conditions of Art. 190 beyond the carenza.",
           "FIPE and the Turismo CCNLs are two agreements: FIPE was renewed on 5 June 2024 (level 4 at 1,692.69 from June 2026), the Turismo CCNL of Federalberghi and Faita on 5 July 2024 (1,695.69 from May 2026)."
+        ]
+      },
+      {
+        "id": "2026-10-13-ai",
+        "date": "2026-10-13",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Quattordicesima and seniority, holiday overtime, September tranches of the ristorazione collettiva: follow-ups of the review of 2026-10-11.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          }
+        ],
+        "findings": [
+          "Quattordicesima: art. 184 c. 1 excludes the matured seniority increments; the engine paid them. Now excluded.",
+          "Holiday overtime: the 30% and 60% are art. 126 itself (by time of day), not an analogy: derived from p. 99; whether art. 132's 20% is added is left open (outside_input note).",
+          "Ristorazione collettiva: the 2025 and 2026 tranches start in September for the companies of art. 1 c. 1 par. II (accordo integrativo 26.6.2024, p. 3); still the limitation contract_catering_tranche_dates."
         ]
       }
     ]

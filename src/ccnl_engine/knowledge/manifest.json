@@ -1617,6 +1617,23 @@
       "wheel_resource": "agreement/poste-italiane-k700.json.gz"
     },
     {
+      "dataset_id": "agreement/pubblici-esercizi-fipe-angem-ristorazione-collettiva",
+      "path": "agreement/pubblici-esercizi-fipe-angem-ristorazione-collettiva.json",
+      "dataset": "agreement",
+      "year": null,
+      "scope": "pubblici-esercizi-fipe-angem-ristorazione-collettiva",
+      "model": "CCNL",
+      "schema_version": "0.5",
+      "valid_from": "2024-06-01",
+      "valid_to": null,
+      "ruleset_id": "ccnl/pubblici-esercizi-fipe-angem-ristorazione-collettiva",
+      "ruleset_version": "2026.2",
+      "source_hash": "2dd1ed886a4f5409bd07f7a66a9a2666dd5c5cec42e69445b01f37674d2deea0",
+      "source_type": "contracting_party",
+      "owner": "ccnl-engine maintainers",
+      "wheel_resource": "agreement/pubblici-esercizi-fipe-angem-ristorazione-collettiva.json.gz"
+    },
+    {
       "dataset_id": "agreement/pubblici-esercizi-fipe-angem",
       "path": "agreement/pubblici-esercizi-fipe-angem.json",
       "dataset": "agreement",
@@ -1628,7 +1645,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/pubblici-esercizi-fipe-angem",
       "ruleset_version": "2026.2",
-      "source_hash": "3226a8a2c0dfe5abd41b8d87d733a8aa01bb65969e32a952ed677c6cbb3dfdf3",
+      "source_hash": "8daa4fd76ab310603bb9e4fbce2b75013d26677aa5bc32f3981820b19db8d7e7",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/pubblici-esercizi-fipe-angem.json.gz"
