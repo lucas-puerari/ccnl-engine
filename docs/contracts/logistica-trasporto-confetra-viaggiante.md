@@ -217,7 +217,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     WORKING TIME: drivers work 39 hours a week (art. 11 c. 1) over up to 6 days, averaged over 4 weeks; the discontinuous drivers of art. 11 bis (qualifiche 3 A-C and 2 D-F, after the verification procedure) work 47 hours ordinary. The regime moves only the threshold beyond which an hour is overtime: the monthly pay is the same and the hourly pay divides it by 168 under every regime (art. 13 c. 8), so the request declares the overtime hours beyond the worker's own regime.
     
-    TRAVELLING WEEKEND OVERTIME: Saturday and Sunday overtime of the travelling staff is 30% (art. 13 c. 6, p. 39): Saturday as weekday overtime, Sunday as rest_day overtime (OT_RIPOSO). Overtime on the festività of artt. 60 and 71 is holiday overtime at 65%, 75% at night. Sunday night overtime: the text gives 30% for any hour of the weekend; report it as rest_day.
+    TRAVELLING WEEKEND OVERTIME: Saturday and Sunday overtime of the travelling staff is 30% (art. 13 c. 6, p. 39): Saturday as weekday overtime, Sunday as rest_day overtime (OT_RIPOSO). Overtime on the festività of artt. 60 and 71 is holiday overtime at 65%, 75% at night. The rates do not add up and the higher absorbs the lower (c. 7): a weekend overtime hour at night is night overtime (50%), reported as night.
     
     CONGLOBATED MINIMUMS: base_salary values are the conglobated monthly minimum pay (minimum pay table + contingenza per Art. 61 note + EPA). Primary check: Art. 61 of the consolidated text September 2025 — 'From 1.1.2001 the indennità di contingenza has been conglobated into the minimum pay tables together with the EDR of EUR 10.33 per month'. fixed_allowances is empty for all levels.
     

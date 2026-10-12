@@ -1271,7 +1271,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/logistica-trasporto-confetra-viaggiante",
       "ruleset_version": "2026.2",
-      "source_hash": "04ce173e6a696b1ecff1fe38562d33eac5e7fef03c59faf461fcf0fb44488537",
+      "source_hash": "8aa4f4392463668be8c9b704e4e3c727967ba94a7a42da5ba117d83cd97e81b2",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/logistica-trasporto-confetra-viaggiante.json.gz"

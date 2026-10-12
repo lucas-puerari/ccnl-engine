@@ -64,7 +64,7 @@
       },
       {
         "kind": "info",
-        "text": "TRAVELLING WEEKEND OVERTIME: Saturday and Sunday overtime of the travelling staff is 30% (art. 13 c. 6, p. 39): Saturday as weekday overtime, Sunday as rest_day overtime (OT_RIPOSO). Overtime on the festività of artt. 60 and 71 is holiday overtime at 65%, 75% at night. Sunday night overtime: the text gives 30% for any hour of the weekend; report it as rest_day."
+        "text": "TRAVELLING WEEKEND OVERTIME: Saturday and Sunday overtime of the travelling staff is 30% (art. 13 c. 6, p. 39): Saturday as weekday overtime, Sunday as rest_day overtime (OT_RIPOSO). Overtime on the festività of artt. 60 and 71 is holiday overtime at 65%, 75% at night. The rates do not add up and the higher absorbs the lower (c. 7): a weekend overtime hour at night is night overtime (50%), reported as night."
       },
       {
         "kind": "simplification",
@@ -3357,7 +3357,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "04ce173e6a696b1ecff1fe38562d33eac5e7fef03c59faf461fcf0fb44488537",
+    "source_hash": "8aa4f4392463668be8c9b704e4e3c727967ba94a7a42da5ba117d83cd97e81b2",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3548,14 +3548,14 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T12:00:00Z",
+              "extraction_timestamp": "2026-10-12T11:56:29Z",
               "verification_status": "verified",
               "effective_from": "2025-01-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-10-12T12:00:00Z",
+              "verified_at": "2026-10-12T11:56:29Z",
               "review_id": "2026-10-12-ai-rest-day"
             },
-            "transformation": "Sunday overtime is the rest_day kind at 30%; Saturday overtime is weekday overtime, already 30% (OT_DIURNO). The festività of artt. 60 and 71 keep OT_FESTIVO 65% and OT_NOTTURNO_FESTIVO 75%."
+            "transformation": "Sunday overtime is the rest_day kind at 30%; Saturday overtime is weekday overtime, already 30% (OT_DIURNO). The festività of artt. 60 and 71 keep OT_FESTIVO 65% and OT_NOTTURNO_FESTIVO 75%. The rates do not add up (c. 7, 'la maggiore assorbe la minore'): Sunday night overtime is night overtime at 50%, above the 30%."
           }
         }
       ]
