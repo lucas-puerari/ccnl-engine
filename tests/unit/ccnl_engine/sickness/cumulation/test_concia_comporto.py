@@ -86,3 +86,27 @@ def test_short_stays_count() -> None:
     """A stay of 5 days is not more than 5: it stays in the count."""
     five = ((_START, _START + timedelta(days=4)),)
     assert _beyond(241, hospital_stays=five)
+
+
+_RESTART = _CUMULATION.model_copy(update={"hospital_restart_day": 16})
+_RESTART_RULES = _RULES.model_copy(update={"cumulation": _RESTART})
+
+
+def _rate(day: int, stays: tuple[tuple[date, date], ...] | None) -> Decimal:
+    episode = SicknessEpisode(
+        "e", _START, _START + timedelta(days=399), hospital_stays=stays
+    )
+    treatment = CumulativeTreatment(_RESTART_RULES, _RESTART, episode, (), _WORKER)
+    return treatment.day(day, _START + timedelta(days=day - 1)).rate
+
+
+def test_the_treatment_restarts_on_the_16th_day_of_a_stay() -> None:
+    """Day 100 is at half; a stay from day 80 restarts the count on day 95.
+
+    Day 95 counts 1 again, so day 100 (6th day of the new count) is in full;
+    without the stay it is the 100th, past the 90 days in full.
+    """
+    stay = ((_START + timedelta(days=79), _START + timedelta(days=129)),)
+    assert _rate(100, None) == Decimal("0.5")
+    assert _rate(100, stay) == _ONE
+    assert _rate(94, stay) == Decimal("0.5")  # day 15 of the stay: not yet

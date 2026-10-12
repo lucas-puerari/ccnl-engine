@@ -269,6 +269,10 @@ class SicknessCumulation(BaseModel):
             the CCNL has one.
         hospital_comporto: Hospital stays left out of the comporto, if the
             CCNL says so.
+        hospital_restart_day: Day of a hospital stay from which the
+            treatment starts anew (Concia art. 60 C: "Il trattamento
+            economico suindicato ricomincia ex novo [...] dal 16° giorno di
+            ricovero ospedaliero"); ``None`` when the CCNL has no such rule.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -281,6 +285,7 @@ class SicknessCumulation(BaseModel):
     hospital_stay: HospitalStayRule | None = None
     serious_illness: SeriousIllnessRule | None = None
     hospital_comporto: HospitalComportoRule | None = None
+    hospital_restart_day: int | None = Field(default=None, ge=1)
 
     @model_validator(mode="after")
     def _ordered_bands(self) -> Self:

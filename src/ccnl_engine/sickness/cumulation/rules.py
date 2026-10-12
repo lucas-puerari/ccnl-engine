@@ -184,7 +184,27 @@ class CumulativeTreatment:
         """
         if self.cumulation.reset_after_days is None:
             return self.window_days(day)
+        restart = self._hospital_restart(day)
+        if restart is not None:
+            return (day - restart).days + 1
         return self.chain[0] + (day - self.episode.started_on).days + 1
+
+    def _hospital_restart(self, day: date) -> date | None:
+        """Return the day the treatment started anew in a hospital stay.
+
+        Returns:
+            The ``hospital_restart_day``-th day of the latest stay of the
+            episode that reached it by ``day``; ``None`` without one.
+        """
+        nth = self.cumulation.hospital_restart_day
+        if nth is None:
+            return None
+        starts = [
+            first + timedelta(days=nth - 1)
+            for first, last in self.episode.hospital_stays or ()
+            if first + timedelta(days=nth - 1) <= min(last, day)
+        ]
+        return max(starts, default=None)
 
     def window_first(self, day: date) -> date:
         """Return the first day of the window of the band that ends on ``day``.
