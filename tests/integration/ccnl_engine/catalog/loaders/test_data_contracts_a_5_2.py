@@ -135,11 +135,14 @@ class TestLoadIstruzioneRicercaAran:
         ccnl = load_ccnl("istruzione-ricerca-aran.json")
         assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(156)
 
-    def test_istruzione_ricerca_aran_no_fixed_allowances(self) -> None:
-        """Conglobated tabellare: no fixed allowances modelled."""
+    def test_istruzione_ricerca_aran_only_the_elemento_perequativo(self) -> None:
+        """The only allowance is the elemento perequativo, paid until 1.2.2023."""
         ccnl = load_ccnl("istruzione-ricerca-aran.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == ()
+            for allowance in lv.fixed_allowances:
+                assert allowance.code.startswith("EP_")
+                assert not allowance.monthly.applies_on(date(2023, 2, 1))
+                assert allowance.monthly.applies_on(date(2023, 1, 31))
 
     def test_istruzione_ricerca_aran_tax_sector(self) -> None:
         """Contract declares PUBBLICA_AMMINISTRAZIONE tax sector."""
