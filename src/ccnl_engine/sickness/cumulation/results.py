@@ -24,8 +24,6 @@ from dataclasses import dataclass
 from datetime import date
 from typing import TYPE_CHECKING
 
-from ccnl_engine.sickness.cumulation.rules import window_start
-
 if TYPE_CHECKING:
     from ccnl_engine.sickness.cumulation.rules import CumulativeTreatment
     from ccnl_engine.sickness.integration.models import SicknessSeniorityBand
@@ -73,7 +71,7 @@ def _unknown_days(treatment: CumulativeTreatment, day: date) -> int:
     known = treatment.worker.known_from
     if known is None:
         return 0
-    first = window_start(day, treatment.cumulation.window_years)
+    first = treatment.window_first(day)
     hired = treatment.worker.hired_on
     if hired is not None and hired > first:
         first = hired

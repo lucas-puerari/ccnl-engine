@@ -79,6 +79,14 @@ class SicknessSeniorityBand(BaseModel):
         comporto_days: Calendar days of sickness within the window the job
             is kept for (comporto breve); the days past it are outside what
             the CCNL integrates.
+        window_months: Months of the window of the band, when the CCNL
+            counts each band over its own (Logistica Confetra art. 63 c. 8:
+            24 months up to 5 years of seniority, 30 above); ``None`` takes
+            :attr:`SicknessCumulation.window_years`.
+        steps: Rates of the days of the count past the full-pay days, by
+            day of the count (PA comparti: 90% for the next 3 months, 50%
+            for the next 6); a day in no step takes
+            :attr:`SicknessCumulation.reduced_integration_rate`.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -86,6 +94,26 @@ class SicknessSeniorityBand(BaseModel):
     seniority_months_from: int = Field(ge=0)
     full_pay_days: int = Field(ge=1)
     comporto_days: int = Field(ge=1)
+    window_months: int | None = Field(default=None, ge=1)
+    steps: tuple[SicknessDayBand, ...] = ()
+
+    @model_validator(mode="after")
+    def _steps_after_full_pay(self) -> Self:
+        if any(step.day_from <= self.full_pay_days for step in self.steps):
+            msg = (
+                f"steps must start after the {self.full_pay_days} full-pay days; "
+                f"got {[step.day_from for step in self.steps]}"
+            )
+            raise ValueError(msg)
+        return self
+
+    def step_rate(self, count: int) -> Decimal | None:
+        """Return the rate of day ``count`` of the count, if a step holds it.
+
+        Returns:
+            The rate of the first step holding ``count``, ``None`` otherwise.
+        """
+        return next((s.integration_rate for s in self.steps if s.holds(count)), None)
 
 
 class ShortAbsenceReduction(BaseModel):
