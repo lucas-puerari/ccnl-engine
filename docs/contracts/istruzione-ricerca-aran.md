@@ -1,11 +1,11 @@
-# CCNL Comparto Istruzione e Ricerca 2022-2024 — ARAN
+# CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN
 
 | | |
 |---|---|
 | **CNEL code** | `S305` |
 | **Sector** | Pubblica Amministrazione |
 | **Tax sector** | `pubblica-amministrazione` |
-| **Last renewal** | 2025-12-23 |
+| **Last renewal** | 2026-07-01 |
 | **Workers (est.)** | ~1,2M |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -14,11 +14,12 @@
 
 ??? note "Signatories"
     - ARAN
-    - FLC CGIL
     - CISL FSUR
+    - FLC CGIL
     - UIL SCUOLA RUA
-    - GILDA UNAMS
     - SNALS CONFSAL
+    - GILDA UNAMS
+    - ANIEF
 
 ## Coverage
 
@@ -32,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employee, seniority |
+| **Limits of this contract** | base_salary, inps_employee, overtime, seniority |
 
-7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -42,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 25 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 35 verified / 6 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,15 +51,16 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | 2025-12-23 |
-| **Last review** | 2026-09-18 |
-| **Latest salary tranche** | 2024-01-01 |
+| **Last renewal** | 2026-07-01 |
+| **Last review** | 2026-10-12 |
+| **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
 
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-09-18 | maintainer (human) | Whole file. The values checked were not recorded. | confirmed | The review recorded no list of the documents it read. |
+| 2026-10-12 | claude-opus-5-5 (ai) | Salary tables of the seven scuola profiles, leave, sickness, seniority, overtime and the daily quota, against the signed ARAN texts of 2007, 2024, 2025 and 2026. | corrected | Every monthly tabellare was the annual amount over 13; the tables are per 12 mensilità plus the tredicesima: the values were about 7.7% low (e.g. Docente infanzia 2024: 1,724.65 -> 1,868.37).<br>The pre-2024 periods were back-calculated with the increments times 13 and started on 2022-01-01; they are now the tables of the CCNL 2019-2021, in force from 1 February 2023.<br>The CCNL 2025-2027 on the economic treatment, signed definitively on 1 July 2026, was missing: periods from 1.1.2025, 1.1.2026 and 1.1.2027 added.<br>Signatories: FLC CGIL did not sign the CCNL 2022-2024 (it signed the 2025-2027); ANIEF signed both and was missing.<br>Ferie: 32 days, 30 for the first 3 years (CCNL 2007 art. 13), not 28.<br>Sickness: comporto of 18 months with 9 months at 100%, 3 at 90% and 6 at 50% (art. 17), not 270 days at 100%.<br>Overtime: the scuola pays fixed hourly amounts, not percentages: the 15/30/30/50% bands had no basis and are removed.<br>Daily quota: no scuola text fixes it; by_26 is now assumed. |
 
 ## Salary table
 
@@ -66,13 +68,13 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `FUNZIONARIO_ED_ESPERTO` | ATA: Funzionario ed esperto (ex dsga, direttori servizi generali) | € 1,960.65 | 2024-01-01 |
-| `DOCENTE_SECONDARIA` | Docente secondaria I grado (PE/Ed.Fisica) e secondaria II (laurea) | € 1,866.79 | 2024-01-01 |
-| `DOCENTE_DIPLOMATO_SECONDARIA` | Docente diplomato degli istituti secondari di II grado | € 1,724.65 | 2024-01-01 |
-| `DOCENTE_INFANZIA_PRIMARIA` | Docente scuola dell'infanzia e primaria | € 1,724.65 | 2024-01-01 |
-| `ASSISTENTE` | ATA: Assistente amministrativo, assistente tecnico, cuoco, infermiere | € 1,496.85 | 2024-01-01 |
-| `OPERATORE` | ATA: Operatore scolastico (nuovo profilo dal 1/5/2024 CCNL 18/1/2024) | € 1,375.38 | 2024-01-01 |
-| `COLLABORATORE_SCOLASTICO` | ATA: Collaboratore scolastico (ex bidello, ex commesso) | € 1,342.82 | 2024-01-01 |
+| `FUNZIONARIO_ED_ESPERTO` | ATA: Funzionario ed esperto (ex dsga, direttori servizi generali) | € 2,249.26 | 2027-01-01 |
+| `DOCENTE_SECONDARIA` | Docente secondaria I grado (PE/Ed.Fisica) e secondaria II (laurea) | € 2,141.60 | 2027-01-01 |
+| `DOCENTE_DIPLOMATO_SECONDARIA` | Docente diplomato degli istituti secondari di II grado | € 1,978.53 | 2027-01-01 |
+| `DOCENTE_INFANZIA_PRIMARIA` | Docente scuola dell'infanzia e primaria | € 1,978.53 | 2027-01-01 |
+| `ASSISTENTE` | ATA: Assistente amministrativo, assistente tecnico, cuoco, infermiere | € 1,717.20 | 2027-01-01 |
+| `OPERATORE` | ATA: Operatore scolastico (nuovo profilo dal 1/5/2024 CCNL 18/1/2024) | € 1,615.41 | 2027-01-01 |
+| `COLLABORATORE_SCOLASTICO` | ATA: Collaboratore scolastico (ex bidello, ex commesso) | € 1,540.49 | 2027-01-01 |
 
 ## Seniority increments
 
@@ -97,19 +99,26 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the seniority bands as band-dependent salary tables instead of maximum_count=0.
 
-!!! warning "istruzione-ricerca-aran/period_1_start_approximated · base_salary · impact unknown · open"
-    valid_from period 1 = 2022-01-01 (inizio validità del triennio). Il previgente CCNL 2019-2021 aveva stabilito i valori pre-2024; la data esatta di firma del CCNL 2019-2021 non è disponibile dalla fonte e viene approssimata.
-
-    **Applies when:** `base_salary` applies; before 2024-01-01.
-
-    **Remediation:** Source the signing date of the CCNL 2019-2021 for the start of period 1.
-
 !!! warning "istruzione-ricerca-aran/enam_base · inps_employee · impact yes · open"
     The ENAM of a permanent teacher of the scuola dell'infanzia and primaria (L. 93/1957 art. 3: 1% of 80% of the stipendio) is computed on the whole minimum of the level; the stipendio it counts leaves out the IIS conglobata the retribuzione tabellare holds, which the bundle does not give apart: the contribution is overstated.
 
     **Applies when:** `inps_employee` applies; the run takes the engine code path.
 
     **Remediation:** Source the IIS conglobata of the profile, leave it out of the ENAM base, then remove this note.
+
+!!! warning "istruzione-ricerca-aran/before_february_2023 · base_salary · impact yes · open"
+    Before 1 February 2023 the tabellare of the CCNL 2016-2018 applied with the elemento perequativo paid apart; the file starts on 1 February 2023, when the CCNL 2019-2021 conglobated it.
+
+    **Applies when:** `base_salary` applies; before 2023-02-01.
+
+    **Remediation:** Add the 2022 and January 2023 tabellare and the elemento perequativo of the CCNL 2019-2021.
+
+!!! warning "istruzione-ricerca-aran/fixed_hourly_overtime · overtime · impact yes · open"
+    Overtime of the scuola staff is paid at fixed hourly amounts by profile (CCNL 2019-2021 Tabelle E1.6 docenti and E1.7 ATA, e.g. 'OPERATORI/COLLABORATORI € 13,75 € 15,95 € 18,70'), not as a percentage of the hourly pay: no overtime band is modelled, so an overtime event needs its multiplier.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the hourly amounts of Tabelle E1.6 and E1.7 per profile.
 
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.
@@ -154,8 +163,10 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-12-23 | [↗](https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1) |
-| — | — | — | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=494) |
+| — | — | 2026-07-01 | [↗](https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf) |
+| — | — | 2025-12-23 | [↗](https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf) |
+| — | — | 2024-01-18 | [↗](https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf) |
+| — | — | 2007-11-29 | [↗](https://www.aranagenzia.it/wp-content/uploads/2024/07/CCNL-SCUOLA-2006-2009.pdf) |
 
 ??? note "Coverage notes"
     Platea ~1,2M: ~800k docenti (infanzia, primaria, secondaria I e II), ~230k ATA scuola, ~130k personale università e ricerca, ~80k AFAM (quifinanza.it).
@@ -172,23 +183,9 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     LEVELS. The Tabelle A1 and A2 of the CCNL 2022-2024 (from 1.1.2024) list 'Docente scuola dell'infanzia ed elementare' and 'Docente diplomato istituti sec. II grado' as two rows with the same amounts (22,420.48 a year in the first band): two levels with the same minimum, DOCENTE_INFANZIA_PRIMARIA and DOCENTE_DIPLOMATO_SECONDARIA, since only the first owes the ENAM.
     
-    Stipendio tabellare annuo da Tabella A2 CCNL 23/12/2025 allegato ufficiale (notiziedellascuola.it). Valori fascia 0-8 anni da 1/1/2024.
-    
-    Pre-2024: back-calcolato sottraendo incremento mensile (Tabella A1) × 13. Esempio COLLABORATORE: 17.456,64 - 85,74×13 = 16.342,02€/anno = 1.257,08€/mese.
+    SALARY TABLES: monthly tabellare = annual tabellare of the fascia 0-8 over 12 (the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'). 1.2.2023-31.12.2023: CCNL 2019-2021 Tabelle C1 and E1.5; 2024: CCNL 2022-2024 Tabella A2; 2025, 2026, 2027: CCNL 2025-2027 Tabella A2.
     
     CNEL S305 da kitech.it per comparto Istruzione e Ricerca personale docente. Confermato coerente con S325 (area dirigenza IR).
-    
-    COLLABORATORE_SCOLASTICO — Tab A2 0-8: 17.456,64€/anno; incremento Tab A1: 85,74€/mese.
-    
-    OPERATORE — Tab A2 0-8: 17.879,93€/anno; incremento: 87,82€/mese (nuovo profilo da 1/5/2024).
-    
-    ASSISTENTE — Tab A2 0-8: 19.459,12€/anno; incremento: 95,58€/mese.
-    
-    DOCENTE_INFANZIA_PRIMARIA — Tab A2 0-8: 22.420,48€/anno; incremento: 110,12€/mese. Copre anche docente secondaria II diploma (stesso valore tabellare).
-    
-    DOCENTE_SECONDARIA — Tab A2 0-8: 24.268,28€/anno; incremento: 119,20€/mese. Copre secondaria I grado, secondaria II laurea (stessi valori entry). Incremento secondaria II laurea: 119,20 (0-8) ma diverge per fasce superiori (136,18 per fascia 9-14).
-    
-    FUNZIONARIO_ED_ESPERTO — Tab A2 0-8: 25.488,37€/anno; incremento: 125,19€/mese.
     
 
 ## Raw data

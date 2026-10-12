@@ -294,6 +294,9 @@
       "accrual_rule": "assumed",
       "additional_months[2023-01-01]": "assumed"
     },
+    "agreement/istruzione-ricerca-aran.json": {
+      "work_rules.absence_rules": "assumed"
+    },
     "agreement/lapidei-industria.json": {
       "accrual_rule": "missing",
       "additional_months[2022-12-31]": "assumed"
@@ -1407,9 +1410,10 @@
       "istituzioni-servizi-socio-assistenziali-anaste/apprentice_seniority"
     ],
     "agreement/istruzione-ricerca-aran.json": [
+      "istruzione-ricerca-aran/before_february_2023",
       "istruzione-ricerca-aran/enam_base",
+      "istruzione-ricerca-aran/fixed_hourly_overtime",
       "istruzione-ricerca-aran/higher_seniority_bands_missing",
-      "istruzione-ricerca-aran/period_1_start_approximated",
       "istruzione-ricerca-aran/seniority_bands_not_increments"
     ],
     "agreement/lapidei-industria.json": [

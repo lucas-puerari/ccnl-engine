@@ -5,9 +5,10 @@ iscritti pari all'1 per cento dell'ammontare lordo dello stipendio", on
 80% of it (INPS: "ENAM 1 -- 1"), for the permanent teachers of the scuola
 dell'infanzia and primaria.
 
-Docente infanzia e primaria, January 2026, 1724.65: base 80% = 1379.72,
-1% = 13.7972 -> 13.80.  The stipendio should leave out the IIS conglobata,
-which the bundle does not give apart: the run has the open limitation
+Docente infanzia e primaria, January 2026, 1945.26 (CCNL 2025-2027 Tabella
+A2: 23,343.16 / 12): base 80% = 1556.208, 1% = 15.56208 -> 15.56.  The
+stipendio should leave out the IIS conglobata, which the bundle does not
+give apart: the run has the open limitation
 ``enam_base``.  The diplomato of the secondaria and a fixed term owe none.
 """
 
@@ -59,9 +60,9 @@ def _enam(result: PeriodResult) -> Decimal | None:
 
 
 def test_permanent_teacher_of_infanzia_and_primaria() -> None:
-    """13.80, with the open limitation of the base."""
+    """15.56, with the open limitation of the base."""
     result = _january("DOCENTE_INFANZIA_PRIMARIA")
-    assert _enam(result) == Decimal("13.80")
+    assert _enam(result) == Decimal("15.56")
     assert _ENAM_BASE in {limitation.id for limitation in result.assurance.limitations}
     assert not result.is_payable
 
