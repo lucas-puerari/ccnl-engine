@@ -88,7 +88,7 @@ def test_bundled_missing_notes_and_limitations() -> None:
     ("filename", "features"),
     [
         ("impianti-sportivi-sport.json", ("overtime", "sickness")),
-        ("concia-unic.json", ("overtime", "sickness")),
+        ("concia-unic.json", ("overtime",)),
         ("ortofrutticoli-agrumari.json", ("sickness",)),
         (
             "pulizia-artigianato-confartigianato.json",

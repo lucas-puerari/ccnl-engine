@@ -110,3 +110,57 @@ def test_the_treatment_restarts_on_the_16th_day_of_a_stay() -> None:
     assert _rate(100, None) == Decimal("0.5")
     assert _rate(100, stay) == _ONE
     assert _rate(94, stay) == Decimal("0.5")  # day 15 of the stay: not yet
+
+
+_RESTART12 = _CUMULATION.model_copy(
+    update={
+        "restart_after_full_pay_months": 12,
+        "periodic_checks_outside_comporto": True,
+    }
+)
+_RULES12 = _RULES.model_copy(update={"cumulation": _RESTART12})
+
+
+def test_a_long_chain_restarts_twelve_months_after_the_full_pay() -> None:
+    """The chain restarts 12 months after the full pay ended.
+
+    Sick from 1 January 2025 for 100 days: the 90 days in full end on
+    1 April 2025 (the 91st day).  Episodes linked by short returns keep the
+    chain; one starting on 1 April 2026, 12 months later, starts it anew.
+    """
+    earlier = (
+        SicknessEpisode("a", date(2025, 1, 1), date(2025, 4, 10)),
+        SicknessEpisode("b", date(2025, 7, 1), date(2025, 7, 10)),
+        SicknessEpisode("c", date(2025, 10, 1), date(2025, 10, 10)),
+        SicknessEpisode("d", date(2026, 1, 1), date(2026, 1, 10)),
+    )
+    late = SicknessEpisode("e", date(2026, 4, 1), date(2026, 4, 30))
+    treatment = CumulativeTreatment(_RULES12, _RESTART12, late, earlier, _WORKER)
+    assert treatment.chain == (0, date(2026, 4, 1))
+    early = SicknessEpisode("e", date(2026, 3, 31), date(2026, 4, 30))
+    treatment = CumulativeTreatment(_RULES12, _RESTART12, early, earlier, _WORKER)
+    assert treatment.chain[0] == 130
+
+
+def test_periodic_checks_leave_the_comporto() -> None:
+    """A periodic check is not summed into the comporto."""
+    check = SicknessEpisode(
+        "chk", date(2025, 6, 1), date(2025, 6, 3), periodic_check=True
+    )
+    episode = SicknessEpisode("e", _START, _START)
+    treatment = CumulativeTreatment(_RULES12, _RESTART12, episode, (check,), _WORKER)
+    assert treatment.window_days(_START) == 1
+
+
+def test_an_earlier_restart_counts_from_its_episode() -> None:
+    """The episode of 1 April 2026 restarted the chain: a later one counts from it."""
+    earlier = (
+        SicknessEpisode("a", date(2025, 1, 1), date(2025, 4, 10)),
+        SicknessEpisode("b", date(2025, 7, 1), date(2025, 7, 10)),
+        SicknessEpisode("c", date(2025, 10, 1), date(2025, 10, 10)),
+        SicknessEpisode("d", date(2026, 1, 1), date(2026, 1, 10)),
+        SicknessEpisode("e", date(2026, 4, 1), date(2026, 4, 30)),
+    )
+    later = SicknessEpisode("f", date(2026, 6, 1), date(2026, 6, 5))
+    treatment = CumulativeTreatment(_RULES12, _RESTART12, later, earlier, _WORKER)
+    assert treatment.chain == (30, date(2026, 4, 1))

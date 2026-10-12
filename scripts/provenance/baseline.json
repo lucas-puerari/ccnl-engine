@@ -1308,8 +1308,7 @@
     ],
     "agreement/concia-unic.json": [
       "concia-unic/apprentice_seniority",
-      "concia-unic/higher_overtime_bands",
-      "concia-unic/sickness_special_cases"
+      "concia-unic/higher_overtime_bands"
     ],
     "agreement/consorzi-agrari-assocap.json": [
       "consorzi-agrari-assocap/apprentice_inps_rates_unsourced",

@@ -224,7 +224,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 120 | C021 | [CCNL per i lavoratori addetti all'industria orafa, argentiera e della gioielleria (Federorafi)](orafi-argentieri-industria-federorafi.md) | industria | ~18k | — | ⚠️ | seniority | 0 / 40 / 2 / 0 | 🧪 | 🤖 |
 | 121 | D111 | [CCNL per i lavoratori addetti alle industrie delle pelli e dei succedanei della pelle (Assopellettieri)](pelli-cuoio-industria-assopellettieri.md) | industria | ~17k | — | ⚠️ | base_salary, seniority | 0 / 35 / 1 / 1 | 🧪 | 🤖 |
 | 122 | E012 | [CCNL per i lavoratori dell'industria alimentare (Federalimentare)](alimentari-federalimentare.md) | industria | ~145k | — | ⚠️ | base_salary, seniority | 0 / 73 / 2 / 0 | 🧪 | 🤖 |
-| 123 | B101 | [CCNL per i lavoratori dell'industria conciaria (UNIC)](concia-unic.md) | industria | ~22.6k | — | ⚠️ | overtime, seniority, sickness | 57 / 1 / 0 / 0 | 👁 | 🧑 |
+| 123 | B101 | [CCNL per i lavoratori dell'industria conciaria (UNIC)](concia-unic.md) | industria | ~22.6k | — | ⚠️ | overtime, seniority | 57 / 1 / 0 / 0 | 👁 | 🧑 |
 | 124 | F051 | [CCNL per i lavoratori dell'industria del legno, del sughero, del mobile, dell'arredamento e delle industrie affini (Federlegno-Arredo)](legno-arredamento-federlegno.md) | industria | ~90k | — | ⚠️ | base_salary, seniority | 0 / 88 / 2 / 0 | 🧪 | 🤖 |
 | 125 | D014 | [CCNL per i lavoratori dell'industria tessile, abbigliamento, moda (SMI)](tessile-smi.md) | industria | ~160k | — | ⚠️ | seniority | 0 / 47 / 1 / 1 | 🧪 | 🤖 |
 | 126 | J271 | [CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane](bcc-credito-cooperativo.md) | credito | ~33k | — | ⚠️ | base_salary, inps_employer, seniority | 0 / 41 / 1 / 1 | 🧪 | 🤖 |

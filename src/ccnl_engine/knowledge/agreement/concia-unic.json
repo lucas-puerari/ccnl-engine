@@ -7,7 +7,7 @@
     "effective_until": null,
     "published_at": "2026-09-11",
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
-    "source_hash": "46264a94ab2478b1e902e10634a5fe59666269704f07aac40336dc31b24dfa89",
+    "source_hash": "8ced44795d4584fe29d817973c0c6c4dadcd6a250874eb757b3309d0dfe8f609",
     "verification_status": "verified",
     "source_type": "contracting_party"
   },
@@ -3483,7 +3483,9 @@
           "more_than_days": 5,
           "max_days": 60
         },
-        "hospital_restart_day": 16
+        "hospital_restart_day": 16,
+        "restart_after_full_pay_months": 12,
+        "periodic_checks_outside_comporto": true
       },
       "provenance": {
         "status": "derived",
@@ -3507,7 +3509,7 @@
           "verification_status": "unverified",
           "effective_from": "2024-03-01"
         },
-        "transformation": "Comporto 8, 10, 12 months (240, 300, 360 days of 30-day months) within 36 months (renewal p. 8: 'si intendono riferiti ad un arco temporale di 36 mesi'); pay (CNEL p. 77, art. 60 C): 'intera retribuzione netta' for 3, 4, 5 months and half for 5, 6, 7 more, so the half runs to the end of the comporto; on the net pay (net_basis). The treatment restarts after 'un periodo di quattro mesi senza alcuna assenza per malattia' (reset_after_days 120). Bands from 36 and 72 completed months for 'fino a 3 anni' and 'fino a 6 anni'. Malattie invalidanti (renewal p. 7): 'I termini sopra indicati sono aumentati rispettivamente di 2 mesi, 3 mesi e 4 mesi' (300, 390, 480 days, SicknessEpisode.serious_illness); hospital stays: 'non saranno tenuti in considerazione i periodi di ricovero ospedaliero di durata superiore a 5 giorni [...] continuativi di calendario fino ad un massimo di 60 complessivi' (SicknessEpisode.hospital_stays), counted over the 36-month window. Restart: 'Il trattamento economico suindicato ricomincia ex novo [...] dal 16° giorno di ricovero ospedaliero' (CNEL text p. 88, art. 60 C): from the 16th day of a stay the days count from one again (hospital_restart_day), within the episode.",
+        "transformation": "Comporto 8, 10, 12 months (240, 300, 360 days of 30-day months) within 36 months (renewal p. 8: 'si intendono riferiti ad un arco temporale di 36 mesi'); pay (CNEL p. 77, art. 60 C): 'intera retribuzione netta' for 3, 4, 5 months and half for 5, 6, 7 more, so the half runs to the end of the comporto; on the net pay (net_basis). The treatment restarts after 'un periodo di quattro mesi senza alcuna assenza per malattia' (reset_after_days 120). Bands from 36 and 72 completed months for 'fino a 3 anni' and 'fino a 6 anni'. Malattie invalidanti (renewal p. 7): 'I termini sopra indicati sono aumentati rispettivamente di 2 mesi, 3 mesi e 4 mesi' (300, 390, 480 days, SicknessEpisode.serious_illness); hospital stays: 'non saranno tenuti in considerazione i periodi di ricovero ospedaliero di durata superiore a 5 giorni [...] continuativi di calendario fino ad un massimo di 60 complessivi' (SicknessEpisode.hospital_stays), counted over the 36-month window. Restart: 'Il trattamento economico suindicato ricomincia ex novo [...] dal 16° giorno di ricovero ospedaliero' (CNEL text p. 88, art. 60 C): from the 16th day of a stay the days count from one again (hospital_restart_day), within the episode. Restart also for an 'assenza per malattia iniziata dopo dodici mesi dal giorno in cui è cessato il diritto al trattamento economico del 100%' (art. 60 C, restart_after_full_pay_months 12); the 'giorni di controlli periodici rivolti ai lavoratori che hanno avuto esperienza oncologica' of a malattia invalidante are left out of the comporto (renewal p. 7, SicknessEpisode.periodic_check).",
         "note": "Scanned renewal, read by OCR and checked on the page images. Group 3 (operai) receive the INPS indemnity topped up to the net pay of group 1."
       }
     }
@@ -3556,19 +3558,6 @@
       },
       {
         "kind": "simplification",
-        "text": "SICKNESS: seniority bands of art. 60 modelled as a cumulation (8, 10, 12 months of comporto within 36 months; 3, 4, 5 months in full and the rest at half, on the net pay; restart after 4 months without sickness); the longer comporto of an invalidating disease (+2, +3, +4 months) and the hospital stays over 5 days left out of the comporto up to 60 days are modelled. The restart of the treatment from the 16th day of a hospital stay is modelled within the episode. Not modelled: the restart 12 months after the end of the full pay, the restart carried to the later episodes of the chain, and the days of periodic checks of an oncological illness left out of the comporto.",
-        "capability": "sickness",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "sickness_special_cases",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Model the restart 12 months after the end of the full pay and the days of periodic checks."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "LEAVE: Art. 42 of the CCNL testo definitivo 21/01/2021 (CNEL B101, physical p. 62): 4 weeks (20 days) up to the 10th year of service completed; 4 weeks + 2 days beyond the 10th year (120 months); 4 weeks + 3 days beyond the 15th (180 months); 5 weeks (25 days) beyond the 18th (216 months). ROL 68 ore/anno not modelled.",
         "capability": "leave",
         "monetary_impact": "no"
@@ -3588,6 +3577,10 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
+      },
+      {
+        "kind": "info",
+        "text": "SICKNESS: seniority bands of art. 60 modelled as a cumulation (8, 10, 12 months of comporto within 36 months; 3, 4, 5 months in full and the rest at half, on the net pay); restarts after 4 months without sickness, from the 16th day of a hospital stay (within the episode) and 12 months after the end of the full pay; comporto 2, 3, 4 months longer for an invalidating disease; hospital stays over 5 days (60 at most) and periodic checks of an oncological illness left out of the comporto."
       }
     ]
   },
@@ -3687,6 +3680,23 @@
         ],
         "findings": [
           "From the 16th day of a hospital stay the treatment starts anew (full pay again): modelled with hospital_restart_day 16."
+        ]
+      },
+      {
+        "id": "2026-10-12-ai-restart-checks",
+        "date": "2026-10-12",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Restart 12 months after the end of the full pay and periodic checks (art. 60).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+            "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
+          }
+        ],
+        "findings": [
+          "The last special cases of art. 60 are modelled: the restart 12 months after the full pay ended and the periodic checks out of the comporto; the limitation sickness_special_cases is closed."
         ]
       }
     ],

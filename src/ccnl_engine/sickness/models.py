@@ -59,6 +59,9 @@ class SicknessEpisode:
         serious_illness: Whether the illness is one the CCNL treats as
             particularly serious (Logistica: INPS circ. 95/2016); ``None``
             when not stated.  Read only by a CCNL with such a treatment.
+        periodic_check: Whether the absence is a periodic check of a worker
+            who had an invalidating illness (Concia art. 60 B), which a CCNL
+            may leave out of the comporto; ``None`` when not stated.
         prior_worked_days: Days of work activity of a fixed-term worker in
             the 12 months before the episode, with every employer (D.L.
             463/1983 art. 5 c. 1); ``None`` when not stated.  Read only for
@@ -79,6 +82,7 @@ class SicknessEpisode:
     prior_worked_days: int | None = None
     hospital_stays: tuple[tuple[date, date], ...] | None = None
     serious_illness: bool | None = None
+    periodic_check: bool | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         require_str(
@@ -107,10 +111,10 @@ class SicknessEpisode:
             maximum=366,
             optional=True,
         )
-        if self.serious_illness is not None:
-            require_bool(
-                self.serious_illness, f"{_OWNER}.serious_illness", feature=_FEATURE
-            )
+        for flag in ("serious_illness", "periodic_check"):
+            value = getattr(self, flag)
+            if value is not None:
+                require_bool(value, f"{_OWNER}.{flag}", feature=_FEATURE)
         for first, last in self.hospital_stays or ():
             require_date(first, f"{_OWNER}.hospital_stays", feature=_FEATURE)
             require_date(last, f"{_OWNER}.hospital_stays", feature=_FEATURE)

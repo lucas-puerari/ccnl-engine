@@ -96,6 +96,10 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "stays in full are paid reduced, with a provisional "
         "sickness_hospital_stays_unknown issue",
     ),
+    "SicknessEpisode.periodic_check": absence_is_fact(
+        "an ordinary sickness absence; a periodic check is a fact of the "
+        "certificate the event records"
+    ),
     "SicknessEpisode.serious_illness": requires_fact(
         "sickness",
         "event.serious_illness",
