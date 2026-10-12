@@ -299,6 +299,34 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 14,
+      "comparison": "at_least",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-tessile-moda-chimica-ceramica-artigiani-2017",
+            "title": "CCNL Area Tessile-Moda e Chimica-Ceramica (artigiani), 14 dicembre 2017",
+            "kind": "associazione",
+            "url": "https://www.cna.it/wp-content/uploads/2021/01/CCNL-Area-Tessile-Moda-Chimica-Ceramica.pdf",
+            "published_on": "2017-12-14",
+            "sha256": "27240326b23f4e0ca597de9bb3029e83bf057d8ed3ef1183090c76bcbd712800"
+          },
+          "section": "Art. 107 c. 2 (gratifica natalizia, operai) and art. 116 c. 3 (tredicesima, impiegati), Area Tessile-Moda",
+          "quote": "Le frazioni di mese non inferiori a 2 settimane verranno considerate come mese intero.",
+          "page": "108, 114"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T18:00:00Z",
+          "verification_status": "unverified",
+          "effective_from": "2017-12-14"
+        },
+        "note": "Two weeks, stored as 14 days. Not amended by the ipotesi of 4 May 2022; the renewal of 16 July 2024 was not read."
+      }
     }
   },
   "levels": [
@@ -1264,7 +1292,7 @@
     "effective_until": null,
     "source": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato",
     "verification_status": "unverified",
-    "source_hash": "da1beae6d852087588d2cde88d13f0edfd75171147dce40f01a02d91371fa86b",
+    "source_hash": "209d58820d5a2625285993409e361e7c202307313f96d7fdfa8a8d603da814a6",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

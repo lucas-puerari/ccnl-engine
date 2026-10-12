@@ -1,7 +1,6 @@
 {
   "weak_rules": {
     "agreement/acconciatura-estetica-confartigianato.json": {
-      "accrual_rule": "missing",
       "additional_months[2023-02-01]": "assumed"
     },
     "agreement/agenti-immobiliari-fiaip.json": {
@@ -127,7 +126,6 @@
       "additional_months[2024-10-01]": "assumed"
     },
     "agreement/bancari-abi.json": {
-      "accrual_rule": "missing",
       "additional_months[2023-11-23]": "assumed"
     },
     "agreement/bcc-credito-cooperativo.json": {
@@ -159,7 +157,6 @@
       "additional_months[2026-01-01]": "assumed"
     },
     "agreement/chimica-farmaceutica-federchimica.json": {
-      "accrual_rule": "missing",
       "additional_months[2022-06-13]": "assumed"
     },
     "agreement/cinema-audiovisivi-industria.json": {
@@ -167,7 +164,6 @@
       "additional_months[2025-01-01]": "assumed"
     },
     "agreement/comunicazione-artigianato-confartigianato.json": {
-      "accrual_rule": "missing",
       "additional_months[2024-12-01]": "assumed"
     },
     "agreement/consorzi-agrari-assocap.json": {
@@ -191,21 +187,9 @@
       "additional_months[2024-02-01]": "assumed",
       "additional_months[2025-01-01]": "assumed"
     },
-    "agreement/dirigenza-funzioni-centrali-aran.json": {
-      "accrual_rule": "missing",
-      "additional_months[2023-11-16]": "assumed"
-    },
-    "agreement/dirigenza-funzioni-locali-aran.json": {
-      "accrual_rule": "missing",
-      "additional_months[2020-12-17]": "assumed"
-    },
     "agreement/dirigenza-istruzione-ricerca-aran.json": {
       "accrual_rule": "missing",
       "additional_months[2021-01-01]": "assumed"
-    },
-    "agreement/dirigenza-sanitaria-area-sanita-aran.json": {
-      "accrual_rule": "missing",
-      "additional_months[2019-12-19]": "assumed"
     },
     "agreement/dirigenza-sanitaria-medico-veterinaria-aran.json": {
       "accrual_rule": "missing",
@@ -275,14 +259,6 @@
       "accrual_rule": "missing",
       "additional_months[2025-05-01]": "assumed"
     },
-    "agreement/funzioni-centrali-aran.json": {
-      "accrual_rule": "missing",
-      "additional_months[2022-05-09]": "assumed"
-    },
-    "agreement/funzioni-locali-aran.json": {
-      "accrual_rule": "missing",
-      "additional_months[2022-11-16]": "assumed"
-    },
     "agreement/gas-acqua-utilitalia.json": {
       "accrual_rule": "assumed",
       "additional_months[2022-10-01]": "assumed"
@@ -308,7 +284,6 @@
       "additional_months[2024-07-01]": "assumed"
     },
     "agreement/industria-turistica-federturismo.json": {
-      "accrual_rule": "missing",
       "additional_months[2025-01-01]": "assumed"
     },
     "agreement/informatica-pmi-unimatica.json": {
@@ -318,10 +293,6 @@
     "agreement/istituzioni-servizi-socio-assistenziali-anaste.json": {
       "accrual_rule": "assumed",
       "additional_months[2023-01-01]": "assumed"
-    },
-    "agreement/istruzione-ricerca-aran.json": {
-      "accrual_rule": "missing",
-      "additional_months[2022-01-01]": "assumed"
     },
     "agreement/lapidei-industria.json": {
       "accrual_rule": "missing",
@@ -427,11 +398,9 @@
       "additional_months[2025-06-01]": "assumed"
     },
     "agreement/metalmeccanico-artigianato.json": {
-      "accrual_rule": "missing",
       "additional_months[2022-01-01]": "assumed"
     },
     "agreement/metalmeccanico-confapi.json": {
-      "accrual_rule": "missing",
       "additional_months[2021-06-01]": "assumed"
     },
     "agreement/metalmeccanico-confimi-pmi.json": {
@@ -591,7 +560,6 @@
       "work_rules.sickness_rules": "assumed"
     },
     "agreement/panificazione-artigianato-confartigianato.json": {
-      "accrual_rule": "missing",
       "additional_months[2024-04-01]": "assumed"
     },
     "agreement/panificazione-assipan.json": {
@@ -776,10 +744,6 @@
       "accrual_rule": "assumed",
       "additional_months[2012-04-01]": "assumed"
     },
-    "agreement/sanita-aran.json": {
-      "accrual_rule": "missing",
-      "additional_months[2022-11-02]": "assumed"
-    },
     "agreement/sanita-privata-aiop-aris.json": {
       "accrual_rule": "assumed",
       "additional_months[2020-07-01]": "assumed"
@@ -884,7 +848,6 @@
       "additional_months[1990-01-01]": "assumed"
     },
     "agreement/tessile-moda-artigianato-confartigianato.json": {
-      "accrual_rule": "missing",
       "additional_months[2024-07-01]": "assumed"
     },
     "agreement/tessile-pmi-uniontessile.json": {
@@ -950,11 +913,9 @@
       "additional_months[2024-07-01]": "assumed"
     },
     "agreement/turismo-confesercenti.json": {
-      "accrual_rule": "missing",
       "additional_months[2024-07-01]": "assumed"
     },
     "agreement/turismo-federalberghi.json": {
-      "accrual_rule": "missing",
       "additional_months[1990-01-01]": "assumed"
     },
     "agreement/uneba-uneba.json": {

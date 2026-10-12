@@ -105,7 +105,7 @@ residence and empty family are stated, is not payable:
   destination of a company under the Tesoreria rule;
 - a rule the run executes is `assumed`: the municipal surtax of a comune with
   no delibera for the year and, for most CCNLs, the base salary, since
-  <!-- trust:extra-months-assumed -->117 of 126<!-- /trust:extra-months-assumed -->
+  <!-- trust:extra-months-assumed -->110 of 126<!-- /trust:extra-months-assumed -->
   CCNLs cite no clause for their number of monthly payments;
 - for some CCNLs, an `open_limitation` that concerns every ordinary month (an
   INPS rate reused from another sector, a salary table read from a proxy
@@ -116,7 +116,7 @@ Without the residence or the family, each run also carries a
 the capabilities the engine does not compute (INAIL, health funds, maternity,
 ...) do not apply to an ordinary month or are outside the request (see the
 [capability matrix](../contracts/capability-matrix.md)). The bundle holds
-<!-- trust:rules-missing -->82<!-- /trust:rules-missing --> `missing` rules
+<!-- trust:rules-missing -->64<!-- /trust:rules-missing --> `missing` rules
 (see [Provenance](provenance.md#current-counts)); a run that reads one also
 raises a `rule_source_missing` issue and is `incomplete`.
 

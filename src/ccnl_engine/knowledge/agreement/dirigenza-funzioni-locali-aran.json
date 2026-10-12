@@ -64,9 +64,28 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aran-raccolta-area-ii-2017",
+                "title": "ARAN, Raccolta sistematica Area II (gennaio 2017): CCNL 14 maggio 2007",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/09/Area-II_Raccolta-sistematica_Gennaio-2017.pdf",
+                "published_on": "2017-01-01",
+                "sha256": "fe95f11130fb28515f32cd5102929497a44fcddc543499b63a080268c0eacae9"
+              },
+              "section": "Art. 5 c. 1, CCNL 14 maggio 2007 (tredicesima mensilità)",
+              "quote": "una tredicesima mensilità nel periodo compreso tra il 10 ed il 18 dicembre",
+              "page": "71"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2007-05-14"
+            },
+            "note": "ARAN compilation of the CCNL 14 May 2007. Kept in force by the CCNL Area Funzioni Locali 2022-2024, art. 1 c. 11. Dirigenti only: the segretari comunali have art. 105 c. 2 CCNL 17 December 2020, with no fraction rule."
           }
         }
       ]
@@ -133,7 +152,34 @@
           "note": "Read from the PDF the url serves (sha256 7a52a0d7ea3445ad54eb67bb0ccf206d930a7e72110221a9b010231437b261cc), text layer. No human review recorded."
         }
       }
-    ]
+    ],
+    "accrual_rule": {
+      "comparison": "service_days_365",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "aran-raccolta-area-ii-2017",
+            "title": "ARAN, Raccolta sistematica Area II (gennaio 2017): CCNL 14 maggio 2007",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/09/Area-II_Raccolta-sistematica_Gennaio-2017.pdf",
+            "published_on": "2017-01-01",
+            "sha256": "fe95f11130fb28515f32cd5102929497a44fcddc543499b63a080268c0eacae9"
+          },
+          "section": "Art. 5 cc. 3, 5, CCNL 14 maggio 2007 (tredicesima mensilità)",
+          "quote": "la tredicesima è dovuta in ragione di tanti 365esimi quanti sono i giorni di servizio prestato",
+          "page": "71-72"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T18:00:00Z",
+          "verification_status": "unverified",
+          "effective_from": "2007-05-14"
+        },
+        "note": "ARAN compilation of the CCNL 14 May 2007. Kept in force by the CCNL Area Funzioni Locali 2022-2024, art. 1 c. 11. Dirigenti only: the segretari comunali have art. 105 c. 2 CCNL 17 December 2020, with no fraction rule."
+      }
+    }
   },
   "levels": [
     {
@@ -288,7 +334,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.truenumbers.it/ccnl-dirigenti-enti-locali-aumenti-arretrati/",
     "verification_status": "unverified",
-    "source_hash": "0aed7efe1d3f25dc0114457990464302e2b9922f7084d477bbf4fde869ff6dd0",
+    "source_hash": "fa60fa7bf57aa9c028528c7179797e0a6c44c808d78cc7145aada023d225704e",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
