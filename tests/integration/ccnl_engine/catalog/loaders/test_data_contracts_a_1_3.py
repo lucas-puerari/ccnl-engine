@@ -58,13 +58,17 @@ class TestLoadLogisticaTrasportoConfetra:
         assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(168)
 
     def test_logistica_trasporto_confetra_fixed_allowances(self) -> None:
-        """Only the Quadri hold an allowance: 51.65 of indennità di funzione."""
+        """Every level holds the EDRs of 2011 and 2021 (4J only the 2021 one).
+
+        The Quadri also hold 51.65 of indennità di funzione.
+        """
         ccnl = load_ccnl("logistica-trasporto-confetra.json")
-        allowances = {lv.code: lv.fixed_allowances for lv in ccnl.levels}
-        (function,) = allowances.pop("Q")
-        assert function.code == "IND_FUN"
-        assert function.monthly.value_at(date(2026, 1, 1)) == Decimal("51.65")
-        assert all(a == () for a in allowances.values())
+        codes = {lv.code: {a.code for a in lv.fixed_allowances} for lv in ccnl.levels}
+        assert codes.pop("Q") == {"IND_FUN", "EDR_2021", "EDR_2011"}
+        assert codes.pop("4J") == {"EDR_2021"}
+        assert all(c == {"EDR_2021", "EDR_2011"} for c in codes.values())
+        quadro = ccnl.level_by_code("Q").fixed_allowances[0]
+        assert quadro.monthly.value_at(date(2026, 1, 1)) == Decimal("51.65")
 
     def test_logistica_trasporto_confetra_tax_sector(self) -> None:
         """CCNL must declare tax_sector INDUSTRIA."""

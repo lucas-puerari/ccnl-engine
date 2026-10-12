@@ -3,7 +3,7 @@
   "_description": "CCNL Logistica, Trasporto Merci e Spedizione level 4, June 2027 regular run, permanent, full time, non-travelling staff: the first month of a tranche.",
   "_notes": [
     "Base salary = minimo plus EPA from 1 June 2027 (testo unico, p. 81): 1912.80.",
-    "No fixed allowance applies below the Quadri; the gross is the base salary."
+    "EDR ex accordo 18 maggio 2021 (p. 82), paid for 13 mensilità: 9,24 at level 4°; the EDR of art. 60 c. 8 needs the worker in service on 26.1.2011, which the case does not state."
   ],
   "source": {
     "document": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
@@ -21,7 +21,7 @@
   },
   "expected": {
     "base_salary": "1912.80",
-    "fixed_allowances": "0.00",
-    "period_gross": "1912.80"
+    "fixed_allowances": "9.24",
+    "period_gross": "1922.04"
   }
 }
