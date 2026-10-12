@@ -23,14 +23,15 @@
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "mef-addregirpef-2026-01",
             "title": "MEF, Dipartimento delle Finanze: addizionale regionale all'IRPEF 2026, Abruzzo",
             "kind": "amministrazione",
             "url": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=01&anno=2026",
-            "published_on": "2026-01-28"
+            "published_on": "2026-01-28",
+            "sha256": "32ed7268b27e6c4eb1648d13e8a6f8ebd27c042167c9320ed589b9d1f00d099c"
           },
           "section": "L.R. Abruzzo 44/2006 art. 1 c. 8; L.R. 9/2025 art. 1 c. 1"
         },
@@ -38,9 +39,12 @@
           "method": "manual",
           "extraction_timestamp": "2026-09-27T11:55:00Z",
           "effective_from": "2026-01-01",
-          "effective_until": "2026-12-31"
+          "effective_until": "2026-12-31",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T20:00:00Z",
+          "verification_status": "verified"
         },
-        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=01&anno=2026."
+        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=01&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
       }
     },
     "Basilicata": {
@@ -51,14 +55,15 @@
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "mef-addregirpef-2026-02",
             "title": "MEF, Dipartimento delle Finanze: addizionale regionale all'IRPEF 2026, Basilicata",
             "kind": "amministrazione",
             "url": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=02&anno=2026",
-            "published_on": "2026-01-29"
+            "published_on": "2026-01-29",
+            "sha256": "159918defeb1da3169158060e7718a608454b7b6288f8fe98500f63d417d819e"
           },
           "section": "D.Lgs. 68/2011 art. 6; D.Lgs. 446/1997 art. 50"
         },
@@ -66,9 +71,12 @@
           "method": "manual",
           "extraction_timestamp": "2026-09-27T11:55:00Z",
           "effective_from": "2026-01-01",
-          "effective_until": "2026-12-31"
+          "effective_until": "2026-12-31",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T20:00:00Z",
+          "verification_status": "verified"
         },
-        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=02&anno=2026."
+        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=02&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
       }
     },
     "Provincia Autonoma di Bolzano": {
@@ -99,14 +107,15 @@
       ],
       "dependent_provisions": "Detrazione of 340 euro per dependent child for taxable income up to 90,000 euro, in proportion to the share and months of dependency (disposizione particolare c).",
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "mef-addregirpef-2026-03",
             "title": "MEF, Dipartimento delle Finanze: addizionale regionale all'IRPEF 2026, Provincia Autonoma di Bolzano",
             "kind": "amministrazione",
             "url": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=03&anno=2026",
-            "published_on": "2026-01-29"
+            "published_on": "2026-01-29",
+            "sha256": "3edd5a675996ecdb80296de2499ed0c6003207fff5f7bf6670ba0b6d57a4a6d9"
           },
           "section": "L.P. Bolzano 9/1998 art. 21-sexiesdecies, disposizioni particolari a) b) c)"
         },
@@ -114,10 +123,13 @@
           "method": "manual",
           "extraction_timestamp": "2026-09-27T11:55:00Z",
           "effective_from": "2026-01-01",
-          "effective_until": "2026-12-31"
+          "effective_until": "2026-12-31",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T20:00:00Z",
+          "verification_status": "verified"
         },
         "transformation": "Disposizione b), 125 euro times (income less 50,000) over 25,000 with a cap of 125 euro, is stored as a deduction of 125 euro phased in over 25,000 euro above 50,000.",
-        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=03&anno=2026. The 90,000 euro limit also counts income under cedolare secca, the substitute tax on tips and the flat-rate regime; The engine tests the income limits on the IRPEF taxable income of the employment."
+        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=03&anno=2026. The 90,000 euro limit also counts income under cedolare secca, the substitute tax on tips and the flat-rate regime; The engine tests the income limits on the IRPEF taxable income of the employment. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
       }
     },
     "Calabria": {
@@ -128,14 +140,15 @@
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "mef-addregirpef-2026-04",
             "title": "MEF, Dipartimento delle Finanze: addizionale regionale all'IRPEF 2026, Calabria",
             "kind": "amministrazione",
             "url": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=04&anno=2026",
-            "published_on": "2026-01-29"
+            "published_on": "2026-01-29",
+            "sha256": "139c79208f34a750eb644246676b0bc6f1090d52321f3b3cd0211d4005e9088f"
           },
           "section": "L.R. Calabria 30/2002 art. 1; D.L. 216/2011 art. 29 c. 14"
         },
@@ -143,9 +156,12 @@
           "method": "manual",
           "extraction_timestamp": "2026-09-27T11:55:00Z",
           "effective_from": "2026-01-01",
-          "effective_until": "2026-12-31"
+          "effective_until": "2026-12-31",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T20:00:00Z",
+          "verification_status": "verified"
         },
-        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=04&anno=2026."
+        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=04&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
       }
     },
     "Campania": {
@@ -169,14 +185,15 @@
       ],
       "dependent_provisions": "Taxable income up to 28,000 euro: detrazione of 30 euro per dependent child with at least two dependent children, and of 40 euro per dependent child with a disability under L. 104/1992 (L.R. 7/2022 art. 1 cc. 2-3).",
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "mef-addregirpef-2026-05",
             "title": "MEF, Dipartimento delle Finanze: addizionale regionale all'IRPEF 2026, Campania",
             "kind": "amministrazione",
             "url": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=05&anno=2026",
-            "published_on": "2026-01-29"
+            "published_on": "2026-01-29",
+            "sha256": "49f3e4a9b622fba28f37ae5a39c58c09dfbf5e5b2101404122ef18a872830db1"
           },
           "section": "D.Lgs. 446/1997 art. 50; L.R. Campania 4/2014; L.R. 31/2021; L.R. 7/2022"
         },
@@ -184,9 +201,12 @@
           "method": "manual",
           "extraction_timestamp": "2026-09-27T11:55:00Z",
           "effective_from": "2026-01-01",
-          "effective_until": "2026-12-31"
+          "effective_until": "2026-12-31",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T20:00:00Z",
+          "verification_status": "verified"
         },
-        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=05&anno=2026."
+        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=05&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
       }
     },
     "Emilia-Romagna": {
@@ -209,14 +229,15 @@
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "mef-addregirpef-2026-06",
             "title": "MEF, Dipartimento delle Finanze: addizionale regionale all'IRPEF 2026, Emilia-Romagna",
             "kind": "amministrazione",
             "url": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=06&anno=2026",
-            "published_on": "2026-01-19"
+            "published_on": "2026-01-19",
+            "sha256": "dfbf3d1716f8548af5a75e443f9b4dc948d9c4198bdb3eb00485d2a2258a7fc3"
           },
           "section": "L.R. Emilia-Romagna 19/2006 art. 2 as amended by L.R. 1/2025 and L.R. 9/2025"
         },
@@ -224,9 +245,12 @@
           "method": "manual",
           "extraction_timestamp": "2026-09-27T11:55:00Z",
           "effective_from": "2026-01-01",
-          "effective_until": "2026-12-31"
+          "effective_until": "2026-12-31",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T20:00:00Z",
+          "verification_status": "verified"
         },
-        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=06&anno=2026."
+        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=06&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
       }
     },
     "Friuli-Venezia Giulia": {
@@ -241,14 +265,15 @@
         "rate": "0.0070"
       },
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "mef-addregirpef-2026-07",
             "title": "MEF, Dipartimento delle Finanze: addizionale regionale all'IRPEF 2026, Friuli-Venezia Giulia",
             "kind": "amministrazione",
             "url": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=07&anno=2026",
-            "published_on": "2026-01-19"
+            "published_on": "2026-01-19",
+            "sha256": "ae3712e2846e28cb13b79c13d7cb030e43e33ad0401ae6dc407d7ded99bcb1b0"
           },
           "section": "L.R. FVG 14/2012 art. 1 c. 5; L. 207/2024 art. 1 c. 727"
         },
@@ -256,10 +281,13 @@
           "method": "manual",
           "extraction_timestamp": "2026-09-27T11:55:00Z",
           "effective_from": "2026-01-01",
-          "effective_until": "2026-12-31"
+          "effective_until": "2026-12-31",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T20:00:00Z",
+          "verification_status": "verified"
         },
         "transformation": "MEF lists 0.70% up to 15,000 euro and 1.23% above; its disposizione particolare applies 0.70% to the whole income up to 15,000 euro and 1.23% to the whole income above, stored as a single 1.23% bracket with a whole-income rate of 0.70% up to 15,000 euro.",
-        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=07&anno=2026."
+        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=07&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
       }
     },
     "Lazio": {
@@ -293,14 +321,15 @@
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "mef-addregirpef-2026-08",
             "title": "MEF, Dipartimento delle Finanze: addizionale regionale all'IRPEF 2026, Lazio",
             "kind": "amministrazione",
             "url": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=08&anno=2026",
-            "published_on": "2026-01-22"
+            "published_on": "2026-01-22",
+            "sha256": "e6c336c1f839240bf0cd6f294eef39e6ed629ca307c2bff9b8fe664f5320ea22"
           },
           "section": "L.R. Lazio 20/2025 art. 2 cc. 2-3"
         },
@@ -308,10 +337,13 @@
           "method": "manual",
           "extraction_timestamp": "2026-09-27T11:55:00Z",
           "effective_from": "2026-01-01",
-          "effective_until": "2026-12-31"
+          "effective_until": "2026-12-31",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T20:00:00Z",
+          "verification_status": "verified"
         },
         "transformation": "The 1.73% rate for taxable income up to 28,000 euro is stored as a whole-income rate; the detrazione for income from 28,001 to 30,000 euro starts above 28,000 euro.",
-        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=08&anno=2026."
+        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=08&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
       }
     },
     "Liguria": {
@@ -330,14 +362,15 @@
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "mef-addregirpef-2026-09",
             "title": "MEF, Dipartimento delle Finanze: addizionale regionale all'IRPEF 2026, Liguria",
             "kind": "amministrazione",
             "url": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=09&anno=2026",
-            "published_on": "2026-01-28"
+            "published_on": "2026-01-28",
+            "sha256": "a8d9b3ce5745589a2a4df2a6bfa0806a76e477a9c69aad655437c322d7426a23"
           },
           "section": "L.R. Liguria 17/2024 art. 2-bis as amended by L.R. 3/2025; L.R. 3/2022 art. 1"
         },
@@ -345,9 +378,12 @@
           "method": "manual",
           "extraction_timestamp": "2026-09-27T11:55:00Z",
           "effective_from": "2026-01-01",
-          "effective_until": "2026-12-31"
+          "effective_until": "2026-12-31",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T20:00:00Z",
+          "verification_status": "verified"
         },
-        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=09&anno=2026."
+        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=09&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
       }
     },
     "Lombardia": {
@@ -370,14 +406,15 @@
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "mef-addregirpef-2026-10",
             "title": "MEF, Dipartimento delle Finanze: addizionale regionale all'IRPEF 2026, Lombardia",
             "kind": "amministrazione",
             "url": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=10&anno=2026",
-            "published_on": "2026-01-28"
+            "published_on": "2026-01-28",
+            "sha256": "d42e6b8df4033fb183a79322af6abc314cbd73c316abeacb011fb6f8f9b67ecf"
           },
           "section": "L.R. Lombardia 10/2003 art. 72 c. 1"
         },
@@ -385,9 +422,12 @@
           "method": "manual",
           "extraction_timestamp": "2026-09-27T11:55:00Z",
           "effective_from": "2026-01-01",
-          "effective_until": "2026-12-31"
+          "effective_until": "2026-12-31",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T20:00:00Z",
+          "verification_status": "verified"
         },
-        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=10&anno=2026."
+        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=10&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
       }
     },
     "Marche": {
@@ -411,14 +451,15 @@
       ],
       "dependent_provisions": "1.23% rate for taxable income up to 50,000 euro with one or more dependent children with a disability under L. 104/1992 (L.R. 5/2022 art. 1).",
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "mef-addregirpef-2026-11",
             "title": "MEF, Dipartimento delle Finanze: addizionale regionale all'IRPEF 2026, Marche",
             "kind": "amministrazione",
             "url": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=11&anno=2026",
-            "published_on": "2026-01-22"
+            "published_on": "2026-01-22",
+            "sha256": "ee12d5261125fb9b5959e02a20587cc0d9c08160f66868bececbbff5e600365d"
           },
           "section": "L.R. Marche 5/2022 art. 1; L. 207/2024 art. 1 c. 728"
         },
@@ -426,9 +467,12 @@
           "method": "manual",
           "extraction_timestamp": "2026-09-27T11:55:00Z",
           "effective_from": "2026-01-01",
-          "effective_until": "2026-12-31"
+          "effective_until": "2026-12-31",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T20:00:00Z",
+          "verification_status": "verified"
         },
-        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=11&anno=2026."
+        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=11&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
       }
     },
     "Molise": {
@@ -451,14 +495,15 @@
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "mef-addregirpef-2026-12",
             "title": "MEF, Dipartimento delle Finanze: addizionale regionale all'IRPEF 2026, Molise",
             "kind": "amministrazione",
             "url": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=12&anno=2026&delibera=1",
-            "published_on": "2026-06-19"
+            "published_on": "2026-06-19",
+            "sha256": "fb4d9765d33a91f3ee402fb00274f9fe0d57aa0ec3e382af3ad28b187aea30ef"
           },
           "section": "L.R. Molise 9/2013 art. 2; L. 311/2004 art. 1 c. 174; L.R. 5/2023 art. 1"
         },
@@ -466,9 +511,12 @@
           "method": "manual",
           "extraction_timestamp": "2026-09-27T11:55:00Z",
           "effective_from": "2026-01-01",
-          "effective_until": "2026-12-31"
+          "effective_until": "2026-12-31",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T20:00:00Z",
+          "verification_status": "verified"
         },
-        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=12&anno=2026&delibera=1. MEF lists two delibere for 2026; the one published on 19 June 2026 (delibera=1) supersedes the one published on 29 January 2026 (delibera=2: 1.73/1.93/3.33/3.33%)."
+        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=12&anno=2026&delibera=1. MEF lists two delibere for 2026; the one published on 19 June 2026 (delibera=1) supersedes the one published on 29 January 2026 (delibera=2: 1.73/1.93/3.33/3.33%). Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
       }
     },
     "Piemonte": {
@@ -492,14 +540,15 @@
       ],
       "dependent_provisions": "Detrazione of 100 euro per dependent child for taxpayers with more than two dependent children, and of 500 euro per dependent child with a disability under L. 104/1992 (L.R. 4/2022; L.R. 16/2025).",
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "mef-addregirpef-2026-13",
             "title": "MEF, Dipartimento delle Finanze: addizionale regionale all'IRPEF 2026, Piemonte",
             "kind": "amministrazione",
             "url": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=13&anno=2026",
-            "published_on": "2026-01-29"
+            "published_on": "2026-01-29",
+            "sha256": "3f1a82d74dccf07ab723dc4e096915dcd768153e659bca44d8df66019f24ea6e"
           },
           "section": "L.R. Piemonte 4/2022; L.R. 16/2025"
         },
@@ -507,9 +556,12 @@
           "method": "manual",
           "extraction_timestamp": "2026-09-27T11:55:00Z",
           "effective_from": "2026-01-01",
-          "effective_until": "2026-12-31"
+          "effective_until": "2026-12-31",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T20:00:00Z",
+          "verification_status": "verified"
         },
-        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=13&anno=2026."
+        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=13&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
       }
     },
     "Puglia": {
@@ -533,14 +585,15 @@
       ],
       "dependent_provisions": "Detrazione of 20 euro per dependent child for taxpayers with more than three dependent children, increased by 375 euro per child with a disability under L. 104/1992 (L.R. 40/2015 art. 3).",
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "mef-addregirpef-2026-14",
             "title": "MEF, Dipartimento delle Finanze: addizionale regionale all'IRPEF 2026, Puglia",
             "kind": "amministrazione",
             "url": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=14&anno=2026&delibera=1",
-            "published_on": "2026-05-29"
+            "published_on": "2026-05-29",
+            "sha256": "7d2c8a77cefe138bef78f3f2d2d78b6d88cf417f7f84e3e7ea9d7cca4002f727"
           },
           "section": "Decreto del Commissario ad acta n. 3 del 28 maggio 2026 (L. 311/2004 art. 1 c. 174); L.R. Puglia 40/2015 art. 3"
         },
@@ -548,9 +601,12 @@
           "method": "manual",
           "extraction_timestamp": "2026-09-27T11:55:00Z",
           "effective_from": "2026-01-01",
-          "effective_until": "2026-12-31"
+          "effective_until": "2026-12-31",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T20:00:00Z",
+          "verification_status": "verified"
         },
-        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=14&anno=2026&delibera=1. MEF lists two delibere for 2026; the one published on 29 May 2026 (delibera=1), which raises the rates to cover the 2025 health deficit, supersedes the one published on 28 January 2026 (delibera=2: 1.33/1.43/1.63/1.85%)."
+        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=14&anno=2026&delibera=1. MEF lists two delibere for 2026; the one published on 29 May 2026 (delibera=1), which raises the rates to cover the 2025 health deficit, supersedes the one published on 28 January 2026 (delibera=2: 1.33/1.43/1.63/1.85%). Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
       }
     },
     "Sardegna": {
@@ -562,14 +618,15 @@
       ],
       "dependent_provisions": "Taxable income up to 50,000 euro: detrazione of 200 euro per dependent child under 18, increased by 100 euro per child with a disability under L. 104/1992 (L.R. 48/2018 art. 2).",
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "mef-addregirpef-2026-15",
             "title": "MEF, Dipartimento delle Finanze: addizionale regionale all'IRPEF 2026, Sardegna",
             "kind": "amministrazione",
             "url": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=15&anno=2026",
-            "published_on": "2026-01-29"
+            "published_on": "2026-01-29",
+            "sha256": "365affa5445644ca74eb4212eeffebddb6f8ab6e7fc88f090ba069f18db732f3"
           },
           "section": "D.L. 201/2011 art. 28; L.R. Sardegna 48/2018 art. 2; L.R. 13/2022 art. 1"
         },
@@ -577,9 +634,12 @@
           "method": "manual",
           "extraction_timestamp": "2026-09-27T11:55:00Z",
           "effective_from": "2026-01-01",
-          "effective_until": "2026-12-31"
+          "effective_until": "2026-12-31",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T20:00:00Z",
+          "verification_status": "verified"
         },
-        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=15&anno=2026."
+        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=15&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
       }
     },
     "Sicilia": {
@@ -590,14 +650,15 @@
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "mef-addregirpef-2026-16",
             "title": "MEF, Dipartimento delle Finanze: addizionale regionale all'IRPEF 2026, Sicilia",
             "kind": "amministrazione",
             "url": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=16&anno=2026",
-            "published_on": "2026-01-29"
+            "published_on": "2026-01-29",
+            "sha256": "06742e8b935e7595f0bd9e4be201f543fef65e77463d7fa18aa660a4934f4b3e"
           },
           "section": "D.Lgs. 446/1997 art. 50; L.R. Sicilia 12/2007 art. 1; D.L. 201/2011 art. 28"
         },
@@ -605,9 +666,12 @@
           "method": "manual",
           "extraction_timestamp": "2026-09-27T11:55:00Z",
           "effective_from": "2026-01-01",
-          "effective_until": "2026-12-31"
+          "effective_until": "2026-12-31",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T20:00:00Z",
+          "verification_status": "verified"
         },
-        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=16&anno=2026."
+        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=16&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
       }
     },
     "Toscana": {
@@ -630,14 +694,15 @@
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "mef-addregirpef-2026-17",
             "title": "MEF, Dipartimento delle Finanze: addizionale regionale all'IRPEF 2026, Toscana",
             "kind": "amministrazione",
             "url": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=17&anno=2026",
-            "published_on": "2026-01-30"
+            "published_on": "2026-01-30",
+            "sha256": "4245c513a925a03749b79e20def8ae473303af79b58ca3698a74c89198b6e699"
           },
           "section": "L.R. Toscana 48/2023 art. 1"
         },
@@ -645,9 +710,12 @@
           "method": "manual",
           "extraction_timestamp": "2026-09-27T11:55:00Z",
           "effective_from": "2026-01-01",
-          "effective_until": "2026-12-31"
+          "effective_until": "2026-12-31",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T20:00:00Z",
+          "verification_status": "verified"
         },
-        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=17&anno=2026."
+        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=17&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
       }
     },
     "Provincia Autonoma di Trento": {
@@ -672,14 +740,15 @@
       "exemption_threshold": "30000.00",
       "dependent_provisions": "Taxable income up to 50,000 euro: detrazione of 246 euro per dependent child under art. 12 c. 2 TUIR, in proportion to the share and months of dependency.",
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "mef-addregirpef-2026-18",
             "title": "MEF, Dipartimento delle Finanze: addizionale regionale all'IRPEF 2026, Provincia Autonoma di Trento",
             "kind": "amministrazione",
             "url": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=18&anno=2026",
-            "published_on": "2026-01-22"
+            "published_on": "2026-01-22",
+            "sha256": "49b9af39467f72cb1d3542e502a25bd65043c8e0850f716a60f9f79ac90496ce"
           },
           "section": "L.P. Trento 13/2019 art. 1 cc. 2-quater, 2-sexies, 3-bis as amended by L.P. 11/2025"
         },
@@ -687,10 +756,13 @@
           "method": "manual",
           "extraction_timestamp": "2026-09-27T11:55:00Z",
           "effective_from": "2026-01-01",
-          "effective_until": "2026-12-31"
+          "effective_until": "2026-12-31",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T20:00:00Z",
+          "verification_status": "verified"
         },
         "transformation": "The deduction of 30,000 euro from a taxable income up to 30,000 euro leaves no base, so it is stored as an exemption threshold of 30,000 euro.",
-        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=18&anno=2026."
+        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=18&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
       }
     },
     "Umbria": {
@@ -724,14 +796,15 @@
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "mef-addregirpef-2026-19",
             "title": "MEF, Dipartimento delle Finanze: addizionale regionale all'IRPEF 2026, Umbria",
             "kind": "amministrazione",
             "url": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=19&anno=2026",
-            "published_on": "2026-01-19"
+            "published_on": "2026-01-19",
+            "sha256": "f5db9351f2d02ab81922c6bdeb42504347027073d6e6dabb7c2f2267197f9c1d"
           },
           "section": "L.R. Umbria 2/2025 art. 1"
         },
@@ -739,10 +812,13 @@
           "method": "manual",
           "extraction_timestamp": "2026-09-27T11:55:00Z",
           "effective_from": "2026-01-01",
-          "effective_until": "2026-12-31"
+          "effective_until": "2026-12-31",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T20:00:00Z",
+          "verification_status": "verified"
         },
         "transformation": "Up to 28,000 euro the increases of 0.50% (first bracket) and 1.79% (second bracket) do not apply: 1.73 - 0.50 = 3.02 - 1.79 = 1.23%, stored as a whole-income rate of 1.23% up to 28,000 euro. The detrazione for income from 28,001 to 50,000 euro starts above 28,000 euro.",
-        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=19&anno=2026."
+        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=19&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
       }
     },
     "Valle d'Aosta": {
@@ -754,14 +830,15 @@
       ],
       "exemption_threshold": "15000.00",
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "mef-addregirpef-2026-20",
             "title": "MEF, Dipartimento delle Finanze: addizionale regionale all'IRPEF 2026, Valle d'Aosta",
             "kind": "amministrazione",
             "url": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=20&anno=2026",
-            "published_on": "2026-01-19"
+            "published_on": "2026-01-19",
+            "sha256": "2c306df9ee8886988e9deea3365f76e7e507513c85feb99ecf7ef9c19cb80d9e"
           },
           "section": "D.Lgs. 446/1997 art. 50 cc. 2-3; L.R. Valle d'Aosta 29/2025 art. 1"
         },
@@ -769,9 +846,12 @@
           "method": "manual",
           "extraction_timestamp": "2026-09-27T11:55:00Z",
           "effective_from": "2026-01-01",
-          "effective_until": "2026-12-31"
+          "effective_until": "2026-12-31",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T20:00:00Z",
+          "verification_status": "verified"
         },
-        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=20&anno=2026. The exemption is on reddito complessivo up to 15,000 euro; The engine tests the income limits on the IRPEF taxable income of the employment."
+        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=20&anno=2026. The exemption is on reddito complessivo up to 15,000 euro; The engine tests the income limits on the IRPEF taxable income of the employment. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
       }
     },
     "Veneto": {
@@ -783,14 +863,15 @@
       ],
       "dependent_provisions": "0.9% rate for taxable income up to 50,000 euro for taxpayers with a disability or with a dependent family member with a disability (L.R. 19/2005 art. 1 c. 5).",
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "mef-addregirpef-2026-21",
             "title": "MEF, Dipartimento delle Finanze: addizionale regionale all'IRPEF 2026, Veneto",
             "kind": "amministrazione",
             "url": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=21&anno=2026",
-            "published_on": "2026-01-22"
+            "published_on": "2026-01-22",
+            "sha256": "9748643c3dccf814bd3966996108be6f681fa2796d788d701270d0a6d7b6b8fc"
           },
           "section": "D.Lgs. 68/2011 art. 6 c. 1; L.R. Veneto 19/2005 art. 1 c. 5 as amended by L.R. 30/2022"
         },
@@ -798,9 +879,12 @@
           "method": "manual",
           "extraction_timestamp": "2026-09-27T11:55:00Z",
           "effective_from": "2026-01-01",
-          "effective_until": "2026-12-31"
+          "effective_until": "2026-12-31",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T20:00:00Z",
+          "verification_status": "verified"
         },
-        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=21&anno=2026."
+        "note": "Retrieved on 2026-09-27 from https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=21&anno=2026. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026."
       }
     }
   },
@@ -812,20 +896,31 @@
     "published_at": "2026-09-27",
     "source": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/sceltaregione.htm",
     "verification_status": "unverified",
-    "source_hash": "aa9279788389b446065ab65a79a091294f27bfc7bffeb6a94a142226e9de6aa9",
+    "source_hash": "dd4231f211c75dac281e6fc03c5c09f3826ccf60ad89ce957dd444b6b785f09b",
     "source_type": "official_primary"
   },
   "provenance": {
-    "status": "derived",
+    "status": "verified",
     "location": {
       "source_document": {
         "document_id": "mef-addregirpef-2026",
         "title": "MEF, Dipartimento delle Finanze: addizionale regionale all'IRPEF, aliquote applicabili 2026",
         "kind": "amministrazione",
-        "url": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/sceltaregione.htm"
+        "url": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/sceltaregione.htm",
+        "sha256": "86cd0ab3e7540104ecabf7ee2552f8c5edf59491242d71b63ddda6c0d7caba0d"
       },
       "section": "one page per region, anno 2026"
     },
-    "note": "Retrieved on 2026-09-27; every row carries the URL of its page. Not checked by a named reviewer."
+    "note": "Retrieved on 2026-09-27; every row carries the URL of its page. Not checked by a named reviewer. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026.",
+    "extraction": {
+      "method": "ai",
+      "model": "claude-opus-5-5",
+      "extraction_timestamp": "2026-10-12T20:00:00Z",
+      "effective_from": "2026-01-01",
+      "effective_until": "2026-12-31",
+      "verified_by": "claude-opus-5-5",
+      "verified_at": "2026-10-12T20:00:00Z",
+      "verification_status": "verified"
+    }
   }
 }

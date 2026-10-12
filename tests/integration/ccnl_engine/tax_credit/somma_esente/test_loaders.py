@@ -36,7 +36,7 @@ class TestBundled2026:
             (Decimal(20000), Decimal("0.048")),
         ]
 
-    def test_record_is_derived_from_an_official_primary_ruleset(self) -> None:
+    def test_record_is_verified_from_an_official_primary_ruleset(self) -> None:
         """The record quotes the law and no estimated ruleset holds it."""
         rules = load_somma_esente_rules(2026)
         assert rules.ruleset is not None
@@ -44,7 +44,7 @@ class TestBundled2026:
         assert rules.ruleset.source_type is SourceType.OFFICIAL_PRIMARY
         record = rules.provenance
         assert record is not None
-        assert record.status is ProvenanceStatus.DERIVED
+        assert record.status is ProvenanceStatus.VERIFIED
         assert record.location is not None
         assert record.location.section == "art. 1 cc. 4-5"
         assert "a) 7,1 per cento" in (record.location.quote or "")

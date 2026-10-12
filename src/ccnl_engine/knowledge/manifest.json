@@ -2461,7 +2461,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/family-deductions",
       "ruleset_version": "2026.2",
-      "source_hash": "2a9aebc4b8fb7e1d9505dd33e68b73ef2d681fd008edbf363a9eb40346a73db5",
+      "source_hash": "b2d3a92d84f234d56be78a1683178bf410ce76884f71998281c0851141e9b499",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "family/2026.json.gz"
@@ -2531,7 +2531,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/agricoltura",
       "ruleset_version": "2026.1",
-      "source_hash": "70c72a708ab9ac731683270ec8b72da767e36cba8257123c633acd770d20d849",
+      "source_hash": "7b0be49a446461adedfed0e57a6e217107e160df940b0fcc6efbef1ecf4c459b",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/agricoltura.json.gz"
@@ -2548,7 +2548,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/artigianato",
       "ruleset_version": "2026.1",
-      "source_hash": "fa073722f3a2ed6cc2b19348f36ce2a3519bbd36144a10be5dff5dff84584d33",
+      "source_hash": "02e5bf38992c4bdc3c6aa38643a60ded8bd8625bd276cf943c39f9e04680afa5",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/artigianato.json.gz"
@@ -2565,7 +2565,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/credito",
       "ruleset_version": "2026.1",
-      "source_hash": "24b54fcddda8254755b5e5ef2ee69ac864484e1de470d763ea427f18d9dd8f26",
+      "source_hash": "a78343df341ca33e6ab3268cb084c17c71113b11dbe60cc6b40115dc5a6309eb",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/credito.json.gz"
@@ -2582,7 +2582,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/edilizia",
       "ruleset_version": "2026.1",
-      "source_hash": "21f8704452b889a65a194a59af12777868e2bacf3cee830362addbf92c0e7f70",
+      "source_hash": "bdd5f9cb56de972869aa43d0e69c4c9352a0448b98651da54bac2f4bb7a32198",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/edilizia.json.gz"
@@ -2599,7 +2599,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/industria",
       "ruleset_version": "2026.1",
-      "source_hash": "f5367743371857dbdf7afc1e788ae776f175e432931f740a8adc8f1d07057206",
+      "source_hash": "014ecd65ab53916a77412b132a1b8224a38b69e43957c550d76984ba69126eb1",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/industria.json.gz"
@@ -2616,7 +2616,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/lavoro-domestico",
       "ruleset_version": "2026.1",
-      "source_hash": "b40c1ae354654bdf17802aaa91d2f6a6f2f8a0b99b1afb33ebdfbc03e13b1fb8",
+      "source_hash": "b9f88acc7e932844272be377eb5be06b925bf5923e9afa7aa3707b2007816ffe",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/lavoro-domestico.json.gz"
@@ -2633,7 +2633,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/pubblica-amministrazione",
       "ruleset_version": "2026.1",
-      "source_hash": "4f5e5be0c619e59e48f40f0e3c9479f67b3630d2cbe5ecacd7270a9c1b4feede",
+      "source_hash": "ea6a6c117e1ef24cb6b4f91c8a02c2cb77fa0022a0e1769df924c897f841fa42",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/pubblica-amministrazione.json.gz"
@@ -2650,7 +2650,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/terziario",
       "ruleset_version": "2026.1",
-      "source_hash": "dfea96c50592b0b3417fb713f6bb5d26674687207329b9a87415843b1deddefa",
+      "source_hash": "bcdde83925edb640c06a296e842a8b53c00527cfcb46321280d2968680d13605",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sector/2026/terziario.json.gz"
@@ -2871,7 +2871,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "surtax/2026/regionale",
       "ruleset_version": "2026.2",
-      "source_hash": "aa9279788389b446065ab65a79a091294f27bfc7bffeb6a94a142226e9de6aa9",
+      "source_hash": "dd4231f211c75dac281e6fc03c5c09f3826ccf60ad89ce957dd444b6b785f09b",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "surtax/regional/2026.json.gz"
@@ -2905,7 +2905,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/2026/somma-esente",
       "ruleset_version": "2026.1",
-      "source_hash": "dda3c48e41b6facd7359dc4aefecc76545a1a6f5629bf2351ddcb9c7bc450b5a",
+      "source_hash": "046af61cce0daae4df5f4a94202249cd0d8539cb92e58839cd10169a8341ebec",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "tax_credit/somma_esente/2026.json.gz"

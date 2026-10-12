@@ -59,11 +59,11 @@ class TestRegionalRows:
         assert set(rules.regionale) == set(REGION_CODES.values())
 
     def test_every_row_cites_its_mef_page(self, rules: SurtaxRules) -> None:
-        """Each row is ``derived`` from its own MEF page, with the access date."""
+        """Each row is ``verified`` on its own MEF page, with the access date."""
         for name, entry in rules.regionale.items():
             record = entry.provenance
             assert record is not None, name
-            assert record.status is ProvenanceStatus.DERIVED, name
+            assert record.status is ProvenanceStatus.VERIFIED, name
             assert record.location is not None, name
             url = record.location.source_document.url
             assert url.startswith(_MEF_REGIONAL), name
@@ -74,10 +74,10 @@ class TestRegionalRows:
                 "2026-09-27"
             )
 
-    def test_table_is_derived_from_mef(self, rules: SurtaxRules) -> None:
+    def test_table_is_verified_on_mef(self, rules: SurtaxRules) -> None:
         """The table record and ruleset name the MEF as official source."""
         assert rules.regional_provenance is not None
-        assert rules.regional_provenance.status is ProvenanceStatus.DERIVED
+        assert rules.regional_provenance.status is ProvenanceStatus.VERIFIED
         assert rules.regional_ruleset is not None
         assert rules.regional_ruleset.source.startswith("https://www1.finanze.gov.it/")
 

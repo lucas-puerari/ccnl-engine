@@ -149,32 +149,57 @@ def test_payable_statuses_cover_every_rule() -> None:
     assert sum(counts[status] for status in STATUSES) == len(_RULES)
 
 
-def test_verified_fiscal_rules_are_the_reviewed_l2_rules() -> None:
-    """Outside the CCNL files, only reviewed L2 rules are verified.
+#: Paths of the shared 2026 tax tables reviewed on 2026-10-12, per file.
+_SECTOR_REVIEWED = {
+    "irpef_brackets",
+    "work_deduction",
+    "work_deduction.minimum",
+    "trattamento_integrativo",
+    "ulteriore_detrazione",
+    "sterilizzazione_detrazioni",
+}
 
-    They are the L2 rules of the production CCNL and the domestic INPS
-    table of INPS circ. 9/2026.  Each names its reviewer and date
+
+def _reviewed(file: str, path: str) -> bool:
+    """Return whether a non-CCNL rule belongs to a reviewed table.
+
+    Returns:
+        True for the reviewed L2 rules of the production CCNL, the domestic
+        INPS table and the shared 2026 tax tables.
+    """
+    if file == "sector/2026/industria.json" and path.startswith("tfr"):
+        return True
+    if file.startswith("sector/2026/"):
+        return path in _SECTOR_REVIEWED
+    return file in {
+        "contribution/2026/industria.json",
+        "contribution/2026/lavoro-domestico.json",
+        "family/2026.json",
+        "tax_credit/somma_esente/2026.json",
+        "surtax/regional/2026.json",
+    }
+
+
+def test_verified_fiscal_rules_are_the_reviewed_tables() -> None:
+    """Outside the CCNL files, only reviewed tables are verified.
+
+    They are the L2 rules of the production CCNL, the domestic INPS table of
+    INPS circ. 9/2026 and the shared 2026 tax tables (IRPEF, work deduction,
+    trattamento integrativo, ulteriore detrazione, family deductions, somma
+    esente, regional surtax).  Each names its reviewer and date
     (``RuleProvenance`` rejects a verified record without them, so the
     bundle would not load otherwise). Verified CCNL rules point to their
     review log instead, which the evidence gate checks.
     """
-    verified = {
+    verified = [
         (r.file, r.path)
         for r in _RULES
         if r.status == "verified" and not r.file.startswith("agreement/")
-    }
-    inps = "contribution/2026/industria.json"
-    tax = "sector/2026/industria.json"
-    assert verified == {
-        (inps, "inps"),
-        (inps, "inps.employee_additional"),
-        (inps, "inps.minimum_base"),
-        (inps, "apprentice"),
-        (tax, "tfr"),
-        (tax, "tfr.additional_ivs"),
-        (tax, "tfr.compensation"),
-        ("contribution/2026/lavoro-domestico.json", "domestic_contributions"),
-    }
+    ]
+    assert verified
+    assert [rule for rule in verified if not _reviewed(*rule)] == []
+    sectors = {file for file, path in verified if path == "irpef_brackets"}
+    assert len(sectors) == 8
 
 
 def test_salary_period_without_provenance_fails() -> None:
