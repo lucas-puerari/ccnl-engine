@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | assistance_contribution, base_salary, inps_employer, seniority |
+| **Limits of this contract** | assistance_contribution, base_salary, inps_employer, seniority, sickness |
 
-6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -138,6 +138,20 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source from the Cas.Sa.Colf rules whether the tredicesima carries contributable hours and set them for extra-month runs.
 
+!!! warning "lavoro-domestico-convivente/oncological_comporto · sickness · impact unknown · open"
+    Art. 27 c. 6: the comporto is 50% longer for an oncological illness certified by the ASL. The request does not say whether an episode is oncological, so the engine keeps the ordinary comporto.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add a fact for an oncological sickness episode and lengthen its comporto by 50%.
+
+!!! warning "lavoro-domestico-convivente/sick_board_lodging · sickness · impact unknown · open"
+    Art. 27 c. 9: the conventional value of board and lodging is part of the sick pay only when the worker is not in hospital or in the employer's home. The request does not say where the worker is, so the engine pays the monthly pay as stated.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add a fact for the days in hospital or in the employer's home and leave the board and lodging out of their sick pay.
+
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.
 
@@ -194,6 +208,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     BOARD AND LODGING: every level carries the allowance vitto_alloggio, the valore convenzionale of board and lodging provided in kind (Art. 36 c. 3, Tabella F 2026: 2,33 + 2,33 + 2,00 per day, x 30 = 199,80 per month). A regular run pays no cash for it and counts it in the TFR base (Art. 41 c. 1); the tredicesima pays it in cash (Art. 39 c. 1, chiarimento a verbale 5). It is not reduced for reduced hours (Art. 14 c. 2: intera retribuzione in natura).
     
     CAS.SA.COLF: contributi di assistenza contrattuale of Art. 54 c. 2, 0,06 EUR per paid hour, 0,02 withheld from the worker and 0,04 paid by the employer, charged on the contributable hours of the run.
+    
+    SICKNESS (Art. 27): INPS pays no indemnity to domestic workers; the employer pays 50% of the retribuzione globale di fatto up to the third day and 100% from the fourth, for at most 8, 10 or 15 days in the 365 days that end on the sick day, within a comporto of 10, 45 or 180 days, for up to 6 months of seniority, up to 2 years and over 2 years. A sick day is a thirtieth of the monthly pay (chiarimento a verbale 2).
     
 
 ## Raw data

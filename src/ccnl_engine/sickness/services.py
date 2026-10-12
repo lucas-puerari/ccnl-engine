@@ -55,28 +55,45 @@ def _name(ccnl: CCNL) -> str:
     return f"ccnl/{ccnl.meta.ccnl_id}" if ccnl.ruleset is None else ccnl.ruleset.id
 
 
-def _quota(ccnl: CCNL, day: date) -> DailyQuota | None:
-    """Return the daily quota of the CCNL absence rule in force on ``day``.
+def _method(ccnl: CCNL) -> DailyDivisorMethod | None:
+    """Return the daily-quota method of a sick day.
 
     Returns:
-        The quota, ``None`` without an absence rule, for ``by_25``, whose
-        payable days are not defined, or for ``by_hourly`` without the
-        hourly divisor or the daily hours.
+        The method of the sickness rules when they set their own, else the
+        one of the CCNL absence rule, ``None`` without either.
     """
-    rules = None if ccnl.work_rules is None else ccnl.work_rules.absence_rules
-    if rules is None or rules.daily_divisor_method is DailyDivisorMethod.BY_25:
+    work = ccnl.work_rules
+    if work is None:
         return None
-    method = rules.daily_divisor_method
+    sickness, absence = work.sickness_rules, work.absence_rules
+    if sickness is not None and sickness.daily_divisor_method is not None:
+        return sickness.daily_divisor_method
+    return None if absence is None else absence.daily_divisor_method
+
+
+def _quota(ccnl: CCNL, day: date) -> DailyQuota | None:
+    """Return the daily quota of a sick day in force on ``day``.
+
+    Returns:
+        The quota, ``None`` without a method, for ``by_25``, whose payable
+        days are not defined, or for ``by_hourly`` without the hourly
+        divisor or the daily hours.
+    """
+    method = _method(ccnl)
+    if method is None or method is DailyDivisorMethod.BY_25:
+        return None
     if method is DailyDivisorMethod.BY_MONTH_HOURS:
         return DailyQuota(method, month_working_days(day))
     fixed = _FIXED_DIVISORS.get(method)
     if fixed is not None:
         return DailyQuota(method, fixed)
+    rules = None if ccnl.work_rules is None else ccnl.work_rules.absence_rules
+    hours = None if rules is None else rules.daily_hours
     period = ccnl.parameters.hourly_divisor.period_at(day)
     divisor = None if period is None else period.value
-    if divisor is None or rules.daily_hours is None:
+    if divisor is None or hours is None:
         return None
-    return DailyQuota(method, divisor, rules.daily_hours)
+    return DailyQuota(method, divisor, hours)
 
 
 def _employed(ctx: RunContext) -> tuple[date, date] | None:

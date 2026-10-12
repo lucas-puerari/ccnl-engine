@@ -6,6 +6,7 @@ from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from ccnl_engine.absence.models import DailyDivisorMethod
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
 _ONE = Decimal(1)
@@ -152,12 +153,16 @@ class SicknessCumulation(BaseModel):
     The treatment chain sums the sick days of consecutive episodes until one
     starts at least :attr:`reset_after_days` calendar days after the return
     to work; the comporto sums the sick days within the
-    :attr:`window_years` that end on the day considered.
+    :attr:`window_years` that end on the day considered.  Without
+    ``reset_after_days`` the full-pay days are counted over the same window
+    as the comporto (CCNL lavoro domestico Art. 27 c. 7: "per un massimo di
+    8, 10, 15 giorni complessivi nell'anno").
 
     Attributes:
         window_years: Years of sickness the comporto is counted over.
         reset_after_days: Calendar days of work after which a new episode
-            starts a new treatment chain.
+            starts a new treatment chain; ``None`` counts the full-pay days
+            over the window.
         reduced_integration_rate: Rate of the days of the chain past the
             full-pay days of the band.
         bands: Seniority bands, in increasing seniority; the first starts
@@ -168,7 +173,7 @@ class SicknessCumulation(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     window_years: int = Field(ge=1)
-    reset_after_days: int = Field(ge=1)
+    reset_after_days: int | None = Field(default=None, ge=1)
     reduced_integration_rate: Decimal = Field(ge=Decimal(0), le=Decimal(1))
     bands: tuple[SicknessSeniorityBand, ...] = Field(min_length=1)
     short_absences: ShortAbsenceReduction | None = None
@@ -254,6 +259,11 @@ class SicknessRules(BaseModel):
             CCNL (:class:`~ccnl_engine.sickness.indemnity.models.SickPayRegime`),
             e.g. ``pubblici_esercizi`` (80% for the whole sickness);
             ``None`` for the general bands.
+        daily_divisor_method: Daily quota of a sick day when it differs
+            from the one of the absence rules (CCNL lavoro domestico,
+            chiarimento a verbale 2: sickness counts calendar days, in
+            thirtieths, absences working days, in twenty-sixths); ``None``
+            takes the absence rules'.
         provenance: Links this rule to its CCNL article.
     """
 
@@ -271,6 +281,7 @@ class SicknessRules(BaseModel):
     net_basis: bool = False
     apprentices_excluded: bool = False
     inps_regime: str | None = None
+    daily_divisor_method: DailyDivisorMethod | None = None
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")

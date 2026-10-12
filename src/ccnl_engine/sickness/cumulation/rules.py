@@ -5,8 +5,10 @@ A CCNL with a :class:`~ccnl_engine.sickness.integration.models.SicknessCumulatio
 
 - the treatment chain: the sick days of the episode and of the earlier
   episodes it follows with fewer than ``reset_after_days`` calendar days of
-  work between them.  The days of the chain up to the full-pay days of the
-  seniority band are paid in full, the later ones at the reduced rate;
+  work between them, or, without ``reset_after_days``, the sick days within
+  the window of the comporto (CCNL lavoro domestico Art. 27 c. 7).  The
+  days of the chain up to the full-pay days of the seniority band are paid
+  in full, the later ones at the reduced rate;
 - the comporto: the sick days within the ``window_years`` that end on the
   day.  A day past the comporto days of the band is outside what the CCNL
   integrates;
@@ -149,12 +151,17 @@ class CumulativeTreatment:
         """Days of the earlier episodes of the chain, and its first day.
 
         The chain goes back through the recorded episodes while fewer than
-        ``reset_after_days`` days of work separate one from the next.
+        ``reset_after_days`` days of work separate one from the next; a
+        window count (no ``reset_after_days``) has no chain before the
+        episode.
         """
         start, days = self.episode.started_on, 0
+        reset = self.cumulation.reset_after_days
+        if reset is None:
+            return days, start
         for previous in reversed(self.earlier):
             worked = (start - previous.ended_on).days - 1
-            if worked >= self.cumulation.reset_after_days:
+            if worked >= reset:
                 break
             days += previous.days
             start = previous.started_on
@@ -164,8 +171,11 @@ class CumulativeTreatment:
         """Return the days of the treatment chain up to ``day``.
 
         Returns:
-            The earlier days of the chain plus the episode up to ``day``.
+            The earlier days of the chain plus the episode up to ``day``;
+            the sick days of the window for a window count.
         """
+        if self.cumulation.reset_after_days is None:
+            return self.window_days(day)
         return self.chain[0] + (day - self.episode.started_on).days + 1
 
     def window_days(self, day: date) -> int:
@@ -240,7 +250,16 @@ class CumulativeTreatment:
 
         Returns:
             The day; it precedes the episode when the chain had already
-            used the full-pay days.
+            used the full-pay days.  For a window count, the first day of
+            the episode whose window holds more than the full-pay days, or
+            the day after the episode when none does.
         """
+        if self.cumulation.reset_after_days is None:
+            first, last = self.episode.started_on, self.episode.ended_on
+            days = (first + timedelta(days=n) for n in range((last - first).days + 1))
+            return next(
+                (d for d in days if self.window_days(d) > self.band.full_pay_days),
+                last + timedelta(days=1),
+            )
         offset = self.band.full_pay_days - self.chain[0]
         return self.episode.started_on + timedelta(days=offset)

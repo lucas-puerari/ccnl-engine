@@ -110,6 +110,36 @@
           },
           "remediation": "Source from the Cas.Sa.Colf rules whether the tredicesima carries contributable hours and set them for extra-month runs."
         }
+      },
+      {
+        "kind": "info",
+        "text": "SICKNESS (Art. 27): INPS pays no indemnity to domestic workers; the employer pays 50% of the retribuzione globale di fatto up to the third day and 100% from the fourth, for at most 8, 10 or 15 days in the 365 days that end on the sick day, within a comporto of 10, 45 or 180 days, for up to 6 months of seniority, up to 2 years and over 2 years. A sick day is a thirtieth of the monthly pay (chiarimento a verbale 2)."
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 27 c. 6: the comporto is 50% longer for an oncological illness certified by the ASL. The request does not say whether an episode is oncological, so the engine keeps the ordinary comporto.",
+        "capability": "sickness",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "oncological_comporto",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add a fact for an oncological sickness episode and lengthen its comporto by 50%."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 27 c. 9: the conventional value of board and lodging is part of the sick pay only when the worker is not in hospital or in the employer's home. The request does not say where the worker is, so the engine pays the monthly pay as stated.",
+        "capability": "sickness",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "sick_board_lodging",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add a fact for the days in hospital or in the employer's home and leave the board and lodging out of their sick pay."
+        }
       }
     ]
   },
@@ -562,7 +592,7 @@
     "effective_until": null,
     "source": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
     "verification_status": "unverified",
-    "source_hash": "6ab39ddea9de122909d177d94172ad43f025a8f19d85f93e32abc0e35ad6d233",
+    "source_hash": "87471c33748521bc8d4b415167f3f5709029219db9f0207011088cddee081671",
     "published_at": "2026-10-08",
     "source_type": "commercial_secondary"
   },
@@ -694,26 +724,53 @@
       }
     },
     "sickness_rules": {
-      "carenza_integration_rate": "0",
-      "full_pay_integration_rate": "0",
-      "max_duration_days": 180,
+      "carenza_integration_rate": "0.5",
+      "full_pay_integration_rate": "1",
+      "cumulation": {
+        "window_years": 1,
+        "reduced_integration_rate": "0",
+        "bands": [
+          {
+            "seniority_months_from": 0,
+            "full_pay_days": 8,
+            "comporto_days": 10
+          },
+          {
+            "seniority_months_from": 6,
+            "full_pay_days": 10,
+            "comporto_days": 45
+          },
+          {
+            "seniority_months_from": 24,
+            "full_pay_days": 15,
+            "comporto_days": 180
+          }
+        ]
+      },
+      "daily_divisor_method": "by_30",
       "provenance": {
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "ccnl-lavoro-domestico-2025",
-            "title": "CCNL Lavoro Domestico (Assindatcolf / Fidaldo) — Convivente 2025",
-            "kind": "tabella_retributiva",
-            "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
+            "document_id": "ccnl-lavoro-domestico-2025-10-28",
+            "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+            "kind": "associazione",
+            "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+            "published_on": "2025-10-28",
+            "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
           },
-          "section": "Art. malattia — conservazione posto 180 giorni (>2 anni anzianità); nessuna integrazione datoriale"
+          "page": "37-38, 56",
+          "section": "Art. 27 cc. 4, 5, 7 (malattia); chiarimento a verbale 2 (giorni di calendario in trentesimi)",
+          "quote": "decorre in caso di malattia la retribuzione globale di fatto per un massimo di 8, 10, 15 giorni complessivi nell'anno"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T12:00:00Z",
           "verification_status": "unverified",
-          "effective_from": "2025-01-01"
-        }
+          "effective_from": "2025-11-01"
+        },
+        "transformation": "INPS pays domestic workers no sickness indemnity, so the employer pays the CCNL rate: 50% up to the third consecutive day (the carenza) and 100% from the fourth, for at most 8, 10 or 15 days and within a comporto of 10, 45 or 180 days, for up to 6 months of seniority, from 6 months to 2 years and over 2 years (bands from 0, 6 and 24 months). Readings: 'nell'anno' of c. 7 is taken as the period of 365 days of c. 5, and the 365 days 'decorrenti dall'evento' as the year that ends on the sick day; a day past the paid days is unpaid; the daily pay is a thirtieth of the monthly pay (chiarimento a verbale 2: 'giorni di calendario' are thirtieths, 'esempio: malattia')."
       }
     }
   },
