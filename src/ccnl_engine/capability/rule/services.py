@@ -90,7 +90,14 @@ def _sick_pay_supplement(ctx: RunContext, inps_name: str) -> tuple[Rule, ...]:
     sickness = None if work is None else work.sickness_rules
     regime = None if sickness is None else sickness.inps_regime
     inps = ctx.contract.year_rules.inps
-    if regime is None or inps is None:
+    named = next(
+        (r for r in ctx.repo.load_sick_pay_rates().regimes if r.id == regime), None
+    )
+    if (
+        regime is None
+        or inps is None
+        or not (named is None or named.additional_contribution)
+    ):
         return ()
     supplement = inps.sick_pay_supplements.get(regime)
     record = None if supplement is None else supplement.provenance

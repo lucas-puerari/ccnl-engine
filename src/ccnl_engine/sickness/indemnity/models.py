@@ -139,6 +139,10 @@ class SickPayRegime(BaseModel):
         id: Name the CCNL refers to (``pubblici_esercizi``...).
         description: Who the regime covers.
         bands: Rate bands ordered by ``day_from`` (non-overlapping).
+        additional_contribution: Whether the employers of the regime pay an
+            additional sickness contribution, listed in the INPS table of
+            the year (``inps.sick_pay_supplements``); ``False`` for a regime
+            funded by the ordinary rates (the lavoratori dello spettacolo).
         provenance: Provenance record of the regime rates.
     """
 
@@ -147,6 +151,7 @@ class SickPayRegime(BaseModel):
     id: str = Field(min_length=1)
     description: str = ""
     bands: list[SickPayBand] = Field(min_length=1)
+    additional_contribution: bool = True
     provenance: RuleProvenance | None = None
 
 

@@ -438,7 +438,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/cinema-audiovisivi-industria",
       "ruleset_version": "2025.1",
-      "source_hash": "2f119400ef681b765fa0aa725490bb5bdb769890b712e312594f06e3955831e6",
+      "source_hash": "87d679d6cd5897f0fa1b243209dc6d4abb288e7d990d67ac6de65acc71132604",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/cinema-audiovisivi-industria.json.gz"
@@ -829,7 +829,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/esercizi-cinematografici-anec",
       "ruleset_version": "2026.2",
-      "source_hash": "9ae383cfebd68820d0f671bc51085a96d9cca3e1abb391d8307fecd59e5fd985",
+      "source_hash": "678c0322d882d4f4947324765b4c758c6af0c174d323e543df59697411a2f445",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/esercizi-cinematografici-anec.json.gz"
@@ -2922,7 +2922,7 @@
       "valid_to": null,
       "ruleset_id": "inps/sick-pay-rates",
       "ruleset_version": "1.1",
-      "source_hash": "5ad2e6c073d372be0ccf2e7e75eb8f5beea72a649db8b2e11dbe51cef941e606",
+      "source_hash": "3bf5aed677d389b7cb1c64e1c072615a4283c9ae494fb8a3bfad0ddd25d31f6f",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sickness/indemnity/rates.json.gz"

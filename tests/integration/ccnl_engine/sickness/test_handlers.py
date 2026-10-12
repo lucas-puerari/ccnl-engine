@@ -384,8 +384,8 @@ def test_an_unknown_regime_is_a_data_error() -> None:
         level="4",
         category=WorkerCategory.IMPIEGATO,
     )
-    with pytest.raises(DataIntegrityError, match="spettacolo"):
-        calculate_period(request, repo=_InpsRegime("spettacolo"))
+    with pytest.raises(DataIntegrityError, match="marittimi_imbarcati"):
+        calculate_period(request, repo=_InpsRegime("marittimi_imbarcati"))
 
 
 class _CarenzaPastFiveDays(BundledKnowledgeRepository):
