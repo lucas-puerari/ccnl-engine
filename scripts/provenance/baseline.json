@@ -3,6 +3,9 @@
     "agreement/acconciatura-estetica-confartigianato.json": {
       "additional_months[2023-02-01]": "assumed"
     },
+    "agreement/afam-aran.json": {
+      "work_rules.absence_rules": "assumed"
+    },
     "agreement/agenti-immobiliari-fiaip.json": {
       "accrual_rule": "missing",
       "additional_months[2025-05-01]": "assumed",
@@ -1145,6 +1148,11 @@
       "acconciatura-estetica-confartigianato/gruppo_1_reduced_duration",
       "acconciatura-estetica-confartigianato/gruppo_2_semester_mapping",
       "acconciatura-estetica-confartigianato/inps_sector_rates_unsourced"
+    ],
+    "agreement/afam-aran.json": [
+      "afam-aran/afam_allowances_missing",
+      "afam-aran/pension_fund_not_modelled",
+      "afam-aran/shared_rules_unchecked"
     ],
     "agreement/agenti-immobiliari-fiaip.json": [
       "agenti-immobiliari-fiaip/apprentice_seniority",

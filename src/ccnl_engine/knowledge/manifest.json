@@ -19,6 +19,23 @@
       "wheel_resource": "agreement/acconciatura-estetica-confartigianato.json.gz"
     },
     {
+      "dataset_id": "agreement/afam-aran",
+      "path": "agreement/afam-aran.json",
+      "dataset": "agreement",
+      "year": null,
+      "scope": "afam-aran",
+      "model": "CCNL",
+      "schema_version": "0.5",
+      "valid_from": "2024-01-01",
+      "valid_to": null,
+      "ruleset_id": "ccnl/afam-aran",
+      "ruleset_version": "2026.2",
+      "source_hash": "dbc4428a3ec36e65099fa3e40675dc75412433281dabe78083494e3763b9ec95",
+      "source_type": "official_primary",
+      "owner": "ccnl-engine maintainers",
+      "wheel_resource": "agreement/afam-aran.json.gz"
+    },
+    {
       "dataset_id": "agreement/agenti-immobiliari-fiaip",
       "path": "agreement/agenti-immobiliari-fiaip.json",
       "dataset": "agreement",
