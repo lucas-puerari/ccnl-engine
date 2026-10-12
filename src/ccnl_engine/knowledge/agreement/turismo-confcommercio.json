@@ -2,28 +2,35 @@
   "schema_version": "0.5",
   "meta": {
     "ccnl_id": "turismo-confcommercio",
-    "name": "CCNL Turismo, Pubblici Esercizi e Ristorazione (Confcommercio)",
+    "name": "CCNL Turismo (Federalberghi, Faita-Federcamping, con Confcommercio)",
     "cnel_code": "H052",
     "sector": "turismo",
     "tax_sector": "terziario",
     "signatories": [
       "Federalberghi",
-      "FIPE-Confcommercio",
-      "Federviaggio",
+      "FAITA-Federcamping",
       "FILCAMS-CGIL",
       "FISASCAT-CISL",
       "UILTuCS"
     ],
     "sources": [
       {
-        "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/",
-        "type": "table",
-        "agreement_date": "2024-06-05"
+        "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+        "type": "accordo_di_rinnovo",
+        "agreement_date": "2024-07-05",
+        "notes": "Ipotesi di accordo 5 July 2024 (Federalberghi, Faita-Federcamping with Confcommercio; Filcams, Fisascat, UILTuCS), CNEL H052. Art. 152 c. 1 (PDF p. 47, printed 42): paga base nazionale conglobata mensile, tranches July 2024 to November 2027. sha256 1f91c11c..."
       },
       {
-        "url": "https://www.lexplain.it/scatti-di-anzianita-ccnl-turismo-ristorazione-e-pubblici-esercizi/",
-        "type": "table",
-        "agreement_date": null
+        "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194291",
+        "type": "accordo_di_rinnovo",
+        "agreement_date": "2024-07-05",
+        "notes": "The same ipotesi deposited at the CNEL (idAccordo 194291), sha256 880e20b9... (base64 JSON, sha256 of the decoded PDF)."
+      },
+      {
+        "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+        "type": "testo_unico_ccnl",
+        "agreement_date": "2010-02-20",
+        "notes": "CCNL Turismo 20 February 2010, the text the renewals amend: art. 145 (indennità di funzione Quadri), art. 158 (scatti triennali)."
       }
     ],
     "extraction": {
@@ -32,21 +39,22 @@
       "timestamp": "2026-08-31T00:00:00",
       "human_reviewed": false
     },
-    "workers_estimate": "~300k"
+    "workers_estimate": "~300k",
+    "agreement_date": "2024-07-05"
   },
   "coverage": {
     "notes": [
       {
         "kind": "info",
-        "text": "SUB-SECTOR: salary tables from the hotels/tourism renewal signed on 5 June 2024 (CCNL H052 hotels special section). CCNL H052 also covers the public establishments/FIPE sub-sector (renewal March 2025, slightly different tables) not modelled in this file."
+        "text": "IDENTITY: the salary tables are art. 152 c. 1 of the CCNL Turismo of Federalberghi and Faita-Federcamping (ipotesi 5 July 2024, CNEL H052), the same contract as turismo-federalberghi; FIPE Pubblici Esercizi is a separate CCNL (H05Y), modelled in pubblici-esercizi-fipe-angem. Not modelled: the reduced table of art. 152 c. 2 for hotels of one and two stars and small campsites."
       },
       {
         "kind": "info",
-        "text": "CONGLOBATED MINIMUMS: the base_salary values are the monthly conglobated tabular minimums (basic pay + contingency included), as published by lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027. fixed_allowances is empty for all levels. Verification: level 7 November 2027 = 1458.42 / 172 = 8.48 EUR/h (matches published hourly table)."
+        "text": "CONGLOBATED MINIMUMS: the base_salary values are the paga base nazionale conglobata mensile of art. 152 c. 1 (contingenza, EDR and the elements of 1976 and 1979 included, c. 5)."
       },
       {
         "kind": "info",
-        "text": "QA/QB FUNCTION ALLOWANCE: some sources (public establishments) show a separate function allowance (QA=EUR 75, QB=EUR 70). For the hotels sub-sector, the values in the conglobated table appear to already include this component. If checks against actual payslips show a discrepancy, add fixed_allowances QA=EUR 75 and QB=EUR 70."
+        "text": "IND_FUN ABSORPTION: the indennità di funzione of the Quadri (art. 145, QA 75.00, QB 70.00) is 'assorbibile fino a concorrenza dai trattamenti economici individuali comunque denominati riconosciuti aziendalmente'; the engine pays it in full, as the request carries no individual company pay to absorb it."
       },
       {
         "kind": "info",
@@ -54,7 +62,7 @@
       },
       {
         "kind": "info",
-        "text": "SENIORITY INCREMENTS: 6 four-yearly increments (every 48 months). Amounts from lexplain.it/scatti-di-anzianita-ccnl-turismo-ristorazione-e-pubblici-esercizi. The increments are paid over 14 monthly instalments (including the 13th and 14th) — the gross_annual component is already captured by the additional_months=14 multiplier in the engine."
+        "text": "SENIORITY INCREMENTS: six steps every three years (36 months), from the first day of the month after the triennio (art. 158 CCNL 2010, pp. 140-141). Paid over 14 monthly instalments."
       },
       {
         "kind": "info",
@@ -62,7 +70,7 @@
       },
       {
         "kind": "info",
-        "text": "MONTHLY PAYMENTS: 14 (thirteenth in June, fourteenth in December). Confirmed by CCNL and by the note 'amounts paid over 14 monthly instalments' for seniority increments."
+        "text": "MONTHLY PAYMENTS: 14, the tredicesima of art. 160 (December) and the quattordicesima of art. 161 (paid with the July pay), as replaced by the ipotesi of 5 July 2024."
       },
       {
         "kind": "info",
@@ -135,7 +143,7 @@
       ]
     },
     "seniority_increments": {
-      "cadence_months": 48,
+      "cadence_months": 36,
       "maximum_count": 6,
       "amount_by_level": {
         "QA": {
@@ -233,19 +241,25 @@
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "turismo-confcommercio",
-            "title": "turismo-confcommercio",
-            "kind": "tabella_retributiva",
-            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+            "document_id": "ccnl-turismo-2010",
+            "title": "CCNL Turismo 20 febbraio 2010 (testo UILTuCS)",
+            "kind": "associazione",
+            "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+            "published_on": "2010-02-20",
+            "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
           },
-          "section": "Scatti di anzianità"
+          "page": "140-141",
+          "section": "Art. 158 - Scatti di anzianità",
+          "quote": "A tutto il personale verranno riconosciuti sei scatti triennali per l'anzianità di servizio"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T18:00:00Z",
           "verification_status": "unverified",
-          "effective_from": "2020-01-01"
-        }
+          "effective_from": "2010-02-20"
+        },
+        "transformation": "Six steps every 36 months, from the first day of the month after the triennio (c. 3); amounts per level of p. 140-141 (A 40.80 ... 7 30.47), unchanged by the renewals of 2014 and 2024 (OCR search)."
       }
     },
     "employer_funds": [
@@ -331,19 +345,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 7",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2024-07-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -354,19 +374,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 7",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2025-06-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -377,19 +403,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 7",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2026-05-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -400,19 +432,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 7",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2027-04-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -423,19 +461,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 7",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2027-11-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           }
         ]
@@ -474,19 +518,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 6",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2024-07-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -497,19 +547,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 6",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2025-06-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -520,19 +576,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 6",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2026-05-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -543,19 +605,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 6",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2027-04-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -566,19 +634,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 6",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2027-11-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           }
         ]
@@ -617,19 +691,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 6S",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2024-07-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -640,19 +720,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 6S",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2025-06-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -663,19 +749,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 6S",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2026-05-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -686,19 +778,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 6S",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2027-04-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -709,19 +807,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 6S",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2027-11-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           }
         ]
@@ -760,19 +864,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 5",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2024-07-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -783,19 +893,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 5",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2025-06-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -806,19 +922,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 5",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2026-05-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -829,19 +951,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 5",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2027-04-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -852,19 +980,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 5",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2027-11-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           }
         ]
@@ -903,19 +1037,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 4",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2024-07-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -926,19 +1066,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 4",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2025-06-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -949,19 +1095,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 4",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2026-05-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -972,19 +1124,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 4",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2027-04-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -995,19 +1153,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 4",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2027-11-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           }
         ]
@@ -1046,19 +1210,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 3",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2024-07-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -1069,19 +1239,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 3",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2025-06-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -1092,19 +1268,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 3",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2026-05-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -1115,19 +1297,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 3",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2027-04-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -1138,19 +1326,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 3",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2027-11-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           }
         ]
@@ -1189,19 +1383,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 2",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2024-07-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -1212,19 +1412,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 2",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2025-06-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -1235,19 +1441,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 2",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2026-05-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -1258,19 +1470,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 2",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2027-04-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -1281,19 +1499,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 2",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2027-11-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           }
         ]
@@ -1332,19 +1556,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 1",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2024-07-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -1355,19 +1585,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 1",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2025-06-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -1378,19 +1614,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 1",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2026-05-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -1401,19 +1643,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 1",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2027-04-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -1424,19 +1672,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello 1",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2027-11-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           }
         ]
@@ -1475,19 +1729,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello QB",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2024-07-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -1498,19 +1758,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello QB",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2025-06-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -1521,19 +1787,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello QB",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2026-05-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -1544,19 +1816,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello QB",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2027-04-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -1567,24 +1845,69 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello QB",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2027-11-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_FUN",
+          "description": "Indennità di funzione Quadri (art. 145 CCNL Turismo 2010)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-07-01",
+                "valid_until": null,
+                "value": "70.00"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-turismo-2010",
+                "title": "CCNL Turismo 20 febbraio 2010 (testo UILTuCS)",
+                "kind": "associazione",
+                "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+                "published_on": "2010-02-20",
+                "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+              },
+              "page": "133",
+              "section": "Art. 145 - Indennità di funzione (Quadri)",
+              "quote": "Ai Quadri è riconosciuta una indennità di funzione mensile, assorbibile fino a concorrenza dai trattamenti economici individuali comunque denominati riconosciuti aziendalmente"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T18:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2009-01-01"
+            },
+            "transformation": "From January 2009: Quadri A 75.00, Quadri B 70.00; not amended by the renewals of 2014 and 2024 (OCR search); art. 152 c. 5 (2024) does not count it in the paga base.",
+            "note": "Absorbable against individual company pay: the engine pays it in full (see the note IND_FUN ABSORPTION)."
+          }
+        }
+      ],
       "category": "quadro",
       "provenance": {
         "status": "derived",
@@ -1619,19 +1942,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello QA",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2024-07-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -1642,19 +1971,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello QA",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2025-06-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -1665,19 +2000,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello QA",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2026-05-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -1688,19 +2029,25 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello QA",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2027-04-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           },
           {
@@ -1711,24 +2058,69 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "turismo-confcommercio",
-                  "title": "turismo-confcommercio",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/"
+                  "document_id": "ccnl-turismo-federalberghi-2024",
+                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                  "published_on": "2024-07-05",
+                  "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Art. 152 c. 1 (paga base nazionale conglobata mensile), livello QA",
+                "quote": "Ai rispettivi livelli previsti dalla classificazione del personale corrisponde un valore di paga base nazionale conglobata mensile che si raggiunge entro il 31 dicembre 2027"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T18:00:00Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2027-11-01"
+              },
+              "transformation": "Value of the level row for the tranche, compared cell by cell with the page image (scan)."
             }
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_FUN",
+          "description": "Indennità di funzione Quadri (art. 145 CCNL Turismo 2010)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-07-01",
+                "valid_until": null,
+                "value": "75.00"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-turismo-2010",
+                "title": "CCNL Turismo 20 febbraio 2010 (testo UILTuCS)",
+                "kind": "associazione",
+                "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+                "published_on": "2010-02-20",
+                "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+              },
+              "page": "133",
+              "section": "Art. 145 - Indennità di funzione (Quadri)",
+              "quote": "Ai Quadri è riconosciuta una indennità di funzione mensile, assorbibile fino a concorrenza dai trattamenti economici individuali comunque denominati riconosciuti aziendalmente"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T18:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2009-01-01"
+            },
+            "transformation": "From January 2009: Quadri A 75.00, Quadri B 70.00; not amended by the renewals of 2014 and 2024 (OCR search); art. 152 c. 5 (2024) does not count it in the paga base.",
+            "note": "Absorbable against individual company pay: the engine pays it in full (see the note IND_FUN ABSORPTION)."
+          }
+        }
+      ],
       "category": "quadro",
       "provenance": {
         "status": "derived",
@@ -1814,11 +2206,11 @@
     "version": "2026.2",
     "effective_from": "2024-07-01",
     "effective_until": null,
-    "source": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/",
+    "source": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
     "verification_status": "unverified",
-    "source_hash": "106868004337f6b22c2ac90d0bbb983b2c8548a9a8f4a769f0a9be22c05c8cfc",
+    "source_hash": "be62a764eed7664853b188d4f80e80571c4a2911f0afce61e0888b3bf9eba6c2",
     "published_at": "2026-09-07",
-    "source_type": "commercial_secondary"
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
@@ -2006,5 +2398,36 @@
         }
       }
     }
+  },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "reviews": [
+      {
+        "id": "2026-10-13-ai",
+        "date": "2026-10-13",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Identity, sources, seniority, Quadri allowance and salary tables against the signed ipotesi of 5 July 2024 and the CCNL of 2010.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+            "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
+          },
+          {
+            "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+            "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+          }
+        ],
+        "findings": [
+          "The 50 salary values equal art. 152 c. 1 of the Federalberghi/Faita ipotesi of 5 July 2024 cell by cell (scan, page image): this file is the same CCNL as turismo-federalberghi, not a FIPE section; FIPE and Federviaggio are not signatories.",
+          "The source agreement date 2024-06-05 was FIPE's; now 2024-07-05. Sources moved from lexplain to the signed texts.",
+          "Seniority: six steps every 36 months (art. 158), not 48.",
+          "Quadri: the indennità di funzione of art. 145 (QA 75, QB 70) was missing; added, absorption not modelled.",
+          "The file duplicates turismo-federalberghi; whether to retire it is left to the owner."
+        ]
+      }
+    ]
   }
 }

@@ -63,10 +63,10 @@ class TestLoadTurismoConfcommercio:
         assert by_order[-1].code == "QA"
 
     def test_turismo_seniority_cadence(self) -> None:
-        """Scatti are quadriennali (48 months), maximum 6."""
+        """Six scatti triennali (art. 158 CCNL Turismo 2010): 36 months."""
         ccnl = load_ccnl("turismo-confcommercio.json")
         si = ccnl.parameters.seniority_increments
-        assert si.cadence_months == 48
+        assert si.cadence_months == 36
         assert si.maximum_count == 6
 
     def test_turismo_fourteen_months(self) -> None:
@@ -75,13 +75,18 @@ class TestLoadTurismoConfcommercio:
         value = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
         assert value == Decimal(14)
 
-    def test_turismo_no_fixed_allowances(self) -> None:
-        """All levels have no fixed_allowances (minimum conglobated in base_salary)."""
+    def test_turismo_quadri_allowance_only(self) -> None:
+        """Only the Quadri hold the indennità di funzione (art. 145): 75 and 70."""
         ccnl = load_ccnl("turismo-confcommercio.json")
-        for level in ccnl.levels:
-            assert level.fixed_allowances == (), (
-                f"Level {level.code} should have no fixed_allowances"
-            )
+        amounts = {
+            level.code: [
+                a.monthly.value_at(date(2026, 1, 1)) for a in level.fixed_allowances
+            ]
+            for level in ccnl.levels
+        }
+        assert amounts.pop("QA") == [Decimal("75.00")]
+        assert amounts.pop("QB") == [Decimal("70.00")]
+        assert all(values == [] for values in amounts.values())
 
     def test_turismo_apprenticeship_percentage(self) -> None:
         """Apprenticeship uses percentage model: 80/85/90/100% (rinnovo 2024).
