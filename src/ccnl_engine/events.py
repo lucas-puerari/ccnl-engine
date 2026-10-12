@@ -19,6 +19,7 @@ from ccnl_engine.event.facade import (
     SickLeaveEvent,
     SicknessEpisode,
     TerminationTFREvent,
+    TravelAllowanceEvent,
     WelfareEvent,
     WorkEvent,
 )
@@ -39,6 +40,7 @@ __all__ = [
     "SickLeaveEvent",
     "SicknessEpisode",
     "TerminationTFREvent",
+    "TravelAllowanceEvent",
     "WelfareEvent",
     "WorkEvent",
 ]

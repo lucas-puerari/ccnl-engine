@@ -35,11 +35,13 @@ from ccnl_engine.event.facade import (
     SickLeaveEvent,
     SicknessEpisode,
     TerminationTFREvent,
+    TravelAllowanceEvent,
     WelfareEvent,
 )
 from ccnl_engine.event.standard.handlers import (
     _standard_event_gross,
 )
+from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.working_time.models import TimeSupplementKind, WorkKind
 from ccnl_engine.working_time.overtime.policies import (
     CCNLOvertimeBands,
@@ -102,6 +104,9 @@ _RULES: dict[type, _CallerRule] = {
     SickLeaveEvent: _CallerRule("sickness", CALLER_OVERRIDE, ("amount",)),
     BonusEvent: _CallerRule("bonus", CALLER_DECLARED_AMOUNT, ("amount",)),
     WelfareEvent: _CallerRule("welfare", CALLER_DECLARED_AMOUNT, ("amount",)),
+    TravelAllowanceEvent: _CallerRule(
+        "travel_allowance", CALLER_SUPPLIED_AMOUNT, ("daily_amount",)
+    ),
     ArrearsEvent: _CallerRule(
         "contract_renewal_arrears", CALLER_SUPPLIED_RATE, ("separate_tax_rate",)
     ),
@@ -228,6 +233,8 @@ def _amount(event: WorkEvent) -> Decimal:
     """
     if isinstance(event, BilateralFundEvent):
         return event.employee_amount + event.employer_amount
+    if isinstance(event, TravelAllowanceEvent):
+        return money(event.daily_amount * event.days)
     if isinstance(event, _CASH_EVENTS):
         return _standard_event_gross(event)
     if isinstance(event, SicknessEpisode):  # pragma: no cover - no caller rule

@@ -20,6 +20,7 @@ from ccnl_engine.variable_pay.inputs import (
     BilateralFundEvent,
     BonusEvent,
     FringeEvent,
+    TravelAllowanceEvent,
     WelfareEvent,
 )
 from ccnl_engine.working_time.inputs import (
@@ -45,6 +46,7 @@ __all__ = [
     "SickLeaveEvent",
     "SicknessEpisode",
     "TerminationTFREvent",
+    "TravelAllowanceEvent",
     "WelfareEvent",
     "WorkEvent",
 ]

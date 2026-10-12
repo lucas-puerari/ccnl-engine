@@ -56,7 +56,7 @@ formulas or caller-declared amounts.
 | Scope | native | caller_supplied | partial | unsupported |
 |---|---:|---:|---:|---:|
 | core | 20 | 0 | 0 | 0 |
-| scenario | 3 | 8 | 2 | 1 |
+| scenario | 3 | 9 | 2 | 1 |
 | outside_input | 0 | 0 | 0 | 14 |
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
@@ -102,6 +102,7 @@ formulas or caller-declared amounts.
 | `leave` | Ferie e permessi ROL | outside_input | work_rules | unsupported | outside_input | — | `facts.events[leave]` | — | unavailable | none bundled |
 | `sickness` | Malattia: episodi su più periodi, carenza, fasce INPS e integrazione CCNL | scenario | work_rules | native | event | event | — | multi_period_episode, inps_bands_and_carenza, ccnl_tiers | simplified | 17 / 212 / 5 / 0 |
 | `fringe_benefit` | Fringe benefit (informativo) | scenario | work_rules | native | event | event | — | — | simplified | 0 / 1 / 1 / 0 |
+| `travel_allowance` | Indennità di trasferta (importo giornaliero dal chiamante, quota esente art. 51 c. 5 TUIR) | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
 | `welfare` | Welfare aziendale (informativo) | scenario | work_rules | native | event | event | — | — | implemented | none bundled |
 | `bonus_pdr` | Premio di risultato PDR (informativo) | core | net | native | decided | decision | — | — | simplified | 0 / 1 / 1 / 0 |
 | `rinnovo_substitute_tax` | Imposta sostitutiva aumenti da rinnovo L. 199/2025 art. 1 c. 7 | core | net | native | decided | decision | `prior_year` | — | simplified | 0 / 1 / 1 / 0 |

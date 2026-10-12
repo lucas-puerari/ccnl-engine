@@ -28,6 +28,7 @@ if TYPE_CHECKING:
         PreferentialTaxRegime,
     )
     from ccnl_engine.sickness.models import SicknessEpisode
+    from ccnl_engine.variable_pay.models import TravelAllowanceRules
 
 
 @dataclass(frozen=True)
@@ -72,7 +73,8 @@ class _EventHandlerCtx:
     prior-year income, the waivers, the sector and the employer activity
     every regime and the PdR read.  ``overtime_bands`` are the CCNL bands an
     overtime event without a multiplier is paid with; ``sickness`` the rules
-    and the episodes a sickness episode is paid with, updated after each.
+    and the episodes a sickness episode is paid with, updated after each;
+    ``travel_allowance`` the exempt caps a travel allowance is assessed with.
     """
 
     evt_id: str
@@ -90,6 +92,7 @@ class _EventHandlerCtx:
     worker_facts: RegimeFacts = field(default_factory=RegimeFacts)
     overtime_bands: CCNLOvertimeBands = field(default_factory=CCNLOvertimeBands)
     sickness: SicknessTerms = field(default_factory=SicknessTerms)
+    travel_allowance: TravelAllowanceRules | None = None
 
     @property
     def tax_year(self) -> int:

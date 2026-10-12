@@ -45,6 +45,7 @@ if TYPE_CHECKING:
     from ccnl_engine.regime.models import (
         PreferentialTaxRegime,
     )
+    from ccnl_engine.variable_pay.models import TravelAllowanceRules
 
 
 _NO_FACTS = RegimeFacts()
@@ -200,6 +201,7 @@ def _process_events(
     worker_facts: RegimeFacts = _NO_FACTS,
     overtime_bands: CCNLOvertimeBands | None = None,
     sickness: SicknessTerms | None = None,
+    travel_allowance: TravelAllowanceRules | None = None,
 ) -> tuple[_EventTotals, tuple[PayItem, ...], tuple[LedgerEntry, ...]]:
     """Translate variable work events into accounting entries and aggregated totals.
 
@@ -236,6 +238,7 @@ def _process_events(
         worker_facts=worker_facts,
         overtime_bands=overtime_bands or CCNLOvertimeBands(),
         sickness=terms,
+        travel_allowance=travel_allowance,
     )
     _run_handlers(events, base_ctx, (tag, date_ctx), acc)
     return (

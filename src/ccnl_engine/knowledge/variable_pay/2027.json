@@ -109,10 +109,39 @@
     "effective_from": "2027-01-01",
     "effective_until": "2027-12-31",
     "published_at": "2026-10-09",
-    "source": "TUIR art. 51 c. 3; L. 207/2024 art. 1 c. 390; L. 208/2015 art. 1 cc. 182-190; L. 199/2025 art. 1 cc. 7, 9, 10-11",
+    "source": "TUIR art. 51 c. 3; L. 207/2024 art. 1 c. 390; L. 208/2015 art. 1 cc. 182-190; L. 199/2025 art. 1 cc. 7, 9, 10-11; TUIR art. 51 c. 5",
     "verification_status": "unverified",
-    "source_hash": "3c9abde7254b73183a341af401388e3e6fe72cbd9611e80503faf750c31f1bfb",
+    "source_hash": "e76dc8ed793e0af077330121203e1fa3247235d732b501b90c8e9364b0286680",
     "source_type": "estimated",
     "provisional": true
+  },
+  "travel_allowance": {
+    "description": "Art. 51 c. 5 TUIR: daily caps of the travel allowance outside the comune",
+    "italy": {
+      "none": "46.48",
+      "one": "30.99",
+      "both": "15.49"
+    },
+    "abroad": {
+      "none": "77.47",
+      "one": "51.65",
+      "both": "25.82"
+    },
+    "provenance": {
+      "status": "assumed",
+      "location": {
+        "source_document": {
+          "document_id": "dpr-917-1986",
+          "title": "D.P.R. 22 dicembre 1986 n. 917 (TUIR)",
+          "kind": "dpr",
+          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:1986-12-22;917~art51!vig=2026-10-12",
+          "sha256": "b4731567b37d5bcb2b686824d1c4812c7496294d8148c1b92ca4e993504ce4f5"
+        },
+        "section": "art. 51 c. 5",
+        "quote": "Le indennità percepite per le trasferte o le missioni fuori del territorio comunale concorrono a formare il reddito per la parte eccedente lire 90.000 al giorno, elevate a lire 150.000 per le trasferte all'estero, al netto delle spese di viaggio e di trasporto; in caso di rimborso delle spese di alloggio, ovvero di quelle di vitto, o di alloggio o vitto fornito gratuitamente il limite è ridotto di un terzo. Il limite è ridotto di due terzi in caso di rimborso sia delle spese di alloggio che di quelle di vitto."
+      },
+      "transformation": "Lire converted at the fixed rate of 1,936.27 lire per euro (Reg. CE 2866/98), each reduced cap from its lire amount (60,000 and 30,000 in Italy, 100,000 and 50,000 abroad) to avoid a double rounding: Italy 46.48, 30.99, 15.49; abroad 77.47, 51.65, 25.82.",
+      "note": "PROVISIONAL 2027: the caps of 2026 carried over; the article of the testo unico D.Lgs. 117/2026 that takes art. 51 c. 5 over from 2027 is not checked. Text in force read on Normattiva on 2026-10-12 (page sha256 b4731567b37d5bcb2b686824d1c4812c7496294d8148c1b92ca4e993504ce4f5). The contribution base follows the same rule: art. 12 c. 2 L. 153/1969, as replaced by D.Lgs. 314/1997 art. 6, applies art. 48 (now 51) TUIR to the INPS base (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1969-04-30;153~art12!vig=2026-10-12, page sha256 e4c598078aeb273f8db2055452047df3aed569d6a8d3cfca82aa81e6968220ab: 'Per il calcolo dei contributi di previdenza e assistenza sociale si applicano le disposizioni contenute nell'articolo 48 del testo unico delle imposte sui redditi'). Out of scope: the analytic reimbursements and the 15.49/25.82 daily other expenses of the same comma, travel costs, and the trasfertisti of c. 6 (50% of the allowance), which the event rejects."
+    }
   }
 }

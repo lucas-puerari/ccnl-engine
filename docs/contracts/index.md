@@ -49,7 +49,7 @@ on unverified sources, or be well sourced and not cleared for production.
 - ✅ `notte_festivi_turni_substitute_tax` (native)
 - ✅ `assistance_contribution` (native)
 
-**Scenario features: computed when the request declares the event, the fact or the termination** (14):
+**Scenario features: computed when the request declares the event, the fact or the termination** (15):
 
 - 🔲 `termination_residual_leave` (unsupported)
 - 📝 `termination_tfr` (caller_supplied)
@@ -62,6 +62,7 @@ on unverified sources, or be well sourced and not cleared for production.
 - 📝 `absence` (caller_supplied)
 - ✅ `sickness` (native)
 - ✅ `fringe_benefit` (native)
+- 📝 `travel_allowance` (caller_supplied)
 - ✅ `welfare` (native)
 - 📝 `bilateral_funds` (caller_supplied)
 - ⚠️ `pension_fund_contribution` (partial)
