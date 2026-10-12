@@ -241,9 +241,9 @@ def _ccnl_trip(**changes: object) -> TravelAllowanceEvent:
 @pytest.mark.parametrize(
     ("hours", "abroad", "paid"),
     [
-        (Decimal(20), False, "86.32"),  # 2 x 43.16
+        (Decimal(20), False, "88.18"),  # 2 x 43.16 + 2 x 0.93 (art. 16)
         (Decimal(13), False, "70.04"),  # 2 x 35.02
-        (Decimal(20), True, "124.98"),  # 2 x 62.49
+        (Decimal(20), True, "126.84"),  # 2 x 62.49 + 2 x 0.93
         (Decimal(5), False, "0.00"),  # under 6 hours: none (art. 62 c. 8)
     ],
     ids=["18_24", "12_18", "abroad", "under_6"],
@@ -269,7 +269,8 @@ def test_logistica_tfr_takes_the_part_above_the_exemption() -> None:
         if d.capability == "travel_allowance" and d.inputs.get("tfr_base")
     )
     assert decision.inputs["tfr_base"] == "above_exempt"
-    assert decision.amount == Decimal("0.00")  # 43.16 is under the cap
+    # 43.16 is under the cap: only the 2 x 0.93 of art. 16 is income.
+    assert decision.amount == Decimal("1.86")
 
 
 def test_without_ccnl_amounts_the_daily_amount_is_required() -> None:
@@ -282,3 +283,22 @@ def test_without_ccnl_rule_the_tfr_base_is_required() -> None:
     """A CCNL without a TFR rule needs the event's tfr_base."""
     with pytest.raises(InvalidInputError, match="tfr_base"):
         _run(_trip(tfr_base=None))
+
+
+def test_logistica_night_allowance_from_18_hours() -> None:
+    """Art. 16: 0.93 for each day of 18 hours or more, income and TFR."""
+    long_days = _driver(_ccnl_trip(hours_away=Decimal(20)))
+    short_days = _driver(_ccnl_trip(hours_away=Decimal(13)))
+
+    def night(result: PeriodResult) -> Decimal:
+        (decision,) = (
+            d
+            for d in result.decisions
+            if d.capability == "travel_allowance" and "night_allowance" in d.inputs
+        )
+        value = decision.inputs["night_allowance"]
+        assert isinstance(value, Decimal)
+        return value
+
+    assert night(long_days) == Decimal("1.86")  # 2 x 0.93
+    assert night(short_days) == Decimal("0.00")

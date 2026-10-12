@@ -148,6 +148,24 @@ def _daily_amount(event: TravelAllowanceEvent, terms: TravelTerms | None) -> Dec
         return series.value_at(event.event_date)
 
 
+def _night(event: TravelAllowanceEvent, terms: TravelTerms | None) -> Decimal:
+    """Return the CCNL night allowance of the days of the event.
+
+    Returns:
+        The amount for each day of the hours the CCNL requires, zero
+        without the allowance or the hours.
+    """
+    rules = None if terms is None else terms.rules
+    night = None if rules is None else rules.night_allowance
+    hours = event.hours_away
+    if terms is None or rules is None or night is None or hours is None:
+        return _ZERO
+    if hours < rules.night_from_hours:
+        return _ZERO
+    with rule_scope(ruleset=terms.ruleset, feature=_FEATURE):
+        return money(night.value_at(event.event_date) * event.days)
+
+
 def _tfr_base(event: TravelAllowanceEvent, terms: TravelTerms | None) -> str:
     """Return what of the allowance enters the TFR base.
 
@@ -197,6 +215,9 @@ def _handle_travel_allowance(
         _daily_amount(event, ctx.ccnl_travel),
     )
     gross, taxable = assessment.gross, assessment.taxable
+    tfr = {"none": _ZERO, "whole": gross, "above_exempt": taxable}[tfr_base]
+    night = _night(event, ctx.ccnl_travel)
+    gross, taxable, tfr = gross + night, taxable + night, tfr + night
     resolution = _require_resolution(ctx.resolver, _KIND, ctx.context)
     item = TravelAllowanceItem(
         item_id=ctx.evt_id,
@@ -207,9 +228,12 @@ def _handle_travel_allowance(
         exempt_amount=assessment.exempt,
         taxable_amount=taxable,
     )
-    tfr = {"none": _ZERO, "whole": gross, "above_exempt": taxable}[tfr_base]
     decision = assessment.decision()
-    decision = replace(decision, inputs={**decision.inputs, "tfr_base": tfr_base})
+    decision = replace(
+        decision,
+        inputs={**decision.inputs, "tfr_base": tfr_base, "night_allowance": night},
+        amount=taxable,
+    )
     return EventEffect(
         items=[item],
         intents=[

@@ -68,7 +68,7 @@
       },
       {
         "kind": "simplification",
-        "text": "NOT MODELLED: the night allowance of art. 16 (0.93 euro per trasferta of 18-24 hours, TFR only) and the 50% on the Sunday and holiday work within the ordinary hours (art. 12 c. 4), and the 4.5 days of paid leave of art. 11 c. 11. The trasferta of art. 62 is paid by TravelAllowanceEvent at the CCNL amounts.",
+        "text": "NOT MODELLED: the night allowance of art. 16 for a trasferta under 18 hours overlapping the night hours (paid only from 18 hours), the 50% on the Sunday and holiday work within the ordinary hours (art. 12 c. 4), and the 4.5 days of paid leave of art. 11 c. 11. The trasferta of art. 62 and the night allowance of a trasferta of 18-24 hours are paid by TravelAllowanceEvent.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -3344,7 +3344,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "0defec9704e98f51bb77801f66983ecf2e3527d6e27cdc6288d42e182f48ab7c",
+    "source_hash": "dd0f4c142b6127caaf633a7159cc2027794878efb17152adfdae372ff1ac6b8c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3770,9 +3770,19 @@
           "verified_at": "2026-10-12T16:14:34Z",
           "review_id": "2026-10-12-ai-trasferta"
         },
-        "transformation": "Territorio nazionale 23.80, 35.02, 43.16 and estero 31.94, 45.05, 62.49 for 6-12, 12-18, 18-24 hours away (c. 3); under 6 hours no allowance (c. 8). C. 7: 'Le differenze in più rispetto ai valori esenti dall'IRPEF hanno natura retributiva e sono computabili esclusivamente nel T.F.R.': the part above the exemption enters the TFR base (above_exempt).",
+        "transformation": "Territorio nazionale 23.80, 35.02, 43.16 and estero 31.94, 45.05, 62.49 for 6-12, 12-18, 18-24 hours away (c. 3); under 6 hours no allowance (c. 8). C. 7: 'Le differenze in più rispetto ai valori esenti dall'IRPEF hanno natura retributiva e sono computabili esclusivamente nel T.F.R.': the part above the exemption enters the TFR base (above_exempt). Art. 16 c. 1 (p. 40): 'una indennità di euro 0,93 per ciascuna indennità di trasferta da 18 a 24 ore [...] L'indennità di lavoro notturno ha natura retributiva e viene computata esclusivamente ai fini del T.F.R.': 0.93 for each day of 18 hours or more, taxable and in the TFR base. Not modelled: the same allowance for a shorter trasferta overlapping the night hours.",
         "note": "Not modelled: the hours abroad and in Italy of one day cumulated (c. 5), and the sum of several short services (c. 9): the caller states the hours of the span."
-      }
+      },
+      "night_allowance": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "0.93"
+          }
+        ]
+      },
+      "night_from_hours": "18"
     }
   },
   "verification": {
