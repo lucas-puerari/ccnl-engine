@@ -87,6 +87,9 @@ class SicknessSeniorityBand(BaseModel):
             day of the count (PA comparti: 90% for the next 3 months, 50%
             for the next 6); a day in no step takes
             :attr:`SicknessCumulation.reduced_integration_rate`.
+        serious_comporto_days: Comporto of a serious illness the CCNL
+            extends (Concia art. 60 B: 2, 3, 4 months more), ``None``
+            when it does not.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -94,6 +97,7 @@ class SicknessSeniorityBand(BaseModel):
     seniority_months_from: int = Field(ge=0)
     full_pay_days: int = Field(ge=1)
     comporto_days: int = Field(ge=1)
+    serious_comporto_days: int | None = Field(default=None, ge=1)
     window_months: int | None = Field(default=None, ge=1)
     steps: tuple[SicknessDayBand, ...] = ()
 
@@ -196,6 +200,25 @@ class HospitalStayRule(BaseModel):
     max_full_days: int = Field(ge=1)
 
 
+class HospitalComportoRule(BaseModel):
+    """Hospital stays left out of the comporto count.
+
+    Concia art. 60 B: "non saranno tenuti in considerazione i periodi di
+    ricovero ospedaliero di durata superiore a 5 giorni [...] continuativi
+    di calendario fino ad un massimo di 60 complessivi".
+
+    Attributes:
+        more_than_days: A stay counts when it lasts more than these
+            consecutive days.
+        max_days: Days of such stays left out at most, over the window.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    more_than_days: int = Field(ge=0)
+    max_days: int = Field(ge=1)
+
+
 class SeriousIllnessRule(BaseModel):
     """Treatment of a particularly serious illness.
 
@@ -204,15 +227,19 @@ class SeriousIllnessRule(BaseModel):
     (c. 8) and paid "con la corresponsione dell'intera retribuzione globale
     mensile per 18 mesi" (c. 12).
 
+    Concia art. 60 B instead extends the comporto of the "malattie
+    invalidanti" (:attr:`SicknessSeniorityBand.serious_comporto_days`).
+
     Attributes:
-        full_pay_days: Days of the episode paid in full.
+        full_pay_days: Days of the episode paid in full; ``None`` when the
+            CCNL pays it as any other.
         outside_comporto: Whether the episode is left out of the comporto.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
-    full_pay_days: int = Field(ge=1)
-    outside_comporto: bool
+    full_pay_days: int | None = Field(default=None, ge=1)
+    outside_comporto: bool = False
 
 
 class SicknessCumulation(BaseModel):
@@ -240,6 +267,8 @@ class SicknessCumulation(BaseModel):
             if the CCNL says so.
         serious_illness: Treatment of a particularly serious illness, if
             the CCNL has one.
+        hospital_comporto: Hospital stays left out of the comporto, if the
+            CCNL says so.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -251,6 +280,7 @@ class SicknessCumulation(BaseModel):
     short_absences: ShortAbsenceReduction | None = None
     hospital_stay: HospitalStayRule | None = None
     serious_illness: SeriousIllnessRule | None = None
+    hospital_comporto: HospitalComportoRule | None = None
 
     @model_validator(mode="after")
     def _ordered_bands(self) -> Self:

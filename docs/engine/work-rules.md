@@ -241,7 +241,7 @@ only when it could change a day the run pays:
 | `sickness_seniority_band_changes` | the band changes within the days paid | not modelled |
 | `sickness_hospital_stays_unknown` | a reduced day of a CCNL that pays long hospital stays in full (Federmeccanica: over 10 consecutive days, up to 61 days) | `SicknessEpisode.hospital_stays` |
 | `sickness_hospital_stay_not_modelled` | a reduced day of a CCNL whose hospital rule is not in the bundle | not modelled |
-| `sickness_serious_illness_unknown` | a reduced day of a CCNL that treats a particularly serious illness apart (Logistica art. 63: 18 months in full, outside the comporto) | `SicknessEpisode.serious_illness` |
+| `sickness_serious_illness_unknown` | a reduced day of a CCNL that treats a particularly serious illness apart (Logistica art. 63: 18 months in full, outside the comporto; Concia art. 60 B: comporto 2, 3, 4 months longer) | `SicknessEpisode.serious_illness` |
 | `sickness_fixed_term_proportion` | a fixed-term contract (periods scaled to its length) | not modelled |
 
 An import without `sickness_known_from` lists the sickness of its tax year

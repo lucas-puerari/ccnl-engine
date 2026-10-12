@@ -111,6 +111,11 @@ def window_start(day: date, years: int, months: int = 0) -> date:
     return anchor + timedelta(days=1)
 
 
+def _stay_overlap(stay: tuple[date, date], first: date, last: date) -> int:
+    start, end = max(stay[0], first), min(stay[1], last)
+    return max((end - start).days + 1, 0)
+
+
 def _overlap(episode: SicknessEpisode, first: date, last: date) -> int:
     span = episode.within(first, last)
     return 0 if span is None else (span[1] - span[0]).days + 1
@@ -205,6 +210,40 @@ class CumulativeTreatment:
         own = _overlap(self.episode, first, day) if self._counted(self.episode) else 0
         return earlier + own
 
+    def comporto_count(self, day: date) -> int:
+        """Return the sick days the comporto counts on ``day``.
+
+        Returns:
+            :meth:`window_days` less the days of long hospital stays the
+            CCNL leaves out, up to their maximum.
+        """
+        days = self.window_days(day)
+        rule = self.cumulation.hospital_comporto
+        if rule is None:
+            return days
+        first = self.window_first(day)
+        episodes = [e for e in (*self.earlier, self.episode) if self._counted(e)]
+        stays = sum(
+            _stay_overlap(stay, first, day)
+            for e in episodes
+            for stay in e.hospital_stays or ()
+            if (stay[1] - stay[0]).days + 1 > rule.more_than_days
+        )
+        return days - min(stays, rule.max_days)
+
+    def comporto_limit(self) -> int:
+        """Return the comporto of the band, extended for a serious illness.
+
+        Returns:
+            ``serious_comporto_days`` for a serious illness when the band
+            has it, else ``comporto_days``.
+        """
+        band = self.band
+        extended = band.serious_comporto_days
+        if extended is not None and self.episode.serious_illness:
+            return extended
+        return band.comporto_days
+
     def _counted(self, episode: SicknessEpisode) -> bool:
         """Return whether ``episode`` counts toward the comporto.
 
@@ -256,7 +295,6 @@ class CumulativeTreatment:
             Whether the day is past the comporto, and its rates.
         """
         del index
-        band = self.band
         count = self.chain_days(day)
         rate = self._rate(count, day)
         short = self.cumulation.short_absences
@@ -264,7 +302,7 @@ class CumulativeTreatment:
         if (day - self.episode.started_on).days < first_days:
             rate = min(rate, self.short.rate)
         return CcnlDay(
-            beyond_comporto=self.window_days(day) > band.comporto_days,
+            beyond_comporto=self.comporto_count(day) > self.comporto_limit(),
             rate=rate,
             carenza_rate=min(self.rules.carenza_integration_rate, rate),
         )
@@ -280,7 +318,11 @@ class CumulativeTreatment:
             The rate of the day.
         """
         serious = self.cumulation.serious_illness
-        if serious is not None and self.episode.serious_illness:
+        if (
+            serious is not None
+            and serious.full_pay_days is not None
+            and self.episode.serious_illness
+        ):
             if (day - self.episode.started_on).days < serious.full_pay_days:
                 return self.rules.full_pay_integration_rate
             return self.cumulation.reduced_integration_rate
