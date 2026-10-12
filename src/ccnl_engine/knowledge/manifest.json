@@ -472,7 +472,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/concia-unic",
       "ruleset_version": "2026.1",
-      "source_hash": "c4bf2abc3cd86df1192c7e1581c8c8bb49cd4510241f2a8b8b27bd85d91df92a",
+      "source_hash": "e4aeb797faae143b5aa9000a89363494a4870bdf6e43d8697933caec57861d11",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/concia-unic.json.gz"
