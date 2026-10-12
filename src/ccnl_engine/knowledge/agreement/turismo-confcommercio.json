@@ -132,7 +132,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T09:00:00Z",
+              "extraction_timestamp": "2026-10-12T09:07:20Z",
               "verification_status": "unverified",
               "effective_from": "2024-07-01"
             },
@@ -255,7 +255,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-13T18:00:00Z",
+          "extraction_timestamp": "2026-10-12T10:51:52Z",
           "verification_status": "unverified",
           "effective_from": "2010-02-20"
         },
@@ -322,7 +322,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-13T08:00:00Z",
+          "extraction_timestamp": "2026-10-12T08:53:29Z",
           "verification_status": "unverified",
           "effective_from": "2024-07-01"
         },
@@ -359,7 +359,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2024-07-01"
               },
@@ -388,7 +388,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2025-06-01"
               },
@@ -417,7 +417,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2026-05-01"
               },
@@ -446,7 +446,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2027-04-01"
               },
@@ -475,7 +475,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2027-11-01"
               },
@@ -532,7 +532,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2024-07-01"
               },
@@ -561,7 +561,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2025-06-01"
               },
@@ -590,7 +590,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2026-05-01"
               },
@@ -619,7 +619,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2027-04-01"
               },
@@ -648,7 +648,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2027-11-01"
               },
@@ -705,7 +705,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2024-07-01"
               },
@@ -734,7 +734,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2025-06-01"
               },
@@ -763,7 +763,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2026-05-01"
               },
@@ -792,7 +792,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2027-04-01"
               },
@@ -821,7 +821,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2027-11-01"
               },
@@ -878,7 +878,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2024-07-01"
               },
@@ -907,7 +907,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2025-06-01"
               },
@@ -936,7 +936,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2026-05-01"
               },
@@ -965,7 +965,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2027-04-01"
               },
@@ -994,7 +994,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2027-11-01"
               },
@@ -1051,7 +1051,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2024-07-01"
               },
@@ -1080,7 +1080,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2025-06-01"
               },
@@ -1109,7 +1109,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2026-05-01"
               },
@@ -1138,7 +1138,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2027-04-01"
               },
@@ -1167,7 +1167,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2027-11-01"
               },
@@ -1224,7 +1224,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2024-07-01"
               },
@@ -1253,7 +1253,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2025-06-01"
               },
@@ -1282,7 +1282,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2026-05-01"
               },
@@ -1311,7 +1311,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2027-04-01"
               },
@@ -1340,7 +1340,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2027-11-01"
               },
@@ -1397,7 +1397,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2024-07-01"
               },
@@ -1426,7 +1426,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2025-06-01"
               },
@@ -1455,7 +1455,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2026-05-01"
               },
@@ -1484,7 +1484,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2027-04-01"
               },
@@ -1513,7 +1513,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2027-11-01"
               },
@@ -1570,7 +1570,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2024-07-01"
               },
@@ -1599,7 +1599,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2025-06-01"
               },
@@ -1628,7 +1628,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2026-05-01"
               },
@@ -1657,7 +1657,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2027-04-01"
               },
@@ -1686,7 +1686,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2027-11-01"
               },
@@ -1743,7 +1743,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2024-07-01"
               },
@@ -1772,7 +1772,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2025-06-01"
               },
@@ -1801,7 +1801,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2026-05-01"
               },
@@ -1830,7 +1830,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2027-04-01"
               },
@@ -1859,7 +1859,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2027-11-01"
               },
@@ -1899,7 +1899,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T18:00:00Z",
+              "extraction_timestamp": "2026-10-12T10:51:52Z",
               "verification_status": "unverified",
               "effective_from": "2009-01-01"
             },
@@ -1956,7 +1956,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2024-07-01"
               },
@@ -1985,7 +1985,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2025-06-01"
               },
@@ -2014,7 +2014,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2026-05-01"
               },
@@ -2043,7 +2043,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2027-04-01"
               },
@@ -2072,7 +2072,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T18:00:00Z",
+                "extraction_timestamp": "2026-10-12T10:51:52Z",
                 "verification_status": "unverified",
                 "effective_from": "2027-11-01"
               },
@@ -2112,7 +2112,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T18:00:00Z",
+              "extraction_timestamp": "2026-10-12T10:51:52Z",
               "verification_status": "unverified",
               "effective_from": "2009-01-01"
             },
@@ -2208,7 +2208,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
     "verification_status": "unverified",
-    "source_hash": "be62a764eed7664853b188d4f80e80571c4a2911f0afce61e0888b3bf9eba6c2",
+    "source_hash": "15c0a47b91ebb04b971a66910ea88220d3a950cb4f0747ba2cffa3040106173d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2404,8 +2404,8 @@
     "readiness": "exploratory",
     "reviews": [
       {
-        "id": "2026-10-13-ai",
-        "date": "2026-10-13",
+        "id": "2026-10-12-ai",
+        "date": "2026-10-12",
         "reviewer": "claude-opus-5-5",
         "reviewer_kind": "ai",
         "scope": "Identity, sources, seniority, Quadri allowance and salary tables against the signed ipotesi of 5 July 2024 and the CCNL of 2010.",

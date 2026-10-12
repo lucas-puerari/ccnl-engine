@@ -115,7 +115,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T08:00:00Z",
+              "extraction_timestamp": "2026-10-12T08:53:29Z",
               "verification_status": "unverified",
               "effective_from": "2024-03-05"
             }
@@ -143,7 +143,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T08:00:00Z",
+              "extraction_timestamp": "2026-10-12T08:53:29Z",
               "verification_status": "unverified",
               "effective_from": "2025-01-01"
             }
@@ -341,7 +341,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-13T08:00:00Z",
+          "extraction_timestamp": "2026-10-12T08:53:29Z",
           "verification_status": "unverified",
           "effective_from": "2024-03-05"
         },
@@ -2090,7 +2090,7 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/",
     "verification_status": "unverified",
-    "source_hash": "2367022a9ead7a1f15788c02a981216cb898dc95491b6ab72f1cda0d213c1738",
+    "source_hash": "3e792eb397a27951c14e2cfdfbe15b1583e007191afa7ea810ce15470816c8fc",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

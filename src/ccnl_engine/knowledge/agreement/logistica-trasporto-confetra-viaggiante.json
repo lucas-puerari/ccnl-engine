@@ -30,8 +30,8 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": "claude-sonnet-4-6",
-      "timestamp": "2026-09-01T00:00:00",
+      "model": "claude-opus-5-5",
+      "timestamp": "2026-10-12T11:23:51Z",
       "human_reviewed": false
     },
     "workers_estimate": "~430k"
@@ -336,17 +336,17 @@
           },
           "page": "40-41",
           "section": "Art. 17 c. 2, personale viaggiante",
-          "quote": "C3 24,79"
+          "quote": "Quadri 30,99 C3 24,79"
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-13T20:00:00Z",
+          "extraction_timestamp": "2026-10-12T11:23:51Z",
           "verification_status": "verified",
           "effective_from": "2025-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-13T20:00:00Z",
-          "review_id": "2026-10-13-ai-travelling"
+          "verified_at": "2026-10-12T11:23:51Z",
+          "review_id": "2026-10-12-ai-travelling"
         },
         "transformation": "Art. 17 c. 2, right column (personale viaggiante): C3, B3, A3 24.79; F2, E2, D2 24.27; H1 23.24; G1 23.14; I 22.18; L 21.62. Same biennial cadence and 5 bienni as the non-travelling staff (c. 1)."
       }
@@ -413,12 +413,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2025-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -445,12 +445,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2026-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -477,12 +477,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2027-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -509,12 +509,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2027-06-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -553,7 +553,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "extraction_timestamp": "2026-10-12T11:23:51Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
@@ -579,7 +579,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-13T20:00:00Z",
+          "extraction_timestamp": "2026-10-12T11:23:51Z",
           "effective_from": "2025-01-01",
           "verification_status": "unverified"
         }
@@ -614,12 +614,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2025-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -646,12 +646,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2026-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -678,12 +678,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2027-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -710,12 +710,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2027-06-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -754,7 +754,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "extraction_timestamp": "2026-10-12T11:23:51Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
@@ -780,7 +780,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-13T20:00:00Z",
+          "extraction_timestamp": "2026-10-12T11:23:51Z",
           "effective_from": "2025-01-01",
           "verification_status": "unverified"
         }
@@ -815,12 +815,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2025-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -847,12 +847,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2026-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -879,12 +879,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2027-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -911,12 +911,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2027-06-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -955,7 +955,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "extraction_timestamp": "2026-10-12T11:23:51Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
@@ -981,7 +981,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-13T20:00:00Z",
+          "extraction_timestamp": "2026-10-12T11:23:51Z",
           "effective_from": "2025-01-01",
           "verification_status": "unverified"
         }
@@ -1016,12 +1016,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2025-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -1048,12 +1048,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2026-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -1080,12 +1080,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2027-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -1112,12 +1112,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2027-06-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -1156,7 +1156,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "extraction_timestamp": "2026-10-12T11:23:51Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
@@ -1182,7 +1182,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-13T20:00:00Z",
+          "extraction_timestamp": "2026-10-12T11:23:51Z",
           "effective_from": "2025-01-01",
           "verification_status": "unverified"
         }
@@ -1217,12 +1217,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2025-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -1249,12 +1249,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2026-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -1281,12 +1281,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2027-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -1313,12 +1313,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2027-06-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -1357,7 +1357,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "extraction_timestamp": "2026-10-12T11:23:51Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
@@ -1383,7 +1383,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-13T20:00:00Z",
+          "extraction_timestamp": "2026-10-12T11:23:51Z",
           "effective_from": "2025-01-01",
           "verification_status": "unverified"
         }
@@ -1418,12 +1418,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2025-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -1450,12 +1450,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2026-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -1482,12 +1482,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2027-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -1514,12 +1514,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2027-06-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -1558,7 +1558,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "extraction_timestamp": "2026-10-12T11:23:51Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
@@ -1596,7 +1596,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "extraction_timestamp": "2026-10-12T11:23:51Z",
               "effective_from": "2011-01-01",
               "verification_status": "unverified"
             },
@@ -1622,7 +1622,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-13T20:00:00Z",
+          "extraction_timestamp": "2026-10-12T11:23:51Z",
           "effective_from": "2025-01-01",
           "verification_status": "unverified"
         }
@@ -1657,12 +1657,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2025-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -1689,12 +1689,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2026-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -1721,12 +1721,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2027-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -1753,12 +1753,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2027-06-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -1797,7 +1797,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "extraction_timestamp": "2026-10-12T11:23:51Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
@@ -1835,7 +1835,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "extraction_timestamp": "2026-10-12T11:23:51Z",
               "effective_from": "2011-01-01",
               "verification_status": "unverified"
             },
@@ -1861,7 +1861,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-13T20:00:00Z",
+          "extraction_timestamp": "2026-10-12T11:23:51Z",
           "effective_from": "2025-01-01",
           "verification_status": "unverified"
         }
@@ -1896,12 +1896,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2025-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -1928,12 +1928,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2026-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -1960,12 +1960,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2027-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -1992,12 +1992,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2027-06-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -2036,7 +2036,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "extraction_timestamp": "2026-10-12T11:23:51Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
@@ -2074,7 +2074,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "extraction_timestamp": "2026-10-12T11:23:51Z",
               "effective_from": "2011-01-01",
               "verification_status": "unverified"
             },
@@ -2100,7 +2100,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-13T20:00:00Z",
+          "extraction_timestamp": "2026-10-12T11:23:51Z",
           "effective_from": "2025-01-01",
           "verification_status": "unverified"
         }
@@ -2135,12 +2135,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2025-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -2167,12 +2167,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2026-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -2199,12 +2199,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2027-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -2231,12 +2231,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2027-06-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -2275,7 +2275,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "extraction_timestamp": "2026-10-12T11:23:51Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
@@ -2313,7 +2313,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "extraction_timestamp": "2026-10-12T11:23:51Z",
               "effective_from": "2011-01-01",
               "verification_status": "unverified"
             },
@@ -2339,7 +2339,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-13T20:00:00Z",
+          "extraction_timestamp": "2026-10-12T11:23:51Z",
           "effective_from": "2025-01-01",
           "verification_status": "unverified"
         }
@@ -2374,12 +2374,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2025-01-01",
                 "verification_status": "unverified"
               },
               "transformation": "Minimo plus EPA of the table of the tranche.",
-              "note": "The printed Totale is 1909.20, 0.06 above minimo 1879.14 plus EPA 30.00; the same gap at every tranche of F2, while E2 and D2 add up. The value is the sum of the two components."
+              "note": "The printed Totale of F2 is 0.06 above minimo plus EPA at every tranche (1.909,20, 1.948,15, 1.978,15, 2.017,89). The minimo column is right: the Legacoop circular on the renewal of 6 December 2024 (p. 3, table of the travelling staff, sha256 0b6b2976...) gives F2 'paga base' 1.791,51 and the increase 87,63 from 1.1.2025, that is 1.879,14 as in the testo unico, plus EPA 30,00. The value is the sum; it stays derived because the signed text prints two different totals."
             }
           },
           {
@@ -2404,12 +2404,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2026-01-01",
                 "verification_status": "unverified"
               },
               "transformation": "Minimo plus EPA of the table of the tranche.",
-              "note": "The printed Totale is 1948.15, 0.06 above minimo 1918.09 plus EPA 30.00; the same gap at every tranche of F2, while E2 and D2 add up. The value is the sum of the two components."
+              "note": "The printed Totale of F2 is 0.06 above minimo plus EPA at every tranche (1.909,20, 1.948,15, 1.978,15, 2.017,89). The minimo column is right: the Legacoop circular on the renewal of 6 December 2024 (p. 3, table of the travelling staff, sha256 0b6b2976...) gives F2 'paga base' 1.791,51 and the increase 87,63 from 1.1.2025, that is 1.879,14 as in the testo unico, plus EPA 30,00. The value is the sum; it stays derived because the signed text prints two different totals."
             }
           },
           {
@@ -2434,12 +2434,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2027-01-01",
                 "verification_status": "unverified"
               },
               "transformation": "Minimo plus EPA of the table of the tranche.",
-              "note": "The printed Totale is 1978.15, 0.06 above minimo 1918.09 plus EPA 60.00; the same gap at every tranche of F2, while E2 and D2 add up. The value is the sum of the two components."
+              "note": "The printed Totale of F2 is 0.06 above minimo plus EPA at every tranche (1.909,20, 1.948,15, 1.978,15, 2.017,89). The minimo column is right: the Legacoop circular on the renewal of 6 December 2024 (p. 3, table of the travelling staff, sha256 0b6b2976...) gives F2 'paga base' 1.791,51 and the increase 87,63 from 1.1.2025, that is 1.879,14 as in the testo unico, plus EPA 30,00. The value is the sum; it stays derived because the signed text prints two different totals."
             }
           },
           {
@@ -2464,12 +2464,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2027-06-01",
                 "verification_status": "unverified"
               },
               "transformation": "Minimo plus EPA of the table of the tranche.",
-              "note": "The printed Totale is 2017.89, 0.06 above minimo 1927.83 plus EPA 90.00; the same gap at every tranche of F2, while E2 and D2 add up. The value is the sum of the two components."
+              "note": "The printed Totale of F2 is 0.06 above minimo plus EPA at every tranche (1.909,20, 1.948,15, 1.978,15, 2.017,89). The minimo column is right: the Legacoop circular on the renewal of 6 December 2024 (p. 3, table of the travelling staff, sha256 0b6b2976...) gives F2 'paga base' 1.791,51 and the increase 87,63 from 1.1.2025, that is 1.879,14 as in the testo unico, plus EPA 30,00. The value is the sum; it stays derived because the signed text prints two different totals."
             }
           }
         ]
@@ -2506,7 +2506,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "extraction_timestamp": "2026-10-12T11:23:51Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
@@ -2544,7 +2544,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "extraction_timestamp": "2026-10-12T11:23:51Z",
               "effective_from": "2011-01-01",
               "verification_status": "unverified"
             },
@@ -2570,7 +2570,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-13T20:00:00Z",
+          "extraction_timestamp": "2026-10-12T11:23:51Z",
           "effective_from": "2025-01-01",
           "verification_status": "unverified"
         }
@@ -2605,12 +2605,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2025-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -2637,12 +2637,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2026-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -2669,12 +2669,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2027-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -2701,12 +2701,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2027-06-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -2745,7 +2745,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "extraction_timestamp": "2026-10-12T11:23:51Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
@@ -2783,7 +2783,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "extraction_timestamp": "2026-10-12T11:23:51Z",
               "effective_from": "2011-01-01",
               "verification_status": "unverified"
             },
@@ -2809,7 +2809,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-13T20:00:00Z",
+          "extraction_timestamp": "2026-10-12T11:23:51Z",
           "effective_from": "2025-01-01",
           "verification_status": "unverified"
         }
@@ -2844,12 +2844,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2025-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -2876,12 +2876,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2026-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -2908,12 +2908,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2027-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -2940,12 +2940,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2027-06-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -2984,7 +2984,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "extraction_timestamp": "2026-10-12T11:23:51Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
@@ -3022,7 +3022,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "extraction_timestamp": "2026-10-12T11:23:51Z",
               "effective_from": "2011-01-01",
               "verification_status": "unverified"
             },
@@ -3048,7 +3048,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-13T20:00:00Z",
+          "extraction_timestamp": "2026-10-12T11:23:51Z",
           "effective_from": "2025-01-01",
           "verification_status": "unverified"
         }
@@ -3083,12 +3083,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2025-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -3115,12 +3115,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2026-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -3147,12 +3147,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2027-01-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -3179,12 +3179,12 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T20:00:00Z",
+                "extraction_timestamp": "2026-10-12T11:23:51Z",
                 "effective_from": "2027-06-01",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-13T20:00:00Z",
-                "review_id": "2026-10-13-ai-travelling"
+                "verified_at": "2026-10-12T11:23:51Z",
+                "review_id": "2026-10-12-ai-travelling"
               },
               "transformation": "Minimo plus EPA of the table of the tranche."
             }
@@ -3223,7 +3223,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "extraction_timestamp": "2026-10-12T11:23:51Z",
               "effective_from": "2022-01-01",
               "verification_status": "unverified"
             },
@@ -3261,7 +3261,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T20:00:00Z",
+              "extraction_timestamp": "2026-10-12T11:23:51Z",
               "effective_from": "2011-01-01",
               "verification_status": "unverified"
             },
@@ -3287,7 +3287,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-13T20:00:00Z",
+          "extraction_timestamp": "2026-10-12T11:23:51Z",
           "effective_from": "2025-01-01",
           "verification_status": "unverified"
         }
@@ -3375,7 +3375,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "ed96fe02461604f925ed79c639d5e5c3e423b2c2af01500981b25dd337de9521",
+    "source_hash": "1d41790bf945149e0896f1c3dbde6fedd63f4c1aacbb4ebd35ed266704a41811",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3649,7 +3649,7 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-13T12:00:00Z",
+          "extraction_timestamp": "2026-10-12T09:38:51Z",
           "verification_status": "unverified",
           "effective_from": "2023-05-01"
         },
@@ -3664,22 +3664,11 @@
     "verified_cases": 0,
     "reviews": [
       {
-        "id": "2026-09-18-human",
-        "date": "2026-09-18",
-        "reviewer": "maintainer",
-        "reviewer_kind": "human",
-        "scope": "Whole file. The values checked were not recorded.",
-        "outcome": "confirmed",
-        "findings": [
-          "The review recorded no list of the documents it read."
-        ]
-      },
-      {
         "id": "2026-10-11-ai",
         "date": "2026-10-11",
         "reviewer": "claude-opus-5-5",
         "reviewer_kind": "ai",
-        "scope": "Every payable rule of the file (55 records) read again in the signed testo unico of the renewal of 6 December 2024 (Verbale di accordo 25 September 2025), published by Confetra; the URLs the file cited return 404.",
+        "scope": "Inherited from logistica-trasporto-confetra, of which this file is a copy: the review covered that file's levels; here it stands for the shared rules (work rules, parameters) only. Every payable rule of the file (55 records) read again in the signed testo unico of the renewal of 6 December 2024 (Verbale di accordo 25 September 2025), published by Confetra; the URLs the file cited return 404.",
         "outcome": "corrected",
         "sources": [
           {
@@ -3702,11 +3691,11 @@
         ]
       },
       {
-        "id": "2026-10-13-ai",
-        "date": "2026-10-13",
+        "id": "2026-10-12-ai",
+        "date": "2026-10-12",
         "reviewer": "claude-opus-5-5",
         "reviewer_kind": "ai",
-        "scope": "Sickness rule of art. 63 A), now expressible with a window and steps per seniority band; readiness of the file.",
+        "scope": "Inherited from logistica-trasporto-confetra, of which this file is a copy: the review covered that file's levels; here it stands for the shared rules (work rules, parameters) only. Sickness rule of art. 63 A), now expressible with a window and steps per seniority band; readiness of the file.",
         "outcome": "corrected",
         "sources": [
           {
@@ -3720,8 +3709,8 @@
         ]
       },
       {
-        "id": "2026-10-13-ai-travelling",
-        "date": "2026-10-13",
+        "id": "2026-10-12-ai-travelling",
+        "date": "2026-10-12",
         "reviewer": "claude-opus-5-5",
         "reviewer_kind": "ai",
         "scope": "Travelling staff: levels, salary tables of the four tranches, seniority, EDR 2011 and 2021, apprenticeship, overtime, against the signed testo unico (Verbale 25 September 2025).",
@@ -3730,12 +3719,17 @@
           {
             "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
             "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          },
+          {
+            "url": "https://legacoop.coop/wp-content/uploads/2024/12/Circolare-rinnovo-ccnl-merci-e-logistica-6-dicembre-.pdf",
+            "sha256": "0b6b2976de111eccf3efa24a4ebf46126f6924cfa0ccabc6b9ba8b0a0c8509d6"
           }
         ],
         "findings": [
           "This file was created from logistica-trasporto-confetra for the travelling staff, which that file left out: same rules and review history, with the travelling levels, seniority amounts, EDR and apprenticeship tracks.",
-          "51 of the 52 salary values equal minimo plus EPA and the printed Totale of pp. 81-82; F2 prints a Totale 0.06 above the sum at every tranche, so F2 takes the sum and stays derived.",
-          "Saturday and Sunday overtime of the travelling staff is 30% (art. 13 c. 6); the engine has one holiday band, left as a limitation."
+          "51 of the 52 salary values equal minimo plus EPA and the printed Totale of pp. 81-82; F2 prints a Totale 0.06 above the sum at every tranche. The Legacoop circular of December 2024 confirms the F2 minimo (1.791,51 + 87,63), so the Totale is the misprint: F2 takes the sum and stays derived.",
+          "Saturday and Sunday overtime of the travelling staff is 30% (art. 13 c. 6); the engine has one holiday band, left as a limitation.",
+          "Tabella B (p. 75) reads by year: drivers A3-C3 over 5 years and D2-F2 over 4, 90% the first year, 95% the second, 100% after."
         ]
       }
     ]

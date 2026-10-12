@@ -2341,7 +2341,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "8daa4fd76ab310603bb9e4fbce2b75013d26677aa5bc32f3981820b19db8d7e7",
+    "source_hash": "f86655852916696975b3d11bdb344849475f64943d4e147bb9b6b461afda67fb",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2470,7 +2470,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T17:00:00Z",
+              "extraction_timestamp": "2026-10-12T10:33:23Z",
               "verification_status": "unverified",
               "effective_from": "2018-02-08"
             },
@@ -2512,7 +2512,7 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T17:00:00Z",
+              "extraction_timestamp": "2026-10-12T10:33:23Z",
               "verification_status": "unverified",
               "effective_from": "2018-02-08"
             },
@@ -2655,8 +2655,8 @@
         ]
       },
       {
-        "id": "2026-10-13-ai",
-        "date": "2026-10-13",
+        "id": "2026-10-12-ai",
+        "date": "2026-10-12",
         "reviewer": "claude-opus-5-5",
         "reviewer_kind": "ai",
         "scope": "Quattordicesima and seniority, holiday overtime, September tranches of the ristorazione collettiva: follow-ups of the review of 2026-10-11.",

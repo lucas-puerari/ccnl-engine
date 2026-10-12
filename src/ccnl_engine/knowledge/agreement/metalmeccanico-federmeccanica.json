@@ -386,7 +386,7 @@
           "extraction": {
             "method": "ai",
             "model": "claude-opus-5-5",
-            "extraction_timestamp": "2026-10-13T14:00:00Z",
+            "extraction_timestamp": "2026-10-12T09:55:08Z",
             "verification_status": "unverified",
             "effective_from": "2017-06-01"
           },
@@ -3080,7 +3080,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "dfdef178a88591ddbe51bbc444c5cd14163fbca33bfb47d140f164b050ae0605",
+    "source_hash": "cb067e269a5ec2d039ae4a1fe85cf6dca8af387525fabf603e5057f97246755c",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -3509,8 +3509,8 @@
         ]
       },
       {
-        "id": "2026-10-13-ai",
-        "date": "2026-10-13",
+        "id": "2026-10-12-ai",
+        "date": "2026-10-12",
         "reviewer": "claude-opus-5-5",
         "reviewer_kind": "ai",
         "scope": "Cometa contribution dates, leave citation, travel and on-call allowances: follow-ups of the review of 2026-10-11.",
