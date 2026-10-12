@@ -83,16 +83,16 @@ formulas or caller-declared amounts.
 | `company_supplement` | Integrazione da contratto aziendale | outside_input | gross | unsupported | outside_input | — | `employment.company_agreement` | — | unavailable | none bundled |
 | `tfr` | Trattamento di Fine Rapporto | core | net | native | always | pipeline | `employment.tfr_treasury_fund` | — | simplified | 3 / 15 / 18 / 0 |
 | `tfr_revaluation` | Rivalutazione del fondo TFR al 31 dicembre e imposta sostitutiva (art. 2120 c. 4 c.c.) | core | net | native | decided | decision | `employment.tfr_fund` | — | implemented | 0 / 3 / 0 / 0 |
-| `irpef` | IRPEF (sostituto d'imposta) | core | net | native | always | pipeline | — | — | simplified | 0 / 24 / 24 / 0 |
-| `trattamento_integrativo` | Trattamento integrativo (ex bonus 80€) | core | net | native | decided | decision | — | — | simplified | 0 / 8 / 8 / 0 |
-| `ulteriore_detrazione_lavoro` | Ulteriore detrazione lavoro dipendente | core | net | native | decided | decision | — | — | simplified | 0 / 8 / 8 / 0 |
-| `somma_esente` | Somma esente L. 207/2024 art. 1 c. 4 | core | net | native | decided | decision | — | — | simplified | 0 / 1 / 1 / 0 |
+| `irpef` | IRPEF (sostituto d'imposta) | core | net | native | always | pipeline | — | — | simplified | 24 / 0 / 24 / 0 |
+| `trattamento_integrativo` | Trattamento integrativo (ex bonus 80€) | core | net | native | decided | decision | — | — | simplified | 8 / 0 / 8 / 0 |
+| `ulteriore_detrazione_lavoro` | Ulteriore detrazione lavoro dipendente | core | net | native | decided | decision | — | — | simplified | 8 / 0 / 8 / 0 |
+| `somma_esente` | Somma esente L. 207/2024 art. 1 c. 4 | core | net | native | decided | decision | — | — | simplified | 1 / 0 / 1 / 0 |
 | `withholding_shortfall` | Ritenute non capienti riportate ai cedolini successivi | core | net | native | decided | decision | — | — | implemented | none bundled |
 | `shortfall_deferral` | Differimento scritto dell'IRPEF incapiente del conguaglio con interessi 0,50% mensile (art. 23 c. 3 DPR 600/1973) | core | net | native | decided | decision | — | — | implemented | none bundled |
 | `foreign_tax_credit` | Credito imposte estere art. 165 TUIR al conguaglio | scenario | net | partial | decided | decision | — | declared_foreign_tax_at_conguaglio | simplified | none bundled |
-| `addizionale_regionale` | Addizionale regionale IRPEF | core | net | native | decided | decision | `facts.regione` | — | simplified | 0 / 1 / 1 / 0 |
+| `addizionale_regionale` | Addizionale regionale IRPEF | core | net | native | decided | decision | `facts.regione` | — | simplified | 1 / 0 / 1 / 0 |
 | `addizionale_comunale` | Addizionale comunale IRPEF | core | net | native | decided | decision | `facts.comune_belfiore` | — | simplified | 0 / 1 / 1 / 0 |
-| `family_deductions` | Detrazioni familiari a carico (Art. 12 TUIR) | core | net | native | decided | decision | `facts.family_composition`, `current_year` | children, other_dependants, sole_parent_first_child, spouse, spouse_increase_bands | simplified | 0 / 4 / 4 / 0 |
+| `family_deductions` | Detrazioni familiari a carico (Art. 12 TUIR) | core | net | native | decided | decision | `facts.family_composition`, `current_year` | children, other_dependants, sole_parent_first_child, spouse, spouse_increase_bands | simplified | 4 / 0 / 4 / 0 |
 | `art15_deductions` | Detrazioni Art. 15 TUIR (interessi mutuo e oneri) | outside_input | net | unsupported | outside_input | — | `facts.art15_expenses` | — | unavailable | none bundled |
 | `overtime` | Lavoro straordinario e supplementare | scenario | work_rules | caller_supplied | event | event | — | ccnl_band_multiplier, caller_multiplier | caller-supplied | 21 / 356 / 9 / 0 |
 | `night_work` | Lavoro notturno | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |

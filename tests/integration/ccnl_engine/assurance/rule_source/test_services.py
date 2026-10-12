@@ -104,15 +104,15 @@ class TestBundledRun:
         """Executed capabilities report the status of the rules they read."""
         result = _run()
         sources = result.capability_report.rule_sources
-        # The industria tax rules cite the law.  The INPS and TFR rules of
-        # industria and the metalmeccanico salary table and seniority were
-        # re-checked against their signed texts: verified.
-        assert sources["irpef"] is ProvenanceStatus.DERIVED
+        # The industria tax rules, the INPS and TFR rules of industria and
+        # the metalmeccanico salary table and seniority were re-checked
+        # against their signed texts: verified.
+        assert sources["irpef"] is ProvenanceStatus.VERIFIED
         assert sources["tfr"] is ProvenanceStatus.VERIFIED
         assert sources["inps_employer"] is ProvenanceStatus.VERIFIED
         assert sources["base_salary"] is ProvenanceStatus.VERIFIED
         # The somma esente sits in its own ruleset, quoted from the law.
-        assert sources["somma_esente"] is ProvenanceStatus.DERIVED
+        assert sources["somma_esente"] is ProvenanceStatus.VERIFIED
         # A known seniority decides the increments, so their rule is read.
         assert sources["seniority"] is ProvenanceStatus.VERIFIED
         assert all(i.code != MISSING_SOURCE_CODE for i in result.issues)
@@ -144,7 +144,7 @@ class TestBundledRun:
     def test_surtax_and_family_rules_are_reported_when_computed(self) -> None:
         """Tables loaded for the run report their record.
 
-        The regional table is taken from the MEF pages (``derived``); Modena
+        The regional table is checked on the MEF pages (``verified``); Modena
         (F257) published no 2026 delibera, so its row carries the 2025 rates
         with its own ``assumed`` record.
         """
@@ -158,9 +158,9 @@ class TestBundledRun:
             current_year=employment_only(),
         )
         sources = result.capability_report.rule_sources
-        assert sources["addizionale_regionale"] is ProvenanceStatus.DERIVED
+        assert sources["addizionale_regionale"] is ProvenanceStatus.VERIFIED
         assert sources["addizionale_comunale"] is ProvenanceStatus.ASSUMED
-        assert sources["family_deductions"] is ProvenanceStatus.DERIVED
+        assert sources["family_deductions"] is ProvenanceStatus.VERIFIED
         ids = [ruleset.id for ruleset in result.rulesets]
         assert ids == sorted(ids)
         assert len(ids) == len(set(ids))
