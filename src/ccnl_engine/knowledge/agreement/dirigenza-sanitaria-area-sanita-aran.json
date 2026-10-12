@@ -67,9 +67,28 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-area-sanita-2019-2021",
+                "title": "CCNL Area Sanità 2019-2021, 23 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_23_AREA-SANITA_2019-2021.pdf",
+                "published_on": "2024-01-23",
+                "sha256": "de9efc25f0ca29ea4fedf8ff7d9e3fa893a672c62f628dbb96d7cfa18bcd6375"
+              },
+              "section": "Art. 67 c. 1 (tredicesima mensilità)",
+              "quote": "Le amministrazioni corrispondono una tredicesima mensilità nel periodo compreso tra il 15 ed il 21 dicembre",
+              "page": "101"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-23"
+            },
+            "note": "Confirmed by the CCNL Area Sanità 2022-2024 of 27 February 2026, art. 3."
           }
         }
       ]
@@ -136,7 +155,34 @@
           "note": "Read from the PDF the url serves (sha256 7a52a0d7ea3445ad54eb67bb0ccf206d930a7e72110221a9b010231437b261cc), text layer. No human review recorded."
         }
       }
-    ]
+    ],
+    "accrual_rule": {
+      "comparison": "service_days_365",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-area-sanita-2019-2021",
+            "title": "CCNL Area Sanità 2019-2021, 23 gennaio 2024",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_23_AREA-SANITA_2019-2021.pdf",
+            "published_on": "2024-01-23",
+            "sha256": "de9efc25f0ca29ea4fedf8ff7d9e3fa893a672c62f628dbb96d7cfa18bcd6375"
+          },
+          "section": "Art. 67 cc. 3-4 (tredicesima mensilità)",
+          "quote": "Il diritto alla tredicesima mensilità matura per 365esimi in proporzione ai giorni di servizio prestato",
+          "page": "101"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T18:00:00Z",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-23"
+        },
+        "note": "Confirmed by the CCNL Area Sanità 2022-2024 of 27 February 2026, art. 3."
+      }
+    }
   },
   "levels": [
     {
@@ -333,7 +379,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "ecb760fef114c59e83dc8f793cc32481b62c6a78498a0e7019c85d32b90780a1",
+    "source_hash": "87110435c7a12ac78bbf66a5fe11fa6d98e5ed3c8341a2d1da773f5115c468ee",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

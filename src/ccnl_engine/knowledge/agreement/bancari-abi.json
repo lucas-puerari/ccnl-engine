@@ -269,6 +269,34 @@
         "transformation": "0.133% employer and 0.067% worker of the INPS taxable pay of every permanent worker.",
         "note": "PDF sha256 17165601e0b65710bd79220f09f88b184c320b0347a2662dedb276a26ff951f0. Still in force in 2026: INPS bilancio preventivo 2026, cap. 31, p. 7 (https://servizi2.inps.it/servizi/ProvvedimentiFE/ProvvedimentiCDA/DownloadDocumentazioneAggiuntiva/326?nomefile=x.pdf, sha256 87277ac7102951e8ab702a24f08c30bec03c6e9538676c7b9156d37b5c787eb4): 'dal contributo ordinario (0,20 %) ripartito tra datore di lavoro e lavoratore nella misura rispettivamente, di due terzi (pari allo 0,133%) ed un terzo (pari allo 0,067%)'. Apprentices included: an apprenticeship is 'un contratto di lavoro a tempo indeterminato' (D.Lgs. 81/2015 art. 41 c. 1, Normattiva, read on 2026-10-10); fixed-term workers excluded. Only the ordinary contribution is modelled: the additional contribution due when the fund pays a benefit and the straordinario contribution of the employers that use the assegno straordinario are not."
       }
+    },
+    "accrual_rule": {
+      "min_days": 1,
+      "comparison": "at_least",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-abi-2023-coordinato",
+            "title": "CCNL ABI 23 novembre 2023, testo coordinato (FABI)",
+            "kind": "associazione",
+            "url": "https://www.fabi.it/wp-content/uploads/2025/07/ccnl-23-nov-2023_fabi.pdf",
+            "published_on": "2025-07-14",
+            "sha256": "4d92bc5226736682ddb1eedfaf7940df989fdc3cbbd99d0fa6347fd91979a933"
+          },
+          "section": "Art. 51 c. 2 (tredicesima mensilità)",
+          "quote": "la gratificazione compete in proporzione dei mesi di servizio prestato, considerando come mese intero l'eventuale frazione.",
+          "page": "77"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T18:00:00Z",
+          "verification_status": "unverified",
+          "effective_from": "2023-11-23"
+        },
+        "note": "Any fraction of a month counts as a whole month: stored as at least one day."
+      }
     }
   },
   "levels": [
@@ -1392,7 +1420,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "45f1005c56f46043a2eead08000f2ac42e37667e8c4ec473038b65b4d50b7cbe",
+    "source_hash": "ae313bdba3cb82c14134d27c3fc9cf107197be8f352d68dd4d888ed7d3581287",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

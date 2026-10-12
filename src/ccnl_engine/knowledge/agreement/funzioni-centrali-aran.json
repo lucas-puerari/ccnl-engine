@@ -64,9 +64,28 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-funzioni-centrali-2016-2018",
+                "title": "CCNL Comparto Funzioni Centrali 2016-2018, 12 febbraio 2018",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL-definitivo-Funzioni-centrali-triennio-2016-2018_firmato_12-2-2018.pdf",
+                "published_on": "2018-02-12",
+                "sha256": "d374410b7e202197f2cfd5828994bb56572533daf3dc39c4e775e888c915762e"
+              },
+              "section": "Art. 72 c. 1 (tredicesima mensilità)",
+              "quote": "Le amministrazioni corrispondono una tredicesima mensilità nel periodo compreso tra il 15 ed il 21 dicembre",
+              "page": "86"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2018-02-12"
+            },
+            "note": "Kept in force by the CCNL 2025-2027 of 6 August 2026, art. 47; the CCNL 9 May 2022 also cites 'art. 72 del CCNL 12 febbraio 2018'."
           }
         }
       ]
@@ -133,7 +152,34 @@
           "note": "Read from the PDF the url serves (sha256 7a52a0d7ea3445ad54eb67bb0ccf206d930a7e72110221a9b010231437b261cc), text layer. No human review recorded."
         }
       }
-    ]
+    ],
+    "accrual_rule": {
+      "comparison": "days_365",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-funzioni-centrali-2016-2018",
+            "title": "CCNL Comparto Funzioni Centrali 2016-2018, 12 febbraio 2018",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL-definitivo-Funzioni-centrali-triennio-2016-2018_firmato_12-2-2018.pdf",
+            "published_on": "2018-02-12",
+            "sha256": "d374410b7e202197f2cfd5828994bb56572533daf3dc39c4e775e888c915762e"
+          },
+          "section": "Art. 72 c. 5 (tredicesima mensilità)",
+          "quote": "un dodicesimo per ogni mese di servizio prestato e, per le frazioni di mese, in ragione di un trecentosessantacinquesimo per i giorni prestati nel mese",
+          "page": "87"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T18:00:00Z",
+          "verification_status": "unverified",
+          "effective_from": "2018-02-12"
+        },
+        "note": "Kept in force by the CCNL 2025-2027 of 6 August 2026, art. 47; the CCNL 9 May 2022 also cites 'art. 72 del CCNL 12 febbraio 2018'."
+      }
+    }
   },
   "levels": [
     {
@@ -771,7 +817,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "a6d3c84b5739a1f6b99385cc0d447fce2e00bb6f36cfa6753de605a0d3bde26e",
+    "source_hash": "abcead83b94e0df0dff85e0831785342e3d022db11f35d7c6be17e17fc543683",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

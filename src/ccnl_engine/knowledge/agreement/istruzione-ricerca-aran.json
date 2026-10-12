@@ -60,9 +60,28 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-scuola-2006-2009",
+                "title": "CCNL Comparto Scuola 2006-2009, 29 novembre 2007",
+                "kind": "associazione",
+                "url": "https://usrfvg.regione.fvg.it/export/sites/default/USRFVG/allegati/archivio_file/TS/2016/CCNL_scuola_2006_2009.pdf",
+                "published_on": "2007-11-29",
+                "sha256": "4c7b272d8a2987c239d5f77e27af429c55096b71c8fa198265bac549f348dbf6"
+              },
+              "section": "Art. 80 c. 1 (tredicesima mensilità)",
+              "quote": "spetta una tredicesima mensilità corrisposta nel mese di dicembre di ogni anno.",
+              "page": "52"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2007-11-29"
+            },
+            "note": "Kept in force by the CCNL Istruzione e Ricerca 2022-2024 of 23 December 2025, art. 1 c. 13 ('continuano a trovare applicazione [...] i CCNL dei precedenti comparti'). Copy of the ARAN text hosted by the USR Friuli Venezia Giulia. Scuola section only."
           }
         }
       ]
@@ -132,7 +151,35 @@
     ],
     "enam_levels": [
       "DOCENTE_INFANZIA_PRIMARIA"
-    ]
+    ],
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-scuola-2006-2009",
+            "title": "CCNL Comparto Scuola 2006-2009, 29 novembre 2007",
+            "kind": "associazione",
+            "url": "https://usrfvg.regione.fvg.it/export/sites/default/USRFVG/allegati/archivio_file/TS/2016/CCNL_scuola_2006_2009.pdf",
+            "published_on": "2007-11-29",
+            "sha256": "4c7b272d8a2987c239d5f77e27af429c55096b71c8fa198265bac549f348dbf6"
+          },
+          "section": "Art. 80 c. 4 (tredicesima mensilità)",
+          "quote": "la tredicesima è dovuta in ragione di un dodicesimo per ogni mese di servizio prestato o frazione di mese superiore a 15 giorni.",
+          "page": "52"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T18:00:00Z",
+          "verification_status": "unverified",
+          "effective_from": "2007-11-29"
+        },
+        "note": "Kept in force by the CCNL Istruzione e Ricerca 2022-2024 of 23 December 2025, art. 1 c. 13 ('continuano a trovare applicazione [...] i CCNL dei precedenti comparti'). Copy of the ARAN text hosted by the USR Friuli Venezia Giulia. Scuola section only."
+      }
+    }
   },
   "levels": [
     {
@@ -806,7 +853,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1",
     "verification_status": "unverified",
-    "source_hash": "89d582b483f721506cba21210f3ab0a61a96e36e6a4e9468c7cedfb3ca8bb4ec",
+    "source_hash": "7ddc9ad44f7bf2a6143f802361fb83fa78272161374aaf86ec309b2a77c28053",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

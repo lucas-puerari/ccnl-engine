@@ -291,7 +291,35 @@
         },
         "employee_base_above_minimum": "tfr_base"
       }
-    ]
+    ],
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-unionmeccanica-confapi-2017",
+            "title": "CCNL 3 luglio 2017 piccola e media industria metalmeccanica, orafa e installazione impianti (Unionmeccanica-Confapi)",
+            "kind": "associazione",
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+            "published_on": "2017-07-03",
+            "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+          },
+          "section": "Art. 42 (tredicesima mensilità)",
+          "quote": "La frazione di mese superiore ai 15 giorni va considerata a questi effetti come mese intero.",
+          "page": "119"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T18:00:00Z",
+          "verification_status": "unverified",
+          "effective_from": "2017-07-03"
+        },
+        "note": "Not amended by the ipotesi of 26 May 2021 and of 4 June 2026 (scans read by OCR)."
+      }
+    }
   },
   "levels": [
     {
@@ -1415,7 +1443,7 @@
     "effective_until": null,
     "source": "https://www.studiotuscano.it/news/nuovi-minimi-retributivi-per-il-ccnl-metalmeccanica-piccola-industria-confapi",
     "verification_status": "unverified",
-    "source_hash": "5421ad4c7b69c4c40429066d9bed614cd886b9b3d5bd1c0d5cd1dbc93f20ca9a",
+    "source_hash": "1d57b89157458e00c565238fd1f67c64092a33f2b07fbc9aa5d1f9f3cfe33efb",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

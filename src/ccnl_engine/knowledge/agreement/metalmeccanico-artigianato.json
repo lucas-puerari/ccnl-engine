@@ -253,6 +253,34 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-area-meccanica-artigiani-2024",
+            "title": "Ipotesi di accordo per il rinnovo del CCNL Area Meccanica (artigiani), 19 novembre 2024",
+            "kind": "associazione",
+            "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/ccnl-area-meccanica-rinnovo-19.11.2024-2.pdf",
+            "published_on": "2024-11-19",
+            "sha256": "a2e5265d36aebe5c5d53ab6cdb23764b36058170a120d9b1f427003d17cfb4de"
+          },
+          "section": "Nuovo articolo Tredicesima mensilità (Impiegati) and Gratifica natalizia (Operai), Parte Generale",
+          "quote": "La frazione di mese superiore ai 15 giorni sarà considerata a questi effetti come mese intero.",
+          "page": "16"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T18:00:00Z",
+          "verification_status": "unverified",
+          "effective_from": "2024-11-19"
+        },
+        "note": "In force from the signing date (art. 2); the text of 2021 had no fraction rule for the tredicesima. Scanned text, read by OCR and checked on the page image. Operai: 'sarà considerata utile la frazione di mese superiore ai 15 gg.'"
+      }
     }
   },
   "levels": [
@@ -2230,7 +2258,7 @@
     "effective_until": null,
     "source": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "5204f1667d618bf3ee373c1dc1fbebf8cc85e70d0aa00e56ede12a42f438712b",
+    "source_hash": "82b4a032ef920ca2c7717e91a4f5101f6dab7ba6ca8b09007d01e80431aaac8a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

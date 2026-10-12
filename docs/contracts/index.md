@@ -100,19 +100,19 @@ on unverified sources, or be well sourced and not cleared for production.
 
 | # | CNEL | CCNL | Sector | Workers (~)[^3] | Renewal | Core | Limits | Sources (v / d / a / m) | Readiness | Ext[^4] |
 |---|---|---|---|---:|:---:|:---:|---|---|:---:|:---:|
-| 1 | H515 | [CCNL Acconciatura ed Estetica — Confartigianato/CNA](acconciatura-estetica-confartigianato.md) | acconciatura ed estetica | ~95k | — | ⚠️ | base_salary, inps_employer | 0 / 28 / 1 / 1 | 🧪 | 🤖 |
+| 1 | H515 | [CCNL Acconciatura ed Estetica — Confartigianato/CNA](acconciatura-estetica-confartigianato.md) | acconciatura ed estetica | ~95k | — | ⚠️ | base_salary, inps_employer | 0 / 29 / 1 / 0 | 🧪 | 🤖 |
 | 2 | I481 | [CCNL Agenzie Marittime Raccomandatarie, Agenzie Aeree e Mediatori Marittimi](agenzie-marittime-i481.md) | Agenzie marittime e aeree | ~5k | 2024 | ⚠️ | base_salary, seniority | 0 / 36 / 2 / 0 | 🧪 | 🤖 |
 | 3 | H052 | [CCNL Agenzie di Viaggio e Turismo — Fiavet/Confcommercio](agenzie-viaggio-fiavet.md) | Turismo (agenzie di viaggio) | ~25k | 2024 | ⚠️ | seniority | 0 / 68 / 1 / 1 | 🧪 | 🤖 |
 | 4 | E016 | [CCNL Alimentaristi Cooperative (Fedagripesca/Legacoop Agroalimentare/AGCI-Agrital)](alimentaristi-cooperative-e016.md) | industria alimentare — cooperative di produzione e lavoro | ~15k | 2024 | ⚠️ | base_salary, seniority | 0 / 70 / 1 / 1 | 🧪 | 🤖 |
-| 5 | E015 | [CCNL Area Alimentazione e Panificazione — Artigianato (Confartigianato/CNA)](panificazione-artigianato-confartigianato.md) | panificazione e alimentazione artigianato | ~90k | — | ⚠️ | inps_employer, territorial_supplement | 0 / 46 / 1 / 1 | 🧪 | 🤖 |
-| 6 | G016 | [CCNL Area Comunicazione — Artigianato](comunicazione-artigianato-confartigianato.md) | comunicazione grafica editoria stampa artigianato | ~60k | 2024 | ⚠️ | base_salary, inps_employer, worker_category | 0 / 39 / 1 / 1 | 🧪 | 🤖 |
-| 7 | S025 | [CCNL Area Dirigenza Funzioni Centrali 2022-2024 — ARAN](dirigenza-funzioni-centrali-aran.md) | Pubblica Amministrazione | ~30k | 2025 | ✅ | — | 0 / 11 / 1 / 1 | 🧪 | 🤖 |
-| 8 | S125 | [CCNL Area Dirigenza Funzioni Locali 2022-2024 — ARAN](dirigenza-funzioni-locali-aran.md) | Pubblica Amministrazione | ~13k | 2026 | ✅ | — | 0 / 7 / 1 / 1 | 🧪 | 🤖 |
+| 5 | E015 | [CCNL Area Alimentazione e Panificazione — Artigianato (Confartigianato/CNA)](panificazione-artigianato-confartigianato.md) | panificazione e alimentazione artigianato | ~90k | — | ⚠️ | inps_employer, territorial_supplement | 0 / 47 / 1 / 0 | 🧪 | 🤖 |
+| 6 | G016 | [CCNL Area Comunicazione — Artigianato](comunicazione-artigianato-confartigianato.md) | comunicazione grafica editoria stampa artigianato | ~60k | 2024 | ⚠️ | base_salary, inps_employer, worker_category | 0 / 40 / 1 / 0 | 🧪 | 🤖 |
+| 7 | S025 | [CCNL Area Dirigenza Funzioni Centrali 2022-2024 — ARAN](dirigenza-funzioni-centrali-aran.md) | Pubblica Amministrazione | ~30k | 2025 | ✅ | — | 0 / 13 / 0 / 0 | 🧪 | 🤖 |
+| 8 | S125 | [CCNL Area Dirigenza Funzioni Locali 2022-2024 — ARAN](dirigenza-funzioni-locali-aran.md) | Pubblica Amministrazione | ~13k | 2026 | ✅ | — | 0 / 9 / 0 / 0 | 🧪 | 🤖 |
 | 9 | S325 | [CCNL Area Dirigenza Istruzione e Ricerca 2022-2024 — ARAN](dirigenza-istruzione-ricerca-aran.md) | Pubblica Amministrazione | ~8k | 2026 | ✅ | — | 0 / 11 / 1 / 1 | 🧪 | 🤖 |
 | 10 | F060 | [CCNL Area Legno-Lapidei — Artigianato](legno-lapidei-artigianato-confartigianato.md) | legno arredamento lapidei artigianato | ~95k | 2024 | ⚠️ | base_salary, inps_employer | 0 / 38 / 2 / 0 | 🧪 | 🤖 |
 | 11 | S225 | [CCNL Area Sanità 2022-2024 — ARAN (Dirigenti Medici e Veterinari SSN)](dirigenza-sanitaria-medico-veterinaria-aran.md) | Pubblica Amministrazione | ~100k | 2026 | ⚠️ | base_salary | 0 / 8 / 1 / 1 | 🧪 | 🤖 |
-| 12 | S225 | [CCNL Area Sanità 2022-2024 — ARAN (Dirigenti Sanitari: psicologi, farmacisti, biologi, fisici, chimici)](dirigenza-sanitaria-area-sanita-aran.md) | Pubblica Amministrazione | ~37k | 2026 | ⚠️ | base_salary | 0 / 8 / 1 / 1 | 🧪 | 🤖 |
-| 13 | V751 | [CCNL Area Tessile-Moda e Chimica-Ceramica — Artigianato](tessile-moda-artigianato-confartigianato.md) | tessile moda chimica ceramica artigianato | ~120k | 2024 | ⚠️ | base_salary, inps_employer, seniority | 0 / 35 / 1 / 1 | 🧪 | 🤖 |
+| 12 | S225 | [CCNL Area Sanità 2022-2024 — ARAN (Dirigenti Sanitari: psicologi, farmacisti, biologi, fisici, chimici)](dirigenza-sanitaria-area-sanita-aran.md) | Pubblica Amministrazione | ~37k | 2026 | ⚠️ | base_salary | 0 / 10 / 0 / 0 | 🧪 | 🤖 |
+| 13 | V751 | [CCNL Area Tessile-Moda e Chimica-Ceramica — Artigianato](tessile-moda-artigianato-confartigianato.md) | tessile moda chimica ceramica artigianato | ~120k | 2024 | ⚠️ | base_salary, inps_employer, seniority | 0 / 36 / 1 / 0 | 🧪 | 🤖 |
 | 14 | A051 | [CCNL Attivita Agromeccaniche (Contoterzismo) CAI Agromec-FAI-FLAI-UILA](contoterzismo-caiagromec.md) | Agricoltura | ~4k | 2024 | ⚠️ | inps_employer | 0 / 48 / 1 / 1 | 🧪 | 🤖 |
 | 15 | B282 | [CCNL Attivita Minerarie (ASSORISORSE)](attivita-minerarie-assorisorse.md) | Industria estrattiva - Miniere, cave, saline, metallurgia estrattiva | ~3000 | 2022 | ⚠️ | base_salary, seniority | 0 / 0 / 38 / 1 | 🧪 | 🤖 |
 | 16 | I320 | [CCNL Attività Ferroviarie — AGENS](trasporto-ferroviario-agens.md) | trasporto | ~75k | 2025 | ⚠️ | base_salary, seniority | 0 / 55 / 1 / 1 | 🧪 | 🤖 |
@@ -125,10 +125,10 @@ on unverified sources, or be well sourced and not cleared for production.
 | 23 | F032 | [CCNL Cemento, Calce e Gesso — Industria (Federbeton)](cemento-calce-gesso-industria.md) | industria del cemento calce e gesso | ~25k | — | ⚠️ | base_salary, seniority | 0 / 80 / 2 / 0 | 🧪 | 🤖 |
 | 24 | B122 | [CCNL Ceramica Industria (Confindustria-Assopiastrelle)](ceramica-industria-confindustria.md) | ceramica | ~23k | — | ⚠️ | seniority | 0 / 60 / 1 / 1 | 🧪 | 🤖 |
 | 25 | B018 | [CCNL Chimica e Affini PMI — Unionchimica Confapi](chimica-affini-pmi-unionchimica.md) | chimica | ~56k | 2026 | ⚠️ | base_salary, seniority | 0 / 21 / 1 / 1 | 🧪 | 🤖 |
-| 26 | S005 | [CCNL Comparto Funzioni Centrali — Triennio 2022-2024](funzioni-centrali-aran.md) | Pubblica Amministrazione — Comparto Funzioni Centrali | ~250k | 2025 | ⚠️ | inps_employer | 0 / 29 / 1 / 1 | 🧪 | 🤖 |
-| 27 | S105 | [CCNL Comparto Funzioni Locali 2022-2024 — ARAN](funzioni-locali-aran.md) | Pubblica Amministrazione | ~400k | 2026 | ⚠️ | base_salary, company_supplement | 0 / 21 / 1 / 1 | 🧪 | 🤖 |
-| 28 | S305 | [CCNL Comparto Istruzione e Ricerca 2022-2024 — ARAN](istruzione-ricerca-aran.md) | Pubblica Amministrazione | ~1,2M | 2025 | ⚠️ | base_salary, inps_employee, seniority | 0 / 23 / 1 / 1 | 🧪 | 🤖 |
-| 29 | S205 | [CCNL Comparto Sanità 2022-2024 — ARAN](sanita-aran.md) | Pubblica Amministrazione | ~580k | 2025 | ⚠️ | base_salary | 0 / 19 / 1 / 1 | 🧪 | 🤖 |
+| 26 | S005 | [CCNL Comparto Funzioni Centrali — Triennio 2022-2024](funzioni-centrali-aran.md) | Pubblica Amministrazione — Comparto Funzioni Centrali | ~250k | 2025 | ⚠️ | inps_employer | 0 / 31 / 0 / 0 | 🧪 | 🤖 |
+| 27 | S105 | [CCNL Comparto Funzioni Locali 2022-2024 — ARAN](funzioni-locali-aran.md) | Pubblica Amministrazione | ~400k | 2026 | ⚠️ | base_salary, company_supplement | 0 / 23 / 0 / 0 | 🧪 | 🤖 |
+| 28 | S305 | [CCNL Comparto Istruzione e Ricerca 2022-2024 — ARAN](istruzione-ricerca-aran.md) | Pubblica Amministrazione | ~1,2M | 2025 | ⚠️ | base_salary, inps_employee, seniority | 0 / 25 / 0 / 0 | 🧪 | 🤖 |
+| 29 | S205 | [CCNL Comparto Sanità 2022-2024 — ARAN](sanita-aran.md) | Pubblica Amministrazione | ~580k | 2025 | ⚠️ | base_salary | 0 / 21 / 0 / 0 | 🧪 | 🤖 |
 | 30 | G029 | [CCNL Comunicazione, Informatica e Servizi Innovativi PMI — Settore Informatico](informatica-pmi-unimatica.md) | informatica-servizi-innovativi | ~20k | — | ⚠️ | base_salary, seniority | 0 / 40 / 2 / 0 | 🧪 | 🤖 |
 | 31 | A141 | [CCNL Consorzi Agrari (ASSOCAP-FLAI-FAI-UILA)](consorzi-agrari-assocap.md) | Agricoltura | ~2k | 2023 | ⚠️ | base_salary, health_fund_employer, inps_employer | 0 / 36 / 1 / 1 | 🧪 | 🤖 |
 | 32 | A131 | [CCNL Consorzi di Bonifica (SNEBI-FLAI-FAI-FILBI)](consorzi-di-bonifica-snebi.md) | Agricoltura | ~4k | 2025 | ⚠️ | base_salary, inps_employer, seniority | 0 / 56 / 1 / 1 | 🧪 | 🤖 |
@@ -155,8 +155,8 @@ on unverified sources, or be well sourced and not cleared for production.
 | 53 | K540 | [CCNL Igiene Ambientale — Servizi Ambientali e di Igiene Urbana](igiene-ambientale-utilitalia.md) | servizi ambientali | ~65k | 2025 | ⚠️ | inps_employer, pension_fund_contribution, seniority | 0 / 143 / 1 / 1 | 🧪 | 🤖 |
 | 54 | H077 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | impianti sportivi, palestre e attività sportive | 35533 | 2024 | ⚠️ | base_salary, overtime, sickness | 0 / 32 / 1 / 1 | 🧪 | 🤖 |
 | 55 | A021 | [CCNL Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti](impiegati-tecnici-agricoli.md) | agricoltura | ~80k | 2024 | ⚠️ | base_salary, bilateral_funds, inps_employer | 0 / 15 / 1 / 1 | 🧪 | 🤖 |
-| 56 | B011 | [CCNL Industria Chimica e Farmaceutica (Federchimica-Farmindustria-Assistal)](chimica-farmaceutica-federchimica.md) | chimica | ~210k | — | ✅ | — | 0 / 98 / 1 / 1 | 🧪 | 🤖 |
-| 57 | H05B | [CCNL Industria Turistica (Federturismo Confindustria)](industria-turistica-federturismo.md) | turismo — alberghi, campeggi, villaggi e strutture ricettive | ~40k | 2025 | ⚠️ | seniority | 0 / 45 / 1 / 1 | 🧪 | 🤖 |
+| 56 | B011 | [CCNL Industria Chimica e Farmaceutica (Federchimica-Farmindustria-Assistal)](chimica-farmaceutica-federchimica.md) | chimica | ~210k | — | ✅ | — | 0 / 99 / 1 / 0 | 🧪 | 🤖 |
+| 57 | H05B | [CCNL Industria Turistica (Federturismo Confindustria)](industria-turistica-federturismo.md) | turismo — alberghi, campeggi, villaggi e strutture ricettive | ~40k | 2025 | ⚠️ | seniority | 0 / 46 / 1 / 0 | 🧪 | 🤖 |
 | 58 | G111 | [CCNL Industrie Cineaudiovisive (ANICA)](cinema-audiovisivi-industria.md) | Cinema e audiovisivo | ~2.3k | 2025 | ✅ | bilateral_funds | 0 / 62 / 1 / 1 | 🧪 | 🤖 |
 | 59 | HV40 | [CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fiduciari — ASSIV/ANIVP/UNIV (GPG)](vigilanza-privata-assiv.md) | vigilanza-privata | ~85k | 2023 | ⚠️ | inps_employer, seniority | 0 / 48 / 2 / 0 | 🧪 | 🤖 |
 | 60 | T241 | [CCNL Istituzioni Formative Private (Scuole Private Religiose) — AGIDAE](scuole-private-agidae.md) | istruzione privata | ~50k | — | ✅ | — | 0 / 43 / 1 / 1 | 🧪 | 🤖 |
@@ -173,9 +173,9 @@ on unverified sources, or be well sourced and not cleared for production.
 | 71 | I391 | [CCNL Marittimi — Industria Armatoriale (CONFITARMA)](marittimi-industria-armatoriale.md) | navigazione marittima — personale di terra | ~15k | — | ⚠️ | seniority | 0 / 40 / 2 / 0 | 🧪 | 🤖 |
 | 72 | F020 | [CCNL Materiali da Costruzione PMI — Lapidei (CONFAPI ANIEM)](materiali-costruzione-lapidei-confapi.md) | Industria materiali da costruzione — Lapidei piccola industria | ~5000 | 2025 | ✅ | pension_fund_contribution | 0 / 0 / 70 / 0 | 🧪 | 🤖 |
 | 73 | C016 | [CCNL Metalmeccanica - Cooperative](metalmeccanica-cooperative.md) | metalmeccanico cooperativo | ~28k | — | ⚠️ | base_salary, seniority | 0 / 45 / 1 / 1 | 🧪 | 🤖 |
-| 74 | C030 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | metalmeccanico | ~350k | — | ⚠️ | inps_employer, seniority | 0 / 79 / 1 / 1 | 🧪 | 🤖 |
+| 74 | C030 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | metalmeccanico | ~350k | — | ⚠️ | inps_employer, seniority | 0 / 80 / 1 / 0 | 🧪 | 🤖 |
 | 75 | C01A | [CCNL Metalmeccanici Piccola Industria (CONFIMI IMPRESA MECCANICA)](metalmeccanico-confimi-pmi.md) | metalmeccanico | ~100k | — | ✅ | overtime | 0 / 44 / 0 / 1 | 🧪 | 🤖 |
-| 76 | C018 | [CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Confapi)](metalmeccanico-confapi.md) | metalmeccanico | ~350k | — | ⚠️ | base_salary, pension_fund_contribution, seniority | 0 / 45 / 1 / 1 | 🧪 | 🤖 |
+| 76 | C018 | [CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Confapi)](metalmeccanico-confapi.md) | metalmeccanico | ~350k | — | ⚠️ | base_salary, pension_fund_contribution, seniority | 0 / 46 / 1 / 0 | 🧪 | 🤖 |
 | 77 | C011 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | metalmeccanico | ~1,7M | — | ⚠️ | overtime, seniority | 81 / 3 / 0 / 0 | 🏭 | 🧑 |
 | 78 | IC36 | [CCNL Noleggio Autobus con Conducente (ANAV)](noleggio-autobus-conducente-anav.md) | Trasporti - Noleggio autobus con conducente | ~5422 | 2025 | ⚠️ | base_salary, seniority, una_tantum | 0 / 0 / 70 / 1 | 🧪 | 🤖 |
 | 79 | D271 | [CCNL Occhiali e Occhialeria — Industria (ANFAO)](occhiali-occhialeria-industria.md) | industria occhialeria e ottica | ~20k | — | ⚠️ | base_salary, seniority | 0 / 88 / 1 / 1 | 🧪 | 🤖 |
@@ -200,8 +200,8 @@ on unverified sources, or be well sourced and not cleared for production.
 | 98 | D018 | [CCNL Tessile-Abbigliamento-Moda PMI (Uniontessile-Confapi)](tessile-pmi-uniontessile.md) | tessile abbigliamento moda PMI | ~48k | 2025 | ⚠️ | base_salary, pension_fund_contribution | 0 / 0 / 43 / 1 | 🧪 | 🔍 |
 | 99 | I810 | [CCNL Trasporto Aereo — Gestori Aeroportuali](trasporto-aereo-assaeroporti.md) | trasporto aereo | ~40k | 2025 | ⚠️ | base_salary, seniority | 0 / 72 / 2 / 0 | 🧪 | 🤖 |
 | 100 | I911 | [CCNL Trasporto a Fune (Funivie Terrestri ed Aeree) - ANEF](funivie-anef.md) | Trasporto a fune | ~15k | 2025 | ⚠️ | seniority | 0 / 47 / 1 / 1 | 🧪 | 🤖 |
-| 101 | H058 | [CCNL Turismo (Assoturismo-Confesercenti)](turismo-confesercenti.md) | turismo — alberghi, campeggi, pubblici esercizi, agenzie di viaggi | — | 2024 | ⚠️ | seniority | 0 / 56 / 1 / 1 | 🧪 | 🤖 |
-| 102 | H052 | [CCNL Turismo — Federalberghi/Faita](turismo-federalberghi.md) | Turismo | ~220k | 2024 | ⚠️ | seniority, worker_category | 0 / 68 / 1 / 1 | 🧪 | 🤖 |
+| 101 | H058 | [CCNL Turismo (Assoturismo-Confesercenti)](turismo-confesercenti.md) | turismo — alberghi, campeggi, pubblici esercizi, agenzie di viaggi | — | 2024 | ⚠️ | seniority | 0 / 57 / 1 / 0 | 🧪 | 🤖 |
+| 102 | H052 | [CCNL Turismo — Federalberghi/Faita](turismo-federalberghi.md) | Turismo | ~220k | 2024 | ⚠️ | seniority, worker_category | 0 / 69 / 1 / 0 | 🧪 | 🤖 |
 | 103 | H052 | [CCNL Turismo, Pubblici Esercizi e Ristorazione (Confcommercio)](turismo-confcommercio.md) | turismo | ~300k | — | ⚠️ | seniority | 0 / 58 / 1 / 1 | 🧪 | 🤖 |
 | 104 | B132 | [CCNL Vetro (Industrie) — Settori Meccanizzati (Prime Lavorazioni)](vetro-meccanizzato-assovetro.md) | vetro industria — settori meccanizzati | ~28k | 2026 | ⚠️ | base_salary | 0 / 0 / 35 / 1 | 🧪 | 🔍 |
 | 105 | HV17 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG](vigilanza-privata-federdat-gpg.md) | vigilanza privata — guardie particolari giurate (GPG) | ~45k | 2023 | ⚠️ | seniority | 0 / 48 / 1 / 1 | 🧪 | 🤖 |
@@ -221,7 +221,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 119 | D014 | [CCNL per i lavoratori dell'industria tessile, abbigliamento, moda (SMI)](tessile-smi.md) | industria | ~160k | — | ⚠️ | seniority | 0 / 47 / 1 / 1 | 🧪 | 🤖 |
 | 120 | J271 | [CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane](bcc-credito-cooperativo.md) | credito | ~33k | — | ⚠️ | base_salary, inps_employer, seniority | 0 / 41 / 1 / 1 | 🧪 | 🤖 |
 | 121 | K051 | [CCNL per i lavoratori delle imprese produttrici, distributrici di energia elettrica (Elettricita Futura)](elettrico-elettricita-futura.md) | industria | ~60k | — | ⚠️ | seniority | 0 / 77 / 1 / 1 | 🧪 | 🤖 |
-| 122 | J241 | [CCNL per i lavoratori dipendenti dalle aziende di credito (ABI)](bancari-abi.md) | credito | ~270k | — | ⚠️ | base_salary, inps_employer, seniority | 0 / 43 / 1 / 1 | 🧪 | 🤖 |
+| 122 | J241 | [CCNL per i lavoratori dipendenti dalle aziende di credito (ABI)](bancari-abi.md) | credito | ~270k | — | ⚠️ | base_salary, inps_employer, seniority | 0 / 44 / 1 / 0 | 🧪 | 🤖 |
 | 123 | K461 | [CCNL per i lavoratori dipendenti delle aziende termali](aziende-termali-federterme.md) | turismo termale | — | — | ⚠️ | base_salary, bilateral_funds, inps_employer, seniority | 0 / 64 / 1 / 1 | 🧪 | 🤖 |
 | 124 | J121 | [CCNL per il personale dipendente non dirigente delle imprese di assicurazione (ANIA)](assicurazioni-ania.md) | assicurazioni | ~45k | 2026 | ⚠️ | base_salary, inps_employer, seniority | 0 / 30 / 1 / 1 | 🧪 | 🤖 |
 | 125 | N/A | [DPR 24 marzo 2025, n. 53 — Forze di Polizia ad ordinamento civile (Triennio 2022-2024)](forze-polizia-ordinamento-civile.md) | Pubblica Sicurezza — Forze di Polizia ad ordinamento civile | ~130k | 2025 | ⚠️ | inps_employer | 0 / 70 / 1 / 1 | 🧪 | 🤖 |

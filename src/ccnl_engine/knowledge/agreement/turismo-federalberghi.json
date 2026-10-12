@@ -223,7 +223,34 @@
           "note": "Read from the PDF the url serves (sha256 e1604b50f245d34b4ea04aa53bb91056f55635b39b8c0935f31f2a79b578d40e), text layer; valid_from is the first day of the bundled tax year, the rates being in force since 29 November 1996. The base is the retribuzione utile ai fini del calcolo del TFR, as note (1) of the Scheda 'I destinatari e i contributi' states (https://www.fondofonte.it/statuto-e-nota-informativa/parte-i-scheda-iii-i-destinatari-e-i-contributi/, sha256 dc19e50af945d0671920bb1ebc77e5d75cc2a9dd2f6fd8cad5dd2882a66c8cb2). No human review recorded."
         }
       }
-    ]
+    ],
+    "accrual_rule": {
+      "comparison": "working_days_26",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-turismo-federalberghi-2024",
+            "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+            "published_on": "2024-07-05",
+            "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
+          },
+          "section": "Art. 160 c. 2 (tredicesima) and art. 161 c. 4 (quattordicesima) of the CCNL 20 febbraio 2010 as replaced",
+          "quote": "i giorni lavorati - determinati in ventiseiesimi - relativi alle frazioni di mese non interamente lavorato, daranno diritto alla maturazione di un ugual numero di ventiseiesimi di un rateo mensile.",
+          "page": "42-43"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T18:00:00Z",
+          "verification_status": "unverified",
+          "effective_from": "2024-07-01"
+        },
+        "note": "Rule of the renewal in force from 1 July 2024; before it the CCNL counted a fraction of at least 15 days as a month. The rule is stored once, for the windows from 2025. Hotels and campsites already used 26ths before 2024 (artt. 225 and 277 CCNL 2010). Also deposited at the CNEL (id 194291)."
+      }
+    }
   },
   "levels": [
     {
@@ -2008,7 +2035,7 @@
     "effective_until": null,
     "source": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
     "verification_status": "unverified",
-    "source_hash": "fce7874368ac451a0a2dbc1da2aafded47e24d649ecebe78cbd267220c1dc081",
+    "source_hash": "76bb277a8770b631e1c37d21b61a6e7a3540cf96aebaa21d88f9d521acb6e8f4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

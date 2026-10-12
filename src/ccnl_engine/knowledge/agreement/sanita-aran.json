@@ -59,9 +59,27 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-sanita-2022-2024",
+                "title": "CCNL Comparto Sanità 2022-2024, testo definitivo 27 ottobre 2025",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/10/2025.10.27-CCNL-comparto-definitivo-3.pdf",
+                "published_on": "2025-10-27",
+                "sha256": "2d5a0d966527851b1e06cd2d7e758905877e65eedaf84e0aaaeb083f3b2fac47"
+              },
+              "section": "Art. 60 c. 1 (tredicesima mensilità)",
+              "quote": "Le amministrazioni corrispondono una tredicesima mensilità nel periodo compreso tra il 15 ed il 21 dicembre",
+              "page": "88"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2025-10-27"
+            }
           }
         }
       ]
@@ -128,7 +146,33 @@
           "note": "Read from the PDF the url serves (sha256 7a52a0d7ea3445ad54eb67bb0ccf206d930a7e72110221a9b010231437b261cc), text layer. No human review recorded."
         }
       }
-    ]
+    ],
+    "accrual_rule": {
+      "comparison": "days_365",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-sanita-2022-2024",
+            "title": "CCNL Comparto Sanità 2022-2024, testo definitivo 27 ottobre 2025",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/10/2025.10.27-CCNL-comparto-definitivo-3.pdf",
+            "published_on": "2025-10-27",
+            "sha256": "2d5a0d966527851b1e06cd2d7e758905877e65eedaf84e0aaaeb083f3b2fac47"
+          },
+          "section": "Art. 60 c. 4 (tredicesima mensilità)",
+          "quote": "un dodicesimo per ogni mese intero di servizio prestato e, per le frazioni di mese, in ragione di un trecentosessantacinquesimo per i giorni prestati nel mese",
+          "page": "88"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T18:00:00Z",
+          "verification_status": "unverified",
+          "effective_from": "2025-10-27"
+        }
+      }
+    }
   },
   "levels": [
     {
@@ -586,7 +630,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf",
     "verification_status": "unverified",
-    "source_hash": "d3f6aa2fa709396560a58c1e00a53b5cab04bcf836317d906efd515e7ca4d5bc",
+    "source_hash": "d9bfedaf34d52316595586110359ddc64bd98c54e4d21338137d845723511b8d",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

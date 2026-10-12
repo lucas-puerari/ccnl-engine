@@ -324,6 +324,34 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-area-comunicazione-2014",
+            "title": "CCNL Area Comunicazione (imprese artigiane e PMI), 13 maggio 2014",
+            "kind": "associazione",
+            "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2021/02/20140513_CCNL-COMUNICAZIONE.pdf",
+            "published_on": "2014-05-13",
+            "sha256": "7a639e8af0f9daa994bba2378bce7270710781af3be3f331e37c0d3b744927ce"
+          },
+          "section": "Art. 61 (operai) and art. 66 (impiegati), tredicesima mensilità e gratifica natalizia",
+          "quote": "La frazione di mese superiore a 15 giorni sarà considerata come mese intero.",
+          "page": "52, 55"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T18:00:00Z",
+          "verification_status": "unverified",
+          "effective_from": "2014-05-13"
+        },
+        "note": "Scanned text read by OCR; the same sentence is in the consolidated text published by CNA Parma. Not amended by the ipotesi of 16 May 2022 and 18 November 2024."
+      }
     }
   },
   "levels": [
@@ -1409,7 +1437,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/ccnl/comunicazione-artigianato",
     "verification_status": "unverified",
-    "source_hash": "757c9b6ce1b58fcf8bb950db00d959e011945a2d3a3999e5ab94b21b151028aa",
+    "source_hash": "4e498a83cf9aec66105d1f58381cb235bc3af60e5c5996f6ab62ebf0f1e484f8",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

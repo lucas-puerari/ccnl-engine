@@ -55,9 +55,28 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aran-raccolta-area-i-2017",
+                "title": "ARAN, Raccolta sistematica Area I (gennaio 2017): CCNL Area I 21 aprile 2006",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/09/Area-I-_Raccolta-sistematica_Gennaio-2017.pdf",
+                "published_on": "2017-01-01",
+                "sha256": "fef8a5549daeb9364f52d43d8bf296ce971b687d42a5f4aea9bf925668d67d81"
+              },
+              "section": "Art. 63 c. 1, CCNL Area I 21 aprile 2006 (tredicesima mensilità)",
+              "quote": "una tredicesima mensilità nel mese di dicembre di ogni anno",
+              "page": "84"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2006-04-21"
+            },
+            "note": "ARAN compilation, not the signed text of 21 April 2006 (not found online). Kept in force by the CCNL Area Funzioni Centrali 2022-2024, art. 1 c. 12; the later Area texts have no tredicesima article. Ex-Area VI has the same wording (art. 64 CCNL 1 August 2006)."
           }
         }
       ]
@@ -124,7 +143,34 @@
           "note": "Read from the PDF the url serves (sha256 7a52a0d7ea3445ad54eb67bb0ccf206d930a7e72110221a9b010231437b261cc), text layer. No human review recorded."
         }
       }
-    ]
+    ],
+    "accrual_rule": {
+      "comparison": "days_360",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "aran-raccolta-area-i-2017",
+            "title": "ARAN, Raccolta sistematica Area I (gennaio 2017): CCNL Area I 21 aprile 2006",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/09/Area-I-_Raccolta-sistematica_Gennaio-2017.pdf",
+            "published_on": "2017-01-01",
+            "sha256": "fef8a5549daeb9364f52d43d8bf296ce971b687d42a5f4aea9bf925668d67d81"
+          },
+          "section": "Art. 63 c. 4, CCNL Area I 21 aprile 2006 (tredicesima mensilità)",
+          "quote": "per le frazioni di mese, in ragione di un trecentosessantesimo, per ogni giorno di servizio prestato nel mese",
+          "page": "84"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T18:00:00Z",
+          "verification_status": "unverified",
+          "effective_from": "2006-04-21"
+        },
+        "note": "ARAN compilation, not the signed text of 21 April 2006 (not found online). Kept in force by the CCNL Area Funzioni Centrali 2022-2024, art. 1 c. 12; the later Area texts have no tredicesima article. Ex-Area VI has the same wording (art. 64 CCNL 1 August 2006)."
+      }
+    }
   },
   "levels": [
     {
@@ -346,7 +392,7 @@
     "effective_until": "2024-12-31",
     "source": "https://trasparenza.lavoro.gov.it/archiviofile/minlavoro/2025_10_28_CCNL_A_FC_2022-2024_Pubblicazione-1%20vigente.pdf",
     "verification_status": "unverified",
-    "source_hash": "4ef3e440627c23d805fff439364fba72213300ce7876607b551d8429455c3b35",
+    "source_hash": "f69ae307215f25f90a4f63553145ecb7299dae74bb67948fe6d57316e36cab88",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },

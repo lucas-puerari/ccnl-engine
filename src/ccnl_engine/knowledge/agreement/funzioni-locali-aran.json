@@ -57,9 +57,28 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-funzioni-locali-2019-2021",
+                "title": "CCNL Comparto Funzioni Locali 2019-2021, 16 novembre 2022",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2023/10/CCNL-Comparto-Funzioni-Locali-2019-2021-16.11.2022.pdf",
+                "published_on": "2022-11-16",
+                "sha256": "8cea8d673cf66299d55169c60b1624417c804cf294b0045b234e35a2e76b764d"
+              },
+              "section": "Art. 75 c. 1 (tredicesima mensilità)",
+              "quote": "a tempo determinato una tredicesima mensilità nel periodo compreso tra il 10 ed il 18 dicembre",
+              "page": "95"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2022-11-16"
+            },
+            "note": "Still the operative clause: the CCNL 2022-2024 of 23 February 2026, art. 40 c. 9, refers to 'la disciplina dell'art. 75 del CCNL del 16 novembre 2022'."
           }
         }
       ]
@@ -126,7 +145,34 @@
           "note": "Read from the PDF the url serves (sha256 7a52a0d7ea3445ad54eb67bb0ccf206d930a7e72110221a9b010231437b261cc), text layer. No human review recorded."
         }
       }
-    ]
+    ],
+    "accrual_rule": {
+      "comparison": "service_days_365",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-funzioni-locali-2019-2021",
+            "title": "CCNL Comparto Funzioni Locali 2019-2021, 16 novembre 2022",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2023/10/CCNL-Comparto-Funzioni-Locali-2019-2021-16.11.2022.pdf",
+            "published_on": "2022-11-16",
+            "sha256": "8cea8d673cf66299d55169c60b1624417c804cf294b0045b234e35a2e76b764d"
+          },
+          "section": "Art. 75 cc. 3, 5 (tredicesima mensilità)",
+          "quote": "la tredicesima mensilità è dovuta in ragione di tanti 365esimi quanti sono i giorni di servizio prestato",
+          "page": "95"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T18:00:00Z",
+          "verification_status": "unverified",
+          "effective_from": "2022-11-16"
+        },
+        "note": "Still the operative clause: the CCNL 2022-2024 of 23 February 2026, art. 40 c. 9, refers to 'la disciplina dell'art. 75 del CCNL del 16 novembre 2022'."
+      }
+    }
   },
   "levels": [
     {
@@ -613,7 +659,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
     "verification_status": "unverified",
-    "source_hash": "0288e41650b73983c34d035bc451d062fc7a2c23d534c09f1d4fcc6fcef1d4c4",
+    "source_hash": "dfb7356bc67cb89065d571e8f19d49886443886ecccb20371da62caceee34f0c",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

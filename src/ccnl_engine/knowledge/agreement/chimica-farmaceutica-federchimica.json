@@ -169,7 +169,34 @@
           "note": "Base and rates from the Fonchim opuscolo informativo 2026 (https://www.fonchim.it/cms/resource/open/4853/opuscoloinformativo-2026.pdf, sha256 847e1e0a0594f1db69cbe5e73694af81c0cdacf19d1954fd2c6f14ebfdef1d2b): 'Contributo aderente / Contributo azienda: % sulla retribuzione utile al calcolo del TFR'. The employer rate adds the 0.25% insurance contribution for premorienza e invalidita, which the employer pays to the fund for every member ('il contributo assicurativo (0,25% a carico dell'azienda)'). The rates match the Scheda 'I destinatari e i contributi' in force from 25/03/2026 (https://www.fonchim.it/cms/resource/open/16/parte-i-scheda-i-destinatari-e-i-contributi-250326.pdf, sha256 7fd3693ca3d0d41767ef5f7e144ec490663fdb457e059af5bc625fbd831241a0). valid_from is the first day of the bundled tax year, the rates being in force before it. No human review recorded."
         }
       }
-    ]
+    ],
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-chimica-2006",
+            "title": "CCNL Industria Chimica, testo definitivo 10 maggio 2006",
+            "kind": "associazione",
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/579",
+            "published_on": "2006-05-10",
+            "sha256": "a9926705b06590a6d8fbe2e6ab683c75d56dfd9e898e7b0f71fb377d7edef3d6"
+          },
+          "section": "Art. 21 (13a mensilità), 3rd paragraph, 2006 numbering (Word file, no page)",
+          "quote": "il lavoratore ha diritto a tanti dodicesimi dell'ammontare della 13a mensilità quanti sono i mesi di servizio prestati presso l'impresa, computando come mese intero la frazione di mese superiore a 15 giorni."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T18:00:00Z",
+          "verification_status": "unverified",
+          "effective_from": "2006-05-10"
+        },
+        "note": "CNEL archive API: the response is JSON with the file in base64; the sha256 is of the decoded file. Not amended by the renewals of 2009 to 2025 (read by OCR); the current article number is not verified (the 2025 text is not public). The Lubrificanti e GPL sectors count a fraction of at least 15 days (Cap. XIV art. 21)."
+      }
+    }
   },
   "levels": [
     {
@@ -2703,7 +2730,7 @@
     "effective_until": null,
     "source": "https://informatori.it/wp-content/uploads/2025/04/Tabelle-Incrementi-TEM-CCNL-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "c2fec5518306f8239df50cdb106490869a8d74b31871c65390925e0bc9ecf802",
+    "source_hash": "0fee14b03fde7e851ca33e1587177a04698034ec4d54ec21796cfbbb7f6ad6c0",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

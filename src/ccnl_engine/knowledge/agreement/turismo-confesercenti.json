@@ -219,6 +219,33 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "comparison": "working_days_26",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-turismo-confesercenti-2024",
+            "title": "Ipotesi di accordo per il rinnovo del CCNL Settore Turismo (Confesercenti), 22 luglio 2024",
+            "kind": "associazione",
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+            "published_on": "2024-07-22",
+            "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+          },
+          "section": "Tredicesima c. 2 and Quattordicesima c. 4 (artt. 225 e 269 CCNL 4 marzo 2010 as replaced)",
+          "quote": "i giorni lavorati - determinati in ventiseiesimi - relativi alle frazioni di mese non interamente lavorato, daranno diritto alla maturazione di un ugual numero di ventiseiesimi di un rateo mensile.",
+          "page": "83-84"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T18:00:00Z",
+          "verification_status": "unverified",
+          "effective_from": "2024-07-01"
+        },
+        "note": "Rule of the renewal in force from 1 July 2024; before it the CCNL counted a fraction of at least 15 days as a month. The rule is stored once, for the windows from 2025. CNEL archive API: the response is JSON with the file in base64; the sha256 is of the decoded file. Scanned text, read by OCR and checked on the page image."
+      }
     }
   },
   "apprenticeship": [
@@ -1685,7 +1712,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257",
     "verification_status": "unverified",
-    "source_hash": "93dd5351f72709738772459a79296190e10eab68d2fc90e19df840322efb376f",
+    "source_hash": "1cb3e5dedbc1ed014763e1236ac05550b6330f4f1805ab12ea248269445d76ed",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

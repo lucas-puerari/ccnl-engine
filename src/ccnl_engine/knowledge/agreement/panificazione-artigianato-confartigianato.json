@@ -287,6 +287,34 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "at_least",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-alimentazione-panificazione-artigiani-2024",
+            "title": "CCNL Area Alimentazione-Panificazione, 6 giugno 2024",
+            "kind": "associazione",
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+            "published_on": "2024-06-06",
+            "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
+          },
+          "section": "Parte I, art. 30 (criteri di calcolo dei ratei di maturazione)",
+          "quote": "A tal fine le frazioni di mese, pari o superiori a 15 giorni, daranno luogo alla maturazione di 1/12.",
+          "page": "41-42"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T18:00:00Z",
+          "verification_status": "unverified",
+          "effective_from": "2024-06-06"
+        },
+        "note": "Applies to every institute that accrues by year, the gratifica natalizia of art. 36 included. Scanned text, read by OCR and checked on the page image."
+      }
     }
   },
   "levels": [
@@ -1744,7 +1772,7 @@
     "effective_until": null,
     "source": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "94270066dd2519482e6c114d9db37a059392b2dba7cb3ffbca8262c47f0cc54c",
+    "source_hash": "23719c5252f063cd375e01a16656f5ecff52992b043b4527895705b29c9f8c9d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

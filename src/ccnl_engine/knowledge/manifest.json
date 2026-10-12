@@ -13,7 +13,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/acconciatura-estetica-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "78abdcabebccf023f2f679eb09073c95e37f41e0cc563b4c78f6c13b601cfd0d",
+      "source_hash": "9b9786cc80f10444eff2130a4ade03378a150d1586295a3558109b33f27b0f65",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/acconciatura-estetica-confartigianato.json.gz"
@@ -268,7 +268,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/bancari-abi",
       "ruleset_version": "2026.2",
-      "source_hash": "45f1005c56f46043a2eead08000f2ac42e37667e8c4ec473038b65b4d50b7cbe",
+      "source_hash": "ae313bdba3cb82c14134d27c3fc9cf107197be8f352d68dd4d888ed7d3581287",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/bancari-abi.json.gz"
@@ -404,7 +404,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/chimica-farmaceutica-federchimica",
       "ruleset_version": "2026.2",
-      "source_hash": "c2fec5518306f8239df50cdb106490869a8d74b31871c65390925e0bc9ecf802",
+      "source_hash": "0fee14b03fde7e851ca33e1587177a04698034ec4d54ec21796cfbbb7f6ad6c0",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/chimica-farmaceutica-federchimica.json.gz"
@@ -455,7 +455,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/comunicazione-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "757c9b6ce1b58fcf8bb950db00d959e011945a2d3a3999e5ab94b21b151028aa",
+      "source_hash": "4e498a83cf9aec66105d1f58381cb235bc3af60e5c5996f6ab62ebf0f1e484f8",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/comunicazione-artigianato-confartigianato.json.gz"
@@ -574,7 +574,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/dirigenza-funzioni-centrali-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "4ef3e440627c23d805fff439364fba72213300ce7876607b551d8429455c3b35",
+      "source_hash": "f69ae307215f25f90a4f63553145ecb7299dae74bb67948fe6d57316e36cab88",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/dirigenza-funzioni-centrali-aran.json.gz"
@@ -591,7 +591,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/dirigenza-funzioni-locali-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "0aed7efe1d3f25dc0114457990464302e2b9922f7084d477bbf4fde869ff6dd0",
+      "source_hash": "fa60fa7bf57aa9c028528c7179797e0a6c44c808d78cc7145aada023d225704e",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/dirigenza-funzioni-locali-aran.json.gz"
@@ -625,7 +625,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/dirigenza-sanitaria-area-sanita-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "ecb760fef114c59e83dc8f793cc32481b62c6a78498a0e7019c85d32b90780a1",
+      "source_hash": "87110435c7a12ac78bbf66a5fe11fa6d98e5ed3c8341a2d1da773f5115c468ee",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/dirigenza-sanitaria-area-sanita-aran.json.gz"
@@ -931,7 +931,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/funzioni-centrali-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "a6d3c84b5739a1f6b99385cc0d447fce2e00bb6f36cfa6753de605a0d3bde26e",
+      "source_hash": "abcead83b94e0df0dff85e0831785342e3d022db11f35d7c6be17e17fc543683",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/funzioni-centrali-aran.json.gz"
@@ -948,7 +948,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/funzioni-locali-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "0288e41650b73983c34d035bc451d062fc7a2c23d534c09f1d4fcc6fcef1d4c4",
+      "source_hash": "dfb7356bc67cb89065d571e8f19d49886443886ecccb20371da62caceee34f0c",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/funzioni-locali-aran.json.gz"
@@ -1067,7 +1067,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/industria-turistica-federturismo",
       "ruleset_version": "2026.2",
-      "source_hash": "bf511c7f0fb7539bc96742be213e2665189f999b3853d70e763b1e176e382b0a",
+      "source_hash": "bacdf344ab9a4ed7c2f6abb89f4d81191a1042dadff3f28fcdd15730ed60590a",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/industria-turistica-federturismo.json.gz"
@@ -1118,7 +1118,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/istruzione-ricerca-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "89d582b483f721506cba21210f3ab0a61a96e36e6a4e9468c7cedfb3ca8bb4ec",
+      "source_hash": "7ddc9ad44f7bf2a6143f802361fb83fa78272161374aaf86ec309b2a77c28053",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/istruzione-ricerca-aran.json.gz"
@@ -1339,7 +1339,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-artigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "5204f1667d618bf3ee373c1dc1fbebf8cc85e70d0aa00e56ede12a42f438712b",
+      "source_hash": "82b4a032ef920ca2c7717e91a4f5101f6dab7ba6ca8b09007d01e80431aaac8a",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/metalmeccanico-artigianato.json.gz"
@@ -1356,7 +1356,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-confapi",
       "ruleset_version": "2026.2",
-      "source_hash": "5421ad4c7b69c4c40429066d9bed614cd886b9b3d5bd1c0d5cd1dbc93f20ca9a",
+      "source_hash": "1d57b89157458e00c565238fd1f67c64092a33f2b07fbc9aa5d1f9f3cfe33efb",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/metalmeccanico-confapi.json.gz"
@@ -1543,7 +1543,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/panificazione-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "94270066dd2519482e6c114d9db37a059392b2dba7cb3ffbca8262c47f0cc54c",
+      "source_hash": "23719c5252f063cd375e01a16656f5ecff52992b043b4527895705b29c9f8c9d",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/panificazione-artigianato-confartigianato.json.gz"
@@ -1730,7 +1730,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/sanita-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "d3f6aa2fa709396560a58c1e00a53b5cab04bcf836317d906efd515e7ca4d5bc",
+      "source_hash": "d9bfedaf34d52316595586110359ddc64bd98c54e4d21338137d845723511b8d",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/sanita-aran.json.gz"
@@ -1934,7 +1934,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/tessile-moda-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "da1beae6d852087588d2cde88d13f0edfd75171147dce40f01a02d91371fa86b",
+      "source_hash": "209d58820d5a2625285993409e361e7c202307313f96d7fdfa8a8d603da814a6",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/tessile-moda-artigianato-confartigianato.json.gz"
@@ -2036,7 +2036,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-confesercenti",
       "ruleset_version": "2026.2",
-      "source_hash": "93dd5351f72709738772459a79296190e10eab68d2fc90e19df840322efb376f",
+      "source_hash": "1cb3e5dedbc1ed014763e1236ac05550b6330f4f1805ab12ea248269445d76ed",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/turismo-confesercenti.json.gz"
@@ -2053,7 +2053,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-federalberghi",
       "ruleset_version": "2026.2",
-      "source_hash": "fce7874368ac451a0a2dbc1da2aafded47e24d649ecebe78cbd267220c1dc081",
+      "source_hash": "76bb277a8770b631e1c37d21b61a6e7a3540cf96aebaa21d88f9d521acb6e8f4",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/turismo-federalberghi.json.gz"
