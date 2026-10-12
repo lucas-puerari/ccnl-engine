@@ -96,7 +96,7 @@ def settle_extra_months(
     due = [
         (accrual, _gross(chain, accrual))
         for accrual in settlements
-        if accrual.months > 0
+        if accrual.accrued > 0
     ]
     if not due:
         return ExtraMonthSettlement()
@@ -114,7 +114,7 @@ def settle_extra_months(
                 quantity=accrual.fraction,
                 amount=gross,
                 month_number=14 if accrual.kind is ExtraMonthKind.FOURTEENTH else 13,
-                source=f"ratei at termination: {accrual.months}/12",
+                source=f"ratei at termination: {accrual.accrued}/12",
             )
         )
         entries.append(
