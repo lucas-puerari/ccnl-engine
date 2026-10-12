@@ -2837,7 +2837,7 @@
       "valid_to": null,
       "ruleset_id": "inps/sick-pay-rates",
       "ruleset_version": "1.1",
-      "source_hash": "707af81dc7062e2a0569c8a74ffc5e792e9f98dacb297a25d368ec607d6437d2",
+      "source_hash": "69021a769a5630aa591e3f00441c4148994f0420958d1a716674c75ba41dacdf",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sickness/indemnity/rates.json.gz"

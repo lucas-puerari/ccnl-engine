@@ -146,6 +146,7 @@ def sickness_terms(ctx: RunContext) -> SicknessTerms:
             str(ccnl.meta.tax_sector),
             None if category is None else str(category),
             ctx.request.contract_type.type,
+            ccnl.meta.ccnl_id,
         )
         rules = SickPayRules(
             inps=inps, inps_cover=cover, ccnl=ccnl_rules, worker=_worker(ctx)
