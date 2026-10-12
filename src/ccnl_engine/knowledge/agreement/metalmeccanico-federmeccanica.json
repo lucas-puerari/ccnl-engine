@@ -3080,7 +3080,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "0108a9c28b2f714837a7e0eb8c764e7b7c46ff5b3231e3ac56ff95f330e856f2",
+    "source_hash": "07f0d5775ff88b8474bbc26aab25963c12bd4d601f012afc662944d3e7cb4de0",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -3415,6 +3415,10 @@
             "0.66",
             "0.50"
           ]
+        },
+        "hospital_stay": {
+          "more_than_days": 10,
+          "max_full_days": 61
         }
       },
       "provenance": {
@@ -3442,7 +3446,7 @@
           "review_id": "2026-10-11-ai"
         },
         "transformation": "Bands from 0, 36 and 72 completed months of recognised seniority (the exact third and sixth anniversary days fall in the higher band), read on the first day of the episode. Treatment chain: the sick days of consecutive episodes, restarted when at least 61 calendar days separate the return to work (the day after the last sick day) from the next episode. Comporto: sick days within the three years that end on the day assessed (FIOM leaflet: sickness on 10 March 2022 counts from 11 March 2019). Short absence: an episode of at most 5 calendar days, counted in the calendar year of its first day; an absence the CCNL exempts is neither reduced nor counted. 66% and 50% stored as 0.66 and 0.50.",
-        "note": "The ipotesi di accordo of 22 November 2025 (FIOM scan, Sez. Quarta Titolo VI Art. 2, sha256 b0be0185c1186a4dd9b56483172fdfd3e160ad92a8c0d3a068b097dc816cdee8) keeps the paragraphs quoted ('omissis') and adds, from 1 January 2026, 30/45/60 more days of comporto for a certified disability; Sez. Quarta Titolo I Art. 4 lowers from 36 to 24 months the fixed-term contracts whose periods are scaled. Not modelled, each with a blocker: comporto prolungato and the disability days (days past the comporto breve are left out), the full pay of hospital stays over 10 days (a day at 80% raises an issue), fixed-term scaling. Not modelled and not blocked: the probation period, during which the CCNL treatment is not due ('lavoratore non in prova'). PDF printed pages 196-199 are file pages 200-203."
+        "note": "The ipotesi di accordo of 22 November 2025 (FIOM scan, Sez. Quarta Titolo VI Art. 2, sha256 b0be0185c1186a4dd9b56483172fdfd3e160ad92a8c0d3a068b097dc816cdee8) keeps the paragraphs quoted ('omissis') and adds, from 1 January 2026, 30/45/60 more days of comporto for a certified disability; Sez. Quarta Titolo I Art. 4 lowers from 36 to 24 months the fixed-term contracts whose periods are scaled. Not modelled, each with a blocker: comporto prolungato and the disability days (days past the comporto breve are left out), the full pay of hospital stays over 10 days (a day at 80% raises an issue), fixed-term scaling. Not modelled and not blocked: the probation period, during which the CCNL treatment is not due ('lavoratore non in prova'). PDF printed pages 196-199 are file pages 200-203. Hospital stays: 'I periodi di ricovero ospedaliero di durata superiore a 10 giorni continuativi sono retribuiti con l'intera retribuzione globale in aggiunta al trattamento economico di cui sopra fino ad un massimo di 61 giorni di calendario' (Sez. Quarta Titolo VI art. 2, p. 198): the reduced days of such a stay are paid in full, at most 61 days, counted from the first day of the stay, days in full pay included (the text does not say whether the 61 days count only the reduced days; this reading pays fewer days in full)."
       }
     },
     "standby_rules": {
@@ -4850,6 +4854,23 @@
         "findings": [
           "Standby was documented and not paid: the engine now takes a StandbyEvent and the rates of the three bands from 1 June 2025 and 1 June 2026, read on the page images of the two signed verbali.",
           "Art. 6 excludes the standby pay from the TFR base and pays 5.00 euro for each call with an intervention."
+        ]
+      },
+      {
+        "id": "2026-10-12-ai-hospital",
+        "date": "2026-10-12",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hospital stays in the sickness treatment (Sez. Quarta Titolo VI art. 2).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+            "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+          }
+        ],
+        "findings": [
+          "Hospital stays of more than 10 consecutive days are paid in full instead of 80%, up to 61 days: modelled with SicknessEpisode.hospital_stays (hospital_stay of the cumulation)."
         ]
       }
     ],

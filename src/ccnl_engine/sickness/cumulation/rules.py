@@ -251,6 +251,7 @@ class CumulativeTreatment:
         else:
             step = band.step_rate(count)
             rate = self.cumulation.reduced_integration_rate if step is None else step
+            rate = self._hospital(day, rate)
         short = self.cumulation.short_absences
         first_days = 0 if short is None else short.first_days
         if (day - self.episode.started_on).days < first_days:
@@ -260,6 +261,21 @@ class CumulativeTreatment:
             rate=rate,
             carenza_rate=min(self.rules.carenza_integration_rate, rate),
         )
+
+    def _hospital(self, day: date, rate: Decimal) -> Decimal:
+        """Return the rate of a reduced day, full within a long hospital stay.
+
+        Returns:
+            The full-pay rate for a day of a stay longer than the CCNL days,
+            within the days paid in full at most; ``rate`` otherwise.
+        """
+        stay = self.cumulation.hospital_stay
+        if stay is None:
+            return rate
+        days = self.episode.long_stay_days(stay.more_than_days, day)
+        if 0 < days <= stay.max_full_days:
+            return self.rules.full_pay_integration_rate
+        return rate
 
     def first_reduced(self) -> date:
         """Return the first day of the episode past the full-pay days.

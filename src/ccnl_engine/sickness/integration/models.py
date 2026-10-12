@@ -175,6 +175,27 @@ class CarenzaByEvent(BaseModel):
         return self.rates[min(ordinal - self.from_event, len(self.rates) - 1)]
 
 
+class HospitalStayRule(BaseModel):
+    """Hospital stays paid in full within a reduced treatment.
+
+    Federmeccanica Sez. Quarta Titolo VI art. 2: "I periodi di ricovero
+    ospedaliero di durata superiore a 10 giorni continuativi sono retribuiti
+    con l'intera retribuzione globale in aggiunta al trattamento economico
+    di cui sopra fino ad un massimo di 61 giorni di calendario".
+
+    Attributes:
+        more_than_days: A stay counts when it lasts more than these
+            consecutive days.
+        max_full_days: Days of such stays paid in full at most, counted in
+            the episode.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    more_than_days: int = Field(ge=0)
+    max_full_days: int = Field(ge=1)
+
+
 class SicknessCumulation(BaseModel):
     """Sick pay and comporto counted over the sickness of several episodes.
 
@@ -196,6 +217,8 @@ class SicknessCumulation(BaseModel):
         bands: Seniority bands, in increasing seniority; the first starts
             at ``0`` months.
         short_absences: Reduction of repeated short absences, if any.
+        hospital_stay: Hospital stays paid in full within the reduced days,
+            if the CCNL says so.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -205,6 +228,7 @@ class SicknessCumulation(BaseModel):
     reduced_integration_rate: Decimal = Field(ge=Decimal(0), le=Decimal(1))
     bands: tuple[SicknessSeniorityBand, ...] = Field(min_length=1)
     short_absences: ShortAbsenceReduction | None = None
+    hospital_stay: HospitalStayRule | None = None
 
     @model_validator(mode="after")
     def _ordered_bands(self) -> Self:

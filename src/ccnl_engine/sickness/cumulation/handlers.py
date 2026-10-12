@@ -40,6 +40,7 @@ __all__ = [
     "FIXED_TERM",
     "HISTORY_UNKNOWN",
     "HOSPITAL_STAY",
+    "HOSPITAL_STAY_UNKNOWN",
     "SENIORITY_UNKNOWN",
     "cumulation_inputs",
     "cumulation_issues",
@@ -56,6 +57,8 @@ EXEMPTION_UNKNOWN = "sickness_short_absence_exemption_unknown"
 BAND_CHANGES = "sickness_seniority_band_changes"
 #: A day is paid at the reduced rate and hospital stays are not modelled.
 HOSPITAL_STAY = "sickness_hospital_stay_not_modelled"
+#: A day is paid at the reduced rate and the hospital stays are not stated.
+HOSPITAL_STAY_UNKNOWN = "sickness_hospital_stays_unknown"
 #: The full-pay and comporto days of a fixed-term contract are not scaled.
 FIXED_TERM = "sickness_fixed_term_proportion"
 
@@ -112,15 +115,44 @@ def _messages(
             ),
             None,
         ),
-        (
-            report.reduced,
-            HOSPITAL_STAY,
-            (
-                f"{name}: days are paid at the reduced rate; a hospital stay of "
-                "more than ten days would be paid in full and is not modelled"
+    )
+
+
+def _hospital_issue(
+    episode: SicknessEpisode, report: CumulationReport, terms: SicknessTerms
+) -> CalculationIssue | None:
+    """Return the issue of reduced days a hospital stay could change.
+
+    Returns:
+        For a CCNL that pays long stays in full, a missing-fact issue when
+        the stays are not stated; for one without that rule, an issue that
+        stays are not modelled; ``None`` without reduced days.
+    """
+    if not report.reduced:
+        return None
+    name = f"sickness episode '{episode.episode_id}'"
+    rules = terms.rules
+    cumulation = None if rules is None else rules.ccnl.cumulation
+    if cumulation is not None and cumulation.hospital_stay is not None:
+        if episode.hospital_stays is not None:
+            return None
+        return CalculationIssue(
+            code=HOSPITAL_STAY_UNKNOWN,
+            message=(
+                f"{name}: days are paid at the reduced rate; a hospital stay "
+                "the CCNL pays in full could change them: state the stays of "
+                "the episode (SicknessEpisode.hospital_stays)"
             ),
-            None,
+            status=_PROVISIONAL,
+            fact="hospital_stays",
+        )
+    return CalculationIssue(
+        code=HOSPITAL_STAY,
+        message=(
+            f"{name}: days are paid at the reduced rate; a hospital stay the "
+            "CCNL could pay in full is not modelled for it"
         ),
+        status=_PROVISIONAL,
     )
 
 
@@ -138,6 +170,9 @@ def cumulation_issues(
         for holds, code, message, fact in _messages(episode, report)
         if holds
     ]
+    hospital = _hospital_issue(episode, report, terms)
+    if hospital is not None:
+        issues.append(hospital)
     if terms.fixed_term:
         issues.append(
             CalculationIssue(
