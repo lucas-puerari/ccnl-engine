@@ -16,8 +16,11 @@ that applies to it with no hour threshold and no context condition: the
 first tier of overtime.  Bands that start beyond a daily or weekly hour
 threshold depend on hours of the week an event does not carry; when a
 derived multiplier leaves them out, the run is provisional with issue
-``overtime_tier_not_applied``.  A band paid per hour or per shift, or not
-in force on the event date, gives no multiplier.
+``overtime_tier_not_applied``.  A band paid per shift, or not in force on
+the event date, gives no multiplier.  A kind without a percentage band but
+with a band in EUR per hour (the PA tables of fixed hourly amounts) is paid
+that amount for each hour, in place of the hourly rate, with multiplier 1.
+A band that names levels applies only to them.
 """
 
 from __future__ import annotations
@@ -59,7 +62,8 @@ class CCNLOvertimeBands:
     """The overtime bands of a CCNL and the rule identity they are cited by.
 
     Attributes:
-        bands: Time-supplement bands of the CCNL, empty when it has none.
+        bands: Time-supplement bands of the CCNL that apply to the worker's
+            level, empty when it has none.
         ruleset: Ruleset identifier of the CCNL.
         version: Ruleset version.
     """
@@ -69,15 +73,21 @@ class CCNLOvertimeBands:
     version: str = "none"
 
     @classmethod
-    def of(cls, ccnl: CCNL, year: int) -> CCNLOvertimeBands:
-        """Return the bands of ``ccnl``.
+    def of(
+        cls, ccnl: CCNL, year: int, level_code: str | None = None
+    ) -> CCNLOvertimeBands:
+        """Return the bands of ``ccnl`` that apply to ``level_code``.
+
+        A band naming no level applies to every level; without a level only
+        those bands are kept.
 
         Returns:
             The bands with the CCNL ruleset, or its slug and ``year``.
         """
         rules = ccnl.work_rules
         supplements = None if rules is None else rules.time_supplements
-        bands = () if supplements is None else supplements.overtime_bands
+        every = () if supplements is None else supplements.overtime_bands
+        bands = tuple(b for b in every if not b.levels or level_code in b.levels)
         if ccnl.ruleset is not None:
             return cls(bands, ccnl.ruleset.id, ccnl.ruleset.version)
         return cls(bands, f"ccnl/{ccnl.meta.ccnl_id}", str(year))
@@ -103,6 +113,8 @@ class OvertimeRate:
         supplement: Supplement of ``band`` on the event date (``0.25``).
         tiers: Percentage bands of the kind that start beyond an hour
             threshold, in force on the event date, with their supplement.
+        hourly_amount: Amount in EUR of each hour when ``band`` is paid per
+            hour; it replaces the hourly rate of the event.
     """
 
     multiplier: Decimal
@@ -110,6 +122,7 @@ class OvertimeRate:
     band: OvertimeBand | None = None
     supplement: Decimal | None = None
     tiers: tuple[tuple[OvertimeBand, Decimal], ...] = ()
+    hourly_amount: Decimal | None = None
 
     @property
     def derived_band(self) -> OvertimeBand | None:
@@ -120,8 +133,14 @@ class OvertimeRate:
         """Return ``event`` with the multiplier it is paid with.
 
         Returns:
-            A copy of ``event`` whose ``multiplier`` is :attr:`multiplier`.
+            A copy of ``event`` whose ``multiplier`` is :attr:`multiplier`
+            and, for a band paid per hour, whose ``hourly_rate`` is its
+            amount.
         """
+        if self.hourly_amount is not None:
+            return replace(
+                event, multiplier=self.multiplier, hourly_rate=self.hourly_amount
+            )
         return replace(event, multiplier=self.multiplier)
 
 
@@ -149,15 +168,35 @@ def _kind_bands(
     return found
 
 
+def _hourly_band(
+    bands: CCNLOvertimeBands, event: OvertimeEvent
+) -> tuple[OvertimeBand, Decimal] | None:
+    """Return the band in EUR per hour of the event's kind, if any.
+
+    Returns:
+        ``(band, amount)`` of the first unthresholded such band in force,
+        the holiday one for rest-day overtime without its own.
+    """
+    hourly = TimeSupplementKind.INDENNITA_PER_HOUR
+    kind = WorkKind(event.kind.value)
+    found = _bands_of(bands, event, kind, hourly)
+    if not found and kind is WorkKind.REST_DAY:
+        found = _bands_of(bands, event, WorkKind.HOLIDAY, hourly)
+    return next(((b, r) for b, r in found if not _has_threshold(b)), None)
+
+
 def _bands_of(
-    bands: CCNLOvertimeBands, event: OvertimeEvent, kind: WorkKind
+    bands: CCNLOvertimeBands,
+    event: OvertimeEvent,
+    kind: WorkKind,
+    paid_as: TimeSupplementKind = TimeSupplementKind.PERCENTAGE,
 ) -> list[tuple[OvertimeBand, Decimal]]:
     found: list[tuple[OvertimeBand, Decimal]] = []
     for band in bands.bands:
         rate = _in_force(band, event)
         if (
             band.code.startswith(_OVERTIME_PREFIX)
-            and band.kind is TimeSupplementKind.PERCENTAGE
+            and band.kind is paid_as
             and kind in band.applies_to_kinds
             and not band.required_context_kinds
             and rate is not None
@@ -191,6 +230,9 @@ def resolve_overtime_rate(
     band, supplement = (None, None) if base is None else base
     if event.multiplier is not None:
         return OvertimeRate(event.multiplier, False, band, supplement, tiers)
+    hourly = _hourly_band(bands, event) if band is None else None
+    if hourly is not None:
+        return OvertimeRate(Decimal(1), True, hourly[0], hourly_amount=hourly[1])
     if band is None or supplement is None:
         msg = (
             f"OvertimeEvent on {event.event_date.isoformat()} has no multiplier "
@@ -251,9 +293,14 @@ def band_decision(
         tiers were left out; ``None`` for a caller multiplier.
     """
     band = rate.band
-    if not rate.derived or band is None or rate.supplement is None:
+    if not rate.derived or band is None:
         return None
     provenance = band.provenance
+    paid: dict[str, Decimal | str] = (
+        {"band_hourly_amount": rate.hourly_amount}
+        if rate.hourly_amount is not None
+        else {"band_supplement": rate.supplement or Decimal(0)}
+    )
     return CalculationDecision(
         capability="overtime",
         status=CalculationStatus.PROVISIONAL if rate.tiers else CalculationStatus.FINAL,
@@ -263,7 +310,7 @@ def band_decision(
         inputs={
             "kind": event.kind.value,
             "band_code": band.code,
-            "band_supplement": rate.supplement,
+            **paid,
             "multiplier": rate.multiplier,
             "hours": event.hours,
             "hourly_rate": event.hourly_rate,

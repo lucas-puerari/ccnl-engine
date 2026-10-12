@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-09-18 | maintainer (human) | Whole file. The values checked were not recorded. | confirmed | The review recorded no list of the documents it read. |
 | 2026-10-12 | claude-opus-5-5 (ai) | Salary tables of the seven scuola profiles, leave, sickness, seniority, overtime and the daily quota, against the signed ARAN texts of 2007, 2024, 2025 and 2026. | corrected | Every monthly tabellare was the annual amount over 13; the tables are per 12 mensilità plus the tredicesima: the values were about 7.7% low (e.g. Docente infanzia 2024: 1,724.65 -> 1,868.37).<br>The pre-2024 periods were back-calculated with the increments times 13 and started on 2022-01-01; they are now the tables of the CCNL 2019-2021, in force from 1 February 2023.<br>The CCNL 2025-2027 on the economic treatment, signed definitively on 1 July 2026, was missing: periods from 1.1.2025, 1.1.2026 and 1.1.2027 added.<br>Signatories: FLC CGIL did not sign the CCNL 2022-2024 (it signed the 2025-2027); ANIEF signed both and was missing.<br>Ferie: 32 days, 30 for the first 3 years (CCNL 2007 art. 13), not 28.<br>Sickness: comporto of 18 months with 9 months at 100%, 3 at 90% and 6 at 50% (art. 17), not 270 days at 100%.<br>Overtime: the scuola pays fixed hourly amounts, not percentages: the 15/30/30/50% bands had no basis and are removed.<br>Daily quota: no scuola text fixes it; by_26 is now assumed. |
+| 2026-10-12 | claude-opus-5-5 (ai) | Overtime of the scuola ATA staff: Tabella E1.7 of the CCNL 2019-2021 and the overtime articles of the CCNL 2022-2024 and 2025-2027. | corrected | The ATA 'prestazioni aggiuntive' are paid at fixed hourly amounts by area from 1 January 2024 (Tabella E1.7): nine bands in EUR per hour by area and time of day, now paid by the engine.<br>The CCNL 2022-2024 (art. 23) and 2025-2027 (art. 11) update only the università overtime (Tabella B4): the scuola amounts stay those of 2024.<br>The docenti ore aggiuntive (Tabella E1.6) are by activity, not by time of day: left to the caller (limitation fixed_hourly_overtime, docenti levels). |
 
 ## Salary table
 
@@ -114,11 +115,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Add the 2022 and January 2023 tabellare and the elemento perequativo of the CCNL 2019-2021.
 
 !!! warning "istruzione-ricerca-aran/fixed_hourly_overtime · overtime · impact yes · open"
-    Overtime of the scuola staff is paid at fixed hourly amounts by profile (CCNL 2019-2021 Tabelle E1.6 docenti and E1.7 ATA, e.g. 'OPERATORI/COLLABORATORI € 13,75 € 15,95 € 18,70'), not as a percentage of the hourly pay: no overtime band is modelled, so an overtime event needs its multiplier.
+    The ore aggiuntive of the docenti are paid at fixed hourly amounts by activity (CCNL 2019-2021 Tabella E1.6: corsi di recupero 55,00, insegnamento 38,50, non di insegnamento 19,25), not by time of day: no overtime band is modelled for the docenti levels, so their overtime event needs the amount as hourly_rate with multiplier 1. The ATA areas are paid by the bands of Tabella E1.7.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the hourly amounts of Tabelle E1.6 and E1.7 per profile.
+    **Remediation:** Pass the amount of Tabella E1.6 of the activity as hourly_rate with multiplier 1.
 
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.

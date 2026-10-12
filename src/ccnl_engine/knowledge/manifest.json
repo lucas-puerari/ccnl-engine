@@ -1118,7 +1118,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/istruzione-ricerca-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "370ba863ddbf14ab23d381303bdf6ed206233a24139740767059a8aaff06167e",
+      "source_hash": "1cf7ae82a32c68b12c1585c27430281e923d5f335a77a4a0394b754f9cddd03f",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/istruzione-ricerca-aran.json.gz"

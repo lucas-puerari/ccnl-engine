@@ -74,8 +74,11 @@ is applied to every hour and the run is `provisional` with issue
 `overtime_tier_not_applied`: pass an explicit multiplier for the hours
 beyond the threshold (a multiplier equal to a higher tier raises no
 difference issue). A CCNL whose bands for the kind all start beyond a
-threshold, are paid in EUR per hour, or are not in force on the event date
-gives no multiplier. The derived band is a payable rule of `overtime`: its
+threshold, or are not in force on the event date gives no multiplier. A
+kind with no percentage band but a band in EUR per hour (`indennita_per_hour`:
+the PA tables of fixed hourly amounts, e.g. the scuola ATA Tabella E1.7) is
+paid that amount for each hour in place of `hourly_rate`, with multiplier 1.
+A band that lists `levels` applies only to those levels. The derived band is a payable rule of `overtime`: its
 provenance status is reported in `capability_report.rule_sources`.
 
 ```python

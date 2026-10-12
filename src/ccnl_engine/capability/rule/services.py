@@ -299,7 +299,9 @@ def _overtime_rules(ctx: RunContext) -> tuple[Rule, ...]:
         multiplier was paid with; empty when every multiplier is the caller's.
     """
     contract = ctx.contract
-    bands = CCNLOvertimeBands.of(contract.ccnl, contract.tctx.competence.year)
+    bands = CCNLOvertimeBands.of(
+        contract.ccnl, contract.tctx.competence.year, ctx.request.level_code
+    )
     rules: dict[str, Rule] = {}
     events = ctx.request.events
     for event in (e for e in events if isinstance(e, OvertimeEvent)):

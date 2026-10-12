@@ -194,14 +194,12 @@ def test_explicit_multiplier_matching_a_higher_tier_raises_no_issue() -> None:
         # Only bands beyond 40 weekly hours; LAVORO_NOTTURNO is ordinary work.
         ("impianti-sportivi-sport.json", OvertimeKind.WEEKDAY),
         ("impianti-sportivi-sport.json", OvertimeKind.NIGHT),
-        # A band paid in EUR per hour is not a multiplier.
-        ("dirigenza-sanitaria-area-sanita-aran.json", OvertimeKind.WEEKDAY),
     ],
 )
 def test_bands_that_give_no_multiplier_fail_closed(
     slug: str, kind: OvertimeKind
 ) -> None:
-    """Thresholded, ordinary-work or per-hour bands give no multiplier."""
+    """Thresholded or ordinary-work bands give no multiplier."""
     bands = CCNLOvertimeBands.of(load_ccnl(slug), 2026)
     with pytest.raises(InvalidInputError, match="no first-tier percentage"):
         resolve_overtime_rate(_overtime(kind=kind), bands)
