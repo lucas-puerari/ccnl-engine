@@ -92,7 +92,7 @@ class TestLoadIstruzioneRicercaAran:
     def test_istruzione_ricerca_aran_has_7_levels(self) -> None:
         """Contract has exactly 7 levels (4 ATA + 3 docente groups)."""
         ccnl = load_ccnl("istruzione-ricerca-aran.json")
-        assert len(ccnl.levels) == 7
+        assert len(ccnl.levels) == 8
         assert {lv.code for lv in ccnl.levels} == {
             "COLLABORATORE_SCOLASTICO",
             "OPERATORE",
@@ -100,6 +100,7 @@ class TestLoadIstruzioneRicercaAran:
             "DOCENTE_INFANZIA_PRIMARIA",
             "DOCENTE_DIPLOMATO_SECONDARIA",
             "DOCENTE_SECONDARIA",
+            "DOCENTE_LAUREATO_SECONDARIA_II",
             "FUNZIONARIO_ED_ESPERTO",
         }
 
@@ -146,11 +147,11 @@ class TestLoadIstruzioneRicercaAran:
         assert ccnl.meta.tax_sector == TaxSector.PUBBLICA_AMMINISTRAZIONE
 
     def test_istruzione_ricerca_aran_seniority_cadence(self) -> None:
-        """Seniority: maximum_count=0 (fasce not automatic scatti)."""
+        """The fasce: steps after 9, 15, 21, 28 and 35 years of service."""
         ccnl = load_ccnl("istruzione-ricerca-aran.json")
         si = ccnl.parameters.seniority_increments
-        assert si.cadence_months == 1
-        assert si.maximum_count == 0
+        assert [t.cadence_months for t in si.tiers] == [108, 72, 72, 84, 84]
+        assert si.maximum_count == 5
 
 
 class TestLoadSanitaPrivataAiopAris:
