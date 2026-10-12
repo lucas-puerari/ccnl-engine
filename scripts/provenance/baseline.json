@@ -1031,9 +1031,6 @@
     "contribution/2026/credito.json": {
       "inps": "assumed"
     },
-    "contribution/2026/lavoro-domestico.json": {
-      "domestic_contributions": "assumed"
-    },
     "contribution/2026/pubblica-amministrazione.json": {
       "apprentice": "assumed",
       "inps.minimum_base": "assumed"

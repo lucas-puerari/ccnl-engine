@@ -18,9 +18,11 @@ Tabella A, level C super 1,193.84 a month.
 
 INPS 2026 for up to 24 weekly hours (circ. 9/2026, bundled table): worker
 share 0.43 EUR an hour up to an hourly pay of 9.61, 0.48 up to 11.70, 0.59
-above.  The hourly pay of a Tabella B worker is the flat monthly pay over
-the hours worked: at 10 weekly hours 737.39 / (10 x 52 / 12 = 43.33) =
-17.02, at 20 hours 737.39 / 86.67 = 8.51.
+above.  The band is of the paga oraria effettiva (INPS page Contributi e
+agevolazioni fiscali per chi assume un lavoratore domestico): the flat
+monthly pay and the board and lodging (6.66 x 30 = 199.80) over the hours
+worked, raised by the tredicesima: at 10 weekly hours 937.19 x 13 / 520 =
+23.43, at 24 hours 937.19 x 13 / 1,248 = 9.76.
 """
 
 from __future__ import annotations
@@ -109,10 +111,10 @@ def test_full_time_convivente_traverses_no_scaling() -> None:
 
 @pytest.mark.parametrize(
     ("weekly", "per_hour"),
-    [(10, Decimal("0.59")), (20, Decimal("0.43"))],
+    [(10, Decimal("0.59")), (24, Decimal("0.48"))],
 )
 def test_inps_bracket_reads_the_hours_worked(weekly: int, per_hour: Decimal) -> None:
-    """The hourly pay is the flat pay over the hours worked, not over 30."""
+    """The hourly pay is the pay with board over the hours worked, not over 30."""
     result = _march(_REDUCED, "BS", weekly, None)
     hours = Decimal(weekly * 52) / 12
     expected = (per_hour * hours).quantize(Decimal("0.01"))

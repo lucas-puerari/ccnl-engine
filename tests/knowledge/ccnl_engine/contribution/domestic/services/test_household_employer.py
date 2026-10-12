@@ -20,16 +20,19 @@ table 2026, conviventi and non conviventi), the INPS hourly rates of Circ.
 9/2026:
 
 - more than 24 weekly hours: employee 0.31 EUR per contributable hour;
-- up to 24 weekly hours, hourly pay up to 9.61 EUR: employee 0.43 EUR;
+- up to 24 weekly hours, effective hourly pay above 11.70 EUR: employee
+  0.59 EUR;
 
 and the contributi di assistenza contrattuale of the CCNL lavoro domestico
 of 28 October 2025 (art. 54 c. 2: 0.06 EUR per paid hour, of which 0.02
 withheld from the worker).
 
 The monthly minimum of a non convivente is the Tabella C hourly rate times
-40 x 52 / 12 (art. 14 c. 1 lett. b and chiarimento a verbale 1).  The hourly
-pay is the monthly minimum over the hourly divisor of the CCNL (234 for
-conviventi, 173.33 for non conviventi).  The monthly minimum is the pay of a
+40 x 52 / 12 (art. 14 c. 1 lett. b and chiarimento a verbale 1).  The
+effective hourly pay that bands the INPS contribution is the monthly pay over
+the hours worked (weekly hours x 52 / 12), raised by the tredicesima (x 13 /
+12; INPS page Contributi e agevolazioni fiscali per chi assume un lavoratore
+domestico).  The monthly minimum is the pay of a
 full-time week (54 hours for conviventi, 40 for non conviventi); a case that
 does not state the full time of its contracted hours is paid the minimum and
 has a ``missing_fact`` blocker: the engine never takes the contracted hours
@@ -166,18 +169,19 @@ _CASES = (
         Decimal("1179.43"),
     ),
     # Non convivente level A, 20 weekly hours, 86 hours: gross
-    # 6.51 * 40 * 52 / 12 = 1,128.40; hourly pay 1,128.40 / 173.33 = 6.51
-    # <= 9.61, so 86 * 0.43 = 36.98; Cas.Sa.Colf 86 * 0.02 = 1.72;
-    # net 1,128.40 - 36.98 - 1.72 = 1,089.70.
+    # 6.51 * 40 * 52 / 12 = 1,128.40, unscaled without the full-time hours;
+    # effective hourly pay 1,128.40 * 13 / (20 * 52) = 14.11 > 11.70, so
+    # 86 * 0.59 = 50.74; Cas.Sa.Colf 86 * 0.02 = 1.72;
+    # net 1,128.40 - 50.74 - 1.72 = 1,075.94.
     _Case(
         _NON_CONVIVENTE,
         "A",
         20,
         86,
         Decimal("1128.40"),
-        Decimal("36.98"),
+        Decimal("50.74"),
         Decimal("1.72"),
-        Decimal("1089.70"),
+        Decimal("1075.94"),
     ),
 )
 

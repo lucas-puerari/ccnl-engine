@@ -239,11 +239,16 @@ def _domestic_rate(ctx: RunContext) -> Decimal | None:
     """Return the hourly rate a domestic CCNL bands its contributions on.
 
     Returns:
-        The rate of the regular monthly pay, ``None`` outside domestic work.
+        The rate of the regular monthly pay, benefits in kind included,
+        ``None`` outside domestic work.
     """
     contract = ctx.contract
     return _domestic_hourly_rate(
-        contract.ccnl, contract.year_rules, ctx.regular_gross, contract.tctx.competence
+        contract.ccnl,
+        contract.year_rules,
+        ctx.regular_gross + ctx.regular_chain.in_kind_total,
+        _int_value(ctx.request.weekly_hours),
+        contract.tctx.competence,
     )
 
 

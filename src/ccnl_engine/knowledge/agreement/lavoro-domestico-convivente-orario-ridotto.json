@@ -98,8 +98,8 @@
       },
       {
         "kind": "simplification",
-        "text": "INPS and Cas.Sa.Colf are charged on the contributable hours the run states, a tredicesima run too. No bundled source says whether the tredicesima carries contributable hours of its own, and a competence year gives it the hours of its default facts, those of a regular month.",
-        "capability": "inps_employee",
+        "text": "The INPS contributions of the tredicesima are paid on the hours of the year: INPS bands them on the paga oraria effettiva, which spreads the tredicesima over the hours, so the tredicesima run charges no INPS hours. The Cas.Sa.Colf contribution of Art. 54 c. 2 is charged on the contributable hours the run states, a tredicesima run too: no bundled source says whether the tredicesima carries hours of its own for it.",
+        "capability": "assistance_contribution",
         "monetary_impact": "unknown",
         "limitation": {
           "variant": "extra_month_hours",
@@ -108,7 +108,7 @@
               "thirteenth"
             ]
           },
-          "remediation": "Source from the INPS rules whether the tredicesima carries contributable hours and set them for extra-month runs."
+          "remediation": "Source from the Cas.Sa.Colf rules whether the tredicesima carries contributable hours and set them for extra-month runs."
         }
       }
     ]
@@ -562,7 +562,7 @@
     "effective_until": null,
     "source": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
     "verification_status": "unverified",
-    "source_hash": "a1dbcdbbd2b3510830f83d1caab30dc500a53c972f06a21e49951ab08ffb8a50",
+    "source_hash": "6ab39ddea9de122909d177d94172ad43f025a8f19d85f93e32abc0e35ad6d233",
     "published_at": "2026-10-08",
     "source_type": "commercial_secondary"
   },

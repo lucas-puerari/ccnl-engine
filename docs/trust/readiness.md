@@ -154,7 +154,7 @@ hold an entry in the review log, and
 <!-- trust:reviewed-confidence-verified -->2<!-- /trust:reviewed-confidence-verified -->
 set `verification.confidence = "verified"` (step 5 of the criteria above).
 A per-value review is recorded only by the provenance status `verified` of a
-payable rule, and <!-- trust:rules-verified -->298<!-- /trust:rules-verified -->
+payable rule, and <!-- trust:rules-verified -->299<!-- /trust:rules-verified -->
 payable rules of the bundle have it (see
 [Provenance](provenance.md#provenance-status)).
 

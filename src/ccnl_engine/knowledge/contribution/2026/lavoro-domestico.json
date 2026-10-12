@@ -29,16 +29,32 @@
       }
     ],
     "provenance": {
-      "status": "assumed",
+      "status": "verified",
       "location": {
         "source_document": {
           "document_id": "inps-circolare-9-2026",
-          "title": "INPS Circolare n. 9 del 3 febbraio 2026, contributi lavoro domestico 2026",
-          "kind": "inps_circolare"
+          "title": "INPS Circolare n. 9 del 3 febbraio 2026, Importo dei contributi dovuti per l'anno 2026 per i lavoratori domestici",
+          "kind": "inps_circolare",
+          "url": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2026/02/Circolare_15154/Allegati/16551_Circolare-numero-9-del-03-02-2026.pdf",
+          "published_on": "2026-02-03",
+          "sha256": "69025160fd599ca2c5ebde1c6c5643923157102a0c83c045ebf9d00ed5ccbfb3"
         },
-        "section": "contribution table 2026"
+        "page": "3",
+        "section": "Par. 2, tabelle A (senza contributo addizionale) e B (con il contributo addizionale dell'art. 2 c. 28 L. 92/2012), colonna Comprensivo quota CUAF",
+        "quote": "fino a € 9,61 € 8,52 € 1,70 (0,43) (2) [...] Orario di lavoro superiore a 24 ore settimanali € 6,20 € 1,24 (0,31) (2)"
       },
-      "note": "Assumed, not derived: its ruleset declares source_type 'estimated'; no citation (http(s) url and section or page)."
+      "transformation": "The circular gives the total hourly contribution with the worker's share in brackets; the employer share is the difference. Table A: up to 9.61 1.70 (0.43) gives 1.27; to 11.70 1.92 (0.48) gives 1.44; above 2.34 (0.59) gives 1.75; over 24 weekly hours 1.24 (0.31) gives 0.93. Table B, fixed term: 1.82, 2.05, 2.50 and 1.32 give 1.39, 1.57, 1.91 and 1.01.",
+      "note": "The bands are of the paga oraria effettiva: the agreed hourly pay, the board and lodging and the tredicesima spread over the hours (INPS page Contributi e agevolazioni fiscali per chi assume un lavoratore domestico, https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.49828.contributi-e-agevolazioni-fiscali-per-chi-assume-un-lavoratore-domestico.html, updated 23 June 2025, read 2026-10-12: 'La paga oraria effettiva è composta da: la retribuzione oraria concordata tra le parti; il valore convenzionale del vitto e alloggio, ripartito per ore; la tredicesima mensilità (gratifica natalizia), ripartita per ore'). Not modelled: the amounts without the CUAF share (spouses and live-in relatives within the third degree, D.P.R. 1403/1971 art. 1), one cent higher; the exemption of a fixed-term worker hired to replace an absent one from the additional contribution; the worker's waiver of the IVS share of L. 197/2022 art. 1 c. 286.",
+      "extraction": {
+        "method": "ai",
+        "model": "claude-opus-5-5",
+        "extraction_timestamp": "2026-10-12T12:00:00Z",
+        "verified_by": "claude-opus-5-5",
+        "verified_at": "2026-10-12T12:00:00Z",
+        "verification_status": "verified",
+        "effective_from": "2026-01-01",
+        "effective_until": "2026-12-31"
+      }
     }
   },
   "ruleset": {
@@ -47,9 +63,9 @@
     "effective_from": "2026-01-01",
     "effective_until": "2026-12-31",
     "published_at": "2026-09-07",
-    "source": "unavailable",
+    "source": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2026/02/Circolare_15154/Allegati/16551_Circolare-numero-9-del-03-02-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "a39c383a40d1927279b5e152fe6bd0c5c30b941378eab656b802cd861fcd91d6",
-    "source_type": "estimated"
+    "source_hash": "6e8b905fdecefcab5d4ed8aca3ce41383a18614b84ff1b1368c624d8dbd3e786",
+    "source_type": "official_primary"
   }
 }
