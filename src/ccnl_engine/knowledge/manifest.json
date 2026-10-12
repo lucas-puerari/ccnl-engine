@@ -2939,7 +2939,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/variable-pay-rules/2026",
       "ruleset_version": "2026.1",
-      "source_hash": "84ce7b9c87d014a49cfc508da32b61df829b7b0cf874e6b40cebce5b281c9af2",
+      "source_hash": "6dd25f81a3ca6a43b493faf9a5836c48572911bab081eea1b70dfc99a3c74351",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "variable_pay/2026.json.gz"

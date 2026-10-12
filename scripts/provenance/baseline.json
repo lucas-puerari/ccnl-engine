@@ -1183,9 +1183,6 @@
     "tax_credit/somma_esente/2027.json": {
       "somma_esente": "assumed"
     },
-    "variable_pay/2026.json": {
-      "pdr": "assumed"
-    },
     "variable_pay/2027.json": {
       "fringe_benefit": "assumed",
       "notte_festivi_turni": "assumed",

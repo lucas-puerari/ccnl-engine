@@ -180,8 +180,8 @@ when they drift.
 | Status | CCNL rules | Fiscal blocks | Total |
 |---|---:|---:|---:|
 | `verified` | 346 | 8 | 354 |
-| `derived` | 5 533 | 121 | 5 654 |
-| `assumed` | 690 | 132 | 822 |
+| `derived` | 5 533 | 122 | 5 655 |
+| `assumed` | 690 | 131 | 821 |
 | `missing` | 82 | 0 | 82 |
 
 <!-- /trust:provenance-table -->
@@ -192,7 +192,6 @@ extra-month accrual thresholds of CCNLs whose signed clause is not in the
 bundle. `assumed` covers every rule of a ruleset that declares
 `source_type: "estimated"` (the 2026 sector tax and INPS files and a few
 CCNLs), the
-records that cite no URL (the PdR limits), the
 AI-extracted CCNL values (including
 <!-- trust:accrual-assumed -->37<!-- /trust:accrual-assumed --> accrual
 thresholds read from signed texts, each with its article and quote),
