@@ -71,6 +71,16 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
     "StandbyEvent.calls": absence_is_fact(
         "no call followed by an intervention; each is a fact of the standby log"
     ),
+    "TravelAllowanceEvent.daily_amount": absence_is_fact(
+        "the CCNL amount of the hours away; an amount of the employer's "
+        "policy is a fact the event records"
+    ),
+    "TravelAllowanceEvent.hours_away": absence_is_fact(
+        "read only without daily_amount, which then requires it"
+    ),
+    "TravelAllowanceEvent.tfr_base": absence_is_fact(
+        "the TFR rule of the CCNL; without one the event is rejected"
+    ),
     "TravelAllowanceEvent.abroad": absence_is_fact(
         "a trasferta in Italy; abroad is a fact the event records"
     ),

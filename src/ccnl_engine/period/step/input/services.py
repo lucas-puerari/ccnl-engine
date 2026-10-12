@@ -42,6 +42,7 @@ from ccnl_engine.severance.provision.services import (
 )
 from ccnl_engine.sickness.services import sickness_terms
 from ccnl_engine.variable_pay.benefit.handlers import fringe_threshold_of
+from ccnl_engine.variable_pay.travel.handlers import TravelTerms
 from ccnl_engine.working_time.overtime.policies import CCNLOvertimeBands
 from ccnl_engine.working_time.standby.handlers import StandbyTerms
 
@@ -100,7 +101,15 @@ def variable_events(
         sickness=sickness_terms(ctx),
         travel_allowance=var_pay.travel_allowance,
         standby=_standby_terms(ctx),
+        ccnl_travel=_travel_terms(ctx),
     )
+
+
+def _travel_terms(ctx: RunContext) -> TravelTerms:
+    ccnl = ctx.contract.ccnl
+    work = ccnl.work_rules
+    bands = CCNLOvertimeBands.of(ccnl, ctx.contract.tctx.competence.year)
+    return TravelTerms(None if work is None else work.travel_allowance, bands.ruleset)
 
 
 def _standby_terms(ctx: RunContext) -> StandbyTerms:

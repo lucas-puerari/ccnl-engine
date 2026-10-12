@@ -19,7 +19,7 @@ import pytest
 from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.context.models import EffectiveDateContext
-from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.errors import InvalidInputError, MissingRuleError
 from ccnl_engine.event.allocation.services import _process_events
 from ccnl_engine.event.facade import BonusEvent, TravelAllowanceEvent
 from ccnl_engine.ledger.models import AccountKind
@@ -47,7 +47,7 @@ def _trip(**changes: object) -> TravelAllowanceEvent:
         "days": 3,
         "daily_amount": Decimal("60.00"),
         "outside_municipality": True,
-        "in_tfr_base": False,
+        "tfr_base": "none",
         "meals_lodging": "none",
     }
     fields.update(changes)
@@ -110,9 +110,17 @@ def test_caps_come_from_the_lire_amounts() -> None:
         ({"days": 0}, "days"),
         ({"daily_amount": Decimal(0)}, "daily_amount"),
         ({"meals_lodging": "dinner"}, "meals_lodging"),
-        ({"in_tfr_base": None}, "in_tfr_base"),
+        ({"tfr_base": "half"}, "tfr_base"),
+        ({"daily_amount": None}, "hours_away"),
     ],
-    ids=["trasfertista", "no_days", "no_amount", "meals_lodging", "tfr_unstated"],
+    ids=[
+        "trasfertista",
+        "no_days",
+        "no_amount",
+        "meals_lodging",
+        "tfr_base",
+        "no_amount_nor_hours",
+    ],
 )
 def test_invalid_events_are_rejected(changes: dict[str, object], field: str) -> None:
     """A trasfertista is not supported; the other fields are validated."""
@@ -175,7 +183,7 @@ def test_the_whole_allowance_is_paid_and_only_the_excess_is_income() -> None:
 def test_the_tfr_base_follows_the_event() -> None:
     """The CCNL decides whether the allowance enters the TFR base."""
     out = _run(_trip())
-    included = _run(_trip(in_tfr_base=True))
+    included = _run(_trip(tfr_base="whole"))
 
     assert _account(included, AccountKind.TFR_ACCRUAL) > _account(
         out, AccountKind.TFR_ACCRUAL
@@ -199,3 +207,78 @@ def test_events_without_the_rules_of_the_year_fail() -> None:
                 load_variable_pay_rules(year).fringe_benefit, year, with_children=False
             ),
         )
+
+
+_DRIVER = "logistica-trasporto-confetra-viaggiante.json"
+
+
+def _driver(*events: object) -> PeriodResult:
+    return calculate_period(
+        PeriodCalculationRequest(
+            employer=EmployerProfile(headcount=Headcount(50)),
+            period_id=PeriodId(year=2026, month=3),
+            payment_date=date(2026, 3, 28),
+            ccnl_slug=_DRIVER,
+            level_code="B3",
+            opening_state=PeriodState.zero(),
+            events=tuple(events),  # type: ignore[arg-type]
+        )
+    )
+
+
+def _ccnl_trip(**changes: object) -> TravelAllowanceEvent:
+    fields: dict[str, object] = {
+        "event_date": _DAY,
+        "days": 2,
+        "outside_municipality": True,
+        "meals_lodging": "none",
+        "hours_away": Decimal(20),
+    }
+    fields.update(changes)
+    return TravelAllowanceEvent(**fields)  # type: ignore[arg-type]
+
+
+@pytest.mark.parametrize(
+    ("hours", "abroad", "paid"),
+    [
+        (Decimal(20), False, "86.32"),  # 2 x 43.16
+        (Decimal(13), False, "70.04"),  # 2 x 35.02
+        (Decimal(20), True, "124.98"),  # 2 x 62.49
+        (Decimal(5), False, "0.00"),  # under 6 hours: none (art. 62 c. 8)
+    ],
+    ids=["18_24", "12_18", "abroad", "under_6"],
+)
+def test_logistica_amount_of_the_hours_away(
+    hours: Decimal, abroad: bool, paid: str
+) -> None:
+    """Without daily_amount the CCNL span of the hours away is paid."""
+    result = _driver(_ccnl_trip(hours_away=hours, abroad=abroad))
+    amount = sum(
+        (i.amount for i in result.pay_items if i.kind == "travel_allowance_item"),
+        Decimal(0),
+    )
+    assert amount == Decimal(paid)
+
+
+def test_logistica_tfr_takes_the_part_above_the_exemption() -> None:
+    """Art. 62 c. 7: only the excess over 46.48 a day enters the TFR base."""
+    result = _driver(_ccnl_trip())
+    (decision,) = (
+        d
+        for d in result.decisions
+        if d.capability == "travel_allowance" and d.inputs.get("tfr_base")
+    )
+    assert decision.inputs["tfr_base"] == "above_exempt"
+    assert decision.amount == Decimal("0.00")  # 43.16 is under the cap
+
+
+def test_without_ccnl_amounts_the_daily_amount_is_required() -> None:
+    """A CCNL without amounts rejects an event without daily_amount."""
+    with pytest.raises(MissingRuleError, match="travel allowance amounts"):
+        _run(_ccnl_trip(tfr_base="none"))
+
+
+def test_without_ccnl_rule_the_tfr_base_is_required() -> None:
+    """A CCNL without a TFR rule needs the event's tfr_base."""
+    with pytest.raises(InvalidInputError, match="tfr_base"):
+        _run(_trip(tfr_base=None))

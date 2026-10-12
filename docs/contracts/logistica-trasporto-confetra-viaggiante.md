@@ -69,6 +69,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-12 | claude-opus-5-5 (ai) | Travelling staff: levels, salary tables of the four tranches, seniority, EDR 2011 and 2021, apprenticeship, overtime, against the signed testo unico (Verbale 25 September 2025). | corrected | This file was created from logistica-trasporto-confetra for the travelling staff, which that file left out: same rules and review history, with the travelling levels, seniority amounts, EDR and apprenticeship tracks.<br>51 of the 52 salary values equal minimo plus EPA and the printed Totale of pp. 81-82; F2 prints a Totale 0.06 above the sum at every tranche. The Legacoop circular of December 2024 confirms the F2 minimo (1.791,51 + 87,63), so the Totale is the misprint: F2 takes the sum and stays derived.<br>Saturday and Sunday overtime of the travelling staff is 30% (art. 13 c. 6); the engine has one holiday band, left as a limitation.<br>Tabella B (p. 75) reads by year: drivers A3-C3 over 5 years and D2-F2 over 4, 90% the first year, 95% the second, 100% after. |
 | 2026-10-12 | claude-opus-5-5 (ai) | Weekend overtime and working time of the travelling staff (artt. 11, 11 bis, 13). | corrected | Sunday overtime of the travelling staff is 30% (art. 13 c. 6), not the 65% of the holiday band: new band OT_RIPOSO on the rest_day overtime kind.<br>The 47-hour regime of art. 11 bis changes the overtime threshold, not the pay: the hourly divisor is 168 under every regime (art. 13 c. 8); the limitation travelling_working_time is closed. |
 | 2026-10-12 | claude-opus-5-5 (ai) | Malattie particolarmente gravi (art. 63 cc. 8 and 12). | corrected | The serious illnesses of INPS circ. 95/2016 were a limitation (grave_illness): now paid in full for 18 months and left out of the comporto when SicknessEpisode.serious_illness says so. |
+| 2026-10-12 | claude-opus-5-5 (ai) | Indennità di trasferta of the travelling staff (art. 62). | corrected | The allowance amounts of art. 62 c. 3 from 1.1.2025 and the TFR rule of c. 7 are now CCNL data: a TravelAllowanceEvent without daily_amount takes the amount of its hours away. |
 
 ## Salary table
 
@@ -130,11 +131,11 @@ percentage: 1.00
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "logistica-trasporto-confetra-viaggiante/travelling_allowances · base_salary · impact yes · open"
-    NOT MODELLED: the indennità di trasferta and the night allowance of art. 16 (0.93 euro per trasferta of 18-24 hours, TFR only), the 50% on the Sunday and holiday work within the ordinary hours (art. 12 c. 4), and the 4.5 days of paid leave of art. 11 c. 11. The night premium of art. 12 does not apply to the travelling staff.
+    NOT MODELLED: the night allowance of art. 16 (0.93 euro per trasferta of 18-24 hours, TFR only) and the 50% on the Sunday and holiday work within the ordinary hours (art. 12 c. 4), and the 4.5 days of paid leave of art. 11 c. 11. The trasferta of art. 62 is paid by TravelAllowanceEvent at the CCNL amounts.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Pay the trasferta and the Sunday or holiday work within the ordinary hours outside the engine.
+    **Remediation:** Pay the night allowance of art. 16 and the Sunday or holiday work within the ordinary hours outside the engine.
 
 !!! warning "logistica-trasporto-confetra-viaggiante/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.

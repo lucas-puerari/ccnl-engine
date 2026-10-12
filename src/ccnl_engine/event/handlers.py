@@ -29,6 +29,7 @@ if TYPE_CHECKING:
     )
     from ccnl_engine.sickness.models import SicknessEpisode
     from ccnl_engine.variable_pay.models import TravelAllowanceRules
+    from ccnl_engine.variable_pay.travel.handlers import TravelTerms
     from ccnl_engine.working_time.standby.handlers import StandbyTerms
 
 
@@ -96,6 +97,7 @@ class _EventHandlerCtx:
     sickness: SicknessTerms = field(default_factory=SicknessTerms)
     travel_allowance: TravelAllowanceRules | None = None
     standby: StandbyTerms | None = None
+    ccnl_travel: TravelTerms | None = None
 
     @property
     def tax_year(self) -> int:

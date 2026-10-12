@@ -68,7 +68,7 @@
       },
       {
         "kind": "simplification",
-        "text": "NOT MODELLED: the indennità di trasferta and the night allowance of art. 16 (0.93 euro per trasferta of 18-24 hours, TFR only), the 50% on the Sunday and holiday work within the ordinary hours (art. 12 c. 4), and the 4.5 days of paid leave of art. 11 c. 11. The night premium of art. 12 does not apply to the travelling staff.",
+        "text": "NOT MODELLED: the night allowance of art. 16 (0.93 euro per trasferta of 18-24 hours, TFR only) and the 50% on the Sunday and holiday work within the ordinary hours (art. 12 c. 4), and the 4.5 days of paid leave of art. 11 c. 11. The trasferta of art. 62 is paid by TravelAllowanceEvent at the CCNL amounts.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -76,7 +76,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Pay the trasferta and the Sunday or holiday work within the ordinary hours outside the engine."
+          "remediation": "Pay the night allowance of art. 16 and the Sunday or holiday work within the ordinary hours outside the engine."
         }
       },
       {
@@ -3344,7 +3344,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "fa944159d40568109be5eebaf1e10703dfb9bebfaa1ff2246af557f13665452b",
+    "source_hash": "0defec9704e98f51bb77801f66983ecf2e3527d6e27cdc6288d42e182f48ab7c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3674,6 +3674,105 @@
         "transformation": "Up to 5 years of seniority: job kept 245 days (c. 7), counted over the 24 months before the day (c. 8), 3 months in full and 5 at half (c. 12): 90 days at 100%, days 91-240 at 50%, then unpaid. Above 5 years: 365 days over 30 months, 5 months in full and 7 at half: 150 days at 100%, days 151-360 at 50%. Months of 30 days; the band from 60 months reads 'superiore ai 5 anni' as five completed years and any further day. The CCNL treatment tops up the INPS indemnity to these shares of the retribuzione globale (c. 13).",
         "note": "Malattie particolarmente gravi (INPS circ. 95/2016): left out of the comporto count (c. 8: 'ad esclusione di quelli per malattie particolarmente gravi') and paid 'con la corresponsione dell'intera retribuzione globale mensile per 18 mesi' (c. 12): 540 days of 30-day months from the first day of the episode, stated by SicknessEpisode.serious_illness."
       }
+    },
+    "travel_allowance": {
+      "bands": [
+        {
+          "hours_from": "6",
+          "hours_until": "12",
+          "italy": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "23.80"
+              }
+            ]
+          },
+          "abroad": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "31.94"
+              }
+            ]
+          }
+        },
+        {
+          "hours_from": "12",
+          "hours_until": "18",
+          "italy": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "35.02"
+              }
+            ]
+          },
+          "abroad": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "45.05"
+              }
+            ]
+          }
+        },
+        {
+          "hours_from": "18",
+          "hours_until": null,
+          "italy": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "43.16"
+              }
+            ]
+          },
+          "abroad": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "62.49"
+              }
+            ]
+          }
+        }
+      ],
+      "tfr_base": "above_exempt",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-logistica-testo-unico-2025",
+            "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+            "kind": "associazione",
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "published_on": "2025-09-25",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          },
+          "page": "87",
+          "section": "Art. 62 cc. 3 and 7, dal 1.1.2025",
+          "quote": "dalle 18 alle 24 ore 43,16"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T16:14:34Z",
+          "verification_status": "verified",
+          "effective_from": "2025-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T16:14:34Z",
+          "review_id": "2026-10-12-ai-trasferta"
+        },
+        "transformation": "Territorio nazionale 23.80, 35.02, 43.16 and estero 31.94, 45.05, 62.49 for 6-12, 12-18, 18-24 hours away (c. 3); under 6 hours no allowance (c. 8). C. 7: 'Le differenze in più rispetto ai valori esenti dall'IRPEF hanno natura retributiva e sono computabili esclusivamente nel T.F.R.': the part above the exemption enters the TFR base (above_exempt).",
+        "note": "Not modelled: the hours abroad and in Italy of one day cumulated (c. 5), and the sum of several short services (c. 9): the caller states the hours of the span."
+      }
     }
   },
   "verification": {
@@ -3783,6 +3882,23 @@
         ],
         "findings": [
           "The serious illnesses of INPS circ. 95/2016 were a limitation (grave_illness): now paid in full for 18 months and left out of the comporto when SicknessEpisode.serious_illness says so."
+        ]
+      },
+      {
+        "id": "2026-10-12-ai-trasferta",
+        "date": "2026-10-12",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Indennità di trasferta of the travelling staff (art. 62).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          }
+        ],
+        "findings": [
+          "The allowance amounts of art. 62 c. 3 from 1.1.2025 and the TFR rule of c. 7 are now CCNL data: a TravelAllowanceEvent without daily_amount takes the amount of its hours away."
         ]
       }
     ]

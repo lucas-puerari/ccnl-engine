@@ -235,7 +235,7 @@ def _amount(event: WorkEvent) -> Decimal:
     if isinstance(event, BilateralFundEvent):
         return event.employee_amount + event.employer_amount
     if isinstance(event, TravelAllowanceEvent):
-        return money(event.daily_amount * event.days)
+        return money((event.daily_amount or Decimal(0)) * event.days)
     if isinstance(event, _CASH_EVENTS):
         return _standard_event_gross(event)
     if isinstance(event, (SicknessEpisode, StandbyEvent)):  # pragma: no cover
@@ -291,5 +291,14 @@ def caller_supplied_decisions(
     return tuple(
         _decision(index, event, rule, ccnl, level_code)
         for index, event in enumerate(events)
-        if (rule := _RULES.get(type(event))) is not None
+        if (rule := _RULES.get(type(event))) is not None and _supplied(event)
     )
+
+
+def _supplied(event: WorkEvent) -> bool:
+    """Return whether the event carries the caller's value of its rule.
+
+    Returns:
+        ``False`` for a travel allowance paid at the CCNL amount.
+    """
+    return not (isinstance(event, TravelAllowanceEvent) and event.daily_amount is None)
