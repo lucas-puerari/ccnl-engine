@@ -191,7 +191,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     HOURLY DIVISOR: 172 for a 40-hour week (Art. 160 of the CCNL of 8 February 2018, PDF p. 116; 190 for a 44-hour week, not modelled).
     
-    INPS: uses 2026-terziario.json (tax_sector terziario, same as commercio-confcommercio and turismo-confcommercio).
+    INPS: uses 2026-terziario.json (tax_sector terziario, same as commercio-confcommercio and turismo-federalberghi).
     
 
 ## Raw data

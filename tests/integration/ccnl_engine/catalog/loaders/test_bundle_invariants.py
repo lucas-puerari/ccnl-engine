@@ -38,9 +38,9 @@ _MONTHS_MAX = Decimal(16)
 class TestBundleSize:
     """The bundle must contain the expected number of CCNL files."""
 
-    def test_bundle_contains_132_ccnl(self) -> None:
-        """Exactly 132 CCNL data files must be present in the bundle."""
-        assert len(_ALL_CCNL) == 132
+    def test_bundle_contains_131_ccnl(self) -> None:
+        """Exactly 131 CCNL data files must be present in the bundle."""
+        assert len(_ALL_CCNL) == 131
 
 
 @pytest.mark.parametrize("ccnl", _ALL_CCNL, ids=lambda c: c.meta.ccnl_id)

@@ -1645,7 +1645,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/portieri-fabbricati-confedilizia",
       "ruleset_version": "2026.2",
-      "source_hash": "2ed3624cbb16100e1e881accc3e112be47bae4dafe96e560e9db6b4a7ceb793d",
+      "source_hash": "fc8a23317b9d2b4d266c60ffe97a84e8b50ed233e2faddd7b13e8deff23ac5d9",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/portieri-fabbricati-confedilizia.json.gz"
@@ -1679,7 +1679,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/pubblici-esercizi-fipe-angem-ristorazione-collettiva",
       "ruleset_version": "2026.2",
-      "source_hash": "d45eed4f8fa3297c080a15c39e00b66768b0c65dd5a755b1a50415306b163e26",
+      "source_hash": "77d504584832637eeec96af6fd5d315bb8451c7b85f795ecfa9de86d4697dd2c",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/pubblici-esercizi-fipe-angem-ristorazione-collettiva.json.gz"
@@ -1696,7 +1696,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/pubblici-esercizi-fipe-angem",
       "ruleset_version": "2026.2",
-      "source_hash": "16f2940df5656e6cb1ce758e744ba936f4e6dfd74892daf5c0529e19dea384d4",
+      "source_hash": "a60164d9aa6f8d54331c78289895a0597f86589e8094d343714b4dbc06ce4970",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/pubblici-esercizi-fipe-angem.json.gz"
@@ -2074,23 +2074,6 @@
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/trasporto-ferroviario-agens.json.gz"
-    },
-    {
-      "dataset_id": "agreement/turismo-confcommercio",
-      "path": "agreement/turismo-confcommercio.json",
-      "dataset": "agreement",
-      "year": null,
-      "scope": "turismo-confcommercio",
-      "model": "CCNL",
-      "schema_version": "0.5",
-      "valid_from": "2024-07-01",
-      "valid_to": null,
-      "ruleset_id": "ccnl/turismo-confcommercio",
-      "ruleset_version": "2026.2",
-      "source_hash": "d0d4d84f0b7de12bdf842d1bceccdc0dd5b2a17c8eadccf762312b68deedf1d3",
-      "source_type": "contracting_party",
-      "owner": "ccnl-engine maintainers",
-      "wheel_resource": "agreement/turismo-confcommercio.json.gz"
     },
     {
       "dataset_id": "agreement/turismo-confesercenti",
