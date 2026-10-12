@@ -93,7 +93,8 @@ def _history_reach(treatment: CumulativeTreatment, last: date) -> bool:
     if unknown == 0 or known is None:
         return False
     band, cumulation, episode = treatment.band, treatment.cumulation, treatment.episode
-    linked = (treatment.chain[1] - known).days < cumulation.reset_after_days
+    reset = cumulation.reset_after_days
+    linked = reset is None or (treatment.chain[1] - known).days < reset
     short = cumulation.short_absences
     short_unknown = (
         short is not None

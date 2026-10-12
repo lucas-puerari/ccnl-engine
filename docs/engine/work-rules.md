@@ -141,7 +141,10 @@ cumulation instead ([below](#sickness-counted-over-several-episodes)).
 
 The payable days of each class are counted with the CCNL daily quota of an
 unpaid absence (`work_rules.absence_rules.daily_divisor_method`), the same
-count as a hire or termination month, and never exceed one monthly pay,
+count as a hire or termination month, unless the sickness rules set their
+own (`work_rules.sickness_rules.daily_divisor_method`: the CCNL lavoro
+domestico pays sickness in thirtieths and absences in twenty-sixths), and
+never exceed one monthly pay,
 however many episodes the month holds: the episodes of a run are taken by
 first day, whatever their order in the facts, and the days past the pay
 left by the earlier ones are dropped. Their pay is rounded once on the days
@@ -190,6 +193,13 @@ counts the sickness of several episodes. Metalmeccanici Federmeccanica
   first three days are paid 66%, from the fifth 50%, unless the CCNL
   exempts the absence (`SicknessEpisode.short_absence_exempt`).
 - The band is the one of the seniority on the first day of the episode.
+
+Without `reset_after_days` there is no chain: the full-pay days are counted
+over the same window as the comporto. The CCNL lavoro domestico (Art. 27
+cc. 4-7) pays the sickness within the comporto, 50% up to the third day
+and 100% from the fourth, for at most 8, 10 or 15 days "complessivi
+nell'anno" by seniority, and keeps the job 10, 45 or 180 days in the 365
+days from the event.
 
 A fact the engine does not know raises a `provisional` issue, a blocker,
 only when it could change a day the run pays:

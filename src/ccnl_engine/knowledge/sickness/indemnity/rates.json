@@ -38,25 +38,31 @@
     "published_at": "2026-10-04",
     "source": "D.L. 30 dicembre 1979 n. 663, artt. 1-2 (conv. L. 29 febbraio 1980 n. 33) for the waiting period and the indemnity; rates, 180-day annual maximum and cover as summarised by Assolombarda, Lavoro a tempo indeterminato - Tutele previdenziali (secondary, read 2026-10-04); not checked against an INPS circular",
     "verification_status": "unverified",
-    "source_hash": "4c1f9e0cec4581beb8e4cc2a3124adaa99e2a14162b5d22cddbbd8dde576cbe0",
+    "source_hash": "707af81dc7062e2a0569c8a74ffc5e792e9f98dacb297a25d368ec607d6437d2",
     "source_type": "contracting_party"
   },
   "annual_max_days": 180,
   "coverage": [
     {
       "sectors": [
-        "pubblica-amministrazione",
+        "pubblica-amministrazione"
+      ],
+      "covered": false,
+      "source": "Unverified reading: public employees are paid by the administration; not checked against a primary text"
+    },
+    {
+      "sectors": [
         "lavoro-domestico"
       ],
       "covered": false,
-      "source": "Unverified reading: public employees are paid by the administration, domestic workers by the employer under their CCNL; not checked against a primary text"
+      "source": "INPS, Indennità di malattia/degenza ospedaliera e visite mediche di controllo (https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.indennit--di-malattia-e-visite-mediche-di-controllo.html, updated 21 September 2026, read 2026-10-12), Indennità di malattia per lavoratori dipendenti: 'Non spetta a (elenco non esaustivo): collaboratori familiari (colf e badanti); impiegati dell'industria; quadri (industria e artigianato); dirigenti; portieri; lavoratori autonomi'; the employer pays the sickness under the CCNL"
     },
     {
       "categories": [
         "dirigente"
       ],
       "covered": false,
-      "source": "Unverified reading: dirigenti are not insured with INPS for sickness; not checked against a primary text"
+      "source": "INPS, Indennità di malattia/degenza ospedaliera e visite mediche di controllo (https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.indennit--di-malattia-e-visite-mediche-di-controllo.html, updated 21 September 2026, read 2026-10-12), Indennità di malattia per lavoratori dipendenti: 'Non spetta a (elenco non esaustivo): collaboratori familiari (colf e badanti); impiegati dell'industria; quadri (industria e artigianato); dirigenti; portieri; lavoratori autonomi'"
     },
     {
       "contract_types": [
@@ -107,7 +113,17 @@
         "quadro"
       ],
       "covered": false,
-      "source": "Assolombarda, Lavoro a tempo indeterminato - Tutele previdenziali (secondary, read 2026-10-04): impiegati of industry are paid by the employer under the CCNL (quadri by analogy, unverified)"
+      "source": "INPS, Indennità di malattia/degenza ospedaliera e visite mediche di controllo (https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.indennit--di-malattia-e-visite-mediche-di-controllo.html, updated 21 September 2026, read 2026-10-12), Indennità di malattia per lavoratori dipendenti: 'Non spetta a (elenco non esaustivo): collaboratori familiari (colf e badanti); impiegati dell'industria; quadri (industria e artigianato); dirigenti; portieri; lavoratori autonomi'"
+    },
+    {
+      "sectors": [
+        "artigianato"
+      ],
+      "categories": [
+        "quadro"
+      ],
+      "covered": false,
+      "source": "INPS, Indennità di malattia/degenza ospedaliera e visite mediche di controllo (https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.indennit--di-malattia-e-visite-mediche-di-controllo.html, updated 21 September 2026, read 2026-10-12), Indennità di malattia per lavoratori dipendenti: 'Non spetta a (elenco non esaustivo): collaboratori familiari (colf e badanti); impiegati dell'industria; quadri (industria e artigianato); dirigenti; portieri; lavoratori autonomi'"
     }
   ],
   "regimes": [

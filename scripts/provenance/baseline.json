@@ -1486,19 +1486,24 @@
     "agreement/lavoro-domestico-convivente-orario-ridotto.json": [
       "lavoro-domestico-convivente-orario-ridotto/board_lodging_substitute",
       "lavoro-domestico-convivente-orario-ridotto/extra_month_hours",
-      "lavoro-domestico-convivente-orario-ridotto/hourly_inps_bracket_unvalidated"
+      "lavoro-domestico-convivente-orario-ridotto/hourly_inps_bracket_unvalidated",
+      "lavoro-domestico-convivente-orario-ridotto/oncological_comporto",
+      "lavoro-domestico-convivente-orario-ridotto/sick_board_lodging"
     ],
     "agreement/lavoro-domestico-convivente.json": [
       "lavoro-domestico-convivente/board_lodging_substitute",
       "lavoro-domestico-convivente/extra_month_hours",
       "lavoro-domestico-convivente/hourly_inps_bracket_unvalidated",
+      "lavoro-domestico-convivente/oncological_comporto",
       "lavoro-domestico-convivente/part_time_scaling",
       "lavoro-domestico-convivente/seniority_frozen_at_2026",
+      "lavoro-domestico-convivente/sick_board_lodging",
       "lavoro-domestico-convivente/tranches_from_2027"
     ],
     "agreement/lavoro-domestico-non-convivente.json": [
       "lavoro-domestico-non-convivente/extra_month_hours",
       "lavoro-domestico-non-convivente/meal_indennity",
+      "lavoro-domestico-non-convivente/oncological_comporto",
       "lavoro-domestico-non-convivente/seniority_frozen_at_2026",
       "lavoro-domestico-non-convivente/tranches_from_2027"
     ],
