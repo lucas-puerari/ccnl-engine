@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employee, overtime |
+| **Limits of this contract** | inps_employee, overtime |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 40 verified / 6 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 48 verified / 6 derived / 36 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-12 | claude-opus-5-5 (ai) | Salary tables of the seven scuola profiles, leave, sickness, seniority, overtime and the daily quota, against the signed ARAN texts of 2007, 2024, 2025 and 2026. | corrected | Every monthly tabellare was the annual amount over 13; the tables are per 12 mensilità plus the tredicesima: the values were about 7.7% low (e.g. Docente infanzia 2024: 1,724.65 -> 1,868.37).<br>The pre-2024 periods were back-calculated with the increments times 13 and started on 2022-01-01; they are now the tables of the CCNL 2019-2021, in force from 1 February 2023.<br>The CCNL 2025-2027 on the economic treatment, signed definitively on 1 July 2026, was missing: periods from 1.1.2025, 1.1.2026 and 1.1.2027 added.<br>Signatories: FLC CGIL did not sign the CCNL 2022-2024 (it signed the 2025-2027); ANIEF signed both and was missing.<br>Ferie: 32 days, 30 for the first 3 years (CCNL 2007 art. 13), not 28.<br>Sickness: comporto of 18 months with 9 months at 100%, 3 at 90% and 6 at 50% (art. 17), not 270 days at 100%.<br>Overtime: the scuola pays fixed hourly amounts, not percentages: the 15/30/30/50% bands had no basis and are removed.<br>Daily quota: no scuola text fixes it; by_26 is now assumed. |
 | 2026-10-12 | claude-opus-5-5 (ai) | Overtime of the scuola ATA staff: Tabella E1.7 of the CCNL 2019-2021 and the overtime articles of the CCNL 2022-2024 and 2025-2027. | corrected | The ATA 'prestazioni aggiuntive' are paid at fixed hourly amounts by area from 1 January 2024 (Tabella E1.7): nine bands in EUR per hour by area and time of day, now paid by the engine.<br>The CCNL 2022-2024 (art. 23) and 2025-2027 (art. 11) update only the università overtime (Tabella B4): the scuola amounts stay those of 2024.<br>The docenti ore aggiuntive (Tabella E1.6) are by activity, not by time of day: left to the caller (limitation fixed_hourly_overtime, docenti levels). |
 | 2026-10-12 | claude-opus-5-5 (ai) | Fasce stipendiali of the scuola staff, 2023-2027. | corrected | Every worker was paid the first fascia (0-8 years): the five higher fasce are now seniority steps, read on the tables of the three CCNL.<br>DOCENTE_SECONDARIA joined the scuola media and the laureato di II grado, equal in the first fascia only: split into DOCENTE_SECONDARIA (scuola media) and DOCENTE_LAUREATO_SECONDARIA_II. |
+| 2026-10-12 | claude-opus-5-5 (ai) | Months from 1.1.2022 to 31.1.2023 (CCNL 2019-2021 Tabella C1). | corrected | The file started on 1.2.2023 (limitation before_february_2023): the tabellare dal 1.1.2021 and the elemento perequativo by fascia of Tabella C1 now cover 2022 and January 2023. |
 
 ## Salary table
 
@@ -94,13 +95,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `inps_employee` applies; the run takes the engine code path.
 
     **Remediation:** Source the IIS conglobata of the profile, leave it out of the ENAM base, then remove this note.
-
-!!! warning "istruzione-ricerca-aran/before_february_2023 · base_salary · impact yes · open"
-    Before 1 February 2023 the tabellare of the CCNL 2016-2018 applied with the elemento perequativo paid apart; the file starts on 1 February 2023, when the CCNL 2019-2021 conglobated it.
-
-    **Applies when:** `base_salary` applies; before 2023-02-01.
-
-    **Remediation:** Add the 2022 and January 2023 tabellare and the elemento perequativo of the CCNL 2019-2021.
 
 !!! warning "istruzione-ricerca-aran/fixed_hourly_overtime · overtime · impact yes · open"
     The ore aggiuntive of the docenti are paid at fixed hourly amounts by activity (CCNL 2019-2021 Tabella E1.6: corsi di recupero 55,00, insegnamento 38,50, non di insegnamento 19,25), not by time of day: no overtime band is modelled for the docenti levels, so their overtime event needs the amount as hourly_rate with multiplier 1. The ATA areas are paid by the bands of Tabella E1.7.
@@ -170,6 +164,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     LEVELS. The Tabelle A1 and A2 of the CCNL 2022-2024 (from 1.1.2024) list 'Docente scuola dell'infanzia ed elementare' and 'Docente diplomato istituti sec. II grado' as two rows with the same amounts (22,420.48 a year in the first band): two levels with the same minimum, DOCENTE_INFANZIA_PRIMARIA and DOCENTE_DIPLOMATO_SECONDARIA, since only the first owes the ENAM.
     
     FASCE STIPENDIALI: the six fasce of anzianità di servizio (0-8, 9-14, 15-20, 21-27, 28-34, da 35) are paid as five seniority steps after 9, 15, 21, 28 and 35 years, each the difference between the monthly tabellari of two fasce (CCNL 2019-2021 Tabelle C1 and E1.5, 2022-2024 and 2025-2027 Tabella A2). The seniority is the anzianità di servizio recognised for the fasce (ricostruzione di carriera), which the caller states; the engine does not reconstruct it. The scuola media and the laureato di II grado have the same first fascia and differ above it: two levels, DOCENTE_SECONDARIA and DOCENTE_LAUREATO_SECONDARIA_II.
+    
+    FROM 1.1.2022 TO 31.1.2023: the tabellare dal 1.1.2021 of Tabella C1 of the CCNL 2019-2021 (column 1) and, apart, the elemento perequativo by fascia (column 2, 12 instalments assumed), conglobated in the tabellare from 1.2.2023.
     
     SALARY TABLES: monthly tabellare = annual tabellare of the fascia 0-8 over 12 (the tables are 'per 12 mensilità cui aggiungere la 13^ mensilità'). 1.2.2023-31.12.2023: CCNL 2019-2021 Tabelle C1 and E1.5; 2024: CCNL 2022-2024 Tabella A2; 2025, 2026, 2027: CCNL 2025-2027 Tabella A2.
     

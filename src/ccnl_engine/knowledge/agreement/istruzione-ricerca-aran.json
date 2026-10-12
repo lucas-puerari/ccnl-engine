@@ -111,6 +111,35 @@
             "COLLABORATORE_SCOLASTICO": {
               "periods": [
                 {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "119.57",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "245",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Collaboratore scolastico, 9 - 14",
+                      "quote": "9 - 14 17.554,57 286,80 17.841,37"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
+                {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
                   "value": "117.80",
@@ -259,6 +288,35 @@
             },
             "OPERATORE": {
               "periods": [
+                {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "118.32",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "245",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Collaboratore scol. dei servizi, 9 - 14",
+                      "quote": "9 - 14 17.948,39 265,56 18.213,95"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
                 {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
@@ -409,6 +467,35 @@
             "ASSISTENTE": {
               "periods": [
                 {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "152.92",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "245",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Ass. amm. e Tecnico, 9 - 14",
+                      "quote": "9 - 14 19.892,32 212,40 20.104,72"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
+                {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
                   "value": "149.38",
@@ -557,6 +644,35 @@
             },
             "FUNZIONARIO_ED_ESPERTO": {
               "periods": [
+                {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "234.51",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "245",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Direttori dei servizi generali, 9 - 14",
+                      "quote": "9 - 14 26.672,72 74,40 26.747,12"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
                 {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
@@ -707,6 +823,35 @@
             "DOCENTE_INFANZIA_PRIMARIA": {
               "periods": [
                 {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "190.49",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "246",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente scuola dell'infanzia, 9 - 14",
+                      "quote": "9 - 14 23.182,99 148,68 23.331,67"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
+                {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
                   "value": "186.06",
@@ -855,6 +1000,35 @@
             },
             "DOCENTE_DIPLOMATO_SECONDARIA": {
               "periods": [
+                {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "190.49",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "246",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente diplomato, 9 - 14",
+                      "quote": "9 - 14 23.182,99 148,68 23.331,67"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
                 {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
@@ -1005,6 +1179,35 @@
             "DOCENTE_SECONDARIA": {
               "periods": [
                 {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "221.96",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "246",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente scuola media, 9 - 14",
+                      "quote": "9 - 14 25.342,05 95,64 25.437,69"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
+                {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
                   "value": "216.65",
@@ -1153,6 +1356,35 @@
             },
             "DOCENTE_LAUREATO_SECONDARIA_II": {
               "periods": [
+                {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "276.44",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "246",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente laureato, 9 - 14",
+                      "quote": "9 - 14 25.995,81 95,64 26.091,45"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
                 {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
@@ -1309,6 +1541,35 @@
             "COLLABORATORE_SCOLASTICO": {
               "periods": [
                 {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "87.60",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "245",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Collaboratore scolastico, 15 - 20",
+                      "quote": "15 - 20 18.605,70 265,56 18.871,26"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
+                {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
                   "value": "85.83",
@@ -1457,6 +1718,35 @@
             },
             "OPERATORE": {
               "periods": [
+                {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "88.59",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "245",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Collaboratore scol. dei servizi, 15 - 20",
+                      "quote": "15 - 20 19.011,51 254,88 19.266,39"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
                 {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
@@ -1607,6 +1897,35 @@
             "ASSISTENTE": {
               "periods": [
                 {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "114.76",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "245",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Ass. amm. e Tecnico, 15 - 20",
+                      "quote": "15 - 20 21.269,37 191,16 21.460,53"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
+                {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
                   "value": "112.99",
@@ -1755,6 +2074,35 @@
             },
             "FUNZIONARIO_ED_ESPERTO": {
               "periods": [
+                {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "208.66",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "245",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Direttori dei servizi generali, 15 - 20",
+                      "quote": "15 - 20 29.176,72 31,92 29.208,64"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
                 {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
@@ -1905,6 +2253,35 @@
             "DOCENTE_INFANZIA_PRIMARIA": {
               "periods": [
                 {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "168.50",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "246",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente scuola dell'infanzia, 15 - 20",
+                      "quote": "15 - 20 25.204,99 84,96 25.289,95"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
+                {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
                   "value": "163.19",
@@ -2053,6 +2430,35 @@
             },
             "DOCENTE_DIPLOMATO_SECONDARIA": {
               "periods": [
+                {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "168.50",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "246",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente diplomato, 15 - 20",
+                      "quote": "15 - 20 25.204,99 95,64 25.300,63"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
                 {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
@@ -2203,6 +2609,35 @@
             "DOCENTE_SECONDARIA": {
               "periods": [
                 {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "194.54",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "246",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente scuola media, 15 - 20",
+                      "quote": "15 - 20 27.676,59 31,92 27.708,51"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
+                {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
                   "value": "189.23",
@@ -2351,6 +2786,35 @@
             },
             "DOCENTE_LAUREATO_SECONDARIA_II": {
               "periods": [
+                {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "210.43",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "246",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente laureato, 15 - 20",
+                      "quote": "15 - 20 28.520,99 31,92 28.552,91"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
                 {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
@@ -2507,6 +2971,35 @@
             "COLLABORATORE_SCOLASTICO": {
               "periods": [
                 {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "86.34",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "245",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Collaboratore scolastico, 21 - 27",
+                      "quote": "21 - 27 19.641,87 265,56 19.907,43"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
+                {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
                   "value": "86.34",
@@ -2655,6 +3148,35 @@
             },
             "OPERATORE": {
               "periods": [
+                {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "88.86",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "245",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Collaboratore scol. dei servizi, 21 - 27",
+                      "quote": "21 - 27 20.077,83 233,64 20.311,47"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
                 {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
@@ -2805,6 +3327,35 @@
             "ASSISTENTE": {
               "periods": [
                 {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "113.39",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "245",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Ass. amm. e Tecnico, 21 - 27",
+                      "quote": "21 - 27 22.630,02 169,92 22.799,94"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
+                {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
                   "value": "111.62",
@@ -2953,6 +3504,35 @@
             },
             "FUNZIONARIO_ED_ESPERTO": {
               "periods": [
+                {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "222.18",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "245",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Direttori dei servizi generali, 21 - 27",
+                      "quote": "21 - 27 31.842,89 — 31.842,89"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
                 {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
@@ -3103,6 +3683,35 @@
             "DOCENTE_INFANZIA_PRIMARIA": {
               "periods": [
                 {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "163.88",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "246",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente scuola dell'infanzia, 21 - 27",
+                      "quote": "21 - 27 27.171,59 31,92 27.203,51"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
+                {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
                   "value": "159.46",
@@ -3251,6 +3860,35 @@
             },
             "DOCENTE_DIPLOMATO_SECONDARIA": {
               "periods": [
+                {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "243.46",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "246",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente diplomato, 21 - 27",
+                      "quote": "21 - 27 28.126,56 42,48 28.169,04"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
                 {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
@@ -3401,6 +4039,35 @@
             "DOCENTE_SECONDARIA": {
               "periods": [
                 {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "189.30",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "246",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente scuola media, 21 - 27",
+                      "quote": "21 - 27 29.948,17 — 29.948,17"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
+                {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
                   "value": "186.64",
@@ -3549,6 +4216,35 @@
             },
             "DOCENTE_LAUREATO_SECONDARIA_II": {
               "periods": [
+                {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "267.94",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "246",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente laureato, 21 - 27",
+                      "quote": "21 - 27 31.736,25 — 31.736,25"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
                 {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
@@ -3705,6 +4401,35 @@
             "COLLABORATORE_SCOLASTICO": {
               "periods": [
                 {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "64.60",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "245",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Collaboratore scolastico, 28 - 34",
+                      "quote": "28 - 34 20.417,09 254,88 20.671,97"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
+                {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
                   "value": "63.71",
@@ -3853,6 +4578,35 @@
             },
             "OPERATORE": {
               "periods": [
+                {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "62.67",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "245",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Collaboratore scol. dei servizi, 28 - 34",
+                      "quote": "28 - 34 20.829,84 233,64 21.063,48"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
                 {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
@@ -4003,6 +4757,35 @@
             "ASSISTENTE": {
               "periods": [
                 {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "81.76",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "245",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Ass. amm. e Tecnico, 28 - 34",
+                      "quote": "28 - 34 23.611,18 159,36 23.770,54"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
+                {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
                   "value": "80.88",
@@ -4151,6 +4934,35 @@
             },
             "FUNZIONARIO_ED_ESPERTO": {
               "periods": [
+                {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "228.89",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "245",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Direttori dei servizi generali, 28 - 34",
+                      "quote": "28 - 34 34.589,53 — 34.589,53"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
                 {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
@@ -4301,6 +5113,35 @@
             "DOCENTE_INFANZIA_PRIMARIA": {
               "periods": [
                 {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "160.85",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "246",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente scuola dell'infanzia, 28 - 34",
+                      "quote": "28 - 34 29.101,82 — 29.101,82"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
+                {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
                   "value": "158.19",
@@ -4449,6 +5290,35 @@
             },
             "DOCENTE_DIPLOMATO_SECONDARIA": {
               "periods": [
+                {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "158.60",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "246",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente diplomato, 28 - 34",
+                      "quote": "28 - 34 30.029,79 — 30.029,79"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
                 {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
@@ -4599,6 +5469,35 @@
             "DOCENTE_SECONDARIA": {
               "periods": [
                 {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "185.93",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "246",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente scuola media, 28 - 34",
+                      "quote": "28 - 34 32.179,35 — 32.179,35"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
+                {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
                   "value": "185.93",
@@ -4747,6 +5646,35 @@
             },
             "DOCENTE_LAUREATO_SECONDARIA_II": {
               "periods": [
+                {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "175.09",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "246",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente laureato, 28 - 34",
+                      "quote": "28 - 34 33.837,37 — 33.837,37"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
                 {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
@@ -4903,6 +5831,35 @@
             "COLLABORATORE_SCOLASTICO": {
               "periods": [
                 {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "46.49",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "245",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Collaboratore scolastico, da 35",
+                      "quote": "da 35 20.974,87 254,88 21.229,75"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
+                {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
                   "value": "46.49",
@@ -5051,6 +6008,35 @@
             },
             "OPERATORE": {
               "periods": [
+                {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "46.83",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "245",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Collaboratore scol. dei servizi, da 35",
+                      "quote": "da 35 21.391,78 244,32 21.636,10"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
                 {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
@@ -5201,6 +6187,35 @@
             "ASSISTENTE": {
               "periods": [
                 {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "62.05",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "245",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Ass. amm. e Tecnico, da 35",
+                      "quote": "da 35 24.355,85 159,36 24.515,21"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
+                {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
                   "value": "62.05",
@@ -5349,6 +6364,35 @@
             },
             "FUNZIONARIO_ED_ESPERTO": {
               "periods": [
+                {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "223.07",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "245",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Direttori dei servizi generali, da 35",
+                      "quote": "da 35 37.266,38 — 37.266,38"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
                 {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
@@ -5499,6 +6543,35 @@
             "DOCENTE_INFANZIA_PRIMARIA": {
               "periods": [
                 {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "119.59",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "246",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente scuola dell'infanzia, da 35",
+                      "quote": "da 35 30.536,92 — 30.536,92"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
+                {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
                   "value": "119.59",
@@ -5647,6 +6720,35 @@
             },
             "DOCENTE_DIPLOMATO_SECONDARIA": {
               "periods": [
+                {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "121.89",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "246",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente diplomato, da 35",
+                      "quote": "da 35 31.492,42 — 31.492,42"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
                 {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
@@ -5797,6 +6899,35 @@
             "DOCENTE_SECONDARIA": {
               "periods": [
                 {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "138.17",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "246",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente scuola media, da 35",
+                      "quote": "da 35 33.837,37 — 33.837,37"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
+                {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
                   "value": "138.17",
@@ -5945,6 +7076,35 @@
             },
             "DOCENTE_LAUREATO_SECONDARIA_II": {
               "periods": [
+                {
+                  "valid_from": "2022-01-01",
+                  "valid_until": "2023-02-01",
+                  "value": "139.01",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "ccnl-ir-2019-2021",
+                        "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                        "published_on": "2024-01-18",
+                        "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                      },
+                      "page": "246",
+                      "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente laureato, da 35",
+                      "quote": "da 35 35.505,47 — 35.505,47"
+                    },
+                    "extraction": {
+                      "method": "ai",
+                      "model": "claude-opus-5-5",
+                      "extraction_timestamp": "2026-10-12T18:31:24Z",
+                      "effective_from": "2022-01-01",
+                      "verification_status": "unverified"
+                    },
+                    "transformation": "Monthly tabellare dal 1.1.2021 of the band less that of the band before."
+                  }
+                },
                 {
                   "valid_from": "2023-02-01",
                   "valid_until": "2024-01-01",
@@ -6201,6 +7361,38 @@
       "base_salary": {
         "periods": [
           {
+            "valid_from": "2022-01-01",
+            "valid_until": "2023-02-01",
+            "value": "1343.31",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2019-2021",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                  "published_on": "2024-01-18",
+                  "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                },
+                "page": "245",
+                "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Collaboratore scolastico, 0-8, retribuzione tabellare dal 1.1.2021",
+                "quote": "0 -8 16.119,72 308,04 16.427,76"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T18:31:24Z",
+                "effective_from": "2022-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T18:31:24Z",
+                "review_id": "2026-10-12-ai-2022"
+              },
+              "transformation": "Column 'Retribuzione tabellare dal 1.1.2021' over 12: the tabellare paid until the elemento perequativo was conglobated on 1.2.2023."
+            }
+          },
+          {
             "valid_from": "2023-02-01",
             "valid_until": "2024-01-01",
             "value": "1368.98",
@@ -6362,7 +7554,283 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "EP_0_8",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 0 -8",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "25.67"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 0,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "245",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Collaboratore scolastico, 0 -8, elemento perequativo dal 1.1.2019",
+              "quote": "0 -8 16.119,72 308,04 16.427,76"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 108
+        },
+        {
+          "code": "EP_9_14",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 9 - 14",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "23.90"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 108,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "245",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Collaboratore scolastico, 9 - 14, elemento perequativo dal 1.1.2019",
+              "quote": "9 - 14 17.554,57 286,80 17.841,37"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 180
+        },
+        {
+          "code": "EP_15_20",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 15 - 20",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "22.13"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 180,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "245",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Collaboratore scolastico, 15 - 20, elemento perequativo dal 1.1.2019",
+              "quote": "15 - 20 18.605,70 265,56 18.871,26"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 252
+        },
+        {
+          "code": "EP_21_27",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 21 - 27",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "22.13"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 252,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "245",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Collaboratore scolastico, 21 - 27, elemento perequativo dal 1.1.2019",
+              "quote": "21 - 27 19.641,87 265,56 19.907,43"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 336
+        },
+        {
+          "code": "EP_28_34",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 28 - 34",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "21.24"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 336,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "245",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Collaboratore scolastico, 28 - 34, elemento perequativo dal 1.1.2019",
+              "quote": "28 - 34 20.417,09 254,88 20.671,97"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 420
+        },
+        {
+          "code": "EP_da35",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia da 35",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "21.24"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 420,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "245",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Collaboratore scolastico, da 35, elemento perequativo dal 1.1.2019",
+              "quote": "da 35 20.974,87 254,88 21.229,75"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          }
+        }
+      ],
       "provenance": {
         "status": "verified",
         "location": {
@@ -6397,6 +7865,38 @@
       "category": "operaio",
       "base_salary": {
         "periods": [
+          {
+            "valid_from": "2022-01-01",
+            "valid_until": "2023-02-01",
+            "value": "1377.38",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2019-2021",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                  "published_on": "2024-01-18",
+                  "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                },
+                "page": "245",
+                "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Collaboratore scol. dei servizi, 0-8, retribuzione tabellare dal 1.1.2021",
+                "quote": "0 -8 16.528,61 297,48 16.826,09"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T18:31:24Z",
+                "effective_from": "2022-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T18:31:24Z",
+                "review_id": "2026-10-12-ai-2022"
+              },
+              "transformation": "Column 'Retribuzione tabellare dal 1.1.2021' over 12: the tabellare paid until the elemento perequativo was conglobated on 1.2.2023."
+            }
+          },
           {
             "valid_from": "2023-02-01",
             "valid_until": "2024-01-01",
@@ -6559,7 +8059,283 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "EP_0_8",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 0 -8",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "24.79"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 0,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "245",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Collaboratore scol. dei servizi, 0 -8, elemento perequativo dal 1.1.2019",
+              "quote": "0 -8 16.528,61 297,48 16.826,09"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 108
+        },
+        {
+          "code": "EP_9_14",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 9 - 14",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "22.13"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 108,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "245",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Collaboratore scol. dei servizi, 9 - 14, elemento perequativo dal 1.1.2019",
+              "quote": "9 - 14 17.948,39 265,56 18.213,95"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 180
+        },
+        {
+          "code": "EP_15_20",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 15 - 20",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "21.24"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 180,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "245",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Collaboratore scol. dei servizi, 15 - 20, elemento perequativo dal 1.1.2019",
+              "quote": "15 - 20 19.011,51 254,88 19.266,39"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 252
+        },
+        {
+          "code": "EP_21_27",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 21 - 27",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "19.47"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 252,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "245",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Collaboratore scol. dei servizi, 21 - 27, elemento perequativo dal 1.1.2019",
+              "quote": "21 - 27 20.077,83 233,64 20.311,47"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 336
+        },
+        {
+          "code": "EP_28_34",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 28 - 34",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "19.47"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 336,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "245",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Collaboratore scol. dei servizi, 28 - 34, elemento perequativo dal 1.1.2019",
+              "quote": "28 - 34 20.829,84 233,64 21.063,48"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 420
+        },
+        {
+          "code": "EP_da35",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia da 35",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "20.36"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 420,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "245",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Collaboratore scol. dei servizi, da 35, elemento perequativo dal 1.1.2019",
+              "quote": "da 35 21.391,78 244,32 21.636,10"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          }
+        }
+      ],
       "provenance": {
         "status": "verified",
         "location": {
@@ -6594,6 +8370,38 @@
       "category": "impiegato",
       "base_salary": {
         "periods": [
+          {
+            "valid_from": "2022-01-01",
+            "valid_until": "2023-02-01",
+            "value": "1504.77",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2019-2021",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                  "published_on": "2024-01-18",
+                  "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                },
+                "page": "245",
+                "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Ass. amm. e Tecnico, 0-8, retribuzione tabellare dal 1.1.2021",
+                "quote": "0 -8 18.057,28 254,88 18.312,16"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T18:31:24Z",
+                "effective_from": "2022-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T18:31:24Z",
+                "review_id": "2026-10-12-ai-2022"
+              },
+              "transformation": "Column 'Retribuzione tabellare dal 1.1.2021' over 12: the tabellare paid until the elemento perequativo was conglobated on 1.2.2023."
+            }
+          },
           {
             "valid_from": "2023-02-01",
             "valid_until": "2024-01-01",
@@ -6756,7 +8564,283 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "EP_0_8",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 0 -8",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "21.24"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 0,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "245",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Ass. amm. e Tecnico, 0 -8, elemento perequativo dal 1.1.2019",
+              "quote": "0 -8 18.057,28 254,88 18.312,16"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 108
+        },
+        {
+          "code": "EP_9_14",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 9 - 14",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "17.70"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 108,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "245",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Ass. amm. e Tecnico, 9 - 14, elemento perequativo dal 1.1.2019",
+              "quote": "9 - 14 19.892,32 212,40 20.104,72"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 180
+        },
+        {
+          "code": "EP_15_20",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 15 - 20",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "15.93"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 180,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "245",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Ass. amm. e Tecnico, 15 - 20, elemento perequativo dal 1.1.2019",
+              "quote": "15 - 20 21.269,37 191,16 21.460,53"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 252
+        },
+        {
+          "code": "EP_21_27",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 21 - 27",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "14.16"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 252,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "245",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Ass. amm. e Tecnico, 21 - 27, elemento perequativo dal 1.1.2019",
+              "quote": "21 - 27 22.630,02 169,92 22.799,94"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 336
+        },
+        {
+          "code": "EP_28_34",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 28 - 34",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "13.28"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 336,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "245",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Ass. amm. e Tecnico, 28 - 34, elemento perequativo dal 1.1.2019",
+              "quote": "28 - 34 23.611,18 159,36 23.770,54"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 420
+        },
+        {
+          "code": "EP_da35",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia da 35",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "13.28"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 420,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "245",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Ass. amm. e Tecnico, da 35, elemento perequativo dal 1.1.2019",
+              "quote": "da 35 24.355,85 159,36 24.515,21"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          }
+        }
+      ],
       "provenance": {
         "status": "verified",
         "location": {
@@ -6792,6 +8876,38 @@
       "base_salary": {
         "periods": [
           {
+            "valid_from": "2022-01-01",
+            "valid_until": "2023-02-01",
+            "value": "1741.43",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2019-2021",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                  "published_on": "2024-01-18",
+                  "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                },
+                "page": "246",
+                "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente scuola dell'infanzia, 0-8, retribuzione tabellare dal 1.1.2021",
+                "quote": "0 -8 20.897,20 201,84 21.099,04"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T18:31:24Z",
+                "effective_from": "2022-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T18:31:24Z",
+                "review_id": "2026-10-12-ai-2022"
+              },
+              "transformation": "Column 'Retribuzione tabellare dal 1.1.2021' over 12: the tabellare paid until the elemento perequativo was conglobated on 1.2.2023."
+            }
+          },
+          {
             "valid_from": "2023-02-01",
             "valid_until": "2024-01-01",
             "value": "1758.25",
@@ -6953,7 +9069,192 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "EP_0_8",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 0 -8",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "16.82"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 0,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "246",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente scuola dell'infanzia, 0 -8, elemento perequativo dal 1.1.2019",
+              "quote": "0 -8 20.897,20 201,84 21.099,04"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 108
+        },
+        {
+          "code": "EP_9_14",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 9 - 14",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "12.39"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 108,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "246",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente scuola dell'infanzia, 9 - 14, elemento perequativo dal 1.1.2019",
+              "quote": "9 - 14 23.182,99 148,68 23.331,67"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 180
+        },
+        {
+          "code": "EP_15_20",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 15 - 20",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "7.08"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 180,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "246",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente scuola dell'infanzia, 15 - 20, elemento perequativo dal 1.1.2019",
+              "quote": "15 - 20 25.204,99 84,96 25.289,95"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 252
+        },
+        {
+          "code": "EP_21_27",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 21 - 27",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "2.66"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 252,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "246",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente scuola dell'infanzia, 21 - 27, elemento perequativo dal 1.1.2019",
+              "quote": "21 - 27 27.171,59 31,92 27.203,51"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 336
+        }
+      ],
       "provenance": {
         "status": "verified",
         "location": {
@@ -6989,6 +9290,38 @@
       "base_salary": {
         "periods": [
           {
+            "valid_from": "2022-01-01",
+            "valid_until": "2023-02-01",
+            "value": "1741.43",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2019-2021",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                  "published_on": "2024-01-18",
+                  "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                },
+                "page": "246",
+                "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente diplomato, 0-8, retribuzione tabellare dal 1.1.2021",
+                "quote": "0 -8 20.897,20 201,84 21.099,04"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T18:31:24Z",
+                "effective_from": "2022-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T18:31:24Z",
+                "review_id": "2026-10-12-ai-2022"
+              },
+              "transformation": "Column 'Retribuzione tabellare dal 1.1.2021' over 12: the tabellare paid until the elemento perequativo was conglobated on 1.2.2023."
+            }
+          },
+          {
             "valid_from": "2023-02-01",
             "valid_until": "2024-01-01",
             "value": "1758.25",
@@ -7150,7 +9483,192 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "EP_0_8",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 0 -8",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "16.82"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 0,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "246",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente diplomato, 0 -8, elemento perequativo dal 1.1.2019",
+              "quote": "0 -8 20.897,20 201,84 21.099,04"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 108
+        },
+        {
+          "code": "EP_9_14",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 9 - 14",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "12.39"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 108,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "246",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente diplomato, 9 - 14, elemento perequativo dal 1.1.2019",
+              "quote": "9 - 14 23.182,99 148,68 23.331,67"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 180
+        },
+        {
+          "code": "EP_15_20",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 15 - 20",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "7.97"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 180,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "246",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente diplomato, 15 - 20, elemento perequativo dal 1.1.2019",
+              "quote": "15 - 20 25.204,99 95,64 25.300,63"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 252
+        },
+        {
+          "code": "EP_21_27",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 21 - 27",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "3.54"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 252,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "246",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente diplomato, 21 - 27, elemento perequativo dal 1.1.2019",
+              "quote": "21 - 27 28.126,56 42,48 28.169,04"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 336
+        }
+      ],
       "provenance": {
         "status": "verified",
         "location": {
@@ -7186,6 +9704,38 @@
       "base_salary": {
         "periods": [
           {
+            "valid_from": "2022-01-01",
+            "valid_until": "2023-02-01",
+            "value": "1889.88",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2019-2021",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                  "published_on": "2024-01-18",
+                  "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                },
+                "page": "246",
+                "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente scuola media, 0-8, retribuzione tabellare dal 1.1.2021",
+                "quote": "0 -8 22.678,52 159,36 22.837,88"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T18:31:24Z",
+                "effective_from": "2022-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T18:31:24Z",
+                "review_id": "2026-10-12-ai-2022"
+              },
+              "transformation": "Column 'Retribuzione tabellare dal 1.1.2021' over 12: the tabellare paid until the elemento perequativo was conglobated on 1.2.2023."
+            }
+          },
+          {
             "valid_from": "2023-02-01",
             "valid_until": "2024-01-01",
             "value": "1903.16",
@@ -7347,7 +9897,146 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "EP_0_8",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 0 -8",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "13.28"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 0,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "246",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente scuola media, 0 -8, elemento perequativo dal 1.1.2019",
+              "quote": "0 -8 22.678,52 159,36 22.837,88"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 108
+        },
+        {
+          "code": "EP_9_14",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 9 - 14",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "7.97"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 108,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "246",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente scuola media, 9 - 14, elemento perequativo dal 1.1.2019",
+              "quote": "9 - 14 25.342,05 95,64 25.437,69"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 180
+        },
+        {
+          "code": "EP_15_20",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 15 - 20",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "2.66"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 180,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "246",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente scuola media, 15 - 20, elemento perequativo dal 1.1.2019",
+              "quote": "15 - 20 27.676,59 31,92 27.708,51"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 252
+        }
+      ],
       "provenance": {
         "status": "verified",
         "location": {
@@ -7383,6 +10072,38 @@
       "base_salary": {
         "periods": [
           {
+            "valid_from": "2022-01-01",
+            "valid_until": "2023-02-01",
+            "value": "1889.88",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2019-2021",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                  "published_on": "2024-01-18",
+                  "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                },
+                "page": "246",
+                "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente laureato, 0-8, retribuzione tabellare dal 1.1.2021",
+                "quote": "0 -8 22.678,52 159,36 22.837,88"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T18:31:24Z",
+                "effective_from": "2022-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T18:31:24Z",
+                "review_id": "2026-10-12-ai-2022"
+              },
+              "transformation": "Column 'Retribuzione tabellare dal 1.1.2021' over 12: the tabellare paid until the elemento perequativo was conglobated on 1.2.2023."
+            }
+          },
+          {
             "valid_from": "2023-02-01",
             "valid_until": "2024-01-01",
             "value": "1903.16",
@@ -7544,7 +10265,146 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "EP_0_8",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 0 -8",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "13.28"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 0,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "246",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente laureato, 0 -8, elemento perequativo dal 1.1.2019",
+              "quote": "0 -8 22.678,52 159,36 22.837,88"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 108
+        },
+        {
+          "code": "EP_9_14",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 9 - 14",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "7.97"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 108,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "246",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente laureato, 9 - 14, elemento perequativo dal 1.1.2019",
+              "quote": "9 - 14 25.995,81 95,64 26.091,45"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 180
+        },
+        {
+          "code": "EP_15_20",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 15 - 20",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "2.66"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 180,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "246",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Docente laureato, 15 - 20, elemento perequativo dal 1.1.2019",
+              "quote": "15 - 20 28.520,99 31,92 28.552,91"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 252
+        }
+      ],
       "provenance": {
         "status": "verified",
         "location": {
@@ -7579,6 +10439,38 @@
       "category": "quadro",
       "base_salary": {
         "periods": [
+          {
+            "valid_from": "2022-01-01",
+            "valid_until": "2023-02-01",
+            "value": "1988.22",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2019-2021",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                  "published_on": "2024-01-18",
+                  "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                },
+                "page": "245",
+                "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Direttori dei servizi generali, 0-8, retribuzione tabellare dal 1.1.2021",
+                "quote": "0 -8 23.858,65 127,44 23.986,09"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T18:31:24Z",
+                "effective_from": "2022-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T18:31:24Z",
+                "review_id": "2026-10-12-ai-2022"
+              },
+              "transformation": "Column 'Retribuzione tabellare dal 1.1.2021' over 12: the tabellare paid until the elemento perequativo was conglobated on 1.2.2023."
+            }
+          },
           {
             "valid_from": "2023-02-01",
             "valid_until": "2024-01-01",
@@ -7741,7 +10633,146 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "EP_0_8",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 0 -8",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "10.62"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 0,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "245",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Direttori dei servizi generali, 0 -8, elemento perequativo dal 1.1.2019",
+              "quote": "0 -8 23.858,65 127,44 23.986,09"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 108
+        },
+        {
+          "code": "EP_9_14",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 9 - 14",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "6.20"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 108,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "245",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Direttori dei servizi generali, 9 - 14, elemento perequativo dal 1.1.2019",
+              "quote": "9 - 14 26.672,72 74,40 26.747,12"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 180
+        },
+        {
+          "code": "EP_15_20",
+          "description": "Elemento perequativo (CCNL 2016-2018), fascia 15 - 20",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2023-02-01",
+                "value": "2.66"
+              },
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "service_months_threshold": 180,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "245",
+              "section": "Tabella C1 - SCUOLA - CCNL 6/12/2022, Direttori dei servizi generali, 15 - 20, elemento perequativo dal 1.1.2019",
+              "quote": "15 - 20 29.176,72 31,92 29.208,64"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T18:31:24Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Column 'Elemento perequativo dal 1.1.2019' over 12, paid until 31.1.2023, then conglobated in the tabellare (CCNL 6/12/2022). 12 instalments: assumed, the instalments are set by the CCNL 2016-2018 not read."
+          },
+          "service_months_until": 252
+        }
+      ],
       "provenance": {
         "status": "verified",
         "location": {
@@ -7835,19 +10866,6 @@
       },
       {
         "kind": "simplification",
-        "text": "Before 1 February 2023 the tabellare of the CCNL 2016-2018 applied with the elemento perequativo paid apart; the file starts on 1 February 2023, when the CCNL 2019-2021 conglobated it.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "before_february_2023",
-          "applies_when": {
-            "effective_until": "2023-02-01"
-          },
-          "remediation": "Add the 2022 and January 2023 tabellare and the elemento perequativo of the CCNL 2019-2021."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "The ore aggiuntive of the docenti are paid at fixed hourly amounts by activity (CCNL 2019-2021 Tabella E1.6: corsi di recupero 55,00, insegnamento 38,50, non di insegnamento 19,25), not by time of day: no overtime band is modelled for the docenti levels, so their overtime event needs the amount as hourly_rate with multiplier 1. The ATA areas are paid by the bands of Tabella E1.7.",
         "capability": "overtime",
         "monetary_impact": "yes",
@@ -7868,6 +10886,10 @@
       {
         "kind": "info",
         "text": "FASCE STIPENDIALI: the six fasce of anzianità di servizio (0-8, 9-14, 15-20, 21-27, 28-34, da 35) are paid as five seniority steps after 9, 15, 21, 28 and 35 years, each the difference between the monthly tabellari of two fasce (CCNL 2019-2021 Tabelle C1 and E1.5, 2022-2024 and 2025-2027 Tabella A2). The seniority is the anzianità di servizio recognised for the fasce (ricostruzione di carriera), which the caller states; the engine does not reconstruct it. The scuola media and the laureato di II grado have the same first fascia and differ above it: two levels, DOCENTE_SECONDARIA and DOCENTE_LAUREATO_SECONDARIA_II."
+      },
+      {
+        "kind": "info",
+        "text": "FROM 1.1.2022 TO 31.1.2023: the tabellare dal 1.1.2021 of Tabella C1 of the CCNL 2019-2021 (column 1) and, apart, the elemento perequativo by fascia (column 2, 12 instalments assumed), conglobated in the tabellare from 1.2.2023."
       }
     ]
   },
@@ -7878,7 +10900,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1",
     "verification_status": "unverified",
-    "source_hash": "7c0d26d2047a6a20055fbaac4628ea5c375d2fe479c96632ea642ad5e4446c76",
+    "source_hash": "97d2f07219fdd2b25b5031db51bdd5b9582edfb7597b76986289d6715e9d1b2f",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -8512,6 +11534,23 @@
         "findings": [
           "Every worker was paid the first fascia (0-8 years): the five higher fasce are now seniority steps, read on the tables of the three CCNL.",
           "DOCENTE_SECONDARIA joined the scuola media and the laureato di II grado, equal in the first fascia only: split into DOCENTE_SECONDARIA (scuola media) and DOCENTE_LAUREATO_SECONDARIA_II."
+        ]
+      },
+      {
+        "id": "2026-10-12-ai-2022",
+        "date": "2026-10-12",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Months from 1.1.2022 to 31.1.2023 (CCNL 2019-2021 Tabella C1).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+            "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+          }
+        ],
+        "findings": [
+          "The file started on 1.2.2023 (limitation before_february_2023): the tabellare dal 1.1.2021 and the elemento perequativo by fascia of Tabella C1 now cover 2022 and January 2023."
         ]
       }
     ]
