@@ -31,7 +31,7 @@ amounts are `Decimal` values in EUR, validated on construction.
 | `HolidayWorkEvent` | `supplement_amount` | Public holiday or weekly rest-day supplement; INPS and IRPEF, no TFR |
 | `ShiftWorkEvent` | `supplement_amount` | Shift allowance; INPS and IRPEF, no TFR |
 | `AbsenceEvent` | `hours`, `hourly_rate`, `end_date`, `suspends_accrual` | Unpaid absence deducted from pay; reduces the INPS and TFR base |
-| `SicknessEpisode` | `episode_id`, `started_on`, `ended_on`, `relapse_of`, `prior_worked_days` (fixed-term), `hospital_stays` | Sickness episode; the engine derives the deduction, INPS indemnity, CCNL integration and carenza pay of the days in the run's month; see [Sickness](#sickness) |
+| `SicknessEpisode` | `episode_id`, `started_on`, `ended_on`, `relapse_of`, `prior_worked_days` (fixed-term), `hospital_stays`, `serious_illness` | Sickness episode; the engine derives the deduction, INPS indemnity, CCNL integration and carenza pay of the days in the run's month; see [Sickness](#sickness) |
 | `SickLeaveEvent` | `amount`, `sick_days`, `waiting_period_days` | Sick pay the caller computed: an override of the engine, never payable; INPS and IRPEF, no TFR |
 | `FringeEvent` | `amount` | Fringe benefit (art. 51 c. 3 TUIR); exempt while the year total stays within the threshold, then the whole year total is taxable; see [Fringe benefits](#fringe-benefits) |
 | `WelfareEvent` | `amount` | Welfare benefit; exempt from INPS and IRPEF, no TFR |
@@ -241,6 +241,7 @@ only when it could change a day the run pays:
 | `sickness_seniority_band_changes` | the band changes within the days paid | not modelled |
 | `sickness_hospital_stays_unknown` | a reduced day of a CCNL that pays long hospital stays in full (Federmeccanica: over 10 consecutive days, up to 61 days) | `SicknessEpisode.hospital_stays` |
 | `sickness_hospital_stay_not_modelled` | a reduced day of a CCNL whose hospital rule is not in the bundle | not modelled |
+| `sickness_serious_illness_unknown` | a reduced day of a CCNL that treats a particularly serious illness apart (Logistica art. 63: 18 months in full, outside the comporto) | `SicknessEpisode.serious_illness` |
 | `sickness_fixed_term_proportion` | a fixed-term contract (periods scaled to its length) | not modelled |
 
 An import without `sickness_known_from` lists the sickness of its tax year

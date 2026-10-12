@@ -86,6 +86,14 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "stays in full are paid reduced, with a provisional "
         "sickness_hospital_stays_unknown issue",
     ),
+    "SicknessEpisode.serious_illness": requires_fact(
+        "sickness",
+        "event.serious_illness",
+        FactEnforcement.REPORTED,
+        "unknown seriousness: a CCNL with a serious-illness treatment pays "
+        "the episode as an ordinary one, with a provisional "
+        "sickness_serious_illness_unknown issue",
+    ),
     "SicknessEpisode.prior_worked_days": requires_fact(
         "sickness",
         "event.prior_worked_days",

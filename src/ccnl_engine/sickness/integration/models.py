@@ -196,6 +196,25 @@ class HospitalStayRule(BaseModel):
     max_full_days: int = Field(ge=1)
 
 
+class SeriousIllnessRule(BaseModel):
+    """Treatment of a particularly serious illness.
+
+    Logistica Confetra art. 63: the "malattie particolarmente gravi, di cui
+    alla circolare Inps 7.6.2016 n.95" are left out of the comporto count
+    (c. 8) and paid "con la corresponsione dell'intera retribuzione globale
+    mensile per 18 mesi" (c. 12).
+
+    Attributes:
+        full_pay_days: Days of the episode paid in full.
+        outside_comporto: Whether the episode is left out of the comporto.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    full_pay_days: int = Field(ge=1)
+    outside_comporto: bool
+
+
 class SicknessCumulation(BaseModel):
     """Sick pay and comporto counted over the sickness of several episodes.
 
@@ -219,6 +238,8 @@ class SicknessCumulation(BaseModel):
         short_absences: Reduction of repeated short absences, if any.
         hospital_stay: Hospital stays paid in full within the reduced days,
             if the CCNL says so.
+        serious_illness: Treatment of a particularly serious illness, if
+            the CCNL has one.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -229,6 +250,7 @@ class SicknessCumulation(BaseModel):
     bands: tuple[SicknessSeniorityBand, ...] = Field(min_length=1)
     short_absences: ShortAbsenceReduction | None = None
     hospital_stay: HospitalStayRule | None = None
+    serious_illness: SeriousIllnessRule | None = None
 
     @model_validator(mode="after")
     def _ordered_bands(self) -> Self:

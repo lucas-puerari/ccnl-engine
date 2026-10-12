@@ -361,6 +361,22 @@ def _long_sickness(stays: tuple[tuple[date, date], ...] | None) -> PeriodInput:
     return _march(PeriodState.zero(), episode)
 
 
+def _logistica_long(*, serious: bool | None) -> PeriodInput:
+    """Return March 2026 of a Logistica episode past its 90 full-pay days.
+
+    Returns:
+        The March run of a level 3 worker sick since 1 November 2025.
+    """
+    episode = SicknessEpisode(
+        "LOG", date(2025, 11, 1), date(2026, 3, 20), serious_illness=serious
+    )
+    run = _march(PeriodState.zero(), episode)
+    employment = replace(
+        _EMPLOYMENT, ccnl_slug="logistica-trasporto-confetra.json", level_code="3"
+    )
+    return replace(run, employment=employment)
+
+
 def _fixed_term_sickness(worked: int | None) -> PeriodInput:
     """Return a five-day episode of a fixed-term worker, its days of work given.
 
@@ -400,6 +416,13 @@ def sickness_cases[C](
                 _long_sickness(()),
                 _long_sickness(None),
                 "hospital_stays",
+            ),
+        ),
+        "SicknessEpisode.serious_illness": (
+            case(
+                _logistica_long(serious=False),
+                _logistica_long(serious=None),
+                "serious_illness",
             ),
         ),
         "SicknessEpisode.prior_worked_days": (

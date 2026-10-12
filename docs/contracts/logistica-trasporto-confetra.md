@@ -38,9 +38,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | seniority, sickness |
+| **Limits of this contract** | seniority |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -67,6 +67,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-09-18 | maintainer (human) | Whole file. The values checked were not recorded. | confirmed | The review recorded no list of the documents it read. |
 | 2026-10-11 | claude-opus-5-5 (ai) | Every payable rule of the file (55 records) read again in the signed testo unico of the renewal of 6 December 2024 (Verbale di accordo 25 September 2025), published by Confetra; the URLs the file cited return 404. | corrected | Corrected: every one of the 36 salary periods. The base salary is the minimo plus the EPA of the tables of pp. 80-81 for non-travelling staff; the file held values about 88-110 EUR too high. The printed Totale of the 1 January 2027 table already includes the minimo increase of 1 June 2027; the Legacoop circular of 19 December 2024 (p. 2) confirms that January 2027 is an EPA-only step, so the period holds minimo plus EPA.<br>Corrected: the Quadri receive the indennità di funzione of 51.65 EUR a month (Art. 6 c. 4, p. 17), which the file lacked.<br>Corrected: the daily quota is 1/22 (Art. 61 c. 3, Sezione prima, p. 86), not 1/26, which applies to a six-day week of non-travelling staff and to Sezione seconda (Art. 73 c. 5).<br>Verified: 14 monthly payments (Artt. 18-19), the accrual of fractions over 15 days (Art. 18 c. 2, Art. 19 c. 2), seniority (Art. 17) and 22 days of leave (Art. 24). Pages are PDF page numbers, equal to the printed ones.<br>Assumed: sickness. Art. 63 A) c. 7-12 keeps the job 245 or 365 days and pays 3 months in full and 5 at half (up to 5 years of service) or 5 and 7, counted over 24 or 30 months; the cumulation model holds one window in whole years for every band, so the rule is not expressible and the file's 100% for 180 days is wrong.<br>Left derived: the overtime rates (30%, 50%, 65%, 75%, Art. 13 c. 6) match, but their start of 2023-05-01 is not stated; the level descriptions are paraphrases.<br>Not modelled: the EDR of Art. 60 c. 8 (10 EUR at level 3S, re-parametrised) for workers in service on 26 January 2011, which affects every entitlement, and level 6J and travelling staff. |
 | 2026-10-12 | claude-opus-5-5 (ai) | Sickness rule of art. 63 A), now expressible with a window and steps per seniority band; readiness of the file. | corrected | The sickness rule was assumed (100% for 180 days, not the CCNL's): it is now 90 days in full and 150 at half within 24 months, comporto 245 days, up to 5 years of seniority; 150 in full and 210 at half within 30 months, comporto 365 days, above.<br>With no assumed or missing payable rule left and the salary tables, additional months, divisor and seniority verified on 2026-10-11, the file is promoted to reviewed. |
+| 2026-10-12 | claude-opus-5-5 (ai) | Malattie particolarmente gravi (art. 63 cc. 8 and 12). | corrected | The serious illnesses of INPS circ. 95/2016 were a limitation (grave_illness): now paid in full for 18 months and left out of the comporto when SicknessEpisode.serious_illness says so. |
 
 ## Salary table
 
@@ -117,13 +118,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
-
-!!! warning "logistica-trasporto-confetra/grave_illness · sickness · impact yes · open"
-    Art. 63 cc. 8, 12: sickness from the 'malattie particolarmente gravi' of INPS circ. 95/2016 is paid in full for 18 months and left out of the comporto count; the request does not say whether an episode is one, so the ordinary treatment applies.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Add a fact for a grave illness episode and pay it in full for 18 months outside the comporto.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
