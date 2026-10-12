@@ -2036,8 +2036,8 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-confcommercio",
       "ruleset_version": "2026.2",
-      "source_hash": "106868004337f6b22c2ac90d0bbb983b2c8548a9a8f4a769f0a9be22c05c8cfc",
-      "source_type": "commercial_secondary",
+      "source_hash": "be62a764eed7664853b188d4f80e80571c4a2911f0afce61e0888b3bf9eba6c2",
+      "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/turismo-confcommercio.json.gz"
     },
