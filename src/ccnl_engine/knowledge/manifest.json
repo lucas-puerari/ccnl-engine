@@ -149,7 +149,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/assicurazioni-ania",
       "ruleset_version": "2026.2",
-      "source_hash": "fadb5391781884c4aba6db26576ea6657b17f56308e3f4fc71bf00a4b4ae737a",
+      "source_hash": "979c5cea3cf3f31e6b6837e1296430c7b23e8716c910fe8b9ce2b8fa5a3c4d90",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/assicurazioni-ania.json.gz"
@@ -2223,8 +2223,8 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "inps/2026/credito",
       "ruleset_version": "2026.1",
-      "source_hash": "25f6512a16525629cf5301239d95e1901b9447a444e50d385420b007956592a2",
-      "source_type": "institutional_secondary",
+      "source_hash": "bfc0c1f50ab68e3635f81dfe83dc8d414060d4623e8e80b667227ac4d879dbaa",
+      "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "contribution/2026/credito.json.gz"
     },

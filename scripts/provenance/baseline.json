@@ -1015,9 +1015,6 @@
     "contribution/2026/agricoltura.json": {
       "apprentice": "assumed"
     },
-    "contribution/2026/credito.json": {
-      "inps": "assumed"
-    },
     "contribution/2026/pubblica-amministrazione.json": {
       "apprentice": "assumed",
       "inps.minimum_base": "assumed"
@@ -1238,8 +1235,7 @@
       "assicurazioni-ania/apprentice_seniority",
       "assicurazioni-ania/inps_credit_rate_unverified",
       "assicurazioni-ania/inps_sector_rates_unsourced",
-      "assicurazioni-ania/seniority_modal_class_difference",
-      "assicurazioni-ania/solidarity_fund_unsourced"
+      "assicurazioni-ania/seniority_modal_class_difference"
     ],
     "agreement/attivita-minerarie-assorisorse.json": [
       "attivita-minerarie-assorisorse/ocr_salary_values",
