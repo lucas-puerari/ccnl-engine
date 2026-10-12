@@ -325,6 +325,11 @@ class CcnlTravelAllowance(BaseModel):
         tfr_base: What of the allowance enters the TFR base: ``"none"``,
             ``"whole"``, or ``"above_exempt"`` (the part above the IRPEF
             exemption, Logistica art. 62 c. 7).
+        night_allowance: Amount for each day of at least
+            :attr:`night_from_hours` away (Logistica art. 16: 0.93 per
+            trasferta of 18 to 24 hours), pay of the period that enters the
+            TFR base; ``None`` without one.
+        night_from_hours: Hours away from which the night allowance is due.
         provenance: Source and status of the amounts.
     """
 
@@ -332,6 +337,8 @@ class CcnlTravelAllowance(BaseModel):
 
     bands: tuple[TravelAllowanceBand, ...] = Field(min_length=1)
     tfr_base: Literal["none", "whole", "above_exempt"]
+    night_allowance: TimeSeries | None = None
+    night_from_hours: Decimal = Decimal(18)
     provenance: RuleProvenance | None = None
 
     def band_of(self, hours: Decimal) -> TravelAllowanceBand | None:
