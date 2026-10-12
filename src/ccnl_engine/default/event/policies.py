@@ -74,10 +74,6 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
     "TravelAllowanceEvent.abroad": absence_is_fact(
         "a trasferta in Italy; abroad is a fact the event records"
     ),
-    "TravelAllowanceEvent.meals_lodging": absence_is_fact(
-        "neither meals nor lodging reimbursed or provided free; either is a "
-        "fact of the expense report the event records"
-    ),
     "TravelAllowanceEvent.trasfertista": absence_is_fact(
         "an ordinary trasferta; a worker bound to always different places "
         "is a fact of the contract"

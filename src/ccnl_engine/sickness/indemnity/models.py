@@ -150,6 +150,26 @@ class SickPayRegime(BaseModel):
     provenance: RuleProvenance | None = None
 
 
+class FixedTermSickLimit(BaseModel):
+    """Sickness of a fixed-term contract (D.L. 463/1983 art. 5).
+
+    Sickness is paid for no more days than those of work in the 12 months
+    before the episode (c. 1); with :attr:`short_work_days` days of work or
+    fewer, for at most that many days in the calendar year, the INPS share
+    paid by INPS directly (c. 3); beyond the days of work with the employer
+    INPS pays its share directly (c. 5).
+
+    Attributes:
+        short_work_days: The 30 days of c. 3.
+        provenance: Source and status of the rule.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    short_work_days: int = Field(ge=1)
+    provenance: RuleProvenance | None = None
+
+
 class InpsSickPayRates(BaseModel):
     """Statutory INPS sick-pay indemnity rates (malattia ordinaria).
 
@@ -173,6 +193,8 @@ class InpsSickPayRates(BaseModel):
         bands_provenance: Provenance record of the indemnity rates.
         regimes: Bands of the groups of workers whose rates differ from
             ``bands``, each named by an id unique in the table.
+        fixed_term: Limit of a fixed-term contract; ``None`` when the
+            table does not state it, and then not applied.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -185,6 +207,7 @@ class InpsSickPayRates(BaseModel):
     ruleset: RulesetIdentity | None = None
     bands_provenance: RuleProvenance | None = None
     regimes: tuple[SickPayRegime, ...] = ()
+    fixed_term: FixedTermSickLimit | None = None
 
     def for_regime(self, regime: str | None) -> InpsSickPayRates:
         """Return the table with the bands of ``regime`` in place of the rule.

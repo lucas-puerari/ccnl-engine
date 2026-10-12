@@ -48,6 +48,7 @@ def _trip(**changes: object) -> TravelAllowanceEvent:
         "daily_amount": Decimal("60.00"),
         "outside_municipality": True,
         "in_tfr_base": False,
+        "meals_lodging": "none",
     }
     fields.update(changes)
     return TravelAllowanceEvent(**fields)  # type: ignore[arg-type]

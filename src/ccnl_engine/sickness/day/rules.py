@@ -137,29 +137,26 @@ def _take(used: dict[int, int], day: date, limit: int) -> bool:
     return True
 
 
-#: Days a fixed-term worker with 30 days of work or fewer in the 12 months
-#: before is paid in the calendar year (D.L. 463/1983 art. 5 c. 3).
-_SHORT_TERM_DAYS = 30
-
-
 @dataclass(frozen=True)
 class _FixedTermLimit:
     """Days of an episode a fixed-term contract pays (D.L. 463/1983 art. 5).
 
     Attributes:
         days: Days of the episode paid at most (c. 1); ``None`` under the
-            30 days of the calendar year of c. 3.
+            days of the calendar year of c. 3.
         direct_after: Episode day after which INPS pays its share directly
             (c. 3 and c. 5); ``None`` when the employer advances every day.
+        short_days: Days of the calendar year of c. 3.
     """
 
     days: int | None
     direct_after: int | None
+    short_days: int
 
     def allows(self, index: int, day: date, inps: _InpsDays) -> bool:
         if self.days is not None:
             return index <= self.days
-        return _take(inps.short_term, day, _SHORT_TERM_DAYS)
+        return _take(inps.short_term, day, self.short_days)
 
 
 def _fixed_term_limit(
@@ -175,17 +172,19 @@ def _fixed_term_limit(
         work are not stated.
     """
     worked = episode.prior_worked_days
-    if not rules.fixed_term or worked is None:
+    statute = rules.inps.fixed_term
+    if not rules.fixed_term or worked is None or statute is None:
         return None
-    if worked <= _SHORT_TERM_DAYS:
-        return _FixedTermLimit(None, 0)
+    short = statute.short_work_days
+    if worked <= short:
+        return _FixedTermLimit(None, 0, short)
     hired = rules.worker.hired_on
     start = episode.started_on
     if hired is None:
-        return _FixedTermLimit(worked, None)
+        return _FixedTermLimit(worked, None, short)
     year_before = window_start(start - timedelta(days=1), 1)
     employed = (start - max(hired, year_before)).days
-    return _FixedTermLimit(worked, max(employed, 0))
+    return _FixedTermLimit(worked, max(employed, 0), short)
 
 
 def _classify(
