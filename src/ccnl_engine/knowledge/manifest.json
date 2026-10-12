@@ -2087,7 +2087,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/vetro-meccanizzato-assovetro",
       "ruleset_version": "2026.2",
-      "source_hash": "fe4060679946db5aa71d37ee5f42be7db856502d5752438b4fb0a745eeaf15d8",
+      "source_hash": "f59115d99b1d7672910a29aeee7e61860b9dda1ba87173e9fc37cc830cec8b13",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/vetro-meccanizzato-assovetro.json.gz"
