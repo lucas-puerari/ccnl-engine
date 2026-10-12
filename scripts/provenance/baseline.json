@@ -901,14 +901,8 @@
       "accrual_rule": "missing",
       "additional_months[2025-06-01]": "assumed"
     },
-    "agreement/turismo-confcommercio.json": {
-      "additional_months[2024-07-01]": "assumed"
-    },
     "agreement/turismo-confesercenti.json": {
       "additional_months[2024-07-01]": "assumed"
-    },
-    "agreement/turismo-federalberghi.json": {
-      "additional_months[1990-01-01]": "assumed"
     },
     "agreement/uneba-uneba.json": {
       "accrual_rule": "assumed",

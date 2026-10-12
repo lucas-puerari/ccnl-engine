@@ -1052,7 +1052,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "367ee6cd2771e383b58f120e051a78e0ab39723aa55dfdc1a18f06fda8d5938a",
+    "source_hash": "60bc2377af1132f0fa47226df1c3a09b28b501a8f5b2865c378b67683eeef1c6",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -1305,7 +1305,7 @@
           "verified_at": "2026-10-12T22:00:00Z",
           "review_id": "2026-10-12-ai"
         },
-        "transformation": "28 days on a five-day week (c. 2); 26 for a worker hired for the first time in a public administration, for the first three years of service (cc. 4-5). From 1 January 2027 art. 21 of the CCNL 2025-2027 (p. 31: 'Il presente articolo entra in vigore il 1° gennaio 2027') gives 28 days to every worker: see the limitation leave_from_2027."
+        "transformation": "28 days on a five-day week (c. 2); 26 for a worker hired for the first time in a public administration, for the first three years of service (cc. 4-5). From 1 January 2027 art. 21 of the CCNL 2025-2027 (p. 31: 'Il presente articolo entra in vigore il 1° gennaio 2027') gives 28 days to every worker: see the limitation leave_from_2027. The CCNL counts the three years in any public administration ('a qualsiasi titolo prestato' / 'presso una qualsiasi pubblica amministrazione'); the tiers read the seniority with this employer, so a worker with earlier public service gets 26 (30) days when the text gives 28 (32): state the seniority with the earlier public service included."
       }
     },
     "sickness_rules": {

@@ -157,6 +157,10 @@ _SECTOR_REVIEWED = {
     "trattamento_integrativo",
     "ulteriore_detrazione",
     "sterilizzazione_detrazioni",
+    "fixed_term_additional_rate",
+    "complementary_pension",
+    "tfr.additional_ivs",
+    "tfr.compensation",
 }
 
 

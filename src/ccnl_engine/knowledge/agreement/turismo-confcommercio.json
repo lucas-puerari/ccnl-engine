@@ -107,9 +107,29 @@
           "valid_until": null,
           "value": "14",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-turismo-federalberghi-2024",
+                "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (versione aggiornata 11 luglio 2024)",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2024/07/ccnl_turismo_ipotesi_accordo_5-luglio-2024_agg_11_7_24.pdf",
+                "published_on": "2024-07-05",
+                "sha256": "1f91c11cda9daaf6a6c5e8a4f939197b579b411393d3e27d94a38983c3a0d0b4"
+              },
+              "page": "42-43",
+              "section": "Art. 160 c. 1 (tredicesima) and art. 161 c. 1 (quattordicesima) of the CCNL Turismo 20 febbraio 2010 as replaced",
+              "quote": "In occasione delle ricorrenze natalizie a tutto il personale verrà corrisposta una mensilità di retribuzione in atto"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T09:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2024-07-01"
+            },
+            "transformation": "12 monthly payments, the tredicesima (art. 160) and the quattordicesima (art. 161 c. 1: 'A tutto il personale sarà corrisposta una mensilità della retribuzione in atto al 30 giugno di ciascun anno'): 14.",
+            "note": "Scanned text, read by OCR and checked on the page image (p. 45 printed). The same two articles stood in the CCNL of 20 February 2010."
           }
         }
       ]
@@ -1796,7 +1816,7 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/",
     "verification_status": "unverified",
-    "source_hash": "985ffd6c750964a997c4d21c63af170200ba0ad83a4e45c11da36f4bcae146b3",
+    "source_hash": "106868004337f6b22c2ac90d0bbb983b2c8548a9a8f4a769f0a9be22c05c8cfc",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

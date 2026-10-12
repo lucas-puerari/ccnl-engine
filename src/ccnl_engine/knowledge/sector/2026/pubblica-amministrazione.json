@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "D.P.R. 917/1986 (TUIR) artt. 11 and 13; D.L. 3/2020 art. 1; L. 207/2024 art. 1 c. 6; L. 199/2025 art. 1; c.c. art. 2120",
     "verification_status": "unverified",
-    "source_hash": "ea6a6c117e1ef24cb6b4f91c8a02c2cb77fa0022a0e1769df924c897f841fa42",
+    "source_hash": "6a3c96173a0ea52b5288be3df917e1b6b384dbd28f40d285b74fcb989b12e44b",
     "source_type": "official_primary"
   },
   "irpef_brackets": [
@@ -243,36 +243,58 @@
     }
   },
   "fixed_term_additional_rate_provenance": {
-    "status": "derived",
+    "status": "verified",
     "location": {
       "source_document": {
         "document_id": "l-92-2012",
         "title": "L. 28 giugno 2012 n. 92",
         "kind": "legge",
-        "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2012-06-28;92~art2!vig=2026-10-07"
+        "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2012-06-28;92~art2!vig=2026-10-07",
+        "sha256": "948bbe2857065219111f67615820dfdb3fb018c0c609304482e9fd6b29b373b7"
       },
       "section": "art. 2 c. 29 lett. d)",
       "quote": "Il contributo addizionale di cui al comma 28 non si applica: [...] d) ai lavoratori dipendenti delle pubbliche amministrazioni di cui all'articolo 1, comma 2, del decreto legislativo 30 marzo 2001, n. 165"
     },
     "transformation": "fixed_term_additional_rate and fixed_term_renewal_increment: 0, the surcharge of c. 28 and its renewal increase are not charged to the public administrations of art. 1 c. 2 D.Lgs. 165/2001, which the CCNLs of this sector bind.",
-    "note": "Normattiva text of L. 92/2012 art. 2 read on 2026-10-07 (in force on that date, last amending act published 2026-03-23). Not checked by a named reviewer."
+    "note": "Normattiva text of L. 92/2012 art. 2 read on 2026-10-07 (in force on that date, last amending act published 2026-03-23). Not checked by a named reviewer. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026.",
+    "extraction": {
+      "method": "ai",
+      "model": "claude-opus-5-5",
+      "extraction_timestamp": "2026-10-12T20:00:00Z",
+      "effective_from": "2026-01-01",
+      "effective_until": "2026-12-31",
+      "verified_by": "claude-opus-5-5",
+      "verified_at": "2026-10-12T20:00:00Z",
+      "verification_status": "verified"
+    }
   },
   "complementary_pension": {
     "deduction_cap": "5300.00",
     "solidarity_rate": "0.10",
     "provenance": {
-      "status": "derived",
+      "status": "verified",
       "location": {
         "source_document": {
           "document_id": "dlgs-252-2005",
           "title": "D.Lgs. 252/2005, disciplina delle forme pensionistiche complementari",
           "kind": "legge",
-          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2005-12-05;252~art8"
+          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2005-12-05;252~art8!vig=2026-10-12",
+          "sha256": "112e419bb7faa5dd93fc6a614ee7194e99e0d442453c25bc500b93ace5ae0b9b"
         },
         "section": "art. 8 c. 4, last period (added by L. 199/2025 art. 1 c. 201 lett. a) n. 1); art. 16 c. 1",
         "quote": "A decorrere dal periodo d'imposta 2026, il limite di cui al primo periodo è innalzato a euro 5.300."
       },
-      "note": "deduction_cap: art. 8 c. 4 D.Lgs. 252/2005, via art. 10 c. 1 lett. e-bis and art. 51 c. 2 lett. h TUIR; the TFR paid to the fund does not count. solidarity_rate: art. 16 c. 1 D.Lgs. 252/2005, the 10% contribution of art. 9-bis D.L. 103/1991 (conv. L. 166/1991) on the employer contributions other than the TFR. Quote checked on 2026-09-27 against the Normattiva text of art. 8 in force from 1-1-2026 (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2005-12-05;252~art8), whitespace normalised and the '((' '))' amendment markers removed: identical; the sentence added by the Gazzetta Ufficiale text of L. 199/2025 art. 1 c. 201 lett. a) n. 1 (https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.codiceRedazionale=26A00149&art.dataPubblicazioneGazzetta=2026-01-21&art.flagTipoArticolo=0&art.idArticolo=1&art.idGruppo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.progressivo=3&art.versione=1) is the same except for the accent spelling (e' for è). Not checked by a named reviewer."
+      "note": "deduction_cap: art. 8 c. 4 D.Lgs. 252/2005, via art. 10 c. 1 lett. e-bis and art. 51 c. 2 lett. h TUIR; the TFR paid to the fund does not count. solidarity_rate: art. 16 c. 1 D.Lgs. 252/2005, the 10% contribution of art. 9-bis D.L. 103/1991 (conv. L. 166/1991) on the employer contributions other than the TFR. Quote checked on 2026-09-27 against the Normattiva text of art. 8 in force from 1-1-2026 (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2005-12-05;252~art8), whitespace normalised and the '((' '))' amendment markers removed: identical; the sentence added by the Gazzetta Ufficiale text of L. 199/2025 art. 1 c. 201 lett. a) n. 1 (https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.codiceRedazionale=26A00149&art.dataPubblicazioneGazzetta=2026-01-21&art.flagTipoArticolo=0&art.idArticolo=1&art.idGruppo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.progressivo=3&art.versione=1) is the same except for the accent spelling (e' for è). Not checked by a named reviewer. Verified on 2026-10-12 by an AI review: the page was fetched again (sha256 recorded), the quote found in it and every stored value checked against the text in force for 2026.",
+      "extraction": {
+        "method": "ai",
+        "model": "claude-opus-5-5",
+        "extraction_timestamp": "2026-10-12T20:00:00Z",
+        "effective_from": "2026-01-01",
+        "effective_until": "2026-12-31",
+        "verified_by": "claude-opus-5-5",
+        "verified_at": "2026-10-12T20:00:00Z",
+        "verification_status": "verified"
+      }
     }
   }
 }
