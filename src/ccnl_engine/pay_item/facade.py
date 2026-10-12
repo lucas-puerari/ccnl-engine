@@ -27,6 +27,7 @@ from ccnl_engine.pay_item.models import (
     TerminationItem,
     TfrAccrualItem,
     TfrSettlementItem,
+    TravelAllowanceItem,
     WelfareItem,
     WorkInjuryItem,
 )
@@ -74,6 +75,7 @@ __all__ = [
     "TfrAccrualItem",
     "TfrSettlementItem",
     "TfrTreatment",
+    "TravelAllowanceItem",
     "WelfareItem",
     "WorkInjuryItem",
 ]

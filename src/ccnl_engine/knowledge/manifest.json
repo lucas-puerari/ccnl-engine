@@ -2973,7 +2973,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "tax/variable-pay-rules/2026",
       "ruleset_version": "2026.1",
-      "source_hash": "6dd25f81a3ca6a43b493faf9a5836c48572911bab081eea1b70dfc99a3c74351",
+      "source_hash": "eb13cb287e0943107facc01966155b04130684d50cac0387ed6f6350026b5999",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "variable_pay/2026.json.gz"
@@ -2990,7 +2990,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "tax/variable-pay-rules/2027",
       "ruleset_version": "2026.1",
-      "source_hash": "3c9abde7254b73183a341af401388e3e6fe72cbd9611e80503faf750c31f1bfb",
+      "source_hash": "e76dc8ed793e0af077330121203e1fa3247235d732b501b90c8e9364b0286680",
       "source_type": "estimated",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "variable_pay/2027.json.gz"

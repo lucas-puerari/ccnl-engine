@@ -196,6 +196,9 @@ def tax_rules(ctx: RunContext) -> dict[str, tuple[Rule, ...]]:
             (f"{var_name}:fringe_benefit", var.fringe_benefit.provenance),
         ),
         "bonus_pdr": ((f"{var_name}:pdr", var.pdr.provenance),),
+        "travel_allowance": (
+            (f"{var_name}:travel_allowance", var.travel_allowance.provenance),
+        ),
         "rinnovo_substitute_tax": ((f"{var_name}:rinnovo", var.rinnovo.source_status),),
         "notte_festivi_turni_substitute_tax": (
             (

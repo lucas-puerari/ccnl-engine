@@ -18,6 +18,7 @@ from ccnl_engine.event.facade import (
     SickLeaveEvent,
     SicknessEpisode,
     TerminationTFREvent,
+    TravelAllowanceEvent,
     WelfareEvent,
 )
 from ccnl_engine.pay_item.services import _ZERO
@@ -48,6 +49,7 @@ EVENT_FEATURES: dict[type, str] = {
     SickLeaveEvent: "sickness",
     SicknessEpisode: "sickness",
     FringeEvent: "fringe_benefit",
+    TravelAllowanceEvent: "travel_allowance",
     WelfareEvent: "welfare",
     ArrearsEvent: "contract_renewal_arrears",
     BilateralFundEvent: "bilateral_funds",

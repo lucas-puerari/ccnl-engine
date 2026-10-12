@@ -9,10 +9,12 @@ from typing import TYPE_CHECKING, Literal
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.run.types import PeriodId
 from ccnl_engine.validators import (
+    require_bool,
     require_choice,
     require_date,
     require_decimal,
     require_instance,
+    require_int,
 )
 
 if TYPE_CHECKING:
@@ -21,6 +23,7 @@ if TYPE_CHECKING:
 _ZERO = Decimal(0)
 _ONE = Decimal(1)
 _BONUS_KINDS = ("bonus", "productivity_bonus", "contract_renewal")
+_MEALS_LODGING = ("none", "one", "both")
 
 
 def _check_amount(event_date: object, amount: object, event: str, feature: str) -> None:
@@ -34,6 +37,7 @@ __all__ = [
     "BilateralFundEvent",
     "BonusEvent",
     "FringeEvent",
+    "TravelAllowanceEvent",
     "WelfareEvent",
 ]
 
@@ -197,3 +201,65 @@ class BilateralFundEvent:
                 feature=feature,
                 minimum=_ZERO,
             )
+
+
+@dataclass(frozen=True)
+class TravelAllowanceEvent:
+    """Daily travel allowance (indennità di trasferta) of a block of days.
+
+    The allowance outside the comune is income only above the daily cap of
+    art. 51 c. 5 TUIR, for IRPEF and INPS alike (art. 12 c. 2 L. 153/1969);
+    within the comune it is income in full.  One event covers days with the
+    same daily amount and the same conditions.  Analytic reimbursements and
+    travel costs are not pay and are not events.
+
+    Attributes:
+        event_date: Date the block of days is attributed to.
+        days: Days of trasferta, at least 1.
+        daily_amount: Allowance paid for each day in EUR.  Must be > 0.
+        outside_municipality: Whether the trasferta is outside the comune of
+            the place of work: within it no part is exempt.
+        in_tfr_base: Whether the allowance enters the TFR base.  Art. 2120
+            c.c. lets the CCNL decide, so the caller states it.
+        abroad: Whether the trasferta is abroad, with the higher cap.
+        meals_lodging: ``"one"`` when meals or lodging are reimbursed or
+            provided free, ``"both"`` when both are, ``"none"`` otherwise:
+            the cap is reduced by one third or by two thirds.
+        trasfertista: Whether the worker is bound by contract to work in
+            places always different (art. 51 c. 6 TUIR, 50% exempt):
+            not supported, the event is rejected.
+
+    Raises:
+        InvalidInputError: When a field is invalid or ``trasfertista`` is
+            ``True``.
+    """
+
+    event_date: date
+    days: int
+    daily_amount: Decimal
+    outside_municipality: bool
+    in_tfr_base: bool
+    abroad: bool = False
+    meals_lodging: Literal["none", "one", "both"] = "none"
+    trasfertista: bool = False
+
+    def __post_init__(self) -> None:  # noqa: D105
+        feature = "travel_allowance"
+        name = "TravelAllowanceEvent"
+        require_date(self.event_date, f"{name}.event_date", feature=feature)
+        require_int(self.days, f"{name}.days", feature=feature, minimum=1, maximum=31)
+        require_decimal(
+            self.daily_amount, f"{name}.daily_amount", feature=feature, positive=True
+        )
+        for flag in ("outside_municipality", "in_tfr_base", "abroad", "trasfertista"):
+            require_bool(getattr(self, flag), f"{name}.{flag}", feature=feature)
+        require_choice(
+            self.meals_lodging, _MEALS_LODGING, f"{name}.meals_lodging", feature=feature
+        )
+        if self.trasfertista:
+            msg = (
+                "TravelAllowanceEvent.trasfertista: the allowance of a worker "
+                "bound to always different places is 50% income (art. 51 c. 6 "
+                "TUIR), not supported; pass it as a bonus with its taxable half"
+            )
+            raise InvalidInputError(msg, field=f"{name}.trasfertista", feature=feature)

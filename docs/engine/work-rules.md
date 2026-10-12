@@ -35,6 +35,7 @@ amounts are `Decimal` values in EUR, validated on construction.
 | `SickLeaveEvent` | `amount`, `sick_days`, `waiting_period_days` | Sick pay the caller computed: an override of the engine, never payable; INPS and IRPEF, no TFR |
 | `FringeEvent` | `amount` | Fringe benefit (art. 51 c. 3 TUIR); exempt while the year total stays within the threshold, then the whole year total is taxable; see [Fringe benefits](#fringe-benefits) |
 | `WelfareEvent` | `amount` | Welfare benefit; exempt from INPS and IRPEF, no TFR |
+| `TravelAllowanceEvent` | `days`, `daily_amount`, `outside_municipality`, `in_tfr_base`, `abroad`, `meals_lodging` | Daily travel allowance (indennità di trasferta), paid in cash; outside the comune exempt from IRPEF and INPS up to 46.48 a day (77.47 abroad), reduced by one third or two thirds when meals or lodging are reimbursed or provided (art. 51 c. 5 TUIR, art. 12 c. 2 L. 153/1969); within the comune income in full; TFR as the CCNL sets, stated on the event; a `trasfertista` (art. 51 c. 6) is rejected |
 | `BonusEvent` | `amount`, `kind`, `agreement_signed_on` | One-off bonus; `kind` selects ordinary IRPEF, the PdR regime or the renewal regime |
 | `BilateralFundEvent` | `employee_amount`, `employer_amount` | Bilateral or health fund contribution; see [Pay components](pay-components.md#bilateral-funds-fondi-bilaterali) |
 | `ArrearsEvent` | `amount`, `separate_tax_rate`, `reference_period` | Renewal arrears; see [Renewal arrears](#renewal-arrears) |

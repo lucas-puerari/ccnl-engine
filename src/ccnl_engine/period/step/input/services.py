@@ -95,6 +95,7 @@ def variable_events(
             ctx.contract.ccnl, ctx.contract.tctx.competence.year
         ),
         sickness=sickness_terms(ctx),
+        travel_allowance=var_pay.travel_allowance,
     )
 
 

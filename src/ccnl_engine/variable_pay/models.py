@@ -63,6 +63,55 @@ class PdRRules(BaseModel):
     provenance: RuleProvenance | None = None
 
 
+class TravelAllowanceCaps(BaseModel):
+    """Daily amounts of a travel allowance left out of the income.
+
+    Attributes:
+        none: Cap when neither meals nor lodging are reimbursed or provided.
+        one: Cap reduced by one third, when meals or lodging are.
+        both: Cap reduced by two thirds, when both are.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    none: Decimal = Field(gt=Decimal(0))
+    one: Decimal = Field(gt=Decimal(0))
+    both: Decimal = Field(gt=Decimal(0))
+
+
+class TravelAllowanceRules(BaseModel):
+    """Exempt part of the travel allowance (indennità di trasferta).
+
+    Art. 51 c. 5 TUIR: the allowance of a trasferta outside the comune is
+    income for the part above a daily cap, reduced by one third when meals
+    or lodging are reimbursed or provided and by two thirds when both are;
+    within the comune it is income in full.  The contribution base follows
+    (art. 12 c. 2 L. 153/1969).
+
+    Attributes:
+        italy: Daily caps of a trasferta in Italy.
+        abroad: Daily caps of a trasferta abroad.
+        ruleset: Ruleset the caps belong to.
+        provenance: Source and status of the caps.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    italy: TravelAllowanceCaps
+    abroad: TravelAllowanceCaps
+    ruleset: RulesetIdentity | None = None
+    provenance: RuleProvenance | None = None
+
+    def cap(self, *, abroad: bool, meals_lodging: str) -> Decimal:
+        """Return the exempt daily cap of a trasferta outside the comune.
+
+        Returns:
+            The cap of the place, reduced as ``meals_lodging`` says.
+        """
+        caps = self.abroad if abroad else self.italy
+        return {"none": caps.none, "one": caps.one, "both": caps.both}[meals_lodging]
+
+
 class VariablePayRules(BaseModel):
     """Container for all statutory variable-pay rules for a fiscal year.
 
@@ -75,6 +124,8 @@ class VariablePayRules(BaseModel):
             signing window.
         notte_festivi_turni: Substitute-tax regime for night, holiday and
             rest-day, and shift supplements (L. 199/2025 art. 1 cc. 10-11).
+        travel_allowance: Exempt daily caps of the travel allowance (art.
+            51 c. 5 TUIR).
         ruleset: Provenance of the statutory source.
     """
 
@@ -86,4 +137,5 @@ class VariablePayRules(BaseModel):
     pdr: PdRRules
     rinnovo: PreferentialTaxRegime
     notte_festivi_turni: PreferentialTaxRegime
+    travel_allowance: TravelAllowanceRules
     ruleset: RulesetIdentity | None = None

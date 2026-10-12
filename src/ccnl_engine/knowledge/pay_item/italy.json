@@ -19,7 +19,10 @@
   {
     "policy_id": "it/earning/supplement",
     "policy_version": "2026.1",
-    "kinds": ["overtime_earning", "night_holiday_shift_earning"],
+    "kinds": [
+      "overtime_earning",
+      "night_holiday_shift_earning"
+    ],
     "effective_from": "2000-01-01",
     "effective_until": null,
     "tax": "ordinary",
@@ -31,7 +34,9 @@
   {
     "policy_id": "it/deduction/absence",
     "policy_version": "2026.1",
-    "kinds": ["absence_deduction"],
+    "kinds": [
+      "absence_deduction"
+    ],
     "effective_from": "2000-01-01",
     "effective_until": null,
     "tax": "ordinary",
@@ -43,7 +48,9 @@
   {
     "policy_id": "it/earning/variable",
     "policy_version": "2026.1",
-    "kinds": ["bonus_earning"],
+    "kinds": [
+      "bonus_earning"
+    ],
     "effective_from": "2000-01-01",
     "effective_until": null,
     "tax": "ordinary",
@@ -55,7 +62,9 @@
   {
     "policy_id": "it/earning/raccordo_element",
     "policy_version": "2026.1",
-    "kinds": ["raccordo_element_earning"],
+    "kinds": [
+      "raccordo_element_earning"
+    ],
     "effective_from": "2021-01-01",
     "effective_until": null,
     "tax": "ordinary",
@@ -67,7 +76,9 @@
   {
     "policy_id": "it/deduction/public_tfr_reduction",
     "policy_version": "2026.1",
-    "kinds": ["public_tfr_reduction"],
+    "kinds": [
+      "public_tfr_reduction"
+    ],
     "effective_from": "2000-01-01",
     "effective_until": null,
     "tax": "ordinary",
@@ -79,7 +90,9 @@
   {
     "policy_id": "it/earning/arrears",
     "policy_version": "2026.1",
-    "kinds": ["contract_renewal_arrears"],
+    "kinds": [
+      "contract_renewal_arrears"
+    ],
     "effective_from": "2000-01-01",
     "effective_until": null,
     "tax": "unknown",
@@ -91,7 +104,9 @@
   {
     "policy_id": "it/earning/productivity_bonus",
     "policy_version": "2026.1",
-    "kinds": ["productivity_bonus_earning"],
+    "kinds": [
+      "productivity_bonus_earning"
+    ],
     "effective_from": "2000-01-01",
     "effective_until": null,
     "tax": "substitute",
@@ -103,7 +118,9 @@
   {
     "policy_id": "it/earning/contract_renewal",
     "policy_version": "2026.1",
-    "kinds": ["contract_renewal_earning"],
+    "kinds": [
+      "contract_renewal_earning"
+    ],
     "effective_from": "2000-01-01",
     "effective_until": null,
     "tax": "substitute",
@@ -115,7 +132,9 @@
   {
     "policy_id": "it/benefit/fringe",
     "policy_version": "2026.1",
-    "kinds": ["fringe_benefit_item"],
+    "kinds": [
+      "fringe_benefit_item"
+    ],
     "effective_from": "2000-01-01",
     "effective_until": null,
     "tax": "non_cash_taxable",
@@ -127,7 +146,9 @@
   {
     "policy_id": "it/benefit/welfare",
     "policy_version": "2026.1",
-    "kinds": ["welfare_item"],
+    "kinds": [
+      "welfare_item"
+    ],
     "effective_from": "2000-01-01",
     "effective_until": null,
     "tax": "exempt",
@@ -137,9 +158,25 @@
     "legal_basis": "Art. 51 c.2 TUIR"
   },
   {
+    "policy_id": "it/earning/travel_allowance",
+    "policy_version": "2026.1",
+    "kinds": [
+      "travel_allowance_item"
+    ],
+    "effective_from": "2000-01-01",
+    "effective_until": null,
+    "tax": "ordinary",
+    "contribution": "capped",
+    "tfr": "special",
+    "cost": "employee_cash",
+    "legal_basis": "Art. 51 c. 5 TUIR; art. 12 c. 2 L. 153/1969: income above the daily cap; TFR as the CCNL sets (art. 2120 c.c.), stated on the event"
+  },
+  {
     "policy_id": "it/tfr/accrual",
     "policy_version": "2026.1",
-    "kinds": ["tfr_accrual_item"],
+    "kinds": [
+      "tfr_accrual_item"
+    ],
     "effective_from": "2000-01-01",
     "effective_until": null,
     "tax": "not_applicable",
@@ -151,7 +188,9 @@
   {
     "policy_id": "it/tfr/settlement",
     "policy_version": "2026.1",
-    "kinds": ["tfr_settlement_item"],
+    "kinds": [
+      "tfr_settlement_item"
+    ],
     "effective_from": "2000-01-01",
     "effective_until": null,
     "tax": "separate",
@@ -163,7 +202,9 @@
   {
     "policy_id": "it/contribution/employee",
     "policy_version": "2026.1",
-    "kinds": ["employee_withholding_item"],
+    "kinds": [
+      "employee_withholding_item"
+    ],
     "effective_from": "2000-01-01",
     "effective_until": null,
     "tax": "not_applicable",
@@ -175,7 +216,9 @@
   {
     "policy_id": "it/contribution/employer",
     "policy_version": "2026.1",
-    "kinds": ["employer_contribution_item"],
+    "kinds": [
+      "employer_contribution_item"
+    ],
     "effective_from": "2000-01-01",
     "effective_until": null,
     "tax": "not_applicable",
@@ -187,7 +230,9 @@
   {
     "policy_id": "it/earning/extra_month",
     "policy_version": "2026.1",
-    "kinds": ["extra_month_earning"],
+    "kinds": [
+      "extra_month_earning"
+    ],
     "effective_from": "2000-01-01",
     "effective_until": null,
     "tax": "ordinary",
@@ -199,7 +244,9 @@
   {
     "policy_id": "it/indemnity/sickness",
     "policy_version": "2026.1",
-    "kinds": ["sickness_item"],
+    "kinds": [
+      "sickness_item"
+    ],
     "effective_from": "2000-01-01",
     "effective_until": null,
     "tax": "ordinary",
@@ -211,7 +258,9 @@
   {
     "policy_id": "it/indemnity/sickness_inps",
     "policy_version": "2026.1",
-    "kinds": ["sickness_inps_item"],
+    "kinds": [
+      "sickness_inps_item"
+    ],
     "effective_from": "2000-01-01",
     "effective_until": null,
     "tax": "ordinary",
@@ -223,7 +272,9 @@
   {
     "policy_id": "it/indemnity/maternity",
     "policy_version": "2026.1",
-    "kinds": ["maternity_item"],
+    "kinds": [
+      "maternity_item"
+    ],
     "effective_from": "2000-01-01",
     "effective_until": null,
     "tax": "ordinary",
@@ -235,7 +286,9 @@
   {
     "policy_id": "it/indemnity/work_injury",
     "policy_version": "2026.1",
-    "kinds": ["work_injury_item"],
+    "kinds": [
+      "work_injury_item"
+    ],
     "effective_from": "2000-01-01",
     "effective_until": null,
     "tax": "ordinary",
@@ -247,7 +300,9 @@
   {
     "policy_id": "it/tax/credit",
     "policy_version": "2026.1",
-    "kinds": ["tax_credit_item"],
+    "kinds": [
+      "tax_credit_item"
+    ],
     "effective_from": "2000-01-01",
     "effective_until": null,
     "tax": "not_applicable",
@@ -259,7 +314,9 @@
   {
     "policy_id": "it/tax/refund",
     "policy_version": "2026.1",
-    "kinds": ["tax_refund_item"],
+    "kinds": [
+      "tax_refund_item"
+    ],
     "effective_from": "2000-01-01",
     "effective_until": null,
     "tax": "not_applicable",
@@ -271,7 +328,9 @@
   {
     "policy_id": "it/deduction/termination",
     "policy_version": "2026.1",
-    "kinds": ["termination_item"],
+    "kinds": [
+      "termination_item"
+    ],
     "effective_from": "2000-01-01",
     "effective_until": null,
     "tax": "ordinary",
@@ -283,7 +342,9 @@
   {
     "policy_id": "it/leave/settlement",
     "policy_version": "2026.1",
-    "kinds": ["leave_settlement_item"],
+    "kinds": [
+      "leave_settlement_item"
+    ],
     "effective_from": "2000-01-01",
     "effective_until": null,
     "tax": "ordinary",

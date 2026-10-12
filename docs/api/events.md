@@ -32,6 +32,8 @@ gross, net and employer cost according to its treatment; see
 
 ::: ccnl_engine.events.TerminationTFREvent
 
+::: ccnl_engine.events.TravelAllowanceEvent
+
 ::: ccnl_engine.events.WelfareEvent
 
 ::: ccnl_engine.events.WorkEvent

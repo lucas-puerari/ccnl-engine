@@ -13,6 +13,7 @@ from ccnl_engine.variable_pay.inputs import (
     BilateralFundEvent,
     BonusEvent,
     FringeEvent,
+    TravelAllowanceEvent,
     WelfareEvent,
 )
 from ccnl_engine.working_time.inputs import (
@@ -34,6 +35,7 @@ WorkEvent = (
     | SicknessEpisode
     | BonusEvent
     | FringeEvent
+    | TravelAllowanceEvent
     | WelfareEvent
     | ArrearsEvent
     | BilateralFundEvent
@@ -51,6 +53,7 @@ WORK_EVENT_TYPES: tuple[type[WorkEvent], ...] = (
     SicknessEpisode,
     BonusEvent,
     FringeEvent,
+    TravelAllowanceEvent,
     WelfareEvent,
     ArrearsEvent,
     BilateralFundEvent,

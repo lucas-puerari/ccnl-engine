@@ -161,6 +161,20 @@ class FringeBenefitItem(_PayItemBase):
     taxable_amount: Decimal = Field(default=Decimal(0), ge=Decimal(0))
 
 
+class TravelAllowanceItem(_PayItemBase):
+    """Travel allowance (indennità di trasferta), paid in cash.
+
+    Attributes:
+        exempt_amount: Part left out of the IRPEF and INPS bases (art. 51
+            c. 5 TUIR): the days times the daily amount up to the cap.
+        taxable_amount: Part above the cap, income for IRPEF and INPS.
+    """
+
+    kind: Literal["travel_allowance_item"] = "travel_allowance_item"
+    exempt_amount: Decimal = Field(default=Decimal(0), ge=Decimal(0))
+    taxable_amount: Decimal = Field(default=Decimal(0), ge=Decimal(0))
+
+
 class WelfareItem(_PayItemBase):
     """Welfare / flexible benefit (buoni pasto, rimborsi welfare)."""
 
@@ -262,6 +276,7 @@ PayItem = Annotated[
     | RaccordoElementEarning
     | PublicTfrReduction
     | FringeBenefitItem
+    | TravelAllowanceItem
     | WelfareItem
     | AbsenceDeduction
     | LeaveSettlementItem

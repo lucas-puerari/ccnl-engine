@@ -14,6 +14,7 @@ from ccnl_engine.sector.raw.loaders import (
 from ccnl_engine.variable_pay.models import (
     FringeBenefitRules,
     PdRRules,
+    TravelAllowanceRules,
     VariablePayRules,
 )
 
@@ -73,6 +74,10 @@ def load_variable_pay_rules(year: int) -> VariablePayRules:
         }),
         notte_festivi_turni=PreferentialTaxRegime.model_validate({
             **{k: v for k, v in work_time_raw.items() if k != "description"},
+            "ruleset": _as_ruleset(raw),
+        }),
+        travel_allowance=TravelAllowanceRules.model_validate({
+            **{k: v for k, v in raw["travel_allowance"].items() if k != "description"},
             "ruleset": _as_ruleset(raw),
         }),
         ruleset=_as_ruleset(raw),
