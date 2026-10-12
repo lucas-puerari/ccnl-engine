@@ -128,7 +128,7 @@ def test_days_past_the_122nd_are_paid_at_80_percent() -> None:
     }
     (inputs,) = _decisions(may)
     assert inputs["chain_days"] == Decimal(147)
-    assert "sickness_hospital_stay_not_modelled" in _codes(may)
+    assert "sickness_hospital_stays_unknown" in _codes(may)
 
 
 def _august(start: date) -> PeriodResult:

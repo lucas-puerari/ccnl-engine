@@ -346,6 +346,21 @@ def _sickness_import(known_from: date | None) -> PeriodInput:
     return _march(opening, episode)
 
 
+def _long_sickness(stays: tuple[tuple[date, date], ...] | None) -> PeriodInput:
+    """Return March 2026 of an episode past the 122 full-pay days of C3.
+
+    The episode starts on 1 November 2025: from 3 March the days are paid
+    at 80%, which a hospital stay could change.
+
+    Returns:
+        The March run, the stays given.
+    """
+    episode = SicknessEpisode(
+        "LONG", date(2025, 11, 1), date(2026, 3, 20), hospital_stays=stays
+    )
+    return _march(PeriodState.zero(), episode)
+
+
 def _fixed_term_sickness(worked: int | None) -> PeriodInput:
     """Return a five-day episode of a fixed-term worker, its days of work given.
 
@@ -378,6 +393,13 @@ def sickness_cases[C](
                 _short_absences(False),
                 _short_absences(None),
                 "short_absence_exempt",
+            ),
+        ),
+        "SicknessEpisode.hospital_stays": (
+            case(
+                _long_sickness(()),
+                _long_sickness(None),
+                "hospital_stays",
             ),
         ),
         "SicknessEpisode.prior_worked_days": (

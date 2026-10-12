@@ -78,6 +78,14 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "an ordinary trasferta; a worker bound to always different places "
         "is a fact of the contract"
     ),
+    "SicknessEpisode.hospital_stays": requires_fact(
+        "sickness",
+        "event.hospital_stays",
+        FactEnforcement.REPORTED,
+        "unknown hospital stays: the reduced days of a CCNL that pays long "
+        "stays in full are paid reduced, with a provisional "
+        "sickness_hospital_stays_unknown issue",
+    ),
     "SicknessEpisode.prior_worked_days": requires_fact(
         "sickness",
         "event.prior_worked_days",

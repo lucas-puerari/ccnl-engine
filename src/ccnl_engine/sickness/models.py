@@ -53,6 +53,9 @@ class SicknessEpisode:
             when not stated.  Read only by a CCNL that reduces short
             absences or the carenza by event, when the reduction could
             apply.
+        hospital_stays: Hospital stays within the episode, each its first
+            and last day; ``()`` for none, ``None`` when not stated.  Read
+            only by a CCNL that pays long stays in full.
         prior_worked_days: Days of work activity of a fixed-term worker in
             the 12 months before the episode, with every employer (D.L.
             463/1983 art. 5 c. 1); ``None`` when not stated.  Read only for
@@ -71,6 +74,7 @@ class SicknessEpisode:
     relapse_of: str | None = None
     short_absence_exempt: bool | None = None
     prior_worked_days: int | None = None
+    hospital_stays: tuple[tuple[date, date], ...] | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         require_str(
@@ -99,6 +103,17 @@ class SicknessEpisode:
             maximum=366,
             optional=True,
         )
+        for first, last in self.hospital_stays or ():
+            require_date(first, f"{_OWNER}.hospital_stays", feature=_FEATURE)
+            require_date(last, f"{_OWNER}.hospital_stays", feature=_FEATURE)
+            if not self.started_on <= first <= last <= self.ended_on:
+                msg = (
+                    f"{_OWNER}.hospital_stays: the stay {first} - {last} must lie "
+                    f"within the episode {self.started_on} - {self.ended_on}"
+                )
+                raise InvalidInputError(
+                    msg, field=f"{_OWNER}.hospital_stays", feature=_FEATURE
+                )
         if self.ended_on < self.started_on:
             msg = (
                 f"{_OWNER}.ended_on ({self.ended_on}) must not precede "
@@ -108,6 +123,24 @@ class SicknessEpisode:
         if self.relapse_of == self.episode_id:
             msg = f"{_OWNER} '{self.episode_id}' cannot be a relapse of itself"
             raise InvalidInputError(msg, field=f"{_OWNER}.relapse_of", feature=_FEATURE)
+
+    def long_stay_days(self, more_than: int, day: date) -> int:
+        """Return the days up to ``day`` of the stays longer than ``more_than``.
+
+        Returns:
+            The days from the start of each such stay to ``day``, the stay
+            of ``day`` included; zero when ``day`` is in no such stay.
+        """
+        stays = [
+            (first, last)
+            for first, last in self.hospital_stays or ()
+            if (last - first).days + 1 > more_than
+        ]
+        if not any(first <= day <= last for first, last in stays):
+            return 0
+        return sum(
+            (min(last, day) - first).days + 1 for first, last in stays if first <= day
+        )
 
     @property
     def event_date(self) -> date:
