@@ -149,6 +149,14 @@
           },
           "remediation": "Add a fact for an oncological sickness episode and lengthen its comporto by 50%."
         }
+      },
+      {
+        "kind": "info",
+        "text": "INPS BAND: the band of up to 24 weekly hours is chosen on the paga oraria effettiva of INPS (circ. 9/2026; INPS page Contributi e agevolazioni fiscali per chi assume un lavoratore domestico): the monthly pay with board and lodging over the hours of the employment (weekly hours x 52 / 12), raised by the tredicesima (x 13 / 12)."
+      },
+      {
+        "kind": "info",
+        "text": "NIGHT WORK (Art. 14 c. 6): ordinary work between 22.00 and 6.00 is paid with a 20% supplement of the hourly retribuzione globale di fatto; the engine takes its amount as a NightShiftEvent stated by the caller. The overtime bands are those of Art. 15 c. 3 (25% by day, 50% by night, 60% on a holiday or Sunday); night overtime on a holiday has no band of its own and a run that states it is rejected."
       }
     ]
   },
@@ -160,24 +168,29 @@
           "valid_until": null,
           "value": "173.33",
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "ccnl-lavoro-domestico-2025-10-28",
                 "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
                 "kind": "associazione",
-                "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf"
+                "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                "published_on": "2025-10-28",
+                "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
               },
-              "page": "26, 58",
-              "section": "Art. 14 c. 1 lett. b (40 ore settimanali per i non conviventi); chiarimento a verbale 1 (retribuzione mensile = paga oraria x ore settimanali x 52 / 12)"
+              "page": "24, 56",
+              "section": "Art. 14 c. 1 lett. b (40 ore settimanali per i non conviventi); chiarimento a verbale 1 (retribuzione mensile = paga oraria x ore settimanali x 52 / 12)",
+              "quote": "8 ore giornaliere, non consecutive, per un totale di 40 ore settimanali,"
             },
             "extraction": {
               "method": "manual",
               "extraction_timestamp": "2026-10-07T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2025-11-01"
-            },
-            "transformation": "40 x 52 / 12 = 173.333 monthly hours, to the cent 173.33"
+              "verification_status": "verified",
+              "effective_from": "2025-11-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T15:00:00Z",
+              "review_id": "2026-10-12-ai"
+            }
           }
         }
       ]
@@ -189,22 +202,28 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "ccnl-lavoro-domestico-2025-10-28",
                 "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
                 "kind": "associazione",
-                "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf"
+                "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                "published_on": "2025-10-28",
+                "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
               },
-              "page": "47",
-              "section": "Art. 39 c. 1 (tredicesima mensilita entro il mese di dicembre)"
+              "page": "45",
+              "section": "Art. 39 c. 1 (tredicesima mensilità)",
+              "quote": "spetta al lavoratore una mensilità aggiuntiva, pari alla retribu- zione globale di fatto"
             },
             "extraction": {
               "method": "manual",
               "extraction_timestamp": "2026-10-07T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2025-11-01"
+              "verification_status": "verified",
+              "effective_from": "2025-11-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T15:00:00Z",
+              "review_id": "2026-10-12-ai"
             }
           }
         }
@@ -288,23 +307,30 @@
         }
       },
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "tabella-minimi-retributivi-2026-pdf",
-            "title": "tabella-minimi-retributivi-2026-pdf",
-            "kind": "tabella_retributiva",
-            "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
+            "document_id": "ccnl-lavoro-domestico-2025-10-28",
+            "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+            "kind": "associazione",
+            "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+            "published_on": "2025-10-28",
+            "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
           },
-          "section": "Scatti di anzianità"
+          "page": "44",
+          "section": "Art. 37 cc. 1, 3 (scatti di anzianità: 4% per biennio, massimo 7)",
+          "quote": "biennio di servizio presso lo stesso datore di lavoro, un aumen- to del 4% sulla retribuzione minima contrattuale."
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "verification_status": "verified",
+          "effective_from": "2020-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T15:00:00Z",
+          "review_id": "2026-10-12-ai"
         },
-        "transformation": "4% of the monthly minimum of each level (Art. 37 c. 1), the monthly minimum being Tabella C hourly x 40 x 52 / 12"
+        "transformation": "Each amount is 4% of the monthly minimum of its level, to the cent; the cadence is 24 months and the maximum 7 steps (c. 3: 'Il numero massimo degli scatti è fissato in 7')."
       }
     },
     "assistance_contribution": {
@@ -327,24 +353,59 @@
         ]
       },
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "ccnl-lavoro-domestico-2025-10-28",
             "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
             "kind": "associazione",
-            "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf"
+            "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+            "published_on": "2025-10-28",
+            "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
           },
-          "page": "56, 58",
-          "section": "Art. 54 c. 2 (contributi di assistenza contrattuale: euro 0,06 per ora, di cui 0,02 a carico del lavoratore); chiarimento a verbale 6 (dovuti dal 01/01/2021)"
+          "page": "54",
+          "section": "Art. 54 c. 2 (contributi di assistenza contrattuale)",
+          "quote": "nella misura oraria di euro 0,06 dei quali 0,02 a carico del lavoratore."
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-10-07T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2021-01-01"
+          "verification_status": "verified",
+          "effective_from": "2021-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T15:00:00Z",
+          "review_id": "2026-10-12-ai"
+        }
+      }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "at_least",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-lavoro-domestico-2025-10-28",
+            "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+            "kind": "associazione",
+            "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+            "published_on": "2025-10-28",
+            "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+          },
+          "page": "56",
+          "section": "Chiarimento a verbale 4 (frazioni di mese)",
+          "quote": "le frazioni di mese, quando raggiungono o superano i 15 giorni di ca- lendario, si computano a mese intero."
         },
-        "transformation": "employer share = 0.06 - 0.02 = 0.04 per paid hour"
+        "extraction": {
+          "method": "ai",
+          "extraction_timestamp": "2026-10-12T15:00:00Z",
+          "effective_from": "2025-11-01",
+          "model": "claude-opus-5-5",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T15:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-12-ai"
+        }
       }
     }
   },
@@ -360,23 +421,30 @@
             "valid_until": null,
             "value": "1128.40",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabella-minimi-retributivi-2026-pdf",
-                  "title": "tabella-minimi-retributivi-2026-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
+                  "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                  "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                  "kind": "associazione",
+                  "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                  "published_on": "2025-10-28",
+                  "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
                 },
-                "section": "Tabella retributiva"
+                "page": "59",
+                "section": "Tabella C (lavoratori non conviventi, valori orari), livello A: 1128.40 = paga oraria x 40 x 52 / 12",
+                "quote": "DECORRENZA 1° GENNAIO 2026"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T15:00:00Z",
+                "review_id": "2026-10-12-ai"
               },
-              "transformation": "Tabella C hourly 6.51 x 40 x 52 / 12 = 1128.40 (Art. 14 c. 1 lett. b and chiarimento a verbale 1, CCNL 28/10/2025)"
+              "transformation": "Hourly rate of Tabella C x 40 x 52 / 12 (Art. 14 c. 1 lett. b and chiarimento a verbale 1), to the cent."
             }
           }
         ]
@@ -384,21 +452,28 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "tabella-minimi-retributivi-2026-pdf",
-            "title": "tabella-minimi-retributivi-2026-pdf",
-            "kind": "tabella_retributiva",
-            "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
+            "document_id": "ccnl-lavoro-domestico-2025-10-28",
+            "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+            "kind": "associazione",
+            "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+            "published_on": "2025-10-28",
+            "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
           },
-          "section": "Livelli contrattuali"
+          "page": "59",
+          "section": "Tabella C, lavoratori non conviventi, valori orari, livelli",
+          "quote": "DECORRENZA 1° GENNAIO 2026"
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "verification_status": "verified",
+          "effective_from": "2020-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T15:00:00Z",
+          "review_id": "2026-10-12-ai"
         }
       }
     },
@@ -413,23 +488,30 @@
             "valid_until": null,
             "value": "1171.73",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabella-minimi-retributivi-2026-pdf",
-                  "title": "tabella-minimi-retributivi-2026-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
+                  "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                  "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                  "kind": "associazione",
+                  "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                  "published_on": "2025-10-28",
+                  "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
                 },
-                "section": "Tabella retributiva"
+                "page": "59",
+                "section": "Tabella C (lavoratori non conviventi, valori orari), livello AS: 1171.73 = paga oraria x 40 x 52 / 12",
+                "quote": "DECORRENZA 1° GENNAIO 2026"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T15:00:00Z",
+                "review_id": "2026-10-12-ai"
               },
-              "transformation": "Tabella C hourly 6.76 x 40 x 52 / 12 = 1171.73 (Art. 14 c. 1 lett. b and chiarimento a verbale 1, CCNL 28/10/2025)"
+              "transformation": "Hourly rate of Tabella C x 40 x 52 / 12 (Art. 14 c. 1 lett. b and chiarimento a verbale 1), to the cent."
             }
           }
         ]
@@ -437,21 +519,28 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "tabella-minimi-retributivi-2026-pdf",
-            "title": "tabella-minimi-retributivi-2026-pdf",
-            "kind": "tabella_retributiva",
-            "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
+            "document_id": "ccnl-lavoro-domestico-2025-10-28",
+            "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+            "kind": "associazione",
+            "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+            "published_on": "2025-10-28",
+            "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
           },
-          "section": "Livelli contrattuali"
+          "page": "59",
+          "section": "Tabella C, lavoratori non conviventi, valori orari, livelli",
+          "quote": "DECORRENZA 1° GENNAIO 2026"
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "verification_status": "verified",
+          "effective_from": "2020-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T15:00:00Z",
+          "review_id": "2026-10-12-ai"
         }
       }
     },
@@ -466,23 +555,30 @@
             "valid_until": null,
             "value": "1215.07",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabella-minimi-retributivi-2026-pdf",
-                  "title": "tabella-minimi-retributivi-2026-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
+                  "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                  "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                  "kind": "associazione",
+                  "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                  "published_on": "2025-10-28",
+                  "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
                 },
-                "section": "Tabella retributiva"
+                "page": "59",
+                "section": "Tabella C (lavoratori non conviventi, valori orari), livello B: 1215.07 = paga oraria x 40 x 52 / 12",
+                "quote": "DECORRENZA 1° GENNAIO 2026"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T15:00:00Z",
+                "review_id": "2026-10-12-ai"
               },
-              "transformation": "Tabella C hourly 7.01 x 40 x 52 / 12 = 1215.07 (Art. 14 c. 1 lett. b and chiarimento a verbale 1, CCNL 28/10/2025)"
+              "transformation": "Hourly rate of Tabella C x 40 x 52 / 12 (Art. 14 c. 1 lett. b and chiarimento a verbale 1), to the cent."
             }
           }
         ]
@@ -490,21 +586,28 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "tabella-minimi-retributivi-2026-pdf",
-            "title": "tabella-minimi-retributivi-2026-pdf",
-            "kind": "tabella_retributiva",
-            "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
+            "document_id": "ccnl-lavoro-domestico-2025-10-28",
+            "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+            "kind": "associazione",
+            "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+            "published_on": "2025-10-28",
+            "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
           },
-          "section": "Livelli contrattuali"
+          "page": "59",
+          "section": "Tabella C, lavoratori non conviventi, valori orari, livelli",
+          "quote": "DECORRENZA 1° GENNAIO 2026"
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "verification_status": "verified",
+          "effective_from": "2020-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T15:00:00Z",
+          "review_id": "2026-10-12-ai"
         }
       }
     },
@@ -519,23 +622,30 @@
             "valid_until": null,
             "value": "1291.33",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabella-minimi-retributivi-2026-pdf",
-                  "title": "tabella-minimi-retributivi-2026-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
+                  "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                  "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                  "kind": "associazione",
+                  "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                  "published_on": "2025-10-28",
+                  "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
                 },
-                "section": "Tabella retributiva"
+                "page": "59",
+                "section": "Tabella C (lavoratori non conviventi, valori orari), livello BS: 1291.33 = paga oraria x 40 x 52 / 12",
+                "quote": "DECORRENZA 1° GENNAIO 2026"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T15:00:00Z",
+                "review_id": "2026-10-12-ai"
               },
-              "transformation": "Tabella C hourly 7.45 x 40 x 52 / 12 = 1291.33 (Art. 14 c. 1 lett. b and chiarimento a verbale 1, CCNL 28/10/2025)"
+              "transformation": "Hourly rate of Tabella C x 40 x 52 / 12 (Art. 14 c. 1 lett. b and chiarimento a verbale 1), to the cent."
             }
           }
         ]
@@ -543,21 +653,28 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "tabella-minimi-retributivi-2026-pdf",
-            "title": "tabella-minimi-retributivi-2026-pdf",
-            "kind": "tabella_retributiva",
-            "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
+            "document_id": "ccnl-lavoro-domestico-2025-10-28",
+            "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+            "kind": "associazione",
+            "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+            "published_on": "2025-10-28",
+            "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
           },
-          "section": "Livelli contrattuali"
+          "page": "59",
+          "section": "Tabella C, lavoratori non conviventi, valori orari, livelli",
+          "quote": "DECORRENZA 1° GENNAIO 2026"
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "verification_status": "verified",
+          "effective_from": "2020-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T15:00:00Z",
+          "review_id": "2026-10-12-ai"
         }
       }
     },
@@ -572,23 +689,30 @@
             "valid_until": null,
             "value": "1362.40",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabella-minimi-retributivi-2026-pdf",
-                  "title": "tabella-minimi-retributivi-2026-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
+                  "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                  "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                  "kind": "associazione",
+                  "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                  "published_on": "2025-10-28",
+                  "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
                 },
-                "section": "Tabella retributiva"
+                "page": "59",
+                "section": "Tabella C (lavoratori non conviventi, valori orari), livello C: 1362.40 = paga oraria x 40 x 52 / 12",
+                "quote": "DECORRENZA 1° GENNAIO 2026"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T15:00:00Z",
+                "review_id": "2026-10-12-ai"
               },
-              "transformation": "Tabella C hourly 7.86 x 40 x 52 / 12 = 1362.40 (Art. 14 c. 1 lett. b and chiarimento a verbale 1, CCNL 28/10/2025)"
+              "transformation": "Hourly rate of Tabella C x 40 x 52 / 12 (Art. 14 c. 1 lett. b and chiarimento a verbale 1), to the cent."
             }
           }
         ]
@@ -596,21 +720,28 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "tabella-minimi-retributivi-2026-pdf",
-            "title": "tabella-minimi-retributivi-2026-pdf",
-            "kind": "tabella_retributiva",
-            "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
+            "document_id": "ccnl-lavoro-domestico-2025-10-28",
+            "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+            "kind": "associazione",
+            "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+            "published_on": "2025-10-28",
+            "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
           },
-          "section": "Livelli contrattuali"
+          "page": "59",
+          "section": "Tabella C, lavoratori non conviventi, valori orari, livelli",
+          "quote": "DECORRENZA 1° GENNAIO 2026"
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "verification_status": "verified",
+          "effective_from": "2020-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T15:00:00Z",
+          "review_id": "2026-10-12-ai"
         }
       }
     },
@@ -625,23 +756,30 @@
             "valid_until": null,
             "value": "1438.67",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabella-minimi-retributivi-2026-pdf",
-                  "title": "tabella-minimi-retributivi-2026-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
+                  "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                  "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                  "kind": "associazione",
+                  "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                  "published_on": "2025-10-28",
+                  "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
                 },
-                "section": "Tabella retributiva"
+                "page": "59",
+                "section": "Tabella C (lavoratori non conviventi, valori orari), livello CS: 1438.67 = paga oraria x 40 x 52 / 12",
+                "quote": "DECORRENZA 1° GENNAIO 2026"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T15:00:00Z",
+                "review_id": "2026-10-12-ai"
               },
-              "transformation": "Tabella C hourly 8.30 x 40 x 52 / 12 = 1438.67 (Art. 14 c. 1 lett. b and chiarimento a verbale 1, CCNL 28/10/2025)"
+              "transformation": "Hourly rate of Tabella C x 40 x 52 / 12 (Art. 14 c. 1 lett. b and chiarimento a verbale 1), to the cent."
             }
           }
         ]
@@ -649,21 +787,28 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "tabella-minimi-retributivi-2026-pdf",
-            "title": "tabella-minimi-retributivi-2026-pdf",
-            "kind": "tabella_retributiva",
-            "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
+            "document_id": "ccnl-lavoro-domestico-2025-10-28",
+            "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+            "kind": "associazione",
+            "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+            "published_on": "2025-10-28",
+            "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
           },
-          "section": "Livelli contrattuali"
+          "page": "59",
+          "section": "Tabella C, lavoratori non conviventi, valori orari, livelli",
+          "quote": "DECORRENZA 1° GENNAIO 2026"
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "verification_status": "verified",
+          "effective_from": "2020-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T15:00:00Z",
+          "review_id": "2026-10-12-ai"
         }
       }
     },
@@ -678,23 +823,30 @@
             "valid_until": null,
             "value": "1658.80",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabella-minimi-retributivi-2026-pdf",
-                  "title": "tabella-minimi-retributivi-2026-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
+                  "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                  "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                  "kind": "associazione",
+                  "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                  "published_on": "2025-10-28",
+                  "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
                 },
-                "section": "Tabella retributiva"
+                "page": "59",
+                "section": "Tabella C (lavoratori non conviventi, valori orari), livello D: 1658.80 = paga oraria x 40 x 52 / 12",
+                "quote": "DECORRENZA 1° GENNAIO 2026"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T15:00:00Z",
+                "review_id": "2026-10-12-ai"
               },
-              "transformation": "Tabella C hourly 9.57 x 40 x 52 / 12 = 1658.80 (Art. 14 c. 1 lett. b and chiarimento a verbale 1, CCNL 28/10/2025)"
+              "transformation": "Hourly rate of Tabella C x 40 x 52 / 12 (Art. 14 c. 1 lett. b and chiarimento a verbale 1), to the cent."
             }
           }
         ]
@@ -702,21 +854,28 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "tabella-minimi-retributivi-2026-pdf",
-            "title": "tabella-minimi-retributivi-2026-pdf",
-            "kind": "tabella_retributiva",
-            "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
+            "document_id": "ccnl-lavoro-domestico-2025-10-28",
+            "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+            "kind": "associazione",
+            "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+            "published_on": "2025-10-28",
+            "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
           },
-          "section": "Livelli contrattuali"
+          "page": "59",
+          "section": "Tabella C, lavoratori non conviventi, valori orari, livelli",
+          "quote": "DECORRENZA 1° GENNAIO 2026"
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "verification_status": "verified",
+          "effective_from": "2020-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T15:00:00Z",
+          "review_id": "2026-10-12-ai"
         }
       }
     },
@@ -731,23 +890,30 @@
             "valid_until": null,
             "value": "1728.13",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabella-minimi-retributivi-2026-pdf",
-                  "title": "tabella-minimi-retributivi-2026-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
+                  "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                  "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                  "kind": "associazione",
+                  "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                  "published_on": "2025-10-28",
+                  "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
                 },
-                "section": "Tabella retributiva"
+                "page": "59",
+                "section": "Tabella C (lavoratori non conviventi, valori orari), livello DS: 1728.13 = paga oraria x 40 x 52 / 12",
+                "quote": "DECORRENZA 1° GENNAIO 2026"
               },
               "extraction": {
                 "method": "manual",
                 "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T15:00:00Z",
+                "review_id": "2026-10-12-ai"
               },
-              "transformation": "Tabella C hourly 9.97 x 40 x 52 / 12 = 1728.13 (Art. 14 c. 1 lett. b and chiarimento a verbale 1, CCNL 28/10/2025)"
+              "transformation": "Hourly rate of Tabella C x 40 x 52 / 12 (Art. 14 c. 1 lett. b and chiarimento a verbale 1), to the cent."
             }
           }
         ]
@@ -755,21 +921,28 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "tabella-minimi-retributivi-2026-pdf",
-            "title": "tabella-minimi-retributivi-2026-pdf",
-            "kind": "tabella_retributiva",
-            "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
+            "document_id": "ccnl-lavoro-domestico-2025-10-28",
+            "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+            "kind": "associazione",
+            "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+            "published_on": "2025-10-28",
+            "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
           },
-          "section": "Livelli contrattuali"
+          "page": "59",
+          "section": "Tabella C, lavoratori non conviventi, valori orari, livelli",
+          "quote": "DECORRENZA 1° GENNAIO 2026"
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "verification_status": "verified",
+          "effective_from": "2020-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T15:00:00Z",
+          "review_id": "2026-10-12-ai"
         }
       }
     }
@@ -782,24 +955,23 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "b892e25fd8c262cce9aaac597b835c4bbb6395aa30d15b6271af65320ae74a5b",
+    "source_hash": "fe56c072d389678895adb9f2c1039347d4dd428a02a68561392dd582e1bd8649",
     "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "gross_incl_allowances",
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
-          "description": "Straordinario feriale (40-44h sett., 6-22h)",
+          "description": "Ore dalla 41a alla 44a settimanale (6-22)",
           "kind": "percentage",
           "rate": {
             "periods": [
               {
-                "valid_from": "2025-01-01",
-                "value": 0.1,
-                "provenance": null,
+                "valid_from": "2025-11-01",
+                "value": "0.10",
                 "valid_until": null
               }
             ]
@@ -808,34 +980,85 @@
             "weekday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-lavoro-domestico-2025",
-                "title": "CCNL Lavoro Domestico (Assindatcolf / Fidaldo) — Non Convivente 2025",
-                "kind": "tabella_retributiva",
-                "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
+                "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                "kind": "associazione",
+                "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                "published_on": "2025-10-28",
+                "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
               },
-              "section": "Art. orario lavoro — straordinario non convivente 10%"
+              "page": "26-27",
+              "section": "Art. 15 c. 4",
+              "quote": "eseguite nella fascia oraria compresa tra le ore 6.00 e le ore 22.00, sono com- pensate con la retribuzione globale di fatto oraria maggiorate del 10%."
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2025-01-01"
+              "method": "ai",
+              "extraction_timestamp": "2026-10-12T15:00:00Z",
+              "effective_from": "2025-11-01",
+              "model": "claude-opus-5-5",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T15:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-12-ai"
             }
           }
         },
         {
-          "code": "OT_NOTTURNO",
-          "description": "Lavoro notturno (22-6h)",
+          "code": "OT_DIURNO_EXTRA",
+          "description": "Straordinario diurno oltre la 44a ora settimanale (6-22)",
           "kind": "percentage",
           "rate": {
             "periods": [
               {
-                "valid_from": "2025-01-01",
-                "value": 0.2,
-                "provenance": null,
+                "valid_from": "2025-11-01",
+                "value": "0.25",
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                "kind": "associazione",
+                "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                "published_on": "2025-10-28",
+                "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+              },
+              "page": "26-27",
+              "section": "Art. 15 c. 3 (lavoro straordinario)",
+              "quote": "del 25%, se prestato dalle ore 6.00 alle ore 22.00;"
+            },
+            "extraction": {
+              "method": "ai",
+              "extraction_timestamp": "2026-10-12T15:00:00Z",
+              "effective_from": "2025-11-01",
+              "model": "claude-opus-5-5",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T15:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-12-ai"
+            }
+          },
+          "hour_threshold_per_week": 4
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario notturno (22-6)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-11-01",
+                "value": "0.50",
                 "valid_until": null
               }
             ]
@@ -844,21 +1067,72 @@
             "night"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-lavoro-domestico-2025",
-                "title": "CCNL Lavoro Domestico (Assindatcolf / Fidaldo) — Non Convivente 2025",
-                "kind": "tabella_retributiva",
-                "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
+                "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                "kind": "associazione",
+                "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                "published_on": "2025-10-28",
+                "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
               },
-              "section": "Art. orario lavoro — maggiorazione notturno 20%"
+              "page": "26-27",
+              "section": "Art. 15 c. 3 (lavoro straordinario)",
+              "quote": "del 50%, se prestato dalle ore 22.00 alle ore 6.00;"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2025-01-01"
+              "method": "ai",
+              "extraction_timestamp": "2026-10-12T15:00:00Z",
+              "effective_from": "2025-11-01",
+              "model": "claude-opus-5-5",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T15:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-12-ai"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo o domenicale",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-11-01",
+                "value": "0.60",
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                "kind": "associazione",
+                "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                "published_on": "2025-10-28",
+                "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+              },
+              "page": "26-27",
+              "section": "Art. 15 c. 3 (lavoro straordinario)",
+              "quote": "del 60% in una delle festività indicate nell’art. 16 o nella giornata di domenica"
+            },
+            "extraction": {
+              "method": "ai",
+              "extraction_timestamp": "2026-10-12T15:00:00Z",
+              "effective_from": "2025-11-01",
+              "model": "claude-opus-5-5",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T15:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-12-ai"
             }
           }
         }
@@ -868,21 +1142,28 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-lavoro-domestico-2025",
-            "title": "CCNL Lavoro Domestico (Assindatcolf / Fidaldo) — Non Convivente 2025",
-            "kind": "tabella_retributiva",
-            "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
+            "document_id": "ccnl-lavoro-domestico-2025-10-28",
+            "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+            "kind": "associazione",
+            "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+            "published_on": "2025-10-28",
+            "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
           },
-          "section": "Art. orario — retribuzione oraria su base mensile"
+          "page": "56",
+          "section": "Chiarimenti a verbale 1 e 3 (retribuzione giornaliera 1/26; giorni lavorativi in ventiseiesimi)",
+          "quote": "Il calcolo della retribuzione giornaliera si ottiene determinan- do 1/26 della retribuzione mensile."
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2025-01-01"
+          "verification_status": "verified",
+          "effective_from": "2025-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T15:00:00Z",
+          "review_id": "2026-10-12-ai"
         }
       }
     },
@@ -895,21 +1176,28 @@
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-lavoro-domestico-2025",
-            "title": "CCNL Lavoro Domestico (Assindatcolf / Fidaldo) — Non Convivente 2025",
-            "kind": "tabella_retributiva",
-            "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf"
+            "document_id": "ccnl-lavoro-domestico-2025-10-28",
+            "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+            "kind": "associazione",
+            "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+            "published_on": "2025-10-28",
+            "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
           },
-          "section": "Art. ferie — 26 giorni lavorativi annui"
+          "page": "28-29",
+          "section": "Art. 17 c. 1 (ferie: 26 giorni lavorativi)",
+          "quote": "il lavoratore ha diritto ad un periodo di ferie di 26 giorni"
         },
         "extraction": {
           "method": "manual",
           "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2025-01-01"
+          "verification_status": "verified",
+          "effective_from": "2025-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T15:00:00Z",
+          "review_id": "2026-10-12-ai"
         }
       }
     },
@@ -965,8 +1253,8 @@
     }
   },
   "verification": {
-    "confidence": "unverified",
-    "readiness": "exploratory",
+    "confidence": "verified",
+    "readiness": "reviewed",
     "verified_cases": 0,
     "reviews": [
       {
@@ -978,6 +1266,34 @@
         "outcome": "confirmed",
         "findings": [
           "The review recorded no list of the documents it read."
+        ]
+      },
+      {
+        "id": "2026-10-12-ai",
+        "date": "2026-10-12",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Every payable rule of the file: minimums, hourly divisor, additional months, seniority, Cas.Sa.Colf, overtime, absences, leave and the accrual of the tredicesima, read in the signed text of 28 October 2025 and its 2026 table (p. 59); the sickness rule of Art. 27 stays derived (readings in its transformation).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+            "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+          },
+          {
+            "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
+            "sha256": "bf881702d838dc9c721f07140f17ee6f7cc8b7eb920b4e7647bfa2176ee3d387"
+          },
+          {
+            "url": "https://www.fiscoetasse.com/files/21293/tabella-lavoro-dom.pdf",
+            "sha256": "c986d5942940883dec0858242d501eba7192ea6a3fe0abf103757d436170ae91"
+          }
+        ],
+        "findings": [
+          "Overtime: the file held 10% and 20%; Art. 15 c. 3 sets 25% by day, 50% by night and 60% on a holiday or Sunday. The 20% of Art. 14 c. 6 is the supplement of ordinary night work, not of overtime.",
+          "accrual_rule was missing: chiarimento a verbale 4 counts a fraction of a month of at least 15 calendar days as a whole month.",
+          "Citations moved from the DOMINA table and section labels without page to the signed text with page and quote.",
+          "Overtime of non conviventi: hours 41 to 44 by day at 10% (Art. 15 c. 4), beyond the 44th at 25% (hour_threshold_per_week 4)."
         ]
       }
     ]

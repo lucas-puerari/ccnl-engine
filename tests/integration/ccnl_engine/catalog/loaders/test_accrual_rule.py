@@ -3,8 +3,8 @@
 A CCNL stores ``parameters.accrual_rule`` only with the verbatim clause of
 the signed text: the quote must state the threshold in days and the
 comparison the rule encodes ("superiore a 15 giorni" is ``more_than``;
-"pari o superiore", "superiore o uguale", "non inferiore" or "almeno" is
-``at_least``).
+"pari o superiore", "superiore o uguale", "raggiungono o superano", "non
+inferiore" or "almeno" is ``at_least``).
 """
 
 from __future__ import annotations
@@ -27,7 +27,8 @@ _FILES = sorted(
 )
 _WITH_RULE = [name for name in _FILES if load_ccnl(name).parameters.accrual_rule]
 _AT_LEAST = re.compile(
-    r"pari o superior|uguale o superior|superior[ei] o ugual|non inferior|almeno",
+    r"pari o superior|uguale o superior|superior[ei] o ugual|raggiung\w* o super"
+    r"|non inferior|almeno",
     re.IGNORECASE,
 )
 _MORE_THAN = re.compile(r"superior[ei]\s+a|superino", re.IGNORECASE)

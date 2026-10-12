@@ -179,15 +179,15 @@ when they drift.
 
 | Status | CCNL rules | Fiscal blocks | Total |
 |---|---:|---:|---:|
-| `verified` | 291 | 8 | 299 |
-| `derived` | 5 581 | 118 | 5 699 |
+| `verified` | 346 | 8 | 354 |
+| `derived` | 5 532 | 118 | 5 650 |
 | `assumed` | 690 | 135 | 825 |
-| `missing` | 85 | 0 | 85 |
+| `missing` | 82 | 0 | 82 |
 
 <!-- /trust:provenance-table -->
 
-Of the <!-- trust:rules-missing -->85<!-- /trust:rules-missing --> `missing`
-rules, <!-- trust:accrual-missing -->85<!-- /trust:accrual-missing --> are
+Of the <!-- trust:rules-missing -->82<!-- /trust:rules-missing --> `missing`
+rules, <!-- trust:accrual-missing -->82<!-- /trust:accrual-missing --> are
 extra-month accrual thresholds of CCNLs whose signed clause is not in the
 bundle. `assumed` covers every rule of a ruleset that declares
 `source_type: "estimated"` (the 2026 sector tax and INPS files and a few

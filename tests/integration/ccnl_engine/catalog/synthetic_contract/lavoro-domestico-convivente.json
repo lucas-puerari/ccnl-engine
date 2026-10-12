@@ -77,12 +77,12 @@
     {
       "level_code": "D",
       "as_of": "2026-01-01",
-      "expected_amount": "56.18"
+      "expected_amount": "64.49"
     },
     {
       "level_code": "DS",
       "as_of": "2026-01-01",
-      "expected_amount": "58.99"
+      "expected_amount": "67.30"
     }
   ]
 }
