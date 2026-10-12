@@ -102,10 +102,35 @@ class AccrualComparison(StrEnum):
             ("pari o superiore a 15 giorni").
         MORE_THAN: The month counts when its days exceed the threshold
             ("frazione superiore a 15 giorni").
+        WORKING_DAYS_26: No threshold: a month not worked in full accrues
+            its accruing days from Monday to Saturday as twenty-sixths of a
+            rateo, at most one (CCNL Turismo 2024, art. 160 c. 2: "i giorni
+            lavorati - determinati in ventiseiesimi - [...] daranno diritto
+            alla maturazione di un ugual numero di ventiseiesimi di un
+            rateo mensile").
+        DAYS_365: A whole month accrues a twelfth, a month served in part
+            a 365th of the year for each day served (CCNL Sanità 2022-2024
+            art. 60 c. 4: "per le frazioni di mese, in ragione di un
+            trecentosessantacinquesimo per i giorni prestati nel mese").
+        DAYS_360: As ``DAYS_365`` with a 360th for each day of a month
+            served in part (CCNL Area I 21 April 2006 art. 63 c. 4).
+        SERVICE_DAYS_365: Every day served accrues a 365th of the year,
+            whole months too (CCNL Funzioni Locali 16 November 2022 art. 75
+            c. 3: "in ragione di tanti 365esimi quanti sono i giorni di
+            servizio prestato").
     """
 
     AT_LEAST = "at_least"
     MORE_THAN = "more_than"
+    WORKING_DAYS_26 = "working_days_26"
+    DAYS_365 = "days_365"
+    DAYS_360 = "days_360"
+    SERVICE_DAYS_365 = "service_days_365"
+
+    @property
+    def by_days(self) -> bool:
+        """Whether the rule accrues days rather than comparing a threshold."""
+        return self not in {AccrualComparison.AT_LEAST, AccrualComparison.MORE_THAN}
 
 
 _SHORTEST_MONTH_DAYS = 28
@@ -116,40 +141,48 @@ class ExtraMonthAccrualRule(BaseModel):
 
     The CCNL clause on the ratei of the tredicesima and quattordicesima: a
     fraction of a month counts as a whole month when its days compare with
-    ``min_days`` as ``comparison`` says.  The field is stored only when the
-    signed text states it; without it the engine applies its default and
-    the provenance inventory reports the rule as ``missing``.
+    ``min_days`` as ``comparison`` says, or, for the day-based comparisons,
+    accrues its days.  The field is stored only
+    when the signed text states it; without it the engine applies its
+    default and the provenance inventory reports the rule as ``missing``.
 
     Attributes:
-        min_days: Threshold in calendar days.
-        comparison: ``at_least`` or ``more_than``.
+        min_days: Threshold in calendar days; ``None`` for a day-based
+            comparison, which has none.
+        comparison: How a month is counted (:class:`AccrualComparison`).
         provenance: Source of the clause; ``missing`` is not allowed, a
             rule without a source is left out of the data instead.
 
     Raises:
         ValueError: When a full 28-day month would not count, when the
-            threshold is below one day, or when the provenance is
-            ``missing``.
+            threshold is below one day, when a threshold is set or left out
+            against the comparison, or when the provenance is ``missing``.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
-    min_days: int
+    min_days: int | None = None
     comparison: AccrualComparison
     provenance: RuleProvenance
 
     @model_validator(mode="after")
     def _check_threshold(self) -> Self:
-        more_than = self.comparison is AccrualComparison.MORE_THAN
-        lowest, highest = (0, 27) if more_than else (1, _SHORTEST_MONTH_DAYS)
-        if not lowest <= self.min_days <= highest:
-            msg = (
-                f"min_days must be between {lowest} and {highest} for "
-                f"{self.comparison.value!r}; got {self.min_days}"
-            )
-            raise ValueError(msg)
         if self.provenance.status is ProvenanceStatus.MISSING:
             msg = "a stored accrual rule needs a source; omit it when missing"
+            raise ValueError(msg)
+        days = self.min_days
+        if self.comparison.by_days:
+            if days is not None:
+                msg = f"{self.comparison.value} has no threshold; leave min_days out"
+                raise ValueError(msg)
+            return self
+        more_than = self.comparison is AccrualComparison.MORE_THAN
+        lowest, highest = (0, 27) if more_than else (1, _SHORTEST_MONTH_DAYS)
+        if days is None or not lowest <= days <= highest:
+            msg = (
+                f"min_days must be between {lowest} and {highest} for "
+                f"{self.comparison.value!r}; got {days}"
+            )
             raise ValueError(msg)
         return self
 

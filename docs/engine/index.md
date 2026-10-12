@@ -259,7 +259,15 @@ employment dates and never from the runs already closed:
   comparison, `more_than` ("la frazione di mese superiore a 15 giorni va
   considerata come mese intero", Metalmeccanico Federmeccanica, sez.
   quarta, titolo IV, art. 7) or `at_least` ("superiori o uguali a 15
-  giorni", Terziario Confcommercio, art. 204). The rule is stored only for
+  giorni", Terziario Confcommercio, art. 204). Some CCNLs accrue days
+  instead, with no threshold (`min_days` left out): `working_days_26`, a
+  month not worked in full accrues its days from Monday to Saturday in
+  twenty-sixths of a rateo (Turismo 2024, art. 160 c. 2); `days_365` and
+  `days_360`, a twelfth per whole month and a 365th or 360th of the year
+  per day of a month served in part (Sanità 2022-2024 art. 60 c. 4; Area I
+  dirigenza 2006 art. 63 c. 4); `service_days_365`, a 365th of the year for
+  every day served (Funzioni Locali 2022 art. 75 c. 3). The decision then
+  records the `day_units` accrued beyond the whole months. The rule is stored only for
   the 40 CCNLs whose signed text was read, with the article and the quote
   (status `assumed` until a named reviewer checks it). The other CCNLs use
   the engine default, at least 15 days, recorded as a `missing` rule: a run
