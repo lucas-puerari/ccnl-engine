@@ -14,6 +14,7 @@ from pydantic import BaseModel, ConfigDict, model_validator
 
 from ccnl_engine.agreement.facade import PublicPensionFund
 from ccnl_engine.contribution.additional_ivs.models import AdditionalIvsRule
+from ccnl_engine.contribution.cigs.models import CigsIndotto
 from ccnl_engine.contribution.fis.models import FisReduction
 from ccnl_engine.contribution.minimum_base.models import MinimumBaseRule
 from ccnl_engine.contribution.zone.models import ZoneReduction
@@ -169,6 +170,9 @@ class InpsRates(BaseModel):
     ``ceiling_provenance`` backs the massimale, read from another source
     than the rates; ``fis_reduction`` is the cut of the FIS rate of the
     smallest employers (:mod:`~ccnl_engine.contribution.fis.models`), and
+    ``cigs_indotto`` is the CIGS rate a craft firm of an indotto owes above
+    fifteen employees, ``cigs_indotto_open`` flags rates resolved for one
+    that may owe it without saying.
     ``fis_reduction_open`` flags rates resolved for an employer it may
     apply to that does not say whether it does.  ``base_whole_euro`` rounds
     the INPS base of a run to the whole euro (INPS circ. 208/2001).
@@ -200,6 +204,8 @@ class InpsRates(BaseModel):
     ceiling_provenance: RuleProvenance | None = None
     fis_reduction: FisReduction | None = None
     fis_reduction_open: bool = False
+    cigs_indotto: CigsIndotto | None = None
+    cigs_indotto_open: bool = False
     base_whole_euro: bool = True
     employer_fixed_term_rate_by_category: dict[WorkerCategory, NonNegativeRate] = {}
     zone_reduction: ZoneReduction | None = None

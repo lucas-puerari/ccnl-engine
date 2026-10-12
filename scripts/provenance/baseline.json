@@ -981,6 +981,7 @@
     "contribution/2027/artigianato.json": {
       "apprentice": "assumed",
       "inps": "assumed",
+      "inps.cigs_indotto": "assumed",
       "inps.employee_additional": "assumed",
       "inps.minimum_base": "assumed"
     },

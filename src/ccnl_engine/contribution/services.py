@@ -54,6 +54,20 @@ FIS_REDUCTION_UNKNOWN = CalculationIssue(
     fact="fis_reduction",
 )
 
+#: A craft firm above fifteen employees must say whether it owes the CIGS.
+CIGS_INDOTTO_UNKNOWN = CalculationIssue(
+    code="cigs_indotto_unknown",
+    message=(
+        "a craft firm with more than fifteen employees in the indotto of a firm "
+        "with the prevailing management influence owes the CIGS contribution "
+        "of 0.90%, 0.30% of it the worker's (D.Lgs. 148/2015 art. 20 c. 1 "
+        "lett. b, art. 23 c. 1); the amounts shown charge none; state "
+        "EmployerProfile.cigs_indotto"
+    ),
+    status=CalculationStatus.INCOMPLETE,
+    fact="cigs_indotto",
+)
+
 #: An agricultural employer must say the zone its contributions are cut in.
 AGRICULTURAL_ZONE_UNKNOWN = CalculationIssue(
     code="agricultural_zone_unknown",

@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 from ccnl_engine.amount.types import _PeriodAmounts
 from ccnl_engine.contribution.services import (
     AGRICULTURAL_ZONE_UNKNOWN,
+    CIGS_INDOTTO_UNKNOWN,
     FIS_REDUCTION_UNKNOWN,
     run_contributions,
     tfr_accrual,
@@ -90,6 +91,7 @@ def _issues(inp: _AmountsInput, irpef: _Irpef) -> tuple[CalculationIssue, ...]:
     life = life_insurance_issue(inp)
     fis = inp.rules.inps is not None and inp.rules.inps.fis_reduction_open
     zone = inp.rules.inps is not None and inp.rules.inps.zone_reduction_open
+    cigs = inp.rules.inps is not None and inp.rules.inps.cigs_indotto_open
     return (
         family
         + ulteriore_issues(inp, irpef)
@@ -101,6 +103,7 @@ def _issues(inp: _AmountsInput, irpef: _Irpef) -> tuple[CalculationIssue, ...]:
         + (() if life is None else (life,))
         + ((FIS_REDUCTION_UNKNOWN,) if fis else ())
         + ((AGRICULTURAL_ZONE_UNKNOWN,) if zone else ())
+        + ((CIGS_INDOTTO_UNKNOWN,) if cigs else ())
     )
 
 

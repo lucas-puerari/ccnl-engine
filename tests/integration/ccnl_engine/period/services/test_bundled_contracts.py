@@ -165,6 +165,7 @@ def test_every_level_computes_sane_totals(slug: str) -> None:
                 employer=EmployerProfile(
                     headcount=Headcount(50),
                     provincial_pay_element=False,
+                    cigs_indotto=False,
                     agricultural_zone=AgriculturalZone.ORDINARY,
                     public_life_insurance=False if _public_regime(ccnl) else None,
                 ),
