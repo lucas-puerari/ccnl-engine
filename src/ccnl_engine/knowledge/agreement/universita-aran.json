@@ -1,0 +1,1850 @@
+{
+  "schema_version": "0.5",
+  "meta": {
+    "ccnl_id": "universita-aran",
+    "name": "CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN, Università (personale tecnico-amministrativo e CEL)",
+    "cnel_code": "S305",
+    "sector": "Pubblica Amministrazione",
+    "tax_sector": "pubblica-amministrazione",
+    "signatories": [
+      "ARAN",
+      "CISL FSUR",
+      "FLC CGIL",
+      "UIL SCUOLA RUA",
+      "SNALS CONFSAL",
+      "GILDA UNAMS",
+      "ANIEF"
+    ],
+    "agreement_date": "2026-07-01",
+    "sources": [
+      {
+        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+        "type": "fonte_primaria",
+        "agreement_date": "2026-07-01",
+        "notes": "CCNL 2025-2027 sui principali aspetti del trattamento economico, signed definitively on 1 July 2026 by ARAN and every union of the comparto. Tabella A2 (pp. 18-19): tabellare from 1.1.2025, 1.1.2026, 1.1.2027."
+      },
+      {
+        "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+        "type": "fonte_primaria",
+        "agreement_date": "2025-12-23",
+        "notes": "CCNL 2022-2024 (FLC CGIL did not sign). Tabella A2 (pp. 50-51): tabellare from 1.1.2024."
+      },
+      {
+        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+        "type": "fonte_primaria",
+        "agreement_date": "2024-01-18",
+        "notes": "CCNL 2019-2021. Tabelle C1 and E1.5 (pp. 246, 256): tabellare from 1.2.2023."
+      },
+      {
+        "url": "https://www.aranagenzia.it/wp-content/uploads/2024/07/CCNL-SCUOLA-2006-2009.pdf",
+        "type": "fonte_primaria",
+        "agreement_date": "2007-11-29",
+        "notes": "CCNL Scuola 2006-2009, still in force for ferie (art. 13), malattia (art. 17) and tredicesima (art. 80)."
+      }
+    ],
+    "extraction": {
+      "method": "ai",
+      "model": "claude-sonnet-4-6",
+      "timestamp": "2026-09-03",
+      "human_reviewed": false
+    },
+    "workers_estimate": "~1,2M",
+    "public_pension_fund": "ctps",
+    "public_life_insurance": false
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2022-01-01",
+          "valid_until": null,
+          "value": "156"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2022-01-01",
+          "valid_until": null,
+          "value": "13",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-scuola-2006-2009",
+                "title": "CCNL Comparto Scuola 2006-2009, 29 novembre 2007",
+                "kind": "associazione",
+                "url": "https://usrfvg.regione.fvg.it/export/sites/default/USRFVG/allegati/archivio_file/TS/2016/CCNL_scuola_2006_2009.pdf",
+                "published_on": "2007-11-29",
+                "sha256": "4c7b272d8a2987c239d5f77e27af429c55096b71c8fa198265bac549f348dbf6"
+              },
+              "section": "Art. 80 c. 1 (tredicesima mensilità)",
+              "quote": "spetta una tredicesima mensilità corrisposta nel mese di dicembre di ogni anno.",
+              "page": "52"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T07:59:31Z",
+              "verification_status": "unverified",
+              "effective_from": "2007-11-29"
+            },
+            "note": "Kept in force by the CCNL Istruzione e Ricerca 2022-2024 of 23 December 2025, art. 1 c. 13 ('continuano a trovare applicazione [...] i CCNL dei precedenti comparti'). Copy of the ARAN text hosted by the USR Friuli Venezia Giulia. Scuola section only."
+          }
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 1,
+      "maximum_count": 0,
+      "amount_by_level": {},
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-ir-2025-2027",
+            "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+            "published_on": "2026-07-01",
+            "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+          },
+          "page": "22",
+          "section": "Tabella B2 - UNIVERSITÀ, personale Aree e CEL",
+          "quote": "Nuova retribuzione tabellare annua"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T16:56:05Z",
+          "effective_from": "2024-01-01",
+          "verification_status": "unverified"
+        },
+        "transformation": "One tabellare per area, without seniority steps: no seniority increments (the differenziali economici are individual, paid by the caller)."
+      }
+    },
+    "employer_funds": [],
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-scuola-2006-2009",
+            "title": "CCNL Comparto Scuola 2006-2009, 29 novembre 2007",
+            "kind": "associazione",
+            "url": "https://usrfvg.regione.fvg.it/export/sites/default/USRFVG/allegati/archivio_file/TS/2016/CCNL_scuola_2006_2009.pdf",
+            "published_on": "2007-11-29",
+            "sha256": "4c7b272d8a2987c239d5f77e27af429c55096b71c8fa198265bac549f348dbf6"
+          },
+          "section": "Art. 80 c. 4 (tredicesima mensilità)",
+          "quote": "la tredicesima è dovuta in ragione di un dodicesimo per ogni mese di servizio prestato o frazione di mese superiore a 15 giorni.",
+          "page": "52"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T07:59:31Z",
+          "verification_status": "unverified",
+          "effective_from": "2007-11-29"
+        },
+        "note": "Kept in force by the CCNL Istruzione e Ricerca 2022-2024 of 23 December 2025, art. 1 c. 13 ('continuano a trovare applicazione [...] i CCNL dei precedenti comparti'). Copy of the ARAN text hosted by the USR Friuli Venezia Giulia. Scuola section only."
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "CEL",
+      "order": 1,
+      "description": "Collaboratori ed esperti linguistici (CEL)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "1511.69",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2022-2024",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                  "published_on": "2025-12-23",
+                  "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                },
+                "page": "54",
+                "section": "Tabella B2 - UNIVERSITA', dal 1.1.2024",
+                "quote": "Collaboratori ed esperti linguistici 18.140,24"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T16:56:05Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T16:56:05Z",
+                "review_id": "2026-10-12-ai-universita"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1546.91",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "22",
+                "section": "Tabella B2 - UNIVERSITÀ, personale Aree e CEL, dal 1.1.2025",
+                "quote": "Collaboratori ed esperti linguistici 18.562,88 18.985,52 19.423,04"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T16:56:05Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T16:56:05Z",
+                "review_id": "2026-10-12-ai-universita"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1582.13",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "22",
+                "section": "Tabella B2 - UNIVERSITÀ, personale Aree e CEL, dal 1.1.2026",
+                "quote": "Collaboratori ed esperti linguistici 18.562,88 18.985,52 19.423,04"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T16:56:05Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T16:56:05Z",
+                "review_id": "2026-10-12-ai-universita"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1618.59",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "22",
+                "section": "Tabella B2 - UNIVERSITÀ, personale Aree e CEL, dal 1.1.2027",
+                "quote": "Collaboratori ed esperti linguistici 18.562,88 18.985,52 19.423,04"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T16:56:05Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T16:56:05Z",
+                "review_id": "2026-10-12-ai-universita"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-ir-2025-2027",
+            "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+            "published_on": "2026-07-01",
+            "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+          },
+          "page": "22",
+          "section": "Tabella B2 - UNIVERSITÀ, personale Aree e CEL",
+          "quote": "Collaboratori ed esperti linguistici 18.562,88 18.985,52 19.423,04"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T16:56:05Z",
+          "effective_from": "2024-01-01",
+          "verification_status": "unverified"
+        },
+        "transformation": "The area of the classification of art. 92 CCNL 18/1/2024 (CEL apart)."
+      }
+    },
+    {
+      "code": "OPERATORE",
+      "order": 2,
+      "description": "Area degli Operatori",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "1775.57",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2022-2024",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                  "published_on": "2025-12-23",
+                  "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                },
+                "page": "54",
+                "section": "Tabella B2 - UNIVERSITA', dal 1.1.2024",
+                "quote": "OPERATORI 21.306,79"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T16:56:05Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T16:56:05Z",
+                "review_id": "2026-10-12-ai-universita"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1816.94",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "22",
+                "section": "Tabella B2 - UNIVERSITÀ, personale Aree e CEL, dal 1.1.2025",
+                "quote": "OPERATORI 21.803,23 22.299,67 22.714,87"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T16:56:05Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T16:56:05Z",
+                "review_id": "2026-10-12-ai-universita"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1858.31",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "22",
+                "section": "Tabella B2 - UNIVERSITÀ, personale Aree e CEL, dal 1.1.2026",
+                "quote": "OPERATORI 21.803,23 22.299,67 22.714,87"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T16:56:05Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T16:56:05Z",
+                "review_id": "2026-10-12-ai-universita"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1892.91",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "22",
+                "section": "Tabella B2 - UNIVERSITÀ, personale Aree e CEL, dal 1.1.2027",
+                "quote": "OPERATORI 21.803,23 22.299,67 22.714,87"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T16:56:05Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T16:56:05Z",
+                "review_id": "2026-10-12-ai-universita"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "IND_ATENEO",
+          "description": "Indennità di Ateneo (art. 4 CCNL 28/03/2006)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2027-01-01",
+                "value": "137.20"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "142.15"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2025-2027",
+                "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                "published_on": "2026-07-01",
+                "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+              },
+              "page": "23",
+              "section": "Tabella B3 - UNIVERSITÀ, Indennità di Ateneo (valori annui rideterminati)",
+              "quote": "OPERATORI 59,40 1.705,76"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T16:56:05Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Annual amounts 1646.36 from 1.1.2024 (CCNL 2022-2024 Tabella B3, p. 55: 'OPERATORI 100,20 1.646,36') and 1705.76 from 1.1.2027, over 12.",
+            "note": "Paid in 12 monthly instalments: the frequency is set by art. 4 of the CCNL 28/03/2006, which was not read (assumed)."
+          }
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-ir-2025-2027",
+            "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+            "published_on": "2026-07-01",
+            "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+          },
+          "page": "22",
+          "section": "Tabella B2 - UNIVERSITÀ, personale Aree e CEL",
+          "quote": "OPERATORI 21.803,23 22.299,67 22.714,87"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T16:56:05Z",
+          "effective_from": "2024-01-01",
+          "verification_status": "unverified"
+        },
+        "transformation": "The area of the classification of art. 92 CCNL 18/1/2024 (CEL apart)."
+      }
+    },
+    {
+      "code": "COLLABORATORE",
+      "order": 3,
+      "description": "Area dei Collaboratori",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "1863.17",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2022-2024",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                  "published_on": "2025-12-23",
+                  "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                },
+                "page": "54",
+                "section": "Tabella B2 - UNIVERSITA', dal 1.1.2024",
+                "quote": "COLLABORATORI 22.358,04"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T16:56:05Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T16:56:05Z",
+                "review_id": "2026-10-12-ai-universita"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1906.58",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "22",
+                "section": "Tabella B2 - UNIVERSITÀ, personale Aree e CEL, dal 1.1.2025",
+                "quote": "COLLABORATORI 22.878,96 23.399,88 23.835,60"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T16:56:05Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T16:56:05Z",
+                "review_id": "2026-10-12-ai-universita"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1949.99",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "22",
+                "section": "Tabella B2 - UNIVERSITÀ, personale Aree e CEL, dal 1.1.2026",
+                "quote": "COLLABORATORI 22.878,96 23.399,88 23.835,60"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T16:56:05Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T16:56:05Z",
+                "review_id": "2026-10-12-ai-universita"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1986.30",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "22",
+                "section": "Tabella B2 - UNIVERSITÀ, personale Aree e CEL, dal 1.1.2027",
+                "quote": "COLLABORATORI 22.878,96 23.399,88 23.835,60"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T16:56:05Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T16:56:05Z",
+                "review_id": "2026-10-12-ai-universita"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "IND_ATENEO",
+          "description": "Indennità di Ateneo (art. 4 CCNL 28/03/2006)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2027-01-01",
+                "value": "182.26"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "188.83"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2025-2027",
+                "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                "published_on": "2026-07-01",
+                "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+              },
+              "page": "23",
+              "section": "Tabella B3 - UNIVERSITÀ, Indennità di Ateneo (valori annui rideterminati)",
+              "quote": "COLLABORATORI 78,80 2.265,97"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T16:56:05Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Annual amounts 2187.17 from 1.1.2024 (CCNL 2022-2024 Tabella B3, p. 55: 'COLLABORATORI 133,20 2.187,17') and 2265.97 from 1.1.2027, over 12.",
+            "note": "Paid in 12 monthly instalments: the frequency is set by art. 4 of the CCNL 28/03/2006, which was not read (assumed)."
+          }
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-ir-2025-2027",
+            "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+            "published_on": "2026-07-01",
+            "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+          },
+          "page": "22",
+          "section": "Tabella B2 - UNIVERSITÀ, personale Aree e CEL",
+          "quote": "COLLABORATORI 22.878,96 23.399,88 23.835,60"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T16:56:05Z",
+          "effective_from": "2024-01-01",
+          "verification_status": "unverified"
+        },
+        "transformation": "The area of the classification of art. 92 CCNL 18/1/2024 (CEL apart)."
+      }
+    },
+    {
+      "code": "FUNZIONARIO",
+      "order": 4,
+      "description": "Area dei Funzionari",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "2125.48",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2022-2024",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                  "published_on": "2025-12-23",
+                  "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                },
+                "page": "54",
+                "section": "Tabella B2 - UNIVERSITA', dal 1.1.2024",
+                "quote": "FUNZIONARI 25.505,79"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T16:56:05Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T16:56:05Z",
+                "review_id": "2026-10-12-ai-universita"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2175.00",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "22",
+                "section": "Tabella B2 - UNIVERSITÀ, personale Aree e CEL, dal 1.1.2025",
+                "quote": "FUNZIONARI 26.100,03 26.694,39 27.191,31"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T16:56:05Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T16:56:05Z",
+                "review_id": "2026-10-12-ai-universita"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2224.53",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "22",
+                "section": "Tabella B2 - UNIVERSITÀ, personale Aree e CEL, dal 1.1.2026",
+                "quote": "FUNZIONARI 26.100,03 26.694,39 27.191,31"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T16:56:05Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T16:56:05Z",
+                "review_id": "2026-10-12-ai-universita"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "2265.94",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "22",
+                "section": "Tabella B2 - UNIVERSITÀ, personale Aree e CEL, dal 1.1.2027",
+                "quote": "FUNZIONARI 26.100,03 26.694,39 27.191,31"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T16:56:05Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T16:56:05Z",
+                "review_id": "2026-10-12-ai-universita"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "IND_ATENEO",
+          "description": "Indennità di Ateneo (art. 4 CCNL 28/03/2006)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2027-01-01",
+                "value": "252.21"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "261.30"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2025-2027",
+                "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                "published_on": "2026-07-01",
+                "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+              },
+              "page": "23",
+              "section": "Tabella B3 - UNIVERSITÀ, Indennità di Ateneo (valori annui rideterminati)",
+              "quote": "FUNZIONARI 109,10 3.135,56"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T16:56:05Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Annual amounts 3026.46 from 1.1.2024 (CCNL 2022-2024 Tabella B3, p. 55: 'FUNZIONARI 184,30 3.026,46') and 3135.56 from 1.1.2027, over 12.",
+            "note": "Paid in 12 monthly instalments: the frequency is set by art. 4 of the CCNL 28/03/2006, which was not read (assumed)."
+          }
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-ir-2025-2027",
+            "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+            "published_on": "2026-07-01",
+            "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+          },
+          "page": "22",
+          "section": "Tabella B2 - UNIVERSITÀ, personale Aree e CEL",
+          "quote": "FUNZIONARI 26.100,03 26.694,39 27.191,31"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T16:56:05Z",
+          "effective_from": "2024-01-01",
+          "verification_status": "unverified"
+        },
+        "transformation": "The area of the classification of art. 92 CCNL 18/1/2024 (CEL apart)."
+      }
+    },
+    {
+      "code": "ELEVATA_PROFESSIONALITA",
+      "order": 5,
+      "description": "Area delle Elevate Professionalità",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "2391.14",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2022-2024",
+                  "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                  "published_on": "2025-12-23",
+                  "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                },
+                "page": "54",
+                "section": "Tabella B2 - UNIVERSITA', dal 1.1.2024",
+                "quote": "ELEVATE PROFESSIONALITA' 28.693,65"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T16:56:05Z",
+                "effective_from": "2024-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T16:56:05Z",
+                "review_id": "2026-10-12-ai-universita"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2446.85",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "22",
+                "section": "Tabella B2 - UNIVERSITÀ, personale Aree e CEL, dal 1.1.2025",
+                "quote": "ELEVATE PROFESSIONALITA' 29.362,17 30.030,69 30.589,89"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T16:56:05Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T16:56:05Z",
+                "review_id": "2026-10-12-ai-universita"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2502.56",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "22",
+                "section": "Tabella B2 - UNIVERSITÀ, personale Aree e CEL, dal 1.1.2026",
+                "quote": "ELEVATE PROFESSIONALITA' 29.362,17 30.030,69 30.589,89"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T16:56:05Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T16:56:05Z",
+                "review_id": "2026-10-12-ai-universita"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "2549.16",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-ir-2025-2027",
+                  "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                  "published_on": "2026-07-01",
+                  "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                },
+                "page": "22",
+                "section": "Tabella B2 - UNIVERSITÀ, personale Aree e CEL, dal 1.1.2027",
+                "quote": "ELEVATE PROFESSIONALITA' 29.362,17 30.030,69 30.589,89"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-12T16:56:05Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-12T16:56:05Z",
+                "review_id": "2026-10-12-ai-universita"
+              },
+              "transformation": "Annual tabellare over 12 (12 mensilità plus the 13th)."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "IND_ATENEO",
+          "description": "Indennità di Ateneo (art. 4 CCNL 28/03/2006)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2027-01-01",
+                "value": "298.10"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "308.85"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2025-2027",
+                "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                "published_on": "2026-07-01",
+                "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+              },
+              "page": "23",
+              "section": "Tabella B3 - UNIVERSITÀ, Indennità di Ateneo (valori annui rideterminati)",
+              "quote": "ELEVATE PROFESSIONALITA' 129,00 3.706,20"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T16:56:05Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Annual amounts 3577.20 from 1.1.2024 (CCNL 2022-2024 Tabella B3, p. 55: 'ELEVATE PROFESSIONALITA' 217,80 3.577,20') and 3706.20 from 1.1.2027, over 12.",
+            "note": "Paid in 12 monthly instalments: the frequency is set by art. 4 of the CCNL 28/03/2006, which was not read (assumed)."
+          }
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-ir-2025-2027",
+            "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+            "published_on": "2026-07-01",
+            "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+          },
+          "page": "22",
+          "section": "Tabella B2 - UNIVERSITÀ, personale Aree e CEL",
+          "quote": "ELEVATE PROFESSIONALITA' 29.362,17 30.030,69 30.589,89"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T16:56:05Z",
+          "effective_from": "2024-01-01",
+          "verification_status": "unverified"
+        },
+        "transformation": "The area of the classification of art. 92 CCNL 18/1/2024 (CEL apart)."
+      }
+    }
+  ],
+  "apprenticeship": [],
+  "coverage": {
+    "notes": [
+      {
+        "kind": "info",
+        "text": "SCOPE: personale tecnico-amministrativo of the universities and AOU (Aree Operatori, Collaboratori, Funzionari, Elevate Professionalità) and Collaboratori ed esperti linguistici, from 1.1.2024 (new classification of art. 92 CCNL 18/1/2024 from 1.5.2024, the earlier areas transposed by its allegato F). Tables: CCNL 2022-2024 Tabelle B2-B4 and CCNL 2025-2027 Tabelle B2-B4. Not modelled: the tecnologi a tempo indeterminato (Tabella B2 from 1.3.2026, posizioni stipendiali) and the differenziali economici di professionalità, which the caller pays as allowances. The Elevate Professionalità have no overtime table (B4)."
+      },
+      {
+        "kind": "simplification",
+        "text": "SHARED RULES: the hourly divisor, the tredicesima, the leave, absence, sickness and accrual rules are those of the scuola file of the same comparto (istruzione-ricerca-aran), not read again for the university staff.",
+        "capability": "sickness",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "shared_rules_unchecked",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Read the university sections of the CCNL 2019-2021 (18/1/2024) for leave, absence and sickness."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "PENSION FUND: the university staff join the Fondo Perseo Sirio, not modelled here (the scuola fund Espero does not apply).",
+        "capability": "pension_fund_contribution",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "perseo_sirio_not_modelled",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the employer and employee rates of Fondo Perseo Sirio."
+        }
+      }
+    ]
+  },
+  "ruleset": {
+    "id": "ccnl/universita-aran",
+    "version": "2026.2",
+    "effective_from": "2024-01-01",
+    "effective_until": null,
+    "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+    "verification_status": "unverified",
+    "source_hash": "56fa47cd1baf569df96ed5a147bffefd1b9264ed04ab5bc08981f9320151b59b",
+    "published_at": "2026-09-07",
+    "source_type": "official_primary"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO_FUNZ",
+          "description": "Straordinario diurno, funzionari (Tabella B4)",
+          "kind": "indennita_per_hour",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2026-01-01",
+                "value": "18.25"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": "2027-01-01",
+                "value": "19.04"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "19.37"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "levels": [
+            "FUNZIONARIO"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2025-2027",
+                "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                "published_on": "2026-07-01",
+                "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+              },
+              "page": "24",
+              "section": "Tabella B4 - UNIVERSITÀ, misura oraria del lavoro straordinario, dal 1.1.2026",
+              "quote": "FUNZIONARI 19,04 21,52 24,83"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T16:56:05Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T16:56:05Z",
+              "review_id": "2026-10-12-ai-universita"
+            },
+            "transformation": "Hourly amounts 18.25 from 1.1.2024 (CCNL 2022-2024 Tabella B4, p. 55: 'FUNZIONARI 18,25 20,62 23,80'), 19.04 from 1.1.2026 and 19.37 from 1.1.2027 ('FUNZIONARI 19,37 21,89 25,26'), CCNL 2025-2027 art. 11."
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO_O_FUNZ",
+          "description": "Straordinario festivo o notturno, funzionari (Tabella B4)",
+          "kind": "indennita_per_hour",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2026-01-01",
+                "value": "20.62"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": "2027-01-01",
+                "value": "21.52"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "21.89"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
+          "levels": [
+            "FUNZIONARIO"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2025-2027",
+                "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                "published_on": "2026-07-01",
+                "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+              },
+              "page": "24",
+              "section": "Tabella B4 - UNIVERSITÀ, misura oraria del lavoro straordinario, dal 1.1.2026",
+              "quote": "FUNZIONARI 19,04 21,52 24,83"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T16:56:05Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T16:56:05Z",
+              "review_id": "2026-10-12-ai-universita"
+            },
+            "transformation": "Hourly amounts 20.62 from 1.1.2024 (CCNL 2022-2024 Tabella B4, p. 55: 'FUNZIONARI 18,25 20,62 23,80'), 21.52 from 1.1.2026 and 21.89 from 1.1.2027 ('FUNZIONARI 19,37 21,89 25,26'), CCNL 2025-2027 art. 11."
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO_FUNZ",
+          "description": "Straordinario notturno festivo, funzionari (Tabella B4)",
+          "kind": "indennita_per_hour",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2026-01-01",
+                "value": "23.80"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": "2027-01-01",
+                "value": "24.83"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "25.26"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night_holiday"
+          ],
+          "levels": [
+            "FUNZIONARIO"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2025-2027",
+                "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                "published_on": "2026-07-01",
+                "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+              },
+              "page": "24",
+              "section": "Tabella B4 - UNIVERSITÀ, misura oraria del lavoro straordinario, dal 1.1.2026",
+              "quote": "FUNZIONARI 19,04 21,52 24,83"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T16:56:05Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T16:56:05Z",
+              "review_id": "2026-10-12-ai-universita"
+            },
+            "transformation": "Hourly amounts 23.80 from 1.1.2024 (CCNL 2022-2024 Tabella B4, p. 55: 'FUNZIONARI 18,25 20,62 23,80'), 24.83 from 1.1.2026 and 25.26 from 1.1.2027 ('FUNZIONARI 19,37 21,89 25,26'), CCNL 2025-2027 art. 11."
+          }
+        },
+        {
+          "code": "OT_DIURNO_COLL",
+          "description": "Straordinario diurno, collaboratori (Tabella B4)",
+          "kind": "indennita_per_hour",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2026-01-01",
+                "value": "16.13"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": "2027-01-01",
+                "value": "16.82"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "17.11"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "levels": [
+            "COLLABORATORE"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2025-2027",
+                "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                "published_on": "2026-07-01",
+                "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+              },
+              "page": "24",
+              "section": "Tabella B4 - UNIVERSITÀ, misura oraria del lavoro straordinario, dal 1.1.2026",
+              "quote": "COLLABORATORI 16,82 19,02 21,94"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T16:56:05Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T16:56:05Z",
+              "review_id": "2026-10-12-ai-universita"
+            },
+            "transformation": "Hourly amounts 16.13 from 1.1.2024 (CCNL 2022-2024 Tabella B4, p. 55: 'COLLABORATORI 16,13 18,23 21,04'), 16.82 from 1.1.2026 and 17.11 from 1.1.2027 ('COLLABORATORI 17,11 19,35 22,32'), CCNL 2025-2027 art. 11."
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO_O_COLL",
+          "description": "Straordinario festivo o notturno, collaboratori (Tabella B4)",
+          "kind": "indennita_per_hour",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2026-01-01",
+                "value": "18.23"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": "2027-01-01",
+                "value": "19.02"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "19.35"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
+          "levels": [
+            "COLLABORATORE"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2025-2027",
+                "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                "published_on": "2026-07-01",
+                "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+              },
+              "page": "24",
+              "section": "Tabella B4 - UNIVERSITÀ, misura oraria del lavoro straordinario, dal 1.1.2026",
+              "quote": "COLLABORATORI 16,82 19,02 21,94"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T16:56:05Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T16:56:05Z",
+              "review_id": "2026-10-12-ai-universita"
+            },
+            "transformation": "Hourly amounts 18.23 from 1.1.2024 (CCNL 2022-2024 Tabella B4, p. 55: 'COLLABORATORI 16,13 18,23 21,04'), 19.02 from 1.1.2026 and 19.35 from 1.1.2027 ('COLLABORATORI 17,11 19,35 22,32'), CCNL 2025-2027 art. 11."
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO_COLL",
+          "description": "Straordinario notturno festivo, collaboratori (Tabella B4)",
+          "kind": "indennita_per_hour",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2026-01-01",
+                "value": "21.04"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": "2027-01-01",
+                "value": "21.94"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "22.32"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night_holiday"
+          ],
+          "levels": [
+            "COLLABORATORE"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2025-2027",
+                "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                "published_on": "2026-07-01",
+                "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+              },
+              "page": "24",
+              "section": "Tabella B4 - UNIVERSITÀ, misura oraria del lavoro straordinario, dal 1.1.2026",
+              "quote": "COLLABORATORI 16,82 19,02 21,94"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T16:56:05Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T16:56:05Z",
+              "review_id": "2026-10-12-ai-universita"
+            },
+            "transformation": "Hourly amounts 21.04 from 1.1.2024 (CCNL 2022-2024 Tabella B4, p. 55: 'COLLABORATORI 16,13 18,23 21,04'), 21.94 from 1.1.2026 and 22.32 from 1.1.2027 ('COLLABORATORI 17,11 19,35 22,32'), CCNL 2025-2027 art. 11."
+          }
+        },
+        {
+          "code": "OT_DIURNO_OPER",
+          "description": "Straordinario diurno, operatori (Tabella B4)",
+          "kind": "indennita_per_hour",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2026-01-01",
+                "value": "14.74"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": "2027-01-01",
+                "value": "15.40"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "15.68"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "levels": [
+            "OPERATORE"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2025-2027",
+                "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                "published_on": "2026-07-01",
+                "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+              },
+              "page": "24",
+              "section": "Tabella B4 - UNIVERSITÀ, misura oraria del lavoro straordinario, dal 1.1.2026",
+              "quote": "OPERATORI 15,40 17,41 20,09"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T16:56:05Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T16:56:05Z",
+              "review_id": "2026-10-12-ai-universita"
+            },
+            "transformation": "Hourly amounts 14.74 from 1.1.2024 (CCNL 2022-2024 Tabella B4, p. 55: 'OPERATORI 14,74 16,67 19,23'), 15.40 from 1.1.2026 and 15.68 from 1.1.2027 ('OPERATORI 15,68 17,72 20,45'), CCNL 2025-2027 art. 11."
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO_O_OPER",
+          "description": "Straordinario festivo o notturno, operatori (Tabella B4)",
+          "kind": "indennita_per_hour",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2026-01-01",
+                "value": "16.67"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": "2027-01-01",
+                "value": "17.41"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "17.72"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
+          "levels": [
+            "OPERATORE"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2025-2027",
+                "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                "published_on": "2026-07-01",
+                "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+              },
+              "page": "24",
+              "section": "Tabella B4 - UNIVERSITÀ, misura oraria del lavoro straordinario, dal 1.1.2026",
+              "quote": "OPERATORI 15,40 17,41 20,09"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T16:56:05Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T16:56:05Z",
+              "review_id": "2026-10-12-ai-universita"
+            },
+            "transformation": "Hourly amounts 16.67 from 1.1.2024 (CCNL 2022-2024 Tabella B4, p. 55: 'OPERATORI 14,74 16,67 19,23'), 17.41 from 1.1.2026 and 17.72 from 1.1.2027 ('OPERATORI 15,68 17,72 20,45'), CCNL 2025-2027 art. 11."
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO_OPER",
+          "description": "Straordinario notturno festivo, operatori (Tabella B4)",
+          "kind": "indennita_per_hour",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2026-01-01",
+                "value": "19.23"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": "2027-01-01",
+                "value": "20.09"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "20.45"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night_holiday"
+          ],
+          "levels": [
+            "OPERATORE"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2025-2027",
+                "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                "published_on": "2026-07-01",
+                "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+              },
+              "page": "24",
+              "section": "Tabella B4 - UNIVERSITÀ, misura oraria del lavoro straordinario, dal 1.1.2026",
+              "quote": "OPERATORI 15,40 17,41 20,09"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-12T16:56:05Z",
+              "effective_from": "2024-01-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-12T16:56:05Z",
+              "review_id": "2026-10-12-ai-universita"
+            },
+            "transformation": "Hourly amounts 19.23 from 1.1.2024 (CCNL 2022-2024 Tabella B4, p. 55: 'OPERATORI 14,74 16,67 19,23'), 20.09 from 1.1.2026 and 20.45 from 1.1.2027 ('OPERATORI 15,68 17,72 20,45'), CCNL 2025-2027 art. 11."
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "status": "assumed",
+        "note": "No text of the comparto fixes the daily quota of an unpaid absence of the scuola staff: the only daily divisor in the texts read is the 1/30 of the compenso individuale accessorio (CCNL Scuola 2007, p. 75). by_26 is kept as extracted, not sourced. Searched on 2026-10-12: the trade press reports a deduction of 1/30 of the taxable monthly pay for a day of strike and 1/30 of the RPD or CIA for the first ten days of sickness (NoiPA practice), but no statute, CCNL or NoiPA document read gives the daily quota of an unpaid absence; it stays assumed until one is found."
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "32",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "30"
+        },
+        {
+          "service_months_min": 36,
+          "annual_days": "32"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-scuola-2006-2009-aran",
+            "title": "CCNL Comparto Scuola 2006-2009, 29 novembre 2007",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/07/CCNL-SCUOLA-2006-2009.pdf",
+            "published_on": "2007-11-29",
+            "sha256": "e71227f907cf2292f4994e535c2b431bb2961221ad16eae12c803d8bf911757d"
+          },
+          "page": "23",
+          "section": "Art. 13 cc. 2-4 (ferie)",
+          "quote": "I dipendenti neo-assunti nella scuola hanno diritto a 30 giorni lavorativi di ferie"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T08:24:13Z",
+          "verification_status": "verified",
+          "effective_from": "2007-11-29",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-12T08:24:13Z",
+          "review_id": "2026-10-12-ai"
+        },
+        "transformation": "32 days (c. 2), 30 for the first 3 years of service (cc. 3-4: 'Dopo 3 anni di servizio, a qualsiasi titolo prestato'). The CCNL counts the three years in any public administration ('a qualsiasi titolo prestato' / 'presso una qualsiasi pubblica amministrazione'); the tiers read the seniority with this employer, so a worker with earlier public service gets 26 (30) days when the text gives 28 (32): state the seniority with the earlier public service included."
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "cumulation": {
+        "window_years": 3,
+        "reduced_integration_rate": "0",
+        "bands": [
+          {
+            "seniority_months_from": 0,
+            "full_pay_days": 270,
+            "comporto_days": 540,
+            "steps": [
+              {
+                "day_from": 271,
+                "day_until": 361,
+                "integration_rate": "0.9"
+              },
+              {
+                "day_from": 361,
+                "day_until": 541,
+                "integration_rate": "0.5"
+              }
+            ]
+          }
+        ]
+      },
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-scuola-2006-2009-aran",
+            "title": "CCNL Comparto Scuola 2006-2009, 29 novembre 2007",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/07/CCNL-SCUOLA-2006-2009.pdf",
+            "published_on": "2007-11-29",
+            "sha256": "e71227f907cf2292f4994e535c2b431bb2961221ad16eae12c803d8bf911757d"
+          },
+          "page": "27-28",
+          "section": "Art. 17 cc. 1, 8 (assenze per malattia)",
+          "quote": "b) 90% della retribuzione di cui alla lett. a) per i successivi 3 mesi di assenza;"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-12T08:24:13Z",
+          "verification_status": "unverified",
+          "effective_from": "2007-11-29"
+        },
+        "note": "Job kept 18 months within the three years before the day (the CCNL sums 'le assenze per malattia verificatesi nel triennio precedente' the last episode): 540 days of 30-day months over a window of 3 years; 9 months (270 days) in full, 3 (days 271-360) at 90%, 6 (days 361-540) at 50%. The window ends on the sick day, not on the start of the last episode. The cut of the accessory pay of the first 10 days (D.L. 112/2008 art. 71 c. 1) is not modelled."
+      }
+    }
+  },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-12-ai-universita",
+        "date": "2026-10-12",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Tabellare, indennità di Ateneo and overtime of the university staff, 2024-2027.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+            "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+          },
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+            "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+          }
+        ],
+        "findings": [
+          "New file for the university staff of the comparto Istruzione e Ricerca, which the scuola file left out: tabellare of Tabella B2 by area, indennità di Ateneo of Tabella B3, overtime of Tabella B4, read on the ARAN texts."
+        ]
+      }
+    ]
+  }
+}

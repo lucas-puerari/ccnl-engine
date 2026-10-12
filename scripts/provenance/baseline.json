@@ -900,6 +900,13 @@
       "accrual_rule": "assumed",
       "additional_months[2024-10-01]": "assumed"
     },
+    "agreement/universita-aran.json": {
+      "levels[COLLABORATORE].fixed_allowances[IND_ATENEO]": "assumed",
+      "levels[ELEVATA_PROFESSIONALITA].fixed_allowances[IND_ATENEO]": "assumed",
+      "levels[FUNZIONARIO].fixed_allowances[IND_ATENEO]": "assumed",
+      "levels[OPERATORE].fixed_allowances[IND_ATENEO]": "assumed",
+      "work_rules.absence_rules": "assumed"
+    },
     "agreement/vetro-meccanizzato-assovetro.json": {
       "accrual_rule": "missing",
       "additional_months[2023-03-01]": "assumed",
@@ -1646,6 +1653,10 @@
     "agreement/uneba-uneba.json": [
       "uneba-uneba/apprentice_seniority",
       "uneba-uneba/equal_apprenticeship_bands"
+    ],
+    "agreement/universita-aran.json": [
+      "universita-aran/perseo_sirio_not_modelled",
+      "universita-aran/shared_rules_unchecked"
     ],
     "agreement/vetro-meccanizzato-assovetro.json": [
       "vetro-meccanizzato-assovetro/tranches_from_october_2026"
