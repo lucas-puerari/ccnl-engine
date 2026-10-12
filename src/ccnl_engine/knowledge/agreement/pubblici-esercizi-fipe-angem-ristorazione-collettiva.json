@@ -1,0 +1,2641 @@
+{
+  "schema_version": "0.5",
+  "meta": {
+    "ccnl_id": "pubblici-esercizi-fipe-angem-ristorazione-collettiva",
+    "name": "CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo - Ristorazione collettiva (aziende dell'art. 1 c. 1 par. II)",
+    "cnel_code": "H05Y",
+    "sector": "turismo",
+    "tax_sector": "terziario",
+    "signatories": [
+      "FIPE-Confcommercio",
+      "Legacoop Produzione e Servizi",
+      "Confcooperative Lavoro e Servizi",
+      "AGCI-Servizi",
+      "FILCAMS-CGIL",
+      "FISASCAT-CISL",
+      "UILTuCS"
+    ],
+    "sources": [
+      {
+        "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+        "type": "table",
+        "agreement_date": "2024-06-26"
+      },
+      {
+        "url": "https://www.fipe.it/wp-content/uploads/2024/06/Contratto-CCNL-05_06_24.pdf",
+        "type": "text",
+        "agreement_date": "2024-06-05"
+      },
+      {
+        "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+        "type": "text",
+        "agreement_date": "2018-02-08"
+      }
+    ],
+    "extraction": {
+      "method": "ai",
+      "model": "claude-sonnet-4-6",
+      "timestamp": "2026-09-03T00:00:00",
+      "human_reviewed": false
+    },
+    "workers_estimate": "~350k"
+  },
+  "coverage": {
+    "notes": [
+      {
+        "kind": "info",
+        "text": "SUB-SECTOR: collective catering companies of art. 1 c. 1 par. II (ristorazione collettiva). Same rules as pubblici-esercizi-fipe-angem; the 2025 and 2026 tranches apply from 1 September (accordo integrativo 26 June 2024, p. 3: 'Per le aziende di cui all'art. 1 comma 1 paragrafo II, le Parti stabiliscono incrementi dei valori di paga base nazionale mensile nelle modalità di seguito indicate')."
+      },
+      {
+        "kind": "info",
+        "text": "2024 RENEWAL: CCNL signed 5 June 2024, validity 1 June 2024 – 31 December 2027 (CNEL H05Y, ~592,364 workers Uniemens 2022 / over 1 million according to FIPE). Pay table source: fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf."
+      },
+      {
+        "kind": "simplification",
+        "text": "SALARY MODEL: the contractual pay structure provides for a separate national base pay and contingenza. For engine purposes they are consolidated into base_salary (monthly total per tranche). The totals are read in the accordo integrativo of 26 June 2024 (pp. 1-2), the same as the FIPE pay tables. fixed_allowances models the function allowance for quadri: Qa=75 EUR and Qb=70 EUR, from Art. 154 of the CCNL of 8 February 2018 (CCNL 2024-2027).",
+        "capability": "base_salary",
+        "monetary_impact": "no"
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICESHIP (Art. 68): professionalizzante apprenticeship 36 months, percentages 80%/85%/90% from lexplain.it (secondary, not checked on the signed text). Destination levels modelled as 1-6s and 6 (Qa/Qb excluded per D.Lgs. 81/2015 art. 41; level 7 excluded per tertiary CCNL convention, not verified against Art. 68 — fipe.it full text PDF not parseable: scanned without OCR). Art. 75 (apprenticeship for qualification/diploma) out of scope.",
+        "capability": "base_salary",
+        "monetary_impact": "no"
+      },
+      {
+        "kind": "info",
+        "text": "SENIORITY INCREMENTS: 6 quadrennial increments (48 months). Per-level amounts from FIPE pay tables (fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf). Paid over 14 monthly instalments."
+      },
+      {
+        "kind": "info",
+        "text": "MONTHLY PAYMENTS: 14, the tredicesima of Art. 183 and the quattordicesima of Art. 184 of the CCNL of 8 February 2018 (PDF pp. 127-128). The quattordicesima excludes the matured seniority increments (seniority_increments.excluded_from_extra_months)."
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY DIVISOR: 172 for a 40-hour week (Art. 160 of the CCNL of 8 February 2018, PDF p. 116; 190 for a 44-hour week, not modelled)."
+      },
+      {
+        "kind": "info",
+        "text": "INPS: uses 2026-terziario.json (tax_sector terziario, same as commercio-confcommercio and turismo-confcommercio)."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "HOLIDAY OVERTIME: Art. 126 (PDF p. 99) gives 30% by day and 60% by night for every overtime hour; Art. 132 (p. 103) gives 20% for the hours worked on a festività. The CCNL states no cumulation rule between them (it does for night work, art. 126 c. 3, and for Sunday work, art. 130 c. 2). The engine pays holiday overtime at 30%/60% without the 20%.",
+        "capability": "overtime",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "holiday_overtime_cumulation",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Confirm whether the 20% of art. 132 is added to the overtime rate on a festività; if so set the bands to 0.5 and 0.8, else close this note."
+        }
+      }
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2024-06-01",
+          "valid_until": null,
+          "value": "172",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "fipe-ccnl-2018-02-08",
+                "title": "CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo, 8 febbraio 2018 (scansione firmata)",
+                "kind": "associazione",
+                "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+                "published_on": "2018-02-08",
+                "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+              },
+              "page": "116",
+              "section": "Articolo 160 - Determinazione della retribuzione oraria",
+              "quote": "La retribuzione oraria si ottiene dividendo la retribuzione per: - 190 per il personale con orario normale di quarantaquattro ore settimanali; - 172 per il personale con orario normale di quaranta ore"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-10-11T21:00:00Z",
+              "effective_from": "2024-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T21:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-11-ai"
+            }
+          }
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2024-06-01",
+          "valid_until": null,
+          "value": "14",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "fipe-ccnl-2018-02-08",
+                "title": "CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo, 8 febbraio 2018 (scansione firmata)",
+                "kind": "associazione",
+                "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+                "published_on": "2018-02-08",
+                "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+              },
+              "page": "127-128",
+              "section": "Capo IX - Mensilità supplementari, Articoli 183 e 184",
+              "quote": "Articolo 184 - Quattordicesima mensilità (1) [...] a tutto il personale sarà corrisposta una mensilità della retribuzione in atto al 30 giugno di ciascun anno"
+            },
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it.",
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-10-11T21:00:00Z",
+              "effective_from": "2024-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T21:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-11-ai"
+            }
+          }
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 48,
+      "maximum_count": 6,
+      "amount_by_level": {
+        "Qa": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "40.80"
+            }
+          ]
+        },
+        "Qb": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "39.25"
+            }
+          ]
+        },
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "37.70"
+            }
+          ]
+        },
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "36.15"
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "34.86"
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "33.05"
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "32.54"
+            }
+          ]
+        },
+        "6s": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "31.25"
+            }
+          ]
+        },
+        "6": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "30.99"
+            }
+          ]
+        },
+        "7": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "30.47"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "fipe-ccnl-2018-02-08",
+            "title": "CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo, 8 febbraio 2018 (scansione firmata)",
+            "kind": "associazione",
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "published_on": "2018-02-08",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          },
+          "page": "126-127",
+          "section": "Capo VIII - Articolo 182 Scatti di anzianità",
+          "quote": "A tutto il personale verranno riconosciuti sei scatti [...] Dal 1° gennaio 2018, gli scatti quadriennali decorreranno dal primo giorno del mese immediatamente successivo"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "verified",
+          "effective_from": "2020-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T21:00:00Z",
+          "review_id": "2026-10-11-ai"
+        },
+        "note": "The increments are left out of the quattordicesima: art. 184 c. 1 (p. 128) pays 'una mensilità della retribuzione in atto al 30 giugno [...] esclusi gli assegni familiari e gli scatti di anzianità maturati'; the tredicesima of art. 183 c. 1 (p. 127) includes 'eventuali scatti di anzianità'."
+      },
+      "excluded_from_extra_months": [
+        "fourteenth"
+      ]
+    },
+    "employer_funds": [
+      {
+        "code": "FONTE",
+        "description": "Fon.Te. - Fondo pensione complementare per i dipendenti da aziende del terziario (commercio, turismo e servizi)",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0055"
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0055"
+            }
+          ]
+        },
+        "contribution_base": "tfr_base",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "fonte-allegato-1-contribuzione-2026",
+              "title": "Fon.Te. Nota informativa, Allegato 1 'Informazioni sulla contribuzione' (dati aggiornati al 23 marzo 2026)",
+              "kind": "altro",
+              "url": "https://fondofonte.it/wp-content/uploads/2022/06/Allegato-1-info-tab-contribuzione.pdf"
+            },
+            "section": "Table 'CCNL per i dipendenti da aziende dei settori pubblici esercizi, ristorazione collettiva e commerciale e turismo (FIPE – ANGEM – LEGACOOP PRODUZIONE e SERVIZI, FEDERLAVORO e SERVIZI CONFCOOPERATIVE – AGCI SERVIZI)'",
+            "quote": "Lavoratori occupati dopo il 28.04.1993 50% o 100% 0,55% 0,55% 29 novembre 1996 Trimestrale"
+          },
+          "transformation": "Employer 0.55% and worker minimum 0.55%, the columns 'Datore di Lavoro' and 'Lavoratore' of the table of the CCNL. The quota of TFR is the worker's choice in PensionFundEnrolment.tfr_to_fund.",
+          "note": "Read from the PDF the url serves (sha256 e1604b50f245d34b4ea04aa53bb91056f55635b39b8c0935f31f2a79b578d40e), text layer; valid_from is the first day of the bundled tax year, the rates being in force since 29 November 1996. The base is the retribuzione utile ai fini del calcolo del TFR, as note (1) of the Scheda 'I destinatari e i contributi' states (https://www.fondofonte.it/statuto-e-nota-informativa/parte-i-scheda-iii-i-destinatari-e-i-contributi/, sha256 dc19e50af945d0671920bb1ebc77e5d75cc2a9dd2f6fd8cad5dd2882a66c8cb2). No human review recorded."
+        }
+      }
+    ]
+  },
+  "levels": [
+    {
+      "code": "7",
+      "order": 1,
+      "description": "Level 7 — general assistants, cleaning staff (simple manual tasks)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-09-01",
+            "value": "1330.48",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "1",
+                "section": "Articolo 161 - Paga base nazionale, tabella 'Totale giu-24'",
+                "quote": "7 518,45 € 812,03 € 1.330,48 €"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T21:00:00Z",
+                "review_id": "2026-10-11-ai"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1360.34",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "3",
+                "section": "Aziende di cui all'art. 1 comma 1 paragrafo II (ristorazione collettiva), tabella 'Totale set-25'",
+                "quote": "7 518,45 € 841,89 € 1.360,34 €"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T17:00:00Z",
+                "verification_status": "unverified",
+                "effective_from": "2025-09-01"
+              },
+              "transformation": "Totale = contingenza + paga base of the September table; same amounts as the June tranche of the other sub-sectors, applied from September."
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-06-01",
+            "value": "1390.20",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "3",
+                "section": "Aziende di cui all'art. 1 comma 1 paragrafo II (ristorazione collettiva), tabella 'Totale set-26'",
+                "quote": "7 518,45 € 871,75 € 1.390,20 €"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T17:00:00Z",
+                "verification_status": "unverified",
+                "effective_from": "2026-09-01"
+              },
+              "transformation": "Totale = contingenza + paga base of the September table; same amounts as the June tranche of the other sub-sectors, applied from September."
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "1412.59",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "2",
+                "section": "Articolo 161 - Paga base nazionale, tabella 'Totale giu-27'",
+                "quote": "7 518,45 € 894,14 € 1.412,59 €"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T21:00:00Z",
+                "review_id": "2026-10-11-ai"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1442.45",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "2",
+                "section": "Articolo 161 - Paga base nazionale, tabella 'Totale dic-27'",
+                "quote": "7 518,45 € 924,00 € 1.442,45 €"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T21:00:00Z",
+                "review_id": "2026-10-11-ai"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "fipe-accordo-integrativo-2024-06-26",
+            "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+            "kind": "associazione",
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+            "published_on": "2024-06-26",
+            "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+          },
+          "page": "1-2",
+          "section": "Articolo 161 tables; level list",
+          "quote": "7 518,45 € 812,03 € 1.330,48 €"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "verified",
+          "effective_from": "2020-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T21:00:00Z",
+          "review_id": "2026-10-11-ai"
+        }
+      }
+    },
+    {
+      "code": "6",
+      "order": 2,
+      "description": "Level 6 — staff with standard practical training and basic professional knowledge",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-09-01",
+            "value": "1425.05",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "1",
+                "section": "Articolo 161 - Paga base nazionale, tabella 'Totale giu-24'",
+                "quote": "6 520,51 € 904,54 € 1.425,05 €"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T21:00:00Z",
+                "review_id": "2026-10-11-ai"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1458.31",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "3",
+                "section": "Aziende di cui all'art. 1 comma 1 paragrafo II (ristorazione collettiva), tabella 'Totale set-25'",
+                "quote": "6 520,51 € 937,80 € 1.458,31 €"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T17:00:00Z",
+                "verification_status": "unverified",
+                "effective_from": "2025-09-01"
+              },
+              "transformation": "Totale = contingenza + paga base of the September table; same amounts as the June tranche of the other sub-sectors, applied from September."
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-06-01",
+            "value": "1491.57",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "3",
+                "section": "Aziende di cui all'art. 1 comma 1 paragrafo II (ristorazione collettiva), tabella 'Totale set-26'",
+                "quote": "6 520,51 € 971,06 € 1.491,57 €"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T17:00:00Z",
+                "verification_status": "unverified",
+                "effective_from": "2026-09-01"
+              },
+              "transformation": "Totale = contingenza + paga base of the September table; same amounts as the June tranche of the other sub-sectors, applied from September."
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "1516.52",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "2",
+                "section": "Articolo 161 - Paga base nazionale, tabella 'Totale giu-27'",
+                "quote": "6 520,51 € 996,01 € 1.516,52 €"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T21:00:00Z",
+                "review_id": "2026-10-11-ai"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1549.78",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "2",
+                "section": "Articolo 161 - Paga base nazionale, tabella 'Totale dic-27'",
+                "quote": "6 520,51 € 1.029,27 € 1.549,78 €"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T21:00:00Z",
+                "review_id": "2026-10-11-ai"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "fipe-accordo-integrativo-2024-06-26",
+            "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+            "kind": "associazione",
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+            "published_on": "2024-06-26",
+            "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+          },
+          "page": "1-2",
+          "section": "Articolo 161 tables; level list",
+          "quote": "6 520,51 € 904,54 € 1.425,05 €"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "verified",
+          "effective_from": "2020-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T21:00:00Z",
+          "review_id": "2026-10-11-ai"
+        }
+      }
+    },
+    {
+      "code": "6s",
+      "order": 3,
+      "description": "Level 6 super — staff with adequate technical-practical skills (formerly qualified commis or experienced staff)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-09-01",
+            "value": "1446.72",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "1",
+                "section": "Articolo 161 - Paga base nazionale, tabella 'Totale giu-24'",
+                "quote": "6s 520,64 € 926,08 € 1.446,72 €"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T21:00:00Z",
+                "review_id": "2026-10-11-ai"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1480.77",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "3",
+                "section": "Aziende di cui all'art. 1 comma 1 paragrafo II (ristorazione collettiva), tabella 'Totale set-25'",
+                "quote": "6s 520,64 € 960,13 € 1.480,77 €"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T17:00:00Z",
+                "verification_status": "unverified",
+                "effective_from": "2025-09-01"
+              },
+              "transformation": "Totale = contingenza + paga base of the September table; same amounts as the June tranche of the other sub-sectors, applied from September."
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-06-01",
+            "value": "1514.83",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "3",
+                "section": "Aziende di cui all'art. 1 comma 1 paragrafo II (ristorazione collettiva), tabella 'Totale set-26'",
+                "quote": "6s 520,64 € 994,19 € 1.514,83 €"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T17:00:00Z",
+                "verification_status": "unverified",
+                "effective_from": "2026-09-01"
+              },
+              "transformation": "Totale = contingenza + paga base of the September table; same amounts as the June tranche of the other sub-sectors, applied from September."
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "1540.37",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "2",
+                "section": "Articolo 161 - Paga base nazionale, tabella 'Totale giu-27'",
+                "quote": "6s 520,64 € 1.019,73 € 1.540,37 €"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T21:00:00Z",
+                "review_id": "2026-10-11-ai"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1574.42",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "2",
+                "section": "Articolo 161 - Paga base nazionale, tabella 'Totale dic-27'",
+                "quote": "6s 520,64 € 1.053,78 € 1.574,42 €"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T21:00:00Z",
+                "review_id": "2026-10-11-ai"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "fipe-accordo-integrativo-2024-06-26",
+            "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+            "kind": "associazione",
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+            "published_on": "2024-06-26",
+            "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+          },
+          "page": "1-2",
+          "section": "Articolo 161 tables; level list",
+          "quote": "6s 520,64 € 926,08 € 1.446,72 €"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "verified",
+          "effective_from": "2020-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T21:00:00Z",
+          "review_id": "2026-10-11-ai"
+        }
+      }
+    },
+    {
+      "code": "5",
+      "order": 4,
+      "description": "Level 5 — staff with qualified technical-practical knowledge and skills",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-09-01",
+            "value": "1507.63",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "1",
+                "section": "Articolo 161 - Paga base nazionale, tabella 'Totale giu-24'",
+                "quote": "5 522,37 € 985,26 € 1.507,63 €"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T21:00:00Z",
+                "review_id": "2026-10-11-ai"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1543.86",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "3",
+                "section": "Aziende di cui all'art. 1 comma 1 paragrafo II (ristorazione collettiva), tabella 'Totale set-25'",
+                "quote": "5 522,37 € 1.021,49 € 1.543,86 €"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T17:00:00Z",
+                "verification_status": "unverified",
+                "effective_from": "2025-09-01"
+              },
+              "transformation": "Totale = contingenza + paga base of the September table; same amounts as the June tranche of the other sub-sectors, applied from September."
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-06-01",
+            "value": "1580.09",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "3",
+                "section": "Aziende di cui all'art. 1 comma 1 paragrafo II (ristorazione collettiva), tabella 'Totale set-26'",
+                "quote": "5 522,37 € 1.057,72 € 1.580,09 €"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T17:00:00Z",
+                "verification_status": "unverified",
+                "effective_from": "2026-09-01"
+              },
+              "transformation": "Totale = contingenza + paga base of the September table; same amounts as the June tranche of the other sub-sectors, applied from September."
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "1607.26",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "2",
+                "section": "Articolo 161 - Paga base nazionale, tabella 'Totale giu-27'",
+                "quote": "5 522,37 € 1.084,89 € 1.607,26 €"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T21:00:00Z",
+                "review_id": "2026-10-11-ai"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1643.50",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "2",
+                "section": "Articolo 161 - Paga base nazionale, tabella 'Totale dic-27'",
+                "quote": "5 522,37 € 1.121,13 € 1.643,50 €"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T21:00:00Z",
+                "review_id": "2026-10-11-ai"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "fipe-accordo-integrativo-2024-06-26",
+            "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+            "kind": "associazione",
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+            "published_on": "2024-06-26",
+            "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+          },
+          "page": "1-2",
+          "section": "Articolo 161 tables; level list",
+          "quote": "5 522,37 € 985,26 € 1.507,63 €"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "verified",
+          "effective_from": "2020-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T21:00:00Z",
+          "review_id": "2026-10-11-ai"
+        }
+      }
+    },
+    {
+      "code": "4",
+      "order": 5,
+      "description": "Level 4 — staff with executive autonomy (specialised technical-administrative duties)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-09-01",
+            "value": "1612.69",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "1",
+                "section": "Articolo 161 - Paga base nazionale, tabella 'Totale giu-24'",
+                "quote": "4 524,94 € 1.087,75 € 1.612,69 €"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T21:00:00Z",
+                "review_id": "2026-10-11-ai"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1652.69",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "3",
+                "section": "Aziende di cui all'art. 1 comma 1 paragrafo II (ristorazione collettiva), tabella 'Totale set-25'",
+                "quote": "4 524,94 € 1.127,75 € 1.652,69 €"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T17:00:00Z",
+                "verification_status": "unverified",
+                "effective_from": "2025-09-01"
+              },
+              "transformation": "Totale = contingenza + paga base of the September table; same amounts as the June tranche of the other sub-sectors, applied from September."
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-06-01",
+            "value": "1692.69",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "3",
+                "section": "Aziende di cui all'art. 1 comma 1 paragrafo II (ristorazione collettiva), tabella 'Totale set-26'",
+                "quote": "4 524,94 € 1.167,75 € 1.692,69 €"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T17:00:00Z",
+                "verification_status": "unverified",
+                "effective_from": "2026-09-01"
+              },
+              "transformation": "Totale = contingenza + paga base of the September table; same amounts as the June tranche of the other sub-sectors, applied from September."
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "1722.69",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "2",
+                "section": "Articolo 161 - Paga base nazionale, tabella 'Totale giu-27'",
+                "quote": "4 524,94 € 1.197,75 € 1.722,69 €"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T21:00:00Z",
+                "review_id": "2026-10-11-ai"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1762.69",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "2",
+                "section": "Articolo 161 - Paga base nazionale, tabella 'Totale dic-27'",
+                "quote": "4 524,94 € 1.237,75 € 1.762,69 €"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T21:00:00Z",
+                "review_id": "2026-10-11-ai"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "fipe-accordo-integrativo-2024-06-26",
+            "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+            "kind": "associazione",
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+            "published_on": "2024-06-26",
+            "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+          },
+          "page": "1-2",
+          "section": "Articolo 161 tables; level list",
+          "quote": "4 524,94 € 1.087,75 € 1.612,69 €"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "verified",
+          "effective_from": "2020-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T21:00:00Z",
+          "review_id": "2026-10-11-ai"
+        }
+      }
+    },
+    {
+      "code": "3",
+      "order": 6,
+      "description": "Level 3 — staff with specialist technical knowledge (conceptual work)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-09-01",
+            "value": "1713.55",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "1",
+                "section": "Articolo 161 - Paga base nazionale, tabella 'Totale giu-24'",
+                "quote": "3 528,26 € 1.185,29 € 1.713,55 €"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T21:00:00Z",
+                "review_id": "2026-10-11-ai"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1757.14",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "3",
+                "section": "Aziende di cui all'art. 1 comma 1 paragrafo II (ristorazione collettiva), tabella 'Totale set-25'",
+                "quote": "3 528,26 € 1.228,88 € 1.757,14 €"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T17:00:00Z",
+                "verification_status": "unverified",
+                "effective_from": "2025-09-01"
+              },
+              "transformation": "Totale = contingenza + paga base of the September table; same amounts as the June tranche of the other sub-sectors, applied from September."
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-06-01",
+            "value": "1800.73",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "3",
+                "section": "Aziende di cui all'art. 1 comma 1 paragrafo II (ristorazione collettiva), tabella 'Totale set-26'",
+                "quote": "3 528,26 € 1.272,47 € 1.800,73 €"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T17:00:00Z",
+                "verification_status": "unverified",
+                "effective_from": "2026-09-01"
+              },
+              "transformation": "Totale = contingenza + paga base of the September table; same amounts as the June tranche of the other sub-sectors, applied from September."
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "1833.42",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "2",
+                "section": "Articolo 161 - Paga base nazionale, tabella 'Totale giu-27'",
+                "quote": "3 528,26 € 1.305,16 € 1.833,42 €"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T21:00:00Z",
+                "review_id": "2026-10-11-ai"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1877.00",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "2",
+                "section": "Articolo 161 - Paga base nazionale, tabella 'Totale dic-27'",
+                "quote": "3 528,26 € 1.348,74 € 1.877,00 €"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T21:00:00Z",
+                "review_id": "2026-10-11-ai"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "fipe-accordo-integrativo-2024-06-26",
+            "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+            "kind": "associazione",
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+            "published_on": "2024-06-26",
+            "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+          },
+          "page": "1-2",
+          "section": "Articolo 161 tables; level list",
+          "quote": "3 528,26 € 1.185,29 € 1.713,55 €"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "verified",
+          "effective_from": "2020-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T21:00:00Z",
+          "review_id": "2026-10-11-ai"
+        }
+      }
+    },
+    {
+      "code": "2",
+      "order": 7,
+      "description": "Level 2 — staff with initiative and operational autonomy (coordination)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-09-01",
+            "value": "1821.48",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "1",
+                "section": "Articolo 161 - Paga base nazionale, tabella 'Totale giu-24'",
+                "quote": "2 531,59 € 1.289,89 € 1.821,48 €"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T21:00:00Z",
+                "review_id": "2026-10-11-ai"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1868.92",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "3",
+                "section": "Aziende di cui all'art. 1 comma 1 paragrafo II (ristorazione collettiva), tabella 'Totale set-25'",
+                "quote": "2 531,59 € 1.337,33 € 1.868,92 €"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T17:00:00Z",
+                "verification_status": "unverified",
+                "effective_from": "2025-09-01"
+              },
+              "transformation": "Totale = contingenza + paga base of the September table; same amounts as the June tranche of the other sub-sectors, applied from September."
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-06-01",
+            "value": "1916.35",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "3",
+                "section": "Aziende di cui all'art. 1 comma 1 paragrafo II (ristorazione collettiva), tabella 'Totale set-26'",
+                "quote": "2 531,59 € 1.384,76 € 1.916,35 €"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T17:00:00Z",
+                "verification_status": "unverified",
+                "effective_from": "2026-09-01"
+              },
+              "transformation": "Totale = contingenza + paga base of the September table; same amounts as the June tranche of the other sub-sectors, applied from September."
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "1951.92",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "2",
+                "section": "Articolo 161 - Paga base nazionale, tabella 'Totale giu-27'",
+                "quote": "2 531,59 € 1.420,33 € 1.951,92 €"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T21:00:00Z",
+                "review_id": "2026-10-11-ai"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1999.36",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "2",
+                "section": "Articolo 161 - Paga base nazionale, tabella 'Totale dic-27'",
+                "quote": "2 531,59 € 1.467,77 € 1.999,36 €"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T21:00:00Z",
+                "review_id": "2026-10-11-ai"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "fipe-accordo-integrativo-2024-06-26",
+            "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+            "kind": "associazione",
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+            "published_on": "2024-06-26",
+            "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+          },
+          "page": "1-2",
+          "section": "Articolo 161 tables; level list",
+          "quote": "2 531,59 € 1.289,89 € 1.821,48 €"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "verified",
+          "effective_from": "2020-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T21:00:00Z",
+          "review_id": "2026-10-11-ai"
+        }
+      }
+    },
+    {
+      "code": "1",
+      "order": 8,
+      "description": "Level 1 — staff with high professional content and operational autonomy",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-09-01",
+            "value": "2000.05",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "1",
+                "section": "Articolo 161 - Paga base nazionale, tabella 'Totale giu-24'",
+                "quote": "1 536,71 € 1.463,34 € 2.000,05 €"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T21:00:00Z",
+                "review_id": "2026-10-11-ai"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "2053.87",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "3",
+                "section": "Aziende di cui all'art. 1 comma 1 paragrafo II (ristorazione collettiva), tabella 'Totale set-25'",
+                "quote": "1 536,71 € 1.517,16 € 2.053,87 €"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T17:00:00Z",
+                "verification_status": "unverified",
+                "effective_from": "2025-09-01"
+              },
+              "transformation": "Totale = contingenza + paga base of the September table; same amounts as the June tranche of the other sub-sectors, applied from September."
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-06-01",
+            "value": "2107.68",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "3",
+                "section": "Aziende di cui all'art. 1 comma 1 paragrafo II (ristorazione collettiva), tabella 'Totale set-26'",
+                "quote": "1 536,71 € 1.570,97 € 2.107,68 €"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T17:00:00Z",
+                "verification_status": "unverified",
+                "effective_from": "2026-09-01"
+              },
+              "transformation": "Totale = contingenza + paga base of the September table; same amounts as the June tranche of the other sub-sectors, applied from September."
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "2148.04",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "2",
+                "section": "Articolo 161 - Paga base nazionale, tabella 'Totale giu-27'",
+                "quote": "1 536,71 € 1.611,33 € 2.148,04 €"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T21:00:00Z",
+                "review_id": "2026-10-11-ai"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "2201.85",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "2",
+                "section": "Articolo 161 - Paga base nazionale, tabella 'Totale dic-27'",
+                "quote": "1 536,71 € 1.665,14 € 2.201,85 €"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T21:00:00Z",
+                "review_id": "2026-10-11-ai"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "fipe-accordo-integrativo-2024-06-26",
+            "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+            "kind": "associazione",
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+            "published_on": "2024-06-26",
+            "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+          },
+          "page": "1-2",
+          "section": "Articolo 161 tables; level list",
+          "quote": "1 536,71 € 1.463,34 € 2.000,05 €"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "verified",
+          "effective_from": "2020-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T21:00:00Z",
+          "review_id": "2026-10-11-ai"
+        }
+      }
+    },
+    {
+      "code": "Qb",
+      "order": 9,
+      "description": "Quadri B — managerial functions with continuous responsibility over a complex unit",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-09-01",
+            "value": "2152.82",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "1",
+                "section": "Articolo 161 - Paga base nazionale, tabella 'Totale giu-24'",
+                "quote": "Qb 537,59 € 1.615,23 € 2.152,82 €"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T21:00:00Z",
+                "review_id": "2026-10-11-ai"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "2212.22",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "3",
+                "section": "Aziende di cui all'art. 1 comma 1 paragrafo II (ristorazione collettiva), tabella 'Totale set-25'",
+                "quote": "Qb 537,59 € 1.674,63 € 2.212,22 €"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T17:00:00Z",
+                "verification_status": "unverified",
+                "effective_from": "2025-09-01"
+              },
+              "transformation": "Totale = contingenza + paga base of the September table; same amounts as the June tranche of the other sub-sectors, applied from September."
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-06-01",
+            "value": "2271.61",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "3",
+                "section": "Aziende di cui all'art. 1 comma 1 paragrafo II (ristorazione collettiva), tabella 'Totale set-26'",
+                "quote": "Qb 537,59 € 1.734,02 € 2.271,61 €"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T17:00:00Z",
+                "verification_status": "unverified",
+                "effective_from": "2026-09-01"
+              },
+              "transformation": "Totale = contingenza + paga base of the September table; same amounts as the June tranche of the other sub-sectors, applied from September."
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "2316.16",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "2",
+                "section": "Articolo 161 - Paga base nazionale, tabella 'Totale giu-27'",
+                "quote": "Qb 537,59 € 1.778,57 € 2.316,16 €"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T21:00:00Z",
+                "review_id": "2026-10-11-ai"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "2375.56",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "2",
+                "section": "Articolo 161 - Paga base nazionale, tabella 'Totale dic-27'",
+                "quote": "Qb 537,59 € 1.837,97 € 2.375,56 €"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T21:00:00Z",
+                "review_id": "2026-10-11-ai"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "IND_FUN",
+          "description": "Function allowance Quadri B (Art. 154 CCNL)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-01",
+                "valid_until": null,
+                "value": "70.00"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "fipe-ccnl-2018-02-08",
+                "title": "CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo, 8 febbraio 2018 (scansione firmata)",
+                "kind": "associazione",
+                "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+                "published_on": "2018-02-08",
+                "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+              },
+              "page": "114",
+              "section": "Articolo 154 - Indennità di funzione",
+              "quote": "Ai Quadri è riconosciuta una indennità di funzione mensile, assorbibile fino a concorrenza [...] categoria indennità di funzione B 70,00"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "verified",
+              "effective_from": "2020-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T21:00:00Z",
+              "review_id": "2026-10-11-ai"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "fipe-accordo-integrativo-2024-06-26",
+            "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+            "kind": "associazione",
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+            "published_on": "2024-06-26",
+            "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+          },
+          "page": "1-2",
+          "section": "Articolo 161 tables; level list",
+          "quote": "Qb 537,59 € 1.615,23 € 2.152,82 €"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "verified",
+          "effective_from": "2020-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T21:00:00Z",
+          "review_id": "2026-10-11-ai"
+        }
+      }
+    },
+    {
+      "code": "Qa",
+      "order": 10,
+      "description": "Quadri A — managerial functions with a high level of management responsibility",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-09-01",
+            "value": "2331.41",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "1",
+                "section": "Articolo 161 - Paga base nazionale, tabella 'Totale giu-24'",
+                "quote": "Qa 542,70 € 1.788,71 € 2.331,41 €"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T21:00:00Z",
+                "review_id": "2026-10-11-ai"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "2397.19",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "3",
+                "section": "Aziende di cui all'art. 1 comma 1 paragrafo II (ristorazione collettiva), tabella 'Totale set-25'",
+                "quote": "Qa 542,70 € 1.854,49 € 2.397,19 €"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T17:00:00Z",
+                "verification_status": "unverified",
+                "effective_from": "2025-09-01"
+              },
+              "transformation": "Totale = contingenza + paga base of the September table; same amounts as the June tranche of the other sub-sectors, applied from September."
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-06-01",
+            "value": "2462.96",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "3",
+                "section": "Aziende di cui all'art. 1 comma 1 paragrafo II (ristorazione collettiva), tabella 'Totale set-26'",
+                "quote": "Qa 542,70 € 1.920,26 € 2.462,96 €"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T17:00:00Z",
+                "verification_status": "unverified",
+                "effective_from": "2026-09-01"
+              },
+              "transformation": "Totale = contingenza + paga base of the September table; same amounts as the June tranche of the other sub-sectors, applied from September."
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "2512.30",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "2",
+                "section": "Articolo 161 - Paga base nazionale, tabella 'Totale giu-27'",
+                "quote": "Qa 542,70 € 1.969,60 € 2.512,30 €"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T21:00:00Z",
+                "review_id": "2026-10-11-ai"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "2578.07",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "fipe-accordo-integrativo-2024-06-26",
+                  "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+                  "kind": "associazione",
+                  "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                  "published_on": "2024-06-26",
+                  "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                },
+                "page": "2",
+                "section": "Articolo 161 - Paga base nazionale, tabella 'Totale dic-27'",
+                "quote": "Qa 542,70 € 2.035,37 € 2.578,07 €"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "verified",
+                "effective_from": "2020-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-11T21:00:00Z",
+                "review_id": "2026-10-11-ai"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "IND_FUN",
+          "description": "Function allowance Quadri A (Art. 154 CCNL)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-01",
+                "valid_until": null,
+                "value": "75.00"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "fipe-ccnl-2018-02-08",
+                "title": "CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo, 8 febbraio 2018 (scansione firmata)",
+                "kind": "associazione",
+                "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+                "published_on": "2018-02-08",
+                "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+              },
+              "page": "114",
+              "section": "Articolo 154 - Indennità di funzione",
+              "quote": "Ai Quadri è riconosciuta una indennità di funzione mensile, assorbibile fino a concorrenza [...] categoria indennità di funzione A 75,00"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "verified",
+              "effective_from": "2020-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T21:00:00Z",
+              "review_id": "2026-10-11-ai"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "fipe-accordo-integrativo-2024-06-26",
+            "title": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+            "kind": "associazione",
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+            "published_on": "2024-06-26",
+            "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+          },
+          "page": "1-2",
+          "section": "Articolo 161 tables; level list",
+          "quote": "Qa 542,70 € 1.788,71 € 2.331,41 €"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "verified",
+          "effective_from": "2020-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T21:00:00Z",
+          "review_id": "2026-10-11-ai"
+        }
+      }
+    }
+  ],
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "professionalizzante",
+      "destination_levels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6s",
+        "6"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
+    }
+  ],
+  "ruleset": {
+    "id": "ccnl/pubblici-esercizi-fipe-angem-ristorazione-collettiva",
+    "version": "2026.2",
+    "effective_from": "2024-06-01",
+    "effective_until": null,
+    "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
+    "verification_status": "unverified",
+    "source_hash": "2dd1ed886a4f5409bd07f7a66a9a2666dd5c5cec42e69445b01f37674d2deea0",
+    "published_at": "2026-09-07",
+    "source_type": "contracting_party"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-06-01",
+                "value": 0.3,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "fipe-ccnl-2018-02-08",
+                "title": "CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo, 8 febbraio 2018 (scansione firmata)",
+                "kind": "associazione",
+                "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+                "published_on": "2018-02-08",
+                "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+              },
+              "page": "99",
+              "section": "Articolo 126 - Maggiorazione per lavoro straordinario",
+              "quote": "Il lavoro straordinario è compensato con la retribuzione ragguagliata ad ore maggiorata del 30 per cento se diurno o 60 per cento se notturno."
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2024-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T21:00:00Z",
+              "review_id": "2026-10-11-ai"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario feriale notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-06-01",
+                "value": 0.6,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "fipe-ccnl-2018-02-08",
+                "title": "CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo, 8 febbraio 2018 (scansione firmata)",
+                "kind": "associazione",
+                "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+                "published_on": "2018-02-08",
+                "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+              },
+              "page": "99",
+              "section": "Articolo 126 - Maggiorazione per lavoro straordinario",
+              "quote": "Il lavoro straordinario è compensato con la retribuzione ragguagliata ad ore maggiorata del 30 per cento se diurno o 60 per cento se notturno."
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2024-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-11T21:00:00Z",
+              "review_id": "2026-10-11-ai"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-06-01",
+                "value": 0.3,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "fipe-ccnl-2018-02-08",
+                "title": "CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo, 8 febbraio 2018 (scansione firmata)",
+                "kind": "associazione",
+                "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+                "published_on": "2018-02-08",
+                "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+              },
+              "page": "99",
+              "section": "Articolo 126 - Maggiorazione per lavoro straordinario, commi 1-2",
+              "quote": "Il lavoro straordinario è compensato con la retribuzione ragguagliata ad ore maggiorata del 30 per cento se diurno o 60 per cento se notturno."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T17:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2018-02-08"
+            },
+            "note": "Art. 126 sets the overtime rate by time of day only (night: from midnight to 6, c. 2), so it covers overtime on a holiday: 30% by day, 60% by night. Whether the 20% of art. 132 (work on a festività, p. 103) is added is not stated (note holiday_overtime_cumulation)."
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario notturno festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-06-01",
+                "value": 0.6,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night_holiday"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "fipe-ccnl-2018-02-08",
+                "title": "CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo, 8 febbraio 2018 (scansione firmata)",
+                "kind": "associazione",
+                "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+                "published_on": "2018-02-08",
+                "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+              },
+              "page": "99",
+              "section": "Articolo 126 - Maggiorazione per lavoro straordinario, commi 1-2",
+              "quote": "Il lavoro straordinario è compensato con la retribuzione ragguagliata ad ore maggiorata del 30 per cento se diurno o 60 per cento se notturno."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T17:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2018-02-08"
+            },
+            "note": "Art. 126 sets the overtime rate by time of day only (night: from midnight to 6, c. 2), so it covers overtime on a holiday: 30% by day, 60% by night. Whether the 20% of art. 132 (work on a festività, p. 103) is added is not stated (note holiday_overtime_cumulation)."
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "fipe-ccnl-2018-02-08",
+            "title": "CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo, 8 febbraio 2018 (scansione firmata)",
+            "kind": "associazione",
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "published_on": "2018-02-08",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          },
+          "page": "116",
+          "section": "Articolo 159 - Determinazione della retribuzione giornaliera",
+          "quote": "La retribuzione giornaliera si ottiene dividendo la retribuzione mensile per ventisei. (2) Tale indice è valido a tutti i fini contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2024-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T21:00:00Z",
+          "review_id": "2026-10-11-ai"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "26",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "26"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "fipe-ccnl-2018-02-08",
+            "title": "CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo, 8 febbraio 2018 (scansione firmata)",
+            "kind": "associazione",
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "published_on": "2018-02-08",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          },
+          "page": "104",
+          "section": "Articolo 134 - Determinazione del periodo di ferie",
+          "quote": "Tutto il personale ha diritto ad un periodo di ferie nelle misura di ventisei giorni. A tal fine, la settimana lavorativa [...] viene considerata di sei giornate"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2024-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T21:00:00Z",
+          "review_id": "2026-10-11-ai"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "0.8",
+      "max_duration_days": 180,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "fipe-ccnl-2018-02-08",
+            "title": "CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo, 8 febbraio 2018 (scansione firmata)",
+            "kind": "associazione",
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "published_on": "2018-02-08",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          },
+          "page": "134, 136",
+          "section": "Articolo 190 - Prestazioni; Articolo 194 - Conservazione del posto",
+          "quote": "indennità di malattia da corrispondersi dall'INPS nella misura dell'80 per cento [...] per i primi tre giorni di malattia (periodo di carenza) qualora la durata della malattia superi i cinque giorni"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2024-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-11T21:00:00Z",
+          "review_id": "2026-10-11-ai"
+        },
+        "transformation": "Art. 190 c. 3: INPS pays the indemnity at 80% (regime pubblici_esercizi of sickness/indemnity/rates.json) and the CCNL adds no top-up, so the target is 0.8; the employer pays the normal pay for the three days of carenza only when the sickness lasts more than five days (carenza_min_days 5). Art. 194: 180 days a year, from 1 January to 31 December."
+      },
+      "carenza_min_days": 5,
+      "inps_regime": "pubblici_esercizi"
+    }
+  },
+  "verification": {
+    "reviews": [
+      {
+        "id": "2026-10-11-ai",
+        "date": "2026-10-11",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Every payable rule of the file (72 records) and the hourly divisor read again in the signed texts: the CCNL of 8 February 2018, the renewal of 5 June 2024 and its accordo integrativo of 26 June 2024 with the final salary tables.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+            "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+          },
+          {
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          },
+          {
+            "url": "https://www.fipe.it/wp-content/uploads/2024/06/Contratto-CCNL-05_06_24.pdf",
+            "sha256": "b133dcca1351c72309389e53eeea21cb9b0459c82736423749206d6f11235c43"
+          },
+          {
+            "url": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.indennit--di-malattia-e-visite-mediche-di-controllo.html",
+            "sha256": "6309395f9adc0866931062a5e934d943a44e68cb64d7ae5403ed2f735d9c039a"
+          }
+        ],
+        "findings": [
+          "All 50 salary periods and the 10 level rows match the accordo integrativo of 26 June 2024 (pp. 1-2) and are verified, with the Quadri allowances (Art. 154), the 14 monthly payments (Artt. 183-184), seniority (Art. 182), overtime 30% and 60% (Art. 126), the daily quota 1/26 (Art. 159), leave (Art. 134) and the hourly divisor 172 (Art. 160). Pages are PDF page indexes.",
+          "Corrected: sickness (Art. 190, Art. 194). INPS pays 80% for the whole sickness in this sector (regime pubblici_esercizi, funded by the 0.77% supplement) and the CCNL adds no top-up, so the target is 80%; the three days of carenza are paid in full only when the sickness lasts more than five days; the comporto is 180 days a calendar year.",
+          "Assumed: the overtime bands for holidays (30%) and holiday nights (60%). The CCNL sets only 30% by day and 60% by night (Art. 126) and 20% for ordinary work on a holiday (Art. 132); the two bands are inferences, not cited values.",
+          "Left derived: the Fon.Te. rates, read in the fund's information sheet, not in the CCNL.",
+          "Not modelled: the quattordicesima excludes the seniority increments (Art. 184), the collective catering companies move the June 2025 and June 2026 tranches to September (accordo integrativo p. 3), and the conditions of Art. 190 beyond the carenza.",
+          "FIPE and the Turismo CCNLs are two agreements: FIPE was renewed on 5 June 2024 (level 4 at 1,692.69 from June 2026), the Turismo CCNL of Federalberghi and Faita on 5 July 2024 (1,695.69 from May 2026)."
+        ]
+      },
+      {
+        "id": "2026-10-13-ai",
+        "date": "2026-10-13",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Quattordicesima and seniority, holiday overtime, September tranches of the ristorazione collettiva: follow-ups of the review of 2026-10-11.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          },
+          {
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+            "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+          }
+        ],
+        "findings": [
+          "Quattordicesima: art. 184 c. 1 excludes the matured seniority increments; the engine paid them. Now excluded.",
+          "Holiday overtime: the 30% and 60% are art. 126 itself (by time of day), not an analogy: derived from p. 99; whether art. 132's 20% is added is left open (outside_input note).",
+          "Ristorazione collettiva: the 2025 and 2026 tranches start in September for the companies of art. 1 c. 1 par. II (accordo integrativo 26.6.2024, p. 3); still the limitation contract_catering_tranche_dates.",
+          "This file was created from pubblici-esercizi-fipe-angem for the collective catering companies: same rules and review history, with the 2025 and 2026 tranches from 1 September (accordo integrativo of 26 June 2024, p. 3)."
+        ]
+      }
+    ]
+  }
+}

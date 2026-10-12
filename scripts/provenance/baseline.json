@@ -568,10 +568,11 @@
       "accrual_rule": "assumed",
       "additional_months[2024-07-23]": "assumed"
     },
+    "agreement/pubblici-esercizi-fipe-angem-ristorazione-collettiva.json": {
+      "accrual_rule": "missing"
+    },
     "agreement/pubblici-esercizi-fipe-angem.json": {
-      "accrual_rule": "missing",
-      "overtime_bands[OT_FESTIVO]": "assumed",
-      "overtime_bands[OT_NOTTURNO_FESTIVO]": "assumed"
+      "accrual_rule": "missing"
     },
     "agreement/pulizia-artigianato-confartigianato.json": {
       "accrual_rule": "missing",
@@ -1539,9 +1540,14 @@
       "poste-italiane-k700/edr_pre_privatization",
       "poste-italiane-k700/fondo_quiescenza_poste_rates"
     ],
+    "agreement/pubblici-esercizi-fipe-angem-ristorazione-collettiva.json": [
+      "pubblici-esercizi-fipe-angem-ristorazione-collettiva/apprentice_seniority",
+      "pubblici-esercizi-fipe-angem-ristorazione-collettiva/holiday_overtime_cumulation"
+    ],
     "agreement/pubblici-esercizi-fipe-angem.json": [
       "pubblici-esercizi-fipe-angem/apprentice_seniority",
       "pubblici-esercizi-fipe-angem/contract_catering_tranche_dates",
+      "pubblici-esercizi-fipe-angem/holiday_overtime_cumulation",
       "pubblici-esercizi-fipe-angem/small_company_pay_reduction"
     ],
     "agreement/pulizia-artigianato-confartigianato.json": [
