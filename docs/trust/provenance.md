@@ -180,8 +180,8 @@ when they drift.
 | Status | CCNL rules | Fiscal blocks | Total |
 |---|---:|---:|---:|
 | `verified` | 346 | 8 | 354 |
-| `derived` | 5 532 | 118 | 5 650 |
-| `assumed` | 690 | 135 | 825 |
+| `derived` | 5 532 | 120 | 5 652 |
+| `assumed` | 690 | 133 | 823 |
 | `missing` | 82 | 0 | 82 |
 
 <!-- /trust:provenance-table -->
@@ -197,7 +197,7 @@ AI-extracted CCNL values (including
 <!-- trust:accrual-assumed -->37<!-- /trust:accrual-assumed --> accrual
 thresholds read from signed texts, each with its article and quote),
 extra-month counts with no located clause, the
-artigianato and edilizia INPS proxies, the PA apprentice placeholder, the PA
+edilizia INPS proxy, the PA apprentice placeholder, the PA
 fixed-term exemption and the regional surtax table.
 `python scripts/provenance/check.py --rules` prints the same counts.
 
