@@ -40,6 +40,9 @@ class OvertimeKind(StrEnum):
         NIGHT: Night overtime (straordinario notturno).
         HOLIDAY: Overtime on a public holiday or rest day (straordinario
             festivo).
+        REST_DAY: Overtime on the weekly rest day (Sunday, or the day the
+            rest moves to) where the CCNL pays it apart from the public
+            holidays; a CCNL without a rest-day band pays it as ``HOLIDAY``.
         NIGHT_HOLIDAY: Night overtime on a public holiday (straordinario
             festivo notturno).
     """
@@ -47,6 +50,7 @@ class OvertimeKind(StrEnum):
     WEEKDAY = "weekday"
     NIGHT = "night"
     HOLIDAY = "holiday"
+    REST_DAY = "rest_day"
     NIGHT_HOLIDAY = "night_holiday"
 
 

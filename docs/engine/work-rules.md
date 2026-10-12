@@ -58,8 +58,12 @@ A caller-supplied multiplier, matching a band or not, is a
 validated outside the engine.
 
 `kind` selects the band: `WEEKDAY` (straordinario diurno), `NIGHT`,
-`HOLIDAY` or `NIGHT_HOLIDAY`, matched against the `applies_to_kinds` of the
-CCNL `work_rules.time_supplements.overtime_bands`. The band used is the
+`HOLIDAY`, `REST_DAY` or `NIGHT_HOLIDAY`, matched against the
+`applies_to_kinds` of the CCNL `work_rules.time_supplements.overtime_bands`.
+`REST_DAY` is overtime on the weekly rest day for the CCNLs that pay it apart
+from the public holidays (Logistica travelling staff, art. 13 c. 6: 30% on
+Saturday and Sunday, 65% on the festività); a CCNL without a `rest_day` band
+pays it with its `HOLIDAY` band. The band used is the
 first tier: the percentage band with code `OT_*` that has no hour threshold
 and no context condition. When the CCNL also has bands that start beyond a
 daily or weekly hour threshold (commercio: 15% up to 48 weekly hours, 20%
