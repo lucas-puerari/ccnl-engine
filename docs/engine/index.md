@@ -271,7 +271,7 @@ employment dates and never from the runs already closed:
   can count working days instead of calendar days (`working_days`: Monday to
   Saturday, Cooperative sociali art. 79, "superiore ai 15 giorni
   lavorativi"). The rule is stored only for
-  the 62 CCNLs whose signed text was read, with the article and the quote
+  the 66 CCNLs whose signed text was read, with the article and the quote
   (status `assumed` until a named reviewer checks it). The other CCNLs use
   the engine default, at least 15 days, recorded as a `missing` rule: a run
   whose window has a partly accrued month then adds `rule_source_missing`

@@ -491,6 +491,34 @@
           }
         ]
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-edilizia-artigianato-2025",
+            "title": "CCNL lavoratori dipendenti delle imprese artigiane e PMI dell'edilizia e affini, 20 maggio 2025",
+            "kind": "associazione",
+            "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/01/20251222_CCNL_web.pdf",
+            "published_on": "2025-05-20",
+            "sha256": "df6317b0b0054363ea554d724fb49a291b8079128f83bd8ca5904434d1b3d664"
+          },
+          "section": "Art. 63 (tredicesima mensilità degli impiegati)",
+          "quote": "La frazione di mese non superiore ai 15 giorni non va considerata mentre deve essere considerata come mese intero la frazione di mese superiore ai 15 giorni.",
+          "page": "92"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T08:00:00Z",
+          "verification_status": "unverified",
+          "effective_from": "2025-05-20"
+        },
+        "note": "Impiegati. The gratifica natalizia of the operai (art. 19, p. 41) counts 'i mesi interi prestati' only and is paid through the Cassa Edile, which the file does not model (see the coverage notes): the rule here is the one of the impiegati."
+      }
     }
   },
   "levels": [
@@ -2225,7 +2253,7 @@
     "effective_until": "2028-09-30",
     "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
     "verification_status": "unverified",
-    "source_hash": "e9a19791233914e6b2f7ba1e48bd61e7118bd5376ca6bf203d544984c6958858",
+    "source_hash": "8ef97e364e26af41e5785f539c1e2fac567237b9f572938d32cf002ab81e0594",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

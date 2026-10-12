@@ -182,15 +182,6 @@
       "accrual_rule": "assumed",
       "additional_months[2024-04-01]": "assumed"
     },
-    "agreement/cooperative-sociali.json": {
-      "accrual_rule": "missing",
-      "additional_months[2024-02-01]": "assumed",
-      "additional_months[2025-01-01]": "assumed"
-    },
-    "agreement/dirigenza-istruzione-ricerca-aran.json": {
-      "accrual_rule": "missing",
-      "additional_months[2021-01-01]": "assumed"
-    },
     "agreement/dirigenza-sanitaria-medico-veterinaria-aran.json": {
       "accrual_rule": "missing",
       "additional_months[2019-12-19]": "assumed"
@@ -208,7 +199,6 @@
       "additional_months[2025-02-01]": "assumed"
     },
     "agreement/edilizia-artigianato-cna.json": {
-      "accrual_rule": "missing",
       "additional_months[2025-05-01]": "assumed"
     },
     "agreement/edilizia-cooperative-ancpl.json": {
@@ -912,7 +902,6 @@
       "additional_months[2025-06-01]": "assumed"
     },
     "agreement/turismo-confcommercio.json": {
-      "accrual_rule": "missing",
       "additional_months[2024-07-01]": "assumed"
     },
     "agreement/turismo-confesercenti.json": {

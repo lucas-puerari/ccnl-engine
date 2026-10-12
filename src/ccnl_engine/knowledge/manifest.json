@@ -557,7 +557,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/cooperative-sociali",
       "ruleset_version": "2026.2",
-      "source_hash": "fac8c176c117f8d11813c2da49778270f2f563a20f2f3cb8e7af70e43a0a85a2",
+      "source_hash": "2367022a9ead7a1f15788c02a981216cb898dc95491b6ab72f1cda0d213c1738",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/cooperative-sociali.json.gz"
@@ -608,7 +608,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/dirigenza-istruzione-ricerca-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "a035c04d0b6fbf69cbec9cc0a7a9136a22445940b6bab81671e023cb9fdb3191",
+      "source_hash": "b57bb32f7236a7fc494d99d7a55bb224dcb8bf77080d9fd78dbe7609cad077b7",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/dirigenza-istruzione-ricerca-aran.json.gz"
@@ -710,7 +710,7 @@
       "valid_to": "2028-09-30",
       "ruleset_id": "ccnl/edilizia-artigianato-cna",
       "ruleset_version": "2026.2",
-      "source_hash": "e9a19791233914e6b2f7ba1e48bd61e7118bd5376ca6bf203d544984c6958858",
+      "source_hash": "8ef97e364e26af41e5785f539c1e2fac567237b9f572938d32cf002ab81e0594",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/edilizia-artigianato-cna.json.gz"
@@ -2019,7 +2019,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-confcommercio",
       "ruleset_version": "2026.2",
-      "source_hash": "e19b72a7d075ed45b780c71c832f800b4cd4029dea057cb2d40a6747b18d2a90",
+      "source_hash": "985ffd6c750964a997c4d21c63af170200ba0ad83a4e45c11da36f4bcae146b3",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/turismo-confcommercio.json.gz"

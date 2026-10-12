@@ -98,9 +98,27 @@
           "valid_until": "2025-01-01",
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-cooperative-sociali-2024",
+                "title": "CCNL Cooperative sociali 5 marzo 2024 (edizione Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "published_on": "2024-03-05",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "section": "Art. 79 (tredicesima mensilità)",
+              "quote": "Entro il mese di dicembre di ogni anno l’azienda corrisponderà al personale un importo pari a 1 mensilità della retribuzione.",
+              "page": "110"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T08:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2024-03-05"
+            }
           }
         },
         {
@@ -108,9 +126,27 @@
           "valid_until": null,
           "value": "13.5",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-cooperative-sociali-2024",
+                "title": "CCNL Cooperative sociali 5 marzo 2024 (edizione Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "published_on": "2024-03-05",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "section": "Art. 79bis (quattordicesima mensilità): half a monthly pay from 1 January 2025",
+              "quote": "per un importo pari alla metà di una retribuzione mensile in vigo- re nel mese di corresponsione.",
+              "page": "110"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T08:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2025-01-01"
+            }
           }
         }
       ]
@@ -281,6 +317,35 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
+      }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "working_days": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-cooperative-sociali-2024",
+            "title": "CCNL Cooperative sociali 5 marzo 2024 (edizione Legacoopsociali)",
+            "kind": "associazione",
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "published_on": "2024-03-05",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+          },
+          "section": "Art. 79 (tredicesima) and art. 79bis (quattordicesima)",
+          "quote": "La frazione di mese superiore ai 15 giorni lavorativi va considerata come mese intero.",
+          "page": "110"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T08:00:00Z",
+          "verification_status": "unverified",
+          "effective_from": "2024-03-05"
+        },
+        "note": "Working days, counted on a week of six days (art. 60: 'comunque calcolati su una settimana lavorativa di 6 giorni'): Monday to Saturday."
       }
     }
   },
@@ -2025,7 +2090,7 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/",
     "verification_status": "unverified",
-    "source_hash": "fac8c176c117f8d11813c2da49778270f2f563a20f2f3cb8e7af70e43a0a85a2",
+    "source_hash": "2367022a9ead7a1f15788c02a981216cb898dc95491b6ab72f1cda0d213c1738",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
