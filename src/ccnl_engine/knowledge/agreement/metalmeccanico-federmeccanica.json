@@ -109,6 +109,10 @@
           "variant": "overtime_exempt_quota_supplement",
           "remediation": "Count the overtime hours of the year and add 8% past the exempt quota, or pass the multiplier on the overtime event."
         }
+      },
+      {
+        "kind": "info",
+        "text": "TRAVEL AND ON-CALL ALLOWANCES (Art. 7 Trasferta p. 61, Art. 6 Reperibilità p. 158 of the CCNL 2021; adjusted each June by IPCA per the renewal of 22 November 2025, p. 2): event-driven, not modelled. From 1 June 2026 (minutes of 16 June 2026): trasferta intera 51.29, pasto 13.13, pernottamento 25.03; reperibilità by level group D1-D2-C1 / C2-C3 / B1+ per 16h worked day, 24h rest day, 24h holiday and per week. The engine takes no travel or on-call event, so these amounts are not paid."
       }
     ]
   },
@@ -333,7 +337,7 @@
         "rate": {
           "periods": [
             {
-              "valid_from": "2026-01-01",
+              "valid_from": "2017-06-01",
               "valid_until": null,
               "value": "0.0200"
             }
@@ -342,7 +346,7 @@
         "employee_min_rate": {
           "periods": [
             {
-              "valid_from": "2026-01-01",
+              "valid_from": "2017-06-01",
               "valid_until": null,
               "value": "0.0120"
             }
@@ -351,7 +355,12 @@
         "young_member_rate": {
           "periods": [
             {
-              "valid_from": "2026-01-01",
+              "valid_from": "2021-02-06",
+              "valid_until": "2022-06-01",
+              "value": "0.0200"
+            },
+            {
+              "valid_from": "2022-06-01",
               "valid_until": null,
               "value": "0.0220"
             }
@@ -363,16 +372,26 @@
           "status": "derived",
           "location": {
             "source_document": {
-              "document_id": "cometa-nota-informativa-2026",
-              "title": "Cometa Nota informativa, Parte I, scheda 'I destinatari e i contributi' (depositata presso la COVIP il 31/07/2026, in vigore dal 31/07/2026)",
-              "kind": "altro",
-              "url": "https://www.cometafondo.it/parte-i-scheda-iii-i-destinatari-e-i-contributi"
+              "document_id": "fiom-ccnl-2021",
+              "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo)",
+              "kind": "associazione",
+              "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+              "published_on": "2021-02-05",
+              "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
             },
-            "section": "Contribuzione, Lavoratori dipendenti del settore metalmeccanico e della installazione di impianti, note (1) e (2)",
-            "quote": "Lavoratori occupati dopo il 28.04.1993 100% 1,2% 2%; (1) Il contributo a carico datore di lavoro è calcolato percentualmente sul valore dei minimi contrattuali del livello di inquadramento del lavoratore aderente. [...] per i lavoratori di nuova adesione dopo il 5 febbraio 2021 e con età inferiore ai 35 anni compiuti, prevede che la contribuzione a carico del datore di lavoro, a decorrere dal 1° giugno 2022, è elevata al 2,2% dei minimi contrattuali. (2) Misura minima del contributo a carico del lavoratore [...] da calcolarsi sui minimi contrattuali del livello di inquadramento. Il lavoratore può fissare liberamente una misura maggiore di contribuzione che sarà rapportata percentualmente alla retribuzione utile per il calcolo del TFR."
+            "page": "182-183",
+            "section": "Sez. Quarta, Titolo IV, Art. 15 - Previdenza complementare",
+            "quote": "Per i lavoratori di nuova adesione dopo il 5 febbraio 2021 e con età inferiore ai 35 anni compiuti, la contribuzione a carico del datore di lavoro, a decorrere dal 1° giugno 2022, è elevata al 2,2% dei minimi contrattuali."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-13T14:00:00Z",
+            "verification_status": "unverified",
+            "effective_from": "2017-06-01"
           },
           "transformation": "Employer 2% (2.2% for a young member) and worker minimum 1.2% of the minimi contrattuali, the base salary of the level, which in the bundle is the consolidated minimum with contingenza and EDR; a worker rate above 1.2% on the TFR base. The 40% TFR quota of a worker employed before 28.04.1993 is not modelled (PensionFundEnrolment.tfr_to_fund is all or nothing).",
-          "note": "Read from the PDF the url serves (sha256 1a215801069378afde3a93d570d5a68089d2d9ec35bb686b5857cef5ddab37da), text layer. The UILM summary of the agreement of 5 February 2021 (https://www.uilmnazionale.it/federmeccanica-assistal-sintesi-dellipotesi-di-accordo-5-febbraio-2021/) reads 'per i lavoratori e le lavoratrici con età inferiore ai 35 anni che si iscriveranno al Fondo Cometa': the age is the one at enrolment, so the caller states PensionFundEnrolment.young_member and the engine applies 2.2% for the whole enrolment. The bundle holds neither the elemento retributivo of the 7th category nor the indennita di funzione of the quadri, which Cometa also counts. valid_from is the first day of the bundled tax year. No human review recorded."
+          "note": "Art. 15 is not amended by the ipotesi of 22 November 2025 (sha256 37152685..., which changes art. 17 Welfare only). The Cometa nota informativa in force from 31/07/2026 (https://www.cometafondo.it/parte-i-scheda-iii-i-destinatari-e-i-contributi) gives the same rates and the bases: Lavoratori occupati dopo il 28.04.1993 100% 1,2% 2%; (1) Il contributo a carico datore di lavoro è calcolato percentualmente sul valore dei minimi contrattuali del livello di inquadramento del lavoratore aderente. [...] per i lavoratori di nuova adesione dopo il 5 febbraio 2021 e con età inferiore ai 35 anni compiuti, prevede che la contribuzione a carico del datore di lavoro, a decorrere dal 1° g"
         }
       }
     ]
@@ -3061,7 +3080,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "e6d61a5474c9b8ecf81b8ba492464f1b1490f77bdf46c7fa1a642c26d2bce86f",
+    "source_hash": "dfdef178a88591ddbe51bbc444c5cd14163fbca33bfb47d140f164b050ae0605",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -3350,7 +3369,7 @@
             "published_on": "2021-02-05",
             "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
           },
-          "page": "158",
+          "page": "165",
           "section": "Sez. Quarta, Titolo III, Art. 10 - Ferie",
           "quote": "pari a 4 settimane ... oltre 10 anni e fino a 18 anni compiuti hanno diritto ad un giorno in più ... oltre i 18 anni compiuti hanno diritto ad una settimana in più"
         },
@@ -3361,7 +3380,7 @@
           "verification_status": "unverified",
           "effective_from": "2021-06-01"
         },
-        "note": "Weeks of five working days; the transitional norms for the workers of the former Disciplina speciale in force at 31 December 2007 (p. 160) are not modelled."
+        "note": "Weeks of five working days (20/21/25); a six-day week gives 24/25/30, not modelled. The norme transitorie (p. 167) for workers of the former Disciplina speciale, Parte prima, in force at 31 December 2007 (seniority for the extra days counted from 1 January 2008; one extra day with ten years of service and age 55) are not modelled."
       }
     },
     "sickness_rules": {
@@ -3487,6 +3506,33 @@
           "Corrected: the hourly divisor 173 (Art. 5, Sez. Quarta Tit. IV) is undated in the 2021 CCNL, so it applies from 2021-06-01, not from 2024-06-01.",
           "Left derived: the Cometa rates (2%, 1.2%, 2.2% under 35, Art. 15) match but start on 1 June 2017 and 1 June 2022, not on 2026-01-01; the leave tiers start 'oltre 10 anni' and 'oltre i 18 anni', which the file reads as 120 and 216 months.",
           "Wrong page citations corrected: divisor p. 175, seniority pp. 175-176, daily quota 1/26 p. 164, annual leave p. 165."
+        ]
+      },
+      {
+        "id": "2026-10-13-ai",
+        "date": "2026-10-13",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Cometa contribution dates, leave citation, travel and on-call allowances: follow-ups of the review of 2026-10-11.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+            "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+          },
+          {
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+            "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+          },
+          {
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf",
+            "sha256": "67faca45b8d363b7d9c11e309daea103f05ccc1d4793321846c8ed0b0e4b0195"
+          }
+        ],
+        "findings": [
+          "Cometa: rates confirmed (art. 15 not amended in 2025); the periods started on 2026-01-01, now 1 June 2017 (2% and 1.2%) and, for young members, 2% from 6 February 2021 and 2.2% from 1 June 2022.",
+          "Leave: the clause is on p. 165, not p. 158; the norme transitorie on p. 167.",
+          "Trasferta and reperibilità (June 2026 amounts) are per event: documented, not paid, as the engine takes no such event."
         ]
       }
     ],

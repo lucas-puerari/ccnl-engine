@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 81 verified / 3 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 81 verified / 4 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🏭 Production | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | — |
-| **Last review** | 2026-10-11 |
+| **Last review** | 2026-10-13 |
 | **Latest salary tranche** | 2028-06-01 |
 
 ## Review history
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-10 | claude-opus-5-5 (ai) | Whole file. The values checked were not recorded; no value was marked verified. | confirmed | The review recorded no list of the documents it read. |
 | 2026-10-11 | claude-opus-5-5 (ai) | Every payable rule of the file (94 records) read again in the signed texts: the CCNL of 5 February 2021, the renewal of 22 November 2025 and the minutes of June 2023, 2024, 2025 and 2026 on the minimi. | corrected | 91 records match their source and are verified, and the corrected divisor below is verified too. All 72 salary periods match in amount and dates. Pages are physical PDF pages (the printed page of the 2021 CCNL is four lower).<br>Ratified: the workers' referendum of 18-20 February 2026 approved the renewal of 22 November 2025 (93.13% in favour); the minutes of 16 June 2026 call it the Accordo di rinnovo 22 novembre 2025. No consolidated final text is published; the minimi of the signed hypothesis are in force.<br>June 2026: the IPCA share is absorbed in the June 2026 tranche of the renewal, so the minimi already in the file stand; the minutes of 16 June 2026 also set travel and on-call allowances, not modelled.<br>Corrected: the hourly divisor 173 (Art. 5, Sez. Quarta Tit. IV) is undated in the 2021 CCNL, so it applies from 2021-06-01, not from 2024-06-01.<br>Left derived: the Cometa rates (2%, 1.2%, 2.2% under 35, Art. 15) match but start on 1 June 2017 and 1 June 2022, not on 2026-01-01; the leave tiers start 'oltre 10 anni' and 'oltre i 18 anni', which the file reads as 120 and 216 months.<br>Wrong page citations corrected: divisor p. 175, seniority pp. 175-176, daily quota 1/26 p. 164, annual leave p. 165. |
+| 2026-10-13 | claude-opus-5-5 (ai) | Cometa contribution dates, leave citation, travel and on-call allowances: follow-ups of the review of 2026-10-11. | corrected | Cometa: rates confirmed (art. 15 not amended in 2025); the periods started on 2026-01-01, now 1 June 2017 (2% and 1.2%) and, for young members, 2% from 6 February 2021 and 2.2% from 1 June 2022.<br>Leave: the clause is on p. 165, not p. 158; the norme transitorie on p. 167.<br>Trasferta and reperibilità (June 2026 amounts) are per event: documented, not paid, as the engine takes no such event. |
 
 ## Salary table
 
@@ -190,6 +191,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     OVERTIME/NIGHT/HOLIDAY (L3): percentages modelled per Art. 14 CCNL Federmeccanica 2021 (straordinario diurno 15%, lavoro notturno 20%, lavoro festivo 30%). Source: testo contrattuale Art. 14. NOTE: the 2025-11-22 renewal (CCNL 2025-2028) is expected to update these percentages; a dedicated data correction PR will add time-versioned 2025 rates once the official text is available in machine-readable form.
     
     SICKNESS (Sez. Quarta Titolo VI Art. 2): full pay for the first 122/153/214 days of the treatment chain and 80% after, by seniority band (up to 3 years, 3 to 6, over 6); comporto breve of 183/274/365 days over the sickness of the three years that end on the day; the chain restarts after 61 days of work; the first 3 days of the fourth short absence (at most 5 days) of a calendar year are paid 66%, of the fifth and later 50%. The history before the imported episodes, the seniority and the exemption of a short absence are facts: when they could change a sick day the run has a missing_fact blocker.
+    
+    TRAVEL AND ON-CALL ALLOWANCES (Art. 7 Trasferta p. 61, Art. 6 Reperibilità p. 158 of the CCNL 2021; adjusted each June by IPCA per the renewal of 22 November 2025, p. 2): event-driven, not modelled. From 1 June 2026 (minutes of 16 June 2026): trasferta intera 51.29, pasto 13.13, pernottamento 25.03; reperibilità by level group D1-D2-C1 / C2-C3 / B1+ per 16h worked day, 24h rest day, 24h holiday and per week. The engine takes no travel or on-call event, so these amounts are not paid.
     
 
 ## Raw data
