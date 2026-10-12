@@ -115,6 +115,11 @@ by component from a table of the year of a sibling sector and the statutes of
 the components that differ: the INPS rates of the industria in genere for
 2026 are built from the 2026 table of the industria edile (Assimpredil ANCE)
 and the CIGO and CIGS of D.Lgs. 148/2015 arts. 13 and 23.
+The INPS rates of the artigianato for 2026 are built the same way from the
+same table and the exemptions of L. 388/2000 art. 120 and L. 266/2005 art.
+1 c. 361, but stay `derived`: the CUAF of the artigianato and the maternità
+and malattia of a non-construction craft firm have no primary source of the
+year.
 
 The schema gate (`scripts/provenance/check.py --schema`) rejects a
 `reviewed` or `production` ruleset with an `assumed` or `missing` payable

@@ -2206,8 +2206,8 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "inps/2026/artigianato",
       "ruleset_version": "2026.1",
-      "source_hash": "6fa114c2e5a840af8a3f3b48f2bee07d41f475b7baf86f6d6194d529b8f84be1",
-      "source_type": "commercial_secondary",
+      "source_hash": "1509271dac85824f7645ba0615d934e8fcc7845659c5b43b4369fcad6b82a539",
+      "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "contribution/2026/artigianato.json.gz"
     },

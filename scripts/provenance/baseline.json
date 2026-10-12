@@ -1015,10 +1015,6 @@
     "contribution/2026/agricoltura.json": {
       "apprentice": "assumed"
     },
-    "contribution/2026/artigianato.json": {
-      "apprentice": "assumed",
-      "inps": "assumed"
-    },
     "contribution/2026/credito.json": {
       "inps": "assumed"
     },
