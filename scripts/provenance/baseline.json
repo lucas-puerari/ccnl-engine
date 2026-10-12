@@ -1391,9 +1391,7 @@
     "agreement/istruzione-ricerca-aran.json": [
       "istruzione-ricerca-aran/before_february_2023",
       "istruzione-ricerca-aran/enam_base",
-      "istruzione-ricerca-aran/fixed_hourly_overtime",
-      "istruzione-ricerca-aran/higher_seniority_bands_missing",
-      "istruzione-ricerca-aran/seniority_bands_not_increments"
+      "istruzione-ricerca-aran/fixed_hourly_overtime"
     ],
     "agreement/lapidei-industria.json": [
       "lapidei-industria/apprentice_seniority",
