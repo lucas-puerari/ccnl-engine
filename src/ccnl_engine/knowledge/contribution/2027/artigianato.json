@@ -79,6 +79,26 @@
         "section": "non-construction crafts sector 2026"
       },
       "note": "Provisional 2027: carried over from the 2026 ruleset until the 2027 sources are published; assumed, not derived. 2026 record: Rate 26.93% (operai) and 24.71% (impiegati, quadri) from an aggregator; the INPS circular was not retrieved and the component breakdown does not reconcile."
+    },
+    "cigs_indotto": {
+      "more_than_employees": 15,
+      "employer_rate": "0.006",
+      "employee_rate": "0.003",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "dlgs-148-2015",
+            "title": "D.Lgs. 14 settembre 2015 n. 148",
+            "kind": "legge",
+            "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-09-14;148~art23!vig=2026-10-12",
+            "sha256": "802aa7e453364f1e65978947e2e5d5e7b982d951a710ce31ed0082e8a5731ff0"
+          },
+          "section": "art. 23 c. 1 (rate); art. 20 c. 1 lett. b (craft firms of an indotto)",
+          "quote": "È stabilito un contributo ordinario nella misura dello 0,90 per cento della retribuzione imponibile ai fini previdenziali dei lavoratori per i quali trova applicazione la disciplina delle integrazioni salariali straordinarie, di cui 0,60 per cento a carico dell'impresa o del partito politico e 0,30 per cento a carico del lavoratore."
+        },
+        "note": "Art. 20 c. 1 (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-09-14;148~art20!vig=2026-10-12, sha256 b82537ae825747dfb027e91dbfa1878540201ae897d82ecf631bc79745104686): the CIGS applies to the firms 'che nel semestre precedente la data di presentazione della domanda, abbiano occupato mediamente più di quindici dipendenti', among them 'b) imprese artigiane che procedono alla sospensione dei lavoratori in conseguenza di sospensioni o riduzioni dell'attività dell'impresa che esercita l'influsso gestionale prevalente'. The headcount of the run stands for the average of the semester. PROVISIONAL 2027: carried over from 2026."
+      }
     }
   },
   "apprentice": {
@@ -113,7 +133,7 @@
     "published_at": "2026-10-09",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "a3ce3aaee353f92574a7fe42f965f1c3659aa8bd4c80457f3555b2cd1c3da38d",
+    "source_hash": "a3ce69d11524b2a665ab12293baf0aa44ee521089ae9e2cd262d024c6edee5ce",
     "source_type": "estimated",
     "provisional": true
   }

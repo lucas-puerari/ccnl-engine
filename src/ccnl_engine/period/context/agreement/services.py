@@ -14,6 +14,7 @@ from ccnl_engine.agreement.validity.rules import rule_scope
 from ccnl_engine.compensation.provincial_element.services import (
     without_replaced_elements,
 )
+from ccnl_engine.contribution.cigs.models import with_cigs_indotto
 from ccnl_engine.contribution.fis.models import with_fis_reduction
 from ccnl_engine.contribution.zone.models import with_zone_reduction
 from ccnl_engine.employment.context.models import (
@@ -109,13 +110,17 @@ def load_contract(
         headcount,
     )
     if year_rules.inps is not None:
-        inps = with_zone_reduction(
-            with_fis_reduction(
-                year_rules.inps.for_public_fund(ccnl.meta.public_pension_fund),
-                request.employer.fis_reduction,
-                headcount,
+        inps = with_cigs_indotto(
+            with_zone_reduction(
+                with_fis_reduction(
+                    year_rules.inps.for_public_fund(ccnl.meta.public_pension_fund),
+                    request.employer.fis_reduction,
+                    headcount,
+                ),
+                request.employer.agricultural_zone,
             ),
-            request.employer.agricultural_zone,
+            request.employer.cigs_indotto,
+            headcount,
         )
         year_rules = year_rules.model_copy(update={"inps": inps})
     catalog = repo.load_capability_catalog(tctx.fiscal_year)

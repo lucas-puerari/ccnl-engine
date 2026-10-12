@@ -91,6 +91,13 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "whose employers differ, the Assicurazione Sociale Vita is left out "
         "and the run has a missing_fact public_life_insurance blocker",
     ),
+    "EmployerProfile.cigs_indotto": requires_fact(
+        "inps_employer",
+        "employer.cigs_indotto",
+        FactEnforcement.REPORTED,
+        "unknown indotto: a craft firm above fifteen employees is charged no "
+        "CIGS, with an incomplete cigs_indotto_unknown issue",
+    ),
     "EmployerProfile.fis_reduction": requires_fact(
         "inps_employee",
         "employer.fis_reduction",

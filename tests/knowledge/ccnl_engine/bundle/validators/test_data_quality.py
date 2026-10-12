@@ -174,6 +174,8 @@ def _reviewed(file: str, path: str) -> bool:
     """
     if file == "sector/2026/industria.json" and path.startswith("tfr"):
         return True
+    if file == "contribution/2026/artigianato.json":
+        return path == "inps.cigs_indotto"
     if file.startswith("sector/2026/"):
         return path in _SECTOR_REVIEWED
     return file in {

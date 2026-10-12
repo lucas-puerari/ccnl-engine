@@ -162,6 +162,22 @@ def _small_terziario(
     return replace(request, employer=employer)
 
 
+def _craft_firm(
+    january: Callable[[Employment], PeriodInput], indotto: bool | None
+) -> PeriodInput:
+    """Return a run of a metalworking craft firm of 20 employees.
+
+    Returns:
+        The January run, the indotto given.
+    """
+    craft = replace(
+        CONCIA_D2, ccnl_slug="metalmeccanico-artigianato.json", level_code="3"
+    )
+    request = january(craft)
+    employer = replace(request.employer, headcount=Headcount(20), cigs_indotto=indotto)
+    return replace(request, employer=employer)
+
+
 def _commercio_employer(
     january: Callable[[Employment], PeriodInput], in_force: bool | None
 ) -> PeriodInput:
@@ -228,6 +244,14 @@ def pension_cases[C](
         "Employment.public_end_of_service": (
             pair(
                 _public(PublicEndOfService.TFS), _public(None), "public_end_of_service"
+            ),
+        ),
+        "EmployerProfile.cigs_indotto": (
+            case(
+                _craft_firm(january, True), _craft_firm(january, None), "cigs_indotto"
+            ),
+            case(
+                _craft_firm(january, False), _craft_firm(january, None), "cigs_indotto"
             ),
         ),
         "EmployerProfile.fis_reduction": (

@@ -65,6 +65,12 @@ class EmployerProfile:
             salariale in the last twenty-four months (D.Lgs. 148/2015 art. 29
             c. 8-bis).  ``None`` means not known: a run of such an employer
             has a ``missing_fact`` blocker and is charged the full rate.
+        cigs_indotto: Whether a craft firm with more than fifteen employees
+            works in the indotto of a firm with the prevailing management
+            influence, owing the CIGS contribution (D.Lgs. 148/2015 art. 20
+            c. 1 lett. b, art. 23 c. 1).  ``None`` means not known: a run of
+            such an employer has a ``missing_fact`` issue and is charged
+            without it.
         provincial_pay_element: Whether a provincial pay element of the CCNL
             (a terzo elemento provinciale) is in force where the worker
             works, replacing the national element the CCNL pays only in its
@@ -89,6 +95,7 @@ class EmployerProfile:
     activity: EmployerActivity | None = None
     public_life_insurance: bool | None = None
     fis_reduction: bool | None = None
+    cigs_indotto: bool | None = None
     provincial_pay_element: bool | None = None
     agricultural_zone: AgriculturalZone | None = None
 
@@ -118,7 +125,7 @@ class EmployerProfile:
                 "EmployerProfile.public_life_insurance",
                 feature=_FEATURE,
             )
-        for name in ("fis_reduction", "provincial_pay_element"):
+        for name in ("fis_reduction", "provincial_pay_element", "cigs_indotto"):
             value = getattr(self, name)
             if value is not None:
                 require_bool(value, f"EmployerProfile.{name}", feature=_FEATURE)

@@ -13,6 +13,7 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.agreement.facade import PublicPensionFund
 from ccnl_engine.contribution.additional_ivs.models import AdditionalIvsRule
+from ccnl_engine.contribution.cigs.models import CigsIndotto
 from ccnl_engine.contribution.fis.models import FisReduction
 from ccnl_engine.contribution.minimum_base.models import MinimumBaseRule
 from ccnl_engine.contribution.rate.models import (
@@ -124,6 +125,7 @@ class InpsRawRates(BaseModel):
     public_enam: PublicEnamRate | None = None
     ceiling_provenance: RuleProvenance | None = None
     fis_reduction: FisReduction | None = None
+    cigs_indotto: CigsIndotto | None = None
     base_whole_euro: bool = True
     zone_reduction: ZoneReduction | None = None
     sick_pay_supplements: dict[str, SickPaySupplement] = {}
