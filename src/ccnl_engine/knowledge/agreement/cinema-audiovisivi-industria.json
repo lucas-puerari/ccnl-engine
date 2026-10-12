@@ -74,7 +74,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: the employees of film and audiovisual production are insured with the Fondo pensioni lavoratori dello spettacolo (FPLS, ex ENPALS) of INPS, whose contribution regime differs from the ordinary one; the industria rates are used as an approximation pending a dedicated FPLS contribution ruleset.",
+        "text": "SIMPLIFICATION: the employees of film and audiovisual production are insured with the Fondo pensioni lavoratori dello spettacolo (FPLS, ex ENPALS) of INPS, whose contribution regime differs from the ordinary one; the industria rates are used as an approximation pending a dedicated FPLS contribution ruleset. For the workers enrolled after 31 December 1995 the IVS of the FPLS is the ordinary 33% (23.81 + 9.19) up to the annual massimale (INPS, Calcolo dei contributi IVS dei lavoratori dello spettacolo, updated 5 October 2026), as charged here; approximated are the daily bands of the workers enrolled before 1996 (massimale 892 a day in 2026, solidarity 5% above it) and the non-IVS contributions.",
         "capability": "inps_employer",
         "monetary_impact": "unknown",
         "limitation": {
@@ -84,7 +84,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SICKNESS INPS REGIME: the employees insured with the Fondo pensioni lavoratori dello spettacolo have their own INPS sickness indemnity (INPS circ. 132/2021 par. 2.2-2.3, sha256 50c9b803...): from the fourth day, 60% of the retribuzione media globale giornaliera up to the 20th day and 80% from the 21st to the 180th, computed on the average pay of the last 40 contributed days, and only with 40 daily contributions from 1 January of the year before (art. 66 D.L. 73/2021). The engine pays the general bands (50% and 66.66%) on the CCNL daily quota.",
+        "text": "SICKNESS INPS REGIME: the employees insured with the Fondo pensioni lavoratori dello spettacolo have their own INPS sickness indemnity (INPS circ. 132/2021 par. 2.2-2.3): from the fourth day, 60% up to the 20th day and 80% from the 21st to the 180th, applied through the INPS regime 'spettacolo'. Not modelled: the requirement of 40 daily contributions from 1 January of the year before (art. 66 D.L. 73/2021) and the base of the average pay of the last 40 contributed days.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
@@ -92,7 +92,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the FPLS sickness regime (bands, base of the last 40 contributed days, the 40-contribution requirement) together with the FPLS contribution rates."
+          "remediation": "State whether the worker has the 40 daily contributions and the average pay of the last 40 contributed days."
         }
       }
     ]
@@ -1828,7 +1828,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153",
     "verification_status": "unverified",
-    "source_hash": "2f119400ef681b765fa0aa725490bb5bdb769890b712e312594f06e3955831e6",
+    "source_hash": "87d679d6cd5897f0fa1b243209dc6d4abb288e7d990d67ac6de65acc71132604",
     "published_at": "2026-09-18",
     "source_type": "commercial_secondary"
   },
@@ -2052,7 +2052,8 @@
           "verification_status": "unverified",
           "effective_from": "2025-07-23"
         }
-      }
+      },
+      "inps_regime": "spettacolo"
     }
   }
 }

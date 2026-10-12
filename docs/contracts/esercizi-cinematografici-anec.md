@@ -111,7 +111,7 @@ percentage: 0.90
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "esercizi-cinematografici-anec/fpls_rates_approximated · inps_employer · impact unknown · open"
-    SIMPLIFICATION: tax_sector=TERZIARIO. Cinema exhibition employees (esercizio cinematografico) were historically under ENPALS (now FPLS — Fondo Pensione Lavoratori dello Spettacolo dell'INPS, Art. 12 comma 6 of this CCNL). The FPLS contribution regime differs from ordinary terziario. terziario rates are used as an approximation pending a dedicated cinema-FPLS tax file.
+    SIMPLIFICATION: tax_sector=TERZIARIO. Cinema exhibition employees (esercizio cinematografico) were historically under ENPALS (now FPLS — Fondo Pensione Lavoratori dello Spettacolo dell'INPS, Art. 12 comma 6 of this CCNL). The FPLS contribution regime differs from ordinary terziario. terziario rates are used as an approximation pending a dedicated cinema-FPLS tax file. For the workers enrolled after 31 December 1995 the IVS of the FPLS is the ordinary 33% (23.81 + 9.19) up to the annual massimale (INPS, Calcolo dei contributi IVS dei lavoratori dello spettacolo, updated 5 October 2026), as charged here; approximated are the daily bands of the workers enrolled before 1996 (massimale 892 a day in 2026, solidarity 5% above it) and the non-IVS contributions.
 
     **Applies when:** `inps_employer` applies.
 
@@ -125,11 +125,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! warning "esercizi-cinematografici-anec/spettacolo_sickness_regime · sickness · impact yes · open"
-    SICKNESS INPS REGIME: the employees insured with the Fondo pensioni lavoratori dello spettacolo have their own INPS sickness indemnity (INPS circ. 132/2021 par. 2.2-2.3, sha256 50c9b803...): from the fourth day, 60% of the retribuzione media globale giornaliera up to the 20th day and 80% from the 21st to the 180th, computed on the average pay of the last 40 contributed days, and only with 40 daily contributions from 1 January of the year before (art. 66 D.L. 73/2021). The engine pays the general bands (50% and 66.66%) on the CCNL daily quota.
+    SICKNESS INPS REGIME: the employees insured with the Fondo pensioni lavoratori dello spettacolo have their own INPS sickness indemnity (INPS circ. 132/2021 par. 2.2-2.3): from the fourth day, 60% up to the 20th day and 80% from the 21st to the 180th, applied through the INPS regime 'spettacolo'. Not modelled: the requirement of 40 daily contributions from 1 January of the year before (art. 66 D.L. 73/2021) and the base of the average pay of the last 40 contributed days.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the FPLS sickness regime (bands, base of the last 40 contributed days, the 40-contribution requirement) together with the FPLS contribution rates.
+    **Remediation:** State whether the worker has the 40 daily contributions and the average pay of the last 40 contributed days.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

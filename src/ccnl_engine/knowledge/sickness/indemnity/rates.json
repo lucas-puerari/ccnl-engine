@@ -38,7 +38,7 @@
     "published_at": "2026-10-04",
     "source": "D.L. 30 dicembre 1979 n. 663, artt. 1-2 (conv. L. 29 febbraio 1980 n. 33) for the waiting period and the indemnity; rates, 180-day annual maximum and cover as summarised by Assolombarda, Lavoro a tempo indeterminato - Tutele previdenziali (secondary, read 2026-10-04); not checked against an INPS circular",
     "verification_status": "unverified",
-    "source_hash": "5ad2e6c073d372be0ccf2e7e75eb8f5beea72a649db8b2e11dbe51cef941e606",
+    "source_hash": "3bf5aed677d389b7cb1c64e1c072615a4283c9ae494fb8a3bfad0ddd25d31f6f",
     "source_type": "contracting_party"
   },
   "annual_max_days": 180,
@@ -169,6 +169,41 @@
           "quote": "È erogata: all'80% durante tutto il periodo di malattia per i dipendenti di pubblici esercizi e laboratori di pasticceria"
         },
         "transformation": "The 80% applies from the fourth day, after the carenza of the general rule ('decorre dal quarto giorno'), up to the annual maximum of 180 days. The INPS guide of September 2024 (p. 9, Passo 8) states the same rate; circ. 71/1985 punto 1 links it to the additional contribution of 0.77% of D.M. 1 febbraio 1957."
+      }
+    },
+    {
+      "id": "spettacolo",
+      "description": "Lavoratori dello spettacolo insured with the Fondo pensioni lavoratori dello spettacolo (D.Lgs. C.P.S. 708/1947): the indemnity is funded by the ordinary rates, no additional contribution.",
+      "bands": [
+        {
+          "day_from": 4,
+          "day_to": 20,
+          "rate": "0.60",
+          "description": "Days 4-20: 60% of the retribuzione media globale giornaliera"
+        },
+        {
+          "day_from": 21,
+          "day_to": 180,
+          "rate": "0.80",
+          "description": "Days 21-180: 80% of the retribuzione media globale giornaliera"
+        }
+      ],
+      "additional_contribution": false,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "inps-circolare-132-2021",
+            "title": "INPS Circolare n. 132 del 10 settembre 2021 (copy)",
+            "kind": "inps_circolare",
+            "url": "https://www.informazionefiscale.it/IMG/pdf/circolare_numero_132_del_10-09-2021.pdf",
+            "sha256": "50c9b80338d888f118f59ac2219d192cb4c5200439e3bf335d4740d30010fe51"
+          },
+          "section": "par. 2.2-2.3, Decorrenza e misura della prestazione",
+          "quote": "al 60% della retribuzione media globale giornaliera fino al 20° giorno di durata della malattia"
+        },
+        "transformation": "From the fourth day ('L'indennità di malattia spetta dal quarto giorno successivo a quello di inizio dell'evento'), 60% up to the 20th day and 80% from the 21st to the 180th ('all'80% della retribuzione media globale giornaliera dal 21° giorno in poi fino al limite di 180 giorni').",
+        "note": "Copy of the INPS circular on a third-party site. Not modelled: the 40% of the days not worked of a worker on predetermined days, the requirement of 40 daily contributions from 1 January of the year before (art. 66 D.L. 73/2021), and the base of the last 40 contributed days (the engine applies the rates to the CCNL daily quota)."
       }
     }
   ],

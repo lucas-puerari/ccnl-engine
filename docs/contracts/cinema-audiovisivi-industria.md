@@ -105,18 +105,18 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Confirm whether a sector bilateral fund applies and pass it as a bilateral fund event.
 
 !!! warning "cinema-audiovisivi-industria/fpls_rates_approximated · inps_employer · impact unknown · open"
-    SIMPLIFICATION: the employees of film and audiovisual production are insured with the Fondo pensioni lavoratori dello spettacolo (FPLS, ex ENPALS) of INPS, whose contribution regime differs from the ordinary one; the industria rates are used as an approximation pending a dedicated FPLS contribution ruleset.
+    SIMPLIFICATION: the employees of film and audiovisual production are insured with the Fondo pensioni lavoratori dello spettacolo (FPLS, ex ENPALS) of INPS, whose contribution regime differs from the ordinary one; the industria rates are used as an approximation pending a dedicated FPLS contribution ruleset. For the workers enrolled after 31 December 1995 the IVS of the FPLS is the ordinary 33% (23.81 + 9.19) up to the annual massimale (INPS, Calcolo dei contributi IVS dei lavoratori dello spettacolo, updated 5 October 2026), as charged here; approximated are the daily bands of the workers enrolled before 1996 (massimale 892 a day in 2026, solidarity 5% above it) and the non-IVS contributions.
 
     **Applies when:** `inps_employer` applies.
 
     **Remediation:** Add a dedicated FPLS contribution ruleset for film and audiovisual production employees.
 
 !!! warning "cinema-audiovisivi-industria/spettacolo_sickness_regime · sickness · impact yes · open"
-    SICKNESS INPS REGIME: the employees insured with the Fondo pensioni lavoratori dello spettacolo have their own INPS sickness indemnity (INPS circ. 132/2021 par. 2.2-2.3, sha256 50c9b803...): from the fourth day, 60% of the retribuzione media globale giornaliera up to the 20th day and 80% from the 21st to the 180th, computed on the average pay of the last 40 contributed days, and only with 40 daily contributions from 1 January of the year before (art. 66 D.L. 73/2021). The engine pays the general bands (50% and 66.66%) on the CCNL daily quota.
+    SICKNESS INPS REGIME: the employees insured with the Fondo pensioni lavoratori dello spettacolo have their own INPS sickness indemnity (INPS circ. 132/2021 par. 2.2-2.3): from the fourth day, 60% up to the 20th day and 80% from the 21st to the 180th, applied through the INPS regime 'spettacolo'. Not modelled: the requirement of 40 daily contributions from 1 January of the year before (art. 66 D.L. 73/2021) and the base of the average pay of the last 40 contributed days.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the FPLS sickness regime (bands, base of the last 40 contributed days, the 40-contribution requirement) together with the FPLS contribution rates.
+    **Remediation:** State whether the worker has the 40 daily contributions and the average pay of the last 40 contributed days.
 
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.

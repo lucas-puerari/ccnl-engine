@@ -186,11 +186,17 @@ def _sick_pay_regime(ctx: RunContext) -> str | None:
     """Return the INPS sick-pay regime the CCNL names for its workers.
 
     Returns:
-        ``work_rules.sickness_rules.inps_regime``; ``None`` without it.
+        ``work_rules.sickness_rules.inps_regime`` when its employers pay an
+        additional contribution; ``None`` without it.
     """
     work = ctx.contract.ccnl.work_rules
     sickness = None if work is None else work.sickness_rules
-    return None if sickness is None else sickness.inps_regime
+    regime = None if sickness is None else sickness.inps_regime
+    if regime is None:
+        return None
+    rates = ctx.repo.load_sick_pay_rates()
+    named = next((r for r in rates.regimes if r.id == regime), None)
+    return regime if named is None or named.additional_contribution else None
 
 
 def amounts_input(
