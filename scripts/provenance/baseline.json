@@ -568,12 +568,6 @@
       "accrual_rule": "assumed",
       "additional_months[2024-07-23]": "assumed"
     },
-    "agreement/pubblici-esercizi-fipe-angem-ristorazione-collettiva.json": {
-      "accrual_rule": "missing"
-    },
-    "agreement/pubblici-esercizi-fipe-angem.json": {
-      "accrual_rule": "missing"
-    },
     "agreement/pulizia-artigianato-confartigianato.json": {
       "accrual_rule": "missing",
       "additional_months[2022-11-01]": "assumed",

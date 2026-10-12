@@ -46,6 +46,7 @@ _DAY_BASED = {
     AccrualComparison.DAYS_365: r"trecentosessantacinquesim|365esim",
     AccrualComparison.DAYS_360: r"trecentosessantesim|360esim",
     AccrualComparison.SERVICE_DAYS_365: r"365esim|trecentosessantacinquesim",
+    AccrualComparison.CUMULATED_FRACTIONS: r"frazioni di mese saranno cumulate",
 }
 
 
