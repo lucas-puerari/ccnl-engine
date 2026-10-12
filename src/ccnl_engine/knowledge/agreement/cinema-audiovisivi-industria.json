@@ -71,6 +71,29 @@
           },
           "remediation": "Confirm whether a sector bilateral fund applies and pass it as a bilateral fund event."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: the employees of film and audiovisual production are insured with the Fondo pensioni lavoratori dello spettacolo (FPLS, ex ENPALS) of INPS, whose contribution regime differs from the ordinary one; the industria rates are used as an approximation pending a dedicated FPLS contribution ruleset.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "fpls_rates_approximated",
+          "remediation": "Add a dedicated FPLS contribution ruleset for film and audiovisual production employees."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "SICKNESS INPS REGIME: the employees insured with the Fondo pensioni lavoratori dello spettacolo have their own INPS sickness indemnity (INPS circ. 132/2021 par. 2.2-2.3, sha256 50c9b803...): from the fourth day, 60% of the retribuzione media globale giornaliera up to the 20th day and 80% from the 21st to the 180th, computed on the average pay of the last 40 contributed days, and only with 40 daily contributions from 1 January of the year before (art. 66 D.L. 73/2021). The engine pays the general bands (50% and 66.66%) on the CCNL daily quota.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "spettacolo_sickness_regime",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the FPLS sickness regime (bands, base of the last 40 contributed days, the 40-contribution requirement) together with the FPLS contribution rates."
+        }
       }
     ]
   },
@@ -1805,7 +1828,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153",
     "verification_status": "unverified",
-    "source_hash": "d216b6023548af948f958d546dd15c2261390e8106d04e091cbc209d82c46801",
+    "source_hash": "2f119400ef681b765fa0aa725490bb5bdb769890b712e312594f06e3955831e6",
     "published_at": "2026-09-18",
     "source_type": "commercial_secondary"
   },

@@ -85,6 +85,19 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "SICKNESS INPS REGIME: the employees insured with the Fondo pensioni lavoratori dello spettacolo have their own INPS sickness indemnity (INPS circ. 132/2021 par. 2.2-2.3, sha256 50c9b803...): from the fourth day, 60% of the retribuzione media globale giornaliera up to the 20th day and 80% from the 21st to the 180th, computed on the average pay of the last 40 contributed days, and only with 40 daily contributions from 1 January of the year before (art. 66 D.L. 73/2021). The engine pays the general bands (50% and 66.66%) on the CCNL daily quota.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "spettacolo_sickness_regime",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the FPLS sickness regime (bands, base of the last 40 contributed days, the 40-contribution requirement) together with the FPLS contribution rates."
+        }
       }
     ]
   },
@@ -1859,7 +1872,7 @@
     "effective_until": null,
     "source": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "6e9d047137ac161e62f98c1f76e606f9ca94d8cbcb328da8cafa8a634c59f4a1",
+    "source_hash": "9ae383cfebd68820d0f671bc51085a96d9cca3e1abb391d8307fecd59e5fd985",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

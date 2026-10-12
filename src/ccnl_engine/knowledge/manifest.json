@@ -421,7 +421,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/cinema-audiovisivi-industria",
       "ruleset_version": "2025.1",
-      "source_hash": "d216b6023548af948f958d546dd15c2261390e8106d04e091cbc209d82c46801",
+      "source_hash": "2f119400ef681b765fa0aa725490bb5bdb769890b712e312594f06e3955831e6",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/cinema-audiovisivi-industria.json.gz"
@@ -795,7 +795,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/esercizi-cinematografici-anec",
       "ruleset_version": "2026.2",
-      "source_hash": "6e9d047137ac161e62f98c1f76e606f9ca94d8cbcb328da8cafa8a634c59f4a1",
+      "source_hash": "9ae383cfebd68820d0f671bc51085a96d9cca3e1abb391d8307fecd59e5fd985",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/esercizi-cinematografici-anec.json.gz"

@@ -29,9 +29,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | inps_employer, seniority |
+| **Limits of this contract** | inps_employer, seniority, sickness |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -123,6 +123,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
+
+!!! warning "esercizi-cinematografici-anec/spettacolo_sickness_regime · sickness · impact yes · open"
+    SICKNESS INPS REGIME: the employees insured with the Fondo pensioni lavoratori dello spettacolo have their own INPS sickness indemnity (INPS circ. 132/2021 par. 2.2-2.3, sha256 50c9b803...): from the fourth day, 60% of the retribuzione media globale giornaliera up to the 20th day and 80% from the 21st to the 180th, computed on the average pay of the last 40 contributed days, and only with 40 daily contributions from 1 January of the year before (art. 66 D.L. 73/2021). The engine pays the general bands (50% and 66.66%) on the CCNL daily quota.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the FPLS sickness regime (bands, base of the last 40 contributed days, the 40-contribution requirement) together with the FPLS contribution rates.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

@@ -1233,7 +1233,9 @@
       "chimica-affini-pmi-unionchimica/tranches_2027_2028"
     ],
     "agreement/cinema-audiovisivi-industria.json": [
-      "cinema-audiovisivi-industria/bilateral_funds_not_modelled"
+      "cinema-audiovisivi-industria/bilateral_funds_not_modelled",
+      "cinema-audiovisivi-industria/fpls_rates_approximated",
+      "cinema-audiovisivi-industria/spettacolo_sickness_regime"
     ],
     "agreement/commercio-confcommercio.json": [
       "commercio-confcommercio/apprentice_seniority",
@@ -1315,7 +1317,8 @@
     ],
     "agreement/esercizi-cinematografici-anec.json": [
       "esercizi-cinematografici-anec/apprentice_seniority",
-      "esercizi-cinematografici-anec/fpls_rates_approximated"
+      "esercizi-cinematografici-anec/fpls_rates_approximated",
+      "esercizi-cinematografici-anec/spettacolo_sickness_regime"
     ],
     "agreement/farmacie-municipalizzate-assofarm.json": [
       "farmacie-municipalizzate-assofarm/apprentice_seniority",
