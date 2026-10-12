@@ -26,7 +26,12 @@ from ccnl_engine.limitation.models import (
     NoteLimitation,
 )
 from ccnl_engine.sickness.integration.models import SicknessRules
-from ccnl_engine.working_time.models import LeaveRules, StandbyRules, TimeSupplements
+from ccnl_engine.working_time.models import (
+    CcnlTravelAllowance,
+    LeaveRules,
+    StandbyRules,
+    TimeSupplements,
+)
 
 if TYPE_CHECKING:
     from collections.abc import Iterator, Sequence
@@ -122,6 +127,7 @@ class CCNLWorkRules(BaseModel):
     leave_rules: LeaveRules | None = None
     sickness_rules: SicknessRules | None = None
     standby_rules: StandbyRules | None = None
+    travel_allowance: CcnlTravelAllowance | None = None
 
 
 class CCNLCoverage(BaseModel):

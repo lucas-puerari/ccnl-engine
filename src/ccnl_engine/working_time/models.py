@@ -286,3 +286,58 @@ class StandbyRules(BaseModel):
             The band listing ``level_code``, ``None`` when none does.
         """
         return next((b for b in self.bands if level_code in b.levels), None)
+
+
+class TravelAllowanceBand(BaseModel):
+    """Daily travel allowance of the CCNL for a span of hours away.
+
+    Attributes:
+        hours_from: First hour of the span (at least this many hours).
+        hours_until: Hours the span stays below; ``None`` for no limit.
+        italy: Daily amount of a trasferta in Italy.
+        abroad: Daily amount of a trasferta abroad.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    hours_from: Decimal = Field(ge=Decimal(0))
+    hours_until: Decimal | None = None
+    italy: TimeSeries
+    abroad: TimeSeries
+
+    def holds(self, hours: Decimal) -> bool:
+        """Return whether ``hours`` away fall in the span.
+
+        Returns:
+            ``hours_from <= hours < hours_until``.
+        """
+        return hours >= self.hours_from and (
+            self.hours_until is None or hours < self.hours_until
+        )
+
+
+class CcnlTravelAllowance(BaseModel):
+    """CCNL amounts of the daily travel allowance (indennità di trasferta).
+
+    Attributes:
+        bands: Spans of hours away with their amounts; fewer hours than the
+            first span give no allowance.
+        tfr_base: What of the allowance enters the TFR base: ``"none"``,
+            ``"whole"``, or ``"above_exempt"`` (the part above the IRPEF
+            exemption, Logistica art. 62 c. 7).
+        provenance: Source and status of the amounts.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    bands: tuple[TravelAllowanceBand, ...] = Field(min_length=1)
+    tfr_base: Literal["none", "whole", "above_exempt"]
+    provenance: RuleProvenance | None = None
+
+    def band_of(self, hours: Decimal) -> TravelAllowanceBand | None:
+        """Return the span of ``hours`` away.
+
+        Returns:
+            The band holding ``hours``, ``None`` below the first.
+        """
+        return next((b for b in self.bands if b.holds(hours)), None)

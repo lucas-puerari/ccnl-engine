@@ -24,6 +24,7 @@ _ZERO = Decimal(0)
 _ONE = Decimal(1)
 _BONUS_KINDS = ("bonus", "productivity_bonus", "contract_renewal")
 _MEALS_LODGING = ("none", "one", "both")
+_TFR_BASES = ("none", "whole", "above_exempt")
 
 
 def _check_amount(event_date: object, amount: object, event: str, feature: str) -> None:
@@ -216,31 +217,37 @@ class TravelAllowanceEvent:
     Attributes:
         event_date: Date the block of days is attributed to.
         days: Days of trasferta, at least 1.
-        daily_amount: Allowance paid for each day in EUR.  Must be > 0.
         outside_municipality: Whether the trasferta is outside the comune of
             the place of work: within it no part is exempt.
-        in_tfr_base: Whether the allowance enters the TFR base.  Art. 2120
-            c.c. lets the CCNL decide, so the caller states it.
         meals_lodging: ``"one"`` when meals or lodging are reimbursed or
             provided free, ``"both"`` when both are, ``"none"`` otherwise:
             the cap is reduced by one third or by two thirds.  Required:
             ``"none"`` gives the largest exemption.
+        daily_amount: Allowance paid for each day in EUR, above 0; ``None``
+            takes the CCNL amount for :attr:`hours_away`.
+        hours_away: Hours away of each day, read with ``daily_amount``
+            ``None`` to select the CCNL span.
+        tfr_base: What enters the TFR base: ``"none"``, ``"whole"``, or
+            ``"above_exempt"`` (the part above the exemption); ``None``
+            takes the CCNL rule, required without one.
         abroad: Whether the trasferta is abroad, with the higher cap.
         trasfertista: Whether the worker is bound by contract to work in
             places always different (art. 51 c. 6 TUIR, 50% exempt):
             not supported, the event is rejected.
 
     Raises:
-        InvalidInputError: When a field is invalid or ``trasfertista`` is
-            ``True``.
+        InvalidInputError: When a field is invalid, neither
+            ``daily_amount`` nor ``hours_away`` is given, or
+            ``trasfertista`` is ``True``.
     """
 
     event_date: date
     days: int
-    daily_amount: Decimal
     outside_municipality: bool
-    in_tfr_base: bool
     meals_lodging: Literal["none", "one", "both"]
+    daily_amount: Decimal | None = None
+    hours_away: Decimal | None = None
+    tfr_base: Literal["none", "whole", "above_exempt"] | None = None
     abroad: bool = False
     trasfertista: bool = False
 
@@ -250,13 +257,32 @@ class TravelAllowanceEvent:
         require_date(self.event_date, f"{name}.event_date", feature=feature)
         require_int(self.days, f"{name}.days", feature=feature, minimum=1, maximum=31)
         require_decimal(
-            self.daily_amount, f"{name}.daily_amount", feature=feature, positive=True
+            self.daily_amount,
+            f"{name}.daily_amount",
+            feature=feature,
+            positive=True,
+            optional=True,
         )
-        for flag in ("outside_municipality", "in_tfr_base", "abroad", "trasfertista"):
+        require_decimal(
+            self.hours_away,
+            f"{name}.hours_away",
+            feature=feature,
+            minimum=_ZERO,
+            maximum=Decimal(24),
+            optional=True,
+        )
+        if self.daily_amount is None and self.hours_away is None:
+            msg = f"{name}: state daily_amount or the hours_away of the CCNL span"
+            raise InvalidInputError(msg, field=f"{name}.hours_away", feature=feature)
+        for flag in ("outside_municipality", "abroad", "trasfertista"):
             require_bool(getattr(self, flag), f"{name}.{flag}", feature=feature)
         require_choice(
             self.meals_lodging, _MEALS_LODGING, f"{name}.meals_lodging", feature=feature
         )
+        if self.tfr_base is not None:
+            require_choice(
+                self.tfr_base, _TFR_BASES, f"{name}.tfr_base", feature=feature
+            )
         if self.trasfertista:
             msg = (
                 "TravelAllowanceEvent.trasfertista: the allowance of a worker "
