@@ -65,9 +65,27 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-area-ir-2022-2024",
+                "title": "CCNL Area Istruzione e Ricerca 2022-2024, 6 agosto 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL-area-IR-2022-2024.pdf",
+                "published_on": "2026-08-06",
+                "sha256": "44c27ea302da97ca8f833aa0e94ec037034ec208ab1579f8d7d110562f9f8d5d"
+              },
+              "section": "Art. 11 c. 1 (stipendio tabellare dei dirigenti scolastici ed AFAM)",
+              "quote": "1. Lo stipendio tabellare annuo lordo, comprensivo del rateo di tredicesima mensilità,",
+              "page": "14"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T08:00:00Z",
+              "verification_status": "unverified",
+              "effective_from": "2026-08-06"
+            }
           }
         }
       ]
@@ -172,7 +190,34 @@
           "note": "Read from the PDF the url serves (sha256 1c1edd47165239d4faf3cd1c2689091392d73a0716e070e939110d8f764c2e8a); the footnotes are images, read by OCR. No human review recorded."
         }
       }
-    ]
+    ],
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "dlcps-263-1946-art7",
+            "title": "D.Lgs.C.P.S. 25 ottobre 1946 n. 263, art. 7 (tredicesima mensilità dei personali statali), Normattiva, testo vigente",
+            "kind": "legge",
+            "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo.del.capo.provvisorio.dello.stato:1946-10-25;263~art7!vig=2026-10-12",
+            "published_on": "1946-10-25",
+            "sha256": "bf3ae355d5ce0a69924e45b8ecd0a6261a898a5d0c2a55121023796b823cf932"
+          },
+          "section": "Art. 7, fifth paragraph (gratificazione natalizia)",
+          "quote": "la gratificazione stessa è dovuta in ragione di un dodicesimo per ogni mese di servizio prestato o frazione di mese superiore ai quindici giorni"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T08:00:00Z",
+          "verification_status": "unverified",
+          "effective_from": "1946-10-25"
+        },
+        "note": "No CCNL of the Area (V, VII, Istruzione e Ricerca 2016-2024) regulates the tredicesima of the dirigenti scolastici: the statute on the State staff applies. Dirigenti of the università and ricerca (ex Area VII) have their own rule (art. 44 CCNL 5.3.2008: 1/360 per day), not modelled."
+      }
+    }
   },
   "levels": [
     {
@@ -402,7 +447,7 @@
     "effective_until": "2024-12-31",
     "source": "https://quifinanza.it/lavoro/ccnl-istruzione-ricerca-2022-2024-tabelle-retributive/1011686/",
     "verification_status": "unverified",
-    "source_hash": "a035c04d0b6fbf69cbec9cc0a7a9136a22445940b6bab81671e023cb9fdb3191",
+    "source_hash": "b57bb32f7236a7fc494d99d7a55bb224dcb8bf77080d9fd78dbe7609cad077b7",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

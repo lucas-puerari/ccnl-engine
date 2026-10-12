@@ -108,7 +108,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 6 | G016 | [CCNL Area Comunicazione — Artigianato](comunicazione-artigianato-confartigianato.md) | comunicazione grafica editoria stampa artigianato | ~60k | 2024 | ⚠️ | base_salary, inps_employer, worker_category | 0 / 40 / 1 / 0 | 🧪 | 🤖 |
 | 7 | S025 | [CCNL Area Dirigenza Funzioni Centrali 2022-2024 — ARAN](dirigenza-funzioni-centrali-aran.md) | Pubblica Amministrazione | ~30k | 2025 | ✅ | — | 0 / 13 / 0 / 0 | 🧪 | 🤖 |
 | 8 | S125 | [CCNL Area Dirigenza Funzioni Locali 2022-2024 — ARAN](dirigenza-funzioni-locali-aran.md) | Pubblica Amministrazione | ~13k | 2026 | ✅ | — | 0 / 9 / 0 / 0 | 🧪 | 🤖 |
-| 9 | S325 | [CCNL Area Dirigenza Istruzione e Ricerca 2022-2024 — ARAN](dirigenza-istruzione-ricerca-aran.md) | Pubblica Amministrazione | ~8k | 2026 | ✅ | — | 0 / 11 / 1 / 1 | 🧪 | 🤖 |
+| 9 | S325 | [CCNL Area Dirigenza Istruzione e Ricerca 2022-2024 — ARAN](dirigenza-istruzione-ricerca-aran.md) | Pubblica Amministrazione | ~8k | 2026 | ✅ | — | 0 / 13 / 0 / 0 | 🧪 | 🤖 |
 | 10 | F060 | [CCNL Area Legno-Lapidei — Artigianato](legno-lapidei-artigianato-confartigianato.md) | legno arredamento lapidei artigianato | ~95k | 2024 | ⚠️ | base_salary, inps_employer | 0 / 38 / 2 / 0 | 🧪 | 🤖 |
 | 11 | S225 | [CCNL Area Sanità 2022-2024 — ARAN (Dirigenti Medici e Veterinari SSN)](dirigenza-sanitaria-medico-veterinaria-aran.md) | Pubblica Amministrazione | ~100k | 2026 | ⚠️ | base_salary | 0 / 8 / 1 / 1 | 🧪 | 🤖 |
 | 12 | S225 | [CCNL Area Sanità 2022-2024 — ARAN (Dirigenti Sanitari: psicologi, farmacisti, biologi, fisici, chimici)](dirigenza-sanitaria-area-sanita-aran.md) | Pubblica Amministrazione | ~37k | 2026 | ⚠️ | base_salary | 0 / 10 / 0 / 0 | 🧪 | 🤖 |
@@ -132,7 +132,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 30 | G029 | [CCNL Comunicazione, Informatica e Servizi Innovativi PMI — Settore Informatico](informatica-pmi-unimatica.md) | informatica-servizi-innovativi | ~20k | — | ⚠️ | base_salary, seniority | 0 / 40 / 2 / 0 | 🧪 | 🤖 |
 | 31 | A141 | [CCNL Consorzi Agrari (ASSOCAP-FLAI-FAI-UILA)](consorzi-agrari-assocap.md) | Agricoltura | ~2k | 2023 | ⚠️ | base_salary, health_fund_employer, inps_employer | 0 / 36 / 1 / 1 | 🧪 | 🤖 |
 | 32 | A131 | [CCNL Consorzi di Bonifica (SNEBI-FLAI-FAI-FILBI)](consorzi-di-bonifica-snebi.md) | Agricoltura | ~4k | 2025 | ⚠️ | base_salary, inps_employer, seniority | 0 / 56 / 1 / 1 | 🧪 | 🤖 |
-| 33 | T151 | [CCNL Cooperative Sociali (Confcooperative/Legacoop/AGCI)](cooperative-sociali.md) | servizi socio-assistenziali | ~380k | — | ⚠️ | seniority | 0 / 58 / 2 / 1 | 🧪 | 🤖 |
+| 33 | T151 | [CCNL Cooperative Sociali (Confcooperative/Legacoop/AGCI)](cooperative-sociali.md) | servizi socio-assistenziali | ~380k | — | ⚠️ | seniority | 0 / 61 / 0 / 0 | 🧪 | 🤖 |
 | 34 | A016 | [CCNL Cooperative e Consorzi Agricoli](cooperative-consorzi-agricoli.md) | cooperative e consorzi agricoli — impiegati e operai agricoli | ~60k | 2024 | ⚠️ | base_salary, inps_employer, seniority | 0 / 40 / 2 / 0 | 🧪 | 🤖 |
 | 35 | T611 | [CCNL Dipendenti Aziende Enti Pubblici Economici Federcasa](federcasa.md) | Case popolari | ~6k | 2024 | ✅ | — | 0 / 23 / 2 / 0 | 🧪 | 🤖 |
 | 36 | E018 | [CCNL Dipendenti Piccola e Media Industria Alimentare (Unionalimentari-Confapi)](alimentari-pmi-unionalimentari.md) | Alimentare | ~35k | 2025 | ⚠️ | base_salary | 0 / 44 / 1 / 1 | 🧪 | 🤖 |
@@ -141,7 +141,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 39 | H121 | [CCNL Dipendenti delle Farmacie Private](farmacie-private-h121.md) | Farmacie private | ~60k | 2021 | ⚠️ | seniority | 0 / 37 / 1 / 1 | 🧪 | 🤖 |
 | 40 | H016 | [CCNL Distribuzione Cooperativa (ANCC-Coop / Confcooperative Consumo)](distribuzione-cooperativa-ancc.md) | distribuzione-cooperativa | ~63k | — | ⚠️ | seniority | 0 / 62 / 2 / 0 | 🧪 | 🤖 |
 | 41 | F018 | [CCNL Edilizia PMI CONFAPI ANIEM](edilizia-pmi-confapi-aniem.md) | Edilizia | ~70000 | 2025 | ⚠️ | base_salary, pension_fund_contribution, seniority | 0 / 44 / 2 / 0 | 🧪 | 🤖 |
-| 42 | F015 | [CCNL Edilizia e Affini Artigianato](edilizia-artigianato-cna.md) | edilizia | ~350k | — | ⚠️ | bilateral_funds, inps_employer, pension_fund_contribution, seniority | 0 / 71 / 1 / 1 | 🧪 | 🤖 |
+| 42 | F015 | [CCNL Edilizia e Affini Artigianato](edilizia-artigianato-cna.md) | edilizia | ~350k | — | ⚠️ | bilateral_funds, inps_employer, pension_fund_contribution, seniority | 0 / 72 / 1 / 0 | 🧪 | 🤖 |
 | 43 | F016 | [CCNL Edilizia — Cooperative (ANCPL/Legacoop/Confcooperative/AGCI)](edilizia-cooperative-ancpl.md) | Edilizia | ~90000 | 2025 | ⚠️ | seniority | 0 / 57 / 1 / 1 | 🧪 | 🤖 |
 | 44 | F012 | [CCNL Edilizia — Industria (ANCE)](edilizia-ance.md) | edilizia | ~550k | — | ⚠️ | pension_fund_contribution, seniority | 0 / 43 / 2 / 0 | 🧪 | 🤖 |
 | 45 | B254 | [CCNL Energia e Petrolio (Confindustria Energia)](energia-petrolio-confindustria.md) | energia | ~38k | — | ✅ | — | 0 / 170 / 1 / 1 | 🧪 | 🤖 |
@@ -202,7 +202,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 100 | I911 | [CCNL Trasporto a Fune (Funivie Terrestri ed Aeree) - ANEF](funivie-anef.md) | Trasporto a fune | ~15k | 2025 | ⚠️ | seniority | 0 / 47 / 1 / 1 | 🧪 | 🤖 |
 | 101 | H058 | [CCNL Turismo (Assoturismo-Confesercenti)](turismo-confesercenti.md) | turismo — alberghi, campeggi, pubblici esercizi, agenzie di viaggi | — | 2024 | ⚠️ | seniority | 0 / 57 / 1 / 0 | 🧪 | 🤖 |
 | 102 | H052 | [CCNL Turismo — Federalberghi/Faita](turismo-federalberghi.md) | Turismo | ~220k | 2024 | ⚠️ | seniority, worker_category | 0 / 69 / 1 / 0 | 🧪 | 🤖 |
-| 103 | H052 | [CCNL Turismo, Pubblici Esercizi e Ristorazione (Confcommercio)](turismo-confcommercio.md) | turismo | ~300k | — | ⚠️ | seniority | 0 / 58 / 1 / 1 | 🧪 | 🤖 |
+| 103 | H052 | [CCNL Turismo, Pubblici Esercizi e Ristorazione (Confcommercio)](turismo-confcommercio.md) | turismo | ~300k | — | ⚠️ | seniority | 0 / 59 / 1 / 0 | 🧪 | 🤖 |
 | 104 | B132 | [CCNL Vetro (Industrie) — Settori Meccanizzati (Prime Lavorazioni)](vetro-meccanizzato-assovetro.md) | vetro industria — settori meccanizzati | ~28k | 2026 | ⚠️ | base_salary | 0 / 0 / 35 / 1 | 🧪 | 🔍 |
 | 105 | HV17 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG](vigilanza-privata-federdat-gpg.md) | vigilanza privata — guardie particolari giurate (GPG) | ~45k | 2023 | ⚠️ | seniority | 0 / 48 / 1 / 1 | 🧪 | 🤖 |
 | 106 | HV17 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF](vigilanza-privata-federdat-sf.md) | vigilanza privata — servizi fiduciari (SF) | ~40k | 2023 | ⚠️ | seniority | 0 / 46 / 2 / 1 | 🧪 | 🤖 |
