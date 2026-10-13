@@ -1,0 +1,30 @@
+{
+  "verification": "source_linked",
+  "_description": "CCNL Distribuzione Moderna Organizzata (Federdistribuzione, CNEL H008), level VII, October 2026 regular run, permanent, full time.",
+  "_notes": [
+    "November 2025 tranche: paga base VII 873,22 (Allegato 11, 'Paga base dal 01/11/2025'); the 1 November 2026 tranche is not yet in effect in October.",
+    "Allegato 11 row VII: altri elementi 5,16, contingenza + EDR 517,51, totale mensile 1395,89.",
+    "Terzo elemento nazionale 2,07 (Art. 199, p59) is due where no provincial terzo elemento is in force: the case states none is (provincial_pay_element false).",
+    "Allowances = 517,51 + 5,16 + 2,07 = 524,74; period gross = 873,22 + 524,74 = 1397,96."
+  ],
+  "source": {
+    "document": "Testo Unico del CCNL della Distribuzione Moderna Organizzata (DMO), sottoscritto il 29 settembre 2025 (Federdistribuzione)",
+    "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+    "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf",
+    "page": "98",
+    "section": "Allegato 11, table 'Paga base dal 01/11/2025', row VII: paga base 873,22, altri elementi 5,16, contingenza + EDR 517,51; terzo elemento 2,07 from Art. 199 (PDF p. 59)"
+  },
+  "inputs": {
+    "ccnl_slug": "dmo-federdistribuzione.json",
+    "level_code": "VII",
+    "year": 2026,
+    "month": 10,
+    "headcount": 50,
+    "provincial_pay_element": false
+  },
+  "expected": {
+    "base_salary": "873.22",
+    "fixed_allowances": "524.74",
+    "period_gross": "1397.96"
+  }
+}
