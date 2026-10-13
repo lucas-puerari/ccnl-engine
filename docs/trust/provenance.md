@@ -179,9 +179,9 @@ when they drift.
 
 | Status | CCNL rules | Fiscal blocks | Total |
 |---|---:|---:|---:|
-| `verified` | 1 275 | 97 | 1 372 |
-| `derived` | 4 994 | 35 | 5 029 |
-| `assumed` | 708 | 132 | 840 |
+| `verified` | 1 332 | 97 | 1 429 |
+| `derived` | 4 939 | 35 | 4 974 |
+| `assumed` | 706 | 132 | 838 |
 | `missing` | 59 | 0 | 59 |
 
 <!-- /trust:provenance-table -->
@@ -193,7 +193,7 @@ bundle. `assumed` covers every rule of a ruleset that declares
 `source_type: "estimated"` (the 2026 sector tax and INPS files and a few
 CCNLs), the
 AI-extracted CCNL values (including
-<!-- trust:accrual-assumed -->32<!-- /trust:accrual-assumed --> accrual
+<!-- trust:accrual-assumed -->31<!-- /trust:accrual-assumed --> accrual
 thresholds read from signed texts, each with its article and quote),
 extra-month counts with no located clause, the
 edilizia INPS proxy, the PA apprentice placeholder, the PA
