@@ -1,0 +1,26 @@
+{
+  "verification": "source_linked",
+  "_description": "Metalmeccanica PMI Unionmeccanica-Confapi (CNEL C018) level 5, June 2026 regular run, permanent, full time: the first month of the tranche of 1 June 2026.",
+  "_notes": [
+    "Minimo 5th level 2,195.87 from 1 September 2025 and 2,245.87 from 1 June 2026 (accordo 24 July 2025, ratified 25 September 2025; table reprinted in the renewal of 4 June 2026, p.5, ratified 23 July 2026).",
+    "The verbale of 17 June 2026 finds the IPCA 2025 (1.9%) below the June 2026 tranche: the minimo stays 2,245.87.",
+    "Base salary only: allowances, seniority and the gross depend on facts outside the national table."
+  ],
+  "source": {
+    "document": "Verbale di accordo Unionmeccanica Confapi - Fim-Cisl, Fiom-Cgil, Uilm-Uil, 17 giugno 2026 (minimi dal 1 giugno 2026)",
+    "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260617-Unionmeccanica-Confapi-Verbale-accordo-minimi-1-giugno-2026-IPCA-signed.pdf",
+    "sha256": "61857a25fcb618e5df4353ee564a718c7b549919b37bf60734a722c2a69756f5",
+    "page": "1",
+    "section": "Minimi retributivi in vigore dal 1° giugno 2026, row 5"
+  },
+  "inputs": {
+    "ccnl_slug": "metalmeccanico-confapi.json",
+    "level_code": "5",
+    "year": 2026,
+    "month": 6,
+    "headcount": 50
+  },
+  "expected": {
+    "base_salary": "2245.87"
+  }
+}

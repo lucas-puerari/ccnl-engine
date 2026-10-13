@@ -137,13 +137,13 @@ class TestLoadMetalmeccanicoConfapi:
         """Level 5 base salary from 2025-09-01 must be 2195.86 €."""
         ccnl = load_ccnl("metalmeccanico-confapi.json")
         l5 = next(lv for lv in ccnl.levels if lv.code == "5")
-        assert l5.base_salary.value_at(date(2025, 9, 1)) == Decimal("2195.86")
+        assert l5.base_salary.value_at(date(2025, 9, 1)) == Decimal("2195.87")
 
     def test_confapi_level1_salary_september_2025(self) -> None:
         """Level 1 base salary from 2025-09-01 must be 1603.40 €."""
         ccnl = load_ccnl("metalmeccanico-confapi.json")
         l1 = next(lv for lv in ccnl.levels if lv.code == "1")
-        assert l1.base_salary.value_at(date(2025, 9, 1)) == Decimal("1603.40")
+        assert l1.base_salary.value_at(date(2025, 9, 1)) == Decimal("1603.45")
 
     def test_confapi_apprenticeship_under_classification(self) -> None:
         """Apprenticeship uses under-classification (Art. 10 CCNL), not percentage.

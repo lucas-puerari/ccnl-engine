@@ -182,7 +182,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 78 | C016 | [CCNL Metalmeccanica - Cooperative](metalmeccanica-cooperative.md) | metalmeccanico cooperativo | ~28k | — | ⚠️ | base_salary, seniority | 0 / 45 / 1 / 1 | 🧪 | 🤖 |
 | 79 | C030 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | metalmeccanico | ~350k | — | ⚠️ | inps_employer, seniority | 0 / 80 / 1 / 0 | 🧪 | 🤖 |
 | 80 | C01A | [CCNL Metalmeccanici Piccola Industria (CONFIMI IMPRESA MECCANICA)](metalmeccanico-confimi-pmi.md) | metalmeccanico | ~100k | — | ✅ | overtime | 0 / 44 / 0 / 1 | 🧪 | 🤖 |
-| 81 | C018 | [CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Confapi)](metalmeccanico-confapi.md) | metalmeccanico | ~350k | — | ⚠️ | base_salary, pension_fund_contribution, seniority | 0 / 46 / 1 / 0 | 🧪 | 🤖 |
+| 81 | C018 | [CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Confapi)](metalmeccanico-confapi.md) | metalmeccanico | ~350k | — | ⚠️ | base_salary, pension_fund_contribution | 58 / 7 / 0 / 0 | 🏭 | 🧑 |
 | 82 | C011 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | metalmeccanico | ~1,7M | — | ⚠️ | overtime, seniority | 81 / 4 / 0 / 0 | 🏭 | 🧑 |
 | 83 | IC36 | [CCNL Noleggio Autobus con Conducente (ANAV)](noleggio-autobus-conducente-anav.md) | Trasporti - Noleggio autobus con conducente | ~5422 | 2025 | ⚠️ | base_salary, seniority, una_tantum | 0 / 0 / 70 / 1 | 🧪 | 🤖 |
 | 84 | D271 | [CCNL Occhiali e Occhialeria — Industria (ANFAO)](occhiali-occhialeria-industria.md) | industria occhialeria e ottica | ~20k | — | ⚠️ | base_salary, seniority | 0 / 88 / 1 / 1 | 🧪 | 🤖 |
