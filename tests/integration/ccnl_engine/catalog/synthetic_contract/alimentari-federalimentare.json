@@ -88,20 +88,56 @@
   "apprenticeship_uc_checks": [
     {
       "level_code": "4",
-      "track_name": "professionalizzante_36",
+      "track_name": "professionalizzante_36_6_20",
       "months_elapsed": 1,
       "expected_levels_below": 2
     },
     {
       "level_code": "4",
-      "track_name": "professionalizzante_36",
-      "months_elapsed": 11,
+      "track_name": "professionalizzante_36_6_20",
+      "months_elapsed": 7,
       "expected_levels_below": 1
     },
     {
       "level_code": "4",
-      "track_name": "professionalizzante_36",
+      "track_name": "professionalizzante_36_6_20",
+      "months_elapsed": 21,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "3",
+      "track_name": "professionalizzante_36_10_22",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "3",
+      "track_name": "professionalizzante_36_10_22",
+      "months_elapsed": 11,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "3",
+      "track_name": "professionalizzante_36_10_22",
+      "months_elapsed": 21,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "3",
+      "track_name": "professionalizzante_36_10_22",
       "months_elapsed": 23,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "1",
+      "track_name": "professionalizzante_36_10_20",
+      "months_elapsed": 11,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "1",
+      "track_name": "professionalizzante_36_10_20",
+      "months_elapsed": 21,
       "expected_levels_below": 0
     },
     {
@@ -113,7 +149,7 @@
     {
       "level_code": "5",
       "track_name": "professionalizzante_24",
-      "months_elapsed": 11,
+      "months_elapsed": 7,
       "expected_levels_below": 0
     }
   ]
