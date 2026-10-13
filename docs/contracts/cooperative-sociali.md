@@ -5,10 +5,10 @@
 | **CNEL code** | `T151` |
 | **Sector** | servizi socio-assistenziali |
 | **Tax sector** | `terziario` |
-| **Last renewal** | — |
+| **Last renewal** | 2025-11-20 |
 | **Workers (est.)** | ~380k |
 | **Ruleset version** | `2026.2` |
-| **Readiness** | 🧪 Exploratory |
+| **Readiness** | 👁 Reviewed |
 
 [← Contracts index](index.md)
 
@@ -32,9 +32,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | seniority |
+| **Limits of this contract** | base_salary, inps_employer |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -42,16 +42,16 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 61 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
-| **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
-| **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
+| **Rule provenance** | 62 verified / 1 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
+| **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
 ## Freshness
 
 | | |
 |---|---|
-| **Last renewal** | — |
-| **Last review** | 2026-09-18 |
+| **Last renewal** | 2025-11-20 |
+| **Last review** | 2026-10-13 |
 | **Latest salary tranche** | 2025-10-01 |
 
 ## Review history
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-09-18 | maintainer (human) | Whole file. The values checked were not recorded. | confirmed | The review recorded no list of the documents it read. |
+| 2026-10-13 | claude-opus-5-5 (ai) | Every payable rule read again in the Legacoopsociali full text 2025 of the CCNL Cooperative sociali 2023-2025, with the Legacoop circular of 1 February 2024 and the CNEL T151 deposits of 26 January and 5 March 2024, for the reviewed tier. | corrected | 83 records verified; the two aggregator sources replaced by the Legacoopsociali full text.<br>32 salary periods differed by 1-3 cents from Art. 76 (A1, B, C3, D1, D3, E1, E2, E2Q, F2, F2Q, and F1, F1Q from October 2025): corrected.<br>Ferie 26 working days on a six-day week (Art. 60), not 20.<br>Sickness: 100% of the normale retribuzione from day 1 to day 180 (Art. 71), no 50% carenza.<br>Apprenticeship: the OSS of C2 on the 18-month track (Art. 28 N.3); apprentices accrue no seniority (Art. 28 I.5): the apprentice_seniority limitation closed.<br>Added Previdenza Cooperativa (Art. 86: employer 1.5%, worker minimum 1% of the TFR base).<br>C3 seniority 20.66 stays derived: Art. 80 prints 20,63, the cost tables 20.66.<br>Absence by_26 stays derived: Art. 41 deducts hours at 1/165.<br>Open: the INPS rate of the cost tables (28.03%) vs terziario, and the type-B exemptions of L. 381/1991.<br>The CCNL expired on 31 December 2025; no renewal found through October 2026. |
 
 ## Salary table
 
@@ -66,22 +67,22 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `F2Q` | Level F2Q — general director Quadro (with function allowance) | € 2,504.10 | 2025-10-01 |
-| `F2` | Level F2 — general director / highest responsibility function | € 2,504.10 | 2025-10-01 |
-| `F1Q` | Level F1Q — area director Quadro (with function allowance) | € 2,192.55 | 2025-10-01 |
-| `F1` | Level F1 — area director / senior managerial function | € 2,192.55 | 2025-10-01 |
-| `E2Q` | Level E2Q — senior manager Quadro (with function allowance) | € 1,985.39 | 2025-10-01 |
-| `E2` | Level E2 — senior manager / service director | € 1,985.39 | 2025-10-01 |
-| `E1` | Level E1 — junior manager / coordinator | € 1,839.16 | 2025-10-01 |
-| `D3` | Level D3 — senior technician | € 1,839.16 | 2025-10-01 |
+| `F2Q` | Level F2Q — general director Quadro (with function allowance) | € 2,504.09 | 2025-10-01 |
+| `F2` | Level F2 — general director / highest responsibility function | € 2,504.09 | 2025-10-01 |
+| `F1Q` | Level F1Q — area director Quadro (with function allowance) | € 2,192.54 | 2025-10-01 |
+| `F1` | Level F1 — area director / senior managerial function | € 2,192.54 | 2025-10-01 |
+| `E2Q` | Level E2Q — senior manager Quadro (with function allowance) | € 1,985.42 | 2025-10-01 |
+| `E2` | Level E2 — senior manager / service director | € 1,985.42 | 2025-10-01 |
+| `E1` | Level E1 — junior manager / coordinator | € 1,839.15 | 2025-10-01 |
+| `D3` | Level D3 — senior technician | € 1,839.15 | 2025-10-01 |
 | `D2` | Level D2 — qualified technician | € 1,727.83 | 2025-10-01 |
-| `D1` | Level D1 — junior technician | € 1,637.56 | 2025-10-01 |
-| `C3` | Level C3 — specialised care worker | € 1,637.56 | 2025-10-01 |
-| `C2` | Level C2 — qualified care worker | € 1,591.06 | 2025-10-01 |
-| `C1` | Level C1 — basic care worker (OSS) | € 1,545.21 | 2025-10-01 |
-| `B` | Level B — qualified auxiliary worker | € 1,436.78 | 2025-10-01 |
+| `D1` | Level D1 — junior technician | € 1,637.57 | 2025-10-01 |
+| `C3` | Level C3: capo squadra, capo cuoco, coordinating assistente domiciliare / operatore socio-assistenziale (ex 5° livello) | € 1,637.57 | 2025-10-01 |
+| `C2` | Level C2: Operatore Socio-Sanitario operating in socio-sanitary services and structures | € 1,591.06 | 2025-10-01 |
+| `C1` | Level C1: operaio specializzato, cuoco, conducente, assistente domiciliare, operatore socio-assistenziale (ex 4° livello) | € 1,545.21 | 2025-10-01 |
+| `B` | Level B — qualified auxiliary worker | € 1,436.79 | 2025-10-01 |
 | `A2` | Level A2 — basic auxiliary worker | € 1,372.53 | 2025-10-01 |
-| `A1` | Level A1 — generic entry-level worker | € 1,359.88 | 2025-10-01 |
+| `A1` | Level A1 — generic entry-level worker | € 1,359.85 | 2025-10-01 |
 
 ## Seniority increments
 
@@ -110,11 +111,11 @@ Latest effective values per level (monthly gross, EUR).
 ## Apprenticeship
 
 **professionalizzante_18m** (type: `percentage`)  
-Destination levels: `A2`  
+Destination levels: `A2`, `C2`  
 percentage: 1.00
 
 **professionalizzante_24m** (type: `percentage`)  
-Destination levels: `B`, `C1`, `C2`, `C3`  
+Destination levels: `B`, `C1`, `C3`  
 percentage: 1.00
 
 **professionalizzante_36m** (type: `percentage`)  
@@ -125,12 +126,26 @@ percentage: 1.00
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "cooperative-sociali/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
+!!! warning "cooperative-sociali/inps_rate_not_reconciled · inps_employer · impact yes · open"
+    INPS: the tax_sector terziario applies the terziario employer rates (29.31% to 30.11%), while the Ministry D.D. 30/2024 cost tables agreed by the signatories (PDF p. 186) apply 'Inps (28,03%)' to every level. Social cooperatives are classified by INPS by their activity; no primary INPS circular for their contribution set was read, so the difference is not reconciled.
 
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+    **Applies when:** `inps_employer` applies.
 
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
+    **Remediation:** Read the INPS classification of social cooperatives and model their employer rate set.
+
+!!! warning "cooperative-sociali/type_b_disadvantaged_exemption · inps_employer · impact yes · open"
+    TYPE-B COOPERATIVES: the contributions on the pay of the disadvantaged workers of type-B social cooperatives 'sono ridotte a zero' (L. 381/1991 art. 4 c. 3, PDF p. 248; c. 3-bis for detainees by decree). The request has no field for such a worker: the full rates apply.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add a disadvantaged-worker input and zero the contributions of L. 381/1991 art. 4.
+
+!!! warning "cooperative-sociali/coop_sociali_unmodelled_elements · base_salary · impact yes · open"
+    NOT MODELLED AMOUNTS: the ETDR of the educatori (EUR 41, then 82 a month in 2025, Art. 47 and verbale 17 September 2025; the educatori socio-pedagogici move to D2 from 1 January 2026); the night allowance of EUR 12.39 / 6.20 per night and the 10% of night-only custody staff (Art. 54); 15% on Sunday and holiday ordinary hours (Art. 55); the 10% shift allowance (Art. 56); reperibilità in struttura EUR 77.47 a month plus EUR 20 a night (Art. 57); pronta disponibilità EUR 1.55 an hour (Art. 58); the indennità professionali (Art. 78) and the EUR 50 affiancamento allowance; the indennità di cassa EUR 30.99 (Art. 81); the extra 1/26 of a holiday on the rest day (Art. 59) and the 4 days of ex festività (Art. 60); the 26 hours of night workers' permessi (Art. 54); the PTR (Art. 10, outside every institute); the salari di primo ingresso of type B (Art. 2 B.4); the territorial gradualità agreements (Art. 77); the maternity integration (Art. 63); the 100% integration of work injury to day 180 (Art. 72); the ASI contribution of EUR 5, then 10 a month (Art. 87); the EUR 10 quota d'iscrizione of Previdenza Cooperativa (Art. 86). Sickness: no integration during the prova (Art. 71, Art. 28 M) and the comporto of 12 months in three years are not inputs. Apprenticeship: the 24-month track of the educatore professionale with title (Art. 28 N.2) is not expressible by level.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the ETDR, the night, shift and availability allowances, the professional allowances and the prova exclusion of sickness.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -178,24 +193,25 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-01-26 | [↗](https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/) |
+| CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025) | associazione | 2025-11-20 | [↗](https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf) |
+| Legacoop, circolare 1 febbraio 2024 (rev. 1.1): rinnovo del CCNL cooperative sociali, tabelle dei minimi | associazione | 2024-02-01 | [↗](https://www.legacoop.coop/wp-content/uploads/2024/03/20240307-circolare-rinnovo-CCNL-sociali_rev.1.1.pdf) |
+| CNEL T151: verbale di accordo per il rinnovo del CCNL Cooperative sociali, 26 gennaio 2024 | cnel | 2024-01-26 | [↗](https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/179967) |
+| CNEL T151: verbale di scioglimento della riserva, 5 marzo 2024, con le tabelle del costo | cnel | 2024-03-05 | [↗](https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183378) |
 
 ??? note "Coverage notes"
-    CONSOLIDATED MINIMUMS: the base_salary values are the monthly consolidated tabular minimums (base pay + contingency + EDR included), as published by lexplain.it. Hourly divisor 165 (CCNL art. 75, 38-hour week). Back-calculation check: A1 October 2025 = 1359.88 / 165 = EUR 8.24/h; C1 = 1545.21 / 165 = EUR 9.37/h; F2 = 2504.10 / 165 = EUR 15.17/h — consistent with the hourly rates published by lexplain.it.
+    CONSOLIDATED MINIMUMS: base_salary is the minimo contrattuale conglobato mensile of Art. 76 (PDF p. 106) of the Legacoopsociali full text 2025, the same figures as the Legacoop circular of 1 February 2024 and the Ministry D.D. 30/2024 cost tables. Hourly divisor 165 for 38 hours a week (Art. 75). Level B is position B1 of Art. 76.
     
     QUADRO LEVELS: levels E2Q, F1Q, F2Q are modelled as separate levels with fixed_allowances (function allowance EUR 77.47, EUR 154.94, EUR 232.41/month respectively). The base_salary is identical to the corresponding non-Q level; the allowance is fixed and unchanged across tranches. Seniority increments for Q levels carry the same amount as the corresponding base level.
     
     ADDITIONAL MONTHS: 13 until 31 December 2024 (thirteenth month only). From 1 January 2025: 13.5 (thirteenth month + fourteenth month equal to 50% of one monthly salary, paid in June, introduced by the 26 January 2024 renewal).
     
-    TRANCHES: February 2024 (first), October 2024 (second), October 2025 (third and last). Renewal signed on 26 January 2024. No pre-February-2024 tables modelled.
+    TRANCHES: February 2024, October 2024 and October 2025 ('con la mensilità di febbraio 2024 / ottobre 2024 / ottobre 2025', verbale 26 January 2024, reserve lifted 5 March 2024). The CCNL 2023-2025 expired on 31 December 2025 (Art. 7); no renewal, una tantum or IVC was found through October 2026, so the October 2025 minimi stay in force.
     
     LEVELS WITH THE SAME BASE: C3 and D1 have identical minimums at each tranche (orders 6/7). D3 and E1 are identical (orders 9/10). Q levels (E2Q/F1Q/F2Q) have the same base as the non-Q level but the next order: the engine allows equal salaries between adjacent levels.
     
-    SENIORITY INCREMENTS: biennial (every 24 months), maximum 5 increments. Fixed amounts per level from the CCNL seniority table (source: ccnlcooperative.it, art. 80). C3 and D1 have the same amount (EUR 20.66); D3 and E1 have the same amount (EUR 26.86).
+    SENIORITY INCREMENTS: one scatto per biennio, at most 5 (Art. 80, pp. 110-111). C3 is printed 20,63 in Art. 80 but 20.66 in the D.D. 30/2024 and CNEL cost tables and in the D1 row: 20.66 kept as derived. Apprentices accrue none (Art. 28 I.5, apprentice_amount 0); the recognised seniority of a qualified ex-apprentice starts at the end of the apprenticeship (caller's SeniorityFact).
     
-    INPS: uses 2026-terziario.json (same tax_sector as CCNL Commercio Confcommercio). The social cooperatives sector does not have a separate employer INPS rate verified from a primary circular; type-B social cooperatives may apply concessions under L. 381/1991 not modelled in this file.
-    
-    APPRENTICESHIP (professionalizzante) under Art. 28 renewal 05/03/2024: 3 duration tracks by category: category A (dest=A2) 18m [0-9m=85%,9-18m=90%]; category B/C (dest=B,C1,C2,C3) 24m [0-12m=85%,12-24m=90%]; category D/E (dest=D1,D2,D3,E1,E2) 36m [0-18m=85%,18-36m=90%]. A1 and F/Q levels not eligible. Special: OSS in socio-sanitario reduced to 18m. Source: Art. 28 ccnlcooperative.it (consolidated text 2025, high confidence).
+    APPRENTICESHIP (professionalizzante, Art. 28 L and N, PDF pp. 59-60): category A (A2) and the OSS of C2 18 months (85% / 90% at month 10); categories B and C (B, C1, C3) 24 months (85% / 90% at month 13); D and E 36 months (85% / 90% at month 19), on the minimo of the target position. A1, F and the health profiles are excluded (Art. 28 B.3).
     
 
 ## Raw data
