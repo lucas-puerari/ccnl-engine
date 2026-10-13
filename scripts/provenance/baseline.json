@@ -48,10 +48,6 @@
       "accrual_rule": "missing",
       "additional_months[2024-06-01]": "assumed"
     },
-    "agreement/alimentari-federalimentare.json": {
-      "accrual_rule": "assumed",
-      "additional_months[2023-12-01]": "assumed"
-    },
     "agreement/alimentari-pmi-unionalimentari.json": {
       "accrual_rule": "missing",
       "additional_months[2025-06-01]": "assumed"
@@ -1196,8 +1192,9 @@
       "agenzie-viaggio-fiavet/apprentice_seniority"
     ],
     "agreement/alimentari-federalimentare.json": [
-      "alimentari-federalimentare/apprentice_seniority",
-      "alimentari-federalimentare/apprenticeship_period_boundaries"
+      "alimentari-federalimentare/alimentari_unmodelled_elements",
+      "alimentari-federalimentare/overtime_subsector_tables",
+      "alimentari-federalimentare/sickness_half_pay_and_comporto"
     ],
     "agreement/alimentari-pmi-unionalimentari.json": [
       "alimentari-pmi-unionalimentari/egr_increase_2027",
