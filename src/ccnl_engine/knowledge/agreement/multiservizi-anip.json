@@ -116,6 +116,20 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "UNSIGNED RENEWAL: the salary periods from 1 July 2025 come from the renewal of 13 June 2025 and its tables of 6 August 2025 (CNEL K511, deposits 234754 and 234752), signed by AGCI, Confcooperative, Legacoop and Confapi but not by ANIP. For an ANIP member the last signed amount is the fifth tranche of July 2025 of the 2021 renewal (deposit 139292, p. 34, level 2 779.21 against 819.21 here); no ANIP amount after it was found. Runs from July 2025 may overpay an ANIP employer's workers.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "anip_unsigned_renewal",
+          "applies_when": {
+            "trigger": "run",
+            "effective_from": "2025-07-01"
+          },
+          "remediation": "Use the 2021 renewal values for ANIP members, or the 2025 renewal once ANIP signs or joins it."
+        }
       }
     ]
   },
@@ -4291,7 +4305,7 @@
     "effective_until": null,
     "source": "https://www.oristanoservizi.it/wp-content/uploads/2021/11/CCNL-Multiservizi-scadenza-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "41ef1cde346ba6651dba3682d4e7cdf3936d9c76cd40bc98f9f85a75c60ff2f6",
+    "source_hash": "8f42d513d8a084f47f9b60087e3b980b9884d26bf47c7ed8a838f26a0f2d3560",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4532,6 +4546,17 @@
         "outcome": "confirmed",
         "findings": [
           "The review recorded no list of the documents it read."
+        ]
+      },
+      {
+        "id": "2026-10-13-ai-anip",
+        "date": "2026-10-13",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Signatories of the renewals behind the salary periods from July 2025.",
+        "outcome": "flagged",
+        "findings": [
+          "The renewal of 13 June 2025 (CNEL K511, deposits 234754 and 234752) is not signed by ANIP; the file pays its minima from July 2025. Declared as the limitation anip_unsigned_renewal; values left unchanged pending an ANIP amount."
         ]
       }
     ]

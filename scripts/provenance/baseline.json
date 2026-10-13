@@ -1529,6 +1529,7 @@
       "metalmeccanico-federmeccanica/overtime_exempt_quota_supplement"
     ],
     "agreement/multiservizi-anip.json": [
+      "multiservizi-anip/anip_unsigned_renewal",
       "multiservizi-anip/apprentice_seniority",
       "multiservizi-anip/cigs_threshold_16_to_50"
     ],
