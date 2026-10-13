@@ -428,9 +428,6 @@
     "agreement/metalmeccanico-artigianato.json": {
       "additional_months[2022-01-01]": "assumed"
     },
-    "agreement/metalmeccanico-confapi.json": {
-      "additional_months[2021-06-01]": "assumed"
-    },
     "agreement/metalmeccanico-confimi-pmi.json": {
       "accrual_rule": "missing"
     },
@@ -1513,8 +1510,7 @@
       "metalmeccanico-artigianato/inps_sector_rates_unsourced"
     ],
     "agreement/metalmeccanico-confapi.json": [
-      "metalmeccanico-confapi/apprentice_seniority",
-      "metalmeccanico-confapi/apprenticeship_36_months_assumed",
+      "metalmeccanico-confapi/confapi_unmodelled_pay_elements",
       "metalmeccanico-confapi/fondapi_base_elements"
     ],
     "agreement/metalmeccanico-confimi-pmi.json": [
