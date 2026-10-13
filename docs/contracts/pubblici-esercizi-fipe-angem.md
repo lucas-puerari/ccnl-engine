@@ -8,7 +8,7 @@
 | **Last renewal** | — |
 | **Workers (est.)** | ~350k |
 | **Ruleset version** | `2026.2` |
-| **Readiness** | 🧪 Exploratory |
+| **Readiness** | 🏭 Production |
 
 [← Contracts index](index.md)
 
@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, overtime, seniority |
+| **Limits of this contract** | base_salary, overtime, seniority, sickness |
 
-6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+9 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -43,16 +43,16 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 58 verified / 5 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
-| **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
-| **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
+| **Rule provenance** | 61 verified / 2 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
+| **Readiness** | 🏭 Production | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
 ## Freshness
 
 | | |
 |---|---|
 | **Last renewal** | — |
-| **Last review** | 2026-10-12 |
+| **Last review** | 2026-10-13 |
 | **Latest salary tranche** | 2027-12-01 |
 
 ## Review history
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-11 | claude-opus-5-5 (ai) | Every payable rule of the file (72 records) and the hourly divisor read again in the signed texts: the CCNL of 8 February 2018, the renewal of 5 June 2024 and its accordo integrativo of 26 June 2024 with the final salary tables. | corrected | All 50 salary periods and the 10 level rows match the accordo integrativo of 26 June 2024 (pp. 1-2) and are verified, with the Quadri allowances (Art. 154), the 14 monthly payments (Artt. 183-184), seniority (Art. 182), overtime 30% and 60% (Art. 126), the daily quota 1/26 (Art. 159), leave (Art. 134) and the hourly divisor 172 (Art. 160). Pages are PDF page indexes.<br>Corrected: sickness (Art. 190, Art. 194). INPS pays 80% for the whole sickness in this sector (regime pubblici_esercizi, funded by the 0.77% supplement) and the CCNL adds no top-up, so the target is 80%; the three days of carenza are paid in full only when the sickness lasts more than five days; the comporto is 180 days a calendar year.<br>Assumed: the overtime bands for holidays (30%) and holiday nights (60%). The CCNL sets only 30% by day and 60% by night (Art. 126) and 20% for ordinary work on a holiday (Art. 132); the two bands are inferences, not cited values.<br>Left derived: the Fon.Te. rates, read in the fund's information sheet, not in the CCNL.<br>Not modelled: the quattordicesima excludes the seniority increments (Art. 184), the collective catering companies move the June 2025 and June 2026 tranches to September (accordo integrativo p. 3), and the conditions of Art. 190 beyond the carenza.<br>FIPE and the Turismo CCNLs are two agreements: FIPE was renewed on 5 June 2024 (level 4 at 1,692.69 from June 2026), the Turismo CCNL of Federalberghi and Faita on 5 July 2024 (1,695.69 from May 2026). |
 | 2026-10-12 | claude-opus-5-5 (ai) | Quattordicesima and seniority, holiday overtime, September tranches of the ristorazione collettiva: follow-ups of the review of 2026-10-11. | corrected | Quattordicesima: art. 184 c. 1 excludes the matured seniority increments; the engine paid them. Now excluded.<br>Holiday overtime: the 30% and 60% are art. 126 itself (by time of day), not an analogy: derived from p. 99; whether art. 132's 20% is added is left open (outside_input note).<br>Ristorazione collettiva: the 2025 and 2026 tranches start in September for the companies of art. 1 c. 1 par. II (accordo integrativo 26.6.2024, p. 3); still the limitation contract_catering_tranche_dates. |
 | 2026-10-12 | claude-opus-5-5 (ai) | Accrual of the tredicesima and quattordicesima (artt. 183 c. 2 and 184 c. 4). | corrected | The accrual rule was missing (engine default of 15 days per month): the CCNL cumulates the fractions of month, a rateo for each 30 days and one for a remainder of 15 days or more, now modelled (cumulated_fractions). |
+| 2026-10-13 | claude-opus-5-5 (ai) | Every payable rule not yet verified, the apprenticeship (arts. 68 and 72), the limitations and the L2 values, for the production tier. | corrected | 2 records verified on the signed texts (salary periods on the accordo integrativo of 26 June 2024, accrual rule and Fon.Te. on the CCNL of 8 February 2018).<br>Fon.Te.: 0.55% employer and worker on the TFR base, art. 185 c. 3; valid from 29 November 1996 (the fund table), not from 2026.<br>Apprenticeship: level 1 is not a destination; level 6 lasts 24 months (art. 72 c. 1), now its own track; the 42 and 48 month profiles stay a limitation.<br>Holiday overtime: whether the 20% of art. 132 adds to the 30%/60% of art. 126 is not stated; the two bands stay derived with the limitation.<br>L2: INPS terziario verified (circ. 117/2022 allegato accepted on 2026-10-13), with the 0.77% sickness supplement of the pubblici esercizi (CCNL art. 190 c. 3); TFR art. 217, the scatti included since 1 November 2021.<br>No renewal after the accordo integrativo of 26 June 2024 changes gross pay. |
 
 ## Salary table
 
@@ -101,7 +102,11 @@ Latest effective values per level (monthly gross, EUR).
 ## Apprenticeship
 
 **professionalizzante** (type: `percentage`)  
-Destination levels: `1`, `2`, `3`, `4`, `5`, `6s`, `6`  
+Destination levels: `2`, `3`, `4`, `5`, `6s`  
+percentage: 1.00
+
+**professionalizzante_24_mesi** (type: `percentage`)  
+Destination levels: `6`  
 percentage: 1.00
 
 ## Known simplifications
@@ -116,25 +121,46 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Use pubblici-esercizi-fipe-angem-ristorazione-collettiva for a collective catering company.
 
 !!! warning "pubblici-esercizi-fipe-angem/small_company_pay_reduction · base_salary · impact yes · open"
-    SMALLER COMPANIES: Art. 162 provides for a reduction in base pay for smaller companies (from €2.58 to €5.68 per level). Not modelled — applicable only to the smaller pubblici esercizi of paragraph I Art. 1 (CCNL 2018, p. 118: "Per il personale delle aziende minori dei pubblici esercizi [...] si fa rinvio all'articolo 162"). Maximum impact: €5.68/month for Qa.
+    SMALLER COMPANIES: Art. 162 (PDF p. 118) reduces the paga base of the aziende minori dei pubblici esercizi and of the stabilimenti balneari of the third and fourth category (from EUR 2.58 for level 7 to EUR 5.68 for Qa, also in the accordo integrativo of 26 June 2024, pp. 4-6); art. 163 c. 2 prints a contingenza up to EUR 0.51 lower for them. Not modelled. Maximum impact: about EUR 6.19 a month for Qa.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the Art. 162 base-pay reduction for micro-enterprises with an employer-size input.
 
 !!! warning "pubblici-esercizi-fipe-angem/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
+    APPRENTICE SENIORITY: no clause says it in so many words. Art. 182 c. 1 (PDF p. 126) grants the six scatti 'A tutto il personale', art. 71 applies to the apprentice the normative treatment of the qualified worker, and art. 68 c. 1 pays a percentage of the qualified pay of the level, scatti included: the apprenticeship counts for the scatti and a matured scatto is paid at the apprentice percentage. The first scatto matures after 48 months, so only an apprentice with prior seniority reaches one; the engine pays no increment during the apprenticeship.
 
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! warning "pubblici-esercizi-fipe-angem/holiday_overtime_cumulation · overtime · impact unknown · open"
-    HOLIDAY OVERTIME: Art. 126 (PDF p. 99) gives 30% by day and 60% by night for every overtime hour; Art. 132 (p. 103) gives 20% for the hours worked on a festività. The CCNL states no cumulation rule between them (it does for night work, art. 126 c. 3, and for Sunday work, art. 130 c. 2). The engine pays holiday overtime at 30%/60% without the 20%.
+    HOLIDAY OVERTIME: Art. 126 (PDF p. 99) gives 30% by day and 60% by night for every overtime hour; Art. 132 (p. 103) gives 20% for the hours worked on a festività. No clause links them: art. 126 c. 3 excludes cumulation only with ordinary night work, art. 130 c. 2 only Sunday work with the festività, and the special parts (arts. 246-247, 263-264) and the 2024 renewal repeat or leave them. The engine pays holiday overtime at 30%/60% without the 20%.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Confirm whether the 20% of art. 132 is added to the overtime rate on a festività; if so set the bands to 0.5 and 0.8, else close this note.
+
+!!! warning "pubblici-esercizi-fipe-angem/apprenticeship_long_profiles · base_salary · impact yes · open"
+    APPRENTICESHIP PROFILES: art. 72 c. 2 gives 48 months to named profiles of levels 2 and 3 and 42 months to named profiles of level 4, and art. 68 c. 1 pays 95% in their fourth year. The profile is not an input: the engine pays them the 36-month track, 100% from month 37 instead of 95%.
+
+    **Applies when:** `base_salary` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Let the caller state the art. 72 c. 2 profile and add the 42 and 48 month tracks with the 95% fourth year.
+
+!!! warning "pubblici-esercizi-fipe-angem/balneari_diurni_rules · sickness · impact yes · open"
+    BALNEARI AND ALBERGHI DIURNI: art. 190 c. 5 (PDF p. 134) leaves the stabilimenti balneari and the alberghi diurni out of the sickness rule of the file: they pay the supplements of arts. 250 and 266 over the INPS 50%/66.66%, and the balneari non impiegati work 44 hours a week. Not modelled.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the special parts of the stabilimenti balneari and alberghi diurni in a sibling file.
+
+!!! warning "pubblici-esercizi-fipe-angem/fipe_unmodelled_elements · base_salary · impact yes · open"
+    NOT MODELLED AMOUNTS: the elemento distinto of EUR 16.00 for 14 months owed when the employer does not pay Fondo Est (CCNL 2018 art. 186 c. 12), and the guarantee premium of the renewal of 5 June 2024 (art. 13 c. 10) paid with the November 2027 pay to workers without second-level bargaining. The caller pays them as variable items.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the Fondo Est elemento distinto and the 2027 guarantee premium as conditional allowances.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -184,7 +210,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     SALARY MODEL: the contractual pay structure provides for a separate national base pay and contingenza. For engine purposes they are consolidated into base_salary (monthly total per tranche). The totals are read in the accordo integrativo of 26 June 2024 (pp. 1-2), the same as the FIPE pay tables. fixed_allowances models the function allowance for quadri: Qa=75 EUR and Qb=70 EUR, from Art. 154 of the CCNL of 8 February 2018 (CCNL 2024-2027).
 
 !!! note ""
-    APPRENTICESHIP (Art. 68): professionalizzante apprenticeship 36 months, percentages 80%/85%/90% from lexplain.it (secondary, not checked on the signed text). Destination levels modelled as 1-6s and 6 (Qa/Qb excluded per D.Lgs. 81/2015 art. 41; level 7 excluded per tertiary CCNL convention, not verified against Art. 68 — fipe.it full text PDF not parseable: scanned without OCR). Art. 75 (apprenticeship for qualification/diploma) out of scope.
+    APPRENTICESHIP (CCNL 8 February 2018, arts. 68 and 72, PDF pp. 74-75, read on the signed scan): the professionalizzante apprentice is paid 80%, 85% and 90% of the qualified pay of the level in the first three years (art. 68 c. 1). Durations (art. 72 c. 1): 36 months for levels 2, 3, 4, 5 and 6s, 24 months for level 6. Level 1, level 7 and the quadri are not apprenticeship destinations. Art. 75 (apprenticeship for qualification or diploma) is out of scope.
 
 ## Sources
 

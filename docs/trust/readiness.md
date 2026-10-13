@@ -142,9 +142,9 @@ it drifts):
 
 | Readiness | CCNL rulesets |
 |---|---:|
-| `exploratory` | 120 |
+| `exploratory` | 118 |
 | `reviewed` | 10 |
-| `production` | 1 |
+| `production` | 3 |
 
 <!-- /trust:readiness-table -->
 
@@ -164,7 +164,7 @@ hold an entry in the review log, and
 <!-- trust:reviewed-confidence-verified -->10<!-- /trust:reviewed-confidence-verified -->
 set `verification.confidence = "verified"` (step 5 of the criteria above).
 A per-value review is recorded only by the provenance status `verified` of a
-payable rule, and <!-- trust:rules-verified -->719<!-- /trust:rules-verified -->
+payable rule, and <!-- trust:rules-verified -->745<!-- /trust:rules-verified -->
 payable rules of the bundle have it (see
 [Provenance](provenance.md#provenance-status)).
 
@@ -214,6 +214,6 @@ Both modes compute the same amounts.
 
 An operational engine returns the result with its blockers instead of
 refusing before the calculation, so the amounts and every other blocker stay
-inspectable. With <!-- trust:readiness-production -->1<!-- /trust:readiness-production -->
+inspectable. With <!-- trust:readiness-production -->3<!-- /trust:readiness-production -->
 `production` rulesets, only those CCNLs are payable in operational mode: the
 gate opens one CCNL at a time, as each is promoted.

@@ -1,0 +1,27 @@
+{
+  "verification": "source_linked",
+  "_description": "CCNL Pubblici Esercizi FIPE, ristorazione collettiva, level 4, August 2026 regular run, permanent, full time: the last month of the September 2025 tranche of the collective catering companies.",
+  "_notes": [
+    "Accordo integrativo of 26 June 2024, table of the ristorazione collettiva 'Totale set-25' (p. 3): level 4 1652,69 from 1 September 2025; the next tranche, 1692,69, starts on 1 September 2026.",
+    "Base salary only: the allowances and the gross depend on facts outside the national table."
+  ],
+  "source": {
+    "document": "Accordo integrativo all'ipotesi d'accordo di rinnovo del CCNL Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo del 5 giugno 2024 (26 giugno 2024)",
+    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922",
+    "page": "3",
+    "section": "Tabella retributiva ristorazione collettiva, Totale set-25, level 4"
+  },
+  "inputs": {
+    "ccnl_slug": "pubblici-esercizi-fipe-angem-ristorazione-collettiva.json",
+    "level_code": "4",
+    "year": 2026,
+    "month": 8,
+    "headcount": 50
+  },
+  "expected": {
+    "base_salary": "1652.69",
+    "fixed_allowances": "0.00",
+    "period_gross": "1652.69"
+  }
+}

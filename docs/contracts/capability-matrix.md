@@ -61,7 +61,7 @@ formulas or caller-declared amounts.
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 566 / 4838 / 681 / 59 |
+| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 588 / 4816 / 681 / 59 |
 | `seniority` | Scatti di anzianità | core | gross | native | decided | decision | `employment.seniority` | — | simplified | 10 / 108 / 13 / 0 |
 | `worker_category` | Categoria lavoratore (dichiarata o fissata dal livello) | core | gross | native | decided | decision | `employment.category` | — | implemented | none bundled |
 | `inps_employee` | Contributi INPS a carico dipendente | core | net | native | always | pipeline | — | — | simplified | 16 / 28 / 47 / 0 |
@@ -109,7 +109,7 @@ formulas or caller-declared amounts.
 | `rinnovo_substitute_tax` | Imposta sostitutiva aumenti da rinnovo L. 199/2025 art. 1 c. 7 | core | net | native | decided | decision | `prior_year` | — | simplified | 0 / 1 / 1 / 0 |
 | `notte_festivi_turni_substitute_tax` | Imposta sostitutiva notturno, festivo e turni L. 199/2025 art. 1 cc. 10-11 | core | net | native | decided | decision | `prior_year` | — | simplified | 0 / 1 / 1 / 0 |
 | `bilateral_funds` | Fondi bilaterali (importi dal chiamante) | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
-| `pension_fund_contribution` | Previdenza complementare CCNL su adesione e contributo contrattuale | scenario | net | partial | decided | decision | `employment.pension_fund` | ccnl_fund_on_enrolment, ccnl_contractual_contribution | simplified | 11 / 128 / 25 / 0 |
+| `pension_fund_contribution` | Previdenza complementare CCNL su adesione e contributo contrattuale | scenario | net | partial | decided | decision | `employment.pension_fund` | ccnl_fund_on_enrolment, ccnl_contractual_contribution | simplified | 15 / 124 / 25 / 0 |
 | `assistance_contribution` | Contributi di assistenza contrattuale per ora retribuita (Cas.Sa.Colf, lavoro domestico) | core | net | native | decided | decision | `facts.contributable_hours` | — | verified | 3 / 0 / 0 / 0 |
 
 ## CCNL coverage
@@ -242,8 +242,8 @@ never grow.
 | 110 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF](vigilanza-privata-federdat-sf.md) | ⚠️ | seniority | 0 / 46 / 2 / 1 |
 | 111 | [CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso](agenti-immobiliari-fiaip.md) | ⚠️ | base_salary, bilateral_funds, pension_fund_contribution, seniority, una_tantum | 0 / 0 / 30 / 1 |
 | 112 | [CCNL per i dipendenti da autoscuole, scuole nautiche e studi di consulenza automobilistica](autoscuole-unasca.md) | ⚠️ | bilateral_funds, health_fund_employer, seniority | 0 / 32 / 2 / 0 |
-| 113 | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo](pubblici-esercizi-fipe-angem.md) | ⚠️ | base_salary, overtime, seniority | 58 / 5 / 0 / 0 |
-| 114 | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo - Ristorazione collettiva (aziende dell'art. 1 c. 1 par. II)](pubblici-esercizi-fipe-angem-ristorazione-collettiva.md) | ⚠️ | overtime, seniority | 38 / 25 / 0 / 0 |
+| 113 | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo](pubblici-esercizi-fipe-angem.md) | ⚠️ | base_salary, overtime, seniority, sickness | 61 / 2 / 0 / 0 |
+| 114 | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo - Ristorazione collettiva (aziende dell'art. 1 c. 1 par. II)](pubblici-esercizi-fipe-angem-ristorazione-collettiva.md) | ⚠️ | base_salary, overtime, seniority | 61 / 2 / 0 / 0 |
 | 115 | [CCNL per i dipendenti dalle aziende di lavorazione della foglia di tabacco secco allo stato sciolto](tabacco-apti.md) | ⚠️ | pension_fund_contribution, seniority | 0 / 0 / 58 / 1 |
 | 116 | [CCNL per i dipendenti degli studi e delle attività professionali (Confprofessioni)](studi-professionali-confprofessioni.md) | ⚠️ | base_salary, seniority | 0 / 42 / 2 / 0 |
 | 117 | [CCNL per i dipendenti delle imprese artigiane esercenti servizi di pulizia, disinfezione, disinfestazione, derattizzazione e sanificazione](pulizia-artigianato-confartigianato.md) | ⚠️ | base_salary, bilateral_funds, holiday_work, inps_employer, leave, night_work, overtime, seniority | 0 / 0 / 86 / 1 |
