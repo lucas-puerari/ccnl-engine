@@ -8,7 +8,7 @@
 | **Last renewal** | — |
 | **Workers (est.)** | ~550k |
 | **Ruleset version** | `2026.2` |
-| **Readiness** | 👁 Reviewed |
+| **Readiness** | 🏭 Production |
 
 [← Contracts index](index.md)
 
@@ -35,7 +35,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, sickness |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -43,9 +43,9 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 20 verified / 16 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 23 verified / 16 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
-| **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
+| **Readiness** | 🏭 Production | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
 ## Freshness
 
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-09-18 | maintainer (human) | Whole file. The values checked were not recorded. | confirmed | The review recorded no list of the documents it read. |
 | 2026-10-13 | claude-opus-5-5 (ai) | Every payable rule of the operai read again in the ANCE minimi table of the CCNL of 21 February 2025, the CCNL of 19 April 2010 (FILLEA text), the Art. 92 apprenticeship text of 2019 and the ANCE provincial tables, for the production tier. | corrected | 26 records verified, 12 derived (contingenza, EDR, contractual fund, absence quota, sickness mapping).<br>Split by category (Art. 77): the operai of levels 1-4 in edilizia-ance, the impiegati and quadri of levels 1-7 in edilizia-ance-impiegati.<br>base_salary is now the national minimo of the ANCE table; the ex contingenza and the EDR 10.33 are fixed allowances (derived, ANCE provincial tables), the EDR outside the TFR base. The previous consolidated values (minimo + contingenza + EDR) matched.<br>Aggregator sources (idealista, leggeinchiaro, businessonline, kitech) removed.<br>Absence quota: by_hourly 8 hours (1/173 of Art. 44 and Allegato A), not by_26, which no clause supports.<br>contractual_fund_uncovered closed: every operaio level has an hourly Prevedi amount and every impiegato or quadro level a monthly one.<br>No renewal changing the national minimi after the verbale of 21 February 2025 through October 2026.<br>Twelve monthly payments, not 13: the gratifica natalizia and the ferie are the 18.5% of Art. 18 through the Cassa Edile (declared).<br>No scatti for the operai (Art. 49 is for the impiegati; APE through the Cassa Edile, Art. 29): seniority removed, the apprentice seniority note closed.<br>Sickness: the coefficients of Art. 26, not 100% for 180 days; comporto 270 days (derived mapping, declared).<br>Night overtime 40% (Art. 19) confirmed; sources now the CCNL text.<br>Notes corrected: the TFR is paid by the employer (Art. 33), not the Cassa Edile; the INPS rates are the verified 2026 edilizia table. |
 | 2026-10-13 | claude-opus-5-5 (ai) | Scope of the declared limitations and readiness. | demoted | The 18.5% Cassa Edile accrual and the 4.95% riposi annui are missing from every operaio payslip: declared as cassa_edile_riposi_missing on every run, so the file goes back to reviewed.<br>edilizia_operai_sickness is recorded on every run with a sickness event. |
+| 2026-10-13 | claude-opus-5-5 (ai) | The hourly pay of the operai (Allegato A), the riposi annui of Art. 5 B, the Cassa Edile percentage of Art. 18 with the conventional net of Allegato D and the TFR base of Art. 33, read in the CCNL of 19 April 2010 (FILLEA text), for the production tier. | corrected | hourly_pay added: the operai are paid the monthly elements over 173 times the ordinary hours worked (Allegato A, p. 164); without the hours the run has a missing_fact ordinary_hours_worked blocker.<br>RIPOSI_ANNUI 4.95% (Art. 5 B, p. 27) paid with the pay and CASSA_EDILE 18.5% (Art. 18, pp. 37-38) accrued net of the withholdings: 14.2% withheld from the net pay (Allegato D, p. 172); both on the paga base and the ex contingenza (Art. 24 point 3-4, p. 49), in the INPS, IRPEF and TFR bases (Art. 33, p. 56).<br>No renewal changes the rates: the OCR of the verbali of 1 July 2014, 18 July 2018, 3 March 2022 and 21 February 2025 has no hit for 4,95, 18,5 or 14,2; the ANCE Ragusa table of 1 March 2026 prints 4,95%, 18,50% and 14,20%.<br>The ANCE Sassari table of 1 February 2025 computes the 18.5% and the 4.95% on a sub-total with the hourly EDR (0,06); the CCNL base of Art. 24 does not list the EDR and the data follow the CCNL.<br>cassa_edile_riposi_missing closed; the festività of Art. 17, the capisquadra maggiorazione, the Allegato D sickness and injury percentages and its point 4 exception declared.<br>Promoted to production. |
 
 ## Salary table
 
@@ -90,25 +91,18 @@ percentage: 1.00
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "edilizia-ance/edilizia_operai_sickness · sickness · impact yes · open"
-    SICKNESS (Art. 26): the employer pays a coefficient of the hourly minimo, ex contingenza and indennità territoriale times a sixth of the weekly hours, six days a week: 0.5495 for days 1-3 when the sickness lasts more than 6 days, 1.0495 when it lasts more than 12, 0.3795 for days 4-20 and 0.1565 for days 21-180 on top of the INPS indemnity, 0.5495 for days 181-365. The engine stores the coefficient plus the INPS rate of the day as the target (0.8795 and 0.8231), so its employer share is the coefficient on the engine's daily quota, which counts the EDR and not the indennità territoriale. Not modelled: the 1.0495 of a sickness over 12 days (paid 0.5495), the comporto of 365 days past 3.5 years of seniority and the cumulated comporto of 9 months in 20 (12 in 24), the 4.95% paid for the carenza days of a sickness of up to 6 days and the 18.5% accrued with the Cassa Edile during the sickness.
+    SICKNESS (Art. 26): the employer pays a coefficient of the hourly minimo, ex contingenza and indennità territoriale times a sixth of the weekly hours, six days a week: 0.5495 for days 1-3 when the sickness lasts more than 6 days, 1.0495 when it lasts more than 12, 0.3795 for days 4-20 and 0.1565 for days 21-180 on top of the INPS indemnity, 0.5495 for days 181-365. The engine stores the coefficient plus the INPS rate of the day as the target (0.8795 and 0.8231), so its employer share is the coefficient on the engine's daily quota, which counts the EDR and not the indennità territoriale. Not modelled: the 1.0495 of a sickness over 12 days (paid 0.5495), the comporto of 365 days past 3.5 years of seniority and the cumulated comporto of 9 months in 20 (12 in 24), the 4.95% paid for the carenza days of a sickness of up to 6 days and for the day of an injury (60% on days 1-3); the percentages accrued with the Cassa Edile during sickness and injury (Allegato D: 18.5% gross and 14.2% net for the carenza days and from day 4 of sickness, 7.4% and 5.7% for days 4-90 of injury or occupational disease, 4.6% and 3.6% from day 91); and the exception of Allegato D point 4: in a pay period without direct pay the conventional net does not apply and the actual withholdings are taken from the accruals. The sick hours of an operaio are not in the hours paid by the hour, so the sick days deduct nothing from the pay.
 
     **Applies when:** `sickness` applies.
 
     **Remediation:** Model the coefficients of Art. 26 on their own base and the comporto by seniority.
 
 !!! warning "edilizia-ance/edilizia_operai_unmodelled · base_salary · impact yes · open"
-    NOT MODELLED AMOUNTS: the 18.5% for ferie and gratifica natalizia (8.50% + 10%) the employer accrues with the Cassa Edile on the hours of normal work (Art. 18; the ferie days are paid by the engine as days of the month) and the 4.95% for riposi annui paid each pay period on the same hours (Art. 5 B); the indennità territoriale di settore and the EVR set by the provincial agreements (Art. 12 and 46); the una tantum premio di ingresso of EUR 100 to operai under 29 of the verbale of 3 March 2022 (Allegato 5); the APE paid by the Cassa Edile (Art. 29); the premiums on ordinary hours of Art. 19 (lavoro festivo 45%, notturno 28%, turni 9% and 12%, guardiano 8%, notturno continuativo 16%, festivo notturno 50%, domenicale con riposo compensativo 8%) and the 8% of a Saturday in a six-day week (Art. 5); the indennità for lavori speciali disagiati, alta montagna and cantiere ferroviario (Art. 20-21); mensa, trasporto and trasferta (provincial; verbale 2025); the riduzione contributiva edile on the employer INPS contributions of full-time operai (art. 29 L. 341/1995); the TFR base of Art. 33, which also counts the indennità territoriale, the 18.5% and the 4.95%.
+    NOT MODELLED AMOUNTS: the indennità territoriale di settore (also in the base of the 4.95% and 18.5% and in the TFR base of Art. 33) and the EVR set by the provincial agreements (Art. 12 and 46); the special maggiorazione of the capisquadra in the base of Art. 17 and 18 (Art. 24 point 4); the festività of Art. 17 point 3 (8 hours of the point 4 elements, with the 4.95% and the 18.5% on them), which PeriodFacts.ordinary_hours_worked leaves out; the una tantum premio di ingresso of EUR 100 to operai under 29 of the verbale of 3 March 2022 (Allegato 5); the APE paid by the Cassa Edile (Art. 29); the premiums on ordinary hours of Art. 19 (lavoro festivo 45%, notturno 28%, turni 9% and 12%, guardiano 8%, notturno continuativo 16%, festivo notturno 50%, domenicale con riposo compensativo 8%) and the 8% of a Saturday in a six-day week (Art. 5); the indennità for lavori speciali disagiati, alta montagna and cantiere ferroviario (Art. 20-21); mensa, trasporto and trasferta (provincial; verbale 2025); the riduzione contributiva edile on the employer INPS contributions of full-time operai (art. 29 L. 341/1995).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the provincial elements as inputs and the percentage accruals of the CCNL.
-
-!!! warning "edilizia-ance/cassa_edile_riposi_missing · base_salary · impact yes · open"
-    CASSA EDILE AND RIPOSI ANNUI: every operaio payslip carries the 18.5% for ferie and gratifica natalizia accrued with the Cassa Edile (8.50% + 10%, Art. 18) and the 4.95% for riposi annui paid each pay period; the engine pays neither, so every run of this file carries this limitation.
-
-    **Applies when:** `base_salary` applies.
-
-    **Remediation:** Model the Cassa Edile accrual of Art. 18 and the riposi annui percentage.
+    **Remediation:** Model the provincial elements and the festività hours as inputs.
 
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.
@@ -163,7 +157,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     INPS: the rates of contribution/2026/edilizia.json, by category of the worker.
     
-    OPERAI: twelve monthly payments; ferie and gratifica natalizia are paid as 18.5% of the hourly elements through the Cassa Edile (Art. 16 and 18), not as extra months. No scatti di anzianità: the operai receive the APE through the Cassa Edile (Art. 29). The TFR is paid by the employer under L. 297/1982 (Art. 33). Prevedi: the contractual contribution of an operaio is an amount per ordinary hour worked (state PeriodFacts.ordinary_hours_worked).
+    OPERAI: twelve monthly payments; paid by the hour worked (Allegato A, parameters.hourly_pay; state PeriodFacts.ordinary_hours_worked); ferie and gratifica natalizia are the 18.5% of the paga base and ex contingenza accrued with the Cassa Edile net of the withholdings (Art. 16 and 18, Allegato D: 14.2% withheld from the net pay), not extra months; the riposi annui are the 4.95% paid with the pay (Art. 5 B). No scatti di anzianità: the operai receive the APE through the Cassa Edile (Art. 29). The TFR is paid by the employer under L. 297/1982 (Art. 33). Prevedi: the contractual contribution of an operaio is an amount per ordinary hour worked (state PeriodFacts.ordinary_hours_worked).
     
     APPRENTICESHIP: Art. 92 (ANCE text of 4 April 2019): 72/72/78/78/85/90% by semester for 36 months towards levels 2-4 of the operai; the lavorazioni artistiche (48 months, semesters 7-8 at 90%), the apprendistato duale and the alta formazione are not modelled.
     

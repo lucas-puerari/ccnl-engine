@@ -65,7 +65,7 @@
       },
       {
         "kind": "info",
-        "text": "OPERAI: twelve monthly payments; ferie and gratifica natalizia are paid as 18.5% of the hourly elements through the Cassa Edile (Art. 16 and 18), not as extra months. No scatti di anzianità: the operai receive the APE through the Cassa Edile (Art. 29). The TFR is paid by the employer under L. 297/1982 (Art. 33). Prevedi: the contractual contribution of an operaio is an amount per ordinary hour worked (state PeriodFacts.ordinary_hours_worked)."
+        "text": "OPERAI: twelve monthly payments; paid by the hour worked (Allegato A, parameters.hourly_pay; state PeriodFacts.ordinary_hours_worked); ferie and gratifica natalizia are the 18.5% of the paga base and ex contingenza accrued with the Cassa Edile net of the withholdings (Art. 16 and 18, Allegato D: 14.2% withheld from the net pay), not extra months; the riposi annui are the 4.95% paid with the pay (Art. 5 B). No scatti di anzianità: the operai receive the APE through the Cassa Edile (Art. 29). The TFR is paid by the employer under L. 297/1982 (Art. 33). Prevedi: the contractual contribution of an operaio is an amount per ordinary hour worked (state PeriodFacts.ordinary_hours_worked)."
       },
       {
         "kind": "info",
@@ -73,7 +73,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SICKNESS (Art. 26): the employer pays a coefficient of the hourly minimo, ex contingenza and indennità territoriale times a sixth of the weekly hours, six days a week: 0.5495 for days 1-3 when the sickness lasts more than 6 days, 1.0495 when it lasts more than 12, 0.3795 for days 4-20 and 0.1565 for days 21-180 on top of the INPS indemnity, 0.5495 for days 181-365. The engine stores the coefficient plus the INPS rate of the day as the target (0.8795 and 0.8231), so its employer share is the coefficient on the engine's daily quota, which counts the EDR and not the indennità territoriale. Not modelled: the 1.0495 of a sickness over 12 days (paid 0.5495), the comporto of 365 days past 3.5 years of seniority and the cumulated comporto of 9 months in 20 (12 in 24), the 4.95% paid for the carenza days of a sickness of up to 6 days and the 18.5% accrued with the Cassa Edile during the sickness.",
+        "text": "SICKNESS (Art. 26): the employer pays a coefficient of the hourly minimo, ex contingenza and indennità territoriale times a sixth of the weekly hours, six days a week: 0.5495 for days 1-3 when the sickness lasts more than 6 days, 1.0495 when it lasts more than 12, 0.3795 for days 4-20 and 0.1565 for days 21-180 on top of the INPS indemnity, 0.5495 for days 181-365. The engine stores the coefficient plus the INPS rate of the day as the target (0.8795 and 0.8231), so its employer share is the coefficient on the engine's daily quota, which counts the EDR and not the indennità territoriale. Not modelled: the 1.0495 of a sickness over 12 days (paid 0.5495), the comporto of 365 days past 3.5 years of seniority and the cumulated comporto of 9 months in 20 (12 in 24), the 4.95% paid for the carenza days of a sickness of up to 6 days and for the day of an injury (60% on days 1-3); the percentages accrued with the Cassa Edile during sickness and injury (Allegato D: 18.5% gross and 14.2% net for the carenza days and from day 4 of sickness, 7.4% and 5.7% for days 4-90 of injury or occupational disease, 4.6% and 3.6% from day 91); and the exception of Allegato D point 4: in a pay period without direct pay the conventional net does not apply and the actual withholdings are taken from the accruals. The sick hours of an operaio are not in the hours paid by the hour, so the sick days deduct nothing from the pay.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
@@ -86,7 +86,7 @@
       },
       {
         "kind": "simplification",
-        "text": "NOT MODELLED AMOUNTS: the 18.5% for ferie and gratifica natalizia (8.50% + 10%) the employer accrues with the Cassa Edile on the hours of normal work (Art. 18; the ferie days are paid by the engine as days of the month) and the 4.95% for riposi annui paid each pay period on the same hours (Art. 5 B); the indennità territoriale di settore and the EVR set by the provincial agreements (Art. 12 and 46); the una tantum premio di ingresso of EUR 100 to operai under 29 of the verbale of 3 March 2022 (Allegato 5); the APE paid by the Cassa Edile (Art. 29); the premiums on ordinary hours of Art. 19 (lavoro festivo 45%, notturno 28%, turni 9% and 12%, guardiano 8%, notturno continuativo 16%, festivo notturno 50%, domenicale con riposo compensativo 8%) and the 8% of a Saturday in a six-day week (Art. 5); the indennità for lavori speciali disagiati, alta montagna and cantiere ferroviario (Art. 20-21); mensa, trasporto and trasferta (provincial; verbale 2025); the riduzione contributiva edile on the employer INPS contributions of full-time operai (art. 29 L. 341/1995); the TFR base of Art. 33, which also counts the indennità territoriale, the 18.5% and the 4.95%.",
+        "text": "NOT MODELLED AMOUNTS: the indennità territoriale di settore (also in the base of the 4.95% and 18.5% and in the TFR base of Art. 33) and the EVR set by the provincial agreements (Art. 12 and 46); the special maggiorazione of the capisquadra in the base of Art. 17 and 18 (Art. 24 point 4); the festività of Art. 17 point 3 (8 hours of the point 4 elements, with the 4.95% and the 18.5% on them), which PeriodFacts.ordinary_hours_worked leaves out; the una tantum premio di ingresso of EUR 100 to operai under 29 of the verbale of 3 March 2022 (Allegato 5); the APE paid by the Cassa Edile (Art. 29); the premiums on ordinary hours of Art. 19 (lavoro festivo 45%, notturno 28%, turni 9% and 12%, guardiano 8%, notturno continuativo 16%, festivo notturno 50%, domenicale con riposo compensativo 8%) and the 8% of a Saturday in a six-day week (Art. 5); the indennità for lavori speciali disagiati, alta montagna and cantiere ferroviario (Art. 20-21); mensa, trasporto and trasferta (provincial; verbale 2025); the riduzione contributiva edile on the employer INPS contributions of full-time operai (art. 29 L. 341/1995).",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -94,20 +94,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the provincial elements as inputs and the percentage accruals of the CCNL."
-        }
-      },
-      {
-        "kind": "simplification",
-        "text": "CASSA EDILE AND RIPOSI ANNUI: every operaio payslip carries the 18.5% for ferie and gratifica natalizia accrued with the Cassa Edile (8.50% + 10%, Art. 18) and the 4.95% for riposi annui paid each pay period; the engine pays neither, so every run of this file carries this limitation.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "cassa_edile_riposi_missing",
-          "applies_when": {
-            "trigger": "run"
-          },
-          "remediation": "Model the Cassa Edile accrual of Art. 18 and the riposi annui percentage."
+          "remediation": "Model the provincial elements and the festività hours as inputs."
         }
       }
     ]
@@ -379,6 +366,140 @@
             "value": "0.0700"
           }
         ]
+      }
+    },
+    "hourly_pay": {
+      "categories": [
+        "operaio"
+      ],
+      "percentages": [
+        {
+          "code": "RIPOSI_ANNUI",
+          "description": "Percentuale per i riposi annui (art. 5 B)",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-02-01",
+                "valid_until": null,
+                "value": "0.0495"
+              }
+            ]
+          },
+          "base_allowances": [
+            "CONTINGENZA"
+          ],
+          "settlement": "cash",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria-2010-fillea",
+                "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+                "published_on": "2010-04-19",
+                "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+              },
+              "page": "27",
+              "section": "Art. 5 B) Riposi annui",
+              "quote": "La percentuale per i riposi annui pari al 4,95% calcolata sugli elementi della retribuzione di cui al punto 4) dell’art. 24"
+            },
+            "transformation": "4.95% of the paga base and the ex contingenza (Art. 24 point 3 and 4) paid on the hours paid by the hour, with the pay of the period: 'corrisposta alla scadenza di ciascun periodo di paga direttamente dall’impresa al lavoratore per tutte le ore di lavoro normale contrattuale [...] effettivamente prestate'. The 88 hours of riposi permits are covered by it and not paid as hours. In the TFR base (Art. 33, p. 56: 'percentuale per i riposi annui di cui all’art. 5').",
+            "note": "The EDR is not an element of Art. 24 point 3: the ANCE Sassari table of 1 February 2025 (sha256 b681a3f867cd31d4cef09e5234d85a2b6f183a72c66054ed6ff8bd326d88f715) computes its row '6) Per riposi annui (4,95% Sub Tot. A)' on a sub-total that includes the hourly EDR 0,06, a provincial practice the CCNL text does not state. Not changed by the renewals of 2014, 2018, 2022 and 2025; the ANCE Ragusa table of 1 March 2026 still prints 'pari al 4,95% della retribuzione'.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T15:30:00Z",
+              "effective_from": "2025-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T15:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-cassa-edile"
+            }
+          }
+        },
+        {
+          "code": "CASSA_EDILE",
+          "description": "Accantonamento per ferie e gratifica natalizia presso la Cassa Edile (art. 18, allegato D)",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-02-01",
+                "valid_until": null,
+                "value": "0.185"
+              }
+            ]
+          },
+          "base_allowances": [
+            "CONTINGENZA"
+          ],
+          "settlement": "cassa_edile",
+          "net_rate": {
+            "periods": [
+              {
+                "valid_from": "2025-02-01",
+                "valid_until": null,
+                "value": "0.142"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria-2010-fillea",
+                "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+                "published_on": "2010-04-19",
+                "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+              },
+              "page": "37",
+              "section": "Art. 18 Accantonamenti presso la Cassa Edile; Allegato D (p. 172)",
+              "quote": "è assolto dall’impresa con la corresponsione di una percentuale complessiva del 18,5% calcolata sugli elementi della retribuzione di cui"
+            },
+            "transformation": "18.5% (8.50% ferie + 10% gratifica natalizia, p. 38: 'La percentuale complessiva va imputata per l’8,50% al trattamento economico') of the paga base and the ex contingenza on the hours paid by the hour: a gross earning in the INPS, IRPEF and TFR bases (Allegato D point 1, p. 172: 'costituita dalla somma della retribuzione diretta e dalla maggiorazione di cui'; Art. 33, p. 56: 'trattamento economico di cui all’art. 18'), not paid to the worker: 'Tali importi sono accantonati al netto delle ritenute di legge secondo il criterio' of Allegato D (p. 38). Allegato D point 2 (p. 172): 'L’importo che deve essere accantonato presso la Cassa Edile è pari al 14,2%,' of the same base, withheld from the net pay (point 3: 'contributi e le ritenute fiscali complessivi nonché l’accantonamento nell’importo').",
+            "note": "Hours of p. 37: 'al punto 4) dell’art. 24, per tutte le ore di lavoro normale contrattuale di cui agli'; the net rate of Allegato D on p. 172. The ANCE Sassari table of 1 February 2025 computes its row '5) Per ferie e grat.nataliz.(18,5% Sub Tot A)' on a sub-total with the hourly EDR 0,06, which the CCNL text does not list. Not changed by the renewals of 2014, 2018, 2022 and 2025; the ANCE Ragusa table of 1 March 2026 prints 'lorda del 18,50%' and 'pari al 14,20%'.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T15:30:00Z",
+              "effective_from": "2025-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T15:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-cassa-edile"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-edilizia-industria-2010-fillea",
+            "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+            "kind": "associazione",
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "published_on": "2010-04-19",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          },
+          "page": "164",
+          "section": "Allegato A",
+          "quote": "contrattuali si determina dividendo per 173 i minimi tabellari della classificazione. L’ammontare così ottenuto verrà moltiplicato per le ore lavorate e per quelle"
+        },
+        "transformation": "The operai are paid by the hour: the monthly elements (minimo, ex contingenza, EDR) over the hourly divisor 173 times PeriodFacts.ordinary_hours_worked. The ferie and the riposi permits are not paid as days of the month: the 18.5% of Art. 18 and the 4.95% of Art. 5 cover them. Apprentices are paid their reduced hourly elements (Art. 92); a part-time operaio the hourly elements of the level on the hours worked.",
+        "note": "The hours 'dovute dal datore di lavoro a norma di legge e di contratto' (the festività of Art. 17 point 3, 8 hours of the point 4 elements) are not paid: declared in edilizia_operai_unmodelled.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T15:30:00Z",
+          "effective_from": "2025-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T15:30:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-cassa-edile"
+        }
       }
     }
   },
@@ -1314,7 +1435,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "00409fbf56fe989157ef5ac2b97437717afb76a8dccff98d067991d9d8a83aac",
+    "source_hash": "1ffd056aec5dd240dcbdec191fee5a56a1a369a9c531c7bab23f6f4768b62621",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1609,7 +1730,7 @@
   },
   "verification": {
     "confidence": "verified",
-    "readiness": "reviewed",
+    "readiness": "production",
     "verified_cases": 0,
     "reviews": [
       {
@@ -1686,7 +1807,39 @@
           "The 18.5% Cassa Edile accrual and the 4.95% riposi annui are missing from every operaio payslip: declared as cassa_edile_riposi_missing on every run, so the file goes back to reviewed.",
           "edilizia_operai_sickness is recorded on every run with a sickness event."
         ]
+      },
+      {
+        "id": "2026-10-13-ai-cassa-edile",
+        "date": "2026-10-13",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The hourly pay of the operai (Allegato A), the riposi annui of Art. 5 B, the Cassa Edile percentage of Art. 18 with the conventional net of Allegato D and the TFR base of Art. 33, read in the CCNL of 19 April 2010 (FILLEA text), for the production tier.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          },
+          {
+            "url": "https://ance.it/wp-content/uploads/allegati/Tabella_retribuzioni_Edili_SS_-_OT_-_Decorrenza_1_febbraio_2025.pdf",
+            "sha256": "b681a3f867cd31d4cef09e5234d85a2b6f183a72c66054ed6ff8bd326d88f715"
+          },
+          {
+            "url": "https://ance.it/wp-content/uploads/allegati/2026-TABELLA_RETRIBUZIONI_MARZO_2026.pdf",
+            "sha256": "29959db0aa086d2ca10e59a0aca6b6cbf59d686a741582320ff5a69ba5e0c07e"
+          }
+        ],
+        "findings": [
+          "hourly_pay added: the operai are paid the monthly elements over 173 times the ordinary hours worked (Allegato A, p. 164); without the hours the run has a missing_fact ordinary_hours_worked blocker.",
+          "RIPOSI_ANNUI 4.95% (Art. 5 B, p. 27) paid with the pay and CASSA_EDILE 18.5% (Art. 18, pp. 37-38) accrued net of the withholdings: 14.2% withheld from the net pay (Allegato D, p. 172); both on the paga base and the ex contingenza (Art. 24 point 3-4, p. 49), in the INPS, IRPEF and TFR bases (Art. 33, p. 56).",
+          "No renewal changes the rates: the OCR of the verbali of 1 July 2014, 18 July 2018, 3 March 2022 and 21 February 2025 has no hit for 4,95, 18,5 or 14,2; the ANCE Ragusa table of 1 March 2026 prints 4,95%, 18,50% and 14,20%.",
+          "The ANCE Sassari table of 1 February 2025 computes the 18.5% and the 4.95% on a sub-total with the hourly EDR (0,06); the CCNL base of Art. 24 does not list the EDR and the data follow the CCNL.",
+          "cassa_edile_riposi_missing closed; the festività of Art. 17, the capisquadra maggiorazione, the Allegato D sickness and injury percentages and its point 4 exception declared.",
+          "Promoted to production."
+        ]
       }
-    ]
+    ],
+    "owner": "maintainer",
+    "review_due": "2027-02-28"
   }
 }

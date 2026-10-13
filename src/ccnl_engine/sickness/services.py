@@ -172,6 +172,7 @@ def sickness_terms(ctx: RunContext) -> SicknessTerms:
         fixed_term=ctx.request.contract_type.type == "fixed_term",
         apprentice=isinstance(ctx.request.contract_type, Apprentice),
         employee_rate=_employee_rate(ctx),
+        paid_by_the_hour=ctx.proration.hourly is not None,
     )
 
 

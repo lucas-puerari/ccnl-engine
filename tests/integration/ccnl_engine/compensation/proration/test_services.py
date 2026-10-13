@@ -14,13 +14,20 @@ from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.compensation.element.types import MonthlyPayChain
 from ccnl_engine.compensation.proration.services import (
     FULL_MONTH,
+    HOURS_UNKNOWN,
+    PAID_BY_THE_HOUR,
     POSTED_BY_ANOTHER_RUN,
     PRORATED,
     RULE_MISSING,
     run_proration,
 )
 from ccnl_engine.decision.models import CalculationStatus
-from ccnl_engine.employment.fact.inputs import EmploymentPeriod
+from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.employment.fact.inputs import (
+    ContributableHours,
+    EmploymentPeriod,
+    WeeklyHours,
+)
 from ccnl_engine.run.models import PayrollRun, RunKind
 
 if TYPE_CHECKING:
@@ -30,6 +37,7 @@ if TYPE_CHECKING:
 _FEDERMECCANICA = "metalmeccanico-federmeccanica.json"
 _VETRO = "vetro-meccanizzato-assovetro.json"
 _SANITA = "dirigenza-sanitaria-area-sanita-aran.json"
+_EDILIZIA = "edilizia-ance.json"
 _CHAIN = MonthlyPayChain(
     base=Decimal("2158.26"), seniority=Decimal("0.00"), allowances=()
 )
@@ -204,3 +212,119 @@ def test_hourly_rule_before_the_divisor_series_is_missing() -> None:
         "ccnl/dirigenza-sanitaria-area-sanita-aran:hourly_divisor",
         None,
     )
+
+
+def _hourly_request(
+    started_on: date,
+    hours: Decimal | None,
+    weekly: int | None = None,
+) -> PeriodCalculationRequest:
+    """Return the fields of a March 2026 request of a worker paid by the hour.
+
+    Returns:
+        A request with the ordinary hours worked and the weekly hours.
+    """
+    fake = SimpleNamespace(
+        employment_period=EmploymentPeriod(started_on=started_on),
+        period_id=SimpleNamespace(year=2026, month=3),
+        opening_state=SimpleNamespace(accrual=SimpleNamespace(competence_runs=())),
+        ordinary_hours_worked=None if hours is None else ContributableHours(hours),
+        weekly_hours=None if weekly is None else WeeklyHours(weekly),
+        full_time_weekly_hours=None if weekly is None else WeeklyHours(40),
+        events=(),
+    )
+    return cast("PeriodCalculationRequest", fake)
+
+
+def test_operaio_is_paid_the_hours_worked() -> None:
+    """Edilizia operaio, 160 hours: 2,158.26 x 160 / 173 = 1,996.08."""
+    proration = run_proration(
+        _hourly_request(date(2020, 1, 1), Decimal(160)),
+        load_ccnl(_EDILIZIA),
+        RunKind.REGULAR,
+        WorkerCategory.OPERAIO,
+    )
+
+    assert proration.reason == PAID_BY_THE_HOUR
+    assert not proration.missing
+    assert proration.issue() is None
+    assert proration.inputs() == {
+        "ordinary_hours_worked": Decimal(160),
+        "hourly_divisor": Decimal(173),
+    }
+    assert [rule for rule, _ in proration.rules] == [
+        "ccnl/edilizia-ance:hourly_pay",
+        "ccnl/edilizia-ance:hourly_divisor[2025-02-01]",
+    ]
+    assert proration.apply(_CHAIN).base == Decimal("1996.08")
+
+
+def test_hours_replace_the_days_of_a_partial_month() -> None:
+    """Hired 16 March: the 80 hours worked carry the days, not 16 / 26."""
+    proration = run_proration(
+        _hourly_request(date(2026, 3, 16), Decimal(80)),
+        load_ccnl(_EDILIZIA),
+        RunKind.TERMINATION,
+        WorkerCategory.OPERAIO,
+    )
+
+    assert proration.partial
+    assert proration.apply(_CHAIN).base == Decimal("998.04")
+
+
+def test_hours_unknown_pay_nothing_and_name_the_fact() -> None:
+    """Without the hours the pay is undetermined: a missing_fact issue."""
+    proration = run_proration(
+        _hourly_request(date(2020, 1, 1), None),
+        load_ccnl(_EDILIZIA),
+        RunKind.REGULAR,
+        WorkerCategory.OPERAIO,
+    )
+    issue = proration.issue()
+
+    assert proration.reason == HOURS_UNKNOWN
+    assert proration.missing
+    assert proration.inputs()["ordinary_hours_worked"] == "none"
+    assert proration.apply(_CHAIN).base == Decimal("0.00")
+    assert issue is not None
+    assert issue.status is CalculationStatus.INCOMPLETE
+    assert issue.fact == "ordinary_hours_worked"
+
+
+def test_part_time_divides_by_the_part_time_hours() -> None:
+    """20 of 40 weekly hours: the halved chain over 86.5 pays the full rate."""
+    proration = run_proration(
+        _hourly_request(date(2020, 1, 1), Decimal("86.5"), weekly=20),
+        load_ccnl(_EDILIZIA),
+        RunKind.REGULAR,
+        WorkerCategory.OPERAIO,
+    )
+    half = MonthlyPayChain(
+        base=Decimal("1079.13"), seniority=Decimal("0.00"), allowances=()
+    )
+
+    assert proration.inputs()["hourly_divisor"] == Decimal("86.5")
+    assert proration.apply(half).base == Decimal("1079.13")
+
+
+@pytest.mark.parametrize(
+    ("kind", "category"),
+    [
+        (RunKind.REGULAR, WorkerCategory.IMPIEGATO),
+        (RunKind.REGULAR, None),
+        (RunKind.THIRTEENTH, WorkerCategory.OPERAIO),
+    ],
+    ids=["other_category", "unknown_category", "extra_month"],
+)
+def test_other_workers_and_runs_are_paid_by_the_month(
+    kind: RunKind, category: WorkerCategory | None
+) -> None:
+    """Only the hourly category, on a run posting the monthly pay, is hourly."""
+    proration = run_proration(
+        _hourly_request(date(2020, 1, 1), Decimal(160)),
+        load_ccnl(_EDILIZIA),
+        kind,
+        category,
+    )
+
+    assert proration is FULL_MONTH

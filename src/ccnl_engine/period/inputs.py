@@ -55,10 +55,13 @@ class PeriodFacts:
         contributable_hours: Hours worked and paid in the run that are
             subject to INPS contributions.  Required for domestic CCNLs.
         ordinary_hours_worked: Ordinary hours actually worked in the month,
-            sickness and other paid absences left out: the base of the
-            Prevedi contractual contribution of an operaio of the building
-            CCNLs.  ``None`` is unknown: an operaio then has a
-            ``missing_fact`` blocker.
+            sickness, ferie, permits, festività and other paid absences
+            left out: the hours a CCNL with ``hourly_pay`` pays its worker
+            (the operai of the building CCNLs) and the base of the Prevedi
+            contractual contribution of an operaio.  ``None`` is unknown:
+            an operaio then has a ``missing_fact`` blocker.  An
+            ``AbsenceEvent`` of a worker paid by the hour is rejected: its
+            hours are already left out of them.
         events: Variable work events of the run (overtime, absences,
             bonuses, supplements), each one of the
             :data:`~ccnl_engine.event.types.WorkEvent` types.  A

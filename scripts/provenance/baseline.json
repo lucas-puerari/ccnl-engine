@@ -1331,7 +1331,6 @@
       "edilizia-ance-impiegati/edilizia_impiegati_unmodelled"
     ],
     "agreement/edilizia-ance.json": [
-      "edilizia-ance/cassa_edile_riposi_missing",
       "edilizia-ance/edilizia_operai_sickness",
       "edilizia-ance/edilizia_operai_unmodelled"
     ],

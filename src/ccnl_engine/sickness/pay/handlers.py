@@ -182,7 +182,8 @@ def episode_pay(
     The deduction of each segment is the pay of the units of the month
     counted up to its end, earlier episodes of the run included, less the
     pay of those counted before it: the month is rounded once, so the sick
-    days of a month never deduct more than its pay.
+    days of a month never deduct more than its pay.  A worker paid by the
+    hour is not paid the sick hours, so nothing is deducted for them.
 
     Returns:
         The amounts, ``None`` when the CCNL lacks the sickness rule or the
@@ -208,7 +209,7 @@ def episode_pay(
         counted += unit
         reached = _quota(chain, counted, quota.divisor)
         base, before = reached - before, reached
-        absence += base
+        absence += _ZERO if terms.paid_by_the_hour else base
         paid = _segment_pay(segment, base, (rules, terms), excluded=excluded)
         inps, integration, carenza = (
             inps + paid[0],

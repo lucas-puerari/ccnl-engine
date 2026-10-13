@@ -87,7 +87,7 @@ The subdomains of each concept are in
 |---|---|
 | `agreement` | A CCNL as a document: root model, identity, metadata, validity and time series, coverage notes |
 | `catalog` | The public catalog: bundled contracts, discovery, ruleset readiness |
-| `compensation` | Levels and allowances, the pay elements of a level, proration, renewal minimum, raccordo and provincial elements |
+| `compensation` | Levels and allowances, the pay elements of a level, proration, hourly pay and its percentages, renewal minimum, raccordo and provincial elements |
 | `pay_item` | Pay item variants, their treatment, selection policy and rounding |
 | `employment`, `employer` | The employment relationship and its facts; the employer profile |
 | `apprenticeship`, `seniority` | Apprentice tracks and pay; seniority increments and their ladder |

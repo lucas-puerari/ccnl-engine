@@ -40,13 +40,20 @@ if TYPE_CHECKING:
 
 _ALL_CASES = sorted(CASES_DIR.glob("*.json"))
 _INPUT_KEYS = frozenset({"ccnl_slug", "level_code", "year", "month", "headcount"})
-#: Inputs a case may add: the hours a domestic CCNL needs.
+#: Inputs a case may add: the hours a domestic CCNL needs, the hours a CCNL
+#: paying by the hour pays.
 _OPTIONAL_INPUT_KEYS = frozenset({
     "weekly_hours",
     "contributable_hours",
+    "ordinary_hours_worked",
     "provincial_pay_element",
 })
-_EXPECTED_KEYS = frozenset({"base_salary", "fixed_allowances", "period_gross"})
+_EXPECTED_KEYS = frozenset({
+    "base_salary",
+    "fixed_allowances",
+    "hourly_percentages",
+    "period_gross",
+})
 _SOURCE: dict[str, object] = {"document": "CCNL", "section": "Art. 1"}
 
 

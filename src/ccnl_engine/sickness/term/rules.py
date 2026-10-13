@@ -62,6 +62,9 @@ class SicknessTerms:
         apprentice: Whether the contract is an apprenticeship.
         employee_rate: INPS rate of the worker, which grosses up the INPS
             share of a CCNL integrating the net daily pay.
+        paid_by_the_hour: Whether the run pays the worker by the hour
+            worked: the sick hours are not among them, so the sick days
+            deduct nothing from the pay.
     """
 
     employed: tuple[date, date] | None = None
@@ -77,3 +80,4 @@ class SicknessTerms:
     fixed_term: bool = False
     apprentice: bool = False
     employee_rate: Decimal = Decimal(0)
+    paid_by_the_hour: bool = False

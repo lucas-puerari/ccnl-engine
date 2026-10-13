@@ -213,7 +213,8 @@ def ccnl_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]:
 
     Yields:
         One rule per salary period, allowance, seniority block,
-        additional-months period, the accrual rule, the absence and
+        additional-months period, the accrual rule, the hourly pay and
+        each of its percentages, the absence and
         sickness rules, one per first-tier overtime band, one per
         employer fund rate period, the solidarity fund and the assistance
         contribution.
@@ -239,6 +240,7 @@ def ccnl_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]:
     if isinstance(raccordo, dict):
         record = raccordo.get("provenance")
         yield _rule(file, "raccordo_element", ("base_salary",), record)
+    yield from _hourly_rules(file, params.get("hourly_pay"))
     yield from _work_rules(file, data.get("work_rules"))
     yield from _overtime_rules(file, data.get("work_rules"))
     yield from _fund_rules(file, params.get("employer_funds"))
@@ -253,6 +255,21 @@ def ccnl_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]:
         yield _rule(
             file, "assistance_contribution", ("assistance_contribution",), record
         )
+
+
+def _hourly_rules(file: str, hourly: object) -> Iterator[PayableRule]:
+    """Yield the hourly pay of a CCNL and its percentages on the hours.
+
+    Yields:
+        One ``base_salary`` rule for the clause and one per percentage.
+    """
+    if not isinstance(hourly, dict):
+        return
+    yield _rule(file, "hourly_pay", ("base_salary",), hourly.get("provenance"))
+    percentages = hourly.get("percentages")
+    for entry in percentages if isinstance(percentages, list) else []:
+        path = f"hourly_pay.percentages[{entry.get('code')}]"
+        yield _rule(file, path, ("base_salary",), entry.get("provenance"))
 
 
 def _work_rules(file: str, work_rules: object) -> Iterator[PayableRule]:

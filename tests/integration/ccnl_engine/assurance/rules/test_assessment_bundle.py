@@ -12,6 +12,7 @@ producing a result is left out: it exposes no amount to pay.
 from __future__ import annotations
 
 from datetime import date
+from decimal import Decimal
 
 import pytest
 
@@ -26,7 +27,12 @@ from ccnl_engine import (
     PeriodInput,
     PeriodResult,
 )
-from ccnl_engine.inputs import FamilyComposition, NoPensionFund, Permanent
+from ccnl_engine.inputs import (
+    ContributableHours,
+    FamilyComposition,
+    NoPensionFund,
+    Permanent,
+)
 from ccnl_engine.period.repositories import (
     BundledKnowledgeRepository,
 )
@@ -39,8 +45,12 @@ from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 _WEAK = frozenset({"assumed", "missing"})
 _MINIMUM_UNDETERMINED = "inps_minimum_base_undetermined"
 _INPS = frozenset({"inps_employee", "inps_employer"})
+#: A full month of ordinary hours, which a CCNL paying by the hour reads.
 _FACTS = PeriodFacts(
-    regione="IT-25", comune_belfiore="F205", family_composition=FamilyComposition()
+    regione="IT-25",
+    comune_belfiore="F205",
+    family_composition=FamilyComposition(),
+    ordinary_hours_worked=ContributableHours(Decimal(173)),
 )
 
 

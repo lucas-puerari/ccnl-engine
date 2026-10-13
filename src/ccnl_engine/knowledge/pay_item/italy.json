@@ -74,6 +74,20 @@
     "legal_basis": "Art. 51 TUIR; CCNL grafici editoriali, ipotesi di accordo 19/01/2021 (ERC without incidence on any institute)"
   },
   {
+    "policy_id": "it/earning/hourly_percentage",
+    "policy_version": "2026.1",
+    "kinds": [
+      "hourly_percentage_earning"
+    ],
+    "effective_from": "2000-01-01",
+    "effective_until": null,
+    "tax": "ordinary",
+    "contribution": "included",
+    "tfr": "included",
+    "cost": "employee_cash",
+    "legal_basis": "Art. 51 TUIR; CCNL edilizia industria 19/04/2010 Art. 5, 18 and 33 and Allegato D (riposi annui and Cassa Edile percentages in the contribution, tax and TFR bases)"
+  },
+  {
     "policy_id": "it/deduction/public_tfr_reduction",
     "policy_version": "2026.1",
     "kinds": [

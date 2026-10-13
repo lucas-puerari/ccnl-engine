@@ -9,8 +9,10 @@ gross carry provincial and individual items); net pay, taxes and employer
 cost depend on the engine's own rules and are owned by the oracle and legal
 scenario tests instead.  A case may state ``weekly_hours`` and
 ``contributable_hours`` among its inputs: a domestic CCNL needs both to
-select and charge its hourly contributions, and ``provincial_pay_element``
-when the table it cites holds a national element a provincial one replaces.
+select and charge its hourly contributions, ``ordinary_hours_worked`` for a
+CCNL that pays by the hour (its ``hourly_percentages`` are the percentages
+it pays on those hours), and ``provincial_pay_element`` when the table it
+cites holds a national element a provincial one replaces.
 """
 
 from __future__ import annotations
@@ -51,6 +53,7 @@ def _run(inputs: dict[str, Any]) -> PeriodResult:
     month = int(inputs["month"])
     weekly = inputs.get("weekly_hours")
     hours = inputs.get("contributable_hours")
+    worked = inputs.get("ordinary_hours_worked")
     return _ENGINE.calculate_period(
         PeriodInput(
             run=PayrollRun.regular(year=year, month=month),
@@ -68,7 +71,10 @@ def _run(inputs: dict[str, Any]) -> PeriodResult:
             facts=PeriodFacts(
                 contributable_hours=(
                     None if hours is None else ContributableHours(Decimal(hours))
-                )
+                ),
+                ordinary_hours_worked=(
+                    None if worked is None else ContributableHours(Decimal(worked))
+                ),
             ),
         )
     )
@@ -91,6 +97,7 @@ def test_reference_case_matches_cited_table(path: Path) -> None:
     actual = {
         "base_salary": _sum_of(result, "base_salary_earning"),
         "fixed_allowances": _sum_of(result, "fixed_allowance_earning"),
+        "hourly_percentages": _sum_of(result, "hourly_percentage_earning"),
         "period_gross": result.period_gross,
     }
     assert {key: actual[key] for key in expected} == expected

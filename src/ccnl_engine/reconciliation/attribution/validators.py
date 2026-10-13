@@ -47,6 +47,9 @@ _WORK_TIME = frozenset({"night_work", "holiday_work", "shift_work"})
 #: A bilateral fund the caller declares, or the assistance contribution the
 #: CCNL charges per paid hour.
 _FUNDS = frozenset({"bilateral_funds", "assistance_contribution"})
+#: The Cassa Edile accrual withheld from the pay is part of the pay chain of
+#: an hourly worker (``hourly_pay.percentages``).
+_WORKER_FUNDS = _FUNDS | {"base_salary"}
 
 #: Accounts whose entries map by pay-item kind.
 KIND_ACCOUNTS = frozenset({
@@ -61,6 +64,7 @@ KIND_CAPABILITIES: dict[str, frozenset[str]] = {
     "fixed_allowance_earning": frozenset({"base_salary"}),
     "extra_month_earning": frozenset({"base_salary"}),
     "raccordo_element_earning": frozenset({"base_salary"}),
+    "hourly_percentage_earning": frozenset({"base_salary"}),
     "public_tfr_reduction": frozenset({"base_salary"}),
     "seniority_earning": frozenset({"seniority"}),
     "overtime_earning": frozenset({"overtime"}),
@@ -85,7 +89,7 @@ ACCOUNT_CAPABILITIES: dict[AccountKind, frozenset[str]] = {
         "inps_employer",
         "pension_fund_contribution",
     }),
-    AccountKind.BILATERAL_FUND_EMPLOYEE: _FUNDS,
+    AccountKind.BILATERAL_FUND_EMPLOYEE: _WORKER_FUNDS,
     AccountKind.BILATERAL_FUND_EMPLOYER: _FUNDS,
     AccountKind.ORDINARY_TAX: frozenset({
         "irpef",

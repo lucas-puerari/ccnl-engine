@@ -18,6 +18,7 @@ import pytest
 from ccnl_engine import Headcount
 from ccnl_engine.events import BonusEvent
 from ccnl_engine.inputs import (
+    ContributableHours,
     EmploymentPeriod,
     FixedTerm,
     NaspiExclusion,
@@ -402,13 +403,15 @@ def test_small_terziario_employer_pays_the_cut_fis(
 @pytest.mark.parametrize(
     ("category", "ccnl_slug", "level", "gross", "employer"),
     [
-        # Operai file, level 1: base 1,591 x 33.68% = 535.85.
+        # Operai file, level 1, 173 hours: the chain 1,590.56 with the
+        # riposi annui 78.22 and the Cassa Edile 292.34 (4.95% and 18.5% of
+        # 1,580.23, minimo and contingenza), base 1,961 x 33.68% = 660.46.
         (
             WorkerCategory.OPERAIO,
             "edilizia-ance.json",
             "1",
-            Decimal("1590.56"),
-            Decimal("535.85"),
+            Decimal("1961.12"),
+            Decimal("660.46"),
         ),
         # Impiegati file, level 1: base 1,591 x 28.46% = 452.80.
         (
@@ -451,7 +454,12 @@ def test_edilizia_employer_rate_follows_the_category(
     )
     request = regular_run(1, employment=employment)
     employer_profile = replace(request.employer, headcount=Headcount(10))
-    result = ENGINE.calculate_period(replace(request, employer=employer_profile))
+    facts = replace(
+        request.facts, ordinary_hours_worked=ContributableHours(Decimal(173))
+    )
+    result = ENGINE.calculate_period(
+        replace(request, employer=employer_profile, facts=facts)
+    )
 
     assert result.period_gross == gross
     assert result.contribution_breakdown.employer == employer

@@ -11,6 +11,10 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from ccnl_engine.compensation.hourly.services import (
+    percentage_decisions,
+    percentage_settlement,
+)
 from ccnl_engine.compensation.raccordo.services import erc_settlement
 from ccnl_engine.compensation.renewal_minimum.services import renewal_minimum
 from ccnl_engine.contribution.ceiling.services import (
@@ -125,6 +129,7 @@ def run_events(ctx: RunContext) -> RunEvents:
         ctx.policy_context,
     )
     erc = erc_settlement(ctx)
+    hourly = percentage_settlement(ctx)
     reduction = public_tfr_reduction(ctx, events.totals)
     check_absences_within_pay(
         events.entries,
@@ -132,10 +137,15 @@ def run_events(ctx: RunContext) -> RunEvents:
         with_sickness=any(i.code == WITH_UNPAID_ABSENCE for i in events.totals.issues),
     )
     totals = reduction.added_to(erc.added_to(settlement.added_to(events.totals)))
+    totals = hourly.added_to(totals)
     return RunEvents(
         totals,
-        events.items + settlement.items + erc.items + reduction.items,
-        events.entries + settlement.entries + erc.entries + reduction.entries,
+        events.items + settlement.items + erc.items + reduction.items + hourly.items,
+        events.entries
+        + settlement.entries
+        + erc.entries
+        + reduction.entries
+        + hourly.entries,
     )
 
 
@@ -193,11 +203,10 @@ def run_decisions(
 
     Returns:
         The base stage decisions, the extra-month ratei counted, the
-        contract decisions, the pension fund, the assistance contribution,
-        the TFR revaluation and the renewal regime on the minimo, then those
-        of the
-        events and of the amounts, and last the caller-supplied values of
-        the events.
+        percentages on the hours worked, the contract decisions, the
+        pension fund, the assistance contribution, the TFR revaluation and
+        the renewal regime on the minimo, then those of the events and of
+        the amounts, and last the caller-supplied values of the events.
     """
     request, contract = ctx.request, ctx.contract
     amounts = run.amounts
@@ -213,6 +222,7 @@ def run_decisions(
         base_stage_decisions(ctx, totals, run)
         + ivs_decision
         + accrual_decisions(ctx)
+        + percentage_decisions(ctx)
         + contract_decisions(
             contract.ccnl,
             contract.level,

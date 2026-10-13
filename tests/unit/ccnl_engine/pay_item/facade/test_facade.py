@@ -22,6 +22,7 @@ from ccnl_engine.pay_item.facade import (
     ExtraMonthEarning,
     FixedAllowanceEarning,
     FringeBenefitItem,
+    HourlyPercentageEarning,
     LeaveSettlementItem,
     MaternityItem,
     NightHolidayShiftEarning,
@@ -87,7 +88,7 @@ def _base(kind: str = "x") -> Any:  # noqa: ANN401
     }
 
 
-# All 26 kind strings — used by parametrize tests below.
+# All 27 kind strings — used by parametrize tests below.
 _ALL_KINDS: list[tuple[str, dict[str, object]]] = [
     ("base_salary_earning", {}),
     ("fixed_allowance_earning", {}),
@@ -100,6 +101,7 @@ _ALL_KINDS: list[tuple[str, dict[str, object]]] = [
     ("one_off_earning", {}),
     ("extra_month_earning", {"month_number": 13}),
     ("raccordo_element_earning", {}),
+    ("hourly_percentage_earning", {}),
     ("public_tfr_reduction", {}),
     ("fringe_benefit_item", {}),
     ("welfare_item", {}),
@@ -287,9 +289,9 @@ class TestPayItemDiscriminatedUnion:
         parsed = _PAY_ITEM_ADAPTER.validate_python(_item(kind_str, **extra))
         assert parsed.kind == kind_str
 
-    def test_all_26_kinds_count(self) -> None:
-        """_ALL_KINDS contains exactly 26 entries."""
-        assert len(_ALL_KINDS) == 26
+    def test_all_27_kinds_count(self) -> None:
+        """_ALL_KINDS contains exactly 27 entries."""
+        assert len(_ALL_KINDS) == 27
 
 
 class TestPayItemSpecificConstruction:
@@ -309,6 +311,7 @@ class TestPayItemSpecificConstruction:
             (OneOffEarning(**_base()), "one_off_earning"),
             (ExtraMonthEarning(**_base(), month_number=13), "extra_month_earning"),
             (RaccordoElementEarning(**_base()), "raccordo_element_earning"),
+            (HourlyPercentageEarning(**_base()), "hourly_percentage_earning"),
             (PublicTfrReduction(**_base()), "public_tfr_reduction"),
             (FringeBenefitItem(**_base()), "fringe_benefit_item"),
             (WelfareItem(**_base()), "welfare_item"),

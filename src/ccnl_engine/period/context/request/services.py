@@ -9,6 +9,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from ccnl_engine.compensation.element.services import _resolve_chain
+from ccnl_engine.compensation.hourly.services import upcoming_percentages
 from ccnl_engine.compensation.proration.services import run_proration
 from ccnl_engine.employment.category.rules import resolve_worker_category
 from ccnl_engine.extra_month.liquidation.services import (
@@ -123,7 +124,13 @@ def build_context(
     )
     accrual = run_accrual(request, contract.ccnl, competence)
     regular_chain = chain
-    proration = run_proration(request, contract.ccnl, payment.run_id.kind)
+    proration = run_proration(
+        request, contract.ccnl, payment.run_id.kind, worker_category
+    )
+    if proration.hourly is not None:
+        upcoming_gross += upcoming_percentages(
+            contract.ccnl, chain, competence, withholding.upcoming
+        )
     chain = proration.apply(
         _apply_extra_month_policy(chain, payment.run_id.kind, run_fraction(accrual))
     )

@@ -229,8 +229,9 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "pension_fund_contribution",
         "facts.ordinary_hours_worked",
         _REPORTED,
-        "unknown hours: the Prevedi contractual contribution of an operaio "
-        "of the building CCNLs is left out, with a missing_fact "
+        "unknown hours: the pay of a worker a CCNL pays by the hour "
+        "(hourly_pay) and the Prevedi contractual contribution of an operaio "
+        "of the building CCNLs are left out, with a missing_fact "
         "ordinary_hours_worked blocker; other CCNLs do not read it",
     ),
     "PeriodFacts.contributable_hours": requires_fact(
