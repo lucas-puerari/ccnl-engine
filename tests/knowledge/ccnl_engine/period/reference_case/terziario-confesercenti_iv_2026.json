@@ -1,0 +1,29 @@
+{
+  "verification": "source_linked",
+  "_description": "CCNL Terziario Confesercenti, level IV, October 2026 regular run, permanent, full time.",
+  "_notes": [
+    "November 2025 tranche in force: totale mensile 1781.68 = paga base 1257.46 + contingenza/EDR 524.22 (the file stores the total as base_salary).",
+    "The November 2026 tranche (1816.68) is not in effect in October.",
+    "A provincial terzo elemento is in force (provincial_pay_element true): the terzo elemento nazionale of 2.07 (Art. 215) is not due."
+  ],
+  "source": {
+    "document": "Accordo integrativo 28 marzo 2024 al CCNL Terziario, Distribuzione e Servizi del 22 marzo 2024 (Confesercenti, Filcams, Fisascat, Uiltucs), CNEL 20279, scansione firmata",
+    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2024//20279.pdf",
+    "sha256": "31788db6977a060829e19b5f4a6f2ed5528d774a62c14be677e55cf2076b7870",
+    "page": "3",
+    "section": "Table 'Paga base dal 1/11/2025', row IV: paga base 1257,46, contingenza + EDR 524,22, totale mensile 1781,68"
+  },
+  "inputs": {
+    "ccnl_slug": "terziario-confesercenti.json",
+    "level_code": "IV",
+    "year": 2026,
+    "month": 10,
+    "headcount": 10,
+    "provincial_pay_element": true
+  },
+  "expected": {
+    "base_salary": "1781.68",
+    "fixed_allowances": "0.00",
+    "period_gross": "1781.68"
+  }
+}

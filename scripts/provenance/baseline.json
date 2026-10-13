@@ -866,10 +866,6 @@
       "accrual_rule": "assumed",
       "additional_months[2026-01-01]": "assumed"
     },
-    "agreement/terziario-confesercenti.json": {
-      "accrual_rule": "assumed",
-      "additional_months[1990-01-01]": "assumed"
-    },
     "agreement/tessile-moda-artigianato-confartigianato.json": {
       "additional_months[2024-07-01]": "assumed"
     },
@@ -1669,7 +1665,9 @@
     ],
     "agreement/terziario-confesercenti.json": [
       "terziario-confesercenti/apprentice_seniority",
-      "terziario-confesercenti/lump_sum_2024_2025"
+      "terziario-confesercenti/lump_sum_2024_2025",
+      "terziario-confesercenti/sickness_net_basis",
+      "terziario-confesercenti/terziario_confesercenti_unmodelled"
     ],
     "agreement/tessile-moda-artigianato-confartigianato.json": [
       "tessile-moda-artigianato-confartigianato/apprentice_inps_rates_unsourced",

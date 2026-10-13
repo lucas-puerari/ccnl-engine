@@ -5,7 +5,7 @@
     {
       "level_code": "Q",
       "as_of": "2027-02-01",
-      "expected_monthly": "3114.47"
+      "expected_monthly": "3114.42"
     },
     {
       "level_code": "I",
@@ -15,7 +15,7 @@
     {
       "level_code": "II",
       "as_of": "2027-02-01",
-      "expected_monthly": "2335.07"
+      "expected_monthly": "2335.04"
     },
     {
       "level_code": "III",
@@ -35,7 +35,7 @@
     {
       "level_code": "VI",
       "as_of": "2027-02-01",
-      "expected_monthly": "1600.54"
+      "expected_monthly": "1600.53"
     },
     {
       "level_code": "VII",
@@ -109,6 +109,18 @@
       "track_name": "sesto-livello",
       "months_elapsed": 13,
       "expected_levels_below": 1
+    },
+    {
+      "level_code": "II",
+      "track_name": "standard",
+      "months_elapsed": 37,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "VI",
+      "track_name": "sesto-livello",
+      "months_elapsed": 25,
+      "expected_levels_below": 0
     }
   ]
 }

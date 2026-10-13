@@ -1985,9 +1985,9 @@
       "valid_to": "2027-03-31",
       "ruleset_id": "ccnl/terziario-confesercenti",
       "ruleset_version": "2026.2",
-      "source_hash": "edb41ee34c6d829fec686336b1932beff21fa7f550636ee7e5e30dd7eda7e666",
+      "source_hash": "7852321b89fceb5f5c03936fffef92c1cfe287cd93a2294b54fd4ac5865c3420",
       "source_type": "contracting_party",
-      "owner": "ccnl-engine maintainers",
+      "owner": "maintainer",
       "wheel_resource": "agreement/terziario-confesercenti.json.gz"
     },
     {
