@@ -1,0 +1,197 @@
+# CCNL Edilizia — Industria (ANCE), impiegati e quadri
+
+| | |
+|---|---|
+| **CNEL code** | `F012` |
+| **Sector** | edilizia |
+| **Tax sector** | `edilizia` |
+| **Last renewal** | — |
+| **Workers (est.)** | — |
+| **Ruleset version** | `2026.2` |
+| **Readiness** | 🏭 Production |
+
+[← Contracts index](index.md)
+
+??? note "Signatories"
+    - ANCE
+    - Legacoop Costruzioni
+    - Confcooperative Lavoro e Servizi
+    - AGCI
+    - Fillea-CGIL
+    - Filca-Cisl
+    - Feneal-Uil
+
+## Coverage
+
+Derived from the capability registry. The scenario features and the ones outside the input are the same for every contract: see the [capability matrix](capability-matrix.md).
+
+| | Core payroll path of a contract |
+|---|---|
+| ✅ | Every core capability is computed from bundled rules and request facts |
+| ⚠️ | The contract's data leave a core capability partial: see **Limits** |
+
+| | |
+|---|---|
+| **Core payroll path** | ⚠️ |
+| **Limits of this contract** | base_salary, seniority, sickness |
+
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+
+## Assurance
+
+| Axis | Value | What it says |
+|---|---|---|
+| **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
+| **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
+| **Rule provenance** | 32 verified / 23 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
+| **Readiness** | 🏭 Production | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
+
+## Freshness
+
+| | |
+|---|---|
+| **Last renewal** | — |
+| **Last review** | 2026-10-13 |
+| **Latest salary tranche** | 2027-03-01 |
+
+## Review history
+
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-10-13 | claude-opus-5-5 (ai) | Every payable rule of the impiegati and quadri read in the ANCE minimi table of the CCNL of 21 February 2025, the CCNL of 19 April 2010 (FILLEA text), the Art. 92 apprenticeship text of 2019 and the ANCE provincial tables, for the production tier; new file split from edilizia-ance. | corrected | 47 records verified, 19 derived (contingenza, EDR, contractual fund, absence quota, seniority of levels 1-2, payment day of the premio annuo).<br>Split by category (Art. 77): the operai of levels 1-4 in edilizia-ance, the impiegati and quadri of levels 1-7 in edilizia-ance-impiegati.<br>base_salary is now the national minimo of the ANCE table; the ex contingenza and the EDR 10.33 are fixed allowances (derived, ANCE provincial tables), the EDR outside the TFR base. The previous consolidated values (minimo + contingenza + EDR) matched.<br>Aggregator sources (idealista, leggeinchiaro, businessonline, kitech) removed.<br>Absence quota: by_hourly 8 hours (1/173 of Art. 44 and Allegato A), not by_26, which no clause supports.<br>contractual_fund_uncovered closed: every operaio level has an hourly Prevedi amount and every impiegato or quadro level a monthly one.<br>No renewal changing the national minimi after the verbale of 21 February 2025 through October 2026.<br>Fourteen monthly payments: tredicesima (Art. 63, 20 December) and premio annuo (Art. 64, 30 June, stored 28 June).<br>Night overtime 47% (Art. 54), not the 40% of the operai.<br>Seniority 8.20 for levels 1-2 (printed 'Imp. 4ª 8,2'), not 8.22: derived.<br>Quadri indennità di funzione EUR 140 (Art. 76) added.<br>Sickness: 100% for 180 days without INPS (Art. 66 band up to two years); the longer bands declared. |
+
+## Salary table
+
+Latest effective values per level (monthly gross, EUR).
+
+| Level | Description | Base salary (monthly) | Effective from |
+|---|---|---:|:---:|
+| `7` | Livello 7: quadri e impiegati di 1a categoria super (art. 77) | € 2,334.71 | 2027-03-01 |
+| `6` | Livello 6: impiegati di 1a categoria (art. 77) | € 2,101.23 | 2027-03-01 |
+| `5` | Livello 5: impiegati di 2a categoria (art. 77) | € 1,751.02 | 2027-03-01 |
+| `4` | Livello 4: impiegati di quarto livello (art. 77) | € 1,634.31 | 2027-03-01 |
+| `3` | Livello 3: impiegati di 3a categoria (art. 77) | € 1,517.56 | 2027-03-01 |
+| `2` | Livello 2: impiegati di 4a categoria (art. 77) | € 1,365.81 | 2027-03-01 |
+| `1` | Livello 1: impiegati di 4a categoria primo impiego (art. 77) | € 1,167.36 | 2027-03-01 |
+
+## Seniority increments
+
+**Cadence:** every 24 months  
+**Maximum:** 5 increments
+
+| Level | Increment (monthly) |
+|---|---:|
+| `1` | € 8.20 |
+| `2` | € 8.20 |
+| `3` | € 8.99 |
+| `4` | € 9.62 |
+| `5` | € 10.46 |
+| `6` | € 12.85 |
+| `7` | € 13.94 |
+
+## Apprenticeship
+
+**standard** (type: `percentage`)  
+Destination levels: `2`, `3`, `4`, `5`, `6`, `7`  
+percentage: 1.00
+
+## Known simplifications
+
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "edilizia-ance-impiegati/apprentice_seniority · seniority · impact unknown · open"
+    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
+
+    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
+
+!!! warning "edilizia-ance-impiegati/edilizia_impiegati_sickness · sickness · impact yes · open"
+    SICKNESS (Art. 66): the employer pays the whole treatment of the elements 1-10 of Art. 44 (INPS pays no indemnity to the impiegati and quadri of industry) for six months, the comporto of a worker with up to two years of service. Not modelled: from two to six years the comporto of nine months with the last three at 50%, over six years twelve months with three months at 75% and three at 50%; for several illnesses or relapses the comporto of 9, 12 or 15 months in 30, whose three extra months are paid in full for the first and at 50% after. The engine stops at day 180 (days past it are marked beyond the comporto).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the seniority bands of Art. 66 with equal full-pay days and the cumulated comporto in 30 months.
+
+!!! warning "edilizia-ance-impiegati/edilizia_impiegati_unmodelled · base_salary · impact yes · open"
+    NOT MODELLED AMOUNTS: the premio di produzione and the EVR set by the provincial agreements (Art. 44 n. 5 and 46); the premio di fedeltà of one month a year after 20 years of service (Art. 65); the premiums on ordinary hours of Art. 54 (lavoro festivo 45%, notturno 34% or 10% in shifts, festivo notturno 50%); the indennità speciale (Art. 47), di cassa (Art. 50) and for alta montagna, cassoni and galleria (Art. 52); mensa, trasporto and trasferta (provincial; verbale 2025); the 1/25 for the festività of 4 November (Art. 43); the absorption of a superminimo into the quadri function allowance (Art. 76). The una tantum premio di ingresso of the verbale of 3 March 2022 and the riduzione contributiva edile concern the operai only.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the provincial elements as inputs and the percentage accruals of the CCNL.
+
+!!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
+    Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
+
+    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Resolved: the remaining CCNLs are tracked by their own apprentice_seniority limitation.
+
+!!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
+    The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.
+
+    **Applies when:** `sickness` applies; the run takes the engine code path.
+
+    **Remediation:** Compute the INPS indemnity on the INPS daily base and calendar days of the INPS rules, with the pay of the month before, then resolve this limitation.
+
+!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
+    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded.
+
+    **Applies when:** `sickness` applies; the run takes the engine code path.
+
+    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
+
+!!! warning "provisional_ruleset · irpef · impact unknown · open"
+    The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
+
+    **Applies when:** `irpef` applies; the run takes the engine code path.
+
+    **Remediation:** Replace each provisional ruleset of the year with the values of its published sources, drop its provisional flag, then resolve this limitation.
+
+!!! warning "provisional_inps_ruleset · inps_employer · impact unknown · open"
+    The run reads an INPS ruleset marked provisional: the INPS circulars of its year are not published yet, so the rates, the massimale and the minimale (and the hourly contributions of domestic work) are those of the year before, carried over. The indexed amounts change every January: the carried-over values understate them.
+
+    **Applies when:** `inps_employer` applies; the run takes the engine code path.
+
+    **Remediation:** Replace each provisional INPS ruleset of the year with the values of the INPS circulars of the year, drop its provisional flag, then resolve this limitation.
+
+!!! warning "tfr_compensation_apprentice_guarantee_fund · inps_employer · impact yes · open"
+    An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8, but not the exemption from the 0.20% Fondo di garanzia contribution of D.Lgs. 252/2005 art. 10 c. 2: no source found says whether the apprentice rate (10% of L. 296/2006 art. 1 c. 773 plus NASpI and the integration funds) holds a Fondo di garanzia share to exempt. The employer contributions of the run may be overstated by 0.20% of the INPS base.
+
+    **Applies when:** `inps_employer` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Find an INPS source on the Fondo di garanzia share of the apprentice rate, then exempt it with the other workers or record that none is due.
+
+## Sources
+
+| Document | Kind | Date | URL |
+|---|---|---|---|
+| — | — | 2025-02-21 | [↗](https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf) |
+| — | — | 2025-02-21 | [↗](https://ance.it/wp-content/uploads/allegati/20250221_Verbale_accordo_rinnovo_CCNL_firmato.pdf) |
+| — | — | 2010-04-19 | [↗](https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf) |
+| — | — | 2019-04-04 | [↗](https://ance.it/wp-content/uploads/archive/37937-Art%20%2092%20Apprendistato-Nota%20a%20verbale.pdf) |
+
+??? note "Coverage notes"
+    RENEWAL: verbale di accordo of 21 February 2025 (ANCE, Legacoop Produzione e Servizi, Confcooperative Lavoro e Servizi, AGCI Produzione e Lavoro, Feneal-Uil, Filca-Cisl, Fillea-Cgil) renewing the CCNL of 3 March 2022 to 30 June 2028; three tranches of the minimi from 1 February 2025, 1 March 2026 and 1 March 2027 (ANCE table of the new minimi, the same as Allegato 10 of the verbale). Normative text: CCNL of 19 April 2010 (FILLEA text), as amended by the verbali of 2014, 2018, 2022 and 2025. The testo coordinato signed on 24 March 2026 is in the ANCE members' area and was not read.
+    
+    STRUCTURE: the CCNL treats operai and impiegati differently (extra months, seniority, sickness, night overtime), so the bundle splits it: edilizia-ance holds the operai of levels 1-4, edilizia-ance-impiegati the impiegati of levels 1-7 and the quadri of level 7 (Art. 77).
+    
+    PAY ELEMENTS: base_salary is the national minimo of the ANCE table; the ex indennità di contingenza and the EDR of EUR 10.33 (frozen national elements of the Protocollo of 31 July 1992) are fixed allowances read from the ANCE provincial tables. The EDR is outside the TFR base (Art. 33 and 72). hourly_divisor 173: Allegato A and Art. 44 last comma.
+    
+    INPS: the rates of contribution/2026/edilizia.json, by category of the worker.
+    
+    IMPIEGATI E QUADRI: fourteen monthly payments, the tredicesima (Art. 63, by 20 December) and the premio annuo of one month (Art. 64, paid on 30 June for the service from 1 July to 30 June, stored as 28 June). Five biennial scatti (Art. 49). Quadri: indennità di funzione of EUR 140 a month (Art. 76), by Employment.roles 'quadro'. Prevedi: a monthly contractual contribution by level, also on the extra months.
+    
+    APPRENTICESHIP: Art. 92 (ANCE text of 4 April 2019): 72/72/78/78/85/90% by semester for 36 months towards levels 2-7; the apprendistato duale and the alta formazione are not modelled.
+    
+
+## Raw data
+
+The contract file this page is generated from: [`agreement/edilizia-ance-impiegati.json`](https://github.com/lucas-puerari/ccnl-engine/blob/main/src/ccnl_engine/knowledge/agreement/edilizia-ance-impiegati.json).
+
+## Usage example
+
+```python
+--8<-- "docs/examples/agreement/edilizia-ance-impiegati/example.py"
+```

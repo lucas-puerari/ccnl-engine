@@ -1,0 +1,27 @@
+{
+  "verification": "source_linked",
+  "_description": "CCNL Edilizia Industria ANCE (CNEL F012), impiegato di 2a categoria at level 5, April 2026 regular run, permanent, full time: the tranche of 1 March 2026.",
+  "_notes": [
+    "Row 'Imp. 2 cat. liv. 5' of the ANCE Ragusa table of 1 March 2026: retribuzione base mensile 1.676,02, indennità di contingenza 523,35, E.D.R. 10,33.",
+    "The base is the national minimo of level V from 1 March 2026 (ANCE table of the CCNL of 21 February 2025); contingenza and EDR are the bundle's fixed allowances (533.68).",
+    "The premio di produzione (245,51, provincial) is not modelled: the period gross is not pinned."
+  ],
+  "source": {
+    "document": "ANCE Ragusa, Tabella delle retribuzioni impiegati e operai dal 1 marzo 2026",
+    "url": "https://ance.it/wp-content/uploads/allegati/2026-TABELLA_RETRIBUZIONI_MARZO_2026.pdf",
+    "sha256": "29959db0aa086d2ca10e59a0aca6b6cbf59d686a741582320ff5a69ba5e0c07e",
+    "page": "1",
+    "section": "Row 'Imp. 2 cat. liv. 5': retribuzione base mensile, indennità di contingenza, E.D.R."
+  },
+  "inputs": {
+    "ccnl_slug": "edilizia-ance-impiegati.json",
+    "level_code": "5",
+    "year": 2026,
+    "month": 4,
+    "headcount": 50
+  },
+  "expected": {
+    "base_salary": "1676.02",
+    "fixed_allowances": "533.68"
+  }
+}

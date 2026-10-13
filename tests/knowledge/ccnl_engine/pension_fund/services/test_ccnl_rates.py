@@ -136,9 +136,14 @@ def test_fonchim_on_the_chemical_industry() -> None:
 
 
 def test_prevedi_voluntary_contributions() -> None:
-    """Edilizia industria level 5 enrolled in PREVEDI at 1%."""
+    """Edilizia industria impiegato of level 5 enrolled in PREVEDI at 1%.
+
+    Base 1,601.02 minimum + 523.35 contingenza = 2,124.37; 1% each side is
+    21.24, the employer adds the 15.00 contractual amount: 36.24; the 10%
+    solidarity on 36.24 is 3.62.
+    """
     employment = Employment(
-        ccnl_slug="edilizia-ance.json",
+        ccnl_slug="edilizia-ance-impiegati.json",
         level_code="5",
         category=WorkerCategory.IMPIEGATO,
         seniority=new_hire(),
@@ -147,10 +152,10 @@ def test_prevedi_voluntary_contributions() -> None:
     )
     result = regular_period(employment=employment)
     decision = _pension_decision(result)
-    assert decision.inputs["base"] == Decimal("2134.70")
-    assert _entry(result, "pension_fund_employer") == Decimal("36.35")
-    assert _entry(result, "pension_fund_employee") == Decimal("21.35")
-    assert decision.inputs["solidarity"] == Decimal("3.64")
+    assert decision.inputs["base"] == Decimal("2124.37")
+    assert _entry(result, "pension_fund_employer") == Decimal("36.24")
+    assert _entry(result, "pension_fund_employee") == Decimal("21.24")
+    assert decision.inputs["solidarity"] == Decimal("3.62")
 
 
 def _cometa(

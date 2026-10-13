@@ -18,8 +18,11 @@ from ccnl_engine.sickness.indemnity.loaders import load_sick_pay_rates
         ("terziario", "operaio", "portieri-fabbricati-confedilizia", False),
         ("terziario", "operaio", "commercio-confcommercio", True),
         ("agricoltura", "operaio", "operai-agricoli-florovivaisti", True),
+        ("edilizia", "operaio", "edilizia-ance", True),
+        ("edilizia", "impiegato", "edilizia-ance-impiegati", False),
+        ("edilizia", "quadro", "edilizia-ance-impiegati", False),
     ],
 )
 def test_cover(sector: str, category: str, ccnl: str, covered: bool) -> None:
-    """Portieri are out, agricultural operai in."""
+    """Portieri and building impiegati or quadri are out, operai in."""
     assert load_sick_pay_rates().covers(sector, category, "permanent", ccnl) is covered

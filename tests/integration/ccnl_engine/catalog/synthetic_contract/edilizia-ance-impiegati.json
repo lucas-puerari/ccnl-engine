@@ -1,0 +1,85 @@
+{
+  "_description": "edilizia-ance-impiegati (impiegati e quadri): data checks 2026",
+  "ccnl_file": "edilizia-ance-impiegati.json",
+  "salary_checks": [
+    {
+      "level_code": "1",
+      "as_of": "2027-03-01",
+      "expected_monthly": "1167.36"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2027-03-01",
+      "expected_monthly": "1365.81"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2027-03-01",
+      "expected_monthly": "1517.56"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2027-03-01",
+      "expected_monthly": "1634.31"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2027-03-01",
+      "expected_monthly": "1751.02"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2027-03-01",
+      "expected_monthly": "2101.23"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2027-03-01",
+      "expected_monthly": "2334.71"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "5",
+      "track_name": "standard",
+      "months_elapsed": 1,
+      "expected_pct": "0.72"
+    },
+    {
+      "level_code": "5",
+      "track_name": "standard",
+      "months_elapsed": 7,
+      "expected_pct": "0.72"
+    },
+    {
+      "level_code": "5",
+      "track_name": "standard",
+      "months_elapsed": 13,
+      "expected_pct": "0.78"
+    },
+    {
+      "level_code": "5",
+      "track_name": "standard",
+      "months_elapsed": 19,
+      "expected_pct": "0.78"
+    },
+    {
+      "level_code": "5",
+      "track_name": "standard",
+      "months_elapsed": 25,
+      "expected_pct": "0.85"
+    },
+    {
+      "level_code": "5",
+      "track_name": "standard",
+      "months_elapsed": 31,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "5",
+      "track_name": "standard",
+      "months_elapsed": 37,
+      "expected_pct": "1.00"
+    }
+  ]
+}

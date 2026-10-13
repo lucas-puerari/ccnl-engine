@@ -13,100 +13,128 @@ from ccnl_engine.apprenticeship.models import (
 from ccnl_engine.catalog.loaders import load_ccnl
 
 # ---------------------------------------------------------------------------
-# CCNL Turismo — Confcommercio (H052)
+# CCNL Edilizia ANCE (F012), operai and impiegati files
 # ---------------------------------------------------------------------------
+
+_APPRENTICE_PCTS = [
+    Decimal("0.72"),
+    Decimal("0.72"),
+    Decimal("0.78"),
+    Decimal("0.78"),
+    Decimal("0.85"),
+    Decimal("0.90"),
+    Decimal("1.00"),
+]
 
 
 class TestLoadEdiliziaAnce:
-    """Structural and data-integrity tests for edilizia-ance.json."""
+    """Structural and data-integrity tests for edilizia-ance.json (operai)."""
 
     def test_edilizia_loads(self) -> None:
-        """load_ccnl loads the edilizia JSON and returns the expected identifiers."""
+        """load_ccnl loads the operai JSON and returns the expected identifiers."""
         ccnl = load_ccnl("edilizia-ance.json")
         assert isinstance(ccnl, CCNL)
         assert ccnl.meta.ccnl_id == "edilizia-ance"
         assert ccnl.meta.cnel_code == "F012"
+        assert ccnl.meta.tax_sector == TaxSector.EDILIZIA
 
-    def test_edilizia_has_seven_levels(self) -> None:
-        """Edilizia ANCE CCNL must contain exactly 7 classification levels."""
-        ccnl = load_ccnl("edilizia-ance.json")
-        assert len(ccnl.levels) == 7
-        codes = {lv.code for lv in ccnl.levels}
-        assert codes == {"1", "2", "3", "4", "5", "6", "7"}
-
-    def test_edilizia_level3_salary_feb_2025(self) -> None:
-        """Level 3 conglobated minimum on 2025-02-01 must be EUR 1917.05."""
-        ccnl = load_ccnl("edilizia-ance.json")
-        lv3 = next(lv for lv in ccnl.levels if lv.code == "3")
-        assert lv3.base_salary.value_at(date(2025, 2, 1)) == Decimal("1917.05")
-
-    def test_edilizia_level3_salary_march_2026(self) -> None:
-        """Level 3 conglobated minimum on 2026-03-01 must be EUR 1982.05."""
-        ccnl = load_ccnl("edilizia-ance.json")
-        lv3 = next(lv for lv in ccnl.levels if lv.code == "3")
-        assert lv3.base_salary.value_at(date(2026, 3, 1)) == Decimal("1982.05")
-
-    def test_edilizia_level_ordering(self) -> None:
-        """Level 7 must have the highest order; level 1 the lowest."""
+    def test_edilizia_has_four_operai_levels(self) -> None:
+        """The operai file holds levels 1-4, in order."""
         ccnl = load_ccnl("edilizia-ance.json")
         by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
-        assert by_order[0].code == "1"
-        assert by_order[-1].code == "7"
+        assert [lv.code for lv in by_order] == ["1", "2", "3", "4"]
 
-    def test_edilizia_thirteen_months(self) -> None:
-        """Contract must have 13 monthly salaries per year (gratifica natalizia)."""
+    def test_edilizia_level3_salary(self) -> None:
+        """Level 3 paga base: EUR 1387.56 from 2025-02-01, 1452.56 from 2026-03-01."""
+        ccnl = load_ccnl("edilizia-ance.json")
+        lv3 = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert lv3.base_salary.value_at(date(2025, 2, 1)) == Decimal("1387.56")
+        assert lv3.base_salary.value_at(date(2026, 3, 1)) == Decimal("1452.56")
+
+    def test_edilizia_twelve_months(self) -> None:
+        """Operai are paid twelve months: the gratifica goes through the Cassa Edile."""
         ccnl = load_ccnl("edilizia-ance.json")
         value = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
-        assert value == Decimal(13)
+        assert value == Decimal(12)
 
     def test_edilizia_hourly_divisor(self) -> None:
-        """Hourly divisor must be 173 (40 h/week, verified from official tariff)."""
+        """Hourly divisor must be 173 (40 h/week)."""
         ccnl = load_ccnl("edilizia-ance.json")
         assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(173)
 
-    def test_edilizia_no_fixed_allowances(self) -> None:
-        """All levels have no fixed_allowances (minimum conglobated in base_salary)."""
+    def test_edilizia_contingenza_and_edr(self) -> None:
+        """Every operai level carries the contingenza and the EDR."""
         ccnl = load_ccnl("edilizia-ance.json")
         for level in ccnl.levels:
-            assert level.fixed_allowances == (), (
-                f"Level {level.code} should have no fixed_allowances"
-            )
+            codes = [a.code for a in level.fixed_allowances]
+            assert codes == ["CONTINGENZA", "EDR"], level.code
 
-    def test_edilizia_tax_sector(self) -> None:
-        """CCNL must declare tax_sector EDILIZIA."""
+    def test_edilizia_operai_have_no_scatti(self) -> None:
+        """Operai accrue no seniority increments."""
         ccnl = load_ccnl("edilizia-ance.json")
+        assert ccnl.parameters.seniority_increments.maximum_count == 0
+
+    def test_edilizia_apprenticeship_standard_percentage(self) -> None:
+        """Apprenticeship: 1 track, levels 2-4, 72/72/78/78/85/90% then 100%."""
+        ccnl = load_ccnl("edilizia-ance.json")
+        (track,) = ccnl.apprenticeship
+        assert isinstance(track, ApprenticeshipPercentage)
+        assert track.name == "standard"
+        assert set(track.destination_levels) == {"2", "3", "4"}
+        assert [p.percentage for p in track.periods] == _APPRENTICE_PCTS
+        assert track.periods[-1].months_until is None
+
+
+class TestLoadEdiliziaAnceImpiegati:
+    """Structural and data-integrity tests for edilizia-ance-impiegati.json."""
+
+    def test_edilizia_impiegati_loads(self) -> None:
+        """load_ccnl loads the impiegati JSON with the shared CNEL code F012."""
+        ccnl = load_ccnl("edilizia-ance-impiegati.json")
+        assert isinstance(ccnl, CCNL)
+        assert ccnl.meta.ccnl_id == "edilizia-ance-impiegati"
+        assert ccnl.meta.cnel_code == "F012"
         assert ccnl.meta.tax_sector == TaxSector.EDILIZIA
 
-    def test_edilizia_seniority_cadence(self) -> None:
+    def test_edilizia_impiegati_has_seven_levels(self) -> None:
+        """The impiegati file holds levels 1-7, in order, level 7 the quadri."""
+        ccnl = load_ccnl("edilizia-ance-impiegati.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert [lv.code for lv in by_order] == ["1", "2", "3", "4", "5", "6", "7"]
+        assert "QUADRI_FUNZIONE" in {a.code for a in by_order[-1].fixed_allowances}
+
+    def test_edilizia_impiegati_level3_salary(self) -> None:
+        """Level 3 stipendio: EUR 1387.56 from 2025-02-01, 1452.56 from 2026-03-01."""
+        ccnl = load_ccnl("edilizia-ance-impiegati.json")
+        lv3 = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert lv3.base_salary.value_at(date(2025, 2, 1)) == Decimal("1387.56")
+        assert lv3.base_salary.value_at(date(2026, 3, 1)) == Decimal("1452.56")
+
+    def test_edilizia_impiegati_fourteen_months(self) -> None:
+        """Impiegati: tredicesima (Art. 63) and premio annuo (Art. 64)."""
+        ccnl = load_ccnl("edilizia-ance-impiegati.json")
+        value = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
+        assert value == Decimal(14)
+
+    def test_edilizia_impiegati_seniority_cadence(self) -> None:
         """Seniority increments must be biennale (24 months), max 5 scatti."""
-        ccnl = load_ccnl("edilizia-ance.json")
+        ccnl = load_ccnl("edilizia-ance-impiegati.json")
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
 
-    def test_edilizia_apprenticeship_standard_percentage(self) -> None:
-        """Apprenticeship: 1 track, levels 2-7, percentage 72/72/78/78/85/90/100%.
+    def test_edilizia_impiegati_apprenticeship_standard_percentage(self) -> None:
+        """Apprenticeship: 1 track, levels 2-7, 72/72/78/78/85/90% then 100%.
 
         Since CNCE n.660/2019 the CCNL abolished under-classification and uses
-        percentage-based pay on the destination level for all levels 2-7 over 36 months
-        (6 semesters at 72/72/78/78/85/90%, then 100%). Level 1 is not eligible.
+        percentage-based pay on the destination level over 36 months. Level 1
+        is not eligible.
         """
-        ccnl = load_ccnl("edilizia-ance.json")
-        assert len(ccnl.apprenticeship) == 1
-        track = ccnl.apprenticeship[0]
+        ccnl = load_ccnl("edilizia-ance-impiegati.json")
+        (track,) = ccnl.apprenticeship
         assert isinstance(track, ApprenticeshipPercentage)
-        assert track.name == "standard"
         assert set(track.destination_levels) == {"2", "3", "4", "5", "6", "7"}
-        pcts = [p.percentage for p in track.periods]
-        assert pcts[:6] == [
-            Decimal("0.72"),
-            Decimal("0.72"),
-            Decimal("0.78"),
-            Decimal("0.78"),
-            Decimal("0.85"),
-            Decimal("0.90"),
-        ]
-        assert pcts[-1] == Decimal("1.00")
+        assert [p.percentage for p in track.periods] == _APPRENTICE_PCTS
         assert track.periods[-1].months_until is None
 
 
