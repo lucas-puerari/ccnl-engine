@@ -1475,8 +1475,8 @@
       "valid_to": null,
       "ruleset_id": "ccnl/multiservizi-anip",
       "ruleset_version": "2026.2",
-      "source_hash": "8f42d513d8a084f47f9b60087e3b980b9884d26bf47c7ed8a838f26a0f2d3560",
-      "source_type": "contracting_party",
+      "source_hash": "7b85c6a90030d7d2c200658584ae82f36d4aa8df3cf7e1e6c62e56686a5a84c9",
+      "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/multiservizi-anip.json.gz"
     },

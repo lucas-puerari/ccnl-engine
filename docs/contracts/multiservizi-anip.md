@@ -34,9 +34,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employee, seniority |
+| **Limits of this contract** | base_salary |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 148 derived / 2 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 57 verified / 93 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-09-18 | maintainer (human) | Whole file. The values checked were not recorded. | confirmed | The review recorded no list of the documents it read. |
 | 2026-10-13 | claude-opus-5-5 (ai) | Signatories of the renewals behind the salary periods from July 2025. | flagged | The renewal of 13 June 2025 (CNEL K511, deposits 234754 and 234752) is not signed by ANIP; the file pays its minima from July 2025. Declared as the limitation anip_unsigned_renewal; values left unchanged pending an ANIP amount. |
+| 2026-10-13 | claude-opus-5-5 (ai) | Limited scope, tier unchanged: the rules that do not depend on the missing ANIP amounts, read in the CNEL K511 deposits 105782 (2011 text) and 139292 (2021 renewal); the salary periods from July 2025 stay as they are. | corrected | 66 records verified: the 2021-2024 tabellare, contingenza and EDR of levels 1-7 and Q, the quadri allowance, the levels 1, 2par115, 4par125, 7 and Q, the divisor 173, the 14 monthly payments and their accrual rule, the overtime rates and 22 days of leave.<br>Added the payment days of the tredicesima (20 December) and quattordicesima (15 July, window July to June), arts. 20-21.<br>The 2par115 and 4par125 tabellare is computed (April 2013 amount plus the parametric increments): derived, descriptions corrected to the notes a verbale of art. 10.<br>Closed cigs_threshold_16_to_50: terziario.json already charges the CIGS above 15 employees (D.Lgs. 148/2015 arts. 20 and 23).<br>Closed apprentice_seniority: apprentices are paid tabellare, contingenza and EDR only (art. 12), apprentice_amount 0 (derived).<br>Corrected the notes on the July 2025 values (the 2021 fifth tranche is the operative ANIP amount), on scatti recomputed at every tranche, on the apprenticeship durations, on the 2025 signatories and on the worker estimate.<br>Declared multiservizi_unmodelled_rules: seniority and sickness by worker type, the 181-270 sickness band, the /22 divisor, the overtime base and premiums, the art. 24 allowances, the funds and the apprenticeship durations.<br>hourly_base_method gross_incl_allowances: the art. 38 premiums are on tabellare plus contingenza.<br>Left derived: the periods from July 2025 (renewal not signed by ANIP, re-cited to CNEL 234752), the seniority block, the contingenza of the parametric positions, levels 2 to 6 (mixed categories), absence and sickness rules.<br>The aggregator sources (oristano summary, redigo, kitech, ccnlportatili) are replaced by the CNEL deposits. |
 
 ## Salary table
 
@@ -74,9 +75,9 @@ Latest effective values per level (monthly gross, EUR).
 | `6` | Workers with specialist duties / Senior white-collar employees | € 1,587.07 | 2029-03-01 |
 | `5` | Expert workers / White-collar employees | € 1,276.96 | 2029-03-01 |
 | `4` | Specialist workers / Junior clerical employees | € 1,167.51 | 2029-03-01 |
-| `4par125` | Workers assigned to painting booths and lines employed as of 01/06/2001 (par. 125) | € 1,140.15 | 2029-03-01 |
+| `4par125` | Skilled workers on painting booths and lines in service on 1 June 2001: level IV at parameter 125, closed group (nota a verbale) | € 1,140.15 | 2029-03-01 |
 | `3` | Skilled workers / Clerical employees | € 1,076.30 | 2029-03-01 |
-| `2par115` | Workers assigned to auxiliary activities in school/healthcare settings (par. 115) | € 1,048.93 | 2029-03-01 |
+| `2par115` | Common workers on auxiliary support activities in school and healthcare settings: level 2 at parameter 115 (nota a verbale, profile 1.9) | € 1,048.93 | 2029-03-01 |
 | `2` | General workers / Clerical employees (first 18 months) | € 994.21 | 2029-03-01 |
 | `1` | General labourers | € 912.12 | 2029-03-01 |
 
@@ -110,26 +111,19 @@ Destination levels: `4`
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "multiservizi-anip/cigs_threshold_16_to_50 · inps_employee · impact yes · open"
-    INPS RATES PROXY. Terziario sector confirmed for multiservizi/pulizie: kitech.it (p=4_129, "Commercio - terziario Imprese appaltatrici servizi pulizia") lists rates matching 2026-terziario.json. Simplification: the CIGS threshold for imprese di pulizia is >15 dipendenti (not >50 as in the general terziario tier); for 16-50 employee companies the modeled employee rate (9.19%) understates the actual 9.49%. FIS (Fondo Integrazione Salariale) may also apply for non-CIGS-eligible firms. Source: kitech.it/Contributi-previdenziali.aspx?p=4_129
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the CIGS threshold of more than 15 employees for cleaning firms.
-
-!!! warning "multiservizi-anip/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
-
 !!! warning "multiservizi-anip/anip_unsigned_renewal · base_salary · impact yes · open"
     UNSIGNED RENEWAL: the salary periods from 1 July 2025 come from the renewal of 13 June 2025 and its tables of 6 August 2025 (CNEL K511, deposits 234754 and 234752), signed by AGCI, Confcooperative, Legacoop and Confapi but not by ANIP. For an ANIP member the last signed amount is the fifth tranche of July 2025 of the 2021 renewal (deposit 139292, p. 34, level 2 779.21 against 819.21 here); no ANIP amount after it was found. Runs from July 2025 may overpay an ANIP employer's workers.
 
     **Applies when:** `base_salary` applies; from 2025-07-01.
 
     **Remediation:** Use the 2021 renewal values for ANIP members, or the 2025 renewal once ANIP signs or joins it.
+
+!!! warning "multiservizi-anip/multiservizi_unmodelled_rules · base_salary · impact yes · open"
+    NOT MODELLED (CNEL 105782 and 139292): (1) worker type: levels 2 to 6 hold both impiegati and operai (art. 10), but the file keys seniority and category by level, so impiegati of levels 2-4 get the operai forfettaria instead of the biennial scatti of art. 22 and operai of levels 5-6 get scatti instead of the forfettaria (66.77, 82.99, p. 90); each scatto is priced on the tabellare in force at its maturation and capped at 50% of tabellare + 279.60, while the engine prices it at the run date. (2) Sickness (art. 51 as replaced in 2021, CNEL 139292 pp. 22-24): operai are topped up to 100% of the net retribuzione globale for days 1-180 and paid 50% of the gross one for days 181-270 (the file stops at day 180); impiegati get 100% for 5 months and 50% for 7; comporto 12 months in 36. (3) Absence: the daily quota is the monthly pay /22 on a 5-day week (art. 19, the norm of art. 30); the file divides by 26. (4) Overtime is paid on quote of the retribuzione globale and its premiums on the retribuzione base, tabellare plus contingenza (art. 38); the premiums for holiday work (50%) and night work (20% in rotating shifts, 30% otherwise), the part-time supplementary hours (+28%, elastic clauses +10%, art. 33 as amended in 2021) and the 40 ROL hours (art. 42). (5) The allowances of art. 24 (disagio 15% of tabellare a day, maneggio denaro 3%, riscossione 5%, hourly allowances) and the EDAR ad personam. (6) Funds: ASIM 4.00 or 6.00 EUR a month (art. 69), ONBSI 0.50 + 0.50 EUR a month (art. 66 as amended in 2021), Previambiente 1% + 1% of tabellare and contingenza for members (art. 54). (7) Apprenticeship durations of the accord of 19 July 2012 (destination 5 lasts 36 months, destinations 2, 3, 6 and 7 are missing).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Key seniority and sickness by worker category, model the second sickness band, the /22 divisor, the art. 38 and art. 24 premiums, the funds and the apprenticeship durations of the 2012 accord.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -177,31 +171,33 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2021-07-09 | [↗](https://www.oristanoservizi.it/wp-content/uploads/2021/11/CCNL-Multiservizi-scadenza-2024.pdf) |
-| — | — | 2025-06-13 | [↗](https://www.redigo.info/2025/06/24/rinnovo-ccnl-imprese-di-pulizia-e-servizi-integrati-per-il-periodo-2025-2028/) |
-| — | — | — | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=99) |
-| — | — | — | [↗](https://www.ccnlportatili.it/ccnl/terziario-servizi/multiservizi-servizi-di-pulizia/) |
+| — | — | 2021-06-08 | [↗](https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292) |
+| — | — | 2011-05-31 | [↗](https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782) |
+| — | — | 2025-06-13 | [↗](https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234754) |
+| — | — | 2025-08-06 | [↗](https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752) |
 
 ??? note "Coverage notes"
-    Salary model: SPLIT. Paga base (minimo tabellare) is a time series; contingenza and EDR are frozen fixed_allowances. Source: oristanoservizi.it/CCNL-Multiservizi-scadenza-2024.pdf (2021-2024 contract, 5 tranches) and accordo integrativo 6 Aug 2025 (2025-2028 contract, 8 tranches) via redigo.info.
+    Salary model: SPLIT. The tabellare is a time series; contingenza and EDR are frozen fixed_allowances. Tranches of July 2021 to July 2024: art. 73 tables of the renewal of 8 June 2021 (CNEL 139292, pp. 32-34, signed by ANIP). Tranches from July 2025: tables of 6 August 2025 (CNEL 234752), not signed by ANIP (see anip_unsigned_renewal). No table prints the tabellare of 2par115 and 4par125 after April 2013: it is the April 2013 amount (CNEL 105782 pp. 30-31) plus the parametric increments.
     
-    hourly_divisor: 173 — confirmed per CCNL text: 'I divisori per ottenere la quota oraria e giornaliera sono, rispettivamente, 173 e 26'. Cross-checked: level Q July 2021 total 1953.62/11.29hr = 173 (hourly rate from table). Source: oristanoservizi.it PDF.
+    hourly_divisor 173: 'Ai fini della determinazione della retribuzione oraria, il divisore mensile è 173' (art. 19, CNEL 105782 p. 40).
     
-    additional_months: 14 (tredicesima + quattordicesima). Source: CCNL text — 'Tredicesima: entro il 20 dicembre; Quattordicesima: entro il 15 luglio'. Both in misura di una mensilità della retribuzione globale mensile.
+    additional_months 14: tredicesima by 20 December (art. 20) and quattordicesima by 15 July (art. 21), each one retribuzione globale mensile (CNEL 105782 p. 41). The quattordicesima accrues from 1 July to 30 June.
     
-    Seniority — impiegati (levels 5, 6, 7, Q): biennale scatti equal to 6.25% of (minimo tabellare + contingenza al 1 agosto 1983, EUR 279.60), maximum 8; amounts are recomputed at every salary tranche (verified against the July 2021 and July 2025 published values).
+    Seniority, impiegati: biennial scatti of 6.25% of the tabellare in force when each scatto matures plus the contingenza at 1/8/1983 (EUR 279.60), at most 8 and up to 50% of tabellare + 279.60 (art. 22, CNEL 105782 p. 41). A matured scatto keeps its amount: it is not recomputed at later tranches. The file holds one series per level (2021-2024 computed on the CNEL 139292 tables) and the engine prices every matured scatto at the run date; it pays scatti to levels 5, 6, 7 and Q, while the CCNL pays them to the impiegati of levels 2-7 and Q. Declared in multiservizi_unmodelled_rules.
     
-    Seniority — operai (levels 1, 2, 2par115, 3, 4par125, 4): 'anzianità forfettaria di settore', a single fixed monthly amount from the 5th year of sector seniority; modelled with first_cadence_months_by_level=48 and maximum_count_by_level=1. Amounts per CCNL text (June 2011 increase after E.d.a.r. cessation). Source: oristanoservizi.it PDF.
+    Seniority, operai: anzianità forfettaria di settore, one fixed monthly amount not paid for the first four years of sector seniority (art. 22, CNEL 105782 pp. 41-42; amounts in the table of p. 90). Modelled with first_cadence_months_by_level 48 and maximum_count_by_level 1 for levels 1 to 4; the CCNL also pays it to the operai of levels 5 and 6 (66.77, 82.99). Declared in multiservizi_unmodelled_rules.
     
-    Contingenza par levels: the CCNL text notes that contingenza values for 4par125 and 2par115 are not explicitly stated; by industry convention they match the values for levels 4 and 2 respectively. Source: note in oristanoservizi.it PDF.
+    Contingenza of 2par115 and 4par125: no text prints one. The notes a verbale of art. 10 (CNEL 105782 p. 30) classify these workers at level 2 with parameter 115 and at level IV with parameter 125, so the file applies the contingenza of levels 2 and 4.
     
-    Apprenticeship: under-classification, 30 months for destination levels 4 and 5 (CCNL: '30 mesi per i livelli 4° e 5°'): first half two classification levels below the destination, second half one level below (the parametric sub-levels 2par115 and 4par125 are skipped, hence levels_below 3/1 for destination 5 and 4/2 for destination 4). Destination level 2 (apprentice stays at level 1 for the whole period) and other destinations are not modelled: durations not sourced. Source: ccnlportatili.it.
+    Apprenticeship: two levels below the destination for the first half and one below for the second, destination II at level I throughout (art. 12, CNEL 105782 p. 37; the parametric positions are skipped). Durations come from the accord of 19 July 2012, read only in a third-party copy of the 2021 text: II 24, III 30, IV 30, V 36, VI 36, VII 36 months. The file models destinations 4 and 5 with 30 months each: destination 5 should last 36 and the other destinations are missing. Declared in multiservizi_unmodelled_rules.
     
-    July 2025 values: the 2021-2024 CCNL included a 5th salary tranche effective July 2025 (e.g. +10 EUR on level 2). This was superseded by the 2025-2028 renewal (signed 13 June 2025, definitive tables per accordo integrativo 6 August 2025, effective retroactively from 1 July 2025 per Art. 73). The JSON models post-renewal July 2025 values (819.21 for level 2) directly. Workers received the higher new-contract amount; the old 5th tranche value (779.21) was never separately operative.
+    July 2025 values: the renewal of 8 June 2021 (CNEL 139292, signed by ANIP) sets a fifth tranche from 1 July 2025 (level 2 +10.00, tabellare 779.21, p. 34), provisional under the art. 73 consuntivo. The renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025 (CNEL 234752) raise level 2 to 819.21 from the same date, but ANIP signed neither. The file carries the 2025 renewal from July 2025, so for an ANIP member the operative amount is the 2021 tranche, not the file's (see anip_unsigned_renewal). No ANIP amount for the art. 73 consuntivo or the IPCA increments of art. 73-bis and 73-ter was found.
     
-    ANIP CONTRACT STATUS (2025): ANIP-Confindustria abandoned the final stages of the 2025 CCNL renewal negotiations without signing. The 2025 renewal was signed by Legacoop Produzione e Servizi, Unionservizi Confapi, AGCI + Filcams-CGIL/Fisascat-CISL/Uiltrasporti-UIL. ANIP companies continue to apply the previous CCNL (this file). A separate multiservizi-legacoop file would be needed to cover the new 2025-2028 renewal (levels 1-8: 1,296.39-2,256.14 EUR, 14 mensilità).
+    ANIP CONTRACT STATUS (2025): the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025 (CNEL 234752) are signed by AGCI Servizi, Confcooperative Lavoro e Servizi, Legacoop Produzione e Servizi and Unionservizi Confapi with Filcams-CGIL, Fisascat-CISL and Uiltrasporti-UIL; ANIP-Confindustria signed neither. ANIP companies keep the renewal of 8 June 2021 (this file). A separate file would cover the 2025-2028 renewal (levels 1-7 and Q, retribuzione base 1,296.39 to 2,256.14 EUR from May 2026, 14 mensilità).
     
-    Workers covered: ~403,000 per INPS-UNIEMENS 2025 data; largest uncovered CCNL at time of implementation.
+    INPS: terziario regime. Cleaning contractors are CIGS employers above 15 employees: D.Lgs. 148/2015 art. 20 c. 1 d) ('imprese appaltatrici di servizi di pulizia, anche se costituite in forma di cooperativa, che subiscano una riduzione di attività') and, from 1 January 2022, art. 20 c. 3-bis and art. 23 c. 1-bis ('a carico dei datori di lavoro che, nel semestre precedente la data di presentazione della domanda, abbiano occupato mediamente più di quindici dipendenti [...] è stabilito un contributo ordinario nella misura dello 0,90 per cento'). contribution/2026/terziario.json already charges the CIGS 0.90% (0.30% on the worker, INPS circ. 117/2022 all. 1) above 15 employees and the FIS of art. 29 below.
+    
+    Workers covered: no sourced figure. The earlier note (~403,000, INPS-UNIEMENS 2025) and meta.workers_estimate (~580k) disagree and neither cites a document.
     
 
 ## Raw data

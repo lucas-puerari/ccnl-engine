@@ -1,0 +1,25 @@
+{
+  "verification": "source_linked",
+  "_description": "Multiservizi ANIP (CNEL K511) level 2, March 2026 regular run, permanent, full time: the frozen contingenza and the EDR of the renewal of 8 June 2021, signed by ANIP.",
+  "_notes": [
+    "Indennità di contingenza 513.96 and E.D.R. 10.33 at level 2 in the art. 73 table 'Con decorrenza 1 luglio 2025' (CNEL idAccordo 139292, page 34), unchanged since July 2021 (page 32).",
+    "Fixed allowances only: the file pays the tabellare of the renewal of 13 June 2025, which ANIP did not sign (limitation anip_unsigned_renewal), so the base salary and the gross are not pinned."
+  ],
+  "source": {
+    "document": "Ipotesi di accordo per il rinnovo del CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, 8 giugno 2021",
+    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
+    "sha256": "4a87d6d51d2c4ccf7d28a9e2708cd45ee122fdebea7d8f8420cdb38e448f6167",
+    "page": "34",
+    "section": "Art. 73, table 'Con decorrenza 1 luglio 2025', row 2, columns Indennità di contingenza and E.D.R."
+  },
+  "inputs": {
+    "ccnl_slug": "multiservizi-anip.json",
+    "level_code": "2",
+    "year": 2026,
+    "month": 3,
+    "headcount": 50
+  },
+  "expected": {
+    "fixed_allowances": "524.29"
+  }
+}

@@ -420,10 +420,6 @@
     "agreement/metalmeccanico-confimi-pmi.json": {
       "accrual_rule": "missing"
     },
-    "agreement/multiservizi-anip.json": {
-      "accrual_rule": "assumed",
-      "additional_months[2021-07-01]": "assumed"
-    },
     "agreement/noleggio-autobus-conducente-anav.json": {
       "accrual_rule": "missing",
       "additional_months[2024-01-01]": "assumed",
@@ -1519,8 +1515,7 @@
     ],
     "agreement/multiservizi-anip.json": [
       "multiservizi-anip/anip_unsigned_renewal",
-      "multiservizi-anip/apprentice_seniority",
-      "multiservizi-anip/cigs_threshold_16_to_50"
+      "multiservizi-anip/multiservizi_unmodelled_rules"
     ],
     "agreement/noleggio-autobus-conducente-anav.json": [
       "noleggio-autobus-conducente-anav/apprentice_seniority",
