@@ -8,7 +8,7 @@
 | **Last renewal** | — |
 | **Workers (est.)** | ~460k |
 | **Ruleset version** | `2026.2` |
-| **Readiness** | 🧪 Exploratory |
+| **Readiness** | 🏭 Production |
 
 [← Contracts index](index.md)
 
@@ -30,9 +30,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | seniority, territorial_supplement |
+| **Limits of this contract** | base_salary, seniority, sickness, territorial_supplement |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -40,16 +40,16 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 73 derived / 2 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
-| **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
-| **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
+| **Rule provenance** | 77 verified / 1 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
+| **Readiness** | 🏭 Production | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
 ## Freshness
 
 | | |
 |---|---|
 | **Last renewal** | — |
-| **Last review** | 2026-09-18 |
+| **Last review** | 2026-10-13 |
 | **Latest salary tranche** | 2027-02-01 |
 
 ## Review history
@@ -57,6 +57,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-09-18 | maintainer (human) | Whole file. The values checked were not recorded. | confirmed | The review recorded no list of the documents it read. |
+| 2026-10-13 | claude-opus-5-5 (ai) | Every payable rule read again in the Testo Unico of 29 September 2025 (Federdistribuzione, 99 pages), for the production tier. | corrected | 90 records verified; the work rules cited an aggregator and now cite the Testo Unico. The 2025/01 URL of the sources returns 404: replaced by the 2026/04 one.<br>Night overtime 50%, not 30% (Art. 132 c. 3); added the 20% beyond the 48th weekly hour (c. 1). The premiums are on the normale retribuzione of Art. 189 (hourly_base_method gross_incl_allowances, which documents the rule: the caller states OvertimeEvent.hourly_rate).<br>Sickness: 75% for days 4-20 and 100% from day 21 of the net daily pay, carenza by event, apprentices excluded (Art. 170), not a flat 100%.<br>Seniority amounts in force since 1990 (Art. 188): the gap before 23 April 2024 removed.<br>Terzo elemento 2.07 due only without a provincial element (Art. 199): now gated.<br>Apprenticeship: second half of level VI at VII (Art. 46 c. 3); the 36-month end of levels II-V stated.<br>Added the payment days of the tredicesima and quattordicesima and Fon.Te. (Art. 95, 1.55% and 0.55%, apprentices 1.05%).<br>Night holiday overtime 0.50 stays derived: no clause sets it, Art. 132 c. 5 forbids cumulation.<br>No renewal after the Testo Unico through October 2026. |
 
 ## Salary table
 
@@ -92,8 +93,7 @@ Latest effective values per level (monthly gross, EUR).
 ## Apprenticeship
 
 **standard_II_V** (type: `under_classification`)  
-Destination levels: `II`, `III`, `IV`, `V`  
-under-level: `1`
+Destination levels: `II`, `III`, `IV`, `V`
 
 **standard_VI** (type: `under_classification`)  
 Destination levels: `VI`
@@ -103,7 +103,7 @@ Destination levels: `VI`
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "dmo-federdistribuzione/provincial_elements_missing · territorial_supplement · impact yes · open"
-    Terzo elemento nazionale (Art. 199): EUR 2.07/month (lire 4,000) for workers in provinces without provincial terzi elementi (Art. 198, frozen since 1973). Modelled as 'edr' fixed allowance for all workers. # SIMPLIFICATION: some provinces have higher provincial elements (second-level bargaining, out of scope).
+    Terzo elemento nazionale (Art. 199, PDF p. 59): EUR 2.07 a month only for the workers of firms in provinces with no provincial terzo elemento in force (Art. 198, frozen since 1973): gated by EmployerProfile.provincial_pay_element. The provincial amounts themselves are set by provincial agreements outside the Testo Unico and are not modelled.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
@@ -115,6 +115,20 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
+
+!!! warning "dmo-federdistribuzione/sickness_net_basis · sickness · impact yes · open"
+    SICKNESS (Art. 170): the CCNL integrates up to a share of the net daily pay ('retribuzione giornaliera netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate and tops it up to the measure of the gross daily quota, as for the Commercio file. The exempt events of c. 3 (hospital stay, prognosis of 12 days or more, the illnesses of Art. 175 c. 3, pregnancy) are not inputs: the carenza of such an event is paid at the reduced rate of its order.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the net daily pay of Art. 170 and the exempt events of c. 3.
+
+!!! warning "dmo-federdistribuzione/dmo_unmodelled_elements · base_salary · impact yes · open"
+    NOT MODELLED AMOUNTS: the EDR of 0.30% of paga base and contingenza (14 months) owed when the employer does not pay E.Bi.Di.M. (Art. 18), the EUR 16.00 x 14 owed without Fondo EST (Art. 19) and the EUR 37.00 x 14 owed to quadri without Cassa QuAS (Art. 20); the worker shares of these funds; the indennità di cassa of 5% (Art. 202); the premiums on ordinary night (15%, Art. 134), Sunday (30%, Art. 136) and weekly rest day (30%, Art. 139) work; the pay rows of the operatori di vendita; the sostegno all'occupazione contract of Art. 70; the guarantee of the commission-paid staff (Art. 201). The una tantum of Art. 197 (July 2024 and 2025) is historic and outside the TFR base (c. 6).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the fund omission EDRs, the cashier allowance and the premiums on ordinary hours.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -162,10 +176,10 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2024-04-23 | [↗](https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf) |
+| — | — | 2025-09-29 | [↗](https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf) |
 
 ??? note "Coverage notes"
-    Salary tables: 6 tranches from 01/04/2023 through 01/02/2027 per Allegato 11, Testo Unico CCNL DMO 29/09/2025 (Federdistribuzione). 47/48 cells verified arithmetic; L4 01/04/2023 PDF OCR reads '1112.46' but total (1646.68) and contingenza (524.22) prove 1122.46 — consistent with pre-acconto 1092.46 + 30 EUR acconto (Dec 2022 Protocol).
+    Salary tables: 6 tranches from 01/04/2023 through 01/02/2027, Allegato 11 (PDF p. 98) of the Testo Unico CCNL DMO of 29/09/2025 (Federdistribuzione), Art. 196 for the tranche dates. Level IV on 01/04/2023 is printed 1112,46 in the PDF itself: the total 1646,68 less the contingenza 524,22, and 1192,46 less the 70,00 of Art. 196, give 1122.46, the value kept.
     
     Split model confirmed: total / 168 at L1 = 14.905, L4 = 10.605, L7 = 8.309 — all non-integer. Source: Art. 194 (divisore 168 for 40h/week), Allegato 11.
     
@@ -173,13 +187,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     Indennità di funzione Quadri (Art. 113): EUR 260.76/month for 14 months (cumulative increments: 51.65+77.47+51.65+70.00+10.00=260.77; 0.01 rounding from lire). Allegato 11 shows 260.76.
     
-    Indennità di funzione 7° livello: EUR 5.16/month (lire 10,000) in 'altri elementi' column of Allegato 11 for Level VII. Same element and amount as Commercio Confcommercio 'ind_funzione' for livello 7.
+    Altri elementi of level VII: EUR 5.16/month (lire 10,000), column 'altri elementi' of Allegato 11 (PDF p. 98); the Testo Unico names no article for it.
     
-    Seniority: 10 scatti triennali (Art. 188), amounts from Testo Unico Art. 188 table. valid_from set to 2024-04-23 (renewal date).
+    Seniority: 10 scatti triennali (Art. 188), amounts of the Art. 188 table, in force since 1 January 1990; paid from the month after the triennium (c. 4).
     
     Additional months: 14 (tredicesima Art. 204 + quattordicesima Art. 205).
     
-    APPRENTICESHIP: sotto-inquadramento per Art. 46 + Art. 57 Testo Unico DMO 29/09/2025. Art. 55: destinazioni ammesse livelli II–VI (I e Q esclusi). Livelli II–V: 36 mesi, 0–18m = 2 livelli sotto dest, 18m+ = 1 livello sotto. Livello VI: 24 mesi, 0–12m = 1 livello sotto (VII), 12m+ = livello VI (dest). Source: Testo Unico Federdistribuzione 29/09/2025 (Allegato apprendistato).
+    APPRENTICESHIP: under-classification of Art. 46 and durations of Art. 57 (Testo Unico 29/09/2025, PDF pp. 24-25). Destinations II-VI (Art. 55: I and Q excluded). Levels II-V: 36 months, two levels below in the first half, one below in the second. Level VI: 24 months at level VII, the first half by Art. 46 c. 5 and the second by c. 3 (one level below), as the Commercio file. The 42 and 48 month profiles of Art. 61 are not modelled.
     
 
 ## Raw data

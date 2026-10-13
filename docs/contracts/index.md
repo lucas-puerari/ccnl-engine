@@ -232,7 +232,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 128 | K461 | [CCNL per i lavoratori dipendenti delle aziende termali](aziende-termali-federterme.md) | turismo termale | — | — | ⚠️ | base_salary, bilateral_funds, inps_employer, seniority | 0 / 64 / 1 / 1 | 🧪 | 🤖 |
 | 129 | J121 | [CCNL per il personale dipendente non dirigente delle imprese di assicurazione (ANIA)](assicurazioni-ania.md) | assicurazioni | ~45k | 2026 | ⚠️ | base_salary, inps_employer, seniority | 0 / 30 / 1 / 1 | 🧪 | 🤖 |
 | 130 | N/A | [DPR 24 marzo 2025, n. 53 — Forze di Polizia ad ordinamento civile (Triennio 2022-2024)](forze-polizia-ordinamento-civile.md) | Pubblica Sicurezza — Forze di Polizia ad ordinamento civile | ~130k | 2025 | ⚠️ | inps_employer | 0 / 70 / 1 / 1 | 🧪 | 🤖 |
-| 131 | H008 | [Distribuzione Moderna Organizzata — Federdistribuzione](dmo-federdistribuzione.md) | terziario | ~460k | — | ⚠️ | seniority, territorial_supplement | 0 / 73 / 2 / 0 | 🧪 | 🤖 |
+| 131 | H008 | [Distribuzione Moderna Organizzata — Federdistribuzione](dmo-federdistribuzione.md) | terziario | ~460k | — | ⚠️ | base_salary, seniority, sickness, territorial_supplement | 77 / 1 / 0 / 0 | 🏭 | 🧑 |
 
 [^2]: DPR 53/2025 -- Compensation for Forze di Polizia ad ordinamento civile is set by Presidential Decree, not a CNEL-registered agreement. D.P.R. 24 marzo 2025, n. 53 (GU n. 91, 18 April 2025, SO).
 [^3]: Approximate estimates of the represented population. Contracts can cover overlapping populations, so the figures do not add up. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.

@@ -693,9 +693,9 @@
       "valid_to": null,
       "ruleset_id": "ccnl/dmo-federdistribuzione",
       "ruleset_version": "2026.2",
-      "source_hash": "c54823bdb828daa0f6c5f4713dac92562af668ec33450c09a5a7f660d603fbd7",
+      "source_hash": "6125ff237546ea4dd44f01959b12d46152b09eb229f1d02fd250e891322339b6",
       "source_type": "contracting_party",
-      "owner": "ccnl-engine maintainers",
+      "owner": "maintainer",
       "wheel_resource": "agreement/dmo-federdistribuzione.json.gz"
     },
     {

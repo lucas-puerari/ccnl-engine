@@ -194,10 +194,6 @@
       "accrual_rule": "assumed",
       "additional_months[2025-05-01]": "assumed"
     },
-    "agreement/dmo-federdistribuzione.json": {
-      "accrual_rule": "assumed",
-      "additional_months[2023-04-01]": "assumed"
-    },
     "agreement/edilizia-ance.json": {
       "accrual_rule": "assumed",
       "additional_months[2025-02-01]": "assumed"
@@ -1344,7 +1340,9 @@
     ],
     "agreement/dmo-federdistribuzione.json": [
       "dmo-federdistribuzione/apprentice_seniority",
-      "dmo-federdistribuzione/provincial_elements_missing"
+      "dmo-federdistribuzione/dmo_unmodelled_elements",
+      "dmo-federdistribuzione/provincial_elements_missing",
+      "dmo-federdistribuzione/sickness_net_basis"
     ],
     "agreement/edilizia-ance.json": [
       "edilizia-ance/apprentice_seniority",

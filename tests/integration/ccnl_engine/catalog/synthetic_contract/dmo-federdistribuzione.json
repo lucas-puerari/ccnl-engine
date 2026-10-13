@@ -108,6 +108,18 @@
       "level_code": "VI",
       "track_name": "standard_VI",
       "months_elapsed": 13,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "VI",
+      "track_name": "standard_VI",
+      "months_elapsed": 25,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "II",
+      "track_name": "standard_II_V",
+      "months_elapsed": 37,
       "expected_levels_below": 0
     }
   ]

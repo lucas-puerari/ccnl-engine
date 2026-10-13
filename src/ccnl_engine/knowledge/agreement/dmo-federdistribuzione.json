@@ -14,9 +14,9 @@
     ],
     "sources": [
       {
-        "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf",
+        "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
         "type": "official_ccnl",
-        "agreement_date": "2024-04-23"
+        "agreement_date": "2025-09-29"
       }
     ],
     "extraction": {
@@ -31,7 +31,7 @@
     "notes": [
       {
         "kind": "info",
-        "text": "Salary tables: 6 tranches from 01/04/2023 through 01/02/2027 per Allegato 11, Testo Unico CCNL DMO 29/09/2025 (Federdistribuzione). 47/48 cells verified arithmetic; L4 01/04/2023 PDF OCR reads '1112.46' but total (1646.68) and contingenza (524.22) prove 1122.46 — consistent with pre-acconto 1092.46 + 30 EUR acconto (Dec 2022 Protocol)."
+        "text": "Salary tables: 6 tranches from 01/04/2023 through 01/02/2027, Allegato 11 (PDF p. 98) of the Testo Unico CCNL DMO of 29/09/2025 (Federdistribuzione), Art. 196 for the tranche dates. Level IV on 01/04/2023 is printed 1112,46 in the PDF itself: the total 1646,68 less the contingenza 524,22, and 1192,46 less the 70,00 of Art. 196, give 1122.46, the value kept."
       },
       {
         "kind": "info",
@@ -43,7 +43,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Terzo elemento nazionale (Art. 199): EUR 2.07/month (lire 4,000) for workers in provinces without provincial terzi elementi (Art. 198, frozen since 1973). Modelled as 'edr' fixed allowance for all workers. # SIMPLIFICATION: some provinces have higher provincial elements (second-level bargaining, out of scope).",
+        "text": "Terzo elemento nazionale (Art. 199, PDF p. 59): EUR 2.07 a month only for the workers of firms in provinces with no provincial terzo elemento in force (Art. 198, frozen since 1973): gated by EmployerProfile.provincial_pay_element. The provincial amounts themselves are set by provincial agreements outside the Testo Unico and are not modelled.",
         "capability": "territorial_supplement",
         "monetary_impact": "yes",
         "limitation": {
@@ -60,11 +60,11 @@
       },
       {
         "kind": "info",
-        "text": "Indennità di funzione 7° livello: EUR 5.16/month (lire 10,000) in 'altri elementi' column of Allegato 11 for Level VII. Same element and amount as Commercio Confcommercio 'ind_funzione' for livello 7."
+        "text": "Altri elementi of level VII: EUR 5.16/month (lire 10,000), column 'altri elementi' of Allegato 11 (PDF p. 98); the Testo Unico names no article for it."
       },
       {
         "kind": "info",
-        "text": "Seniority: 10 scatti triennali (Art. 188), amounts from Testo Unico Art. 188 table. valid_from set to 2024-04-23 (renewal date)."
+        "text": "Seniority: 10 scatti triennali (Art. 188), amounts of the Art. 188 table, in force since 1 January 1990; paid from the month after the triennium (c. 4)."
       },
       {
         "kind": "info",
@@ -72,7 +72,7 @@
       },
       {
         "kind": "info",
-        "text": "APPRENTICESHIP: sotto-inquadramento per Art. 46 + Art. 57 Testo Unico DMO 29/09/2025. Art. 55: destinazioni ammesse livelli II–VI (I e Q esclusi). Livelli II–V: 36 mesi, 0–18m = 2 livelli sotto dest, 18m+ = 1 livello sotto. Livello VI: 24 mesi, 0–12m = 1 livello sotto (VII), 12m+ = livello VI (dest). Source: Testo Unico Federdistribuzione 29/09/2025 (Allegato apprendistato)."
+        "text": "APPRENTICESHIP: under-classification of Art. 46 and durations of Art. 57 (Testo Unico 29/09/2025, PDF pp. 24-25). Destinations II-VI (Art. 55: I and Q excluded). Levels II-V: 36 months, two levels below in the first half, one below in the second. Level VI: 24 months at level VII, the first half by Art. 46 c. 5 and the second by c. 3 (one level below), as the Commercio file. The 42 and 48 month profiles of Art. 61 are not modelled."
       },
       {
         "kind": "simplification",
@@ -89,6 +89,32 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "SICKNESS (Art. 170): the CCNL integrates up to a share of the net daily pay ('retribuzione giornaliera netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate and tops it up to the measure of the gross daily quota, as for the Commercio file. The exempt events of c. 3 (hospital stay, prognosis of 12 days or more, the illnesses of Art. 175 c. 3, pregnancy) are not inputs: the carenza of such an event is paid at the reduced rate of its order.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "sickness_net_basis",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the net daily pay of Art. 170 and the exempt events of c. 3."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "NOT MODELLED AMOUNTS: the EDR of 0.30% of paga base and contingenza (14 months) owed when the employer does not pay E.Bi.Di.M. (Art. 18), the EUR 16.00 x 14 owed without Fondo EST (Art. 19) and the EUR 37.00 x 14 owed to quadri without Cassa QuAS (Art. 20); the worker shares of these funds; the indennità di cassa of 5% (Art. 202); the premiums on ordinary night (15%, Art. 134), Sunday (30%, Art. 136) and weekly rest day (30%, Art. 139) work; the pay rows of the operatori di vendita; the sostegno all'occupazione contract of Art. 70; the guarantee of the commission-paid staff (Art. 201). The una tantum of Art. 197 (July 2024 and 2025) is historic and outside the TFR base (c. 6).",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "dmo_unmodelled_elements",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the fund omission EDRs, the cashier allowance and the premiums on ordinary hours."
+        }
       }
     ]
   },
@@ -98,7 +124,33 @@
         {
           "valid_from": "2023-04-01",
           "valid_until": null,
-          "value": "168"
+          "value": "168",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+                "kind": "associazione",
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+              },
+              "page": "58",
+              "section": "Art. 194 - Quota oraria, c.1 a)",
+              "quote": "a) 168, per il personale la cui durata normale di lavoro è di 40 ore settimanali;"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:00:31Z",
+              "effective_from": "2023-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:00:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
+            }
+          }
         }
       ]
     },
@@ -109,9 +161,31 @@
           "valid_until": null,
           "value": "14",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+                "kind": "associazione",
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+              },
+              "page": "59",
+              "section": "Art. 204 c. 1 (tredicesima); Art. 205 c. 1 (quattordicesima)",
+              "quote": "In coincidenza con la vigilia di Natale di ogni anno le aziende dovranno corrispondere al"
+            },
+            "transformation": "Fourteen monthly payments: the tredicesima of Art. 204 and the quattordicesima of Art. 205.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:00:31Z",
+              "effective_from": "2023-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:00:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
+            }
           }
         }
       ]
@@ -124,11 +198,6 @@
           "periods": [
             {
               "valid_from": "2023-04-01",
-              "valid_until": "2024-04-23",
-              "gap_kind": "missing"
-            },
-            {
-              "valid_from": "2024-04-23",
               "valid_until": null,
               "value": "25.46"
             }
@@ -138,11 +207,6 @@
           "periods": [
             {
               "valid_from": "2023-04-01",
-              "valid_until": "2024-04-23",
-              "gap_kind": "missing"
-            },
-            {
-              "valid_from": "2024-04-23",
               "valid_until": null,
               "value": "24.84"
             }
@@ -152,11 +216,6 @@
           "periods": [
             {
               "valid_from": "2023-04-01",
-              "valid_until": "2024-04-23",
-              "gap_kind": "missing"
-            },
-            {
-              "valid_from": "2024-04-23",
               "valid_until": null,
               "value": "22.83"
             }
@@ -166,11 +225,6 @@
           "periods": [
             {
               "valid_from": "2023-04-01",
-              "valid_until": "2024-04-23",
-              "gap_kind": "missing"
-            },
-            {
-              "valid_from": "2024-04-23",
               "valid_until": null,
               "value": "21.95"
             }
@@ -180,11 +234,6 @@
           "periods": [
             {
               "valid_from": "2023-04-01",
-              "valid_until": "2024-04-23",
-              "gap_kind": "missing"
-            },
-            {
-              "valid_from": "2024-04-23",
               "valid_until": null,
               "value": "20.66"
             }
@@ -194,11 +243,6 @@
           "periods": [
             {
               "valid_from": "2023-04-01",
-              "valid_until": "2024-04-23",
-              "gap_kind": "missing"
-            },
-            {
-              "valid_from": "2024-04-23",
               "valid_until": null,
               "value": "20.30"
             }
@@ -208,11 +252,6 @@
           "periods": [
             {
               "valid_from": "2023-04-01",
-              "valid_until": "2024-04-23",
-              "gap_kind": "missing"
-            },
-            {
-              "valid_from": "2024-04-23",
               "valid_until": null,
               "value": "19.73"
             }
@@ -222,11 +261,6 @@
           "periods": [
             {
               "valid_from": "2023-04-01",
-              "valid_until": "2024-04-23",
-              "gap_kind": "missing"
-            },
-            {
-              "valid_from": "2024-04-23",
               "valid_until": null,
               "value": "19.47"
             }
@@ -234,51 +268,187 @@
         }
       },
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-            "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+            "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+            "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
             "kind": "associazione",
-            "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "published_on": "2025-09-29",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
           },
-          "section": "Scatti di anzianità"
+          "page": "56",
+          "section": "Art. 188 c. 1-2 - Scatti di anzianità",
+          "quote": "il personale ha diritto a dieci [...] scatti triennali. Ai fini della maturazione degli scatti"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
-        }
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:00:31Z",
+          "effective_from": "2023-04-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:00:31Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
+        },
+        "transformation": "Ten scatti every 36 months, amounts of the Art. 188 table ('IMPORTI dal 1° gennaio 1990'), in force for the whole ruleset."
       }
     },
     "accrual_rule": {
       "min_days": 15,
       "comparison": "at_least",
       "provenance": {
-        "status": "assumed",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "ccnl-dmo-testo-unico-2025-09-29",
-            "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025",
+            "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
             "kind": "associazione",
             "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
-            "published_on": "2025-09-29"
+            "published_on": "2025-09-29",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
           },
           "page": "56",
-          "section": "Art. 187, referred to by artt. 204 e 205",
-          "quote": "le frazioni di anno saranno computate, a tutti gli effetti contrattuali, per dodicesimi, computandosi come mese intero le frazioni di mese superiori o uguali a 15 giorni."
+          "section": "Art. 187 c. 1, referred to by Art. 204 and 205 (notes 8 and 9, p. 59)",
+          "quote": "saranno computate, a tutti gli effetti contrattuali, per dodicesimi, computandosi come mese intero [...] le frazioni di mese superiori o uguali a 15 giorni."
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-09-27T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2023-04-01"
+          "extraction_timestamp": "2026-10-13T07:00:31Z",
+          "effective_from": "2023-04-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:00:31Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         },
         "note": "Artt. 204 and 205 on tredicesima and quattordicesima refer to art. 187 in a footnote; months are those of the civil calendar. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
       }
-    }
+    },
+    "thirteenth_payment_day": {
+      "month": 12,
+      "day": 24,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+            "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+            "kind": "associazione",
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "published_on": "2025-09-29",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+          },
+          "page": "59",
+          "section": "Art. 204 c. 1 - Tredicesima mensilità",
+          "quote": "In coincidenza con la vigilia di Natale di ogni anno le aziende dovranno corrispondere al"
+        },
+        "transformation": "Paid on Christmas Eve for the window January to December.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:00:31Z",
+          "effective_from": "2023-04-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:00:31Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
+        }
+      }
+    },
+    "fourteenth_payment_day": {
+      "month": 7,
+      "day": 1,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+            "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+            "kind": "associazione",
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "published_on": "2025-09-29",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+          },
+          "page": "59",
+          "section": "Art. 205 c. 1 - Quattordicesima mensilità",
+          "quote": "1° luglio di ogni anno, un importo pari ad una mensilità della retribuzione di fatto di cui all’art. 191"
+        },
+        "transformation": "Paid on 1 July for the window July to June.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:00:31Z",
+          "effective_from": "2023-04-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:00:31Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
+        }
+      }
+    },
+    "employer_funds": [
+      {
+        "code": "FONTE",
+        "description": "Fon.Te. - Fondo pensione complementare per i dipendenti da aziende del terziario (commercio, turismo e servizi)",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2023-04-01",
+              "valid_until": null,
+              "value": "0.0155"
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2023-04-01",
+              "valid_until": null,
+              "value": "0.0055"
+            }
+          ]
+        },
+        "contribution_base": "tfr_base",
+        "apprentice_rate": {
+          "periods": [
+            {
+              "valid_from": "2023-04-01",
+              "valid_until": null,
+              "value": "0.0105"
+            }
+          ]
+        },
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+              "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+              "kind": "associazione",
+              "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+              "published_on": "2025-09-29",
+              "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+            },
+            "page": "32",
+            "section": "Art. 95 c. 1-2 - Previdenza complementare",
+            "quote": "lavoro, pari all’1,55% della retribuzione utile per il computo del TFR per ciascun lavoratore iscritto, [...] e quella minima dei lavoratori pari allo 0,55% della retribuzione utile per il computo del TFR."
+          },
+          "transformation": "Employer 1.55% and worker minimum 0.55% of the TFR base (Art. 95); apprentices 1.05% employer (Art. 50 c. 2, p. 24). The quota of TFR is the worker's choice in PensionFundEnrolment.tfr_to_fund.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-13T07:00:31Z",
+            "effective_from": "2023-04-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-13T07:00:31Z",
+            "verification_status": "verified",
+            "review_id": "2026-10-13-ai-production"
+          }
+        }
+      }
+    ]
   },
   "levels": [
     {
@@ -292,21 +462,29 @@
             "valid_until": "2024-04-01",
             "value": "779.47",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/04/2023', row VII",
+                "quote": "PAGA BASE DAL 01/04/2023 [...] VII € 779,47 € 5,16 € 517,51 € 1302,14"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -315,21 +493,29 @@
             "valid_until": "2025-03-01",
             "value": "828.08",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/04/2024', row VII",
+                "quote": "PAGA BASE DAL 01/04/2024 [...] VII € 828,08 € 5,16 € 517,51 € 1350,75"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -338,21 +524,29 @@
             "valid_until": "2025-11-01",
             "value": "848.91",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/03/2025', row VII",
+                "quote": "PAGA BASE DAL 01/03/2025 [...] VII € 848,91 € 5,16 € 517,51 € 1371,58"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -361,21 +555,29 @@
             "valid_until": "2026-11-01",
             "value": "873.22",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/11/2025', row VII",
+                "quote": "PAGA BASE DAL 01/11/2025 [...] VII € 873,22 € 5,16 € 517,51 € 1395,89"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -384,21 +586,29 @@
             "valid_until": "2027-02-01",
             "value": "897.53",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/11/2026', row VII",
+                "quote": "PAGA BASE DAL 01/11/2026 [...] VII € 897,53 € 5,16 € 517,51 € 1420,20"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -407,21 +617,29 @@
             "valid_until": null,
             "value": "925.31",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/02/2027', row VII",
+                "quote": "PAGA BASE DAL 01/02/2027 [...] VII € 925,31 € 5,16 € 517,51 € 1447,98"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -441,21 +659,29 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                 "kind": "associazione",
-                "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
               },
-              "section": "Tabella retributiva"
+              "page": "57",
+              "section": "Art. 189 c. 4, tabella indennita di contingenza (comprensiva EDR art. 190), 'IMPORTI (dal 1° gennaio 1990)'",
+              "quote": "VII € 517,51"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
-              "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:00:31Z",
+              "effective_from": "2023-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:00:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
           }
         },
@@ -472,23 +698,33 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                 "kind": "associazione",
-                "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
               },
-              "section": "Tabella retributiva"
+              "page": "59",
+              "section": "Art. 199 - Terzi elementi nazionali",
+              "quote": "siano corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
+            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force: replaced_by_provincial_element.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
-              "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:00:31Z",
+              "effective_from": "2023-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:00:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
-          }
+          },
+          "replaced_by_provincial_element": true
         },
         {
           "code": "IND_FUNZIONE",
@@ -503,41 +739,57 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                 "kind": "associazione",
-                "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
               },
-              "section": "Tabella retributiva"
+              "page": "98",
+              "section": "Allegato 11, 'Altri elementi' column, row VII",
+              "quote": "VII € 873,22 € 5,16 € 517,51 € 1395,89"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
-              "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:00:31Z",
+              "effective_from": "2023-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:00:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
           }
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-            "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+            "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+            "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
             "kind": "associazione",
-            "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "published_on": "2025-09-29",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
           },
-          "section": "Livelli contrattuali"
+          "page": "98",
+          "section": "Allegato 11 - Tabelle retributive",
+          "quote": "PAGA BASE DAL 01/04/2023 [...] VII € 779,47 € 5,16 € 517,51 € 1302,14"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:00:31Z",
+          "effective_from": "2023-04-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:00:31Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
@@ -552,21 +804,29 @@
             "valid_until": "2024-04-01",
             "value": "910.44",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/04/2023', row VI",
+                "quote": "PAGA BASE DAL 01/04/2023 [...] VI € 910,44 - € 519,76 € 1430,20"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -575,21 +835,29 @@
             "valid_until": "2025-03-01",
             "value": "967.22",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/04/2024', row VI",
+                "quote": "PAGA BASE DAL 01/04/2024 [...] VI € 967,22 - € 519,76 € 1486,98"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -598,21 +866,29 @@
             "valid_until": "2025-11-01",
             "value": "991.55",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/03/2025', row VI",
+                "quote": "PAGA BASE DAL 01/03/2025 [...] VI € 991,55 - € 519,76 € 1511,31"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -621,21 +897,29 @@
             "valid_until": "2026-11-01",
             "value": "1019.94",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/11/2025', row VI",
+                "quote": "PAGA BASE DAL 01/11/2025 [...] VI € 1019,94 - € 519,76 € 1539,70"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -644,21 +928,29 @@
             "valid_until": "2027-02-01",
             "value": "1048.33",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/11/2026', row VI",
+                "quote": "PAGA BASE DAL 01/11/2026 [...] VI € 1048,33 - € 519,76 € 1568,09"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -667,21 +959,29 @@
             "valid_until": null,
             "value": "1080.77",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/02/2027', row VI",
+                "quote": "PAGA BASE DAL 01/02/2027 [...] VI € 1080,77 - € 519,76 € 1600,53"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -701,21 +1001,29 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                 "kind": "associazione",
-                "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
               },
-              "section": "Tabella retributiva"
+              "page": "57",
+              "section": "Art. 189 c. 4, tabella indennita di contingenza (comprensiva EDR art. 190), 'IMPORTI (dal 1° gennaio 1990)'",
+              "quote": "VI € 519,76"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
-              "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:00:31Z",
+              "effective_from": "2023-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:00:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
           }
         },
@@ -732,41 +1040,59 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                 "kind": "associazione",
-                "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
               },
-              "section": "Tabella retributiva"
+              "page": "59",
+              "section": "Art. 199 - Terzi elementi nazionali",
+              "quote": "siano corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
+            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force: replaced_by_provincial_element.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
-              "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:00:31Z",
+              "effective_from": "2023-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:00:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
-          }
+          },
+          "replaced_by_provincial_element": true
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-            "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+            "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+            "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
             "kind": "associazione",
-            "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "published_on": "2025-09-29",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
           },
-          "section": "Livelli contrattuali"
+          "page": "98",
+          "section": "Allegato 11 - Tabelle retributive",
+          "quote": "PAGA BASE DAL 01/04/2023 [...] VI € 910,44 - € 519,76 € 1430,20"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:00:31Z",
+          "effective_from": "2023-04-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:00:31Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
@@ -781,21 +1107,29 @@
             "valid_until": "2024-04-01",
             "value": "1014.11",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/04/2023', row V",
+                "quote": "PAGA BASE DAL 01/04/2023 [...] V € 1014,11 - € 521,94 € 1536,05"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -804,21 +1138,29 @@
             "valid_until": "2025-03-01",
             "value": "1077.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/04/2024', row V",
+                "quote": "PAGA BASE DAL 01/04/2024 [...] V € 1077,35 - € 521,94 € 1599,29"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -827,21 +1169,29 @@
             "valid_until": "2025-11-01",
             "value": "1104.45",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/03/2025', row V",
+                "quote": "PAGA BASE DAL 01/03/2025 [...] V € 1104,45 - € 521,94 € 1626,39"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -850,21 +1200,29 @@
             "valid_until": "2026-11-01",
             "value": "1136.07",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/11/2025', row V",
+                "quote": "PAGA BASE DAL 01/11/2025 [...] V € 1136,07 - € 521,94 € 1658,01"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -873,21 +1231,29 @@
             "valid_until": "2027-02-01",
             "value": "1167.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/11/2026', row V",
+                "quote": "PAGA BASE DAL 01/11/2026 [...] V € 1167,69 - € 521,94 € 1689,63"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -896,21 +1262,29 @@
             "valid_until": null,
             "value": "1203.83",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/02/2027', row V",
+                "quote": "PAGA BASE DAL 01/02/2027 [...] V € 1203,83 - € 521,94 € 1725,77"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -930,21 +1304,29 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                 "kind": "associazione",
-                "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
               },
-              "section": "Tabella retributiva"
+              "page": "57",
+              "section": "Art. 189 c. 4, tabella indennita di contingenza (comprensiva EDR art. 190), 'IMPORTI (dal 1° gennaio 1990)'",
+              "quote": "V € 521,94"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
-              "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:00:31Z",
+              "effective_from": "2023-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:00:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
           }
         },
@@ -961,41 +1343,59 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                 "kind": "associazione",
-                "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
               },
-              "section": "Tabella retributiva"
+              "page": "59",
+              "section": "Art. 199 - Terzi elementi nazionali",
+              "quote": "siano corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
+            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force: replaced_by_provincial_element.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
-              "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:00:31Z",
+              "effective_from": "2023-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:00:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
-          }
+          },
+          "replaced_by_provincial_element": true
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-            "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+            "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+            "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
             "kind": "associazione",
-            "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "published_on": "2025-09-29",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
           },
-          "section": "Livelli contrattuali"
+          "page": "98",
+          "section": "Allegato 11 - Tabelle retributive",
+          "quote": "PAGA BASE DAL 01/04/2023 [...] V € 1014,11 - € 521,94 € 1536,05"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:00:31Z",
+          "effective_from": "2023-04-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:00:31Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
@@ -1010,21 +1410,29 @@
             "valid_until": "2024-04-01",
             "value": "1122.46",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga base dal 01/04/2023', row IV; Art. 196 (p58)",
+                "quote": "PAGA BASE DAL 01/04/2023 [...] IV € 1112,46 - € 524,22 € 1646,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1033,21 +1441,29 @@
             "valid_until": "2025-03-01",
             "value": "1192.46",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/04/2024', row IV",
+                "quote": "PAGA BASE DAL 01/04/2024 [...] IV € 1192,46 - € 524,22 € 1716,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1056,21 +1472,29 @@
             "valid_until": "2025-11-01",
             "value": "1222.46",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/03/2025', row IV",
+                "quote": "PAGA BASE DAL 01/03/2025 [...] IV € 1222,46 - € 524,22 € 1746,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1079,21 +1503,29 @@
             "valid_until": "2026-11-01",
             "value": "1257.46",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/11/2025', row IV",
+                "quote": "PAGA BASE DAL 01/11/2025 [...] IV € 1257,46 - € 524,22 € 1781,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1102,21 +1534,29 @@
             "valid_until": "2027-02-01",
             "value": "1292.46",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/11/2026', row IV",
+                "quote": "PAGA BASE DAL 01/11/2026 [...] IV € 1292,46 - € 524,22 € 1816,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1125,21 +1565,29 @@
             "valid_until": null,
             "value": "1332.46",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/02/2027', row IV",
+                "quote": "PAGA BASE DAL 01/02/2027 [...] IV € 1332,46 - € 524,22 € 1856,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -1159,21 +1607,29 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                 "kind": "associazione",
-                "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
               },
-              "section": "Tabella retributiva"
+              "page": "57",
+              "section": "Art. 189 c. 4, tabella indennita di contingenza (comprensiva EDR art. 190), 'IMPORTI (dal 1° gennaio 1990)'",
+              "quote": "IV € 524,22"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
-              "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:00:31Z",
+              "effective_from": "2023-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:00:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
           }
         },
@@ -1190,41 +1646,59 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                 "kind": "associazione",
-                "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
               },
-              "section": "Tabella retributiva"
+              "page": "59",
+              "section": "Art. 199 - Terzi elementi nazionali",
+              "quote": "siano corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
+            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force: replaced_by_provincial_element.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
-              "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:00:31Z",
+              "effective_from": "2023-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:00:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
-          }
+          },
+          "replaced_by_provincial_element": true
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-            "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+            "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+            "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
             "kind": "associazione",
-            "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "published_on": "2025-09-29",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
           },
-          "section": "Livelli contrattuali"
+          "page": "98",
+          "section": "Allegato 11 - Tabelle retributive",
+          "quote": "PAGA BASE DAL 01/04/2023 [...] IV € 1112,46 - € 524,22 € 1646,68"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:00:31Z",
+          "effective_from": "2023-04-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:00:31Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
@@ -1239,21 +1713,29 @@
             "valid_until": "2024-04-01",
             "value": "1297.84",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/04/2023', row III",
+                "quote": "PAGA BASE DAL 01/04/2023 [...] III € 1297,84 - € 527,90 € 1825,74"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1262,21 +1744,29 @@
             "valid_until": "2025-03-01",
             "value": "1378.78",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/04/2024', row III",
+                "quote": "PAGA BASE DAL 01/04/2024 [...] III € 1378,78 - € 527,90 € 1906,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1285,21 +1775,29 @@
             "valid_until": "2025-11-01",
             "value": "1413.47",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/03/2025', row III",
+                "quote": "PAGA BASE DAL 01/03/2025 [...] III € 1413,47 - € 527,90 € 1941,37"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1308,21 +1806,29 @@
             "valid_until": "2026-11-01",
             "value": "1453.94",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/11/2025', row III",
+                "quote": "PAGA BASE DAL 01/11/2025 [...] III € 1453,94 - € 527,90 € 1981,84"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1331,21 +1837,29 @@
             "valid_until": "2027-02-01",
             "value": "1494.41",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/11/2026', row III",
+                "quote": "PAGA BASE DAL 01/11/2026 [...] III € 1494,41 - € 527,90 € 2022,31"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1354,21 +1868,29 @@
             "valid_until": null,
             "value": "1540.66",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/02/2027', row III",
+                "quote": "PAGA BASE DAL 01/02/2027 [...] III € 1540,66 - € 527,90 € 2068,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -1388,21 +1910,29 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                 "kind": "associazione",
-                "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
               },
-              "section": "Tabella retributiva"
+              "page": "57",
+              "section": "Art. 189 c. 4, tabella indennita di contingenza (comprensiva EDR art. 190), 'IMPORTI (dal 1° gennaio 1990)'",
+              "quote": "III € 527,90"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
-              "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:00:31Z",
+              "effective_from": "2023-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:00:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
           }
         },
@@ -1419,41 +1949,59 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                 "kind": "associazione",
-                "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
               },
-              "section": "Tabella retributiva"
+              "page": "59",
+              "section": "Art. 199 - Terzi elementi nazionali",
+              "quote": "siano corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
+            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force: replaced_by_provincial_element.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
-              "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:00:31Z",
+              "effective_from": "2023-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:00:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
-          }
+          },
+          "replaced_by_provincial_element": true
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-            "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+            "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+            "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
             "kind": "associazione",
-            "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "published_on": "2025-09-29",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
           },
-          "section": "Livelli contrattuali"
+          "page": "98",
+          "section": "Allegato 11 - Tabelle retributive",
+          "quote": "PAGA BASE DAL 01/04/2023 [...] III € 1297,84 - € 527,90 € 1825,74"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:00:31Z",
+          "effective_from": "2023-04-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:00:31Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
@@ -1468,21 +2016,29 @@
             "valid_until": "2024-04-01",
             "value": "1518.42",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/04/2023', row II",
+                "quote": "PAGA BASE DAL 01/04/2023 [...] II € 1518,42 - € 532,54 € 2050,96"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1491,21 +2047,29 @@
             "valid_until": "2025-03-01",
             "value": "1613.11",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/04/2024', row II",
+                "quote": "PAGA BASE DAL 01/04/2024 [...] II € 1613,11 - € 532,54 € 2145,65"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1514,21 +2078,29 @@
             "valid_until": "2025-11-01",
             "value": "1653.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/03/2025', row II",
+                "quote": "PAGA BASE DAL 01/03/2025 [...] II € 1653,69 - € 532,54 € 2186,23"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1537,21 +2109,29 @@
             "valid_until": "2026-11-01",
             "value": "1701.04",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/11/2025', row II",
+                "quote": "PAGA BASE DAL 01/11/2025 [...] II € 1701,04 - € 532,54 € 2233,58"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1560,21 +2140,29 @@
             "valid_until": "2027-02-01",
             "value": "1748.39",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/11/2026', row II",
+                "quote": "PAGA BASE DAL 01/11/2026 [...] II € 1748,39 - € 532,54 € 2280,93"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1583,21 +2171,29 @@
             "valid_until": null,
             "value": "1802.50",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/02/2027', row II",
+                "quote": "PAGA BASE DAL 01/02/2027 [...] II € 1802,50 - € 532,54 € 2335,04"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -1617,21 +2213,29 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                 "kind": "associazione",
-                "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
               },
-              "section": "Tabella retributiva"
+              "page": "57",
+              "section": "Art. 189 c. 4, tabella indennita di contingenza (comprensiva EDR art. 190), 'IMPORTI (dal 1° gennaio 1990)'",
+              "quote": "II € 532,54"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
-              "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:00:31Z",
+              "effective_from": "2023-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:00:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
           }
         },
@@ -1648,41 +2252,59 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                 "kind": "associazione",
-                "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
               },
-              "section": "Tabella retributiva"
+              "page": "59",
+              "section": "Art. 199 - Terzi elementi nazionali",
+              "quote": "siano corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
+            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force: replaced_by_provincial_element.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
-              "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:00:31Z",
+              "effective_from": "2023-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:00:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
-          }
+          },
+          "replaced_by_provincial_element": true
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-            "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+            "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+            "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
             "kind": "associazione",
-            "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "published_on": "2025-09-29",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
           },
-          "section": "Livelli contrattuali"
+          "page": "98",
+          "section": "Allegato 11 - Tabelle retributive",
+          "quote": "PAGA BASE DAL 01/04/2023 [...] II € 1518,42 - € 532,54 € 2050,96"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:00:31Z",
+          "effective_from": "2023-04-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:00:31Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
@@ -1697,21 +2319,29 @@
             "valid_until": "2024-04-01",
             "value": "1755.41",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/04/2023', row I",
+                "quote": "PAGA BASE DAL 01/04/2023 [...] I € 1755,41 - € 537,52 € 2292,93"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1720,21 +2350,29 @@
             "valid_until": "2025-03-01",
             "value": "1864.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/04/2024', row I",
+                "quote": "PAGA BASE DAL 01/04/2024 [...] I € 1864,88 - € 537,52 € 2402,40"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1743,21 +2381,29 @@
             "valid_until": "2025-11-01",
             "value": "1911.80",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/03/2025', row I",
+                "quote": "PAGA BASE DAL 01/03/2025 [...] I € 1911,80 - € 537,52 € 2449,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1766,21 +2412,29 @@
             "valid_until": "2026-11-01",
             "value": "1966.54",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/11/2025', row I",
+                "quote": "PAGA BASE DAL 01/11/2025 [...] I € 1966,54 - € 537,52 € 2504,06"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1789,21 +2443,29 @@
             "valid_until": "2027-02-01",
             "value": "2021.28",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/11/2026', row I",
+                "quote": "PAGA BASE DAL 01/11/2026 [...] I € 2021,28 - € 537,52 € 2558,80"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1812,21 +2474,29 @@
             "valid_until": null,
             "value": "2083.84",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/02/2027', row I",
+                "quote": "PAGA BASE DAL 01/02/2027 [...] I € 2083,84 - € 537,52 € 2621,36"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -1846,21 +2516,29 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                 "kind": "associazione",
-                "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
               },
-              "section": "Tabella retributiva"
+              "page": "57",
+              "section": "Art. 189 c. 4, tabella indennita di contingenza (comprensiva EDR art. 190), 'IMPORTI (dal 1° gennaio 1990)'",
+              "quote": "I € 537,52"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
-              "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:00:31Z",
+              "effective_from": "2023-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:00:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
           }
         },
@@ -1877,41 +2555,59 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                 "kind": "associazione",
-                "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
               },
-              "section": "Tabella retributiva"
+              "page": "59",
+              "section": "Art. 199 - Terzi elementi nazionali",
+              "quote": "siano corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
+            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force: replaced_by_provincial_element.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
-              "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:00:31Z",
+              "effective_from": "2023-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:00:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
-          }
+          },
+          "replaced_by_provincial_element": true
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-            "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+            "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+            "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
             "kind": "associazione",
-            "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "published_on": "2025-09-29",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
           },
-          "section": "Livelli contrattuali"
+          "page": "98",
+          "section": "Allegato 11 - Tabelle retributive",
+          "quote": "PAGA BASE DAL 01/04/2023 [...] I € 1755,41 - € 537,52 € 2292,93"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:00:31Z",
+          "effective_from": "2023-04-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:00:31Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
@@ -1926,21 +2622,29 @@
             "valid_until": "2024-04-01",
             "value": "1948.72",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/04/2023', row Quadri",
+                "quote": "PAGA BASE DAL 01/04/2023 [...] Quadri € 1948,72 € 260,76 € 540,37 € 2749,85"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1949,21 +2653,29 @@
             "valid_until": "2025-03-01",
             "value": "2070.25",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/04/2024', row Quadri",
+                "quote": "PAGA BASE DAL 01/04/2024 [...] Quadri € 2070,25 € 260,76 € 540,37 € 2871,38"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1972,21 +2684,29 @@
             "valid_until": "2025-11-01",
             "value": "2122.33",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/03/2025', row Quadri",
+                "quote": "PAGA BASE DAL 01/03/2025 [...] Quadri € 2122,33 € 260,76 € 540,37 € 2923,46"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1995,21 +2715,29 @@
             "valid_until": "2026-11-01",
             "value": "2183.09",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/11/2025', row Quadri",
+                "quote": "PAGA BASE DAL 01/11/2025 [...] Quadri € 2183,09 € 260,76 € 540,37 € 2984,22"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -2018,21 +2746,29 @@
             "valid_until": "2027-02-01",
             "value": "2243.85",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/11/2026', row Quadri",
+                "quote": "PAGA BASE DAL 01/11/2026 [...] Quadri € 2243,85 € 260,76 € 540,37 € 3044,98"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -2041,21 +2777,29 @@
             "valid_until": null,
             "value": "2313.29",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                  "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                  "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                  "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                   "kind": "associazione",
-                  "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                  "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                  "published_on": "2025-09-29",
+                  "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
                 },
-                "section": "Tabella retributiva"
+                "page": "98",
+                "section": "Allegato 11, table 'Paga Base Dal 01/02/2027', row Quadri",
+                "quote": "PAGA BASE DAL 01/02/2027 [...] Quadri € 2313,29 € 260,76 € 540,37 € 3114,42"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:00:31Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:00:31Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -2075,21 +2819,29 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                 "kind": "associazione",
-                "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
               },
-              "section": "Tabella retributiva"
+              "page": "57",
+              "section": "Art. 189 c. 4, tabella indennita di contingenza (comprensiva EDR art. 190), 'IMPORTI (dal 1° gennaio 1990)'",
+              "quote": "Quadri € 540,37"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
-              "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:00:31Z",
+              "effective_from": "2023-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:00:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
           }
         },
@@ -2106,23 +2858,33 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                 "kind": "associazione",
-                "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
               },
-              "section": "Tabella retributiva"
+              "page": "59",
+              "section": "Art. 199 - Terzi elementi nazionali",
+              "quote": "siano corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
+            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force: replaced_by_provincial_element.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
-              "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:00:31Z",
+              "effective_from": "2023-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:00:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
-          }
+          },
+          "replaced_by_provincial_element": true
         },
         {
           "code": "IND_FUNZIONE",
@@ -2137,41 +2899,57 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-                "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
                 "kind": "associazione",
-                "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
               },
-              "section": "Tabella retributiva"
+              "page": "98",
+              "section": "Allegato 11, 'Altri elementi' column, row Quadri; Art. 113 (p38-39)",
+              "quote": "Quadri € 2183,09 € 260,76 € 540,37 € 2984,22"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
-              "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:00:31Z",
+              "effective_from": "2023-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:00:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
           }
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-dmo-testo-unico-29-09-2025-pdf",
-            "title": "ccnl-dmo-testo-unico-29-09-2025-pdf",
+            "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+            "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
             "kind": "associazione",
-            "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf"
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "published_on": "2025-09-29",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
           },
-          "section": "Livelli contrattuali"
+          "page": "98",
+          "section": "Allegato 11 - Tabelle retributive",
+          "quote": "PAGA BASE DAL 01/04/2023 [...] Quadri € 1948,72 € 260,76 € 540,37 € 2749,85"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:00:31Z",
+          "effective_from": "2023-04-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:00:31Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     }
@@ -2194,8 +2972,13 @@
         },
         {
           "months_from": 18,
-          "months_until": null,
+          "months_until": 36,
           "levels_below": 1
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "levels_below": 0
         }
       ]
     },
@@ -2208,11 +2991,11 @@
       "periods": [
         {
           "months_from": 0,
-          "months_until": 12,
+          "months_until": 24,
           "levels_below": 1
         },
         {
-          "months_from": 12,
+          "months_from": 24,
           "months_until": null,
           "levels_below": 0
         }
@@ -2224,15 +3007,15 @@
     "version": "2026.2",
     "effective_from": "2023-04-01",
     "effective_until": null,
-    "source": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf",
+    "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "c54823bdb828daa0f6c5f4713dac92562af668ec33450c09a5a7f660d603fbd7",
+    "source_hash": "6125ff237546ea4dd44f01959b12d46152b09eb229f1d02fd250e891322339b6",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "gross_incl_allowances",
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -2252,21 +3035,74 @@
             "weekday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "dmo-federdistribuzione",
-                "title": "CCNL Distribuzione Moderna Organizzata (Federdistribuzione)",
-                "kind": "tabella_retributiva",
-                "url": "https://ilccnl.it/contratto/ccnl/distribuzione-moderna-organizzata---federdistribuzione"
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+                "kind": "associazione",
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
               },
-              "section": "Straordinario diurno feriale (standard DMO/terziario)"
+              "page": "42",
+              "section": "Art. 132 c.1 - Maggiorazione lavoro straordinario",
+              "quote": "- 15% (quindici per cento) per le prestazioni di lavoro dalla 41a alla 48a ora settimanale;"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2023-04-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:00:31Z",
+              "effective_from": "2023-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:00:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
+            }
+          }
+        },
+        {
+          "code": "OT_DIURNO_EXTRA",
+          "description": "Straordinario diurno oltre la 48a ora settimanale",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "0.20"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "hour_threshold_per_week": 8,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+                "kind": "associazione",
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+              },
+              "page": "42",
+              "section": "Art. 132 c. 1",
+              "quote": "- 20% (venti per cento) per le prestazioni di lavoro eccedenti la 48a ora settimanale."
+            },
+            "transformation": "20% from the 49th weekly hour, the 9th hour of overtime over the 40 of Art. 115.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:00:31Z",
+              "effective_from": "2023-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:00:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
           }
         },
@@ -2278,7 +3114,7 @@
             "periods": [
               {
                 "valid_from": "2023-04-01",
-                "value": "0.30",
+                "value": "0.50",
                 "provenance": null,
                 "valid_until": null
               }
@@ -2288,21 +3124,29 @@
             "night"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "dmo-federdistribuzione",
-                "title": "CCNL Distribuzione Moderna Organizzata (Federdistribuzione)",
-                "kind": "tabella_retributiva",
-                "url": "https://ilccnl.it/contratto/ccnl/distribuzione-moderna-organizzata---federdistribuzione"
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+                "kind": "associazione",
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
               },
-              "section": "Straordinario notturno"
+              "page": "42",
+              "section": "Art. 132 c. 3",
+              "quote": "del 50% (cinquanta percento) sulla quota oraria della normale retribuzione di cui all’art. 189."
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2023-04-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:00:31Z",
+              "effective_from": "2023-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:00:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
           }
         },
@@ -2324,21 +3168,29 @@
             "holiday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "dmo-federdistribuzione",
-                "title": "CCNL Distribuzione Moderna Organizzata (Federdistribuzione)",
-                "kind": "tabella_retributiva",
-                "url": "https://ilccnl.it/contratto/ccnl/distribuzione-moderna-organizzata---federdistribuzione"
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+                "kind": "associazione",
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
               },
-              "section": "Straordinario festivo"
+              "page": "42",
+              "section": "Art. 132 c.2; Art. 138 (p44) festivity work paid as straordinario festivo",
+              "quote": "cui all’art. 191 e con la maggiorazione del 30% (trenta per cento) sulla quota oraria della normale"
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2023-04-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:00:31Z",
+              "effective_from": "2023-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:00:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
           }
         },
@@ -2363,18 +3215,24 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "dmo-federdistribuzione",
-                "title": "CCNL Distribuzione Moderna Organizzata (Federdistribuzione)",
-                "kind": "tabella_retributiva",
-                "url": "https://ilccnl.it/contratto/ccnl/distribuzione-moderna-organizzata---federdistribuzione"
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+                "kind": "associazione",
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
               },
-              "section": "Straordinario notturno festivo — 50%"
+              "page": "43",
+              "section": "Art. 132 c. 5",
+              "quote": "5. Le varie maggiorazioni previste dal presente articolo non sono cumulabili tra loro."
             },
+            "transformation": "No clause sets a night holiday rate; the premiums of Art. 132 do not cumulate (c. 5), so the higher of the night 50% and the holiday 30% applies.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2023-04-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:00:31Z",
+              "effective_from": "2023-04-01",
+              "verification_status": "unverified"
             }
           }
         }
@@ -2384,21 +3242,29 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "dmo-federdistribuzione",
-            "title": "CCNL Distribuzione Moderna Organizzata (Federdistribuzione)",
-            "kind": "tabella_retributiva",
-            "url": "https://ilccnl.it/contratto/ccnl/distribuzione-moderna-organizzata---federdistribuzione"
+            "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+            "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+            "kind": "associazione",
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "published_on": "2025-09-29",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
           },
-          "section": "Divisore giornaliero 26 (distribuzione moderna/Federdistribuzione)"
+          "page": "58",
+          "section": "Art. 193 - Quota giornaliera",
+          "quote": "l’importo mensile per il divisore convenzionale 26, fatto salvo quanto previsto dall’art. 173."
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2023-04-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:00:31Z",
+          "effective_from": "2023-04-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:00:31Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
@@ -2411,51 +3277,91 @@
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "dmo-federdistribuzione",
-            "title": "CCNL Distribuzione Moderna Organizzata (Federdistribuzione)",
-            "kind": "tabella_retributiva",
-            "url": "https://ilccnl.it/contratto/ccnl/distribuzione-moderna-organizzata---federdistribuzione"
+            "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+            "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+            "kind": "associazione",
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "published_on": "2025-09-29",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
           },
-          "section": "Ferie — 26 giorni lavorativi annui (base 6 gg/settimana)"
+          "page": "45",
+          "section": "Art. 142 c.1 - Ferie",
+          "quote": "ventisei giorni lavorativi, fermo restando che la settimana lavorativa"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2023-04-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:00:31Z",
+          "effective_from": "2023-04-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:00:31Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
     "sickness_rules": {
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+            "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+            "kind": "associazione",
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "published_on": "2025-09-29",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+          },
+          "page": "52",
+          "section": "Art. 170 c. 1 b), c. 2, c. 6; Art. 169 (p. 51)",
+          "quote": "2) 75% (settantacinque per cento) per i giorni dal 4° al 20°; [...] 100% per i primi due eventi di malattia, al 66% per il terzo evento ed al 50% per il quarto evento,"
+        },
+        "transformation": "Integration to 100% of the net daily pay for days 1-3, 75% for days 4-20, 100% from day 21; the carenza is paid 100% for the first two events of the calendar year, 66% for the third, 50% for the fourth, 0 after (c. 2, exempt events of c. 3 not modelled); apprentices excluded (c. 6); comporto 180 days in a calendar year (Art. 169).",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:00:31Z",
+          "effective_from": "2023-04-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:00:31Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
+        }
+      },
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
-      "provenance": {
-        "status": "derived",
-        "location": {
-          "source_document": {
-            "document_id": "dmo-federdistribuzione",
-            "title": "CCNL Distribuzione Moderna Organizzata (Federdistribuzione)",
-            "kind": "tabella_retributiva",
-            "url": "https://ilccnl.it/contratto/ccnl/distribuzione-moderna-organizzata---federdistribuzione"
-          },
-          "section": "Malattia — integrazione al 100% per 180 giorni (standard terziario distribuzione)"
+      "net_basis": true,
+      "apprentices_excluded": true,
+      "day_bands": [
+        {
+          "day_from": 4,
+          "day_until": 21,
+          "integration_rate": "0.75"
         },
-        "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2023-04-01"
+        {
+          "day_from": 21,
+          "day_until": null,
+          "integration_rate": "1"
         }
+      ],
+      "comporto_calendar_year": true,
+      "carenza_by_event": {
+        "from_event": 3,
+        "rates": [
+          "0.66",
+          "0.50",
+          "0"
+        ]
       }
     }
   },
   "verification": {
-    "confidence": "unverified",
-    "readiness": "exploratory",
+    "confidence": "verified",
+    "readiness": "production",
     "verified_cases": 0,
     "reviews": [
       {
@@ -2468,7 +3374,34 @@
         "findings": [
           "The review recorded no list of the documents it read."
         ]
+      },
+      {
+        "id": "2026-10-13-ai-production",
+        "date": "2026-10-13",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Every payable rule read again in the Testo Unico of 29 September 2025 (Federdistribuzione, 99 pages), for the production tier.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+          }
+        ],
+        "findings": [
+          "90 records verified; the work rules cited an aggregator and now cite the Testo Unico. The 2025/01 URL of the sources returns 404: replaced by the 2026/04 one.",
+          "Night overtime 50%, not 30% (Art. 132 c. 3); added the 20% beyond the 48th weekly hour (c. 1). The premiums are on the normale retribuzione of Art. 189 (hourly_base_method gross_incl_allowances, which documents the rule: the caller states OvertimeEvent.hourly_rate).",
+          "Sickness: 75% for days 4-20 and 100% from day 21 of the net daily pay, carenza by event, apprentices excluded (Art. 170), not a flat 100%.",
+          "Seniority amounts in force since 1990 (Art. 188): the gap before 23 April 2024 removed.",
+          "Terzo elemento 2.07 due only without a provincial element (Art. 199): now gated.",
+          "Apprenticeship: second half of level VI at VII (Art. 46 c. 3); the 36-month end of levels II-V stated.",
+          "Added the payment days of the tredicesima and quattordicesima and Fon.Te. (Art. 95, 1.55% and 0.55%, apprentices 1.05%).",
+          "Night holiday overtime 0.50 stays derived: no clause sets it, Art. 132 c. 5 forbids cumulation.",
+          "No renewal after the Testo Unico through October 2026."
+        ]
       }
-    ]
+    ],
+    "owner": "maintainer",
+    "review_due": "2027-04-01"
   }
 }
