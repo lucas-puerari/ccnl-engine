@@ -699,6 +699,23 @@
       "wheel_resource": "agreement/dmo-federdistribuzione.json.gz"
     },
     {
+      "dataset_id": "agreement/edilizia-ance-impiegati",
+      "path": "agreement/edilizia-ance-impiegati.json",
+      "dataset": "agreement",
+      "year": null,
+      "scope": "edilizia-ance-impiegati",
+      "model": "CCNL",
+      "schema_version": "0.5",
+      "valid_from": "2025-02-01",
+      "valid_to": null,
+      "ruleset_id": "ccnl/edilizia-ance-impiegati",
+      "ruleset_version": "2026.2",
+      "source_hash": "bf70d7e7d2b0a2c4f1805141aa5d96da8ff4403bcc28fa40347342427580e8b8",
+      "source_type": "contracting_party",
+      "owner": "maintainer",
+      "wheel_resource": "agreement/edilizia-ance-impiegati.json.gz"
+    },
+    {
       "dataset_id": "agreement/edilizia-ance",
       "path": "agreement/edilizia-ance.json",
       "dataset": "agreement",
@@ -710,9 +727,9 @@
       "valid_to": null,
       "ruleset_id": "ccnl/edilizia-ance",
       "ruleset_version": "2026.2",
-      "source_hash": "2aa47cc72600555ead8ec04557a4299afd05948fcf967b1665fb2aae7ae263ee",
-      "source_type": "commercial_secondary",
-      "owner": "ccnl-engine maintainers",
+      "source_hash": "8be500ae25acf2694d37b394f28ba216896cbe0e6d75d8bd635c59fef185e018",
+      "source_type": "contracting_party",
+      "owner": "maintainer",
       "wheel_resource": "agreement/edilizia-ance.json.gz"
     },
     {
@@ -2905,7 +2922,7 @@
       "valid_to": null,
       "ruleset_id": "inps/sick-pay-rates",
       "ruleset_version": "1.1",
-      "source_hash": "2eade980d0901da0094e3e1f06e639fc1b53df2bcef23f1f0a2f945926812821",
+      "source_hash": "b0630175e3381a7151af51f20f3c17ff9fee4ec5c62a9b1776382e36f92e8ae4",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "sickness/indemnity/rates.json.gz"

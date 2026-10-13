@@ -1,4 +1,4 @@
-# CCNL Edilizia — Industria (ANCE)
+# CCNL Edilizia — Industria (ANCE), operai
 
 | | |
 |---|---|
@@ -8,7 +8,7 @@
 | **Last renewal** | — |
 | **Workers (est.)** | ~550k |
 | **Ruleset version** | `2026.2` |
-| **Readiness** | 🧪 Exploratory |
+| **Readiness** | 🏭 Production |
 
 [← Contracts index](index.md)
 
@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | pension_fund_contribution, seniority |
+| **Limits of this contract** | base_salary, sickness |
 
 2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -43,16 +43,16 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 43 derived / 2 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
-| **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
-| **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
+| **Rule provenance** | 20 verified / 16 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
+| **Readiness** | 🏭 Production | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
 ## Freshness
 
 | | |
 |---|---|
 | **Last renewal** | — |
-| **Last review** | 2026-09-18 |
+| **Last review** | 2026-10-13 |
 | **Latest salary tranche** | 2027-03-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-09-18 | maintainer (human) | Whole file. The values checked were not recorded. | confirmed | The review recorded no list of the documents it read. |
+| 2026-10-13 | claude-opus-5-5 (ai) | Every payable rule of the operai read again in the ANCE minimi table of the CCNL of 21 February 2025, the CCNL of 19 April 2010 (FILLEA text), the Art. 92 apprenticeship text of 2019 and the ANCE provincial tables, for the production tier. | corrected | 26 records verified, 12 derived (contingenza, EDR, contractual fund, absence quota, sickness mapping).<br>Split by category (Art. 77): the operai of levels 1-4 in edilizia-ance, the impiegati and quadri of levels 1-7 in edilizia-ance-impiegati.<br>base_salary is now the national minimo of the ANCE table; the ex contingenza and the EDR 10.33 are fixed allowances (derived, ANCE provincial tables), the EDR outside the TFR base. The previous consolidated values (minimo + contingenza + EDR) matched.<br>Aggregator sources (idealista, leggeinchiaro, businessonline, kitech) removed.<br>Absence quota: by_hourly 8 hours (1/173 of Art. 44 and Allegato A), not by_26, which no clause supports.<br>contractual_fund_uncovered closed: every operaio level has an hourly Prevedi amount and every impiegato or quadro level a monthly one.<br>No renewal changing the national minimi after the verbale of 21 February 2025 through October 2026.<br>Twelve monthly payments, not 13: the gratifica natalizia and the ferie are the 18.5% of Art. 18 through the Cassa Edile (declared).<br>No scatti for the operai (Art. 49 is for the impiegati; APE through the Cassa Edile, Art. 29): seniority removed, the apprentice seniority note closed.<br>Sickness: the coefficients of Art. 26, not 100% for 180 days; comporto 270 days (derived mapping, declared).<br>Night overtime 40% (Art. 19) confirmed; sources now the CCNL text.<br>Notes corrected: the TFR is paid by the employer (Art. 33), not the Cassa Edile; the INPS rates are the verified 2026 edilizia table. |
 
 ## Salary table
 
@@ -67,59 +68,39 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `7` | Quadro / 1st-category employee — managerial function, sector responsibility | € 2,878.86 | 2027-03-01 |
-| `6` | Senior technical / administrative employee — surveyor, draughtsperson, chief accountant | € 2,641.19 | 2027-03-01 |
-| `5` | Ordinary clerical employee — routine tasks, basic accounting | € 2,284.70 | 2027-03-01 |
-| `4` | 4th-category worker — gang leader / highly specialised worker | € 2,165.89 | 2027-03-01 |
-| `3` | Specialised worker — bricklayer, carpenter, ironworker, tiler | € 2,047.05 | 2027-03-01 |
-| `2` | Qualified worker — directed construction work, use of trade tools | € 1,892.57 | 2027-03-01 |
-| `1` | Common worker — general labourer, material handling | € 1,690.56 | 2027-03-01 |
+| `4` | Livello 4: operai di quarto livello (art. 77) | € 1,634.31 | 2027-03-01 |
+| `3` | Livello 3: operai specializzati (art. 77) | € 1,517.56 | 2027-03-01 |
+| `2` | Livello 2: operai qualificati (art. 77) | € 1,365.81 | 2027-03-01 |
+| `1` | Livello 1: operai comuni (art. 77) | € 1,167.36 | 2027-03-01 |
 
 ## Seniority increments
 
 **Cadence:** every 24 months  
-**Maximum:** 5 increments
-
-| Level | Increment (monthly) |
-|---|---:|
-| `1` | € 8.22 |
-| `2` | € 8.22 |
-| `3` | € 8.99 |
-| `4` | € 9.62 |
-| `5` | € 10.46 |
-| `6` | € 12.85 |
-| `7` | € 13.94 |
+**Maximum:** 0 increments
 
 ## Apprenticeship
 
 **standard** (type: `percentage`)  
-Destination levels: `2`, `3`, `4`, `5`, `6`, `7`  
+Destination levels: `2`, `3`, `4`  
 percentage: 1.00
 
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "edilizia-ance/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
-
-!!! warning "edilizia-ance/contractual_fund_uncovered · pension_fund_contribution · impact yes · open"
-    The Prevedi table has no row for some levels of the bundle (a quadro level, or an operaio at a level the hourly table lacks): such a worker owes a contractual contribution the engine does not compute, and the run has the incomplete issue contractual_fund_not_computed.
+!!! warning "edilizia-ance/edilizia_operai_sickness · sickness · impact yes · open"
+    SICKNESS (Art. 26): the employer pays a coefficient of the hourly minimo, ex contingenza and indennità territoriale times a sixth of the weekly hours, six days a week: 0.5495 for days 1-3 when the sickness lasts more than 6 days, 1.0495 when it lasts more than 12, 0.3795 for days 4-20 and 0.1565 for days 21-180 on top of the INPS indemnity, 0.5495 for days 181-365. The engine stores the coefficient plus the INPS rate of the day as the target (0.8795 and 0.8231), so its employer share is the coefficient on the engine's daily quota, which counts the EDR and not the indennità territoriale. Not modelled: the 1.0495 of a sickness over 12 days (paid 0.5495), the comporto of 365 days past 3.5 years of seniority and the cumulated comporto of 9 months in 20 (12 in 24), the 4.95% paid for the carenza days of a sickness of up to 6 days and the 18.5% accrued with the Cassa Edile during the sickness.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Source the Prevedi amount of the levels without a row and add it, then remove this note.
+    **Remediation:** Model the coefficients of Art. 26 on their own base and the comporto by seniority.
 
-!!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
-    Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
+!!! warning "edilizia-ance/edilizia_operai_unmodelled · base_salary · impact yes · open"
+    NOT MODELLED AMOUNTS: the 18.5% for ferie and gratifica natalizia (8.50% + 10%) the employer accrues with the Cassa Edile on the hours of normal work (Art. 18; the ferie days are paid by the engine as days of the month) and the 4.95% for riposi annui paid each pay period on the same hours (Art. 5 B); the indennità territoriale di settore and the EVR set by the provincial agreements (Art. 12 and 46); the una tantum premio di ingresso of EUR 100 to operai under 29 of the verbale of 3 March 2022 (Allegato 5); the APE paid by the Cassa Edile (Art. 29); the premiums on ordinary hours of Art. 19 (lavoro festivo 45%, notturno 28%, turni 9% and 12%, guardiano 8%, notturno continuativo 16%, festivo notturno 50%, domenicale con riposo compensativo 8%) and the 8% of a Saturday in a six-day week (Art. 5); the indennità for lavori speciali disagiati, alta montagna and cantiere ferroviario (Art. 20-21); mensa, trasporto and trasferta (provincial; verbale 2025); the riduzione contributiva edile on the employer INPS contributions of full-time operai (art. 29 L. 341/1995); the TFR base of Art. 33, which also counts the indennità territoriale, the 18.5% and the 4.95%.
 
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+    **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Resolved: the remaining CCNLs are tracked by their own apprentice_seniority limitation.
+    **Remediation:** Model the provincial elements as inputs and the percentage accruals of the CCNL.
 
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.
@@ -160,28 +141,23 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-02-21 | [↗](https://www.idealista.it/news/finanza/lavoro/2025/07/10/251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita) |
-| — | — | 2025-02-21 | [↗](https://leggeinchiaro.it/ccnl-edilizia-industria-tabelle-retributive/) |
-| — | — | — | [↗](https://www.businessonline.it/articoli/scatti-anzianita-contratto-edile-tabella-ogni-quanto-avvengono-e-di-quanto-aumenta-stipendio.html) |
+| — | — | 2025-02-21 | [↗](https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf) |
+| — | — | 2025-02-21 | [↗](https://ance.it/wp-content/uploads/allegati/20250221_Verbale_accordo_rinnovo_CCNL_firmato.pdf) |
+| — | — | 2010-04-19 | [↗](https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf) |
+| — | — | 2019-04-04 | [↗](https://ance.it/wp-content/uploads/archive/37937-Art%20%2092%20Apprendistato-Nota%20a%20verbale.pdf) |
 
 ??? note "Coverage notes"
-    RENEWAL: CCNL signed on 21 February 2025, effective 1/2/2025-30/6/2028. Three pay increases: 1st from 1/2/2025, 2nd from 1/3/2026, 3rd from 1/3/2027.
+    RENEWAL: verbale di accordo of 21 February 2025 (ANCE, Legacoop Produzione e Servizi, Confcooperative Lavoro e Servizi, AGCI Produzione e Lavoro, Feneal-Uil, Filca-Cisl, Fillea-Cgil) renewing the CCNL of 3 March 2022 to 30 June 2028; three tranches of the minimi from 1 February 2025, 1 March 2026 and 1 March 2027 (ANCE table of the new minimi, the same as Allegato 10 of the verbale). Normative text: CCNL of 19 April 2010 (FILLEA text), as amended by the verbali of 2014, 2018, 2022 and 2025. The testo coordinato signed on 24 March 2026 is in the ANCE members' area and was not read.
     
-    CONSOLIDATED MINIMUMS: the base_salary values are the monthly consolidated tabular minimums (base pay + contingency + EDR). Feb 2025 breakdown for reference: L1 = 1067.36 + 512.87 + 10.33; L2 = 1248.81 + 516.43 + 10.33; L3 = 1387.56 + 519.16 + 10.33; L4 = 1494.31 + 521.25 + 10.33; L5 = 1601.02 + 523.35 + 10.33; L6 = 1921.23 + 529.63 + 10.33; L7 = 2134.71 + 533.82 + 10.33. fixed_allowances is empty for all levels. Verification: L1 Feb 2025 = 1590.56 / 173 = EUR 9.19/h (matches the hourly rate on idealista.it).
+    STRUCTURE: the CCNL treats operai and impiegati differently (extra months, seniority, sickness, night overtime), so the bundle splits it: edilizia-ance holds the operai of levels 1-4, edilizia-ance-impiegati the impiegati of levels 1-7 and the quadri of level 7 (Art. 77).
     
-    DUAL STRUCTURE: the CCNL distinguishes blue-collar workers (levels 1-4, paid hourly) and white-collar/managerial staff (levels 5-7, paid monthly). The engine works with monthly values only. Monthly minimums for blue-collar workers are the official published tabular values (hourly rate × 173 hours already incorporated in the monthly minimums). hourly_divisor=173 (40h/week × 52/12 ≈ 173.33, rounded to 173 as per the official hourly table).
+    PAY ELEMENTS: base_salary is the national minimo of the ANCE table; the ex indennità di contingenza and the EDR of EUR 10.33 (frozen national elements of the Protocollo of 31 July 1992) are fixed allowances read from the ANCE provincial tables. The EDR is outside the TFR base (Art. 33 and 72). hourly_divisor 173: Allegato A and Art. 44 last comma.
     
-    CASSA EDILE: the Cassa Edile manages for blue-collar workers: annual leave (8.5%), Christmas bonus (10%), TFR, APE (Professional Building Seniority). None of these components is modelled by the engine. Consequences: (1) employer_cost_annual is underestimated by ~18.5% of gross for blue-collar workers; (2) tfr_annual is calculated using the standard INPS formula (÷ 13.5) while for blue-collar workers the TFR flows to the Cassa Edile; (3) net_monthly is correct (Cassa Edile does not affect the employee's payslip).
+    INPS: the rates of contribution/2026/edilizia.json, by category of the worker.
     
-    BLUE-COLLAR SENIORITY: for blue-collar workers (levels 1-4), the ANCE CCNL provides APE (Professional Building Seniority) through the Cassa Edile instead of standard seniority increments. The engine models the tabular increment amounts for all levels (L1-L2: EUR 8.22, L3: EUR 8.99, L4: EUR 9.62 biennial) as an approximation; the real APE mechanism is managed by the Cassa Edile and is not modelled.
+    OPERAI: twelve monthly payments; ferie and gratifica natalizia are paid as 18.5% of the hourly elements through the Cassa Edile (Art. 16 and 18), not as extra months. No scatti di anzianità: the operai receive the APE through the Cassa Edile (Art. 29). The TFR is paid by the employer under L. 297/1982 (Art. 33). Prevedi: the contractual contribution of an operaio is an amount per ordinary hour worked (state PeriodFacts.ordinary_hours_worked).
     
-    EVR: the Variable Pay Element (EVR) is a variable provincial/company bonus. It is not modelled (varies by province and year).
-    
-    ADDITIONAL_MONTHS: 13 monthly payments (Christmas bonus). The 14th monthly payment is not provided for in the construction industry CCNL. For blue-collar workers the Christmas bonus is paid through the Cassa Edile — the engine includes it in gross_annual via the ×13 multiplier as an approximation.
-    
-    INPS: uses 2026-edilizia.json with proxy rates (kitech.it). Employee 9.19%, employer tiers 28.46%/29.06%/29.50%. Cassa Edile (~18.5%) is separate — not included.
-    
-    APPRENTICESHIP (Art. 92 CCNL, as reformed by CNCE notice n.660 of 04/04/2019): percentage type, single scheme for all levels 2-7 (level 1 excluded). 6 semesters = 36 months: 72%/72%/78%/78%/85%/90% then 100%. The old under-classification system was explicitly abolished from 01/04/2019. Craft/artistic figures: 48 months (8 semesters, semesters 7-8 at 90%); not modelled separately (no specific level code available). Structure confirmed unchanged in the 21/02/2025 renewal. Source: CNCE notice n.660/2019 (cassaedilevarese.it); cassaedilesavona.com Art.92; BibLus/ANCE dossier.
+    APPRENTICESHIP: Art. 92 (ANCE text of 4 April 2019): 72/72/78/78/85/90% by semester for 36 months towards levels 2-4 of the operai; the lavorazioni artistiche (48 months, semesters 7-8 at 90%), the apprendistato duale and the alta formazione are not modelled.
     
 
 ## Raw data

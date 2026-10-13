@@ -187,10 +187,6 @@
       "accrual_rule": "assumed",
       "additional_months[2025-05-01]": "assumed"
     },
-    "agreement/edilizia-ance.json": {
-      "accrual_rule": "assumed",
-      "additional_months[2025-02-01]": "assumed"
-    },
     "agreement/edilizia-artigianato-cna.json": {
       "additional_months[2025-05-01]": "assumed"
     },
@@ -1333,9 +1329,14 @@
       "dmo-federdistribuzione/provincial_elements_missing",
       "dmo-federdistribuzione/sickness_net_basis"
     ],
+    "agreement/edilizia-ance-impiegati.json": [
+      "edilizia-ance-impiegati/apprentice_seniority",
+      "edilizia-ance-impiegati/edilizia_impiegati_sickness",
+      "edilizia-ance-impiegati/edilizia_impiegati_unmodelled"
+    ],
     "agreement/edilizia-ance.json": [
-      "edilizia-ance/apprentice_seniority",
-      "edilizia-ance/contractual_fund_uncovered"
+      "edilizia-ance/edilizia_operai_sickness",
+      "edilizia-ance/edilizia_operai_unmodelled"
     ],
     "agreement/edilizia-artigianato-cna.json": [
       "edilizia-artigianato-cna/apprentice_inps_rates_unsourced",

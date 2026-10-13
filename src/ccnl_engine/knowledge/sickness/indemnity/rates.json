@@ -38,7 +38,7 @@
     "published_at": "2026-10-04",
     "source": "D.L. 30 dicembre 1979 n. 663, artt. 1-2 (conv. L. 29 febbraio 1980 n. 33) for the waiting period and the indemnity; rates, 180-day annual maximum and cover as summarised by Assolombarda, Lavoro a tempo indeterminato - Tutele previdenziali (secondary, read 2026-10-04); not checked against an INPS circular",
     "verification_status": "unverified",
-    "source_hash": "2eade980d0901da0094e3e1f06e639fc1b53df2bcef23f1f0a2f945926812821",
+    "source_hash": "b0630175e3381a7151af51f20f3c17ff9fee4ec5c62a9b1776382e36f92e8ae4",
     "source_type": "contracting_party"
   },
   "annual_max_days": 180,
@@ -129,6 +129,17 @@
       ],
       "covered": false,
       "source": "INPS, Indennità di malattia/degenza ospedaliera e visite mediche di controllo (https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.indennit--di-malattia-e-visite-mediche-di-controllo.html, updated 21 September 2026, read 2026-10-12), Indennità di malattia per lavoratori dipendenti: 'Non spetta a (elenco non esaustivo): collaboratori familiari (colf e badanti); impiegati dell'industria; quadri (industria e artigianato); dirigenti; portieri; lavoratori autonomi'"
+    },
+    {
+      "sectors": [
+        "edilizia"
+      ],
+      "categories": [
+        "impiegato",
+        "quadro"
+      ],
+      "covered": false,
+      "source": "INPS, Indennità di malattia/degenza ospedaliera e visite mediche di controllo (https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.indennit--di-malattia-e-visite-mediche-di-controllo.html, updated 21 September 2026, read 2026-10-12), Indennità di malattia per lavoratori dipendenti: 'Non spetta a (elenco non esaustivo): collaboratori familiari (colf e badanti); impiegati dell'industria; quadri (industria e artigianato); dirigenti; portieri; lavoratori autonomi'; the impiegati and quadri of building firms are impiegati of industry"
     },
     {
       "sectors": [

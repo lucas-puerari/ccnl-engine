@@ -1,0 +1,27 @@
+{
+  "verification": "source_linked",
+  "_description": "CCNL Edilizia Industria ANCE (CNEL F012), operaio comune at level 1, April 2026 regular run, permanent, full time: the tranche of 1 March 2026.",
+  "_notes": [
+    "Row 'Operaio Comune liv. 1' of the ANCE Ragusa table of 1 March 2026: retribuzione base mensile 1.117,36, indennità di contingenza 512,87, E.D.R. 10,33.",
+    "The base is the national minimo of level I from 1 March 2026 (ANCE table of the CCNL of 21 February 2025); contingenza and EDR are the bundle's fixed allowances (523.20).",
+    "The indennità territoriale di settore (166,67, provincial) and the 18.5% and 4.95% percentages are not modelled: the period gross is not pinned."
+  ],
+  "source": {
+    "document": "ANCE Ragusa, Tabella delle retribuzioni impiegati e operai dal 1 marzo 2026",
+    "url": "https://ance.it/wp-content/uploads/allegati/2026-TABELLA_RETRIBUZIONI_MARZO_2026.pdf",
+    "sha256": "29959db0aa086d2ca10e59a0aca6b6cbf59d686a741582320ff5a69ba5e0c07e",
+    "page": "1",
+    "section": "Row 'Operaio Comune liv. 1': retribuzione base mensile, indennità di contingenza, E.D.R."
+  },
+  "inputs": {
+    "ccnl_slug": "edilizia-ance.json",
+    "level_code": "1",
+    "year": 2026,
+    "month": 4,
+    "headcount": 50
+  },
+  "expected": {
+    "base_salary": "1117.36",
+    "fixed_allowances": "523.20"
+  }
+}

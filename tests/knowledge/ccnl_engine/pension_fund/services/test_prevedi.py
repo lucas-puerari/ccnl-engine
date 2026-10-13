@@ -46,7 +46,8 @@ if TYPE_CHECKING:
 
 pytestmark = pytest.mark.legal_scenario
 
-_EDILI = "edilizia-ance.json"
+_IMPIEGATI = "edilizia-ance-impiegati.json"
+_OPERAI = "edilizia-ance.json"
 _FIXED = FixedTerm(renewals=0, naspi_exclusion=NaspiExclusion.NONE)
 
 
@@ -56,7 +57,7 @@ def _employment(
     **fields: Any,  # noqa: ANN401
 ) -> Employment:
     base = Employment(
-        ccnl_slug=_EDILI,
+        ccnl_slug=_IMPIEGATI,
         level_code=level,
         category=category,
         seniority=new_hire(),
@@ -129,7 +130,7 @@ def test_fixed_term_of_three_months_owes_none(
 def test_operaio_pays_per_hour_worked() -> None:
     """Operaio qualificato, 160 hours: 0.0801 x 160 = 12.816 -> 13."""
     result = regular_period(
-        employment=_employment("2", WorkerCategory.OPERAIO),
+        employment=_employment("2", WorkerCategory.OPERAIO, ccnl_slug=_OPERAI),
         current_year=employment_only(),
         ordinary_hours_worked=ContributableHours(Decimal(160)),
     )
@@ -140,7 +141,10 @@ def test_apprentice_operaio_pays_the_apprentice_rate() -> None:
     """Apprentice operaio, 150 hours: 0.0700 x 150 = 10.50 -> 11."""
     result = regular_period(
         employment=_employment(
-            "2", WorkerCategory.OPERAIO, contract_type=Apprentice(months_elapsed=6)
+            "2",
+            WorkerCategory.OPERAIO,
+            ccnl_slug=_OPERAI,
+            contract_type=Apprentice(months_elapsed=6),
         ),
         current_year=employment_only(),
         ordinary_hours_worked=ContributableHours(Decimal(150)),
@@ -150,7 +154,7 @@ def test_apprentice_operaio_pays_the_apprentice_rate() -> None:
 
 def test_operaio_hours_unknown_is_a_missing_fact() -> None:
     """Without the hours the amount is left out and the run names the fact."""
-    result = _january(_employment("2", WorkerCategory.OPERAIO))
+    result = _january(_employment("2", WorkerCategory.OPERAIO, ccnl_slug=_OPERAI))
     assert _contractual(result) == 0
     assert "contractual_fund_hours_unknown" in _codes(result)
     assert not result.is_payable
@@ -167,8 +171,8 @@ def test_level_without_a_row_is_not_computed() -> None:
 
 
 def test_unknown_category_is_a_missing_fact() -> None:
-    """Level 2 holds operai and impiegati: the category decides the amount."""
-    result = _january(_employment("2", None))
+    """Level 7 holds quadri and impiegati: the category decides the amount."""
+    result = _january(_employment("7", None))
     assert "contractual_fund_category_unknown" in _codes(result)
 
 
@@ -238,16 +242,19 @@ def test_a_strike_still_counts() -> None:
 
 
 @pytest.mark.parametrize(
-    ("level", "category"),
-    [("5", WorkerCategory.OPERAIO), ("5", WorkerCategory.DIRIGENTE)],
+    ("ccnl_slug", "level", "category"),
+    [
+        ("edilizia-artigianato-cna.json", "6", WorkerCategory.OPERAIO),
+        (_IMPIEGATI, "7", WorkerCategory.DIRIGENTE),
+    ],
     ids=["operaio_without_hourly_rate", "dirigente"],
 )
 def test_category_or_level_without_amount_is_not_computed(
-    level: str, category: WorkerCategory
+    ccnl_slug: str, level: str, category: WorkerCategory
 ) -> None:
     """An operaio at a level the hourly table lacks, a dirigente: an issue."""
     result = regular_period(
-        employment=_employment(level, category),
+        employment=_employment(level, category, ccnl_slug=ccnl_slug),
         current_year=employment_only(),
         ordinary_hours_worked=ContributableHours(Decimal(160)),
     )

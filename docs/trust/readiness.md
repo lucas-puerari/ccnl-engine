@@ -134,7 +134,7 @@ ruleset without the fields above. These errors have no baseline.
 ## Current status
 
 Distribution across the
-<!-- trust:ccnl-total -->131<!-- /trust:ccnl-total --> bundled CCNL rulesets,
+<!-- trust:ccnl-total -->132<!-- /trust:ccnl-total --> bundled CCNL rulesets,
 generated from the data by `scripts/documentation/trust_count/generate.py` (CI fails when
 it drifts):
 
@@ -142,9 +142,9 @@ it drifts):
 
 | Readiness | CCNL rulesets |
 |---|---:|
-| `exploratory` | 110 |
+| `exploratory` | 109 |
 | `reviewed` | 13 |
-| `production` | 8 |
+| `production` | 10 |
 
 <!-- /trust:readiness-table -->
 
@@ -164,7 +164,7 @@ hold an entry in the review log, and
 <!-- trust:reviewed-confidence-verified -->13<!-- /trust:reviewed-confidence-verified -->
 set `verification.confidence = "verified"` (step 5 of the criteria above).
 A per-value review is recorded only by the provenance status `verified` of a
-payable rule, and <!-- trust:rules-verified -->1320<!-- /trust:rules-verified -->
+payable rule, and <!-- trust:rules-verified -->1372<!-- /trust:rules-verified -->
 payable rules of the bundle have it (see
 [Provenance](provenance.md#provenance-status)).
 
@@ -214,6 +214,6 @@ Both modes compute the same amounts.
 
 An operational engine returns the result with its blockers instead of
 refusing before the calculation, so the amounts and every other blocker stay
-inspectable. With <!-- trust:readiness-production -->8<!-- /trust:readiness-production -->
+inspectable. With <!-- trust:readiness-production -->10<!-- /trust:readiness-production -->
 `production` rulesets, only those CCNLs are payable in operational mode: the
 gate opens one CCNL at a time, as each is promoted.

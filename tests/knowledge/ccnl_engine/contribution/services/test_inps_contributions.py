@@ -400,35 +400,58 @@ def test_small_terziario_employer_pays_the_cut_fis(
 
 
 @pytest.mark.parametrize(
-    ("category", "employer"),
+    ("category", "ccnl_slug", "level", "gross", "employer"),
     [
-        # Base 1,591 x 33.68% = 535.85.
-        (WorkerCategory.OPERAIO, Decimal("535.85")),
-        # Base 1,591 x 28.46% = 452.80.
-        (WorkerCategory.IMPIEGATO, Decimal("452.80")),
-        # A dirigente is raised to the 160.77 daily minimum of industria
-        # (INPS circ. 6/2026 allegato 1, Tabella A): 26 x 160.77 = 4,180.02,
-        # base 4,180 (whole euro); 4,180 x 26.96% = 1,126.93.
-        (WorkerCategory.DIRIGENTE, Decimal("1126.93")),
+        # Operai file, level 1: base 1,591 x 33.68% = 535.85.
+        (
+            WorkerCategory.OPERAIO,
+            "edilizia-ance.json",
+            "1",
+            Decimal("1590.56"),
+            Decimal("535.85"),
+        ),
+        # Impiegati file, level 1: base 1,591 x 28.46% = 452.80.
+        (
+            WorkerCategory.IMPIEGATO,
+            "edilizia-ance-impiegati.json",
+            "1",
+            Decimal("1590.56"),
+            Decimal("452.80"),
+        ),
+        # Impiegati file, level 7: a dirigente is raised to the 160.77 daily
+        # minimum of industria (INPS circ. 6/2026 allegato 1, Tabella A):
+        # 26 x 160.77 = 4,180.02, base 4,180 (whole euro); 4,180 x 26.96% =
+        # 1,126.93.
+        (
+            WorkerCategory.DIRIGENTE,
+            "edilizia-ance-impiegati.json",
+            "7",
+            Decimal("2678.86"),
+            Decimal("1126.93"),
+        ),
     ],
 )
 def test_edilizia_employer_rate_follows_the_category(
-    category: WorkerCategory, employer: Decimal
+    category: WorkerCategory,
+    ccnl_slug: str,
+    level: str,
+    gross: Decimal,
+    employer: Decimal,
 ) -> None:
-    """Edilizia ANCE level 1, January 2026, at an employer of ten.
+    """Edilizia ANCE, January 2026, at an employer of ten.
 
     Assimpredil ANCE table 1/2026 (imprese edili industriali up to 15
     employees): employer 33.68% for operai (CIGO edile 4.70%, malattia
     2.22%), 28.46% for impiegati (CIGO 1.70%), 26.96% for dirigenti (no
-    CIGO, Fondo Garanzia TFR 0.40%).  The gross 1,590.56 is contributed on
-    1,591 (whole euro, INPS circ. 208/2001).
+    CIGO, Fondo Garanzia TFR 0.40%).  The gross of level 1, 1,590.56, is
+    contributed on 1,591 (whole euro, INPS circ. 208/2001).
     """
     employment = replace(
-        CONCIA_D2, category=category, ccnl_slug="edilizia-ance.json", level_code="1"
+        CONCIA_D2, category=category, ccnl_slug=ccnl_slug, level_code=level
     )
     request = regular_run(1, employment=employment)
     employer_profile = replace(request.employer, headcount=Headcount(10))
     result = ENGINE.calculate_period(replace(request, employer=employer_profile))
 
-    assert result.period_gross == Decimal("1590.56")
+    assert result.period_gross == gross
     assert result.contribution_breakdown.employer == employer
