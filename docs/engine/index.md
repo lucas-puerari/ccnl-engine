@@ -307,7 +307,25 @@ employment dates and never from the runs already closed:
   editoriali), the run that pays or liquidates the tredicesima also pays
   `Employment.erc_amount` x its months / 12 as a `raccordo_element_earning`
   (ordinary IRPEF and INPS, outside the TFR base). An unstated ERC leaves it
-  out with a `missing_fact` blocker `erc_unknown`.
+  out with a `missing_fact` blocker `erc_unknown`;
+- on a CCNL with an `hourly_pay` (the operai of the CCNL edilizia
+  industria), the run that posts the monthly pay of a worker of one of its
+  `categories` pays the pay chain over the hourly divisor times
+  `PeriodFacts.ordinary_hours_worked` (a part-time worker the full hourly
+  rate on the hours worked), and each of its `percentages` of the base
+  salary and the named allowances as an `hourly_percentage_earning`
+  (ordinary IRPEF, INPS and TFR base): settlement `cash` is paid with the
+  pay (riposi annui 4.95%), settlement `cassa_edile` is accrued with the
+  Cassa Edile net of the withholdings (18.5%, Allegato D), so its `net_rate`
+  of the base (14.2%) is withheld from the net pay as an
+  `employee_withholding_item` on `bilateral_fund_employee`. Ferie and permit
+  hours are not paid as days, sick days deduct nothing, an `AbsenceEvent`
+  is rejected with `InvalidInputError` (its hours are already left out of
+  the hours worked), the IRPEF
+  projection adds the percentages of a full month to each regular payment
+  to come, and the
+  `base_salary` decision has reason `pay_chain_paid_by_the_hour`. Unstated
+  hours pay nothing, with a `missing_fact` blocker `hourly_pay_hours_unknown`.
 
 The work deduction (art. 13 TUIR), the ulteriore detrazione (L. 207/2024
 art. 1 c. 6) and the trattamento integrativo are proportioned to the days of

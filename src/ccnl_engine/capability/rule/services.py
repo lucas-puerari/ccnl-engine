@@ -5,6 +5,7 @@ from __future__ import annotations
 from functools import partial
 from typing import TYPE_CHECKING
 
+from ccnl_engine.compensation.hourly.services import percentage_rules
 from ccnl_engine.contribution.additional_ivs.services import (
     additional_ivs_rules,
 )
@@ -48,8 +49,8 @@ def _salary_rules(ctx: RunContext) -> tuple[Rule, ...]:
 
     Returns:
         The base salary period, the allowances of the pay chain, the extra
-        months in force, the accrual rule that decided a rateo and the
-        partial-month rules.
+        months in force, the accrual rule that decided a rateo, the
+        partial-month or hourly rules and the percentages on the hours.
     """
     ccnl, level = ctx.contract.ccnl, ctx.contract.level
     day = ctx.contract.tctx.competence
@@ -72,6 +73,7 @@ def _salary_rules(ctx: RunContext) -> tuple[Rule, ...]:
     )
     rules.extend(accrual_rules(ctx))
     rules.extend(ctx.proration.rules)
+    rules.extend(percentage_rules(ctx))
     return tuple(rules)
 
 

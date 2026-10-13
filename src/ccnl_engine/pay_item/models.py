@@ -1,4 +1,4 @@
-"""All 24 PayItem variants and the discriminated-union PayItem type."""
+"""All PayItem variants and the discriminated-union PayItem type."""
 
 from __future__ import annotations
 
@@ -23,6 +23,7 @@ __all__ = [
     "ExtraMonthEarning",
     "FixedAllowanceEarning",
     "FringeBenefitItem",
+    "HourlyPercentageEarning",
     "LeaveSettlementItem",
     "MaternityItem",
     "NightHolidayShiftEarning",
@@ -129,6 +130,17 @@ class RaccordoElementEarning(_PayItemBase):
     """Elemento di Raccordo Contrattuale paid with the tredicesima."""
 
     kind: Literal["raccordo_element_earning"] = "raccordo_element_earning"
+
+
+class HourlyPercentageEarning(_PayItemBase):
+    """Percentage of the hourly elements on the ordinary hours worked.
+
+    The riposi annui paid with the pay, or the ferie and gratifica
+    natalizia the employer accrues with the Cassa Edile (CCNL edilizia,
+    Art. 5 and 18): a gross earning of the worker either way.
+    """
+
+    kind: Literal["hourly_percentage_earning"] = "hourly_percentage_earning"
 
 
 class PublicTfrReduction(_PayItemBase):
@@ -280,6 +292,7 @@ PayItem = Annotated[
     | OneOffEarning
     | ExtraMonthEarning
     | RaccordoElementEarning
+    | HourlyPercentageEarning
     | PublicTfrReduction
     | FringeBenefitItem
     | StandbyEarning

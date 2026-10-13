@@ -70,7 +70,10 @@ def _position(ctx: RunContext) -> MonthPosition:
             or bool(request.extra_month_settlements)
         ),
         span=proration.span,
-        absence=any(isinstance(e, _REDUCING_EVENTS) for e in request.events),
+        # A worker paid by the hour is paid only the hours worked: below the
+        # minimum, the hours not worked may be absences of any kind.
+        absence=proration.hourly is not None
+        or any(isinstance(e, _REDUCING_EVENTS) for e in request.events),
         apprentice=isinstance(request.contract_type, Apprentice),
         category=ctx.worker_category,
         weekly_hours=_hours(request.weekly_hours),

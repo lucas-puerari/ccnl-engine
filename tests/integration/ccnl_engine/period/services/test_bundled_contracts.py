@@ -14,6 +14,7 @@ amounts says the minimum is undetermined.
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 
@@ -64,6 +65,8 @@ _DOMESTIC = {
     "lavoro-domestico-non-convivente.json": WeeklyHours(40),
 }
 _DOMESTIC_FACTS = PeriodFacts(contributable_hours=ContributableHours(Decimal(173)))
+#: Ordinary hours of a full month of a worker paid by the hour.
+_FULL_MONTH_HOURS = ContributableHours(Decimal(173))
 _COMPUTED = frozenset({CalculationStatus.FINAL, CalculationStatus.PROVISIONAL})
 #: Hired on 1 September with no other employment in 2026: the September run
 #: is the first of the employment, so the zero opening state is the fact.
@@ -128,6 +131,20 @@ def _public_regime(ccnl: CCNL) -> PublicEndOfService | None:
     return PublicEndOfService.TFR_INPS if public else None
 
 
+def _facts(slug: str, ccnl: CCNL) -> PeriodFacts:
+    """Return the facts of the scan: a full month of hours where they are paid.
+
+    Returns:
+        The hours of the domestic contracts; the resident facts with 173
+        ordinary hours worked on a CCNL that pays by the hour.
+    """
+    if slug in _DOMESTIC:
+        return _DOMESTIC_FACTS
+    if ccnl.parameters.hourly_pay is not None:
+        return replace(resident(), ordinary_hours_worked=_FULL_MONTH_HOURS)
+    return resident()
+
+
 def test_bundle_lists_contracts() -> None:
     """The parametrization below runs on the real bundle, not an empty list."""
     assert len(_SLUGS) > 100
@@ -169,7 +186,7 @@ def test_every_level_computes_sane_totals(slug: str) -> None:
                     agricultural_zone=AgriculturalZone.ORDINARY,
                     public_life_insurance=False if _public_regime(ccnl) else None,
                 ),
-                facts=_DOMESTIC_FACTS if slug in _DOMESTIC else resident(),
+                facts=_facts(slug, ccnl),
                 current_year=_ONLY_EMPLOYMENT,
             )
         )

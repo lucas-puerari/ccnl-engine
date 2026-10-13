@@ -431,7 +431,7 @@ a directory uses it.
 `context`, `contractual`, `conversion`, `coverage`, `cumulation`, `day`,
 `declaration`, `deduction`, `deferral`, `domestic`, `element`,
 `eligibility`, `enam`, `enrolment`, `entitlement`, `extraction`, `fact`,
-`fis`, `fixed_term`, `foreign`, `headcount`, `indemnity`, `input`,
+`fis`, `fixed_term`, `foreign`, `headcount`, `hourly`, `indemnity`, `input`,
 `integration`, `issue`, `jurisdiction`, `ladder`, `lifecycle`, `line`,
 `liquidation`, `metadata`, `minimum`, `minimum_base`, `month`, `naspi`,
 `net`, `obligation`, `opening`, `other_employment`, `other_income`,

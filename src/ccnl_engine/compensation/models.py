@@ -8,6 +8,7 @@ from typing import Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.agreement.validity.rules import TimeSeries
+from ccnl_engine.compensation.hourly.models import HourlyPay
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.fund.assistance.models import AssistanceContribution
 from ccnl_engine.fund.models import (
@@ -275,6 +276,8 @@ class CCNLParameters(BaseModel):
     ``enam_levels``: the levels whose permanent workers owe the contribution
     of the Gestione Assistenza Magistrale (ex ENAM, L. 93/1957 art. 3).
     ``solidarity_fund``: its fund of D.Lgs. 148/2015 art. 26, if modelled.
+    ``hourly_pay``: the worker categories paid by the hour worked and the
+    percentages on those hours (the operai of the CCNL edilizia).
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -292,6 +295,7 @@ class CCNLParameters(BaseModel):
     raccordo_element: RaccordoElement | None = None
     enam_levels: tuple[str, ...] = ()
     solidarity_fund: SolidarityFund | None = None
+    hourly_pay: HourlyPay | None = None
 
     @model_validator(mode="after")
     def _check_positive_params(self) -> Self:

@@ -189,6 +189,12 @@ def required_series(
     prefix = "parameters.seniority_increments"
     if increments.apprentice_amount is not None:
         yield f"{prefix}.apprentice_amount", start, increments.apprentice_amount
+    hourly = parameters.hourly_pay
+    for percentage in () if hourly is None else hourly.percentages:
+        path = f"parameters.hourly_pay.percentages[{percentage.code}]"
+        yield f"{path}.rate", start, percentage.rate
+        if percentage.net_rate is not None:
+            yield f"{path}.net_rate", start, percentage.net_rate
     for level in levels:
         level_start = starts[level.code]
         if level_start is not None:

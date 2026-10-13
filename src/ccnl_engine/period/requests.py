@@ -88,7 +88,8 @@ class PeriodCalculationRequest:
             a domestic CCNL, the part time below ``full_time_weekly_hours``.
         contributable_hours: Hours worked and paid subject to INPS
             contributions (domestic CCNLs).  ``ordinary_hours_worked``: the
-            ordinary hours actually worked (Prevedi operai).
+            ordinary hours actually worked, which a CCNL with ``hourly_pay``
+            pays (operai edili) and the Prevedi operai amount is due on.
         full_time_weekly_hours: Full-time weekly hours of the contract,
             positive.  ``weekly_hours`` must not exceed it.
         employment_period: Start and optional end of the employment.

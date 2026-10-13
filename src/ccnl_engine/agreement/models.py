@@ -82,6 +82,7 @@ class CCNL(BaseModel):
         self._assert_apprenticeship_tracks()
         self._assert_provenance_complete()
         self._assert_limitation_levels()
+        self._assert_hourly_allowances()
         assert_series_coverage(self.levels, self.parameters)
         return self
 
@@ -226,6 +227,18 @@ class CCNL(BaseModel):
             unknown = sorted(spec.applies_when.levels - existing)
             if unknown:
                 msg = f"limitation {spec.variant!r} names unknown levels {unknown}"
+                raise ValueError(msg)
+
+    def _assert_hourly_allowances(self) -> None:
+        hourly = self.parameters.hourly_pay
+        known = {a.code for lv in self.levels for a in lv.fixed_allowances}
+        for percentage in () if hourly is None else hourly.percentages:
+            unknown = sorted(set(percentage.base_allowances) - known)
+            if unknown:
+                msg = (
+                    f"hourly_pay percentage {percentage.code!r} names unknown "
+                    f"allowances {unknown}"
+                )
                 raise ValueError(msg)
 
     def _assert_provenance_complete(self) -> None:
