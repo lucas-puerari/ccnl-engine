@@ -2325,7 +2325,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "inps/2026/edilizia",
       "ruleset_version": "2026.1",
-      "source_hash": "38beb6e8363d59812cf677b69bb72821213d7297e964f68d092d7728913bc613",
+      "source_hash": "011a9ca2e939d46ebab923c3ee6639fc20503c98c562b6ade6f1d9ee9bb9fdda",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "contribution/2026/edilizia.json.gz"
@@ -2393,7 +2393,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "inps/2026/terziario",
       "ruleset_version": "2026.1",
-      "source_hash": "f21181a6b0acf12e377d0fbb4f713c7bb8bd79b6485ab6091cf85e1caead98d6",
+      "source_hash": "6a7f547a0731724d83adb46dff4c5ac08fb8ab0e0b0b0afe77bbc5f6a4b3f20a",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "contribution/2026/terziario.json.gz"

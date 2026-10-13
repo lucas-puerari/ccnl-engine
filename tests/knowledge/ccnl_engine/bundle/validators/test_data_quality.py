@@ -169,8 +169,9 @@ def _reviewed(file: str, path: str) -> bool:
     """Return whether a non-CCNL rule belongs to a reviewed table.
 
     Returns:
-        True for the reviewed L2 rules of the production CCNL, the domestic
-        INPS table and the shared 2026 tax tables.
+        True for the reviewed L2 rules of the production CCNL, the edilizia
+        and terziario INPS tables, the domestic INPS table and the shared
+        2026 tax tables.
     """
     if file == "sector/2026/industria.json" and path.startswith("tfr"):
         return True
@@ -180,6 +181,8 @@ def _reviewed(file: str, path: str) -> bool:
         return path in _SECTOR_REVIEWED
     return file in {
         "contribution/2026/industria.json",
+        "contribution/2026/edilizia.json",
+        "contribution/2026/terziario.json",
         "contribution/2026/lavoro-domestico.json",
         "family/2026.json",
         "tax_credit/somma_esente/2026.json",

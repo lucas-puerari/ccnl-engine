@@ -120,6 +120,11 @@ same table and the exemptions of L. 388/2000 art. 120 and L. 266/2005 art.
 1 c. 361, but stay `derived`: the CUAF of the artigianato and the maternità
 and malattia of a non-construction craft firm have no primary source of the
 year.
+The INPS rates of the industria edile for 2026 are verified on the same
+Assimpredil ANCE table. The terziario has no table of the year: the owner
+accepted on 2026-10-13 the allegato of INPS circ. 117/2022, still in force,
+as the source of its components, with the FIS and CIGS of D.Lgs. 148/2015
+arts. 29 and 23 in force in 2026.
 
 The schema gate (`scripts/provenance/check.py --schema`) rejects a
 `reviewed` or `production` ruleset with an `assumed` or `missing` payable
@@ -159,7 +164,7 @@ hold an entry in the review log, and
 <!-- trust:reviewed-confidence-verified -->10<!-- /trust:reviewed-confidence-verified -->
 set `verification.confidence = "verified"` (step 5 of the criteria above).
 A per-value review is recorded only by the provenance status `verified` of a
-payable rule, and <!-- trust:rules-verified -->709<!-- /trust:rules-verified -->
+payable rule, and <!-- trust:rules-verified -->719<!-- /trust:rules-verified -->
 payable rules of the bundle have it (see
 [Provenance](provenance.md#provenance-status)).
 

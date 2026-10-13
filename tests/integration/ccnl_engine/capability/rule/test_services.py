@@ -182,7 +182,7 @@ def test_a_regime_adds_its_supplement_to_the_employer_rules() -> None:
     name, record = rules[-1]
     assert name.endswith(":inps.sick_pay_supplements[pubblici_esercizi]")
     assert isinstance(record, RuleProvenance)
-    assert record.status is ProvenanceStatus.DERIVED
+    assert record.status is ProvenanceStatus.VERIFIED
 
 
 def test_a_regime_without_a_supplement_reads_no_record() -> None:
