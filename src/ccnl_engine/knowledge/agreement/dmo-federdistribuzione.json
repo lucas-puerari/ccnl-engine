@@ -3009,7 +3009,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "b21a4ecc2c0ce6bd2f52ab81e9363a65602c7c2634c1d60ac18ddc9d63332389",
+    "source_hash": "6125ff237546ea4dd44f01959b12d46152b09eb229f1d02fd250e891322339b6",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3390,7 +3390,7 @@
         ],
         "findings": [
           "90 records verified; the work rules cited an aggregator and now cite the Testo Unico. The 2025/01 URL of the sources returns 404: replaced by the 2026/04 one.",
-          "Night overtime 50%, not 30% (Art. 132 c. 3); added the 20% beyond the 48th weekly hour (c. 1); the premiums are on the normale retribuzione of Art. 189 (hourly_base_method gross_incl_allowances).",
+          "Night overtime 50%, not 30% (Art. 132 c. 3); added the 20% beyond the 48th weekly hour (c. 1). The premiums are on the normale retribuzione of Art. 189 (hourly_base_method gross_incl_allowances, which documents the rule: the caller states OvertimeEvent.hourly_rate).",
           "Sickness: 75% for days 4-20 and 100% from day 21 of the net daily pay, carenza by event, apprentices excluded (Art. 170), not a flat 100%.",
           "Seniority amounts in force since 1990 (Art. 188): the gap before 23 April 2024 removed.",
           "Terzo elemento 2.07 due only without a provincial element (Art. 199): now gated.",
