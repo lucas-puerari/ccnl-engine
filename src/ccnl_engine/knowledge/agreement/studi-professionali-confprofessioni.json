@@ -64,13 +64,14 @@
       },
       {
         "kind": "simplification",
-        "text": "SOLIDARITY FUND: the studi professionali pay the Fondo di solidarietà bilaterale per le attività professionali (D.I. 21 May 2024 art. 6: 0.50% up to 5, 0.80% from 5 to 15, 1% above 15 employees, two thirds employer; INPS circ. 5/2025 cuts the 0.50% by 40% for employers without claims) instead of the FIS, and owe no CIGS (D.Lgs. 148/2015 art. 20 c. 3-bis). The engine uses the terziario 2026 rates (FIS and CIGS): up to 15 employees they coincide, above 15 employees they overcharge by 0.46 points the employer (30.11% instead of 29.65%) and by 0.24 points the worker (9.76% instead of 9.52%); for apprentices the fund share is 0.67% employer and 0.33% worker instead of 1.13% and 0.57%. No coverage note can be scoped by headcount.",
+        "text": "SOLIDARITY FUND: the studi professionali pay the Fondo di solidarietà bilaterale per le attività professionali (D.I. 21 May 2024 art. 6: 0.50% up to 5, 0.80% from 5 to 15, 1% above 15 employees, two thirds employer; INPS circ. 5/2025 cuts the 0.50% by 40% for employers without claims) instead of the FIS, and owe no CIGS (D.Lgs. 148/2015 art. 20 c. 3-bis). The engine uses the terziario 2026 rates (FIS and CIGS): up to 15 employees they coincide, above 15 employees they overcharge by 0.46 points the employer (30.11% instead of 29.65%) and by 0.24 points the worker (9.76% instead of 9.52%); for apprentices the fund share is 0.67% employer and 0.33% worker instead of 1.13% and 0.57%. Every run of an employer with more than 15 employees carries this limitation.",
         "capability": "inps_employer",
         "monetary_impact": "yes",
         "limitation": {
           "variant": "fsbap_rates_above_15",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "run",
+            "headcount_from": 16
           },
           "remediation": "Add a studi-professionali contribution sector, or a headcount-tiered solidarity fund that replaces the FIS and the CIGS."
         }
@@ -2046,7 +2047,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "2645afbccdd6188617fa6afa13c954be022a58fde72612e61b242e3515a13218",
+    "source_hash": "234f2f8f903c02379ebf726d36166b38edd9f9787ccefccea6d1af8591f8b888",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2347,7 +2348,7 @@
   },
   "verification": {
     "confidence": "verified",
-    "readiness": "reviewed",
+    "readiness": "production",
     "verified_cases": 0,
     "reviews": [
       {
@@ -2393,7 +2394,20 @@
           "Unmodelled clauses declared in one note (studi_unmodelled_elements); apprentice_seniority rewritten on Art. 129.",
           "No renewal after 16 February 2024 found through October 2026 (the CCNL runs to 15 February 2027); the CNEL archive was not reachable."
         ]
+      },
+      {
+        "id": "2026-10-13-ai-production-tier",
+        "date": "2026-10-13",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Readiness of the file after the limitations gained a headcount scope.",
+        "outcome": "confirmed",
+        "findings": [
+          "The INPS gap above 15 employees (fsbap_rates_above_15) is now recorded on every run of an employer with more than 15 employees (applies_when headcount_from 16): up to 15 employees the terziario rates coincide with the solidarity fund of the studi professionali, so the file moves to production."
+        ]
       }
-    ]
+    ],
+    "owner": "maintainer",
+    "review_due": "2026-12-01"
   }
 }

@@ -8,7 +8,7 @@
 | **Last renewal** | — |
 | **Workers (est.)** | ~350k |
 | **Ruleset version** | `2026.2` |
-| **Readiness** | 👁 Reviewed |
+| **Readiness** | 🏭 Production |
 
 [← Contracts index](index.md)
 
@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
 | **Rule provenance** | 46 verified / 0 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
-| **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
+| **Readiness** | 🏭 Production | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
 ## Freshness
 
@@ -57,6 +57,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-13 | claude-opus-5-5 (ai) | Every payable rule of the file read again in the CCNL of 16 February 2024 (integrale definitivo, 78 pages) and in its April 2026 testo ufficiale for Allegato B, with the D.I. of 21 May 2024 and the INPS circulars for the solidarity fund. | corrected | 60 records verified; the three document ids of the file are now one (ccnl-studi-professionali-2024-02-16), plus the 2026 testo ufficiale for Allegato B. The served integrale has sha256 89c22bb2..., not the hash recorded before.<br>Weekday overtime 15%, not 25%, and night overtime 30%, not 40% (Art. 95, p. 49), on the normale retribuzione of Art. 135 (hourly_base_method gross_incl_allowances).<br>Sickness: 75% for days 4-20 and 100% from day 21 (Art. 121), not a flat 75%.<br>Apprenticeship: Quadri are a destination of the professionalizzante (Allegato B Tabella 2, 30 months); split by duration (30 and 36 months); added the primo livello (45/55/65%) and alta formazione (40/50/60%) tracks. The limitation uniform_apprenticeship_percentages is closed: Tabella 3 is one table for every profile.<br>Added Fon.Te. (Art. 18: 1.55% employer, 0.55% worker minimum of the TFR base) and the payment day of the tredicesima (Art. 142).<br>INPS: the sector pays the Fondo di solidarietà per le attività professionali, not the FIS, and no CIGS: the terziario tier above 15 employees overcharges; declared as fsbap_rates_above_15.<br>Unmodelled clauses declared in one note (studi_unmodelled_elements); apprentice_seniority rewritten on Art. 129.<br>No renewal after 16 February 2024 found through October 2026 (the CCNL runs to 15 February 2027); the CNEL archive was not reachable. |
+| 2026-10-13 | claude-opus-5-5 (ai) | Readiness of the file after the limitations gained a headcount scope. | confirmed | The INPS gap above 15 employees (fsbap_rates_above_15) is now recorded on every run of an employer with more than 15 employees (applies_when headcount_from 16): up to 15 employees the terziario rates coincide with the solidarity fund of the studi professionali, so the file moves to production. |
 
 ## Salary table
 
@@ -112,9 +113,9 @@ percentage: 0.60
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "studi-professionali-confprofessioni/fsbap_rates_above_15 · inps_employer · impact yes · open"
-    SOLIDARITY FUND: the studi professionali pay the Fondo di solidarietà bilaterale per le attività professionali (D.I. 21 May 2024 art. 6: 0.50% up to 5, 0.80% from 5 to 15, 1% above 15 employees, two thirds employer; INPS circ. 5/2025 cuts the 0.50% by 40% for employers without claims) instead of the FIS, and owe no CIGS (D.Lgs. 148/2015 art. 20 c. 3-bis). The engine uses the terziario 2026 rates (FIS and CIGS): up to 15 employees they coincide, above 15 employees they overcharge by 0.46 points the employer (30.11% instead of 29.65%) and by 0.24 points the worker (9.76% instead of 9.52%); for apprentices the fund share is 0.67% employer and 0.33% worker instead of 1.13% and 0.57%. No coverage note can be scoped by headcount.
+    SOLIDARITY FUND: the studi professionali pay the Fondo di solidarietà bilaterale per le attività professionali (D.I. 21 May 2024 art. 6: 0.50% up to 5, 0.80% from 5 to 15, 1% above 15 employees, two thirds employer; INPS circ. 5/2025 cuts the 0.50% by 40% for employers without claims) instead of the FIS, and owe no CIGS (D.Lgs. 148/2015 art. 20 c. 3-bis). The engine uses the terziario 2026 rates (FIS and CIGS): up to 15 employees they coincide, above 15 employees they overcharge by 0.46 points the employer (30.11% instead of 29.65%) and by 0.24 points the worker (9.76% instead of 9.52%); for apprentices the fund share is 0.67% employer and 0.33% worker instead of 1.13% and 0.57%. Every run of an employer with more than 15 employees carries this limitation.
 
-    **Applies when:** a fact the request cannot express: never recorded on a run.
+    **Applies when:** `inps_employer` applies; at least 16 employees.
 
     **Remediation:** Add a studi-professionali contribution sector, or a headcount-tiered solidarity fund that replaces the FIS and the CIGS.
 
