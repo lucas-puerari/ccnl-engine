@@ -1,0 +1,27 @@
+{
+  "verification": "source_linked",
+  "_description": "CCNL Turismo Federalberghi-Faita (CNEL H052) level 4, May 2026 regular run, permanent, full time: the first month of the tranche of May 2026.",
+  "_notes": [
+    "Ipotesi di accordo 5 luglio 2024, art. 152 c.1 (p. 42 of the signed scan): level 4 1.695,69 from mag 2026, paga base nazionale conglobata.",
+    "The case is a hotel with more than two stars: art. 152 c.2 sets a lower table for 1-2 star hotels and small campsites (level 4 1.688,98)."
+  ],
+  "source": {
+    "document": "Ipotesi di accordo per il rinnovo del CCNL Turismo, 5 luglio 2024 (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS)",
+    "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+    "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b",
+    "page": "42",
+    "section": "Art. 152 c.1, Paga base nazionale, column mag 2026, level 4"
+  },
+  "inputs": {
+    "ccnl_slug": "turismo-federalberghi.json",
+    "level_code": "4",
+    "year": 2026,
+    "month": 5,
+    "headcount": 50
+  },
+  "expected": {
+    "base_salary": "1695.69",
+    "fixed_allowances": "0.00",
+    "period_gross": "1695.69"
+  }
+}

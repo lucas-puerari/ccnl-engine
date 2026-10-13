@@ -142,14 +142,14 @@ it drifts):
 
 | Readiness | CCNL rulesets |
 |---|---:|
-| `exploratory` | 111 |
-| `reviewed` | 12 |
+| `exploratory` | 110 |
+| `reviewed` | 13 |
 | `production` | 8 |
 
 <!-- /trust:readiness-table -->
 
-The <!-- trust:readiness-reviewed -->12<!-- /trust:readiness-reviewed -->
-`reviewed` rulesets: <!-- trust:readiness-reviewed-list -->`commercio-confcommercio`, `concia-unic`, `cooperative-sociali`, `funzioni-centrali-aran`, `funzioni-locali-aran`, `lavoro-domestico-convivente`, `lavoro-domestico-convivente-orario-ridotto`, `lavoro-domestico-non-convivente`, `logistica-trasporto-confetra`, `logistica-trasporto-confetra-viaggiante`, `sanita-aran`, `studi-professionali-confprofessioni`<!-- /trust:readiness-reviewed-list -->.
+The <!-- trust:readiness-reviewed -->13<!-- /trust:readiness-reviewed -->
+`reviewed` rulesets: <!-- trust:readiness-reviewed-list -->`commercio-confcommercio`, `concia-unic`, `cooperative-sociali`, `funzioni-centrali-aran`, `funzioni-locali-aran`, `lavoro-domestico-convivente`, `lavoro-domestico-convivente-orario-ridotto`, `lavoro-domestico-non-convivente`, `logistica-trasporto-confetra`, `logistica-trasporto-confetra-viaggiante`, `sanita-aran`, `studi-professionali-confprofessioni`, `turismo-federalberghi`<!-- /trust:readiness-reviewed-list -->.
 Each [contract page](../contracts/index.md) shows its own tier.
 
 In October 2026 fifteen rulesets `reviewed` on a file-level review were
@@ -159,12 +159,12 @@ file-level review that promoted them; a ruleset returns to `reviewed` once its w
 confidence is `verified`, as the ones listed above did.
 
 `reviewed` records a file-level review, not a per-value one. Of the `reviewed`
-rulesets, <!-- trust:reviewed-with-reviewer -->12<!-- /trust:reviewed-with-reviewer -->
+rulesets, <!-- trust:reviewed-with-reviewer -->13<!-- /trust:reviewed-with-reviewer -->
 hold an entry in the review log, and
-<!-- trust:reviewed-confidence-verified -->12<!-- /trust:reviewed-confidence-verified -->
+<!-- trust:reviewed-confidence-verified -->13<!-- /trust:reviewed-confidence-verified -->
 set `verification.confidence = "verified"` (step 5 of the criteria above).
 A per-value review is recorded only by the provenance status `verified` of a
-payable rule, and <!-- trust:rules-verified -->1249<!-- /trust:rules-verified -->
+payable rule, and <!-- trust:rules-verified -->1320<!-- /trust:rules-verified -->
 payable rules of the bundle have it (see
 [Provenance](provenance.md#provenance-status)).
 

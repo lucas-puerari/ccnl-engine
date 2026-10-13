@@ -56,52 +56,52 @@
   "seniority_checks": [
     {
       "level_code": "A",
-      "as_of": "1990-01-01",
+      "as_of": "1990-05-01",
       "expected_amount": "40.80"
     },
     {
       "level_code": "B",
-      "as_of": "1990-01-01",
+      "as_of": "1990-05-01",
       "expected_amount": "39.25"
     },
     {
       "level_code": "1",
-      "as_of": "1990-01-01",
+      "as_of": "1990-05-01",
       "expected_amount": "37.70"
     },
     {
       "level_code": "2",
-      "as_of": "1990-01-01",
+      "as_of": "1990-05-01",
       "expected_amount": "36.15"
     },
     {
       "level_code": "3",
-      "as_of": "1990-01-01",
+      "as_of": "1990-05-01",
       "expected_amount": "34.86"
     },
     {
       "level_code": "4",
-      "as_of": "1990-01-01",
+      "as_of": "1990-05-01",
       "expected_amount": "33.05"
     },
     {
       "level_code": "5",
-      "as_of": "1990-01-01",
+      "as_of": "1990-05-01",
       "expected_amount": "32.54"
     },
     {
       "level_code": "6s",
-      "as_of": "1990-01-01",
+      "as_of": "1990-05-01",
       "expected_amount": "31.25"
     },
     {
       "level_code": "6",
-      "as_of": "1990-01-01",
+      "as_of": "1990-05-01",
       "expected_amount": "30.99"
     },
     {
       "level_code": "7",
-      "as_of": "1990-01-01",
+      "as_of": "1990-05-01",
       "expected_amount": "30.47"
     }
   ],
