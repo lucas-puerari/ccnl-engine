@@ -51,6 +51,23 @@ def test_entries_follow_the_path_and_the_ruleset(tmp_path: Path) -> None:
     )
     assert entries["surtax/municipal/2026.json"]["scope"] is None
     assert "validity_note" in entries["limitation/engine.json"]
+    assert "schema_note" in entries["contribution/2026/industria.json"]
+    limitation = entries["limitation/engine.json"]
+    assert limitation["source_hash"]
+    assert "ruleset_note" in limitation
+    assert "source_note" in limitation
+
+
+def test_a_stale_recorded_source_hash_is_rejected(tmp_path: Path) -> None:
+    """The manifest never repeats a ruleset hash that does not fit its file."""
+    _write(
+        tmp_path,
+        "agreement/x.json",
+        {"ruleset": {"id": "ccnl/x", "source_hash": "0" * 64}},
+    )
+
+    with pytest.raises(ValueError, match="source_hash does not match"):
+        build(tmp_path)
 
 
 def test_a_path_outside_every_dataset_is_rejected(tmp_path: Path) -> None:
