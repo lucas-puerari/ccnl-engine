@@ -1331,6 +1331,7 @@
       "edilizia-ance-impiegati/edilizia_impiegati_unmodelled"
     ],
     "agreement/edilizia-ance.json": [
+      "edilizia-ance/cassa_edile_riposi_missing",
       "edilizia-ance/edilizia_operai_sickness",
       "edilizia-ance/edilizia_operai_unmodelled"
     ],
@@ -1687,6 +1688,7 @@
     ],
     "agreement/turismo-federalberghi.json": [
       "turismo-federalberghi/apprentice_seniority",
+      "turismo-federalberghi/apprenticeship_durations_unsourced",
       "turismo-federalberghi/sickness_net_basis",
       "turismo-federalberghi/turismo_unmodelled_elements"
     ],

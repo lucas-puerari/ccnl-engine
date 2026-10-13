@@ -57,6 +57,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-13 | claude-opus-5-5 (ai) | Every payable rule read again in the signed CCNL of 1 March 2024 (FLAI-CGIL text, 470 pages; FAI-CISL copy identical in the tables), for the production tier. | corrected | 87 records verified; every aggregator and union press source replaced by the signed text. Pages are physical PDF pages, one above the printed page number.<br>IAR from 1 September 2027: the printed Art. 51 lett. D column (73.73 to 169.57), not a scaling on level 4 (the 11 euro are on parameter 137).<br>EDR paid for 13 months (Art. 52): months_per_year 13.<br>Overtime 45% day, 50% night, 60% holiday (Art. 31, first table), not 30/37/45; the other sub-sector tables are a declared limitation.<br>Absence by the hour (monthly/173, 8 hours a day), not 1/26; ferie 22 working days on the 5-day week, not 20.<br>Sickness: 186 days at 100% of the net normal pay (Art. 47), not 180; the 50% band and the comporto windows are a declared limitation.<br>Apprenticeship: the period boundaries of Art. 21 per level (4 at 6/20, 1 at 10/20, 5 at 6); apprentice_seniority closed with a zero amount (derived).<br>Alifond 1.50%/1% from 1 January 2025 (Art. 74). Contingenza frozen at 1 November 1991, seniority amounts since 1 August 1998.<br>Art. 51 bis, Art. 74 bis, Art. 51 ter and the other contributions declared in one limitation. No renewal or verifica after the CCNL of 1 March 2024 through October 2026. |
+| 2026-10-13 | claude-opus-5-5 (ai) | Scope of the declared limitations. | corrected | sickness_half_pay_and_comporto (the comporto of every worker and the half-pay days above five years) is recorded on every run with a sickness event. |
 
 ## Salary table
 
@@ -117,7 +118,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 !!! warning "alimentari-federalimentare/sickness_half_pay_and_comporto · sickness · impact yes · open"
     SICKNESS (Art. 47): modelled as 100% of the net normal pay for 186 calendar days per episode. Not modelled: over 5 years of seniority the next 179 days at 50%; the comporto of 186 days within 17 months (up to 5 years) and 365 days within 24 months (over 5), summed over different illnesses; the 90 more days for disabled workers; the fixed-term limit (4 months, integration no longer than the INPS indemnity); the apprentice's normal pay for at most six months a year (Art. 21). The net pay is computed by grossing up the INPS indemnity by the worker's INPS rate, as for the Commercio file.
 
-    **Applies when:** a fact the request cannot express: never recorded on a run.
+    **Applies when:** `sickness` applies.
 
     **Remediation:** Model the 50% band over 5 years and the 17 and 24 month comporto windows of Art. 47.
 

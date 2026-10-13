@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-13 | claude-opus-5-5 (ai) | Every payable rule of the impiegati and quadri read in the ANCE minimi table of the CCNL of 21 February 2025, the CCNL of 19 April 2010 (FILLEA text), the Art. 92 apprenticeship text of 2019 and the ANCE provincial tables, for the production tier; new file split from edilizia-ance. | corrected | 47 records verified, 19 derived (contingenza, EDR, contractual fund, absence quota, seniority of levels 1-2, payment day of the premio annuo).<br>Split by category (Art. 77): the operai of levels 1-4 in edilizia-ance, the impiegati and quadri of levels 1-7 in edilizia-ance-impiegati.<br>base_salary is now the national minimo of the ANCE table; the ex contingenza and the EDR 10.33 are fixed allowances (derived, ANCE provincial tables), the EDR outside the TFR base. The previous consolidated values (minimo + contingenza + EDR) matched.<br>Aggregator sources (idealista, leggeinchiaro, businessonline, kitech) removed.<br>Absence quota: by_hourly 8 hours (1/173 of Art. 44 and Allegato A), not by_26, which no clause supports.<br>contractual_fund_uncovered closed: every operaio level has an hourly Prevedi amount and every impiegato or quadro level a monthly one.<br>No renewal changing the national minimi after the verbale of 21 February 2025 through October 2026.<br>Fourteen monthly payments: tredicesima (Art. 63, 20 December) and premio annuo (Art. 64, 30 June, stored 28 June).<br>Night overtime 47% (Art. 54), not the 40% of the operai.<br>Seniority 8.20 for levels 1-2 (printed 'Imp. 4ª 8,2'), not 8.22: derived.<br>Quadri indennità di funzione EUR 140 (Art. 76) added.<br>Sickness: 100% for 180 days without INPS (Art. 66 band up to two years); the longer bands declared. |
+| 2026-10-13 | claude-opus-5-5 (ai) | Scope of the declared limitations. | corrected | edilizia_impiegati_sickness (the art. 66 treatment beyond two years of service) is recorded on every sickness run of a worker with 24 months of seniority or more, or of unknown seniority. |
 
 ## Salary table
 
@@ -110,7 +111,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 !!! warning "edilizia-ance-impiegati/edilizia_impiegati_sickness · sickness · impact yes · open"
     SICKNESS (Art. 66): the employer pays the whole treatment of the elements 1-10 of Art. 44 (INPS pays no indemnity to the impiegati and quadri of industry) for six months, the comporto of a worker with up to two years of service. Not modelled: from two to six years the comporto of nine months with the last three at 50%, over six years twelve months with three months at 75% and three at 50%; for several illnesses or relapses the comporto of 9, 12 or 15 months in 30, whose three extra months are paid in full for the first and at 50% after. The engine stops at day 180 (days past it are marked beyond the comporto).
 
-    **Applies when:** a fact the request cannot express: never recorded on a run.
+    **Applies when:** `sickness` applies; seniority of at least 24 months.
 
     **Remediation:** Model the seniority bands of Art. 66 with equal full-pay days and the cumulated comporto in 30 months.
 

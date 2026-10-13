@@ -2808,7 +2808,7 @@
         "limitation": {
           "variant": "sickness_net_basis",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "run"
           },
           "remediation": "Model the net daily pay of art. 228, the unpaid first day of a short illness and the end of a fixed-term contract."
         }
@@ -2825,6 +2825,22 @@
           },
           "remediation": "Model the small-hotel table, the 2027 guarantee element, the fund omission EDRs and the extras table."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICESHIP DURATIONS: the durations of the professionalizzante come from the accord of 17 April 2012 as amended in 2014, of which no signed or CNEL copy was found (only aggregator copies); the percentages of art. 58 are verified. Every apprentice run carries this limitation.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "apprenticeship_durations_unsourced",
+          "applies_when": {
+            "trigger": "run",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Read a signed copy of the accord of 17 April 2012 and its 2014 amendment."
+        }
       }
     ]
   },
@@ -2835,7 +2851,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "5d4b8ec6621f488ac40db7bd215333496d47dbb9c2aa6d1707057ed45f4c428e",
+    "source_hash": "5fd3da6d800baa7f0600711714399609f1bf18da6f2e986428346f7b44bcbc48",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3095,7 +3111,7 @@
   },
   "verification": {
     "confidence": "verified",
-    "readiness": "reviewed",
+    "readiness": "production",
     "verified_cases": 0,
     "reviews": [
       {
@@ -3131,7 +3147,21 @@
           "Production blocked: no signed copy of the accordo apprendistato of 17 April 2012 (base durations, art. 13) in the CNEL archive of H052 or at the signatories; only art. 14 bis is read in the 2014 renewal.",
           "No renewal after the ipotesi of 5 July 2024 through October 2026."
         ]
+      },
+      {
+        "id": "2026-10-13-ai-run-scope",
+        "date": "2026-10-13",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Scope of the declared limitations.",
+        "outcome": "corrected",
+        "findings": [
+          "sickness_net_basis is recorded on every run with a sickness event (trigger run), not only documented.",
+          "The apprenticeship durations without a signed source are now a limitation on every apprentice run (apprenticeship_durations_unsourced); with every remaining gap flagged on the runs it concerns, the file moves to production."
+        ]
       }
-    ]
+    ],
+    "owner": "maintainer",
+    "review_due": "2026-12-01"
   }
 }

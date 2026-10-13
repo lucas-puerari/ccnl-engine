@@ -8,7 +8,7 @@
 | **Last renewal** | 2024-07-05 |
 | **Workers (est.)** | ~220k |
 | **Ruleset version** | `2026.2` |
-| **Readiness** | 👁 Reviewed |
+| **Readiness** | 🏭 Production |
 
 [← Contracts index](index.md)
 
@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, seniority, sickness |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
 | **Rule provenance** | 71 verified / 1 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
-| **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
+| **Readiness** | 🏭 Production | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
 ## Freshness
 
@@ -58,6 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-13 | claude-opus-5-5 (ai) | Every payable rule read again in the signed texts: the ipotesi of 5 July 2024 (scan, Federalberghi copy), the renewal of 18 January 2014 and the CCNL of 20 February 2010. | corrected | 82 records verified. The salary periods cited the 2010 text: the 2016 values are in the 2014 renewal (p. 17), the 2024-2027 values in the 2024 ipotesi (p. 42). The 2024 text has no text layer: its quotes are OCR, checked on the page images.<br>Level B is quadro (art. 48 c.1), not impiegato; levels 1-7 have no category of their own (art. 50, by mansione): null.<br>Added the Quadri function allowance of art. 145: A 75.00, B 70.00 from January 2009.<br>Sickness: 75% for days 4-20 and 100% from day 21 of the net daily pay, 180 days a calendar year (art. 228), not a flat 100%.<br>Accrual: hotels and campsites counted twenty-sixths before 2024 too (artt. 225, 277): the cumulated-fractions clause dropped.<br>Seniority from 1 May 1990 (art. 158 c.4); Fon.Te. from 29 November 1996 (art. 162), no longer from 2026; ruleset and validity from the decorrenza of 1 July 2024 (art. 199); the ruleset source is the 2024 ipotesi.<br>Holiday overtime 30% stays derived from art. 219 c.1: the CCNL sets no festive overtime rate.<br>Overtime is paid on the retribuzione of art. 148 divided by 172 (art. 151): hourly_base_method gross_incl_allowances.<br>Production blocked: no signed copy of the accordo apprendistato of 17 April 2012 (base durations, art. 13) in the CNEL archive of H052 or at the signatories; only art. 14 bis is read in the 2014 renewal.<br>No renewal after the ipotesi of 5 July 2024 through October 2026. |
+| 2026-10-13 | claude-opus-5-5 (ai) | Scope of the declared limitations. | corrected | sickness_net_basis is recorded on every run with a sickness event (trigger run), not only documented.<br>The apprenticeship durations without a signed source are now a limitation on every apprentice run (apprenticeship_durations_unsourced); with every remaining gap flagged on the runs it concerns, the file moves to production. |
 
 ## Salary table
 
@@ -114,7 +115,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 !!! warning "turismo-federalberghi/sickness_net_basis · sickness · impact yes · open"
     SICKNESS (art. 228, 2010 text p. 184): the CCNL integrates up to a share of the net daily pay without saying how the net pay is computed; the engine grosses up the INPS indemnity by the worker's INPS rate, as for the Commercio file. Day 1 of the carenza is the worker's when the illness lasts three days or less (c.5): the engine pays all three days. For fixed-term and seasonal workers no integration is due past the end of the contract (c.2).
 
-    **Applies when:** a fact the request cannot express: never recorded on a run.
+    **Applies when:** `sickness` applies.
 
     **Remediation:** Model the net daily pay of art. 228, the unpaid first day of a short illness and the end of a fixed-term contract.
 
@@ -124,6 +125,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the small-hotel table, the 2027 guarantee element, the fund omission EDRs and the extras table.
+
+!!! warning "turismo-federalberghi/apprenticeship_durations_unsourced · base_salary · impact yes · open"
+    APPRENTICESHIP DURATIONS: the durations of the professionalizzante come from the accord of 17 April 2012 as amended in 2014, of which no signed or CNEL copy was found (only aggregator copies); the percentages of art. 58 are verified. Every apprentice run carries this limitation.
+
+    **Applies when:** `base_salary` applies; contract type in apprentice.
+
+    **Remediation:** Read a signed copy of the accord of 17 April 2012 and its 2014 amendment.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
