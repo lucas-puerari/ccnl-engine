@@ -295,11 +295,13 @@ class TestLoadTerziarioConfesercenti:
         ccnl = load_ccnl("terziario-confesercenti.json")
         assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(168)
 
-    def test_terziario_confesercenti_no_fixed_allowances(self) -> None:
-        """Conglobated model: all levels have no fixed allowances."""
+    def test_terziario_confesercenti_terzo_elemento_only(self) -> None:
+        """Conglobated model: the only allowance is the terzo elemento (Art. 215)."""
         ccnl = load_ccnl("terziario-confesercenti.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == ()
+            (allowance,) = lv.fixed_allowances
+            assert allowance.code == "TERZO_ELEMENTO_NAZIONALE"
+            assert allowance.replaced_by_provincial_element
 
     def test_terziario_confesercenti_tax_sector(self) -> None:
         """Contract declares TERZIARIO tax sector."""
