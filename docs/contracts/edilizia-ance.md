@@ -8,7 +8,7 @@
 | **Last renewal** | — |
 | **Workers (est.)** | ~550k |
 | **Ruleset version** | `2026.2` |
-| **Readiness** | 🏭 Production |
+| **Readiness** | 👁 Reviewed |
 
 [← Contracts index](index.md)
 
@@ -35,7 +35,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, sickness |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -45,7 +45,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
 | **Rule provenance** | 20 verified / 16 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
-| **Readiness** | 🏭 Production | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
+| **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
 ## Freshness
 
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-09-18 | maintainer (human) | Whole file. The values checked were not recorded. | confirmed | The review recorded no list of the documents it read. |
 | 2026-10-13 | claude-opus-5-5 (ai) | Every payable rule of the operai read again in the ANCE minimi table of the CCNL of 21 February 2025, the CCNL of 19 April 2010 (FILLEA text), the Art. 92 apprenticeship text of 2019 and the ANCE provincial tables, for the production tier. | corrected | 26 records verified, 12 derived (contingenza, EDR, contractual fund, absence quota, sickness mapping).<br>Split by category (Art. 77): the operai of levels 1-4 in edilizia-ance, the impiegati and quadri of levels 1-7 in edilizia-ance-impiegati.<br>base_salary is now the national minimo of the ANCE table; the ex contingenza and the EDR 10.33 are fixed allowances (derived, ANCE provincial tables), the EDR outside the TFR base. The previous consolidated values (minimo + contingenza + EDR) matched.<br>Aggregator sources (idealista, leggeinchiaro, businessonline, kitech) removed.<br>Absence quota: by_hourly 8 hours (1/173 of Art. 44 and Allegato A), not by_26, which no clause supports.<br>contractual_fund_uncovered closed: every operaio level has an hourly Prevedi amount and every impiegato or quadro level a monthly one.<br>No renewal changing the national minimi after the verbale of 21 February 2025 through October 2026.<br>Twelve monthly payments, not 13: the gratifica natalizia and the ferie are the 18.5% of Art. 18 through the Cassa Edile (declared).<br>No scatti for the operai (Art. 49 is for the impiegati; APE through the Cassa Edile, Art. 29): seniority removed, the apprentice seniority note closed.<br>Sickness: the coefficients of Art. 26, not 100% for 180 days; comporto 270 days (derived mapping, declared).<br>Night overtime 40% (Art. 19) confirmed; sources now the CCNL text.<br>Notes corrected: the TFR is paid by the employer (Art. 33), not the Cassa Edile; the INPS rates are the verified 2026 edilizia table. |
+| 2026-10-13 | claude-opus-5-5 (ai) | Scope of the declared limitations and readiness. | demoted | The 18.5% Cassa Edile accrual and the 4.95% riposi annui are missing from every operaio payslip: declared as cassa_edile_riposi_missing on every run, so the file goes back to reviewed.<br>edilizia_operai_sickness is recorded on every run with a sickness event. |
 
 ## Salary table
 
@@ -91,7 +92,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 !!! warning "edilizia-ance/edilizia_operai_sickness · sickness · impact yes · open"
     SICKNESS (Art. 26): the employer pays a coefficient of the hourly minimo, ex contingenza and indennità territoriale times a sixth of the weekly hours, six days a week: 0.5495 for days 1-3 when the sickness lasts more than 6 days, 1.0495 when it lasts more than 12, 0.3795 for days 4-20 and 0.1565 for days 21-180 on top of the INPS indemnity, 0.5495 for days 181-365. The engine stores the coefficient plus the INPS rate of the day as the target (0.8795 and 0.8231), so its employer share is the coefficient on the engine's daily quota, which counts the EDR and not the indennità territoriale. Not modelled: the 1.0495 of a sickness over 12 days (paid 0.5495), the comporto of 365 days past 3.5 years of seniority and the cumulated comporto of 9 months in 20 (12 in 24), the 4.95% paid for the carenza days of a sickness of up to 6 days and the 18.5% accrued with the Cassa Edile during the sickness.
 
-    **Applies when:** a fact the request cannot express: never recorded on a run.
+    **Applies when:** `sickness` applies.
 
     **Remediation:** Model the coefficients of Art. 26 on their own base and the comporto by seniority.
 
@@ -101,6 +102,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the provincial elements as inputs and the percentage accruals of the CCNL.
+
+!!! warning "edilizia-ance/cassa_edile_riposi_missing · base_salary · impact yes · open"
+    CASSA EDILE AND RIPOSI ANNUI: every operaio payslip carries the 18.5% for ferie and gratifica natalizia accrued with the Cassa Edile (8.50% + 10%, Art. 18) and the 4.95% for riposi annui paid each pay period; the engine pays neither, so every run of this file carries this limitation.
+
+    **Applies when:** `base_salary` applies.
+
+    **Remediation:** Model the Cassa Edile accrual of Art. 18 and the riposi annui percentage.
 
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.

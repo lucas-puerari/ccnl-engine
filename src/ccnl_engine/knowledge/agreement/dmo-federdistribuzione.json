@@ -98,7 +98,7 @@
         "limitation": {
           "variant": "sickness_net_basis",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "run"
           },
           "remediation": "Model the net daily pay of Art. 170 and the exempt events of c. 3."
         }
@@ -3009,7 +3009,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "6125ff237546ea4dd44f01959b12d46152b09eb229f1d02fd250e891322339b6",
+    "source_hash": "7ce84ab87ab758f6bfb505c04dfab0354fd26a8b22bc0d8f369f666cc54579f4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3398,6 +3398,17 @@
           "Added the payment days of the tredicesima and quattordicesima and Fon.Te. (Art. 95, 1.55% and 0.55%, apprentices 1.05%).",
           "Night holiday overtime 0.50 stays derived: no clause sets it, Art. 132 c. 5 forbids cumulation.",
           "No renewal after the Testo Unico through October 2026."
+        ]
+      },
+      {
+        "id": "2026-10-13-ai-run-scope",
+        "date": "2026-10-13",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Scope of the declared limitations.",
+        "outcome": "corrected",
+        "findings": [
+          "sickness_net_basis is recorded on every run with a sickness event (trigger run), not only documented."
         ]
       }
     ],

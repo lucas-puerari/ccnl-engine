@@ -149,7 +149,7 @@ it drifts):
 <!-- /trust:readiness-table -->
 
 The <!-- trust:readiness-reviewed -->12<!-- /trust:readiness-reviewed -->
-`reviewed` rulesets: <!-- trust:readiness-reviewed-list -->`commercio-confcommercio`, `concia-unic`, `cooperative-sociali`, `funzioni-centrali-aran`, `funzioni-locali-aran`, `lavoro-domestico-convivente`, `lavoro-domestico-convivente-orario-ridotto`, `lavoro-domestico-non-convivente`, `logistica-trasporto-confetra`, `logistica-trasporto-confetra-viaggiante`, `sanita-aran`, `turismo-federalberghi`<!-- /trust:readiness-reviewed-list -->.
+`reviewed` rulesets: <!-- trust:readiness-reviewed-list -->`commercio-confcommercio`, `concia-unic`, `cooperative-sociali`, `edilizia-ance`, `funzioni-centrali-aran`, `funzioni-locali-aran`, `lavoro-domestico-convivente`, `lavoro-domestico-convivente-orario-ridotto`, `lavoro-domestico-non-convivente`, `logistica-trasporto-confetra`, `logistica-trasporto-confetra-viaggiante`, `sanita-aran`<!-- /trust:readiness-reviewed-list -->.
 Each [contract page](../contracts/index.md) shows its own tier.
 
 In October 2026 fifteen rulesets `reviewed` on a file-level review were

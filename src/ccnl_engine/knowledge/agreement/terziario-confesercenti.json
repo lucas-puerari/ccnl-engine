@@ -3006,7 +3006,7 @@
         "limitation": {
           "variant": "sickness_net_basis",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "run"
           },
           "remediation": "Model the net daily pay of Art. 187 and the exempt events of its second paragraph."
         }
@@ -3033,7 +3033,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "7852321b89fceb5f5c03936fffef92c1cfe287cd93a2294b54fd4ac5865c3420",
+    "source_hash": "a77232ffa96d818f468e5484c3cb111c10c17c10319dc4e5b05969d14e654ec2",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3384,6 +3384,17 @@
           "The una tantum of 2024-2025 is owed at every level, not only at level IV: limitation lump_sum_2024_2025 rescoped to July 2024 and July 2025.",
           "The source documents had three ids and a tabella_retributiva kind for the same Testo Unico URL: unified. The 22 March 2024 ipotesi and the twin UGL texts (CNEL 20270, 19968) agree with the tables.",
           "No renewal after the accordo integrativo of 28 March 2024 changes pay through October 2026 (CNEL H012 deposits through 20522 of 4 November 2024, training profiles only)."
+        ]
+      },
+      {
+        "id": "2026-10-13-ai-run-scope",
+        "date": "2026-10-13",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Scope of the declared limitations.",
+        "outcome": "corrected",
+        "findings": [
+          "sickness_net_basis is recorded on every run with a sickness event (trigger run), not only documented."
         ]
       }
     ],

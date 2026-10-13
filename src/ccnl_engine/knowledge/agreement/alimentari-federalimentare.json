@@ -78,7 +78,7 @@
         "limitation": {
           "variant": "sickness_half_pay_and_comporto",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "run"
           },
           "remediation": "Model the 50% band over 5 years and the 17 and 24 month comporto windows of Art. 47."
         }
@@ -3189,7 +3189,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "d20ecceeab88bcbaf1100e9d808c43b924693c3e6499ee0e9e7d603b91553953",
+    "source_hash": "ec7e8b22b795d340c75d99f36c9f861124566e585236906b60c09c87a6366974",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3464,6 +3464,17 @@
           "Apprenticeship: the period boundaries of Art. 21 per level (4 at 6/20, 1 at 10/20, 5 at 6); apprentice_seniority closed with a zero amount (derived).",
           "Alifond 1.50%/1% from 1 January 2025 (Art. 74). Contingenza frozen at 1 November 1991, seniority amounts since 1 August 1998.",
           "Art. 51 bis, Art. 74 bis, Art. 51 ter and the other contributions declared in one limitation. No renewal or verifica after the CCNL of 1 March 2024 through October 2026."
+        ]
+      },
+      {
+        "id": "2026-10-13-ai-run-scope",
+        "date": "2026-10-13",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Scope of the declared limitations.",
+        "outcome": "corrected",
+        "findings": [
+          "sickness_half_pay_and_comporto (the comporto of every worker and the half-pay days above five years) is recorded on every run with a sickness event."
         ]
       }
     ],

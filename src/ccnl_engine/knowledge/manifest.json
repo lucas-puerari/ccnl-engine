@@ -98,7 +98,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/alimentari-federalimentare",
       "ruleset_version": "2026.2",
-      "source_hash": "d20ecceeab88bcbaf1100e9d808c43b924693c3e6499ee0e9e7d603b91553953",
+      "source_hash": "ec7e8b22b795d340c75d99f36c9f861124566e585236906b60c09c87a6366974",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/alimentari-federalimentare.json.gz"
@@ -693,7 +693,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/dmo-federdistribuzione",
       "ruleset_version": "2026.2",
-      "source_hash": "6125ff237546ea4dd44f01959b12d46152b09eb229f1d02fd250e891322339b6",
+      "source_hash": "7ce84ab87ab758f6bfb505c04dfab0354fd26a8b22bc0d8f369f666cc54579f4",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/dmo-federdistribuzione.json.gz"
@@ -710,7 +710,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/edilizia-ance-impiegati",
       "ruleset_version": "2026.2",
-      "source_hash": "bf70d7e7d2b0a2c4f1805141aa5d96da8ff4403bcc28fa40347342427580e8b8",
+      "source_hash": "d9646949bac69f43e4796fe66875872e8e69c584b4bd933f7097e5feb60d62f0",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/edilizia-ance-impiegati.json.gz"
@@ -727,9 +727,9 @@
       "valid_to": null,
       "ruleset_id": "ccnl/edilizia-ance",
       "ruleset_version": "2026.2",
-      "source_hash": "8be500ae25acf2694d37b394f28ba216896cbe0e6d75d8bd635c59fef185e018",
+      "source_hash": "00409fbf56fe989157ef5ac2b97437717afb76a8dccff98d067991d9d8a83aac",
       "source_type": "contracting_party",
-      "owner": "maintainer",
+      "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/edilizia-ance.json.gz"
     },
     {
@@ -2002,7 +2002,7 @@
       "valid_to": "2027-03-31",
       "ruleset_id": "ccnl/terziario-confesercenti",
       "ruleset_version": "2026.2",
-      "source_hash": "7852321b89fceb5f5c03936fffef92c1cfe287cd93a2294b54fd4ac5865c3420",
+      "source_hash": "a77232ffa96d818f468e5484c3cb111c10c17c10319dc4e5b05969d14e654ec2",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/terziario-confesercenti.json.gz"
@@ -2121,9 +2121,9 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-federalberghi",
       "ruleset_version": "2026.2",
-      "source_hash": "5d4b8ec6621f488ac40db7bd215333496d47dbb9c2aa6d1707057ed45f4c428e",
+      "source_hash": "5fd3da6d800baa7f0600711714399609f1bf18da6f2e986428346f7b44bcbc48",
       "source_type": "contracting_party",
-      "owner": "ccnl-engine maintainers",
+      "owner": "maintainer",
       "wheel_resource": "agreement/turismo-federalberghi.json.gz"
     },
     {

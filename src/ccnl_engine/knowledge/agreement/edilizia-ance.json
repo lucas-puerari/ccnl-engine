@@ -79,7 +79,7 @@
         "limitation": {
           "variant": "edilizia_operai_sickness",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "run"
           },
           "remediation": "Model the coefficients of Art. 26 on their own base and the comporto by seniority."
         }
@@ -95,6 +95,19 @@
             "trigger": "outside_input"
           },
           "remediation": "Model the provincial elements as inputs and the percentage accruals of the CCNL."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "CASSA EDILE AND RIPOSI ANNUI: every operaio payslip carries the 18.5% for ferie and gratifica natalizia accrued with the Cassa Edile (8.50% + 10%, Art. 18) and the 4.95% for riposi annui paid each pay period; the engine pays neither, so every run of this file carries this limitation.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "cassa_edile_riposi_missing",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Model the Cassa Edile accrual of Art. 18 and the riposi annui percentage."
         }
       }
     ]
@@ -1301,7 +1314,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "8be500ae25acf2694d37b394f28ba216896cbe0e6d75d8bd635c59fef185e018",
+    "source_hash": "00409fbf56fe989157ef5ac2b97437717afb76a8dccff98d067991d9d8a83aac",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1596,7 +1609,7 @@
   },
   "verification": {
     "confidence": "verified",
-    "readiness": "production",
+    "readiness": "reviewed",
     "verified_cases": 0,
     "reviews": [
       {
@@ -1661,9 +1674,19 @@
           "Night overtime 40% (Art. 19) confirmed; sources now the CCNL text.",
           "Notes corrected: the TFR is paid by the employer (Art. 33), not the Cassa Edile; the INPS rates are the verified 2026 edilizia table."
         ]
+      },
+      {
+        "id": "2026-10-13-ai-run-scope",
+        "date": "2026-10-13",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Scope of the declared limitations and readiness.",
+        "outcome": "demoted",
+        "findings": [
+          "The 18.5% Cassa Edile accrual and the 4.95% riposi annui are missing from every operaio payslip: declared as cassa_edile_riposi_missing on every run, so the file goes back to reviewed.",
+          "edilizia_operai_sickness is recorded on every run with a sickness event."
+        ]
       }
-    ],
-    "owner": "maintainer",
-    "review_due": "2027-02-28"
+    ]
   }
 }

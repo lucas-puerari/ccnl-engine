@@ -94,7 +94,8 @@
         "limitation": {
           "variant": "edilizia_impiegati_sickness",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "run",
+            "seniority_months_from": 24
           },
           "remediation": "Model the seniority bands of Art. 66 with equal full-pay days and the cumulated comporto in 30 months."
         }
@@ -2307,7 +2308,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "bf70d7e7d2b0a2c4f1805141aa5d96da8ff4403bcc28fa40347342427580e8b8",
+    "source_hash": "d9646949bac69f43e4796fe66875872e8e69c584b4bd933f7097e5feb60d62f0",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2645,6 +2646,17 @@
           "Seniority 8.20 for levels 1-2 (printed 'Imp. 4ª 8,2'), not 8.22: derived.",
           "Quadri indennità di funzione EUR 140 (Art. 76) added.",
           "Sickness: 100% for 180 days without INPS (Art. 66 band up to two years); the longer bands declared."
+        ]
+      },
+      {
+        "id": "2026-10-13-ai-run-scope",
+        "date": "2026-10-13",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Scope of the declared limitations.",
+        "outcome": "corrected",
+        "findings": [
+          "edilizia_impiegati_sickness (the art. 66 treatment beyond two years of service) is recorded on every sickness run of a worker with 24 months of seniority or more, or of unknown seniority."
         ]
       }
     ],
