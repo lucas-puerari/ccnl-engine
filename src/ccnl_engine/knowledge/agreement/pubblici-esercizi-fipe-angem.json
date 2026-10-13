@@ -67,7 +67,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SMALLER COMPANIES: Art. 162 provides for a reduction in base pay for smaller companies (from €2.58 to €5.68 per level). Not modelled — applicable only to the smaller pubblici esercizi of paragraph I Art. 1 (CCNL 2018, p. 118: \"Per il personale delle aziende minori dei pubblici esercizi [...] si fa rinvio all'articolo 162\"). Maximum impact: €5.68/month for Qa.",
+        "text": "SMALLER COMPANIES: Art. 162 (PDF p. 118) reduces the paga base of the aziende minori dei pubblici esercizi and of the stabilimenti balneari of the third and fourth category (from EUR 2.58 for level 7 to EUR 5.68 for Qa, also in the accordo integrativo of 26 June 2024, pp. 4-6); art. 163 c. 2 prints a contingenza up to EUR 0.51 lower for them. Not modelled. Maximum impact: about EUR 6.19 a month for Qa.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -80,7 +80,7 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP (Art. 68): professionalizzante apprenticeship 36 months, percentages 80%/85%/90% from lexplain.it (secondary, not checked on the signed text). Destination levels modelled as 1-6s and 6 (Qa/Qb excluded per D.Lgs. 81/2015 art. 41; level 7 excluded per tertiary CCNL convention, not verified against Art. 68 — fipe.it full text PDF not parseable: scanned without OCR). Art. 75 (apprenticeship for qualification/diploma) out of scope.",
+        "text": "APPRENTICESHIP (CCNL 8 February 2018, arts. 68 and 72, PDF pp. 74-75, read on the signed scan): the professionalizzante apprentice is paid 80%, 85% and 90% of the qualified pay of the level in the first three years (art. 68 c. 1). Durations (art. 72 c. 1): 36 months for levels 2, 3, 4, 5 and 6s, 24 months for level 6. Level 1, level 7 and the quadri are not apprenticeship destinations. Art. 75 (apprenticeship for qualification or diploma) is out of scope.",
         "capability": "base_salary",
         "monetary_impact": "no"
       },
@@ -102,7 +102,7 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "text": "APPRENTICE SENIORITY: no clause says it in so many words. Art. 182 c. 1 (PDF p. 126) grants the six scatti 'A tutto il personale', art. 71 applies to the apprentice the normative treatment of the qualified worker, and art. 68 c. 1 pays a percentage of the qualified pay of the level, scatti included: the apprenticeship counts for the scatti and a matured scatto is paid at the apprentice percentage. The first scatto matures after 48 months, so only an apprentice with prior seniority reaches one; the engine pays no increment during the apprenticeship.",
         "capability": "seniority",
         "monetary_impact": "unknown",
         "limitation": {
@@ -118,7 +118,7 @@
       },
       {
         "kind": "simplification",
-        "text": "HOLIDAY OVERTIME: Art. 126 (PDF p. 99) gives 30% by day and 60% by night for every overtime hour; Art. 132 (p. 103) gives 20% for the hours worked on a festività. The CCNL states no cumulation rule between them (it does for night work, art. 126 c. 3, and for Sunday work, art. 130 c. 2). The engine pays holiday overtime at 30%/60% without the 20%.",
+        "text": "HOLIDAY OVERTIME: Art. 126 (PDF p. 99) gives 30% by day and 60% by night for every overtime hour; Art. 132 (p. 103) gives 20% for the hours worked on a festività. No clause links them: art. 126 c. 3 excludes cumulation only with ordinary night work, art. 130 c. 2 only Sunday work with the festività, and the special parts (arts. 246-247, 263-264) and the 2024 renewal repeat or leave them. The engine pays holiday overtime at 30%/60% without the 20%.",
         "capability": "overtime",
         "monetary_impact": "unknown",
         "limitation": {
@@ -127,6 +127,48 @@
             "trigger": "outside_input"
           },
           "remediation": "Confirm whether the 20% of art. 132 is added to the overtime rate on a festività; if so set the bands to 0.5 and 0.8, else close this note."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICESHIP PROFILES: art. 72 c. 2 gives 48 months to named profiles of levels 2 and 3 and 42 months to named profiles of level 4, and art. 68 c. 1 pays 95% in their fourth year. The profile is not an input: the engine pays them the 36-month track, 100% from month 37 instead of 95%.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "apprenticeship_long_profiles",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Let the caller state the art. 72 c. 2 profile and add the 42 and 48 month tracks with the 95% fourth year."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "BALNEARI AND ALBERGHI DIURNI: art. 190 c. 5 (PDF p. 134) leaves the stabilimenti balneari and the alberghi diurni out of the sickness rule of the file: they pay the supplements of arts. 250 and 266 over the INPS 50%/66.66%, and the balneari non impiegati work 44 hours a week. Not modelled.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "balneari_diurni_rules",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the special parts of the stabilimenti balneari and alberghi diurni in a sibling file."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "NOT MODELLED AMOUNTS: the elemento distinto of EUR 16.00 for 14 months owed when the employer does not pay Fondo Est (CCNL 2018 art. 186 c. 12), and the guarantee premium of the renewal of 5 June 2024 (art. 13 c. 10) paid with the November 2027 pay to workers without second-level bargaining. The caller pays them as variable items.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "fipe_unmodelled_elements",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the Fondo Est elemento distinto and the 2027 guarantee premium as conditional allowances."
         }
       }
     ]
@@ -333,7 +375,7 @@
         "rate": {
           "periods": [
             {
-              "valid_from": "2026-01-01",
+              "valid_from": "1996-11-29",
               "valid_until": null,
               "value": "0.0055"
             }
@@ -342,7 +384,7 @@
         "employee_min_rate": {
           "periods": [
             {
-              "valid_from": "2026-01-01",
+              "valid_from": "1996-11-29",
               "valid_until": null,
               "value": "0.0055"
             }
@@ -350,26 +392,39 @@
         },
         "contribution_base": "tfr_base",
         "provenance": {
-          "status": "derived",
+          "status": "verified",
           "location": {
             "source_document": {
-              "document_id": "fonte-allegato-1-contribuzione-2026",
-              "title": "Fon.Te. Nota informativa, Allegato 1 'Informazioni sulla contribuzione' (dati aggiornati al 23 marzo 2026)",
-              "kind": "altro",
-              "url": "https://fondofonte.it/wp-content/uploads/2022/06/Allegato-1-info-tab-contribuzione.pdf"
+              "document_id": "fipe-ccnl-2018-02-08",
+              "title": "CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo, 8 febbraio 2018 (scansione firmata)",
+              "kind": "associazione",
+              "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+              "published_on": "2018-02-08",
+              "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
             },
-            "section": "Table 'CCNL per i dipendenti da aziende dei settori pubblici esercizi, ristorazione collettiva e commerciale e turismo (FIPE – ANGEM – LEGACOOP PRODUZIONE e SERVIZI, FEDERLAVORO e SERVIZI CONFCOOPERATIVE – AGCI SERVIZI)'",
-            "quote": "Lavoratori occupati dopo il 28.04.1993 50% o 100% 0,55% 0,55% 29 novembre 1996 Trimestrale"
+            "page": "129",
+            "section": "Art. 185 c. 3 - Previdenza complementare",
+            "quote": "- 0,55% (di cui lo 0,05% costituisce la quota associativa) - della retribuzione utile per il computo del TFR a carico del lavoratore; - 0,55% [...] a carico del datore di lavoro;"
           },
-          "transformation": "Employer 0.55% and worker minimum 0.55%, the columns 'Datore di Lavoro' and 'Lavoratore' of the table of the CCNL. The quota of TFR is the worker's choice in PensionFundEnrolment.tfr_to_fund.",
-          "note": "Read from the PDF the url serves (sha256 e1604b50f245d34b4ea04aa53bb91056f55635b39b8c0935f31f2a79b578d40e), text layer; valid_from is the first day of the bundled tax year, the rates being in force since 29 November 1996. The base is the retribuzione utile ai fini del calcolo del TFR, as note (1) of the Scheda 'I destinatari e i contributi' states (https://www.fondofonte.it/statuto-e-nota-informativa/parte-i-scheda-iii-i-destinatari-e-i-contributi/, sha256 dc19e50af945d0671920bb1ebc77e5d75cc2a9dd2f6fd8cad5dd2882a66c8cb2). No human review recorded."
+          "transformation": "Employer 0.55% and worker minimum 0.55% of the TFR base (art. 185 c. 3), the same as the columns of the Fon.Te. table of the CCNL, which dates them from 29 November 1996. The quota of TFR is the worker's choice in PensionFundEnrolment.tfr_to_fund.",
+          "note": "Fon.Te. Allegato 1 (https://fondofonte.it/wp-content/uploads/2022/06/Allegato-1-info-tab-contribuzione.pdf, sha256 e1604b50f245d34b4ea04aa53bb91056f55635b39b8c0935f31f2a79b578d40e): 'Lavoratori occupati dopo il 28.04.1993 50% o 100% 0,55% 0,55% 29 novembre 1996 Trimestrale'.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-13T06:13:39Z",
+            "effective_from": "1996-11-29",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-13T06:13:39Z",
+            "verification_status": "verified",
+            "review_id": "2026-10-13-ai-production"
+          }
         }
       }
     ],
     "accrual_rule": {
       "comparison": "cumulated_fractions",
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "fipe-ccnl-2018-02-08",
@@ -387,8 +442,11 @@
           "method": "ai",
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-10-12T14:47:03Z",
-          "verification_status": "unverified",
-          "effective_from": "2018-02-08"
+          "verification_status": "verified",
+          "effective_from": "2018-02-08",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T06:13:39Z",
+          "review_id": "2026-10-13-ai-production"
         },
         "transformation": "A whole month accrues a rateo; the calendar days of the months worked in part (start, end, or reduced work) are summed: a rateo for each 30 days and one for a remainder of 15 days or more.",
         "note": "Scanned CCNL read by OCR and checked on the page images (pp. 127-128). Same wording for the tredicesima (art. 183 c. 2) and the quattordicesima (art. 184 c. 4)."
@@ -2330,13 +2388,11 @@
       "type": "percentage",
       "name": "professionalizzante",
       "destination_levels": [
-        "1",
         "2",
         "3",
         "4",
         "5",
-        "6s",
-        "6"
+        "6s"
       ],
       "periods": [
         {
@@ -2360,6 +2416,30 @@
           "percentage": "1.00"
         }
       ]
+    },
+    {
+      "type": "percentage",
+      "name": "professionalizzante_24_mesi",
+      "destination_levels": [
+        "6"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
     }
   ],
   "ruleset": {
@@ -2369,7 +2449,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "a60164d9aa6f8d54331c78289895a0597f86589e8094d343714b4dbc06ce4970",
+    "source_hash": "711dc9507e902b1ece30cf10afe02c2dfe366a430c4393aaa9219eccb1cc8e60",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2717,7 +2797,37 @@
         "findings": [
           "The accrual rule was missing (engine default of 15 days per month): the CCNL cumulates the fractions of month, a rateo for each 30 days and one for a remainder of 15 days or more, now modelled (cumulated_fractions)."
         ]
+      },
+      {
+        "id": "2026-10-13-ai-production",
+        "date": "2026-10-13",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Every payable rule not yet verified, the apprenticeship (arts. 68 and 72), the limitations and the L2 values, for the production tier.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          },
+          {
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+            "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+          }
+        ],
+        "findings": [
+          "2 records verified on the signed texts (salary periods on the accordo integrativo of 26 June 2024, accrual rule and Fon.Te. on the CCNL of 8 February 2018).",
+          "Fon.Te.: 0.55% employer and worker on the TFR base, art. 185 c. 3; valid from 29 November 1996 (the fund table), not from 2026.",
+          "Apprenticeship: level 1 is not a destination; level 6 lasts 24 months (art. 72 c. 1), now its own track; the 42 and 48 month profiles stay a limitation.",
+          "Holiday overtime: whether the 20% of art. 132 adds to the 30%/60% of art. 126 is not stated; the two bands stay derived with the limitation.",
+          "L2: INPS terziario verified (circ. 117/2022 allegato accepted on 2026-10-13), with the 0.77% sickness supplement of the pubblici esercizi (CCNL art. 190 c. 3); TFR art. 217, the scatti included since 1 November 2021.",
+          "No renewal after the accordo integrativo of 26 June 2024 changes gross pay."
+        ]
       }
-    ]
+    ],
+    "confidence": "verified",
+    "readiness": "production",
+    "owner": "maintainer",
+    "review_due": "2027-06-01"
   }
 }
