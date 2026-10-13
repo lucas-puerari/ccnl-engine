@@ -127,7 +127,7 @@
     "contribution": "included",
     "tfr": "excluded",
     "cost": "employee_cash",
-    "legal_basis": "L. 199/2025 art. 1 cc. 7-12; L. 208/2015 art. 1 cc. 182-190"
+    "legal_basis": "L. 199/2025 art. 1 c. 9; L. 208/2015 art. 1 cc. 182-190"
   },
   {
     "policy_id": "it/earning/contract_renewal",
@@ -225,7 +225,7 @@
     "contribution": "excluded",
     "tfr": "special",
     "cost": "employee_cash",
-    "legal_basis": "Art. 2120 c.c."
+    "legal_basis": "Art. 17 c. 1 lett. a) e art. 19 TUIR; art. 2120 c.c."
   },
   {
     "policy_id": "it/contribution/employee",
@@ -239,7 +239,7 @@
     "contribution": "excluded",
     "tfr": "excluded",
     "cost": "employee_cash",
-    "legal_basis": "DPR 917/1986 art. 22"
+    "legal_basis": "Art. 51 c. 2 lett. a) e art. 10 c. 1 lett. e) TUIR"
   },
   {
     "policy_id": "it/contribution/employer",
@@ -253,7 +253,7 @@
     "contribution": "excluded",
     "tfr": "excluded",
     "cost": "employer_cost",
-    "legal_basis": "DPR 917/1986 art. 22"
+    "legal_basis": "Art. 51 c. 2 lett. a) TUIR; art. 12 L. 153/1969"
   },
   {
     "policy_id": "it/earning/extra_month",
@@ -361,11 +361,11 @@
     ],
     "effective_from": "2000-01-01",
     "effective_until": null,
-    "tax": "ordinary",
+    "tax": "separate",
     "contribution": "excluded",
     "tfr": "excluded",
     "cost": "employee_cash",
-    "legal_basis": "Art. 51 TUIR"
+    "legal_basis": "Art. 17 c. 1 lett. a) e art. 19 TUIR"
   },
   {
     "policy_id": "it/leave/settlement",

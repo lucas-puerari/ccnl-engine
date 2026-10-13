@@ -209,6 +209,22 @@ class TestMisclassificationFixes:
         assert result is not None
         assert result.tax == TaxAxis.SUBSTITUTE
 
+    def test_termination_payment_uses_separate_taxation(self) -> None:
+        """Cessation payments, including notice indemnity, use TUIR art. 17."""
+        resolver = load_policy_resolver()
+        result = resolver.resolve("termination_item", _ctx())
+        assert result is not None
+        assert result.tax == TaxAxis.SEPARATE
+        assert "Art. 17 c. 1 lett. a)" in result.legal_basis
+
+    def test_tfr_settlement_names_separate_tax_basis(self) -> None:
+        """The TFR settlement cites both its civil and tax treatment."""
+        resolver = load_policy_resolver()
+        result = resolver.resolve("tfr_settlement_item", _ctx())
+        assert result is not None
+        assert result.tax == TaxAxis.SEPARATE
+        assert "art. 19 TUIR" in result.legal_basis
+
     def test_arrears_tax_require_raises(self) -> None:
         """require('tax') on arrears resolution raises UnresolvablePolicyError."""
         resolver = load_policy_resolver()
