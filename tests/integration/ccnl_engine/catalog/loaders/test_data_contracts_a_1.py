@@ -268,31 +268,10 @@ class TestLoadChimicaFederchimica:
         assert si.maximum_count == 0
         assert si.amount_by_level == {}
 
-    def test_chimica_apprenticeship_under_classification(self) -> None:
-        """Single UC track covers E3-B1 (10 dest); 2 below → 1 below."""
+    def test_chimica_no_apprenticeship_track(self) -> None:
+        """The apprenticeship of the CCNL is declared, not modelled."""
         ccnl = load_ccnl("chimica-farmaceutica-federchimica.json")
-        assert len(ccnl.apprenticeship) == 1
-        track = ccnl.apprenticeship[0]
-        assert isinstance(track, ApprenticeshipUnderClassification)
-        assert track.name == "professionalizzante"
-        eligible = {
-            "E3",
-            "E2",
-            "E1",
-            "D3",
-            "D2",
-            "D1",
-            "C2",
-            "C1",
-            "B2",
-            "B1",
-        }
-        assert set(track.destination_levels) == eligible
-        assert len(track.periods) == 2
-        assert track.periods[0].levels_below == 2
-        assert track.periods[0].months_until == 18
-        assert track.periods[1].levels_below == 1
-        assert track.periods[1].months_until is None
+        assert ccnl.apprenticeship == ()
 
     def test_chimica_thirteen_months(self) -> None:
         """Contract has 13 monthly salaries per year (tredicesima only)."""
@@ -300,14 +279,15 @@ class TestLoadChimicaFederchimica:
         value = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
         assert value == Decimal(13)
 
-    def test_chimica_no_fixed_allowances(self) -> None:
-        """All levels have empty fixed_allowances (TEM modelled as base_salary)."""
+    def test_chimica_edr_allowance_only(self) -> None:
+        """Each level has the 2025 EDR, outside the TFR base, from July 2027."""
         ccnl = load_ccnl("chimica-farmaceutica-federchimica.json")
         for level in ccnl.levels:
-            assert level.fixed_allowances == (), (
-                f"Level {level.code} should have no fixed_allowances "
-                "(TEM is already embedded in base_salary)"
-            )
+            (edr,) = level.fixed_allowances
+            assert edr.code == "EDR"
+            assert edr.tfr_relevant is False
+            assert edr.monthly.periods[0].value is None
+            assert edr.monthly.value_at(date(2027, 7, 1)) > 0
 
     def test_chimica_hourly_divisor(self) -> None:
         """Hourly divisor must be 175 (chimico-farmaceutico standard)."""

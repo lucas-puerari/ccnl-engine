@@ -8,7 +8,7 @@
 | **Last renewal** | — |
 | **Workers (est.)** | ~210k |
 | **Ruleset version** | `2026.2` |
-| **Readiness** | 🧪 Exploratory |
+| **Readiness** | 🏭 Production |
 
 [← Contracts index](index.md)
 
@@ -31,10 +31,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ✅ |
-| **Limits of this contract** | — |
+| **Core payroll path** | ⚠️ |
+| **Limits of this contract** | base_salary |
 
-0 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -42,21 +42,23 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 99 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
-| **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
-| **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
+| **Rule provenance** | 111 verified / 5 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
+| **Readiness** | 🏭 Production | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
 ## Freshness
 
 | | |
 |---|---|
 | **Last renewal** | — |
-| **Last review** | — |
+| **Last review** | 2026-10-13 |
 | **Latest salary tranche** | 2028-06-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-10-13 | claude-opus-5-5 (ai) | Every payable rule read again in the signed texts: the ipotesi di rinnovo of 15 April 2025, the Intesa of 8 January 2024, the testo definitivo of 10 May 2006 and the renewals of 18 December 2009 and 19 July 2018, for the production tier. | corrected | 134 records verified, 4 derived. The tables cited an aggregator re-typing; they now cite the signed scan (read by OCR and on the page images) and the Intesa of 8 January 2024.<br>The first table is the TEM of 1 July 2024 (Intesa 8/1/2024), not of 1 June 2025: valid_from 2024-07-01 for the 15 levels.<br>The EDR from 1 July 2027 was inside base_salary; it is now the allowance EDR, outside the TFR base (art. 15 B 2): base_salary 2027-07 and 2028-06 lowered by 18 to 39 EUR.<br>Overtime: night 50/60/75% (not 35%), weekday 35% beyond the 48th hour, holiday 70% from the 45th hour, the 25% band from the 45th hour (threshold 4, not 8); categories A and B excluded.<br>Absences are deducted at 1/175 an hour (art. 20), not by 26: by_hourly with an 8-hour day (derived).<br>Sickness: 100% of the net pay for 3/4/5 months and 50% after, comporto 8/10/12 months over 36, not a flat 100% for 365 days (derived: the 2022 and 2025 texts differ on the hospital restart day).<br>Apprenticeship: one category below then the destination, at the minimo without IPO: not expressible, track removed and declared.<br>Fonchim: employer 2.3% from 1 January 2027 (2025 renewal p. 47), 2.55% with the fund's insurance share (derived).<br>Hourly divisor and additional months from the 2006 text (valid_from 2006-05-10); payment day of the tredicesima added.<br>No renewal or inflation verification after 15 April 2025 through October 2026 (CNEL B011 listing). |
 
 ## Salary table
 
@@ -64,36 +66,44 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `A1` | A (Quadri) — QA/HSE/IT manager, senior scientist, plant manager, 1st grade | € 3,682.48 | 2028-06-01 |
-| `A2` | A (Quadri) — laboratory manager, complex systems expert, 2nd grade | € 3,396.59 | 2028-06-01 |
-| `A3` | A (Quadri) — area coordinator, department head, 3rd grade | € 3,325.22 | 2028-06-01 |
-| `B1` | B — ISF, product manager, safety officer, 1st grade | € 3,080.98 | 2028-06-01 |
-| `B2` | B — researcher, maintenance manager, senior programmer, 2nd grade | € 2,968.61 | 2028-06-01 |
-| `C1` | C — shift supervisor, administrative coordinator, specialist technician, 1st grade | € 2,708.65 | 2028-06-01 |
-| `C2` | C — specialist clerk, QC officer, senior accountant, 2nd grade | € 2,603.86 | 2028-06-01 |
-| `D1` | D — team leader, senior multi-skilled operator, 1st grade | € 2,522.26 | 2028-06-01 |
-| `D2` | D — distribution operator, QA inspector, 2nd grade | € 2,409.77 | 2028-06-01 |
-| `D3` | D — clerical employee / multi-skilled worker, 3rd grade | € 2,342.76 | 2028-06-01 |
-| `E1` | E — GMP production operator, 1st grade | € 2,226.28 | 2028-06-01 |
-| `E2` | E — basic production operator, 2nd grade | € 2,105.14 | 2028-06-01 |
-| `E3` | E — generic specialised operator, 3rd grade | € 2,029.29 | 2028-06-01 |
-| `E4` | E — generic operator, 4th grade | € 1,978.04 | 2028-06-01 |
-| `F` | F — simple executive and service duties | € 1,891.46 | 2028-06-01 |
+| `A1` | A (Quadri) — QA/HSE/IT manager, senior scientist, plant manager, 1st grade | € 3,643.48 | 2028-06-01 |
+| `A2` | A (Quadri) — laboratory manager, complex systems expert, 2nd grade | € 3,362.59 | 2028-06-01 |
+| `A3` | A (Quadri) — area coordinator, department head, 3rd grade | € 3,292.22 | 2028-06-01 |
+| `B1` | B — ISF, product manager, safety officer, 1st grade | € 3,048.98 | 2028-06-01 |
+| `B2` | B — researcher, maintenance manager, senior programmer, 2nd grade | € 2,938.61 | 2028-06-01 |
+| `C1` | C — shift supervisor, administrative coordinator, specialist technician, 1st grade | € 2,680.65 | 2028-06-01 |
+| `C2` | C — specialist clerk, QC officer, senior accountant, 2nd grade | € 2,576.86 | 2028-06-01 |
+| `D1` | D — team leader, senior multi-skilled operator, 1st grade | € 2,496.26 | 2028-06-01 |
+| `D2` | D — distribution operator, QA inspector, 2nd grade | € 2,384.77 | 2028-06-01 |
+| `D3` | D — clerical employee / multi-skilled worker, 3rd grade | € 2,318.76 | 2028-06-01 |
+| `E1` | E — GMP production operator, 1st grade | € 2,204.28 | 2028-06-01 |
+| `E2` | E — basic production operator, 2nd grade | € 2,085.14 | 2028-06-01 |
+| `E3` | E — generic specialised operator, 3rd grade | € 2,010.29 | 2028-06-01 |
+| `E4` | E — generic operator, 4th grade | € 1,959.04 | 2028-06-01 |
+| `F` | F — simple executive and service duties | € 1,873.46 | 2028-06-01 |
 
 ## Seniority increments
 
 **Cadence:** every 24 months  
 **Maximum:** 0 increments
 
-## Apprenticeship
-
-**professionalizzante** (type: `under_classification`)  
-Destination levels: `E3`, `E2`, `E1`, `D3`, `D2`, `D1`, `C2`, `C1`, `B2`, `B1`  
-under-level: `1`
-
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "chimica-farmaceutica-federchimica/apprenticeship_minimo_without_ipo · base_salary · impact yes · open"
+    APPRENTICESHIP (stesura 22/9/2012, art. 3 A, CNEL n. 468 pp. 16 and 22, unchanged by the later renewals): the contract of 6 months to 3 years is split in two halves; in the first the apprentice is one category below the destination, in the second at the destination, both paid the minimo contrattuale without IPO (nor EAR or EDR). The engine counts levels, not categories, pays the whole base_salary of a level and splits at fixed months, so no track is modelled and an apprentice run fails closed (no track).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model an under-classification by category paid at the minimo without IPO, with periods of half the contract duration.
+
+!!! warning "chimica-farmaceutica-federchimica/chimica_unmodelled_elements · base_salary · impact yes · open"
+    NOT MODELLED (they change the gross pay): the lavoro eccedente from 37h45 to 40 weekly hours at 5% (art. 9 punto 1); the premiums on ordinary hours: Sunday or holiday work with compensatory rest 50%, night work outside shifts 50%, shifts 4% (day), 34% (night), 46% (night 3x7), Sunday 3x7 33%, pluriperiodale and Saturday 10%, the first 120 hours past 2,024 a year 30% (art. 9 punti 3-6, 9-11); the night-shift indemnity in cifra, outside the TFR base (EUR 13.50 per 8 hours, EUR 15.50 from 1/7/2027, 2025 renewal p. 47); the Easter payment of 1/25 (art. 12) and the holiday falling on a Sunday at 1/25 (art. 20); the premio di partecipazione, the premio variabile and the elemento perequativo (artt. 48-50); the una tantum contribution of EUR 25 withheld in July 2025 from non-member workers (2025 renewal p. 45). Overtime: the CCNL applies the premiums to the art. 15 punto 1 elements, superminimi included; categories A and B get none. The hourly quota of art. 20 excludes the EAR, which base_salary holds for A and B. The EDR is paid whatever the absences of the month and has no effect on other institutes, while the engine reduces it with the month and counts it in the sickness quota. Absences: deducted at 1/175 an hour, a day taken as 8 hours whatever the company schedule. Sickness: the scales of fixed-term contracts and apprentices (75/60/45/30 days in full, as many at half), the comporto 30% longer for disabled workers (L. 68/1999), the therapies of oncological and degenerative illnesses outside the comporto, the restart of an exhausted treatment on a hospital stay of more than 10 days; hospital stays are left out of the comporto over the whole window, the CCNL does it within one continuous event. Scope: the tables of the Fibre, Abrasivi, Lubrificanti e GPL and Ceramica sectors differ and are not modelled.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the art. 9 premiums on ordinary hours, the night-shift indemnity, the Easter payment, the fixed-term sickness scales and the sector tables.
 
 !!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
     The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.
@@ -134,31 +144,29 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| — | — | 2025-04-15 | [↗](https://informatori.it/wp-content/uploads/2025/04/Tabelle-Incrementi-TEM-CCNL-2025-2028.pdf) |
-| — | — | 2026-07-01 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=105) |
+| — | — | 2025-04-15 | [↗](https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf) |
+| — | — | 2024-01-08 | [↗](https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/178786) |
+| — | — | 2018-07-19 | [↗](https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/180719_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%202019-GIUGNO%202022.pdf) |
+| — | — | 2006-05-10 | [↗](https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/579) |
 
 ??? note "Coverage notes"
-    CONSOLIDATED TEM: the base_salary values represent the total Minimum Economic Treatment (TEM) = base minimum (Min) + IPO (Organisational Position Integration, per level) + EAR (Additional Pay Element: A=EUR 190, B=EUR 100, C-F=0, fixed throughout the contract) + EDR (Distinct Pay Element, added from 01/07/2027, per level). fixed_allowances is empty for all levels.
+    SALARY MODEL: base_salary is the Trattamento Economico Minimo (minimo contrattuale + IPO of the position, art. 15 punto 1) plus, for categories A and B, the Elemento Aggiuntivo della Retribuzione (EUR 190 for A, EUR 100 for B since 1/7/2010, art. 15 B 3, renewal 19/7/2018 p. 14), which is in the TFR base. The Elemento Distinto della Retribuzione (art. 15 B 2) is the fixed allowance EDR from 1/7/2027 (A1 39, A2 34, A3 33, B1 32, B2 30, C1 28, C2 27, D1 26, D2 25, D3 24, E1 22, E2 20, E3 19, E4 19, F 18; 2025 renewal p. 49), outside the TFR base ('ivi compreso il Trattamento di fine rapporto').
     
-    PRIMARY SOURCE: TEM tables from the Federchimica/Farmindustria primary source (CCNL 2025-2028, signed 15/04/2025): informatori.it/wp-content/uploads/2025/04/Tabelle-Incrementi-TEM-CCNL-2025-2028.pdf. The PDF contains the increment tables (Min and IPO per tranche) and the absolute TEM values at each due date for all 15 levels.
+    SOURCES: tables of the ipotesi di rinnovo 15/4/2025 (signed scan published by FILCTEM-CGIL, pp. 46-49, read by OCR and on the page images; the same text is deposited at CNEL n. 221298); the TEM of 1/7/2024 from the Intesa 8/1/2024 (CNEL n. 178786, p. 2); the rules from the testo definitivo 10/5/2006 (CNEL n. 579), the latest full text public, with the renewals of 2009, 2015, 2018, 2022 and 2025.
     
-    MODELLED TRANCHES: (1) Pre-existing (end of CCNL 2022-2025, valid_from 2025-06-01): Min+IPO+EAR from PDF page 2 column 'Previgente'. (2) 1/7/2025: first tranche CCNL 2025-2028. (3) 1/12/2025: second tranche. (4) 1/7/2026: third tranche — independently verified on kitech.it (CNEL B011), exact match. (5) 1/7/2027: fourth tranche + EDR (per level, PDF page 4). (6) 1/6/2028: fifth and final tranche.
+    MODELLED TRANCHES: 1/7/2024 (Intesa 8/1/2024, in force until the first tranche of the 2025 renewal: the June 2025 tranche of the 2022 renewal is paid with July 2025, 2025 renewal p. 46), 1/7/2025, 1/12/2025, 1/7/2026, 1/7/2027 and 1/6/2028 (2025 renewal p. 48).
     
-    EDR: from 01/07/2027 the Distinct Pay Element (EDR) is added, monthly amounts per level: A1=39, A2=34, A3=33, B1=32, B2=30, C1=28, C2=27, D1=26, D2=25, D3=24, E1=22, E2=20, E3=19, E4=19, F=18. The modelled TEM already includes EDR in the periods from 01/07/2027.
+    IPO VARIES BY TRANCHE: the IPO of each position takes its own increments at every tranche (2025 renewal p. 48); the table reconciles with the increments for all 15 levels.
     
-    IPO VARIES BY TRANCHE: the IPO is not fixed across tranches but receives its own increments (table on PDF page 1, IPO columns per due date). TEM values are calculated by summing Min, IPO, and EAR (and EDR from 01/07/2027) for each tranche.
+    SENIORITY INCREMENTS abolished from 1 January 2010 (renewal 18/12/2009 p. 37); the amounts accrued by 31/12/2009 are a frozen, non-absorbable personal element, passed to compute() as ad_personam_monthly. maximum_count=0 and amount_by_level={}.
     
-    PRE-JUNE-2025 TRANCHES (CCNL 2022-2025, 5 tranches July 2022 - June 2025) are outside the modelled window: the Federchimica PDF reports only the 'Previgente' column as the baseline.
+    HOURLY DIVISOR: 175 (art. 20 punto 4). The 173 divisor applies only to Ceramica e Abrasivi.
     
-    SENIORITY INCREMENTS abolished from 1 January 2010; amounts accrued up to 2009 are crystallised as a non-absorbable personal supplement, to be passed to compute() as ad_personam_monthly. maximum_count=0 and amount_by_level={}.
+    ADDITIONAL MONTHS: 13, the tredicesima paid on Christmas Eve (art. 21). The quattordicesima of the Lubrificanti e GPL sectors is outside this file.
     
-    HOURLY DIVISOR: 175 h/month (chemical-pharmaceutical sector). The 173 divisor applies only to the ceramics and abrasives sub-sector.
+    INPS: tax_sector industria (CNEL B011, ATECO C20 and C21).
     
-    ADDITIONAL MONTHS: 13 (thirteenth month only). The fourteenth month applies only to the lubricants/LPG, ceramics/abrasives, and insulation sub-sectors.
-    
-    INPS: uses 2026-industria.json (standard industry sector). CNEL code: B011.
-    
-    APPRENTICESHIP (sotto-inquadramento, Art. 3 CCNL): single track 'professionalizzante' covers all eligible destinations E3–B1 (10 levels). Rule: 0–18m = 2 levels below dest; 18m+ = 1 level below dest (two equal periods, total 36m typical). Excluded: F (Art. 3 explicit), E4 (2-below not resolvable), A3/A2/A1 (management tier, not standard apprenticeship). Prior track 'destinazione_D1' had levels_below=3 (error); corrected to 2. Source: Art. 3 CCNL Federchimica (lavoro-economia.it B011); informatori.it sintesi apprendistato B011.
+    FONCHIM: employer 2.35% of the TFR base (2.10% plus the 0.25% insurance contribution) and worker minimum 1.20%, from the fund's opuscolo 2026; from 1/1/2027 the employer rate is 2.3% (2025 renewal p. 47), 2.55% with the insurance share (derived).
     
 
 ## Raw data

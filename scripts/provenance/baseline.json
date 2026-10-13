@@ -160,9 +160,6 @@
       "accrual_rule": "missing",
       "additional_months[2026-01-01]": "assumed"
     },
-    "agreement/chimica-farmaceutica-federchimica.json": {
-      "additional_months[2022-06-13]": "assumed"
-    },
     "agreement/cinema-audiovisivi-industria.json": {
       "accrual_rule": "missing",
       "additional_months[2025-01-01]": "assumed"
@@ -1277,6 +1274,10 @@
     "agreement/chimica-affini-pmi-unionchimica.json": [
       "chimica-affini-pmi-unionchimica/apprentice_seniority",
       "chimica-affini-pmi-unionchimica/tranches_2027_2028"
+    ],
+    "agreement/chimica-farmaceutica-federchimica.json": [
+      "chimica-farmaceutica-federchimica/apprenticeship_minimo_without_ipo",
+      "chimica-farmaceutica-federchimica/chimica_unmodelled_elements"
     ],
     "agreement/cinema-audiovisivi-industria.json": [
       "cinema-audiovisivi-industria/bilateral_funds_not_modelled",
