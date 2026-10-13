@@ -81,7 +81,7 @@ one:
 
 A `derived` rule (taken from a cited document location, with no recorded
 human check) lowers the evidence axis but does not block on its own. Only
-<!-- trust:rules-verified -->1249<!-- /trust:rules-verified --> payable rules of
+<!-- trust:rules-verified -->1320<!-- /trust:rules-verified --> payable rules of
 the bundle are `verified`, so requiring `verified` would block almost every
 result; the evidence axis keeps the difference visible instead.
 
@@ -197,7 +197,7 @@ is `False` on its closing state). See
 ## Model limitations
 
 A known simplification of the model is data, not a comment. The registry has
-<!-- trust:limitations-total -->323<!-- /trust:limitations-total --> `ModelLimitation`
+<!-- trust:limitations-total -->324<!-- /trust:limitations-total --> `ModelLimitation`
 entries: one per `simplification` note of a CCNL file that can move an
 amount, and <!-- trust:limitations-engine -->9<!-- /trust:limitations-engine -->
 engine limitations of code paths several CCNLs share
@@ -217,9 +217,9 @@ limits, the `rulesets` and dates it affects, a `monetary_impact` (`yes`,
 The <!-- trust:simplification-notes -->382<!-- /trust:simplification-notes -->
 simplification notes of the bundle each state their impact on what the engine
 computes from the bundle:
-<!-- trust:simplification-yes -->105<!-- /trust:simplification-yes --> `yes`,
-<!-- trust:simplification-unknown -->209<!-- /trust:simplification-unknown --> `unknown`
-and <!-- trust:simplification-no -->68<!-- /trust:simplification-no --> `no` (the
+<!-- trust:simplification-yes -->107<!-- /trust:simplification-yes --> `yes`,
+<!-- trust:simplification-unknown -->208<!-- /trust:simplification-unknown --> `unknown`
+and <!-- trust:simplification-no -->67<!-- /trust:simplification-no --> `no` (the
 engine refuses the case, or takes the value from the caller). A file whose
 note can move an amount without declaring a limitation does not load, so the
 bundle build fails on an unmapped note.
@@ -235,7 +235,7 @@ the run uses its CCNL:
 - an engine limitation applies only when the run takes its code path, and the
   run records the traversal (an apprentice in a midpoint period of a CCNL
   whose midpoint components are unsourced);
-- <!-- trust:limitations-outside-input -->78<!-- /trust:limitations-outside-input -->
+- <!-- trust:limitations-outside-input -->80<!-- /trust:limitations-outside-input -->
   limitations depend on a fact the request cannot express (a hire date before
   a transitional regime, a fund the worker joins, a sector section): they are
   documented on the contract page and never recorded on a run.

@@ -1691,7 +1691,8 @@
     ],
     "agreement/turismo-federalberghi.json": [
       "turismo-federalberghi/apprentice_seniority",
-      "turismo-federalberghi/indicative_level_category"
+      "turismo-federalberghi/sickness_net_basis",
+      "turismo-federalberghi/turismo_unmodelled_elements"
     ],
     "agreement/uneba-uneba.json": [
       "uneba-uneba/apprentice_seniority",

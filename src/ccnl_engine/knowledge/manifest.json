@@ -2100,11 +2100,11 @@
       "scope": "turismo-federalberghi",
       "model": "CCNL",
       "schema_version": "0.5",
-      "valid_from": "2024-07-05",
+      "valid_from": "2024-07-01",
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-federalberghi",
       "ruleset_version": "2026.2",
-      "source_hash": "6eddb59168d5ea9bdc5fec12545693d872fd0080bfd9dc113e11010929932d0a",
+      "source_hash": "5d4b8ec6621f488ac40db7bd215333496d47dbb9c2aa6d1707057ed45f4c428e",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/turismo-federalberghi.json.gz"

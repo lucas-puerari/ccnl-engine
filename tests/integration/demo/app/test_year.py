@@ -130,7 +130,11 @@ def test_trace_adds_up_to_the_monthly_gross(demo_app: types.ModuleType) -> None:
         (_STANDARD, "production", True),
         (_COMMERCIO, "reviewed", False),
         (
-            {**_COMMERCIO, "ccnl": "turismo-federalberghi", "level": "3"},
+            {
+                **_COMMERCIO,
+                "ccnl": "acconciatura-estetica-confartigianato",
+                "level": "3",
+            },
             "exploratory",
             False,
         ),

@@ -363,11 +363,12 @@ class TestLoadTurismoFederalberghi:
         ccnl = load_ccnl("turismo-federalberghi.json")
         assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(172)
 
-    def test_turismo_federalberghi_no_fixed_allowances(self) -> None:
-        """Conglobated model: all levels have no fixed allowances."""
+    def test_turismo_federalberghi_quadri_allowance_only(self) -> None:
+        """Conglobated model: only the quadri A and B have an allowance (art. 145)."""
         ccnl = load_ccnl("turismo-federalberghi.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == ()
+            codes = [a.code for a in lv.fixed_allowances]
+            assert codes == (["IND_FUNZIONE_QUADRI"] if lv.code in {"A", "B"} else [])
 
     def test_turismo_federalberghi_tax_sector(self) -> None:
         """Contract declares TERZIARIO tax sector."""
