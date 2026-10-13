@@ -26,6 +26,7 @@ _FACTS = LimitationFacts(
     run_kind="regular",
     seniority_months=24,
     applicable=frozenset({"base_salary", "seniority"}),
+    headcount=16,
 )
 
 
@@ -57,6 +58,8 @@ def _limitation(**overrides: Any) -> ModelLimitation:  # noqa: ANN401
         ({"run_kinds": ["regular"]}, True),
         ({"seniority_months_from": 24}, True),
         ({"seniority_months_from": 25}, False),
+        ({"headcount_from": 16}, True),
+        ({"headcount_from": 17}, False),
         ({"effective_from": "2026-06-01"}, True),
         ({"effective_from": "2026-06-02"}, False),
         ({"effective_until": "2026-06-02"}, True),
@@ -71,11 +74,12 @@ def test_scope_restrictions_match_the_facts(
 
 
 def test_unknown_facts_never_rule_a_run_out() -> None:
-    """An unknown category or seniority keeps the limitation."""
-    facts = replace(_FACTS, worker_category=None, seniority_months=None)
+    """An unknown category, seniority or headcount keeps the limitation."""
+    facts = replace(_FACTS, worker_category=None, seniority_months=None, headcount=None)
     scope = LimitationScope.model_validate({
         "worker_categories": ["operaio"],
         "seniority_months_from": 120,
+        "headcount_from": 16,
     })
     assert scope.matches(facts)
 

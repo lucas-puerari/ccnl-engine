@@ -54,6 +54,8 @@ def _scope_text(capability: str, scope: LimitationScope) -> str:
             parts.append(f"{label} in {', '.join(sorted(values))}")
     if scope.seniority_months_from is not None:
         parts.append(f"seniority of at least {scope.seniority_months_from} months")
+    if scope.headcount_from is not None:
+        parts.append(f"at least {scope.headcount_from} employees")
     if scope.effective_from is not None:
         parts.append(f"from {scope.effective_from.isoformat()}")
     if scope.effective_until is not None:

@@ -3,9 +3,10 @@
 The candidates are the engine limitations of the bundle and those the
 simplification notes of the CCNL declare.  Each is matched against the
 facts of the run: the CCNL, the competence date the rules were read at,
-the contract type, level, category, run kind and seniority of the request,
-the capabilities the capability report scopes as applicable, and the
-engine limitations whose code path built the pay chain or paid an event.
+the contract type, level, category, run kind, seniority and employer
+headcount of the request, the capabilities the capability report scopes as
+applicable, and the engine limitations whose code path built the pay chain
+or paid an event.
 """
 
 from __future__ import annotations
@@ -63,6 +64,7 @@ def limitation_facts(
             if scope is CapabilityScope.APPLICABLE
         ),
         traversed=frozenset(ctx.chain.limitations) | traversed | contractual_paths(ctx),
+        headcount=request.employer.headcount.value,
     )
 
 

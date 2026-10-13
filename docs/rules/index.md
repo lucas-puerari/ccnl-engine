@@ -124,8 +124,8 @@ one unmapped does not load:
 
 `applies_when` narrows the runs: `trigger` (`run`, or `outside_input` when
 the fact has no request field), `contract_types`, `levels`,
-`worker_categories`, `run_kinds`, `seniority_months_from`, `effective_from`,
-`effective_until`. The limitation id is `<ccnl id>/<variant>`; see
+`worker_categories`, `run_kinds`, `seniority_months_from`, `headcount_from`,
+`effective_from`, `effective_until`. The limitation id is `<ccnl id>/<variant>`; see
 [Model limitations](../trust/confidence.md#model-limitations). Every
 simplification appears on the contract's documentation page, under "Known
 simplifications".

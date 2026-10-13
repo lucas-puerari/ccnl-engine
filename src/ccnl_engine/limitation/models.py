@@ -108,6 +108,7 @@ class LimitationFacts:
         seniority_months: Seniority of the worker, ``None`` when unknown.
         applicable: Capabilities that concern the run.
         traversed: Ids of the engine limitations whose path the run took.
+        headcount: Employer headcount, ``None`` when unknown.
     """
 
     ccnl_id: str
@@ -119,6 +120,7 @@ class LimitationFacts:
     seniority_months: int | None
     applicable: frozenset[str]
     traversed: frozenset[str] = frozenset()
+    headcount: int | None = None
 
 
 class LimitationScope(BaseModel):
@@ -136,6 +138,8 @@ class LimitationScope(BaseModel):
         run_kinds: Run kinds concerned (an allowance paid fewer times a
             year only matters in an extra-month run).
         seniority_months_from: Least seniority, in months, concerned.
+        headcount_from: Least employer headcount concerned (a rate that
+            changes above a size threshold).
         effective_from: First date concerned.
         effective_until: First date no longer concerned.
     """
@@ -148,6 +152,7 @@ class LimitationScope(BaseModel):
     worker_categories: frozenset[WorkerCategoryName] | None = Field(None, min_length=1)
     run_kinds: frozenset[RunKindName] | None = Field(None, min_length=1)
     seniority_months_from: int | None = Field(None, ge=1)
+    headcount_from: int | None = Field(None, ge=2)
     effective_from: date | None = None
     effective_until: date | None = None
 
@@ -173,11 +178,8 @@ class LimitationScope(BaseModel):
                 facts.worker_category is None
                 or _within(self.worker_categories, facts.worker_category)
             )
-            and (
-                self.seniority_months_from is None
-                or facts.seniority_months is None
-                or facts.seniority_months >= self.seniority_months_from
-            )
+            and _at_least(self.seniority_months_from, facts.seniority_months)
+            and _at_least(self.headcount_from, facts.headcount)
             and (self.effective_from is None or facts.as_of >= self.effective_from)
             and (self.effective_until is None or facts.as_of < self.effective_until)
         )
@@ -185,6 +187,15 @@ class LimitationScope(BaseModel):
 
 def _within(allowed: frozenset[str] | None, value: str) -> bool:
     return allowed is None or value in allowed
+
+
+def _at_least(threshold: int | None, value: int | None) -> bool:
+    """Return whether a known fact reaches the threshold.
+
+    Returns:
+        ``True`` without a threshold, for an unknown fact, or at or above it.
+    """
+    return threshold is None or value is None or value >= threshold
 
 
 class NoteLimitation(BaseModel):
