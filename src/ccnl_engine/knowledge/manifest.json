@@ -1934,7 +1934,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/studi-professionali-confprofessioni",
       "ruleset_version": "2026.2",
-      "source_hash": "b6f59ef841173473b0faac886ee9aca1e3c7e705861747816c2dfd130cdfa648",
+      "source_hash": "2645afbccdd6188617fa6afa13c954be022a58fde72612e61b242e3515a13218",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/studi-professionali-confprofessioni.json.gz"

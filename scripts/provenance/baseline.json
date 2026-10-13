@@ -787,10 +787,6 @@
       "additional_months[2026-01-01]": "assumed",
       "seniority_increments": "assumed"
     },
-    "agreement/studi-professionali-confprofessioni.json": {
-      "accrual_rule": "assumed",
-      "additional_months[2024-02-16]": "assumed"
-    },
     "agreement/tabacco-apti.json": {
       "accrual_rule": "missing",
       "additional_months[2025-01-01]": "assumed",
@@ -1647,7 +1643,8 @@
     ],
     "agreement/studi-professionali-confprofessioni.json": [
       "studi-professionali-confprofessioni/apprentice_seniority",
-      "studi-professionali-confprofessioni/uniform_apprenticeship_percentages"
+      "studi-professionali-confprofessioni/fsbap_rates_above_15",
+      "studi-professionali-confprofessioni/studi_unmodelled_elements"
     ],
     "agreement/tabacco-apti.json": [
       "tabacco-apti/alifond_before_july_2025",

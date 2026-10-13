@@ -1,0 +1,26 @@
+{
+  "verification": "source_linked",
+  "_description": "Studi e attività professionali (Confprofessioni, CNEL H442) level 3, October 2026 regular run, permanent, full time: the minimo of the third tranche (1 October 2025).",
+  "_notes": [
+    "Minimo level 3: 1,661.37 from 1 October 2024, 1,706.37 from 1 October 2025 (+45.00), 1,726.37 from 1 December 2026 (CCNL 16 February 2024, Art. 140, third and fourth tranche).",
+    "Level 3 carries no Elemento nazionale di allineamento contrattuale (only levels 1, 2 and 3S, and only for workers hired before 1 July 2004).",
+    "Base salary only: seniority increments, superminimi and the gross depend on facts outside the national table."
+  ],
+  "source": {
+    "document": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024 (testo integrale definitivo, Confprofessioni)",
+    "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+    "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544",
+    "page": "72",
+    "section": "Art. 140 - Minimi tabellari, terza tranche di aumento, row 3°"
+  },
+  "inputs": {
+    "ccnl_slug": "studi-professionali-confprofessioni.json",
+    "level_code": "3",
+    "year": 2026,
+    "month": 10,
+    "headcount": 10
+  },
+  "expected": {
+    "base_salary": "1706.37"
+  }
+}
