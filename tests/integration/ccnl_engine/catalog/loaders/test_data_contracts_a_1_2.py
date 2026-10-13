@@ -204,18 +204,18 @@ class TestLoadCooperativeSociali:
         assert si.maximum_count == 5
 
     def test_cooperative_sociali_apprenticeship_three_tracks(self) -> None:
-        """Three tracks by category duration: 18m (A2), 24m (B/C), 36m (D/E)."""
+        """Three tracks by duration: 18m (A2, C2 OSS), 24m (B/C), 36m (D/E)."""
         ccnl = load_ccnl("cooperative-sociali.json")
         assert len(ccnl.apprenticeship) == 3
         by_name = {t.name: t for t in ccnl.apprenticeship}
-        # 18m track: A2 only, split at 9m
+        # 18m track: A2 and the OSS position C2 (Art. 28 N.3), split at 9m
         t18 = by_name["professionalizzante_18m"]
-        assert t18.destination_levels == ("A2",)
+        assert t18.destination_levels == ("A2", "C2")
         assert t18.periods[0].months_until == 9
         assert t18.periods[0].percentage == Decimal("0.85")  # type: ignore[union-attr]
-        # 24m track: B, C1, C2, C3
+        # 24m track: B, C1, C3
         t24 = by_name["professionalizzante_24m"]
-        assert set(t24.destination_levels) == {"B", "C1", "C2", "C3"}
+        assert set(t24.destination_levels) == {"B", "C1", "C3"}
         assert t24.periods[0].months_until == 12
         # 36m track: D and E levels
         t36 = by_name["professionalizzante_36m"]

@@ -16,9 +16,44 @@
     ],
     "sources": [
       {
-        "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/",
-        "type": "table",
-        "agreement_date": "2024-01-26"
+        "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+        "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+        "kind": "associazione",
+        "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+        "pages": [],
+        "published_on": "2025-11-20",
+        "jurisdiction": "it",
+        "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+      },
+      {
+        "document_id": "legacoop-circolare-rinnovo-2024",
+        "title": "Legacoop, circolare 1 febbraio 2024 (rev. 1.1): rinnovo del CCNL cooperative sociali, tabelle dei minimi",
+        "kind": "associazione",
+        "url": "https://www.legacoop.coop/wp-content/uploads/2024/03/20240307-circolare-rinnovo-CCNL-sociali_rev.1.1.pdf",
+        "pages": [],
+        "published_on": "2024-02-01",
+        "jurisdiction": "it",
+        "sha256": "1abe9eca81ac3c63bd3a143c592af9de17aeedb28ff56d66bd1a05feb9e178b4"
+      },
+      {
+        "document_id": "cnel-t151-179967",
+        "title": "CNEL T151: verbale di accordo per il rinnovo del CCNL Cooperative sociali, 26 gennaio 2024",
+        "kind": "cnel",
+        "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/179967",
+        "pages": [],
+        "published_on": "2024-01-26",
+        "jurisdiction": "it",
+        "sha256": "581327dcc248cfdf74045244a3512e643ec7022f098cceb078d9338cbf3348dd"
+      },
+      {
+        "document_id": "cnel-t151-183378",
+        "title": "CNEL T151: verbale di scioglimento della riserva, 5 marzo 2024, con le tabelle del costo",
+        "kind": "cnel",
+        "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183378",
+        "pages": [],
+        "published_on": "2024-03-05",
+        "jurisdiction": "it",
+        "sha256": "0f2a3a4135eaa39f9c6376f35dfe305c5fd26e4650b12032ab17635a713861ac"
       }
     ],
     "extraction": {
@@ -33,7 +68,7 @@
     "notes": [
       {
         "kind": "info",
-        "text": "CONSOLIDATED MINIMUMS: the base_salary values are the monthly consolidated tabular minimums (base pay + contingency + EDR included), as published by lexplain.it. Hourly divisor 165 (CCNL art. 75, 38-hour week). Back-calculation check: A1 October 2025 = 1359.88 / 165 = EUR 8.24/h; C1 = 1545.21 / 165 = EUR 9.37/h; F2 = 2504.10 / 165 = EUR 15.17/h — consistent with the hourly rates published by lexplain.it."
+        "text": "CONSOLIDATED MINIMUMS: base_salary is the minimo contrattuale conglobato mensile of Art. 76 (PDF p. 106) of the Legacoopsociali full text 2025, the same figures as the Legacoop circular of 1 February 2024 and the Ministry D.D. 30/2024 cost tables. Hourly divisor 165 for 38 hours a week (Art. 75). Level B is position B1 of Art. 76."
       },
       {
         "kind": "info",
@@ -45,7 +80,7 @@
       },
       {
         "kind": "info",
-        "text": "TRANCHES: February 2024 (first), October 2024 (second), October 2025 (third and last). Renewal signed on 26 January 2024. No pre-February-2024 tables modelled."
+        "text": "TRANCHES: February 2024, October 2024 and October 2025 ('con la mensilità di febbraio 2024 / ottobre 2024 / ottobre 2025', verbale 26 January 2024, reserve lifted 5 March 2024). The CCNL 2023-2025 expired on 31 December 2025 (Art. 7); no renewal, una tantum or IVC was found through October 2026, so the October 2025 minimi stay in force."
       },
       {
         "kind": "info",
@@ -53,30 +88,46 @@
       },
       {
         "kind": "info",
-        "text": "SENIORITY INCREMENTS: biennial (every 24 months), maximum 5 increments. Fixed amounts per level from the CCNL seniority table (source: ccnlcooperative.it, art. 80). C3 and D1 have the same amount (EUR 20.66); D3 and E1 have the same amount (EUR 26.86)."
+        "text": "SENIORITY INCREMENTS: one scatto per biennio, at most 5 (Art. 80, pp. 110-111). C3 is printed 20,63 in Art. 80 but 20.66 in the D.D. 30/2024 and CNEL cost tables and in the D1 row: 20.66 kept as derived. Apprentices accrue none (Art. 28 I.5, apprentice_amount 0); the recognised seniority of a qualified ex-apprentice starts at the end of the apprenticeship (caller's SeniorityFact)."
       },
       {
         "kind": "info",
-        "text": "INPS: uses 2026-terziario.json (same tax_sector as CCNL Commercio Confcommercio). The social cooperatives sector does not have a separate employer INPS rate verified from a primary circular; type-B social cooperatives may apply concessions under L. 381/1991 not modelled in this file."
-      },
-      {
-        "kind": "info",
-        "text": "APPRENTICESHIP (professionalizzante) under Art. 28 renewal 05/03/2024: 3 duration tracks by category: category A (dest=A2) 18m [0-9m=85%,9-18m=90%]; category B/C (dest=B,C1,C2,C3) 24m [0-12m=85%,12-24m=90%]; category D/E (dest=D1,D2,D3,E1,E2) 36m [0-18m=85%,18-36m=90%]. A1 and F/Q levels not eligible. Special: OSS in socio-sanitario reduced to 18m. Source: Art. 28 ccnlcooperative.it (consolidated text 2025, high confidence)."
+        "text": "APPRENTICESHIP (professionalizzante, Art. 28 L and N, PDF pp. 59-60): category A (A2) and the OSS of C2 18 months (85% / 90% at month 10); categories B and C (B, C1, C3) 24 months (85% / 90% at month 13); D and E 36 months (85% / 90% at month 19), on the minimo of the target position. A1, F and the health profiles are excluded (Art. 28 B.3)."
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
+        "text": "INPS: the tax_sector terziario applies the terziario employer rates (29.31% to 30.11%), while the Ministry D.D. 30/2024 cost tables agreed by the signatories (PDF p. 186) apply 'Inps (28,03%)' to every level. Social cooperatives are classified by INPS by their activity; no primary INPS circular for their contribution set was read, so the difference is not reconciled.",
+        "capability": "inps_employer",
+        "monetary_impact": "yes",
         "limitation": {
-          "variant": "apprentice_seniority",
+          "variant": "inps_rate_not_reconciled",
+          "remediation": "Read the INPS classification of social cooperatives and model their employer rate set."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "TYPE-B COOPERATIVES: the contributions on the pay of the disadvantaged workers of type-B social cooperatives 'sono ridotte a zero' (L. 381/1991 art. 4 c. 3, PDF p. 248; c. 3-bis for detainees by decree). The request has no field for such a worker: the full rates apply.",
+        "capability": "inps_employer",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "type_b_disadvantaged_exemption",
           "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
+            "trigger": "outside_input"
           },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+          "remediation": "Add a disadvantaged-worker input and zero the contributions of L. 381/1991 art. 4."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "NOT MODELLED AMOUNTS: the ETDR of the educatori (EUR 41, then 82 a month in 2025, Art. 47 and verbale 17 September 2025; the educatori socio-pedagogici move to D2 from 1 January 2026); the night allowance of EUR 12.39 / 6.20 per night and the 10% of night-only custody staff (Art. 54); 15% on Sunday and holiday ordinary hours (Art. 55); the 10% shift allowance (Art. 56); reperibilità in struttura EUR 77.47 a month plus EUR 20 a night (Art. 57); pronta disponibilità EUR 1.55 an hour (Art. 58); the indennità professionali (Art. 78) and the EUR 50 affiancamento allowance; the indennità di cassa EUR 30.99 (Art. 81); the extra 1/26 of a holiday on the rest day (Art. 59) and the 4 days of ex festività (Art. 60); the 26 hours of night workers' permessi (Art. 54); the PTR (Art. 10, outside every institute); the salari di primo ingresso of type B (Art. 2 B.4); the territorial gradualità agreements (Art. 77); the maternity integration (Art. 63); the 100% integration of work injury to day 180 (Art. 72); the ASI contribution of EUR 5, then 10 a month (Art. 87); the EUR 10 quota d'iscrizione of Previdenza Cooperativa (Art. 86). Sickness: no integration during the prova (Art. 71, Art. 28 M) and the comporto of 12 months in three years are not inputs. Apprenticeship: the 24-month track of the educatore professionale with title (Art. 28 N.2) is not expressible by level.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "coop_sociali_unmodelled_elements",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the ETDR, the night, shift and availability allowances, the professional allowances and the prova exclusion of sickness."
         }
       }
     ]
@@ -87,7 +138,33 @@
         {
           "valid_from": "2024-02-01",
           "valid_until": null,
-          "value": "165"
+          "value": "165",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "published_on": "2025-11-20",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "106",
+              "section": "Art. 75 - Elementi della retribuzione mensile",
+              "quote": "mensile degli elementi stessi per 165 per un orario contrattuale di lavoro di 38"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:21:20Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:21:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
+            }
+          }
         }
       ]
     },
@@ -98,26 +175,30 @@
           "valid_until": "2025-01-01",
           "value": "13",
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-cooperative-sociali-2024",
-                "title": "CCNL Cooperative sociali 5 marzo 2024 (edizione Legacoopsociali)",
+                "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
                 "kind": "associazione",
                 "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
-                "published_on": "2024-03-05",
+                "published_on": "2025-11-20",
                 "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
               },
-              "section": "Art. 79 (tredicesima mensilità)",
-              "quote": "Entro il mese di dicembre di ogni anno l’azienda corrisponderà al personale un importo pari a 1 mensilità della retribuzione.",
-              "page": "110"
+              "page": "110",
+              "section": "Art. 79 - Tredicesima mensilità",
+              "quote": "Entro il mese di dicembre di ogni anno l’azienda corrisponderà al personale un [...] importo pari a 1 mensilità della retribuzione."
             },
+            "transformation": "One tredicesima until the quattordicesima of Art. 79bis starts on 1 January 2025.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T08:53:29Z",
-              "verification_status": "unverified",
-              "effective_from": "2024-03-05"
+              "extraction_timestamp": "2026-10-13T07:21:20Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:21:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
           }
         },
@@ -126,26 +207,30 @@
           "valid_until": null,
           "value": "13.5",
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-cooperative-sociali-2024",
-                "title": "CCNL Cooperative sociali 5 marzo 2024 (edizione Legacoopsociali)",
+                "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
                 "kind": "associazione",
                 "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
-                "published_on": "2024-03-05",
+                "published_on": "2025-11-20",
                 "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
               },
-              "section": "Art. 79bis (quattordicesima mensilità): half a monthly pay from 1 January 2025",
-              "quote": "per un importo pari alla metà di una retribuzione mensile in vigo- re nel mese di corresponsione.",
-              "page": "110"
+              "page": "110",
+              "section": "Art. 79bis - Quattordicesima mensilità",
+              "quote": "A partire dal 1° gennaio 2025 i lavoratori in forza matureranno la quattordicesi- [...] di ogni anno, per un importo pari alla metà di una retribuzione mensile in vigo-"
             },
+            "transformation": "13 + half a monthly pay paid in June, from 1 January 2025.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T08:53:29Z",
-              "verification_status": "unverified",
-              "effective_from": "2025-01-01"
+              "extraction_timestamp": "2026-10-13T07:21:20Z",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:21:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
           }
         }
@@ -205,7 +290,31 @@
             {
               "valid_from": "2024-02-01",
               "valid_until": null,
-              "value": "20.66"
+              "value": "20.66",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                    "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                    "kind": "associazione",
+                    "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                    "published_on": "2025-11-20",
+                    "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                  },
+                  "page": "111",
+                  "section": "Art. 80 - Scatti di anzianità, row C3",
+                  "quote": "C3 € 20,63"
+                },
+                "note": "Conflict: the signed Art. 80 table prints 20,63 for C3; the Ministry D.D. 30/2024 cost tables agreed by the parties (p. 186: three scatti C3/D1 743,76 / 36 = 20.66) and the parties' cost tables deposited at CNEL with the verbale of 5 March 2024 (id 183378) use 20.66, and C3 shares the minimo of D1 (20,66). 20.66 kept until a signed text settles it.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-10-13T07:21:20Z",
+                  "effective_from": "2024-02-01",
+                  "verification_status": "unverified"
+                }
+              }
             }
           ]
         },
@@ -301,22 +410,67 @@
         }
       },
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "cooperative-sociali",
-            "title": "cooperative-sociali",
-            "kind": "tabella_retributiva",
-            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+            "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+            "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+            "kind": "associazione",
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "published_on": "2025-11-20",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
           },
-          "section": "Scatti di anzianità"
+          "page": "110-111",
+          "section": "Art. 80 - Scatti di anzianità",
+          "quote": "di 1 scatto biennale per un massimo di 5 scatti, secondo i valori mensili sotto [...] D1 € 20,66"
         },
+        "transformation": "One scatto per biennio, at most 5, from the first day of the month after the biennio; Q levels take the amount of their position (Art. 47 E).",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:20Z",
+          "effective_from": "2024-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:20Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
+      },
+      "apprentice_amount": {
+        "periods": [
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": null,
+            "value": "0.00",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                },
+                "page": "59",
+                "section": "Art. 28 I) 5 - Apprendistato, trattamento normativo",
+                "quote": "5. Il periodo di apprendistato non è considerato utile ai fini della maturazione [...] dell’istituto contrattuale degli scatti di anzianità previsti dal presente contratto."
+              },
+              "transformation": "No increment accrues during the apprenticeship.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
+              }
+            }
+          }
+        ]
       }
     },
     "accrual_rule": {
@@ -324,30 +478,85 @@
       "comparison": "more_than",
       "working_days": true,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-cooperative-sociali-2024",
-            "title": "CCNL Cooperative sociali 5 marzo 2024 (edizione Legacoopsociali)",
+            "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+            "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
             "kind": "associazione",
             "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
-            "published_on": "2024-03-05",
+            "published_on": "2025-11-20",
             "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
           },
-          "section": "Art. 79 (tredicesima) and art. 79bis (quattordicesima)",
-          "quote": "La frazione di mese superiore ai 15 giorni lavorativi va considerata come mese intero.",
-          "page": "110"
+          "page": "110",
+          "section": "Art. 79 and Art. 79bis",
+          "quote": "La frazione di mese superiore ai 15 giorni lavorativi va considerata come mese"
         },
+        "note": "Working days, counted on a week of six days (Art. 60, p. 97: 'comunque calcolati su una settimana lavorativa di 6 giorni'): Monday to Saturday.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-12T08:53:29Z",
-          "verification_status": "unverified",
-          "effective_from": "2024-03-05"
-        },
-        "note": "Working days, counted on a week of six days (art. 60: 'comunque calcolati su una settimana lavorativa di 6 giorni'): Monday to Saturday."
+          "extraction_timestamp": "2026-10-13T07:21:20Z",
+          "effective_from": "2024-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:20Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
+        }
       }
-    }
+    },
+    "employer_funds": [
+      {
+        "code": "PREVIDENZA_COOPERATIVA",
+        "description": "Previdenza Cooperativa - Fondo pensione negoziale dei lavoratori, soci e dipendenti, delle imprese cooperative",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "0.015"
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "0.01"
+            }
+          ]
+        },
+        "contribution_base": "tfr_base",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+              "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+              "kind": "associazione",
+              "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+              "published_on": "2025-11-20",
+              "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+            },
+            "page": "113",
+            "section": "Art. 86 - Fondo previdenza complementare",
+            "quote": "data dal 1.7.20191, con un’aliquota pari all’1,5% da calcolarsi sulla retribuzione [...] nuta mensile in busta paga, di un contributo minimo pari all’1% calcolato sulla"
+          },
+          "transformation": "Employer 1.5% of the TFR base for enrolled workers paying at least 1% (Art. 86); at least 26% of the TFR goes to the fund, the worker's choice in PensionFundEnrolment.tfr_to_fund. The EUR 10 quota d'iscrizione is not modelled.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-13T07:21:20Z",
+            "effective_from": "2024-02-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-13T07:21:20Z",
+            "verification_status": "verified",
+            "review_id": "2026-10-13-ai-production"
+          }
+        }
+      }
+    ]
   },
   "levels": [
     {
@@ -359,69 +568,93 @@
           {
             "valid_from": "2024-02-01",
             "valid_until": "2024-10-01",
-            "value": "1307.25",
+            "value": "1307.22",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "A1           € 52,63     € 1.307,22    € 26,32   € 1.333,54    € 26,31   € 1.359,85     € 105,26"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
           {
             "valid_from": "2024-10-01",
             "valid_until": "2025-10-01",
-            "value": "1333.57",
+            "value": "1333.54",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "A1           € 52,63     € 1.307,22    € 26,32   € 1.333,54    € 26,31   € 1.359,85     € 105,26"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
           {
             "valid_from": "2025-10-01",
             "valid_until": null,
-            "value": "1359.88",
+            "value": "1359.85",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "A1           € 52,63     € 1.307,22    € 26,32   € 1.333,54    € 26,31   € 1.359,85     € 105,26"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -429,21 +662,29 @@
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "cooperative-sociali",
-            "title": "cooperative-sociali",
-            "kind": "tabella_retributiva",
-            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+            "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+            "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+            "kind": "associazione",
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "published_on": "2025-11-20",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
           },
-          "section": "Livelli contrattuali"
+          "page": "106",
+          "section": "Art. 76 - Minimi contrattuali conglobati mensili; Art. 47 classificazione",
+          "quote": "A1           € 52,63     € 1.307,22    € 26,32   € 1.333,54    € 26,31   € 1.359,85     € 105,26"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:20Z",
+          "effective_from": "2024-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:20Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
@@ -458,21 +699,29 @@
             "valid_until": "2024-10-01",
             "value": "1319.37",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "A2            € 53,16     €1.319,37    € 26,58   € 1.345,95    € 26,58    € 1.372,53    € 106,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -481,21 +730,29 @@
             "valid_until": "2025-10-01",
             "value": "1345.95",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "A2            € 53,16     €1.319,37    € 26,58   € 1.345,95    € 26,58    € 1.372,53    € 106,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -504,21 +761,29 @@
             "valid_until": null,
             "value": "1372.53",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "A2            € 53,16     €1.319,37    € 26,58   € 1.345,95    € 26,58    € 1.372,53    € 106,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -526,21 +791,29 @@
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "cooperative-sociali",
-            "title": "cooperative-sociali",
-            "kind": "tabella_retributiva",
-            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+            "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+            "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+            "kind": "associazione",
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "published_on": "2025-11-20",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
           },
-          "section": "Livelli contrattuali"
+          "page": "106",
+          "section": "Art. 76 - Minimi contrattuali conglobati mensili; Art. 47 classificazione",
+          "quote": "A2            € 53,16     €1.319,37    € 26,58   € 1.345,95    € 26,58    € 1.372,53    € 106,32"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:20Z",
+          "effective_from": "2024-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:20Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
@@ -553,69 +826,93 @@
           {
             "valid_from": "2024-02-01",
             "valid_until": "2024-10-01",
-            "value": "1380.99",
+            "value": "1381.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "B1           € 55,79     € 1.381,00    € 27,89   € 1.408,89    € 27,90    € 1.436,79     € 111,58"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
           {
             "valid_from": "2024-10-01",
             "valid_until": "2025-10-01",
-            "value": "1408.88",
+            "value": "1408.89",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "B1           € 55,79     € 1.381,00    € 27,89   € 1.408,89    € 27,90    € 1.436,79     € 111,58"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
           {
             "valid_from": "2025-10-01",
             "valid_until": null,
-            "value": "1436.78",
+            "value": "1436.79",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "B1           € 55,79     € 1.381,00    € 27,89   € 1.408,89    € 27,90    € 1.436,79     € 111,58"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -623,28 +920,37 @@
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "cooperative-sociali",
-            "title": "cooperative-sociali",
-            "kind": "tabella_retributiva",
-            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+            "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+            "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+            "kind": "associazione",
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "published_on": "2025-11-20",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
           },
-          "section": "Livelli contrattuali"
+          "page": "106",
+          "section": "Art. 76 - Minimi contrattuali conglobati mensili; Art. 47 classificazione",
+          "quote": "B1           € 55,79     € 1.381,00    € 27,89   € 1.408,89    € 27,90    € 1.436,79     € 111,58"
         },
+        "transformation": "Position B1 of the Art. 76 table; the minimo is the row of that position.",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:20Z",
+          "effective_from": "2024-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:20Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
     {
       "code": "C1",
       "order": 4,
-      "description": "Level C1 — basic care worker (OSS)",
+      "description": "Level C1: operaio specializzato, cuoco, conducente, assistente domiciliare, operatore socio-assistenziale (ex 4° livello)",
       "base_salary": {
         "periods": [
           {
@@ -652,21 +958,29 @@
             "valid_until": "2024-10-01",
             "value": "1485.21",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "C1           € 60,00     € 1.485,21    € 30,00    € 1.515,21   € 30,00    € 1.545,21    € 120,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -675,21 +989,29 @@
             "valid_until": "2025-10-01",
             "value": "1515.21",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "C1           € 60,00     € 1.485,21    € 30,00    € 1.515,21   € 30,00    € 1.545,21    € 120,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -698,21 +1020,29 @@
             "valid_until": null,
             "value": "1545.21",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "C1           € 60,00     € 1.485,21    € 30,00    € 1.515,21   € 30,00    € 1.545,21    € 120,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -720,28 +1050,36 @@
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "cooperative-sociali",
-            "title": "cooperative-sociali",
-            "kind": "tabella_retributiva",
-            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+            "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+            "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+            "kind": "associazione",
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "published_on": "2025-11-20",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
           },
-          "section": "Livelli contrattuali"
+          "page": "106",
+          "section": "Art. 76 - Minimi contrattuali conglobati mensili; Art. 47 classificazione",
+          "quote": "C1           € 60,00     € 1.485,21    € 30,00    € 1.515,21   € 30,00    € 1.545,21    € 120,00"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:20Z",
+          "effective_from": "2024-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:20Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
     {
       "code": "C2",
       "order": 5,
-      "description": "Level C2 — qualified care worker",
+      "description": "Level C2: Operatore Socio-Sanitario operating in socio-sanitary services and structures",
       "base_salary": {
         "periods": [
           {
@@ -749,21 +1087,29 @@
             "valid_until": "2024-10-01",
             "value": "1529.48",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "C2           € 61,58     € 1.529,48    € 30,79   € 1.560,27    € 30,79    € 1.591,06     € 123,16"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -772,21 +1118,29 @@
             "valid_until": "2025-10-01",
             "value": "1560.27",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "C2           € 61,58     € 1.529,48    € 30,79   € 1.560,27    € 30,79    € 1.591,06     € 123,16"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -795,21 +1149,29 @@
             "valid_until": null,
             "value": "1591.06",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "C2           € 61,58     € 1.529,48    € 30,79   € 1.560,27    € 30,79    € 1.591,06     € 123,16"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -817,96 +1179,128 @@
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "cooperative-sociali",
-            "title": "cooperative-sociali",
-            "kind": "tabella_retributiva",
-            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+            "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+            "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+            "kind": "associazione",
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "published_on": "2025-11-20",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
           },
-          "section": "Livelli contrattuali"
+          "page": "106",
+          "section": "Art. 76 - Minimi contrattuali conglobati mensili; Art. 47 classificazione",
+          "quote": "C2           € 61,58     € 1.529,48    € 30,79   € 1.560,27    € 30,79    € 1.591,06     € 123,16"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:20Z",
+          "effective_from": "2024-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:20Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
     {
       "code": "C3",
       "order": 6,
-      "description": "Level C3 — specialised care worker",
+      "description": "Level C3: capo squadra, capo cuoco, coordinating assistente domiciliare / operatore socio-assistenziale (ex 5° livello)",
       "base_salary": {
         "periods": [
           {
             "valid_from": "2024-02-01",
             "valid_until": "2024-10-01",
-            "value": "1574.40",
+            "value": "1574.41",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "C3-D1         € 63,16     € 1.574,41   € 31,58   € 1.605,99    € 31,58    € 1.637,57    € 126,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
           {
             "valid_from": "2024-10-01",
             "valid_until": "2025-10-01",
-            "value": "1605.98",
+            "value": "1605.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "C3-D1         € 63,16     € 1.574,41   € 31,58   € 1.605,99    € 31,58    € 1.637,57    € 126,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
           {
             "valid_from": "2025-10-01",
             "valid_until": null,
-            "value": "1637.56",
+            "value": "1637.57",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "C3-D1         € 63,16     € 1.574,41   € 31,58   € 1.605,99    € 31,58    € 1.637,57    € 126,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -914,21 +1308,30 @@
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "cooperative-sociali",
-            "title": "cooperative-sociali",
-            "kind": "tabella_retributiva",
-            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+            "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+            "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+            "kind": "associazione",
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "published_on": "2025-11-20",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
           },
-          "section": "Livelli contrattuali"
+          "page": "106",
+          "section": "Art. 76 - Minimi contrattuali conglobati mensili; Art. 47 classificazione",
+          "quote": "C3-D1         € 63,16     € 1.574,41   € 31,58   € 1.605,99    € 31,58    € 1.637,57    € 126,32"
         },
+        "transformation": "Position C3-D1 of the Art. 76 table; the minimo is the row of that position.",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:20Z",
+          "effective_from": "2024-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:20Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
@@ -941,69 +1344,93 @@
           {
             "valid_from": "2024-02-01",
             "valid_until": "2024-10-01",
-            "value": "1574.40",
+            "value": "1574.41",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "C3-D1         € 63,16     € 1.574,41   € 31,58   € 1.605,99    € 31,58    € 1.637,57    € 126,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
           {
             "valid_from": "2024-10-01",
             "valid_until": "2025-10-01",
-            "value": "1605.98",
+            "value": "1605.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "C3-D1         € 63,16     € 1.574,41   € 31,58   € 1.605,99    € 31,58    € 1.637,57    € 126,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
           {
             "valid_from": "2025-10-01",
             "valid_until": null,
-            "value": "1637.56",
+            "value": "1637.57",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "C3-D1         € 63,16     € 1.574,41   € 31,58   € 1.605,99    € 31,58    € 1.637,57    € 126,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -1011,21 +1438,30 @@
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "cooperative-sociali",
-            "title": "cooperative-sociali",
-            "kind": "tabella_retributiva",
-            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+            "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+            "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+            "kind": "associazione",
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "published_on": "2025-11-20",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
           },
-          "section": "Livelli contrattuali"
+          "page": "106",
+          "section": "Art. 76 - Minimi contrattuali conglobati mensili; Art. 47 classificazione",
+          "quote": "C3-D1         € 63,16     € 1.574,41   € 31,58   € 1.605,99    € 31,58    € 1.637,57    € 126,32"
         },
+        "transformation": "Position C3-D1 of the Art. 76 table; the minimo is the row of that position.",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:20Z",
+          "effective_from": "2024-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:20Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
@@ -1040,21 +1476,29 @@
             "valid_until": "2024-10-01",
             "value": "1660.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "D2           € 66,84     € 1660,99     € 33,42    € 1.694,41   € 33,42    € 1.727,83    € 133,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1063,21 +1507,29 @@
             "valid_until": "2025-10-01",
             "value": "1694.41",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "D2           € 66,84     € 1660,99     € 33,42    € 1.694,41   € 33,42    € 1.727,83    € 133,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1086,21 +1538,29 @@
             "valid_until": null,
             "value": "1727.83",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "D2           € 66,84     € 1660,99     € 33,42    € 1.694,41   € 33,42    € 1.727,83    € 133,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -1108,21 +1568,29 @@
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "cooperative-sociali",
-            "title": "cooperative-sociali",
-            "kind": "tabella_retributiva",
-            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+            "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+            "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+            "kind": "associazione",
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "published_on": "2025-11-20",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
           },
-          "section": "Livelli contrattuali"
+          "page": "106",
+          "section": "Art. 76 - Minimi contrattuali conglobati mensili; Art. 47 classificazione",
+          "quote": "D2           € 66,84     € 1660,99     € 33,42    € 1.694,41   € 33,42    € 1.727,83    € 133,68"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:20Z",
+          "effective_from": "2024-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:20Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
@@ -1135,69 +1603,93 @@
           {
             "valid_from": "2024-02-01",
             "valid_until": "2024-10-01",
-            "value": "1768.11",
+            "value": "1768.09",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "D3-E1        € 71,05     € 1.768,09    € 35,53   € 1.803,62    € 35,53    € 1.839,15     € 142,11"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
           {
             "valid_from": "2024-10-01",
             "valid_until": "2025-10-01",
-            "value": "1803.63",
+            "value": "1803.62",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "D3-E1        € 71,05     € 1.768,09    € 35,53   € 1.803,62    € 35,53    € 1.839,15     € 142,11"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
           {
             "valid_from": "2025-10-01",
             "valid_until": null,
-            "value": "1839.16",
+            "value": "1839.15",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "D3-E1        € 71,05     € 1.768,09    € 35,53   € 1.803,62    € 35,53    € 1.839,15     € 142,11"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -1205,21 +1697,30 @@
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "cooperative-sociali",
-            "title": "cooperative-sociali",
-            "kind": "tabella_retributiva",
-            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+            "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+            "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+            "kind": "associazione",
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "published_on": "2025-11-20",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
           },
-          "section": "Livelli contrattuali"
+          "page": "106",
+          "section": "Art. 76 - Minimi contrattuali conglobati mensili; Art. 47 classificazione",
+          "quote": "D3-E1        € 71,05     € 1.768,09    € 35,53   € 1.803,62    € 35,53    € 1.839,15     € 142,11"
         },
+        "transformation": "Position D3-E1 of the Art. 76 table; the minimo is the row of that position.",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:20Z",
+          "effective_from": "2024-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:20Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
@@ -1232,69 +1733,93 @@
           {
             "valid_from": "2024-02-01",
             "valid_until": "2024-10-01",
-            "value": "1768.11",
+            "value": "1768.09",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "D3-E1        € 71,05     € 1.768,09    € 35,53   € 1.803,62    € 35,53    € 1.839,15     € 142,11"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
           {
             "valid_from": "2024-10-01",
             "valid_until": "2025-10-01",
-            "value": "1803.63",
+            "value": "1803.62",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "D3-E1        € 71,05     € 1.768,09    € 35,53   € 1.803,62    € 35,53    € 1.839,15     € 142,11"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
           {
             "valid_from": "2025-10-01",
             "valid_until": null,
-            "value": "1839.16",
+            "value": "1839.15",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "D3-E1        € 71,05     € 1.768,09    € 35,53   € 1.803,62    € 35,53    € 1.839,15     € 142,11"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -1302,21 +1827,30 @@
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "cooperative-sociali",
-            "title": "cooperative-sociali",
-            "kind": "tabella_retributiva",
-            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+            "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+            "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+            "kind": "associazione",
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "published_on": "2025-11-20",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
           },
-          "section": "Livelli contrattuali"
+          "page": "106",
+          "section": "Art. 76 - Minimi contrattuali conglobati mensili; Art. 47 classificazione",
+          "quote": "D3-E1        € 71,05     € 1.768,09    € 35,53   € 1.803,62    € 35,53    € 1.839,15     € 142,11"
         },
+        "transformation": "Position D3-E1 of the Art. 76 table; the minimo is the row of that position.",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:20Z",
+          "effective_from": "2024-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:20Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
@@ -1329,69 +1863,93 @@
           {
             "valid_from": "2024-02-01",
             "valid_until": "2024-10-01",
-            "value": "1908.55",
+            "value": "1908.58",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "E2           € 76,84     € 1.908,58    € 38,42       € 1.947   € 38,42   € 1.985,42     € 153,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
           {
             "valid_from": "2024-10-01",
             "valid_until": "2025-10-01",
-            "value": "1946.97",
+            "value": "1947.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "E2           € 76,84     € 1.908,58    € 38,42       € 1.947   € 38,42   € 1.985,42     € 153,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
           {
             "valid_from": "2025-10-01",
             "valid_until": null,
-            "value": "1985.39",
+            "value": "1985.42",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "E2           € 76,84     € 1.908,58    € 38,42       € 1.947   € 38,42   € 1.985,42     € 153,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -1399,21 +1957,29 @@
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "cooperative-sociali",
-            "title": "cooperative-sociali",
-            "kind": "tabella_retributiva",
-            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+            "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+            "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+            "kind": "associazione",
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "published_on": "2025-11-20",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
           },
-          "section": "Livelli contrattuali"
+          "page": "106",
+          "section": "Art. 76 - Minimi contrattuali conglobati mensili; Art. 47 classificazione",
+          "quote": "E2           € 76,84     € 1.908,58    € 38,42       € 1.947   € 38,42   € 1.985,42     € 153,68"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:20Z",
+          "effective_from": "2024-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:20Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
@@ -1426,69 +1992,93 @@
           {
             "valid_from": "2024-02-01",
             "valid_until": "2024-10-01",
-            "value": "1908.55",
+            "value": "1908.58",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "E2           € 76,84     € 1.908,58    € 38,42       € 1.947   € 38,42   € 1.985,42     € 153,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
           {
             "valid_from": "2024-10-01",
             "valid_until": "2025-10-01",
-            "value": "1946.97",
+            "value": "1947.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "E2           € 76,84     € 1.908,58    € 38,42       € 1.947   € 38,42   € 1.985,42     € 153,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
           {
             "valid_from": "2025-10-01",
             "valid_until": null,
-            "value": "1985.39",
+            "value": "1985.42",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "E2           € 76,84     € 1.908,58    € 38,42       € 1.947   € 38,42   € 1.985,42     € 153,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -1508,42 +2098,60 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "cooperative-sociali",
-                "title": "cooperative-sociali",
-                "kind": "tabella_retributiva",
-                "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "published_on": "2025-11-20",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
               },
-              "section": "Tabella retributiva"
+              "page": "86",
+              "section": "Art. 47 E) Area quadri - indennità di funzione",
+              "quote": "L’indennità sarà mensile minima e articolata nelle se- [...] Posizione E2 - € 77,47"
             },
+            "transformation": "Minimum monthly allowance ('mensile minima'), paid on every monthly payment and in the TFR base (p. 87).",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
-              "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:21:20Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:21:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
           }
         }
       ],
       "category": "quadro",
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "cooperative-sociali",
-            "title": "cooperative-sociali",
-            "kind": "tabella_retributiva",
-            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+            "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+            "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+            "kind": "associazione",
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "published_on": "2025-11-20",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
           },
-          "section": "Livelli contrattuali"
+          "page": "106",
+          "section": "Art. 76 - Minimi contrattuali conglobati mensili; Art. 47 classificazione",
+          "quote": "E2           € 76,84     € 1.908,58    € 38,42       € 1.947   € 38,42   € 1.985,42     € 153,68"
         },
+        "transformation": "Position E2 (quadro) of the Art. 76 table; the minimo is the row of that position. Quadro of Art. 47 E: the minimo of the position plus the indennità di funzione.",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:20Z",
+          "effective_from": "2024-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:20Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
@@ -1558,21 +2166,29 @@
             "valid_until": "2024-10-01",
             "value": "2107.81",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "F1           € 84,74      € 2.107,81   € 42,37    € 2.150,18   € 42,36   € 2.192,54     € 169,47"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1581,44 +2197,60 @@
             "valid_until": "2025-10-01",
             "value": "2150.18",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "F1           € 84,74      € 2.107,81   € 42,37    € 2.150,18   € 42,36   € 2.192,54     € 169,47"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
           {
             "valid_from": "2025-10-01",
             "valid_until": null,
-            "value": "2192.55",
+            "value": "2192.54",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "F1           € 84,74      € 2.107,81   € 42,37    € 2.150,18   € 42,36   € 2.192,54     € 169,47"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -1626,21 +2258,29 @@
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "cooperative-sociali",
-            "title": "cooperative-sociali",
-            "kind": "tabella_retributiva",
-            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+            "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+            "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+            "kind": "associazione",
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "published_on": "2025-11-20",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
           },
-          "section": "Livelli contrattuali"
+          "page": "106",
+          "section": "Art. 76 - Minimi contrattuali conglobati mensili; Art. 47 classificazione",
+          "quote": "F1           € 84,74      € 2.107,81   € 42,37    € 2.150,18   € 42,36   € 2.192,54     € 169,47"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:20Z",
+          "effective_from": "2024-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:20Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
@@ -1655,21 +2295,29 @@
             "valid_until": "2024-10-01",
             "value": "2107.81",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "F1           € 84,74      € 2.107,81   € 42,37    € 2.150,18   € 42,36   € 2.192,54     € 169,47"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1678,44 +2326,60 @@
             "valid_until": "2025-10-01",
             "value": "2150.18",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "F1           € 84,74      € 2.107,81   € 42,37    € 2.150,18   € 42,36   € 2.192,54     € 169,47"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
           {
             "valid_from": "2025-10-01",
             "valid_until": null,
-            "value": "2192.55",
+            "value": "2192.54",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "F1           € 84,74      € 2.107,81   € 42,37    € 2.150,18   € 42,36   € 2.192,54     € 169,47"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -1735,42 +2399,60 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "cooperative-sociali",
-                "title": "cooperative-sociali",
-                "kind": "tabella_retributiva",
-                "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "published_on": "2025-11-20",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
               },
-              "section": "Tabella retributiva"
+              "page": "86",
+              "section": "Art. 47 E) Area quadri - indennità di funzione",
+              "quote": "L’indennità sarà mensile minima e articolata nelle se- [...] Posizione F1 - € 154,94"
             },
+            "transformation": "Minimum monthly allowance ('mensile minima'), paid on every monthly payment and in the TFR base (p. 87).",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
-              "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:21:20Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:21:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
           }
         }
       ],
       "category": "quadro",
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "cooperative-sociali",
-            "title": "cooperative-sociali",
-            "kind": "tabella_retributiva",
-            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+            "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+            "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+            "kind": "associazione",
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "published_on": "2025-11-20",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
           },
-          "section": "Livelli contrattuali"
+          "page": "106",
+          "section": "Art. 76 - Minimi contrattuali conglobati mensili; Art. 47 classificazione",
+          "quote": "F1           € 84,74      € 2.107,81   € 42,37    € 2.150,18   € 42,36   € 2.192,54     € 169,47"
         },
+        "transformation": "Position F1 (quadro) of the Art. 76 table; the minimo is the row of that position. Quadro of Art. 47 E: the minimo of the position plus the indennità di funzione.",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:20Z",
+          "effective_from": "2024-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:20Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
@@ -1783,69 +2465,93 @@
           {
             "valid_from": "2024-02-01",
             "valid_until": "2024-10-01",
-            "value": "2407.26",
+            "value": "2407.25",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "F2           € 96,84     € 2.407,25    € 48,42   € 2.455,67    € 48,42   € 2.504,09     € 193,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
           {
             "valid_from": "2024-10-01",
             "valid_until": "2025-10-01",
-            "value": "2455.68",
+            "value": "2455.67",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "F2           € 96,84     € 2.407,25    € 48,42   € 2.455,67    € 48,42   € 2.504,09     € 193,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
           {
             "valid_from": "2025-10-01",
             "valid_until": null,
-            "value": "2504.10",
+            "value": "2504.09",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "F2           € 96,84     € 2.407,25    € 48,42   € 2.455,67    € 48,42   € 2.504,09     € 193,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -1853,21 +2559,29 @@
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "cooperative-sociali",
-            "title": "cooperative-sociali",
-            "kind": "tabella_retributiva",
-            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+            "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+            "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+            "kind": "associazione",
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "published_on": "2025-11-20",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
           },
-          "section": "Livelli contrattuali"
+          "page": "106",
+          "section": "Art. 76 - Minimi contrattuali conglobati mensili; Art. 47 classificazione",
+          "quote": "F2           € 96,84     € 2.407,25    € 48,42   € 2.455,67    € 48,42   € 2.504,09     € 193,68"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:20Z",
+          "effective_from": "2024-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:20Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
@@ -1880,69 +2594,93 @@
           {
             "valid_from": "2024-02-01",
             "valid_until": "2024-10-01",
-            "value": "2407.26",
+            "value": "2407.25",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "F2           € 96,84     € 2.407,25    € 48,42   € 2.455,67    € 48,42   € 2.504,09     € 193,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-02-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
           {
             "valid_from": "2024-10-01",
             "valid_until": "2025-10-01",
-            "value": "2455.68",
+            "value": "2455.67",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "F2           € 96,84     € 2.407,25    € 48,42   € 2.455,67    € 48,42   € 2.504,09     € 193,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
           {
             "valid_from": "2025-10-01",
             "valid_until": null,
-            "value": "2504.10",
+            "value": "2504.09",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cooperative-sociali",
-                  "title": "cooperative-sociali",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                  "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                  "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                  "published_on": "2025-11-20",
+                  "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
                 },
-                "section": "Tabella retributiva"
+                "page": "106",
+                "section": "Art. 76 - Minimi contrattuali conglobati mensili",
+                "quote": "F2           € 96,84     € 2.407,25    € 48,42   € 2.455,67    € 48,42   € 2.504,09     € 193,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:20Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:20Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -1962,42 +2700,60 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "cooperative-sociali",
-                "title": "cooperative-sociali",
-                "kind": "tabella_retributiva",
-                "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+                "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "published_on": "2025-11-20",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
               },
-              "section": "Tabella retributiva"
+              "page": "86",
+              "section": "Art. 47 E) Area quadri - indennità di funzione",
+              "quote": "L’indennità sarà mensile minima e articolata nelle se- [...] Posizione F2 - € 232,41"
             },
+            "transformation": "Minimum monthly allowance ('mensile minima'), paid on every monthly payment and in the TFR base (p. 87).",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
-              "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:21:20Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:21:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
           }
         }
       ],
       "category": "quadro",
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "cooperative-sociali",
-            "title": "cooperative-sociali",
-            "kind": "tabella_retributiva",
-            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/"
+            "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+            "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+            "kind": "associazione",
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "published_on": "2025-11-20",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
           },
-          "section": "Livelli contrattuali"
+          "page": "106",
+          "section": "Art. 76 - Minimi contrattuali conglobati mensili; Art. 47 classificazione",
+          "quote": "F2           € 96,84     € 2.407,25    € 48,42   € 2.455,67    € 48,42   € 2.504,09     € 193,68"
         },
+        "transformation": "Position F2 (quadro) of the Art. 76 table; the minimo is the row of that position. Quadro of Art. 47 E: the minimo of the position plus the indennità di funzione.",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:20Z",
+          "effective_from": "2024-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:20Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     }
@@ -2007,7 +2763,8 @@
       "type": "percentage",
       "name": "professionalizzante_18m",
       "destination_levels": [
-        "A2"
+        "A2",
+        "C2"
       ],
       "periods": [
         {
@@ -2025,7 +2782,34 @@
           "months_until": null,
           "percentage": "1.00"
         }
-      ]
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+            "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+            "kind": "associazione",
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "published_on": "2025-11-20",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+          },
+          "page": "59-60",
+          "section": "Art. 28 L) 1 and N) 1, 3 - Apprendistato",
+          "quote": "- dal 1° al 9° mese: 85% della posizione economica della qualifica da conse- [...] effettivamente operanti in servizi e strutture sociosanitarie (C2) viene ridotta a"
+        },
+        "transformation": "Category A (A2; A1 excluded by Art. 28 B.3) 18 months, and the OSS of C2 reduced to 18 months (N.3): 85% months 1-9, 90% months 10-18 of the minimo of the target position.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:20Z",
+          "effective_from": "2024-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:20Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
+        }
+      }
     },
     {
       "type": "percentage",
@@ -2033,7 +2817,6 @@
       "destination_levels": [
         "B",
         "C1",
-        "C2",
         "C3"
       ],
       "periods": [
@@ -2052,7 +2835,34 @@
           "months_until": null,
           "percentage": "1.00"
         }
-      ]
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+            "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+            "kind": "associazione",
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "published_on": "2025-11-20",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+          },
+          "page": "59",
+          "section": "Art. 28 L) 1 and N) 1 - Apprendistato",
+          "quote": "- dal 1° al 12° mese: 85% della posizione economica della qualifica da conse-"
+        },
+        "transformation": "Categories B and C (B, C1, C3) 24 months: 85% months 1-12, 90% months 13-24.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:20Z",
+          "effective_from": "2024-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:20Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
+        }
+      }
     },
     {
       "type": "percentage",
@@ -2080,7 +2890,34 @@
           "months_until": null,
           "percentage": "1.00"
         }
-      ]
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+            "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+            "kind": "associazione",
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "published_on": "2025-11-20",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+          },
+          "page": "59",
+          "section": "Art. 28 L) 1 and N) 1 - Apprendistato",
+          "quote": "- dal 1° al 18° mese: 85% della posizione economica della qualifica da conse-"
+        },
+        "transformation": "Categories D and E 36 months: 85% months 1-18, 90% months 19-36.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:20Z",
+          "effective_from": "2024-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:20Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
+        }
+      }
     }
   ],
   "ruleset": {
@@ -2088,11 +2925,11 @@
     "version": "2026.2",
     "effective_from": "2024-02-01",
     "effective_until": null,
-    "source": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/",
+    "source": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
     "verification_status": "unverified",
-    "source_hash": "3e792eb397a27951c14e2cfdfbe15b1583e007191afa7ea810ce15470816c8fc",
+    "source_hash": "a07454efa623bc9681ca5cc14f6140344b6133fa27cfe8a74a9a0e861b92c95b",
     "published_at": "2026-09-07",
-    "source_type": "commercial_secondary"
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
@@ -2105,7 +2942,7 @@
           "rate": {
             "periods": [
               {
-                "valid_from": "2024-03-05",
+                "valid_from": "2024-02-01",
                 "value": "0.15",
                 "provenance": null,
                 "valid_until": null
@@ -2116,32 +2953,41 @@
             "weekday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "cooperative-sociali",
-                "title": "CCNL Cooperative Sociali",
-                "kind": "tabella_retributiva",
-                "url": "https://www.ccnlcooperative.it/"
+                "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "published_on": "2025-11-20",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
               },
-              "section": "Art. 53 — 15% diurno feriale"
+              "page": "92",
+              "section": "Art. 53 - Lavoro straordinario",
+              "quote": "sottoindicate riferite ai minimi contrattuali conglobati: [...] a) lavoro diurno straordinario 15%"
             },
+            "transformation": "Premium on the hourly minimo conglobato (minimo / 165); night 22:00-06:00, festivo the holidays of Art. 59 or the scheduled rest day.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-03-05"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:21:20Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:21:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
           }
         },
         {
           "code": "OT_NOTTURNO",
-          "description": "Straordinario notturno e festivo diurno",
+          "description": "Straordinario notturno",
           "kind": "percentage",
           "rate": {
             "periods": [
               {
-                "valid_from": "2024-03-05",
+                "valid_from": "2024-02-01",
                 "value": "0.30",
                 "provenance": null,
                 "valid_until": null
@@ -2152,32 +2998,41 @@
             "night"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "cooperative-sociali",
-                "title": "CCNL Cooperative Sociali",
-                "kind": "tabella_retributiva",
-                "url": "https://www.ccnlcooperative.it/"
+                "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "published_on": "2025-11-20",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
               },
-              "section": "Art. 53 — 30% notturno e festivo diurno"
+              "page": "92",
+              "section": "Art. 53 - Lavoro straordinario",
+              "quote": "sottoindicate riferite ai minimi contrattuali conglobati: [...] b) lavoro notturno straordinario 30%"
             },
+            "transformation": "Premium on the hourly minimo conglobato (minimo / 165); night 22:00-06:00, festivo the holidays of Art. 59 or the scheduled rest day.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-03-05"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:21:20Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:21:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
           }
         },
         {
           "code": "OT_FESTIVO",
-          "description": "Straordinario festivo",
+          "description": "Straordinario festivo diurno",
           "kind": "percentage",
           "rate": {
             "periods": [
               {
-                "valid_from": "2024-03-05",
+                "valid_from": "2024-02-01",
                 "value": "0.30",
                 "provenance": null,
                 "valid_until": null
@@ -2188,32 +3043,41 @@
             "holiday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "cooperative-sociali",
-                "title": "CCNL Cooperative Sociali",
-                "kind": "tabella_retributiva",
-                "url": "https://www.ccnlcooperative.it/"
+                "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "published_on": "2025-11-20",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
               },
-              "section": "Art. 53 — 30% festivo diurno"
+              "page": "92",
+              "section": "Art. 53 - Lavoro straordinario",
+              "quote": "sottoindicate riferite ai minimi contrattuali conglobati: [...] c) lavoro festivo diurno straordinario 30%"
             },
+            "transformation": "Premium on the hourly minimo conglobato (minimo / 165); night 22:00-06:00, festivo the holidays of Art. 59 or the scheduled rest day.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-03-05"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:21:20Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:21:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
           }
         },
         {
           "code": "OT_NOTTURNO_FESTIVO",
-          "description": "Straordinario notturno festivo",
+          "description": "Straordinario festivo notturno",
           "kind": "percentage",
           "rate": {
             "periods": [
               {
-                "valid_from": "2024-03-05",
+                "valid_from": "2024-02-01",
                 "value": "0.50",
                 "provenance": null,
                 "valid_until": null
@@ -2224,21 +3088,30 @@
             "night_holiday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "cooperative-sociali",
-                "title": "CCNL Cooperative Sociali",
-                "kind": "tabella_retributiva",
-                "url": "https://www.ccnlcooperative.it/"
+                "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+                "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "published_on": "2025-11-20",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
               },
-              "section": "Art. 53 — 50% notturno festivo"
+              "page": "92",
+              "section": "Art. 53 - Lavoro straordinario",
+              "quote": "sottoindicate riferite ai minimi contrattuali conglobati: [...] d) lavoro festivo notturno straordinario 50%"
             },
+            "transformation": "Premium on the hourly minimo conglobato (minimo / 165); night 22:00-06:00, festivo the holidays of Art. 59 or the scheduled rest day.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-03-05"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:21:20Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:21:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
           }
         }
@@ -2251,75 +3124,99 @@
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "cooperative-sociali",
-            "title": "CCNL Cooperative Sociali",
-            "kind": "tabella_retributiva",
-            "url": "https://www.ccnlcooperative.it/"
+            "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+            "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+            "kind": "associazione",
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "published_on": "2025-11-20",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
           },
-          "section": "Divisore giornaliero 26 (settore cooperative sociali)"
+          "page": "74",
+          "section": "Art. 41 - Ritardi e assenze",
+          "quote": "comportano la perdita dell’importo della retribuzione corrispondente alla non [...] effettuazione delle ore lavorabili."
         },
+        "note": "The CCNL deducts the pay of the working hours not worked, at 1/165 of the monthly pay (Art. 75); by_26 approximates it on the six-day week of Art. 60 (165 / 26 = 6.35 hours a day). The CCNL states no fixed daily hours for by_hourly.",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2024-03-05"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:20Z",
+          "effective_from": "2024-02-01",
+          "verification_status": "unverified"
         }
       }
     },
     "leave_rules": {
-      "default_annual_days": "20",
+      "default_annual_days": "26",
       "entitlement_tiers": [
         {
           "service_months_min": 0,
-          "annual_days": "20"
+          "annual_days": "26"
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "cooperative-sociali",
-            "title": "CCNL Cooperative Sociali",
-            "kind": "tabella_retributiva",
-            "url": "https://www.ccnlcooperative.it/"
+            "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+            "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+            "kind": "associazione",
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "published_on": "2025-11-20",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
           },
-          "section": "Ferie — 4 settimane (20 giorni lavorativi) annui"
+          "page": "96-97",
+          "section": "Art. 60 - Ferie",
+          "quote": "hanno diritto a un periodo di ferie di 26 [...] giorni lavorativi per anno, comunque calcolati su una settimana lavorativa di"
         },
+        "transformation": "26 working days a year on a six-day week.",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2024-03-05"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:20Z",
+          "effective_from": "2024-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:20Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
     "sickness_rules": {
-      "carenza_integration_rate": "0.50",
+      "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "cooperative-sociali",
-            "title": "CCNL Cooperative Sociali",
-            "kind": "tabella_retributiva",
-            "url": "https://www.ccnlcooperative.it/"
+            "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+            "title": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+            "kind": "associazione",
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "published_on": "2025-11-20",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
           },
-          "section": "Art. 71 — Malattia: 50% gg 1-3 (carenza), 75% gg 4-21, 100% gg 22-180"
+          "page": "104",
+          "section": "Art. 71 - Trattamento economico di malattia e infortunio non sul lavoro",
+          "quote": "dell’indennità di malattia a carico degli enti competenti fino al raggiungimento [...] del 100% della normale retribuzione fino al 180° giorno."
         },
+        "transformation": "Integration to 100% of the normale retribuzione from the first day to the 180th, carenza included; apprentices past the prova take the same treatment (Art. 28 M).",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2024-03-05"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:20Z",
+          "effective_from": "2024-02-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:20Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     }
   },
   "verification": {
-    "confidence": "unverified",
-    "readiness": "exploratory",
+    "confidence": "verified",
+    "readiness": "reviewed",
     "verified_cases": 0,
     "reviews": [
       {
@@ -2331,6 +3228,44 @@
         "outcome": "confirmed",
         "findings": [
           "The review recorded no list of the documents it read."
+        ]
+      },
+      {
+        "id": "2026-10-13-ai-production",
+        "date": "2026-10-13",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Every payable rule read again in the Legacoopsociali full text 2025 of the CCNL Cooperative sociali 2023-2025, with the Legacoop circular of 1 February 2024 and the CNEL T151 deposits of 26 January and 5 March 2024, for the reviewed tier.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+          },
+          {
+            "url": "https://www.legacoop.coop/wp-content/uploads/2024/03/20240307-circolare-rinnovo-CCNL-sociali_rev.1.1.pdf",
+            "sha256": "1abe9eca81ac3c63bd3a143c592af9de17aeedb28ff56d66bd1a05feb9e178b4"
+          },
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/179967",
+            "sha256": "581327dcc248cfdf74045244a3512e643ec7022f098cceb078d9338cbf3348dd"
+          },
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183378",
+            "sha256": "0f2a3a4135eaa39f9c6376f35dfe305c5fd26e4650b12032ab17635a713861ac"
+          }
+        ],
+        "findings": [
+          "83 records verified; the two aggregator sources replaced by the Legacoopsociali full text.",
+          "32 salary periods differed by 1-3 cents from Art. 76 (A1, B, C3, D1, D3, E1, E2, E2Q, F2, F2Q, and F1, F1Q from October 2025): corrected.",
+          "Ferie 26 working days on a six-day week (Art. 60), not 20.",
+          "Sickness: 100% of the normale retribuzione from day 1 to day 180 (Art. 71), no 50% carenza.",
+          "Apprenticeship: the OSS of C2 on the 18-month track (Art. 28 N.3); apprentices accrue no seniority (Art. 28 I.5): the apprentice_seniority limitation closed.",
+          "Added Previdenza Cooperativa (Art. 86: employer 1.5%, worker minimum 1% of the TFR base).",
+          "C3 seniority 20.66 stays derived: Art. 80 prints 20,63, the cost tables 20.66.",
+          "Absence by_26 stays derived: Art. 41 deducts hours at 1/165.",
+          "Open: the INPS rate of the cost tables (28.03%) vs terziario, and the type-B exemptions of L. 381/1991.",
+          "The CCNL expired on 31 December 2025; no renewal found through October 2026."
         ]
       }
     ]

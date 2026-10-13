@@ -574,8 +574,8 @@
       "valid_to": null,
       "ruleset_id": "ccnl/cooperative-sociali",
       "ruleset_version": "2026.2",
-      "source_hash": "3e792eb397a27951c14e2cfdfbe15b1583e007191afa7ea810ce15470816c8fc",
-      "source_type": "commercial_secondary",
+      "source_hash": "a07454efa623bc9681ca5cc14f6140344b6133fa27cfe8a74a9a0e861b92c95b",
+      "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/cooperative-sociali.json.gz"
     },

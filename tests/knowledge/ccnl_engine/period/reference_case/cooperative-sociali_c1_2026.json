@@ -1,0 +1,26 @@
+{
+  "verification": "source_linked",
+  "_description": "Cooperative sociali (CNEL T151) level C1, January 2026 regular run, permanent, full time: the minimo of the third tranche of the 26 January 2024 renewal (from October 2025).",
+  "_notes": [
+    "Minimo C1 1,545.21 from October 2025 (Art. 76, third tranche 'con la mensilità di ottobre 2025'); no later tranche signed through October 2026.",
+    "Corroborated by the Ministry D.D. 30/2024 cost table for January 2026, annual minimi C1 18.542,52 / 12 = 1,545.21 (physical page 191 of the same PDF).",
+    "Base salary only: allowances and seniority depend on facts outside the national table."
+  ],
+  "source": {
+    "document": "CCNL Cooperative sociali 2023-2025, testo completo (edizione Legacoopsociali 2025)",
+    "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+    "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440",
+    "page": "106",
+    "section": "Art. 76 Minimi contrattuali conglobati mensili, row C1, column 10/2025"
+  },
+  "inputs": {
+    "ccnl_slug": "cooperative-sociali.json",
+    "level_code": "C1",
+    "year": 2026,
+    "month": 1,
+    "headcount": 50
+  },
+  "expected": {
+    "base_salary": "1545.21"
+  }
+}

@@ -1312,7 +1312,9 @@
       "cooperative-consorzi-agricoli/apprenticeship_passthrough"
     ],
     "agreement/cooperative-sociali.json": [
-      "cooperative-sociali/apprentice_seniority"
+      "cooperative-sociali/coop_sociali_unmodelled_elements",
+      "cooperative-sociali/inps_rate_not_reconciled",
+      "cooperative-sociali/type_b_disadvantaged_exemption"
     ],
     "agreement/dirigenza-sanitaria-area-sanita-aran.json": [
       "dirigenza-sanitaria-area-sanita-aran/specificita_pre_2025_estimated"
