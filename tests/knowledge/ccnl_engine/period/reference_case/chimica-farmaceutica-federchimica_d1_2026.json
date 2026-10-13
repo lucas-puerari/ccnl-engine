@@ -1,0 +1,27 @@
+{
+  "verification": "source_linked",
+  "_description": "Chimica e chimico-farmaceutica industria (CNEL B011) level D1, July 2026 regular run, permanent, full time: the first month of the tranche of 1 July 2026.",
+  "_notes": [
+    "TEM D1 = minimo 2,053.03 + IPO 367.23 = 2,420.26 from 1 July 2026 (ipotesi di rinnovo 15 April 2025, page 48, table 'Trattamento Economico Minimo (TEM) mensile alle diverse scadenze', column 01/07/2026, row D1).",
+    "D1 has no EAR (categories A and B only) and no EDR before 1 July 2027.",
+    "The PDF is a signed scan without text layer: the value was read on the page image and in its OCR text.",
+    "Base salary only: allowances and gross depend on facts outside the national table."
+  ],
+  "source": {
+    "document": "Ipotesi accordo rinnovo CCNL addetti industria chimica, chimico-farmaceutica, fibre chimiche, abrasivi, lubrificanti e GPL, 15 aprile 2025 (firmata)",
+    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf",
+    "sha256": "00f87d6fbef42494d47d90dab50146e353b31cbef4ca1f03d6f7ea37d97546ee",
+    "page": "48",
+    "section": "Trattamento Economico Minimo (TEM) mensile alle diverse scadenze, column 01/07/2026, row D1"
+  },
+  "inputs": {
+    "ccnl_slug": "chimica-farmaceutica-federchimica.json",
+    "level_code": "D1",
+    "year": 2026,
+    "month": 7,
+    "headcount": 50
+  },
+  "expected": {
+    "base_salary": "2420.26"
+  }
+}

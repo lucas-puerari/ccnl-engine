@@ -28,6 +28,8 @@ _MISSING, _NOT_APPLICABLE = SalaryGapKind.MISSING, SalaryGapKind.NOT_APPLICABLE
 _DECLARED_GAPS: dict[tuple[str, SalaryGapKind, date], int] = {
     # Scatto amounts of the previous rinnovo not recovered (12 levels).
     ("grafica-editoria-aieg", _MISSING, date(2026, 7, 1)): 12,
+    # EDR of the 2025 renewal: not in force before 1 July 2027 (15 levels).
+    ("chimica-farmaceutica-federchimica", _NOT_APPLICABLE, date(2027, 7, 1)): 15,
     # Apprentice scatto amount before the October 2024 table not recovered.
     ("acconciatura-estetica-confartigianato", _MISSING, date(2024, 10, 1)): 1,
     # Apprentice scatto amount before the 2025 table not recovered.
