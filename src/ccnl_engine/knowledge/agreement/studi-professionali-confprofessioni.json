@@ -36,15 +36,15 @@
     "notes": [
       {
         "kind": "info",
-        "text": "CONGLOBATED MINIMUMS: the minimum tabellare includes contingenza (up to 01/05/1992) and EDR (Interconfederal Agreement 31/07/1992), merged under CCNL 10/12/1992 and reaffirmed by Art. 138 CCNL 2024. fixed_allowances is empty for all levels."
+        "text": "CONGLOBATED MINIMUMS: the minimo tabellare includes the contingenza (up to 01/05/1992) and the EDR (Interconfederal Agreement 31/07/1992), merged under CCNL 10/12/1992 and reaffirmed by Art. 138 CCNL 2024. The only fixed allowance is the ENAC of levels 1, 2 and 3S (Art. 141), gated by a role."
       },
       {
         "kind": "info",
-        "text": "HOURLY DIVISOR: 170. Primary source: Art. 45 and Art. 137 CCNL 2024 ('divisore convenzionale orario fissato in 170')."
+        "text": "HOURLY DIVISOR: 170, daily divisor 26 (Art. 137 CCNL 2024: 'dividendo l'importo mensile per il divisore convenzionale 170'; Art. 45 for part-time)."
       },
       {
         "kind": "info",
-        "text": "TRANCHES: four tranches — 01/03/2024, 01/10/2024, 01/10/2025, 01/12/2026. Source: Art. 139-140 and salary tables CCNL 2024 (confprofessioni.eu, complete version April 2026)."
+        "text": "TRANCHES: four tranches, 01/03/2024, 01/10/2024, 01/10/2025, 01/12/2026 (Art. 140 CCNL 16/02/2024, tables pp. 71-73 of the integrale; the April 2026 testo ufficiale reproduces them). The CCNL runs to 15/02/2027."
       },
       {
         "kind": "info",
@@ -56,26 +56,24 @@
       },
       {
         "kind": "info",
-        "text": "ENAC (Art. 141 CCNL 2024): EUR 42.35 (level 1), EUR 102.53 (level 2), EUR 110.40 (level 3S) per month, payable only to workers already classified under the Confedertecnica CCNL as of 01/07/2004; modelled as an allowance with role 'confedertecnica_pre_2004' (compute(..., roles={'confedertecnica_pre_2004'}))."
-      },
-      {
-        "kind": "simplification",
-        "text": "APPRENTICESHIP percentage (Allegato B Table 3 CCNL 2024): 70% months 1-12, 85% months 13-24, 93% from month 25, applied to all eligible destinations (4, 4S, 3, 3S, 2, 1); level V is excluded from professional apprenticeship (Art. 30B) and Quadri are not a destination. The same percentage table is assumed for all destination levels.",
-        "capability": "base_salary",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "uniform_apprenticeship_percentages",
-          "applies_when": {
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Confirm that Allegato B Table 3 applies to every destination level."
-        }
+        "text": "ENAC (Art. 141 CCNL 2024): EUR 42.35 (level 1), EUR 102.53 (level 2), EUR 110.40 (level 3S) a month, only for the workers formerly under the Confedertecnica CCNL; the hires from 01/07/2004 get the minimi alone (p. 73). Modelled as an allowance with role 'confedertecnica_pre_2004' (compute(..., roles={'confedertecnica_pre_2004'}))."
       },
       {
         "kind": "info",
-        "text": "INPS: uses 2026-terziario.json (TaxSector.TERZIARIO). File already present — no changes to the tax file."
+        "text": "APPRENTICESHIP (Artt. 28-31 and Allegato B CCNL 2024, read in the April 2026 testo ufficiale, PDF pp. 143-144): professionalizzante 70% months 1-12, 85% months 13-24, 93% after, of the minimo of the destination level, one table for every profile; 30 months for Q, 1, 2 (track professionalizzante_30) and 36 months for 3S, 3, 4S, 4 (professionalizzante_36); level 5 excluded (Art. 30 B). Primo livello (qualifica_diploma, every level): 45%, 55%, 65%. Alta formazione e ricerca (alta_formazione_ricerca, Q, 1, 2, 3S): 40%, 50%, 60%. The last band of each track is open-ended: the apprenticeship is prolonged by absences over 30 days (Art. 28 I). A level covered by several tracks needs Apprentice.track."
+      },
+      {
+        "kind": "simplification",
+        "text": "SOLIDARITY FUND: the studi professionali pay the Fondo di solidarietà bilaterale per le attività professionali (D.I. 21 May 2024 art. 6: 0.50% up to 5, 0.80% from 5 to 15, 1% above 15 employees, two thirds employer; INPS circ. 5/2025 cuts the 0.50% by 40% for employers without claims) instead of the FIS, and owe no CIGS (D.Lgs. 148/2015 art. 20 c. 3-bis). The engine uses the terziario 2026 rates (FIS and CIGS): up to 15 employees they coincide, above 15 employees they overcharge by 0.46 points the employer (30.11% instead of 29.65%) and by 0.24 points the worker (9.76% instead of 9.52%); for apprentices the fund share is 0.67% employer and 0.33% worker instead of 1.13% and 0.57%. No coverage note can be scoped by headcount.",
+        "capability": "inps_employer",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "fsbap_rates_above_15",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add a studi-professionali contribution sector, or a headcount-tiered solidarity fund that replaces the FIS and the CIGS."
+        }
       },
       {
         "kind": "info",
@@ -83,7 +81,7 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "text": "APPRENTICE SENIORITY: Art. 129 CCNL 2024 (p. 68) applies the scatti of Art. 134 to apprentices from the hiring date, and Art. 28 I counts the apprenticeship for seniority; the text does not say whether the amount is the one of the destination level. The engine pays no scatto during the apprenticeship (apprentice_amount is one series, not per level). Only an apprenticeship prolonged under Art. 28 I past 36 months of service reaches a scatto (EUR 20-30).",
         "capability": "seniority",
         "monetary_impact": "unknown",
         "limitation": {
@@ -94,7 +92,28 @@
               "apprentice"
             ]
           },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+          "remediation": "Let seniority_increments pay the level amount to apprentices (a flag such as apprentices_accrue_level_amount), then remove this note."
+        }
+      },
+      {
+        "kind": "info",
+        "text": "LEAVE: 22 working days for the settimana corta (Monday to Friday), 26 for a six-day week (Art. 99 CCNL 2024, p. 51). The file carries the 22 days; the engine cannot switch on the weekly schedule."
+      },
+      {
+        "kind": "info",
+        "text": "BILATERAL CONTRIBUTION: EBIPRO and CADIPROF are paid with a unified contribution of EUR 29 a month for 12 months, EUR 2 of it by the worker (Art. 13), plus a CADIPROF enrolment of EUR 24 (Art. 16); the engine takes them as a caller BilateralFundEvent."
+      },
+      {
+        "kind": "simplification",
+        "text": "NOT MODELLED AMOUNTS (CCNL 16/02/2024): the elemento retributivo of EUR 43 x 14 owed when the employer does not pay the bilateral contribution, in every institute including TFR (Art. 13); the lavoro supplementare of part-time at 40% of the quota oraria of the retribuzione di fatto, outside the deferred institutes and the TFR (Art. 42: no request kind carries it); the comporto counted over the episodes of the 365 days before the last one, and the +90 days for serious illnesses paid 100% in months 7-8 and 70% in month 9 (Artt. 120-121); the 100% of festività during sickness (Art. 124); the infortunio integration (100% on the day of the event, 60% days 1-3, 75% after, Art. 123); the employer top-up to 100% of the holidays during compulsory maternity or paternity leave (Art. 110 c. 8); the ROL (40 or 66 hours) and the 32 hours of ex festività paid when not taken, the festività falling on Sunday and the flexibility hours not recovered (Artt. 91, 92, 97 C, 98); the salario d'ingresso of the reimpiego, up to two levels below for 9 months and one for 6 (Art. 56); the indennità di disponibilità of the lavoro intermittente, 30% (Art. 58); the diaria of the trasferte, EUR 15 or 30 a day (Art. 115); the exclusion of the quattordicesima for workers already paid extra months (Art. 143). The una tantum of EUR 400 (EUR 200 in May 2024 and May 2025, p. 73) is historic and outside the TFR base.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "studi_unmodelled_elements",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the bilateral omission element, the part-time supplementare, the rolling comporto and the allowances of Artt. 56, 58 and 115."
         }
       }
     ]
@@ -105,7 +124,33 @@
         {
           "valid_from": "2024-03-01",
           "valid_until": null,
-          "value": "170"
+          "value": "170",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-studi-professionali-2024-02-16",
+                "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+                "kind": "associazione",
+                "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                "published_on": "2024-02-16",
+                "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+              },
+              "page": "70",
+              "section": "Art. 137 - Frazionamento della retribuzione (also Art. 45, p. 37)",
+              "quote": "La quota oraria della retribuzione si ottiene dividendo l’importo mensile per il divisore convenzionale 170"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:21:14Z",
+              "effective_from": "2024-03-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:21:14Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
+            }
+          }
         }
       ]
     },
@@ -116,9 +161,31 @@
           "valid_until": null,
           "value": "14",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-studi-professionali-2024-02-16",
+                "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+                "kind": "associazione",
+                "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                "published_on": "2024-02-16",
+                "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+              },
+              "page": "69",
+              "section": "Art. 135 - Normale retribuzione; Artt. 142-143 (p. 74)",
+              "quote": "La retribuzione globale annua di cui al presente articolo viene erogata in 14 (quattordici) mensilità"
+            },
+            "transformation": "Fourteen monthly payments: the tredicesima of Art. 142 and the quattordicesima of Art. 143.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:21:14Z",
+              "effective_from": "2024-02-16",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:21:14Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
+            }
           }
         }
       ]
@@ -201,21 +268,30 @@
         }
       },
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-            "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+            "document_id": "ccnl-studi-professionali-2024-02-16",
+            "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
             "kind": "associazione",
-            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "published_on": "2024-02-16",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
           },
-          "section": "Scatti di anzianità"
+          "page": "69",
+          "section": "Art. 134 - Scatti di anzianità",
+          "quote": "Per l'anzianità di servizio maturata presso lo stesso studio professionale, il lavoratore avrà diritto, a 8 [...] (otto) scatti triennali."
         },
+        "transformation": "Eight scatti every 36 months; amounts of the Art. 134 table (Quadri 30, I 26, II 23, III S 22, III 22, IV S 20, IV 20, V 20), in force since 1 October 2011 and unchanged by the CCNL of 16 February 2024.",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:14Z",
+          "effective_from": "2024-02-16",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:14Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
@@ -223,29 +299,115 @@
       "min_days": 15,
       "comparison": "at_least",
       "provenance": {
-        "status": "assumed",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "ccnl-studi-professionali-2024-02-16",
-            "title": "CCNL dipendenti degli studi e delle attività professionali 16 febbraio 2024",
+            "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
             "kind": "associazione",
             "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
-            "published_on": "2024-02-16"
+            "published_on": "2024-02-16",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
           },
           "page": "68",
-          "section": "Art. 130, referred to by artt. 142 e 143",
-          "quote": "le frazioni di anno saranno computate, a tutti gli effetti contrattuali, per dodicesimi, computandosi come mese intero le frazioni di mese superiore o uguali a 15 (quindici) giorni."
+          "section": "Art. 130, referred to by Art. 142 (p. 74) and applied to the quattordicesima by Art. 143 (p. 74)",
+          "quote": "computate, a tutti gli effetti contrattuali, per dodicesimi, computandosi come mese intero le frazioni di [...] mese superiore o uguali a 15 (quindici) giorni."
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-09-27T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2024-02-16"
-        },
-        "note": "Art. 142 on the tredicesima refers to art. 130; art. 143 applies it to the quattordicesima. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+          "extraction_timestamp": "2026-10-13T07:21:14Z",
+          "effective_from": "2024-02-16",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:14Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
+        }
       }
-    }
+    },
+    "thirteenth_payment_day": {
+      "month": 12,
+      "day": 24,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-studi-professionali-2024-02-16",
+            "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+            "kind": "associazione",
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "published_on": "2024-02-16",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          },
+          "page": "74",
+          "section": "Art. 142 - Tredicesima mensilità",
+          "quote": "In coincidenza con la Vigilia di Natale di ogni anno i datori di lavoro dovranno corrispondere al personale"
+        },
+        "transformation": "Paid on Christmas Eve for the window January to December.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:14Z",
+          "effective_from": "2024-02-16",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:14Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
+        }
+      }
+    },
+    "employer_funds": [
+      {
+        "code": "FONTE",
+        "description": "Fon.Te. - Fondo pensione complementare del terziario (Art. 18 CCNL studi professionali)",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2024-02-16",
+              "valid_until": null,
+              "value": "0.0155"
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2024-02-16",
+              "valid_until": null,
+              "value": "0.0055"
+            }
+          ]
+        },
+        "contribution_base": "tfr_base",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-studi-professionali-2024-02-16",
+              "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+              "kind": "associazione",
+              "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+              "published_on": "2024-02-16",
+              "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+            },
+            "page": "12",
+            "section": "Art. 18 c. 1 a) and c) - Previdenza complementare",
+            "quote": "pari all’1,55% sulla retribuzione utile per il calcolo del TFR, per la quota a carico del datore di lavoro, [...] e dello 0,55% sulla retribuzione utile per il calcolo del TFR come contribuzione minima a carico del"
+          },
+          "transformation": "Employer 1.55% and worker minimum 0.55% of the TFR base; apprentices are enrolled at the same rates (c. 1 c): no apprentice rate apart. The quota of TFR is the worker's choice in PensionFundEnrolment.tfr_to_fund.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-13T07:21:14Z",
+            "effective_from": "2024-02-16",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-13T07:21:14Z",
+            "verification_status": "verified",
+            "review_id": "2026-10-13-ai-production"
+          }
+        }
+      }
+    ]
   },
   "levels": [
     {
@@ -259,21 +421,29 @@
             "valid_until": "2024-10-01",
             "value": "1406.48",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "71",
+                "section": "Art. 140 - Minimi tabellari, prima tranche",
+                "quote": "5°            1.315,12         91,36               1.406,48           -               -"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2024-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -282,21 +452,29 @@
             "valid_until": "2025-10-01",
             "value": "1445.63",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "72",
+                "section": "Art. 140 - Minimi tabellari, seconda tranche",
+                "quote": "5°           1.406,48       39,15             1.445,63           -               -"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -305,21 +483,29 @@
             "valid_until": "2026-12-01",
             "value": "1484.78",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "72",
+                "section": "Art. 140 - Minimi tabellari, terza tranche",
+                "quote": "5°           1.445,63       39,15             1.484,78           -               -"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -328,21 +514,29 @@
             "valid_until": null,
             "value": "1502.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "73",
+                "section": "Art. 140 - Minimi tabellari, quarta tranche",
+                "quote": "5°                 1.484,78               17,41                 1.502,19           -                     -"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2026-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -350,21 +544,29 @@
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-            "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+            "document_id": "ccnl-studi-professionali-2024-02-16",
+            "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
             "kind": "associazione",
-            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "published_on": "2024-02-16",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
           },
-          "section": "Livelli contrattuali"
+          "page": "71",
+          "section": "Art. 140 - Minimi tabellari, Tabella retributiva unica",
+          "quote": "5°            1.315,12         91,36               1.406,48           -               -"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:14Z",
+          "effective_from": "2024-02-16",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:14Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
@@ -379,21 +581,29 @@
             "valid_until": "2024-10-01",
             "value": "1511.28",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "71",
+                "section": "Art. 140 - Minimi tabellari, prima tranche",
+                "quote": "4°            1.413,11         98,17               1.511,28           -               -"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2024-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -402,21 +612,29 @@
             "valid_until": "2025-10-01",
             "value": "1553.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "72",
+                "section": "Art. 140 - Minimi tabellari, seconda tranche",
+                "quote": "4°           1.511,28       42,07             1.553,35           -               -"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -425,21 +643,29 @@
             "valid_until": "2026-12-01",
             "value": "1595.42",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "72",
+                "section": "Art. 140 - Minimi tabellari, terza tranche",
+                "quote": "4°           1.553,35       42,07             1.595,42           -               -"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -448,21 +674,29 @@
             "valid_until": null,
             "value": "1614.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "73",
+                "section": "Art. 140 - Minimi tabellari, quarta tranche",
+                "quote": "4°                 1.595,42               18,70                 1.614,12           -                     -"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2026-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -470,21 +704,29 @@
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-            "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+            "document_id": "ccnl-studi-professionali-2024-02-16",
+            "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
             "kind": "associazione",
-            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "published_on": "2024-02-16",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
           },
-          "section": "Livelli contrattuali"
+          "page": "71",
+          "section": "Art. 140 - Minimi tabellari, Tabella retributiva unica",
+          "quote": "4°            1.413,11         98,17               1.511,28           -               -"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:14Z",
+          "effective_from": "2024-02-16",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:14Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
@@ -499,21 +741,29 @@
             "valid_until": "2024-10-01",
             "value": "1567.44",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "71",
+                "section": "Art. 140 - Minimi tabellari, prima tranche",
+                "quote": "4°S            1.465,62         101,82              1.567,44           -               -"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2024-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -522,21 +772,29 @@
             "valid_until": "2025-10-01",
             "value": "1611.07",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "72",
+                "section": "Art. 140 - Minimi tabellari, seconda tranche",
+                "quote": "4°S           1.567,44       43,63             1.611,07           -               -"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -545,21 +803,29 @@
             "valid_until": "2026-12-01",
             "value": "1654.70",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "72",
+                "section": "Art. 140 - Minimi tabellari, terza tranche",
+                "quote": "4°S           1.611,07       43,63             1.654,70           -               -"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -568,21 +834,29 @@
             "valid_until": null,
             "value": "1674.10",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "73",
+                "section": "Art. 140 - Minimi tabellari, quarta tranche",
+                "quote": "4°S                1.654,70               19,40                 1.674,10           -                     -"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2026-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -590,21 +864,29 @@
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-            "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+            "document_id": "ccnl-studi-professionali-2024-02-16",
+            "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
             "kind": "associazione",
-            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "published_on": "2024-02-16",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
           },
-          "section": "Livelli contrattuali"
+          "page": "71",
+          "section": "Art. 140 - Minimi tabellari, Tabella retributiva unica",
+          "quote": "4°S            1.465,62         101,82              1.567,44           -               -"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:14Z",
+          "effective_from": "2024-02-16",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:14Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
@@ -619,21 +901,29 @@
             "valid_until": "2024-10-01",
             "value": "1616.37",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "71",
+                "section": "Art. 140 - Minimi tabellari, prima tranche",
+                "quote": "3°            1.511,37          105                1.616,37           -               -"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2024-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -642,21 +932,29 @@
             "valid_until": "2025-10-01",
             "value": "1661.37",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "72",
+                "section": "Art. 140 - Minimi tabellari, seconda tranche",
+                "quote": "3°           1.616,37        45               1.661,37           -               -"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -665,21 +963,29 @@
             "valid_until": "2026-12-01",
             "value": "1706.37",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "72",
+                "section": "Art. 140 - Minimi tabellari, terza tranche",
+                "quote": "3°           1.661,37        45               1.706,37           -               -"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -688,21 +994,29 @@
             "valid_until": null,
             "value": "1726.37",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "73",
+                "section": "Art. 140 - Minimi tabellari, quarta tranche",
+                "quote": "3°                 1.706,37               20,00                 1.726,37           -                     -"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2026-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -710,21 +1024,29 @@
       },
       "fixed_allowances": [],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-            "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+            "document_id": "ccnl-studi-professionali-2024-02-16",
+            "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
             "kind": "associazione",
-            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "published_on": "2024-02-16",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
           },
-          "section": "Livelli contrattuali"
+          "page": "71",
+          "section": "Art. 140 - Minimi tabellari, Tabella retributiva unica",
+          "quote": "3°            1.511,37          105                1.616,37           -               -"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:14Z",
+          "effective_from": "2024-02-16",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:14Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
@@ -739,21 +1061,29 @@
             "valid_until": "2024-10-01",
             "value": "1631.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "71",
+                "section": "Art. 140 - Minimi tabellari, prima tranche",
+                "quote": "3°S            1.525,23         105,96              1.631,19         110,40         1.741,69"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2024-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -762,21 +1092,29 @@
             "valid_until": "2025-10-01",
             "value": "1676.60",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "72",
+                "section": "Art. 140 - Minimi tabellari, seconda tranche",
+                "quote": "3°S           1.631,19       45,41             1.676,60         110,40         1.787,10"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -785,21 +1123,29 @@
             "valid_until": "2026-12-01",
             "value": "1722.01",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "72",
+                "section": "Art. 140 - Minimi tabellari, terza tranche",
+                "quote": "3°S           1.676,60       45,41             1.722,01         110,40         1.832,51"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -808,21 +1154,29 @@
             "valid_until": null,
             "value": "1742.20",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "73",
+                "section": "Art. 140 - Minimi tabellari, quarta tranche",
+                "quote": "3°S                1.722,01               20,19                 1.742,20        110,40              1.852,60"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2026-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -843,41 +1197,58 @@
           },
           "role": "confedertecnica_pre_2004",
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                "document_id": "ccnl-studi-professionali-2024-02-16",
+                "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                 "kind": "associazione",
-                "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                "published_on": "2024-02-16",
+                "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
               },
-              "section": "Tabella retributiva"
+              "page": "74",
+              "section": "Art. 141 - Elemento nazionale allineamento contrattuale; Art. 140 tables pp. 71-73",
+              "quote": "CIPA rimane il medesimo e pari a euro 42,35 per il I livello, euro 102,53 per il II livello, euro 110,40 per il"
             },
+            "transformation": "Only for the workers of levels I, II and III S formerly under the Confedertecnica CCNL; the Art. 140 tables exclude the hires from 1 July 2004 (p. 73): role confedertecnica_pre_2004. Part of the minimo for every contractual purpose (footnote (*) p. 73).",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
-              "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:21:14Z",
+              "effective_from": "2024-03-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:21:14Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
           }
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-            "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+            "document_id": "ccnl-studi-professionali-2024-02-16",
+            "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
             "kind": "associazione",
-            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "published_on": "2024-02-16",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
           },
-          "section": "Livelli contrattuali"
+          "page": "71",
+          "section": "Art. 140 - Minimi tabellari, Tabella retributiva unica",
+          "quote": "3°S            1.525,23         105,96              1.631,19         110,40         1.741,69"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:14Z",
+          "effective_from": "2024-02-16",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:14Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
@@ -892,21 +1263,29 @@
             "valid_until": "2024-10-01",
             "value": "1758.60",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "71",
+                "section": "Art. 140 - Minimi tabellari, prima tranche",
+                "quote": "2°            1.644,37         114,23              1.758,60         102,53         1.861,19"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2024-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -915,21 +1294,29 @@
             "valid_until": "2025-10-01",
             "value": "1807.55",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "72",
+                "section": "Art. 140 - Minimi tabellari, seconda tranche",
+                "quote": "2°           1.758,60       48,95             1.807,55         102,53         1.910,14"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -938,21 +1325,29 @@
             "valid_until": "2026-12-01",
             "value": "1856.50",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "72",
+                "section": "Art. 140 - Minimi tabellari, terza tranche",
+                "quote": "2°           1.807,55       48,95             1.856,50         102,53         1.959,09"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -961,21 +1356,29 @@
             "valid_until": null,
             "value": "1878.26",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "73",
+                "section": "Art. 140 - Minimi tabellari, quarta tranche",
+                "quote": "2°                 1.856,50               21,76                 1.878,26        102,53              1.980,79"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2026-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -996,41 +1399,58 @@
           },
           "role": "confedertecnica_pre_2004",
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                "document_id": "ccnl-studi-professionali-2024-02-16",
+                "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                 "kind": "associazione",
-                "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                "published_on": "2024-02-16",
+                "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
               },
-              "section": "Tabella retributiva"
+              "page": "74",
+              "section": "Art. 141 - Elemento nazionale allineamento contrattuale; Art. 140 tables pp. 71-73",
+              "quote": "CIPA rimane il medesimo e pari a euro 42,35 per il I livello, euro 102,53 per il II livello, euro 110,40 per il"
             },
+            "transformation": "Only for the workers of levels I, II and III S formerly under the Confedertecnica CCNL; the Art. 140 tables exclude the hires from 1 July 2004 (p. 73): role confedertecnica_pre_2004. Part of the minimo for every contractual purpose (footnote (*) p. 73).",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
-              "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:21:14Z",
+              "effective_from": "2024-03-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:21:14Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
           }
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-            "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+            "document_id": "ccnl-studi-professionali-2024-02-16",
+            "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
             "kind": "associazione",
-            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "published_on": "2024-02-16",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
           },
-          "section": "Livelli contrattuali"
+          "page": "71",
+          "section": "Art. 140 - Minimi tabellari, Tabella retributiva unica",
+          "quote": "2°            1.644,37         114,23              1.758,60         102,53         1.861,19"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:14Z",
+          "effective_from": "2024-02-16",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:14Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
@@ -1045,21 +1465,29 @@
             "valid_until": "2024-10-01",
             "value": "2018.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "71",
+                "section": "Art. 140 - Minimi tabellari, prima tranche",
+                "quote": "1°            1.887,84         131,15              2.018,99         42,35          2.061,34"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2024-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1068,21 +1496,29 @@
             "valid_until": "2025-10-01",
             "value": "2075.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "72",
+                "section": "Art. 140 - Minimi tabellari, seconda tranche",
+                "quote": "1°           2.018,99       56,20             2.075,19         42,35          2.117,54"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1091,21 +1527,29 @@
             "valid_until": "2026-12-01",
             "value": "2131.39",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "72",
+                "section": "Art. 140 - Minimi tabellari, terza tranche",
+                "quote": "1°           2.075,19       56,20             2.131,39         42,35          2.173,74"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1114,21 +1558,29 @@
             "valid_until": null,
             "value": "2156.38",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "73",
+                "section": "Art. 140 - Minimi tabellari, quarta tranche",
+                "quote": "1°                 2.131,39               24,99                 2.156,38         42,35              2.198,73"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2026-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -1149,41 +1601,58 @@
           },
           "role": "confedertecnica_pre_2004",
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                "document_id": "ccnl-studi-professionali-2024-02-16",
+                "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                 "kind": "associazione",
-                "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                "published_on": "2024-02-16",
+                "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
               },
-              "section": "Tabella retributiva"
+              "page": "74",
+              "section": "Art. 141 - Elemento nazionale allineamento contrattuale; Art. 140 tables pp. 71-73",
+              "quote": "CIPA rimane il medesimo e pari a euro 42,35 per il I livello, euro 102,53 per il II livello, euro 110,40 per il"
             },
+            "transformation": "Only for the workers of levels I, II and III S formerly under the Confedertecnica CCNL; the Art. 140 tables exclude the hires from 1 July 2004 (p. 73): role confedertecnica_pre_2004. Part of the minimo for every contractual purpose (footnote (*) p. 73).",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
-              "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:21:14Z",
+              "effective_from": "2024-03-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:21:14Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
           }
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-            "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+            "document_id": "ccnl-studi-professionali-2024-02-16",
+            "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
             "kind": "associazione",
-            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "published_on": "2024-02-16",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
           },
-          "section": "Livelli contrattuali"
+          "page": "71",
+          "section": "Art. 140 - Minimi tabellari, Tabella retributiva unica",
+          "quote": "1°            1.887,84         131,15              2.018,99         42,35          2.061,34"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:14Z",
+          "effective_from": "2024-02-16",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:14Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
@@ -1198,21 +1667,29 @@
             "valid_until": "2024-10-01",
             "value": "2281.51",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "71",
+                "section": "Art. 140 - Minimi tabellari, prima tranche",
+                "quote": "Quadri (ex 1° S      2.133,31         148,20              2.281,51           -               -"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2024-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1221,21 +1698,29 @@
             "valid_until": "2025-10-01",
             "value": "2345.02",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "71",
+                "section": "Art. 140 - Minimi tabellari, seconda tranche",
+                "quote": "Quadri (ex 1° S      2.281,51         63,51               2.345,02           -               -"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1244,21 +1729,29 @@
             "valid_until": "2026-12-01",
             "value": "2408.53",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "72",
+                "section": "Art. 140 - Minimi tabellari, terza tranche",
+                "quote": "Quadri (ex 1° S    2.345,02       63,51             2.408,53           -               -"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           },
@@ -1267,21 +1760,29 @@
             "valid_until": null,
             "value": "2436.76",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-                  "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+                  "document_id": "ccnl-studi-professionali-2024-02-16",
+                  "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
                   "kind": "associazione",
-                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                  "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                  "published_on": "2024-02-16",
+                  "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
                 },
-                "section": "Tabella retributiva"
+                "page": "73",
+                "section": "Art. 140 - Minimi tabellari, quarta tranche",
+                "quote": "Quadri (ex 1° S            2.408,53               28,23                 2.436,76           -                     -"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-13T07:21:14Z",
+                "effective_from": "2026-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-13T07:21:14Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-13-ai-production"
               }
             }
           }
@@ -1290,21 +1791,29 @@
       "fixed_allowances": [],
       "category": "quadro",
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
-            "title": "ccnl-studi-2024-integrale-definitivo-pdf",
+            "document_id": "ccnl-studi-professionali-2024-02-16",
+            "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
             "kind": "associazione",
-            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "published_on": "2024-02-16",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
           },
-          "section": "Livelli contrattuali"
+          "page": "71",
+          "section": "Art. 140 - Minimi tabellari, Tabella retributiva unica",
+          "quote": "Quadri (ex 1° S      2.133,31         148,20              2.281,51           -               -"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:14Z",
+          "effective_from": "2024-02-16",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:14Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     }
@@ -1312,14 +1821,11 @@
   "apprenticeship": [
     {
       "type": "percentage",
-      "name": "professionalizzante",
+      "name": "professionalizzante_30",
       "destination_levels": [
-        "4",
-        "4S",
-        "3",
-        "3S",
-        "2",
-        "1"
+        "Q",
+        "1",
+        "2"
       ],
       "periods": [
         {
@@ -1337,7 +1843,200 @@
           "months_until": null,
           "percentage": "0.93"
         }
-      ]
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-studi-professionali-2026-testo-ufficiale",
+            "title": "CCNL per i dipendenti degli studi e delle attività professionali, testo ufficiale con allegati (edizione aprile 2026, Confprofessioni)",
+            "kind": "associazione",
+            "url": "https://www.confprofessioni.eu/wp-content/uploads/2026/07/00274046_CCNL_Studi_Professionali_2026.04.10_completo.pdf",
+            "published_on": "2026-04-10",
+            "sha256": "35cc1ec44a282f39fa401949828f180897872a8c7907eb39d4f7a51420e04477"
+          },
+          "page": "143",
+          "section": "Allegato B, Tabelle 2-3 (printed p. 130); Art. 30 B (integrale p. 31)",
+          "quote": "Per i primi 12 mesi 70% [...] Per i mesi successivi e fino 85% [...] Per i mesi successivi 93% [...] Quadri, livello 30 mesi 260"
+        },
+        "transformation": "Professionalizzante of Quadri, I and II: 30 months (Tabella 2), 70% for months 1-12, 85% for 13-24, 93% after (Tabella 3) of the minimo of the destination level. The 93% band is open-ended so that a prolongation of Art. 28 I keeps it.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:14Z",
+          "effective_from": "2024-02-16",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:14Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
+        }
+      }
+    },
+    {
+      "type": "percentage",
+      "name": "professionalizzante_36",
+      "destination_levels": [
+        "3S",
+        "3",
+        "4S",
+        "4"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "0.93"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-studi-professionali-2026-testo-ufficiale",
+            "title": "CCNL per i dipendenti degli studi e delle attività professionali, testo ufficiale con allegati (edizione aprile 2026, Confprofessioni)",
+            "kind": "associazione",
+            "url": "https://www.confprofessioni.eu/wp-content/uploads/2026/07/00274046_CCNL_Studi_Professionali_2026.04.10_completo.pdf",
+            "published_on": "2026-04-10",
+            "sha256": "35cc1ec44a282f39fa401949828f180897872a8c7907eb39d4f7a51420e04477"
+          },
+          "page": "143",
+          "section": "Allegato B, Tabelle 2-3 (printed p. 130); Art. 30 B (integrale p. 31)",
+          "quote": "Per i primi 12 mesi 70% [...] Per i mesi successivi e fino 85% [...] Per i mesi successivi 93% [...] livello terzo (III)"
+        },
+        "transformation": "Professionalizzante of III S, III, IV S and IV: 36 months (Tabella 2), same percentages as the 30-month profiles (Tabella 3). Level V is excluded (Art. 30 B, integrale p. 31). The 93% band is open-ended so that a prolongation of Art. 28 I keeps it.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:14Z",
+          "effective_from": "2024-02-16",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:14Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
+        }
+      }
+    },
+    {
+      "type": "percentage",
+      "name": "qualifica_diploma",
+      "destination_levels": [
+        "Q",
+        "1",
+        "2",
+        "3S",
+        "3",
+        "4S",
+        "4",
+        "5"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.45"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.55"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "0.65"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-studi-professionali-2026-testo-ufficiale",
+            "title": "CCNL per i dipendenti degli studi e delle attività professionali, testo ufficiale con allegati (edizione aprile 2026, Confprofessioni)",
+            "kind": "associazione",
+            "url": "https://www.confprofessioni.eu/wp-content/uploads/2026/07/00274046_CCNL_Studi_Professionali_2026.04.10_completo.pdf",
+            "published_on": "2026-04-10",
+            "sha256": "35cc1ec44a282f39fa401949828f180897872a8c7907eb39d4f7a51420e04477"
+          },
+          "page": "143",
+          "section": "Allegato B, Tabella 1 (printed p. 130); Art. 29 D (integrale p. 31)",
+          "quote": "Per i primi 12 mesi 45% [...] Per i mesi successivi e 55% [...] Per i mesi successivi 65%"
+        },
+        "transformation": "Apprendistato di primo livello: 45% for months 1-12, 55% for 13-24, 65% after, of the minimo of the destination level; Art. 29 restricts no level. The percentage covers both work and training at the school (Art. 29 D).",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:14Z",
+          "effective_from": "2024-02-16",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:14Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
+        }
+      }
+    },
+    {
+      "type": "percentage",
+      "name": "alta_formazione_ricerca",
+      "destination_levels": [
+        "Q",
+        "1",
+        "2",
+        "3S"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.40"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.50"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "0.60"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-studi-professionali-2026-testo-ufficiale",
+            "title": "CCNL per i dipendenti degli studi e delle attività professionali, testo ufficiale con allegati (edizione aprile 2026, Confprofessioni)",
+            "kind": "associazione",
+            "url": "https://www.confprofessioni.eu/wp-content/uploads/2026/07/00274046_CCNL_Studi_Professionali_2026.04.10_completo.pdf",
+            "published_on": "2026-04-10",
+            "sha256": "35cc1ec44a282f39fa401949828f180897872a8c7907eb39d4f7a51420e04477"
+          },
+          "page": "144",
+          "section": "Allegato B, Tabella 4 (printed p. 131); Art. 31 A (integrale p. 32)",
+          "quote": "Per i primi 12 mesi 40% [...] Per i mesi successivi e fino 50% [...] Per i mesi successivi 60%"
+        },
+        "transformation": "Alta formazione e ricerca: 40% for months 1-12, 50% for 13-24, 60% after, of the minimo of the destination level; not admitted for levels III, IV, IV S and V (Art. 31, integrale p. 32: 'non è ammesso per le qualifiche del livello III, IV, IV/S e V'), so Q, I, II and III S.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:14Z",
+          "effective_from": "2024-02-16",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:14Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
+        }
+      }
     }
   ],
   "ruleset": {
@@ -1347,13 +2046,13 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "b6f59ef841173473b0faac886ee9aca1e3c7e705861747816c2dfd130cdfa648",
+    "source_hash": "2645afbccdd6188617fa6afa13c954be022a58fde72612e61b242e3515a13218",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "gross_incl_allowances",
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -1363,7 +2062,7 @@
             "periods": [
               {
                 "valid_from": "2024-02-16",
-                "value": 0.25,
+                "value": "0.15",
                 "provenance": null,
                 "valid_until": null
               }
@@ -1373,21 +2072,30 @@
             "weekday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-studi-professionali-confprofessioni-2024",
-                "title": "CCNL Studi Professionali Confprofessioni 2024-2027",
-                "kind": "tabella_retributiva",
-                "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                "document_id": "ccnl-studi-professionali-2024-02-16",
+                "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+                "kind": "associazione",
+                "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                "published_on": "2024-02-16",
+                "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
               },
-              "section": "Art. lavoro straordinario"
+              "page": "49",
+              "section": "Art. 95 - Maggiorazione del lavoro straordinario festivo e notturno",
+              "quote": "- 15% (quindici per cento) per le ore di lavoro eccedenti gli orari di lavoro settimanali di cui al precedente"
             },
+            "transformation": "15% on the quota oraria of the normale retribuzione of Art. 135 (minimo, scatti, assegni ad personam, superminimi): hourly_base_method gross_incl_allowances.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-02-16"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:21:14Z",
+              "effective_from": "2024-02-16",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:21:14Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
           }
         },
@@ -1399,7 +2107,7 @@
             "periods": [
               {
                 "valid_from": "2024-02-16",
-                "value": 0.4,
+                "value": "0.30",
                 "provenance": null,
                 "valid_until": null
               }
@@ -1409,21 +2117,30 @@
             "night"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-studi-professionali-confprofessioni-2024",
-                "title": "CCNL Studi Professionali Confprofessioni 2024-2027",
-                "kind": "tabella_retributiva",
-                "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                "document_id": "ccnl-studi-professionali-2024-02-16",
+                "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+                "kind": "associazione",
+                "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                "published_on": "2024-02-16",
+                "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
               },
-              "section": "Art. lavoro straordinario"
+              "page": "49",
+              "section": "Art. 95 - Maggiorazione del lavoro straordinario festivo e notturno",
+              "quote": "- 30% (trenta per cento) per le ore di lavoro prestate la notte, intendendosi per tali quelle effettuato dalle"
             },
+            "transformation": "30% for overtime hours worked at night (22:00-06:00); ordinary night work is left to second-level bargaining (Art. 93).",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-02-16"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:21:14Z",
+              "effective_from": "2024-02-16",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:21:14Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
           }
         },
@@ -1445,21 +2162,29 @@
             "holiday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-studi-professionali-confprofessioni-2024",
-                "title": "CCNL Studi Professionali Confprofessioni 2024-2027",
-                "kind": "tabella_retributiva",
-                "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                "document_id": "ccnl-studi-professionali-2024-02-16",
+                "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+                "kind": "associazione",
+                "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                "published_on": "2024-02-16",
+                "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
               },
-              "section": "Art. lavoro straordinario"
+              "page": "49",
+              "section": "Art. 95; Art. 97 lett. E (p. 50)",
+              "quote": "- 30% (trenta per cento) per le ore di lavoro straordinario prestate nei giorni festivi."
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-02-16"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:21:14Z",
+              "effective_from": "2024-02-16",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:21:14Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
           }
         },
@@ -1481,21 +2206,29 @@
             "night_holiday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-studi-professionali-confprofessioni-2024",
-                "title": "CCNL Studi Professionali Confprofessioni 2024-2027",
-                "kind": "tabella_retributiva",
-                "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+                "document_id": "ccnl-studi-professionali-2024-02-16",
+                "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+                "kind": "associazione",
+                "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                "published_on": "2024-02-16",
+                "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
               },
-              "section": "Art. lavoro straordinario"
+              "page": "49",
+              "section": "Art. 95",
+              "quote": "- 50% (cinquanta per cento) nel caso di lavoro straordinario notturno festivo."
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-02-16"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-13T07:21:14Z",
+              "effective_from": "2024-02-16",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-13T07:21:14Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-13-ai-production"
             }
           }
         }
@@ -1505,21 +2238,29 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-studi-professionali-confprofessioni-2024",
-            "title": "CCNL Studi Professionali Confprofessioni 2024-2027",
-            "kind": "tabella_retributiva",
-            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+            "document_id": "ccnl-studi-professionali-2024-02-16",
+            "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+            "kind": "associazione",
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "published_on": "2024-02-16",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
           },
-          "section": "Art. orario di lavoro"
+          "page": "70",
+          "section": "Art. 137 - Frazionamento della retribuzione",
+          "quote": "dividendo l’importo mensile per il divisore convenzionale 26 (ventisei), fatto salvo quanto previsto al"
         },
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2024-02-16"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:14Z",
+          "effective_from": "2024-02-16",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:14Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
@@ -1532,21 +2273,30 @@
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-studi-professionali-confprofessioni-2024",
-            "title": "CCNL Studi Professionali Confprofessioni 2024-2027",
-            "kind": "tabella_retributiva",
-            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+            "document_id": "ccnl-studi-professionali-2024-02-16",
+            "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+            "kind": "associazione",
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "published_on": "2024-02-16",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
           },
-          "section": "Art. ferie"
+          "page": "51",
+          "section": "Art. 99 - Misura del periodo di ferie",
+          "quote": "è distribuito su 6 (sei) giorni. In caso di regime di “settimana corta”, dal lunedì al venerdì, il periodo di [...] ferie annuali è pari a 22 (ventidue) giorni lavorativi."
         },
+        "transformation": "22 working days, the measure of the settimana corta (Monday to Friday); a six-day week has 26 (same page), see the LEAVE note.",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2024-02-16"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:14Z",
+          "effective_from": "2024-02-16",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:14Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     },
@@ -1554,24 +2304,96 @@
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "0.75",
       "max_duration_days": 180,
+      "day_bands": [
+        {
+          "day_from": 4,
+          "day_until": 21,
+          "integration_rate": "0.75"
+        },
+        {
+          "day_from": 21,
+          "day_until": null,
+          "integration_rate": "1"
+        }
+      ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-studi-professionali-confprofessioni-2024",
-            "title": "CCNL Studi Professionali Confprofessioni 2024-2027",
-            "kind": "tabella_retributiva",
-            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf"
+            "document_id": "ccnl-studi-professionali-2024-02-16",
+            "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+            "kind": "associazione",
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "published_on": "2024-02-16",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
           },
-          "section": "Art. malattia — 100% gg1-3, 75% gg4-20, 100% gg21+"
+          "page": "66",
+          "section": "Art. 121 - Trattamento economico di malattia; Art. 120 (p. 65)",
+          "quote": "75% (settantacinque per cento) della retribuzione di fatto dal 4º al 20º giorno; [...] 100% (cento per cento) della retribuzione di fatto dal 21º giorno in poi."
         },
+        "transformation": "Integration up to 100% of the gross retribuzione di fatto for days 1-3 (carenza), 75% for days 4-20 and 100% from day 21, stored as day_bands; comporto 180 days (Art. 120). Apprentices are covered (no exclusion). The comporto of Art. 120 sums the episodes of the 365 days before the last one: max_duration_days counts one episode, see the unmodelled note.",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2024-02-16"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-13T07:21:14Z",
+          "effective_from": "2024-02-16",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-13T07:21:14Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-13-ai-production"
         }
       }
     }
+  },
+  "verification": {
+    "confidence": "verified",
+    "readiness": "reviewed",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-13-ai-production",
+        "date": "2026-10-13",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Every payable rule of the file read again in the CCNL of 16 February 2024 (integrale definitivo, 78 pages) and in its April 2026 testo ufficiale for Allegato B, with the D.I. of 21 May 2024 and the INPS circulars for the solidarity fund.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          },
+          {
+            "url": "https://www.confprofessioni.eu/wp-content/uploads/2026/07/00274046_CCNL_Studi_Professionali_2026.04.10_completo.pdf",
+            "sha256": "35cc1ec44a282f39fa401949828f180897872a8c7907eb39d4f7a51420e04477"
+          },
+          {
+            "url": "https://www.lavoro.gov.it/sites/default/files/temi-e-priorita%2C%20ammortizzatori-sociali/normativa/Decreto-Interministeriale-del-%2021052024.pdf",
+            "sha256": "fd1d01d5444dff1cfdd2cf5d0a12ff5b2ee5c1fca8a64758e61f4a7bee9c9bbf"
+          },
+          {
+            "url": "https://ance.it/wp-content/uploads/allegati/INPS_Circolare-numero-5-del-20-01-2025.pdf",
+            "sha256": "01d8fd32bc94bbcc676911786a222e50a89b73b4b1086641f559d0086a2b8237"
+          },
+          {
+            "url": "https://www.fiscoetasse.com/files/17306/circolare-76-del-30-06-2022.pdf",
+            "sha256": "f181597163ae73a9918929b40186c69dffb92da5aebfe9653c41b5c1828bb952"
+          },
+          {
+            "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-09-14;148~art20!vig=2026-10-13",
+            "sha256": "971e9ddc10204b3ba59a1e0f7ad06b2114b56643b820b913a5fc457b6adf4b32"
+          }
+        ],
+        "findings": [
+          "60 records verified; the three document ids of the file are now one (ccnl-studi-professionali-2024-02-16), plus the 2026 testo ufficiale for Allegato B. The served integrale has sha256 89c22bb2..., not the hash recorded before.",
+          "Weekday overtime 15%, not 25%, and night overtime 30%, not 40% (Art. 95, p. 49), on the normale retribuzione of Art. 135 (hourly_base_method gross_incl_allowances).",
+          "Sickness: 75% for days 4-20 and 100% from day 21 (Art. 121), not a flat 75%.",
+          "Apprenticeship: Quadri are a destination of the professionalizzante (Allegato B Tabella 2, 30 months); split by duration (30 and 36 months); added the primo livello (45/55/65%) and alta formazione (40/50/60%) tracks. The limitation uniform_apprenticeship_percentages is closed: Tabella 3 is one table for every profile.",
+          "Added Fon.Te. (Art. 18: 1.55% employer, 0.55% worker minimum of the TFR base) and the payment day of the tredicesima (Art. 142).",
+          "INPS: the sector pays the Fondo di solidarietà per le attività professionali, not the FIS, and no CIGS: the terziario tier above 15 employees overcharges; declared as fsbap_rates_above_15.",
+          "Unmodelled clauses declared in one note (studi_unmodelled_elements); apprentice_seniority rewritten on Art. 129.",
+          "No renewal after 16 February 2024 found through October 2026 (the CCNL runs to 15 February 2027); the CNEL archive was not reachable."
+        ]
+      }
+    ]
   }
 }

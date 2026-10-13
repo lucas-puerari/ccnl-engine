@@ -8,7 +8,7 @@
 | **Last renewal** | — |
 | **Workers (est.)** | ~350k |
 | **Ruleset version** | `2026.2` |
-| **Readiness** | 🧪 Exploratory |
+| **Readiness** | 👁 Reviewed |
 
 [← Contracts index](index.md)
 
@@ -30,9 +30,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority |
+| **Limits of this contract** | base_salary, inps_employer, seniority |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -40,21 +40,23 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 42 derived / 2 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
-| **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
-| **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
+| **Rule provenance** | 46 verified / 0 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
+| **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
 ## Freshness
 
 | | |
 |---|---|
 | **Last renewal** | — |
-| **Last review** | — |
+| **Last review** | 2026-10-13 |
 | **Latest salary tranche** | 2026-12-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-10-13 | claude-opus-5-5 (ai) | Every payable rule of the file read again in the CCNL of 16 February 2024 (integrale definitivo, 78 pages) and in its April 2026 testo ufficiale for Allegato B, with the D.I. of 21 May 2024 and the INPS circulars for the solidarity fund. | corrected | 60 records verified; the three document ids of the file are now one (ccnl-studi-professionali-2024-02-16), plus the 2026 testo ufficiale for Allegato B. The served integrale has sha256 89c22bb2..., not the hash recorded before.<br>Weekday overtime 15%, not 25%, and night overtime 30%, not 40% (Art. 95, p. 49), on the normale retribuzione of Art. 135 (hourly_base_method gross_incl_allowances).<br>Sickness: 75% for days 4-20 and 100% from day 21 (Art. 121), not a flat 75%.<br>Apprenticeship: Quadri are a destination of the professionalizzante (Allegato B Tabella 2, 30 months); split by duration (30 and 36 months); added the primo livello (45/55/65%) and alta formazione (40/50/60%) tracks. The limitation uniform_apprenticeship_percentages is closed: Tabella 3 is one table for every profile.<br>Added Fon.Te. (Art. 18: 1.55% employer, 0.55% worker minimum of the TFR base) and the payment day of the tredicesima (Art. 142).<br>INPS: the sector pays the Fondo di solidarietà per le attività professionali, not the FIS, and no CIGS: the terziario tier above 15 employees overcharges; declared as fsbap_rates_above_15.<br>Unmodelled clauses declared in one note (studi_unmodelled_elements); apprentice_seniority rewritten on Art. 129.<br>No renewal after 16 February 2024 found through October 2026 (the CCNL runs to 15 February 2027); the CNEL archive was not reachable. |
 
 ## Salary table
 
@@ -89,27 +91,46 @@ Latest effective values per level (monthly gross, EUR).
 
 ## Apprenticeship
 
-**professionalizzante** (type: `percentage`)  
-Destination levels: `4`, `4S`, `3`, `3S`, `2`, `1`  
+**professionalizzante_30** (type: `percentage`)  
+Destination levels: `Q`, `1`, `2`  
 percentage: 0.93
+
+**professionalizzante_36** (type: `percentage`)  
+Destination levels: `3S`, `3`, `4S`, `4`  
+percentage: 0.93
+
+**qualifica_diploma** (type: `percentage`)  
+Destination levels: `Q`, `1`, `2`, `3S`, `3`, `4S`, `4`, `5`  
+percentage: 0.65
+
+**alta_formazione_ricerca** (type: `percentage`)  
+Destination levels: `Q`, `1`, `2`, `3S`  
+percentage: 0.60
 
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "studi-professionali-confprofessioni/uniform_apprenticeship_percentages · base_salary · impact unknown · open"
-    APPRENTICESHIP percentage (Allegato B Table 3 CCNL 2024): 70% months 1-12, 85% months 13-24, 93% from month 25, applied to all eligible destinations (4, 4S, 3, 3S, 2, 1); level V is excluded from professional apprenticeship (Art. 30B) and Quadri are not a destination. The same percentage table is assumed for all destination levels.
+!!! warning "studi-professionali-confprofessioni/fsbap_rates_above_15 · inps_employer · impact yes · open"
+    SOLIDARITY FUND: the studi professionali pay the Fondo di solidarietà bilaterale per le attività professionali (D.I. 21 May 2024 art. 6: 0.50% up to 5, 0.80% from 5 to 15, 1% above 15 employees, two thirds employer; INPS circ. 5/2025 cuts the 0.50% by 40% for employers without claims) instead of the FIS, and owe no CIGS (D.Lgs. 148/2015 art. 20 c. 3-bis). The engine uses the terziario 2026 rates (FIS and CIGS): up to 15 employees they coincide, above 15 employees they overcharge by 0.46 points the employer (30.11% instead of 29.65%) and by 0.24 points the worker (9.76% instead of 9.52%); for apprentices the fund share is 0.67% employer and 0.33% worker instead of 1.13% and 0.57%. No coverage note can be scoped by headcount.
 
-    **Applies when:** `base_salary` applies; contract type in apprentice.
+    **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Confirm that Allegato B Table 3 applies to every destination level.
+    **Remediation:** Add a studi-professionali contribution sector, or a headcount-tiered solidarity fund that replaces the FIS and the CIGS.
 
 !!! warning "studi-professionali-confprofessioni/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
+    APPRENTICE SENIORITY: Art. 129 CCNL 2024 (p. 68) applies the scatti of Art. 134 to apprentices from the hiring date, and Art. 28 I counts the apprenticeship for seniority; the text does not say whether the amount is the one of the destination level. The engine pays no scatto during the apprenticeship (apprentice_amount is one series, not per level). Only an apprenticeship prolonged under Art. 28 I past 36 months of service reaches a scatto (EUR 20-30).
 
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
+    **Remediation:** Let seniority_increments pay the level amount to apprentices (a flag such as apprentices_accrue_level_amount), then remove this note.
+
+!!! warning "studi-professionali-confprofessioni/studi_unmodelled_elements · base_salary · impact yes · open"
+    NOT MODELLED AMOUNTS (CCNL 16/02/2024): the elemento retributivo of EUR 43 x 14 owed when the employer does not pay the bilateral contribution, in every institute including TFR (Art. 13); the lavoro supplementare of part-time at 40% of the quota oraria of the retribuzione di fatto, outside the deferred institutes and the TFR (Art. 42: no request kind carries it); the comporto counted over the episodes of the 365 days before the last one, and the +90 days for serious illnesses paid 100% in months 7-8 and 70% in month 9 (Artt. 120-121); the 100% of festività during sickness (Art. 124); the infortunio integration (100% on the day of the event, 60% days 1-3, 75% after, Art. 123); the employer top-up to 100% of the holidays during compulsory maternity or paternity leave (Art. 110 c. 8); the ROL (40 or 66 hours) and the 32 hours of ex festività paid when not taken, the festività falling on Sunday and the flexibility hours not recovered (Artt. 91, 92, 97 C, 98); the salario d'ingresso of the reimpiego, up to two levels below for 9 months and one for 6 (Art. 56); the indennità di disponibilità of the lavoro intermittente, 30% (Art. 58); the diaria of the trasferte, EUR 15 or 30 a day (Art. 115); the exclusion of the quattordicesima for workers already paid extra months (Art. 143). The una tantum of EUR 400 (EUR 200 in May 2024 and May 2025, p. 73) is historic and outside the TFR base.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the bilateral omission element, the part-time supplementare, the rolling comporto and the allowances of Artt. 56, 58 and 115.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -168,21 +189,25 @@ Each simplification below is a model limitation of the registry. An open limitat
 | — | — | 2024-02-16 | [↗](https://www.confprofessioni.eu/wp-content/uploads/2026/07/00274046_CCNL_Studi_Professionali_2026.04.10_completo.pdf) |
 
 ??? note "Coverage notes"
-    CONGLOBATED MINIMUMS: the minimum tabellare includes contingenza (up to 01/05/1992) and EDR (Interconfederal Agreement 31/07/1992), merged under CCNL 10/12/1992 and reaffirmed by Art. 138 CCNL 2024. fixed_allowances is empty for all levels.
+    CONGLOBATED MINIMUMS: the minimo tabellare includes the contingenza (up to 01/05/1992) and the EDR (Interconfederal Agreement 31/07/1992), merged under CCNL 10/12/1992 and reaffirmed by Art. 138 CCNL 2024. The only fixed allowance is the ENAC of levels 1, 2 and 3S (Art. 141), gated by a role.
     
-    HOURLY DIVISOR: 170. Primary source: Art. 45 and Art. 137 CCNL 2024 ('divisore convenzionale orario fissato in 170').
+    HOURLY DIVISOR: 170, daily divisor 26 (Art. 137 CCNL 2024: 'dividendo l'importo mensile per il divisore convenzionale 170'; Art. 45 for part-time).
     
-    TRANCHES: four tranches — 01/03/2024, 01/10/2024, 01/10/2025, 01/12/2026. Source: Art. 139-140 and salary tables CCNL 2024 (confprofessioni.eu, complete version April 2026).
+    TRANCHES: four tranches, 01/03/2024, 01/10/2024, 01/10/2025, 01/12/2026 (Art. 140 CCNL 16/02/2024, tables pp. 71-73 of the integrale; the April 2026 testo ufficiale reproduces them). The CCNL runs to 15/02/2027.
     
     ADDITIONAL MONTHS: 14 (tredicesima Art. 142 + quattordicesima Art. 143 CCNL 2024).
     
     SENIORITY INCREMENTS: triennial (36-month cadence), max 8 increments. Fixed amounts per Art. 134 CCNL 2024 in force from 01/10/2011: Q=30, 1=26, 2=23, 3S=22, 3=22, 4S=20, 4=20, 5=20.
     
-    ENAC (Art. 141 CCNL 2024): EUR 42.35 (level 1), EUR 102.53 (level 2), EUR 110.40 (level 3S) per month, payable only to workers already classified under the Confedertecnica CCNL as of 01/07/2004; modelled as an allowance with role 'confedertecnica_pre_2004' (compute(..., roles={'confedertecnica_pre_2004'})).
+    ENAC (Art. 141 CCNL 2024): EUR 42.35 (level 1), EUR 102.53 (level 2), EUR 110.40 (level 3S) a month, only for the workers formerly under the Confedertecnica CCNL; the hires from 01/07/2004 get the minimi alone (p. 73). Modelled as an allowance with role 'confedertecnica_pre_2004' (compute(..., roles={'confedertecnica_pre_2004'})).
     
-    INPS: uses 2026-terziario.json (TaxSector.TERZIARIO). File already present — no changes to the tax file.
+    APPRENTICESHIP (Artt. 28-31 and Allegato B CCNL 2024, read in the April 2026 testo ufficiale, PDF pp. 143-144): professionalizzante 70% months 1-12, 85% months 13-24, 93% after, of the minimo of the destination level, one table for every profile; 30 months for Q, 1, 2 (track professionalizzante_30) and 36 months for 3S, 3, 4S, 4 (professionalizzante_36); level 5 excluded (Art. 30 B). Primo livello (qualifica_diploma, every level): 45%, 55%, 65%. Alta formazione e ricerca (alta_formazione_ricerca, Q, 1, 2, 3S): 40%, 50%, 60%. The last band of each track is open-ended: the apprenticeship is prolonged by absences over 30 days (Art. 28 I). A level covered by several tracks needs Apprentice.track.
     
     CNEL code H442: confirmed from the CNEL archive 'Studi Professionali — Confprofessioni'. Workers covered: 317,554 (UNIEMENS 2022).
+    
+    LEAVE: 22 working days for the settimana corta (Monday to Friday), 26 for a six-day week (Art. 99 CCNL 2024, p. 51). The file carries the 22 days; the engine cannot switch on the weekly schedule.
+    
+    BILATERAL CONTRIBUTION: EBIPRO and CADIPROF are paid with a unified contribution of EUR 29 a month for 12 months, EUR 2 of it by the worker (Art. 13), plus a CADIPROF enrolment of EUR 24 (Art. 16); the engine takes them as a caller BilateralFundEvent.
     
 
 ## Raw data
