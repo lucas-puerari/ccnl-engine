@@ -8,9 +8,9 @@ the year (L. 207/2024 art. 1 c. 7).
 
 Commercio level 4 hired on 1 July 2026 by an employer of 50: 1783.75 a
 month, contributed on 1784 (whole euro, INPS circ. 208/2001), employee IVS
-9.19% = 163.95 plus FIS and CIGS 0.57% = 10.17, taxable 1609.63.  The
+9.19% = 163.95 plus FIS and CIGS 0.56667% = 10.11, taxable 1609.69.  The
 income of the year, annualised, is above 15,000 EUR: 4.8% (c. 4 lett. c).
-July pays 4.8% x 1609.63 = 77.2622 -> 77.26, not the annual amount divided
+July pays 4.8% x 1609.69 = 77.2651 -> 77.27, not the annual amount divided
 by the seven payments left.
 """
 
@@ -45,7 +45,7 @@ _HIRED = date(2026, 7, 1)
 
 
 def test_july_pays_the_percentage_of_its_income() -> None:
-    """77.26 on the 1609.63 of July."""
+    """77.27 on the 1609.69 of July."""
     result = ENGINE.calculate_period(
         PeriodInput(
             run=PayrollRun.regular(2026, 7),
@@ -71,5 +71,5 @@ def test_july_pays_the_percentage_of_its_income() -> None:
             current_year=CurrentYearTaxFacts.employment_only(2026, _HIRED),
         )
     )
-    assert result.contribution_breakdown.employee == Decimal("174.12")
-    assert result.closing_state.cash.somma_esente.recognized == Decimal("77.26")
+    assert result.contribution_breakdown.employee == Decimal("174.06")
+    assert result.closing_state.cash.somma_esente.recognized == Decimal("77.27")

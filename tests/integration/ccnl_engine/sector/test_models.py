@@ -163,21 +163,21 @@ class TestYearRules2026Json:
         assert yr.irpef_brackets[1].rate == Decimal("0.33")
         assert yr.irpef_brackets[2].rate == Decimal("0.43")
         assert yr.inps is not None
-        assert yr.inps.employee_rate == Decimal("0.0976")
-        assert yr.inps.employer_rate == Decimal("0.3011")
+        assert yr.inps.employee_rate == Decimal("0.0975667")
+        assert yr.inps.employer_rate == Decimal("0.3011333")
         assert yr.inps.ceiling == Decimal("122295.00")
         assert yr.fixed_term_additional_rate == Decimal("0.014")
         assert yr.tfr.accrual_divisor == Decimal("13.5")
         assert yr.apprentice is not None
-        assert yr.apprentice.employer_rate_after == Decimal("0.1274")
-        assert yr.apprentice.employer_rate_months_0_11 == Decimal("0.1274")
+        assert yr.apprentice.employer_rate_after == Decimal("0.1274333")
+        assert yr.apprentice.employer_rate_months_0_11 == Decimal("0.1274333")
 
     @pytest.mark.parametrize(
         ("headcount", "employee", "employer"),
         [
-            (5, "0.0936", "0.2931"),
-            (15, "0.0946", "0.2951"),
-            (16, "0.0976", "0.3011"),
+            (5, "0.0935667", "0.2931333"),
+            (15, "0.0945667", "0.2951333"),
+            (16, "0.0975667", "0.3011333"),
         ],
     )
     def test_terziario_tiers_add_fis_and_cigs(
@@ -185,9 +185,11 @@ class TestYearRules2026Json:
     ) -> None:
         """Terziario: FIS at every size, CIGS above 15 (INPS circ. 117/2022 all. 1).
 
-        Employee 9.19 IVS + FIS 0.17 up to 5, 0.27 above, + CIGS 0.30 above
-        15; employer 28.98 + FIS 0.33 up to 5, 0.53 above, + CIGS 0.60 above
-        15 (D.Lgs. 148/2015 artt. 23 c. 1-bis, 29 c. 8, 33 c. 1).
+        Employee 9.19 IVS + FIS 0.16667 up to 5, 0.26667 above, + CIGS 0.30
+        above 15; employer 28.98 + FIS 0.33333 up to 5, 0.53333 above, + CIGS
+        0.60 above 15: one third of the FIS to the worker, kept to five
+        decimals of a point as payrolls print it (D.Lgs. 148/2015 artt. 23
+        c. 1-bis, 29 c. 8, 33 c. 1).
         """
         yr = load_year_rules(2026, TaxSector.TERZIARIO, headcount)
         assert yr.inps is not None
@@ -198,14 +200,14 @@ class TestYearRules2026Json:
         """Firms with at most 9 employees get the reduced apprentice rates.
 
         10% less 8.5 and 7 points (L. 296/2006 art. 1 c. 773) + NASpI 1.61%
-        + the FIS employer share of an employer above five, 0.53% (INPS
+        + the FIS employer share of an employer above five, 0.53333% (INPS
         circ. 117/2022 all. 1).
         """
         yr = load_year_rules(2026, TaxSector.TERZIARIO, 9)
         assert yr.apprentice is not None
-        assert yr.apprentice.employer_rate_months_0_11 == Decimal("0.0364")
-        assert yr.apprentice.employer_rate_months_12_23 == Decimal("0.0514")
-        assert yr.apprentice.employer_rate_after == Decimal("0.1214")
+        assert yr.apprentice.employer_rate_months_0_11 == Decimal("0.0364333")
+        assert yr.apprentice.employer_rate_months_12_23 == Decimal("0.0514333")
+        assert yr.apprentice.employer_rate_after == Decimal("0.1214333")
 
     def test_artigianato_category_rates(self) -> None:
         """Artigianato: lower employer rate for impiegati/quadri (kitech.it source)."""
@@ -429,10 +431,31 @@ class TestYearRules2026SectorRates:
             (TaxSector.INDUSTRIA, 15, "0.1331", "0.1331", "0.1331", "0.0584"),
             (TaxSector.INDUSTRIA, 50, "0.1391", "0.1391", "0.1391", "0.0614"),
             (TaxSector.INDUSTRIA, 51, "0.1421", "0.1421", "0.1421", "0.0614"),
-            # FIS 0.33% / 0.17% up to 5, 0.53% / 0.27% above (circ. 117/2022).
-            (TaxSector.TERZIARIO, 5, "0.0344", "0.0494", "0.1194", "0.0601"),
-            (TaxSector.TERZIARIO, 15, "0.1214", "0.1214", "0.1214", "0.0611"),
-            (TaxSector.TERZIARIO, 16, "0.1274", "0.1274", "0.1274", "0.0641"),
+            # FIS 0.33333% / 0.16667% up to 5, 0.53333% / 0.26667% above.
+            (
+                TaxSector.TERZIARIO,
+                5,
+                "0.0344333",
+                "0.0494333",
+                "0.1194333",
+                "0.0600667",
+            ),
+            (
+                TaxSector.TERZIARIO,
+                15,
+                "0.1214333",
+                "0.1214333",
+                "0.1214333",
+                "0.0610667",
+            ),
+            (
+                TaxSector.TERZIARIO,
+                16,
+                "0.1274333",
+                "0.1274333",
+                "0.1274333",
+                "0.0640667",
+            ),
             # Assimpredil ANCE tables 1/2026 and 2/2026: CIGO edile 4.70%.
             (TaxSector.EDILIZIA, 9, "0.0781", "0.0931", "0.1631", "0.0584"),
             (TaxSector.EDILIZIA, 15, "0.1631", "0.1631", "0.1631", "0.0584"),

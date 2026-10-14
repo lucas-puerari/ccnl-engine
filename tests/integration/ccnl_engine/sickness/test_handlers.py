@@ -498,9 +498,9 @@ class TestCommercioNetBasis:
     Art. 187: carenza 2-4 March at 100%, then 75% of the net daily pay.
     The indemnified days are worth 548.21 (753.79 of sick pay less the
     205.58 of carenza); INPS pays 50%, 274.11, free of contributions.  At an
-    employer of 50 the worker pays 9.76% to INPS, so the INPS share is worth
-    274.11 / 0.9024 = 303.76 of gross pay, and the company tops it up to
-    75% of 548.21 = 411.16: 411.16 - 303.76 = 107.40.
+    employer of 50 the worker pays 9.75667% to INPS, so the INPS share is
+    worth 274.11 / 0.9024333 = 303.75 of gross pay, and the company tops it
+    up to 75% of 548.21 = 411.16: 411.16 - 303.75 = 107.41.
     """
 
     _EPISODE = sickness_episode("c", date(2026, 3, 2), date(2026, 3, 13))
@@ -516,12 +516,12 @@ class TestCommercioNetBasis:
         return calculate_period(replace(request, **kwargs))  # type: ignore[arg-type]
 
     def test_integration_tops_up_the_grossed_up_indemnity(self) -> None:
-        """Carenza 205.58, INPS 274.11, company integration 107.40."""
+        """Carenza 205.58, INPS 274.11, company integration 107.41."""
         assert _sick(self._run()) == {
             "abs": Decimal("753.79"),
             "crnz": Decimal("205.58"),
             "inps": Decimal("274.11"),
-            "intg": Decimal("107.40"),
+            "intg": Decimal("107.41"),
         }
 
     def test_apprentice_takes_the_inps_share_only(self) -> None:

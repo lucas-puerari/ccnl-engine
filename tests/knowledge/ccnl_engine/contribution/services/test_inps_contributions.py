@@ -368,10 +368,10 @@ def _terziario_of_five(reduced: bool | None) -> PeriodResult:
 @pytest.mark.parametrize(
     ("reduced", "employee"),
     [
-        # Base 1,660: x 9.19% = 152.55; x (9.29% - 9.19%) = 1.66.
+        # Base 1,660: x 9.19% = 152.55; x 0.10% = 1.66.
         (True, Decimal("154.21")),
-        # Base 1,660: x 9.19% = 152.55; x (9.36% - 9.19%) = 2.82.
-        (None, Decimal("155.37")),
+        # Base 1,660: x 9.19% = 152.55; x 0.16667% = 2.77.
+        (None, Decimal("155.32")),
     ],
     ids=["cut", "unknown"],
 )
@@ -381,14 +381,14 @@ def test_small_terziario_employer_pays_the_cut_fis(
     """An employer of five pays 0.10% of FIS by the worker when it is cut.
 
     D.Lgs. 148/2015 art. 29 c. 8: 0.50% up to five employees, one third by
-    the worker (art. 33 c. 1, 0.17% in INPS circ. 117/2022 all. 1); c.
+    the worker (art. 33 c. 1, 0.16667%, as payrolls print it); c.
     8-bis cuts it by 40% for an employer that has not applied for the
     assegno for 24 months: 0.30%, 0.10% by the worker.  The observed
     payslip p04 (Terziario level 5, February 2026, 2,005.67 of gross)
     charges 9.19% IVS and a separate 2.01 line, 0.10% of the base.  The
     gross of level 5 is 1,136.07 + 521.94 + 2.07 = 1,660.08, contributed on
     1,660 (whole euro, INPS circ. 208/2001).  Without the
-    fact the full 0.17% applies, with a ``missing_fact`` blocker.
+    fact the full 0.16667% applies, with a ``missing_fact`` blocker.
     """
     result = _terziario_of_five(reduced)
     blockers = {(b.code, b.detail) for b in result.blockers}
