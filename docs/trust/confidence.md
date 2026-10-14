@@ -81,7 +81,7 @@ one:
 
 A `derived` rule (taken from a cited document location, with no recorded
 human check) lowers the evidence axis but does not block on its own. Only
-<!-- trust:rules-verified -->1441<!-- /trust:rules-verified --> payable rules of
+<!-- trust:rules-verified -->1457<!-- /trust:rules-verified --> payable rules of
 the bundle are `verified`, so requiring `verified` would block almost every
 result; the evidence axis keeps the difference visible instead.
 
