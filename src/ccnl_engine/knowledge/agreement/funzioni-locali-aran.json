@@ -959,7 +959,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
     "verification_status": "unverified",
-    "source_hash": "e7802ebce26688c5518e0ab9014a4b3bf7a76a03460729850e1fe4a628fc2873",
+    "source_hash": "e3c0f5442762769f50ae700fce506c901a10bf302fcd21767f1296dffcd1d989",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -1270,6 +1270,7 @@
   "verification": {
     "confidence": "verified",
     "readiness": "reviewed",
+    "owner": "maintainer",
     "verified_cases": 0,
     "reviews": [
       {
@@ -1309,6 +1310,7 @@
           "The 2025-2027 renewal is an ipotesi of 21 July 2026, not in force."
         ]
       }
-    ]
+    ],
+    "review_due": "2026-12-31"
   }
 }

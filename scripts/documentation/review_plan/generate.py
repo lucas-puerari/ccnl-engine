@@ -76,6 +76,7 @@ class Agreement:
         workers: Estimated workers covered, 0 when not stated.
         readiness: Readiness tier, ``exploratory`` when not stated.
         review_due: Next review date, ``None`` when not set.
+        owner: Who monitors the CCNL, ``None`` when not set.
         aggregator: Whether the main source is an aggregator.
         weak: Payable rules ``assumed`` or ``missing``.
         derived: Payable rules ``derived``.
@@ -87,6 +88,7 @@ class Agreement:
     workers: int
     readiness: str
     review_due: str | None
+    owner: str | None
     aggregator: bool
     weak: int
     derived: int
@@ -137,6 +139,7 @@ def agreements() -> list[Agreement]:
                 workers=workers(data["meta"].get("workers_estimate")),
                 readiness=verification.get("readiness", "exploratory"),
                 review_due=verification.get("review_due"),
+                owner=verification.get("owner"),
                 aggregator=_host(data) in AGGREGATORS,
                 weak=tally["assumed"] + tally["missing"],
                 derived=tally["derived"],
@@ -151,7 +154,8 @@ _GROUP_HEADER = (
     "| Group | CCNLs | Workers | Weak | Derived | Verified | Aggregator | Anchor |"
 )
 _CCNL_HEADER = (
-    "| CCNL | Workers | Readiness | Weak | Derived | Verified | Source | Next review |"
+    "| CCNL | Workers | Readiness | Weak | Derived | Verified | Source | Owner "
+    "| Next review |"
 )
 
 
@@ -223,7 +227,7 @@ def build_page(items: list[Agreement]) -> str:
             f"## {sector}",
             "",
             _CCNL_HEADER,
-            "|---|---:|---|---:|---:|---:|---|---|",
+            "|---|---:|---|---:|---:|---:|---|---|---|",
         ]
         for item in sorted(members, key=_order):
             name = f"[`{item.slug}`](../contracts/{item.slug}.md)"
@@ -233,7 +237,7 @@ def build_page(items: list[Agreement]) -> str:
             lines.append(
                 f"| {name} | {_thousands(item.workers)} | {item.readiness} | "
                 f"{item.weak} | {item.derived} | {item.verified} | {source} | "
-                f"{item.review_due or 'none'} |"
+                f"{item.owner or 'none'} | {item.review_due or 'none'} |"
             )
     return "\n".join(lines) + "\n"
 

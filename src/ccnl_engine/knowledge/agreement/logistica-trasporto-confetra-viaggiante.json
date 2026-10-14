@@ -3344,7 +3344,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "dd0f4c142b6127caaf633a7159cc2027794878efb17152adfdae372ff1ac6b8c",
+    "source_hash": "1c5d81a8078e5c131b073d829165cc687953c3ece6f5e749a6096131b97e6acf",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3788,6 +3788,7 @@
   "verification": {
     "confidence": "verified",
     "readiness": "reviewed",
+    "owner": "maintainer",
     "verified_cases": 0,
     "reviews": [
       {
@@ -3911,6 +3912,7 @@
           "The allowance amounts of art. 62 c. 3 from 1.1.2025 and the TFR rule of c. 7 are now CCNL data: a TravelAllowanceEvent without daily_amount takes the amount of its hours away."
         ]
       }
-    ]
+    ],
+    "review_due": "2027-06-01"
   }
 }

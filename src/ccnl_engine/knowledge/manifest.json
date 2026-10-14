@@ -574,9 +574,9 @@
       "valid_to": null,
       "ruleset_id": "ccnl/cooperative-sociali",
       "ruleset_version": "2026.2",
-      "source_hash": "a07454efa623bc9681ca5cc14f6140344b6133fa27cfe8a74a9a0e861b92c95b",
+      "source_hash": "2f28adcd5e344c58971416401d0a735150edc4729d543b0921297b8dba29776c",
       "source_type": "contracting_party",
-      "owner": "ccnl-engine maintainers",
+      "owner": "maintainer",
       "wheel_resource": "agreement/cooperative-sociali.json.gz"
     },
     {
@@ -982,9 +982,9 @@
       "valid_to": null,
       "ruleset_id": "ccnl/funzioni-centrali-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "68e5cf719175b1491449646c2a06d179f0f12a83e285f1a03fb2e20ec04106b8",
+      "source_hash": "ea23c3812cf4cce6d175207c2f9c35b7fee5eb07a1e1a236deb0f40629ff006f",
       "source_type": "institutional_secondary",
-      "owner": "ccnl-engine maintainers",
+      "owner": "maintainer",
       "wheel_resource": "agreement/funzioni-centrali-aran.json.gz"
     },
     {
@@ -999,9 +999,9 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/funzioni-locali-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "e7802ebce26688c5518e0ab9014a4b3bf7a76a03460729850e1fe4a628fc2873",
+      "source_hash": "e3c0f5442762769f50ae700fce506c901a10bf302fcd21767f1296dffcd1d989",
       "source_type": "institutional_secondary",
-      "owner": "ccnl-engine maintainers",
+      "owner": "maintainer",
       "wheel_resource": "agreement/funzioni-locali-aran.json.gz"
     },
     {
@@ -1237,9 +1237,9 @@
       "valid_to": null,
       "ruleset_id": "ccnl/lavoro-domestico-convivente-orario-ridotto",
       "ruleset_version": "2026.3",
-      "source_hash": "66c14dee7e9e738a82aea9e33dbde6f29aa4313087ed7825206491c72b354d7e",
+      "source_hash": "c60d008f7e28b5da0e0e65754f255e2870b83e222f084d6dcf27f13a4adeb9bd",
       "source_type": "commercial_secondary",
-      "owner": "ccnl-engine maintainers",
+      "owner": "maintainer",
       "wheel_resource": "agreement/lavoro-domestico-convivente-orario-ridotto.json.gz"
     },
     {
@@ -1254,9 +1254,9 @@
       "valid_to": null,
       "ruleset_id": "ccnl/lavoro-domestico-convivente",
       "ruleset_version": "2026.3",
-      "source_hash": "cbc1559566249ced487ea893c0e5c53272f499198808e2ef64bc2c657b6230b7",
+      "source_hash": "3aea45df24241c3e3b36a9ce3a049df091c7f68892f663dd2a519a95696a0e92",
       "source_type": "commercial_secondary",
-      "owner": "ccnl-engine maintainers",
+      "owner": "maintainer",
       "wheel_resource": "agreement/lavoro-domestico-convivente.json.gz"
     },
     {
@@ -1271,9 +1271,9 @@
       "valid_to": null,
       "ruleset_id": "ccnl/lavoro-domestico-non-convivente",
       "ruleset_version": "2026.3",
-      "source_hash": "7828dc9c74446b6edf53d414f07e2b36f5392feefd2f19c88e5621bf3317dd86",
+      "source_hash": "8be192f99fb8298b924d55e7648c94ef144a7ee5a3e32ff524cc6ab113d7e026",
       "source_type": "commercial_secondary",
-      "owner": "ccnl-engine maintainers",
+      "owner": "maintainer",
       "wheel_resource": "agreement/lavoro-domestico-non-convivente.json.gz"
     },
     {
@@ -1322,9 +1322,9 @@
       "valid_to": null,
       "ruleset_id": "ccnl/logistica-trasporto-confetra-viaggiante",
       "ruleset_version": "2026.2",
-      "source_hash": "dd0f4c142b6127caaf633a7159cc2027794878efb17152adfdae372ff1ac6b8c",
+      "source_hash": "1c5d81a8078e5c131b073d829165cc687953c3ece6f5e749a6096131b97e6acf",
       "source_type": "contracting_party",
-      "owner": "ccnl-engine maintainers",
+      "owner": "maintainer",
       "wheel_resource": "agreement/logistica-trasporto-confetra-viaggiante.json.gz"
     },
     {
@@ -1339,9 +1339,9 @@
       "valid_to": null,
       "ruleset_id": "ccnl/logistica-trasporto-confetra",
       "ruleset_version": "2026.2",
-      "source_hash": "e91043789393e8e3ea8c68e58e3957849ca4a109cc6fb20921827aede8b678fe",
+      "source_hash": "98456798072c5c79f6955f0ae293782f3c7ffa9f6a30374c203f8ad99eb2e714",
       "source_type": "contracting_party",
-      "owner": "ccnl-engine maintainers",
+      "owner": "maintainer",
       "wheel_resource": "agreement/logistica-trasporto-confetra.json.gz"
     },
     {
@@ -1815,9 +1815,9 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/sanita-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "da543ab4d78b73f123785a3cd2583dd95200cf4a900ee4e487430c7369662a9f",
+      "source_hash": "88b082bcc00183937088167a37e48e6080a4a48ef7b52904f7b6c6f9ddf16f8d",
       "source_type": "commercial_secondary",
-      "owner": "ccnl-engine maintainers",
+      "owner": "maintainer",
       "wheel_resource": "agreement/sanita-aran.json.gz"
     },
     {

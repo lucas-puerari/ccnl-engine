@@ -297,10 +297,25 @@ def test_production_ccnl_with_full_evidence_passes(tmp_path: Path) -> None:
             {"readiness": "production"},
             [
                 "production without verification.owner",
+                "production without a valid verification.review_due",
                 "production without verification.reviews",
                 "production without confidence 'verified'",
-                "production without a valid verification.review_due",
             ],
+        ),
+        (
+            {"readiness": "reviewed"},
+            [
+                "reviewed without verification.owner",
+                "reviewed without a valid verification.review_due",
+            ],
+        ),
+        (
+            {**_PRODUCTION, "readiness": "reviewed", "confidence": "unverified"},
+            [],
+        ),
+        (
+            {"readiness": "exploratory"},
+            [],
         ),
         (
             {**_PRODUCTION, "review_due": "2026-09-02"},
@@ -319,7 +334,7 @@ def test_production_ccnl_with_full_evidence_passes(tmp_path: Path) -> None:
 def test_production_ccnl_without_evidence_fails(
     tmp_path: Path, verification: dict[str, object], expected: list[str]
 ) -> None:
-    """Each missing or inconsistent field of a production CCNL is listed."""
+    """Each missing field of a reviewed or production CCNL is listed."""
     root = _knowledge(tmp_path, _ccnl(verification=verification))
     assert schema_errors((), root) == [f"agreement/x.json: {e}" for e in expected]
 
