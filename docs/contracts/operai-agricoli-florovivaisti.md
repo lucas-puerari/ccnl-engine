@@ -35,7 +35,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, bilateral_funds, inail, inps_employee, inps_employer, seniority, territorial_supplement |
 
-12 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 18 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 3 verified / 15 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | — |
-| **Last review** | 2026-09-18 |
+| **Last review** | 2026-10-14 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-09-18 | maintainer (human) | Whole file. The values checked were not recorded. | confirmed | The review recorded no list of the documents it read. |
+| 2026-10-14 | claude-opus-5-5 (ai) | P1 audit: the salary tranches of the renewal of 28 May 2026 against the signed verbale (Art. 50, Art. 54-bis, Allegato n. 1). | corrected | Allegato n. 1 prints the minimi of area 1532,999 / 1398,093 / 1042,434: the January 2027 salaries, compounded in the bundle (1533.84 / 1398.86 / 1043.00), are corrected to the printed minimi taken to the cent (1533.00 / 1398.09 / 1042.43) and verified.<br>June 2026: +3.4% of the 28 May 2026 salary (Art. 50): derived, the verbale prints no amount.<br>Art. 54-bis (0.4% for fixed-term workers with three years of 150 days) is new and not modelled: declared.<br>Art. 54 (seniority) is not amended by the verbale; the amounts stay aggregator-sourced (seniority_amounts_unconfirmed). |
 
 ## Salary table
 
@@ -67,9 +68,9 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Area1` | Area 1 — Operai Specializzati (specialised agricultural workers) | € 1,533.84 | 2027-01-01 |
-| `Area2` | Area 2 — Operai Qualificati (qualified agricultural workers) | € 1,398.86 | 2027-01-01 |
-| `Area3` | Area 3 — Operai Comuni (unskilled general agricultural workers) | € 1,043.00 | 2027-01-01 |
+| `Area1` | Area 1 — Operai Specializzati (specialised agricultural workers) | € 1,533.00 | 2027-01-01 |
+| `Area2` | Area 2 — Operai Qualificati (qualified agricultural workers) | € 1,398.09 | 2027-01-01 |
+| `Area3` | Area 3 — Operai Comuni (unskilled general agricultural workers) | € 1,042.43 | 2027-01-01 |
 
 ## Seniority increments
 
@@ -161,6 +162,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the apprentice rates of agricoltura (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/agricoltura.json derived, then remove this note.
 
+!!! warning "operai-agricoli-florovivaisti/fixed_term_seniority_element · base_salary · impact yes · open"
+    ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (Art. 54-bis, new, verbale of 28 May 2026): from 1 January 2027 a fixed-term operaio who worked at least 150 days a year for the same employer for three consecutive years receives, from the fourth year, 0.4% of the salario contrattuale. The request carries no history of days per employer, so it is not paid.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add the consecutive years of at least 150 days with the employer to the request and pay 0.4% of the salary, then remove this note.
+
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
 
@@ -223,7 +231,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 ??? note "Coverage notes"
     SALARY MODEL: conglobated retribuzione tabellare minima (paga base + contingenza + EDR merged since 01/01/2009). Contingenza = 0.00 and EDR = 0.00 per ilccnl.it table. Single base_salary per area per period. Source: contratticcnl.it tabelle retributive, confirmed by research from ilccnl.it showing zero contingenza columns.
     
-    RENEWAL: CCNL signed 23/05/2022 (valid 2022-2025), renewed 28/05/2026 (quadriennio 2026-2029). Two salary tranches: +3.4% from 2026-06-01, +1.7% from 2027-01-01 on June 2026 amounts. No una tantum.
+    RENEWAL: CCNL signed 23/05/2022 (valid 2022-2025), renewed 28/05/2026 (quadriennio 2026-2029, signed verbale). Two salary tranches on the salary in force on 28 May 2026: +3.4% from 2026-06-01 and +1.7% from 2027-01-01, not compounded (Art. 50 and Allegato n. 1). No una tantum.
     
     LEVELS: Three national professional areas (OTI, Operai a Tempo Indeterminato, national minimums). Area1=Specializzati, Area2=Qualificati, Area3=Comuni. National table sets floor only; provincial contracts (contratti provinciali di lavoro) always exceed these minimums.
     
@@ -241,7 +249,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     HISTORICAL PERIODS ADDED (2026-09-09). Three salary periods now modelled per area: (1) 2023-01-01: INPS Circ. n.94/2024 Allegato 1 (primary source, Area1=1389.15, Area2=1266.90, Area3=944.62). (2) 2025-01-01: Dottrinalavoro Jan 2025 PDF (Area1=1458.61, Area2=1330.25, Area3=991.85). Cross-check: 2025 values / 2023 values = 1.050 (approx. +5% tranche per 2022-2025 CCNL). (3) 2026-06-01: first tranche of 2026-2029 renewal (+3.4%). 2023-01-01 is the earliest verified period; pre-2023 values not modelled.
     
-    JANUARY 2027 TRANCHE. Amounts 1,533.84 / 1,398.86 / 1,043.00 computed as June 2026 values × 1.017 (second tranche +1.7% per CCNL renewal) rounded to 2 decimal places. Math verified: 1508.20×1.017=1533.84, 1375.48×1.017=1398.86, 1025.57×1.017=1043.00 (all exact). Update if official post-renewal tables show different rounding.
+    JANUARY 2027 TRANCHE: the minimi of area of Allegato n. 1 of the verbale of 28 May 2026, printed Area 1 1532,999, Area 2 1398,093, Area 3 1042,434 (the 28 May 2026 salary x 1.051) and paid to the cent: 1533.00 / 1398.09 / 1042.43. Until 14 October 2026 the bundle compounded the tranches (June 2026 x 1.017: 1533.84 / 1398.86 / 1043.00), 0.57 to 0.84 a month too much.
     
 
 ## Raw data
