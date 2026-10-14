@@ -62,9 +62,30 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-sanita-privata-2020",
+                "title": "CCNL Sanità privata AIOP-ARIS, personale non medico, 8 ottobre 2020 (testo)",
+                "kind": "associazione",
+                "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                "published_on": "2020-10-08",
+                "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
+              },
+              "page": "104",
+              "section": "Tabella 1, colonna C",
+              "quote": "Nuovi tabellari annui (x 13 mensilità)"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-14T14:18:25Z",
+              "verification_status": "verified",
+              "effective_from": "2020-07-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-14T14:18:25Z",
+              "review_id": "2026-10-14-ai-p1"
+            }
           }
         }
       ]
@@ -132,21 +153,29 @@
             "valid_until": null,
             "value": "1467.45",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "document_id": "ccnl-sanita-privata-2020",
+                  "title": "CCNL Sanità privata AIOP-ARIS, personale non medico, 8 ottobre 2020 (testo)",
                   "kind": "associazione",
-                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                  "published_on": "2020-10-08",
+                  "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella 1, prospetto valori tabellari, decorrenza 1° luglio 2020, colonna D 'Nuovi tabellari mensili'",
+                "quote": "A 1.467,45"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:18:25Z",
+                "verification_status": "verified",
+                "effective_from": "2020-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:18:25Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -183,21 +212,29 @@
             "valid_until": null,
             "value": "1506.44",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "document_id": "ccnl-sanita-privata-2020",
+                  "title": "CCNL Sanità privata AIOP-ARIS, personale non medico, 8 ottobre 2020 (testo)",
                   "kind": "associazione",
-                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                  "published_on": "2020-10-08",
+                  "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella 1, prospetto valori tabellari, decorrenza 1° luglio 2020, colonna D 'Nuovi tabellari mensili'",
+                "quote": "A1 1.506,44"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:18:25Z",
+                "verification_status": "verified",
+                "effective_from": "2020-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:18:25Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -234,21 +271,29 @@
             "valid_until": null,
             "value": "1544.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "document_id": "ccnl-sanita-privata-2020",
+                  "title": "CCNL Sanità privata AIOP-ARIS, personale non medico, 8 ottobre 2020 (testo)",
                   "kind": "associazione",
-                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                  "published_on": "2020-10-08",
+                  "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella 1, prospetto valori tabellari, decorrenza 1° luglio 2020, colonna D 'Nuovi tabellari mensili'",
+                "quote": "A2 1.544,35"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:18:25Z",
+                "verification_status": "verified",
+                "effective_from": "2020-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:18:25Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -285,21 +330,29 @@
             "valid_until": null,
             "value": "1566.67",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "document_id": "ccnl-sanita-privata-2020",
+                  "title": "CCNL Sanità privata AIOP-ARIS, personale non medico, 8 ottobre 2020 (testo)",
                   "kind": "associazione",
-                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                  "published_on": "2020-10-08",
+                  "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella 1, prospetto valori tabellari, decorrenza 1° luglio 2020, colonna D 'Nuovi tabellari mensili'",
+                "quote": "A3 1.566,67"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:18:25Z",
+                "verification_status": "verified",
+                "effective_from": "2020-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:18:25Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -336,21 +389,29 @@
             "valid_until": null,
             "value": "1579.86",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "document_id": "ccnl-sanita-privata-2020",
+                  "title": "CCNL Sanità privata AIOP-ARIS, personale non medico, 8 ottobre 2020 (testo)",
                   "kind": "associazione",
-                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                  "published_on": "2020-10-08",
+                  "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella 1, prospetto valori tabellari, decorrenza 1° luglio 2020, colonna D 'Nuovi tabellari mensili'",
+                "quote": "B 1.579,86"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:18:25Z",
+                "verification_status": "verified",
+                "effective_from": "2020-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:18:25Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -387,21 +448,29 @@
             "valid_until": null,
             "value": "1592.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "document_id": "ccnl-sanita-privata-2020",
+                  "title": "CCNL Sanità privata AIOP-ARIS, personale non medico, 8 ottobre 2020 (testo)",
                   "kind": "associazione",
-                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                  "published_on": "2020-10-08",
+                  "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella 1, prospetto valori tabellari, decorrenza 1° luglio 2020, colonna D 'Nuovi tabellari mensili'",
+                "quote": "A4 1.592,19"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:18:25Z",
+                "verification_status": "verified",
+                "effective_from": "2020-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:18:25Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -438,21 +507,29 @@
             "valid_until": null,
             "value": "1624.54",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "document_id": "ccnl-sanita-privata-2020",
+                  "title": "CCNL Sanità privata AIOP-ARIS, personale non medico, 8 ottobre 2020 (testo)",
                   "kind": "associazione",
-                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                  "published_on": "2020-10-08",
+                  "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella 1, prospetto valori tabellari, decorrenza 1° luglio 2020, colonna D 'Nuovi tabellari mensili'",
+                "quote": "B1 1.624,54"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:18:25Z",
+                "verification_status": "verified",
+                "effective_from": "2020-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:18:25Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -489,21 +566,29 @@
             "valid_until": null,
             "value": "1669.36",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "document_id": "ccnl-sanita-privata-2020",
+                  "title": "CCNL Sanità privata AIOP-ARIS, personale non medico, 8 ottobre 2020 (testo)",
                   "kind": "associazione",
-                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                  "published_on": "2020-10-08",
+                  "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella 1, prospetto valori tabellari, decorrenza 1° luglio 2020, colonna D 'Nuovi tabellari mensili'",
+                "quote": "B2 1.669,36"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:18:25Z",
+                "verification_status": "verified",
+                "effective_from": "2020-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:18:25Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -540,21 +625,29 @@
             "valid_until": null,
             "value": "1697.76",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "document_id": "ccnl-sanita-privata-2020",
+                  "title": "CCNL Sanità privata AIOP-ARIS, personale non medico, 8 ottobre 2020 (testo)",
                   "kind": "associazione",
-                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                  "published_on": "2020-10-08",
+                  "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella 1, prospetto valori tabellari, decorrenza 1° luglio 2020, colonna D 'Nuovi tabellari mensili'",
+                "quote": "B3 1.697,76"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:18:25Z",
+                "verification_status": "verified",
+                "effective_from": "2020-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:18:25Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -591,21 +684,29 @@
             "valid_until": null,
             "value": "1733.54",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "document_id": "ccnl-sanita-privata-2020",
+                  "title": "CCNL Sanità privata AIOP-ARIS, personale non medico, 8 ottobre 2020 (testo)",
                   "kind": "associazione",
-                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                  "published_on": "2020-10-08",
+                  "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella 1, prospetto valori tabellari, decorrenza 1° luglio 2020, colonna D 'Nuovi tabellari mensili'",
+                "quote": "B4 1.733,54"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:18:25Z",
+                "verification_status": "verified",
+                "effective_from": "2020-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:18:25Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -642,21 +743,29 @@
             "valid_until": null,
             "value": "1803.61",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "document_id": "ccnl-sanita-privata-2020",
+                  "title": "CCNL Sanità privata AIOP-ARIS, personale non medico, 8 ottobre 2020 (testo)",
                   "kind": "associazione",
-                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                  "published_on": "2020-10-08",
+                  "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella 1, prospetto valori tabellari, decorrenza 1° luglio 2020, colonna D 'Nuovi tabellari mensili'",
+                "quote": "C 1.803,61"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:18:25Z",
+                "verification_status": "verified",
+                "effective_from": "2020-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:18:25Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -693,21 +802,29 @@
             "valid_until": null,
             "value": "1857.14",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "document_id": "ccnl-sanita-privata-2020",
+                  "title": "CCNL Sanità privata AIOP-ARIS, personale non medico, 8 ottobre 2020 (testo)",
                   "kind": "associazione",
-                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                  "published_on": "2020-10-08",
+                  "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella 1, prospetto valori tabellari, decorrenza 1° luglio 2020, colonna D 'Nuovi tabellari mensili'",
+                "quote": "C1 1.857,14"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:18:25Z",
+                "verification_status": "verified",
+                "effective_from": "2020-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:18:25Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -744,21 +861,29 @@
             "valid_until": null,
             "value": "1921.25",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "document_id": "ccnl-sanita-privata-2020",
+                  "title": "CCNL Sanità privata AIOP-ARIS, personale non medico, 8 ottobre 2020 (testo)",
                   "kind": "associazione",
-                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                  "published_on": "2020-10-08",
+                  "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella 1, prospetto valori tabellari, decorrenza 1° luglio 2020, colonna D 'Nuovi tabellari mensili'",
+                "quote": "C2 1.921,25"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:18:25Z",
+                "verification_status": "verified",
+                "effective_from": "2020-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:18:25Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -795,21 +920,29 @@
             "valid_until": null,
             "value": "1953.87",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "document_id": "ccnl-sanita-privata-2020",
+                  "title": "CCNL Sanità privata AIOP-ARIS, personale non medico, 8 ottobre 2020 (testo)",
                   "kind": "associazione",
-                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                  "published_on": "2020-10-08",
+                  "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella 1, prospetto valori tabellari, decorrenza 1° luglio 2020, colonna D 'Nuovi tabellari mensili'",
+                "quote": "D 1.953,87"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:18:25Z",
+                "verification_status": "verified",
+                "effective_from": "2020-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:18:25Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -846,21 +979,29 @@
             "valid_until": null,
             "value": "1984.10",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "document_id": "ccnl-sanita-privata-2020",
+                  "title": "CCNL Sanità privata AIOP-ARIS, personale non medico, 8 ottobre 2020 (testo)",
                   "kind": "associazione",
-                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                  "published_on": "2020-10-08",
+                  "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella 1, prospetto valori tabellari, decorrenza 1° luglio 2020, colonna D 'Nuovi tabellari mensili'",
+                "quote": "C3 1.984,10"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:18:25Z",
+                "verification_status": "verified",
+                "effective_from": "2020-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:18:25Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -897,21 +1038,29 @@
             "valid_until": null,
             "value": "2022.94",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "document_id": "ccnl-sanita-privata-2020",
+                  "title": "CCNL Sanità privata AIOP-ARIS, personale non medico, 8 ottobre 2020 (testo)",
                   "kind": "associazione",
-                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                  "published_on": "2020-10-08",
+                  "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella 1, prospetto valori tabellari, decorrenza 1° luglio 2020, colonna D 'Nuovi tabellari mensili'",
+                "quote": "D1 2.022,94"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:18:25Z",
+                "verification_status": "verified",
+                "effective_from": "2020-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:18:25Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -948,21 +1097,29 @@
             "valid_until": null,
             "value": "2076.38",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "document_id": "ccnl-sanita-privata-2020",
+                  "title": "CCNL Sanità privata AIOP-ARIS, personale non medico, 8 ottobre 2020 (testo)",
                   "kind": "associazione",
-                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                  "published_on": "2020-10-08",
+                  "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella 1, prospetto valori tabellari, decorrenza 1° luglio 2020, colonna D 'Nuovi tabellari mensili'",
+                "quote": "C4 2.076,38"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:18:25Z",
+                "verification_status": "verified",
+                "effective_from": "2020-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:18:25Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -999,21 +1156,29 @@
             "valid_until": null,
             "value": "2084.77",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "document_id": "ccnl-sanita-privata-2020",
+                  "title": "CCNL Sanità privata AIOP-ARIS, personale non medico, 8 ottobre 2020 (testo)",
                   "kind": "associazione",
-                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                  "published_on": "2020-10-08",
+                  "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella 1, prospetto valori tabellari, decorrenza 1° luglio 2020, colonna D 'Nuovi tabellari mensili'",
+                "quote": "D2 2.084,77"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:18:25Z",
+                "verification_status": "verified",
+                "effective_from": "2020-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:18:25Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -1050,21 +1215,29 @@
             "valid_until": null,
             "value": "2101.08",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "document_id": "ccnl-sanita-privata-2020",
+                  "title": "CCNL Sanità privata AIOP-ARIS, personale non medico, 8 ottobre 2020 (testo)",
                   "kind": "associazione",
-                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                  "published_on": "2020-10-08",
+                  "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella 1, prospetto valori tabellari, decorrenza 1° luglio 2020, colonna D 'Nuovi tabellari mensili'",
+                "quote": "DS 2.101,08"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:18:25Z",
+                "verification_status": "verified",
+                "effective_from": "2020-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:18:25Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -1101,21 +1274,29 @@
             "valid_until": null,
             "value": "2147.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "document_id": "ccnl-sanita-privata-2020",
+                  "title": "CCNL Sanità privata AIOP-ARIS, personale non medico, 8 ottobre 2020 (testo)",
                   "kind": "associazione",
-                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                  "published_on": "2020-10-08",
+                  "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella 1, prospetto valori tabellari, decorrenza 1° luglio 2020, colonna D 'Nuovi tabellari mensili'",
+                "quote": "D3 2.147,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:18:25Z",
+                "verification_status": "verified",
+                "effective_from": "2020-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:18:25Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -1152,21 +1333,29 @@
             "valid_until": null,
             "value": "2180.26",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "document_id": "ccnl-sanita-privata-2020",
+                  "title": "CCNL Sanità privata AIOP-ARIS, personale non medico, 8 ottobre 2020 (testo)",
                   "kind": "associazione",
-                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                  "published_on": "2020-10-08",
+                  "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella 1, prospetto valori tabellari, decorrenza 1° luglio 2020, colonna D 'Nuovi tabellari mensili'",
+                "quote": "DS1 2.180,26"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:18:25Z",
+                "verification_status": "verified",
+                "effective_from": "2020-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:18:25Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -1203,21 +1392,29 @@
             "valid_until": null,
             "value": "2209.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "document_id": "ccnl-sanita-privata-2020",
+                  "title": "CCNL Sanità privata AIOP-ARIS, personale non medico, 8 ottobre 2020 (testo)",
                   "kind": "associazione",
-                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                  "published_on": "2020-10-08",
+                  "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella 1, prospetto valori tabellari, decorrenza 1° luglio 2020, colonna D 'Nuovi tabellari mensili'",
+                "quote": "D4 2.209,98"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:18:25Z",
+                "verification_status": "verified",
+                "effective_from": "2020-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:18:25Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -1254,21 +1451,29 @@
             "valid_until": null,
             "value": "2261.56",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "document_id": "ccnl-sanita-privata-2020",
+                  "title": "CCNL Sanità privata AIOP-ARIS, personale non medico, 8 ottobre 2020 (testo)",
                   "kind": "associazione",
-                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                  "published_on": "2020-10-08",
+                  "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella 1, prospetto valori tabellari, decorrenza 1° luglio 2020, colonna D 'Nuovi tabellari mensili'",
+                "quote": "DS2 2.261,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:18:25Z",
+                "verification_status": "verified",
+                "effective_from": "2020-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:18:25Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -1305,21 +1510,29 @@
             "valid_until": null,
             "value": "2345.38",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "document_id": "ccnl-sanita-privata-2020",
+                  "title": "CCNL Sanità privata AIOP-ARIS, personale non medico, 8 ottobre 2020 (testo)",
                   "kind": "associazione",
-                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                  "published_on": "2020-10-08",
+                  "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella 1, prospetto valori tabellari, decorrenza 1° luglio 2020, colonna D 'Nuovi tabellari mensili'",
+                "quote": "DS3 2.345,38"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:18:25Z",
+                "verification_status": "verified",
+                "effective_from": "2020-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:18:25Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -1356,21 +1569,29 @@
             "valid_until": null,
             "value": "2410.22",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "document_id": "ccnl-sanita-privata-2020",
+                  "title": "CCNL Sanità privata AIOP-ARIS, personale non medico, 8 ottobre 2020 (testo)",
                   "kind": "associazione",
-                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                  "published_on": "2020-10-08",
+                  "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella 1, prospetto valori tabellari, decorrenza 1° luglio 2020, colonna D 'Nuovi tabellari mensili'",
+                "quote": "E 2.410,22"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:18:25Z",
+                "verification_status": "verified",
+                "effective_from": "2020-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:18:25Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -1407,21 +1628,29 @@
             "valid_until": null,
             "value": "2418.05",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "document_id": "ccnl-sanita-privata-2020",
+                  "title": "CCNL Sanità privata AIOP-ARIS, personale non medico, 8 ottobre 2020 (testo)",
                   "kind": "associazione",
-                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                  "published_on": "2020-10-08",
+                  "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella 1, prospetto valori tabellari, decorrenza 1° luglio 2020, colonna D 'Nuovi tabellari mensili'",
+                "quote": "DS4 2.418,05"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:18:25Z",
+                "verification_status": "verified",
+                "effective_from": "2020-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:18:25Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -1458,21 +1687,29 @@
             "valid_until": null,
             "value": "2936.33",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "document_id": "ccnl-sanita-privata-2020",
+                  "title": "CCNL Sanità privata AIOP-ARIS, personale non medico, 8 ottobre 2020 (testo)",
                   "kind": "associazione",
-                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                  "published_on": "2020-10-08",
+                  "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella 1, prospetto valori tabellari, decorrenza 1° luglio 2020, colonna D 'Nuovi tabellari mensili'",
+                "quote": "E1 2.936,33"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:18:25Z",
+                "verification_status": "verified",
+                "effective_from": "2020-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:18:25Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -1509,21 +1746,29 @@
             "valid_until": null,
             "value": "3554.39",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "document_id": "ccnl-sanita-privata-2020",
+                  "title": "CCNL Sanità privata AIOP-ARIS, personale non medico, 8 ottobre 2020 (testo)",
                   "kind": "associazione",
-                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                  "published_on": "2020-10-08",
+                  "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
                 },
-                "section": "Tabella retributiva"
+                "page": "104",
+                "section": "Tabella 1, prospetto valori tabellari, decorrenza 1° luglio 2020, colonna D 'Nuovi tabellari mensili'",
+                "quote": "E2 3.554,39"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-14T14:18:25Z",
+                "verification_status": "verified",
+                "effective_from": "2020-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-14T14:18:25Z",
+                "review_id": "2026-10-14-ai-p1"
               }
             }
           }
@@ -1615,6 +1860,10 @@
       {
         "kind": "source",
         "text": "CNEL code T011 verified at https://www.contratticcnl.it/ccnl/t011/ (146585 employees, ARIS/AIOP, ATECO 86)."
+      },
+      {
+        "kind": "info",
+        "text": "TERM: the CCNL of 8 October 2020 renews the economic part 2016-2018 and its table applies from 1 July 2020; no later renewal signed by AIOP and ARIS was found on 14 October 2026 (the unions were still asking to open the table), so the 2020 tabellari stay in force under ultrattività."
       }
     ]
   },
@@ -1625,7 +1874,7 @@
     "effective_until": null,
     "source": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
     "verification_status": "unverified",
-    "source_hash": "ada6cc53ba67e39b7917a4a8d9e9e8c795962c9c85fba246cda93b8d71f89000",
+    "source_hash": "c3a93a4e35de321730a34522ec440325bf67830cb09e10210a9031e5350a045a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1851,5 +2100,33 @@
         }
       }
     }
+  },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "owner": "maintainer",
+    "review_due": "2026-12-31",
+    "reviews": [
+      {
+        "id": "2026-10-14-ai-p1",
+        "date": "2026-10-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "P1 audit: Tabella 1 of the CCNL of 8 October 2020 for the 28 positions, the number of monthly payments and the term.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+            "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
+          }
+        ],
+        "findings": [
+          "The 28 monthly tabellari match column D of Tabella 1 (p. 104) to the cent: verified.",
+          "13 monthly payments: verified ('x 13 mensilità', column C).",
+          "No renewal after the CCNL of 8 October 2020 was found; the table stays in force (ultrattività). Seniority, overtime, absence and sickness rules are not re-read in this pass."
+        ]
+      }
+    ]
   }
 }

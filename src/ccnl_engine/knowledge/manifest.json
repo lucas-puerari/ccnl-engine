@@ -1832,9 +1832,9 @@
       "valid_to": null,
       "ruleset_id": "ccnl/sanita-privata-aiop-aris",
       "ruleset_version": "2026.2",
-      "source_hash": "ada6cc53ba67e39b7917a4a8d9e9e8c795962c9c85fba246cda93b8d71f89000",
+      "source_hash": "c3a93a4e35de321730a34522ec440325bf67830cb09e10210a9031e5350a045a",
       "source_type": "contracting_party",
-      "owner": "ccnl-engine maintainers",
+      "owner": "maintainer",
       "wheel_resource": "agreement/sanita-privata-aiop-aris.json.gz"
     },
     {
